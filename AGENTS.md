@@ -28,7 +28,7 @@ outrank general conventions. Keep them short, keep them enforced.
    layouts.
 8. Update `ARCHITECTURE.md` when you add a surface, domain type, or data
    loader.
-9. PRs need Aidan's approval to merge. Keep them small and focused.
+9. Prefer PRs over direct pushes. PRs get preview deployments and review; keep them small and focused. Direct pushes to main are fine for small fixes — keep them clean and build-passing.
 10. Prefer `type` over `interface`. Reach for `interface` only for
     declaration merging (augmenting a library's types) or a class
     `implements` contract. Everything else is `type`.
