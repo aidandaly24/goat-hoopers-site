@@ -1,0 +1,49 @@
+/**
+ * Design tokens — the visual language of the site.
+ *
+ * Everything visual in every surface MUST reference these tokens, never
+ * hardcoded colors/spacing. This is what keeps ten contributors looking like
+ * one site. If you need a new token, add it here and document why.
+ */
+
+:root {
+  /* Brand */
+  --gh-gold: #f0b429;
+  --gh-gold-soft: #f6c453;
+  --gh-ember: #ff5c38;
+
+  /* Surfaces */
+  --gh-bg: #0b0b10;
+  --gh-bg-raised: #121218;
+  --gh-bg-card: #16161e;
+  --gh-bg-hover: #1d1d27;
+  --gh-border: #26262f;
+  --gh-border-strong: #34333f;
+
+  /* Text */
+  --gh-text: #f4f2ea;
+  --gh-text-dim: #a7a39a;
+  --gh-text-faint: #6b695f;
+
+  /* Status */
+  --gh-win: #4ade80;
+  --gh-loss: #f87171;
+
+  /* Type */
+  --gh-font-display: "Archivo", "Inter", system-ui, sans-serif;
+  --gh-font-body: "Inter", system-ui, sans-serif;
+
+  /* Spacing scale */
+  --gh-s1: 0.25rem;
+  --gh-s2: 0.5rem;
+  --gh-s3: 0.75rem;
+  --gh-s4: 1rem;
+  --gh-s6: 1.5rem;
+  --gh-s8: 2rem;
+  --gh-s12: 3rem;
+  --gh-s16: 4rem;
+
+  /* Shape */
+  --gh-radius: 0.75rem;
+  --gh-radius-lg: 1.25rem;
+}

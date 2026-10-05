@@ -1,0 +1,19 @@
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--gh-gold) 0%, var(--gh-ember) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--gh-border-strong);
+}
+
+.initials {
+  font-family: var(--gh-font-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #0b0b10;
+}

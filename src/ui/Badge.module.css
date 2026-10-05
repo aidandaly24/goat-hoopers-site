@@ -1,0 +1,29 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--gh-border-strong);
+  color: var(--gh-text-dim);
+  background: var(--gh-bg-raised);
+  white-space: nowrap;
+}
+
+.gold {
+  color: var(--gh-gold);
+  border-color: color-mix(in srgb, var(--gh-gold) 45%, transparent);
+  background: color-mix(in srgb, var(--gh-gold) 12%, transparent);
+}
+
+.win {
+  color: var(--gh-win);
+  border-color: color-mix(in srgb, var(--gh-win) 40%, transparent);
+}
+
+.loss {
+  color: var(--gh-loss);
+  border-color: color-mix(in srgb, var(--gh-loss) 40%, transparent);
+}

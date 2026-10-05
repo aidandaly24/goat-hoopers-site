@@ -1,0 +1,29 @@
+.wrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--gh-s4);
+  margin-bottom: var(--gh-s6);
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gh-gold);
+  margin-bottom: var(--gh-s1);
+}
+
+.title {
+  font-family: var(--gh-font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--gh-text);
+  margin: 0;
+}
+
+.action {
+  flex-shrink: 0;
+}

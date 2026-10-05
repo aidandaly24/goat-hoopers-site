@@ -1,0 +1,30 @@
+/* Global resets. Component styling lives in CSS modules; shared values in ui/tokens.css. */
+
+/* Bridge next/font variables into the design-token namespace. */
+:root {
+  --gh-font-display: var(--font-display);
+  --gh-font-body: var(--font-body);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--gh-bg);
+  color: var(--gh-text);
+  font-family: var(--gh-font-body, "Inter", system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--gh-font-display, "Archivo", system-ui, sans-serif);
+}

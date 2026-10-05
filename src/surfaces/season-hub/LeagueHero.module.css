@@ -1,0 +1,44 @@
+.hero {
+  text-align: center;
+  padding: var(--gh-s16) var(--gh-s4) var(--gh-s12);
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(240, 180, 41, 0.12), transparent),
+    var(--gh-bg);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+  margin-bottom: var(--gh-s3);
+}
+
+.title {
+  font-family: var(--gh-font-display);
+  font-size: clamp(2.75rem, 8vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: var(--gh-text);
+}
+
+.gold {
+  background: linear-gradient(120deg, var(--gh-gold-soft), var(--gh-gold) 60%, var(--gh-ember));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sub {
+  color: var(--gh-text-dim);
+  margin: var(--gh-s3) 0 var(--gh-s6);
+  text-transform: capitalize;
+}
+
+.badges {
+  display: flex;
+  gap: var(--gh-s2);
+  justify-content: center;
+}

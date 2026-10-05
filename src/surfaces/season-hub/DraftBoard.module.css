@@ -1,0 +1,70 @@
+.round + .round {
+  margin-top: var(--gh-s6);
+}
+
+.roundLabel {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gh-gold);
+  margin-bottom: var(--gh-s3);
+}
+
+.picks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s2);
+}
+
+.pick {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  align-items: center;
+  gap: var(--gh-s3);
+  padding: var(--gh-s3) var(--gh-s4);
+  background: var(--gh-bg-raised);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius);
+}
+
+.pick:hover {
+  border-color: var(--gh-border-strong);
+}
+
+.pickNo {
+  font-family: var(--gh-font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--gh-text-faint);
+}
+
+.playerName {
+  display: block;
+  font-weight: 700;
+  color: var(--gh-text);
+}
+
+.playerMeta {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--gh-text-faint);
+}
+
+.team {
+  font-size: 0.8rem;
+  color: var(--gh-text-dim);
+  text-align: right;
+  max-width: 10rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.empty {
+  color: var(--gh-text-faint);
+  margin: 0;
+}

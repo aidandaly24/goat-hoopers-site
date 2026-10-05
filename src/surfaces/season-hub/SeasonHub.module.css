@@ -1,0 +1,25 @@
+.surface {
+  min-height: 100vh;
+  background: var(--gh-bg);
+}
+
+.grid {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 var(--gh-s4) var(--gh-s16);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gh-s6);
+}
+
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: 1.6fr 1fr;
+  }
+  .standings {
+    grid-row: span 1;
+  }
+  .draft {
+    grid-column: 1 / -1;
+  }
+}
