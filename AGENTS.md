@@ -7,3 +7,31 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+---
+
+# Project rules
+
+These are the house rules for this repo. They were agreed with Aidan and
+outrank general conventions. Keep them short, keep them enforced.
+
+1. Read `ARCHITECTURE.md` before touching anything. It maps the whole repo.
+2. The Sleeper API is only touched in `src/data/`. Nowhere else, no exceptions.
+3. New league concept? Add the type to `src/domain/` first, then teach
+   `src/data` to build it. Never invent a parallel shape inside a component.
+4. Surfaces don't import each other's internals. They share domain types only.
+5. Every surface uses `src/ui/` primitives and tokens. No one-off colors,
+   fonts, or spacing.
+6. Pages stay thin: load data via `@/data/league`, hand domain objects to
+   surfaces. No fetching in components.
+7. Mobile and desktop are both first-class. Every new component ships both
+   layouts.
+8. Update `ARCHITECTURE.md` when you add a surface, domain type, or data
+   loader.
+9. PRs need Aidan's approval to merge. Keep them small and focused.
+10. Prefer `type` over `interface`. Reach for `interface` only for
+    declaration merging (augmenting a library's types) or a class
+    `implements` contract. Everything else is `type`.
+11. Use dependency inversion. Surfaces and loaders receive their dependencies
+    (data clients, stores) as parameters — never import a concrete client
+    directly. Everything stays testable with fakes.

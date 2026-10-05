@@ -1,0 +1,256 @@
+/**
+ * Server actions — the app layer's glue between forms and the GameStore.
+ *
+ * These are the only place that touches cookies, and the only place that
+ * calls `getGameStore()` outside of page loaders. Surfaces never import
+ * this file; forms receive the action they need... in practice the forms
+ * here are co-located with their routes and import these directly, which
+ * is fine — the dependency-inversion boundary that matters is
+ * pages/surfaces ↔ GameStore, and that holds: actions go through the
+ * store contract, never the drizzle client.
+ *
+ * Security notes:
+ * - Passwords are bcrypt-hashed (12 rounds). Raw passwords are never
+ *   logged, never stored, never returned.
+ * - The `gh_session` cookie holds the raw token; the DB holds only its
+ *   SHA-256 hash. Cookie: httpOnly, sameSite=lax, secure in production,
+ *   90-day max-age ("remember me" is the default).
+ * - Invite codes are single-use and device-free: claiming from a phone
+ *   then playing on a laptop just works.
+ * - Admin actions are gated by COMMISSIONER_KEY, checked server-side.
+ *   The key never leaves the server.
+ */
+"use server";
+
+import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
+import { compare, hash } from "bcryptjs";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import {
+  getGameStore,
+  type GameStore,
+} from "@/data/arcade";
+import type { SiteUser } from "@/domain/arcade";
+
+const SESSION_COOKIE = "gh_session";
+/** 90 days, in seconds. "Remember me" is the default. */
+const SESSION_MAX_AGE = 90 * 24 * 60 * 60;
+
+export type ActionResult = { ok: true } | { ok: false; error: string };
+
+/** Friendly error when Postgres isn't provisioned yet. */
+function storeUnavailable(): { ok: false; error: string } {
+  return {
+    ok: false,
+    error:
+      "The arcade database isn't provisioned yet. Aidan needs to create " +
+      "the Vercel Postgres database first (see ARCHITECTURE.md).",
+  };
+}
+
+function getStore(): GameStore | null {
+  try {
+    return getGameStore();
+  } catch {
+    return null;
+  }
+}
+
+function hashToken(token: string): string {
+  return createHash("sha256").update(token).digest("hex");
+}
+
+function newToken(): string {
+  return randomBytes(32).toString("hex");
+}
+
+async function startSession(userId: string): Promise<void> {
+  const store = getStore();
+  if (!store) return;
+  const token = newToken();
+  const expiresAt = new Date(Date.now() + SESSION_MAX_AGE * 1000);
+  await store.createSession({ tokenHash: hashToken(token), userId, expiresAt });
+  const cookieStore = await cookies();
+  cookieStore.set(SESSION_COOKIE, token, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    maxAge: SESSION_MAX_AGE,
+  });
+}
+
+/**
+ * The currently logged-in user, or null. Server components call this —
+ * never the client.
+ */
+export async function getCurrentUser(): Promise<SiteUser | null> {
+  const store = getStore();
+  if (!store) return null;
+  const cookieStore = await cookies();
+  const token = cookieStore.get(SESSION_COOKIE)?.value;
+  if (!token) return null;
+  const record = await store.getSessionUser(hashToken(token));
+  return record?.user ?? null;
+}
+
+/** Normalize a code the way it was generated: uppercase, trimmed. */
+function normalizeCode(code: string): string {
+  return code.trim().toUpperCase();
+}
+
+const CODE_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+
+function randomCode(): string {
+  const bytes = randomBytes(6);
+  let body = "";
+  for (const b of bytes) body += CODE_ALPHABET[b % CODE_ALPHABET.length];
+  return `GH-${body}`;
+}
+
+async function uniqueCode(store: GameStore): Promise<string> {
+  for (let i = 0; i < 10; i++) {
+    const code = randomCode();
+    if (!(await store.getInviteByCode(code))) return code;
+  }
+  throw new Error("Could not generate a unique invite code");
+}
+
+/**
+ * Claim a team with an invite code and set a password. Consumes the code,
+ * creates the account, and logs the user in.
+ */
+export async function claimAccount(
+  code: string,
+  password: string,
+  displayName: string,
+): Promise<ActionResult> {
+  const store = getStore();
+  if (!store) return storeUnavailable();
+
+  const normalized = normalizeCode(code);
+  const invite = await store.getInviteByCode(normalized);
+  if (!invite) return { ok: false, error: "That code doesn't exist." };
+  if (invite.usedBy) return { ok: false, error: "That code was already used." };
+  if (password.length < 8) {
+    return { ok: false, error: "Password needs to be at least 8 characters." };
+  }
+  const name = displayName.trim();
+  if (!name) return { ok: false, error: "Pick a display name." };
+
+  const existing = await store.getUserByTeam(invite.teamId);
+  if (existing) {
+    return { ok: false, error: "This team is already claimed." };
+  }
+
+  const passwordHash = await hash(password, 12);
+  const user = await store.createUser({
+    teamId: invite.teamId,
+    displayName: name,
+    passwordHash,
+  });
+  const consumed = await store.consumeInviteCode(normalized, user.id);
+  if (!consumed) {
+    return { ok: false, error: "That code was just used. Try logging in." };
+  }
+  await startSession(user.id);
+  redirect("/arcade");
+}
+
+/** Log in with team + password. */
+export async function login(
+  teamId: string,
+  password: string,
+): Promise<ActionResult> {
+  const store = getStore();
+  if (!store) return storeUnavailable();
+
+  const passwordHash = await store.getPasswordHash(teamId);
+  if (!passwordHash) {
+    return { ok: false, error: "No account for that team yet — claim it first." };
+  }
+  const user = await store.getUserByTeam(teamId);
+  if (!user) {
+    return { ok: false, error: "No account for that team yet — claim it first." };
+  }
+  const valid = await compare(password, passwordHash);
+  if (!valid) return { ok: false, error: "Wrong password." };
+  await startSession(user.id);
+  redirect("/arcade");
+}
+
+/** Log out: kill the server session and clear the cookie. */
+export async function logout(): Promise<void> {
+  const store = getStore();
+  const cookieStore = await cookies();
+  const token = cookieStore.get(SESSION_COOKIE)?.value;
+  if (store && token) {
+    await store.deleteSession(hashToken(token));
+  }
+  cookieStore.delete(SESSION_COOKIE);
+  redirect("/");
+}
+
+function commissionerKeyValid(provided: string): boolean {
+  const expected = process.env.COMMISSIONER_KEY;
+  if (!expected || !provided) return false;
+  const a = Buffer.from(provided);
+  const b = Buffer.from(expected);
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(a, b);
+}
+
+/** List all invite codes with their status. Commissioner only. */
+export async function getInviteOverview(
+  commissionerKey: string,
+): Promise<
+  | { ok: true; codes: import("@/domain/arcade").InviteCode[] }
+  | { ok: false; error: string }
+> {
+  if (!commissionerKeyValid(commissionerKey)) {
+    return { ok: false, error: "Wrong commissioner key." };
+  }
+  const store = getStore();
+  if (!store) return storeUnavailable();
+  return { ok: true, codes: await store.listInviteCodes() };
+}
+
+/**
+ * Generate invite codes for every team that doesn't already have an
+ * unused one. Commissioner only.
+ */
+export async function ensureInviteCodes(
+  commissionerKey: string,
+  teams: { id: string }[],
+): Promise<ActionResult> {
+  if (!commissionerKeyValid(commissionerKey)) {
+    return { ok: false, error: "Wrong commissioner key." };
+  }
+  const store = getStore();
+  if (!store) return storeUnavailable();
+  const existing = await store.listInviteCodes();
+  const hasUnused = new Set(
+    existing.filter((c) => !c.usedBy).map((c) => c.teamId),
+  );
+  for (const team of teams) {
+    if (!hasUnused.has(team.id)) {
+      await store.createInviteCode(team.id, await uniqueCode(store));
+    }
+  }
+  return { ok: true };
+}
+
+/** Invalidate a team's unused codes and issue a fresh one. Commissioner only. */
+export async function regenerateInviteCode(
+  commissionerKey: string,
+  teamId: string,
+): Promise<ActionResult> {
+  if (!commissionerKeyValid(commissionerKey)) {
+    return { ok: false, error: "Wrong commissioner key." };
+  }
+  const store = getStore();
+  if (!store) return storeUnavailable();
+  await store.deleteUnusedCodesForTeam(teamId);
+  await store.createInviteCode(teamId, await uniqueCode(store));
+  return { ok: true };
+}

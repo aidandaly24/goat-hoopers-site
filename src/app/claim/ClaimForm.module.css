@@ -1,0 +1,93 @@
+.card {
+  max-width: 28rem;
+  margin: var(--gh-s16) auto;
+}
+
+.lede {
+  color: var(--gh-text-dim);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0 0 var(--gh-s4);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s2);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+}
+
+.input {
+  background: var(--gh-bg-raised);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-s2);
+  color: var(--gh-text);
+  padding: var(--gh-s3) var(--gh-s4);
+  font-size: 1rem;
+  font-family: var(--gh-font-body);
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--gh-gold);
+}
+
+.input[name="code"] {
+  text-transform: uppercase;
+  font-family: ui-monospace, monospace;
+  letter-spacing: 0.08em;
+}
+
+.error {
+  color: var(--gh-loss);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.submit {
+  background: var(--gh-gold);
+  color: #1a1405;
+  border: none;
+  border-radius: var(--gh-s2);
+  padding: var(--gh-s3) var(--gh-s4);
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: var(--gh-font-display);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.switch {
+  color: var(--gh-text-faint);
+  font-size: 0.9rem;
+  margin: var(--gh-s4) 0 0;
+  text-align: center;
+}
+
+.switch a {
+  color: var(--gh-gold);
+  font-weight: 700;
+}
+
+@media (max-width: 40rem) {
+  .card {
+    margin: var(--gh-s8) var(--gh-s3);
+  }
+}
