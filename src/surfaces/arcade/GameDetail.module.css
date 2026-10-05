@@ -1,0 +1,107 @@
+.surface {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: var(--gh-s8) var(--gh-s4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s6);
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s4);
+}
+
+.icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gh-gold);
+  margin: 0 0 var(--gh-s1);
+}
+
+.title {
+  font-family: var(--gh-font-display);
+  font-weight: 900;
+  font-size: 2rem;
+  color: var(--gh-text);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.hero > :last-child {
+  margin-left: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 22rem;
+  gap: var(--gh-s4);
+  align-items: start;
+}
+
+.main,
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s4);
+  min-width: 0;
+}
+
+.howTo {
+  color: var(--gh-text-dim);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.soon {
+  margin: var(--gh-s3) 0 0;
+  color: var(--gh-gold-soft);
+  font-size: 0.9rem;
+}
+
+.prize {
+  color: var(--gh-text);
+  margin: 0 0 var(--gh-s2);
+  font-size: 1.05rem;
+}
+
+.prize strong {
+  color: var(--gh-gold);
+  font-family: var(--gh-font-display);
+}
+
+.note {
+  color: var(--gh-text-faint);
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Mobile: stack everything */
+@media (max-width: 56rem) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 40rem) {
+  .surface {
+    padding: var(--gh-s4) var(--gh-s3);
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .icon {
+    font-size: 2.25rem;
+  }
+}

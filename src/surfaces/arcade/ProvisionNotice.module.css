@@ -1,0 +1,25 @@
+.wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: var(--gh-s16) var(--gh-s4);
+}
+
+.card {
+  text-align: center;
+}
+
+.body {
+  color: var(--gh-text-dim);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.85em;
+  background: var(--gh-bg-raised);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-s1);
+  padding: 0.1rem 0.35rem;
+  color: var(--gh-gold-soft);
+}
