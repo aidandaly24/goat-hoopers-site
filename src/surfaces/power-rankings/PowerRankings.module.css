@@ -54,10 +54,17 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: color 0.18s ease;
 }
 
 .name:hover {
   color: var(--gh-gold-soft);
+}
+
+.name:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
 }
 
 .record {
@@ -71,15 +78,15 @@
   display: none;
   height: 0.375rem;
   background: var(--gh-bg-raised);
-  border-radius: 999px;
+  border-radius: var(--gh-radius-pill);
   overflow: hidden;
 }
 
 .fill {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, var(--gh-gold), var(--gh-ember));
-  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gh-gold), var(--gh-gold-deep));
+  border-radius: var(--gh-radius-pill);
 }
 
 @media (min-width: 40rem) {
@@ -96,4 +103,10 @@
   color: var(--gh-text-faint);
   font-style: italic;
   margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .name {
+    transition: none;
+  }
 }

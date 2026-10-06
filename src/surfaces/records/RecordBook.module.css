@@ -50,10 +50,17 @@
   font-weight: 600;
   color: var(--gh-text);
   text-decoration: none;
+  transition: color 0.18s ease;
 }
 
 .teamLink:hover {
   color: var(--gh-gold-soft);
+}
+
+.teamLink:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
 }
 
 .margin {
@@ -74,4 +81,10 @@
   color: var(--gh-text-faint);
   font-style: italic;
   margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teamLink {
+    transition: none;
+  }
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Standing } from "@/domain";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
@@ -22,7 +23,13 @@ export function StandingsTable({ standings }: { standings: Standing[] }) {
           <span role="columnheader" className={styles.num}>PF</span>
         </div>
         {standings.map((s) => (
-          <div key={s.team.id} className={styles.row} role="row">
+          <Link
+            key={s.team.id}
+            href={`/teams/${s.team.id}`}
+            className={styles.row}
+            role="row"
+            aria-label={`View ${s.team.name}`}
+          >
             <span className={styles.rank}>{s.rank}</span>
             <span className={styles.team}>
               <TeamAvatar name={s.team.name} avatar={s.team.avatar} />
@@ -34,7 +41,7 @@ export function StandingsTable({ standings }: { standings: Standing[] }) {
             <span className={`${styles.num} ${styles.w}`} data-label="W">{s.wins}</span>
             <span className={`${styles.num} ${styles.l}`} data-label="L">{s.losses}</span>
             <span className={`${styles.num} ${styles.pf}`} data-label="PF">{fmtPoints(s.team.pointsFor)}</span>
-          </div>
+          </Link>
         ))}
       </div>
     </Card>

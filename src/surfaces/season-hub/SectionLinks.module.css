@@ -20,17 +20,39 @@
   border-radius: var(--gh-radius);
   text-decoration: none;
   min-height: 44px;
+  transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
 }
 
 .link:hover {
   border-color: var(--gh-border-strong);
   background: var(--gh-bg-hover);
+  transform: translateY(-2px);
+}
+
+.link:hover .title {
+  color: var(--gh-gold-soft);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+
+  .link:hover {
+    transform: none;
+  }
 }
 
 .title {
   grid-area: title;
   font-weight: 700;
   color: var(--gh-text);
+  transition: color 0.18s ease;
 }
 
 .blurb {

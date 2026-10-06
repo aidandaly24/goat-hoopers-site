@@ -140,6 +140,13 @@
   text-decoration: none;
   min-width: 0;
   min-height: 2.75rem;
+  padding: var(--gh-s1) var(--gh-s2);
+  border-radius: var(--gh-radius);
+  transition: background-color 0.18s ease;
+}
+
+.gameTeam:hover {
+  background: var(--gh-bg-hover);
 }
 
 .gameTeam:first-child {
@@ -154,11 +161,17 @@
   color: var(--gh-gold-soft);
 }
 
+.gameTeam:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
 .gameTeamName {
   font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: color 0.18s ease;
 }
 
 .score {
@@ -192,15 +205,8 @@
   min-height: 2.75rem;
 }
 
-.pickName {
-  color: var(--gh-text);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.pickName:hover {
-  color: var(--gh-gold-soft);
-}
+/* Rookie pick names render through the PlayerName primitive (its own
+ * hover/focus styles) — no local link chrome here. */
 
 .moves {
   list-style: none;
@@ -214,4 +220,11 @@
 
 .move {
   line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gameTeam,
+  .gameTeamName {
+    transition: none;
+  }
 }

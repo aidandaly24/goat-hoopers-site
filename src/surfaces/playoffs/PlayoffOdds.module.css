@@ -27,17 +27,24 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: color 0.18s ease;
 }
 
 .name:hover {
   color: var(--gh-gold-soft);
 }
 
+.name:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
+}
+
 .bar {
   display: none;
   height: 0.5rem;
   background: var(--gh-bg-raised);
-  border-radius: 999px;
+  border-radius: var(--gh-radius-pill);
   overflow: hidden;
   grid-column: 1 / -1;
 }
@@ -45,8 +52,8 @@
 .fill {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, var(--gh-gold), var(--gh-ember));
-  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gh-gold), var(--gh-gold-deep));
+  border-radius: var(--gh-radius-pill);
 }
 
 @media (min-width: 40rem) {
@@ -93,4 +100,10 @@
   font-style: italic;
   margin: 0;
   line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .name {
+    transition: none;
+  }
 }

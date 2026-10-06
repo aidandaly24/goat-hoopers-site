@@ -29,6 +29,17 @@
   color: var(--gh-text);
   text-decoration: none;
   white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.wordmark:hover {
+  color: var(--gh-gold-soft);
+}
+
+.wordmark:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
 }
 
 .wordmark span {
@@ -50,11 +61,17 @@
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  transition: color 0.18s ease, background-color 0.18s ease;
 }
 
 .nav a:hover {
   color: var(--gh-text);
-  background: rgb(255 255 255 / 0.05);
+  background: color-mix(in srgb, var(--gh-text) 6%, transparent);
+}
+
+.nav a:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
 }
 
 .account {
@@ -77,10 +94,17 @@
   display: inline-flex;
   align-items: center;
   box-shadow: var(--gh-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .claim:hover {
   box-shadow: var(--gh-glow-gold);
+  transform: translateY(-1px);
+}
+
+.claim:focus-visible {
+  outline: 2px solid var(--gh-gold-soft);
+  outline-offset: 2px;
 }
 
 .login {
@@ -95,11 +119,17 @@
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  transition: color 0.18s ease, border-color 0.18s ease;
 }
 
 .login:hover {
   color: var(--gh-text);
   border-color: var(--gh-text-faint);
+}
+
+.login:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
 }
 
 /* The single logged-in team entry point: team-colored avatar ring +
@@ -115,10 +145,16 @@
   padding: var(--gh-s2) var(--gh-s2);
   border-radius: var(--gh-radius);
   min-height: 44px;
+  transition: background-color 0.18s ease;
 }
 
 .displayName:hover {
-  background: rgb(255 255 255 / 0.05);
+  background: color-mix(in srgb, var(--gh-text) 6%, transparent);
+}
+
+.displayName:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
 }
 
 .displayName:hover .name {
@@ -162,11 +198,32 @@
   cursor: pointer;
   font-family: var(--gh-font-body);
   min-height: 44px;
+  transition: color 0.18s ease, border-color 0.18s ease;
 }
 
 .logout:hover {
   color: var(--gh-text);
   border-color: var(--gh-text-faint);
+}
+
+.logout:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark,
+  .nav a,
+  .claim,
+  .login,
+  .displayName,
+  .logout {
+    transition: none;
+  }
+
+  .claim:hover {
+    transform: none;
+  }
 }
 
 /* Phones: the bottom tab bar carries Home / Arcade / Team, so the header

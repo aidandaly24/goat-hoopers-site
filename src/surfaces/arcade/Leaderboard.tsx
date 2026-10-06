@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { LeaderboardEntry } from "@/domain/arcade";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
@@ -47,18 +48,20 @@ export function Leaderboard({
           {/* Mobile: cards */}
           <div className={styles.cards}>
             {entries.map((e) => (
-              <div
+              <Link
                 key={`${e.teamId}-${e.rank}`}
+                href={`/teams/${e.teamId}`}
                 className={`${styles.cardRow} ${
                   highlightTeamId && e.teamId === highlightTeamId
                     ? styles.you
                     : ""
                 }`}
+                aria-label={`View ${e.displayName}`}
               >
                 <span className={styles.rank}>{medal(e.rank)}</span>
                 <span className={styles.name}>{e.displayName}</span>
                 <span className={styles.num}>{e.score}</span>
-              </div>
+              </Link>
             ))}
           </div>
         </>
@@ -76,14 +79,19 @@ function Row({
 }) {
   const you = highlightTeamId !== null && entry.teamId === highlightTeamId;
   return (
-    <div role="row" className={`${styles.row} ${you ? styles.you : ""}`}>
+    <Link
+      role="row"
+      href={`/teams/${entry.teamId}`}
+      className={`${styles.row} ${you ? styles.you : ""}`}
+      aria-label={`View ${entry.displayName}`}
+    >
       <span className={styles.rank}>{medal(entry.rank)}</span>
       <span className={styles.name}>
         {entry.displayName}
         {you && <span className={styles.youTag}>you</span>}
       </span>
       <span className={styles.num}>{entry.score}</span>
-    </div>
+    </Link>
   );
 }
 

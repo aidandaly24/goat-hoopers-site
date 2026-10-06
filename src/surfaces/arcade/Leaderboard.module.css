@@ -23,6 +23,9 @@
 
 .row {
   border-bottom: 1px solid var(--gh-border);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.18s ease;
 }
 
 .row:last-child {
@@ -31,6 +34,15 @@
 
 .row:hover {
   background: var(--gh-bg-hover);
+}
+
+.row:hover .name {
+  color: var(--gh-gold-soft);
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: -2px;
 }
 
 .rank {
@@ -63,12 +75,12 @@
   letter-spacing: 0.08em;
   color: var(--gh-gold);
   border: 1px solid var(--gh-gold);
-  border-radius: 999px;
+  border-radius: var(--gh-radius-pill);
   padding: 0.1rem 0.45rem;
 }
 
 .you {
-  background: rgba(240, 180, 41, 0.06);
+  background: color-mix(in srgb, var(--gh-gold) 8%, transparent);
 }
 
 .num {
@@ -96,10 +108,22 @@
   gap: var(--gh-s3);
   padding: var(--gh-s3) var(--gh-s2);
   border-bottom: 1px solid var(--gh-border);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.18s ease;
 }
 
 .cardRow:last-child {
   border-bottom: none;
+}
+
+.cardRow:hover {
+  background: var(--gh-bg-hover);
+}
+
+.cardRow:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: -2px;
 }
 
 .cardRow .name {
@@ -114,5 +138,12 @@
   .cards {
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .cardRow {
+    transition: none;
   }
 }

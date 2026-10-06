@@ -1,7 +1,7 @@
 .footer {
   border-top: 1px solid var(--gh-border);
   background:
-    linear-gradient(180deg, transparent, rgb(0 0 0 / 0.35)),
+    linear-gradient(180deg, transparent, color-mix(in srgb, var(--gh-bg) 45%, transparent)),
     var(--gh-bg-raised);
   margin-top: var(--gh-s16);
 }
@@ -62,10 +62,23 @@
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  transition: color 0.18s ease;
 }
 
 .nav a:hover {
   color: var(--gh-gold);
+}
+
+.nav a:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav a {
+    transition: none;
+  }
 }
 
 .copy {

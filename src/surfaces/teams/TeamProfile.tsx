@@ -3,7 +3,7 @@ import type { Matchup, Team, TeamProfile } from "@/domain";
 import { isFinal } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
-import { PlayerRow } from "@/ui/PlayerRow";
+import { PlayerName, PlayerRow } from "@/ui/PlayerRow";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { TransactionSummary } from "@/ui/TransactionSummary";
@@ -156,12 +156,9 @@ export function TeamProfile({
                 {draftPicks.map((p) => (
                   <li key={p.pickNo} className={styles.pick}>
                     <Badge tone="gold">#{p.pickNo}</Badge>
-                    <Link
-                      href={`/player/${p.playerId}`}
-                      className={styles.pickName}
-                    >
-                      {p.playerName}
-                    </Link>
+                    <PlayerName
+                      player={{ id: p.playerId, fullName: p.playerName }}
+                    />
                     {p.position && <Badge>{p.position}</Badge>}
                   </li>
                 ))}

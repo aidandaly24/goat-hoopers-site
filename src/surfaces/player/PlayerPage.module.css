@@ -42,10 +42,18 @@
   font-weight: 600;
   text-decoration: none;
   min-height: 2.75rem;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
 }
 
 .teamLink:hover {
   text-decoration: underline;
+  color: var(--gh-gold);
+}
+
+.teamLink:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
 }
 
 .grid {
@@ -74,10 +82,25 @@
   color: var(--gh-gold-soft);
   font-weight: 600;
   text-decoration: none;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
 }
 
 .inlineLink:hover {
   text-decoration: underline;
+  color: var(--gh-gold);
+}
+
+.inlineLink:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teamLink,
+  .inlineLink {
+    transition: none;
+  }
 }
 
 .txList {

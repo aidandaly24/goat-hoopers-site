@@ -55,10 +55,16 @@
   min-height: 3.5rem;
   padding: var(--gh-s2);
   border-radius: var(--gh-radius);
+  transition: background-color 0.18s ease;
 }
 
 .side:hover {
   background: var(--gh-bg-hover);
+}
+
+.side:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
 }
 
 .right {
@@ -103,22 +109,22 @@
   letter-spacing: 0.08em;
   color: var(--gh-text-faint);
   border: 1px solid var(--gh-border-strong);
-  border-radius: 999px;
+  border-radius: var(--gh-radius-pill);
   padding: var(--gh-s1) var(--gh-s2);
 }
 
 .bar {
   height: 0.375rem;
   background: var(--gh-bg-card);
-  border-radius: 999px;
+  border-radius: var(--gh-radius-pill);
   overflow: hidden;
 }
 
 .fill {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, var(--gh-gold), var(--gh-ember));
-  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gh-gold), var(--gh-gold-deep));
+  border-radius: var(--gh-radius-pill);
 }
 
 .projection {
@@ -133,4 +139,10 @@
   color: var(--gh-text-faint);
   font-style: italic;
   margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side {
+    transition: none;
+  }
 }

@@ -118,4 +118,20 @@
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  transition: color 0.18s ease;
+}
+
+.link:hover .cta {
+  color: var(--gh-gold-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cta {
+    transition: none;
+  }
+
+  .link:hover .card {
+    transform: none;
+  }
 }

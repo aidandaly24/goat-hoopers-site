@@ -3,6 +3,7 @@ import type { DraftPick, Team } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
 import { PlayerHeadshot } from "@/ui/PlayerHeadshot";
+import { PlayerName } from "@/ui/PlayerRow";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import styles from "./DraftBoard.module.css";
@@ -74,12 +75,9 @@ export function DraftBoard({ picks, teams }: DraftBoardProps) {
                           name={p.playerName}
                           teamId={p.teamId}
                         />
-                        <Link
-                          href={`/player/${p.playerId}`}
-                          className={styles.playerName}
-                        >
-                          {p.playerName}
-                        </Link>
+                        <PlayerName
+                          player={{ id: p.playerId, fullName: p.playerName }}
+                        />
                         <span className={styles.playerMeta}>
                           {p.position && <Badge>{p.position}</Badge>}
                           {p.nbaTeam && (

@@ -2,7 +2,7 @@
   text-align: center;
   padding: var(--gh-s16) var(--gh-s4) var(--gh-s12);
   background:
-    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(240, 180, 41, 0.12), transparent),
+    radial-gradient(ellipse 60% 50% at 50% 0%, color-mix(in srgb, var(--gh-gold) 12%, transparent), transparent),
     var(--gh-bg);
 }
 

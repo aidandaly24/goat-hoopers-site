@@ -41,4 +41,24 @@
 .link {
   color: var(--gh-gold);
   font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--gh-gold);
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.link:hover {
+  color: var(--gh-gold-soft);
+  border-bottom-color: var(--gh-gold-soft);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
 }

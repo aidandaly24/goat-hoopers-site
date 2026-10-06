@@ -39,7 +39,7 @@ export function GameDetail({
           <h1 className={styles.title}>{game.name}</h1>
         </div>
         <Badge tone={game.status === "live" ? "win" : "neutral"}>
-          {game.status === "live" ? "Live" : "Coming soon"}
+          {game.status === "live" ? "Live" : "Not yet live"}
         </Badge>
       </header>
 

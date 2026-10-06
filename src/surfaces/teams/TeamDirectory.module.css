@@ -19,15 +19,23 @@
   text-decoration: none;
   width: 100%;
   box-sizing: border-box;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .teamCard:hover {
   background: var(--gh-bg-hover);
   border-color: var(--gh-border-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--gh-shadow-md);
 }
 
 .teamCard:hover .name {
   color: var(--gh-gold-soft);
+}
+
+.teamCard:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
 }
 
 .info {
@@ -44,6 +52,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: color 0.18s ease;
 }
 
 .manager {
@@ -86,5 +95,16 @@
 @media (min-width: 64rem) {
   .grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teamCard,
+  .name {
+    transition: none;
+  }
+
+  .teamCard:hover {
+    transform: none;
   }
 }

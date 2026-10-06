@@ -32,7 +32,7 @@
 .crown:focus-visible {
   outline: 2px solid var(--gh-gold);
   outline-offset: 2px;
-  border-radius: 6px;
+  border-radius: var(--gh-s2);
 }
 
 .svg {

@@ -21,11 +21,18 @@
   border-radius: var(--gh-radius);
   padding: var(--gh-s2) var(--gh-s3);
   cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
 }
 
 .typeButton:hover {
   color: var(--gh-text);
   border-color: var(--gh-border-strong);
+  background: var(--gh-bg-hover);
+}
+
+.typeButton:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
 }
 
 .typeButton.active {
@@ -54,6 +61,16 @@
   border-radius: var(--gh-radius);
   padding: var(--gh-s2) var(--gh-s3);
   max-width: 100%;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.teamSelect:hover {
+  border-color: var(--gh-border-strong);
+}
+
+.teamSelect:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
 }
 
 .count {
@@ -131,5 +148,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typeButton,
+  .teamSelect {
+    transition: none;
   }
 }
