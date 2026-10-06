@@ -41,7 +41,7 @@ export function ClaimForm() {
             name="code"
             required
             autoComplete="off"
-            placeholder="GH-XXXXXX"
+            placeholder="6-digit code"
             className={styles.input}
           />
         </label>
