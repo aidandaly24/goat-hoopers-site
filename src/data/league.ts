@@ -26,6 +26,7 @@ import {
   fetchDrafts,
   fetchDraftPicks,
   fetchPlayerDirectory,
+  fetchWinnersBracket,
   type RawMatchupEntry,
   type RawNbaState,
   type RawPlayerEntry,
@@ -44,6 +45,9 @@ import {
   emptyLeagueStats,
   type LeagueStatsInput,
 } from "./transform";
+/* Separate import: championRosterId is this feature's seam, kept out of
+ * the shared transform import block above. */
+import { championRosterId } from "./transform";
 
 export type SeasonHubData = {
   season: Season;
@@ -256,5 +260,40 @@ export async function getDraftBoard(): Promise<DraftBoardData> {
     return { picks, teams };
   } catch {
     return { picks: [], teams: [] };
+  }
+}
+
+/**
+ * Light season metadata for the site chrome (footer). Just league meta +
+ * NBA state — none of the standings/stats/transaction weight of
+ * getSeasonHubData. Null when the API is unreachable; the footer renders
+ * without the season line instead of the page failing.
+ */
+export async function getSeasonMeta(): Promise<Season | null> {
+  try {
+    const [league, nbaState] = await Promise.all([
+      fetchLeague(),
+      fetchNbaState().catch(() => null),
+    ]);
+    return toSeason(league, nbaState);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The defending champion's roster id (as a string, matching Team.id),
+ * resolved from the playoff winners bracket. Null when there's no
+ * completed bracket — the honest state for a league that hasn't crowned
+ * anyone yet (GOAT Hoopers' first season). Surfaces pass it to
+ * TeamAvatar's isChampion prop; no crown renders until this returns an
+ * id, so the feature lights up automatically the moment a champion
+ * exists. Never throws.
+ */
+export async function getDefendingChampion(): Promise<string | null> {
+  try {
+    return championRosterId(await fetchWinnersBracket());
+  } catch {
+    return null;
   }
 }

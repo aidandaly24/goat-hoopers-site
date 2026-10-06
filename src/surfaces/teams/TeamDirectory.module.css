@@ -15,6 +15,19 @@
   border: 1px solid var(--gh-border);
   border-radius: var(--gh-radius);
   min-height: 44px;
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.teamCard:hover {
+  background: var(--gh-bg-hover);
+  border-color: var(--gh-border-strong);
+}
+
+.teamCard:hover .name {
+  color: var(--gh-gold-soft);
 }
 
 .info {

@@ -24,6 +24,7 @@ import type {
   RawPlayerEntry,
   RawNbaState,
   RawDraftPick,
+  RawWinnersBracketEntry,
 } from "./sleeper";
 
 /** Team name resolution: manager's chosen name, else their username. */
@@ -371,4 +372,22 @@ export function computeLeagueStats(input: LeagueStatsInput): LeagueStats {
     biggestBlowout,
     closestGame,
   };
+}
+
+/**
+ * Champion roster id from a winners bracket: the winner of the final
+ * (highest-round) matchup, as a string to match Team.id. Null when the
+ * bracket is empty or the final is undecided — the honest state for a
+ * league that hasn't crowned anyone yet (GOAT Hoopers' first season).
+ * Pure: takes the raw bracket, no network.
+ */
+export function championRosterId(
+  bracket: RawWinnersBracketEntry[]
+): string | null {
+  if (bracket.length === 0) return null;
+  const finalRound = Math.max(...bracket.map((e) => e.r));
+  const finals = bracket.filter((e) => e.r === finalRound);
+  const decided = finals.find((e) => e.w !== null && e.w !== undefined);
+  const winner = decided?.w ?? finals[0]?.w ?? null;
+  return winner === null || winner === undefined ? null : String(winner);
 }

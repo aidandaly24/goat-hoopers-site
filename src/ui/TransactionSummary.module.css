@@ -1,0 +1,9 @@
+.teamLink {
+  color: var(--gh-gold-soft);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.teamLink:hover {
+  text-decoration: underline;
+}

@@ -26,6 +26,7 @@ export type { Player } from "./player";
 export type { Transaction, TransactionType } from "./transaction";
 export type { DraftPick } from "./draft";
 export type { Season } from "./season";
+export { formatSeasonStatus } from "./season";
 export type {
   LeagueStats,
   StatLeader,

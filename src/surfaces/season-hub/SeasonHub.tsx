@@ -33,7 +33,7 @@ export function SeasonHub({ data }: { data: SeasonHubData }) {
           <StandingsTable standings={data.standings} />
         </section>
         <div className={styles.side}>
-          <TransactionFeed transactions={data.transactions} />
+          <TransactionFeed transactions={data.transactions} teams={data.teams} />
         </div>
       </main>
     </div>

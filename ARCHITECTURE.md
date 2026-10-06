@@ -16,21 +16,31 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 src/
   domain/        # The shared language: Team, Standing, Matchup, Player,
                  # Transaction, DraftPick, Season, LeagueStats. Types + tiny
-                 # helpers only.
+                 # helpers only. formatSeasonStatus(Season.status) renders
+                 # the human status ("pre_season" -> "Preseason").
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
-                 # GameSession, Game, GameScore, LeaderboardEntry, Reward,
-                 # plus the game registry (games.ts). Never imports league
+                 # GameSession, Game, GameScore, LeaderboardEntry,
+                 # GameHubSummary, Reward, plus the game registry
+                 # (games.ts). Game carries an optional launchNote so
+                 # coming-soon games say why/when instead of "coming soon".
+                 # Never imports league
                  # types — teams are referenced by Sleeper roster id only.
   data/          # The ONLY place the outside world is touched.
     sleeper.ts   # Raw API client. Returns raw JSON, nothing else.
     transform.ts # Raw JSON -> domain objects. The membrane.
     league.ts    # Loaders: getSeasonHubData (home), getTeamDetail (/team),
                  # getTransactionHistory (/transactions), getDraftBoard
-                 # (/draft), getTeams (/teams).
+                 # (/draft), getTeams (/teams), getSeasonMeta (site
+                 # chrome: league meta + NBA state, no heavy sections),
+                 # getDefendingChampion (champion roster id from the
+                 # playoff winners bracket; null until someone wins —
+                 # feeds TeamAvatar's isChampion).
     db.ts        # SECOND DOOR: Vercel Postgres via Drizzle. Schema +
                  # lazy client. Nothing else imports drizzle or SQL.
     arcade.ts    # GameStore contract + DrizzleGameStore + FakeGameStore
-                 # + getGameStore() factory. Dependency inversion lives here.
+                 # + getGameStore() factory + getArcadeHubData() loader
+                 # (registry + weekly leaders + viewer's best, store
+                 # passed as a parameter). Dependency inversion lives here.
   surfaces/      # Bounded experiences. One folder per surface.
     season-hub/  # "What's happening in the league": hero, standings,
                  # stats strip, activity feed, section links to the deeper
@@ -48,15 +58,41 @@ src/
                  # GameDetail (rules + leaderboard + rewards),
                  # Leaderboard, RewardLedger, GameCard, ProvisionNotice.
                  # Receives domain objects, never touches the store.
+                 # GameCard renders a GameHubSummary: stakes, weekly
+                 # leader, and the viewer's "your move" state.
     team/        # "My Team": identity + record, full roster, FAAB
                  # winnings. Rendered by /team for the logged-in manager.
   ui/            # Design tokens (tokens.css) + primitives (Card, Badge,
-                 # SectionHeading, TeamAvatar, SiteHeader, SectionNav). Every surface uses these.
-                 # SiteHeader is the site-wide chrome (wordmark, Home/Arcade/My
-                 # Team nav, account state). SectionNav is the secondary tab row
-                 # for the league pages (Transactions / Draft Board / Teams).
-                 # Both take state as props (dependency inversion); the root
-                 # layout provides the user, pages provide the active tab.
+                 # SectionHeading, TeamAvatar, PositionPill,
+                 # PlayerHeadshot, ChampionCrown, SiteHeader, SiteFooter,
+                 # MobileNav, SectionNav) + teamColors.ts (roster id ->
+                 # --gh-team-N). Every surface uses these.
+                 # ChampionCrown is the defending champion's crown: a crisp
+                 # inline SVG in site gold, tilted a few degrees and nudged
+                 # off-center so it reads hand-placed. It's a real button —
+                 # click/Enter/Space fires a 360° overshoot-and-settle spin
+                 # (off under prefers-reduced-motion). TeamAvatar takes
+                 # isChampion and perches the crown; surfaces opt in with
+                 # the id from getDefendingChampion(). No crown renders
+                 # until the league has a champion.
+                 # SiteHeader is the site-wide chrome (wordmark, Home/Arcade
+                 # nav, account state). Nav rule: logged in, the manager's
+                 # display name with a team-colored avatar ring is the
+                 # single entry point to /team and "My Team" disappears;
+                 # logged out, "My Team" stays as the login nudge.
+                 # MobileNav is the bottom tab bar (Home / Arcade / Team)
+                 # shown at <=40rem; the header nav hides there.
+                 # SiteFooter is the site-wide footer (league, season,
+                 # links, unaffiliated-with-NBA/Sleeper line). All three
+                 # take state as props (dependency inversion); the root
+                 # layout provides the user and the season.
+                 # PositionPill colors PG/SG/SF/PF/C via --gh-pos-* tokens.
+                 # PlayerHeadshot renders the Sleeper CDN headshot with an
+                 # initials-in-team-colored-disc fallback (client component
+                 # for the onError switch).
+                 # SectionNav is the secondary tab row for the league pages
+                 # (Transactions / Draft Board / Teams); pages provide the
+                 # active tab.
                  # Reading the session cookie in the layout forces dynamic
                  # rendering (see layout.tsx) — deliberate: correct account
                  # state everywhere beats static caching for a ten-manager
@@ -160,9 +196,18 @@ Passwords are bcrypt-hashed (12 rounds) — raw passwords never touch the DB.
 - Colors, spacing, type, radii: `src/ui/tokens.css` (`--gh-*`). No hardcoded
   hex values, no magic pixel numbers in components.
 - Need a new token? Add it to `tokens.css` with a comment explaining why.
-- Primitives (`Card`, `Badge`, `SectionHeading`, `TeamAvatar`) are the default
-  building blocks. Reach for raw HTML/CSS only when a primitive genuinely
-  doesn’t fit.
+- Primitives (`Card`, `Badge`, `SectionHeading`, `TeamAvatar`,
+  `PositionPill`, `PlayerHeadshot`, `ChampionCrown`, `SiteHeader`,
+  `SiteFooter`, `MobileNav`) are the default building blocks. Reach for
+  raw HTML/CSS only when a primitive genuinely doesn’t fit.
+- Team identity colors are `--gh-team-1` … `--gh-team-10` (roster id ->
+  color); use them only through `teamColorVar()` in
+  `src/ui/teamColors.ts`, never by indexing the tokens directly.
+- All numbers (stats, scores, records, timestamps, FAAB) use the
+  `.gh-num` utility class: mono + tabular figures. Proportional digits in
+  stats are a bug.
+- Display type (Anton) is uppercase by default via globals.css. Body copy
+  never uses the display face.
 
 ### 5. Pages compose explicitly
 - `src/app/` pages load data and hand it to surfaces. No registries, no

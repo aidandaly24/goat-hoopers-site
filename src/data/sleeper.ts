@@ -178,6 +178,30 @@ export function fetchDraftPicks(draftId: string): Promise<RawDraftPick[]> {
   return sleeperFetch<RawDraftPick[]>(`/draft/${draftId}/picks`, 300);
 }
 
+export type RawWinnersBracketEntry = {
+  /** Playoff round, 1-based. The final is the highest round. */
+  r: number;
+  /** Matchup index within the round. */
+  m: number;
+  t1: number | null;
+  t2: number | null;
+  /** Winning roster_id. Null until the matchup is decided. */
+  w: number | null;
+  l: number | null;
+};
+
+/**
+ * Playoff winners bracket. The champion is the winner of the final
+ * (highest-round) matchup. Empty / undecided before the playoffs.
+ * Cache 5 min.
+ */
+export function fetchWinnersBracket(): Promise<RawWinnersBracketEntry[]> {
+  return sleeperFetch<RawWinnersBracketEntry[]>(
+    `/league/${LEAGUE_ID}/winners_bracket`,
+    300
+  );
+}
+
 /**
  * Full NBA player directory. Large (~3MB); Next's data cache can't hold it,
  * so this always refetches. Callers must only call it when they actually need

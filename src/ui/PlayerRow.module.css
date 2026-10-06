@@ -1,0 +1,57 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s3);
+  min-height: 3.25rem;
+  padding: var(--gh-s2) var(--gh-s3);
+  border-radius: var(--gh-radius);
+  color: inherit;
+  text-decoration: none;
+}
+
+.row:hover {
+  background: var(--gh-bg-hover);
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s1);
+  min-width: 0;
+}
+
+.name {
+  font-weight: 600;
+  color: var(--gh-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.row:hover .name {
+  color: var(--gh-gold-soft);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s2);
+}
+
+.nbaTeam {
+  font-size: 0.75rem;
+  color: var(--gh-text-faint);
+  letter-spacing: 0.04em;
+}
+
+.nameLink {
+  color: var(--gh-text);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--gh-border-strong);
+}
+
+.nameLink:hover {
+  color: var(--gh-gold-soft);
+  border-bottom-color: var(--gh-gold);
+}
