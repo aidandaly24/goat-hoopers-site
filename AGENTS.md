@@ -39,3 +39,12 @@ outrank general conventions. Keep them short, keep them enforced.
     is rejected or the branches diverge, fetch and fix the conflicts with a
     regular merge or rebase — never `--force`. If a bad commit lands, revert
     it with a new commit instead of rewriting history.
+13. DB and Vercel changes go through PR review. Collaborators and their
+    agents may push ordinary changes to main, but anything touching the
+    database (migrations, schema, seed data) or needing Vercel project
+    changes (env vars, project settings) must arrive as a PR — they don't
+    have Vercel access. Aidan's agent watches open PRs on a schedule, reviews
+    each one, performs the Vercel/DB side of the work when it's reasonable,
+    leaves comments for the other agent to iterate on, and merges when the
+    PR is clean and CI is green. Never merge a destructive migration without
+    Aidan's explicit approval.
