@@ -1,0 +1,54 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gh-s4);
+}
+
+/* Desktop: three-up stat grid. */
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.cell {
+  padding: var(--gh-s4);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius);
+  background: var(--gh-bg-raised);
+  /* Comfortable touch target on mobile. */
+  min-height: 44px;
+}
+
+.label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+  margin-bottom: var(--gh-s2);
+}
+
+.value {
+  font-family: var(--gh-font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--gh-gold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  margin-bottom: var(--gh-s1);
+}
+
+.detail {
+  font-size: 0.85rem;
+  color: var(--gh-text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.empty {
+  color: var(--gh-text-faint);
+  margin: 0;
+  font-style: italic;
+}

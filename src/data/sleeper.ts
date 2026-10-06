@@ -19,15 +19,14 @@ export const LEAGUE_ID =
 
 /* ---------- raw Sleeper shapes (minimal — only fields we read) ---------- */
 
-export interface RawLeague {
+export type RawLeague = {
   name: string;
   season: string;
   status: string;
   total_rosters: number;
-  draft_id: string | null;
-}
+};
 
-export interface RawRosterSettings {
+export type RawRosterSettings = {
   wins: number;
   losses: number;
   ties: number;
@@ -35,36 +34,38 @@ export interface RawRosterSettings {
   fpts_decimal: number;
   fpts_against: number;
   fpts_against_decimal: number;
-}
+};
 
-export interface RawRoster {
+export type RawRoster = {
   roster_id: number;
   owner_id: string;
   settings: RawRosterSettings;
-}
+};
 
-export interface RawUser {
+export type RawUser = {
   user_id: string;
   display_name: string;
   avatar: string | null;
   metadata: { team_name?: string };
-}
+};
 
-export interface RawDraftPick {
-  player_id: string;
-  picked_by: string;
-  pick_no: number;
-  round: number;
-  draft_slot: number;
-  metadata: {
-    first_name: string;
-    last_name: string;
-    position: string;
-    team: string;
-  };
-}
+export type RawNbaState = {
+  /** Current week number of the NBA season. */
+  week: number;
+  /** "pre" | "regular" | "post". */
+  season_type: string;
+  season: string;
+};
 
-export interface RawTransaction {
+export type RawMatchupEntry = {
+  roster_id: number;
+  /** Entries sharing a matchup_id are paired against each other. */
+  matchup_id: number;
+  /** Fantasy points; null before the matchup is played. */
+  points: number | null;
+};
+
+export type RawTransaction = {
   transaction_id: string;
   type: string;
   week: number;
@@ -72,15 +73,15 @@ export interface RawTransaction {
   adds: Record<string, number> | null;
   drops: Record<string, number> | null;
   draft_picks: unknown[];
-}
+};
 
-export interface RawPlayerEntry {
+export type RawPlayerEntry = {
   full_name?: string;
   first_name?: string;
   last_name?: string;
   position?: string;
   team?: string | null;
-}
+};
 
 /* ---------- fetching ---------- */
 
@@ -109,9 +110,20 @@ export function fetchUsers(): Promise<RawUser[]> {
   return sleeperFetch<RawUser[]>(`/league/${LEAGUE_ID}/users`, 300);
 }
 
-/** Picks for a draft. Drafts are immutable; cache 1 hour. */
-export function fetchDraftPicks(draftId: string): Promise<RawDraftPick[]> {
-  return sleeperFetch<RawDraftPick[]>(`/draft/${draftId}/picks`, 3600);
+/** NBA season state (current week, pre/regular/post). Cache 5 min. */
+export function fetchNbaState(): Promise<RawNbaState> {
+  return sleeperFetch<RawNbaState>(`/state/nba`, 300);
+}
+
+/**
+ * Head-to-head matchups for a league week. Entries pair up by matchup_id.
+ * Cache 5 min.
+ */
+export function fetchMatchups(week: number): Promise<RawMatchupEntry[]> {
+  return sleeperFetch<RawMatchupEntry[]>(
+    `/league/${LEAGUE_ID}/matchups/${week}`,
+    300
+  );
 }
 
 /**

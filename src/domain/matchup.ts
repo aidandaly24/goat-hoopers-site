@@ -6,13 +6,13 @@ import type { Team } from "./team";
  * Points are null when the matchup hasn't been played yet (preseason or
  * future weeks). Surfaces must handle null points as "upcoming", never as 0.
  */
-export interface Matchup {
+export type Matchup = {
   week: number;
   home: Team;
   away: Team;
   homePoints: number | null;
   awayPoints: number | null;
-}
+};
 
 /** True when both teams have final scores. */
 export function isFinal(m: Matchup): boolean {

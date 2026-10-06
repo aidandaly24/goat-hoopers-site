@@ -12,14 +12,18 @@
   gap: var(--gh-s6);
 }
 
+/* Full-width strip (stats) above the standings/activity grid. */
+.strip {
+  max-width: 72rem;
+  margin: 0 auto var(--gh-s6);
+  padding: 0 var(--gh-s4);
+}
+
 @media (min-width: 64rem) {
   .grid {
     grid-template-columns: 1.6fr 1fr;
   }
   .standings {
     grid-row: span 1;
-  }
-  .draft {
-    grid-column: 1 / -1;
   }
 }

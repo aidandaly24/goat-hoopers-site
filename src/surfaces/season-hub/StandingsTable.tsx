@@ -31,9 +31,9 @@ export function StandingsTable({ standings }: { standings: Standing[] }) {
                 <span className={styles.manager}>{s.team.managerName}</span>
               </span>
             </span>
-            <span className={`${styles.num} ${styles.w}`}>{s.wins}</span>
-            <span className={`${styles.num} ${styles.l}`}>{s.losses}</span>
-            <span className={styles.num}>{fmtPoints(s.team.pointsFor)}</span>
+            <span className={`${styles.num} ${styles.w}`} data-label="W">{s.wins}</span>
+            <span className={`${styles.num} ${styles.l}`} data-label="L">{s.losses}</span>
+            <span className={`${styles.num} ${styles.pf}`} data-label="PF">{fmtPoints(s.team.pointsFor)}</span>
           </div>
         ))}
       </div>
