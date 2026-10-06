@@ -1,30 +1,43 @@
 import type { Season } from "@/domain";
 import { formatSeasonStatus } from "@/domain";
-import { Badge } from "@/ui/Badge";
 import { PropViewer } from "@/three/PropViewer";
 import styles from "./LeagueHero.module.css";
 
-/** League masthead: name, season, team count, status. */
+/** League masthead — the paper's nameplate.
+ *
+ * Editorial, not centered-hero: dateline in mono, the name set HUGE
+ * in condensed type, a serif-italic editorial line. The basketball
+ * sits in the layout like a spot illustration, not a floating widget.
+ */
 export function LeagueHero({ season }: { season: Season }) {
   return (
-    <header className={styles.hero}>
-      <div className={styles.ballStage} aria-hidden={false}>
-        <PropViewer
-          prop="basketball"
-          ariaLabel="Basketball. Activate to bounce it."
-        />
+    <header className={styles.masthead}>
+      <div className={styles.dateline}>
+        <span>Sleeper NBA Dynasty</span>
+        <span aria-hidden="true">·</span>
+        <span>{season.totalTeams} teams</span>
+        <span aria-hidden="true">·</span>
+        <span>
+          {season.seasonYear} · {formatSeasonStatus(season.status)}
+        </span>
       </div>
-      <div className={styles.eyebrow}>Sleeper NBA Dynasty · {season.totalTeams} teams</div>
-      <h1 className={styles.title}>
-        GOAT <span className={styles.gold}>HOOPERS</span>
-      </h1>
-      <p className={styles.sub}>
-        {season.seasonYear} season · {formatSeasonStatus(season.status)}
+      <div className={styles.nameplate}>
+        <h1 className={styles.title}>
+          Goat
+          <br />
+          Hoopers
+        </h1>
+        <div className={styles.ballStage}>
+          <PropViewer
+            prop="basketball"
+            ariaLabel="Basketball. Activate to bounce it."
+          />
+        </div>
+      </div>
+      <p className={styles.tagline}>
+        The league&apos;s morning paper — standings, wire moves, and
+        numbers with opinions.
       </p>
-      <div className={styles.badges}>
-        <Badge tone="gold">{season.seasonYear}</Badge>
-        <Badge>{season.totalTeams} managers</Badge>
-      </div>
     </header>
   );
 }

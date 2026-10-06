@@ -1,90 +1,95 @@
 /**
- * Design tokens — the visual language of the site.
+ * Design tokens — "The Broadcast Desk" art direction.
  *
- * Direction: "dark broadcast, elevated". Deep navy-black backgrounds with
- * real depth — radial glows, a whisper of film grain, layered surfaces —
- * one gold accent with championship energy, color reserved for meaning
- * (win/loss/live/team identity), never decoration. Handcrafted, never
- * flat, never monotone.
+ * A Sunday sports-section desk crossed with a live broadcast truck.
+ * Warm paper canvas, ink text, ONE signal orange rationed like an
+ * editor rations exclamation points. Stats are instruments (mono,
+ * tabular). Voice is editorial.
+ *
+ * Token names are stable (components reference them); the VALUES
+ * carry the art direction. --gh-gold is the signal accent (now court
+ * orange, not metallic gold). --gh-bg is the paper canvas.
  *
  * Everything visual in every surface MUST reference these tokens, never
  * hardcoded colors/spacing. If you need a new token, add it here and
  * document why.
+ *
+ * Ban list: Anton/Inter pairing, flat gold on dark, purple-blue
+ * gradients, all-caps-condensed-everything, generic rounded cards.
  */
 
 :root {
-  /* Brand */
-  --gh-gold: #e8a13c;
-  --gh-gold-soft: #f3bc62;
-  --gh-gold-deep: #b97a1f;
-  /* Dark ink for text sitting on gold / bright position pills. */
-  --gh-ink-on-accent: #241a05;
+  /* Signal accent — court orange. THE accent. Ration it.
+   * (Kept the --gh-gold name so existing components keep working;
+   * the value is now signal orange, not metallic gold.) */
+  --gh-gold: #e8590c;
+  --gh-gold-soft: #f07a3a;
+  --gh-gold-deep: #c2430a;
+  /* Ink for text sitting on the signal accent. */
+  --gh-ink-on-accent: #fff8f0;
 
-  /* Surfaces — deep navy-black, layered by elevation */
-  --gh-bg: #0a0e1a;
-  --gh-bg-raised: #111827;
-  --gh-bg-card: #151d2e;
-  --gh-bg-hover: #1a2332;
-  --gh-border: #232c40;
-  --gh-border-strong: #33405c;
+  /* Surfaces — warm paper, layered by elevation.
+   * Paper doesn't float, it stacks. */
+  --gh-bg: #f5f1e8;
+  --gh-bg-raised: #efe9da;
+  --gh-bg-card: #faf7ef;
+  --gh-bg-hover: #f0e9d8;
+  --gh-border: #d8d2c2;
+  --gh-border-strong: #b9b2a0;
 
-  /* Text — every tier clears WCAG AA on --gh-bg */
-  --gh-text: #f2f5fa;
-  --gh-text-dim: #9ba8bc;
-  --gh-text-faint: #8e97a9;
+  /* Text — ink tiers on paper. Every tier clears WCAG AA. */
+  --gh-text: #16150f;
+  --gh-text-dim: #2b2921;
+  --gh-text-faint: #6e6a5e;
 
-  /* Semantic status — reserved EXCLUSIVELY for these meanings.
-   * Never use decoratively (see REDESIGN-INSPO.md). */
-  --gh-win: #4ade80;
-  --gh-loss: #f87171;
-  --gh-live: #ff5c38;
+  /* Semantic status — print-muted, never neon.
+   * Reserved EXCLUSIVELY for these meanings. Never decorative. */
+  --gh-win: #2f6b4f;
+  --gh-loss: #b3402a;
+  --gh-live: #e8590c;
 
   /* Team identity — one fixed color per roster, stable across seasons.
-   * Roster id (Sleeper roster_id as string) -> color. Use only through
-   * teamColorVar() in src/ui/teamColors.ts, never by indexing here. */
-  --gh-team-1: #f2b33d;
-  --gh-team-2: #38bdf8;
-  --gh-team-3: #f472b6;
-  --gh-team-4: #a3e635;
-  --gh-team-5: #c084fc;
-  --gh-team-6: #fb923c;
-  --gh-team-7: #2dd4bf;
-  --gh-team-8: #f87171;
-  --gh-team-9: #94a3b8;
-  --gh-team-10: #818cf8;
+   * Muted to sit on paper. Use only through teamColorVar() in
+   * src/ui/teamColors.ts, never by indexing here. */
+  --gh-team-1: #d9a13b;
+  --gh-team-2: #2f8fc4;
+  --gh-team-3: #d46a9e;
+  --gh-team-4: #7fa32e;
+  --gh-team-5: #9a6fd0;
+  --gh-team-6: #e07b39;
+  --gh-team-7: #2aa892;
+  --gh-team-8: #d05a4e;
+  --gh-team-9: #7a8494;
+  --gh-team-10: #6a76d0;
 
   /* Position pills — Sleeper-dialect color coding, one per position group.
-   * Rendered as a colored pill with dark text via PositionPill. */
-  --gh-pos-pg: #60a5fa;
-  --gh-pos-sg: #34d399;
-  --gh-pos-sf: #fbbf24;
-  --gh-pos-pf: #fb923c;
-  --gh-pos-c: #f87171;
+   * Rendered as a small tag with ink text via PositionPill. */
+  --gh-pos-pg: #7fb3e0;
+  --gh-pos-sg: #7cc9a8;
+  --gh-pos-sf: #e8c35a;
+  --gh-pos-pf: #e89a5a;
+  --gh-pos-c: #e08a7e;
 
-  /* Type */
-  --gh-font-display: var(--font-display, "Anton", system-ui, sans-serif);
-  --gh-font-body: var(--font-body, "Inter", system-ui, sans-serif);
-  --gh-font-mono: var(--font-mono, "Geist Mono", ui-monospace, monospace);
+  /* Type — the 2026 sports vernacular. */
+  --gh-font-display: var(--font-display, "Barlow Condensed", system-ui, sans-serif);
+  --gh-font-serif: var(--font-serif, "Instrument Serif", Georgia, serif);
+  --gh-font-body: var(--font-body, "Barlow", system-ui, sans-serif);
+  --gh-font-mono: var(--font-mono, "IBM Plex Mono", ui-monospace, monospace);
 
-  /* Texture — the anti-flat kit. Compose, don't stack blindly. */
-  /* Film grain: SVG turbulence, applied at low opacity over surfaces. */
-  --gh-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
-  /* Ambient arena glow for page backgrounds (pairs with --gh-bg). */
-  --gh-glow-page:
-    radial-gradient(1100px 420px at 50% -8%, rgb(232 161 60 / 0.10), transparent 62%),
-    radial-gradient(800px 480px at 88% 4%, rgb(56 189 248 / 0.07), transparent 60%),
-    radial-gradient(700px 520px at 8% 12%, rgb(192 132 252 / 0.06), transparent 60%);
-  /* Card sheen: a top-light gradient for raised surfaces. */
-  --gh-gradient-card: linear-gradient(180deg, rgb(255 255 255 / 0.045), transparent 32%);
-  /* Gold accent gradient for CTAs and highlights. */
-  --gh-gradient-gold: linear-gradient(135deg, var(--gh-gold-soft), var(--gh-gold) 55%, var(--gh-gold-deep));
+  /* Texture — the print-craft kit. */
+  /* Paper grain: fine SVG noise, felt at low opacity. */
+  --gh-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+  /* Halftone dots for hero moments and section headers. */
+  --gh-halftone: radial-gradient(circle, var(--gh-text) 1px, transparent 1.5px);
+  /* Ticket-stub perforation divider. */
+  --gh-perforation: radial-gradient(circle at 50% 50%, var(--gh-border-strong) 1.5px, transparent 2px);
 
-  /* Elevation */
-  --gh-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.45);
-  --gh-shadow-md: 0 10px 28px rgb(0 0 0 / 0.5);
-  --gh-shadow-lg: 0 28px 70px rgb(0 0 0 / 0.55);
-  --gh-glow-gold: 0 0 26px rgb(232 161 60 / 0.32);
-  --gh-glow-live: 0 0 18px rgb(255 92 56 / 0.45);
+  /* Elevation — paper stacks with hairlines, not floating shadows. */
+  --gh-shadow-sm: 0 1px 0 rgb(22 21 15 / 0.08);
+  --gh-shadow-md: 0 2px 0 rgb(22 21 15 / 0.10), 0 12px 24px rgb(22 21 15 / 0.08);
+  --gh-shadow-lg: 0 3px 0 rgb(22 21 15 / 0.12), 0 24px 48px rgb(22 21 15 / 0.10);
+  --gh-glow-gold: 0 0 0 3px rgb(232 89 12 / 0.15);
+  --gh-glow-live: 0 0 0 3px rgb(232 89 12 / 0.20);
 
   /* Spacing scale */
   --gh-s1: 0.25rem;
@@ -96,9 +101,9 @@
   --gh-s12: 3rem;
   --gh-s16: 4rem;
 
-  /* Shape */
-  --gh-radius: 0.75rem;
-  --gh-radius-lg: 1.25rem;
+  /* Shape — paper is square-ish. Small radius only. */
+  --gh-radius: 0.25rem;
+  --gh-radius-lg: 0.5rem;
   --gh-radius-pill: 999px;
 
   /* Chrome */

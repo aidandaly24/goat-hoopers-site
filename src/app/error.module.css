@@ -12,7 +12,7 @@
   max-width: 30rem;
   text-align: center;
   background: var(--gh-bg-card);
-  background-image: var(--gh-gradient-card);
+  background-image: none;
   border: 1px solid var(--gh-border);
   border-radius: var(--gh-radius-lg);
   padding: var(--gh-s12) var(--gh-s8);
@@ -52,7 +52,7 @@
 }
 
 .retry {
-  background: var(--gh-gradient-gold);
+  background: var(--gh-gold);
   color: var(--gh-ink-on-accent);
   font-weight: 700;
   font-size: 0.95rem;

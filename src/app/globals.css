@@ -18,17 +18,16 @@ body {
   font-family: var(--gh-font-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  /* Deep navy-black with ambient arena glow + film grain. The glow sits
-   * behind everything (fixed attachment); the grain adds texture without
-   * touching readability. */
+  /* Warm paper canvas with felt grain. The grain sits behind everything
+   * (fixed attachment) at an opacity you can feel, not just see. */
   background-color: var(--gh-bg);
-  background-image: var(--gh-glow-page), var(--gh-grain);
-  background-attachment: fixed, fixed;
-  background-size: auto, 160px 160px;
+  background-image: var(--gh-grain);
+  background-attachment: fixed;
+  background-size: 180px 180px;
   min-height: 100dvh;
 }
 
-/* Grain lives in its own low-opacity layer so it never muddies text. */
+/* Grain lives in its own layer so it never muddies text. Felt, not seen. */
 body::before {
   content: "";
   position: fixed;
@@ -36,8 +35,8 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background-image: var(--gh-grain);
-  background-size: 160px 160px;
-  opacity: 0.05;
+  background-size: 180px 180px;
+  opacity: 0.06;
 }
 
 /* Keep page content above the grain layer. */
@@ -46,27 +45,47 @@ body > * {
   z-index: 1;
 }
 
+/* Headlines: Barlow Condensed, set huge, sentence case.
+ * The sports-desk voice — never all-caps-everything. */
 h1,
 h2,
 h3 {
   font-family: var(--gh-font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+  text-transform: none;
+}
+
+/* Serif italic accent — the editorial aside, the human voice.
+ * Usage: className="gh-serif-accent". */
+.gh-serif-accent {
+  font-family: var(--gh-font-serif);
+  font-style: italic;
   font-weight: 400;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
 }
 
 /* Numeric utility: mono + tabular figures for ALL stats, scores, records,
- * timestamps, and FAAB amounts. Proportional digits in stats are a bug —
- * see REDESIGN-INSPO.md. Usage: className="gh-num". */
+ * timestamps, and FAAB amounts. Proportional digits in stats are a bug.
+ * Usage: className="gh-num". */
 .gh-num {
   font-family: var(--gh-font-mono);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
 }
 
-/* Base link color. Components may override with tokens. */
+/* Base link color — the signal accent, rationed. */
 a {
-  color: var(--gh-gold);
+  color: var(--gh-gold-deep);
+}
+
+/* Hairline rule utility — the section divider.
+ * Usage: <hr className="gh-rule" /> */
+hr.gh-rule,
+.gh-rule {
+  border: 0;
+  border-top: 1px solid var(--gh-border);
+  margin: var(--gh-s8) 0;
 }
 
 /* Mobile: reserve room for the fixed bottom tab bar so the footer and

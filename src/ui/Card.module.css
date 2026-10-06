@@ -1,8 +1,16 @@
+/* Card — the paper section. Not a floating box: a ruled-off area of
+ * the desk. Hairline top rule (the editorial divider), paper surface,
+ * square-ish corners. Sections are separated by rules and headlines,
+ * not by boxes floating in space. */
 .card {
   background-color: var(--gh-bg-card);
-  background-image: var(--gh-gradient-card);
-  border: 1px solid var(--gh-border);
-  border-radius: var(--gh-radius-lg);
+  border-top: 2px solid var(--gh-text);
+  border-radius: var(--gh-radius);
   padding: var(--gh-s6);
   box-shadow: var(--gh-shadow-sm);
+}
+
+/* Variant: no top rule, just the paper. For nested content. */
+.card.plain {
+  border-top: 1px solid var(--gh-border);
 }

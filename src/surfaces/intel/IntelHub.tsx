@@ -38,10 +38,10 @@ export function IntelHub({
     <div className={styles.surface}>
       <header className={styles.hero}>
         <p className={styles.eyebrow}>The numbers</p>
-        <h1 className={styles.title}>League Intel</h1>
+        <h1 className={styles.title}>League intel</h1>
         <p className={styles.blurb}>
-          Computed from live league data — projections, power order, title
-          odds, and the all-time lists. No vibes, just math.
+          Projections, power order, title odds, and the all-time lists —
+          computed from live data, with opinions.
         </p>
       </header>
       <div className={styles.grid}>

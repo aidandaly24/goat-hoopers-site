@@ -67,7 +67,7 @@
 }
 
 .prizeCard {
-  background-image: var(--gh-gradient-card);
+  background-image: none;
   border-color: color-mix(in srgb, var(--gh-gold) 35%, var(--gh-border));
 }
 

@@ -1,25 +1,32 @@
+/* SectionHeading — the sports-desk headline block.
+ * Kicker in mono uppercase (the dateline), headline in Barlow Condensed
+ * set large and sentence-case. Not the AI eyebrow-title formula. */
 .wrap {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: var(--gh-s4);
   margin-bottom: var(--gh-s6);
+  padding-bottom: var(--gh-s3);
+  border-bottom: 1px solid var(--gh-border);
 }
 
 .eyebrow {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-family: var(--gh-font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gh-gold);
-  margin-bottom: var(--gh-s1);
+  color: var(--gh-ink-faint);
+  margin-bottom: var(--gh-s2);
 }
 
 .title {
   font-family: var(--gh-font-display);
-  font-size: 1.75rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
   color: var(--gh-text);
   margin: 0;
 }

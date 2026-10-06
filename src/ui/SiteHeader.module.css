@@ -1,15 +1,13 @@
-/* SiteHeader — sticky site chrome. Tokens only, no one-off values. */
+/* SiteHeader — the paper's running head. Sticky, paper-toned. */
 
 .header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--gh-bg) 86%, transparent);
+  background: color-mix(in srgb, var(--gh-bg) 92%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--gh-border);
-  /* A hairline of gold under the chrome — broadcast energy. */
-  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--gh-gold) 14%, transparent);
+  border-bottom: 2px solid var(--gh-text);
 }
 
 .inner {
@@ -24,8 +22,10 @@
 
 .wordmark {
   font-family: var(--gh-font-display);
-  font-size: 1.15rem;
-  letter-spacing: 0.08em;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1;
   color: var(--gh-text);
   text-decoration: none;
   white-space: nowrap;
@@ -33,7 +33,7 @@
 }
 
 .wordmark:hover {
-  color: var(--gh-gold-soft);
+  color: var(--gh-gold-deep);
 }
 
 .wordmark:focus-visible {
@@ -82,7 +82,7 @@
 }
 
 .claim {
-  background: var(--gh-gradient-gold);
+  background: var(--gh-gold);
   color: var(--gh-ink-on-accent);
   font-weight: 700;
   font-size: 0.9rem;
@@ -103,7 +103,7 @@
 }
 
 .claim:focus-visible {
-  outline: 2px solid var(--gh-gold-soft);
+  outline: 2px solid var(--gh-gold-deep);
   outline-offset: 2px;
 }
 

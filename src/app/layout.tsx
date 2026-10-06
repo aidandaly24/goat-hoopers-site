@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anton, Geist_Mono, Inter } from "next/font/google";
+import { Barlow, Barlow_Condensed, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 import "@/ui/tokens.css";
 import "./globals.css";
 import { getCurrentUser, logout } from "@/app/actions";
@@ -8,23 +8,36 @@ import { SiteHeader } from "@/ui/SiteHeader";
 import { SiteFooter } from "@/ui/SiteFooter";
 import { MobileNav } from "@/ui/MobileNav";
 
-/* Display: condensed arena-signage energy for headlines and scores. */
-const display = Anton({
+/* Display: Barlow Condensed 800 — the sports-desk headline voice.
+ * Set huge, sentence case. Never all-caps-everything. */
+const display = Barlow_Condensed({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["700", "800"],
 });
 
-/* Body/UI: neutral, excellent at small sizes. */
-const body = Inter({
+/* Serif accent: Instrument Serif italic — pull quotes, editorial
+ * asides, power-ranking titles. The human voice. */
+const serif = Instrument_Serif({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+});
+
+/* Body/UI: Barlow — clean, readable, with a little character. */
+const body = Barlow({
   variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-/* Data: every stat, score, record, timestamp, and FAAB amount. */
-const mono = Geist_Mono({
+/* Data: IBM Plex Mono — every stat, score, record, timestamp, FAAB.
+ * Tabular numerals, instrument-like. */
+const mono = IBM_Plex_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -65,7 +78,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
+      className={`${display.variable} ${serif.variable} ${body.variable} ${mono.variable}`}
     >
       <body>
         <SiteHeader user={headerUser} logoutAction={logout} />

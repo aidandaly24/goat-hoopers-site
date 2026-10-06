@@ -1,3 +1,6 @@
+/* MatchupPreview — the week's lines. Cards are box-score stubs:
+ * paper, hairline border, the tug-of-war bar as the visual anchor. */
+
 .list {
   list-style: none;
   margin: 0;
@@ -16,11 +19,16 @@
 .card {
   border: 1px solid var(--gh-border);
   border-radius: var(--gh-radius);
-  background: var(--gh-bg-raised);
+  background: var(--gh-bg-card);
   padding: var(--gh-s4);
   display: flex;
   flex-direction: column;
   gap: var(--gh-s3);
+}
+
+/* Game of the week — the one that matters. Signal border, not a glow. */
+.gameOfWeek {
+  border: 2px solid var(--gh-gold);
 }
 
 .head {
@@ -32,10 +40,18 @@
 }
 
 .week {
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  font-family: var(--gh-font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gh-text-faint);
+  color: var(--gh-ink-faint);
+}
+
+.badges {
+  display: flex;
+  gap: var(--gh-s2);
+  flex-wrap: wrap;
 }
 
 .vs {
@@ -86,59 +102,94 @@
 }
 
 .side:hover .sideName {
-  color: var(--gh-gold-soft);
+  color: var(--gh-gold-deep);
 }
 
 .sideRecord {
-  font-size: 0.78rem;
+  font-family: var(--gh-font-mono);
+  font-size: 0.75rem;
   color: var(--gh-text-dim);
   font-variant-numeric: tabular-nums;
 }
 
 .sidePct {
+  font-family: var(--gh-font-display);
   font-variant-numeric: tabular-nums;
   font-weight: 800;
-  font-size: 1.15rem;
-  color: var(--gh-gold-soft);
+  font-size: 1.5rem;
+  color: var(--gh-text);
 }
 
 .vsBadge {
-  font-family: var(--gh-font-display);
-  font-weight: 800;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  color: var(--gh-text-faint);
-  border: 1px solid var(--gh-border-strong);
-  border-radius: var(--gh-radius-pill);
-  padding: var(--gh-s1) var(--gh-s2);
+  font-family: var(--gh-font-serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--gh-ink-faint);
 }
 
+/* Tug-of-war: two fills meeting at the 50% midline. */
 .bar {
-  height: 0.375rem;
-  background: var(--gh-bg-card);
+  position: relative;
+  height: 0.5rem;
+  background: var(--gh-bg-raised);
   border-radius: var(--gh-radius-pill);
   overflow: hidden;
+  display: flex;
 }
 
-.fill {
+.fillHome {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, var(--gh-gold), var(--gh-gold-deep));
-  border-radius: var(--gh-radius-pill);
+  background: var(--gh-text);
+}
+
+.fillAway {
+  display: block;
+  height: 100%;
+  background: var(--gh-border-strong);
+}
+
+.midline {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--gh-bg-card);
+  transform: translateX(-50%);
 }
 
 .projection {
   margin: 0;
-  font-size: 0.8rem;
+  font-family: var(--gh-font-mono);
+  font-size: 0.78rem;
   color: var(--gh-text-faint);
   font-variant-numeric: tabular-nums;
   text-align: center;
 }
 
-.empty {
-  color: var(--gh-text-faint);
+.caveat {
+  font-family: var(--gh-font-serif);
   font-style: italic;
+}
+
+.empty {
+  padding: var(--gh-s6) 0;
+}
+
+.emptyTitle {
+  font-family: var(--gh-font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0 0 var(--gh-s2);
+}
+
+.emptyNote {
+  font-family: var(--gh-font-serif);
+  font-style: italic;
+  color: var(--gh-text-dim);
   margin: 0;
+  max-width: 28rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,0 +1,155 @@
+/* Spotlight — the lead stories. Editorial modules, not stat cells.
+ * Huge condensed numbers, hairline dividers, asymmetric rhythm. */
+
+.spotlight {
+  margin-bottom: var(--gh-s12);
+}
+
+.head {
+  margin-bottom: var(--gh-s6);
+  padding-bottom: var(--gh-s3);
+  border-bottom: 2px solid var(--gh-text);
+}
+
+.sectionKicker {
+  font-family: var(--gh-font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gh-ink-faint);
+  margin: 0 0 var(--gh-s2);
+}
+
+.sectionTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 56rem) {
+  .grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+  .story + .story {
+    border-left: 1px solid var(--gh-border);
+  }
+}
+
+.story {
+  padding: var(--gh-s6) var(--gh-s6) var(--gh-s6) 0;
+}
+
+@media (min-width: 56rem) {
+  .story + .story {
+    padding-left: var(--gh-s6);
+  }
+}
+
+.story + .story {
+  border-top: 1px solid var(--gh-border);
+}
+
+@media (min-width: 56rem) {
+  .story + .story {
+    border-top: 0;
+  }
+}
+
+.kicker {
+  font-family: var(--gh-font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--gh-gold-deep);
+  margin: 0 0 var(--gh-s2);
+}
+
+/* The number — jersey-scale, condensed, the unforgettable thing. */
+.value {
+  font-family: var(--gh-font-display);
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--gh-s2);
+  font-variant-numeric: tabular-nums;
+}
+
+.team {
+  font-family: var(--gh-font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gh-text);
+  text-decoration: none;
+  border-bottom: 2px solid var(--gh-gold);
+}
+
+.team:hover {
+  color: var(--gh-gold-deep);
+}
+
+.scoreline {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 var(--gh-s2);
+}
+
+.scoreline a {
+  color: var(--gh-text);
+  text-decoration: none;
+  border-bottom: 2px solid var(--gh-gold);
+}
+
+.scoreline a:hover {
+  color: var(--gh-gold-deep);
+}
+
+.vs {
+  color: var(--gh-ink-faint);
+  font-weight: 400;
+}
+
+.note {
+  font-family: var(--gh-font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--gh-ink-faint);
+  margin: var(--gh-s2) 0 0;
+  max-width: 22rem;
+}
+
+/* Preseason empty state — designed, not an apology. */
+.empty {
+  padding: var(--gh-s12) 0;
+  text-align: left;
+  border-top: 1px solid var(--gh-border);
+}
+
+.emptyKicker {
+  font-family: var(--gh-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gh-ink-faint);
+  margin: 0 0 var(--gh-s2);
+}
+
+.emptyTitle {
+  font-family: var(--gh-font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin: 0 0 var(--gh-s2);
+}
+
+.emptyNote {
+  font-family: var(--gh-font-serif);
+  font-style: italic;
+  color: var(--gh-text-dim);
+  margin: 0;
+  max-width: 30rem;
+}

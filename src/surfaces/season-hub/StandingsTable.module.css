@@ -13,20 +13,20 @@
 }
 
 .head {
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-family: var(--gh-font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gh-text-faint);
-  border-bottom: 1px solid var(--gh-border);
+  color: var(--gh-ink-faint);
+  border-bottom: 2px solid var(--gh-text);
 }
 
 .row {
   border-bottom: 1px solid var(--gh-border);
-  border-radius: var(--gh-s2);
   text-decoration: none;
   color: inherit;
-  transition: background-color 0.18s ease, border-color 0.18s ease;
+  transition: background-color 0.18s ease;
 }
 
 .row:last-child {
@@ -38,7 +38,7 @@
 }
 
 .row:hover .name {
-  color: var(--gh-gold-soft);
+  color: var(--gh-gold-deep);
 }
 
 .row:focus-visible {
@@ -46,10 +46,14 @@
   outline-offset: 2px;
 }
 
+/* Rank as jersey number — big condensed numeral. */
 .rank {
   font-family: var(--gh-font-display);
+  font-size: 1.6rem;
   font-weight: 800;
-  color: var(--gh-text-faint);
+  line-height: 1;
+  color: var(--gh-ink-faint);
+  font-variant-numeric: tabular-nums;
 }
 
 .row:nth-child(2) .rank {
@@ -81,12 +85,13 @@
 
 .num {
   text-align: right;
+  font-family: var(--gh-font-mono);
   font-variant-numeric: tabular-nums;
   color: var(--gh-text-dim);
 }
 
-.w { color: var(--gh-win); font-weight: 700; }
-.l { color: var(--gh-loss); font-weight: 700; }
+.w { color: var(--gh-win); font-weight: 600; font-family: var(--gh-font-mono); }
+.l { color: var(--gh-loss); font-weight: 600; font-family: var(--gh-font-mono); }
 
 /*
  * Mobile: the table becomes compact team cards. Same DOM, re-laid-out —

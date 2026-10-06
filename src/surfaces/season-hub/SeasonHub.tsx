@@ -12,6 +12,7 @@
  */
 import type { SeasonHubData } from "@/data/league";
 import { LeagueHero } from "./LeagueHero";
+import { Spotlight } from "./Spotlight";
 import { StatsStrip } from "./StatsStrip";
 import { StandingsTable } from "./StandingsTable";
 import { TransactionFeed } from "./TransactionFeed";
@@ -22,6 +23,7 @@ export function SeasonHub({ data }: { data: SeasonHubData }) {
   return (
     <div className={styles.surface}>
       <LeagueHero season={data.season} />
+      <Spotlight stats={data.stats} />
       <div className={styles.strip}>
         <StatsStrip stats={data.stats} />
       </div>

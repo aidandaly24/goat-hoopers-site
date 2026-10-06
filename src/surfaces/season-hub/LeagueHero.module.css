@@ -1,25 +1,65 @@
-.hero {
-  text-align: center;
-  padding: var(--gh-s16) var(--gh-s4) var(--gh-s12);
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 0%, color-mix(in srgb, var(--gh-gold) 12%, transparent), transparent),
-    var(--gh-bg);
+/* LeagueHero — the paper's nameplate. Editorial masthead, not a
+ * centered hero. Dateline, huge condensed name, serif tagline. */
+
+.masthead {
+  padding: var(--gh-s12) var(--gh-s4) var(--gh-s8);
+  border-bottom: 2px solid var(--gh-text);
+  margin-bottom: var(--gh-s8);
+  position: relative;
+  overflow: hidden;
 }
 
-.eyebrow {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+/* Halftone texture in the corner — print craft, felt not seen. */
+.masthead::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 220px;
+  height: 220px;
+  background-image: var(--gh-halftone);
+  background-size: 10px 10px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.dateline {
+  font-family: var(--gh-font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gh-text-faint);
-  margin-bottom: var(--gh-s3);
+  color: var(--gh-ink-faint);
+  display: flex;
+  gap: var(--gh-s2);
+  align-items: center;
+  margin-bottom: var(--gh-s4);
+  flex-wrap: wrap;
 }
 
-/* Clickable 3D basketball stage above the masthead. */
+.nameplate {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--gh-s4);
+}
+
+.title {
+  font-family: var(--gh-font-display);
+  font-size: clamp(4.5rem, 14vw, 10rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--gh-text);
+}
+
+/* The basketball as spot illustration — tucked beside the name. */
 .ballStage {
-  width: 7rem;
-  height: 7rem;
-  margin: 0 auto var(--gh-s2);
+  width: clamp(5rem, 12vw, 8rem);
+  height: clamp(5rem, 12vw, 8rem);
+  flex-shrink: 0;
+  margin-bottom: var(--gh-s2);
 }
 
 .ballStage > div {
@@ -27,36 +67,20 @@
   height: 100%;
 }
 
+.tagline {
+  font-family: var(--gh-font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--gh-text-dim);
+  margin: var(--gh-s4) 0 0;
+  max-width: 34rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ballStage {
     display: none;
   }
-}
-
-.title {
-  font-family: var(--gh-font-display);
-  font-size: clamp(2.75rem, 8vw, 5rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  margin: 0;
-  color: var(--gh-text);
-}
-
-.gold {
-  background: linear-gradient(120deg, var(--gh-gold-soft), var(--gh-gold) 60%, var(--gh-gold-deep));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.sub {
-  color: var(--gh-text-dim);
-  margin: var(--gh-s3) 0 var(--gh-s6);
-  text-transform: capitalize;
-}
-
-.badges {
-  display: flex;
-  gap: var(--gh-s2);
-  justify-content: center;
+  .masthead::after {
+    display: none;
+  }
 }
