@@ -59,9 +59,10 @@ src/
                  # basketball, trophy, crown, hoop) with named animation
                  # clips. Do not hand-edit; regenerate via 3d/build_all.sh.
   surfaces/      # Bounded experiences. One folder per surface.
-    season-hub/  # "What's happening in the league": hero, standings,
-                 # stats strip, activity feed, section links to the deeper
-                 # league pages. Receives domain objects, never fetches.
+    season-hub/  # "What's happening in the league": hero, spotlight
+                 # (league-leader lead stories), standings, stats strip,
+                 # activity feed, section links to the deeper league pages.
+                 # Receives domain objects, never fetches.
     transactions/ # "What has every team been doing": full wire history
                  # with client-side type + team filters. Receives domain
                  # objects, never fetches.
