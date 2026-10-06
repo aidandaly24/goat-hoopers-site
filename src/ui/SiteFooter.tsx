@@ -35,7 +35,6 @@ export function SiteFooter({ season }: { season: Season | null }) {
           <Link href="/arcade">Arcade</Link>
           <Link href="/teams">Teams</Link>
           <Link href="/transactions">Transactions</Link>
-          <Link href="/draft">Draft</Link>
         </nav>
         <p className={styles.copy}>© {year} GOAT Hoopers. Built for the league, by the league.</p>
       </div>
