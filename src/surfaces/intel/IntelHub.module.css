@@ -1,0 +1,113 @@
+/* IntelHub — the broadcast desk. Hero framing + a 2-col grid of tools. */
+
+.surface {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: var(--gh-s8) var(--gh-s4) var(--gh-s12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s8);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s2);
+  /* Gold rule under the desk name — broadcast energy. */
+  border-bottom: 1px solid var(--gh-border);
+  padding-bottom: var(--gh-s6);
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 5rem;
+  height: 2px;
+  background: var(--gh-gradient-gold);
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gh-gold);
+  margin: 0;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin: 0;
+  color: var(--gh-text);
+  letter-spacing: 0.01em;
+}
+
+.blurb {
+  color: var(--gh-text-dim);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 38rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gh-s4);
+  align-items: start;
+}
+
+.span {
+  grid-column: 1 / -1;
+}
+
+/* Entrance: tools rise in with a stagger — the desk "comes on air". */
+.grid > * {
+  animation: gh-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.grid > *:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.grid > *:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.grid > *:nth-child(4) {
+  animation-delay: 0.18s;
+}
+
+@keyframes gh-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid > * {
+    animation: none;
+  }
+}
+
+@media (max-width: 56rem) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 1.9rem;
+  }
+
+  .surface {
+    padding: var(--gh-s6) var(--gh-s3) var(--gh-s8);
+  }
+}

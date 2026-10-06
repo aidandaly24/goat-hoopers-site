@@ -81,6 +81,11 @@ src/
     preview/     # Weekly matchup previews: projections, win-probability
                  # bars, the model's pick. Self-contained, null in
                  # preseason.
+    intel/       # "What do the numbers say?": the League Intel hub
+                 # composing the four data tools (preview, power
+                 # rankings, playoff odds, record book) with
+                 # broadcast-desk framing. Receives all four datasets;
+                 # never fetches.
     arcade/      # "Play games, win FAAB": ArcadeHub (game list),
                  # GameDetail (rules + leaderboard + rewards),
                  # Leaderboard, RewardLedger, GameCard, ProvisionNotice.
@@ -125,7 +130,7 @@ src/
                  # initials-in-team-colored-disc fallback (client component
                  # for the onError switch).
                  # SectionNav is the secondary tab row for the league pages
-                 # (Transactions / Draft Board / Teams); pages provide the
+                 # (Transactions / Draft Board / Teams / Intel); pages provide the
                  # active tab.
                  # Reading the session cookie in the layout forces dynamic
                  # rendering (see layout.tsx) — deliberate: correct account
@@ -148,6 +153,10 @@ src/
     teams/       # /teams — the team directory.
     teams/[rosterId]/ # /teams/[rosterId] — one franchise's public profile.
     player/[playerId]/ # /player/[playerId] — one NBA player's league page.
+    intel/       # /intel — League Intel: the four data tools composed
+                 # (matchup previews, power rankings, playoff odds,
+                 # record book). force-dynamic via data loaders;
+                 # revalidate 300.
     admin/       # /admin/invites — commissioner invite codes, gated by
                  # COMMISSIONER_KEY (server-side check, every action).
 ARCHITECTURE.md  # This file.

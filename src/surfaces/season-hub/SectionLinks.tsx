@@ -19,6 +19,11 @@ const SECTIONS = [
     title: "Teams",
     blurb: "All ten teams, managers, and records.",
   },
+  {
+    href: "/intel",
+    title: "League Intel",
+    blurb: "Power rankings, projections, title odds, record book.",
+  },
 ];
 
 /**
