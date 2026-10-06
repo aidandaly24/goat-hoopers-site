@@ -15,7 +15,9 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 ```
 src/
   domain/        # The shared language: Team, Standing, Matchup, Player,
-                 # Transaction, DraftPick, Season, LeagueStats. Types + tiny
+                 # Transaction, DraftPick, Season, LeagueStats, PlayerDetail,
+                 # TeamProfile, PowerRanking, PlayoffOdds, RecordBook,
+                 # MatchupPreview, PlayerMove. Types + tiny
                  # helpers only. formatSeasonStatus(Season.status) renders
                  # the human status ("pre_season" -> "Preseason").
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
@@ -28,10 +30,17 @@ src/
   data/          # The ONLY place the outside world is touched.
     sleeper.ts   # Raw API client. Returns raw JSON, nothing else.
     transform.ts # Raw JSON -> domain objects. The membrane.
+    analytics.ts # Pure data tools: computePowerRankings, computePlayoffOdds,
+                 # computeRecordBook, computeMatchupPreviews. No fetching —
+                 # same pure-inputs pattern as computeLeagueStats. All
+                 # return null before the season tips off (never fake data).
     league.ts    # Loaders: getSeasonHubData (home), getTeamDetail (/team),
                  # getTransactionHistory (/transactions), getDraftBoard
                  # (/draft), getTeams (/teams), getSeasonMeta (site
                  # chrome: league meta + NBA state, no heavy sections),
+                 # getPlayerDetail (/player/[playerId]), getTeamProfile
+                 # (/teams/[rosterId]), getPowerRankings, getPlayoffOdds,
+                 # getRecordBook, getMatchupPreviews (data tools),
                  # getDefendingChampion (champion roster id from the
                  # playoff winners bracket; null until someone wins —
                  # feeds TeamAvatar's isChampion).
@@ -52,8 +61,26 @@ src/
                  # draft board, grouped by round. Receives domain objects,
                  # never fetches.
     teams/       # "Who's in this league": team directory cards (avatar,
-                 # name, manager, record, PF). Receives domain objects,
-                 # never fetches.
+                 # name, manager, record, PF), each linking to the public
+                 # team profile. TeamProfile: identity + streak, full
+                 # roster (headshots, every name -> player page), game
+                 # log, rookie picks, recent wire moves. Receives domain
+                 # objects, never fetches.
+    player/      # "Who is this guy": one NBA player's page — headshot,
+                 # position pill, NBA team, owning GOAT Hoopers roster
+                 # (or Free Agent), rookie-draft slot, wire history.
+                 # Receives PlayerDetail; never fetches.
+    power-rankings/ # The computed power order with week-over-week
+                 # movement arrows. Self-contained: takes PowerRanking[]
+                 # (null in the preseason), built for homepage embedding.
+    playoffs/    # Simulated playoff odds (Elo Monte Carlo) with
+                 # probability bars. Self-contained, null in preseason.
+    records/     # The all-time record book: biggest blowouts, closest
+                 # games, highest weekly scores. Self-contained, null
+                 # in preseason.
+    preview/     # Weekly matchup previews: projections, win-probability
+                 # bars, the model's pick. Self-contained, null in
+                 # preseason.
     arcade/      # "Play games, win FAAB": ArcadeHub (game list),
                  # GameDetail (rules + leaderboard + rewards),
                  # Leaderboard, RewardLedger, GameCard, ProvisionNotice.
@@ -64,9 +91,10 @@ src/
                  # winnings. Rendered by /team for the logged-in manager.
   ui/            # Design tokens (tokens.css) + primitives (Card, Badge,
                  # SectionHeading, TeamAvatar, PositionPill,
-                 # PlayerHeadshot, ChampionCrown, SiteHeader, SiteFooter,
-                 # MobileNav, SectionNav) + teamColors.ts (roster id ->
-                 # --gh-team-N). Every surface uses these.
+                 # PlayerHeadshot, PlayerRow, TransactionSummary,
+                 # ChampionCrown, SiteHeader, SiteFooter, MobileNav,
+                 # SectionNav) + teamColors.ts (roster id -> --gh-team-N).
+                 # Every surface uses these.
                  # ChampionCrown is the defending champion's crown: a crisp
                  # inline SVG in site gold, tilted a few degrees and nudged
                  # off-center so it reads hand-placed. It's a real button —
@@ -75,6 +103,12 @@ src/
                  # isChampion and perches the crown; surfaces opt in with
                  # the id from getDefendingChampion(). No crown renders
                  # until the league has a champion.
+                 # PlayerRow is the linked player identity (headshot +
+                 # name -> /player/[sleeperId] + position pill + NBA team);
+                 # every player name site-wide renders through it.
+                 # TransactionSummary renders one transaction as a sentence
+                 # with player names -> player pages and the acting team ->
+                 # its team page, built from structured adds/drops.
                  # SiteHeader is the site-wide chrome (wordmark, Home/Arcade
                  # nav, account state). Nav rule: logged in, the manager's
                  # display name with a team-colored avatar ring is the
@@ -112,6 +146,8 @@ src/
     transactions/ # /transactions — full wire history (type + team filters).
     draft/       # /draft — the completed rookie draft board.
     teams/       # /teams — the team directory.
+    teams/[rosterId]/ # /teams/[rosterId] — one franchise's public profile.
+    player/[playerId]/ # /player/[playerId] — one NBA player's league page.
     admin/       # /admin/invites — commissioner invite codes, gated by
                  # COMMISSIONER_KEY (server-side check, every action).
 ARCHITECTURE.md  # This file.
@@ -151,6 +187,16 @@ impure shell, the math is a pure function of its inputs.
 says `"pre"`) the loader returns `hasGames: false` and every stat stays
 null — the `StatsStrip` renders one honest empty state instead of fake
 leaders picked from all-zero rows.
+
+The data tools (power rankings, playoff odds, record book, matchup
+previews) follow the same seam: `src/data/analytics.ts` holds the pure
+functions (`computePowerRankings`, `computePlayoffOdds`,
+`computeRecordBook`, `computeMatchupPreviews` — inputs in, domain objects
+out, never null-filled), and `league.ts` loaders assemble their inputs
+from live Sleeper data. Every tool returns null in the preseason, and its
+surface renders an honest empty state. Formulas/models are documented on
+the domain types themselves (`power.ts`, `playoff-odds.ts`,
+`matchup-preview.ts`).
 
 The arcade has its own one-way flow, through the second door:
 
@@ -197,9 +243,9 @@ Passwords are bcrypt-hashed (12 rounds) — raw passwords never touch the DB.
   hex values, no magic pixel numbers in components.
 - Need a new token? Add it to `tokens.css` with a comment explaining why.
 - Primitives (`Card`, `Badge`, `SectionHeading`, `TeamAvatar`,
-  `PositionPill`, `PlayerHeadshot`, `ChampionCrown`, `SiteHeader`,
-  `SiteFooter`, `MobileNav`) are the default building blocks. Reach for
-  raw HTML/CSS only when a primitive genuinely doesn’t fit.
+  `PositionPill`, `PlayerHeadshot`, `SiteHeader`, `SiteFooter`,
+  `MobileNav`) are the default building blocks. Reach for raw HTML/CSS
+  only when a primitive genuinely doesn’t fit.
 - Team identity colors are `--gh-team-1` … `--gh-team-10` (roster id ->
   color); use them only through `teamColorVar()` in
   `src/ui/teamColors.ts`, never by indexing the tokens directly.

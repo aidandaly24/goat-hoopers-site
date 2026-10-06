@@ -106,6 +106,8 @@ export function toSeason(league: RawLeague, nbaState: RawNbaState | null): Seaso
     seasonYear: league.season,
     status,
     totalTeams: league.total_rosters,
+    playoffTeams: league.settings?.playoff_teams ?? 6,
+    playoffWeekStart: league.settings?.playoff_week_start ?? 19,
   };
 }
 
@@ -128,6 +130,7 @@ export function toTransactions(
   }
   const nameOf = (pid: string): string =>
     directory?.[pid]?.full_name ?? `Player ${pid}`;
+  const moveOf = (pid: string) => ({ playerId: pid, name: nameOf(pid) });
 
   return raw
     .map((t) => {
@@ -161,6 +164,8 @@ export function toTransactions(
         createdAt: t.created,
         summary,
         teamIds: [...rosterIds].map(String),
+        adds: t.adds ? Object.keys(t.adds).map(moveOf) : [],
+        drops: t.drops ? Object.keys(t.drops).map(moveOf) : [],
       } satisfies Transaction;
     })
     .sort((a, b) => b.createdAt - a.createdAt);
@@ -282,6 +287,31 @@ function fmtPts(p: number): string {
   });
 }
 
+/**
+ * Signed active streak for a team, ending at the latest final week:
+ * positive = consecutive wins, negative = consecutive losses, 0 = none.
+ * Pure — takes matchups as a parameter.
+ */
+export function currentStreak(
+  teamId: string,
+  matchupsByWeek: Matchup[][]
+): number {
+  let streak = 0;
+  for (let w = matchupsByWeek.length - 1; w >= 0; w--) {
+    const m = matchupsByWeek[w].find(
+      (x) => x.home.id === teamId || x.away.id === teamId
+    );
+    if (!m || m.homePoints === null || m.awayPoints === null) break;
+    const isHome = m.home.id === teamId;
+    const mine = (isHome ? m.homePoints : m.awayPoints) as number;
+    const theirs = (isHome ? m.awayPoints : m.homePoints) as number;
+    const result = mine > theirs ? 1 : mine < theirs ? -1 : 0;
+    if (result === 0) break;
+    if (streak !== 0 && Math.sign(streak) !== result) break;
+    streak += result;
+  }
+  return streak;
+}
 /** Consecutive wins ending at the latest final week. 0 when none. */
 function currentWinStreak(teamId: string, matchupsByWeek: Matchup[][]): number {
   let streak = 0;

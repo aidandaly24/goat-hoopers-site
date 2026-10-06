@@ -24,6 +24,11 @@ export type RawLeague = {
   season: string;
   status: string;
   total_rosters: number;
+  settings: {
+    playoff_teams: number;
+    playoff_week_start: number;
+    divisions: number;
+  };
 };
 
 export type RawRosterSettings = {
