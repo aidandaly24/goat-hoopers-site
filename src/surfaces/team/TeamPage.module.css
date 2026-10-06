@@ -94,35 +94,11 @@
 }
 
 .player {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--gh-s3);
-  padding: var(--gh-s3) 0;
   border-bottom: 1px solid var(--gh-border);
 }
 
 .player:last-child {
   border-bottom: none;
-}
-
-.playerName {
-  color: var(--gh-text);
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.playerMeta {
-  display: flex;
-  align-items: center;
-  gap: var(--gh-s2);
-}
-
-.nbaTeam {
-  color: var(--gh-text-faint);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
 }
 
 .rewards {

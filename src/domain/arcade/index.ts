@@ -8,6 +8,7 @@ export type {
   Game,
   GameScore,
   LeaderboardEntry,
+  GameHubSummary,
   Reward,
 } from "./types";
 export { GAMES, getGame, WEEKLY_FAAB_PRIZE, currentWeekLabel } from "./games";

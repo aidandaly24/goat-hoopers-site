@@ -15,6 +15,13 @@ import type {
   Transaction,
   Player,
   DraftPick,
+  PowerRanking,
+  PlayoffOdds,
+  RecordBook,
+  MatchupPreview,
+  PlayerDetail,
+  TeamProfile,
+  Matchup,
 } from "@/domain";
 import {
   fetchLeague,
@@ -26,6 +33,7 @@ import {
   fetchDrafts,
   fetchDraftPicks,
   fetchPlayerDirectory,
+  fetchWinnersBracket,
   type RawMatchupEntry,
   type RawNbaState,
   type RawPlayerEntry,
@@ -42,8 +50,18 @@ import {
   toDraftPicks,
   computeLeagueStats,
   emptyLeagueStats,
+  currentStreak,
   type LeagueStatsInput,
 } from "./transform";
+import {
+  computePowerRankings,
+  computePlayoffOdds,
+  computeRecordBook,
+  computeMatchupPreviews,
+} from "./analytics";
+/* Separate import: championRosterId is this feature's seam, kept out of
+ * the shared transform import block above. */
+import { championRosterId } from "./transform";
 
 export type SeasonHubData = {
   season: Season;
@@ -236,6 +254,24 @@ export type DraftBoardData = {
 };
 
 /**
+ * Light season metadata for the site chrome (footer). Just league meta +
+ * NBA state — none of the standings/stats/transaction weight of
+ * getSeasonHubData. Null when the API is unreachable; the footer renders
+ * without the season line instead of the page failing.
+ */
+export async function getSeasonMeta(): Promise<Season | null> {
+  try {
+    const [league, nbaState] = await Promise.all([
+      fetchLeague(),
+      fetchNbaState().catch(() => null),
+    ]);
+    return toSeason(league, nbaState);
+  } catch {
+    return null;
+  }
+}
+
+/**
  * The league's completed rookie draft board. Picks the completed 2026
  * draft, falling back to the first draft on record. Player names come
  * from pick metadata — no directory fetch needed. Never throws.
@@ -256,5 +292,250 @@ export async function getDraftBoard(): Promise<DraftBoardData> {
     return { picks, teams };
   } catch {
     return { picks: [], teams: [] };
+  }
+}
+
+/* ---------------- data tools (DATA pillar) ---------------- */
+
+/** Completed rookie-draft picks, best-effort. Never throws. */
+async function fetchDraftPicksSafe(): Promise<DraftPick[]> {
+  try {
+    const drafts = await fetchDrafts();
+    const draft =
+      drafts.find((d) => d.season === "2026" && d.status === "complete") ??
+      drafts[0];
+    if (!draft) return [];
+    return toDraftPicks(await fetchDraftPicks(draft.draft_id));
+  } catch {
+    return [];
+  }
+}
+
+type AnalyticsInputs = {
+  teams: Team[];
+  season: Season;
+  /** Index 0 = week 1. */
+  matchupsByWeek: Matchup[][];
+  hasGames: boolean;
+  currentWeek: number;
+};
+
+/**
+ * Shared assembly for every data tool: teams, season (with playoff
+ * settings), and every played week's matchups. Fetching lives here; the
+ * math lives in the pure functions in analytics.ts. Returns nulls on
+ * failure — every tool degrades to its honest empty state.
+ */
+async function fetchAnalyticsInputs(): Promise<AnalyticsInputs | null> {
+  try {
+    const [league, rosters, users, nbaState] = await Promise.all([
+      fetchLeague(),
+      fetchRosters(),
+      fetchUsers(),
+      fetchNbaState().catch(() => null),
+    ]);
+    const season = toSeason(league, nbaState);
+    const teams = toTeams(rosters, users);
+    const hasGames = nbaState !== null && nbaState.season_type !== "pre";
+    if (!hasGames) {
+      return { teams, season, matchupsByWeek: [], hasGames: false, currentWeek: 0 };
+    }
+    const currentWeek = Math.max(1, nbaState?.week ?? 1);
+    const weeks = Array.from({ length: currentWeek }, (_, i) => i + 1);
+    const matchupWeeks = await Promise.all(
+      weeks.map((w): Promise<RawMatchupEntry[]> =>
+        fetchMatchups(w).catch(() => [])
+      )
+    );
+    const matchupsByWeek = matchupWeeks.map((raw, i) => {
+      const ms = toMatchups(raw, teams);
+      for (const m of ms) m.week = i + 1;
+      return ms;
+    });
+    return { teams, season, matchupsByWeek, hasGames: true, currentWeek };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Power rankings from live data. Null in the preseason (no real order to
+ * show yet) or when the API is unreachable. Never throws.
+ */
+export async function getPowerRankings(): Promise<PowerRanking[] | null> {
+  try {
+    const input = await fetchAnalyticsInputs();
+    if (!input) return null;
+    return computePowerRankings({
+      teams: input.teams,
+      matchupsByWeek: input.matchupsByWeek,
+    });
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Simulated playoff odds from live data. Null in the preseason or on
+ * failure. Never throws.
+ */
+export async function getPlayoffOdds(): Promise<PlayoffOdds[] | null> {
+  try {
+    const input = await fetchAnalyticsInputs();
+    if (!input) return null;
+    return computePlayoffOdds({
+      teams: input.teams,
+      matchupsByWeek: input.matchupsByWeek,
+      playoffSpots: input.season.playoffTeams,
+      playoffWeekStart: input.season.playoffWeekStart,
+      week: input.currentWeek,
+    });
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The all-time record book from every final. Null in the preseason or on
+ * failure. Never throws.
+ */
+export async function getRecordBook(): Promise<RecordBook | null> {
+  try {
+    const input = await fetchAnalyticsInputs();
+    if (!input) return null;
+    return computeRecordBook({ matchupsByWeek: input.matchupsByWeek });
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Projections + picks for the current week's matchups. Null in the
+ * preseason or on failure. Never throws.
+ */
+export async function getMatchupPreviews(): Promise<MatchupPreview[] | null> {
+  try {
+    const input = await fetchAnalyticsInputs();
+    if (!input) return null;
+    return computeMatchupPreviews({
+      matchupsByWeek: input.matchupsByWeek,
+      teams: input.teams,
+    });
+  } catch {
+    return null;
+  }
+}
+
+/* ---------------- player + team pages ---------------- */
+
+/**
+ * One player's page data: identity, the GOAT Hoopers roster holding them
+ * (null = free agent), their wire history, and their rookie-draft pick.
+ * Returns null only when the league itself is unreachable — unknown player
+ * ids degrade to a stub Player, never a failed page.
+ */
+export async function getPlayerDetail(
+  playerId: string
+): Promise<PlayerDetail | null> {
+  try {
+    const [rosters, users, directory, history, picks] = await Promise.all([
+      fetchRosters(),
+      fetchUsers(),
+      safePlayerDirectory(),
+      getTransactionHistory(),
+      fetchDraftPicksSafe(),
+    ]);
+    const player = toPlayer(playerId, directory?.[playerId]);
+
+    let team: Team | null = null;
+    for (const r of rosters) {
+      if ((r.players ?? []).includes(playerId)) {
+        const user = users.find((u) => u.user_id === r.owner_id);
+        team = toTeam(r, user);
+        break;
+      }
+    }
+
+    const transactions = history.transactions.filter(
+      (t) =>
+        t.adds.some((m) => m.playerId === playerId) ||
+        t.drops.some((m) => m.playerId === playerId)
+    );
+    const draftPick = picks.find((p) => p.playerId === playerId) ?? null;
+
+    return { player, team, transactions, draftPick };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * One team's public profile for /teams/[rosterId]: identity + record,
+ * full roster, season game log with active streak, draft picks, and
+ * recent wire activity. Returns null when the team doesn't exist.
+ */
+export async function getTeamProfile(
+  rosterId: string
+): Promise<TeamProfile | null> {
+  try {
+    const [rosters, users, directory, input, picks] = await Promise.all([
+      fetchRosters(),
+      fetchUsers(),
+      safePlayerDirectory(),
+      fetchAnalyticsInputs(),
+      fetchDraftPicksSafe(),
+    ]);
+    const raw = rosters.find((r) => String(r.roster_id) === rosterId);
+    if (!raw) return null;
+    const byId = new Map(users.map((u) => [u.user_id, u]));
+    const team = toTeam(raw, byId.get(raw.owner_id));
+
+    const players = (raw.players ?? []).map((pid) =>
+      toPlayer(pid, directory?.[pid])
+    );
+
+    const matchupsByWeek = input?.matchupsByWeek ?? [];
+    const matchups = matchupsByWeek
+      .flatMap((ms, i) =>
+        ms
+          .filter((m) => m.home.id === team.id || m.away.id === team.id)
+          .map((m) => ({ ...m, week: i + 1 }))
+      )
+      .sort((a, b) => b.week - a.week);
+
+    const streak = currentStreak(team.id, matchupsByWeek);
+    const draftPicks = picks.filter((p) => p.teamId === team.id);
+
+    // Recent wire activity for this team (best-effort).
+    let transactions: Transaction[] = [];
+    try {
+      const history = await getTransactionHistory();
+      transactions = history.transactions
+        .filter((t) => t.teamIds.includes(team.id))
+        .slice(0, 10);
+    } catch {
+      transactions = [];
+    }
+
+    return { team, players, matchups, streak, draftPicks, transactions };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The defending champion's roster id (as a string, matching Team.id),
+ * resolved from the playoff winners bracket. Null when there's no
+ * completed bracket — the honest state for a league that hasn't crowned
+ * anyone yet (GOAT Hoopers' first season). Surfaces pass it to
+ * TeamAvatar's isChampion prop; no crown renders until this returns an
+ * id, so the feature lights up automatically the moment a champion
+ * exists. Never throws.
+ */
+export async function getDefendingChampion(): Promise<string | null> {
+  try {
+    return championRosterId(await fetchWinnersBracket());
+  } catch {
+    return null;
   }
 }

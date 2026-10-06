@@ -10,14 +10,14 @@ const SECTIONS = [
     blurb: "Every wire move this season — trades, waivers, free agents.",
   },
   {
-    href: "/draft",
-    title: "Draft Board",
-    blurb: "The full 2026 rookie draft, pick by pick.",
-  },
-  {
     href: "/teams",
     title: "Teams",
     blurb: "All ten teams, managers, and records.",
+  },
+  {
+    href: "/intel",
+    title: "League Intel",
+    blurb: "Power rankings, projections, title odds, record book.",
   },
 ];
 

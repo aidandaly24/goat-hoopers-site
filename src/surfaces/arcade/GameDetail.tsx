@@ -39,7 +39,7 @@ export function GameDetail({
           <h1 className={styles.title}>{game.name}</h1>
         </div>
         <Badge tone={game.status === "live" ? "win" : "neutral"}>
-          {game.status === "live" ? "Live" : "Coming soon"}
+          {game.status === "live" ? "Live" : "Not yet live"}
         </Badge>
       </header>
 
@@ -50,8 +50,8 @@ export function GameDetail({
             <p className={styles.howTo}>{game.howToPlay}</p>
             {game.status === "coming-soon" && (
               <p className={styles.soon}>
-                This game isn't playable yet — the leaderboard opens the
-                moment it goes live.
+                {game.launchNote ??
+                  "This game isn't playable yet — the leaderboard opens the moment it goes live."}
               </p>
             )}
           </Card>
@@ -63,7 +63,7 @@ export function GameDetail({
         </div>
 
         <aside className={styles.side}>
-          <Card>
+          <Card className={styles.prizeCard}>
             <SectionHeading eyebrow="Prize" title="What's at stake" />
             <p className={styles.prize}>
               <strong>{WEEKLY_FAAB_PRIZE} FAAB</strong> to the weekly winner.

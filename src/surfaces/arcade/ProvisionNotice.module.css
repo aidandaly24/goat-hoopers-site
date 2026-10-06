@@ -15,7 +15,7 @@
 }
 
 .code {
-  font-family: ui-monospace, monospace;
+  font-family: var(--gh-font-mono);
   font-size: 0.85em;
   background: var(--gh-bg-raised);
   border: 1px solid var(--gh-border);

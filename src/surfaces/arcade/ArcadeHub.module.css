@@ -36,6 +36,18 @@
   font-size: 1rem;
 }
 
+.week {
+  font-family: var(--gh-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+  border: 1px solid var(--gh-border-strong);
+  border-radius: var(--gh-radius-pill);
+  padding: var(--gh-s2) var(--gh-s3);
+  white-space: nowrap;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));

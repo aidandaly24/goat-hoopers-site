@@ -4,10 +4,12 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--gh-bg) 88%, transparent);
+  background: color-mix(in srgb, var(--gh-bg) 86%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--gh-border);
+  /* A hairline of gold under the chrome — broadcast energy. */
+  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--gh-gold) 14%, transparent);
 }
 
 .inner {
@@ -17,16 +19,27 @@
   display: flex;
   align-items: center;
   gap: var(--gh-s6);
+  min-height: 4rem;
 }
 
 .wordmark {
   font-family: var(--gh-font-display);
-  font-weight: 900;
-  font-size: 1.05rem;
-  letter-spacing: 0.06em;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
   color: var(--gh-text);
   text-decoration: none;
   white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.wordmark:hover {
+  color: var(--gh-gold-soft);
+}
+
+.wordmark:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
 }
 
 .wordmark span {
@@ -35,7 +48,7 @@
 
 .nav {
   display: flex;
-  gap: var(--gh-s4);
+  gap: var(--gh-s2);
 }
 
 .nav a {
@@ -43,10 +56,22 @@
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 600;
+  padding: var(--gh-s2) var(--gh-s3);
+  border-radius: var(--gh-radius);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.18s ease, background-color 0.18s ease;
 }
 
 .nav a:hover {
   color: var(--gh-text);
+  background: color-mix(in srgb, var(--gh-text) 6%, transparent);
+}
+
+.nav a:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
 }
 
 .account {
@@ -57,18 +82,29 @@
 }
 
 .claim {
-  background: var(--gh-gold);
-  color: #1a1405;
+  background: var(--gh-gradient-gold);
+  color: var(--gh-ink-on-accent);
   font-weight: 700;
   font-size: 0.9rem;
   padding: var(--gh-s2) var(--gh-s4);
   border-radius: var(--gh-radius);
   text-decoration: none;
   white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: var(--gh-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .claim:hover {
-  background: var(--gh-gold-soft);
+  box-shadow: var(--gh-glow-gold);
+  transform: translateY(-1px);
+}
+
+.claim:focus-visible {
+  outline: 2px solid var(--gh-gold-soft);
+  outline-offset: 2px;
 }
 
 .login {
@@ -76,10 +112,14 @@
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  padding: var(--gh-s2) var(--gh-s3);
+  padding: var(--gh-s2) var(--gh-s4);
   border: 1px solid var(--gh-border-strong);
   border-radius: var(--gh-radius);
   white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.18s ease, border-color 0.18s ease;
 }
 
 .login:hover {
@@ -87,19 +127,60 @@
   border-color: var(--gh-text-faint);
 }
 
+.login:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+/* The single logged-in team entry point: team-colored avatar ring +
+ * display name, linking to /team. */
 .displayName {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gh-s2);
   color: var(--gh-text);
   font-weight: 700;
   font-size: 0.9rem;
   text-decoration: none;
+  padding: var(--gh-s2) var(--gh-s2);
+  border-radius: var(--gh-radius);
+  min-height: 44px;
+  transition: background-color 0.18s ease;
+}
+
+.displayName:hover {
+  background: color-mix(in srgb, var(--gh-text) 6%, transparent);
+}
+
+.displayName:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+.displayName:hover .name {
+  color: var(--gh-gold-soft);
+}
+
+.ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid var(--gh-ring, var(--gh-gold));
+  background: var(--gh-bg-card);
+  font-family: var(--gh-font-display);
+  font-size: 0.68rem;
+  color: var(--gh-text);
+  flex-shrink: 0;
+}
+
+.name {
   max-width: 10rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.displayName:hover {
-  color: var(--gh-gold-soft);
 }
 
 .logoutForm {
@@ -116,6 +197,8 @@
   border-radius: var(--gh-radius);
   cursor: pointer;
   font-family: var(--gh-font-body);
+  min-height: 44px;
+  transition: color 0.18s ease, border-color 0.18s ease;
 }
 
 .logout:hover {
@@ -123,32 +206,55 @@
   border-color: var(--gh-text-faint);
 }
 
+.logout:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark,
+  .nav a,
+  .claim,
+  .login,
+  .displayName,
+  .logout {
+    transition: none;
+  }
+
+  .claim:hover {
+    transform: none;
+  }
+}
+
+/* Phones: the bottom tab bar carries Home / Arcade / Team, so the header
+ * collapses to wordmark + account cluster. Targets stay >= 44px. */
 @media (max-width: 40rem) {
+  .nav {
+    display: none;
+  }
+
   .inner {
     padding: var(--gh-s2) var(--gh-s3);
     gap: var(--gh-s3);
+    min-height: 3.75rem;
   }
 
   .wordmark {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
-  .nav {
-    gap: var(--gh-s3);
-  }
-
-  .nav a {
+  .name {
+    max-width: 6.5rem;
     font-size: 0.85rem;
   }
 
   .claim,
   .login {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     padding: var(--gh-s2) var(--gh-s3);
   }
 
-  .displayName {
-    max-width: 6rem;
-    font-size: 0.85rem;
+  .logout {
+    font-size: 0.8rem;
   }
 }

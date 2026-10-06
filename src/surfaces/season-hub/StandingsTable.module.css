@@ -24,6 +24,9 @@
 .row {
   border-bottom: 1px solid var(--gh-border);
   border-radius: var(--gh-s2);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
 .row:last-child {
@@ -32,6 +35,15 @@
 
 .row:hover {
   background: var(--gh-bg-hover);
+}
+
+.row:hover .name {
+  color: var(--gh-gold-soft);
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
 }
 
 .rank {
@@ -58,6 +70,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.18s ease;
 }
 
 .manager {
@@ -132,5 +145,12 @@
     letter-spacing: 0.1em;
     color: var(--gh-text-faint);
     margin-right: var(--gh-s1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .name {
+    transition: none;
   }
 }

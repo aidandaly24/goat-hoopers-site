@@ -1,37 +1,90 @@
 /**
  * Design tokens — the visual language of the site.
  *
+ * Direction: "dark broadcast, elevated". Deep navy-black backgrounds with
+ * real depth — radial glows, a whisper of film grain, layered surfaces —
+ * one gold accent with championship energy, color reserved for meaning
+ * (win/loss/live/team identity), never decoration. Handcrafted, never
+ * flat, never monotone.
+ *
  * Everything visual in every surface MUST reference these tokens, never
- * hardcoded colors/spacing. This is what keeps ten contributors looking like
- * one site. If you need a new token, add it here and document why.
+ * hardcoded colors/spacing. If you need a new token, add it here and
+ * document why.
  */
 
 :root {
   /* Brand */
-  --gh-gold: #f0b429;
-  --gh-gold-soft: #f6c453;
-  --gh-ember: #ff5c38;
+  --gh-gold: #e8a13c;
+  --gh-gold-soft: #f3bc62;
+  --gh-gold-deep: #b97a1f;
+  /* Dark ink for text sitting on gold / bright position pills. */
+  --gh-ink-on-accent: #241a05;
 
-  /* Surfaces */
-  --gh-bg: #0b0b10;
-  --gh-bg-raised: #121218;
-  --gh-bg-card: #16161e;
-  --gh-bg-hover: #1d1d27;
-  --gh-border: #26262f;
-  --gh-border-strong: #34333f;
+  /* Surfaces — deep navy-black, layered by elevation */
+  --gh-bg: #0a0e1a;
+  --gh-bg-raised: #111827;
+  --gh-bg-card: #151d2e;
+  --gh-bg-hover: #1a2332;
+  --gh-border: #232c40;
+  --gh-border-strong: #33405c;
 
-  /* Text */
-  --gh-text: #f4f2ea;
-  --gh-text-dim: #a7a39a;
-  --gh-text-faint: #6b695f;
+  /* Text — every tier clears WCAG AA on --gh-bg */
+  --gh-text: #f2f5fa;
+  --gh-text-dim: #9ba8bc;
+  --gh-text-faint: #8e97a9;
 
-  /* Status */
+  /* Semantic status — reserved EXCLUSIVELY for these meanings.
+   * Never use decoratively (see REDESIGN-INSPO.md). */
   --gh-win: #4ade80;
   --gh-loss: #f87171;
+  --gh-live: #ff5c38;
+
+  /* Team identity — one fixed color per roster, stable across seasons.
+   * Roster id (Sleeper roster_id as string) -> color. Use only through
+   * teamColorVar() in src/ui/teamColors.ts, never by indexing here. */
+  --gh-team-1: #f2b33d;
+  --gh-team-2: #38bdf8;
+  --gh-team-3: #f472b6;
+  --gh-team-4: #a3e635;
+  --gh-team-5: #c084fc;
+  --gh-team-6: #fb923c;
+  --gh-team-7: #2dd4bf;
+  --gh-team-8: #f87171;
+  --gh-team-9: #94a3b8;
+  --gh-team-10: #818cf8;
+
+  /* Position pills — Sleeper-dialect color coding, one per position group.
+   * Rendered as a colored pill with dark text via PositionPill. */
+  --gh-pos-pg: #60a5fa;
+  --gh-pos-sg: #34d399;
+  --gh-pos-sf: #fbbf24;
+  --gh-pos-pf: #fb923c;
+  --gh-pos-c: #f87171;
 
   /* Type */
-  --gh-font-display: "Archivo", "Inter", system-ui, sans-serif;
-  --gh-font-body: "Inter", system-ui, sans-serif;
+  --gh-font-display: var(--font-display, "Anton", system-ui, sans-serif);
+  --gh-font-body: var(--font-body, "Inter", system-ui, sans-serif);
+  --gh-font-mono: var(--font-mono, "Geist Mono", ui-monospace, monospace);
+
+  /* Texture — the anti-flat kit. Compose, don't stack blindly. */
+  /* Film grain: SVG turbulence, applied at low opacity over surfaces. */
+  --gh-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+  /* Ambient arena glow for page backgrounds (pairs with --gh-bg). */
+  --gh-glow-page:
+    radial-gradient(1100px 420px at 50% -8%, rgb(232 161 60 / 0.10), transparent 62%),
+    radial-gradient(800px 480px at 88% 4%, rgb(56 189 248 / 0.07), transparent 60%),
+    radial-gradient(700px 520px at 8% 12%, rgb(192 132 252 / 0.06), transparent 60%);
+  /* Card sheen: a top-light gradient for raised surfaces. */
+  --gh-gradient-card: linear-gradient(180deg, rgb(255 255 255 / 0.045), transparent 32%);
+  /* Gold accent gradient for CTAs and highlights. */
+  --gh-gradient-gold: linear-gradient(135deg, var(--gh-gold-soft), var(--gh-gold) 55%, var(--gh-gold-deep));
+
+  /* Elevation */
+  --gh-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.45);
+  --gh-shadow-md: 0 10px 28px rgb(0 0 0 / 0.5);
+  --gh-shadow-lg: 0 28px 70px rgb(0 0 0 / 0.55);
+  --gh-glow-gold: 0 0 26px rgb(232 161 60 / 0.32);
+  --gh-glow-live: 0 0 18px rgb(255 92 56 / 0.45);
 
   /* Spacing scale */
   --gh-s1: 0.25rem;
@@ -46,6 +99,10 @@
   /* Shape */
   --gh-radius: 0.75rem;
   --gh-radius-lg: 1.25rem;
+  --gh-radius-pill: 999px;
+
+  /* Chrome */
+  --gh-tabbar-h: 4.25rem;
 }
 
 /*
@@ -54,7 +111,9 @@
  * these values in sync by hand.)
  *
  * --gh-bp-sm: 40rem — below this, dense components switch to compact
- *   mobile layouts (standings table -> team cards, stat grids stack).
+ *   mobile layouts (standings table -> team cards, stat grids stack),
+ *   and the bottom tab bar replaces the desktop nav.
+ * --gh-bp-md: 56rem — below this, two-column surface grids stack.
  * --gh-bp-lg: 64rem — at/above this, surfaces may use multi-column
  *   desktop layouts (season-hub's standings + activity side-by-side).
  */

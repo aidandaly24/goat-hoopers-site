@@ -47,6 +47,31 @@
   text-overflow: ellipsis;
 }
 
+/* Team names inside the detail line link to their team pages. */
+.detailLink {
+  color: var(--gh-gold-soft);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.detailLink:hover {
+  color: var(--gh-gold);
+  text-decoration: underline;
+}
+
+.detailLink:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detailLink {
+    transition: none;
+  }
+}
+
 .empty {
   color: var(--gh-text-faint);
   margin: 0;

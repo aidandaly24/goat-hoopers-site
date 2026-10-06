@@ -54,6 +54,23 @@
   align-items: center;
   gap: var(--gh-s2);
   min-width: 0;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--gh-radius);
+  transition: background-color 0.18s ease;
+}
+
+.team:hover {
+  background: var(--gh-bg-hover);
+}
+
+.team:hover .teamName {
+  color: var(--gh-gold-soft);
+}
+
+.team:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
 }
 
 .teamName {
@@ -73,14 +90,8 @@
   min-width: 0;
 }
 
-.playerName {
-  font-size: 0.92rem;
-  color: var(--gh-text-dim);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
+/* Player names render through the PlayerName primitive (its own
+ * hover/focus styles) — no local link chrome here. */
 .playerMeta {
   display: flex;
   align-items: center;
@@ -110,5 +121,11 @@
 
   .pickNo {
     font-size: 1.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team {
+    transition: none;
   }
 }

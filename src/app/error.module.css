@@ -1,0 +1,87 @@
+/* Error + not-found — the "off air" cards. Shared voice, broadcast framing. */
+
+.surface {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: var(--gh-s16) var(--gh-s4);
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  max-width: 30rem;
+  text-align: center;
+  background: var(--gh-bg-card);
+  background-image: var(--gh-gradient-card);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius-lg);
+  padding: var(--gh-s12) var(--gh-s8);
+  box-shadow: var(--gh-shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s4);
+  align-items: center;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gh-gold);
+  margin: 0;
+}
+
+.title {
+  font-size: 2.2rem;
+  margin: 0;
+  color: var(--gh-text);
+}
+
+.blurb {
+  color: var(--gh-text-dim);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: var(--gh-s3);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.retry {
+  background: var(--gh-gradient-gold);
+  color: var(--gh-ink-on-accent);
+  font-weight: 700;
+  font-size: 0.95rem;
+  font-family: var(--gh-font-body);
+  padding: var(--gh-s3) var(--gh-s6);
+  border: none;
+  border-radius: var(--gh-radius);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.retry:hover {
+  box-shadow: var(--gh-glow-gold);
+}
+
+.home {
+  color: var(--gh-text-dim);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: var(--gh-s3) var(--gh-s6);
+  border: 1px solid var(--gh-border-strong);
+  border-radius: var(--gh-radius);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.home:hover {
+  color: var(--gh-text);
+  border-color: var(--gh-text-faint);
+}

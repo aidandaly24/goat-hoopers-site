@@ -1,0 +1,90 @@
+.columns {
+  display: grid;
+  gap: var(--gh-s6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 64rem) {
+  .columns {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.subhead {
+  margin: 0 0 var(--gh-s3);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s2);
+}
+
+.game {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s3);
+  padding: var(--gh-s2) 0;
+  border-bottom: 1px solid var(--gh-border);
+  min-height: 3rem;
+}
+
+.game:last-child {
+  border-bottom: none;
+}
+
+.teams {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.9rem;
+}
+
+.vs {
+  color: var(--gh-text-faint);
+}
+
+.teamLink {
+  font-weight: 600;
+  color: var(--gh-text);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.teamLink:hover {
+  color: var(--gh-gold-soft);
+}
+
+.teamLink:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
+}
+
+.margin {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.week {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+  white-space: nowrap;
+}
+
+.empty {
+  color: var(--gh-text-faint);
+  font-style: italic;
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teamLink {
+    transition: none;
+  }
+}

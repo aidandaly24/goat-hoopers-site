@@ -5,6 +5,7 @@ import type { Team, Transaction, TransactionType } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
+import { TransactionSummary } from "@/ui/TransactionSummary";
 import styles from "./TransactionHistory.module.css";
 
 const TONE: Record<TransactionType, "gold" | "neutral"> = {
@@ -123,7 +124,9 @@ export function TransactionFilters({
             <li key={t.id} className={styles.item}>
               <Badge tone={TONE[t.type]}>{LABEL[t.type]}</Badge>
               <div className={styles.body}>
-                <span className={styles.summary}>{t.summary}</span>
+                <span className={styles.summary}>
+                  <TransactionSummary transaction={t} teams={teams} />
+                </span>
                 <span className={styles.meta}>
                   {weekLabel(t.week)} · {dateLabel(t.createdAt)}
                 </span>

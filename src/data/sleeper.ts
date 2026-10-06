@@ -24,6 +24,11 @@ export type RawLeague = {
   season: string;
   status: string;
   total_rosters: number;
+  settings: {
+    playoff_teams: number;
+    playoff_week_start: number;
+    divisions: number;
+  };
 };
 
 export type RawRosterSettings = {
@@ -176,6 +181,30 @@ export function fetchDrafts(): Promise<RawDraft[]> {
  */
 export function fetchDraftPicks(draftId: string): Promise<RawDraftPick[]> {
   return sleeperFetch<RawDraftPick[]>(`/draft/${draftId}/picks`, 300);
+}
+
+export type RawWinnersBracketEntry = {
+  /** Playoff round, 1-based. The final is the highest round. */
+  r: number;
+  /** Matchup index within the round. */
+  m: number;
+  t1: number | null;
+  t2: number | null;
+  /** Winning roster_id. Null until the matchup is decided. */
+  w: number | null;
+  l: number | null;
+};
+
+/**
+ * Playoff winners bracket. The champion is the winner of the final
+ * (highest-round) matchup. Empty / undecided before the playoffs.
+ * Cache 5 min.
+ */
+export function fetchWinnersBracket(): Promise<RawWinnersBracketEntry[]> {
+  return sleeperFetch<RawWinnersBracketEntry[]>(
+    `/league/${LEAGUE_ID}/winners_bracket`,
+    300
+  );
 }
 
 /**

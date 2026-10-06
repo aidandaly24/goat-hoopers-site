@@ -1,0 +1,45 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--gh-radius-pill);
+  font-family: var(--gh-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.pg {
+  background: var(--gh-pos-pg);
+  color: var(--gh-ink-on-accent);
+}
+
+.sg {
+  background: var(--gh-pos-sg);
+  color: var(--gh-ink-on-accent);
+}
+
+.sf {
+  background: var(--gh-pos-sf);
+  color: var(--gh-ink-on-accent);
+}
+
+.pf {
+  background: var(--gh-pos-pf);
+  color: var(--gh-ink-on-accent);
+}
+
+.c {
+  background: var(--gh-pos-c);
+  color: var(--gh-ink-on-accent);
+}
+
+.na {
+  background: transparent;
+  border: 1px solid var(--gh-border-strong);
+  color: var(--gh-text-faint);
+}

@@ -3,7 +3,7 @@
   height: 2.5rem;
   border-radius: 50%;
   object-fit: cover;
-  background: linear-gradient(135deg, var(--gh-gold) 0%, var(--gh-ember) 100%);
+  background: linear-gradient(135deg, var(--gh-gold) 0%, var(--gh-gold-deep) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,5 +15,13 @@
   font-family: var(--gh-font-display);
   font-weight: 800;
   font-size: 0.85rem;
-  color: #0b0b10;
+  color: var(--gh-ink-on-accent);
+}
+
+/* Positioning context for the champion's crown. Inline-flex so the wrap
+ * never stretches a row layout. */
+.champWrap {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
 }

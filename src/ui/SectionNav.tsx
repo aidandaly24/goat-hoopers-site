@@ -1,12 +1,12 @@
 import Link from "next/link";
 import styles from "./SectionNav.module.css";
 
-export type LeagueSection = "transactions" | "draft" | "teams";
+export type LeagueSection = "transactions" | "teams" | "intel";
 
 const LINKS: { key: LeagueSection; href: string; label: string }[] = [
   { key: "transactions", href: "/transactions", label: "Transactions" },
-  { key: "draft", href: "/draft", label: "Draft Board" },
   { key: "teams", href: "/teams", label: "Teams" },
+  { key: "intel", href: "/intel", label: "Intel" },
 ];
 
 type Props = {
@@ -17,8 +17,8 @@ type Props = {
 /**
  * SectionNav — secondary navigation for the league content pages.
  * The main header only carries Home / Arcade / My Team; this row lets a
- * visitor move between Transactions, Draft Board, and Teams without
- * going back to the home page first.
+ * visitor move between Transactions, Teams, and Intel
+ * without going back to the home page first.
  */
 export function SectionNav({ current }: Props) {
   return (

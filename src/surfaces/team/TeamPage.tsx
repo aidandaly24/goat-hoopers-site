@@ -2,6 +2,7 @@ import type { Player, Team } from "@/domain";
 import type { Reward } from "@/domain/arcade";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
+import { PlayerRow } from "@/ui/PlayerRow";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import styles from "./TeamPage.module.css";
@@ -59,11 +60,7 @@ export function TeamPage({ team, players, rewards }: Props) {
           <ul className={styles.roster}>
             {players.map((p) => (
               <li key={p.id} className={styles.player}>
-                <span className={styles.playerName}>{p.fullName}</span>
-                <span className={styles.playerMeta}>
-                  {p.position && <Badge>{p.position}</Badge>}
-                  {p.nbaTeam && <span className={styles.nbaTeam}>{p.nbaTeam}</span>}
-                </span>
+                <PlayerRow player={p} teamId={team.id} />
               </li>
             ))}
           </ul>

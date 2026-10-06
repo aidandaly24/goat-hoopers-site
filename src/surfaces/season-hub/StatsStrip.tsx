@@ -1,4 +1,6 @@
-import type { LeagueStats, MatchupHighlight } from "@/domain";
+import type { ReactNode } from "react";
+import Link from "next/link";
+import type { LeagueStats, MatchupHighlight, Team } from "@/domain";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
 import styles from "./StatsStrip.module.css";
@@ -7,22 +9,34 @@ type StatCell = {
   key: string;
   label: string;
   value: string;
-  detail: string;
+  detail: ReactNode;
 };
 
 function fmtScore(p: number): string {
   return p.toFixed(1);
 }
 
+/** One linked team name inside a stat detail line. */
+function teamLink(team: Team) {
+  return (
+    <Link href={`/teams/${team.id}`} className={styles.detailLink}>
+      {team.name}
+    </Link>
+  );
+}
+
 /** "Winner 142.5 – 98.2 Loser" — winner first, ties keep home/away order. */
-function matchupLine(h: MatchupHighlight): string {
+function matchupLine(h: MatchupHighlight): ReactNode {
   const { matchup: m } = h;
   const hp = m.homePoints as number;
   const ap = m.awayPoints as number;
-  if (hp === ap) return `${m.home.name} ${fmtScore(hp)} – ${fmtScore(ap)} ${m.away.name}`;
-  const [wName, wPts, lName, lPts] =
-    hp > ap ? [m.home.name, hp, m.away.name, ap] : [m.away.name, ap, m.home.name, hp];
-  return `${wName} ${fmtScore(wPts)} – ${fmtScore(lPts)} ${lName}`;
+  const [w, wPts, l, lPts]: [Team, number, Team, number] =
+    hp >= ap ? [m.home, hp, m.away, ap] : [m.away, ap, m.home, hp];
+  return (
+    <>
+      {teamLink(w)} {fmtScore(wPts)} – {fmtScore(lPts)} {teamLink(l)}
+    </>
+  );
 }
 
 /**
@@ -39,7 +53,7 @@ export function StatsStrip({ stats }: { stats: LeagueStats }) {
       key: "pf",
       label: "Points leader",
       value: stats.pointsForLeader.displayValue,
-      detail: stats.pointsForLeader.team.name,
+      detail: teamLink(stats.pointsForLeader.team),
     });
   }
   if (stats.pointsAgainstLeader) {
@@ -47,7 +61,7 @@ export function StatsStrip({ stats }: { stats: LeagueStats }) {
       key: "pa",
       label: "Most scored on",
       value: stats.pointsAgainstLeader.displayValue,
-      detail: stats.pointsAgainstLeader.team.name,
+      detail: teamLink(stats.pointsAgainstLeader.team),
     });
   }
   if (stats.longestWinStreak) {
@@ -55,7 +69,7 @@ export function StatsStrip({ stats }: { stats: LeagueStats }) {
       key: "streak",
       label: "Hottest team",
       value: `${stats.longestWinStreak.wins}W streak`,
-      detail: stats.longestWinStreak.team.name,
+      detail: teamLink(stats.longestWinStreak.team),
     });
   }
   if (stats.mostActiveManager) {
@@ -64,7 +78,7 @@ export function StatsStrip({ stats }: { stats: LeagueStats }) {
       key: "active",
       label: "Busiest wire",
       value: `${n} move${n === 1 ? "" : "s"}`,
-      detail: stats.mostActiveManager.team.name,
+      detail: teamLink(stats.mostActiveManager.team),
     });
   }
   if (stats.biggestBlowout) {

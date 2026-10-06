@@ -72,6 +72,12 @@ export type Game = {
   /** Games ship "coming-soon" first; the registry is the pattern. */
   status: "live" | "coming-soon";
   /**
+   * Why a coming-soon game isn't playable yet, and when it opens — in
+   * the league's voice, never a bare "coming soon". Shown on the game
+   * card and detail page. Omit for live games.
+   */
+  launchNote?: string;
+  /**
    * How the game is played, shown on the detail page. Plain text, short.
    */
   howToPlay: string;
@@ -129,4 +135,18 @@ export type Reward = {
   /** False until the commissioner settles it. */
   settled: boolean;
   createdAt: Date;
+};
+
+/**
+ * One game as the arcade hub shows it: the registry entry plus this
+ * week's live state — the current leader and the viewer's own best
+ * score. Built by getArcadeHubData in src/data/arcade.ts.
+ */
+export type GameHubSummary = {
+  /** The game, from the registry. */
+  game: Game;
+  /** This week's top entry, with isCurrentUser resolved. Null when empty. */
+  leader: LeaderboardEntry | null;
+  /** The viewer's best score this week. Null when logged out or scoreless. */
+  myBest: number | null;
 };
