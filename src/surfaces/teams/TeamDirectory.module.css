@@ -1,0 +1,77 @@
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gh-s3);
+}
+
+.teamCard {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s3);
+  padding: var(--gh-s3);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius);
+  min-height: 44px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s1);
+  min-width: 0;
+  flex: 1;
+}
+
+.name {
+  font-weight: 700;
+  color: var(--gh-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.manager {
+  font-size: 0.82rem;
+  color: var(--gh-text-faint);
+}
+
+.record {
+  display: flex;
+  gap: var(--gh-s4);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.record div {
+  text-align: center;
+}
+
+.record dt {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gh-text-faint);
+}
+
+.record dd {
+  margin: var(--gh-s1) 0 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--gh-text);
+}
+
+.empty {
+  color: var(--gh-text-faint);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Desktop: two columns of team cards. */
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

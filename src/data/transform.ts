@@ -13,6 +13,7 @@ import type {
   Matchup,
   LeagueStats,
   Player,
+  DraftPick,
 } from "@/domain";
 import type {
   RawLeague,
@@ -22,6 +23,7 @@ import type {
   RawTransaction,
   RawPlayerEntry,
   RawNbaState,
+  RawDraftPick,
 } from "./sleeper";
 
 /** Team name resolution: manager's chosen name, else their username. */
@@ -157,9 +159,35 @@ export function toTransactions(
         week: t.week,
         createdAt: t.created,
         summary,
+        teamIds: [...rosterIds].map(String),
       } satisfies Transaction;
     })
     .sort((a, b) => b.createdAt - a.createdAt);
+}
+
+/**
+ * Raw draft picks -> domain DraftPicks, sorted by pick number.
+ * Player names come from the pick metadata (no directory needed).
+ */
+export function toDraftPicks(raw: RawDraftPick[]): DraftPick[] {
+  return raw
+    .map((p) => {
+      const meta = p.metadata ?? {};
+      const name =
+        meta.full_name ??
+        [meta.first_name, meta.last_name].filter(Boolean).join(" ");
+      return {
+        pickNo: p.pick_no,
+        round: p.round,
+        draftSlot: p.draft_slot,
+        playerId: p.player_id,
+        playerName: name || `Player ${p.player_id}`,
+        position: meta.position ?? null,
+        nbaTeam: meta.team ?? null,
+        teamId: String(p.roster_id),
+      } satisfies DraftPick;
+    })
+    .sort((a, b) => a.pickNo - b.pickNo);
 }
 
 /* ---------------- matchups & league stats ---------------- */

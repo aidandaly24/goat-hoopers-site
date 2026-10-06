@@ -1,0 +1,135 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s3);
+  margin-bottom: var(--gh-s3);
+}
+
+.typeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gh-s2);
+}
+
+.typeButton {
+  font-family: var(--gh-font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gh-text-dim);
+  background: transparent;
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius);
+  padding: var(--gh-s2) var(--gh-s3);
+  cursor: pointer;
+}
+
+.typeButton:hover {
+  color: var(--gh-text);
+  border-color: var(--gh-border-strong);
+}
+
+.typeButton.active {
+  color: var(--gh-gold);
+  border-color: var(--gh-gold);
+}
+
+.teamLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s2);
+}
+
+.teamCaption {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gh-text-faint);
+}
+
+.teamSelect {
+  font-family: var(--gh-font-body);
+  font-size: 0.9rem;
+  color: var(--gh-text);
+  background: var(--gh-bg-raised);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius);
+  padding: var(--gh-s2) var(--gh-s3);
+  max-width: 100%;
+}
+
+.count {
+  margin: 0 0 var(--gh-s2);
+  font-size: 0.8rem;
+  color: var(--gh-text-faint);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gh-s3);
+  padding: var(--gh-s3) 0;
+  border-bottom: 1px solid var(--gh-border);
+}
+
+.item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s1);
+  min-width: 0;
+}
+
+.summary {
+  color: var(--gh-text-dim);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.meta {
+  font-size: 0.78rem;
+  color: var(--gh-text-faint);
+}
+
+.empty {
+  color: var(--gh-text-faint);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Mobile: comfortable touch targets, controls stack full-width. */
+@media (max-width: 40rem) {
+  .typeButton {
+    min-height: 44px;
+    padding: var(--gh-s2) var(--gh-s4);
+  }
+
+  .teamSelect {
+    min-height: 44px;
+    flex: 1;
+  }
+
+  .item {
+    min-height: 44px;
+    align-items: center;
+  }
+}
+
+/* Desktop: controls sit side by side. */
+@media (min-width: 64rem) {
+  .controls {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

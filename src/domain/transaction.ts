@@ -16,4 +16,6 @@ export type Transaction = {
   createdAt: number;
   /** Human-readable one-line summary. */
   summary: string;
+  /** Sleeper roster_ids involved, as strings. Powers the team filter. */
+  teamIds: string[];
 };

@@ -14,6 +14,7 @@ import type {
   LeagueStats,
   Transaction,
   Player,
+  DraftPick,
 } from "@/domain";
 import {
   fetchLeague,
@@ -22,6 +23,8 @@ import {
   fetchMatchups,
   fetchNbaState,
   fetchTransactions,
+  fetchDrafts,
+  fetchDraftPicks,
   fetchPlayerDirectory,
   type RawMatchupEntry,
   type RawNbaState,
@@ -36,6 +39,7 @@ import {
   toMatchups,
   toTransactions,
   toPlayer,
+  toDraftPicks,
   computeLeagueStats,
   emptyLeagueStats,
   type LeagueStatsInput,
@@ -175,4 +179,82 @@ export async function getTeamDetail(teamId: string): Promise<TeamDetail | null> 
   const directory = await safePlayerDirectory();
   const players = ids.map((pid) => toPlayer(pid, directory?.[pid]));
   return { team, players };
+}
+
+/**
+ * Every team in the league. The light loader for the team directory —
+ * no stats computation, no transactions.
+ */
+export async function getTeams(): Promise<Team[]> {
+  try {
+    const [rosters, users] = await Promise.all([fetchRosters(), fetchUsers()]);
+    return toTeams(rosters, users);
+  } catch {
+    return [];
+  }
+}
+
+export type TransactionHistoryData = {
+  transactions: Transaction[];
+  teams: Team[];
+};
+
+/**
+ * Full transaction history across all played weeks (preseason = week 1
+ * on the Sleeper API). Player/team names resolved via the directory,
+ * fetched only when there's something to resolve. Never throws.
+ */
+export async function getTransactionHistory(): Promise<TransactionHistoryData> {
+  let rosters: Awaited<ReturnType<typeof fetchRosters>> = [];
+  let users: Awaited<ReturnType<typeof fetchUsers>> = [];
+  let nbaState: RawNbaState | null = null;
+  try {
+    [rosters, users, nbaState] = await Promise.all([
+      fetchRosters(),
+      fetchUsers(),
+      fetchNbaState().catch(() => null),
+    ]);
+  } catch {
+    return { transactions: [], teams: [] };
+  }
+  const teams = toTeams(rosters, users);
+  const maxWeek = Math.max(1, nbaState?.week ?? 1);
+  const weeks = Array.from({ length: maxWeek }, (_, i) => i + 1);
+  const txWeeks = await Promise.all(
+    weeks.map((w) => fetchTransactions(w).catch(() => [] as RawTransaction[]))
+  );
+  const raw = txWeeks.flat();
+  if (raw.length === 0) return { transactions: [], teams };
+  const directory = await safePlayerDirectory();
+  return { transactions: toTransactions(raw, teams, rosters, users, directory), teams };
+}
+
+export type DraftBoardData = {
+  /** Completed rookie draft picks, in pick order. Empty when none exists. */
+  picks: DraftPick[];
+  teams: Team[];
+};
+
+/**
+ * The league's completed rookie draft board. Picks the completed 2026
+ * draft, falling back to the first draft on record. Player names come
+ * from pick metadata — no directory fetch needed. Never throws.
+ */
+export async function getDraftBoard(): Promise<DraftBoardData> {
+  try {
+    const [drafts, rosters, users] = await Promise.all([
+      fetchDrafts(),
+      fetchRosters(),
+      fetchUsers(),
+    ]);
+    const teams = toTeams(rosters, users);
+    const draft =
+      drafts.find((d) => d.season === "2026" && d.status === "complete") ??
+      drafts[0];
+    if (!draft) return { picks: [], teams };
+    const picks = toDraftPicks(await fetchDraftPicks(draft.draft_id));
+    return { picks, teams };
+  } catch {
+    return { picks: [], teams: [] };
+  }
 }

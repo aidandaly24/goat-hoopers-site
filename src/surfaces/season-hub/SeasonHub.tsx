@@ -15,6 +15,7 @@ import { LeagueHero } from "./LeagueHero";
 import { StatsStrip } from "./StatsStrip";
 import { StandingsTable } from "./StandingsTable";
 import { TransactionFeed } from "./TransactionFeed";
+import { SectionLinks } from "./SectionLinks";
 import styles from "./SeasonHub.module.css";
 
 export function SeasonHub({ data }: { data: SeasonHubData }) {
@@ -23,6 +24,9 @@ export function SeasonHub({ data }: { data: SeasonHubData }) {
       <LeagueHero season={data.season} />
       <div className={styles.strip}>
         <StatsStrip stats={data.stats} />
+      </div>
+      <div className={styles.sections}>
+        <SectionLinks />
       </div>
       <main className={styles.grid}>
         <section className={styles.standings}>

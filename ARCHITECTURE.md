@@ -15,7 +15,8 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 ```
 src/
   domain/        # The shared language: Team, Standing, Matchup, Player,
-                 # Transaction, Season, LeagueStats. Types + tiny helpers only.
+                 # Transaction, DraftPick, Season, LeagueStats. Types + tiny
+                 # helpers only.
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
                  # GameSession, Game, GameScore, LeaderboardEntry, Reward,
                  # plus the game registry (games.ts). Never imports league
@@ -23,16 +24,25 @@ src/
   data/          # The ONLY place the outside world is touched.
     sleeper.ts   # Raw API client. Returns raw JSON, nothing else.
     transform.ts # Raw JSON -> domain objects. The membrane.
-    league.ts    # High-level loaders pages/surfaces call (getSeasonHubData).
+    league.ts    # Loaders: getSeasonHubData (home), getTeamDetail (/team),
+                 # getTransactionHistory (/transactions), getDraftBoard
+                 # (/draft), getTeams (/teams).
     db.ts        # SECOND DOOR: Vercel Postgres via Drizzle. Schema +
                  # lazy client. Nothing else imports drizzle or SQL.
     arcade.ts    # GameStore contract + DrizzleGameStore + FakeGameStore
                  # + getGameStore() factory. Dependency inversion lives here.
-    league.ts    # Loaders: getSeasonHubData (home), getTeamDetail (one
-                 # team's identity + resolved roster for /team).
   surfaces/      # Bounded experiences. One folder per surface.
     season-hub/  # "What's happening in the league": hero, standings,
-                 # stats strip, activity feed. Receives domain objects,
+                 # stats strip, activity feed, section links to the deeper
+                 # league pages. Receives domain objects, never fetches.
+    transactions/ # "What has every team been doing": full wire history
+                 # with client-side type + team filters. Receives domain
+                 # objects, never fetches.
+    draft/       # "How did every team get here": the completed rookie
+                 # draft board, grouped by round. Receives domain objects,
+                 # never fetches.
+    teams/       # "Who's in this league": team directory cards (avatar,
+                 # name, manager, record, PF). Receives domain objects,
                  # never fetches.
     arcade/      # "Play games, win FAAB": ArcadeHub (game list),
                  # GameDetail (rules + leaderboard + rewards),
@@ -61,6 +71,9 @@ src/
     login/       # /login — team + password. Co-located form.
     team/        # /team — the logged-in manager's page (identity, roster,
                  # FAAB winnings). Redirects to /login when logged out.
+    transactions/ # /transactions — full wire history (type + team filters).
+    draft/       # /draft — the completed rookie draft board.
+    teams/       # /teams — the team directory.
     admin/       # /admin/invites — commissioner invite codes, gated by
                  # COMMISSIONER_KEY (server-side check, every action).
 ARCHITECTURE.md  # This file.

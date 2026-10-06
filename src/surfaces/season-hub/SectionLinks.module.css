@@ -1,0 +1,54 @@
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gh-s2);
+}
+
+.link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "title arrow"
+    "blurb arrow";
+  gap: var(--gh-s1) var(--gh-s3);
+  align-items: center;
+  padding: var(--gh-s3);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius);
+  text-decoration: none;
+  min-height: 44px;
+}
+
+.link:hover {
+  border-color: var(--gh-border-strong);
+  background: var(--gh-bg-hover);
+}
+
+.title {
+  grid-area: title;
+  font-weight: 700;
+  color: var(--gh-text);
+}
+
+.blurb {
+  grid-area: blurb;
+  font-size: 0.85rem;
+  color: var(--gh-text-faint);
+  line-height: 1.4;
+}
+
+.arrow {
+  grid-area: arrow;
+  color: var(--gh-gold);
+  font-size: 1.2rem;
+}
+
+/* Desktop: three cards side by side. */
+@media (min-width: 64rem) {
+  .links {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -10,6 +10,7 @@
  * - Matchup: a head-to-head pairing for a week (points null = not played)
  * - Player: an NBA player from Sleeper's directory (reference data)
  * - Transaction: waiver / free-agent / trade activity, pre-summarized
+ * - DraftPick: one rookie-draft pick (player identity from pick metadata)
  * - Season: league metadata for the current season
  * - LeagueStats: home-page numbers — points leaders, streaks, activity,
  *   weekly matchup highlights (all nullable; null = nothing to show yet)
@@ -23,6 +24,7 @@ export type { Matchup, } from "./matchup";
 export { isFinal, winner } from "./matchup";
 export type { Player } from "./player";
 export type { Transaction, TransactionType } from "./transaction";
+export type { DraftPick } from "./draft";
 export type { Season } from "./season";
 export type {
   LeagueStats,

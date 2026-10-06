@@ -19,6 +19,13 @@
   padding: 0 var(--gh-s4);
 }
 
+/* Explore-the-league links, same full-width treatment as the strip. */
+.sections {
+  max-width: 72rem;
+  margin: 0 auto var(--gh-s6);
+  padding: 0 var(--gh-s4);
+}
+
 @media (min-width: 64rem) {
   .grid {
     grid-template-columns: 1.6fr 1fr;

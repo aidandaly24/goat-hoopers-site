@@ -85,6 +85,29 @@ export type RawPlayerEntry = {
   team?: string | null;
 };
 
+export type RawDraft = {
+  draft_id: string;
+  season: string;
+  status: string;
+  type: string;
+};
+
+export type RawDraftPick = {
+  pick_no: number;
+  round: number;
+  draft_slot: number;
+  player_id: string;
+  picked_by: string;
+  roster_id: number;
+  metadata: {
+    first_name?: string;
+    last_name?: string;
+    full_name?: string;
+    position?: string;
+    team?: string | null;
+  };
+};
+
 /* ---------- fetching ---------- */
 
 async function sleeperFetch<T>(path: string, revalidateSeconds: number): Promise<T> {
@@ -137,6 +160,21 @@ export function fetchTransactions(week: number): Promise<RawTransaction[]> {
     `/league/${LEAGUE_ID}/transactions/${week}`,
     300
   );
+}
+
+/**
+ * Drafts for the league. Usually one rookie draft per season. Cache 5 min.
+ */
+export function fetchDrafts(): Promise<RawDraft[]> {
+  return sleeperFetch<RawDraft[]>(`/league/${LEAGUE_ID}/drafts`, 300);
+}
+
+/**
+ * Every pick in a draft, in pick order. Player identity rides on the pick
+ * metadata, so no directory fetch is needed. Cache 5 min.
+ */
+export function fetchDraftPicks(draftId: string): Promise<RawDraftPick[]> {
+  return sleeperFetch<RawDraftPick[]>(`/draft/${draftId}/picks`, 300);
 }
 
 /**
