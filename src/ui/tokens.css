@@ -47,3 +47,14 @@
   --gh-radius: 0.75rem;
   --gh-radius-lg: 1.25rem;
 }
+
+/*
+ * Breakpoints — documented here, used as literals in @media rules.
+ * (CSS custom properties don't work inside @media conditions, so keep
+ * these values in sync by hand.)
+ *
+ * --gh-bp-sm: 40rem — below this, dense components switch to compact
+ *   mobile layouts (standings table -> team cards, stat grids stack).
+ * --gh-bp-lg: 64rem — at/above this, surfaces may use multi-column
+ *   desktop layouts (season-hub's standings + activity side-by-side).
+ */

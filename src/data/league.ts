@@ -11,33 +11,40 @@ import type {
   Season,
   Team,
   Standing,
-  DraftPick,
+  LeagueStats,
   Transaction,
 } from "@/domain";
 import {
   fetchLeague,
   fetchRosters,
   fetchUsers,
-  fetchDraftPicks,
+  fetchMatchups,
+  fetchNbaState,
   fetchTransactions,
   fetchPlayerDirectory,
+  type RawMatchupEntry,
+  type RawNbaState,
   type RawPlayerEntry,
+  type RawTransaction,
 } from "./sleeper";
 import {
   toSeason,
   toTeams,
   toStandings,
-  buildDraftPicks,
+  toMatchups,
   toTransactions,
+  computeLeagueStats,
+  emptyLeagueStats,
+  type LeagueStatsInput,
 } from "./transform";
 
-export interface SeasonHubData {
+export type SeasonHubData = {
   season: Season;
   teams: Team[];
   standings: Standing[];
-  draftPicks: DraftPick[];
+  stats: LeagueStats;
   transactions: Transaction[];
-}
+};
 
 /** Best-effort player directory; null when unavailable (offline, etc). */
 async function safePlayerDirectory(): Promise<Record<
@@ -49,6 +56,54 @@ async function safePlayerDirectory(): Promise<Record<
   } catch {
     return null;
   }
+}
+
+/**
+ * Assemble the plain-data input for computeLeagueStats.
+ *
+ * Fetching lives here; the math lives in `computeLeagueStats` (pure, takes
+ * the input as a parameter). That split is the dependency-inversion seam:
+ * tests pass fake inputs straight to the pure function, no network.
+ *
+ * In the preseason (or when the state endpoint is unreachable) this returns
+ * hasGames: false and every stat stays null — the strip renders an empty
+ * state instead of fake leaders.
+ */
+async function fetchStatsInput(teams: Team[]): Promise<LeagueStatsInput> {
+  let state: RawNbaState | null = null;
+  try {
+    state = await fetchNbaState();
+  } catch {
+    state = null;
+  }
+  const hasGames = state !== null && state.season_type !== "pre";
+  if (state === null || !hasGames) {
+    return { teams, matchupsByWeek: [], transactionsByWeek: [], hasGames: false };
+  }
+  const currentWeek = Math.max(1, state.week);
+  const weeks = Array.from({ length: currentWeek }, (_, i) => i + 1);
+  const [matchupWeeks, txWeeks] = await Promise.all([
+    Promise.all(
+      weeks.map((w): Promise<RawMatchupEntry[]> =>
+        fetchMatchups(w).catch(() => [])
+      )
+    ),
+    Promise.all(
+      weeks.map((w): Promise<RawTransaction[]> =>
+        fetchTransactions(w).catch(() => [])
+      )
+    ),
+  ]);
+  return {
+    teams,
+    matchupsByWeek: matchupWeeks.map((raw, i) => {
+      const ms = toMatchups(raw, teams);
+      for (const m of ms) m.week = i + 1;
+      return ms;
+    }),
+    transactionsByWeek: txWeeks,
+    hasGames: true,
+  };
 }
 
 /**
@@ -66,21 +121,13 @@ export async function getSeasonHubData(): Promise<SeasonHubData> {
   const teams = toTeams(rosters, users);
   const standings = toStandings(teams);
 
-  // Draft board (rookie draft). Immutable once complete.
-  // The player directory is only fetched when a pick's embedded metadata
-  // is missing a name — it's ~3MB and can't sit in Next's data cache.
-  let draftPicks: DraftPick[] = [];
-  if (season.draftId) {
-    try {
-      const picks = await fetchDraftPicks(season.draftId);
-      const needsDirectory = picks.some(
-        (p) => !p.metadata?.first_name && !p.metadata?.last_name
-      );
-      const directory = needsDirectory ? await safePlayerDirectory() : null;
-      draftPicks = buildDraftPicks(picks, rosters, users, directory);
-    } catch {
-      draftPicks = [];
-    }
+  // League stats strip. Optional section: on failure the page still renders
+  // with the strip's empty state.
+  let stats: LeagueStats;
+  try {
+    stats = computeLeagueStats(await fetchStatsInput(teams));
+  } catch {
+    stats = emptyLeagueStats();
   }
 
   // Recent transactions. Week 1 in the preseason; empty is a valid state.
@@ -98,5 +145,5 @@ export async function getSeasonHubData(): Promise<SeasonHubData> {
     transactions = [];
   }
 
-  return { season, teams, standings, draftPicks, transactions };
+  return { season, teams, standings, stats, transactions };
 }

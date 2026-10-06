@@ -5,7 +5,7 @@
  * roster. The data layer resolves player_ids to Player objects once (cached
  * daily) so surfaces never touch the raw player directory.
  */
-export interface Player {
+export type Player = {
   /** Sleeper player_id. */
   id: string;
   fullName: string;
@@ -13,4 +13,4 @@ export interface Player {
   position: string | null;
   /** NBA team abbreviation, e.g. "LAL". Null for free agents/rookies unsigned. */
   nbaTeam: string | null;
-}
+};

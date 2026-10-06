@@ -31,3 +31,11 @@
   margin: 0;
   font-style: italic;
 }
+
+/* Mobile: give each row a comfortable touch target. */
+@media (max-width: 40rem) {
+  .item {
+    min-height: 44px;
+    align-items: center;
+  }
+}

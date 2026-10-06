@@ -7,7 +7,7 @@
  */
 export type TransactionType = "waiver" | "free_agent" | "trade";
 
-export interface Transaction {
+export type Transaction = {
   id: string;
   type: TransactionType;
   /** League week the transaction belongs to. 0 = preseason. */
@@ -16,4 +16,4 @@ export interface Transaction {
   createdAt: number;
   /** Human-readable one-line summary. */
   summary: string;
-}
+};

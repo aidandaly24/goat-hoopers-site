@@ -74,3 +74,63 @@
 
 .w { color: var(--gh-win); font-weight: 700; }
 .l { color: var(--gh-loss); font-weight: 700; }
+
+/*
+ * Mobile: the table becomes compact team cards. Same DOM, re-laid-out —
+ * the header row hides and each row becomes a card with the team on top
+ * and W/L/PF as a labeled stat line underneath. Touch targets stay >=44px.
+ */
+@media (max-width: 40rem) {
+  .head {
+    display: none;
+  }
+
+  .table {
+    gap: var(--gh-s2);
+  }
+
+  .row {
+    grid-template-columns: 1fr auto auto auto;
+    grid-template-areas:
+      "team team team rank"
+      "w l pf pf";
+    row-gap: var(--gh-s2);
+    border: 1px solid var(--gh-border);
+    border-radius: var(--gh-radius);
+    background: var(--gh-bg-raised);
+    padding: var(--gh-s3) var(--gh-s4);
+    min-height: 44px;
+  }
+
+  .row:hover {
+    background: var(--gh-bg-hover);
+  }
+
+  .team { grid-area: team; }
+  .rank {
+    grid-area: rank;
+    justify-self: end;
+    align-self: start;
+  }
+  .w { grid-area: w; }
+  .l { grid-area: l; }
+  .pf { grid-area: pf; }
+
+  .w,
+  .l,
+  .pf {
+    text-align: left;
+    font-size: 0.85rem;
+  }
+
+  .w::before,
+  .l::before,
+  .pf::before {
+    content: attr(data-label);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--gh-text-faint);
+    margin-right: var(--gh-s1);
+  }
+}

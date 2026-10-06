@@ -15,7 +15,7 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 ```
 src/
   domain/        # The shared language: Team, Standing, Matchup, Player,
-                 # Transaction, Season, DraftPick. Types + tiny helpers only.
+                 # Transaction, Season, LeagueStats. Types + tiny helpers only.
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
                  # GameSession, Game, GameScore, LeaderboardEntry, Reward,
                  # plus the game registry (games.ts). Never imports league
@@ -30,7 +30,7 @@ src/
                  # + getGameStore() factory. Dependency inversion lives here.
   surfaces/      # Bounded experiences. One folder per surface.
     season-hub/  # "What's happening in the league": hero, standings,
-                 # draft board, activity feed. Receives domain objects,
+                 # stats strip, activity feed. Receives domain objects,
                  # never fetches.
     arcade/      # "Play games, win FAAB": ArcadeHub (game list),
                  # GameDetail (rules + leaderboard + rewards),
@@ -68,6 +68,26 @@ Sleeper API  →  sleeper.ts (raw fetch + cache)
 Data flows one way, top to bottom. There is no client-side fetching of league
 data, no context providers for league state, no prop drilling of raw JSON.
 
+### The stats seam (dependency inversion in the read path)
+
+`getSeasonHubData` doesn't compute stats inline. Instead:
+
+```
+fetchStatsInput(teams)      — impure: calls fetchNbaState / fetchMatchups /
+                              fetchTransactions, assembles LeagueStatsInput
+computeLeagueStats(input)   — pure: LeagueStatsInput in, LeagueStats out
+```
+
+`computeLeagueStats` lives in `transform.ts` and takes all its data as a
+parameter — no imports, no network. Tests pass fake inputs straight in.
+That split is the rule-11 seam for the Sleeper side: fetching is the thin
+impure shell, the math is a pure function of its inputs.
+
+`LeagueStats` fields are all nullable. In the preseason (`/state/nba`
+says `"pre"`) the loader returns `hasGames: false` and every stat stays
+null — the `StatsStrip` renders one honest empty state instead of fake
+leaders picked from all-zero rows.
+
 The arcade has its own one-way flow, through the second door:
 
 ```
@@ -99,10 +119,9 @@ Passwords are bcrypt-hashed (12 rounds) — raw passwords never touch the DB.
   never throws the page. The site must render with partial data.
 
 ### 3. Surfaces are bounded contexts
-- A surface answers ONE question ("what's happening in the league?",
-  "how did the draft go?"). Standings + matchups + activity live together in
-  `season-hub` because they're the same question — not because they're
-  convenient to group.
+- A surface answers ONE question ("what's happening in the league?").
+  Standings + stats + activity live together in `season-hub` because
+  they're the same question — not because they're convenient to group.
 - A surface receives domain objects as props. It never fetches.
 - A surface never imports another surface’s components. Shared visuals come
   from `src/ui/`.
@@ -123,13 +142,30 @@ Passwords are bcrypt-hashed (12 rounds) — raw passwords never touch the DB.
 - If a page composes two surfaces, the composition is visible in the page
   file.
 
+## Responsive approach
+
+Mobile and desktop are both first-class (rule 7). The convention:
+
+- Base styles are single-column and mobile-friendly.
+- `@media (min-width: 64rem)` enhances to multi-column desktop layouts
+  (season-hub's standings + activity side-by-side, stats strip 3-up).
+- `@media (max-width: 40rem)` compacts dense components for phones —
+  the standings table re-lays-out as team cards (same DOM, CSS grid
+  areas; the header row hides and W/L/PF get inline labels via
+  `data-label`), and stat grids stack.
+- Breakpoints are documented in `src/ui/tokens.css`. CSS custom
+  properties don't work inside `@media` conditions, so the values are
+  written as literals and kept in sync by hand — don't invent a third
+  breakpoint without documenting it there.
+- Touch targets are >= 44px on mobile.
+
 ## Caching strategy
 
-- League data (rosters, users, league meta): `revalidate = 300` (5 min).
-- Draft picks: immutable; cached 1 hour.
+- League data (rosters, users, league meta, NBA state, matchups):
+  `revalidate = 300` (5 min).
 - Player directory (~3MB, too big for Next's data cache): fetched with
-  `no-store` and ONLY when name resolution actually needs it (a pick missing
-  embedded metadata, or non-empty transactions).
+  `no-store` and ONLY when name resolution actually needs it (non-empty
+  transactions).
 
 ## Environment
 
