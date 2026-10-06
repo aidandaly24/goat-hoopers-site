@@ -22,6 +22,15 @@ export const metadata: Metadata = {
     "Live hub for the GOAT Hoopers Sleeper dynasty league: standings, draft board, and league activity.",
 };
 
+/**
+ * The header reads the session cookie, so every route must render
+ * per-request: a statically prerendered (or ISR-revalidated) page would
+ * bake in one visitor's account state and serve it to everyone else.
+ * Deliberate tradeoff for a ten-manager league site — correctness of
+ * the account state beats static caching.
+ */
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({
   children,
 }: {
