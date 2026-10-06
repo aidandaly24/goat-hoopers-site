@@ -2,26 +2,27 @@
  * db.ts — the site's own database. The second data door.
  *
  * The Sleeper API is read-only league data; this is the write world:
- * accounts, invite codes, sessions, scores, rewards. It lives in Vercel
- * Postgres (serverless needs real Postgres — SQLite can't work here).
+ * accounts, invite codes, sessions, scores, rewards. It lives in Neon
+ * (serverless Postgres — serverless needs real Postgres, SQLite can't
+ * work here).
  *
  * Contract: this module is the ONLY place that imports the drizzle client
  * or touches these tables. Everything else goes through the `GameStore`
  * abstraction in `./arcade`. The client is lazy: importing this module
  * never connects, so pages build and render even before the database is
  * provisioned. `getDb()` throws a descriptive error only when actually
- * called without `POSTGRES_URL` set.
+ * called without `DATABASE_URL` set.
  *
- * One-time provisioning (do this once, in the Vercel dashboard):
- * 1. Vercel dashboard → Storage → Create Database → Postgres.
- * 2. Connect it to the `goat-hoopers-site` project (this wires
- *    POSTGRES_URL and friends into the environment automatically).
- * 3. From this repo, with the env vars available locally:
- *      npx drizzle-kit push
+ * One-time provisioning (do this once):
+ * 1. Create a free Neon project at neon.tech, copy the pooled connection
+ *    string.
+ * 2. Set it as `DATABASE_URL` in the Vercel project settings
+ *    (and in `.env.local` for local dev).
+ * 3. From this repo: `npx drizzle-kit push`
  *    That creates the tables below. Done.
  */
-import { sql } from "@vercel/postgres";
-import { drizzle } from "drizzle-orm/vercel-postgres";
+import { neon } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-http";
 import {
   boolean,
   integer,
@@ -44,13 +45,25 @@ export const siteUsers = pgTable("site_users", {
 
 /** Single-use invite codes binding teams to accounts. */
 export const inviteCodes = pgTable("invite_codes", {
-  /** The code itself, e.g. "GH-7K2Q-9XMD". */
+  /** The code itself: a 6-digit number, e.g. "482910". */
   code: text("code").primaryKey(),
   /** Sleeper roster_id this code claims. */
   teamId: text("team_id").notNull(),
   usedBy: uuid("used_by"),
   usedAt: timestamp("used_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+/**
+ * Brute-force guard for the claim flow. Failed code entries are counted
+ * per client IP; 5 failures locks the IP out for 15 minutes. Successful
+ * claims clear the counter.
+ */
+export const claimAttempts = pgTable("claim_attempts", {
+  /** SHA-256 of the client IP. We never store raw IPs. */
+  ipHash: text("ip_hash").primaryKey(),
+  attempts: integer("attempts").default(0).notNull(),
+  lockedUntil: timestamp("locked_until"),
 });
 
 /** Login sessions. Only the SHA-256 hash of the cookie token is stored. */
@@ -98,6 +111,7 @@ export const rewards = pgTable("rewards", {
 export const schema = {
   siteUsers,
   inviteCodes,
+  claimAttempts,
   sessions,
   gameScores,
   rewards,
@@ -114,13 +128,14 @@ let cached: Db | null = null;
  */
 export function getDb(): Db {
   if (cached) return cached;
-  if (!process.env.POSTGRES_URL) {
+  const url = process.env.DATABASE_URL;
+  if (!url) {
     throw new Error(
-      "POSTGRES_URL is not set. Provision Vercel Postgres and connect it " +
-        "to this project (see the provisioning steps at the top of " +
+      "DATABASE_URL is not set. Create a free Neon project, set " +
+        "DATABASE_URL (see the provisioning steps at the top of " +
         "src/data/db.ts), then run `npx drizzle-kit push`.",
     );
   }
-  cached = drizzle(sql, { schema });
+  cached = drizzle(neon(url), { schema });
   return cached;
 }

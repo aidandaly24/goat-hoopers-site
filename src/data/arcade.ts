@@ -22,6 +22,7 @@ import type {
   SiteUser,
 } from "@/domain/arcade";
 import {
+  claimAttempts,
   gameScores,
   getDb,
   inviteCodes,
@@ -58,6 +59,11 @@ export type SessionRecord = {
   expiresAt: Date;
 };
 
+/** Failed code entries before a client is locked out of the claim flow. */
+export const MAX_CLAIM_ATTEMPTS = 5;
+/** How long the lockout lasts after 5 failures. */
+export const CLAIM_LOCKOUT_MS = 15 * 60 * 1000;
+
 /**
  * The full contract for the arcade's persistence. One method per
  * operation the features need — no more, no less. If a new game needs
@@ -79,6 +85,21 @@ export type GameStore = {
   consumeInviteCode(code: string, userId: string): Promise<boolean>;
   /** Deletes unused codes for a team (used by "regenerate"). */
   deleteUnusedCodesForTeam(teamId: string): Promise<void>;
+
+  // --- claim brute-force guard ---
+  /** Failed code-entry attempts for a client (by IP hash). Null if none. */
+  getClaimAttempts(
+    ipHash: string,
+  ): Promise<{ attempts: number; lockedUntil: Date | null } | null>;
+  /**
+   * Records one failed code entry. Returns the new attempt count and
+   * whether the client is now locked out (5 failures = 15 min lock).
+   */
+  recordFailedClaimAttempt(
+    ipHash: string,
+  ): Promise<{ attempts: number; locked: boolean }>;
+  /** Clears the counter after a successful claim. */
+  clearClaimAttempts(ipHash: string): Promise<void>;
 
   // --- sessions ---
   createSession(record: SessionRecord): Promise<void>;
@@ -202,6 +223,46 @@ export class DrizzleGameStore implements GameStore {
           isNull(inviteCodes.usedBy),
         ),
       );
+  }
+
+  async getClaimAttempts(
+    ipHash: string,
+  ): Promise<{ attempts: number; lockedUntil: Date | null } | null> {
+    const rows = await this.db
+      .select()
+      .from(claimAttempts)
+      .where(eq(claimAttempts.ipHash, ipHash))
+      .limit(1);
+    const row = rows[0];
+    return row
+      ? { attempts: row.attempts, lockedUntil: row.lockedUntil }
+      : null;
+  }
+
+  async recordFailedClaimAttempt(
+    ipHash: string,
+  ): Promise<{ attempts: number; locked: boolean }> {
+    const now = new Date();
+    const existing = await this.getClaimAttempts(ipHash);
+    const attempts = (existing?.attempts ?? 0) + 1;
+    const locked = attempts >= MAX_CLAIM_ATTEMPTS;
+    const lockedUntil = locked
+      ? new Date(now.getTime() + CLAIM_LOCKOUT_MS)
+      : null;
+    await this.db
+      .insert(claimAttempts)
+      .values({ ipHash, attempts, lockedUntil })
+      .onConflictDoUpdate({
+        target: claimAttempts.ipHash,
+        set: { attempts, lockedUntil },
+      });
+    return { attempts, locked };
+  }
+
+  async clearClaimAttempts(ipHash: string): Promise<void> {
+    await this.db
+      .delete(claimAttempts)
+      .where(eq(claimAttempts.ipHash, ipHash));
   }
 
   async createSession(record: SessionRecord): Promise<void> {
@@ -399,6 +460,36 @@ export class FakeGameStore implements GameStore {
     for (const [code, invite] of this.invites) {
       if (invite.teamId === teamId && !invite.usedBy) this.invites.delete(code);
     }
+  }
+
+  private claimAttemptsMap = new Map<
+    string,
+    { attempts: number; lockedUntil: Date | null }
+  >();
+
+  async getClaimAttempts(
+    ipHash: string,
+  ): Promise<{ attempts: number; lockedUntil: Date | null } | null> {
+    return this.claimAttemptsMap.get(ipHash) ?? null;
+  }
+
+  async recordFailedClaimAttempt(
+    ipHash: string,
+  ): Promise<{ attempts: number; locked: boolean }> {
+    const prev = this.claimAttemptsMap.get(ipHash);
+    const attempts = (prev?.attempts ?? 0) + 1;
+    const locked = attempts >= MAX_CLAIM_ATTEMPTS;
+    this.claimAttemptsMap.set(ipHash, {
+      attempts,
+      lockedUntil: locked
+        ? new Date(Date.now() + CLAIM_LOCKOUT_MS)
+        : null,
+    });
+    return { attempts, locked };
+  }
+
+  async clearClaimAttempts(ipHash: string): Promise<void> {
+    this.claimAttemptsMap.delete(ipHash);
   }
 
   async createSession(record: SessionRecord): Promise<void> {

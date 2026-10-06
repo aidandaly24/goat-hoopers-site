@@ -33,7 +33,7 @@ export type SiteUser = {
  * A code dies the moment it is consumed.
  */
 export type InviteCode = {
-  /** The code itself, e.g. "GH-7K2Q-9XMD". Unique. */
+  /** The code itself: a 6-digit number, e.g. "482910". Unique. */
   code: string;
   /** Sleeper roster_id this code claims. */
   teamId: string;

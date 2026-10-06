@@ -22,11 +22,12 @@
  */
 "use server";
 
-import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
+import { createHash, randomBytes, randomInt, timingSafeEqual } from "node:crypto";
 import { compare, hash } from "bcryptjs";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import {
+  MAX_CLAIM_ATTEMPTS,
   getGameStore,
   type GameStore,
 } from "@/data/arcade";
@@ -94,18 +95,14 @@ export async function getCurrentUser(): Promise<SiteUser | null> {
   return record?.user ?? null;
 }
 
-/** Normalize a code the way it was generated: uppercase, trimmed. */
+/** Normalize a code the way it was generated: digits only, trimmed. */
 function normalizeCode(code: string): string {
-  return code.trim().toUpperCase();
+  return code.replace(/\D/g, "").slice(0, 6);
 }
 
-const CODE_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
-
+/** A 6-digit numeric invite code, e.g. "482910". */
 function randomCode(): string {
-  const bytes = randomBytes(6);
-  let body = "";
-  for (const b of bytes) body += CODE_ALPHABET[b % CODE_ALPHABET.length];
-  return `GH-${body}`;
+  return String(randomInt(0, 1_000_000)).padStart(6, "0");
 }
 
 async function uniqueCode(store: GameStore): Promise<string> {
@@ -116,9 +113,20 @@ async function uniqueCode(store: GameStore): Promise<string> {
   throw new Error("Could not generate a unique invite code");
 }
 
+/** SHA-256 of the client IP. Raw IPs are never stored (see claimAttempts). */
+async function getClientIpHash(): Promise<string> {
+  const h = await headers();
+  const forwarded = h.get("x-forwarded-for");
+  const ip = forwarded?.split(",")[0]?.trim() || "unknown";
+  return createHash("sha256").update(ip).digest("hex");
+}
+
 /**
  * Claim a team with an invite code and set a password. Consumes the code,
  * creates the account, and logs the user in.
+ *
+ * Brute-force guard: 5 wrong codes from one client locks it out for
+ * 15 minutes. Successful claims clear the counter.
  */
 export async function claimAccount(
   code: string,
@@ -128,10 +136,40 @@ export async function claimAccount(
   const store = getStore();
   if (!store) return storeUnavailable();
 
+  const ipHash = await getClientIpHash();
+  const attemptState = await store.getClaimAttempts(ipHash);
+  if (attemptState?.lockedUntil && attemptState.lockedUntil > new Date()) {
+    const mins = Math.ceil(
+      (attemptState.lockedUntil.getTime() - Date.now()) / 60000,
+    );
+    return {
+      ok: false,
+      error: `Too many wrong tries — try again in ${mins} minute${mins === 1 ? "" : "s"}.`,
+    };
+  }
+
+  const fail = async (error: string): Promise<ActionResult> => {
+    const { attempts, locked } = await store.recordFailedClaimAttempt(ipHash);
+    if (locked) {
+      return {
+        ok: false,
+        error: "Too many wrong tries — try again in 15 minutes.",
+      };
+    }
+    const left = MAX_CLAIM_ATTEMPTS - attempts;
+    return {
+      ok: false,
+      error: `${error} (${left} ${left === 1 ? "try" : "tries"} left.)`,
+    };
+  };
+
   const normalized = normalizeCode(code);
+  if (normalized.length !== 6) {
+    return fail("That code doesn't look right — it should be 6 digits.");
+  }
   const invite = await store.getInviteByCode(normalized);
-  if (!invite) return { ok: false, error: "That code doesn't exist." };
-  if (invite.usedBy) return { ok: false, error: "That code was already used." };
+  if (!invite) return fail("That code doesn't exist.");
+  if (invite.usedBy) return fail("That code was already used.");
   if (password.length < 8) {
     return { ok: false, error: "Password needs to be at least 8 characters." };
   }
@@ -140,7 +178,7 @@ export async function claimAccount(
 
   const existing = await store.getUserByTeam(invite.teamId);
   if (existing) {
-    return { ok: false, error: "This team is already claimed." };
+    return fail("This team is already claimed.");
   }
 
   const passwordHash = await hash(password, 12);
@@ -151,8 +189,9 @@ export async function claimAccount(
   });
   const consumed = await store.consumeInviteCode(normalized, user.id);
   if (!consumed) {
-    return { ok: false, error: "That code was just used. Try logging in." };
+    return fail("That code was just used. Try logging in.");
   }
+  await store.clearClaimAttempts(ipHash);
   await startSession(user.id);
   redirect("/arcade");
 }
