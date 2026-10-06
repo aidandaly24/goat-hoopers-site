@@ -11,7 +11,11 @@ import { LoginForm } from "./LoginForm";
 
 export const dynamic = "force-dynamic";
 
-export default async function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ notice?: string }>;
+}) {
   let user = null;
   try {
     user = await getCurrentUser();
@@ -28,5 +32,11 @@ export default async function LoginPage() {
     teams = [];
   }
 
-  return <LoginForm teams={teams} />;
+  const { notice } = await searchParams;
+  return (
+    <LoginForm
+      teams={teams}
+      notice={notice === "team" ? "Log in to see your team." : null}
+    />
+  );
 }

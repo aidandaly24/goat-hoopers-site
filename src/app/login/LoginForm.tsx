@@ -10,7 +10,13 @@ import styles from "../claim/ClaimForm.module.css";
 const initial: ActionResult = { ok: true };
 
 /** Login form: pick your team, enter your password. */
-export function LoginForm({ teams }: { teams: { id: string; name: string }[] }) {
+export function LoginForm({
+  teams,
+  notice,
+}: {
+  teams: { id: string; name: string }[];
+  notice?: string | null;
+}) {
   const [state, formAction, pending] = useActionState(
     async (_prev: ActionResult, formData: FormData): Promise<ActionResult> => {
       return login(
@@ -23,7 +29,8 @@ export function LoginForm({ teams }: { teams: { id: string; name: string }[] }) 
 
   return (
     <Card className={styles.card}>
-      <SectionHeading eyebrow="The Arcade" title="Log in" />
+      <SectionHeading eyebrow="Account" title="Log in" />
+      {notice && <p className={styles.notice}>{notice}</p>}
       <p className={styles.lede}>
         Pick your team and enter your password. You stay logged in for 90
         days — on any device.

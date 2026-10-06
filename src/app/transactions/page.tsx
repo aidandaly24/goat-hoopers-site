@@ -7,10 +7,16 @@
  */
 import { getTransactionHistory } from "@/data/league";
 import { TransactionHistory } from "@/surfaces/transactions/TransactionHistory";
+import { SectionNav } from "@/ui/SectionNav";
 
 export const revalidate = 300; // refresh league data every 5 minutes
 
 export default async function TransactionsPage() {
   const { transactions, teams } = await getTransactionHistory();
-  return <TransactionHistory transactions={transactions} teams={teams} />;
+  return (
+    <>
+      <SectionNav current="transactions" />
+      <TransactionHistory transactions={transactions} teams={teams} />
+    </>
+  );
 }

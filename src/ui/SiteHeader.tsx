@@ -33,7 +33,7 @@ export function SiteHeader({ user, logoutAction }: Props) {
           GOAT&nbsp;<span>HOOPERS</span>
         </Link>
         <nav className={styles.nav} aria-label="Primary">
-          <Link href="/">League</Link>
+          <Link href="/">Home</Link>
           <Link href="/arcade">Arcade</Link>
           <Link href="/team">My Team</Link>
         </nav>

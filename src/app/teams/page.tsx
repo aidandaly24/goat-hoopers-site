@@ -6,10 +6,16 @@
  */
 import { getTeams } from "@/data/league";
 import { TeamDirectory } from "@/surfaces/teams/TeamDirectory";
+import { SectionNav } from "@/ui/SectionNav";
 
 export const revalidate = 300; // refresh league data every 5 minutes
 
 export default async function TeamsPage() {
   const teams = await getTeams();
-  return <TeamDirectory teams={teams} />;
+  return (
+    <>
+      <SectionNav current="teams" />
+      <TeamDirectory teams={teams} />
+    </>
+  );
 }

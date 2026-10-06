@@ -6,10 +6,16 @@
  */
 import { getDraftBoard } from "@/data/league";
 import { DraftBoard } from "@/surfaces/draft/DraftBoard";
+import { SectionNav } from "@/ui/SectionNav";
 
 export const revalidate = 300; // refresh league data every 5 minutes
 
 export default async function DraftPage() {
   const { picks, teams } = await getDraftBoard();
-  return <DraftBoard picks={picks} teams={teams} />;
+  return (
+    <>
+      <SectionNav current="draft" />
+      <DraftBoard picks={picks} teams={teams} />
+    </>
+  );
 }

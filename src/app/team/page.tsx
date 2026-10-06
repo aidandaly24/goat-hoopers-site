@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
 
 export default async function TeamRoute() {
   const user = await getCurrentUser();
-  if (!user) redirect("/login");
+  if (!user) redirect("/login?notice=team");
 
   const detail = await getTeamDetail(user.teamId);
   if (!detail) redirect("/");

@@ -70,7 +70,8 @@ export type RawMatchupEntry = {
 export type RawTransaction = {
   transaction_id: string;
   type: string;
-  week: number;
+  /** Sleeper calls the week number "leg". */
+  leg: number;
   created: number;
   adds: Record<string, number> | null;
   drops: Record<string, number> | null;

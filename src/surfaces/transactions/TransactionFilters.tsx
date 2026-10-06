@@ -70,7 +70,7 @@ export function TransactionFilters({
 
   return (
     <Card>
-      <SectionHeading eyebrow="League history" title="Transactions" />
+      <SectionHeading eyebrow="The league" title="Transactions" />
       <div className={styles.controls}>
         <div
           className={styles.typeRow}

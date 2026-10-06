@@ -28,7 +28,7 @@ export function ClaimForm() {
 
   return (
     <Card className={styles.card}>
-      <SectionHeading eyebrow="The Arcade" title="Claim your team" />
+      <SectionHeading eyebrow="Account" title="Claim your team" />
       <p className={styles.lede}>
         Enter the invite code Aidan sent you, pick a display name, and set a
         password. The code works from any device — claim here, play

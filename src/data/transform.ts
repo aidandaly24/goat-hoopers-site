@@ -156,7 +156,7 @@ export function toTransactions(
       return {
         id: t.transaction_id,
         type: TYPE_LABEL[t.type] ?? "free_agent",
-        week: t.week,
+        week: t.leg,
         createdAt: t.created,
         summary,
         teamIds: [...rosterIds].map(String),
