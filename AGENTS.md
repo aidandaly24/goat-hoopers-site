@@ -50,5 +50,7 @@ outrank general conventions. Keep them short, keep them enforced.
     Issues to request Vercel/DB changes instead of cutting a PR — Aidan's
     agent watches open issues on the same schedule, performs the requested
     Vercel/DB work when it's reasonable, and closes the issue with a comment
-    describing what was done. Never merge a destructive migration without
+    describing what was done. Aidan's agent may reply in issue/PR comments
+    with questions or status updates; collaborator agents should check back
+    every ~10 minutes for replies. Never merge a destructive migration without
     Aidan's explicit approval.
