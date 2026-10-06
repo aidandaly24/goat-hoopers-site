@@ -35,3 +35,7 @@ outrank general conventions. Keep them short, keep them enforced.
 11. Use dependency inversion. Surfaces and loaders receive their dependencies
     (data clients, stores) as parameters — never import a concrete client
     directly. Everything stays testable with fakes.
+12. Never force-push to main, ever. Main's history is append-only. If a push
+    is rejected or the branches diverge, fetch and fix the conflicts with a
+    regular merge or rebase — never `--force`. If a bad commit lands, revert
+    it with a new commit instead of rewriting history.

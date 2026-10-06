@@ -111,13 +111,16 @@ async function fetchStatsInput(teams: Team[]): Promise<LeagueStatsInput> {
  * Fetches independent resources in parallel.
  */
 export async function getSeasonHubData(): Promise<SeasonHubData> {
-  const [league, rosters, users] = await Promise.all([
+  const [league, rosters, users, nbaState] = await Promise.all([
     fetchLeague(),
     fetchRosters(),
     fetchUsers(),
+    // Deduplicated by Next's fetch cache with the call inside
+    // fetchStatsInput — no extra request.
+    fetchNbaState().catch(() => null),
   ]);
 
-  const season = toSeason(league);
+  const season = toSeason(league, nbaState);
   const teams = toTeams(rosters, users);
   const standings = toStandings(teams);
 

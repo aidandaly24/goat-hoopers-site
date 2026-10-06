@@ -20,6 +20,7 @@ import type {
   RawMatchupEntry,
   RawTransaction,
   RawPlayerEntry,
+  RawNbaState,
 } from "./sleeper";
 
 /** Team name resolution: manager's chosen name, else their username. */
@@ -68,11 +69,18 @@ export function toStandings(teams: Team[]): Standing[] {
   }));
 }
 
-export function toSeason(league: RawLeague): Season {
+export function toSeason(league: RawLeague, nbaState: RawNbaState | null): Season {
+  // Sleeper flips league.status to "in_season" before the NBA actually tips
+  // off. The honest status is preseason until games exist — this is the same
+  // signal the stats strip uses for its "go live when the season tips off"
+  // empty state, so the two never contradict each other.
+  const nbaStarted = nbaState !== null && nbaState.season_type !== "pre";
+  const status =
+    !nbaStarted && league.status === "in_season" ? "pre_season" : league.status;
   return {
     leagueName: league.name,
     seasonYear: league.season,
-    status: league.status,
+    status,
     totalTeams: league.total_rosters,
   };
 }

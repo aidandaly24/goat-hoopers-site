@@ -4,7 +4,9 @@
 export type Season = {
   leagueName: string;
   seasonYear: string;
-  /** Sleeper league status, e.g. "in_season", "pre_draft". */
+  /** League status. Sleeper values like "in_season"/"pre_draft", or the
+   *  derived "pre_season" when Sleeper says in_season but the NBA hasn't
+   *  tipped off yet (see toSeason). */
   status: string;
   totalTeams: number;
 };
