@@ -37,7 +37,14 @@ src/
                  # Leaderboard, RewardLedger, GameCard, ProvisionNotice.
                  # Receives domain objects, never touches the store.
   ui/            # Design tokens (tokens.css) + primitives (Card, Badge,
-                 # SectionHeading, TeamAvatar). Every surface uses these.
+                 # SectionHeading, TeamAvatar, SiteHeader). Every surface uses these.
+                 # SiteHeader is the site-wide chrome (wordmark, League/Arcade
+                 # nav, account state). It takes `user` + `logoutAction` as props
+                 # (dependency inversion); the root layout provides them via
+                 # getCurrentUser(). Reading the session cookie in the layout
+                 # opts the route tree into dynamic rendering — deliberate:
+                 # correct account state everywhere beats ISR caching for a
+                 # ten-manager league site.
   app/           # Pages. Thin: load via src/data, hand to surfaces.
     actions.ts   # Server actions: claim/login/logout (sessions + bcrypt),
                  # commissioner invite-code management. The only place
