@@ -1,0 +1,170 @@
+/* TeamPage — "My Team" surface. Tokens only, mobile-first. */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s4);
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: var(--gh-s4);
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s4);
+  flex-wrap: wrap;
+}
+
+.identityText {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0 0 var(--gh-s1);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gh-gold);
+}
+
+.teamName {
+  margin: 0;
+  font-family: var(--gh-font-display);
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--gh-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.manager {
+  margin: var(--gh-s1) 0 0;
+  color: var(--gh-text-dim);
+  font-size: 0.9rem;
+}
+
+.record {
+  display: flex;
+  gap: var(--gh-s6);
+  margin: 0;
+}
+
+.record div {
+  text-align: center;
+}
+
+.record dt {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gh-text-faint);
+}
+
+.record dd {
+  margin: var(--gh-s1) 0 0;
+  font-family: var(--gh-font-display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--gh-text);
+}
+
+.win {
+  color: var(--gh-win);
+}
+
+.loss {
+  color: var(--gh-loss);
+}
+
+.empty {
+  margin: 0;
+  color: var(--gh-text-dim);
+  font-size: 0.95rem;
+}
+
+.roster {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gh-s3);
+  padding: var(--gh-s3) 0;
+  border-bottom: 1px solid var(--gh-border);
+}
+
+.player:last-child {
+  border-bottom: none;
+}
+
+.playerName {
+  color: var(--gh-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.playerMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s2);
+}
+
+.nbaTeam {
+  color: var(--gh-text-faint);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.rewards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.reward {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s3);
+  padding: var(--gh-s3) 0;
+  border-bottom: 1px solid var(--gh-border);
+}
+
+.reward:last-child {
+  border-bottom: none;
+}
+
+.rewardAmount {
+  font-family: var(--gh-font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--gh-gold);
+  min-width: 3.5rem;
+}
+
+.rewardDetail {
+  flex: 1;
+  color: var(--gh-text-dim);
+  font-size: 0.9rem;
+}
+
+@media (min-width: 40rem) {
+  .page {
+    padding: var(--gh-s8) var(--gh-s4);
+  }
+
+  .teamName {
+    font-size: 2rem;
+  }
+}

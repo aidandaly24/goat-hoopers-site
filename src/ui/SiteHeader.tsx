@@ -15,8 +15,9 @@ type Props = {
 
 /**
  * SiteHeader — the site-wide chrome. Wordmark, primary nav (League,
- * Arcade), and account state (Claim team / Log in, or the manager's
- * display name + Log out).
+ * Arcade, My Team), and account state (Claim team / Log in, or the
+ * manager's display name + Log out). The display name links to /team,
+ * the manager's personal page.
  *
  * Rendered by the root layout, so it appears on every page. It reads the
  * session cookie, which opts the whole route tree into dynamic rendering
@@ -34,11 +35,12 @@ export function SiteHeader({ user, logoutAction }: Props) {
         <nav className={styles.nav} aria-label="Primary">
           <Link href="/">League</Link>
           <Link href="/arcade">Arcade</Link>
+          <Link href="/team">My Team</Link>
         </nav>
         <div className={styles.account}>
           {user ? (
             <>
-              <Link href="/arcade" className={styles.displayName}>
+              <Link href="/team" className={styles.displayName}>
                 {user.displayName}
               </Link>
               <form action={logoutAction} className={styles.logoutForm}>

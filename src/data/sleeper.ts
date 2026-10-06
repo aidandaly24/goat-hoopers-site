@@ -40,6 +40,8 @@ export type RawRoster = {
   roster_id: number;
   owner_id: string;
   settings: RawRosterSettings;
+  /** Active roster player_ids. */
+  players: string[];
 };
 
 export type RawUser = {

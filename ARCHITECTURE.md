@@ -28,6 +28,8 @@ src/
                  # lazy client. Nothing else imports drizzle or SQL.
     arcade.ts    # GameStore contract + DrizzleGameStore + FakeGameStore
                  # + getGameStore() factory. Dependency inversion lives here.
+    league.ts    # Loaders: getSeasonHubData (home), getTeamDetail (one
+                 # team's identity + resolved roster for /team).
   surfaces/      # Bounded experiences. One folder per surface.
     season-hub/  # "What's happening in the league": hero, standings,
                  # stats strip, activity feed. Receives domain objects,
@@ -36,6 +38,8 @@ src/
                  # GameDetail (rules + leaderboard + rewards),
                  # Leaderboard, RewardLedger, GameCard, ProvisionNotice.
                  # Receives domain objects, never touches the store.
+    team/        # "My Team": identity + record, full roster, FAAB
+                 # winnings. Rendered by /team for the logged-in manager.
   ui/            # Design tokens (tokens.css) + primitives (Card, Badge,
                  # SectionHeading, TeamAvatar, SiteHeader). Every surface uses these.
                  # SiteHeader is the site-wide chrome (wordmark, League/Arcade
@@ -55,6 +59,8 @@ src/
                  # ProvisionNotice when the DB isn't provisioned.
     claim/       # /claim — invite code -> account. Co-located form.
     login/       # /login — team + password. Co-located form.
+    team/        # /team — the logged-in manager's page (identity, roster,
+                 # FAAB winnings). Redirects to /login when logged out.
     admin/       # /admin/invites — commissioner invite codes, gated by
                  # COMMISSIONER_KEY (server-side check, every action).
 ARCHITECTURE.md  # This file.

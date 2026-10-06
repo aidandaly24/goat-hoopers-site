@@ -12,6 +12,7 @@ import type {
   Season,
   Matchup,
   LeagueStats,
+  Player,
 } from "@/domain";
 import type {
   RawLeague,
@@ -47,6 +48,26 @@ export function toTeam(roster: RawRoster, user: RawUser | undefined): Team {
 export function toTeams(rosters: RawRoster[], users: RawUser[]): Team[] {
   const byId = new Map(users.map((u) => [u.user_id, u]));
   return rosters.map((r) => toTeam(r, byId.get(r.owner_id)));
+}
+
+/**
+ * Resolve one player_id to a domain Player. Unknown ids degrade to a
+ * "Player <id>" stub instead of disappearing from the roster.
+ */
+export function toPlayer(
+  pid: string,
+  entry: RawPlayerEntry | undefined,
+): Player {
+  const name =
+    entry?.full_name ??
+    [entry?.first_name, entry?.last_name].filter(Boolean).join(" ") ??
+    "";
+  return {
+    id: pid,
+    fullName: name || `Player ${pid}`,
+    position: entry?.position ?? null,
+    nbaTeam: entry?.team ?? null,
+  };
 }
 
 /**

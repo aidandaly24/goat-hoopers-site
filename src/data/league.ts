@@ -13,6 +13,7 @@ import type {
   Standing,
   LeagueStats,
   Transaction,
+  Player,
 } from "@/domain";
 import {
   fetchLeague,
@@ -29,10 +30,12 @@ import {
 } from "./sleeper";
 import {
   toSeason,
+  toTeam,
   toTeams,
   toStandings,
   toMatchups,
   toTransactions,
+  toPlayer,
   computeLeagueStats,
   emptyLeagueStats,
   type LeagueStatsInput,
@@ -149,4 +152,27 @@ export async function getSeasonHubData(): Promise<SeasonHubData> {
   }
 
   return { season, teams, standings, stats, transactions };
+}
+
+export type TeamDetail = {
+  team: Team;
+  players: Player[];
+};
+
+/**
+ * One team's detail for the My Team page: identity + resolved roster.
+ * Returns null when the team doesn't exist. Players degrade gracefully
+ * when the directory is unreachable (stubs, not a failed page).
+ */
+export async function getTeamDetail(teamId: string): Promise<TeamDetail | null> {
+  const [rosters, users] = await Promise.all([fetchRosters(), fetchUsers()]);
+  const raw = rosters.find((r) => String(r.roster_id) === teamId);
+  if (!raw) return null;
+  const byId = new Map(users.map((u) => [u.user_id, u]));
+  const team = toTeam(raw, byId.get(raw.owner_id));
+  const ids = raw.players ?? [];
+  if (ids.length === 0) return { team, players: [] };
+  const directory = await safePlayerDirectory();
+  const players = ids.map((pid) => toPlayer(pid, directory?.[pid]));
+  return { team, players };
 }
