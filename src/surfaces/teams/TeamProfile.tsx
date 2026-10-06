@@ -7,6 +7,7 @@ import { PlayerName, PlayerRow } from "@/ui/PlayerRow";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { TransactionSummary } from "@/ui/TransactionSummary";
+import { HooperViewer } from "@/three/HooperViewer";
 import styles from "./TeamProfile.module.css";
 
 function streakBadge(streak: number) {
@@ -86,7 +87,12 @@ export function TeamProfile({
   return (
     <div className={styles.page}>
       <Card className={styles.identity}>
-        <TeamAvatar name={team.name} avatar={team.avatar} />
+        <div className={styles.hooperStage}>
+          <HooperViewer
+            rosterId={Number.parseInt(team.id, 10)}
+            ariaLabel={`${team.name} figurine. Activate for a trick.`}
+          />
+        </div>
         <div className={styles.identityText}>
           <h1 className={styles.teamName}>{team.name}</h1>
           <p className={styles.manager}>managed by {team.managerName}</p>
