@@ -41,11 +41,15 @@ export function PowerRankings({
 }) {
   return (
     <Card>
-      <SectionHeading eyebrow="The numbers" title="Power Rankings" />
+      <SectionHeading eyebrow="The column" title="Power rankings" />
       {rankings === null || rankings.length === 0 ? (
-        <p className={styles.empty}>
-          Rankings drop when the season tips off — no games, no order.
-        </p>
+        <div className={styles.empty}>
+          <p className={styles.emptyTitle}>No order yet.</p>
+          <p className={styles.emptyNote}>
+            The column starts when the games do — power rankings drop after
+            Week 1, with opinions.
+          </p>
+        </div>
       ) : (
         <ol className={styles.list}>
           {rankings.map((r) => (

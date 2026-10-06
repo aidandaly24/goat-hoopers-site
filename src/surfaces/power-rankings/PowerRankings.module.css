@@ -22,15 +22,18 @@
 
 .rank {
   font-family: var(--gh-font-display);
-  font-size: 1.25rem;
+  font-size: 2rem;
   font-weight: 800;
+  line-height: 1;
   font-variant-numeric: tabular-nums;
   text-align: center;
+  color: var(--gh-text);
 }
 
 .move {
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-family: var(--gh-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
   text-align: center;
 }
@@ -100,8 +103,20 @@
 }
 
 .empty {
-  color: var(--gh-text-faint);
+  padding: var(--gh-s4) 0;
+}
+
+.emptyTitle {
+  font-family: var(--gh-font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0 0 var(--gh-s2);
+}
+
+.emptyNote {
+  font-family: var(--gh-font-serif);
   font-style: italic;
+  color: var(--gh-text-dim);
   margin: 0;
 }
 

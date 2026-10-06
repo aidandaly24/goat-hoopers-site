@@ -182,9 +182,12 @@ def build_character_v2(team, helpers):
         parts.append((prim_cube(f'JerseyStripe_{s}', (sx * 0.285, 0, 1.08),
                                 (0.025, 0.02, 0.42), mats['accent']), 'spine'))
 
-    # Jersey number on chest (pushed outside jersey surface)
-    num = prim_jersey_number('JerseyNumber', (0, 0.325, 1.12),
-                             team.get('number', '23'), 0.20, mats['white'])
+    # Jersey number on chest (pushed outside jersey surface, two-digit for presence)
+    num_str = team.get('number', '23')
+    if len(num_str) == 1:
+        num_str = '0' + num_str
+    num = prim_jersey_number('JerseyNumber', (0, 0.325, 1.10),
+                             num_str, 0.26, mats['white'])
     parts.append((num, 'spine'))
 
     # ================= SHORTS =================
