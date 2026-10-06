@@ -1,0 +1,28 @@
+.headshot,
+.fallback {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid var(--ph-ring, var(--gh-gold));
+  background: var(--gh-bg-raised);
+}
+
+.headshot {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gh-bg-card);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06);
+}
+
+.initials {
+  font-family: var(--gh-font-display);
+  color: var(--gh-text);
+  line-height: 1;
+}

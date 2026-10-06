@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   gap: var(--gh-s4);
+  flex-wrap: wrap;
 }
 
 .icon {
@@ -40,9 +41,12 @@
   margin-left: auto;
 }
 
+/* Balanced two-column: the detail column breathes, the prize column
+ * stays proportionate at any width and sticks while the leaderboard
+ * scrolls. */
 .grid {
   display: grid;
-  grid-template-columns: 1fr 22rem;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
   gap: var(--gh-s4);
   align-items: start;
 }
@@ -53,6 +57,18 @@
   flex-direction: column;
   gap: var(--gh-s4);
   min-width: 0;
+}
+
+/* The prize card anchors the side column: gold-tinted so it reads as
+ * the stakes panel, sticky so it stays put under the leaderboard. */
+.side {
+  position: sticky;
+  top: 5.5rem;
+}
+
+.prizeCard {
+  background-image: var(--gh-gradient-card);
+  border-color: color-mix(in srgb, var(--gh-gold) 35%, var(--gh-border));
 }
 
 .howTo {
@@ -89,6 +105,10 @@
 @media (max-width: 56rem) {
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .side {
+    position: static;
   }
 }
 

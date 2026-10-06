@@ -25,7 +25,7 @@
 }
 
 .gold {
-  background: linear-gradient(120deg, var(--gh-gold-soft), var(--gh-gold) 60%, var(--gh-ember));
+  background: linear-gradient(120deg, var(--gh-gold-soft), var(--gh-gold) 60%, var(--gh-gold-deep));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

@@ -9,18 +9,27 @@
   display: flex;
   flex-direction: column;
   gap: var(--gh-s3);
-  transition: border-color 0.15s ease, transform 0.15s ease;
+  background-image: var(--gh-gradient-card);
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .link:hover .card {
   border-color: var(--gh-border-strong);
   transform: translateY(-2px);
+  box-shadow: var(--gh-shadow-md);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 3px;
+  border-radius: var(--gh-radius-lg);
 }
 
 .top {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--gh-s2);
 }
 
 .icon {
@@ -28,23 +37,85 @@
   line-height: 1;
 }
 
+.badges {
+  display: flex;
+  gap: var(--gh-s2);
+  align-items: center;
+}
+
 .name {
-  font-family: var(--gh-font-display);
-  font-weight: 800;
-  font-size: 1.25rem;
+  font-weight: 400;
+  font-size: 1.4rem;
   color: var(--gh-text);
   margin: 0;
+  letter-spacing: 0.02em;
 }
 
 .desc {
   color: var(--gh-text-dim);
   margin: 0;
   font-size: 0.92rem;
-  flex: 1;
+  line-height: 1.55;
+}
+
+.meta {
+  margin: var(--gh-s1) 0 0;
+  padding: var(--gh-s3) 0 0;
+  border-top: 1px solid var(--gh-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s2);
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--gh-s4);
+  margin: 0;
+}
+
+.row dt {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+  flex-shrink: 0;
+}
+
+.row dd {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--gh-text);
+  text-align: right;
+}
+
+.quiet {
+  color: var(--gh-text-faint);
+}
+
+.move {
+  color: var(--gh-gold-soft);
+  font-weight: 700;
+}
+
+.soon {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--gh-text-dim);
+  border-left: 2px solid var(--gh-gold);
+  padding-left: var(--gh-s3);
 }
 
 .cta {
   color: var(--gh-gold);
   font-weight: 700;
   font-size: 0.9rem;
+  margin-top: auto;
+  padding-top: var(--gh-s2);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }

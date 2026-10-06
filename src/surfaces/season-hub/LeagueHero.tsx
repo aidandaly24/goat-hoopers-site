@@ -1,4 +1,5 @@
 import type { Season } from "@/domain";
+import { formatSeasonStatus } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import styles from "./LeagueHero.module.css";
 
@@ -11,7 +12,7 @@ export function LeagueHero({ season }: { season: Season }) {
         GOAT <span className={styles.gold}>HOOPERS</span>
       </h1>
       <p className={styles.sub}>
-        {season.seasonYear} season · {season.status.replace(/_/g, " ")}
+        {season.seasonYear} season · {formatSeasonStatus(season.status)}
       </p>
       <div className={styles.badges}>
         <Badge tone="gold">{season.seasonYear}</Badge>

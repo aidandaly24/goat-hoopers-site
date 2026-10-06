@@ -14,7 +14,10 @@
  * render the provisioning notice.
  */
 import { and, desc, eq, isNull } from "drizzle-orm";
+import { GAMES } from "@/domain/arcade";
 import type {
+  Game,
+  GameHubSummary,
   GameScore,
   InviteCode,
   LeaderboardEntry,
@@ -584,4 +587,40 @@ let storeInstance: GameStore | null = null;
 export function getGameStore(): GameStore {
   if (!storeInstance) storeInstance = new DrizzleGameStore();
   return storeInstance;
+}
+
+/**
+ * Everything the arcade hub needs for enriched game cards: the registry
+ * plus each game's weekly leader and the viewer's own best score.
+ *
+ * Dependency inversion: the store arrives as a parameter, never via
+ * getGameStore() inside — tests pass a FakeGameStore. A failing game
+ * degrades to "no scores yet", never to a failed page.
+ */
+export async function getArcadeHubData(
+  store: GameStore,
+  week: string,
+  user: SiteUser | null,
+): Promise<GameHubSummary[]> {
+  return Promise.all(
+    GAMES.map(async (game) => {
+      let entries: LeaderboardEntry[] = [];
+      try {
+        entries = await store.getLeaderboard(game.id, week);
+      } catch {
+        entries = [];
+      }
+      const mine = user
+        ? entries.find((e) => e.teamId === user.teamId)
+        : undefined;
+      const leader = entries[0] ?? null;
+      return {
+        game,
+        leader: leader
+          ? { ...leader, isCurrentUser: user?.teamId === leader.teamId }
+          : null,
+        myBest: mine?.score ?? null,
+      };
+    }),
+  );
 }

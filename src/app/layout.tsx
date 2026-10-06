@@ -1,18 +1,29 @@
 import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
+import { Anton, Geist_Mono, Inter } from "next/font/google";
 import "@/ui/tokens.css";
 import "./globals.css";
 import { getCurrentUser, logout } from "@/app/actions";
+import { getSeasonMeta } from "@/data/league";
 import { SiteHeader } from "@/ui/SiteHeader";
+import { SiteFooter } from "@/ui/SiteFooter";
+import { MobileNav } from "@/ui/MobileNav";
 
-const display = Archivo({
+/* Display: condensed arena-signage energy for headlines and scores. */
+const display = Anton({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["700", "800", "900"],
+  weight: "400",
 });
 
+/* Body/UI: neutral, excellent at small sizes. */
 const body = Inter({
   variable: "--font-body",
+  subsets: ["latin"],
+});
+
+/* Data: every stat, score, record, timestamp, and FAAB amount. */
+const mono = Geist_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -45,14 +56,22 @@ export default async function RootLayout({
   } catch {
     user = null;
   }
+  // Season metadata for the footer. Best-effort: a failed fetch renders
+  // the footer without the season line rather than failing the page.
+  const season = await getSeasonMeta();
+  const headerUser = user
+    ? { displayName: user.displayName, teamId: user.teamId }
+    : null;
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html
+      lang="en"
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
+    >
       <body>
-        <SiteHeader
-          user={user ? { displayName: user.displayName } : null}
-          logoutAction={logout}
-        />
+        <SiteHeader user={headerUser} logoutAction={logout} />
         {children}
+        <SiteFooter season={season} />
+        <MobileNav user={headerUser} />
       </body>
     </html>
   );

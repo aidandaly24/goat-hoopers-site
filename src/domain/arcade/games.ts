@@ -20,6 +20,9 @@ export const GAMES: Game[] = [
       "You get 10 free throws against the clock. Each make is 1 point, " +
       "streaks earn bonus multipliers. Your best score each week counts — " +
       "the weekly winner takes home 10 FAAB.",
+    launchNote:
+      "Not playable yet — the shooting engine is still in the workshop. " +
+      "The leaderboard opens the moment it ships.",
   },
   {
     id: "82-0-predictions",
@@ -32,6 +35,9 @@ export const GAMES: Game[] = [
       "Lock in your season predictions before opening night: champion, " +
       "finalists, and regular-season win totals. Scoring runs all season — " +
       "the most prophetic manager takes home 10 FAAB.",
+    launchNote:
+      "Not playable yet — the prediction ballot opens before opening night, " +
+      "so nobody gets an edge from watching the first tip.",
   },
 ];
 

@@ -35,7 +35,7 @@
 }
 
 .active {
-  color: #1a1405;
+  color: var(--gh-ink-on-accent);
   background: var(--gh-gold);
   font-weight: 700;
 }

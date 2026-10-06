@@ -1,6 +1,8 @@
 .card {
-  background: var(--gh-bg-card);
+  background-color: var(--gh-bg-card);
+  background-image: var(--gh-gradient-card);
   border: 1px solid var(--gh-border);
   border-radius: var(--gh-radius-lg);
   padding: var(--gh-s6);
+  box-shadow: var(--gh-shadow-sm);
 }

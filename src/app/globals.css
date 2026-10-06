@@ -1,10 +1,5 @@
-/* Global resets. Component styling lives in CSS modules; shared values in ui/tokens.css. */
-
-/* Bridge next/font variables into the design-token namespace. */
-:root {
-  --gh-font-display: var(--font-display);
-  --gh-font-body: var(--font-body);
-}
+/* Global resets + site-wide texture. Component styling lives in CSS
+ * modules; shared values in ui/tokens.css. */
 
 *,
 *::before,
@@ -19,12 +14,65 @@ body {
 }
 
 body {
-  background: var(--gh-bg);
   color: var(--gh-text);
-  font-family: var(--gh-font-body, "Inter", system-ui, sans-serif);
+  font-family: var(--gh-font-body);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Deep navy-black with ambient arena glow + film grain. The glow sits
+   * behind everything (fixed attachment); the grain adds texture without
+   * touching readability. */
+  background-color: var(--gh-bg);
+  background-image: var(--gh-glow-page), var(--gh-grain);
+  background-attachment: fixed, fixed;
+  background-size: auto, 160px 160px;
+  min-height: 100dvh;
 }
 
-h1, h2, h3 {
-  font-family: var(--gh-font-display, "Archivo", system-ui, sans-serif);
+/* Grain lives in its own low-opacity layer so it never muddies text. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--gh-grain);
+  background-size: 160px 160px;
+  opacity: 0.05;
+}
+
+/* Keep page content above the grain layer. */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--gh-font-display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+/* Numeric utility: mono + tabular figures for ALL stats, scores, records,
+ * timestamps, and FAAB amounts. Proportional digits in stats are a bug —
+ * see REDESIGN-INSPO.md. Usage: className="gh-num". */
+.gh-num {
+  font-family: var(--gh-font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Base link color. Components may override with tokens. */
+a {
+  color: var(--gh-gold);
+}
+
+/* Mobile: reserve room for the fixed bottom tab bar so the footer and
+ * last-row content are never covered. Matches --gh-bp-sm. */
+@media (max-width: 40rem) {
+  body {
+    padding-bottom: calc(var(--gh-tabbar-h) + env(safe-area-inset-bottom, 0px));
+  }
 }
