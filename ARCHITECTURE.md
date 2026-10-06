@@ -50,6 +50,14 @@ src/
                  # + getGameStore() factory + getArcadeHubData() loader
                  # (registry + weekly leaders + viewer's best, store
                  # passed as a parameter). Dependency inversion lives here.
+  three/         # Interactive 3D viewers (client components). GLBViewer
+                 # (GLTFLoader + AnimationMixer, idle loop, click one-shots),
+                 # HooperViewer (team figurine by roster id), PropViewer
+                 # (basketball/trophy/crown/hoop). Assets in public/3d/,
+                 # built by the Blender pipeline in 3d/ (see 3d/README.md).
+  public/3d/     # Static GLB assets (hooper-1..10, hooper-generic,
+                 # basketball, trophy, crown, hoop) with named animation
+                 # clips. Do not hand-edit; regenerate via 3d/build_all.sh.
   surfaces/      # Bounded experiences. One folder per surface.
     season-hub/  # "What's happening in the league": hero, standings,
                  # stats strip, activity feed, section links to the deeper
