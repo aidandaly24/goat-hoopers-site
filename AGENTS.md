@@ -46,5 +46,9 @@ outrank general conventions. Keep them short, keep them enforced.
     have Vercel access. Aidan's agent watches open PRs on a schedule, reviews
     each one, performs the Vercel/DB side of the work when it's reasonable,
     leaves comments for the other agent to iterate on, and merges when the
-    PR is clean and CI is green. Never merge a destructive migration without
+    PR is clean and CI is green. Collaborators' agents may also open GitHub
+    Issues to request Vercel/DB changes instead of cutting a PR — Aidan's
+    agent watches open issues on the same schedule, performs the requested
+    Vercel/DB work when it's reasonable, and closes the issue with a comment
+    describing what was done. Never merge a destructive migration without
     Aidan's explicit approval.
