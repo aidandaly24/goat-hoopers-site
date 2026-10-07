@@ -690,6 +690,7 @@ export function computeStockMarket(input: StockMarketInput): StockMarket {
       faabSpent: spent,
       tradeCount: trades,
       ownership,
+      rookiePick: pick ?? null,
     });
   }
 

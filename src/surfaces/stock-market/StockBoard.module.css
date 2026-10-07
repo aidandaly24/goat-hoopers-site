@@ -1,0 +1,72 @@
+/* Filter chips — sticky below the site-wide ticker + header so the board
+ * stays navigable while scrolling. Offsets mirror SiteHeader. */
+.chips {
+  position: sticky;
+  top: calc(var(--gh-ticker-h) + 4rem);
+  z-index: 10;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.75rem var(--gh-s4);
+  margin: 0 calc(var(--gh-s4) * -1);
+  background: var(--gh-term-bg);
+  border-bottom: 1px solid var(--gh-term-line);
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 40rem) {
+  .chips {
+    top: calc(var(--gh-ticker-h) + 3.75rem);
+  }
+}
+
+.chip,
+.chipActive {
+  flex-shrink: 0;
+  font-family: var(--gh-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--gh-term-line);
+  background: var(--gh-term-panel);
+  color: var(--gh-term-dim);
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--gh-term-faint);
+  color: var(--gh-term-text);
+}
+
+.chipActive {
+  background: var(--gh-term-amber);
+  border-color: var(--gh-term-amber);
+  color: #1a1005;
+}
+
+.count {
+  color: var(--gh-term-faint);
+  font-family: var(--gh-font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: var(--gh-s3) 0 var(--gh-s2);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--gh-term-line);
+}
+
+.empty {
+  color: var(--gh-term-faint);
+  font-style: italic;
+  margin: var(--gh-s4) 0;
+}

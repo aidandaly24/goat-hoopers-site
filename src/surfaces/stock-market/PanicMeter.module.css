@@ -8,19 +8,25 @@
 }
 
 .empty {
-  color: var(--gh-text-faint);
+  color: var(--gh-term-faint);
   font-style: italic;
   margin: 0;
+  font-size: 0.85rem;
 }
 
+/* Card primitive underneath; the terminal re-skins the signal. */
 .signal {
-  border-left: 3px solid var(--gh-ember);
+  background: var(--gh-term-panel) !important;
+  border: 1px solid var(--gh-term-line) !important;
+  border-left: 3px solid var(--gh-term-amber) !important;
+  border-radius: 0.25rem !important;
 }
 
 .row {
   display: flex;
   gap: var(--gh-s3);
   align-items: flex-start;
+  font-family: var(--gh-font-mono);
 }
 
 .meter {
@@ -33,28 +39,28 @@
 .bar {
   width: 6px;
   height: 18px;
-  border-radius: 3px;
-  background: var(--gh-border);
+  border-radius: 2px;
+  background: var(--gh-term-line);
 }
 
 .bar.lit {
-  background: var(--gh-ember);
+  background: var(--gh-term-amber);
 }
 
 .name {
-  font-weight: 800;
-  font-family: var(--gh-font-display);
+  color: var(--gh-term-text);
+  font-weight: 700;
 }
 
 .price {
-  color: var(--gh-text-dim);
+  color: var(--gh-term-dim);
   font-weight: 700;
   font-size: 0.85rem;
   font-variant-numeric: tabular-nums;
 }
 
 .reason {
-  color: var(--gh-text-dim);
-  font-size: 0.9rem;
+  color: var(--gh-term-dim);
+  font-size: 0.8rem;
   margin-top: var(--gh-s1);
 }

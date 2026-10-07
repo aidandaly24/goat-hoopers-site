@@ -1,150 +1,118 @@
-.surface {
+/* The terminal — a dark Bloomberg island. Inset panel, mono everywhere. */
+.terminal {
+  background: var(--gh-term-bg);
+  border: 1px solid var(--gh-term-line);
+  border-radius: 0.5rem;
+  padding: var(--gh-s6) var(--gh-s4);
+  max-width: 64rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: var(--gh-s8);
-  padding: var(--gh-s8) var(--gh-s4);
-  max-width: 72rem;
-  margin: 0 auto;
+  font-family: var(--gh-font-mono);
 }
 
-.hero {
+.head {
   display: flex;
   flex-direction: column;
   gap: var(--gh-s2);
+  padding-bottom: var(--gh-s4);
+  border-bottom: 1px solid var(--gh-term-line);
 }
 
 .eyebrow {
-  color: var(--gh-gold);
+  color: var(--gh-term-amber);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.78rem;
-  font-weight: 800;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 700;
   margin: 0;
 }
 
 .title {
-  font-size: 2.25rem;
+  color: var(--gh-term-text);
+  font-size: 1.9rem;
   line-height: 1.1;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
-.lede {
-  color: var(--gh-text-dim);
-  max-width: 42rem;
-  margin: 0;
-  line-height: 1.6;
-}
-
-.tape {
+.stats {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--gh-s4);
-  margin-top: var(--gh-s2);
-  font-weight: 700;
+  font-size: 0.82rem;
   font-variant-numeric: tabular-nums;
 }
 
-.tapeUp {
-  color: var(--gh-win);
+.statUp {
+  color: var(--gh-term-up);
+  font-weight: 700;
 }
 
-.tapeDown {
-  color: var(--gh-loss);
+.statDown {
+  color: var(--gh-term-down);
+  font-weight: 700;
 }
 
-.tapeNew {
-  color: var(--gh-gold);
-}
-
-.grid {
-  display: grid;
-  gap: var(--gh-s4);
-  grid-template-columns: 1fr;
-}
-
-.empty {
-  color: var(--gh-text-faint);
-  font-style: italic;
-  margin: 0;
+.statNew {
+  color: var(--gh-term-amber);
+  font-weight: 700;
 }
 
 .asof {
-  color: var(--gh-text-faint);
-  font-size: 0.8rem;
+  color: var(--gh-term-faint);
+  margin-left: auto;
 }
 
-.board {
-  list-style: none;
+/* Section titles — terminal prompt style. */
+.sect {
+  color: var(--gh-term-text);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 var(--gh-s3);
+  padding-bottom: var(--gh-s2);
+  border-bottom: 1px solid var(--gh-term-line);
+}
+.sect::before {
+  content: "> ";
+  color: var(--gh-term-amber);
+}
+
+.movers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gh-s8);
+}
+
+.list {
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
+  border-top: 1px solid var(--gh-term-line);
 }
 
-.row {
-  display: grid;
-  grid-template-columns: 2.5rem 1fr auto auto;
-  gap: var(--gh-s3);
-  align-items: center;
-  padding: var(--gh-s3) var(--gh-s2);
-  border-bottom: 1px solid var(--gh-border);
-  min-height: 44px;
-}
-
-.rank {
-  color: var(--gh-text-faint);
-  font-variant-numeric: tabular-nums;
+.empty {
+  color: var(--gh-term-faint);
+  font-style: italic;
+  margin: 0;
   font-size: 0.85rem;
 }
 
-.who {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
+.foot {
+  color: var(--gh-term-faint);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  margin: 0;
+  padding-top: var(--gh-s4);
+  border-top: 1px solid var(--gh-term-line);
 }
 
-.whoName {
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.whoMeta {
-  color: var(--gh-text-faint);
-  font-size: 0.78rem;
-}
-
-.rowPrice {
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-}
-
-.rowUp {
-  color: var(--gh-win);
-  font-size: 0.85rem;
-  font-variant-numeric: tabular-nums;
-  min-width: 4.5rem;
-  text-align: right;
-}
-
-.rowDown {
-  color: var(--gh-loss);
-  font-size: 0.85rem;
-  font-variant-numeric: tabular-nums;
-  min-width: 4.5rem;
-  text-align: right;
-}
-
-.rowFlat {
-  color: var(--gh-text-faint);
-  font-size: 0.85rem;
-  font-variant-numeric: tabular-nums;
-  min-width: 4.5rem;
-  text-align: right;
-}
-
-@media (min-width: 64rem) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+@media (min-width: 56rem) {
+  .movers {
+    grid-template-columns: 1fr 1fr;
+  }
+  .terminal {
+    padding: var(--gh-s8);
   }
 }

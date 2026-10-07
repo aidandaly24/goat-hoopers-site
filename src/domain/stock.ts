@@ -66,6 +66,8 @@ export type PlayerStock = {
   tradeCount: number;
   /** Share of league teams rostering the player, 0–1. */
   ownership: number;
+  /** Overall pick number in the latest rookie draft; null for non-rookies. */
+  rookiePick: number | null;
 };
 
 export type PanicSignal = {
