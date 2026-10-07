@@ -89,6 +89,15 @@
   letter-spacing: 0.04em;
 }
 
+.price,
+.up,
+.down,
+.flat {
+  /* Stats are instruments: mono + tabular in both the dark theme
+   * (Geist Mono) and the Broadcast Desk direction (IBM Plex Mono). */
+  font-family: var(--gh-font-mono);
+}
+
 .price {
   color: var(--gh-text);
   font-variant-numeric: tabular-nums;
