@@ -12,10 +12,10 @@ export type MobileNavUser = {
 } | null;
 
 /**
- * MobileNav — the bottom tab bar for phones (<=40rem). Home / Arcade /
- * Team, thumb-zone, app-like. Rendered by the root layout on every page;
- * CSS hides it on larger screens. Client component: the active tab comes
- * from usePathname.
+ * MobileNav — the bottom tab bar for phones (<=40rem). Home / News /
+ * Arcade / Team, thumb-zone, app-like. Rendered by the root layout on
+ * every page; CSS hides it on larger screens. Client component: the
+ * active tab comes from usePathname.
  *
  * The Team tab mirrors the header rule: logged in it goes to /team (the
  * display-name destination), logged out it still goes to /team, which
@@ -47,6 +47,18 @@ export function MobileNav({ user }: { user: MobileNavUser }) {
           <path d="M8 11.5v3M6.5 13h3" />
           <circle cx="15.5" cy="12" r="1.1" />
           <circle cx="18" cy="14" r="1.1" />
+        </svg>
+      ),
+    },
+    {
+      href: "/news",
+      label: "News",
+      active: pathname === "/news",
+      icon: (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 5.5h13v13H4z" />
+          <path d="M17 8.5h2.5v10H17" />
+          <path d="M7 9.5h7M7 12.5h7M7 15.5h4.5" />
         </svg>
       ),
     },

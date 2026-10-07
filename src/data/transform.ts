@@ -171,6 +171,20 @@ export function toTransactions(
         teamIds: [...rosterIds].map(String),
         adds: t.adds ? Object.keys(t.adds).map(moveOf) : [],
         drops: t.drops ? Object.keys(t.drops).map(moveOf) : [],
+        // Per-team trade view for the news network: who received whom.
+        sides:
+          t.type === "trade" && t.adds
+            ? [...rosterIds].map((rid) => {
+                const team = teamByRosterId.get(String(rid));
+                return {
+                  teamId: String(rid),
+                  teamName: team?.name ?? "A team",
+                  received: Object.entries(t.adds!)
+                    .filter(([, toRid]) => toRid === rid)
+                    .map(([pid]) => moveOf(pid)),
+                };
+              })
+            : undefined,
       } satisfies Transaction;
     })
     .sort((a, b) => b.createdAt - a.createdAt);

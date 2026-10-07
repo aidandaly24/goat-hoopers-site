@@ -96,12 +96,21 @@ src/
                  # never fetches.
     stock-market/ # "What is every player worth": the FAAB-denominated
                  # stock market, styled as a Bloomberg terminal (a deliberate
-                 # dark island via the --gh-term-* tokens). StockTicker
-                 # (site-wide marquee, rendered by the root layout),
+                 # dark island via the --gh-term-* tokens). CombinedTicker
+                 # (site-wide ESPN-style marquee alternating news headlines
+                 # and stock quotes, rendered by the root layout),
                  # StockMarket (top gainers / decliners, panic meter, full
                  # board), StockBoard (client-side position + rookie filter
                  # chips), StockRow (Yahoo Finance-style quote row with
                  # expandable factor breakdown), PanicMeter. Receives domain
+                 # objects, never fetches.
+    news/        # The League News Network: MyLeague-style auto-generated
+                 # coverage. Newsroom (front page), NewsFeed (client-side
+                 # section chips: Latest / Rookie Wire / Rumor Mill /
+                 # Hot Takes), NewsCard (publication masthead + article).
+                 # Articles are generated from real league events by
+                 # generateLeagueNews (src/data/news.ts), voiced by five
+                 # fictional publications (domain/news.ts). Receives domain
                  # objects, never fetches.
     arcade/      # "Play games, win FAAB": ArcadeHub (game list),
                  # GameDetail (rules + leaderboard + rewards),
@@ -214,9 +223,25 @@ the store is a no-op: prices still compute live, movers show their honest
 "no history yet" states, and nothing crashes. Snapshots older than 30 days
 are pruned on write.
 
-The `StockTicker` marquee renders in the root layout above every page
-(pure CSS animation, pauses on hover, off under
+The `CombinedTicker` marquee renders in the root layout above every page
+(ESPN style: news headlines and stock quotes alternate on a timer; pure
+CSS animation, pauses on hover, no auto-switch under
 `prefers-reduced-motion`); the full market lives at `/stocks`.
+
+### The League News Network
+
+`getLeagueNews` (in `src/data/league.ts`) feeds the `/news` page and the
+ticker's news mode. The pure `generateLeagueNews` in `src/data/news.ts`
+turns real league events into articles: recent trades get the full
+five-publication treatment (Shams breaks it, ESPN analyzes, The Athletic
+goes deep on the numbers, Bleacher Report gets DRAMATIC, Skip Bayless
+loses his mind), waiver splashes get three voices, and the top 10 rookie
+draft picks get covered on the Rookie Wire. Rumors (repeat-trade
+candidates, the busiest front office, buy-low watch) and hot takes are
+derived from real signals and always labeled as what they are — the
+fiction is honest. `Transaction.sides` (per-team trade view, added in
+`toTransactions`) powers the trade narratives. Empty inputs → empty feed;
+surfaces render honest empty states and the ticker falls back to stocks.
 
 ### The stats seam (dependency inversion in the read path)
 

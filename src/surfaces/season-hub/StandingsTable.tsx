@@ -30,7 +30,19 @@ export function StandingsTable({ standings }: { standings: Standing[] }) {
             role="row"
             aria-label={`View ${s.team.name}`}
           >
-            <span className={styles.rank}>{s.rank}</span>
+            <span
+              className={`${styles.rank} ${
+                s.rank === 1
+                  ? styles.medal1
+                  : s.rank === 2
+                    ? styles.medal2
+                    : s.rank === 3
+                      ? styles.medal3
+                      : ""
+              }`}
+            >
+              {s.rank}
+            </span>
             <span className={styles.team}>
               <TeamAvatar name={s.team.name} avatar={s.team.avatar} />
               <span>

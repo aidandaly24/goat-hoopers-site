@@ -23,6 +23,7 @@ import type {
   TeamProfile,
   Matchup,
   StockMarket,
+  NewsArticle,
 } from "@/domain";
 import {
   fetchLeague,
@@ -65,6 +66,7 @@ import {
  * the shared transform import block above. */
 import { championRosterId } from "./transform";
 import { getStockStore } from "./stocks";
+import { generateLeagueNews } from "./news";
 
 export type SeasonHubData = {
   season: Season;
@@ -676,4 +678,22 @@ export async function getStockMarketData(): Promise<StockMarket> {
   }
 
   return market;
+}
+
+/**
+ * Everything the League News Network needs: the auto-generated article
+ * feed. Pure generation (`generateLeagueNews`) over the transaction
+ * history and rookie draft board. Resilient like every loader — a failed
+ * section degrades to an empty feed instead of throwing the page.
+ */
+export async function getLeagueNews(): Promise<NewsArticle[]> {
+  try {
+    const [{ transactions, teams }, { picks }] = await Promise.all([
+      getTransactionHistory(),
+      getDraftBoard(),
+    ]);
+    return generateLeagueNews({ transactions, picks, teams });
+  } catch {
+    return [];
+  }
 }

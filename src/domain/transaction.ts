@@ -32,4 +32,9 @@ export type Transaction = {
   adds: PlayerMove[];
   /** Players dropped by this transaction (structured, for player links). */
   drops: PlayerMove[];
+  /**
+   * Per-team view of a trade: which roster received which players.
+   * Present on trades only — powers the news network's trade coverage.
+   */
+  sides?: { teamId: string; teamName: string; received: PlayerMove[] }[];
 };

@@ -17,6 +17,15 @@
   --gh-gold: #e8a13c;
   --gh-gold-soft: #f3bc62;
   --gh-gold-deep: #b97a1f;
+  /* Medal metals for the standings top 3. */
+  --gh-silver: #c9ced8;
+  --gh-bronze: #d08a4e;
+  /* News network masthead accents — one per fictional publication. */
+  --gh-pub-espn: #e8002d;
+  --gh-pub-athletic: #d8d8d8;
+  --gh-pub-bleacher: #ff6b00;
+  --gh-pub-shams: #1d9bf0;
+  --gh-pub-bayless: #a855f7;
   /* Dark ink for text sitting on gold / bright position pills. */
   --gh-ink-on-accent: #241a05;
 
@@ -101,10 +110,10 @@
   --gh-radius-lg: 1.25rem;
   --gh-radius-pill: 999px;
 
-  /* Chrome — the stock ticker's fixed height. The ticker sticks at top:0
-   * and the site header sticks just below it (top: var(--gh-ticker-h)),
-   * so both stay visible while scrolling. Keep in sync with
-   * StockTicker.module.css. */
+  /* Chrome — the combined ticker's fixed height. The ticker sticks at
+   * top:0 and the site header sticks just below it
+   * (top: var(--gh-ticker-h)), so both stay visible while scrolling.
+   * Keep in sync with CombinedTicker.module.css. */
   --gh-ticker-h: 2.5rem;
 
   /* Chrome */

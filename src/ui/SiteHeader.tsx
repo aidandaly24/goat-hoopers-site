@@ -42,6 +42,7 @@ export function SiteHeader({ user, logoutAction }: Props) {
         </Link>
         <nav className={styles.nav} aria-label="Primary">
           <Link href="/">Home</Link>
+          <Link href="/news">News</Link>
           <Link href="/arcade">Arcade</Link>
           {!user && <Link href="/team">My Team</Link>}
         </nav>
