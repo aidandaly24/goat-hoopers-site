@@ -22,6 +22,7 @@ import type {
   PlayerDetail,
   TeamProfile,
   Matchup,
+  StockMarket,
 } from "@/domain";
 import {
   fetchLeague,
@@ -49,6 +50,7 @@ import {
   toPlayer,
   toDraftPicks,
   computeLeagueStats,
+  computeStockMarket,
   emptyLeagueStats,
   currentStreak,
   type LeagueStatsInput,
@@ -62,6 +64,7 @@ import {
 /* Separate import: championRosterId is this feature's seam, kept out of
  * the shared transform import block above. */
 import { championRosterId } from "./transform";
+import { getStockStore } from "./stocks";
 
 export type SeasonHubData = {
   season: Season;
@@ -538,4 +541,139 @@ export async function getDefendingChampion(): Promise<string | null> {
   } catch {
     return null;
   }
+}
+
+/* ---------------- player stock market ---------------- */
+
+/**
+ * The stock market's lookback window. Transactions older than this don't
+ * move prices — the market cares about what's happening now.
+ */
+const STOCK_WINDOW_DAYS = 14;
+
+/**
+ * Everything the stock-market surface (and the site-wide ticker) needs.
+ *
+ * Impure shell around the pure `computeStockMarket`: fetches transactions
+ * for the recent weeks, rookie-draft capital, and the last price snapshot,
+ * then saves the new snapshot best-effort. Resilient like every loader —
+ * a failed section degrades (no history, no draft capital) instead of
+ * throwing the page.
+ */
+export async function getStockMarketData(): Promise<StockMarket> {
+  const now = Date.now();
+  const windowStart = now - STOCK_WINDOW_DAYS * 24 * 60 * 60 * 1000;
+
+  const [league, rosters, users] = await Promise.all([
+    fetchLeague(),
+    fetchRosters(),
+    fetchUsers(),
+  ]);
+
+  // Recent transactions: current week plus the three before it, bounded.
+  let state: RawNbaState | null = null;
+  try {
+    state = await fetchNbaState();
+  } catch {
+    state = null;
+  }
+  const currentWeek = Math.max(1, state?.week ?? 1);
+  const weeks = Array.from(
+    { length: Math.min(4, currentWeek) },
+    (_, i) => currentWeek - i
+  );
+  const txWeeks = await Promise.all(
+    weeks.map((w) => fetchTransactions(w).catch(() => [] as RawTransaction[]))
+  );
+  const transactions = txWeeks
+    .flat()
+    .filter((t) => t.created >= windowStart);
+
+  // Aggregates per player inside the window.
+  const faabSpent: Record<string, number> = {};
+  const flow: Record<string, { adds: number; drops: number }> = {};
+  const tradeCount: Record<string, number> = {};
+  const bump = (id: string) => (flow[id] ??= { adds: 0, drops: 0 });
+  for (const t of transactions) {
+    const bid = t.settings?.waiver_bid ?? 0;
+    if (t.adds) {
+      for (const pid of Object.keys(t.adds)) {
+        bump(pid).adds += 1;
+        if (t.type === "waiver" && bid > 0) {
+          faabSpent[pid] = (faabSpent[pid] ?? 0) + bid;
+        }
+      }
+    }
+    if (t.drops) {
+      for (const pid of Object.keys(t.drops)) bump(pid).drops += 1;
+    }
+    if (t.type === "trade") {
+      const involved = new Set<string>([
+        ...Object.keys(t.adds ?? {}),
+        ...Object.keys(t.drops ?? {}),
+      ]);
+      for (const pid of involved) tradeCount[pid] = (tradeCount[pid] ?? 0) + 1;
+    }
+  }
+
+  // Ownership: share of teams rostering each player right now.
+  const rosteredCount: Record<string, number> = {};
+  for (const r of rosters) {
+    for (const pid of r.players ?? []) {
+      rosteredCount[pid] = (rosteredCount[pid] ?? 0) + 1;
+    }
+  }
+
+  // Rookie-draft capital: most recent draft, player_id → overall pick.
+  const draftPick: Record<string, number> = {};
+  try {
+    const drafts = await fetchDrafts();
+    const latest = [...drafts].sort(
+      (a, b) => (b.start_time ?? 0) - (a.start_time ?? 0)
+    )[0];
+    if (latest) {
+      const picks = await fetchDraftPicks(latest.draft_id);
+      for (const p of picks) {
+        if (p.player_id && p.player_id !== "0") draftPick[p.player_id] = p.pick_no;
+      }
+    }
+  } catch {
+    // No draft capital — rookies price without the premium.
+  }
+
+  const directory = await safePlayerDirectory();
+
+  // Previous prices for change %. Best-effort: without them the market
+  // still computes, it just shows "new listing" states.
+  let history: Record<string, number[]> | null = null;
+  try {
+    history = await getStockStore().getHistory(Object.keys(rosteredCount));
+  } catch {
+    history = null;
+  }
+
+  const market = computeStockMarket({
+    players: directory ?? {},
+    rosteredCount,
+    totalRosters: league.total_rosters,
+    faabSpent,
+    faabBudget: league.settings?.waiver_budget ?? 200,
+    flow,
+    tradeCount,
+    draftPick,
+    history,
+    now,
+  });
+
+  // Persist this snapshot for next time's change %. Fire-and-forget safe:
+  // a failed write must never break the page.
+  try {
+    const prices: Record<string, number> = {};
+    for (const s of market.stocks) prices[s.playerId] = s.price;
+    await getStockStore().saveSnapshot(prices);
+  } catch {
+    // History stays as it was; next load tries again.
+  }
+
+  return market;
 }

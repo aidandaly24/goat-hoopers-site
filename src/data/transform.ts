@@ -14,6 +14,11 @@ import type {
   LeagueStats,
   Player,
   DraftPick,
+  PlayerStock,
+  StockMarket,
+  StockFactor,
+  StockTrend,
+  PanicSignal,
 } from "@/domain";
 import type {
   RawLeague,
@@ -420,4 +425,329 @@ export function championRosterId(
   const decided = finals.find((e) => e.w !== null && e.w !== undefined);
   const winner = decided?.w ?? finals[0]?.w ?? null;
   return winner === null || winner === undefined ? null : String(winner);
+}
+
+/* ---------------- player stock market ---------------- */
+
+/**
+ * Player stock market valuation — pure function, the rule-11 seam for
+ * stocks. Fetching (transactions, rosters, drafts, snapshots) lives in
+ * `league.ts`; every number below is computed from the input alone, so
+ * tests can pass fake inputs straight in.
+ *
+ * THE MODEL (all in FAAB dollars — the league's waiver currency):
+ *
+ *   price = clamp( BASE
+ *     + production   (ownership-implied: 50 × rostered share)
+ *     + faab         (40 × FAAB spent ÷ league budget, capped at 1 budget)
+ *     + trades       (+3 per trade in the window, capped at 4)
+ *     + draft        (rookie pick premium: (31 − pick) × 1.2, top 30)
+ *     + dynasty      (+8 for 3rd-year-or-less players aged ≤24,
+ *                      +4 for anyone else aged ≤24)
+ *     + recent       (+2 per net add in the window, clamped to ±5)
+ *     then × age curve × injury discount,
+ *     clamped to [$1, $250] )
+ *
+ * Honesty notes, enforced by the code not by comments:
+ * - "Production" is market-implied. Sleeper's public API exposes no
+ *   per-player stat feed, so we infer it from revealed behavior: managers
+ *   roster and spend FAAB on players who produce. The factor note says so.
+ * - "Contract" always resolves to $0. Sleeper tracks no contracts; the
+ *   engine refuses to invent them. The factor still appears (neutral) so
+ *   the model is explicit about what it doesn't know.
+ * - "Recent performances" is add/drop velocity — adds mean someone's
+ *   flashing, drops mean they're cold. Same revealed-behavior logic.
+ * - Change % compares against the last persisted snapshot. With no
+ *   snapshot history every change field is null (shown as "new listing").
+ */
+export type StockMarketInput = {
+  /** player_id → directory entry (age, injury_status, years_exp…). */
+  players: Record<string, RawPlayerEntry>;
+  /** player_id → number of league teams currently rostering the player. */
+  rosteredCount: Record<string, number>;
+  totalRosters: number;
+  /** player_id → total FAAB (waiver_bid) spent in the window. */
+  faabSpent: Record<string, number>;
+  /** League waiver budget in FAAB dollars (0/unknown → FAAB factor off). */
+  faabBudget: number;
+  /** player_id → adds/drops in the window. */
+  flow: Record<string, { adds: number; drops: number }>;
+  /** player_id → times traded in the window. */
+  tradeCount: Record<string, number>;
+  /** player_id → overall rookie-draft pick number. */
+  draftPick: Record<string, number>;
+  /** player_id → previous prices, oldest → newest. Null = no history yet. */
+  history: Record<string, number[]> | null;
+  /** Unix ms of computation. */
+  now: number;
+};
+
+const STOCK_BASE = 18;
+const STOCK_FLOOR = 1;
+const STOCK_CAP = 250;
+/** Moves smaller than this read as noise → trend "flat". */
+const TREND_THRESHOLD_PCT = 1;
+/** Movers sections only list moves at least this big. */
+const MOVER_THRESHOLD_PCT = 2;
+
+function round2(n: number): number {
+  return Math.round(n * 100) / 100;
+}
+function clamp(n: number, lo: number, hi: number): number {
+  return Math.min(hi, Math.max(lo, n));
+}
+
+function ageCurve(age: number | undefined): { mult: number; note: string } {
+  if (age == null) return { mult: 0.9, note: "Age unknown — mild discount" };
+  if (age < 21) return { mult: 0.85, note: `${age} — raw upside, unproven` };
+  if (age <= 23) return { mult: 0.95, note: `${age} — still developing` };
+  if (age <= 29) return { mult: 1.1, note: `${age} — prime years` };
+  if (age <= 32) return { mult: 0.95, note: `${age} — veteran` };
+  if (age <= 34) return { mult: 0.75, note: `${age} — declining` };
+  return { mult: 0.5, note: `${age} — twilight` };
+}
+
+function injuryDiscount(
+  status: string | null | undefined
+): { mult: number; note: string } {
+  switch (status) {
+    case "Out":
+    case "IR":
+      return { mult: 0.45, note: `${status} — heavy discount` };
+    case "Doubtful":
+      return { mult: 0.7, note: "Doubtful — discounted" };
+    case "Questionable":
+      return { mult: 0.85, note: "Questionable — slight discount" };
+    case "Suspended":
+      return { mult: 0.5, note: "Suspended" };
+    default:
+      return { mult: 1, note: "Healthy" };
+  }
+}
+
+function displayNameOf(id: string, entry: RawPlayerEntry): string {
+  return (
+    entry.full_name ??
+    [entry.first_name, entry.last_name].filter(Boolean).join(" ") ??
+    `Player ${id}`
+  );
+}
+
+export function computeStockMarket(input: StockMarketInput): StockMarket {
+  const {
+    players,
+    rosteredCount,
+    totalRosters,
+    faabSpent,
+    faabBudget,
+    flow,
+    tradeCount,
+    draftPick,
+    history,
+    now,
+  } = input;
+
+  const priced: PlayerStock[] = [];
+
+  for (const [id, entry] of Object.entries(players)) {
+    const owned = rosteredCount[id] ?? 0;
+    const spent = faabSpent[id] ?? 0;
+    const trades = tradeCount[id] ?? 0;
+    const { adds, drops } = flow[id] ?? { adds: 0, drops: 0 };
+    const pick = draftPick[id];
+    const hasSignal =
+      owned > 0 || spent > 0 || trades > 0 || adds > 0 || drops > 0 || pick != null;
+    if (!hasSignal) continue; // no market footprint — not listed
+
+    const ownership = totalRosters > 0 ? owned / totalRosters : 0;
+    const faabNorm = faabBudget > 0 ? Math.min(spent / faabBudget, 1) : 0;
+    const age = entry.age;
+    const yearsExp = entry.years_exp;
+
+    // Additive factors (FAAB dollars).
+    const fProduction = ownership * 50;
+    const fFaab = faabNorm * 40;
+    const fTrades = Math.min(trades, 4) * 3;
+    const fDraft = pick != null && pick <= 30 ? (31 - pick) * 1.2 : 0;
+    const fDynasty =
+      yearsExp != null && yearsExp <= 3 && (age ?? 99) <= 24
+        ? 8
+        : age != null && age <= 24
+          ? 4
+          : 0;
+    const fRecent = clamp(adds - drops, -5, 5) * 2;
+
+    const subtotal =
+      STOCK_BASE + fProduction + fFaab + fTrades + fDraft + fDynasty + fRecent;
+
+    // Multiplicative factors, recorded as their dollar delta.
+    const ageC = ageCurve(age);
+    const fAge = subtotal * (ageC.mult - 1);
+    const injC = injuryDiscount(entry.injury_status);
+    const fInjury = (subtotal + fAge) * (injC.mult - 1);
+
+    const price = round2(clamp(subtotal + fAge + fInjury, STOCK_FLOOR, STOCK_CAP));
+
+    const factors: StockFactor[] = [
+      {
+        kind: "production",
+        label: "Production",
+        delta: round2(fProduction),
+        note: `Market-implied — ${Math.round(ownership * 100)}% owned (Sleeper has no per-player stat feed)`,
+      },
+      {
+        kind: "faab",
+        label: "FAAB market",
+        delta: round2(fFaab),
+        note:
+          spent > 0
+            ? `$${spent} in winning waiver bids lately`
+            : "No FAAB spent lately",
+      },
+      {
+        kind: "trades",
+        label: "League trades",
+        delta: round2(fTrades),
+        note:
+          trades > 0
+            ? `Traded ${trades}× lately — the league is talking`
+            : "No recent trades",
+      },
+      {
+        kind: "draft",
+        label: "Draft capital",
+        delta: round2(fDraft),
+        note:
+          pick != null
+            ? `Rookie draft pick #${pick}`
+            : "No rookie-draft capital",
+      },
+      {
+        kind: "dynasty",
+        label: "Dynasty outlook",
+        delta: round2(fDynasty),
+        note:
+          fDynasty > 0
+            ? "Young core piece — long runway"
+            : "Outlook priced on present value",
+      },
+      {
+        kind: "recent",
+        label: "Recent form",
+        delta: round2(fRecent),
+        note:
+          adds !== 0 || drops !== 0
+            ? `${adds} adds vs ${drops} drops lately`
+            : "No recent adds/drops",
+      },
+      { kind: "age", label: "Age curve", delta: round2(fAge), note: ageC.note },
+      {
+        kind: "injury",
+        label: "Injuries",
+        delta: round2(fInjury),
+        note: injC.note,
+      },
+      {
+        kind: "contract",
+        label: "Contract",
+        delta: 0,
+        note: "Not tracked — Sleeper exposes no contract data",
+      },
+    ];
+    factors.sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+
+    // History → change, trend, sparkline.
+    const hist = history?.[id] ?? [];
+    const prevPrice = hist.length > 0 ? hist[hist.length - 1] : null;
+    const change =
+      prevPrice != null && prevPrice > 0 ? round2(price - prevPrice) : null;
+    const changePct =
+      prevPrice != null && prevPrice > 0
+        ? Math.round(((price - prevPrice) / prevPrice) * 1000) / 10
+        : null;
+    const trend: StockTrend =
+      changePct == null
+        ? "flat"
+        : changePct >= TREND_THRESHOLD_PCT
+          ? "up"
+          : changePct <= -TREND_THRESHOLD_PCT
+            ? "down"
+            : "flat";
+    const spark = [...hist.slice(-9), price];
+
+    priced.push({
+      playerId: id,
+      playerName: displayNameOf(id, entry),
+      position: entry.position ?? null,
+      nbaTeam: entry.team ?? null,
+      price,
+      prevPrice,
+      change,
+      changePct,
+      trend,
+      spark,
+      factors,
+      faabSpent: spent,
+      tradeCount: trades,
+      ownership,
+    });
+  }
+
+  priced.sort((a, b) => b.price - a.price);
+
+  const hasHistory = priced.some((s) => s.changePct != null);
+  const movers = priced.filter((s) => s.changePct != null);
+  const trending = movers
+    .filter((s) => (s.changePct as number) >= MOVER_THRESHOLD_PCT)
+    .sort((a, b) => (b.changePct as number) - (a.changePct as number))
+    .slice(0, 5);
+  const falling = movers
+    .filter((s) => (s.changePct as number) <= -MOVER_THRESHOLD_PCT)
+    .sort((a, b) => (a.changePct as number) - (b.changePct as number))
+    .slice(0, 5);
+
+  // Panic meter — rule-based, documented, no vibes.
+  const panic: PanicSignal[] = [];
+  for (const s of priced) {
+    const { drops } = input.flow[s.playerId] ?? { drops: 0 };
+    if (s.tradeCount >= 3) {
+      panic.push({
+        stock: s,
+        reason: `Traded ${s.tradeCount}× in 14 days — why is everyone moving him?`,
+        intensity: 3,
+      });
+    } else if (s.tradeCount === 2) {
+      panic.push({
+        stock: s,
+        reason: "Traded twice in 14 days — the league is restless",
+        intensity: 2,
+      });
+    } else if (drops >= 2 && s.ownership >= 0.5) {
+      panic.push({
+        stock: s,
+        reason: `Dropped by ${drops} managers despite ${Math.round(s.ownership * 100)}% ownership`,
+        intensity: 2,
+      });
+    } else if (drops - (input.flow[s.playerId]?.adds ?? 0) >= 3 && s.price >= 40) {
+      panic.push({
+        stock: s,
+        reason: `Getting dumped — ${drops} drops lately on a $${s.price.toFixed(2)} stock`,
+        intensity: 1,
+      });
+    }
+  }
+  panic.sort(
+    (a, b) =>
+      b.intensity - a.intensity ||
+      Math.abs(b.stock.changePct ?? 0) - Math.abs(a.stock.changePct ?? 0)
+  );
+
+  return {
+    stocks: priced,
+    trending,
+    falling,
+    panic: panic.slice(0, 5),
+    updatedAt: now,
+    hasHistory,
+  };
 }

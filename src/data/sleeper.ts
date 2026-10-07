@@ -28,6 +28,8 @@ export type RawLeague = {
     playoff_teams: number;
     playoff_week_start: number;
     divisions: number;
+    /** Waiver budget in FAAB dollars; anchors the stock market's FAAB scale. */
+    waiver_budget?: number;
   };
 };
 
@@ -45,7 +47,7 @@ export type RawRoster = {
   roster_id: number;
   owner_id: string;
   settings: RawRosterSettings;
-  /** Active roster player_ids. */
+  /** All rostered player_ids (starters + bench + taxi + IR). */
   players: string[];
 };
 
@@ -81,6 +83,13 @@ export type RawTransaction = {
   adds: Record<string, number> | null;
   drops: Record<string, number> | null;
   draft_picks: unknown[];
+  /**
+   * Waiver settings. `waiver_bid` is the FAAB spent to win the claim —
+   * the stock market's real-money demand signal.
+   */
+  settings?: {
+    waiver_bid?: number;
+  } | null;
 };
 
 export type RawPlayerEntry = {
@@ -89,13 +98,22 @@ export type RawPlayerEntry = {
   last_name?: string;
   position?: string;
   team?: string | null;
+  /** Age in years. */
+  age?: number;
+  /** e.g. "Out", "Doubtful", "Questionable", "IR", "Suspended". */
+  injury_status?: string | null;
+  /** Completed NBA seasons. */
+  years_exp?: number;
 };
 
+/** A draft (e.g. the league's rookie draft). */
 export type RawDraft = {
   draft_id: string;
   season: string;
   status: string;
   type: string;
+  /** Unix ms the draft started. */
+  start_time?: number;
 };
 
 export type RawDraftPick = {

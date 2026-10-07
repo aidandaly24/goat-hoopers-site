@@ -17,9 +17,9 @@ src/
   domain/        # The shared language: Team, Standing, Matchup, Player,
                  # Transaction, DraftPick, Season, LeagueStats, PlayerDetail,
                  # TeamProfile, PowerRanking, PlayoffOdds, RecordBook,
-                 # MatchupPreview, PlayerMove. Types + tiny
-                 # helpers only. formatSeasonStatus(Season.status) renders
-                 # the human status ("pre_season" -> "Preseason").
+                 # MatchupPreview, PlayerMove, PlayerStock/StockMarket.
+                 # Types + tiny helpers only. formatSeasonStatus(Season.status)
+                 # renders the human status ("pre_season" -> "Preseason").
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
                  # GameSession, Game, GameScore, LeaderboardEntry,
                  # GameHubSummary, Reward, plus the game registry
@@ -93,6 +93,11 @@ src/
                  # composing the four data tools (preview, power
                  # rankings, playoff odds, record book) with
                  # broadcast-desk framing. Receives all four datasets;
+                 # never fetches.
+    stock-market/ # "What is every player worth": the FAAB-denominated
+                 # stock market. StockTicker (site-wide marquee, rendered
+                 # by the root layout), StockMarket (trending / falling /
+                 # panic meter / full board). Receives domain objects,
                  # never fetches.
     arcade/      # "Play games, win FAAB": ArcadeHub (game list),
                  # GameDetail (rules + leaderboard + rewards),
@@ -184,6 +189,30 @@ Sleeper API  →  sleeper.ts (raw fetch + cache)
 
 Data flows one way, top to bottom. There is no client-side fetching of league
 data, no context providers for league state, no prop drilling of raw JSON.
+
+### The stock market (FAAB-denominated player prices)
+
+`getStockMarketData` (in `src/data/league.ts`) prices every player with a
+market footprint like a stock, in FAAB dollars — the league's waiver
+currency. The math is the pure `computeStockMarket` in `transform.ts`
+(same dependency-inversion seam as stats): it blends real league signals
+(ownership share, FAAB spent on waiver bids, trade count, add/drop
+velocity, rookie-draft capital) with fundamentals (age curve, injury
+status). "Production" is market-implied — Sleeper's public API has no
+per-player stat feed, and the code says so; "contract" always resolves
+neutral because Sleeper tracks no contracts and the engine won't invent
+them.
+
+Price history comes from the `stock_snapshots` table (`src/data/stocks.ts`
+owns the store contract). Change %, the trending/falling sections, and
+sparklines all derive from snapshots. When the database isn't provisioned
+the store is a no-op: prices still compute live, movers show their honest
+"no history yet" states, and nothing crashes. Snapshots older than 30 days
+are pruned on write.
+
+The `StockTicker` marquee renders in the root layout above every page
+(pure CSS animation, pauses on hover, off under
+`prefers-reduced-motion`); the full market lives at `/stocks`.
 
 ### The stats seam (dependency inversion in the read path)
 

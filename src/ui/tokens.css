@@ -101,6 +101,12 @@
   --gh-radius-lg: 1.25rem;
   --gh-radius-pill: 999px;
 
+  /* Chrome — the stock ticker's fixed height. The ticker sticks at top:0
+   * and the site header sticks just below it (top: var(--gh-ticker-h)),
+   * so both stay visible while scrolling. Keep in sync with
+   * StockTicker.module.css. */
+  --gh-ticker-h: 2.5rem;
+
   /* Chrome */
   --gh-tabbar-h: 4.25rem;
 }

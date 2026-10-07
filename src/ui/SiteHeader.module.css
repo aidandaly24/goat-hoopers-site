@@ -2,7 +2,9 @@
 
 .header {
   position: sticky;
-  top: 0;
+  /* The stock ticker sticks at top:0 above this header — offset by the
+   * shared --gh-ticker-h token so both stay visible while scrolling. */
+  top: var(--gh-ticker-h);
   z-index: 50;
   background: color-mix(in srgb, var(--gh-bg) 86%, transparent);
   backdrop-filter: blur(12px);

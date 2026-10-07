@@ -1,0 +1,150 @@
+.surface {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s8);
+  padding: var(--gh-s8) var(--gh-s4);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s2);
+}
+
+.eyebrow {
+  color: var(--gh-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.title {
+  font-size: 2.25rem;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.lede {
+  color: var(--gh-text-dim);
+  max-width: 42rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.tape {
+  display: flex;
+  gap: var(--gh-s4);
+  margin-top: var(--gh-s2);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.tapeUp {
+  color: var(--gh-win);
+}
+
+.tapeDown {
+  color: var(--gh-loss);
+}
+
+.tapeNew {
+  color: var(--gh-gold);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gh-s4);
+  grid-template-columns: 1fr;
+}
+
+.empty {
+  color: var(--gh-text-faint);
+  font-style: italic;
+  margin: 0;
+}
+
+.asof {
+  color: var(--gh-text-faint);
+  font-size: 0.8rem;
+}
+
+.board {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto auto;
+  gap: var(--gh-s3);
+  align-items: center;
+  padding: var(--gh-s3) var(--gh-s2);
+  border-bottom: 1px solid var(--gh-border);
+  min-height: 44px;
+}
+
+.rank {
+  color: var(--gh-text-faint);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.whoName {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.whoMeta {
+  color: var(--gh-text-faint);
+  font-size: 0.78rem;
+}
+
+.rowPrice {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.rowUp {
+  color: var(--gh-win);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 4.5rem;
+  text-align: right;
+}
+
+.rowDown {
+  color: var(--gh-loss);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 4.5rem;
+  text-align: right;
+}
+
+.rowFlat {
+  color: var(--gh-text-faint);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 4.5rem;
+  text-align: right;
+}
+
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
