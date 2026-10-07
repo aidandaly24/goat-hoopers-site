@@ -19,6 +19,12 @@ export type PriceHistory = Record<string, number[]>;
 
 const HISTORY_POINTS = 10;
 const RETENTION_DAYS = 30;
+/**
+ * Minimum gap between snapshots. The site-wide ticker calls the loader on
+ * every page view (force-dynamic layout), so without this each page view
+ * would write ~1 row per priced player.
+ */
+const SNAPSHOT_MIN_INTERVAL_MS = 5 * 60 * 1000;
 
 export type StockStore = {
   getHistory(playerIds: string[]): Promise<PriceHistory>;
@@ -61,6 +67,15 @@ class DrizzleStockStore implements StockStore {
     const db = getDb();
     const entries = Object.entries(prices);
     if (entries.length === 0) return;
+    // Throttle: skip the write when the latest snapshot is still fresh.
+    const [latest] = await db
+      .select({ at: stockSnapshots.snapshotAt })
+      .from(stockSnapshots)
+      .orderBy(desc(stockSnapshots.snapshotAt))
+      .limit(1);
+    if (latest && Date.now() - latest.at.getTime() < SNAPSHOT_MIN_INTERVAL_MS) {
+      return;
+    }
     await db.insert(stockSnapshots).values(
       entries.map(([playerId, price]) => ({
         playerId,

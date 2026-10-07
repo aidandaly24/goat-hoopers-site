@@ -42,7 +42,7 @@ export function StockMarket({ market }: { market: StockMarketData }) {
       </div>
 
       <section>
-        <SectionHeading eyebrow="Movers" title="🔥 Trending" />
+        <SectionHeading eyebrow="Movers" title="Trending" />
         {market.trending.length === 0 ? (
           <p className={styles.empty}>
             {market.hasHistory
@@ -59,7 +59,7 @@ export function StockMarket({ market }: { market: StockMarketData }) {
       </section>
 
       <section>
-        <SectionHeading eyebrow="Movers" title="🧊 Falling" />
+        <SectionHeading eyebrow="Movers" title="Falling" />
         {market.falling.length === 0 ? (
           <p className={styles.empty}>
             {market.hasHistory
@@ -76,7 +76,7 @@ export function StockMarket({ market }: { market: StockMarketData }) {
       </section>
 
       <section>
-        <SectionHeading eyebrow="Signals" title="🚨 Panic Meter" />
+        <SectionHeading eyebrow="Signals" title="Panic Meter" />
         <PanicMeter signals={market.panic} />
       </section>
 
