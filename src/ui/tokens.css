@@ -109,6 +109,21 @@
 
   /* Chrome */
   --gh-tabbar-h: 4.25rem;
+
+  /* Terminal — the /stocks page is a deliberate dark island: a Bloomberg
+   * terminal room inside the broadcast desk. Pure-black canvas, amber
+   * accent, phosphor green/red for moves, mono everywhere. Scoped to the
+   * stock-market surface; nothing else should reach for these. */
+  --gh-term-bg: #060607;
+  --gh-term-panel: #0c0c0e;
+  --gh-term-raised: #131316;
+  --gh-term-line: #1e1e23;
+  --gh-term-text: #f4f4f2;
+  --gh-term-dim: #a7a7ae;
+  --gh-term-faint: #62626b;
+  --gh-term-amber: #ffa02e;
+  --gh-term-up: #2bd97c;
+  --gh-term-down: #ff5a5a;
 }
 
 /*

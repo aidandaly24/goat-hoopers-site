@@ -1,0 +1,177 @@
+.item {
+  list-style: none;
+}
+
+.row {
+  border-bottom: 1px solid var(--gh-term-line);
+}
+
+/* The quote line — the whole thing toggles the breakdown. */
+.quote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gh-s4);
+  padding: 0.85rem var(--gh-s4);
+  cursor: pointer;
+  list-style: none;
+}
+.quote::-webkit-details-marker {
+  display: none;
+}
+.quote:hover {
+  background: var(--gh-term-raised);
+}
+.row[open] .quote {
+  background: var(--gh-term-raised);
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.name {
+  color: var(--gh-term-text);
+  font-weight: 650;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  color: var(--gh-term-faint);
+  font-family: var(--gh-font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.rookie {
+  color: var(--gh-term-amber);
+}
+
+.numbers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  flex-shrink: 0;
+  font-family: var(--gh-font-mono);
+}
+
+.price {
+  color: var(--gh-term-text);
+  font-weight: 700;
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.up {
+  color: var(--gh-term-up);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.down {
+  color: var(--gh-term-down);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.flat {
+  color: var(--gh-term-faint);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.newTag {
+  color: var(--gh-term-amber);
+  border: 1px solid var(--gh-term-amber);
+  border-radius: 0.2rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.35rem;
+}
+
+/* Expanded breakdown. */
+.detail {
+  padding: 0 var(--gh-s4) var(--gh-s4);
+  background: var(--gh-term-raised);
+  border-bottom: 1px solid var(--gh-term-line);
+}
+
+.detailHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gh-s4);
+  padding-top: var(--gh-s2);
+}
+
+.spark {
+  width: 7.5rem;
+  height: 2.25rem;
+}
+
+.owned {
+  color: var(--gh-term-dim);
+  font-family: var(--gh-font-mono);
+  font-size: 0.75rem;
+}
+
+.whyHead {
+  color: var(--gh-term-faint);
+  font-family: var(--gh-font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: var(--gh-s3) 0 var(--gh-s2);
+}
+
+.factors {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.factor {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.1rem var(--gh-s3);
+  font-size: 0.82rem;
+}
+
+.factorLabel {
+  color: var(--gh-term-dim);
+}
+
+.dUp {
+  color: var(--gh-term-up);
+  font-family: var(--gh-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.dDown {
+  color: var(--gh-term-down);
+  font-family: var(--gh-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.dFlat {
+  color: var(--gh-term-faint);
+  font-family: var(--gh-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.factorNote {
+  grid-column: 1 / -1;
+  color: var(--gh-term-faint);
+  font-size: 0.75rem;
+}

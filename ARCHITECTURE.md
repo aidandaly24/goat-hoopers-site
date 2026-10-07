@@ -95,10 +95,14 @@ src/
                  # broadcast-desk framing. Receives all four datasets;
                  # never fetches.
     stock-market/ # "What is every player worth": the FAAB-denominated
-                 # stock market. StockTicker (site-wide marquee, rendered
-                 # by the root layout), StockMarket (trending / falling /
-                 # panic meter / full board). Receives domain objects,
-                 # never fetches.
+                 # stock market, styled as a Bloomberg terminal (a deliberate
+                 # dark island via the --gh-term-* tokens). StockTicker
+                 # (site-wide marquee, rendered by the root layout),
+                 # StockMarket (top gainers / decliners, panic meter, full
+                 # board), StockBoard (client-side position + rookie filter
+                 # chips), StockRow (Yahoo Finance-style quote row with
+                 # expandable factor breakdown), PanicMeter. Receives domain
+                 # objects, never fetches.
     arcade/      # "Play games, win FAAB": ArcadeHub (game list),
                  # GameDetail (rules + leaderboard + rewards),
                  # Leaderboard, RewardLedger, GameCard, ProvisionNotice.
