@@ -1,0 +1,141 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s3);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--gh-s3);
+}
+
+.name {
+  font-family: var(--gh-font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s2);
+  margin-top: var(--gh-s1);
+}
+
+.team {
+  color: var(--gh-text-dim);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.owned {
+  color: var(--gh-text-faint);
+  font-size: 0.8rem;
+}
+
+.spark {
+  width: 96px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.quote {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s3);
+}
+
+.price {
+  font-family: var(--gh-font-display);
+  font-weight: 900;
+  font-size: 1.6rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.up {
+  color: var(--gh-win);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.down {
+  color: var(--gh-loss);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.flat {
+  color: var(--gh-text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.factors {
+  border-top: 1px solid var(--gh-border);
+  padding-top: var(--gh-s2);
+}
+
+.summary {
+  cursor: pointer;
+  color: var(--gh-text-dim);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: var(--gh-s2) 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.factorList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.factor {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "label delta"
+    "note note";
+  gap: 0 var(--gh-s2);
+  padding: var(--gh-s2) 0;
+  border-top: 1px solid var(--gh-border);
+  font-size: 0.85rem;
+}
+
+.factorLabel {
+  grid-area: label;
+  color: var(--gh-text);
+  font-weight: 600;
+}
+
+.factorNote {
+  grid-area: note;
+  color: var(--gh-text-faint);
+  font-size: 0.78rem;
+}
+
+.deltaUp {
+  grid-area: delta;
+  color: var(--gh-win);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.deltaDown {
+  grid-area: delta;
+  color: var(--gh-loss);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.deltaFlat {
+  grid-area: delta;
+  color: var(--gh-text-faint);
+  font-variant-numeric: tabular-nums;
+}

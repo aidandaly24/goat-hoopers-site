@@ -15,6 +15,8 @@
  * - PlayerMove: one player movement inside a Transaction (clickable names)
  * - Transaction: waiver / free-agent / trade activity, pre-summarized
  * - DraftPick: one rookie-draft pick (player identity from pick metadata)
+ * - PlayerStock / StockMarket: the dynasty stock market — every player's
+ *   value modeled like a stock in FAAB dollars, with movers and panic signals
  * - Season: league metadata for the current season
  * - PowerRanking: the computed power order (formula in the type's doc)
  * - PlayoffOdds: simulated postseason chances (model in the type's doc)
@@ -38,6 +40,14 @@ export type { RecordBook, TeamWeekScore } from "./record-book";
 export type { MatchupPreview } from "./matchup-preview";
 export type { Transaction, TransactionType, PlayerMove } from "./transaction";
 export type { DraftPick } from "./draft";
+export type {
+  PlayerStock,
+  StockMarket,
+  StockFactor,
+  StockFactorKind,
+  StockTrend,
+  PanicSignal,
+} from "./stock";
 export type { Season } from "./season";
 export { formatSeasonStatus } from "./season";
 export type {

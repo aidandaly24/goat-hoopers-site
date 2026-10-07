@@ -1,0 +1,116 @@
+.ticker {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background: var(--gh-bg-raised);
+  border-bottom: 1px solid var(--gh-border);
+  height: var(--gh-ticker-h);
+  /* The whole bar links to /stocks. */
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  /* Sticks at the very top; the site header sticks just below
+   * (top: var(--gh-ticker-h) in SiteHeader.module.css). */
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.ticker:hover {
+  background: var(--gh-bg-hover);
+}
+
+.ticker:hover .hint {
+  color: var(--gh-gold-soft);
+}
+
+/* Fixed label — signals the bar is clickable, doesn't scroll. */
+.hint {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0 var(--gh-s3);
+  border-right: 1px solid var(--gh-border);
+  color: var(--gh-gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.viewport {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: gh-ticker-scroll 90s linear infinite;
+  will-change: transform;
+}
+
+.ticker:hover .track {
+  animation-play-state: paused;
+}
+
+@keyframes gh-ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Exactly one copy's width — the two copies are identical. */
+    transform: translateX(-50%);
+  }
+}
+
+.copy {
+  display: flex;
+  gap: var(--gh-s8);
+  padding-right: var(--gh-s8);
+}
+
+.item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--gh-s2);
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+.name {
+  color: var(--gh-text-dim);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.price {
+  color: var(--gh-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.up {
+  color: var(--gh-win);
+  font-variant-numeric: tabular-nums;
+}
+
+.down {
+  color: var(--gh-loss);
+  font-variant-numeric: tabular-nums;
+}
+
+.flat {
+  color: var(--gh-text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

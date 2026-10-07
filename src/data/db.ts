@@ -108,6 +108,25 @@ export const rewards = pgTable("rewards", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+/**
+ * Stock market price history. One row per player per snapshot; the loader
+ * writes a snapshot each time it recomputes prices (at most every 5 min,
+ * matching the league-data cache). Rows older than 30 days are pruned on
+ * write, so this table stays small.
+ *
+ * Until the database is provisioned (see top of file) the stock market
+ * simply runs without history — prices still compute, change % shows as
+ * "new". The site must never crash on a missing database.
+ */
+export const stockSnapshots = pgTable("stock_snapshots", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  /** Sleeper player_id. */
+  playerId: text("player_id").notNull(),
+  /** Price in cents — integers dodge float drift. */
+  priceCents: integer("price_cents").notNull(),
+  snapshotAt: timestamp("snapshot_at").defaultNow().notNull(),
+});
+
 export const schema = {
   siteUsers,
   inviteCodes,
@@ -115,6 +134,7 @@ export const schema = {
   sessions,
   gameScores,
   rewards,
+  stockSnapshots,
 };
 
 export type Db = ReturnType<typeof drizzle<typeof schema>>;

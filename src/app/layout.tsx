@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Anton, Geist_Mono, Inter } from "next/font/google";
+import type { PlayerStock } from "@/domain";
 import "@/ui/tokens.css";
 import "./globals.css";
 import { getCurrentUser, logout } from "@/app/actions";
-import { getSeasonMeta } from "@/data/league";
+import { getSeasonMeta, getStockMarketData } from "@/data/league";
 import { SiteHeader } from "@/ui/SiteHeader";
 import { SiteFooter } from "@/ui/SiteFooter";
 import { MobileNav } from "@/ui/MobileNav";
+import { StockTicker } from "@/surfaces/stock-market/StockTicker";
 
 /* Display: condensed arena-signage energy for headlines and scores. */
 const display = Anton({
@@ -42,6 +44,22 @@ export const metadata: Metadata = {
  */
 export const dynamic = "force-dynamic";
 
+/**
+ * Site-wide player stock ticker. Sits above the header (both stick —
+ * the ticker at top:0, the header just below it). Fails silent: a
+ * market outage renders nothing rather than breaking the page.
+ */
+async function Ticker() {
+  let stocks: PlayerStock[] = [];
+  try {
+    const market = await getStockMarketData();
+    stocks = market.stocks;
+  } catch {
+    stocks = [];
+  }
+  return <StockTicker stocks={stocks} />;
+}
+
 export default async function RootLayout({
   children,
 }: {
@@ -68,6 +86,7 @@ export default async function RootLayout({
       className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
       <body>
+        <Ticker />
         <SiteHeader user={headerUser} logoutAction={logout} />
         {children}
         <SiteFooter season={season} />
