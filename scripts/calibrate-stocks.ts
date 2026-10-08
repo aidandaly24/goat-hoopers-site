@@ -35,7 +35,7 @@ for (const [pid, e] of Object.entries<any>(pdir)) {
   if (e.full_name === "VJ Edgecombe") leaguePicks[pid] = 3;
 }
 
-const profiles = buildStatProfiles({ seasons: [last, prev], scoring, leaguePicks });
+const profiles = buildStatProfiles({ seasons: [last, prev], seasonNames: ["2025", "2024"], scoring, leaguePicks });
 
 const names = ["Nikola Jokić", "Giannis Antetokounmpo", "VJ Edgecombe", "Yaxel Lendeborg", "AJ Dybantsa", "Luka Dončić"];
 const ids: Record<string, string> = {};
