@@ -1,13 +1,13 @@
 "use client";
 
-import { useRef, useState } from "react";
-import type {
-  PlayerStock,
-  PriceHistoryPoint,
-  StockDetail,
-  StockQuote,
-} from "@/domain";
+import { useReducer, useRef } from "react";
+import type { PriceHistoryPoint, StockDetail, StockQuote } from "@/domain";
 import { formatPrice, formatPct, formatChange } from "./format";
+import {
+  createDetailLoader,
+  detailReducer,
+  type DetailState,
+} from "./detailMachine";
 import styles from "./StockRow.module.css";
 
 /**
@@ -145,12 +145,6 @@ function SeasonChart({
   );
 }
 
-type DetailState =
-  | { status: "idle" }
-  | { status: "loading" }
-  | { status: "ready"; detail: StockDetail }
-  | { status: "error" };
-
 /**
  * One player's stock as a Yahoo Finance-style quote row: name + meta on
  * the left, mono price + colored move on the right.
@@ -162,30 +156,48 @@ type DetailState =
  * The same-origin detail fetch is an allowed client boundary
  * (ARCHITECTURE.md §3): the API route owns server data access and
  * delegates to @/data/ loaders. No Sleeper/DB access in this component.
+ * Detail loading is driven by the state machine in ./detailMachine:
+ * a failed request can be retried by re-expanding the row or with the
+ * Retry button; in-flight requests are never duplicated and ready
+ * data is cached for the mounted row.
  */
 export function StockRow({ quote: s }: { quote: StockQuote }) {
-  const [detail, setDetail] = useState<DetailState>({ status: "idle" });
-  const fetching = useRef(false);
+  const [detail, dispatch] = useReducer(detailReducer, {
+    status: "idle",
+  } satisfies DetailState);
+  // Ref mirror so the async loader always reads fresh state without
+  // re-creating the loader on every render.
+  const stateRef = useRef<DetailState>(detail);
+  const loaderRef = useRef<ReturnType<typeof createDetailLoader> | null>(null);
+  if (loaderRef.current === null) {
+    loaderRef.current = createDetailLoader({
+      playerId: s.playerId,
+      fetchDetail: async (playerId) => {
+        const res = await fetch(`/api/stocks/${playerId}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return (await res.json()) as StockDetail;
+      },
+      getState: () => stateRef.current,
+      dispatch: (event) => {
+        stateRef.current = detailReducer(stateRef.current, event);
+        dispatch(event);
+      },
+    });
+  }
 
   const moveClass =
     s.trend === "up" ? styles.up : s.trend === "down" ? styles.down : styles.flat;
   const arrow = s.trend === "up" ? "▲" : s.trend === "down" ? "▼" : "▪";
 
-  async function onToggle(e: React.SyntheticEvent<HTMLDetailsElement>) {
-    if (!e.currentTarget.open || detail.status !== "idle" || fetching.current)
-      return;
-    fetching.current = true;
-    setDetail({ status: "loading" });
-    try {
-      const res = await fetch(`/api/stocks/${s.playerId}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = (await res.json()) as StockDetail;
-      setDetail({ status: "ready", detail: data });
-    } catch {
-      setDetail({ status: "error" });
-    } finally {
-      fetching.current = false;
-    }
+  function onToggle(e: React.SyntheticEvent<HTMLDetailsElement>) {
+    // Only fire on open. The loader's own guards (idle/error only,
+    // in-flight dedupe) decide whether a request goes out.
+    if (!e.currentTarget.open) return;
+    void loaderRef.current?.load();
+  }
+
+  function onRetry() {
+    void loaderRef.current?.load();
   }
 
   return (
@@ -217,7 +229,14 @@ export function StockRow({ quote: s }: { quote: StockQuote }) {
             <p className={styles.loading}>Loading the tape…</p>
           ) : detail.status === "error" ? (
             <p className={styles.loading}>
-              Couldn&apos;t load the detail — try expanding again.
+              Couldn&apos;t load the detail.{" "}
+              <button
+                type="button"
+                className={styles.retry}
+                onClick={onRetry}
+              >
+                Retry
+              </button>
             </p>
           ) : (
             <>

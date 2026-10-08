@@ -24,11 +24,13 @@ import type {
   TeamProfile,
   Matchup,
   StockMarket,
+  StockQuote,
   StockDetail,
   NewsArticle,
 } from "@/domain";
 import type { PlayerStatProfile } from "@/domain";
 import type { PriceHistoryPoint } from "@/domain";
+import { signedStreak } from "@/domain";
 import {
   fetchLeague,
   fetchRosters,
@@ -54,6 +56,7 @@ import {
   toStandings,
   toMatchups,
   toTransactions,
+  selectRecentTransactions,
   toPlayer,
   toDraftPicks,
   computeLeagueStats,
@@ -62,7 +65,6 @@ import {
   marketCandidateIds,
   toStockDetail,
   emptyLeagueStats,
-  currentStreak,
   type LeagueStatsInput,
   type StockMarketInput,
 } from "./transform";
@@ -79,6 +81,11 @@ import { getStockStore } from "./stocks";
 import { getDb, type Db } from "./db";
 import { getStatProfiles, getSeasonHistory } from "./nba-stats";
 import { generateLeagueNews } from "./news";
+import { createTtlCache } from "./cache";
+/* Headshot seam: the Sleeper -> ESPN id map is injected into the toPlayer /
+ * toDraftPicks transforms here (rule 11). Swap SEED_ESPN_ID_MAP for Aidan's
+ * full mapping table when it lands — no component changes. */
+import { SEED_ESPN_ID_MAP, resolveEspnId } from "./espn";
 
 export type SeasonHubData = {
   season: Season;
@@ -98,6 +105,51 @@ async function safePlayerDirectory(): Promise<Record<
   } catch {
     return null;
   }
+}
+
+/**
+ * Conservative calendar ceiling for one annual NBA season, including
+ * postseason: a 366-day window can overlap at most 54 weekly buckets
+ * when its first week is partial (ceil((366 + 6) / 7)). This is a safety
+ * bound, not the league's scheduled last week, so it does not truncate
+ * playoff or late-season activity. NBA calendar: https://www.nba.com/news/key-dates
+ */
+const MAX_NBA_SEASON_WEEKS = Math.ceil((366 + 6) / 7);
+
+/**
+ * Valid season weeks for transaction/matchup fetching. Preseason always
+ * uses week 1, regardless of the provider's placeholder week. Missing or
+ * invalid state yields [] before allocation; feed/history callers retain
+ * their explicitly bounded week-1 fallback.
+ */
+export function validSeasonWeeks(state: RawNbaState | null): number[] {
+  if (state?.season_type === "pre") return [1];
+  const week = state?.week;
+  if (
+    typeof week !== "number" ||
+    !Number.isInteger(week) ||
+    !Number.isFinite(week) ||
+    week < 1 ||
+    week > MAX_NBA_SEASON_WEEKS
+  ) {
+    return [];
+  }
+  return Array.from({ length: week }, (_, i) => i + 1);
+}
+
+/**
+ * Fetch raw transactions for valid season weeks. One shared assembly
+ * powers stats, history, and the homepage feed. Partial week failures
+ * resolve to empty for that week — surviving moves are preserved.
+ */
+export async function fetchTransactionsByWeek(
+  weeks: number[]
+): Promise<RawTransaction[][]> {
+  return Promise.all(
+    weeks.map((w): Promise<RawTransaction[]> =>
+      fetchTransactions(w).catch(() => [])
+    )
+  );
 }
 
 /**
@@ -122,19 +174,14 @@ async function fetchStatsInput(teams: Team[]): Promise<LeagueStatsInput> {
   if (state === null || !hasGames) {
     return { teams, matchupsByWeek: [], transactionsByWeek: [], hasGames: false };
   }
-  const currentWeek = Math.max(1, state.week);
-  const weeks = Array.from({ length: currentWeek }, (_, i) => i + 1);
+  const weeks = validSeasonWeeks(state);
   const [matchupWeeks, txWeeks] = await Promise.all([
     Promise.all(
       weeks.map((w): Promise<RawMatchupEntry[]> =>
         fetchMatchups(w).catch(() => [])
       )
     ),
-    Promise.all(
-      weeks.map((w): Promise<RawTransaction[]> =>
-        fetchTransactions(w).catch(() => [])
-      )
-    ),
+    fetchTransactionsByWeek(weeks),
   ]);
   return {
     teams,
@@ -175,17 +222,21 @@ export async function getSeasonHubData(): Promise<SeasonHubData> {
     stats = emptyLeagueStats();
   }
 
-  // Recent transactions. Week 1 in the preseason; empty is a valid state.
+  // Recent transactions: the newest ten moves across valid season weeks
+  // (preseason = week 1 on the Sleeper API). Falls back to earlier weeks
+  // when the current week is quiet; empty is a valid state.
   // Transactions carry only player_ids, so names need the directory —
   // but only fetch it when there's actually something to resolve.
   let transactions: Transaction[] = [];
   try {
-    const rawTx = await fetchTransactions(1);
-    const directory = rawTx.length > 0 ? await safePlayerDirectory() : null;
-    transactions = toTransactions(rawTx, teams, rosters, users, directory).slice(
-      0,
-      10
+    const weeks = validSeasonWeeks(nbaState);
+    // Preseason convention: week 1, never week 0.
+    const fetchWeeks = weeks.length > 0 ? weeks : [1];
+    const rawTx = selectRecentTransactions(
+      await fetchTransactionsByWeek(fetchWeeks)
     );
+    const directory = rawTx.length > 0 ? await safePlayerDirectory() : null;
+    transactions = toTransactions(rawTx, teams, rosters, users, directory);
   } catch {
     transactions = [];
   }
@@ -212,7 +263,9 @@ export async function getTeamDetail(teamId: string): Promise<TeamDetail | null> 
   const ids = raw.players ?? [];
   if (ids.length === 0) return { team, players: [] };
   const directory = await safePlayerDirectory();
-  const players = ids.map((pid) => toPlayer(pid, directory?.[pid]));
+  const players = ids.map((pid) =>
+    toPlayer(pid, directory?.[pid], resolveEspnId(pid, SEED_ESPN_ID_MAP)),
+  );
   return { team, players };
 }
 
@@ -253,15 +306,74 @@ export async function getTransactionHistory(): Promise<TransactionHistoryData> {
     return { transactions: [], teams: [] };
   }
   const teams = toTeams(rosters, users);
-  const maxWeek = Math.max(1, nbaState?.week ?? 1);
-  const weeks = Array.from({ length: maxWeek }, (_, i) => i + 1);
-  const txWeeks = await Promise.all(
-    weeks.map((w) => fetchTransactions(w).catch(() => [] as RawTransaction[]))
-  );
+  const weeks = validSeasonWeeks(nbaState);
+  const fetchWeeks = weeks.length > 0 ? weeks : [1];
+  const txWeeks = await fetchTransactionsByWeek(fetchWeeks);
   const raw = txWeeks.flat();
   if (raw.length === 0) return { transactions: [], teams };
   const directory = await safePlayerDirectory();
   return { transactions: toTransactions(raw, teams, rosters, users, directory), teams };
+}
+
+/**
+ * Low-level fetchers for the strict news loaders. Injectable so tests can
+ * drive the real loaders with fake clients (rule 11). Defaults are the
+ * real Sleeper fetchers.
+ */
+export type NewsFetchers = {
+  fetchRosters?: typeof fetchRosters;
+  fetchUsers?: typeof fetchUsers;
+  fetchNbaState?: typeof fetchNbaState;
+  fetchTransactions?: typeof fetchTransactions;
+  fetchDrafts?: typeof fetchDrafts;
+  fetchDraftPicks?: typeof fetchDraftPicks;
+  fetchDirectory?: typeof safePlayerDirectory;
+};
+
+/**
+ * Strict transaction history for the news loader (P1 last-good fix).
+ *
+ * Unlike getTransactionHistory — which degrades per-week failures into []
+ * so stats/history pages stay resilient — every upstream failure here
+ * throws, so the news TTL cache preserves last-good instead of caching an
+ * empty feed for 5 minutes.
+ *
+ * Empty results are still legitimate: a quiet week returns no transactions,
+ * and that successfully-fetched emptiness is returned, not thrown. The
+ * invariant is "failure throws", not "empty throws".
+ */
+export async function getTransactionHistoryStrict(
+  fetchers: NewsFetchers = {}
+): Promise<TransactionHistoryData> {
+  const {
+    fetchRosters: getRosters = fetchRosters,
+    fetchUsers: getUsers = fetchUsers,
+    fetchNbaState: getState = fetchNbaState,
+    fetchTransactions: getTx = fetchTransactions,
+    fetchDirectory: getDirectory = safePlayerDirectory,
+  } = fetchers;
+  // No catch: rosters/users/state failures throw. State is required —
+  // without it we cannot know which weeks are "recent", and a week-1-only
+  // fallback could cache an empty feed mid-season.
+  const [rosters, users, nbaState] = await Promise.all([
+    getRosters(),
+    getUsers(),
+    getState(),
+  ]);
+  const teams = toTeams(rosters, users);
+  const weeks = validSeasonWeeks(nbaState);
+  const fetchWeeks = weeks.length > 0 ? weeks : [1];
+  // Strict: no per-week catch. A 503 on /transactions/1 throws here; the
+  // cache keeps last-good instead of mistaking the failure for "no moves".
+  const txWeeks = await Promise.all(fetchWeeks.map((w) => getTx(w)));
+  const raw = txWeeks.flat();
+  if (raw.length === 0) return { transactions: [], teams };
+  // Directory is best-effort (names degrade to stubs, not a failed feed).
+  const directory = await getDirectory();
+  return {
+    transactions: toTransactions(raw, teams, rosters, users, directory),
+    teams,
+  };
 }
 
 export type DraftBoardData = {
@@ -305,11 +417,48 @@ export async function getDraftBoard(): Promise<DraftBoardData> {
       drafts.find((d) => d.season === "2026" && d.status === "complete") ??
       drafts[0];
     if (!draft) return { picks: [], teams };
-    const picks = toDraftPicks(await fetchDraftPicks(draft.draft_id));
+    const picks = toDraftPicks(
+      await fetchDraftPicks(draft.draft_id),
+      SEED_ESPN_ID_MAP,
+    );
     return { picks, teams };
   } catch {
     return { picks: [], teams: [] };
   }
+}
+
+/**
+ * Strict draft board for the news loader (P1 last-good fix).
+ *
+ * Every upstream failure throws: if the drafts, rosters, users, or picks
+ * fetch fails, the news TTL cache preserves last-good instead of caching
+ * a feed with a silently missing rookie-wire section.
+ *
+ * "No draft on record" is legitimate (pre-draft league) — that returns
+ * empty picks, not a throw. A successful-but-empty picks fetch is likewise
+ * returned as-is; the invariant is "failure throws", not "empty throws".
+ */
+export async function getDraftBoardStrict(
+  fetchers: NewsFetchers = {}
+): Promise<DraftBoardData> {
+  const {
+    fetchDrafts: getDrafts = fetchDrafts,
+    fetchRosters: getRosters = fetchRosters,
+    fetchUsers: getUsers = fetchUsers,
+    fetchDraftPicks: getPicks = fetchDraftPicks,
+  } = fetchers;
+  const [drafts, rosters, users] = await Promise.all([
+    getDrafts(),
+    getRosters(),
+    getUsers(),
+  ]);
+  const teams = toTeams(rosters, users);
+  const draft =
+    drafts.find((d) => d.season === "2026" && d.status === "complete") ??
+    drafts[0];
+  if (!draft) return { picks: [], teams };
+  const picks = toDraftPicks(await getPicks(draft.draft_id));
+  return { picks, teams };
 }
 
 /* ---------------- data tools (DATA pillar) ---------------- */
@@ -322,7 +471,7 @@ async function fetchDraftPicksSafe(): Promise<DraftPick[]> {
       drafts.find((d) => d.season === "2026" && d.status === "complete") ??
       drafts[0];
     if (!draft) return [];
-    return toDraftPicks(await fetchDraftPicks(draft.draft_id));
+    return toDraftPicks(await fetchDraftPicks(draft.draft_id), SEED_ESPN_ID_MAP);
   } catch {
     return [];
   }
@@ -462,7 +611,11 @@ export async function getPlayerDetail(
       getTransactionHistory(),
       fetchDraftPicksSafe(),
     ]);
-    const player = toPlayer(playerId, directory?.[playerId]);
+    const player = toPlayer(
+      playerId,
+      directory?.[playerId],
+      resolveEspnId(playerId, SEED_ESPN_ID_MAP),
+    );
 
     let team: Team | null = null;
     for (const r of rosters) {
@@ -508,7 +661,7 @@ export async function getTeamProfile(
     const team = toTeam(raw, byId.get(raw.owner_id));
 
     const players = (raw.players ?? []).map((pid) =>
-      toPlayer(pid, directory?.[pid])
+      toPlayer(pid, directory?.[pid], resolveEspnId(pid, SEED_ESPN_ID_MAP)),
     );
 
     const matchupsByWeek = input?.matchupsByWeek ?? [];
@@ -520,7 +673,7 @@ export async function getTeamProfile(
       )
       .sort((a, b) => b.week - a.week);
 
-    const streak = currentStreak(team.id, matchupsByWeek);
+    const streak = signedStreak(team.id, matchupsByWeek);
     const draftPicks = picks.filter((p) => p.teamId === team.id);
 
     // Recent wire activity for this team (best-effort).
@@ -703,7 +856,7 @@ const getMarketInputs = cache(async (): Promise<StockMarketInput> => {
   let history: Record<string, PriceHistoryPoint[]> | null = null;
   try {
     const players = directory ?? {};
-    history = await getStockStore().getHistory(
+    history = await getStockStore().getQuoteHistory(
       marketCandidateIds({
         players,
         rosteredCount,
@@ -737,6 +890,17 @@ export const getStockMarketData = cache(
     const input = await getMarketInputs();
     const market = computeStockMarket(input);
 
+    // Attach headshot ids via the espn.ts seam (same rule-11 pattern as the
+    // toPlayer/toDraftPicks wiring — the pricing math stays pure).
+    const withHeadshots = (quotes: StockQuote[]): StockQuote[] =>
+      quotes.map((q) => ({
+        ...q,
+        espnId: resolveEspnId(q.playerId, SEED_ESPN_ID_MAP),
+      }));
+    market.stocks = withHeadshots(market.stocks);
+    market.trending = withHeadshots(market.trending);
+    market.falling = withHeadshots(market.falling);
+
     // Persist this snapshot for next time's change %. Fire-and-forget safe:
     // a failed write must never break the page.
     try {
@@ -766,6 +930,10 @@ export async function getStockDetail(
     const found = stocks.find((s) => s.playerId === playerId);
     if (!found) return null;
     const detail = toStockDetail(found);
+    // Only the selected player's chart crosses the store boundary on expand.
+    // Preserve the pricing engine's current modeled point and its date/source.
+    const pricePath = await getStockStore().getPricePath(playerId);
+    detail.spark = [...pricePath.slice(-39), found.spark[found.spark.length - 1]];
     // Season history loads on expand only (F4) — overlay the single
     // player's jsonb instead of carrying 700 rows through the hot path.
     detail.seasonHistory = await getSeasonHistory(getDb(), playerId);
@@ -778,16 +946,76 @@ export async function getStockDetail(
 /**
  * Everything the League News Network needs: the auto-generated article
  * feed. Pure generation (`generateLeagueNews`) over the transaction
- * history and rookie draft board. Resilient like every loader — a failed
- * section degrades to an empty feed instead of throwing the page.
+ * history and rookie draft board.
+ *
+ * Reuse: the feed is public, read-only data (transactions, draft picks,
+ * teams — nothing session-scoped), so one cached copy is shared across
+ * requests — the root-layout ticker and /news no longer recompute it
+ * independently. Freshness is 5 minutes, matching the underlying
+ * transaction cache and the /news page revalidate. A failed refresh
+ * serves the last-good feed; a cold-start failure degrades to an empty
+ * feed instead of throwing the page.
  */
+export const LEAGUE_NEWS_TTL_MS = 5 * 60 * 1000;
+
+export type LeagueNewsLoadDeps = {
+  /** Strict transaction history loader. Defaults to getTransactionHistoryStrict. */
+  fetchTxHistory?: () => Promise<TransactionHistoryData>;
+  /** Strict draft board loader. Defaults to getDraftBoardStrict. */
+  fetchDraft?: () => Promise<DraftBoardData>;
+};
+
+/**
+ * Load one edition of the news feed.
+ *
+ * P1 last-good invariant: the default loaders are the strict variants,
+ * which throw on any upstream failure (transactions 503, draft fetch
+ * failure, rosters/users/state failure). The TTL cache then preserves
+ * last-good instead of caching a failure-degraded feed. Empty-but-
+ * successfully-fetched inputs are legitimate and return a (possibly
+ * quiet) feed — the invariant is "failure throws", not "empty throws".
+ *
+ * Loaders are injectable for tests (rule 11); production uses the
+ * module defaults.
+ */
+export async function loadLeagueNews(
+  deps: LeagueNewsLoadDeps = {}
+): Promise<NewsArticle[]> {
+  const {
+    fetchTxHistory = () => getTransactionHistoryStrict(),
+    fetchDraft = () => getDraftBoardStrict(),
+  } = deps;
+  const [{ transactions, teams }, { picks }] = await Promise.all([
+    fetchTxHistory(),
+    fetchDraft(),
+  ]);
+  return generateLeagueNews({ transactions, picks, teams });
+}
+
+export type LeagueNewsCacheDeps = {
+  /** Injectable clock (tests). */
+  now?: () => number;
+  /** Injectable loader (tests). */
+  load?: () => Promise<NewsArticle[]>;
+  /** Injectable TTL (tests). */
+  ttlMs?: number;
+};
+
+/**
+ * Build the shared news cache. Dependency-inverted so tests can inject a
+ * fake clock and loader; production uses the module singleton behind
+ * getLeagueNews().
+ */
+export function createLeagueNewsCache(deps: LeagueNewsCacheDeps = {}) {
+  const { now, load = loadLeagueNews, ttlMs = LEAGUE_NEWS_TTL_MS } = deps;
+  return createTtlCache(load, { ttlMs, now });
+}
+
+const leagueNewsCache = createLeagueNewsCache();
+
 export async function getLeagueNews(): Promise<NewsArticle[]> {
   try {
-    const [{ transactions, teams }, { picks }] = await Promise.all([
-      getTransactionHistory(),
-      getDraftBoard(),
-    ]);
-    return generateLeagueNews({ transactions, picks, teams });
+    return await leagueNewsCache.get();
   } catch {
     return [];
   }

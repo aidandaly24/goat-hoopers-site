@@ -95,6 +95,7 @@ export function TeamProfile({
         <div className={styles.hooperStage}>
           <HooperViewer
             rosterId={Number.parseInt(team.id, 10)}
+            teamName={team.name}
             ariaLabel={`${team.name} figurine. Activate for a trick.`}
           />
         </div>

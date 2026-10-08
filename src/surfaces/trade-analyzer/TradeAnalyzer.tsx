@@ -1,15 +1,51 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import type { StockQuote, TradeVerdict } from "@/domain";
 import { analyzeTrade, tradeTotal } from "@/domain";
+import { decodeTrade, encodeTradeUrl } from "./tradeUrl";
 import styles from "./TradeAnalyzer.module.css";
 
 const MAX_RESULTS = 8;
+const COPY_RESET_MS = 2000;
 
 function fmt(n: number): string {
   return `$${n.toFixed(2)}`;
+}
+
+function copyLabel(state: "idle" | "ok" | "fail"): string {
+  switch (state) {
+    case "ok":
+      return "> COPIED!";
+    case "fail":
+      return "> COPY FAILED — COPY URL MANUALLY";
+    default:
+      return "> COPY LINK";
+  }
+}
+
+async function copyText(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    // Clipboard API unavailable (permissions, insecure context) — fall back.
+  }
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand("copy");
+    ta.remove();
+    return ok;
+  } catch {
+    return false;
+  }
 }
 
 function SidePicker({
@@ -149,10 +185,26 @@ function verdictCopy(v: TradeVerdict): {
  * Client surface: two pickers (Team A / Team B) with search, running
  * totals, and a verdict band from the domain's analyzeTrade. Receives
  * slim StockQuotes; never fetches.
+ *
+ * Share links: both sides are encoded as `?a=<ids>&b=<ids>` in the URL
+ * (native replaceState, no server navigation or extra history entry).
+ * The URL owns the picks, including incoming links and Back/Forward;
+ * unknown/stale IDs are dropped silently. Copy serializes displayed picks.
  */
 export function TradeAnalyzer({ stocks }: { stocks: StockQuote[] }) {
-  const [sideA, setSideA] = useState<StockQuote[]>([]);
-  const [sideB, setSideB] = useState<StockQuote[]>([]);
+  const searchParams = useSearchParams();
+  const { a: sideA, b: sideB } = useMemo(
+    () => decodeTrade(searchParams, stocks),
+    [searchParams, stocks]
+  );
+  const [copied, setCopied] = useState<"idle" | "ok" | "fail">("idle");
+
+  // Canonicalize incoming links from the latest URL, never from an old render.
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const next = encodeTradeUrl(url.href, decodeTrade(url.searchParams, stocks));
+    if (next !== url.href) window.history.replaceState(null, "", next);
+  }, [searchParams, stocks]);
 
   const pickedIds = useMemo(
     () => new Set([...sideA, ...sideB].map((p) => p.playerId)),
@@ -160,14 +212,25 @@ export function TradeAnalyzer({ stocks }: { stocks: StockQuote[] }) {
   );
 
   const add = (side: "A" | "B") => (q: StockQuote) => {
-    const set = side === "A" ? setSideA : setSideB;
-    set((prev) =>
-      prev.some((p) => p.playerId === q.playerId) ? prev : [...prev, q]
-    );
+    const url = new URL(window.location.href);
+    const picks = decodeTrade(url.searchParams, stocks);
+    if ([...picks.a, ...picks.b].some((p) => p.playerId === q.playerId)) return;
+    picks[side === "A" ? "a" : "b"].push(q);
+    window.history.replaceState(null, "", encodeTradeUrl(url.href, picks));
   };
   const remove = (side: "A" | "B") => (playerId: string) => {
-    const set = side === "A" ? setSideA : setSideB;
-    set((prev) => prev.filter((p) => p.playerId !== playerId));
+    const url = new URL(window.location.href);
+    const picks = decodeTrade(url.searchParams, stocks);
+    const key = side === "A" ? "a" : "b";
+    picks[key] = picks[key].filter((p) => p.playerId !== playerId);
+    window.history.replaceState(null, "", encodeTradeUrl(url.href, picks));
+  };
+
+  const onCopyLink = async () => {
+    const url = encodeTradeUrl(window.location.href, { a: sideA, b: sideB });
+    const ok = await copyText(url);
+    setCopied(ok ? "ok" : "fail");
+    window.setTimeout(() => setCopied("idle"), COPY_RESET_MS);
   };
 
   const verdict = analyzeTrade(sideA, sideB);
@@ -182,6 +245,14 @@ export function TradeAnalyzer({ stocks }: { stocks: StockQuote[] }) {
           Price a hypothetical deal in FAAB dollars. Within 10% is fair,
           10–25% leans, 25%+ is a fleece.
         </p>
+        <button
+          type="button"
+          className={styles.copyLink}
+          onClick={onCopyLink}
+          aria-live="polite"
+        >
+          {copyLabel(copied)}
+        </button>
       </header>
       <div className={styles.columns}>
         <SidePicker
