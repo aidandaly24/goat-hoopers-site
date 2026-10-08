@@ -89,6 +89,11 @@ its own change. No snapshot retention policy or live pricing formula is changed.
 Offline tests cover the corrected season convention, current-game inclusion,
 EMA reset, birthdays/timezones, available-at picks, complete-coverage fallback,
 input validation, artifact hashes, live-only movers and replacement planning.
+Dataset IDs bind the complete published manifest, including provenance,
+scoring, assumptions and season metadata. Editing those at the reviewed ID
+fails validation. Game paths prefer frozen completed prior-season totals over
+partial logs, falling back to log means when totals are absent; current/future
+full-season aggregates never influence earlier dated points.
 Build and TypeScript pass with both database environment variables removed.
 
 For real SQL testing, start a dedicated local synthetic database:

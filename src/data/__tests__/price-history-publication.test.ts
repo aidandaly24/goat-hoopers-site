@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { publishReconstructedPoints } from "../stocks";
-import { createPriceHistoryArtifact, contentHash } from "../price-history-artifact";
+import { createPriceHistoryArtifact, contentHash, artifactDatasetId } from "../price-history-artifact";
 import { createPublicationPlan } from "../price-history-plan";
 import type { Db } from "../db";
 
@@ -46,8 +46,7 @@ const artifact = () => {
     seasonHistory: {}, draftPicks: [] }, { description: "Synthetic", revision: "fixture", scoring: { pts: 0.5 }, limitations: ["Synthetic fixture"] }, "fixture-model");
   result.points = Array.from({ length: 1200 }, (_, i) => ({ ...result.points[0], playerId: `p${i}` }));
   result.manifest.rows = 1200; result.manifest.players = 1200; result.manifest.pointsHash = contentHash(result.points);
-  result.manifest.datasetId = contentHash({ inputHash: result.manifest.inputHash, modelCodeHash: result.manifest.modelCodeHash,
-    pointsHash: result.manifest.pointsHash, reconstructionVersion: "2" });
+  result.manifest.datasetId = artifactDatasetId(result.manifest);
   return result;
 };
 
@@ -76,5 +75,12 @@ describe("explicit publication transaction", () => {
     data.points[0].priceCents++;
     await expect(publishReconstructedPoints(store.db, data, plan)).rejects.toThrow();
     expect(store.batches()).toBe(0);
+  });
+  it("rejects changed audit metadata before submitting any database work", async () => {
+    const store = fakePublisher(), data = artifact(), plan = createPublicationPlan([], data);
+    data.manifest.source.revision = "Different unreviewed revision";
+    await expect(publishReconstructedPoints(store.db, data, plan)).rejects.toThrow(/Invalid or changed/);
+    expect(store.batches()).toBe(0);
+    expect(store.rows()).toEqual(["previous-good-generation"]);
   });
 });

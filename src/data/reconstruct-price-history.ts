@@ -29,6 +29,18 @@ export function reconstructPriceHistory(input: ReconstructionInput): Reconstruct
   }
   const points: ReconstructedPoint[] = [];
   const coverage = new Map<string, number>();
+  const completedSeasons = new Map<string, Map<number, { fppg: number; games: number }>>();
+  for (const [id, history] of Object.entries(input.seasonHistory)) {
+    if (!input.directory[id]) throw new Error(`Missing directory entry for ${id}`);
+    const seasons = new Map<number, { fppg: number; games: number }>();
+    for (const h of history) {
+      const y = Number(h.season);
+      if (!/^\d{4}$/.test(h.season) || !Number.isInteger(y) || !Number.isInteger(h.games) || !(h.games > 0) || !Number.isFinite(h.fppg)) throw new Error(`Invalid season for ${id}`);
+      if (seasons.has(y)) throw new Error(`Duplicate season for ${id}`);
+      seasons.set(y, h);
+    }
+    completedSeasons.set(id, seasons);
+  }
   const pickAt = (id: string, date: string) => input.draftPicks
     .filter(p => p.playerId === id && calendarDate(p.availableOn) <= date)
     .sort((a, b) => a.availableOn.localeCompare(b.availableOn))[0]?.pick ?? null;
@@ -60,7 +72,11 @@ export function reconstructPriceHistory(input: ReconstructionInput): Reconstruct
       totals.set(y, t);
       coverage.set(`${id}|${y}`, t.games);
     }
-    const avg = (y: number) => {
+    // Full frozen season totals take precedence over absent/partial game logs.
+    // Call only for years preceding the dated game's season: no current/future totals.
+    const previousProduction = (y: number) => {
+      const completed = completedSeasons.get(id)?.get(y);
+      if (completed) return completed.fppg;
       const t = totals.get(y);
       return t ? t.fppg / t.games : null;
     };
@@ -76,7 +92,7 @@ export function reconstructPriceHistory(input: ReconstructionInput): Reconstruct
       const updated = emaUpdate(ema, emaGames, g.fppg,
         emaAlpha(historicalAge(entry.birth_date, g.date), Math.max(minutes, yearsExp * 1500)));
       ema = updated.ema; emaGames = updated.games; minutes += g.minutes;
-      const l = avg(y - 1), p = avg(y - 2);
+      const l = previousProduction(y - 1), p = previousProduction(y - 2);
       const trailing = l != null && p != null ? round2(0.65 * l + 0.35 * p) : l;
       const sw = Math.min(emaGames / 20, 0.5);
       const production = trailing == null ? ema : round2((1 - sw) * trailing + sw * ema);
@@ -84,11 +100,8 @@ export function reconstructPriceHistory(input: ReconstructionInput): Reconstruct
     }
   }
   for (const [id, history] of Object.entries(input.seasonHistory)) {
-    if (!input.directory[id]) throw new Error(`Missing directory entry for ${id}`);
-    if (new Set(history.map(h => h.season)).size !== history.length) throw new Error(`Duplicate season for ${id}`);
     for (const h of history) {
       const y = Number(h.season);
-      if (!/^\d{4}$/.test(h.season) || !Number.isInteger(y) || !Number.isInteger(h.games) || !(h.games > 0) || !Number.isFinite(h.fppg)) throw new Error(`Invalid season for ${id}`);
       // Sleeper 2023 is 2023-24. Only complete log coverage supersedes the yearly point.
       if ((coverage.get(`${id}|${y}`) ?? 0) >= h.games) continue;
       const date = calendarDate(`${y + 1}-06-30`);

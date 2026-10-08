@@ -268,7 +268,9 @@ snapshots only. `src/data/reconstruct-price-history.ts` is the pure,
 offline reconstruction seam. Sleeper season `2023` means `2023-24`,
 with a yearly fallback dated June 30, 2024. Game prices include that
 game; in-season EMA resets each season. Full prior-season production
-is used only in later seasons. Calendar dates/birthdays use explicit
+is used only in later seasons: frozen completed-season totals take precedence
+over partial/missing game logs; log means are the fallback when totals are absent.
+Current/future full-season totals never feed a dated game point. Calendar dates/birthdays use explicit
 UTC date-only semantics. A yearly point is superseded only when logs
 cover its expected games; the rolling window is applied in memory.
 When the database isn't
@@ -295,6 +297,8 @@ live in `src/data/price-history-artifact.ts`.
 2. `npm run price-history:prepare -- inputs.json candidate.json` runs offline
    and produces points plus source/input/model/output hashes, model version,
    reconstruction version, expected counts and approximation assumptions.
+   The dataset ID hashes the complete published manifest (excluding only its own
+   ID), including source/scoring/assumptions/season metadata and the points hash.
 3. Retain a read-only export with IDs and UTC dates. `npm run price-history:plan
    -- backup.json candidate.json plan.json` reports exact affected classes and
    hashes. `npm run price-history:import -- candidate.json --plan=plan.json`

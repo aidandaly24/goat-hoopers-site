@@ -5,7 +5,7 @@ import { Pool } from "pg";
 import { neonConfig } from "@neondatabase/serverless";
 import { createImportDb } from "../db";
 import { publishReconstructedPoints } from "../stocks";
-import { createPriceHistoryArtifact, contentHash } from "../price-history-artifact";
+import { createPriceHistoryArtifact, contentHash, artifactDatasetId } from "../price-history-artifact";
 import { createPublicationPlan } from "../price-history-plan";
 import type { ExistingHistoryPoint } from "../../domain/price-history-import";
 
@@ -23,8 +23,7 @@ const candidate = (price = 1000) => {
     { description: "Synthetic local database fixture", revision: "fixture", scoring: { pts: 0.5 }, limitations: ["Synthetic inputs"] }, "fixture-model");
   data.points = Array.from({ length: 1200 }, (_, i) => ({ ...data.points[0], playerId: `p${String(i).padStart(4, "0")}`, priceCents: price }));
   data.manifest.rows = 1200; data.manifest.players = 1200; data.manifest.pointsHash = contentHash(data.points);
-  data.manifest.datasetId = contentHash({ inputHash: data.manifest.inputHash, modelCodeHash: data.manifest.modelCodeHash,
-    pointsHash: data.manifest.pointsHash, reconstructionVersion: "2" });
+  data.manifest.datasetId = artifactDatasetId(data.manifest);
   return data;
 };
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { calendarDate, historicalAge, reconstructPriceHistory } from "../reconstruct-price-history";
 import { createPriceHistoryArtifact, validatePriceHistoryArtifact } from "../price-history-artifact";
 import { computeStockMarket } from "../transform";
-import type { ReconstructionInput } from "../../domain/price-history-import";
+import type { ReconstructionInput, PriceHistoryArtifact } from "../../domain/price-history-import";
 
 const game = (date: string, fppg: number, season = "2023-24") => ({ date, fppg, season, minutes: 30 });
 const input = (games = [game("2023-10-25", 10), game("2023-10-27", 10)]): ReconstructionInput => ({
@@ -66,6 +66,59 @@ describe("reconstructed price history", () => {
     expect(() => validatePriceHistoryArtifact(first)).not.toThrow();
     first.points[0].priceCents++;
     expect(() => validatePriceHistoryArtifact(first)).toThrow();
+  });
+  it.each<[string, (a: PriceHistoryArtifact) => void]>([
+    ["source.description", a => { a.manifest.source.description = "Changed source"; }],
+    ["source.revision", a => { a.manifest.source.revision = "Changed revision"; }],
+    ["source.scoring", a => { a.manifest.source.scoring.pts = 999; }],
+    ["source.limitations", a => { a.manifest.source.limitations = []; }],
+    ["assumptions", a => { a.manifest.assumptions = ["Observed exact prices"]; }],
+    ["directorySeason", a => { a.manifest.directorySeason = 2030; }],
+    ["currentSeasonStartYear", a => { a.manifest.currentSeasonStartYear = 2030; }],
+  ])("rejects changed %s at the unchanged reviewed dataset ID", (_field, mutate) => {
+    const original = createPriceHistoryArtifact(input(), source, "model-code-fixture");
+    const saved = structuredClone(original); mutate(saved);
+    expect(saved.manifest.datasetId).toBe(original.manifest.datasetId);
+    expect(() => validatePriceHistoryArtifact(saved)).toThrow(/Invalid or changed/);
+  });
+  it("changes the dataset ID when published assumptions change", () => {
+    const first = createPriceHistoryArtifact(input(), source, "model-code-fixture");
+    const changed = createPriceHistoryArtifact(input(), { ...source, limitations: ["Different coverage limitation"] }, "model-code-fixture");
+    expect(changed.manifest.datasetId).not.toBe(first.manifest.datasetId);
+    expect(() => validatePriceHistoryArtifact(changed)).not.toThrow();
+  });
+  it("uses available completed-season production without prior game logs", () => {
+    const fixture = input([game("2023-10-25", 0)]);
+    fixture.directory.p = { birth_date: "1995-01-01", years_exp: 10 };
+    fixture.seasonHistory.p = [{ season: "2022", fppg: 30, games: 82 }];
+    // Independent review fixture: 95% of 30 + 5% of 0 = 28.5 production FPPG.
+    expect(reconstructPriceHistory(fixture).find(p => p.source === "gamelog")!.priceCents).toBe(6412);
+  });
+  it("prefers full prior-season totals over partial logs and falls back to logs when absent", () => {
+    const fixture = input([game("2022-10-25", 100, "2022-23"), game("2023-10-25", 0)]);
+    fixture.directory.p = { birth_date: "1995-01-01", years_exp: 10 };
+    fixture.seasonHistory.p = [{ season: "2022", fppg: 30, games: 82 }];
+    const opening = (f: ReconstructionInput) => reconstructPriceHistory(f).find(p => p.source === "gamelog" && p.season === "2023-24")!.priceCents;
+    expect(opening(fixture)).toBe(6412);
+    fixture.seasonHistory = {};
+    expect(opening(fixture)).toBeGreaterThan(6412);
+    fixture.players.p.games[0].fppg = 30;
+    expect(opening(fixture)).toBe(6412);
+  });
+  it("never uses current or future full-season totals in a dated game price", () => {
+    const fixture = input([game("2023-10-25", 0)]);
+    fixture.directory.p = { birth_date: "1995-01-01", years_exp: 10 };
+    fixture.seasonHistory.p = [{ season: "2022", fppg: 30, games: 82 }];
+    const before = reconstructPriceHistory(fixture).filter(p => p.source === "gamelog");
+    fixture.seasonHistory.p.push({ season: "2023", fppg: 2000, games: 82 }, { season: "2024", fppg: 5000, games: 82 });
+    expect(reconstructPriceHistory(fixture).filter(p => p.source === "gamelog")).toEqual(before);
+  });
+  it("combines the two completed prior seasons before the opening-game blend", () => {
+    const fixture = input([game("2023-10-25", 0)]);
+    fixture.directory.p = { birth_date: "1995-01-01", years_exp: 10 };
+    fixture.seasonHistory.p = [{ season: "2021", fppg: 10, games: 82 }, { season: "2022", fppg: 30, games: 82 }];
+    // 0.65*30 + 0.35*10 = 23; opening production is 0.95*23 = 21.85.
+    expect(reconstructPriceHistory(fixture).find(p => p.source === "gamelog")!.priceCents).toBe(4916);
   });
   it("does not create normal movers from a reconstructed-only baseline", () => {
     const market = computeStockMarket({ players: { p: { full_name: "Fixture", age: 27, years_exp: 5 } },
