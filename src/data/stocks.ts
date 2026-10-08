@@ -11,7 +11,7 @@
  * a no-op store. The market still computes live prices; change % and the
  * movers sections simply show their "no history yet" states.
  */
-import { desc, inArray, lt } from "drizzle-orm";
+import { desc, lt } from "drizzle-orm";
 import { getDb, stockSnapshots } from "./db";
 
 /** player_id → prices oldest → newest, capped at 10 points. */
@@ -35,31 +35,31 @@ class DrizzleStockStore implements StockStore {
   async getHistory(playerIds: string[]): Promise<PriceHistory> {
     if (playerIds.length === 0) return {};
     const db = getDb();
-    // Latest snapshot times first, then all rows at those times.
-    const times = await db
-      .selectDistinct({ at: stockSnapshots.snapshotAt })
-      .from(stockSnapshots)
-      .orderBy(desc(stockSnapshots.snapshotAt))
-      .limit(HISTORY_POINTS);
-    if (times.length === 0) return {};
+    const wanted = new Set(playerIds);
+    // One query: the latest rows overall, grouped per player below.
+    // Each snapshot writes one row per priced player, so
+    // HISTORY_POINTS × players comfortably covers the window; the
+    // per-player cap keeps it exact when the roster shifts.
+    //
+    // Deliberately not SELECT DISTINCT snapshot_at + IN (...): Postgres
+    // timestamps carry microseconds that JS Dates truncate to
+    // milliseconds, so a Date round-tripped through the driver never
+    // equals the stored value and the IN clause matches nothing.
     const rows = await db
       .select()
       .from(stockSnapshots)
-      .where(
-        inArray(
-          stockSnapshots.snapshotAt,
-          times.map((t) => t.at)
-        )
-      )
-      .orderBy(stockSnapshots.snapshotAt);
-    const wanted = new Set(playerIds);
+      .orderBy(desc(stockSnapshots.snapshotAt))
+      .limit(HISTORY_POINTS * wanted.size);
     const history: PriceHistory = {};
     for (const row of rows) {
       if (!wanted.has(row.playerId)) continue;
       const list = history[row.playerId] ?? [];
+      if (list.length >= HISTORY_POINTS) continue;
       list.push(row.priceCents / 100);
       history[row.playerId] = list;
     }
+    // Rows arrived newest-first; the contract is oldest → newest.
+    for (const id of Object.keys(history)) history[id].reverse();
     return history;
   }
 
