@@ -1,0 +1,36 @@
+# Newsroom private browser fixture
+
+This mounts production Newsroom, SiteHeader and MobileNav with explicit synthetic
+stories. No loader, API route, auth/store or DB is imported. Fonts reuse approved
+local Inter/Geist assets. Next Link becomes an ordinary anchor; synthetic profile
+destinations exercise navigation and Back. This is not an application route.
+
+With supported Node 22, repository dependencies, existing Playwright and Chrome:
+
+```sh
+node qa/newsroom/browser.mjs /absolute/path/playwright/index.mjs '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+```
+
+The runner starts its own numeric-loopback Vite server on port 8798 with a minimal
+credential-free environment, blocks every external and non-GET browser request,
+uses private headless browser contexts, and closes its browser/server. Normal
+local approvals are required. An ignored receipt and actual PNGs live in
+`qa/newsroom/evidence/`. Viewport captures show phone screens; `front-page-full`
+retains the complete feed. This is Chromium viewport/touch emulation, not physical
+iOS/Safari or hosted/backend verification.
+
+Checks cover 1440/390/320 widths, repeated Enter/Space filters and category
+history, exact voice URL/pressed state, prose/actor links, touch opening, native
+modal keyboard behavior, Close/Escape/focus, Back/Forward, direct/missing IDs,
+actor destination → Back, sparse/empty recovery, long unbroken headlines, long
+prose/reachable sticky Close and 200% text. Chrome may traverse browser chrome at
+a modal boundary; background controls must never receive focus. No custom trap.
+
+At 200% root text, the unchanged shared header overflows (630px at phone widths,
+1707px at 1440). The runner records that and separately asserts Newsroom/reader
+bounds; it does not claim a full-page zoom pass. Shared navigation is separately
+owned. Tokens/globals/header are unchanged.
+
+`?state=empty`, `?state=sparse` and `?state=long` supply bounded variants. Native
+story/section history retains unrelated fixture queries. Pure grouping tests
+run in the offline suite under `src/surfaces/news/stories.test.ts`.
