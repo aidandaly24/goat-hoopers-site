@@ -282,8 +282,17 @@ history has two layers: `stock_snapshots` holds live daily snapshots
 (30-day retention), and `price_history` holds reconstructed deep history
 — per-game `gamelog` points backfilled from real game logs plus yearly
 `backtest` points for seasons without log coverage. The store
-(`src/data/stocks.ts`) merges both for the sparkline, sampled to 40
-points. Both reconstructed sources render dashed and are labeled as
+(`src/data/stocks.ts`) uses separate quote and chart reads.
+`getQuoteHistory(ids)` selects at most one latest live baseline per unique
+requested player in one SQL query (zero queries for an empty set), with
+`player_id, snapshot_at DESC, id DESC` ordering for deterministic ties.
+Reconstruction never supplies a quote baseline. The shared market-candidate
+selector controls the requested set. `getPricePath(id)` reads only the
+selected player's reconstruction and latest ten live rows (player filter
+before the limit), then merges and samples the chart to 40 points. The detail
+loader retains its current modeled point last and caps the response at 40.
+The list/ticker never request chart history; see `docs/quote-history-queries.md`.
+Both reconstructed sources render dashed and are labeled as
 current-model FAAB estimates; normal change % and movers use live
 snapshots only. `src/data/reconstruct-price-history.ts` is the pure,
 offline reconstruction seam. Sleeper season `2023` means `2023-24`,

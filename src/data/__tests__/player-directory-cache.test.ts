@@ -1,6 +1,6 @@
 /**
  * player-directory-cache.test.ts — the compact player-directory
- * projection and its 24h cache (src/data/sleeper.ts).
+ * projection and its 300-second cache (src/data/sleeper.ts).
  *
  * - Projection keeps exactly the fields the membrane reads and drops the
  *   rest (measured: 2.52MB raw -> ~330KB projected on the live payload).

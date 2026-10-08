@@ -856,7 +856,7 @@ const getMarketInputs = cache(async (): Promise<StockMarketInput> => {
   let history: Record<string, PriceHistoryPoint[]> | null = null;
   try {
     const players = directory ?? {};
-    history = await getStockStore().getHistory(
+    history = await getStockStore().getQuoteHistory(
       marketCandidateIds({
         players,
         rosteredCount,
@@ -930,6 +930,10 @@ export async function getStockDetail(
     const found = stocks.find((s) => s.playerId === playerId);
     if (!found) return null;
     const detail = toStockDetail(found);
+    // Only the selected player's chart crosses the store boundary on expand.
+    // Preserve the pricing engine's current modeled point and its date/source.
+    const pricePath = await getStockStore().getPricePath(playerId);
+    detail.spark = [...pricePath.slice(-39), found.spark[found.spark.length - 1]];
     // Season history loads on expand only (F4) — overlay the single
     // player's jsonb instead of carrying 700 rows through the hot path.
     detail.seasonHistory = await getSeasonHistory(getDb(), playerId);
