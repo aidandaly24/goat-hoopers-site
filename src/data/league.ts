@@ -29,6 +29,7 @@ import type {
 } from "@/domain";
 import type { PlayerStatProfile } from "@/domain";
 import type { PriceHistoryPoint } from "@/domain";
+import { signedStreak } from "@/domain";
 import {
   fetchLeague,
   fetchRosters,
@@ -63,7 +64,6 @@ import {
   marketCandidateIds,
   toStockDetail,
   emptyLeagueStats,
-  currentStreak,
   type LeagueStatsInput,
   type StockMarketInput,
 } from "./transform";
@@ -552,7 +552,7 @@ export async function getTeamProfile(
       )
       .sort((a, b) => b.week - a.week);
 
-    const streak = currentStreak(team.id, matchupsByWeek);
+    const streak = signedStreak(team.id, matchupsByWeek);
     const draftPicks = picks.filter((p) => p.teamId === team.id);
 
     // Recent wire activity for this team (best-effort).

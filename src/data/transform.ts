@@ -35,6 +35,7 @@ import type {
   RawDraftPick,
   RawWinnersBracketEntry,
 } from "./sleeper";
+import { signedStreak } from "@/domain";
 
 /** Team name resolution: manager's chosen name, else their username. */
 export function teamNameOf(user: RawUser | undefined): string {
@@ -347,45 +348,15 @@ function fmtPts(p: number): string {
 }
 
 /**
- * Signed active streak for a team, ending at the latest final week:
- * positive = consecutive wins, negative = consecutive losses, 0 = none.
- * Pure — takes matchups as a parameter.
+ * Signed active streak for a team. Delegates to the domain rule in
+ * `@/domain/matchup` — the single source of truth. Prefer importing
+ * `signedStreak` from `@/domain` directly in new code.
  */
 export function currentStreak(
   teamId: string,
   matchupsByWeek: Matchup[][]
 ): number {
-  let streak = 0;
-  for (let w = matchupsByWeek.length - 1; w >= 0; w--) {
-    const m = matchupsByWeek[w].find(
-      (x) => x.home.id === teamId || x.away.id === teamId
-    );
-    if (!m || m.homePoints === null || m.awayPoints === null) break;
-    const isHome = m.home.id === teamId;
-    const mine = (isHome ? m.homePoints : m.awayPoints) as number;
-    const theirs = (isHome ? m.awayPoints : m.homePoints) as number;
-    const result = mine > theirs ? 1 : mine < theirs ? -1 : 0;
-    if (result === 0) break;
-    if (streak !== 0 && Math.sign(streak) !== result) break;
-    streak += result;
-  }
-  return streak;
-}
-/** Consecutive wins ending at the latest final week. 0 when none. */
-function currentWinStreak(teamId: string, matchupsByWeek: Matchup[][]): number {
-  let streak = 0;
-  for (let w = matchupsByWeek.length - 1; w >= 0; w--) {
-    const m = matchupsByWeek[w].find(
-      (x) => x.home.id === teamId || x.away.id === teamId
-    );
-    if (!m || m.homePoints === null || m.awayPoints === null) break;
-    const won =
-      (m.home.id === teamId && m.homePoints > m.awayPoints) ||
-      (m.away.id === teamId && m.awayPoints > m.homePoints);
-    if (!won) break;
-    streak++;
-  }
-  return streak;
+  return signedStreak(teamId, matchupsByWeek);
 }
 
 /**
@@ -409,10 +380,11 @@ export function computeLeagueStats(input: LeagueStatsInput): LeagueStats {
       ? { team: byPA[0], displayValue: fmtPts(byPA[0].pointsAgainst) }
       : null;
 
-  // Longest active win streak.
+  // Longest active win streak. Derives from the signed domain streak —
+  // no second loop. A loss streak contributes zero wins.
   let longestWinStreak: LeagueStats["longestWinStreak"] = null;
   for (const t of teams) {
-    const wins = currentWinStreak(t.id, matchupsByWeek);
+    const wins = Math.max(signedStreak(t.id, matchupsByWeek), 0);
     if (wins > 0 && (!longestWinStreak || wins > longestWinStreak.wins)) {
       longestWinStreak = { team: t, wins };
     }
