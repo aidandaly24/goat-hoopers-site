@@ -72,6 +72,8 @@ export type {
   PriceSource,
   PriceHistoryPoint,
 } from "./stock";
+export type { TradeSide, TradeVerdict } from "./trade";
+export { analyzeTrade, tradeTotal } from "./trade";
 export type { Season } from "./season";
 export { formatSeasonStatus } from "./season";
 export type {

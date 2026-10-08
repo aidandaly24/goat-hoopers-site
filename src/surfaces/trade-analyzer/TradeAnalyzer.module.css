@@ -1,0 +1,281 @@
+/* Trade analyzer: Bloomberg terminal island. All color from --gh-term-*. */
+
+.terminal {
+  background: var(--gh-term-bg);
+  color: var(--gh-term-text);
+  font-family: var(--gh-font-mono);
+  border: 1px solid var(--gh-term-line);
+  border-radius: 10px;
+  padding: clamp(1rem, 4vw, 2rem);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.head {
+  border-bottom: 1px solid var(--gh-term-line);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.prompt {
+  color: var(--gh-term-faint);
+  font-size: 0.75rem;
+  margin: 0 0 0.5rem;
+}
+
+.title {
+  font-size: clamp(1.5rem, 5vw, 2.25rem);
+  letter-spacing: 0.04em;
+  margin: 0 0 0.5rem;
+  color: var(--gh-term-amber);
+}
+
+.lede {
+  color: var(--gh-term-dim);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 40rem;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 48rem) {
+  .columns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.side {
+  background: var(--gh-term-panel);
+  border: 1px solid var(--gh-term-line);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 20rem;
+}
+
+.sideTitle {
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  color: var(--gh-term-amber);
+  margin: 0 0 0.75rem;
+}
+
+.searchWrap {
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+
+.search {
+  width: 100%;
+  background: var(--gh-term-raised);
+  border: 1px solid var(--gh-term-line);
+  border-radius: 6px;
+  color: var(--gh-term-text);
+  font-family: var(--gh-font-mono);
+  font-size: 0.85rem;
+  padding: 0.6rem 0.75rem;
+}
+
+.search::placeholder {
+  color: var(--gh-term-faint);
+}
+
+.search:focus {
+  outline: none;
+  border-color: var(--gh-term-amber);
+}
+
+.results {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  border: 1px solid var(--gh-term-line);
+  border-radius: 6px;
+  overflow: hidden;
+  max-height: 16rem;
+  overflow-y: auto;
+}
+
+.result {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  background: var(--gh-term-raised);
+  border: none;
+  border-bottom: 1px solid var(--gh-term-line);
+  color: var(--gh-term-text);
+  font-family: var(--gh-font-mono);
+  font-size: 0.82rem;
+  padding: 0.55rem 0.75rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.result:last-child {
+  border-bottom: none;
+}
+
+.result:hover {
+  background: var(--gh-term-panel);
+}
+
+.resultName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resultMeta {
+  color: var(--gh-term-dim);
+  white-space: nowrap;
+}
+
+.noResults {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.8rem;
+  color: var(--gh-term-faint);
+  background: var(--gh-term-raised);
+}
+
+.picks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.pick {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  background: var(--gh-term-raised);
+  border: 1px solid var(--gh-term-line);
+  border-radius: 6px;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.82rem;
+}
+
+.pickName {
+  color: var(--gh-term-text);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.pickName:hover {
+  color: var(--gh-term-amber);
+  text-decoration: underline;
+}
+
+.pickMeta {
+  color: var(--gh-term-faint);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.pickPrice {
+  color: var(--gh-term-amber);
+  white-space: nowrap;
+}
+
+.remove {
+  background: none;
+  border: none;
+  color: var(--gh-term-faint);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.1rem;
+}
+
+.remove:hover {
+  color: var(--gh-term-down);
+}
+
+.emptySide {
+  font-size: 0.8rem;
+  color: var(--gh-term-faint);
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--gh-term-line);
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: var(--gh-term-dim);
+}
+
+.totalValue {
+  font-size: 1.25rem;
+  color: var(--gh-term-amber);
+  letter-spacing: 0;
+}
+
+.verdict {
+  border: 1px solid var(--gh-term-line);
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+  background: var(--gh-term-panel);
+}
+
+.verdictTitle {
+  font-size: 1.3rem;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.5rem;
+  color: var(--gh-term-faint);
+}
+
+.verdictSub {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--gh-term-dim);
+  margin: 0;
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.verdict[data-tone="fair"] {
+  border-color: var(--gh-term-up);
+}
+
+.verdict[data-tone="fair"] .verdictTitle {
+  color: var(--gh-term-up);
+}
+
+.verdict[data-tone="leans"] {
+  border-color: var(--gh-term-amber);
+}
+
+.verdict[data-tone="leans"] .verdictTitle {
+  color: var(--gh-term-amber);
+}
+
+.verdict[data-tone="fleece"] {
+  border-color: var(--gh-term-down);
+}
+
+.verdict[data-tone="fleece"] .verdictTitle {
+  color: var(--gh-term-down);
+}
