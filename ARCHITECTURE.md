@@ -17,7 +17,8 @@ src/
   domain/        # The shared language: Team, Standing, Matchup, Player,
                  # Transaction, DraftPick, Season, LeagueStats, PlayerDetail,
                  # TeamProfile, PowerRanking, PlayoffOdds, RecordBook,
-                 # MatchupPreview, PlayerMove, PlayerStock/StockMarket.
+                 # MatchupPreview, PlayerMove, PlayerStock/StockMarket,
+                 # TradeVerdict/analyzeTrade.
                  # Types + tiny helpers only. formatSeasonStatus(Season.status)
                  # renders the human status ("pre_season" -> "Preseason").
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
@@ -108,6 +109,12 @@ src/
                  # PanicMeter. Receives domain objects, never fetches —
                  # except StockRow, which calls GET /api/stocks/[playerId]
                  # on expand for its detail (Rule 14).
+    trade-analyzer/ # "Is this trade fair": hypothetical trades priced in
+                 # FAAB dollars (TradeAnalyzer: two search pickers + running
+                 # totals + verdict). Same --gh-term-* Bloomberg island.
+                 # Verdict math (analyzeTrade, fair/leans/fleece bands) is
+                 # pure domain (domain/trade.ts). Receives slim StockQuotes,
+                 # never fetches.
                  # objects, never fetches.
     news/        # The League News Network: MyLeague-style auto-generated
                  # coverage. Newsroom (front page), NewsFeed (client-side
