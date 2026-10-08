@@ -39,6 +39,7 @@ let articles = [...trade, ...others];
 if (state === "empty") articles = [];
 if (state === "sparse") articles = [trade[0]];
 if (state === "long") articles = articles.map(a => ({ ...a, headline: `${a.headline} — ${"AnExtraordinarilyLongUnbrokenSyntheticHeadline".repeat(3)}`, body: [...a.body, ...a.body, ...a.body] }));
+if (state === "changed") articles = articles.map(a => ({ ...a, headline: "A different synthetic event in the same render slot", body: ["Replacement fixture prose."], publishedAt: a.publishedAt + 86400000 }));
 const profile = location.pathname.startsWith("/player/") || location.pathname.startsWith("/teams/");
 createRoot(document.getElementById("root")!).render(<>
   <p className="fixture-note">Private QA · synthetic stories, no live league data</p>

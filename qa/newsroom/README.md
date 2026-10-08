@@ -4,6 +4,9 @@ This mounts production Newsroom, SiteHeader and MobileNav with explicit syntheti
 stories. No loader, API route, auth/store or DB is imported. Fonts reuse approved
 local Inter/Geist assets. Next Link becomes an ordinary anchor; synthetic profile
 destinations exercise navigation and Back. This is not an application route.
+The anchor adapter cannot prove Next App Router transitions, route reuse or
+client segment restoration. Those require a DB-free real-Next fixture or a
+reviewer-owned hosted check; they are not covered by the existing PNG receipt.
 
 With supported Node 22, repository dependencies, existing Playwright and Chrome:
 
@@ -31,6 +34,10 @@ At 200% root text, the unchanged shared header overflows (630px at phone widths,
 bounds; it does not claim a full-page zoom pass. Shared navigation is separately
 owned. Tokens/globals/header are unchanged.
 
-`?state=empty`, `?state=sparse` and `?state=long` supply bounded variants. Native
+`?state=empty`, `?state=sparse`, `?state=long` and `?state=changed` supply bounded variants. Native
 story/section history retains unrelated fixture queries. Pure grouping tests
-run in the offline suite under `src/surfaces/news/stories.test.ts`.
+run in the offline suite under `src/surfaces/news/stories.test.ts`. Reader links
+include a complete supplied-article snapshot fingerprint. A later feed reusing
+an ID, an unguarded legacy link or an ambiguous ID must show unavailable;
+`storyLinks.test.ts` verifies that regression without a DB or browser. The runner
+also contains the revised browser checks, which still await disk clearance.

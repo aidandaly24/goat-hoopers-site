@@ -438,11 +438,15 @@ families and standalone rumors/takes stay separate; encoded transaction prefixes
 are not durable upstream event IDs. No loader/cache contract changes. One lead
 and compact headlines replace repeated full articles. Original voices, bodies
 and actor links remain in the native reader with visible generated/parody labels.
-`?section=…&story=<original article id>` preserves exact reading state: open
+`?section=…&story=<original article id>&revision=<snapshot fingerprint>` preserves reading state: open
 pushes, voice changes replace, Back/Forward restore. Close/Escape goes Back only
 for an entry opened in the current visit; initial deep links close by replacement.
-Missing IDs are explicitly unavailable. `qa/newsroom/` mounts production
-components with synthetic props and approved local fonts/chrome, not an app route.
+Missing, duplicate, unguarded or changed article snapshots are explicitly
+unavailable. The presentation-only fingerprint includes all supplied fields;
+reused render slots cannot reopen another event, and regenerated content/time
+may expire a link. `qa/newsroom/` mounts production components with synthetic
+props and approved local fonts/chrome, not an app route. Its native-anchor
+adapter does not verify Next App Router restoration.
 
 ### The stats seam (dependency inversion in the read path)
 

@@ -6,6 +6,7 @@ import type { MouseEvent } from "react";
 import type { NewsArticle, NewsSection } from "@/domain/news";
 import { NEWS_SECTIONS, PUBLICATIONS } from "@/domain/news";
 import { KIND_LABEL, readingStories, storyDate } from "./stories";
+import { resolveStory, storyHref, storyRevision } from "./storyLinks";
 import { StoryText } from "./StoryText";
 import styles from "./NewsFeed.module.css";
 
@@ -17,18 +18,19 @@ function subscribe(callback: () => void) {
 }
 function snapshot() { return window.location.search; }
 function serverSnapshot() { return ""; }
-function navigate(section: NewsSection, story: string | null, replace = false, readerVisit?: string) {
+function navigate(section: NewsSection, story: NewsArticle | null, replace = false, readerVisit?: string) {
   const url = new URL(window.location.href);
   if (section === "latest") url.searchParams.delete("section"); else url.searchParams.set("section", section);
-  if (story) url.searchParams.set("story", story); else url.searchParams.delete("story");
+  if (story) {
+    url.searchParams.set("story", story.id);
+    url.searchParams.set("revision", storyRevision(story));
+  } else {
+    url.searchParams.delete("story");
+    url.searchParams.delete("revision");
+  }
   const state = readerVisit ? { ...window.history.state, newsroomReader: readerVisit } : window.history.state;
   window.history[replace ? "replaceState" : "pushState"](state, "", url);
   window.dispatchEvent(new Event(NAV_EVENT));
-}
-function href(section: NewsSection, story: string) {
-  const params = new URLSearchParams({ story });
-  if (section !== "latest") params.set("section", section);
-  return `/news?${params}`;
 }
 
 /** Receives the existing article contract. Filtering/reading never fetches. */
@@ -39,8 +41,8 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
   const section: NewsSection = NEWS_SECTIONS.find(s => s.id === candidate)?.id ?? "latest";
   const storyId = params.get("story");
   const stories = readingStories(articles, section);
-  const selected = articles.find(a => a.id === storyId);
-  const selectedStory = selected ? readingStories(articles, "latest").find(s => s.reactions.some(a => a.id === storyId)) : undefined;
+  const selected = resolveStory(articles, storyId, params.get("revision"));
+  const selectedStory = selected ? readingStories(articles, "latest").find(s => s.reactions.includes(selected)) : undefined;
   const lead = stories[0];
   const dialog = useRef<HTMLDialogElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -60,7 +62,7 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
         heading.current?.focus();
         node.scrollTop = 0;
         wasOpen.current = true;
-      }
+      } else if (!selected) heading.current?.focus();
     } else if (node.open) {
       node.close();
       if (wasOpen.current) {
@@ -69,7 +71,7 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
         wasOpen.current = false;
       }
     }
-  }, [storyId]);
+  }, [storyId, selected]);
 
   useEffect(() => {
     if (!storyId) return;
@@ -78,12 +80,12 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
     return () => { document.body.style.overflow = previous; };
   }, [storyId]);
 
-  function open(event: MouseEvent<HTMLAnchorElement>, id: string) {
+  function open(event: MouseEvent<HTMLAnchorElement>, article: NewsArticle) {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     opener.current = event.currentTarget;
     readerVisit.current ??= window.crypto.randomUUID();
-    navigate(section, id, false, readerVisit.current);
+    navigate(section, article, false, readerVisit.current);
   }
   function close() {
     if (closing.current) return;
@@ -108,17 +110,17 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
     </div> : <div className={styles.layout}>
       <article className={styles.lead}>
         <p className={styles.kicker}>Lead story <span> / {KIND_LABEL[lead.primary.kind]}</span></p>
-        <h2 className={styles.leadTitle}><a href={href(section, lead.primary.id)} onClick={e => open(e, lead.primary.id)}>{lead.primary.headline}</a></h2>
+        <h2 className={styles.leadTitle}><a href={storyHref(section, lead.primary)} onClick={e => open(e, lead.primary)}>{lead.primary.headline}</a></h2>
         <p className={styles.excerpt}><StoryText text={lead.primary.body[0] ?? "Full reaction available in the reader."} article={lead.primary} /></p>
         <div className={styles.byline}><span>{PUBLICATIONS[lead.primary.publication].name} voice</span><time className="gh-num" dateTime={new Date(lead.primary.publishedAt).toISOString()} title="Generated story time, not the event date">{storyDate(lead.primary.publishedAt)}</time></div>
-        <a className={styles.read} href={href(section, lead.primary.id)} onClick={e => open(e, lead.primary.id)}>Read story <span aria-hidden="true">↗</span></a>
+        <a className={styles.read} href={storyHref(section, lead.primary)} onClick={e => open(e, lead.primary)}>Read story <span aria-hidden="true">↗</span></a>
         <p className={styles.voiceCount}><span className="gh-num">{lead.reactions.length}</span> {lead.reactions.length === 1 ? "voice" : "voices"} · generated reactions</p>
       </article>
       {stories.length > 1 && <section className={styles.headlines} aria-labelledby="news-headlines">
         <h2 id="news-headlines" className={styles.listTitle}>More from the league</h2>
         <ol className={styles.list}>{stories.slice(1).map(story => <li key={story.primary.id} className={styles.row}>
           <p className={styles.rowMeta}>{KIND_LABEL[story.primary.kind]} <span>· <span className="gh-num">{story.reactions.length}</span> {story.reactions.length === 1 ? "voice" : "voices"}</span></p>
-          <h3><a href={href(section, story.primary.id)} onClick={e => open(e, story.primary.id)}>{story.primary.headline}<span className={styles.arrow} aria-hidden="true"> ↗</span></a></h3>
+          <h3><a href={storyHref(section, story.primary)} onClick={e => open(e, story.primary)}>{story.primary.headline}<span className={styles.arrow} aria-hidden="true"> ↗</span></a></h3>
           <p className={styles.rowDate}><span>{PUBLICATIONS[story.primary.publication].name} voice</span><time className="gh-num" dateTime={new Date(story.primary.publishedAt).toISOString()} title="Generated story time, not the event date">{storyDate(story.primary.publishedAt)}</time></p>
         </li>)}</ol>
       </section>}
@@ -134,7 +136,7 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
           <p className={styles.rowDate}>Generated story time <time className="gh-num" dateTime={new Date(selected.publishedAt).toISOString()}>{storyDate(selected.publishedAt)} · UTC</time></p>
           {selectedStory && selectedStory.reactions.length > 1 && <div className={styles.voices} role="group" aria-label="Reaction voices">
             {selectedStory.reactions.map(a => <button type="button" key={a.id} aria-pressed={a.id === storyId}
-              onClick={() => navigate(section, a.id, true)}>{PUBLICATIONS[a.publication].name} voice</button>)}
+              onClick={() => navigate(section, a, true)}>{PUBLICATIONS[a.publication].name} voice</button>)}
           </div>}
           <p className={styles.srOnly} role="status">Reading {PUBLICATIONS[selected.publication].name} voice.</p>
           <div className={styles.body}>{selected.body.map((text, i) => <p key={i}><StoryText text={text} article={selected} /></p>)}</div>

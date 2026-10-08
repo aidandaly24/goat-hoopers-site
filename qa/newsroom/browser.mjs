@@ -75,6 +75,8 @@ try {
     await page.goForward(); await page.waitForURL(origin + "/news");
     record(`${width} filter Back/Forward`);
     const opener = page.getByRole("link", { name: "Read story", exact: false });
+    const espnHref = await opener.getAttribute("href");
+    let athleticSearch;
     const initialHistory = await page.evaluate(() => history.length);
     if (width !== 1440) await opener.tap(); else { await opener.focus(); await page.keyboard.press("Enter"); }
     const dialog = page.getByRole("dialog");
@@ -96,6 +98,7 @@ try {
       assert.equal(await voice.getAttribute("aria-pressed"), "true");
       assert.equal(await voice.evaluate(el => el === document.activeElement), true);
       assert.equal(await page.evaluate(() => history.length), initialHistory + 1);
+      if (name === "The Athletic voice") athleticSearch = new URL(page.url()).search;
     }
     await geometry("reader"); await capture("reader");
     await dialog.getByRole("button", { name: "Close story" }).click();
@@ -114,7 +117,8 @@ try {
     await dialog.getByRole("button", { name: "Close story" }).click();
     await page.waitForURL(origin + "/news");
     record(`${width} repeated Escape/Back/Forward exact voice/Close`);
-    await visit("?story=trade-0-123456-athletic&section=latest"); await dialog.waitFor();
+    await visit(athleticSearch); await dialog.waitFor();
+    assert.match(await dialog.locator("h2").innerText(), /by the numbers/);
     const deepHistory = await page.evaluate(() => history.length);
     await dialog.getByRole("button", { name: "Close story" }).click();
     await page.waitForFunction(() => !document.querySelector("dialog").open);
@@ -129,6 +133,16 @@ try {
     assert.equal(await page.locator("main [role=status]").first().evaluate(el => el === document.activeElement), true);
     record(`${width} missing ID/truthful return/fallback focus`);
     await visit("?story=trade-0-123456-espn"); await dialog.waitFor();
+    assert.match(await dialog.innerText(), /Story unavailable/);
+    record(`${width} legacy ID without snapshot guard fails closed`);
+    const changedSearch = new URL(espnHref, origin).searchParams;
+    changedSearch.set("state", "changed");
+    await visit(`?${changedSearch}`); await dialog.waitFor();
+    assert.match(await dialog.innerText(), /Story unavailable/);
+    assert.equal(await dialog.getByRole("navigation", { name: "People and teams in this story" }).count(), 0);
+    assert.equal(await page.locator("#news-reader-title").evaluate(el => el === document.activeElement), true);
+    record(`${width} reused render ID in another feed fails closed`);
+    await visit(new URL(espnHref, origin).search); await dialog.waitFor();
     const actors = dialog.getByRole("navigation", { name: "People and teams in this story" });
     assert.equal(await actors.getByRole("link", { name: "Synthetic Northside" }).getAttribute("href"), "/teams/1");
     await actors.getByRole("link", { name: "Synthetic Alpha" }).click();
