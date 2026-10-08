@@ -77,14 +77,15 @@
   text-overflow: ellipsis;
 }
 
-/* Player names link to /player/[playerId]. */
+/* Player and team names are clickable but visually plain — the link
+   only reveals itself on hover. */
 .playerLink {
-  color: var(--pub);
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-underline-offset: 2px;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .playerLink:hover {
-  text-decoration-style: solid;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
