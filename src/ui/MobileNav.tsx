@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { teamColorVar } from "./teamColors";
+import { isCurrentRoute } from "./currentRoute";
 import styles from "./MobileNav.module.css";
 
 export type MobileNavUser = {
@@ -13,7 +15,7 @@ export type MobileNavUser = {
 
 /**
  * MobileNav — the bottom tab bar for phones (<=40rem). Home / News /
- * Arcade / Team, thumb-zone, app-like. Rendered by the root layout on
+ * Stocks / History / Arcade / Team. Rendered by the root layout on
  * every page; CSS hides it on larger screens. Client component: the
  * active tab comes from usePathname.
  *
@@ -23,12 +25,25 @@ export type MobileNavUser = {
  */
 export function MobileNav({ user }: { user: MobileNavUser }) {
   const pathname = usePathname();
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const nav = ref.current;
+    if (!nav) return;
+    const measure = () => document.documentElement.style.setProperty("--gh-mobile-nav-h", `${nav.getBoundingClientRect().height}px`);
+    const observer = new ResizeObserver(measure);
+    observer.observe(nav);
+    measure();
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty("--gh-mobile-nav-h");
+    };
+  }, []);
 
   const tabs = [
     {
       href: "/",
       label: "Home",
-      active: pathname === "/",
+      active: isCurrentRoute(pathname, "/"),
       icon: (
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M3 10.5 12 3l9 7.5" />
@@ -38,9 +53,43 @@ export function MobileNav({ user }: { user: MobileNavUser }) {
       ),
     },
     {
+      href: "/news",
+      label: "News",
+      active: isCurrentRoute(pathname, "/news"),
+      icon: (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 5.5h13v13H4z" />
+          <path d="M17 8.5h2.5v10H17" />
+          <path d="M7 9.5h7M7 12.5h7M7 15.5h4.5" />
+        </svg>
+      ),
+    },
+    {
+      href: "/stocks",
+      label: "Stocks",
+      active: isCurrentRoute(pathname, "/stocks"),
+      icon: (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 3v17h17" />
+          <path d="m7 15 4-5 4 2 5-7M16 5h4v4" />
+        </svg>
+      ),
+    },
+    {
+      href: "/history",
+      label: "History",
+      active: isCurrentRoute(pathname, "/history"),
+      icon: (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 3h12v18l-3-2.2L12 21l-3-2.2L6 21z" />
+          <path d="M9 8h6M9 11.5h6" />
+        </svg>
+      ),
+    },
+    {
       href: "/arcade",
       label: "Arcade",
-      active: pathname === "/arcade" || pathname.startsWith("/arcade/"),
+      active: isCurrentRoute(pathname, "/arcade"),
       icon: (
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <rect x="2.5" y="7" width="19" height="11" rx="5.5" />
@@ -51,32 +100,9 @@ export function MobileNav({ user }: { user: MobileNavUser }) {
       ),
     },
     {
-      href: "/news",
-      label: "News",
-      active: pathname === "/news",
-      icon: (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 5.5h13v13H4z" />
-          <path d="M17 8.5h2.5v10H17" />
-          <path d="M7 9.5h7M7 12.5h7M7 15.5h4.5" />
-        </svg>
-      ),
-    },
-    {
-      href: "/history",
-      label: "History",
-      active: pathname === "/history" || pathname.startsWith("/history/"),
-      icon: (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M6 3h12v18l-3-2.2L12 21l-3-2.2L6 21z" />
-          <path d="M9 8h6M9 11.5h6" />
-        </svg>
-      ),
-    },
-    {
       href: "/team",
       label: "Team",
-      active: pathname === "/team" || pathname.startsWith("/team/"),
+      active: isCurrentRoute(pathname, "/team"),
       icon: user ? (
         <span
           className={styles.miniAvatar}
@@ -95,7 +121,7 @@ export function MobileNav({ user }: { user: MobileNavUser }) {
   ];
 
   return (
-    <nav className={styles.tabbar} aria-label="Primary">
+    <nav ref={ref} className={styles.tabbar} aria-label="Primary">
       {tabs.map((tab) => (
         <Link
           key={tab.href}

@@ -235,13 +235,20 @@ src/
                  # TransactionSummary renders one transaction as a sentence
                  # with player names -> player pages and the acting team ->
                  # its team page, built from structured adds/drops.
-                 # SiteHeader is the site-wide chrome (wordmark, Home/Arcade
+                 # SiteChrome groups ticker/header in one sticky stack and
+                 # measures its actual height for anchor/focus clearance.
+                 # A clipped skip link focuses the root content container.
+                 # SiteHeader is the site-wide chrome (wordmark, primary
                  # nav, account state). Nav rule: logged in, the manager's
                  # display name with a team-colored avatar ring is the
                  # single entry point to /team and "My Team" disappears;
                  # logged out, "My Team" stays as the login nudge.
-                 # MobileNav is the bottom tab bar (Home / Arcade / Team)
-                 # shown at <=40rem; the header nav hides there.
+                 # Desktop/mobile order: Home / News / Stocks / History /
+                 # Arcade / Team, with boundary-aware nested active states.
+                 # MobileNav is the bottom tab bar with the same destinations
+                 # shown at <=40rem; the header nav hides there. Its measured
+                 # height reserves content/focus space at enlarged text sizes.
+                 # Header nav wraps into a complete row at <=64rem.
                  # SiteFooter is the site-wide footer (league, season,
                  # links, unaffiliated-with-NBA/Sleeper line). All three
                  # take state as props (dependency inversion); the root

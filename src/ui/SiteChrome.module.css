@@ -1,0 +1,33 @@
+.chrome {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* Clipping is independent of page height and never creates a visible strip. */
+.skip {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip:focus {
+  position: fixed;
+  top: var(--gh-s2);
+  left: var(--gh-s4);
+  width: auto;
+  height: auto;
+  min-height: 44px;
+  max-width: calc(100vw - 2 * var(--gh-s4));
+  padding: var(--gh-s3) var(--gh-s4);
+  clip-path: none;
+  white-space: normal;
+  background: var(--gh-accent);
+  color: var(--gh-on-accent);
+  border-radius: var(--gh-radius);
+  z-index: 60;
+}
