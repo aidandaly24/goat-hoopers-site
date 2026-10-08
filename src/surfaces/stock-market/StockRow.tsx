@@ -1,23 +1,47 @@
 "use client";
 
 import { useRef, useState } from "react";
-import type { StockDetail, StockQuote } from "@/domain";
+import type {
+  PlayerStock,
+  PriceHistoryPoint,
+  StockDetail,
+  StockQuote,
+} from "@/domain";
 import { formatPrice, formatPct, formatChange } from "./format";
 import styles from "./StockRow.module.css";
 
-/** Inline SVG sparkline — no chart library, no JavaScript. */
-function Sparkline({ points }: { points: number[] }) {
+/**
+ * Inline SVG sparkline — no chart library, no JavaScript.
+ * Segments touching a `backtest` point render dashed: reconstruction,
+ * not dense history. Everything else is solid.
+ */
+function Sparkline({ points }: { points: PriceHistoryPoint[] }) {
   if (points.length < 2) return null;
   const w = 120;
   const h = 36;
-  const min = Math.min(...points);
-  const max = Math.max(...points);
+  const prices = points.map((p) => p.price);
+  const min = Math.min(...prices);
+  const max = Math.max(...prices);
   const range = max - min || 1;
   const coords = points.map(
     (p, i) =>
-      `${((i / (points.length - 1)) * w).toFixed(1)},${(h - 2 - ((p - min) / range) * (h - 4)).toFixed(1)}`
+      `${((i / (points.length - 1)) * w).toFixed(1)},${(h - 2 - ((p.price - min) / range) * (h - 4)).toFixed(1)}`
   );
-  const up = points[points.length - 1] >= points[0];
+  const up = prices[prices.length - 1] >= prices[0];
+  const stroke = up ? "var(--gh-term-up)" : "var(--gh-term-down)";
+  // Group consecutive segments by style: dashed when either endpoint
+  // is a backtest reconstruction.
+  const segments: Array<{ coords: string[]; dashed: boolean }> = [];
+  for (let i = 0; i < coords.length - 1; i++) {
+    const dashed =
+      points[i].source === "backtest" || points[i + 1].source === "backtest";
+    const last = segments[segments.length - 1];
+    if (last && last.dashed === dashed) {
+      last.coords.push(coords[i + 1]);
+    } else {
+      segments.push({ coords: [coords[i], coords[i + 1]], dashed });
+    }
+  }
   return (
     <svg
       viewBox={`0 0 ${w} ${h}`}
@@ -25,14 +49,19 @@ function Sparkline({ points }: { points: number[] }) {
       aria-hidden="true"
       preserveAspectRatio="none"
     >
-      <polyline
-        points={coords.join(" ")}
-        fill="none"
-        stroke={up ? "var(--gh-term-up)" : "var(--gh-term-down)"}
-        strokeWidth="2"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
+      {segments.map((s, i) => (
+        <polyline
+          key={i}
+          points={s.coords.join(" ")}
+          fill="none"
+          stroke={stroke}
+          strokeWidth="2"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          strokeDasharray={s.dashed ? "4 3" : undefined}
+          opacity={s.dashed ? 0.7 : 1}
+        />
+      ))}
     </svg>
   );
 }
