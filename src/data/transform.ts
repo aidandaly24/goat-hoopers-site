@@ -35,6 +35,7 @@ import type {
   RawDraftPick,
   RawWinnersBracketEntry,
 } from "./sleeper";
+import { resolveEspnId, type EspnIdMap } from "./espn";
 import { signedStreak } from "@/domain";
 
 /** Team name resolution: manager's chosen name, else their username. */
@@ -243,7 +244,7 @@ export function selectRecentTransactions(
  */
 export function toDraftPicks(
   raw: RawDraftPick[],
-  espnIdMap: Record<string, string> = {},
+  espnIdMap: EspnIdMap = {},
 ): DraftPick[] {
   return raw
     .map((p) => {
@@ -259,7 +260,7 @@ export function toDraftPicks(
         playerName: name || `Player ${p.player_id}`,
         position: meta.position ?? null,
         nbaTeam: meta.team ?? null,
-        espnId: espnIdMap[p.player_id] ?? null,
+        espnId: resolveEspnId(p.player_id, espnIdMap),
         teamId: String(p.roster_id),
       } satisfies DraftPick;
     })

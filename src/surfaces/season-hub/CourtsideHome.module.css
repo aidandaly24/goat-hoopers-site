@@ -97,7 +97,9 @@
   }
 
   .weekly-zone :focus-visible,
-  .archive-zone :focus-visible {
+  .archive-zone :focus-visible,
+  .roster-detail :focus-visible:not(dialog, dialog *),
+  .archive-page :focus-visible:not(dialog, dialog *) {
     outline-color: var(--gh-cs-clay);
   }
 
