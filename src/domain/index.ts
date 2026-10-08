@@ -69,6 +69,8 @@ export type {
   StockQuote,
   StockDetail,
   PanicSignal,
+  PriceSource,
+  PriceHistoryPoint,
 } from "./stock";
 export type { Season } from "./season";
 export { formatSeasonStatus } from "./season";

@@ -17,6 +17,26 @@
 export type StockTrend = "up" | "down" | "flat";
 
 /**
+ * Where a price point came from.
+ * - `gamelog`: reconstructed from real per-game logs (Hugging Face backfill).
+ * - `backtest`: yearly v2 re-pricing for seasons without game-log coverage.
+ * - `live`: real daily snapshots from the running site.
+ *
+ * Reconstructed points are honest model output from real inputs — never
+ * invented games. The UI renders backtest segments dashed so the eye can
+ * tell reconstruction from dense history.
+ */
+export type PriceSource = "gamelog" | "backtest" | "live";
+
+/** One point on a player's price path, oldest → newest. */
+export type PriceHistoryPoint = {
+  /** ISO date of the game (gamelog), season end (backtest), or snapshot (live). */
+  date: string;
+  price: number;
+  source: PriceSource;
+};
+
+/**
  * A player's fundamentals for valuation v2. Built by `src/data/nba-stats.ts`
  * from Sleeper's stats feed (trailing production) and the league's rookie
  * drafts (pedigree), cached in `player_stat_cache` and refreshed daily.
@@ -84,8 +104,13 @@ export type PlayerStock = {
   /** Percentage change vs prevPrice; null when no history. */
   changePct: number | null;
   trend: StockTrend;
-  /** Recent price points for the sparkline, oldest → newest. */
-  spark: number[];
+  /**
+   * Price path for the sparkline, oldest → newest. Merges reconstructed
+   * history (gamelog/backtest from `price_history`) with live snapshots,
+   * sampled to a sparkline-friendly length. Backtest segments render
+   * dashed — see the Sparkline component.
+   */
+  spark: PriceHistoryPoint[];
   /** What moved the price, largest absolute delta first. */
   factors: StockFactor[];
   /** Total FAAB spent to acquire this player inside the window. */
@@ -151,7 +176,7 @@ export type StockDetail = {
    */
   seasonHistory: Array<{ season: string; fppg: number; games: number }>;
   /** Recent price points for the sparkline, oldest → newest. */
-  spark: number[];
+  spark: PriceHistoryPoint[];
 };
 
 export type StockMarket = {
