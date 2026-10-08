@@ -696,6 +696,7 @@ export function computePlayerStocks(input: StockMarketInput): PlayerStock[] {
     draftPick,
     statProfiles,
     history,
+    now,
   } = input;
 
   const priced: PlayerStock[] = [];

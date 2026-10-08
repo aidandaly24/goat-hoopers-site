@@ -176,7 +176,7 @@ export type StockDetail = {
    */
   seasonHistory: Array<{ season: string; fppg: number; games: number }>;
   /** Recent price points for the sparkline, oldest → newest. */
-  spark: number[];
+  spark: PriceHistoryPoint[];
 };
 
 export type StockMarket = {
