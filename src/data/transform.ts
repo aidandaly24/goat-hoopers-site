@@ -509,13 +509,13 @@ export type StockMarketInput = {
   now: number;
 };
 
-const STOCK_FLOOR = 1;
-const STOCK_CAP = 250;
+export const STOCK_FLOOR = 1;
+export const STOCK_CAP = 250;
 /**
  * Dollar calibration: Jokić's trailing ~40 fppg at age 30–31 lands ≈$75.
  * Recompute if the scoring settings change materially.
  */
-const K_STOCK = 0.5;
+export const K_STOCK = 0.5;
 /** Moves smaller than this read as noise → trend "flat". */
 const TREND_THRESHOLD_PCT = 1;
 /** Movers sections only list moves at least this big. */
@@ -882,8 +882,8 @@ export function computePlayerStocks(input: StockMarketInput): PlayerStock[] {
     // `hist` is already sampled (store caps at 40 points): reconstructed
     // gamelog path + backtest points + live snapshots, oldest → newest.
     const hist = history?.[id] ?? [];
-    const prevPrice =
-      hist.length > 0 ? hist[hist.length - 1].price : null;
+    const liveHistory = hist.filter(p => p.source === "live");
+    const prevPrice = liveHistory.length > 0 ? liveHistory[liveHistory.length - 1].price : null;
     const change =
       prevPrice != null && prevPrice > 0 ? round2(price - prevPrice) : null;
     const changePct =

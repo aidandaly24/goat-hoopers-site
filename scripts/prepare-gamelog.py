@@ -4,7 +4,7 @@ Prepare game-log data for the price-history backfill.
 
 Reads the Hugging Face parquet game logs (2021-22 through 2024-25),
 maps player_name -> Sleeper player_id via normalized name matching,
-computes per-game fantasy PPG in the GOAT Hoopers league scoring, and
+computes approximate per-game fantasy PPG (ff/tf penalties are omitted), and
 writes a JSON file for scripts/backfill-price-history.ts to price.
 
 Usage: python3 scripts/prepare-gamelog.py
@@ -19,6 +19,8 @@ from collections import defaultdict
 import pyarrow.parquet as pq
 
 # League scoring (from Sleeper league 1387473752807190528).
+# Legacy inputs do not retain ff/tf or raw box scores. Do not describe the
+# derived output as exact live-league scoring or silently assume missing=0.
 SCORING = {
     "pts": 0.5, "reb": 1.0, "ast": 1.0,
     "stl": 2.0, "blk": 2.0, "tov": -1.0, "fg3m": 0.5,

@@ -12,8 +12,7 @@ import styles from "./StockRow.module.css";
 
 /**
  * Inline SVG sparkline — no chart library, no JavaScript.
- * Segments touching a `backtest` point render dashed: reconstruction,
- * not dense history. Everything else is solid.
+ * Both gamelog and yearly backtest prices are reconstructed estimates.
  */
 function Sparkline({ points }: { points: PriceHistoryPoint[] }) {
   if (points.length < 2) return null;
@@ -34,7 +33,7 @@ function Sparkline({ points }: { points: PriceHistoryPoint[] }) {
   const segments: Array<{ coords: string[]; dashed: boolean }> = [];
   for (let i = 0; i < coords.length - 1; i++) {
     const dashed =
-      points[i].source === "backtest" || points[i + 1].source === "backtest";
+      points[i].source !== "live" || points[i + 1].source !== "live";
     const last = segments[segments.length - 1];
     if (last && last.dashed === dashed) {
       last.coords.push(coords[i + 1]);
@@ -224,6 +223,9 @@ export function StockRow({ quote: s }: { quote: StockQuote }) {
                   {Math.round(s.ownership * 100)}% owned
                 </span>
               </div>
+              {detail.detail.spark.some(p => p.source !== "live") && (
+                <p className={styles.loading}>Dashed: reconstructed FAAB estimates; solid: recorded site prices.</p>
+              )}
               {detail.detail.seasonHistory.length > 0 && (
                 <>
                   <p className={styles.whyHead}>

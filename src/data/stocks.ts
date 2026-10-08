@@ -12,8 +12,12 @@
  * movers sections simply show their "no history yet" states.
  */
 import { desc, eq, inArray, lt, sql } from "drizzle-orm";
+import { createHash } from "node:crypto";
 import type { PriceHistoryPoint, PriceSource } from "@/domain/stock";
-import { getDb, priceHistory, stockSnapshots } from "./db";
+import type { PriceHistoryArtifact, PriceHistoryPublicationPlan } from "../domain/price-history-import";
+import { validatePriceHistoryArtifact } from "./price-history-artifact";
+import { validatePublicationPlan } from "./price-history-plan";
+import { getDb, priceHistory, priceHistoryImportState, stockSnapshots, type Db } from "./db";
 
 /** player_id → price points oldest → newest, sampled for sparklines. */
 export type PriceHistory = Record<string, PriceHistoryPoint[]>;
@@ -30,11 +34,9 @@ const RETENTION_DAYS = 30;
  * writes ~262 rows/day against a 30-day retention.
  */
 const SNAPSHOT_MIN_INTERVAL_MS = 24 * 60 * 60 * 1000;
-/** Rolling window for reconstructed history — seasons, not days. */
-const RECONSTRUCTED_SEASONS = 5;
 
 const asSource = (s: string): PriceSource =>
-  s === "gamelog" || s === "backtest" ? s : "live";
+  s === "gamelog" ? "gamelog" : "backtest";
 
 /**
  * Evenly sample points down to `max`, always keeping first and last.
@@ -219,81 +221,33 @@ export function getStockStore(): StockStore {
   }
 }
 
-/**
- * Prune superseded and out-of-window reconstructed history.
- *
- * 1. `backtest` points are deleted when `gamelog` coverage exists for the
- *    same player+season — real data replaces reconstruction.
- * 2. Rolling 5-season window: `gamelog` and `backtest` points older than
- *    5 seasons are deleted. As new seasons arrive, old ones fall off,
- *    keeping the table bounded on the free tier.
- * 3. `live` snapshots are NEVER touched — they follow the daily snapshot
- *    retention in saveSnapshot, and `gamelog` points are never pruned
- *    except by the age window (they're real historical data).
- *
- * Call after every backfill and live ingest.
- *
- * @param currentSeasonStartYear e.g. 2026 for the 2026-27 season.
- */
-export async function pruneSuperseded(
-  currentSeasonStartYear: number
-): Promise<{ prunedBacktest: number; prunedOld: number }> {
-  const db = getDb();
-  let prunedBacktest = 0;
-  let prunedOld = 0;
-  try {
-    // 1. Backtest superseded by gamelog coverage.
-    const superseded = await db.execute(sql`
-      DELETE FROM price_history b
-      WHERE b.source = 'backtest'
-      AND EXISTS (
-        SELECT 1 FROM price_history g
-        WHERE g.source = 'gamelog'
-          AND g.player_id = b.player_id
-          AND g.season = b.season
-      )
-      RETURNING b.id
-    `);
-    prunedBacktest = superseded.rows.length;
-
-    // 2. Rolling window: keep the last 5 season start years.
-    const oldestKept = currentSeasonStartYear - (RECONSTRUCTED_SEASONS - 1);
-    const old = await db.execute(sql`
-      DELETE FROM price_history
-      WHERE source IN ('gamelog', 'backtest')
-        AND CAST(split_part(season, '-', 1) AS INTEGER) < ${oldestKept}
-      RETURNING id
-    `);
-    prunedOld = old.rows.length;
-  } catch {
-    // Table missing — nothing to prune.
+/** Atomically replace only reconstructed points and their publication manifest. */
+export async function publishReconstructedPoints(db: Db, artifact: PriceHistoryArtifact, plan: PriceHistoryPublicationPlan): Promise<void> {
+  validatePriceHistoryArtifact(artifact);
+  validatePublicationPlan(plan, artifact);
+  // Neon HTTP batch uses one transaction. The advisory lock serializes
+  // publications; readers keep the old committed generation on any failure.
+  type ImportQuery = Parameters<Db["batch"]>[0][number];
+  const queries: [ImportQuery, ...ImportQuery[]] = [
+    db.execute(sql`SELECT pg_advisory_xact_lock(138747, 38)`),
+    // Abort if the reconstructed rows changed since the retained backup/plan.
+    // Built-in md5 is a drift check; the reviewed artifact/backup use SHA-256.
+    db.execute(sql`SELECT 1 / CASE WHEN (
+      SELECT md5(COALESCE(string_agg(player_id || '|' ||
+        to_char(date AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') || '|' ||
+        price_cents::text || '|' || source || '|' || season || chr(10), ''
+        ORDER BY player_id COLLATE "C", date, source COLLATE "C"), ''))
+      FROM price_history WHERE source IN ('gamelog', 'backtest')
+    ) = ${plan.reconstructedFingerprint} THEN 1 ELSE 0 END`),
+    db.delete(priceHistory).where(sql`${priceHistory.source} IN ('gamelog', 'backtest')`),
+  ];
+  for (let i = 0; i < artifact.points.length; i += 500) {
+    queries.push(db.insert(priceHistory).values(artifact.points.slice(i, i + 500).map(p => {
+      const hash = createHash("sha256").update(`${artifact.manifest.datasetId}|${p.playerId}|${p.date}|${p.source}`).digest("hex");
+      return { ...p, date: new Date(p.date), id: `${hash.slice(0, 8)}-${hash.slice(8, 12)}-${hash.slice(12, 16)}-${hash.slice(16, 20)}-${hash.slice(20, 32)}` };
+    })));
   }
-  return { prunedBacktest, prunedOld };
+  queries.push(db.insert(priceHistoryImportState).values({ id: "current", datasetId: artifact.manifest.datasetId, manifest: artifact.manifest })
+    .onConflictDoUpdate({ target: priceHistoryImportState.id, set: { datasetId: artifact.manifest.datasetId, manifest: artifact.manifest, completedAt: new Date() } }));
+  await db.batch(queries);
 }
-
-/**
- * Bulk insert reconstructed price points (backfill script). Deletes all
- * existing `gamelog`/`backtest` rows first so reruns are idempotent —
- * the backfill is a full rebuild, not an append.
- */
-export async function saveReconstructedPoints(
-  points: Array<{
-    playerId: string;
-    date: Date;
-    priceCents: number;
-    source: "gamelog" | "backtest";
-    season: string;
-  }>
-): Promise<void> {
-  const db = getDb();
-  await db.delete(priceHistory).where(
-    sql`${priceHistory.source} IN ('gamelog', 'backtest')`
-  );
-  for (let i = 0; i < points.length; i += 500) {
-    const chunk = points.slice(i, i + 500);
-    await db.insert(priceHistory).values(chunk);
-  }
-}
-
-// Re-exported for the backfill script's season-window math.
-export { RECONSTRUCTED_SEASONS };

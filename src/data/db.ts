@@ -32,6 +32,7 @@ import {
   text,
   timestamp,
   uuid,
+  uniqueIndex,
 } from "drizzle-orm/pg-core";
 
 /** League managers with site accounts. One row per Sleeper team. */
@@ -182,13 +183,21 @@ export const priceHistory = pgTable("price_history", {
   /** Sleeper player_id. */
   playerId: text("player_id").notNull(),
   /** Game date (gamelog) or season-end date (backtest). */
-  date: timestamp("date").notNull(),
+  date: timestamp("date", { withTimezone: true }).notNull(),
   /** Price in cents — integers dodge float drift. */
   priceCents: integer("price_cents").notNull(),
   /** 'gamelog' | 'backtest'. Never 'live' — live stays in stock_snapshots. */
   source: text("source").notNull(),
   /** Season label, e.g. "2024-25". */
   season: text("season").notNull(),
+}, (table) => [uniqueIndex("price_history_point_unique").on(table.playerId, table.date, table.source)]);
+
+/** Singleton publication manifest, committed atomically with its points. */
+export const priceHistoryImportState = pgTable("price_history_import_state", {
+  id: text("id").primaryKey(),
+  datasetId: text("dataset_id").notNull(),
+  manifest: jsonb("manifest").notNull(),
+  completedAt: timestamp("completed_at", { withTimezone: true }).defaultNow().notNull(),
 });
 
 export const schema = {
@@ -201,9 +210,15 @@ export const schema = {
   stockSnapshots,
   playerStatCache,
   priceHistory,
+  priceHistoryImportState,
 };
 
 export type Db = ReturnType<typeof drizzle<typeof schema>>;
+
+/** Explicit import connection; never falls back to ambient application credentials. */
+export function createImportDb(url: string): Db {
+  return drizzle(neon(url), { schema });
+}
 
 let cached: Db | null = null;
 

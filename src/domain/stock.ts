@@ -22,9 +22,8 @@ export type StockTrend = "up" | "down" | "flat";
  * - `backtest`: yearly v2 re-pricing for seasons without game-log coverage.
  * - `live`: real daily snapshots from the running site.
  *
- * Reconstructed points are honest model output from real inputs — never
- * invented games. The UI renders backtest segments dashed so the eye can
- * tell reconstruction from dense history.
+ * Both gamelog and backtest are current-model estimates, not prices observed
+ * at the time. Both render dashed; normal change % uses live snapshots only.
  */
 export type PriceSource = "gamelog" | "backtest" | "live";
 
@@ -107,7 +106,7 @@ export type PlayerStock = {
   /**
    * Price path for the sparkline, oldest → newest. Merges reconstructed
    * history (gamelog/backtest from `price_history`) with live snapshots,
-   * sampled to a sparkline-friendly length. Backtest segments render
+   * sampled to a sparkline-friendly length. Both reconstructed sources render
    * dashed — see the Sparkline component.
    */
   spark: PriceHistoryPoint[];
