@@ -131,6 +131,9 @@ src/
                  # Verdict math (analyzeTrade, fair/leans/fleece bands) is
                  # pure domain (domain/trade.ts). Receives slim StockQuotes,
                  # never fetches.
+                 # Share contract: both sides encode as ?a=<ids>&b=<ids>
+                 # (router.replace, no reload); restored on load with unknown
+                 # IDs dropped silently. "> COPY LINK" copies the share URL.
                  # objects, never fetches.
     news/        # The League News Network: MyLeague-style auto-generated
                  # coverage. Newsroom (front page), NewsFeed (client-side
@@ -279,8 +282,17 @@ history has two layers: `stock_snapshots` holds live daily snapshots
 (30-day retention), and `price_history` holds reconstructed deep history
 — per-game `gamelog` points backfilled from real game logs plus yearly
 `backtest` points for seasons without log coverage. The store
-(`src/data/stocks.ts`) merges both for the sparkline, sampled to 40
-points. Both reconstructed sources render dashed and are labeled as
+(`src/data/stocks.ts`) uses separate quote and chart reads.
+`getQuoteHistory(ids)` selects at most one latest live baseline per unique
+requested player in one SQL query (zero queries for an empty set), with
+`player_id, snapshot_at DESC, id DESC` ordering for deterministic ties.
+Reconstruction never supplies a quote baseline. The shared market-candidate
+selector controls the requested set. `getPricePath(id)` reads only the
+selected player's reconstruction and latest ten live rows (player filter
+before the limit), then merges and samples the chart to 40 points. The detail
+loader retains its current modeled point last and caps the response at 40.
+The list/ticker never request chart history; see `docs/quote-history-queries.md`.
+Both reconstructed sources render dashed and are labeled as
 current-model FAAB estimates; normal change % and movers use live
 snapshots only. `src/data/reconstruct-price-history.ts` is the pure,
 offline reconstruction seam. Sleeper season `2023` means `2023-24`,
@@ -386,15 +398,41 @@ impure shell, the math is a pure function of its inputs.
 
 ### Offline regression suite
 
-`npm test` (vitest, `vitest.config.ts`) runs the offline suite in
-`src/data/__tests__/`. Fixtures live in `__tests__/fixtures.ts` — tiny
+`npm test` (vitest, `vitest.config.mts`) runs the offline suite in
+`src/data/__tests__/`, plus the I/O boundary regressions in `src/test/`.
+Fixtures live in `__tests__/fixtures.ts` — tiny
 synthetic teams, transactions, matchups, and claim-store states, all
 credential-free. Tests assert observable domain results, never private
-function structure. The suite requires no network, secrets, or database;
-`.github/workflows/ci.yml` runs it plus `tsc --noEmit` on every PR.
+function structure. The default suite installs `src/test/offline.ts` before
+collecting tests: real `fetch` and Node socket connections fail immediately,
+and ambient application/import database URLs are removed. Fakes remain
+injectable. `.github/workflows/ci.yml` uses Node 22 from `.nvmrc`, installs the
+exact lockfile including dev tools (`npm ci --include=dev`) with engine
+validation, then runs tests, `npm run typecheck`, and the full `npm run build`
+sequentially. Any failure fails the check. PR runs test GitHub's merge commit
+against the base; logs record both that tested commit and the PR head. Push
+runs test the exact main commit. The existing check name remains unchanged.
+The production build has no database/import credentials and never seeds;
+it can download the public Google fonts used by `next/font`.
 The optional isolated-DB contract suite (FakeGameStore vs a throwaway
 test Postgres) is separate and fails closed when its target is absent —
-it never falls back to production credentials.
+it never falls back to production credentials. The explicit
+`npm run test:price-history:local` command sets `RUN_PRICE_HISTORY_LOCAL_TEST=1`
+and allows only its hardcoded synthetic Postgres target at
+`127.0.0.1:55438/price_history_test`. The claim suite introduced by PR53 uses
+`RUN_CLAIM_TEAM_LOCAL_TEST=1 npm test -- src/data/__tests__/claim-team-local.test.ts`
+and allows only `127.0.0.1:55441/claim_team_test`. The guard remains installed
+in both modes: fetch, remote hosts, other ports, implicit hosts and Unix
+sockets stay blocked. Each flag only enables its own port. Both flags may be
+set for a combined local run; CI explicitly clears both. The database names
+and synthetic schemas are fixed in the respective test fixtures; the socket
+guard enforces the network endpoints. Test workers are guarded, not arbitrary child processes:
+the build CLI regression invokes only `next build --help`.
+The claim suite runs the shared FakeGameStore/Drizzle contract plus forced
+overlapping claims and mutation failure rollback. It uses a dedicated schema
+and the installed Neon HTTP/Drizzle stack with a local Postgres transport;
+two independent backend PIDs blocked at a lock prove actual query overlap.
+The suite has no configurable URL and never reads application DB credentials.
 
 `LeagueStats` fields are all nullable. In the preseason (`/state/nba`
 says `"pre"`) the loader returns `hasGames: false` and every stat stays
@@ -495,9 +533,22 @@ Mobile and desktop are both first-class (rule 7). The convention:
 
 - League data (rosters, users, league meta, NBA state, matchups):
   `revalidate = 300` (5 min).
-- Player directory (~3MB, too big for Next's data cache): fetched with
-  `no-store` and ONLY when name resolution actually needs it (non-empty
-  transactions).
+- Player directory (~2.5MB raw): projected at parse time to the fields the
+  membrane reads (~330KB), cached per instance for 5 minutes with last-good
+  fallback on refresh failure (`createPlayerDirectoryCache` in
+  `src/data/sleeper.ts`; `no-store` on the underlying fetch so the 5-minute
+  TTL is the single source of truth). Still fetched ONLY when name resolution
+  actually needs it — and never cached through the write-bearing market
+  producer (issue #44 owns that publication boundary).
+- League news feed (public, read-only): one shared copy per instance for
+  5 min (`createLeagueNewsCache` in `src/data/league.ts`), so the
+  root-layout ticker and `/news` don't recompute it independently. Nothing
+  session-scoped is ever cached across requests. The loader
+  (`loadLeagueNews`) uses strict variants (`getTransactionHistoryStrict`,
+  `getDraftBoardStrict`) that throw on any upstream failure — the TTL
+  cache then preserves last-good instead of caching a failure-degraded
+  feed. Empty-but-successfully-fetched inputs are legitimate; the
+  invariant is "failure throws", not "empty throws".
 
 ## Environment
 
@@ -538,6 +589,13 @@ preview deployment must never crash on a missing database.
   statement (CTE), so a failed claim leaves neither a partial account nor
   a consumed code. The neon-http driver has no interactive transactions;
   the single-statement CTE is the atomicity mechanism.
+  Team-constraint conflicts are read from the Drizzle error's cause for
+  both `site_users_team_id_unique` (repository schema) and
+  `site_users_team_id_key` (existing Postgres constraint). Unknown constraints,
+  other SQL errors, and infrastructure errors propagate. Session creation
+  happens after the claim commits. If the session or cookie response fails, the account
+  remains claimed: recover through `/login` with the password just set.
+  Retrying a used invite never authorizes a session or creates another user.
 - **Login:** `/login` — team + password, bcrypt-compared server-side.
 - **Sessions:** 90-day httpOnly cookies, SHA-256-hashed tokens in the DB.
 - **Friends-grade security:** invite codes close the impersonation hole

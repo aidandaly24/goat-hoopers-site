@@ -28,8 +28,8 @@ const MAX_RETRIES = 2;
  */
 const IDLE_WAKEUP_MS = 3_600_000;
 /**
- * When an idle wake-up fires but the provider's slate date hasn't rolled
- * (P2-2), re-check on this shorter cadence instead of waiting another day.
+ * An idle slate that is not today's needs bounded discovery even on the
+ * first response, because the provider may roll its day after midnight.
  */
 const IDLE_RECHECK_MS = 2 * 3_600_000;
 
@@ -51,6 +51,11 @@ function msUntilLocalMidnight(nowMs: number): number {
   return Math.max(0, midnight.getTime() - nowMs);
 }
 
+function localSlateDate(nowMs: number): string {
+  const date = new Date(nowMs);
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
 /**
  * The polling state machine, extracted for testability (rule 11).
  *
@@ -63,10 +68,9 @@ function msUntilLocalMidnight(nowMs: number): number {
  *   silently with a needsRecovery flag — the next online/visibility event
  *   always recovers it (P2-1), regardless of the 1h idle bound.
  * - Idle slate (empty or all-final): no continuous polling. Wakes once at
- *   the next local midnight to discover the new day's slate; if the
- *   provider's slate date hasn't rolled, re-checks every 2h instead of
- *   waiting 24h (P2-2). Stale finals are replaced by the fresh check,
- *   never rotated indefinitely.
+ *   the next local midnight for today's slate. A previous/unknown day
+ *   re-checks within 2h from its first response (P2-2). Previous-day
+ *   finals expire immediately; overnight live games keep polling.
  * - Never overlaps requests: an in-flight guard drops re-entrant polls.
  */
 export function createLiveGamesPoller(
@@ -81,8 +85,6 @@ export function createLiveGamesPoller(
   let lastAttempt = 0;
   /** P2-1: parked after exhausting retries — wake events must recover. */
   let needsRecovery = false;
-  /** P2-2: ESPN's day.date from the last idle response. */
-  let lastSlateDate: string | null = null;
   let unsubVisible: (() => void) | null = null;
   let unsubOnline: (() => void) | null = null;
 
@@ -123,22 +125,15 @@ export function createLiveGamesPoller(
   }
 
   /**
-   * Idle-slate scheduling (P2-2): track the provider's slate date across
-   * wake-ups. A fresh or rolled slate waits for the next local midnight;
-   * an unrolled slate re-checks in 2h so a visible tab discovers the new
-   * day without waiting 24h.
+   * Compare with the local day, rather than requiring a prior idle
+   * response. Midnight remains an earlier discovery opportunity.
    */
   function scheduleIdle(slateDate: string | null) {
-    if (
-      slateDate !== null &&
-      lastSlateDate !== null &&
-      slateDate === lastSlateDate
-    ) {
-      schedule(IDLE_RECHECK_MS);
-    } else {
-      lastSlateDate = slateDate;
-      schedule(msUntilLocalMidnight(deps.now()));
-    }
+    const now = deps.now();
+    const untilMidnight = msUntilLocalMidnight(now);
+    schedule(slateDate === localSlateDate(now)
+      ? untilMidnight
+      : Math.min(untilMidnight, IDLE_RECHECK_MS));
   }
 
   async function poll() {
@@ -154,11 +149,16 @@ export function createLiveGamesPoller(
       retries = 0;
       needsRecovery = false;
       const games = slate.games;
-      onUpdate(games);
       if (isGameDay(games)) {
-        lastSlateDate = null;
+        onUpdate(games);
         schedule(POLL_MS);
       } else {
+        // Only a valid past calendar day can expire idle scores. Missing
+        // or malformed dates still get bounded discovery, without guessing.
+        const date = new Date(`${slate.slateDate}T00:00:00`);
+        const expired = localSlateDate(date.getTime()) === slate.slateDate
+          && slate.slateDate < localSlateDate(deps.now());
+        onUpdate(expired ? [] : games);
         scheduleIdle(slate.slateDate);
       }
     } catch {

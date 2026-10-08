@@ -218,6 +218,122 @@ describe("failure recovery via needsRecovery (P2-1)", () => {
 });
 
 describe("provider-day rollover (P2-2)", () => {
+  it.each([null, "unknown", "2026-02-30", "2026-10-10"])(
+    "bounds discovery for date %s without guessing that its finals expired",
+    async (date) => {
+      vi.useFakeTimers();
+      vi.setSystemTime(new Date(2026, 9, 9, 3, 0, 0));
+      let calls = 0;
+      const { poller, updates, requestTimes } = setup(async () => {
+        calls += 1;
+        return calls === 1
+          ? slate([finalGame], date)
+          : slate([liveGame], "2026-10-09");
+      });
+      poller.start();
+      await vi.advanceTimersByTimeAsync(0);
+      expect(updates).toEqual([[finalGame]]);
+      await vi.advanceTimersByTimeAsync(2 * 3_600_000 - 1);
+      expect(calls).toBe(1);
+      await vi.advanceTimersByTimeAsync(1);
+      expect(calls).toBe(2);
+      expect(updates).toEqual([[finalGame], [liveGame]]);
+      expectFloor(requestTimes);
+      poller.stop();
+    },
+  );
+
+  it("keeps today's finals and waits for midnight on a fresh idle response", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 9, 9, 3, 0, 0));
+    let calls = 0;
+    const { poller, updates } = setup(async () => {
+      calls += 1;
+      return slate([finalGame], "2026-10-09");
+    });
+    poller.start();
+    await vi.advanceTimersByTimeAsync(0);
+    expect(updates).toEqual([[finalGame]]);
+    await vi.advanceTimersByTimeAsync(21 * 3_600_000 - 1);
+    expect(calls).toBe(1);
+    await vi.advanceTimersByTimeAsync(1);
+    expect(calls).toBe(2);
+    expect(updates).toEqual([[finalGame], []]);
+    poller.stop();
+  });
+
+  it("checks at midnight when it is sooner than the stale slate's 2h bound", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 9, 9, 23, 0, 0));
+    let calls = 0;
+    const { poller, updates, requestTimes } = setup(async () => {
+      calls += 1;
+      return calls === 1
+        ? slate([finalGame], "2026-10-08")
+        : slate([liveGame], "2026-10-10");
+    });
+    poller.start();
+    await vi.advanceTimersByTimeAsync(0);
+    expect(updates).toEqual([[]]);
+    await vi.advanceTimersByTimeAsync(3_600_000);
+    expect(calls).toBe(2);
+    expect(updates).toEqual([[], [liveGame]]);
+    expectFloor(requestTimes);
+    poller.stop();
+  });
+
+  it("bounds first-idle discovery after a cold mount on yesterday's finals", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 9, 9, 3, 0, 0));
+    let calls = 0;
+    const { poller, updates, requestTimes } = setup(async () => {
+      calls += 1;
+      return calls < 3
+        ? slate([finalGame], "2026-10-08")
+        : slate([liveGame], "2026-10-09");
+    });
+
+    poller.start();
+    await vi.advanceTimersByTimeAsync(0);
+    expect.soft(updates).toEqual([[]]); // expired finals never join the rotation
+    await vi.advanceTimersByTimeAsync(2 * 3_600_000);
+    expect(calls).toBe(2);
+    expect(updates).toEqual([[], []]);
+    await vi.advanceTimersByTimeAsync(2 * 3_600_000);
+    expect(calls).toBe(3);
+    expect(updates).toEqual([[], [], [liveGame]]);
+    await vi.advanceTimersByTimeAsync(60_000);
+    expect(calls).toBe(4);
+    expectFloor(requestTimes);
+    poller.stop();
+  });
+
+  it("expires an overnight game when it becomes final and discovers the later provider rollover", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 9, 8, 23, 59, 30));
+    let calls = 0;
+    const { poller, updates, requestTimes } = setup(async () => {
+      calls += 1;
+      if (calls === 1) return slate([liveGame], "2026-10-08");
+      return calls < 4
+        ? slate([finalGame], "2026-10-08")
+        : slate([liveGame], "2026-10-09");
+    });
+
+    poller.start();
+    await vi.advanceTimersByTimeAsync(0);
+    expect(updates).toEqual([[liveGame]]);
+    await vi.advanceTimersByTimeAsync(60_000); // 00:00:30: yesterday's game ends
+    expect.soft(updates).toEqual([[liveGame], []]);
+    await vi.advanceTimersByTimeAsync(2 * 3_600_000);
+    expect(calls).toBe(3);
+    await vi.advanceTimersByTimeAsync(2 * 3_600_000);
+    expect(calls).toBe(4);
+    expect(updates).toEqual([[liveGame], [], [], [liveGame]]);
+    expectFloor(requestTimes);
+    poller.stop();
+  });
+
   it("re-checks in 2h when the midnight slate hasn't rolled, then finds the new day", async () => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date(2026, 9, 8, 23, 0, 0)); // 11pm local, Oct 8
@@ -243,7 +359,7 @@ describe("provider-day rollover (P2-2)", () => {
     // Same slate date → not 24h, re-check in 2h.
     await vi.advanceTimersByTimeAsync(2 * 3_600_000); // t=02:00
     expect(calls).toBe(3);
-    expect(updates).toEqual([[finalGame], [finalGame], [liveGame]]);
+    expect(updates).toEqual([[finalGame], [], [liveGame]]);
 
     // New slate is a game day: back to 60s polling.
     await vi.advanceTimersByTimeAsync(60_000);
@@ -277,5 +393,31 @@ describe("provider-day rollover (P2-2)", () => {
     expect(calls).toBe(3);
 
     poller.stop();
+  });
+});
+
+describe("request lifecycle", () => {
+  it("does not overlap wake requests and ignores an aborted late response after stop", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 9, 9, 3, 0, 0));
+    let resolve!: (value: LiveSlate) => void;
+    let signal!: AbortSignal;
+    const { poller, updates, requestTimes, visibleHandlers, onlineHandlers } = setup(
+      (requestSignal) => {
+        signal = requestSignal;
+        return new Promise((done) => { resolve = done; });
+      },
+    );
+    poller.start();
+    await vi.advanceTimersByTimeAsync(2 * 3_600_000);
+    visibleHandlers[0]();
+    onlineHandlers[0]();
+    expect(requestTimes).toHaveLength(1);
+    poller.stop();
+    expect(signal.aborted).toBe(true);
+    resolve(slate([liveGame], "2026-10-09"));
+    await vi.advanceTimersByTimeAsync(0);
+    expect(updates).toEqual([]);
+    expect(vi.getTimerCount()).toBe(0);
   });
 });

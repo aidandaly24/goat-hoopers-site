@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  background: var(--gh-bg);
+  color: var(--gh-text);
+  font-family: var(--gh-font-body);
+}
+main { max-width: 72rem; margin: auto; padding: var(--gh-s4); }
+a { color: var(--gh-gold); }
+.fixtureControls { display: flex; flex-wrap: wrap; gap: var(--gh-s2); margin-bottom: var(--gh-s4); }
+button {
+  background: var(--gh-bg-raised);
+  color: var(--gh-text);
+  border: 1px solid var(--gh-border-strong);
+  border-radius: var(--gh-radius);
+  padding: var(--gh-s2);
+}
+.fixtureProp { width: 9rem; height: 9rem; }
