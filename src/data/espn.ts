@@ -27,9 +27,17 @@ export type EspnIdMap = Record<string, string>;
 /**
  * Pure lookup: the ESPN id for a Sleeper player, or null when the map has no
  * entry (players without a headshot render the initials fallback).
+ *
+ * Hardened against prototype pollution (#48): only own properties resolve,
+ * so "constructor"/"toString"/"__proto__" keys can never leak Object
+ * prototype members into a URL, and non-string values are rejected.
  */
 export function resolveEspnId(sleeperId: string, map: EspnIdMap): string | null {
-  return map[sleeperId] ?? null;
+  if (!Object.prototype.hasOwnProperty.call(map, sleeperId)) return null;
+  const v: unknown = map[sleeperId];
+  if (typeof v === "string" && v.length > 0) return v;
+  if (typeof v === "number" && Number.isFinite(v)) return String(v);
+  return null;
 }
 
 /**
