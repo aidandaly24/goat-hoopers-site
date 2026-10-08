@@ -846,6 +846,7 @@ export function computeStockMarket(input: StockMarketInput): StockMarket {
       tradeCount: trades,
       ownership,
       rookiePick: pick ?? null,
+      seasonHistory: prof?.seasonHistory ?? [],
     });
   }
 

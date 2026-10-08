@@ -30,8 +30,8 @@ export type StatClientDeps = {
   fetchSeasonStats: (season: string) => Promise<SeasonStatLines>;
   /** player_id → earliest league rookie-draft overall pick. */
   leaguePicks: Record<string, number>;
-  /** Most-recent completed season first, e.g. ["2025", "2024"]. */
-  seasons: [string, string];
+  /** Completed seasons, newest first, e.g. ["2025", "2024", "2023", "2022", "2021"]. */
+  seasons: string[];
 };
 
 /** Staleness bound for the fundamentals cache. */
@@ -43,11 +43,11 @@ const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
  */
 export function buildStatProfiles(args: {
   seasons: SeasonStatLines[];
+  seasonNames: string[];
   scoring: Record<string, number>;
   leaguePicks: Record<string, number>;
 }): Record<string, PlayerStatProfile> {
-  const { seasons, scoring, leaguePicks } = args;
-  const [last, prev] = seasons;
+  const { seasons, seasonNames, scoring, leaguePicks } = args;
 
   const perGame = (lines: SeasonStatLines) => {
     const out: Record<string, { fppg: number; games: number; minutes: number }> =
@@ -60,14 +60,14 @@ export function buildStatProfiles(args: {
     return out;
   };
 
-  const lastPg = perGame(last ?? {});
-  const prevPg = perGame(prev ?? {});
+  const perSeason = seasons.map(perGame);
+  const [lastPg, prevPg] = perSeason;
 
-  const ids = new Set([
-    ...Object.keys(lastPg),
-    ...Object.keys(prevPg),
-    ...Object.keys(leaguePicks),
-  ]);
+  const ids = new Set<string>();
+  for (const pg of perSeason) {
+    for (const id of Object.keys(pg)) ids.add(id);
+  }
+  for (const id of Object.keys(leaguePicks)) ids.add(id);
 
   const profiles: Record<string, PlayerStatProfile> = {};
   for (const id of ids) {
@@ -79,12 +79,23 @@ export function buildStatProfiles(args: {
         : l
           ? l.fppg
           : null;
+    const seasonHistory = perSeason
+      .map((pg, i) => {
+        const s = pg[id];
+        return s
+          ? { season: seasonNames[i], fppg: s.fppg, games: s.games }
+          : null;
+      })
+      .filter((s): s is { season: string; fppg: number; games: number } => s !== null);
     profiles[id] = {
       fppg,
-      careerMinutes: Math.round((l?.minutes ?? 0) + (p?.minutes ?? 0)),
+      careerMinutes: Math.round(
+        perSeason.reduce((sum, pg) => sum + (pg[id]?.minutes ?? 0), 0)
+      ),
       emaFppg: null, // filled by the in-season game-log updater (not yet wired)
       emaGames: 0,
       leaguePick: leaguePicks[id] ?? null,
+      seasonHistory,
     };
   }
   return profiles;
@@ -106,6 +117,7 @@ async function readCache(
         emaFppg: r.emaFppg,
         emaGames: r.emaGames ?? 0,
         leaguePick: r.leaguePick,
+        seasonHistory: (r.seasonHistory as PlayerStatProfile["seasonHistory"]) ?? [],
       };
     }
     return { profiles, fresh: Date.now() - newest < CACHE_TTL_MS };
@@ -130,6 +142,7 @@ async function writeCache(
         emaFppg: p.emaFppg,
         emaGames: p.emaGames,
         leaguePick: p.leaguePick,
+        seasonHistory: p.seasonHistory,
         updatedAt: new Date(),
       }));
       await db
@@ -143,6 +156,7 @@ async function writeCache(
             emaFppg: sql`excluded.ema_fppg`,
             emaGames: sql`excluded.ema_games`,
             leaguePick: sql`excluded.league_pick`,
+            seasonHistory: sql`excluded.season_history`,
             updatedAt: new Date(),
           },
         });
@@ -161,17 +175,27 @@ export async function getStatProfiles(
   deps: StatClientDeps
 ): Promise<Record<string, PlayerStatProfile>> {
   const cached = await readCache(deps.db);
-  if (cached && cached.fresh && Object.keys(cached.profiles).length > 0) {
+  const hasSeasonHistory =
+    cached != null &&
+    Object.values(cached.profiles).some((p) => p.seasonHistory.length > 0);
+  // Self-healing: rows written before the season_history column existed
+  // carry no history — refresh once instead of serving them for a day.
+  if (
+    cached &&
+    cached.fresh &&
+    hasSeasonHistory &&
+    Object.keys(cached.profiles).length > 0
+  ) {
     return cached.profiles;
   }
 
   try {
-    const [last, prev] = await Promise.all([
-      deps.fetchSeasonStats(deps.seasons[0]),
-      deps.fetchSeasonStats(deps.seasons[1]),
-    ]);
+    const lines = await Promise.all(
+      deps.seasons.map((s) => deps.fetchSeasonStats(s))
+    );
     const profiles = buildStatProfiles({
-      seasons: [last, prev],
+      seasons: lines,
+      seasonNames: deps.seasons,
       scoring: deps.scoring,
       leaguePicks: deps.leaguePicks,
     });

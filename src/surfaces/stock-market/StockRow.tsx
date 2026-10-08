@@ -75,6 +75,20 @@ export function StockRow({ stock: s }: { stock: PlayerStock }) {
               {Math.round(s.ownership * 100)}% owned
             </span>
           </div>
+          {s.seasonHistory.length > 0 && (
+            <>
+              <p className={styles.whyHead}>Last {s.seasonHistory.length} seasons</p>
+              <ul className={styles.factors}>
+                {s.seasonHistory.map((h) => (
+                  <li key={h.season} className={styles.factor}>
+                    <span className={styles.factorLabel}>{h.season}</span>
+                    <span className={styles.dFlat}>{h.fppg.toFixed(1)} fppg</span>
+                    <span className={styles.factorNote}>{h.games} games</span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
           <p className={styles.whyHead}>Why this price</p>
           <ul className={styles.factors}>
             {s.factors.map((f) => (

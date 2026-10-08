@@ -36,6 +36,11 @@ export type PlayerStatProfile = {
   emaGames: number;
   /** Earliest league rookie-draft overall pick; null if never drafted. */
   leaguePick: number | null;
+  /**
+   * Per-season production, newest first (up to 5 seasons). Empty for
+   * players with no NBA stat lines.
+   */
+  seasonHistory: Array<{ season: string; fppg: number; games: number }>;
 };
 
 /**
@@ -91,6 +96,11 @@ export type PlayerStock = {
   ownership: number;
   /** Earliest overall pick in a league rookie draft; null for non-rookies. */
   rookiePick: number | null;
+  /**
+   * Per-season production, newest first (up to 5 seasons). Powers the
+   * "last 5 seasons" view in the expanded row.
+   */
+  seasonHistory: Array<{ season: string; fppg: number; games: number }>;
 };
 
 export type PanicSignal = {

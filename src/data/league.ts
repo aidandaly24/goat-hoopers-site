@@ -671,7 +671,9 @@ export async function getStockMarketData(): Promise<StockMarket> {
       scoring: league.scoring_settings ?? {},
       fetchSeasonStats,
       leaguePicks: draftPick,
-      seasons: [String(Number(league.season) - 1), String(Number(league.season) - 2)],
+      seasons: Array.from({ length: 5 }, (_, i) =>
+        String(Number(league.season) - 1 - i)
+      ),
     });
   } catch {
     statProfiles = null;

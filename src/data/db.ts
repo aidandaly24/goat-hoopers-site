@@ -26,6 +26,7 @@ import { drizzle } from "drizzle-orm/neon-http";
 import {
   boolean,
   integer,
+  jsonb,
   pgTable,
   real,
   text,
@@ -155,6 +156,12 @@ export const playerStatCache = pgTable("player_stat_cache", {
   emaGames: integer("ema_games").default(0).notNull(),
   /** Earliest league rookie-draft overall pick; null if never drafted. */
   leaguePick: integer("league_pick"),
+  /**
+   * Per-season history: [{ season: "2025", fppg: 21.0, games: 74 }, …],
+   * newest first, up to 5 seasons. Powers the "last 5 seasons" view —
+   * real production, not model artifacts.
+   */
+  seasonHistory: jsonb("season_history"),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
