@@ -59,6 +59,7 @@ import {
   computeLeagueStats,
   computeStockMarket,
   computePlayerStocks,
+  marketCandidateIds,
   toStockDetail,
   emptyLeagueStats,
   currentStreak,
@@ -696,9 +697,22 @@ const getMarketInputs = cache(async (): Promise<StockMarketInput> => {
 
   // Previous prices for change %. Best-effort: without them the market
   // still computes, it just shows "new listing" states.
+  // Request history for every market candidate — not just rostered
+  // players — so unrostered listings (draft picks, recent moves) recover
+  // their baselines (issue #31).
   let history: Record<string, PriceHistoryPoint[]> | null = null;
   try {
-    history = await getStockStore().getHistory(Object.keys(rosteredCount));
+    const players = directory ?? {};
+    history = await getStockStore().getHistory(
+      marketCandidateIds({
+        players,
+        rosteredCount,
+        faabSpent,
+        flow,
+        tradeCount,
+        draftPick,
+      })
+    );
   } catch {
     history = null;
   }

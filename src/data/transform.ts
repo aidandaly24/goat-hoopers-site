@@ -679,6 +679,67 @@ function displayNameOf(id: string, entry: RawPlayerEntry): string {
 }
 
 /**
+ * Market footprint signals for one player. A player is listed in the
+ * market when any signal is present: current ownership, FAAB spent,
+ * trades, adds/drops in the window, or rookie-draft capital.
+ */
+export type MarketFootprintSignals = {
+  owned: number;
+  spent: number;
+  trades: number;
+  adds: number;
+  drops: number;
+  pick: number | null | undefined;
+};
+
+/**
+ * Pure market-membership predicate. Shared by pricing (computePlayerStocks)
+ * and history-request selection (getMarketInputs) so "listed", "history
+ * requested", and "snapshot eligible" never drift (issue #31).
+ */
+export function hasMarketFootprint(signals: MarketFootprintSignals): boolean {
+  return (
+    signals.owned > 0 ||
+    signals.spent > 0 ||
+    signals.trades > 0 ||
+    signals.adds > 0 ||
+    signals.drops > 0 ||
+    signals.pick != null
+  );
+}
+
+/**
+ * Player IDs with a market footprint, derived from a StockMarketInput.
+ * Used to select history requests — must match pricing membership so
+ * unrostered listings (draft picks, recent moves) recover their baselines.
+ * Pure.
+ */
+export function marketCandidateIds(
+  input: Pick<
+    StockMarketInput,
+    "players" | "rosteredCount" | "faabSpent" | "flow" | "tradeCount" | "draftPick"
+  >
+): string[] {
+  const ids: string[] = [];
+  for (const id of Object.keys(input.players)) {
+    const { adds, drops } = input.flow[id] ?? { adds: 0, drops: 0 };
+    if (
+      hasMarketFootprint({
+        owned: input.rosteredCount[id] ?? 0,
+        spent: input.faabSpent[id] ?? 0,
+        trades: input.tradeCount[id] ?? 0,
+        adds,
+        drops,
+        pick: input.draftPick[id],
+      })
+    ) {
+      ids.push(id);
+    }
+  }
+  return ids;
+}
+
+/**
  * Price every player with a market footprint, full PlayerStock objects.
  * Pure: same inputs, same outputs. Used by computeStockMarket (which slims
  * the list to quotes for Rule 14) and by getStockDetail (one player's deep
@@ -709,9 +770,8 @@ export function computePlayerStocks(input: StockMarketInput): PlayerStock[] {
     const trades = tradeCount[id] ?? 0;
     const { adds, drops } = flow[id] ?? { adds: 0, drops: 0 };
     const pick = draftPick[id];
-    const hasSignal =
-      owned > 0 || spent > 0 || trades > 0 || adds > 0 || drops > 0 || pick != null;
-    if (!hasSignal) continue; // no market footprint — not listed
+    if (!hasMarketFootprint({ owned, spent, trades, adds, drops, pick }))
+      continue; // no market footprint — not listed
 
     const ownership = totalRosters > 0 ? owned / totalRosters : 0;
     const faabNorm = faabBudget > 0 ? Math.min(spent / faabBudget, 1) : 0;
