@@ -275,7 +275,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
     setDragging(false);
   };
   const pointerDown = (event: PointerEvent<HTMLDivElement>) => {
-    if ((event.target as HTMLElement).closest("button, a, input, summary, details")) return;
+    if (!(event.target instanceof Element) || event.target.closest("button, a, input, summary, details, [data-practice-ui]")) return;
     if (phase !== "ready" || charging || drag.current || !event.isPrimary || event.button !== 0) return;
     event.preventDefault();
     event.currentTarget.focus({ preventScroll: true });
@@ -329,7 +329,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
   const quiet = ready && !charging && !dragging && (status === "Find your touch" || status.startsWith("Next ball ready") || status.startsWith("Fresh session"));
 
   return (
-    <main className={styles.surface}>
+    <main className={styles.surface} data-arcade-page>
       <section ref={stage} className={`${styles.stage} ${dragging ? styles.dragging : ""}`}
         data-shot-state={phase} data-charging={charging} tabIndex={available ? 0 : -1}
         role="group" aria-label="Court controls" aria-describedby="court-instructions"
@@ -340,7 +340,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
         onKeyDown={keyDown} onKeyUp={keyUp}
         onBlur={event => { if (drag.current) cancelDrag(); if (event.target === event.currentTarget || !event.currentTarget.contains(event.relatedTarget)) controller.current?.cancelCharge(); }}>
         <div ref={mount} className={styles.canvas} />
-        <div className={styles.topHud}>
+        <div className={styles.topHud} data-practice-ui>
           <div className={styles.identity}>
             <Link className={styles.back} href="/arcade" aria-label="Back to the arcade"><HudIcon name="back" /></Link>
             <div><h1>Free throws</h1><span className={styles.sceneLabel}>Local practice · {phase === "loading" ? "Loading court" : phase === "unavailable" ? "Court unavailable" : "Practice court"}</span></div>
@@ -380,14 +380,14 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
             {phase === "flight" ? "In flight" : phase === "result" ? "Next ball…" : charging ? "Release" : "Hold to shoot"}
           </button>
           <p className={styles.keyboardHint}><kbd>A</kbd><kbd>D</kbd> aim <span>·</span> Hold <kbd>Space</kbd> and release</p>
-          <p className={styles.touchHint}>Drag to aim · Hold to shoot</p>
+          <p className={styles.touchHint}>Drag &amp; release to shoot · Hold for power</p>
         </div>
         <p id="court-instructions" className={styles.srOnly}>Focus the court. Left/Right arrows or A/D aim. Hold Space for power; release to shoot. Up/Down adjust selected power. Enter fires selected power. R retries; Escape cancels. On touch, drag on the court and release, or hold the shoot button. Each settled shot or reset moves to a new shooting spot. Adjust power for the distance. Scores stay on this page only.</p>
-        {help && <section className={styles.help} aria-label="Practice controls">
+        {help && <section className={styles.help} aria-label="Practice controls" data-practice-ui>
           <header><h2>Find your touch</h2><button className={styles.iconButton} aria-label="Close help" onClick={() => { setHelp(false); stage.current?.focus({ preventScroll: true }); }}><HudIcon name="close" /></button></header>
           <p>Focus the court. <kbd>A</kbd> / <kbd>D</kbd> or the arrow keys aim. Hold <kbd>Space</kbd> to build power, then release. Start near 50% at the free-throw line.</p>
           <p>Each finished shot or reset moves you to a new spot. Center points toward the basket; adjust power for the distance shown by the ball.</p>
-          <p>On touch, drag the court and release, or hold the shoot button. The next ball returns automatically.</p>
+          <p>On touch, drag left or right to aim, down for more power or up for less, then lift your finger to shoot. Or hold the shoot button, then release. The next ball returns automatically.</p>
           <p><kbd>R</kbd> retries. <kbd>Esc</kbd> cancels. Practice scores stay on this page; league rewards are inactive.</p>
           {reduced && <p>Reduced motion: shots resolve to a still result.</p>}
           <details className={styles.fineControls}>
