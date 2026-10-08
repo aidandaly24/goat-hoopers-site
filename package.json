@@ -9,6 +9,7 @@
     "price-history:import": "tsx scripts/import-price-history.ts",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "price-history:plan": "tsx scripts/plan-price-history.ts",
     "test:price-history:local": "RUN_PRICE_HISTORY_LOCAL_TEST=1 vitest run src/data/__tests__/price-history-local.test.ts"
