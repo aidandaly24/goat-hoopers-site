@@ -1,5 +1,10 @@
 import Link from "next/link";
-import type { NewsArticle, PlayerRef, PublicationId } from "@/domain";
+import type {
+  NewsArticle,
+  PlayerRef,
+  PublicationId,
+  TeamRef,
+} from "@/domain";
 import { PUBLICATIONS } from "@/domain";
 import styles from "./NewsCard.module.css";
 
@@ -28,24 +33,32 @@ function timeAgo(ts: number): string {
 }
 
 /**
- * Turn exact full-name mentions into links to /player/[playerId].
- * Longest names first so "Mikel Brown Jr." wins over any substring.
+ * Turn exact full-name mentions into links: players go to their profile,
+ * teams go to their team page. Longest names first so "Mikel Brown Jr."
+ * wins over any substring.
  */
-function linkify(text: string, players: PlayerRef[]): React.ReactNode[] {
-  if (players.length === 0) return [text];
-  const sorted = [...players].sort((a, b) => b.name.length - a.name.length);
-  const escaped = sorted.map((p) =>
-    p.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+function linkify(
+  text: string,
+  players: PlayerRef[],
+  teams: TeamRef[]
+): React.ReactNode[] {
+  const targets = [
+    ...players.map((p) => ({
+      name: p.name,
+      href: `/player/${p.playerId}`,
+    })),
+    ...teams.map((t) => ({ name: t.name, href: `/teams/${t.teamId}` })),
+  ];
+  if (targets.length === 0) return [text];
+  const sorted = [...targets].sort((a, b) => b.name.length - a.name.length);
+  const escaped = sorted.map((t) =>
+    t.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
   );
   const parts = text.split(new RegExp(`(${escaped.join("|")})`, "g"));
   return parts.map((part, i) => {
-    const player = sorted.find((p) => p.name === part);
-    return player ? (
-      <Link
-        key={i}
-        href={`/player/${player.playerId}`}
-        className={styles.playerLink}
-      >
+    const target = sorted.find((t) => t.name === part);
+    return target ? (
+      <Link key={i} href={target.href} className={styles.playerLink}>
         {part}
       </Link>
     ) : (
@@ -72,10 +85,12 @@ export function NewsCard({ article: a }: { article: NewsArticle }) {
         <span className={styles.pubName}>{pub.name}</span>
         <span className={styles.time}>{timeAgo(a.publishedAt)}</span>
       </div>
-      <h3 className={styles.headline}>{linkify(a.headline, a.players)}</h3>
+      <h3 className={styles.headline}>
+        {linkify(a.headline, a.players, a.teams)}
+      </h3>
       <div className={styles.body}>
         {a.body.map((p, i) => (
-          <p key={i}>{linkify(p, a.players)}</p>
+          <p key={i}>{linkify(p, a.players, a.teams)}</p>
         ))}
       </div>
       <div className={styles.meta}>

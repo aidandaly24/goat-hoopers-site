@@ -7,6 +7,7 @@ import type {
   PlayerRef,
   PublicationId,
   Team,
+  TeamRef,
   Transaction,
 } from "@/domain";
 
@@ -41,13 +42,12 @@ function article(
   headline: string,
   body: string[],
   publishedAt: number,
-  players: PlayerRef[]
+  players: PlayerRef[],
+  teams: TeamRef[] = []
 ): NewsArticle {
-  // Dedupe by player — the same name can surface twice in a trade.
-  const seen = new Set<string>();
-  const unique = players.filter((p) =>
-    seen.has(p.playerId) ? false : (seen.add(p.playerId), true)
-  );
+  // Dedupe by id — the same name can surface twice in a trade.
+  const seenPlayers = new Set<string>();
+  const seenTeams = new Set<string>();
   return {
     id,
     publication,
@@ -56,7 +56,12 @@ function article(
     headline,
     body,
     publishedAt,
-    players: unique,
+    players: players.filter((p) =>
+      seenPlayers.has(p.playerId) ? false : (seenPlayers.add(p.playerId), true)
+    ),
+    teams: teams.filter((t) =>
+      seenTeams.has(t.teamId) ? false : (seenTeams.add(t.teamId), true)
+    ),
   };
 }
 
@@ -69,11 +74,13 @@ function joinNames(names: string[]): string {
 
 type TradeView = {
   tx: Transaction;
-  a: { teamName: string; received: string[] };
-  b: { teamName: string; received: string[] };
+  a: { teamId: string; teamName: string; received: string[] };
+  b: { teamId: string; teamName: string; received: string[] };
   headliner: string;
   /** Every player changing teams, for cross-linking. */
   players: PlayerRef[];
+  /** Both teams, for cross-linking. */
+  teams: TeamRef[];
 };
 
 function tradeView(tx: Transaction): TradeView | null {
@@ -86,10 +93,22 @@ function tradeView(tx: Transaction): TradeView | null {
     moves.map((m) => ({ playerId: m.playerId, name: m.name }));
   return {
     tx,
-    a: { teamName: a.teamName, received: a.received.map((m) => m.name) },
-    b: { teamName: b.teamName, received: b.received.map((m) => m.name) },
+    a: {
+      teamId: a.teamId,
+      teamName: a.teamName,
+      received: a.received.map((m) => m.name),
+    },
+    b: {
+      teamId: b.teamId,
+      teamName: b.teamName,
+      received: b.received.map((m) => m.name),
+    },
     headliner: headlinerMove.name,
     players: [...toRefs(a.received), ...toRefs(b.received)],
+    teams: [
+      { teamId: a.teamId, name: a.teamName },
+      { teamId: b.teamId, name: b.teamName },
+    ],
   };
 }
 
@@ -112,7 +131,8 @@ function tradeCoverage(t: TradeView, key: string): NewsArticle[] {
         `The deal is expected to process ahead of the next waiver run. A developing story — more to come.`,
       ],
       at(0),
-      t.players
+      t.players,
+      t.teams
     ),
     article(
       `trade-${key}-espn`,
@@ -126,7 +146,8 @@ function tradeCoverage(t: TradeView, key: string): NewsArticle[] {
         `Verdict: both teams walk away with something real, but ${a.teamName} is swinging for the fences while ${b.teamName} plays the odds. That is how dynasties get built — or broken.`,
       ],
       at(25),
-      t.players
+      t.players,
+      t.teams
     ),
     article(
       `trade-${key}-athletic`,
@@ -140,7 +161,8 @@ function tradeCoverage(t: TradeView, key: string): NewsArticle[] {
         `The nerd verdict: ${a.teamName} paid fair value for certainty, ${b.teamName} bought variance at a discount. Both GMs can defend this with a straight face, which is the hallmark of a genuinely good trade.`,
       ],
       at(70),
-      t.players
+      t.players,
+      t.teams
     ),
     article(
       `trade-${key}-bleacher`,
@@ -154,7 +176,8 @@ function tradeCoverage(t: TradeView, key: string): NewsArticle[] {
         `Winners: ${a.teamName}. Losers: the other eight teams, who now have to game-plan around ${headliner} for the next decade. The group chat is in shambles.`,
       ],
       at(120),
-      t.players
+      t.players,
+      t.teams
     ),
     article(
       `trade-${key}-bayless`,
@@ -168,7 +191,8 @@ function tradeCoverage(t: TradeView, key: string): NewsArticle[] {
         `Mark my words: five years from now, this trade will be remembered as the exact moment ${a.teamName}'s so-called dynasty DIED. You heard it here first.`,
       ],
       at(180),
-      t.players
+      t.players,
+      t.teams
     )
   );
   return out;
@@ -196,7 +220,8 @@ function waiverCoverage(
         `The move signals ${team} is done waiting on its current rotation. Expect the FAAB ledger to reflect it.`,
       ],
       at(0),
-      tx.adds.map((m) => ({ playerId: m.playerId, name: m.name }))
+      tx.adds.map((m) => ({ playerId: m.playerId, name: m.name })),
+      tx.teamIds[0] ? [{ teamId: tx.teamIds[0], name: team }] : []
     ),
     article(
       `waiver-${key}-espn`,
@@ -210,7 +235,8 @@ function waiverCoverage(
         `The cost was opportunity, not capital. If it hits, ${team} looks brilliant. If it misses, nobody remembers by December.`,
       ],
       at(40),
-      tx.adds.map((m) => ({ playerId: m.playerId, name: m.name }))
+      tx.adds.map((m) => ({ playerId: m.playerId, name: m.name })),
+      tx.teamIds[0] ? [{ teamId: tx.teamIds[0], name: team }] : []
     ),
     article(
       `waiver-${key}-bleacher`,
@@ -223,7 +249,8 @@ function waiverCoverage(
         `Is ${headliner} a league-winner? Probably not. Is this the kind of move that wins leagues in the margins? ABSOLUTELY.`,
       ],
       at(90),
-      tx.adds.map((m) => ({ playerId: m.playerId, name: m.name }))
+      tx.adds.map((m) => ({ playerId: m.playerId, name: m.name })),
+      tx.teamIds[0] ? [{ teamId: tx.teamIds[0], name: team }] : []
     ),
   ];
 }
@@ -247,7 +274,8 @@ function rookieCoverage(pick: DraftPick, teams: Team[]): NewsArticle[] {
         `Early verdict: sensible process, sensible pick. The boring picks are usually the right ones.`,
       ],
       at(pick.pickNo),
-      [{ playerId: pick.playerId, name: pick.playerName }]
+      [{ playerId: pick.playerId, name: pick.playerName }],
+      [{ teamId: pick.teamId, name: team }]
     ),
     article(
       `rookie-${pick.pickNo}-athletic`,
@@ -261,7 +289,8 @@ function rookieCoverage(pick: DraftPick, teams: Team[]): NewsArticle[] {
         `Translation for the non-nerds: good pick. The spreadsheet approves.`,
       ],
       at(pick.pickNo + 2),
-      [{ playerId: pick.playerId, name: pick.playerName }]
+      [{ playerId: pick.playerId, name: pick.playerName }],
+      [{ teamId: pick.teamId, name: team }]
     ),
     article(
       `rookie-${pick.pickNo}-bleacher`,
@@ -274,7 +303,8 @@ function rookieCoverage(pick: DraftPick, teams: Team[]): NewsArticle[] {
         `No. ${pick.pickNo} overall. Remember where you were when the steal of the draft happened, because you will be telling this story for a decade.`,
       ],
       at(pick.pickNo + 4),
-      [{ playerId: pick.playerId, name: pick.playerName }]
+      [{ playerId: pick.playerId, name: pick.playerName }],
+      [{ teamId: pick.teamId, name: team }]
     ),
   ];
 }
@@ -341,7 +371,8 @@ function rumorMill(
           `The speculation around the league: something bigger is brewing. Front offices this active don't stay quiet for long.`,
         ],
         now - 9 * 3_600_000,
-        []
+        [],
+        [{ teamId: busiest[0], name }]
       )
     );
   }
@@ -406,7 +437,8 @@ function hotTakes(
           `Bookmark this. SCREENSHOT this. When I'm right — and I am ALWAYS right — I don't want to hear a word.`,
         ],
         now - 3 * 3_600_000,
-        headlinerRef ? [headlinerRef] : []
+        headlinerRef ? [headlinerRef] : [],
+        view.teams
       )
     );
   }
@@ -427,7 +459,8 @@ function hotTakes(
           `The draft industrial complex wants you to believe in consensus. I believe in CHAOS.`,
         ],
         now - 7 * 3_600_000,
-        [{ playerId: firstPick.playerId, name: firstPick.playerName }]
+        [{ playerId: firstPick.playerId, name: firstPick.playerName }],
+        [{ teamId: firstPick.teamId, name: team }]
       )
     );
   }
