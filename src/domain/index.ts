@@ -44,6 +44,7 @@ export type {
   NewsArticle,
   NewsKind,
   NewsSection,
+  PlayerRef,
   Publication,
   PublicationId,
 } from "./news";

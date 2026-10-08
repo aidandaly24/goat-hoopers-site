@@ -75,6 +75,12 @@ export type NewsArticle = {
   body: string[];
   /** Unix ms. */
   publishedAt: number;
-  /** Player names involved — feeds the ticker and cross-links. */
-  playerNames: string[];
+  /** Players involved — names render as links to /player/[playerId]. */
+  players: PlayerRef[];
+};
+
+/** A player reference for cross-linking. */
+export type PlayerRef = {
+  playerId: string;
+  name: string;
 };

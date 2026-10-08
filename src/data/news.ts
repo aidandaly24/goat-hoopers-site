@@ -3,6 +3,8 @@ import type {
   NewsArticle,
   NewsKind,
   NewsSection,
+  PlayerMove,
+  PlayerRef,
   PublicationId,
   Team,
   Transaction,
@@ -39,8 +41,13 @@ function article(
   headline: string,
   body: string[],
   publishedAt: number,
-  playerNames: string[]
+  players: PlayerRef[]
 ): NewsArticle {
+  // Dedupe by player — the same name can surface twice in a trade.
+  const seen = new Set<string>();
+  const unique = players.filter((p) =>
+    seen.has(p.playerId) ? false : (seen.add(p.playerId), true)
+  );
   return {
     id,
     publication,
@@ -49,7 +56,7 @@ function article(
     headline,
     body,
     publishedAt,
-    playerNames,
+    players: unique,
   };
 }
 
@@ -65,18 +72,24 @@ type TradeView = {
   a: { teamName: string; received: string[] };
   b: { teamName: string; received: string[] };
   headliner: string;
+  /** Every player changing teams, for cross-linking. */
+  players: PlayerRef[];
 };
 
 function tradeView(tx: Transaction): TradeView | null {
   const sides = (tx.sides ?? []).filter((s) => s.received.length > 0);
   if (sides.length < 2) return null;
   const [a, b] = sides;
-  const headliner = a.received[0]?.name ?? b.received[0]?.name ?? "a mystery piece";
+  const headlinerMove = a.received[0] ?? b.received[0];
+  if (!headlinerMove) return null;
+  const toRefs = (moves: PlayerMove[]): PlayerRef[] =>
+    moves.map((m) => ({ playerId: m.playerId, name: m.name }));
   return {
     tx,
     a: { teamName: a.teamName, received: a.received.map((m) => m.name) },
     b: { teamName: b.teamName, received: b.received.map((m) => m.name) },
-    headliner,
+    headliner: headlinerMove.name,
+    players: [...toRefs(a.received), ...toRefs(b.received)],
   };
 }
 
@@ -99,7 +112,7 @@ function tradeCoverage(t: TradeView, key: string): NewsArticle[] {
         `The deal is expected to process ahead of the next waiver run. A developing story — more to come.`,
       ],
       at(0),
-      [headliner]
+      t.players
     ),
     article(
       `trade-${key}-espn`,
@@ -113,7 +126,7 @@ function tradeCoverage(t: TradeView, key: string): NewsArticle[] {
         `Verdict: both teams walk away with something real, but ${a.teamName} is swinging for the fences while ${b.teamName} plays the odds. That is how dynasties get built — or broken.`,
       ],
       at(25),
-      [headliner]
+      t.players
     ),
     article(
       `trade-${key}-athletic`,
@@ -127,7 +140,7 @@ function tradeCoverage(t: TradeView, key: string): NewsArticle[] {
         `The nerd verdict: ${a.teamName} paid fair value for certainty, ${b.teamName} bought variance at a discount. Both GMs can defend this with a straight face, which is the hallmark of a genuinely good trade.`,
       ],
       at(70),
-      [headliner]
+      t.players
     ),
     article(
       `trade-${key}-bleacher`,
@@ -141,7 +154,7 @@ function tradeCoverage(t: TradeView, key: string): NewsArticle[] {
         `Winners: ${a.teamName}. Losers: the other eight teams, who now have to game-plan around ${headliner} for the next decade. The group chat is in shambles.`,
       ],
       at(120),
-      [headliner]
+      t.players
     ),
     article(
       `trade-${key}-bayless`,
@@ -155,7 +168,7 @@ function tradeCoverage(t: TradeView, key: string): NewsArticle[] {
         `Mark my words: five years from now, this trade will be remembered as the exact moment ${a.teamName}'s so-called dynasty DIED. You heard it here first.`,
       ],
       at(180),
-      [headliner]
+      t.players
     )
   );
   return out;
@@ -183,7 +196,7 @@ function waiverCoverage(
         `The move signals ${team} is done waiting on its current rotation. Expect the FAAB ledger to reflect it.`,
       ],
       at(0),
-      names
+      tx.adds.map((m) => ({ playerId: m.playerId, name: m.name }))
     ),
     article(
       `waiver-${key}-espn`,
@@ -197,7 +210,7 @@ function waiverCoverage(
         `The cost was opportunity, not capital. If it hits, ${team} looks brilliant. If it misses, nobody remembers by December.`,
       ],
       at(40),
-      names
+      tx.adds.map((m) => ({ playerId: m.playerId, name: m.name }))
     ),
     article(
       `waiver-${key}-bleacher`,
@@ -210,7 +223,7 @@ function waiverCoverage(
         `Is ${headliner} a league-winner? Probably not. Is this the kind of move that wins leagues in the margins? ABSOLUTELY.`,
       ],
       at(90),
-      names
+      tx.adds.map((m) => ({ playerId: m.playerId, name: m.name }))
     ),
   ];
 }
@@ -234,7 +247,7 @@ function rookieCoverage(pick: DraftPick, teams: Team[]): NewsArticle[] {
         `Early verdict: sensible process, sensible pick. The boring picks are usually the right ones.`,
       ],
       at(pick.pickNo),
-      [pick.playerName]
+      [{ playerId: pick.playerId, name: pick.playerName }]
     ),
     article(
       `rookie-${pick.pickNo}-athletic`,
@@ -248,7 +261,7 @@ function rookieCoverage(pick: DraftPick, teams: Team[]): NewsArticle[] {
         `Translation for the non-nerds: good pick. The spreadsheet approves.`,
       ],
       at(pick.pickNo + 2),
-      [pick.playerName]
+      [{ playerId: pick.playerId, name: pick.playerName }]
     ),
     article(
       `rookie-${pick.pickNo}-bleacher`,
@@ -261,7 +274,7 @@ function rookieCoverage(pick: DraftPick, teams: Team[]): NewsArticle[] {
         `No. ${pick.pickNo} overall. Remember where you were when the steal of the draft happened, because you will be telling this story for a decade.`,
       ],
       at(pick.pickNo + 4),
-      [pick.playerName]
+      [{ playerId: pick.playerId, name: pick.playerName }]
     ),
   ];
 }
@@ -284,7 +297,7 @@ function rumorMill(
     }
   }
   let i = 0;
-  for (const { name, n } of tradeCount.values()) {
+  for (const [playerId, { name, n }] of tradeCount.entries()) {
     if (n < 2 || i >= 2) continue;
     i += 1;
     out.push(
@@ -300,7 +313,7 @@ function rumorMill(
           `This is the rumor mill, not a done deal. But the phones are ringing.`,
         ],
         now - i * 5 * 3_600_000,
-        [name]
+        [{ playerId, name }]
       )
     );
   }
@@ -342,22 +355,23 @@ function rumorMill(
       dropCount.set(m.playerId, cur);
     }
   }
-  const mostDropped = [...dropCount.values()].sort((a, b) => b.n - a.n)[0];
-  if (mostDropped && mostDropped.n >= 1) {
+  const mostDropped = [...dropCount.entries()].sort((a, b) => b[1].n - a[1].n)[0];
+  if (mostDropped && mostDropped[1].n >= 1) {
+    const [playerId, { name }] = mostDropped;
     out.push(
       article(
         `rumor-buylow-1`,
         "athletic",
         "rumor",
         "rumors",
-        `Buy-low watch: the nerd case for stashing ${mostDropped.name}`,
+        `Buy-low watch: the nerd case for stashing ${name}`,
         [
-          `Cut loose and sitting on the wire, ${mostDropped.name} is the kind of profile the model flags: real NBA pathway, short-term noise depressing the price.`,
+          `Cut loose and sitting on the wire, ${name} is the kind of profile the model flags: real NBA pathway, short-term noise depressing the price.`,
           `The base rate on post-drop breakouts is low — let's be honest about that — but the acquisition cost is zero FAAB dollars and a roster spot. The expected value math is quietly friendly.`,
           `File under: speculation, but the spreadsheet-approved kind.`,
         ],
         now - 14 * 3_600_000,
-        [mostDropped.name]
+        [{ playerId, name }]
       )
     );
   }
@@ -377,6 +391,8 @@ function hotTakes(
   const view = trades.length > 0 ? tradeView(trades[0]) : null;
   if (view) {
     const { a, headliner } = view;
+    const headlinerRef =
+      view.players.find((p) => p.name === headliner) ?? view.players[0];
     out.push(
       article(
         `take-trade-1`,
@@ -390,7 +406,7 @@ function hotTakes(
           `Bookmark this. SCREENSHOT this. When I'm right — and I am ALWAYS right — I don't want to hear a word.`,
         ],
         now - 3 * 3_600_000,
-        [headliner]
+        headlinerRef ? [headlinerRef] : []
       )
     );
   }
@@ -411,7 +427,7 @@ function hotTakes(
           `The draft industrial complex wants you to believe in consensus. I believe in CHAOS.`,
         ],
         now - 7 * 3_600_000,
-        [firstPick.playerName]
+        [{ playerId: firstPick.playerId, name: firstPick.playerName }]
       )
     );
   }
