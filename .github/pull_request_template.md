@@ -8,7 +8,7 @@
 
 - [ ] `npm run build` passes locally on the exact commit being pushed
 - [ ] `npx tsc --noEmit` passes with zero errors
-- [ ] Tested on the Vercel preview deployment (link it below) — page loads, no console errors
+- [ ] Tested on the Vercel preview deployment (link it below) — page loads, no console errors. *(If you don't have Vercel access, leave this unchecked — the reviewer verifies the preview.)*
 - [ ] Follows the repo conventions in `AGENTS.md` (all 14 rules, especially `type` over `interface`)
 - [ ] No secrets, tokens, invite codes, or credentials in code, comments, or commit messages
 - [ ] No destructive database changes (no drops, no mass deletes/updates without a backup plan)

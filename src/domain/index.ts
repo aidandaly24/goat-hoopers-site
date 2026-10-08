@@ -69,6 +69,8 @@ export type {
   StockQuote,
   StockDetail,
   PanicSignal,
+  PriceSource,
+  PriceHistoryPoint,
 } from "./stock";
 export type { TradeSide, TradeVerdict } from "./trade";
 export { analyzeTrade, tradeTotal } from "./trade";
