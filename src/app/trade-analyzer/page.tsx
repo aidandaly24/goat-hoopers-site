@@ -5,6 +5,7 @@
  * StockQuotes to the trade-analyzer surface. All verdict math lives in
  * the domain (analyzeTrade); the surface never fetches.
  */
+import { Suspense } from "react";
 import { getStockMarketData } from "@/data/league";
 import { TradeAnalyzer } from "@/surfaces/trade-analyzer/TradeAnalyzer";
 
@@ -18,5 +19,11 @@ export const metadata = {
 
 export default async function TradeAnalyzerPage() {
   const market = await getStockMarketData();
-  return <TradeAnalyzer stocks={market.stocks} />;
+  // Suspense: the surface reads ?a=/?b= share params via useSearchParams,
+  // which needs a boundary during static generation.
+  return (
+    <Suspense fallback={<p>Loading trade analyzer…</p>}>
+      <TradeAnalyzer stocks={market.stocks} />
+    </Suspense>
+  );
 }

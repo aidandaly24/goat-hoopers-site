@@ -37,6 +37,23 @@
   max-width: 40rem;
 }
 
+.copyLink {
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid var(--gh-term-amber);
+  border-radius: 6px;
+  color: var(--gh-term-amber);
+  font-family: var(--gh-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+}
+
+.copyLink:hover {
+  background: var(--gh-term-raised);
+}
+
 .columns {
   display: grid;
   grid-template-columns: 1fr;

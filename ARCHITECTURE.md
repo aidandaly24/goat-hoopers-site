@@ -118,6 +118,9 @@ src/
                  # Verdict math (analyzeTrade, fair/leans/fleece bands) is
                  # pure domain (domain/trade.ts). Receives slim StockQuotes,
                  # never fetches.
+                 # Share contract: both sides encode as ?a=<ids>&b=<ids>
+                 # (router.replace, no reload); restored on load with unknown
+                 # IDs dropped silently. "> COPY LINK" copies the share URL.
                  # objects, never fetches.
     news/        # The League News Network: MyLeague-style auto-generated
                  # coverage. Newsroom (front page), NewsFeed (client-side
