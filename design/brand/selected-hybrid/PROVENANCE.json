@@ -1,0 +1,381 @@
+{
+  "schema_version": 1,
+  "repository": "aidandaly24/goat-hoopers-site",
+  "curation_date": "2026-10-08",
+  "runtime_reference": {
+    "pr": 71,
+    "head": "e44af50a0c45e8de1aae4257894c9f793a2d22e3",
+    "tree": "fd79a8ae98913ba13c036c4870c18e907e97e3ca",
+    "note": "Historical comparison only; PR71 owns runtime publication. This source package has no runtime dependency on that PR."
+  },
+  "archives": [
+    {
+      "filename": "GOAT-HOOPERS-Selected-Hybrid.zip",
+      "bytes": 803041,
+      "sha256": "489ce0c03e771d635b66ab6455a36869c13f3a2a9fe8368a6836601e61cf74a7",
+      "members": [
+        {
+          "path": "README.txt",
+          "bytes": 1917,
+          "sha256": "d15aa54260f6c8631033c5cff0efe44a07e6596115ff245af92c40036c022e84",
+          "git_blob_sha": "76ce43a37a63abce5d9e42db4cf47688b6e34bfc",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/README.txt"
+        },
+        {
+          "path": "previews/GOAT-HOOPERS-Hybrid-Review.png",
+          "bytes": 267979,
+          "sha256": "101ca9a1d782d80a93a568a66ab34fc5f1a3265da09df0a9357fd57f9c52bf5f",
+          "git_blob_sha": "9f9080a8108df21eb42fc8563a4bd1bbcc520f15",
+          "disposition": "omitted",
+          "reason": "Omitted design review board; production source lockups and exports retained."
+        },
+        {
+          "path": "previews/GOAT-HOOPERS-Hybrid-Review.svg",
+          "bytes": 129873,
+          "sha256": "87fa3ba469f9a463250ee751bf5d7f8a78fe3c5fbee06a81407cab5689281077",
+          "git_blob_sha": "5980243be22bbcc6081cbcecfc90a959a7e900e1",
+          "disposition": "omitted",
+          "reason": "Omitted design review board; production source lockups and exports retained."
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-emblem-black.png",
+          "bytes": 31213,
+          "sha256": "739e054df08a9578ec816dc1668ec6e6a26d23255266cf3d63022f63ae89bc44",
+          "git_blob_sha": "65d4e6df939fbc1697e704bb987fb2724509de46",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-emblem-black.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-emblem-black.svg",
+          "bytes": 750,
+          "sha256": "78fefb14d8ad7890949872284befdadd39531665200c435264ccc5ae7e27d731",
+          "git_blob_sha": "95a8ad1d3d6352e71844d1cdba7c24f76cbe0252",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-emblem-black.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-emblem-clay.png",
+          "bytes": 33072,
+          "sha256": "2d18bc6aa1831293e40c878af41ae5d6c52b5a72f8221b1270ca4ff8910a46ec",
+          "git_blob_sha": "210b1cdd619c0c29ce32cbb5ed261fcf209eb97b",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-emblem-clay.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-emblem-clay.svg",
+          "bytes": 749,
+          "sha256": "ec4a87834c715ff8c8726a933469150a325ae41180993af3841df378376a7312",
+          "git_blob_sha": "0d1cd02ca9d917faa13da2c98d232d9defcbc7a7",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "existing_runtime_paths_at_reference": [
+            "public/courtside/GOAT-HOOPERS-emblem-clay.svg"
+          ],
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-emblem-clay.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-emblem-cream.png",
+          "bytes": 32392,
+          "sha256": "c5054f453abf2f6c2d460c86ea121d0296b8e7fb0f238030bdeb3b384cb77042",
+          "git_blob_sha": "baa3cbae9fc979a7aa0fcdab6a8a4b7ebedbaaf0",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-emblem-cream.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-emblem-cream.svg",
+          "bytes": 750,
+          "sha256": "e12d6d2c14bfaf9061d22a5449e79f02f71432c3b0eb3e02ab965bb0823e211e",
+          "git_blob_sha": "91c3f328557ce0944b0495cba0956ab70addfcbc",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-emblem-cream.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-emblem-white.png",
+          "bytes": 23302,
+          "sha256": "5e9969b6e8d38644fa10c7cb6cf11198ded00bf852e92f45cb6d53de3d295e64",
+          "git_blob_sha": "c4d8dfb48ad7011518f0c286a48d21e10348862b",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-emblem-white.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-emblem-white.svg",
+          "bytes": 750,
+          "sha256": "6951ab117f2d38004a7b5c0a6c8ccfc74a077547b7f85f820e4b7d8ed67e4586",
+          "git_blob_sha": "371aaf561abdbcfabf67a016531a815ea6a5385b",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-emblem-white.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-horizontal-black.png",
+          "bytes": 37633,
+          "sha256": "07f9105addf19e529dc4ed549522752bb8b9a6d970ab1621005a1dd8bcc7b126",
+          "git_blob_sha": "57a610a68fa02f40e766316731f12315e669f83e",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-horizontal-black.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 4469,
+          "sha256": "ecbd981058d9a86c90fdf8608ce15f064c3cae70c4285823b3d02b8d3236a47a",
+          "git_blob_sha": "db9668120a7372e8d340a7d268196859b8a82be5",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-horizontal-black.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-horizontal-clay.png",
+          "bytes": 40270,
+          "sha256": "4cffd61874e1b62380bc69d4bddb7c69a568059d0859de61baebb132f71581c1",
+          "git_blob_sha": "b66d4b393e57a6310c589395f998a29cc9dd709c",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-horizontal-clay.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-horizontal-clay.svg",
+          "bytes": 4468,
+          "sha256": "dac4c559c7832c0a350e9c5f59d8619088074a2ac791f01e83824a9200b13840",
+          "git_blob_sha": "67082530024e7f72bdec0e1bdff311f294e89c84",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-horizontal-clay.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-horizontal-white.png",
+          "bytes": 27358,
+          "sha256": "12d1a7f6f1f2725efaba770ed7c628ffce940e52fb3f0532dd55026bed249d89",
+          "git_blob_sha": "e80a88c6550b9d2be58da434c143ce2cd7cec39f",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-horizontal-white.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 4469,
+          "sha256": "08320e360cc53c266425c0178b592573f5ddf32c04526de35d119306968b6ac2",
+          "git_blob_sha": "66bdb949d17700c3c7f4c8e4b59815061ed31f50",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "existing_runtime_paths_at_reference": [
+            "public/courtside/GOAT-HOOPERS-horizontal-white.svg"
+          ],
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-horizontal-white.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-black.png",
+          "bytes": 24441,
+          "sha256": "adc586d2bca3f4aec28fdc01a02b972aebd584f877a3db1c5e56d3d0d76db3f7",
+          "git_blob_sha": "01e86d257c5a90a7a2fa78917b7271e70dadf2ed",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-black.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-black.svg",
+          "bytes": 687,
+          "sha256": "61877209b1503dc014abfd981dc8c2d777e5b70175b6adec6ec4de6908edbebc",
+          "git_blob_sha": "bd61c68cfdeedc94044420c65af2f3ea9430419f",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-black.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-clay-16px.png",
+          "bytes": 533,
+          "sha256": "2898b6445f5bfc7231d73414321c1fae20a5e1fb95eb957272f6ded51897a025",
+          "git_blob_sha": "6a610c77220be3a9536ee071b2b1392338bbbfc9",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-clay-16px.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-clay-32px.png",
+          "bytes": 1135,
+          "sha256": "3a34fc400dcd0b9a7578d59d400049c69b3a44857b138b43d4bcbc8c8ab988ca",
+          "git_blob_sha": "3a903a4805f312c875f755ead7bfcfae89206d82",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-clay-32px.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-clay-64px.png",
+          "bytes": 2364,
+          "sha256": "241c26919e8f14b82ddabec456f88b0d031d35e50120dd2da4fab25eb43ee28d",
+          "git_blob_sha": "e13a3bf5e6a854214e30d30e4b6c7240f844708e",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-clay-64px.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-clay.png",
+          "bytes": 25583,
+          "sha256": "8c604e04bcc95ee4e1859e939494af971d99864dca969bfe2e068d91e7ffadcd",
+          "git_blob_sha": "9246ada822a9405722231f418ccabb6c59d6b1eb",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-clay.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-clay.svg",
+          "bytes": 686,
+          "sha256": "0564e9e4bb006e67c906b239f4e3219e291e42a518a93adbbd40805ec60016e5",
+          "git_blob_sha": "8ced6a2d27aa6101b08bab1ee82d4d9116b5c155",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-clay.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-cream.png",
+          "bytes": 25238,
+          "sha256": "ddea420b5f2e670d88d8be7faea2eda0d61bf97dcb095d70f743ac30943ebc7c",
+          "git_blob_sha": "11d8785d677761eeab596982126895630de12391",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-cream.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-cream.svg",
+          "bytes": 687,
+          "sha256": "9b9600404392604ed3303cde5e8e4cfb62ea6ddfebf3fb3d30e9b5e6426f22e2",
+          "git_blob_sha": "fd7c78350ae1fa73534c0e3fe2b75c9548fc060b",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-cream.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-white-16px.png",
+          "bytes": 411,
+          "sha256": "46ce921b071b0612f5c38417f78e047e21204f69032be010de7f7fdf55ef3298",
+          "git_blob_sha": "e1b763cb5b96c599ffc4ff98293d1231ae4614b9",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-white-16px.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-white-32px.png",
+          "bytes": 756,
+          "sha256": "88d7894329722271c5efadc12f342ad5820f4a0b1bcdee2e36d0433583ff6363",
+          "git_blob_sha": "a4048515cfac84cb49d41593930c68cd2a6a8d0a",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-white-32px.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-white-64px.png",
+          "bytes": 1669,
+          "sha256": "d79bfc709c600b108208677319a089a823c285b68cef7a1bbcc03fd48113847e",
+          "git_blob_sha": "1d166e04a445ed34b84ff023a60c50321872d076",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-white-64px.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-white.png",
+          "bytes": 18586,
+          "sha256": "65bd75c2bdcb024fbc1c822e6c6d5ad10a5a96076d42391cb89019252d1a57ed",
+          "git_blob_sha": "14facbf04449a093cb5418f68809a8f10b1f1908",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-white.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-micro-white.svg",
+          "bytes": 687,
+          "sha256": "5d5379eb50c79e3b629d055ba4904bad64da19cd7cec177c7c432d30789ee767",
+          "git_blob_sha": "2f5b9637fd0d987ac261bc3dc08f3f9562ab2cba",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "existing_runtime_paths_at_reference": [
+            "public/courtside/GOAT-HOOPERS-micro-white.svg"
+          ],
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-micro-white.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-primary-black.png",
+          "bytes": 55284,
+          "sha256": "6199e14f6bd0b4c8558723ea433587c008171985e8e7b4ca2a100a2786b72c21",
+          "git_blob_sha": "d87c5470699251b38a35a3795c998e6ae741861a",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-primary-black.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-primary-black.svg",
+          "bytes": 8147,
+          "sha256": "9a22bc031467fe5eb9934f2a34fb836d4acf367fe15b0ae28bc67646d8ff4b9c",
+          "git_blob_sha": "4654f91a6e030e9d74caf6bdb9cc59e06020d6fe",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-primary-black.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-primary-clay.png",
+          "bytes": 58367,
+          "sha256": "a99a1f7e151e40989c1b0490217c037093872dc2518b1ddbdeff24b164a15fca",
+          "git_blob_sha": "d7261f5d7879989acd489896a428761ed3f7d3c8",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-primary-clay.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-primary-clay.svg",
+          "bytes": 8146,
+          "sha256": "4e74584a67397ec58e209a87a8d041882685a16ce20ac2f281e91970e3318afb",
+          "git_blob_sha": "0e3ea22c794cf606e313f10e56d2c489e2ad393b",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "existing_runtime_paths_at_reference": [
+            "public/courtside/GOAT-HOOPERS-primary-clay.svg"
+          ],
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-primary-clay.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-primary-cream.png",
+          "bytes": 57250,
+          "sha256": "612fe27df05742508cd7f8588d48e8ca202c7f7d00337f9f03115dae1847fba2",
+          "git_blob_sha": "750addda6e80e07c6c5ac561ad5e1da2c0d983ac",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-primary-cream.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-primary-cream.svg",
+          "bytes": 8147,
+          "sha256": "9349d465a5eac4e790f55c25fe138955442a4176b9697257b7adaabdf69f8dec",
+          "git_blob_sha": "2268f1433415339e5687741f074bc313026281bd",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-primary-cream.svg"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-primary-white.png",
+          "bytes": 40891,
+          "sha256": "03938b5b3b9f49d248bd0114f1ed64f24cbd24d0747083d3878e52f8afb5e3be",
+          "git_blob_sha": "d934bb313c8ffc1f5ddf375804bf108a2ee3c213",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-primary-white.png"
+        },
+        {
+          "path": "assets/GOAT-HOOPERS-primary-white.svg",
+          "bytes": 8147,
+          "sha256": "845cd89bba43af019e63faa83ade03190d7c008879f51054c462913c6dfd524c",
+          "git_blob_sha": "ed773ac0726ae81877674369ebf3e575994b474a",
+          "disposition": "included",
+          "reason": "Unchanged selected hybrid vector source, transparent export or upstream documentation.",
+          "repository_path": "design/brand/selected-hybrid/assets/GOAT-HOOPERS-primary-white.svg"
+        }
+      ]
+    }
+  ]
+}

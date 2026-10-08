@@ -1,0 +1,385 @@
+{
+  "schema_version": 1,
+  "repository": "aidandaly24/goat-hoopers-site",
+  "curation_date": "2026-10-08",
+  "runtime_reference": {
+    "pr": 71,
+    "head": "e44af50a0c45e8de1aae4257894c9f793a2d22e3",
+    "tree": "fd79a8ae98913ba13c036c4870c18e907e97e3ca",
+    "note": "Historical comparison only; PR71 owns runtime publication. This source package has no runtime dependency on that PR."
+  },
+  "archives": [
+    {
+      "filename": "GOAT_HOOPERS_Embroidered_Banner_Template_v4.zip",
+      "bytes": 11155423,
+      "sha256": "c2bde1f2db4bb5d16d6a25b39fbc7e05a3a5764f836b4635e52080bccc802f4e",
+      "members": [
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/GOAT_HOOPERS_Banner_Template.blend",
+          "bytes": 6240470,
+          "sha256": "50f2ab8d52bd21160ebfb1ef1e1eb26cfe1e2c4b38691fd69f27f936f6eccc24",
+          "git_blob_sha": "f62740c67128186df443d68939881ef0a2ae352e",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/GOAT_HOOPERS_Banner_Template.blend"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/generate_banner.py",
+          "bytes": 7678,
+          "sha256": "c645cf9e0b52886aa6754af2a41ea3a2c6c8bb33ea70cdcd8f96301927f4b913",
+          "git_blob_sha": "efafe042a90a1d9f56d46514528d14ba56ed3263",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/generate_banner.py"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/satin_lettering.py",
+          "bytes": 10700,
+          "sha256": "f9071c9a271d3387e5b7337278632143bd799961e343d7962d4fb396fff83609",
+          "git_blob_sha": "371715271a7a3380f1420ddba2a468105d838816",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/satin_lettering.py"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/palettes.json",
+          "bytes": 383,
+          "sha256": "447c7871990f41e465a33b1f6cfe421b42c657de7db0d8b295b196514fc5bf09",
+          "git_blob_sha": "ea86c59efc8a87c0292d25874341ad64acfd1fb2",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/palettes.json"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/README.txt",
+          "bytes": 5125,
+          "sha256": "3960e248944331d063a767bc8e0af9e0b5f3a6c9ed134062afd1d6cc557c89ed",
+          "git_blob_sha": "67aef9b63c62347e70257012e6ad13483995a769",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/README.txt"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/requirements.txt",
+          "bytes": 42,
+          "sha256": "bb33eb11f9e0bb9c8f4419e6ce44cf554a25b5fea74ea90797200fa2946a56bc",
+          "git_blob_sha": "bc82cf9c135695b588292c2686826d28c065d58d",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/requirements.txt"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/QA_REPORT.json",
+          "bytes": 2153,
+          "sha256": "d9a9ed4a31d28efc0e15609f3b4ef729e486b7c2881f0b9486bc6a9815823f31",
+          "git_blob_sha": "4af862889c233af51fd0b121f62e02e23168aef9",
+          "disposition": "omitted",
+          "reason": "Omitted historical QA report; authoring limits are summarized in README.md without claiming new Blender validation."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/configs/josh-diddys-roster.json",
+          "bytes": 304,
+          "sha256": "87b69dfd3596f9d25172d19ad7ab1e58f1a86c0333ed1f63bcbc82ed53b6a9b5",
+          "git_blob_sha": "432c0128fe46ab2c7b8e47b532d3a94d62e83ed4",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/configs/josh-diddys-roster.json"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/configs/neutral.json",
+          "bytes": 189,
+          "sha256": "c77a1fdee5a3fc7715d28971938f87bbf3ee14c6ea119c79804f2114701e48d6",
+          "git_blob_sha": "b1ffc2042ca9cd790547c455990013a883159855",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/configs/neutral.json"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/configs/reaves-dropper.json",
+          "bytes": 233,
+          "sha256": "71504d984b5a7ef739556c66f9d6c4e9137439774dfc6215049177d82f618559",
+          "git_blob_sha": "8649e35a93d2f62a59d61c3cb0717fa0e34ed5c6",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/configs/reaves-dropper.json"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/fonts/DejaVuSansCondensed-Bold.ttf",
+          "bytes": 667844,
+          "sha256": "21f02ebcea75529d3ed9d26e089cd1b9c59a4b784119ba3a96e9bc83cf755ec7",
+          "git_blob_sha": "9258d5fb1d9ff5e68758bb46d40a6004923048a9",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/fonts/DejaVuSansCondensed-Bold.ttf"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/fonts/LICENSE-DejaVu.txt",
+          "bytes": 3859,
+          "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9",
+          "git_blob_sha": "b3d93a1235a82213fbc451853317c40e62ed9272",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/fonts/LICENSE-DejaVu.txt"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/tests/verify_template.py",
+          "bytes": 3308,
+          "sha256": "b79264bbea661320b7a39c40a33d884b8203f140d2a55a49c5d79747f382e25c",
+          "git_blob_sha": "88dd93b8dbeb0f8dd8a306d2ba74bd8f36617416",
+          "disposition": "included",
+          "reason": "Unchanged editable template, generator dependency, preset, upstream documentation or optional authoring check.",
+          "repository_path": "blender/embroidered-banners-v4/tests/verify_template.py"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/ASSET_MANIFEST.json",
+          "bytes": 9926,
+          "sha256": "fd59c523d0062b09178485f8926235f3396ce6ac739ca505ad52f6ec991f6a23",
+          "git_blob_sha": "1d09340c86a0915a8ca968ce08a95308edf73bbe",
+          "disposition": "omitted",
+          "reason": "Original full-archive manifest reconciled into this provenance ledger, including historical authoring metadata."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/banner-roster-1-reaves-dropper.png",
+          "bytes": 549157,
+          "sha256": "4a3cb0a587115099b66ba51e99c6cffc1092aa6bbd05cc91fc60c0c96f7ac9fd",
+          "git_blob_sha": "1074c6ddba043455277785806ad05465ab7def56",
+          "disposition": "omitted",
+          "reason": "Omitted raster export or layout/review image; retain editable scene and compact WebP palette examples."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/banner-roster-1-reaves-dropper.webp",
+          "bytes": 37482,
+          "sha256": "bcb33c8360319814eac70f727a254111da2bc10c62168a9b3180bd949276d46c",
+          "git_blob_sha": "6e13bc597efc7eec5486bebc6de9ee9455d59193",
+          "disposition": "omitted",
+          "reason": "Omitted duplicate export; reconciled through the separately supplied web-sample package.",
+          "existing_runtime_paths_at_reference": [
+            "public/courtside/banner-roster-1-reaves-dropper.webp"
+          ]
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/banner-roster-5-josh-diddys-roster.png",
+          "bytes": 588218,
+          "sha256": "4e0443776722f51fd5dd2853827e178e9629ac4dc30f7a6c1615d03f16cda873",
+          "git_blob_sha": "1ff15ba222bbab925586e03e31fed4648b3af471",
+          "disposition": "omitted",
+          "reason": "Omitted raster export or layout/review image; retain editable scene and compact WebP palette examples."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/banner-roster-5-josh-diddys-roster.webp",
+          "bytes": 47800,
+          "sha256": "c617cf48c9858e601bc41409e9f795e84e98b504e3136588f71cf6a8f96f052f",
+          "git_blob_sha": "25b20ae426d10d0cd4faadf7f3e1031ab9a0a9e7",
+          "disposition": "omitted",
+          "reason": "Omitted duplicate export; reconciled through the separately supplied web-sample package.",
+          "existing_runtime_paths_at_reference": [
+            "public/courtside/banner-roster-5-josh-diddys-roster.webp"
+          ]
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/banners-example-pair-desktop.png",
+          "bytes": 641210,
+          "sha256": "bd7ff0d30d7d5bac404873396b62b1bf5e47d9eb4649c2273fdf0dbfff58e595",
+          "git_blob_sha": "ae1cb7867d3d9d607d2f952788c77f250aba95d0",
+          "disposition": "omitted",
+          "reason": "Omitted raster export or layout/review image; retain editable scene and compact WebP palette examples."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/banners-example-pair-desktop.webp",
+          "bytes": 58106,
+          "sha256": "17e0686697af55acb56cdf39c943038341d7c5e77a5c7563bca963493995f7db",
+          "git_blob_sha": "ca05b5ba7bbfc5a30c6c0a07de471a1d489a493b",
+          "disposition": "omitted",
+          "reason": "Omitted duplicate export; reconciled through the separately supplied web-sample package."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/banners-example-pair-phone.png",
+          "bytes": 202381,
+          "sha256": "9e0418a447061eab665afb1370d2932c10906f5cacc35673c9e87254d2446981",
+          "git_blob_sha": "bdb87b3e52de915e05a935a8383d503834d9a2d6",
+          "disposition": "omitted",
+          "reason": "Omitted raster export or layout/review image; retain editable scene and compact WebP palette examples."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/banners-example-pair-phone.webp",
+          "bytes": 21956,
+          "sha256": "dbf5b69fff1dc96b001f92eeab49430f03568aec294cdf34cf83d8d93eead953",
+          "git_blob_sha": "1919b760d29a5d35ee7c0809456dc1c046b32c81",
+          "disposition": "omitted",
+          "reason": "Omitted duplicate export; reconciled through the separately supplied web-sample package."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/embroidered-banner-palette-comparison.png",
+          "bytes": 482742,
+          "sha256": "7b1ca4199069402f57a31e4c85461243d8f7ef2ff872f30436e8eafdc1475e70",
+          "git_blob_sha": "063fa58e393bda200a330267f0e74f744565e3c9",
+          "disposition": "omitted",
+          "reason": "Omitted raster export or layout/review image; retain editable scene and compact WebP palette examples."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/palette-burgundy-cream.png",
+          "bytes": 549157,
+          "sha256": "4a3cb0a587115099b66ba51e99c6cffc1092aa6bbd05cc91fc60c0c96f7ac9fd",
+          "git_blob_sha": "1074c6ddba043455277785806ad05465ab7def56",
+          "disposition": "omitted",
+          "reason": "Omitted raster export or layout/review image; retain editable scene and compact WebP palette examples."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/palette-burgundy-cream.webp",
+          "bytes": 37482,
+          "sha256": "bcb33c8360319814eac70f727a254111da2bc10c62168a9b3180bd949276d46c",
+          "git_blob_sha": "6e13bc597efc7eec5486bebc6de9ee9455d59193",
+          "disposition": "omitted",
+          "reason": "Omitted duplicate export; reconciled through the separately supplied web-sample package.",
+          "existing_runtime_paths_at_reference": [
+            "public/courtside/banner-roster-1-reaves-dropper.webp"
+          ]
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/palette-forest-cream.png",
+          "bytes": 543990,
+          "sha256": "0d7222d8b06de6e47e054fc6d34df0396d041da0fddbc0b73a1204af9a32679c",
+          "git_blob_sha": "5901e8ac4a369479ad20f52c02011de70facd224",
+          "disposition": "omitted",
+          "reason": "Omitted raster export or layout/review image; retain editable scene and compact WebP palette examples."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/palette-forest-cream.webp",
+          "bytes": 37152,
+          "sha256": "8003bdf154629c7e2d4de0426b8803dda0230b10506ce5cd8fd13984dfd21444",
+          "git_blob_sha": "01d0f248e1e0545180184a2d24d0f2120454cf62",
+          "disposition": "omitted",
+          "reason": "Omitted duplicate export; reconciled through the separately supplied web-sample package."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/palette-navy-muted-gold.png",
+          "bytes": 557983,
+          "sha256": "a9da0def2aafd256a90ac8e8658e25c75544dcd845048a017000a60af4d50019",
+          "git_blob_sha": "1a7c621f96ded3e3dd0a717ba0f3b6c85ddcdc87",
+          "disposition": "omitted",
+          "reason": "Omitted raster export or layout/review image; retain editable scene and compact WebP palette examples."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/palette-navy-muted-gold.webp",
+          "bytes": 41560,
+          "sha256": "65dc35a456749f3d496b46a7721b4bc70ca69baab42ffe38bc0aa0b21e65f0d1",
+          "git_blob_sha": "7d1a1bd8c55acf7e9b5f338b5ff6e8f647deb188",
+          "disposition": "omitted",
+          "reason": "Omitted duplicate export; reconciled through the separately supplied web-sample package."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Template/samples/reusable-banner-template-preview.png",
+          "bytes": 343526,
+          "sha256": "a6ef2fc5e3530de687ea746a94f6a5aab57cd4c0b8df3a6e75557e63b5eb1aaa",
+          "git_blob_sha": "99ae8c4c484006b48bb53401aeb7c919f5e4107c",
+          "disposition": "omitted",
+          "reason": "Omitted raster export or layout/review image; retain editable scene and compact WebP palette examples."
+        }
+      ]
+    },
+    {
+      "filename": "GOAT_HOOPERS_Embroidered_Banner_Web_Samples_v4.zip",
+      "bytes": 288972,
+      "sha256": "9f97c88e75405ebd1e2b5683c10445486d879e08336fa8be4bdc5f82d02b02e9",
+      "members": [
+        {
+          "path": "GOAT_HOOPERS_Banner_Web_Samples/ASSET_MANIFEST.json",
+          "bytes": 9926,
+          "sha256": "fd59c523d0062b09178485f8926235f3396ce6ac739ca505ad52f6ec991f6a23",
+          "git_blob_sha": "1d09340c86a0915a8ca968ce08a95308edf73bbe",
+          "disposition": "omitted",
+          "reason": "Exact duplicate of the template package documentation/manifest; reconciled once."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Web_Samples/README.txt",
+          "bytes": 5125,
+          "sha256": "3960e248944331d063a767bc8e0af9e0b5f3a6c9ed134062afd1d6cc557c89ed",
+          "git_blob_sha": "67aef9b63c62347e70257012e6ad13483995a769",
+          "disposition": "omitted",
+          "reason": "Exact duplicate of the template package documentation/manifest; reconciled once."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Web_Samples/samples/banner-roster-1-reaves-dropper.webp",
+          "bytes": 37482,
+          "sha256": "bcb33c8360319814eac70f727a254111da2bc10c62168a9b3180bd949276d46c",
+          "git_blob_sha": "6e13bc597efc7eec5486bebc6de9ee9455d59193",
+          "disposition": "omitted",
+          "reason": "Existing PR71 runtime sample or duplicate burgundy alias; no extra site copy.",
+          "existing_runtime_paths_at_reference": [
+            "public/courtside/banner-roster-1-reaves-dropper.webp"
+          ]
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Web_Samples/samples/banner-roster-5-josh-diddys-roster.webp",
+          "bytes": 47800,
+          "sha256": "c617cf48c9858e601bc41409e9f795e84e98b504e3136588f71cf6a8f96f052f",
+          "git_blob_sha": "25b20ae426d10d0cd4faadf7f3e1031ab9a0a9e7",
+          "disposition": "omitted",
+          "reason": "Existing PR71 runtime sample or duplicate burgundy alias; no extra site copy.",
+          "existing_runtime_paths_at_reference": [
+            "public/courtside/banner-roster-5-josh-diddys-roster.webp"
+          ]
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Web_Samples/samples/banners-example-pair-desktop.webp",
+          "bytes": 58106,
+          "sha256": "17e0686697af55acb56cdf39c943038341d7c5e77a5c7563bca963493995f7db",
+          "git_blob_sha": "ca05b5ba7bbfc5a30c6c0a07de471a1d489a493b",
+          "disposition": "omitted",
+          "reason": "Omitted desktop/phone layout-review image."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Web_Samples/samples/banners-example-pair-phone.webp",
+          "bytes": 21956,
+          "sha256": "dbf5b69fff1dc96b001f92eeab49430f03568aec294cdf34cf83d8d93eead953",
+          "git_blob_sha": "1919b760d29a5d35ee7c0809456dc1c046b32c81",
+          "disposition": "omitted",
+          "reason": "Omitted desktop/phone layout-review image."
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Web_Samples/samples/palette-burgundy-cream.webp",
+          "bytes": 37482,
+          "sha256": "bcb33c8360319814eac70f727a254111da2bc10c62168a9b3180bd949276d46c",
+          "git_blob_sha": "6e13bc597efc7eec5486bebc6de9ee9455d59193",
+          "disposition": "omitted",
+          "reason": "Existing PR71 runtime sample or duplicate burgundy alias; no extra site copy.",
+          "existing_runtime_paths_at_reference": [
+            "public/courtside/banner-roster-1-reaves-dropper.webp"
+          ]
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Web_Samples/samples/palette-forest-cream.webp",
+          "bytes": 37152,
+          "sha256": "8003bdf154629c7e2d4de0426b8803dda0230b10506ce5cd8fd13984dfd21444",
+          "git_blob_sha": "01d0f248e1e0545180184a2d24d0f2120454cf62",
+          "disposition": "included",
+          "reason": "Unchanged compact authoring palette example; not copied into the site runtime.",
+          "repository_path": "blender/embroidered-banners-v4/samples/palette-forest-cream.webp"
+        },
+        {
+          "path": "GOAT_HOOPERS_Banner_Web_Samples/samples/palette-navy-muted-gold.webp",
+          "bytes": 41560,
+          "sha256": "65dc35a456749f3d496b46a7721b4bc70ca69baab42ffe38bc0aa0b21e65f0d1",
+          "git_blob_sha": "7d1a1bd8c55acf7e9b5f338b5ff6e8f647deb188",
+          "disposition": "included",
+          "reason": "Unchanged compact authoring palette example; not copied into the site runtime.",
+          "repository_path": "blender/embroidered-banners-v4/samples/palette-navy-muted-gold.webp"
+        }
+      ]
+    }
+  ],
+  "upstream_provenance": {
+    "geometry_textures": "Original procedural assets",
+    "font": "DejaVu Sans Condensed Bold, license included"
+  },
+  "upstream_authoring_environment": {
+    "blender_version": "4.3.2",
+    "dependencies": {
+      "numpy": "2.2.4",
+      "scipy": "1.15.3",
+      "pillow": "11.1.0"
+    },
+    "mac_regeneration_tested": false,
+    "validation_status": "Historical package claims only; no Blender generator, renderer or bundled test script was run during publication."
+  }
+}
