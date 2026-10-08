@@ -75,6 +75,21 @@ export type NewsArticle = {
   body: string[];
   /** Unix ms. */
   publishedAt: number;
-  /** Player names involved — feeds the ticker and cross-links. */
-  playerNames: string[];
+  /** Players involved — names render as links to /player/[playerId]. */
+  players: PlayerRef[];
+  /** Teams involved — names render as links to /teams/[rosterId]. */
+  teams: TeamRef[];
+};
+
+/** A player reference for cross-linking. */
+export type PlayerRef = {
+  playerId: string;
+  name: string;
+};
+
+/** A team reference for cross-linking. */
+export type TeamRef = {
+  /** Sleeper roster_id, as a string — the /teams/[rosterId] route key. */
+  teamId: string;
+  name: string;
 };

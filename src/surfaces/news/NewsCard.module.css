@@ -22,12 +22,6 @@
   letter-spacing: 0.02em;
 }
 
-.tagline {
-  color: var(--gh-text-faint);
-  font-size: 0.75rem;
-  font-style: italic;
-}
-
 .time {
   margin-left: auto;
   color: var(--gh-text-faint);
@@ -81,4 +75,16 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Player names link to /player/[playerId]. */
+.playerLink {
+  color: var(--pub);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+.playerLink:hover {
+  text-decoration-style: solid;
 }
