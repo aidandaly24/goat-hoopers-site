@@ -89,6 +89,35 @@ for (const [name, palette] of Object.entries(palettes)) {
     }
   }
 }
+const hosted = path.join(root, 'public/design-preview/neutral-courtside');
+const hostedManifest = JSON.parse(fs.readFileSync(path.join(__dirname, 'hosted-manifest.json'), 'utf8'));
+const crypto = require('node:crypto');
+const digest = content => crypto.createHash('sha256').update(content).digest('hex');
+if (hostedManifest.sourceSnapshotSha256 !== digest(html)) throw Error('Hosted snapshot is stale');
+for (const [name, record] of Object.entries(hostedManifest.generated)) {
+  const content = fs.readFileSync(path.join(hosted, name));
+  if (digest(content) !== record.sha256 || content.length !== record.bytes) throw Error('Hosted output drift: ' + name);
+}
+for (const name of ['index.html', 'home.html']) {
+  const content = fs.readFileSync(path.join(hosted, name), 'utf8');
+  if (!content.includes('<meta name="robots" content="noindex,nofollow">')) throw Error('Hosted preview missing noindex: ' + name);
+  for (const [, url] of content.matchAll(/(?:src|href)="([^"]+)"/g)) {
+    if (/^(https?:|#|data:)/.test(url)) continue; // External anchors require an explicit click.
+    const resource = url.startsWith('/') ? path.join(root, 'public', url) : path.resolve(hosted, url);
+    if (!fs.existsSync(resource)) throw Error('Missing hosted resource: ' + url);
+  }
+}
+for (const [source, record] of Object.entries(hostedManifest.resources)) {
+  const target = path.join(root, 'public', record.url);
+  if (!fs.existsSync(target) || digest(fs.readFileSync(target)) !== record.sha256 || digest(fs.readFileSync(path.join(root, source))) !== record.sha256) throw Error('Hosted asset drift: ' + source);
+}
+const hostedCss = fs.readFileSync(path.join(hosted, 'styles.css'), 'utf8');
+postcss.parse(hostedCss);
+if (/@import\b|url\(["']?(https?:|\/\/)/.test(hostedCss)) throw Error('Hosted CSS could request a remote resource');
+const hostedHtml = fs.readFileSync(path.join(hosted, 'home.html'), 'utf8');
+if (/<script\b/.test(hostedHtml) || (hostedHtml.match(/data-team-id="/g) || []).length !== 10) throw Error('Hosted snapshot must stay static and retain teams');
+const comparisonJs = fs.readFileSync(path.join(hosted, 'compare.js'), 'utf8');
+if (comparisonJs !== fs.readFileSync(path.join(__dirname, 'compare.js'), 'utf8') || /\b(fetch|XMLHttpRequest|WebSocket)\b|\/api\//.test(comparisonJs)) throw Error('Hosted comparison changed its no-data-request contract');
 const config = ts.readConfigFile(path.join(root, 'tsconfig.json'), ts.sys.readFile).config;
 config.include = ['design-previews/neutral-courtside/snapshot-entry.tsx'];
 const parsed = ts.parseJsonConfigFileContent(config, ts.sys, root);
@@ -96,5 +125,5 @@ parsed.options.incremental = false;
 parsed.fileNames.push(path.join(root, 'node_modules/next/types/global.d.ts'), path.join(root, 'node_modules/next/index.d.ts'));
 const diagnostics = ts.getPreEmitDiagnostics(ts.createProgram(parsed.fileNames, parsed.options));
 if (diagnostics.length) throw Error(ts.formatDiagnosticsWithColorAndContext(diagnostics, { getCanonicalFileName: f => f, getCurrentDirectory: () => root, getNewLine: () => '\n' }));
-fs.writeFileSync(path.join(__dirname, 'VALIDATION.md'), `# Neutral preview offline validation\n\nSource: a327e9c. No fresh browser-rendered QA is claimed.\n\n- Existing-component offline renderer passed.\n- Focused preview and imported production typecheck: zero diagnostics, using installed Next ambient types.\n- All 10 team disclosures and 228 roster references retained.\n- ${resources.length} local image/style references resolve; 17 generated module maps have matching selectors.\n- Synthetic appendix includes W/L, +/−/flat quotes, LIVE + dot, 1st/2nd/3rd ranks and Win/Loss/Selected badges on actual canvas, raised and hover roles. Production CSS classes and preview semantic aliases are verified. These are invented QA examples, not league data.\n- Generated and treatment CSS parse; build/compare/portable/validation JavaScript syntax checks pass.\n- No production file changed; no build, package install, DB, environment or game change.\n- Full repository typecheck was attempted and remains blocked by missing vitest/vite in the reused existing install; no full-pass claim.\n- Supported Chrome inspection timed out, IAB unavailable and a localhost source read was sandbox-denied. Fresh rendering, overflow, zoom, focus, contrast-on-render and interaction checks remain for independent review.\n\nCalculated sRGB contrast for the represented foreground/background combinations (not rendered-state verification):\n\n| Palette | Pair | Ratio |\n| --- | --- | --- |\n${rows.join('\n')}\n\nAll represented small text pairs meet 4.5:1; focus/control/live indicators meet 3:1. Accent/surface is also the inverse button-label/fill pair. Badge accent fill is calculated as its production 12% sRGB color-mix over each actual parent; Win/Loss badge fills use the raised-surface role. Badges are labels, so their pale outlines are decorative, not input boundaries. The wide teams divider remains unchanged for comparable composition and needs its separate layout PR. Team/asset colors and other legacy rendered states still need actual browser review.\n`);
+fs.writeFileSync(path.join(__dirname, 'VALIDATION.md'), `# Neutral preview offline validation\n\nSource: a327e9c. No fresh browser-rendered QA is claimed.\n\n- Existing-component offline renderer passed.\n- Focused preview and imported production typecheck: zero diagnostics, using installed Next ambient types.\n- All 10 team disclosures and 228 roster references retained.\n- ${resources.length} local image/style references resolve; 17 generated module maps have matching selectors.\n- Synthetic appendix includes W/L, +/−/flat quotes, LIVE + dot, 1st/2nd/3rd ranks and Win/Loss/Selected badges on actual canvas, raised and hover roles. Production CSS classes and preview semantic aliases are verified. These are invented QA examples, not league data.\n- Generated and treatment CSS parse; build/compare/portable/validation JavaScript syntax checks pass.\n- Hosted static output hashes/resources/noindex checks pass; comparison JavaScript is identical and has no data-request API. No app component or shared stylesheet/token is edited. New public files are isolated review artifacts only; no build, install, DB, environment or game change.\n- Full repository typecheck was attempted and remains blocked by missing vitest/vite in the reused existing install; no full-pass claim.\n- Supported Chrome inspection timed out, IAB unavailable and a localhost source read was sandbox-denied. Fresh rendering, overflow, zoom, focus, contrast-on-render and interaction checks remain for independent review.\n\nCalculated sRGB contrast for the represented foreground/background combinations (not rendered-state verification):\n\n| Palette | Pair | Ratio |\n| --- | --- | --- |\n${rows.join('\n')}\n\nAll represented small text pairs meet 4.5:1; focus/control/live indicators meet 3:1. Accent/surface is also the inverse button-label/fill pair. Badge accent fill is calculated as its production 12% sRGB color-mix over each actual parent, with main-ink label text; Win/Loss badge fills use the raised-surface role. Badges are labels, so their pale outlines are decorative, not input boundaries. The wide teams divider remains unchanged for comparable composition and needs its separate layout PR. Team/asset colors and other legacy rendered states still need actual browser review.\n`);
 console.log('Offline preview validation passed: 10 teams, 228 players, local references, CSS scopes, represented semantic/text/control/focus contrast and focused typecheck.');

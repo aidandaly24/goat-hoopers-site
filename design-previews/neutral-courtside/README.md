@@ -1,7 +1,7 @@
 # Neutral Courtside palette review
 
-Review-only artifact for [DESIGN.md](../../DESIGN.md). No production styles,
-components, app logic, data loaders or assets are changed. No framework or
+Review-only artifact for [DESIGN.md](../../DESIGN.md). No shared application styles,
+components, app logic, data loaders or existing assets are changed. No framework or
 package is added. Current layout/content/crops are the same for all treatments.
 
 Open `index.html` through a static server serving the repository root. With an
@@ -19,6 +19,33 @@ the labeled widths equal its content viewport widths. The page uses native radio
 announcement and an iframe title. Without JavaScript, `home.html` remains a
 readable Chalk snapshot. Browser zoom remains available. This is an interactive
 comparison instead of claiming fresh screenshot captures.
+
+## Existing Vercel delivery route
+
+The generated hosted copy is at
+`public/design-preview/neutral-courtside/index.html`, served by the existing
+Next/Vercel public-files mechanism at **/design-preview/neutral-courtside/index.html**.
+It is absent from normal navigation and both HTML documents carry
+`noindex,nofollow`. No deploy setting, provider, permission, DB loader, app route
+or API call is introduced. The real HTTP URL awaits coordinator publication
+and browser review; this document does not claim a verified deployment.
+
+`build-hosted.cjs` bundles the same captured CSS into its own static stylesheet,
+uses existing `/courtside/` asset URLs and copies only 13 already-approved
+logo/avatar/font files. Every copy is recorded by source, URL and hash in
+`hosted-manifest.json`. Rebuild from the same snapshot:
+
+```sh
+node design-previews/neutral-courtside/build-hosted.cjs
+node design-previews/neutral-courtside/validate.cjs
+```
+
+The hosted files have the same native palette/1440/390/320 controls, fixtures,
+state appendix and safe separate-tab links. They add no hydration, WebGL or
+automatic remote request; actual image/font requests stay on the host. Serve
+the repository's `public/` directory to inspect the hosted copy where local
+browser access is authorized. The private portable file is delivered to the
+user separately; it is not a public reviewer link.
 
 For cross-environment review, `build-portable.cjs` creates one self-contained
 `GOAT-Hoopers-neutral-comparison.html` beside the repository checkout. It embeds

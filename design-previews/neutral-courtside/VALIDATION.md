@@ -8,7 +8,7 @@ Source: a327e9c. No fresh browser-rendered QA is claimed.
 - 60 local image/style references resolve; 17 generated module maps have matching selectors.
 - Synthetic appendix includes W/L, +/−/flat quotes, LIVE + dot, 1st/2nd/3rd ranks and Win/Loss/Selected badges on actual canvas, raised and hover roles. Production CSS classes and preview semantic aliases are verified. These are invented QA examples, not league data.
 - Generated and treatment CSS parse; build/compare/portable/validation JavaScript syntax checks pass.
-- No production file changed; no build, package install, DB, environment or game change.
+- Hosted static output hashes/resources/noindex checks pass; comparison JavaScript is identical and has no data-request API. No app component or shared stylesheet/token is edited. New public files are isolated review artifacts only; no build, install, DB, environment or game change.
 - Full repository typecheck was attempted and remains blocked by missing vitest/vite in the reused existing install; no full-pass claim.
 - Supported Chrome inspection timed out, IAB unavailable and a localhost source read was sandbox-denied. Fresh rendering, overflow, zoom, focus, contrast-on-render and interaction checks remain for independent review.
 
@@ -173,4 +173,4 @@ Calculated sRGB contrast for the represented foreground/background combinations 
 | linen | negative badge / surface | 6.26:1 |
 | linen | ink badge / 12% accent tint on hover | 10.04:1 |
 
-All represented small text pairs meet 4.5:1; focus/control/live indicators meet 3:1. Accent/surface is also the inverse button-label/fill pair. Badge accent fill is calculated as its production 12% sRGB color-mix over each actual parent; Win/Loss badge fills use the raised-surface role. Badges are labels, so their pale outlines are decorative, not input boundaries. The wide teams divider remains unchanged for comparable composition and needs its separate layout PR. Team/asset colors and other legacy rendered states still need actual browser review.
+All represented small text pairs meet 4.5:1; focus/control/live indicators meet 3:1. Accent/surface is also the inverse button-label/fill pair. Badge accent fill is calculated as its production 12% sRGB color-mix over each actual parent, with main-ink label text; Win/Loss badge fills use the raised-surface role. Badges are labels, so their pale outlines are decorative, not input boundaries. The wide teams divider remains unchanged for comparable composition and needs its separate layout PR. Team/asset colors and other legacy rendered states still need actual browser review.

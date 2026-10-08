@@ -34,6 +34,10 @@ change runtime tokens or approve a production-wide recolor.
 
 The neutral comparisons live at
 [design-previews/neutral-courtside/index.html](design-previews/neutral-courtside/index.html).
+An isolated noindex hosted copy is generated at
+`/design-preview/neutral-courtside/index.html` through the existing public-files
+mechanism, with no normal navigation entry or data loader. Its HTTP deployment
+and browser review remain pending coordinator publication.
 Switch color at the same scroll position and width. All three use the current
 Courtside component tree, identical fixture content, arena crop, portraits and
 pennants. They are palette experiments, not redesigned page compositions.
