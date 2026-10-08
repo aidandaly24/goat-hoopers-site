@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { PlayerStock } from "@/domain";
 import { StockRow } from "./StockRow";
 import styles from "./StockBoard.module.css";
 
 const POSITIONS = ["PG", "SG", "SF", "PF", "C"];
+/** Rows rendered per "page" — the rest load as you scroll. */
+const PAGE_SIZE = 25;
 
 /**
  * The full board: Yahoo Finance-style quote rows with filter chips above.
@@ -30,6 +32,29 @@ export function StockBoard({ stocks }: { stocks: PlayerStock[] }) {
   );
 
   const allActive = pos === null && !rookiesOnly;
+
+  // Progressive loading: render the first page, then grow as the
+  // sentinel scrolls into view. Resets whenever the filter changes.
+  const [visible, setVisible] = useState(PAGE_SIZE);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    setVisible(PAGE_SIZE);
+  }, [pos, rookiesOnly, q]);
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el || visible >= filtered.length) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setVisible((v) => Math.min(v + PAGE_SIZE, filtered.length));
+        }
+      },
+      { rootMargin: "600px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [visible, filtered.length]);
+  const shown = filtered.slice(0, visible);
 
   return (
     <div>
@@ -103,7 +128,8 @@ export function StockBoard({ stocks }: { stocks: PlayerStock[] }) {
           </>
         ) : (
           <>
-            {filtered.length} {filtered.length === 1 ? "stock" : "stocks"}
+            Showing {shown.length} of {filtered.length}{" "}
+            {filtered.length === 1 ? "stock" : "stocks"}
           </>
         )}
       </p>
@@ -117,11 +143,14 @@ export function StockBoard({ stocks }: { stocks: PlayerStock[] }) {
           )}
         </p>
       ) : (
-        <ul className={styles.list}>
-          {filtered.map((s) => (
-            <StockRow key={s.playerId} stock={s} />
-          ))}
-        </ul>
+        <>
+          <ul className={styles.list}>
+            {shown.map((s) => (
+              <StockRow key={s.playerId} stock={s} />
+            ))}
+          </ul>
+          {visible < filtered.length && <div ref={sentinelRef} aria-hidden="true" />}
+        </>
       )}
     </div>
   );
