@@ -1,0 +1,62 @@
+/* Engraved brass record plaques. */
+
+.plaques {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+
+.plaque {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4rem;
+  background:
+    linear-gradient(180deg, rgba(201, 162, 39, 0.1), transparent 40%),
+    var(--gh-wood-raised);
+  border: 1px solid var(--gh-brass-deep);
+  border-radius: 6px;
+  padding: 1.25rem 1rem;
+  box-shadow:
+    inset 0 1px 0 rgba(227, 197, 101, 0.15),
+    inset 0 -8px 16px rgba(0, 0, 0, 0.35),
+    0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  color: var(--gh-parchment-dim);
+}
+
+.value {
+  font-family: var(--gh-font-display);
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  color: var(--gh-brass-soft);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.6);
+  line-height: 1;
+}
+
+.holder {
+  color: var(--gh-parchment);
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--gh-wood-line-strong);
+}
+
+.holder:hover {
+  color: var(--gh-brass-soft);
+}
+
+.detail {
+  font-size: 0.75rem;
+  color: var(--gh-parchment-faint);
+  font-style: italic;
+  line-height: 1.5;
+}

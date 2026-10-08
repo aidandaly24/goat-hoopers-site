@@ -1,0 +1,84 @@
+/* Hanging championship banner: brass frame, crimson felt, notched hem. */
+
+.banner {
+  display: block;
+  width: 240px;
+  background: linear-gradient(180deg, var(--gh-brass), var(--gh-brass-deep));
+  padding: 3px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 90%, 0 100%);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease;
+}
+
+.banner:hover {
+  transform: translateY(-6px);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35rem;
+  background:
+    radial-gradient(100% 50% at 50% 0%, rgba(201, 162, 39, 0.16), transparent 70%),
+    linear-gradient(180deg, #7d1428, var(--gh-crimson) 60%, #6e1020);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 90%, 0 100%);
+  padding: 1.25rem 1rem 3rem;
+  min-height: 340px;
+}
+
+.grommets {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+
+.grommets i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--gh-brass-soft), var(--gh-brass-deep));
+  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.year {
+  font-family: var(--gh-font-display);
+  font-size: 2.6rem;
+  letter-spacing: 0.06em;
+  color: var(--gh-brass-soft);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.55);
+  line-height: 1;
+}
+
+.champions {
+  text-transform: uppercase;
+  letter-spacing: 0.42em;
+  font-size: 0.68rem;
+  color: var(--gh-parchment);
+  margin-left: 0.42em;
+}
+
+.team {
+  font-family: var(--gh-font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.03em;
+  color: #fff;
+  margin-top: 0.5rem;
+  line-height: 1.2;
+}
+
+.stats {
+  font-size: 0.78rem;
+  color: var(--gh-parchment-dim);
+}
+
+.final {
+  font-size: 0.75rem;
+  color: var(--gh-parchment-faint);
+  font-style: italic;
+  margin-top: auto;
+  padding-top: 0.75rem;
+}

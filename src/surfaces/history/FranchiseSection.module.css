@@ -1,0 +1,101 @@
+/* Franchise history on the team page: wood-paneled archive card. */
+
+.franchise {
+  background:
+    linear-gradient(180deg, rgba(201, 162, 39, 0.06), transparent 30%),
+    var(--gh-wood-panel);
+  border: 1px solid var(--gh-wood-line-strong);
+  border-radius: 10px;
+  padding: 1.5rem;
+  color: var(--gh-parchment);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.heading {
+  font-family: var(--gh-font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+  color: var(--gh-brass-soft);
+  margin: 0 0 1.25rem;
+  border-bottom: 2px solid var(--gh-brass-deep);
+  padding-bottom: 0.5rem;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin: 0 0 1.25rem;
+}
+
+.fact {
+  margin: 0;
+}
+
+.fact dt {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.62rem;
+  color: var(--gh-parchment-faint);
+  margin-bottom: 0.3rem;
+}
+
+.fact dd {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--gh-parchment);
+}
+
+.star {
+  color: var(--gh-brass-soft);
+}
+
+.discontinuity {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--gh-parchment-dim);
+  border-left: 2px solid var(--gh-crimson);
+  padding-left: 0.75rem;
+  margin: 0 0 1.25rem;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-left: 2px solid var(--gh-brass-deep);
+  padding-left: 1.25rem;
+}
+
+.entry {
+  display: flex;
+  gap: 0.9rem;
+  align-items: baseline;
+}
+
+.year {
+  font-family: var(--gh-font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--gh-brass-soft);
+  white-space: nowrap;
+  min-width: 3.2rem;
+}
+
+.entryTitle {
+  margin: 0 0 0.2rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--gh-parchment);
+}
+
+.entryText {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--gh-parchment-dim);
+}

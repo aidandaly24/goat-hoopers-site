@@ -49,6 +49,15 @@ export type {
   Publication,
   PublicationId,
 } from "./news";
+export type {
+  ChampionBanner,
+  FranchiseHistory,
+  FranchiseId,
+  HallOfFameEntry,
+  LeagueHistory,
+  LeagueRecord,
+  TimelineEntry,
+} from "./history";
 export { PUBLICATIONS, NEWS_SECTIONS } from "./news";
 export type {
   PlayerStock,

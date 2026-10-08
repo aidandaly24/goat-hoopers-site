@@ -1,0 +1,122 @@
+/* Hall of Fame portrait frames on the office wall. */
+
+.page {
+  background:
+    repeating-linear-gradient(
+      93deg,
+      rgba(0, 0, 0, 0.14) 0 2px,
+      transparent 2px 7px
+    ),
+    linear-gradient(180deg, #1c0f07, var(--gh-wood-bg) 40%);
+  color: var(--gh-parchment);
+  border: 1px solid var(--gh-wood-line);
+  border-radius: 12px;
+  padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+.pageHead {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+  color: var(--gh-brass-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 0.72rem;
+  margin: 0 0 0.75rem;
+}
+
+.pageTitle {
+  font-family: var(--gh-font-display);
+  font-size: clamp(2.2rem, 6vw, 3.75rem);
+  letter-spacing: 0.04em;
+  margin: 0 0 0.75rem;
+  color: var(--gh-parchment);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.6);
+}
+
+.lede {
+  color: var(--gh-parchment-dim);
+  font-style: italic;
+  max-width: 34rem;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.frames {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.frame {
+  background: var(--gh-wood-panel);
+  border: 6px solid #3a2210;
+  outline: 1px solid var(--gh-brass-deep);
+  border-radius: 4px;
+  padding: 1.25rem 1.25rem 1.5rem;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.6),
+    0 10px 28px rgba(0, 0, 0, 0.5);
+}
+
+.plate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--gh-wood-line-strong);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.year {
+  font-family: var(--gh-font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  color: var(--gh-brass-soft);
+}
+
+.category {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.62rem;
+  color: var(--gh-parchment-faint);
+  border: 1px solid var(--gh-wood-line-strong);
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+}
+
+.title {
+  font-family: var(--gh-font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.03em;
+  margin: 0 0 0.6rem;
+  color: var(--gh-parchment);
+}
+
+.description {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--gh-parchment-dim);
+}
+
+.back {
+  margin: 2.5rem 0 0;
+  text-align: center;
+}
+
+.back a {
+  color: var(--gh-parchment-dim);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.back a:hover {
+  color: var(--gh-brass-soft);
+  text-decoration: underline;
+}
