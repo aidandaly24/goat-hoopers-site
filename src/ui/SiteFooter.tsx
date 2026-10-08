@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element -- Approved, pre-sized local assets are served directly without image-optimizer quota. */
 import Link from "next/link";
 import type { Season } from "@/domain";
 import { formatSeasonStatus } from "@/domain";
@@ -19,7 +20,7 @@ export function SiteFooter({ season }: { season: Season | null }) {
       <div className={styles.inner}>
         <div className={styles.brand}>
           <p className={styles.wordmark}>
-            GOAT <span>HOOPERS</span>
+            <img src="/courtside/GOAT-HOOPERS-horizontal-white.svg" alt="GOAT Hoopers" width="208" height="55" />
           </p>
           {season && (
             <p className={styles.season}>
@@ -35,6 +36,7 @@ export function SiteFooter({ season }: { season: Season | null }) {
           <Link href="/arcade">Arcade</Link>
           <Link href="/teams">Teams</Link>
           <Link href="/transactions">Transactions</Link>
+          <Link href="/weekly">Weekly archive</Link>
         </nav>
         <p className={styles.copy}>© {year} GOAT Hoopers. Built for the league, by the league.</p>
       </div>
