@@ -66,7 +66,7 @@ src/
                  # renders the human status ("pre_season" -> "Preseason").
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
                  # GameSession, Game, GameScore, LeaderboardEntry,
-                 # GameHubSummary, Reward, plus the game registry
+                 # GameHubSummary, PlayableGame, Reward, plus the game registry
                  # (games.ts). Game carries an optional launchNote so
                  # coming-soon games say why/when instead of "coming soon".
                  # Never imports league
@@ -197,12 +197,12 @@ src/
                  # (final, verified vs the Sleeper API); the current
                  # season stays live. Hall of Fame inductees are curated
                  # there too — real history only, no fabricated moments.
-    arcade/      # "Play games, win FAAB": ArcadeHub (game list),
+    arcade/      # Public implemented-game catalogue: ArcadeHub,
                  # GameDetail (rules + leaderboard + rewards),
                  # Leaderboard, RewardLedger, GameCard, ProvisionNotice.
                  # Receives domain objects, never touches the store.
-                 # GameCard renders a GameHubSummary: stakes, weekly
-                 # leader, and the viewer's "your move" state.
+                 # GameCard receives PlayableGame: actual preview, direct
+                 # Play link and phone controls; no account/store gate.
     team/        # "My Team": identity + record, full roster, FAAB
                  # winnings. Rendered by /team for the logged-in manager.
   ui/            # Design tokens (tokens.css) + primitives (Card, Badge,
@@ -625,7 +625,8 @@ Mobile and desktop are both first-class (rule 7). The convention:
   league.
 - `POSTGRES_URL` (and friends) — wired automatically when a Vercel Postgres
   database is connected to the project. Absence means "not provisioned":
-  arcade pages render `ProvisionNotice` instead of crashing.
+  account/competition pages render `ProvisionNotice` instead of crashing.
+  The public Arcade catalogue and free-throw practice do not require it.
 - `COMMISSIONER_KEY` — secret shared only with Aidan. Every admin action
   checks it server-side. If unset, admin actions fail closed.
 
@@ -641,9 +642,10 @@ Serverless needs real Postgres — no SQLite. Do this once:
 4. Done. Tables: `site_users`, `invite_codes`, `sessions`,
    `game_scores`, `rewards` (see `src/data/db.ts`).
 
-Until step 2 is done, the arcade builds and deploys fine but every
-arcade page renders the provisioning notice. That's intentional — the
-preview deployment must never crash on a missing database.
+Until step 2 is done, account/competition pages render the provisioning
+notice. The public `/arcade` catalogue and `/arcade/free-throw` practice
+remain accessible without a database. Preview deployment must never crash
+on a missing database.
 
 ## Accounts (how the auth works)
 
@@ -692,15 +694,18 @@ marks them settled. The ledger shows pending vs settled per user.
 ## Adding a new game (checklist)
 
 1. Declare it in `src/domain/arcade/games.ts` (`status: "coming-soon"`).
-   The arcade list and detail page render from the registry — no other
-   wiring needed for the shell.
+   Planned competitions remain registered but are hidden from the public
+   hub. Add `play` metadata only after the route is implemented, including
+   an actual preview and accurate phone controls. Competition `status`
+   stays independent of public practice availability.
 2. If the game needs new persistence, add a method to the `GameStore`
    contract in `src/data/arcade.ts` first, then implement it in
    `DrizzleGameStore` (and `FakeGameStore`). Never import `./db` anywhere
    else.
 3. Build the play experience as components in `src/surfaces/arcade/`,
    receiving domain objects + the results of store calls as props.
-4. Scores go through `store.createScore()`; weekly winners earn a
+4. Local practice keeps scores in memory. Implemented league competition
+   scores go through `store.createScore()`; weekly winners earn a
    `store.createReward()` of `WEEKLY_FAAB_PRIZE` FAAB.
 5. Ship mobile + desktop layouts (project rule 7), then open a PR.
 
@@ -711,8 +716,12 @@ marks them settled. The ledger shows pending vs settled per user.
 `src/surfaces/arcade/free-throw/` before any arcade store lookup. It is
 local practice, labelled as a prototype: scores live only in memory and
 never call server actions, the GameStore, rewards or a leaderboard. The
-registry remains coming-soon for league competition. The root layout's
-existing account/league chrome is unchanged.
+registry remains coming-soon for league competition. The public hub filters
+`getPlayableGames()` independently of account/store
+reads, with a scoped off-white `gh-arcade-canvas`, dark text, actual screenshot
+and direct Play link. The root layout's existing account/league chrome is
+unchanged. Back/help remain above loading/error overlays and their UI
+targets do not initiate court drag gestures.
 
 The domain contract `src/domain/arcade/free-throw.ts` describes metre-space
 court colliders, aim and transient ball state. `physics.ts` is pure and
