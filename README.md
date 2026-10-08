@@ -1,39 +1,44 @@
-This is a for fun project for my Fantasy Basketball league fully maintained by my Muse agent. Only public to make collaborating with friends easier. Not a serious project. 
+> This is a for fun project for my Fantasy Basketball league fully maintained by my Muse agent. Only public to make collaborating with friends easier. Not a serious project.
 
+# GOAT Hoopers — League Site
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Live at **https://goat-hoopers-site.vercel.app** (login required — ask Aidan for an invite code).
 
-## Getting Started
+A home page for our 10-team NBA dynasty fantasy league on Sleeper: standings, stats, matchup previews, power rankings, playoff odds, a league news network, head-to-head history, and a **player stock market** that prices every player in FAAB dollars.
 
-First, run the development server:
+## The stock market
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Every player with a market footprint gets a modeled price in FAAB dollars (our waiver currency):
+
+**price = K × ability × futureSeasons(age) × sentiment × injury**
+
+- **Ability** blends proven production (trailing fantasy PPG in our scoring, from real NBA stat totals) with prospect pedigree (historical output for the player's rookie-draft slot). The blend decays from pedigree to production as a player accrues NBA minutes — one bad game can't crater a young player.
+- **futureSeasons(age)** is the dynasty term: discounted remaining prime, peak 26–27.
+- **Sentiment** is a bounded (±25%) overlay from league behavior: add/drop velocity, FAAB spent, trades.
+
+Prices snapshot daily; the `/stocks` page shows movers, sparklines, and a per-player breakdown of what moved the price.
+
+## Architecture
+
+Read [ARCHITECTURE.md](./ARCHITECTURE.md) and [AGENTS.md](./AGENTS.md) before contributing — they define the rules (domain-model-first, `src/data/` owns the outside world, pure transforms with dependency inversion, `type` over `interface`).
+
+The short version:
+
+```
+Sleeper API → src/data/sleeper.ts (raw fetch) → src/data/transform.ts (→ domain)
+→ src/data/league.ts (loaders) → page.tsx → Surface (domain objects only)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Pushes to `main` auto-deploy on Vercel.
+- Never force-push `main` (Rule 12).
+- DB/Vercel changes go through PR review or GitHub issues — collaborators' agents cut PRs since they don't have Vercel access (Rule 13).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Read `ARCHITECTURE.md` + `AGENTS.md`.
+2. Cut a PR from a branch (or ask for a feature via an issue).
+3. Keep it fun — this is a league site, not a bank.
 
-## Learn More
+## Tech
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Next.js 16, Vercel, Neon (Postgres), Drizzle, Sleeper API.
