@@ -86,7 +86,7 @@ export type GameSession = {
   createdAt: Date;
 };
 
-/** A playable game registered on the site. */
+/** A registered game or planned league competition. */
 export type Game = {
   /** Stable slug, e.g. "free-throw". Used in URLs and score records. */
   id: string;
@@ -96,8 +96,15 @@ export type Game = {
   description: string;
   /** Emoji icon for the game card. */
   icon: string;
-  /** Games ship "coming-soon" first; the registry is the pattern. */
+  /** League competition status. Public practice can be available separately. */
   status: "live" | "coming-soon";
+  /** Present only when a real play implementation is available at this game's route. */
+  play?: {
+    mode: "practice" | "competition";
+    /** A screenshot of the actual implementation, never a placeholder. */
+    preview: { src: string; alt: string };
+    touchInstructions: string;
+  };
   /**
    * Why a coming-soon game isn't playable yet, and when it opens — in
    * the league's voice, never a bare "coming soon". Shown on the game
@@ -109,6 +116,9 @@ export type Game = {
    */
   howToPlay: string;
 };
+
+/** A registry entry with an implemented launch, independent of reward readiness. */
+export type PlayableGame = Game & { play: NonNullable<Game["play"]> };
 
 /**
  * One recorded score for a game. Scores are scoped to a league week so
