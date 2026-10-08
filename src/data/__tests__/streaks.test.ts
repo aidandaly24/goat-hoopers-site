@@ -8,7 +8,10 @@
  */
 import { describe, expect, it } from "vitest";
 import { signedStreak } from "@/domain/matchup";
-import { pendingMatchup, tiedMatchup, winForA, winForB } from "./fixtures";
+import { computeLeagueStats, currentStreak } from "../transform";
+import {
+  pendingMatchup, teamA, teamB, tiedMatchup, winForA, winForB,
+} from "./fixtures";
 
 describe("signedStreak", () => {
   it("counts consecutive completed wins", () => {
@@ -90,5 +93,50 @@ describe("signedStreak", () => {
       awayPoints: null,
     };
     expect(signedStreak("1", [[winForA(1)], [halfPending]])).toBe(1);
+  });
+});
+
+
+describe("unavailable trailing history", () => {
+  const cases = [
+    {
+      name: "a missing latest week",
+      weeks: [[winForA(1)], [winForA(2)], []],
+    },
+    {
+      name: "a missing week before a pending week",
+      weeks: [[winForA(1)], [winForA(2)], [], [pendingMatchup(4)]],
+    },
+    {
+      name: "a latest week with only another team's matchup",
+      weeks: [[winForA(1)], [{
+        ...winForA(2), home: teamA({ id: "3" }), away: teamB({ id: "4" }),
+      }]],
+    },
+  ];
+
+  it.each(cases)("does not resurrect a domain streak across $name", ({ weeks }) => {
+    expect(signedStreak("1", weeks)).toBe(0);
+    expect(signedStreak("2", weeks)).toBe(0);
+  });
+
+  it.each(cases)("keeps the compatibility facade conservative across $name", ({ weeks }) => {
+    expect(currentStreak("1", weeks)).toBe(0);
+  });
+
+  it.each(cases)("does not show a homepage win streak across $name", ({ weeks }) => {
+    expect(computeLeagueStats({
+      teams: [teamA(), teamB()], matchupsByWeek: weeks,
+      transactionsByWeek: [], hasGames: true,
+    }).longestWinStreak).toBeNull();
+  });
+
+  it("still exposes confirmed wins through the facade and homepage across known pending games", () => {
+    const weeks = [[winForA(1)], [winForA(2)], [pendingMatchup(3)]];
+    expect(currentStreak("1", weeks)).toBe(2);
+    expect(computeLeagueStats({
+      teams: [teamA(), teamB()], matchupsByWeek: weeks,
+      transactionsByWeek: [], hasGames: true,
+    }).longestWinStreak).toMatchObject({ team: { id: "1" }, wins: 2 });
   });
 });
