@@ -112,8 +112,20 @@ function Fixture() {
       <pre role="status" style={{ whiteSpace: "pre-wrap" }}>{result}</pre>
     </div>
     <main key={round} className={cs("surface")} data-courtside-home>
-      <div id="fixture-directory"><CourtsideDirectory entries={entries} seasonLabel="Synthetic 2026" checkedAt="2026-10-08T00:00:00Z" preseason rosterNamesAvailable portraits={{}} /></div>
-      <div id="fixture-standings" style={{ padding: "var(--gh-s4)" }}><StandingsTable standings={standings} /></div>
+      <div id="fixture-directory">
+        <CourtsideDirectory entries={entries} seasonLabel="Synthetic 2026" checkedAt="2026-10-08T00:00:00Z" preseason rosterNamesAvailable portraits={{}}>
+          <details open className={cs("league-details")}>
+            <summary>Live standings, stats &amp; recent moves</summary>
+            <div className={cs("live-grid")}>
+              <div id="fixture-standings"><StandingsTable standings={standings} /></div>
+              <div>
+                <h2>Synthetic league context</h2>
+                <p>This sibling preserves the homepage&apos;s split-column standings width. No live stats or transactions are loaded.</p>
+              </div>
+            </div>
+          </details>
+        </CourtsideDirectory>
+      </div>
     </main>
   </>;
 }
