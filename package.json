@@ -5,13 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "price-history:prepare": "tsx scripts/backfill-price-history.ts",
-    "price-history:import": "tsx scripts/import-price-history.ts",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run",
-    "price-history:plan": "tsx scripts/plan-price-history.ts",
-    "test:price-history:local": "RUN_PRICE_HISTORY_LOCAL_TEST=1 vitest run src/data/__tests__/price-history-local.test.ts"
+    "check:contracts": "npx tsx scripts/check-surface-contracts.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",
@@ -24,18 +20,13 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
-    "@types/node": "^22",
-    "@types/pg": "^8.23.1",
+    "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.186.0",
     "drizzle-kit": "^0.31.11",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
-    "pg": "^8.23.1",
-    "tsx": "^4.23.15",
-    "typescript": "^5",
-    "vite": "^8.3.3",
-    "vitest": "^5.0.3"
+    "typescript": "^5"
   }
 }

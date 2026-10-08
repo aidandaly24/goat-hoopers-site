@@ -419,9 +419,24 @@ Passwords are bcrypt-hashed (12 rounds) — raw passwords never touch the DB.
 - A surface answers ONE question ("what's happening in the league?").
   Standings + stats + activity live together in `season-hub` because
   they're the same question — not because they're convenient to group.
-- A surface receives domain objects as props. It never fetches.
-- A surface never imports another surface’s components. Shared visuals come
-  from `src/ui/`.
+- A surface receives domain objects as props. It never fetches from
+  Sleeper or the database. The one exception: a client component may
+  fetch the app's own `/api/*` routes for on-demand detail loading
+  (Rule 14's list/detail split — e.g. StockRow expanding a player).
+  The API route owns server data access and delegates to `@/data/`
+  loaders.
+- A surface never imports another surface's *private* internals. Two
+  documented composite surfaces compose sibling public entrypoints:
+  - `intel/IntelHub` composes `preview/MatchupPreview`,
+    `playoffs/PlayoffOdds`, `power-rankings/PowerRankings`,
+    `records/RecordBook`.
+  - `teams/TeamProfile` composes `history/FranchiseSection`.
+  A public entrypoint is a surface's top-level component file. Anything
+  else (subdirectories, internal helpers, non-component modules) is
+  private. New composite surfaces need explicit documentation here.
+- `import type` from any surface is always allowed — types are erased
+  and create no runtime coupling.
+- Shared visuals come from `src/ui/`.
 - Each surface documents its contract in a comment at the top of its entry
   component (what props it takes, what it renders).
 

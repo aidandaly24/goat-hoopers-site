@@ -158,6 +158,10 @@ type DetailState =
  * Per Rule 14 the row ships only its quote. Expanding fetches the deep
  * data (sparkline, season history chart, factor breakdown) on demand from
  * GET /api/stocks/[playerId] — never in the list HTML.
+ *
+ * The same-origin detail fetch is an allowed client boundary
+ * (ARCHITECTURE.md §3): the API route owns server data access and
+ * delegates to @/data/ loaders. No Sleeper/DB access in this component.
  */
 export function StockRow({ quote: s }: { quote: StockQuote }) {
   const [detail, setDetail] = useState<DetailState>({ status: "idle" });
