@@ -150,6 +150,14 @@ try {
     record(`${width} truthful empty feed/useful destinations`);
     await visit("?state=long"); await geometry("long headlines"); await capture("long-headlines");
     await opener.click(); await dialog.waitFor(); await geometry("long reader");
+    const longVoice = dialog.getByRole("button", { name: "The Athletic voice", exact: true });
+    await longVoice.click();
+    await page.waitForFunction(() => document.querySelector('dialog [role="status"]')?.textContent === "Reading The Athletic voice.");
+    const voiceBox = await longVoice.boundingBox();
+    const readerBox = await dialog.boundingBox();
+    assert.ok(voiceBox && readerBox && voiceBox.y >= readerBox.y && voiceBox.y + voiceBox.height <= readerBox.y + readerBox.height);
+    assert.equal(await longVoice.evaluate(el => el === document.activeElement), true);
+    record(`${width} long headline voice change retains visible focus`);
     await dialog.evaluate(el => { el.scrollTop = el.scrollHeight; });
     const closeBox = await dialog.getByRole("button", { name: "Close story" }).boundingBox();
     assert.ok(closeBox && closeBox.y >= 0 && closeBox.y + closeBox.height <= 844 + (width === 1440 ? 56 : 0));

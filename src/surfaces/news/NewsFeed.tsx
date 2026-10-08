@@ -58,9 +58,9 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
       if (!node.open) {
         node.showModal();
         heading.current?.focus();
+        node.scrollTop = 0;
         wasOpen.current = true;
       }
-      node.scrollTop = 0;
     } else if (node.open) {
       node.close();
       if (wasOpen.current) {
