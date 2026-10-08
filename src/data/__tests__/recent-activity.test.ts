@@ -94,6 +94,19 @@ describe("validSeasonWeeks", () => {
     expect(validSeasonWeeks(state(Infinity))).toEqual([]);
   });
 
+  it("accepts the calendar ceiling and rejects oversized weeks", () => {
+    expect(validSeasonWeeks(state(54))).toHaveLength(54);
+    for (const week of [55, 100000, Number.MAX_SAFE_INTEGER]) {
+      expect(validSeasonWeeks(state(week))).toEqual([]);
+    }
+  });
+
+  it("uses only week 1 for preseason placeholder weeks", () => {
+    for (const week of [0, 3, 100000]) {
+      expect(validSeasonWeeks({ season_type: "pre", season: "2026", week })).toEqual([1]);
+    }
+  });
+
   it("rejects null state and missing week", () => {
     expect(validSeasonWeeks(null)).toEqual([]);
     expect(validSeasonWeeks({} as never)).toEqual([]);
