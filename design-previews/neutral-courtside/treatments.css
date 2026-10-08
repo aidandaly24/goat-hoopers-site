@@ -1,0 +1,89 @@
+/* REVIEW ONLY. Proposed exact tokens, not a production palette decision. */
+@font-face { font-family: 'Review Inter'; src: url('../../courtside-preview/assets/inter.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Review Mono'; src: url('../../courtside-preview/assets/geist-mono.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+
+:root, :root[data-treatment='chalk'] {
+  --review-canvas: #f6f3eb;
+  --review-surface: #fffdf7;
+  --review-ink: #242824;
+  --review-secondary: #63675f;
+  --review-accent: #a54429;
+  --review-rule: #d9d6cc;
+  --review-control: #898d83;
+  --review-focus: #245a4b;
+}
+:root[data-treatment='slate'] {
+  --review-canvas: #f5f4ef;
+  --review-surface: #ffffff;
+  --review-ink: #242d35;
+  --review-secondary: #5f6870;
+  --review-accent: #345b77;
+  --review-rule: #d7dade;
+  --review-control: #7b858e;
+  --review-focus: #345b77;
+}
+:root[data-treatment='linen'] {
+  --review-canvas: #f5f1e8;
+  --review-surface: #fffcf6;
+  --review-ink: #2c2928;
+  --review-secondary: #6a625c;
+  --review-accent: #843f46;
+  --review-rule: #dbd4ca;
+  --review-control: #91857b;
+  --review-focus: #843f46;
+}
+
+:root {
+  --font-body: 'Review Inter';
+  --font-mono: 'Review Mono';
+  --gh-font-display: var(--font-body), system-ui, sans-serif;
+  --gh-font-body: var(--font-body), system-ui, sans-serif;
+  --gh-font-mono: var(--font-mono), ui-monospace, monospace;
+  --gh-bg: var(--review-canvas);
+  --gh-bg-raised: var(--review-surface);
+  --gh-bg-card: var(--review-surface);
+  --gh-bg-hover: var(--review-rule);
+  --gh-border: var(--review-rule);
+  --gh-border-strong: var(--review-control);
+  --gh-text: var(--review-ink);
+  --gh-text-dim: var(--review-secondary);
+  --gh-text-faint: var(--review-secondary);
+  --gh-gold: var(--review-accent);
+  --gh-gold-soft: var(--review-accent);
+  --gh-gold-deep: var(--review-accent);
+  --gh-ink-on-accent: var(--review-surface);
+  --gh-gradient-gold: linear-gradient(var(--review-accent), var(--review-accent));
+  --gh-glow-page: none;
+  --gh-grain: none;
+  --gh-cs-wall: var(--review-canvas);
+  --gh-cs-wall-deep: var(--review-canvas);
+  --gh-cs-court: var(--review-surface);
+  --gh-cs-ink: var(--review-ink);
+  --gh-cs-text: var(--review-ink);
+  --gh-cs-muted-light: var(--review-secondary);
+  --gh-cs-muted-dark: var(--review-secondary);
+  --gh-cs-tan: var(--review-accent);
+  --gh-cs-clay: var(--review-accent);
+  --gh-cs-line-light: var(--review-rule);
+  --gh-cs-line-dark: var(--review-rule);
+  --gh-cs-paint: var(--review-rule);
+  --gh-cs-font: var(--font-body), system-ui, sans-serif;
+  --gh-cs-num: var(--font-mono), ui-monospace, monospace;
+}
+
+/* Identical changes for every treatment. No composition, crop or sizing edits. */
+body { background-image: none; color: var(--review-ink); }
+body::before { display: none; }
+.review-notice { margin: 0; padding: .75rem 1rem; font-size: .875rem; background: var(--review-surface); color: var(--review-secondary); }
+.review_CourtsideHome_surface :focus-visible,
+body :focus-visible { outline: 2px solid var(--review-focus); outline-offset: 3px; }
+.review_CourtsideHome_surface .review_CourtsideHome_directory-search,
+.review_CourtsideHome_surface select,
+.review_CourtsideHome_surface .review_CourtsideHome_secondary { border-color: var(--review-control); }
+.review_SiteHeader_claim { color: var(--review-surface) !important; }
+.review_CourtsideHome_surface .review_CourtsideHome_button { color: var(--review-surface); }
+.review_CourtsideHome_surface .review_CourtsideHome_secondary { color: var(--review-ink); }
+.review_MobileNav_active .review_MobileNav_icon svg { filter: none; }
+.review_CombinedTicker_pub { color: var(--review-accent); }
+button:disabled, input:disabled, select:disabled { opacity: 1; cursor: default; }
+*, *::before, *::after { animation: none !important; transition: none !important; }
