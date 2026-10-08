@@ -20,6 +20,10 @@ route examples at 1440, 741, 390 and 320px, a 720×450px layout equivalent to a
 1440×900px viewport at 200% browser zoom, and enlarged 200% text at 390/320px.
 It checks primary destination order/current state, initial and anchored titles,
 skip/primary keyboard focus, scrolling and actual Next navigation/Back.
+Back uses a trusted pointer at the visible primary Stocks link coordinates and
+records its mousedown departure position. Locator auto-scroll can otherwise
+move a sticky link's margin box before navigation and invalidate the expected
+prior scroll. Restoration must match a meaningful >=100px departure position.
 Phone Trophy captures are viewport-sized at top, middle and maximum scroll.
 The fixed bar must stay at the viewport bottom, and final footer content plus
 keyboard focus must clear it at maximum scroll. A long screenshot placing a

@@ -85,13 +85,21 @@ cleanup or hosted/DB call ran during the slot. Source fonts are system fallbacks
 The broader earlier Next run identified
 a Back-scroll regression: reviewed main restored 220px→220px on News/Arcade;
 the initial shell with root scroll padding restored 220px→0px. Clearance now
-belongs to scroll targets instead. The retained .next still contains the old
-root scroll-padding rule and is stale for this source. The coordinator's
-no-local-Next-build instruction blocks current-source Next Back/all-route and
-exact-build acceptance; Vite anchor history is not reported as Next-router
-coverage. The corrected source is staged but unpublished. Draft PR #87 remains
-HOLD MERGE until a permitted current-source compilation/artifact route resolves
-that gap and independent review clears it. No hosted/production data check is claimed.
+belongs to scroll targets instead. The coordinator lifted the temporary
+no-build instruction for bounded current-source acceptance. The corrected
+source was published before compilation, its exact tree passed remote CI, and
+a fresh credential-free local build passed within the monitored disk budget.
+
+The first fresh Next desktop Back check returned 131px from a 220px prior
+scroll. Tracing proved the locator click had moved the page to 131px before
+mousedown; Next restored that actual departure correctly. Trusted pointer
+navigation preserved and restored 220px. The harness now records mousedown
+departure and uses the visible link coordinates, avoiding locator auto-scroll.
+Application code is unchanged by this test correction. The final PR report
+records the exact current-source build binding and full native Next results;
+stale artifacts and ordinary Vite anchors do not count as Next coverage.
+Draft PR #87 stays HOLD MERGE for independent acceptance. No hosted/production
+data check is claimed.
 
 Reproduction: `src/test/site-shell/README.md`. Screenshots and machine results
 are retained privately outside the worktree; their Library identities belong

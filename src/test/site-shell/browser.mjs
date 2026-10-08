@@ -265,8 +265,20 @@ try {
       await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       const previousScroll = await page.evaluate(() => window.scrollY);
       assert.ok(previousScroll >= 100, "Back check must use a meaningful nonzero scroll position");
-      await page.getByRole("navigation", { name: "Primary", exact: true }).filter({ visible: true }).getByRole("link", { name: "Stocks", exact: true }).click();
+      const stocksLink = page.getByRole("navigation", { name: "Primary", exact: true }).filter({ visible: true }).getByRole("link", { name: "Stocks", exact: true });
+      const linkBounds = await stocksLink.boundingBox();
+      assert.ok(linkBounds, "Stocks destination is visible before native navigation");
+      // Locator click scrolls a sticky link's margin box into view before
+      // mousedown. Use a trusted pointer at its visible coordinates so the
+      // departure position reflects the user's actual navigation action.
+      await page.evaluate(() => {
+        window.__shellBackDeparture = null;
+        document.addEventListener("mousedown", () => { window.__shellBackDeparture = window.scrollY; }, { once: true, capture: true });
+      });
+      await page.mouse.click(linkBounds.x + linkBounds.width / 2, linkBounds.y + linkBounds.height / 2);
       await page.waitForURL(url => url.pathname === "/stocks");
+      const departedScroll = await page.evaluate(() => window.__shellBackDeparture);
+      assert.equal(departedScroll, previousScroll, "Native navigation must preserve the departure scroll position");
       await verifyShell(page);
       await page.goBack();
       await page.waitForURL(url => url.pathname === "/history");
@@ -275,8 +287,9 @@ try {
         console.log("Back metrics", { width, fontSize, previousScroll, restoredScroll: await page.evaluate(() => window.scrollY) });
         throw error;
       });
+      const restoredScroll = await page.evaluate(() => window.scrollY);
       await anchor(page);
-      record(`Production routes ${width}px, ${fontSize / 16 * 100}% text`, { routes: routes.length, height, safeArea, keyboard: "skip/primary visible", anchors: "clear chrome", back: "restores location/state/scroll" });
+      record(`Production routes ${width}px, ${fontSize / 16 * 100}% text`, { routes: routes.length, height, safeArea, keyboard: "skip/primary visible", anchors: "clear chrome", back: { from: "/history", via: "/stocks", before: previousScroll, departed: departedScroll, restored: restoredScroll } });
       await ctx.close();
     }
     await gameChecks(origin, false);
