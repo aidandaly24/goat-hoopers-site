@@ -28,6 +28,7 @@ import type {
   NewsArticle,
 } from "@/domain";
 import type { PlayerStatProfile } from "@/domain";
+import type { PriceHistoryPoint } from "@/domain";
 import {
   fetchLeague,
   fetchRosters,
@@ -695,7 +696,7 @@ const getMarketInputs = cache(async (): Promise<StockMarketInput> => {
 
   // Previous prices for change %. Best-effort: without them the market
   // still computes, it just shows "new listing" states.
-  let history: Record<string, number[]> | null = null;
+  let history: Record<string, PriceHistoryPoint[]> | null = null;
   try {
     history = await getStockStore().getHistory(Object.keys(rosteredCount));
   } catch {

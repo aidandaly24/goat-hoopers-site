@@ -165,6 +165,32 @@ export const playerStatCache = pgTable("player_stat_cache", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+/**
+ * Reconstructed + live price history for the player stock market.
+ * One row per player per game (gamelog) or per season (backtest).
+ * Live daily snapshots continue to land in `stock_snapshots`; this table
+ * is the deep history that makes the price chart real instead of a flat
+ * line.
+ *
+ * Retention: rolling 5-season window (see pruneSuperseded in stocks.ts).
+ * `backtest` points are deleted when `gamelog` coverage arrives for the
+ * same player+season, and anything older than 5 seasons is pruned.
+ * `live` rows are never written here — they stay in stock_snapshots.
+ */
+export const priceHistory = pgTable("price_history", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  /** Sleeper player_id. */
+  playerId: text("player_id").notNull(),
+  /** Game date (gamelog) or season-end date (backtest). */
+  date: timestamp("date").notNull(),
+  /** Price in cents — integers dodge float drift. */
+  priceCents: integer("price_cents").notNull(),
+  /** 'gamelog' | 'backtest'. Never 'live' — live stays in stock_snapshots. */
+  source: text("source").notNull(),
+  /** Season label, e.g. "2024-25". */
+  season: text("season").notNull(),
+});
+
 export const schema = {
   siteUsers,
   inviteCodes,
@@ -174,6 +200,7 @@ export const schema = {
   rewards,
   stockSnapshots,
   playerStatCache,
+  priceHistory,
 };
 
 export type Db = ReturnType<typeof drizzle<typeof schema>>;

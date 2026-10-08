@@ -22,6 +22,7 @@ import type {
   StockQuote,
   StockDetail,
   PanicSignal,
+  PriceHistoryPoint,
 } from "@/domain";
 import type {
   RawLeague,
@@ -502,8 +503,8 @@ export type StockMarketInput = {
   draftPick: Record<string, number>;
   /** player_id → fundamentals. Null = stats unavailable, price on pedigree. */
   statProfiles: Record<string, PlayerStatProfile> | null;
-  /** player_id → previous prices, oldest → newest. Null = no history yet. */
-  history: Record<string, number[]> | null;
+  /** player_id → price points, oldest → newest. Null = no history yet. */
+  history: Record<string, PriceHistoryPoint[]> | null;
   /** Unix ms of computation. */
   now: number;
 };
@@ -817,8 +818,11 @@ export function computePlayerStocks(input: StockMarketInput): PlayerStock[] {
     factors.sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
 
     // History → change, trend, sparkline.
+    // `hist` is already sampled (store caps at 40 points): reconstructed
+    // gamelog path + backtest points + live snapshots, oldest → newest.
     const hist = history?.[id] ?? [];
-    const prevPrice = hist.length > 0 ? hist[hist.length - 1] : null;
+    const prevPrice =
+      hist.length > 0 ? hist[hist.length - 1].price : null;
     const change =
       prevPrice != null && prevPrice > 0 ? round2(price - prevPrice) : null;
     const changePct =
@@ -833,7 +837,10 @@ export function computePlayerStocks(input: StockMarketInput): PlayerStock[] {
           : changePct <= -TREND_THRESHOLD_PCT
             ? "down"
             : "flat";
-    const spark = [...hist.slice(-9), price];
+    const spark: PriceHistoryPoint[] = [
+      ...hist.slice(-39),
+      { date: new Date(now).toISOString(), price, source: "live" },
+    ];
 
     priced.push({
       playerId: id,

@@ -250,13 +250,19 @@ currency. The math is the pure `computeStockMarket` in `transform.ts`
 Fundamentals are cached in the `player_stat_cache` table (one row per
 player, UPSERTED, refreshed at most daily) by `src/data/nba-stats.ts`,
 so page loads never hit the stats feed and Neon stays quiet. Price
-history comes from the `stock_snapshots` table (`src/data/stocks.ts`
-owns the store contract), written at most daily for the same reason.
-Change %, the trending/falling sections, and sparklines all derive from
-snapshots. When the database isn't provisioned the store is a no-op:
-prices still compute live, movers show their honest "no history yet"
-states, and nothing crashes. Snapshots older than 30 days are pruned
-on write.
+history has two layers: `stock_snapshots` holds live daily snapshots
+(30-day retention), and `price_history` holds reconstructed deep history
+— per-game `gamelog` points backfilled from real game logs plus yearly
+`backtest` points for seasons without log coverage. The store
+(`src/data/stocks.ts`) merges both for the sparkline, sampled to 40
+points; `pruneSuperseded()` keeps a rolling 5-season window and deletes
+`backtest` points once `gamelog` coverage arrives. `scripts/prepare-
+gamelog.py` + `scripts/backfill-price-history.ts` rebuild the backfill
+(idempotent full rebuild). Change %, the trending/falling sections, and
+sparklines all derive from the merged history — backtest segments render
+dashed so reconstruction is visually distinct. When the database isn't
+provisioned the store is a no-op: prices still compute live, movers show
+their honest "no history yet" states, and nothing crashes.
 
 The `CombinedTicker` marquee renders in the root layout above every page
 (ESPN style: news headlines and stock quotes alternate on a timer; pure
