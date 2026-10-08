@@ -1,4 +1,4 @@
-/* Global resets + site-wide texture. Component styling lives in CSS
+/* Global resets + the shared paper canvas. Component styling lives in CSS
  * modules; shared values in ui/tokens.css. */
 
 *,
@@ -18,29 +18,11 @@ body {
   font-family: var(--gh-font-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  /* Deep navy-black with ambient arena glow + film grain. The glow sits
-   * behind everything (fixed attachment); the grain adds texture without
-   * touching readability. */
-  background-color: var(--gh-bg);
-  background-image: var(--gh-glow-page), var(--gh-grain);
-  background-attachment: fixed, fixed;
-  background-size: auto, 160px 160px;
+  background: var(--gh-bg);
   min-height: 100dvh;
 }
 
-/* Grain lives in its own low-opacity layer so it never muddies text. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: var(--gh-grain);
-  background-size: 160px 160px;
-  opacity: 0.05;
-}
-
-/* Keep page content above the grain layer. */
+/* Preserve page stacking around sticky navigation and dialogs. */
 body > * {
   position: relative;
   z-index: 1;
@@ -50,9 +32,9 @@ h1,
 h2,
 h3 {
   font-family: var(--gh-font-display);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-transform: none;
 }
 
 /* Numeric utility: mono + tabular figures for ALL stats, scores, records,
@@ -75,4 +57,16 @@ a {
   body {
     padding-bottom: calc(var(--gh-tabbar-h) + env(safe-area-inset-bottom, 0px));
   }
+}
+
+/* Perceivable control boundaries without making every decorative row rule dark. */
+:where(input:not([type="range"]), select, textarea, label:has(> input[type="search"]), label:has(> input[type="text"])) {
+  --gh-border: var(--gh-control);
+  --gh-term-line: var(--gh-control);
+  --gh-cs-line-light: var(--gh-control);
+  --gh-cs-line-dark: var(--gh-control);
+}
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--gh-focus);
+  outline-offset: 3px;
 }

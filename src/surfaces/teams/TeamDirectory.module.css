@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--gh-s3);
 }
 
@@ -94,8 +94,16 @@
 /* Desktop: two columns of team cards. */
 @media (min-width: 64rem) {
   .grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* Narrow phones retain names and every record field without page overflow. */
+@media (max-width: 40rem) {
+  .teamCard { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); }
+  .name { white-space: normal; overflow-wrap: anywhere; }
+  .manager { overflow-wrap: anywhere; }
+  .record { grid-column: 2; flex-wrap: wrap; }
 }
 
 @media (prefers-reduced-motion: reduce) {

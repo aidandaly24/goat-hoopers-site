@@ -1,6 +1,6 @@
 # GOAT Hoopers design direction
 
-**Current design authority · October 8, 2026 · exact palette pending review.**
+**Current design authority · October 8, 2026 · Paper + Slate selected by Aidan.**
 
 GOAT Hoopers is the weekly bulletin and working reference for ten friends in a
 fantasy basketball league. It should feel like our gym, our matchups and our
@@ -16,8 +16,8 @@ useful history; their dark-first, gold-everywhere, colored-pill-everywhere,
 oversized-award-card and avatar-ring-everywhere prescriptions are no longer
 requirements. Their useful rules about real data, mobile access, aligned
 numbers, clear navigation and clickable identities still apply. Architectural
-and security contracts remain authoritative. This document does not silently
-change runtime tokens or approve a production-wide recolor.
+and security contracts remain authoritative. The selected palette now has canonical runtime roles in `src/ui/tokens.css`;
+visual composition and functionality migrate through separate small PRs.
 
 ## Decisions and review status
 
@@ -30,14 +30,16 @@ change runtime tokens or approve a production-wide recolor.
 | Confirmed | Preserve the approved stocks composition and useful dense data. Keep working search, filters, sorting, inspection and price provenance. |
 | Confirmed, newest usability rule | Arcade discovery shows actual playable games, a real preview of free-throw practice and clear Play navigation. Hide nonfunctional/fake catalog entries. Verify the whole path to play, not just an HTTP 200. Arcade improvements need not wait for the broad migration. |
 | Confirmed concern; resolution owned separately | Arbitrary figurines are unwelcome. Another task identifies their purpose and fixes homepage sorting. This documentation/prototype change neither removes models nor changes their logic. |
-| Proposed for user/panel selection | Exact neutral hex values, accent choice, type sizes, section density, radii, performance ceilings and semantic-token migration below. |
+| Confirmed by Aidan after rendered desktop/phone comparison | **Paper + Slate**: the exact canvas, surface, ink, divider, control and slate accent values below. |
+| Proposed; verify per surface | Type sizes, section density, radii and performance ceilings. These are guidance, not a mandate to change every component at once. |
 
 The neutral comparisons live at
 [design-previews/neutral-courtside/index.html](design-previews/neutral-courtside/index.html).
 An isolated noindex hosted copy is generated at
 `/design-preview/neutral-courtside/index.html` through the existing public-files
-mechanism, with no normal navigation entry or data loader. Its HTTP deployment
-and browser review remain pending coordinator publication.
+mechanism, with no normal navigation entry or data loader. Its hosted HTTP publication remains coordinator-owned. Private Mac Chrome
+captures at 1440px and 390px were inspected and delivered as images before
+Aidan chose Paper + Slate. The frozen comparison remains unchanged.
 Switch color at the same scroll position and width. All three use the current
 Courtside component tree, identical fixture content, arena crop, portraits and
 pennants. They are palette experiments, not redesigned page compositions.
@@ -128,13 +130,13 @@ rules should stay quiet. Shadows describe a dialog or real object, not every
 row. Do not create large vertical blanks to make a short player take look
 important.
 
-## Neutral palette proposals
+## Selected palette and retained comparison
 
 Color belongs to a team, a material, an action or a state. The neutral canvas
 occupies most of the page; it is not another full green treatment. Green can
 remain a small court reference or a labeled positive result.
 
-| Proposed token role | Chalk + clay | Paper + slate | Linen + burgundy |
+| Token role | Chalk + clay (comparison) | **Paper + slate (selected)** | Linen + burgundy (comparison) |
 | --- | --- | --- | --- |
 | Canvas | `#F6F3EB` | `#F5F4EF` | `#F5F1E8` |
 | Raised/readable surface | `#FFFDF7` | `#FFFFFF` | `#FFFCF6` |
@@ -146,13 +148,13 @@ remain a small court reference or a labeled positive result.
 | Control boundary | `#898D83` | `#7B858E` | `#91857B` |
 | Focus on light | `#245A4B` | `#345B77` | `#843F46` |
 
-Chalk + clay is the proposed starting point because the approved clay logo and
-warm court already support it. Paper + slate is a cooler alternative. Linen +
-burgundy is warmer; review it beside actual basketball imagery to ensure the
-site still reads as a league rather than a café. Asset and permanent team
-colors stay unchanged across comparisons. These are unselected review tokens.
+Aidan chose **Paper + Slate** after seeing actual rendered captures, including
+the phone opening and team directory. Canvas `#F5F4EF`, white working surfaces
+and slate `#345B77` actions are the site-wide baseline. Team identity and
+permanent assets retain their colors. Keep all three frozen comparison
+artifacts as evidence; do not regenerate them to imply a different decision.
 
-Proposed semantic states on light surfaces, consistent across all three
+Semantic states on light surfaces, consistent across all three
 treatments: positive `#245A4B`, negative `#A13E3E`, live/action-needed
 `#A54429`, championship/first place `#795C1C`, second place `#5F6870`,
 third place `#855022`, neutral secondary ink. Pair each with text/icon/shape:
@@ -170,31 +172,25 @@ carry legacy bright green/red/orange text onto light backgrounds unchanged.
 
 ### One semantic system, with bounded exceptions
 
-Today global `tokens.css` is navy/gold, `courtside-tokens.css` is green/mineral,
-and `body:has([data-courtside-home])` switches shared chrome. The current
-**StockMarket** uses ordinary `--gh-*` tokens and the approved navy/gold board.
-**TradeAnalyzer**, not the current stocks board, actively uses black/amber
-`--gh-term-*`. History separately uses wood/brass tokens. Some token comments
-still describe the legacy stocks terminal and are stale.
+Canonical roles live in `src/ui/tokens.css`. Courtside, Arcade discovery,
+trade terminal and history page names alias the same selected values. These
+compatibility names preserve component structure while eliminating separate
+page palettes; remove an alias only after its last consumer migrates.
 
-After a choice, put canonical semantic values in `src/ui/tokens.css`; alias
-Courtside names during migration and then remove obsolete duplication. No
-per-route hardcoded hexes and no permanent fourth palette system.
-
-| Role | Canonical proposal | Current consumers / migration rule |
+| Role | Canonical values | Consumers / migration rule |
 | --- | --- | --- |
-| Canvas / surface / hover | `--gh-bg`, `--gh-bg-raised`, `--gh-bg-card`, `--gh-bg-hover` | Body, header/footer/mobile nav, cards, forms, dialogs. Map CS wall/deep/court to these roles; remove glow/grain as global chrome decoration. |
-| Ink / secondary | `--gh-text`, `--gh-text-dim`, `--gh-text-faint` | Match CS text/ink/muted roles to context; no inverted light text left on new paper backgrounds. |
-| Action / on-action / focus | proposed `--gh-accent`, `--gh-on-accent`, `--gh-focus`, `--gh-focus-on-dark` | Separate label color from button fill and readable button text. Legacy gold and CS tan currently do several jobs; split those jobs before aliasing. |
-| Divider / control border | `--gh-border`, `--gh-border-strong` | Thin row rules versus perceivable inputs, disabled states and selected controls. |
-| Outcomes / identities | `--gh-win`, `--gh-loss`, `--gh-live`, proposed `--gh-champion`, `--gh-silver`, `--gh-bronze`; `teamColorVar()` | Semantic meaning remains stable. Medal ranks keep ordinal labels and separate outcome color from action color. Team colors are not backgrounds for entire pages. |
-| Approved data workspace | proposed bounded exchange role aliases | Keep stocks layout, density, gold cues and list/detail behavior intact. Scope its current navy/gold values before changing shared global tokens, so a shell migration cannot accidentally recolor the approved board. Exact workspace recolor requires its own comparison. |
-| Court, historical objects and playable scene | material/scene-local tokens | Wood/fabric/court can remain within actual objects or a playable scene. Shared page text, spacing and navigation still follow the neutral system. |
+| Canvas / surface / hover | `--gh-bg` `#F5F4EF`; `--gh-bg-raised` / `--gh-bg-card` `#FFFFFF`; `--gh-bg-hover` `#EBEEF0` | Body, chrome, cards, forms, dialogs, quotes and inspector. CS wall/deep/court and trade/history page names alias these roles. No global glow/grain. |
+| Ink / secondary | `--gh-text` `#242D35`; `--gh-text-dim` / `--gh-text-faint` `#5F6870` | Main, secondary and provenance text, including legacy CS/terminal/history names. |
+| Action / label / focus | `--gh-accent` / `--gh-focus` `#345B77`; `--gh-on-accent` `#FFFFFF` | Slate fills use white labels. Legacy gold action names resolve to slate. Bright position/team fills use `--gh-ink-on-color` `#242D35`, not the white action label. |
+| Divider / control boundary | `--gh-border` `#D7DADE`; `--gh-control` / `--gh-border-strong` `#7B858E` | Quiet row rules versus perceivable inputs/focus. Native fields locally use the control role rather than darkening every page divider. |
+| Outcomes / identities | `--gh-win` `#245A4B`, `--gh-loss` `#A13E3E`, `--gh-live` `#A54429`, `--gh-champion` `#795C1C`, silver/bronze as above; `teamColorVar()` | Text/ordinal labels retain meaning. Existing team/position hues remain identity cues, with readable dark labels. |
+| Approved stocks workspace | Shared page roles plus owner-scoped chart roles | Preserve composition, useful density, list/detail behavior and provenance. The selected site-wide palette also applies to its working surfaces. Retain distinct estimated/recorded chart styles and the chart owner's token names; contrast-check them on white when that PR lands. No chart or pricing logic change here. |
+| Championship object / playable scene | `--gh-banner-*` / `--gh-scene-*` | Existing crimson fabric/brass banner and dark court HUD stay bounded to actual objects. History pages, game discovery and shared chrome remain paper. This exception cannot become another page-wide theme. |
 
-The preview's `--review-*` variables are disposable experiment names. They
-must not be imported into production. The separate Arcade owner can use the
-same role vocabulary and off-white direction now; do not block usable game
-discovery on final hex selection, and do not overwrite that task's files.
+Publication hues are darkened to remain readable on paper, with their existing
+publication labels. The game's HUD locally restores its approved scene type
+and light text. Comparison `--review-*` variables stay isolated and never enter
+production imports. No new palette framework, assets or fetching is needed.
 
 ## Tables, controls and accessible behavior
 
@@ -310,37 +306,40 @@ clear without three consecutive navigation/status strips dominating it.
 
 ## Existing route audit and small-PR migration
 
-Audit basis: source at `a327e9c`; current main subsequently includes the separate
-PR72 game release. Browser captures of the integrated home and stocks were
-visually inspected from retained GOAT review evidence. The other route findings
-below are **source findings**, not new browser-reproduced visual bugs.
+Original audit basis: `a327e9c`. The palette implementation adopts merged main
+`be55463` (including chart PR78, sorting PR79 and Arcade PR77) and preserves the deployment
+hold. Source findings below remain layout follow-ups; the selected palette
+pass has separate real-component desktop/mobile QA in
+[docs/paper-slate-palette-qa.md](docs/paper-slate-palette-qa.md). No claim that
+every authenticated route or live backend was exercised is implied.
 
 | Routes / files | What to preserve | Bounded design work |
 | --- | --- | --- |
 | Shared shell: `layout.tsx`, `globals.css`, `SiteHeader`, `MobileNav`, `SectionNav`, `SiteFooter`, `CombinedTicker` | Account state, all destinations, site metadata, safe-area space, fail-soft ticker | Neutral chrome, selected logo variant, shared type/spacing/focus roles, consistent active-page semantics. Desktop header currently has no current-page state; mobile already uses `aria-current`. Reduce stacked bars without deleting destinations or hiding actions. |
 | `/`, `/weekly`, `/weekly/[editionId]` · `season-hub` | Weekly order, dated sources, archives, full live directory, inherited-manager note | Neutral tokens, smaller editorial footprint and fewer visual separators after palette selection. Source no-edition branch currently returns before the directory/standings: keep core tasks available independently of editorial. Sorting/figurine logic is separately owned. |
-| `/stocks` · `stock-market` | Approved board/inspector composition, filters, slim quotes, recorded/reconstructed source labels, retry/cache/focus | Align shell and working text; preserve the board's current navy/gold values through scoped roles before global migration. Review any density/size change against actual mobile usage. |
-| `/trade-analyzer` · `trade-analyzer` | Two pickers, domain verdict, FAAB totals, share query, Copy Link | Reconcile old black/amber terminal with shared controls and typography; a focused comparison can decide workspace color later. Never break URL restore or treat verdict color as the entire explanation. |
+| `/stocks` · `stock-market` | Approved board/inspector composition, filters, slim quotes, recorded/reconstructed source labels, retry/cache/focus | Shared Paper + Slate shell/board/inspector; preserve chart owner roles and provenance. Review any density/size change separately against actual mobile usage. |
+| `/trade-analyzer` · `trade-analyzer` | Two pickers, domain verdict, FAAB totals, share query, Copy Link | Use selected shared neutral control/ink roles through terminal compatibility names. Never break URL restore or treat verdict color as the entire explanation. |
 | `/teams`, `/teams/[rosterId]`, `/team` · `teams`, `team` | Public profile links, complete roster, record/streak, game log, picks, wire, franchise history, private rewards ledger and redirects | Compact neutral identity/roster composition. TeamProfile currently puts `HooperViewer` in its identity stage: review necessity with the figurine owner; do not delete unique assets or move 3D ahead of useful roster data by default. Keep pending/settled rewards distinct. |
 | `/player/[playerId]` · `player` | Real identity, ownership, draft slot, transactions, honest unavailable stats | Reuse the compact identity/working-list treatment. Keep the current 88px headshot proportionate; do not turn it into a giant athlete hero or fabricate stats. |
 | `/transactions` · `transactions` | Type/team filters, real chronology, linked people/teams | Neutral readable timeline/list, control hierarchy, compact time metadata; no decorative wall of colored chips. |
 | `/draft` · `draft` | Round grouping, pick order, owner/player links | Desktop board and narrow pick feed share type/spacing; preserve the actual selections and units. |
 | `/intel` · `intel`, `preview`, `power-rankings`, `playoffs`, `records` | Four documented public composites, null preseason states, projection/model labels | Shared title/controls and readable data groups. Keep meaningful odds bars; don't remove charts just to remove decoration. No restyling changes the analytics formulas. |
 | `/news` · `news` | Event-derived coverage, publication identities, section filters, linked actors | Editorial list rhythm and compact mastheads; distinguish generated event coverage from curated weekly opinion. Publication accents stay small and labeled. |
-| `/history`, `/history/champions`, `/history/hall-of-fame` · `history` | Verified titles/records/inductees, franchise history | Neutral page/chrome with actual banner/wood/brass objects where useful. One material does not need a whole unrelated site theme or every record in an engraved card. |
+| `/history`, `/history/champions`, `/history/hall-of-fame` · `history` | Verified titles/records/inductees, franchise history | Neutral page/chrome; crimson fabric and brass stay within championship banners. One material does not need a whole unrelated site theme or every record in an engraved card. |
 | `/arcade`, `/arcade/[gameId]` · `arcade` | Approved playable free-throw scene and controls, real availability, local-score limitations | Separate owner ships discoverability now: playable-only catalog, actual preview, prominent Play and usable back/exit. No fake inactive tiles, simulated preview of an unavailable game, or unsupported prize promise. |
 | `/claim`, `/login`, `/admin/invites` | Session/server actions, invite consumption, authentication errors and restrictions | Shared neutral form fields/labels/focus and legible validation. Keep commissioner/admin access and secret handling intact; no visual mock accounts or new auth. |
 | `loading.tsx`, `error.tsx`, `not-found.tsx`; unavailable/provision notices | Existing recovery and actual limits | Same text/background roles, explicit retry/back routes, reduced-motion loading; no dead-end blank slate. `/api/stocks/[playerId]` remains an API contract, not a visual route to redesign. |
 
 Prioritize and gate each PR:
 
-1. **Now, in parallel ownership:** homepage sorting/figurine investigation and
-   Arcade discovery remain their owners' work. This PR delivers authority and
-   palette comparison only. Do not delay or modify the PR72 game release.
-2. **After user choice + independent visual/UX review:** scope approved exchange
-   colors, establish neutral semantic aliases, migrate shared chrome/focus/type.
-   Validate home, stocks and a plain form together before changing more routes.
-   Ownership: design/shell maintainer; rollback is that focused PR.
+1. **Delivered:** DESIGN.md and three comparable neutral prototypes; usable
+   Arcade discovery and homepage sorting have separate merged PRs. Preserve
+   their working controls and independent release history.
+2. **Selected palette pass:** shared semantic values, neutral chrome, readable
+   focus/control roles and bounded banner/game exceptions. Validate real home,
+   stocks/inspector, teams, Arcade, trade and recovery components at desktop and
+   phone widths. Chart PR78 is merged; preserve its functional changes and role names while
+   mapping its light chart to selected semantic values. No layout rewrite.
 3. **One home/archive PR:** adjust player footprint and separator density; keep
    editorial-independent core access. Coordinate atop the sorting fix. Gate on
    sample/published/stale/no-edition/unavailable-data behavior and roster parity.
@@ -354,13 +353,13 @@ Prioritize and gate each PR:
    safe navigation and retry without changing auth/database logic.
 
 There is no giant rewrite, new framework, new registry, global search service,
-CMS or speculative infrastructure in this plan. Exact palette is an unknown
-resolved by the bounded comparison. Shared inconsistent styling is accidental
+CMS or speculative infrastructure in this plan. The palette uncertainty was resolved
+by the bounded comparison and Aidan’s selection. Shared inconsistent styling is accidental
 complexity to consolidate. Next/Sleeper/data contracts and approved assets are
 imported constraints to preserve. Honest league state and editorial chronology
 are essential. Preview artifacts and aliases are transitional: the design
-maintainer removes aliases after the last consumer migrates and archives the
-comparison after the choice, keeping the decision/provenance record. Revisit
+maintainer removes aliases after the last consumer migrates and preserves the
+frozen comparison after the choice, keeping the decision/provenance record. Revisit
 the plan if actual usability evidence contradicts a proposed token or component.
 
 ## Concrete acceptance checks
@@ -387,7 +386,7 @@ this design work.
 | Arena + actual featured pairing + short matchup take | Generic product hero with three feature cards and a CTA unrelated to the league |
 | Three distinct curated takes with stat period/source | Giant player panels labeled as calculated awards when they are opinions |
 | Compact clickable team rows and every roster behind expansion | Ten full-height pennants or a figurine per row to fill space |
-| Navy/gold approved quote workspace within coherent shared chrome | Blindly map every global color to off-white and break price/focus contrast |
+| Paper + Slate quote workspace with approved density and distinct chart provenance | Rebuild it into generic cards or leave bright dark-theme labels unreadable on paper |
 | Upcoming/null scores, 2025 record and “Previous manager” | Fabricated live zero score or inherited poor record blamed on today's manager |
 | Play free-throw practice using a real preview | A catalog of fake games whose links merely return successful HTTP responses |
 | Clear sort labels, units and keyboard focus | Pretty headers that cannot sort, color-only verdicts or unreadable small labels |

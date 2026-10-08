@@ -1,21 +1,21 @@
 /* Courtside vocabulary for the homepage, weekly archive and isolated comparison.
- * The palette follows the existing arena floor, paint and selected logo.
- * These names do not override the live site's broadcast tokens.
+ * Compatibility aliases use the selected shared Paper + Slate roles.
+ * Existing layout/type sizes and approved court assets stay unchanged.
  * Preview breakpoints: 70rem simplifies the lead portrait, 55rem stacks
  * the opening and chrome, 40rem gives stories and team summaries phone layouts. */
 :root {
-  --gh-cs-wall: #173c3a;
-  --gh-cs-wall-deep: #123431;
-  --gh-cs-court: #c9d8d2;
-  --gh-cs-ink: #173c3a;
-  --gh-cs-text: #f3f5ef;
-  --gh-cs-muted-light: #c3d2c9;
-  --gh-cs-muted-dark: #3f5953;
-  --gh-cs-tan: #e9cda6;
-  --gh-cs-clay: #a54429;
-  --gh-cs-line-light: #76978a;
-  --gh-cs-line-dark: #829e91;
-  --gh-cs-paint: #eff3e8;
+  --gh-cs-wall: var(--gh-bg);
+  --gh-cs-wall-deep: var(--gh-bg);
+  --gh-cs-court: var(--gh-bg-raised);
+  --gh-cs-ink: var(--gh-text);
+  --gh-cs-text: var(--gh-text);
+  --gh-cs-muted-light: var(--gh-text-dim);
+  --gh-cs-muted-dark: var(--gh-text-dim);
+  --gh-cs-tan: var(--gh-accent);
+  --gh-cs-clay: var(--gh-accent);
+  --gh-cs-line-light: var(--gh-border);
+  --gh-cs-line-dark: var(--gh-border);
+  --gh-cs-paint: var(--gh-bg-hover);
   --gh-cs-scrim: rgb(0 0 0 / .35);
   --gh-cs-font: 'Courtside Inter', system-ui, sans-serif;
   --gh-cs-num: 'Courtside Mono', ui-monospace, monospace;
@@ -53,4 +53,4 @@
 }
 
 /* The themed body is selected by a public surface marker; account/nav behavior stays shared. */
-body:has([data-courtside-home]) { background:var(--gh-cs-wall-deep); }
+body:has([data-courtside-home]) { background:var(--gh-bg); }

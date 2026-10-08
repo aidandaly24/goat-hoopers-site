@@ -1,21 +1,12 @@
-/* The trophy room shell: dark mahogany walls, brass trim, parchment text. */
+/* Neutral history page; championship fabric is bounded to each banner. */
 
 .room {
-  background:
-    radial-gradient(120% 60% at 50% 0%, rgba(158, 27, 50, 0.08), transparent 60%),
-    repeating-linear-gradient(
-      93deg,
-      rgba(0, 0, 0, 0.14) 0 2px,
-      transparent 2px 7px
-    ),
-    linear-gradient(180deg, #1c0f07, var(--gh-wood-bg) 40%);
+  background: var(--gh-bg);
   color: var(--gh-parchment);
   border: 1px solid var(--gh-wood-line);
   border-radius: 12px;
   padding: clamp(1.25rem, 4vw, 3rem);
-  box-shadow:
-    inset 0 1px 0 rgba(227, 197, 101, 0.12),
-    0 24px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--gh-shadow-sm);
 }
 
 .hero {
@@ -39,7 +30,6 @@
   letter-spacing: 0.04em;
   margin: 0 0 0.5rem;
   color: var(--gh-parchment);
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.6), 0 0 40px rgba(201, 162, 39, 0.25);
 }
 
 .subtitle {

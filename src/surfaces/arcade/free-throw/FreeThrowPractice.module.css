@@ -1,3 +1,19 @@
+/* The playable 3D scene keeps its approved dark HUD; the surrounding site is paper. */
+.stage {
+  --gh-bg: var(--gh-scene-bg);
+  --gh-bg-hover: var(--gh-scene-hover);
+  --gh-text: var(--gh-scene-text);
+  --gh-text-dim: var(--gh-scene-muted);
+  --gh-text-faint: var(--gh-scene-faint);
+  --gh-gold: var(--gh-scene-accent);
+  --gh-gold-soft: var(--gh-scene-accent-soft);
+  --gh-gold-deep: var(--gh-scene-accent-deep);
+  --gh-border-strong: var(--gh-scene-control);
+  --gh-ink-on-accent: var(--gh-scene-on-accent);
+  --gh-gradient-gold: linear-gradient(135deg, var(--gh-gold-soft), var(--gh-gold) 55%, var(--gh-gold-deep));
+  --gh-font-display: var(--font-display, "Anton", system-ui, sans-serif);
+  --gh-focus: var(--gh-gold-soft);
+}
 .surface { max-width: 100rem; margin: 0 auto; padding: var(--gh-s4); }
 .stage { position: relative; isolation: isolate; height: calc(100dvh - var(--gh-ticker-h) - 4rem - var(--gh-s8)); min-height: 28rem; overflow: hidden; border: 1px solid var(--gh-border-strong); border-radius: var(--gh-radius-lg); background: var(--gh-bg); touch-action: none; cursor: grab; outline-offset: -4px; }
 .stage:focus-visible { outline: 2px solid var(--gh-gold); }

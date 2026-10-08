@@ -1,13 +1,7 @@
-/* Hall of Fame portrait frames on the office wall. */
+/* Hall of Fame entries on the shared paper surface. */
 
 .page {
-  background:
-    repeating-linear-gradient(
-      93deg,
-      rgba(0, 0, 0, 0.14) 0 2px,
-      transparent 2px 7px
-    ),
-    linear-gradient(180deg, #1c0f07, var(--gh-wood-bg) 40%);
+  background: var(--gh-bg);
   color: var(--gh-parchment);
   border: 1px solid var(--gh-wood-line);
   border-radius: 12px;
@@ -33,7 +27,6 @@
   letter-spacing: 0.04em;
   margin: 0 0 0.75rem;
   color: var(--gh-parchment);
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.6);
 }
 
 .lede {
@@ -55,13 +48,11 @@
 
 .frame {
   background: var(--gh-wood-panel);
-  border: 6px solid #3a2210;
-  outline: 1px solid var(--gh-brass-deep);
+  border: 6px solid var(--gh-border);
+  outline: 1px solid var(--gh-border);
   border-radius: 4px;
   padding: 1.25rem 1.25rem 1.5rem;
-  box-shadow:
-    inset 0 0 0 1px rgba(0, 0, 0, 0.6),
-    0 10px 28px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--gh-shadow-sm);
 }
 
 .plate {

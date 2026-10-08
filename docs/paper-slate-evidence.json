@@ -1,0 +1,93 @@
+{
+  "base": "be5546380f12d532a6ff7179a9de72378e97ede7",
+  "source_sha256": "49e0c53c593eebb97525067d9ed9f779863a1538ca4b91c68b740e81e6043259",
+  "source_files_count": 301,
+  "fingerprint_method": "SHA256 of compact sorted path\u2192SHA256 JSON for every git-tracked src file, QA fixture top-level file and approved black logo bytes. Documents/generated caches excluded.",
+  "browser": "155.0.8059.40",
+  "checks": 54,
+  "pageErrors": [],
+  "externalRequests": [],
+  "nonGETRequests": [],
+  "consoleErrors": [
+    {
+      "route": "http://127.0.0.1:8796/arcade/free-throw-shootout",
+      "text": "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  disabled by enterprise policy or commandline switch"
+    },
+    {
+      "route": "http://127.0.0.1:8796/arcade/free-throw-shootout",
+      "text": "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  disabled by enterprise policy or commandline switch"
+    },
+    {
+      "route": "http://127.0.0.1:8796/arcade/free-throw-shootout",
+      "text": "THREE.WebGLRenderer: THREE.WebGLRenderer: Error creating WebGL context."
+    },
+    {
+      "route": "http://127.0.0.1:8796/arcade/free-throw-shootout",
+      "text": "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  disabled by enterprise policy or commandline switch"
+    },
+    {
+      "route": "http://127.0.0.1:8796/arcade/free-throw-shootout",
+      "text": "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  disabled by enterprise policy or commandline switch"
+    },
+    {
+      "route": "http://127.0.0.1:8796/arcade/free-throw-shootout",
+      "text": "THREE.WebGLRenderer: THREE.WebGLRenderer: Error creating WebGL context."
+    },
+    {
+      "route": "http://127.0.0.1:8796/arcade/free-throw-shootout",
+      "text": "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  disabled by enterprise policy or commandline switch"
+    },
+    {
+      "route": "http://127.0.0.1:8796/arcade/free-throw-shootout",
+      "text": "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  disabled by enterprise policy or commandline switch"
+    },
+    {
+      "route": "http://127.0.0.1:8796/arcade/free-throw-shootout",
+      "text": "THREE.WebGLRenderer: THREE.WebGLRenderer: Error creating WebGL context."
+    }
+  ],
+  "screenshots": {
+    "1440-home.png": "a3676e477438411af3f423c91deaa3d76782031d33f8348ec5f5cbfc22b31010",
+    "1440-home-directory.png": "3ce97757b2ff2491de8316446a953ded45abe226b2b8c81b6629105be60fa890",
+    "1440-stocks.png": "315259ab46b23e6a036121d544f3e228a65352c8dbf8bc98c9f5abc0134ba4fa",
+    "1440-stock-inspector.png": "0f858afeef5ac532cc9ba6859cdfc3021ed484366eb322c73dfd4a20a6a9f447",
+    "1440-stock-error.png": "92543b1acb4b6ce3164579d2d7ada3236d17c3be7453b6c2673aa8774d91eabe",
+    "1440-stock-empty.png": "5a56f4988293b2e0d9508bd740dc022c1b616ca2c6eb29f37662a7007d8ae0f6",
+    "1440-teams.png": "2925041cdcbd9224819aa7a7568cbf1a00bb0fcf031b6084aec292f071c613d1",
+    "1440-arcade.png": "483ee908686d153988e7672c9c476809675aaa5b6fbc9ada5efafca1bca3e115",
+    "1440-game-fallback.png": "29b7f589a6fa9a9d1d3cb0460e41be0013688361f5c4a8b553b8d022ce354e2c",
+    "1440-trade.png": "f6f8442c0fe429d52fe26a13b8a0fa0f458b8bafcabd1ec0168c6891d795a79b",
+    "1440-history.png": "9348fdbe6309632bc9a66e7a43c41faef7230fabbd3f4edcbc0fe2810c0fc8cf",
+    "1440-unavailable.png": "af26edd8726b5b4571f907079fb4a2c69a59840b70bb0bee5b53fd924599982e",
+    "1440-missing.png": "61b346cc60a58eb419abc683017adf2df542940dbc4d035352493936ffcf0b21",
+    "1440-home-no-edition.png": "5e5ff9fe5cd09ef40de1be7e76d24c969a41d88e80f74cce3025422e6133e8ab",
+    "390-home.png": "b96affff01ddc2781bd678db8d192f3503a44698eaa0caec762975aa430aaf61",
+    "390-home-directory.png": "40a3e22ba99b2e42b7589df1ffb90b167bca824fa3584fa46580694bec84288a",
+    "390-stocks.png": "b3069a71d4c7effa8bf8d546e31cb0aff4c2da8035f5614f1c7bf6575572680a",
+    "390-stock-inspector.png": "26d875296bfb860ea791abd45616bc46db1c17e4e44d757d59e4d1234ea40acd",
+    "390-stock-error.png": "0962104e270942cccf68727f369069fd4450071de0a4d15cf10b1694d205b4d7",
+    "390-stock-empty.png": "55d9dcb9dd85f5e02e980670fca734c73a3bc4c309dbdd82c29e021cfbd4ac97",
+    "390-teams.png": "3f66f7aefc5603eff8e5d3bab4f97a4ae6dfc4eacfe9b6c651dccbc97a5cd902",
+    "390-arcade.png": "6786a0446ca10e53fd3821f56003a57b42da34b854e1cfbd1544067ce0b96678",
+    "390-game-fallback.png": "9064b5cede10b17d9b035e16c768baf3fe20c04d359f30e67c68712e1e8d8de3",
+    "390-trade.png": "ac721cd049a25b0bca51ce587354f4159c67b124f09f2aac1e5c7aa73333030e",
+    "390-history.png": "1748973774b3578870acc919d0038d5a4f5db36168865c322c83407eb4f4c978",
+    "390-unavailable.png": "79e8c0970b02fc43b1aaf6fea60c5e9506d6584e80a99a07140e4421347e93a3",
+    "390-missing.png": "8a3ea9c9a03dac6c825abfa3d174c3e4f8347385299d01cefbcbbc2990692c7b",
+    "390-home-no-edition.png": "4f2bb1a75298d5bd8c84fc1999cde047dce2d80b8d597db1e2e62c92b76950d6",
+    "320-home.png": "eec28cc8aa19eaa5d7932a7b46ccb7127c0ffbbe70c70935a4b734db434dcd35",
+    "320-home-directory.png": "301f16022be51cb3e934f775ebc38291927465eade69c039d48df7868c473603",
+    "320-stocks.png": "dff1fd4c59ea116cc612cc0f6346e6d59dc44eafb70a8699c32c49f3f5b5e1cc",
+    "320-stock-inspector.png": "be13eced956acace0c478b497f92cdbdf8dda295ac3c16037fb16280c6dfe79c",
+    "320-stock-error.png": "7c49013e7bf92661ca9b67a716750997ff94e98483279b687da7b564668b6fb6",
+    "320-stock-empty.png": "4c1b1001330c79567c2073193826f8685730ddf19d0cec09401b5a7fb161d7b4",
+    "320-teams.png": "c954efe112dc23bd1461ae22ed31b50f3b9fe6bff4b4c9df864cd6690f11b029",
+    "320-arcade.png": "ec5372562341648d83d7aa1fdb865cd5cdf25d4e4aef1af2777e7c520f96060c",
+    "320-game-fallback.png": "435ba8e4ad5036c68222c8f798e73fc11d39c3610f5dc0a1713f087ebf2c6f2e",
+    "320-trade.png": "7d36f361999316ce0d7feacc2d86a849248605cb6a6287c6f6452b48bee4f907",
+    "320-history.png": "353ae2139c1b775bc12b37d0d7d08bbe31c24c51674595d89bd10127a6897d4e",
+    "320-unavailable.png": "6f79739b2d3977542ee30b9db31e4d19c76c49c4c3f15ec44e0a77971a62262b",
+    "320-missing.png": "9f3ee379d824ef08ca1cc63d951af5608ffaac867fbf1820fc6c29d148eb05ef",
+    "320-home-no-edition.png": "882df1df884ff74965d0371defba0f7e16bbf7bc05ed506d3d8c0d866bd1af63"
+  }
+}
