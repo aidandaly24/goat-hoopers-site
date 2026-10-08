@@ -7,6 +7,10 @@ import type { LiveClubhouseDirectoryEntry } from "@/domain/clubhouse-directory";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { FigurineDialog } from "./CourtsideDialog";
 import { cs } from "./CourtsideStyles";
+import {
+  directoryInitialDirection, nextSort, sortDirectory,
+  type DirectorySortKey, type SortOrder,
+} from "./homepageSorting";
 
 type Props = {
   entries: LiveClubhouseDirectoryEntry[];
@@ -30,22 +34,34 @@ export function CourtsideDirectory({
   children,
 }: Props) {
   const [query, setQuery] = useState("");
-  const [order, setOrder] = useState("league");
+  const [order, setOrder] = useState<SortOrder<DirectorySortKey>>({ key: "league", direction: "asc" });
   const input = useRef<HTMLInputElement>(null);
   const search = query.trim().toLocaleLowerCase();
-  const filtered = entries.filter((entry) =>
+  const filtered = sortDirectory(entries.filter((entry) =>
     [
       entry.identity.name,
       entry.identity.managerName,
       ...entry.players.map((player) => player.fullName),
     ].some((name) => name.toLocaleLowerCase().includes(search)),
+  ), order, preseason);
+  const sortLabels: Record<DirectorySortKey, string> = {
+    league: "League order", team: "Team", manager: "Manager", finish: "2025 finish",
+    wins: preseason ? "2025 wins" : "Current wins", opponent: "Opponent", players: "Roster size",
+  };
+  const activateSort = (key: DirectorySortKey) =>
+    setOrder((current) => nextSort(current, key, directoryInitialDirection(key)));
+  const sortButton = (key: DirectorySortKey, label: string) => (
+    <button
+      type="button"
+      className={cs("column-sort")}
+      aria-controls="directory-list"
+      aria-pressed={order.key === key}
+      aria-label={`${label}, by ${sortLabels[key]}: sort ${nextSort(order, key, directoryInitialDirection(key)).direction === "asc" ? "ascending" : "descending"}`}
+      onClick={() => activateSort(key)}
+    >
+      {label} <span aria-hidden="true">{order.key === key ? order.direction === "asc" ? "↑" : "↓" : "↕"}</span>
+    </button>
   );
-  if (order === "finish")
-    filtered.sort(
-      (a, b) =>
-        (a.previousSeason?.finish ?? Infinity) -
-        (b.previousSeason?.finish ?? Infinity),
-    );
   const total = entries.reduce((sum, entry) => sum + entry.players.length, 0);
   return (
     <section
@@ -100,14 +116,27 @@ export function CourtsideDirectory({
           <label className={cs("sort-label")}>
             Order
             <select
-              value={order}
-              onChange={(event) => setOrder(event.target.value)}
+              value={order.key}
+              onChange={(event) => {
+                const key = event.target.value as DirectorySortKey;
+                setOrder({ key, direction: directoryInitialDirection(key) });
+              }}
               aria-controls="directory-list"
             >
-              <option value="league">League order</option>
-              <option value="finish">2025 finish</option>
+              {Object.entries(sortLabels).map(([key, label]) => <option value={key} key={key}>{label}</option>)}
             </select>
           </label>
+          {order.key !== "league" && (
+            <button
+              type="button"
+              className={cs("direction-sort")}
+              aria-controls="directory-list"
+              aria-label={`Reverse ${sortLabels[order.key]} order to ${order.direction === "asc" ? "descending" : "ascending"}`}
+              onClick={() => activateSort(order.key)}
+            >
+              {order.direction === "asc" ? "Ascending ↑" : "Descending ↓"}
+            </button>
+          )}
           <button
             className={cs("clear-search")}
             type="button"
@@ -119,13 +148,11 @@ export function CourtsideDirectory({
             Clear
           </button>
         </form>
-        <div className={cs("directory-labels")} aria-hidden="true">
-          <span>Team / manager</span>
-          <span>{preseason ? "2025 record" : "Current record"}</span>
-          <span>
-            {preseason ? "Opening week · Upcoming" : "Current matchup"}
-          </span>
-          <span>Full roster</span>
+        <div className={cs("directory-labels")} role="group" aria-label="Sort teams by column">
+          <span>{sortButton("team", "Team")} / {sortButton("manager", "manager")}</span>
+          {sortButton("wins", preseason ? "2025 record" : "Current record")}
+          {sortButton("opponent", preseason ? "Opening opponent" : "Current opponent")}
+          {sortButton("players", "Full roster")}
         </div>
         <div id="directory-list">
           {filtered.length ? (
@@ -314,6 +341,7 @@ export function CourtsideDirectory({
           {search
             ? `${filtered.length} of ${entries.length} teams match your search`
             : `All ${entries.length} teams · ${total} current roster players`}
+          {order.key === "league" ? " · League order" : ` · Sorted by ${sortLabels[order.key]}, ${order.direction === "asc" ? "ascending" : "descending"}`}
         </p>
         <details className={cs("directory-method")}>
           <summary>What these summaries show</summary>

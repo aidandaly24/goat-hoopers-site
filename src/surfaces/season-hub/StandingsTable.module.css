@@ -6,7 +6,7 @@
 .head,
 .row {
   display: grid;
-  grid-template-columns: 2rem 1fr 3rem 3rem 4.5rem;
+  grid-template-columns: calc(var(--gh-s8) + var(--gh-s3)) minmax(0, 1fr) 3rem 3rem 4.5rem;
   align-items: center;
   gap: var(--gh-s2);
   padding: var(--gh-s3) var(--gh-s2);
@@ -19,6 +19,39 @@
   text-transform: uppercase;
   color: var(--gh-text-faint);
   border-bottom: 1px solid var(--gh-border);
+}
+
+.sort {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gh-s1);
+  min-height: calc(var(--gh-s8) + var(--gh-s3));
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+[aria-sort="ascending"] .sort,
+[aria-sort="descending"] .sort {
+  color: var(--gh-gold-soft);
+}
+
+.sort:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+.full { display: none; }
+
+.status {
+  margin-top: var(--gh-s3);
+  color: var(--gh-text-dim);
+  font-size: inherit;
 }
 
 .row {
@@ -99,13 +132,29 @@
 
 /*
  * Mobile: the table becomes compact team cards. Same DOM, re-laid-out —
- * the header row hides and each row becomes a card with the team on top
+ * the header row stays as wrapping sort controls and each row becomes a card with the team on top
  * and W/L/PF as a labeled stat line underneath. Touch targets stay >=44px.
  */
 @media (max-width: 40rem) {
   .head {
-    display: none;
+    display: flex;
+    flex-wrap: wrap;
+    letter-spacing: normal;
+    padding: 0;
   }
+
+  .head > span {
+    flex: 1 0 auto;
+  }
+
+  .sort {
+    justify-content: center;
+    gap: var(--gh-s2);
+    padding-inline: var(--gh-s2);
+  }
+
+  .short { display: none; }
+  .full { display: inline; }
 
   .table {
     gap: var(--gh-s2);
