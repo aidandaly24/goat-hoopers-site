@@ -62,7 +62,8 @@
 .filter-row>select{margin-left:auto}
 .board-caption{display:flex;justify-content:space-between;gap:var(--gh-s3);padding:var(--gh-s4) var(--gh-s6) var(--gh-s3);font-size:.62rem;color:var(--gh-text-dim)}
 
-.column-labels,.player{display:grid;grid-template-columns:var(--gh-s8) minmax(10rem,1fr) minmax(5rem,auto) minmax(5rem,auto) minmax(5.5rem,auto) var(--gh-s6);gap:var(--gh-s3);align-items:center;padding:var(--gh-s3) var(--gh-s6)}
+/* Header and rows are separate grids: reserve the same action width in both. */
+.column-labels,.player{display:grid;grid-template-columns:var(--gh-s8) minmax(6rem,1fr) 5rem 5rem 4.5rem calc(var(--gh-s16) + var(--gh-s16));gap:var(--gh-s3);align-items:center;padding:var(--gh-s3) var(--gh-s6)}
 .column-labels{border-top:1px solid var(--gh-border);background:var(--gh-bg);color:var(--gh-text-dim);font-family:var(--gh-font-mono);font-size:.58rem;letter-spacing:.05em}
 .column-labels span:nth-child(3),.column-labels span:nth-child(4){text-align:right}
 .player-list{margin:0;padding:0;list-style:none}
@@ -75,6 +76,7 @@
 .player-identity>div{min-width:0}
 .player-name{display:block;font-size:.77rem;font-weight:650;line-height:1.4;overflow-wrap:anywhere}
 .player-name:hover{color:var(--gh-gold)}
+.name-button{padding:0;border:0;background:transparent;text-align:left;min-height:calc(var(--gh-s8) + var(--gh-s3));width:100%}
 .player-meta{display:block;margin-top:var(--gh-s1);font-family:var(--gh-font-mono);font-size:.6rem;color:var(--gh-text-dim)}
 .price{font-size:.82rem;font-weight:550;text-align:right}
 .change{font-size:.7rem;text-align:right}
@@ -84,7 +86,9 @@
 .neutral{color:var(--gh-text-dim)}
 .roster-status{font-size:.63rem;color:var(--gh-text-dim)}
 .roster-status::before{content:'';display:inline-block;background:var(--gh-text-dim);width:var(--gh-s1);height:var(--gh-s1);border-radius:var(--gh-radius-pill);margin-right:var(--gh-s2)}
-.inspect-button{padding:0;background:transparent;border:0;font-size:1rem;min-height:var(--gh-s8);width:100%;color:var(--gh-gold);border-radius:var(--gh-s1)}
+.player-actions{display:flex;flex-direction:column;align-items:stretch}
+.inspect-button{padding:var(--gh-s2);background:transparent;border:1px solid var(--gh-border-strong);font-size:.75rem;min-height:calc(var(--gh-s8) + var(--gh-s3));color:var(--gh-gold);border-radius:var(--gh-s1);white-space:nowrap;gap:var(--gh-s2)}
+.profile-link{display:inline-flex;align-items:center;justify-content:center;min-height:calc(var(--gh-s8) + var(--gh-s3));font-size:.75rem;text-decoration:underline;text-underline-offset:var(--gh-s1);white-space:nowrap}
 .more-button{display:block;width:100%;border:0;background:var(--gh-bg-raised);color:var(--gh-text-dim);font-size:.72rem;padding:var(--gh-s4)}
 .more-button:hover{color:var(--gh-gold)}
 .empty-result{padding:var(--gh-s12) var(--gh-s6);text-align:center}
@@ -110,8 +114,6 @@
 .detail-section{padding:var(--gh-s4) var(--gh-s6);border-top:1px solid var(--gh-border)}
 .detail-section h4{font-size:.67rem;text-transform:uppercase;letter-spacing:.07em;margin:0 0 var(--gh-s3);color:var(--gh-text-dim);font-weight:500}
 .section-note{font-size:.65rem;color:var(--gh-text-dim);line-height:1.6;margin:var(--gh-s2) 0}
-.sparkline{width:100%;height:var(--gh-s12);display:block}
-.spark-caption{display:flex;justify-content:space-between;font-size:.6rem;color:var(--gh-text-dim);margin-top:var(--gh-s2)}
 .season-bars{display:flex;align-items:flex-end;gap:var(--gh-s3);height:calc(var(--gh-s16) + var(--gh-s12));padding-top:var(--gh-s4)}
 .season-column{flex:1;text-align:center;font-family:var(--gh-font-mono);font-size:.6rem;min-width:0}
 .bar-value{display:block;color:var(--gh-text);margin-bottom:var(--gh-s1)}
@@ -146,9 +148,21 @@
 .season-bars{max-width:24rem}
 .inspector.has-selection .detail-content{display:grid;grid-template-columns:1fr 1fr}
 .detail-identity{grid-column:1/-1}
+.detail-content>section:first-of-type{grid-column:1/-1}
 .detail-section{border:1px solid var(--gh-border);border-right:0}
 .detail-link{grid-column:1/-1}
 .detail-state{grid-column:1/-1}
+}
+
+/* Switch rows before their 1022px desktop budget plus a classic scrollbar. */
+@media(max-width:65rem){
+.column-labels,.rank{display:none}
+.player{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:'identity price' 'status change' 'actions actions'}
+.player-identity{grid-area:identity}
+.price{grid-area:price}
+.change{grid-area:change}
+.roster-status{grid-area:status}
+.player-actions{grid-area:actions;flex-direction:row;flex-wrap:wrap;gap:var(--gh-s3)}
 }
 
 @media(max-width:40rem){.exchange{padding:var(--gh-s4)}
@@ -182,7 +196,7 @@
 .board-caption>span{display:block}
 .board-caption>span:last-child{margin-top:var(--gh-s1)}
 .column-labels{display:none}
-.player{grid-template-columns:minmax(0,1fr) auto var(--gh-s8);grid-template-areas:'identity price action' 'status change action';gap:var(--gh-s2) var(--gh-s2);padding:var(--gh-s4);min-height:calc(var(--gh-s16) + var(--gh-s6))}
+.player{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:'identity price' 'status change' 'actions actions';gap:var(--gh-s2) var(--gh-s2);padding:var(--gh-s4);min-height:calc(var(--gh-s16) + var(--gh-s6))}
 .rank{display:none}
 .player-identity{grid-area:identity;gap:var(--gh-s2)}
 .avatar{display:none}
@@ -192,7 +206,7 @@
 .change{grid-area:change;font-size:.66rem}
 .change small{display:none}
 .roster-status{grid-area:status;font-size:.59rem}
-.inspect-button{grid-area:action;min-height:calc(var(--gh-s8) + var(--gh-s3));min-width:calc(var(--gh-s8) + var(--gh-s3));font-size:1.2rem}
+.player-actions{grid-area:actions;flex-wrap:wrap}
 .player.selected{box-shadow:inset var(--gh-s1) 0 var(--gh-gold)}
 .more-button{min-height:calc(var(--gh-s8) + var(--gh-s3))}
 .inspector-head{padding:var(--gh-s4)}
@@ -214,9 +228,7 @@
 
 .exchange input, .exchange select, .chip, .inspect-button { min-height: calc(var(--gh-s8) + var(--gh-s3)); }
 
-.player-name a { color: var(--gh-text); font: inherit; }
-
-.player-name a:hover, .detail-identity a:hover { color: var(--gh-gold); }
+.detail-identity a:hover { color: var(--gh-gold); }
 
 .player { scroll-margin-top: calc(var(--gh-ticker-h) + var(--gh-s16) + var(--gh-s4)); }
 

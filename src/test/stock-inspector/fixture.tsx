@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import Link from "next/link";
 import type { StockDetail, StockQuote } from "@/domain";
 import { StockBoard } from "@/surfaces/stock-market/StockBoard";
+import styles from "@/surfaces/stock-market/StockMarket.module.css";
 import "@/ui/tokens.css";
 import "@/app/globals.css";
 
@@ -30,6 +31,7 @@ function Fixture() {
   const [calls, setCalls] = useState<string[]>([]);
   const [bubbled, setBubbled] = useState(0);
   const [descendantHandled, setDescendantHandled] = useState(0);
+  const [alignment, setAlignment] = useState("Not measured. Check 1025px, the 1040/1041px boundary and 1440px.");
   const pending = useRef<Pending[]>([]);
   const modeRef = useRef(mode);
   useEffect(() => {
@@ -61,7 +63,7 @@ function Fixture() {
     });
     return Promise.resolve(detail(playerId));
   });
-  return <main style={{ padding: "var(--gh-s4)", maxWidth: "90rem", margin: "auto" }}
+  return <main className={styles.exchange}
     onKeyDown={(event) => { if (event.key === "Escape") setBubbled((current) => current + 1); }}>
     <h1>Issue 65 · synthetic inspector</h1>
     <p>Local synthetic quotes and detail only. No application server or database.</p>
@@ -77,8 +79,43 @@ function Fixture() {
       <button onClick={() => setStocks([])}>Remove triggers</button>{" "}
       <button onClick={() => { setStocks(quotes); setGeneration((current) => current + 1); setCalls([]); }}>Reset board</button>{" "}
       <button>Outside inspector</button>
+      {" "}<button onClick={(event) => {
+        const root = event.currentTarget.closest("main")!;
+        const header = root.querySelector<HTMLElement>(`.${styles["column-labels"]}`)!;
+        const rows = [...root.querySelectorAll<HTMLElement>(`.${styles.player}`)];
+        if (!rows.length) { setAlignment("No rows to compare. Reset the board first."); return; }
+        const board = root.querySelector<HTMLElement>(`.${styles["board-panel"]}`)!;
+        const grids = [header, ...rows].filter((grid) => getComputedStyle(grid).display !== "none");
+        const overflow = Math.max(0, board.scrollWidth - board.clientWidth,
+          document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          ...grids.flatMap((grid) => {
+            const bounds = grid.getBoundingClientRect(), style = getComputedStyle(grid);
+            const left = bounds.left + grid.clientLeft + parseFloat(style.paddingLeft);
+            const right = bounds.left + grid.clientLeft + grid.clientWidth - parseFloat(style.paddingRight);
+            return [...grid.children, ...grid.querySelectorAll("button, a")].flatMap((child) => {
+              const cell = child as HTMLElement, rectangle = cell.getBoundingClientRect();
+              return rectangle.width && rectangle.height ?
+                [left - rectangle.left, rectangle.right - right, cell.scrollWidth - cell.clientWidth] : [];
+            });
+          }));
+        const observation = `${window.innerWidth}px viewport / ${document.documentElement.clientWidth}px content · ` +
+          `bounds ${overflow <= .5 ? "PASS" : "FAIL"}, maximum overflow ${overflow.toFixed(2)}px`;
+        if (getComputedStyle(header).display === "none") {
+          setAlignment(`${observation} · compact layout; desktop alignment not applicable.`);
+          return;
+        }
+        const differences = rows.flatMap((row) => [2, 3, 4].map((column) => {
+          const label = header.children[column].getBoundingClientRect();
+          const cell = row.children[column].getBoundingClientRect();
+          return Math.max(Math.abs(label.left - cell.left), Math.abs(label.right - cell.right));
+        }));
+        const maximum = Math.max(...differences);
+        setAlignment(`${observation} · alignment ${maximum <= .5 ? "PASS" : "FAIL"} · ${rows.length} rows · ` +
+          `maximum VALUE / CHANGE / IN LEAGUE boundary difference ${maximum.toFixed(2)}px.`);
+      }}>Measure alignment and bounds</button>
     </p>
     <p role="status">Requests: {calls.length} ({calls.join(", ")}) · Escapes bubbled: {bubbled} · Descendant handled: {descendantHandled}</p>
+    <p role="status">Layout observation: {alignment}</p>
     <StockBoard key={generation} stocks={stocks} loadDetail={loadDetail} />
     <button>After inspector</button>
   </main>;

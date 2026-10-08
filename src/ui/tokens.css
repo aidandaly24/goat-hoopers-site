@@ -29,6 +29,16 @@ body:has([data-arcade-page]) > header:first-child,
 body:has([data-arcade-page]) > [hidden]:first-child + header { top: 0; }
 
 :root {
+  /* Scoped light chart roles from the proposed Chalk + clay direction.
+   * Existing route colors stay unchanged pending the wider palette review. */
+  --gh-neutral-canvas: #F6F3EB;
+  --gh-neutral-surface: #FFFDF7;
+  --gh-neutral-ink: #242824;
+  --gh-neutral-muted: #63675F;
+  --gh-neutral-accent: #A54429;
+  --gh-neutral-rule: #D9D6CC;
+  --gh-neutral-control: #898D83;
+  --gh-neutral-focus: #245A4B;
   /* Brand */
   --gh-gold: #e8a13c;
   --gh-gold-soft: #f3bc62;

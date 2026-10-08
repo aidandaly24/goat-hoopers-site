@@ -4,39 +4,17 @@ import { PlayerName } from "@/ui/PlayerRow";
 import Link from "next/link";
 import { formatPct, formatPrice } from "./format";
 import { moveClass } from "./StockQuoteRow";
-import { priceSegments } from "./board";
+import { PriceHistoryChart } from "./PriceHistoryChart";
 import { ExchangeIcon } from "./ExchangeIcon";
 import styles from "./StockMarket.module.css";
 
 export type DetailState = { status: "idle" | "loading" | "error" } | { status: "ready"; detail: StockDetail };
 
-const dateLabel = (date: string) => new Intl.DateTimeFormat("en-GB", {
-  day: "numeric", month: "short", year: "numeric", timeZone: "UTC",
-}).format(new Date(date));
-
-function DetailContents({ detail }: { detail: StockDetail }) {
+function DetailContents({ detail, playerName }: { detail: StockDetail; playerName: string }) {
   const seasons = [...detail.seasonHistory].reverse();
   const maxFppg = Math.max(...seasons.map((s) => s.fppg), 1);
-  const segments = priceSegments(detail.spark);
-  const first = detail.spark[0];
-  const last = detail.spark[detail.spark.length - 1];
-  const sources = [...new Set(detail.spark.map((p) => p.source))];
-  const hasRecordedPrices = detail.spark.slice(0, -1).some((p) => p.source === "live");
-  const sourceLabels = { gamelog: "Game-log FAAB estimates (dashed)", backtest: "Annual FAAB estimates (dashed)", live: hasRecordedPrices ? "Recorded site prices + current quote (solid)" : "Current modeled quote (solid)" };
   return <>
-    <section className={styles["detail-section"]} aria-labelledby="stock-price-history">
-      <h4 id="stock-price-history">Value history</h4>
-      {segments.length > 0 ? <>
-        <svg className={styles.sparkline} viewBox="0 0 280 48" role="img"
-          aria-label={`FAAB value history from ${dateLabel(first.date)} to ${dateLabel(last.date)}. ${sources.map((s) => sourceLabels[s]).join("; ")}.`}>
-          {segments.map((segment, index) => <polyline key={index} points={segment.coords.join(" ")} fill="none"
-            stroke="var(--gh-gold)" strokeWidth="2" strokeDasharray={segment.dashed ? "4 3" : undefined}
-            opacity={segment.dashed ? 0.7 : 1} />)}
-        </svg>
-        <div className={`${styles["spark-caption"]} gh-num`}><span>{dateLabel(first.date)}<br />{formatPrice(first.price)}<br />{first.source === "live" ? "Recorded" : "Estimated"}</span><span>{dateLabel(last.date)}<br />{formatPrice(last.price)}<br />{last.source === "live" ? "Current quote" : "Estimated"}</span></div>
-        <p className={styles["section-note"]}>{sources.map((s) => sourceLabels[s]).join(" · ")}. Reconstructed estimates use historical inputs. Recorded prices are site snapshots; the final value is the current modeled quote. Values are in FAAB.</p>
-      </> : <p className={styles["section-note"]}>{detail.spark.length === 1 ? first.source === "live" ? "Current modeled quote only. Historical value points are unavailable." : `One ${first.source === "gamelog" ? "game-log FAAB estimate" : "annual FAAB estimate"} is available. A chart appears when more history points exist.` : "Value history is unavailable. A chart appears when history points exist."}</p>}
-    </section>
+    <PriceHistoryChart key={detail.playerId} history={detail.spark} playerName={playerName} />
     <section className={styles["detail-section"]} aria-labelledby="stock-production-history">
       <h4 id="stock-production-history">Production history</h4>
       {seasons.length ? <>
@@ -92,7 +70,7 @@ export function StockInspector({ quote, detail, headingRef, onClose, onRetry, ex
             <span className={moveClass(quote.changePct)}>{quote.changePct === null ? "— No baseline" : formatPct(quote.changePct)}</span></div>
           <p className={styles["detail-baseline"]}>{quote.prevPrice === null ? "Previous recorded price unavailable" : `Previous recorded price ${formatPrice(quote.prevPrice)}`} · FAAB</p>
         </div>
-        {detail.status === "ready" ? <DetailContents detail={detail.detail} /> :
+        {detail.status === "ready" ? <DetailContents detail={detail.detail} playerName={quote.playerName} /> :
           <div className={styles["detail-state"]} role="status" aria-live="polite" aria-busy={detail.status === "loading"}>
             {detail.status === "error" ? <><h3>Detail temporarily unavailable</h3><p>The quote remains available. Retry the detail when ready.</p>
               <button type="button" className={styles["outline-button"]} onClick={onRetry}>Retry detail</button></> : <p>Loading player detail…</p>}

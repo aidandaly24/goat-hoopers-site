@@ -150,7 +150,9 @@ src/
                  # site tokens, with market coverage and a compact tape.
                  # StockMarket renders server summaries; StockBoard combines
                  # search/position/draft/roster filters, sorts and progressive
-                 # rows. StockQuoteRow keeps list data slim; ExchangeIcon
+                 # rows. StockQuoteRow names and visible Price history buttons
+                 # open the existing inspector; Full profile is a separate link.
+                 # Lists stay slim; ExchangeIcon
                  # provides stroked SVG inspection/navigation marks. StockInspector
                  # shows production sample sizes, price components and a
                  # dated/source-tagged value path on selection. Both reconstructed
@@ -161,6 +163,11 @@ src/
                  # deduplicates requests; explicit retry evicts failures and
                  # request identities prevent stale detail from replacing the
                  # selected player. No eager deep payloads or schema changes.
+                 # PriceHistoryChart inspects the bounded sampled points with
+                 # dated/FAAB axes, ranges, pointer input and a native keyboard
+                 # slider. Reconstruction, recorded snapshots and the appended
+                 # current modeled quote retain separate labels/line treatments.
+                 # Its light semantic tokens are scoped to the chart; no repricing.
                  # On mobile, close restores focus after the panel is removed.
                  # StockRow remains as the legacy row, with PR40 detailMachine
                  # retry on failed re-expansion, in-flight dedupe and ready
