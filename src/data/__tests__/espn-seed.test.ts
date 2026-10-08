@@ -28,6 +28,25 @@ describe("resolveEspnId", () => {
     expect(resolveEspnId("1234", alt)).toBe("7654321");
     expect(resolveEspnId("4884", alt)).toBeNull();
   });
+
+  it("never resolves inherited Object prototype members (#48)", () => {
+    const map = { "4866": "5142718" };
+    expect(resolveEspnId("constructor", map)).toBeNull();
+    expect(resolveEspnId("toString", map)).toBeNull();
+    expect(resolveEspnId("__proto__", map)).toBeNull();
+    expect(resolveEspnId("hasOwnProperty", map)).toBeNull();
+  });
+
+  it("rejects non-string values in the map (#48)", () => {
+    const dirty = {
+      "1111": 12345,
+      "2222": { id: "999" },
+      "3333": "",
+    } as unknown as Record<string, string>;
+    expect(resolveEspnId("1111", dirty)).toBe("12345");
+    expect(resolveEspnId("2222", dirty)).toBeNull();
+    expect(resolveEspnId("3333", dirty)).toBeNull();
+  });
 });
 
 describe("headshotUrl", () => {
