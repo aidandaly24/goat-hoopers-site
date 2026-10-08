@@ -113,8 +113,6 @@
 .detail-section{padding:var(--gh-s4) var(--gh-s6);border-top:1px solid var(--gh-border)}
 .detail-section h4{font-size:.67rem;text-transform:uppercase;letter-spacing:.07em;margin:0 0 var(--gh-s3);color:var(--gh-text-dim);font-weight:500}
 .section-note{font-size:.65rem;color:var(--gh-text-dim);line-height:1.6;margin:var(--gh-s2) 0}
-.sparkline{width:100%;height:var(--gh-s12);display:block}
-.spark-caption{display:flex;justify-content:space-between;font-size:.6rem;color:var(--gh-text-dim);margin-top:var(--gh-s2)}
 .season-bars{display:flex;align-items:flex-end;gap:var(--gh-s3);height:calc(var(--gh-s16) + var(--gh-s12));padding-top:var(--gh-s4)}
 .season-column{flex:1;text-align:center;font-family:var(--gh-font-mono);font-size:.6rem;min-width:0}
 .bar-value{display:block;color:var(--gh-text);margin-bottom:var(--gh-s1)}
@@ -149,6 +147,7 @@
 .season-bars{max-width:24rem}
 .inspector.has-selection .detail-content{display:grid;grid-template-columns:1fr 1fr}
 .detail-identity{grid-column:1/-1}
+.detail-content>section:first-of-type{grid-column:1/-1}
 .detail-section{border:1px solid var(--gh-border);border-right:0}
 .detail-link{grid-column:1/-1}
 .detail-state{grid-column:1/-1}
@@ -224,9 +223,7 @@
 
 .exchange input, .exchange select, .chip, .inspect-button { min-height: calc(var(--gh-s8) + var(--gh-s3)); }
 
-.player-name a { color: var(--gh-text); font: inherit; }
-
-.player-name a:hover, .detail-identity a:hover { color: var(--gh-gold); }
+.detail-identity a:hover { color: var(--gh-gold); }
 
 .player { scroll-margin-top: calc(var(--gh-ticker-h) + var(--gh-s16) + var(--gh-s4)); }
 
