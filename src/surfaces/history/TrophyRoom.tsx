@@ -8,10 +8,8 @@ import styles from "./TrophyRoom.module.css";
 /**
  * history — the trophy room.
  *
- * The league's hall of history, styled like the old coach's office: dark
- * mahogany, brass, leather, a rationed crimson accent. Hub page composing
- * the champions' wall, the record plaques, and the hall of fame. Everything
- * rendered here is real history — no fabricated moments.
+ * The neutral league history hub: completed championship banners, records
+ * and the hall of fame. Everything rendered here is real history.
  */
 export function TrophyRoom({ history }: { history: LeagueHistory }) {
   return (
@@ -35,10 +33,6 @@ export function TrophyRoom({ history }: { history: LeagueHistory }) {
           {history.champions.map((c) => (
             <ChampionBannerCard key={c.season} champion={c} />
           ))}
-          <div className={styles.emptyBanner}>
-            <span className={styles.emptyYear}>2026</span>
-            <span className={styles.emptyText}>To be decided</span>
-          </div>
         </div>
       </section>
 
