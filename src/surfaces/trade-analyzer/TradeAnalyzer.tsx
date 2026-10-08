@@ -2,9 +2,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import type { StockQuote, TradeVerdict } from "@/domain";
 import { analyzeTrade, tradeTotal } from "@/domain";
+import { decodeTrade, encodeTradeUrl } from "./tradeUrl";
 import styles from "./TradeAnalyzer.module.css";
 
 const MAX_RESULTS = 8;
@@ -12,37 +13,6 @@ const COPY_RESET_MS = 2000;
 
 function fmt(n: number): string {
   return `$${n.toFixed(2)}`;
-}
-
-/**
- * Decode one side's `?a=`/`?b=` param into StockQuotes. Unknown IDs are
- * dropped silently (stale links, players no longer listed), duplicates
- * collapse, and an ID already claimed by the other side is skipped so a
- * crafted URL can't put the same player on both sides.
- */
-function decodeSide(
-  param: string | null,
-  stocks: StockQuote[],
-  taken: Set<string>
-): StockQuote[] {
-  if (!param) return [];
-  const byId = new Map(stocks.map((s) => [s.playerId, s]));
-  const seen = new Set<string>();
-  const picks: StockQuote[] = [];
-  for (const raw of param.split(",")) {
-    const id = raw.trim();
-    if (id.length === 0 || seen.has(id) || taken.has(id)) continue;
-    const stock = byId.get(id);
-    if (!stock) continue;
-    seen.add(id);
-    taken.add(id);
-    picks.push(stock);
-  }
-  return picks;
-}
-
-function encodeSide(picks: StockQuote[]): string {
-  return picks.map((p) => p.playerId).join(",");
 }
 
 function copyLabel(state: "idle" | "ok" | "fail"): string {
@@ -217,41 +187,24 @@ function verdictCopy(v: TradeVerdict): {
  * slim StockQuotes; never fetches.
  *
  * Share links: both sides are encoded as `?a=<ids>&b=<ids>` in the URL
- * (router.replace, no reload) and restored on load, so a verdict is a
- * shareable link for league chat. Unknown/stale IDs are dropped silently.
+ * (native replaceState, no server navigation or extra history entry).
+ * The URL owns the picks, including incoming links and Back/Forward;
+ * unknown/stale IDs are dropped silently. Copy serializes displayed picks.
  */
 export function TradeAnalyzer({ stocks }: { stocks: StockQuote[] }) {
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const [initial] = useState(() => {
-    const taken = new Set<string>();
-    return {
-      a: decodeSide(searchParams.get("a"), stocks, taken),
-      b: decodeSide(searchParams.get("b"), stocks, taken),
-    };
-  });
-  const [sideA, setSideA] = useState<StockQuote[]>(initial.a);
-  const [sideB, setSideB] = useState<StockQuote[]>(initial.b);
+  const { a: sideA, b: sideB } = useMemo(
+    () => decodeTrade(searchParams, stocks),
+    [searchParams, stocks]
+  );
   const [copied, setCopied] = useState<"idle" | "ok" | "fail">("idle");
 
-  // Keep the URL in sync with the picks — shareable without a reload.
+  // Canonicalize incoming links from the latest URL, never from an old render.
   useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    const a = encodeSide(sideA);
-    const b = encodeSide(sideB);
-    if (a.length > 0) params.set("a", a);
-    else params.delete("a");
-    if (b.length > 0) params.set("b", b);
-    else params.delete("b");
-    const next = params.toString();
-    if (next !== searchParams.toString()) {
-      router.replace(next.length > 0 ? `${pathname}?${next}` : pathname, {
-        scroll: false,
-      });
-    }
-  }, [sideA, sideB, searchParams, router, pathname]);
+    const url = new URL(window.location.href);
+    const next = encodeTradeUrl(url.href, decodeTrade(url.searchParams, stocks));
+    if (next !== url.href) window.history.replaceState(null, "", next);
+  }, [searchParams, stocks]);
 
   const pickedIds = useMemo(
     () => new Set([...sideA, ...sideB].map((p) => p.playerId)),
@@ -259,18 +212,23 @@ export function TradeAnalyzer({ stocks }: { stocks: StockQuote[] }) {
   );
 
   const add = (side: "A" | "B") => (q: StockQuote) => {
-    const set = side === "A" ? setSideA : setSideB;
-    set((prev) =>
-      prev.some((p) => p.playerId === q.playerId) ? prev : [...prev, q]
-    );
+    const url = new URL(window.location.href);
+    const picks = decodeTrade(url.searchParams, stocks);
+    if ([...picks.a, ...picks.b].some((p) => p.playerId === q.playerId)) return;
+    picks[side === "A" ? "a" : "b"].push(q);
+    window.history.replaceState(null, "", encodeTradeUrl(url.href, picks));
   };
   const remove = (side: "A" | "B") => (playerId: string) => {
-    const set = side === "A" ? setSideA : setSideB;
-    set((prev) => prev.filter((p) => p.playerId !== playerId));
+    const url = new URL(window.location.href);
+    const picks = decodeTrade(url.searchParams, stocks);
+    const key = side === "A" ? "a" : "b";
+    picks[key] = picks[key].filter((p) => p.playerId !== playerId);
+    window.history.replaceState(null, "", encodeTradeUrl(url.href, picks));
   };
 
   const onCopyLink = async () => {
-    const ok = await copyText(window.location.href);
+    const url = encodeTradeUrl(window.location.href, { a: sideA, b: sideB });
+    const ok = await copyText(url);
     setCopied(ok ? "ok" : "fail");
     window.setTimeout(() => setCopied("idle"), COPY_RESET_MS);
   };
