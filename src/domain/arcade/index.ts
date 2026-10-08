@@ -8,9 +8,10 @@ export type {
   ClaimResult,
   GameSession,
   Game,
+  PlayableGame,
   GameScore,
   LeaderboardEntry,
   GameHubSummary,
   Reward,
 } from "./types";
-export { GAMES, getGame, WEEKLY_FAAB_PRIZE, currentWeekLabel } from "./games";
+export { GAMES, getGame, getPlayableGames, WEEKLY_FAAB_PRIZE, currentWeekLabel } from "./games";

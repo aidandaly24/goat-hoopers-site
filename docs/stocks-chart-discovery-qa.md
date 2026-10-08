@@ -44,7 +44,7 @@ data, provenance and failure behavior.
 | Sampled <=40-point response, appended current point, existing React/Next contracts | Confirmed source constraints; imported | Reuse the current boundary; do not invent unavailable daily observations or new flags. |
 | Tiny hidden Inspect action and graph without axes | Confirmed usability defects; accidental | Replace with named controls and labeled, inspectable SVG. |
 | Local synthetic mounted fixture and proposed scoped neutral palette | Review aids; transitional | Keep out of production hosting; archive preview after review/palette choice. Design owner resolves shared palette migration. |
-| Physical-iPhone touch behavior, actual rendered overflow/focus | Unverified on this executor; unknown | Require bounded desktop/390/320px mounted/preview review before merge. |
+| Physical-iPhone/Safari behavior and hosted data/fonts | Remaining unknown after mounted Chromium checks | Keep these boundaries explicit; do not present emulation as physical iOS verification. |
 
 The smallest coherent implementation is native SVG plus a native point slider.
 A chart framework, new endpoint, full-history fetch and profile redesign add
@@ -56,21 +56,56 @@ data boundary if more granular observations are validated and actually needed.
 ## Author checks
 
 - Discovery commit: `f8daabf43933a818a73792a71d711dd030a01b96`.
-- 430 offline tests passed; 13 explicit local-DB tests skipped. No test network
+- 432 offline tests passed after reviewed-main integration; 13 explicit local-DB tests skipped. No test network
   or application credentials. The added discovery and chart regressions cover
   semantics, clicked triggers, cache reuse, range bounds, provenance, actual
   time gaps, equal dates, flat/single/empty paths and native slider markup.
 - TypeScript and focused ESLint passed. Production build evidence is recorded
   in the PR; no successful build is implied by these unit checks.
-- Supported browser inventory returned no browser surfaces. Native Chrome
-  selection timed out (`errAETimeout`). No fresh browser screenshot, native
-  key/touch input, console or hosted-preview verification is claimed here.
+- Native Chrome selection timed out (`errAETimeout`); a separately authorized
+  task-private headless Chrome route subsequently passed 21 mounted-fixture
+  checks using Chrome 155.0.8059.40, Playwright 1.64.0 and Node 22.23.3.
+  The real `.exchange` wrapper, actual column/bounds measurements, pointer,
+  native CDP touch, keyboard, ranges, cache, delayed switching, retry, focus,
+  filters and synthetic profile/Back flow were exercised. Console/page errors,
+  external requests, non-GET requests and application API requests were zero.
+  Screenshots and JSON evidence are recorded in the PR handoff. The fixture
+  uses system fonts and two synthetic points; production data/API, hosted
+  acceptance and physical iPhone/Safari remain unverified.
 - React review: no new I/O/dependencies or effects; derived geometry remains
   bounded; hooks are unconditional; native links/buttons/range semantics and
   persistent point provenance are retained. Existing async request protection
   and Escape handler stay unchanged.
 
 ## Independent acceptance
+
+PR78's independent source review found that the empty action header and populated
+rows sized their final `auto` tracks differently. The local correction reserves
+the same 8rem action track in both; numeric/status tracks retain their existing
+5rem/5rem/4.5rem widths without content-dependent expansion. The mounted fixture
+now uses the actual `.exchange` ancestor and includes **Measure alignment and bounds**
+to compare actual column boundaries and observe clipping separately.
+Rows switch to compact at 65rem; workspace/inspector still switch at 64rem.
+At a 16px root font, the desktop source budget is 1022px. At a 1025px viewport,
+a classic 15px scrollbar leaves only 1010px, so the old breakpoint was unsafe.
+The first desktop viewport is now 1041px, leaving 1026px with that scrollbar;
+identity space is 100px, above the 96px minimum, and actions retain 128px.
+Verify 1025px, the 1040/1041px boundary and 1440px with vertical scrollbars.
+The fixture checks content-box bounds, scroll widths and cell/button/link overflow
+as well as alignment, including compact rows. Subsequent actual Chromium
+measurements were 0.00px maximum overflow at 1025/1040/1041/1440px, both with
+normal overlay scrollbars and a CSS-reserved 15px classic scrollbar. Desktop
+column differences were 0.00px at 1041/1440px; smaller widths correctly used
+compact rows. Content width at 1041px with the scrollbar was 1026px and the
+measured identity track was 100px. At 390/320px, measured overflow was 0.00px;
+native chart touch selected both supplied points and vertical pan scrolled.
+Keyboard Home/End/arrows, every range, repeated cached selection, delayed
+switch/close and error/retry preserved their expected behavior and trigger focus.
+The first fixture run used corrected tree `2ec519d8af0654fc2003baa30ad3dbfc0d5f2315`;
+the final exact tree and repeated checks after reviewed-main inheritance are
+recorded in the PR. No production or hosted requests were used. The reviewed
+root deployment hold remains false, with no palette migration or preview
+regeneration; the original Vercel preview predates these alignment corrections.
 
 Use the Vercel preview with populated existing data, or the mounted synthetic
 fixture from `src/test/stock-inspector`. Label fixture evidence as synthetic.
@@ -97,6 +132,7 @@ Test at desktop, 390px and 320px, 200% text zoom and reduced motion:
    whole-history reload. Inspect console and complete Stocks → chart → profile
    → Back → chart → Close on the actual preview.
 
-Pending browser/physical-iPhone verification is a release gate, not a claim that
-the code has a known iPhone failure. Pricing/history accuracy remains outside
-this UI repair even when the graph renders successfully.
+Mounted Chromium acceptance is complete; hosted data/font rendering and physical
+iPhone/Safari remain separate unverified boundaries. Independent final review
+is still required, and the author does not self-merge. Pricing/history accuracy
+remains outside this UI repair even when the graph renders successfully.

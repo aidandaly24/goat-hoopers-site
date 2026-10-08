@@ -62,7 +62,8 @@
 .filter-row>select{margin-left:auto}
 .board-caption{display:flex;justify-content:space-between;gap:var(--gh-s3);padding:var(--gh-s4) var(--gh-s6) var(--gh-s3);font-size:.62rem;color:var(--gh-text-dim)}
 
-.column-labels,.player{display:grid;grid-template-columns:var(--gh-s8) minmax(6rem,1fr) minmax(5rem,auto) minmax(5rem,auto) minmax(4.5rem,auto) auto;gap:var(--gh-s3);align-items:center;padding:var(--gh-s3) var(--gh-s6)}
+/* Header and rows are separate grids: reserve the same action width in both. */
+.column-labels,.player{display:grid;grid-template-columns:var(--gh-s8) minmax(6rem,1fr) 5rem 5rem 4.5rem calc(var(--gh-s16) + var(--gh-s16));gap:var(--gh-s3);align-items:center;padding:var(--gh-s3) var(--gh-s6)}
 .column-labels{border-top:1px solid var(--gh-border);background:var(--gh-bg);color:var(--gh-text-dim);font-family:var(--gh-font-mono);font-size:.58rem;letter-spacing:.05em}
 .column-labels span:nth-child(3),.column-labels span:nth-child(4){text-align:right}
 .player-list{margin:0;padding:0;list-style:none}
@@ -151,6 +152,10 @@
 .detail-section{border:1px solid var(--gh-border);border-right:0}
 .detail-link{grid-column:1/-1}
 .detail-state{grid-column:1/-1}
+}
+
+/* Switch rows before their 1022px desktop budget plus a classic scrollbar. */
+@media(max-width:65rem){
 .column-labels,.rank{display:none}
 .player{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:'identity price' 'status change' 'actions actions'}
 .player-identity{grid-area:identity}

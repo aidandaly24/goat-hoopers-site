@@ -1,21 +1,29 @@
 /**
- * Game registry — every playable game on the site is declared here.
+ * Game registry — implemented games and planned league competitions.
  *
- * Adding a game is a two-step: declare it in GAMES (status "coming-soon"),
- * then build its play surface and flip it to "live". The arcade pages
- * render from this registry, so a new game appears in the list, gets a
- * detail page, and gets a leaderboard with no further wiring.
+ * Only implemented routes receive `play` metadata and appear in the hub.
+ * Competition `status` remains separate: public practice can launch while
+ * league scores and rewards are still coming-soon.
  */
-import type { Game } from "./types";
+import type { Game, PlayableGame } from "./types";
 
 export const GAMES: Game[] = [
   {
     id: "free-throw",
     name: "Free Throw Shootout",
     description:
-      "Find your touch in local free-throw practice. League competition later.",
+      "Aim, release and find your touch on the practice court.",
     icon: "🎯",
     status: "coming-soon",
+    play: {
+      mode: "practice",
+      preview: {
+        src: "/arcade/free-throw-preview.jpg",
+        alt: "Actual free-throw practice court with the hoop, basketball and shooting controls.",
+      },
+      touchInstructions:
+        "Drag the court left or right to aim, down for more power or up for less. Lift your finger to shoot. Or hold the shoot button, then release.",
+    },
     howToPlay:
       "You get 10 free throws against the clock. Each make is 1 point, " +
       "streaks earn bonus multipliers. Your best score each week counts — " +
@@ -40,6 +48,11 @@ export const GAMES: Game[] = [
       "so nobody gets an edge from watching the first tip.",
   },
 ];
+
+/** The hub advertises implemented games only; competition status cannot hide practice. */
+export function getPlayableGames(): PlayableGame[] {
+  return GAMES.filter((game): game is PlayableGame => game.play !== undefined);
+}
 
 /** Look up a game by its slug. Null for unknown ids (bad URLs). */
 export function getGame(gameId: string): Game | null {

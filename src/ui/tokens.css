@@ -12,6 +12,22 @@
  * document why.
  */
 
+/* The user-approved Arcade palette is scoped to its canvas. Site/homepage
+ * colors stay under their own design owner; these variables do not override them. */
+.gh-arcade-canvas {
+  --gh-arcade-canvas: #f4f2ed;
+  --gh-arcade-paper: #fffdf9;
+  --gh-arcade-ink: #292923;
+  --gh-arcade-muted: #69675f;
+  --gh-arcade-line: #ddd9cf;
+  --gh-arcade-accent: #805334;
+}
+
+/* With no ticker, Arcade keeps the shared header above its title/controls.
+ * Scope this fallback to Arcade; the homepage retains its current chrome. */
+body:has([data-arcade-page]) > header:first-child,
+body:has([data-arcade-page]) > [hidden]:first-child + header { top: 0; }
+
 :root {
   /* Scoped light chart roles from the proposed Chalk + clay direction.
    * Existing route colors stay unchanged pending the wider palette review. */

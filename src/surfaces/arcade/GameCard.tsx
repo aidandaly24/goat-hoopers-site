@@ -1,89 +1,34 @@
+import Image from "next/image";
 import Link from "next/link";
-import type { GameHubSummary, SiteUser } from "@/domain/arcade";
-import { WEEKLY_FAAB_PRIZE } from "@/domain/arcade";
-import { Badge } from "@/ui/Badge";
+import type { PlayableGame } from "@/domain/arcade";
 import { Card } from "@/ui/Card";
 import styles from "./GameCard.module.css";
 
-/**
- * One game in the arcade list. Shows the stakes (weekly FAAB prize),
- * this week's leader (or the honest empty state), and the viewer's own
- * state — "Your move" when they're logged in and scoreless on a live
- * game, a claim nudge when logged out. Coming-soon games say why and
- * when (game.launchNote), never a bare "coming soon".
- */
-export function GameCard({
-  summary,
-  user,
-}: {
-  summary: GameHubSummary;
-  user: SiteUser | null;
-}) {
-  const { game, leader, myBest } = summary;
-  const live = game.status === "live";
-  const yourMove = live && user !== null && myBest === null;
-
+/** An implemented game: actual preview, honest availability and direct launch. */
+export function GameCard({ game }: { game: PlayableGame }) {
+  const practice = game.play.mode === "practice";
   return (
-    <Link
-      href={`/arcade/${game.id}`}
-      className={styles.link}
-      aria-label={`${game.name} — ${live ? "play now" : "details"}`}
-    >
-      <Card className={styles.card}>
-        <div className={styles.top}>
-          <span className={styles.icon} aria-hidden="true">
-            {game.icon}
-          </span>
-          <span className={styles.badges}>
-            {yourMove && <Badge tone="gold">Your move</Badge>}
-            <Badge tone={live ? "win" : "neutral"}>
-              {live ? "Live" : "Not yet live"}
-            </Badge>
-          </span>
-        </div>
-        <h3 className={styles.name}>{game.name}</h3>
+    <Card className={styles.card}>
+      <div className={styles.preview}>
+        <Image src={game.play.preview.src} alt={game.play.preview.alt}
+          width={1248} height={696} sizes="(max-width: 1024px) 100vw, 60vw"
+          loading="eager" unoptimized className={styles.image} />
+        <span className={styles.caption}>Actual gameplay</span>
+      </div>
+      <div className={styles.details}>
+        <p className={styles.mode}>{practice ? "Local practice" : "League game"}</p>
+        <h2 className={styles.name}>{game.name}</h2>
         <p className={styles.desc}>{game.description}</p>
-        <dl className={styles.meta}>
-          <div className={styles.row}>
-            <dt>Prize</dt>
-            <dd className="gh-num">{WEEKLY_FAAB_PRIZE} FAAB / week</dd>
-          </div>
-          <div className={styles.row}>
-            <dt>Leader</dt>
-            <dd>
-              {leader ? (
-                <>
-                  {leader.isCurrentUser ? "You" : leader.displayName}
-                  {" — "}
-                  <span className="gh-num">{leader.score}</span>
-                </>
-              ) : (
-                <span className={styles.quiet}>No scores yet — be the first.</span>
-              )}
-            </dd>
-          </div>
-          <div className={styles.row}>
-            <dt>You</dt>
-            <dd>
-              {!user ? (
-                <span className={styles.quiet}>Claim your team to play.</span>
-              ) : myBest !== null ? (
-                <>
-                  Your best: <span className="gh-num">{myBest}</span>
-                </>
-              ) : live ? (
-                <span className={styles.move}>No score yet — your move.</span>
-              ) : (
-                <span className={styles.quiet}>On the bench until it ships.</span>
-              )}
-            </dd>
-          </div>
-        </dl>
-        {game.launchNote && !live && (
-          <p className={styles.soon}>{game.launchNote}</p>
-        )}
-        <span className={styles.cta}>{live ? "Play now →" : "Details →"}</span>
-      </Card>
-    </Link>
+        {practice && <p className={styles.access}>No sign-in needed. Scores stay in this session.</p>}
+        <Link href={`/arcade/${game.id}`} className={styles.play} aria-label={`Play ${game.name}`}>
+          Play now <span aria-hidden="true">↗</span>
+        </Link>
+        <div className={styles.controls}>
+          <h3>On your phone</h3>
+          <p>{game.play.touchInstructions}</p>
+        </div>
+        {game.id === "free-throw" && <p className={styles.keyboard}>Keyboard: A/D or arrows to aim. Hold Space and release to shoot.</p>}
+      </div>
+    </Card>
   );
 }
