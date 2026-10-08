@@ -299,6 +299,18 @@ parameter — no imports, no network. Tests pass fake inputs straight in.
 That split is the rule-11 seam for the Sleeper side: fetching is the thin
 impure shell, the math is a pure function of its inputs.
 
+### Offline regression suite
+
+`npm test` (vitest, `vitest.config.ts`) runs the offline suite in
+`src/data/__tests__/`. Fixtures live in `__tests__/fixtures.ts` — tiny
+synthetic teams, transactions, matchups, and claim-store states, all
+credential-free. Tests assert observable domain results, never private
+function structure. The suite requires no network, secrets, or database;
+`.github/workflows/ci.yml` runs it plus `tsc --noEmit` on every PR.
+The optional isolated-DB contract suite (FakeGameStore vs a throwaway
+test Postgres) is separate and fails closed when its target is absent —
+it never falls back to production credentials.
+
 `LeagueStats` fields are all nullable. In the preseason (`/state/nba`
 says `"pre"`) the loader returns `hasGames: false` and every stat stays
 null — the `StatsStrip` renders one honest empty state instead of fake
