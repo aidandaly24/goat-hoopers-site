@@ -66,9 +66,9 @@ async function returnAndHelp(page, touch = false) {
 async function titleVisible(page) {
   const bounds = await page.getByRole("heading", { level: 1 }).evaluate(element => {
     const title = element.getBoundingClientRect();
-    const header = document.querySelector("body > header").getBoundingClientRect();
+    const header = document.querySelector("[data-site-chrome]").getBoundingClientRect();
     return { titleTop: title.top, headerBottom: header.bottom,
-      headerTop: getComputedStyle(document.querySelector("body > header")).top,
+      headerTop: getComputedStyle(document.querySelector("[data-site-chrome]")).top,
       bodyChildren: [...document.body.children].map(child => child.tagName),
       scrollY: window.scrollY };
   });

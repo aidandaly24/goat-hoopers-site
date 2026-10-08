@@ -224,13 +224,13 @@
 }
 
 /* Existing sticky chrome stays in the root layout. */
-.inspector { top: calc(var(--gh-ticker-h) + var(--gh-s16) + var(--gh-s4)); scroll-margin-top: calc(var(--gh-ticker-h) + var(--gh-s16) + var(--gh-s4)); }
+.inspector { top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4)); scroll-margin-top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4)); }
 
 .exchange input, .exchange select, .chip, .inspect-button { min-height: calc(var(--gh-s8) + var(--gh-s3)); }
 
 .detail-identity a:hover { color: var(--gh-gold); }
 
-.player { scroll-margin-top: calc(var(--gh-ticker-h) + var(--gh-s16) + var(--gh-s4)); }
+.player { scroll-margin-top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4)); }
 
 .market-signals { margin-bottom: var(--gh-s6); border: 1px solid var(--gh-border); border-radius: var(--gh-radius); background: var(--gh-bg-raised); }
 

@@ -1,0 +1,5 @@
+@font-face { font-family: 'Fixture Inter'; src: url('/design-preview/neutral-courtside/assets/inter.woff2') format('woff2'); font-weight: 100 900; }
+@font-face { font-family: 'Fixture Mono'; src: url('/design-preview/neutral-courtside/assets/geist-mono.woff2') format('woff2'); font-weight: 100 900; }
+:root { --font-body:'Fixture Inter'; --font-mono:'Fixture Mono'; }
+.fixture-note { padding: var(--gh-s2) var(--gh-s4); color: var(--gh-text-dim); font-size: .8125rem; }
+.fixture-profile { padding: var(--gh-s8) var(--gh-s4); }

@@ -188,7 +188,7 @@ src/
     news/        # The League News Network: MyLeague-style auto-generated
                  # coverage. Newsroom (front page), NewsFeed (client-side
                  # section chips: Latest / Rookie Wire / Rumor Mill /
-                 # Hot Takes), NewsCard (publication masthead + article).
+                 # Hot Takes), native full-story reader with exact voice URLs.
                  # Articles are generated from real league events by
                  # generateLeagueNews (src/data/news.ts), voiced by five
                  # fictional publications (domain/news.ts). Receives domain
@@ -438,6 +438,22 @@ derived from real signals and always labeled as what they are — the
 fiction is honest. `Transaction.sides` (per-team trade view, added in
 `toTransactions`) powers the trade narratives. Empty inputs → empty feed;
 surfaces render honest empty states and the ticker falls back to stocks.
+
+The Newsroom groups only recognized existing rookie/trade/waiver article-ID
+families with matching kind, section and complete player/team refs. Ambiguous
+families and standalone rumors/takes stay separate; encoded transaction prefixes
+are not durable upstream event IDs. No loader/cache contract changes. One lead
+and compact headlines replace repeated full articles. Original voices, bodies
+and actor links remain in the native reader with visible generated/parody labels.
+`?section=…&story=<original article id>&revision=<snapshot fingerprint>` preserves reading state: open
+pushes, voice changes replace, Back/Forward restore. Close/Escape goes Back only
+for an entry opened in the current visit; initial deep links close by replacement.
+Missing, duplicate, unguarded or changed article snapshots are explicitly
+unavailable. The presentation-only fingerprint includes all supplied fields;
+reused render slots cannot reopen another event, and regenerated content/time
+may expire a link. `qa/newsroom/` mounts production components with synthetic
+props and approved local fonts/chrome, not an app route. Its native-anchor
+adapter does not verify Next App Router restoration.
 
 ### The stats seam (dependency inversion in the read path)
 

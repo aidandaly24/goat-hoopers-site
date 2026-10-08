@@ -5,9 +5,8 @@ import styles from "./Newsroom.module.css";
 /**
  * news — the League News Network front page.
  *
- * Every article is generated from real league events (trades, waiver
- * moves, the rookie draft) and voiced by a fictional publication. Rumors
- * and hot takes are labeled as what they are — the fiction is honest.
+ * Open editorial front page and a compact, section-filtered headline feed.
+ * Generated articles retain their original parody voices, prose and links.
  *
  * Contract:
  * - Receives fully-generated `NewsArticle[]` (see `src/data/league.ts`).
@@ -18,13 +17,11 @@ export function Newsroom({ articles }: { articles: NewsArticle[] }) {
   return (
     <div className={styles.room}>
       <header className={styles.head}>
-        <p className={styles.eyebrow}>League News Network</p>
-        <h1 className={styles.title}>The Newsroom</h1>
+        <h1 className={styles.title}>The Newsroom<span className={styles.dot}>.</span></h1>
         <p className={styles.lede}>
-          Every move the league makes, covered five ways — from Shams
-          breaking it to Skip Bayless losing his mind over it. Real events,
-          loud opinions.
+          Real moves. Loud opinions.
         </p>
+        <p className={styles.disclosure}>Generated league reactions · parody voices, unaffiliated with the named outlets.</p>
       </header>
       <NewsFeed articles={articles} />
     </div>

@@ -16,8 +16,8 @@
   --gh-focus: var(--gh-gold-soft);
   color: var(--gh-text);
 }
-.surface { max-width: 100rem; margin: 0 auto; padding: var(--gh-s4); }
-.stage { position: relative; isolation: isolate; height: calc(100dvh - var(--gh-ticker-h) - 4rem - var(--gh-s8)); min-height: 28rem; overflow: hidden; border: 1px solid var(--gh-border-strong); border-radius: var(--gh-radius-lg); background: var(--gh-bg); touch-action: none; cursor: grab; outline-offset: -4px; }
+.surface { --gh-practice-padding: var(--gh-s4); --gh-practice-height: calc(100dvh - var(--gh-chrome-h, var(--gh-s16)) - var(--gh-mobile-nav-h, 0px) - 2 * var(--gh-practice-padding)); max-width: 100rem; margin: 0 auto; padding: var(--gh-practice-padding); }
+.stage { position: relative; isolation: isolate; height: var(--gh-practice-height); min-height: min(28rem, var(--gh-practice-height)); overflow: hidden; border: 1px solid var(--gh-border-strong); border-radius: var(--gh-radius-lg); background: var(--gh-bg); touch-action: none; cursor: grab; outline-offset: -4px; }
 .stage:focus-visible { outline: 2px solid var(--gh-gold); }
 .stage, .fireButton { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 .dragging { cursor: grabbing; }
@@ -75,8 +75,8 @@
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @media (pointer: coarse), (max-width: 40rem) { .keyboardHint { display: none; } .touchHint { display: block; } }
 @media (max-width: 40rem) {
-  .surface { padding: var(--gh-s2); }
-  .stage { height: calc(100dvh - var(--gh-ticker-h) - 3.75rem - var(--gh-tabbar-h) - var(--gh-s4) - env(safe-area-inset-bottom, 0px)); min-height: 22rem; border-radius: var(--gh-radius); }
+  .surface { --gh-practice-padding: var(--gh-s2); }
+  .stage { min-height: min(22rem, var(--gh-practice-height)); border-radius: var(--gh-radius); }
   .topHud { top: var(--gh-s3); left: var(--gh-s3); right: var(--gh-s3); gap: var(--gh-s1); }
   .identity { gap: var(--gh-s1); }
   .identity h1 { font-size: 1.1rem; }
@@ -95,12 +95,45 @@
   .bottomHud { gap: var(--gh-s1); bottom: var(--gh-s3); }
 }
 @media (max-height: 30rem) and (min-width: 40rem) {
-  .surface { padding: var(--gh-s2); }
-  .stage { height: calc(100dvh - var(--gh-ticker-h) - 4rem - var(--gh-s4)); min-height: 16rem; }
+  .surface { --gh-practice-padding: var(--gh-s2); }
+  .stage { min-height: min(16rem, var(--gh-practice-height)); }
   .topHud { top: var(--gh-s2); }
   .scoreHud { top: 4rem; gap: var(--gh-s4); }
   .scoreHud div:first-child strong { font-size: 1.5rem; }
   .feedback { top: 25%; }
   .bottomHud { width: 13rem; left: auto; right: var(--gh-s4); bottom: var(--gh-s3); transform: none; gap: var(--gh-s1); }
   .keyboardHint, .touchHint { display: none; }
+}
+
+/* The usable court can be short after wrapped/large-text chrome even when
+ * the viewport is tall. Flow the existing HUD groups within that budget. */
+.bottomHud { bottom: calc(var(--gh-s6) + var(--gh-s4)); }
+.stage { container-type: size; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto 1fr auto; grid-template-areas: "top top" "score bottom" "prototype prototype"; gap: var(--gh-s1) var(--gh-s2); padding: var(--gh-s1); }
+@container (max-height: 30rem) {
+  .topHud { position: relative; inset: auto; grid-area: top; gap: var(--gh-s1); }
+  .back, .iconButton { width: 44px; height: 44px; }
+  .scoreHud { position: relative; inset: auto; grid-area: score; align-self: end; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gh-s1); padding: var(--gh-s1); background: color-mix(in srgb, var(--gh-bg) 92%, transparent); border-radius: var(--gh-radius); }
+  .scoreHud div > span { overflow-wrap: anywhere; }
+  .scoreHud div:first-child { grid-column: 1 / -1; }
+  .scoreHud div:first-child strong { font-size: 1.25rem; }
+  .scoreHud strong { font-size: 1rem; }
+  .bottomHud { position: relative; inset: auto; grid-area: bottom; align-self: end; transform: none; width: 100%; gap: var(--gh-s1); text-shadow: none; }
+  .aimReadout { flex-wrap: wrap; justify-content: center; gap: var(--gh-s1); }
+  .fireButton { min-width: 0; width: 100%; min-height: 44px; }
+  .prototype { position: static; grid-area: prototype; justify-self: start; }
+  .keyboardHint, .touchHint { display: none; }
+}
+
+/* At the narrowest usable width, enlarged text needs the full HUD row.
+ * Keep the practice subtitle available to screen readers; Help retains the
+ * visible instructions. Button targets and the user's text size stay intact. */
+@container (max-width: 300px) and (max-height: 30rem) {
+  .sceneLabel { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .scoreHud { grid-column: 1 / -1; grid-row: 2; align-self: start; display: flex; justify-content: space-between; gap: 4px; padding: 4px; line-height: 1.1; }
+  .scoreHud div > span { letter-spacing: 0; }
+  .bottomHud { grid-column: 1 / -1; grid-row: 3; gap: 4px; line-height: 1.1; }
+  .aimReadout { gap: 4px; }
+  .aimReadout svg { width: 16px; height: 16px; }
+  .fireButton { padding: 4px 8px; }
+  .prototype { grid-column: 1 / -1; grid-row: 4; }
 }

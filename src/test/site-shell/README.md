@@ -16,15 +16,23 @@ external and non-GET requests. Child environments contain no application
 credentials. Browsers and servers close after the run.
 
 The real Next run checks all 23 public/private, nested, missing and recovery
-route examples at 1440, 741, 390 and 320px, a 720px layout equivalent to a
-1440px viewport at 200% browser zoom, and enlarged 200% text at 390/320px.
+route examples at 1440, 741, 390 and 320px, a 720×450px layout equivalent to a
+1440×900px viewport at 200% browser zoom, and enlarged 200% text at 390/320px.
 It checks primary destination order/current state, initial and anchored titles,
 skip/primary keyboard focus, scrolling and actual Next navigation/Back.
+Phone Trophy captures are viewport-sized at top, middle and maximum scroll.
+The fixed bar must stay at the viewport bottom, and final footer content plus
+keyboard focus must clear it at maximum scroll. A long screenshot placing a
+viewport-fixed bar midway through its image is assessed separately from real
+viewport overlap.
+
 External data is deliberately unavailable: recovery/provision states are part
 of the shell coverage, not successful production-data validation.
 
 The Vite fixture uses real shell, ticker, Stocks and Trophy components with
-synthetic empty data and a long synthetic manager name. Next links are ordinary
+synthetic quotes/home data and a long synthetic manager name. Its populated
+Trophy scenario uses the repository's approved static 2025 history constants
+and the real footer. Next links are ordinary
 anchors and pathname uses browser state; actual Next transitions are tested in
 the production runner. Scoreboard polling and application fetches are disabled.
 It checks ticker present/absent, both account states and 100%/200% text at
@@ -32,5 +40,21 @@ It checks ticker present/absent, both account states and 100%/200% text at
 league results. Fixture fonts use the system fallback; the built Next captures
 use the actual loaded site fonts. No physical iPhone/Safari coverage is claimed.
 
-For only the synthetic checks, append `--fixture-only`. Exact head, outcomes,
+For the 120 shell/Stocks/home cases plus the seven loaded-court profiles,
+append `--fixture-only`. `--game-only` runs those seven court profiles without
+Next; `--game-narrow-only` reproduces only the 320px/200% text profile.
+`--history-only` checks eight populated Trophy width/text/ticker setups at top,
+middle and maximum scroll, plus the final footer link and a separate full-page
+diagnostic capture. All three modes use the current source Vite fixture.
+Exact head, outcomes,
 Library attachments and any remaining limitations belong in the PR report.
+
+Populated synthetic quotes use the existing stock-detail client seam with no
+fetch. The runner selects a player and checks inspector heading/Close clearance,
+then activates the actual homepage skip and ID targets in a synthetic edition.
+A separate SwiftShader browser loads the real FreeThrowPractice component and approved court assets
+and checks stage/HUD viewport bounds, including tablet, reduced-height zoom,
+enlarged text and Chrome-emulated 34px bottom safe area. It verifies that HUD
+groups do not overlap, and that interactive controls are visible and hit-testable
+with keyboard focus. These source-fixture checks do not validate Next navigation
+or production font metrics. No game rules change.
