@@ -98,17 +98,21 @@ src/
                  # broadcast-desk framing. Receives all four datasets;
                  # never fetches.
     stock-market/ # "What is every player worth": the FAAB-denominated
-                 # stock market, styled as a Bloomberg terminal (a deliberate
-                 # dark island via the --gh-term-* tokens). CombinedTicker
-                 # (site-wide ESPN-style marquee alternating news headlines
-                 # and stock quotes, rendered by the root layout),
-                 # StockMarket (top gainers / decliners, panic meter, full
-                 # board), StockBoard (client-side position + rookie filter
-                 # chips), StockRow (client quote row; expands to fetch its
-                 # detail on demand), SeasonChart (inline-SVG fppg history),
-                 # PanicMeter. Receives domain objects, never fetches —
-                 # except StockRow, which calls GET /api/stocks/[playerId]
-                 # on expand for its detail (Rule 14).
+                 # player exchange. The selected navy/gold board uses shared
+                 # site tokens, with market coverage and a compact tape.
+                 # StockMarket renders server summaries; StockBoard combines
+                 # search/position/draft/roster filters, sorts and progressive
+                 # rows. StockQuoteRow keeps list data slim; ExchangeIcon
+                 # provides stroked SVG inspection/navigation marks. StockInspector
+                 # shows production sample sizes, price components and PR25's
+                 # dated/source-tagged price path on selection.
+                 # On-demand detail uses data/stock-detail-client.ts against
+                 # the existing GET /api/stocks/[playerId]. Per-board caching
+                 # deduplicates requests; explicit retry evicts failures and
+                 # request identities prevent stale detail from replacing the
+                 # selected player. No eager deep payloads or schema changes.
+                 # StockRow remains as the legacy row for independent fixes.
+                 # CombinedTicker is still rendered by the root layout.
     trade-analyzer/ # "Is this trade fair": hypothetical trades priced in
                  # FAAB dollars (TradeAnalyzer: two search pickers + running
                  # totals + verdict). Same --gh-term-* Bloomberg island.

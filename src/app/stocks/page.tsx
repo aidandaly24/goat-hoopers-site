@@ -2,8 +2,8 @@
  * /stocks — the full player stock market page.
  *
  * Thin page: loads via the data loader, hands the domain object to the
- * surface. The Bloomberg-style ticker lives in the root layout, so it's
- * above this page too.
+ * exchange surface. Deep data loads on selection through the existing
+ * detail API. The site-wide ticker remains in the root layout.
  */
 import { getStockMarketData } from "@/data/league";
 import { StockMarket } from "@/surfaces/stock-market/StockMarket";
