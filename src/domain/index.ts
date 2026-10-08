@@ -31,7 +31,7 @@ export type { Team } from "./team";
 export type { ReconstructionInput, ReconstructedPoint, PriceHistoryArtifact } from "./price-history-import";
 export type { Standing } from "./standing";
 export type { Matchup, } from "./matchup";
-export { isFinal, winner } from "./matchup";
+export { isFinal, signedStreak, winner } from "./matchup";
 export type { Player } from "./player";
 export type { PlayerDetail } from "./player-detail";
 export type { TeamProfile } from "./team-profile";

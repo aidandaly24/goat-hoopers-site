@@ -35,6 +35,7 @@ import type {
   RawDraftPick,
   RawWinnersBracketEntry,
 } from "./sleeper";
+import { signedStreak } from "@/domain";
 
 /** Team name resolution: manager's chosen name, else their username. */
 export function teamNameOf(user: RawUser | undefined): string {
@@ -120,9 +121,16 @@ export function toSeason(league: RawLeague, nbaState: RawNbaState | null): Seaso
   };
 }
 
-const TYPE_LABEL: Record<string, Transaction["type"]> = {
+/**
+ * Sleeper → domain transaction-kind mapping, decoded once at the membrane.
+ * Exhaustive over the supported TransactionType union. Upstream kinds
+ * outside this map are filtered out (never silently reclassified) — see
+ * the unknown-type guard in toTransactions.
+ */
+const TRANSACTION_TYPE_MAP: Record<string, Transaction["type"]> = {
   waiver: "waiver",
   free_agent: "free_agent",
+  trade: "trade",
 };
 
 export function toTransactions(
@@ -142,7 +150,14 @@ export function toTransactions(
   const moveOf = (pid: string) => ({ playerId: pid, name: nameOf(pid) });
 
   return raw
-    .map((t) => {
+    .flatMap((t) => {
+      // Unknown upstream kinds are dropped, never silently reclassified.
+      // (console diagnostic: these indicate a Sleeper payload change.)
+      const kind = TRANSACTION_TYPE_MAP[t.type];
+      if (!kind) {
+        console.warn(`toTransactions: dropping unknown type "${t.type}"`);
+        return [];
+      }
       const rosterIds = new Set<number>();
       if (t.adds) Object.values(t.adds).forEach((rid) => rosterIds.add(rid));
       if (t.drops) Object.values(t.drops).forEach((rid) => rosterIds.add(rid));
@@ -168,7 +183,7 @@ export function toTransactions(
 
       return {
         id: t.transaction_id,
-        type: TYPE_LABEL[t.type] ?? "free_agent",
+        type: kind,
         week: t.leg,
         createdAt: t.created,
         summary,
@@ -192,6 +207,28 @@ export function toTransactions(
       } satisfies Transaction;
     })
     .sort((a, b) => b.createdAt - a.createdAt);
+}
+
+/**
+ * Select the newest ten raw transactions across weekly buckets.
+ * Pure: flatten → deduplicate by transaction_id → sort by created
+ * descending → take ten. Used by the homepage feed so it shows
+ * current-season activity instead of a hardcoded week.
+ */
+export function selectRecentTransactions(
+  rawByWeek: RawTransaction[][]
+): RawTransaction[] {
+  const seen = new Set<string>();
+  const deduped: RawTransaction[] = [];
+  for (const week of rawByWeek) {
+    for (const tx of week) {
+      if (seen.has(tx.transaction_id)) continue;
+      seen.add(tx.transaction_id);
+      deduped.push(tx);
+    }
+  }
+  deduped.sort((a, b) => b.created - a.created);
+  return deduped.slice(0, 10);
 }
 
 /**
@@ -311,45 +348,15 @@ function fmtPts(p: number): string {
 }
 
 /**
- * Signed active streak for a team, ending at the latest final week:
- * positive = consecutive wins, negative = consecutive losses, 0 = none.
- * Pure — takes matchups as a parameter.
+ * Signed active streak for a team. Delegates to the domain rule in
+ * `@/domain/matchup` — the single source of truth. Prefer importing
+ * `signedStreak` from `@/domain` directly in new code.
  */
 export function currentStreak(
   teamId: string,
   matchupsByWeek: Matchup[][]
 ): number {
-  let streak = 0;
-  for (let w = matchupsByWeek.length - 1; w >= 0; w--) {
-    const m = matchupsByWeek[w].find(
-      (x) => x.home.id === teamId || x.away.id === teamId
-    );
-    if (!m || m.homePoints === null || m.awayPoints === null) break;
-    const isHome = m.home.id === teamId;
-    const mine = (isHome ? m.homePoints : m.awayPoints) as number;
-    const theirs = (isHome ? m.awayPoints : m.homePoints) as number;
-    const result = mine > theirs ? 1 : mine < theirs ? -1 : 0;
-    if (result === 0) break;
-    if (streak !== 0 && Math.sign(streak) !== result) break;
-    streak += result;
-  }
-  return streak;
-}
-/** Consecutive wins ending at the latest final week. 0 when none. */
-function currentWinStreak(teamId: string, matchupsByWeek: Matchup[][]): number {
-  let streak = 0;
-  for (let w = matchupsByWeek.length - 1; w >= 0; w--) {
-    const m = matchupsByWeek[w].find(
-      (x) => x.home.id === teamId || x.away.id === teamId
-    );
-    if (!m || m.homePoints === null || m.awayPoints === null) break;
-    const won =
-      (m.home.id === teamId && m.homePoints > m.awayPoints) ||
-      (m.away.id === teamId && m.awayPoints > m.homePoints);
-    if (!won) break;
-    streak++;
-  }
-  return streak;
+  return signedStreak(teamId, matchupsByWeek);
 }
 
 /**
@@ -373,10 +380,11 @@ export function computeLeagueStats(input: LeagueStatsInput): LeagueStats {
       ? { team: byPA[0], displayValue: fmtPts(byPA[0].pointsAgainst) }
       : null;
 
-  // Longest active win streak.
+  // Longest active win streak. Derives from the signed domain streak —
+  // no second loop. A loss streak contributes zero wins.
   let longestWinStreak: LeagueStats["longestWinStreak"] = null;
   for (const t of teams) {
-    const wins = currentWinStreak(t.id, matchupsByWeek);
+    const wins = Math.max(signedStreak(t.id, matchupsByWeek), 0);
     if (wins > 0 && (!longestWinStreak || wins > longestWinStreak.wins)) {
       longestWinStreak = { team: t, wins };
     }

@@ -113,7 +113,10 @@ src/
                  # deduplicates requests; explicit retry evicts failures and
                  # request identities prevent stale detail from replacing the
                  # selected player. No eager deep payloads or schema changes.
-                 # StockRow remains as the legacy row for independent fixes.
+                 # On mobile, close restores focus after the panel is removed.
+                 # StockRow remains as the legacy row, with PR40 detailMachine
+                 # retry on failed re-expansion, in-flight dedupe and ready
+                 # details cached per mount. Its merged source is preserved.
                  # CombinedTicker is still rendered by the root layout.
     trade-analyzer/ # "Is this trade fair": hypothetical trades priced in
                  # FAAB dollars (TradeAnalyzer: two search pickers + running
@@ -513,7 +516,11 @@ preview deployment must never crash on a missing database.
   code at `/claim`, picks a display name, sets a password. The code is
   consumed, the account is created, and they're logged in. Codes are plain
   strings on purpose — device-free, so claiming on a phone and playing on
-  a laptop just works.
+  a laptop just works. The claim is atomic: `GameStore.claimTeam()` does
+  the account insert and the guarded invite consume as a single SQL
+  statement (CTE), so a failed claim leaves neither a partial account nor
+  a consumed code. The neon-http driver has no interactive transactions;
+  the single-statement CTE is the atomicity mechanism.
 - **Login:** `/login` — team + password, bcrypt-compared server-side.
 - **Sessions:** 90-day httpOnly cookies, SHA-256-hashed tokens in the DB.
 - **Friends-grade security:** invite codes close the impersonation hole

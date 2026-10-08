@@ -14,8 +14,11 @@
  * render the provisioning notice.
  */
 import { and, desc, eq, isNull, sql } from "drizzle-orm";
+import { randomUUID } from "node:crypto";
 import { GAMES } from "@/domain/arcade";
 import type {
+  ClaimResult,
+  ClaimTeamInput,
   Game,
   GameHubSummary,
   GameScore,
@@ -79,6 +82,15 @@ export type GameStore = {
   /** Returns the bcrypt hash for login verification. Never expose to clients. */
   getPasswordHash(teamId: string): Promise<string | null>;
   createUser(input: NewUser): Promise<SiteUser>;
+  /**
+   * Atomically claims a team: creates the account AND consumes the
+   * invite code as a single database operation — either both happen
+   * or neither. The store performs the authoritative unused-code and
+   * team-ownership checks; action-level prechecks are UX only, never
+   * the concurrency guarantee. Expected conflicts return a typed
+   * result; only infrastructure failures throw.
+   */
+  claimTeam(input: ClaimTeamInput): Promise<ClaimResult>;
 
   // --- invite codes ---
   getInviteByCode(code: string): Promise<InviteCode | null>;
@@ -180,6 +192,87 @@ export class DrizzleGameStore implements GameStore {
     const row = rows[0];
     if (!row) throw new Error("createUser: insert returned no row");
     return toSiteUser(row);
+  }
+
+  /**
+   * Postgres unique-violation code. The neon driver surfaces it on the
+   * thrown error; a 23505 from the claim CTE means the team unique
+   * constraint fired and the whole statement rolled back.
+   */
+  private static isUniqueViolation(e: unknown): boolean {
+    return (
+      typeof e === "object" &&
+      e !== null &&
+      "code" in e &&
+      (e as { code: unknown }).code === "23505"
+    );
+  }
+
+  async claimTeam(input: ClaimTeamInput): Promise<ClaimResult> {
+    // The neon-http driver has no interactive transactions, so the
+    // claim is one SQL statement with CTEs — a single statement is
+    // implicitly atomic in Postgres. The guarded UPDATE is the lock:
+    // concurrent claims for the same code race on `used_by IS NULL`
+    // and only one wins. The INSERT's team_id unique constraint is the
+    // final defense for two different codes racing on the same team;
+    // a 23505 rolls back the whole statement, including the winner's
+    // invite update.
+    const userId = randomUUID();
+    let rows: {
+      id: string;
+      teamId: string;
+      displayName: string;
+      createdAt: Date;
+    }[];
+    try {
+      const result = await this.db.execute(sql`
+        WITH claimed_invite AS (
+          UPDATE invite_codes
+          SET used_by = ${userId}, used_at = NOW()
+          WHERE code = ${input.code} AND used_by IS NULL
+          RETURNING team_id
+        ),
+        new_user AS (
+          INSERT INTO site_users (id, team_id, display_name, password_hash)
+          SELECT ${userId}, team_id, ${input.displayName}, ${input.passwordHash}
+          FROM claimed_invite
+          RETURNING id, team_id, display_name, created_at
+        )
+        SELECT
+          id,
+          team_id AS "teamId",
+          display_name AS "displayName",
+          created_at AS "createdAt"
+        FROM new_user
+      `);
+      rows = result.rows as {
+        id: string;
+        teamId: string;
+        displayName: string;
+        createdAt: Date;
+      }[];
+    } catch (e) {
+      if (DrizzleGameStore.isUniqueViolation(e)) {
+        return { ok: false, reason: "team_claimed" };
+      }
+      throw e;
+    }
+    const row = rows[0];
+    if (!row) {
+      // The guarded UPDATE matched nothing: the code is unknown or
+      // already consumed. Read it to tell the caller which.
+      const invite = await this.getInviteByCode(input.code);
+      return { ok: false, reason: invite ? "already_used" : "invalid_code" };
+    }
+    return {
+      ok: true,
+      user: {
+        id: row.id,
+        teamId: row.teamId,
+        displayName: row.displayName,
+        createdAt: new Date(row.createdAt),
+      },
+    };
   }
 
   async getInviteByCode(code: string): Promise<InviteCode | null> {
@@ -438,6 +531,31 @@ export class FakeGameStore implements GameStore {
     this.users.set(user.id, user);
     const { passwordHash: _ph, ...publicUser } = user;
     return publicUser;
+  }
+
+  async claimTeam(input: ClaimTeamInput): Promise<ClaimResult> {
+    // Single-threaded check-and-mutate is atomic: no await between the
+    // checks and the writes, so no interleaving is possible. Enforces
+    // the same invariants as the Drizzle CTE — one account per team,
+    // single-use codes, all-or-nothing.
+    const invite = this.invites.get(input.code);
+    if (!invite) return { ok: false, reason: "invalid_code" };
+    if (invite.usedBy) return { ok: false, reason: "already_used" };
+    for (const u of this.users.values()) {
+      if (u.teamId === invite.teamId) return { ok: false, reason: "team_claimed" };
+    }
+    const user = {
+      id: this.nextId("user"),
+      teamId: invite.teamId,
+      displayName: input.displayName,
+      passwordHash: input.passwordHash,
+      createdAt: new Date(),
+    };
+    this.users.set(user.id, user);
+    invite.usedBy = user.id;
+    invite.usedAt = new Date();
+    const { passwordHash: _ph, ...publicUser } = user;
+    return { ok: true, user: publicUser };
   }
 
   async getInviteByCode(code: string): Promise<InviteCode | null> {

@@ -152,6 +152,23 @@
   margin: 0.5rem 0;
 }
 
+.retry {
+  background: none;
+  border: 1px solid var(--gh-term-faint);
+  border-radius: 3px;
+  color: var(--gh-term-amber);
+  cursor: pointer;
+  font-family: var(--gh-font-mono);
+  font-size: 0.8rem;
+  font-style: normal;
+  margin-left: var(--gh-s2);
+  padding: 0.15rem 0.6rem;
+}
+
+.retry:hover {
+  border-color: var(--gh-term-amber);
+}
+
 .owned {
   color: var(--gh-term-dim);
   font-family: var(--gh-font-mono);

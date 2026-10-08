@@ -46,6 +46,33 @@ export type InviteCode = {
 };
 
 /**
+ * Input for the atomic team-claim operation.
+ *
+ * The store creates the account AND consumes the invite code as one
+ * database operation — either both happen or neither. Password hashing
+ * happens in the action before this; the store only sees the hash.
+ */
+export type ClaimTeamInput = {
+  /** Normalized 6-digit invite code. */
+  code: string;
+  /** Display name for the new account. */
+  displayName: string;
+  /** bcrypt hash. Raw passwords never reach the store. */
+  passwordHash: string;
+};
+
+/**
+ * Typed result of the atomic team-claim operation.
+ *
+ * `invalid_code`: no such code exists. `already_used`: the code was
+ * already consumed. `team_claimed`: another account already owns this
+ * team. Expected conflicts never throw — only infrastructure failures do.
+ */
+export type ClaimResult =
+  | { ok: true; user: SiteUser }
+  | { ok: false; reason: "invalid_code" | "already_used" | "team_claimed" };
+
+/**
  * A login session. The cookie holds the raw token; the database holds
  * only its SHA-256 hash, so a database read never yields a live session.
  */

@@ -34,10 +34,36 @@ const mono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = new URL("https://goathoopers.com");
+const siteTitle = "GOAT Hoopers — Fantasy Basketball League";
+const siteDescription =
+  "Live hub for the GOAT Hoopers Sleeper dynasty league: standings, draft board, and league activity.";
+// Public JPEG derived from blender/goat-hoopers-render.png for link previews.
+const shareImage = {
+  url: new URL("/social/goat-hoopers-blender-1200x630.jpg", siteUrl).href,
+  width: 1200,
+  height: 630,
+  type: "image/jpeg",
+  alt: "Blender render of basketball players on a hardwood court beneath the gold GOAT Hoopers title.",
+};
+
 export const metadata: Metadata = {
-  title: "GOAT Hoopers — Fantasy Basketball League",
-  description:
-    "Live hub for the GOAT Hoopers Sleeper dynasty league: standings, draft board, and league activity.",
+  metadataBase: siteUrl,
+  title: siteTitle,
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    siteName: "GOAT Hoopers",
+    title: siteTitle,
+    description: siteDescription,
+    images: [shareImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: [{ url: shareImage.url, alt: shareImage.alt }],
+  },
 };
 
 /**
