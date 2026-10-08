@@ -220,6 +220,21 @@ async function anchor(page) {
     assert.ok(g.heading.top >= g.chrome.bottom - 1, "ScrollIntoView title must remain visible");
   }
 }
+async function stableTrophy(page) {
+  await page.getByRole("heading", { name: /Trophy Room/i }).waitFor();
+  return page.evaluate(async () => {
+    await document.fonts.ready;
+    let previous = -1, stable = 0;
+    for (let i = 0; i < 30; i++) {
+      const height = document.documentElement.scrollHeight;
+      stable = height === previous ? stable + 1 : 0;
+      if (stable >= 3) return { height, maxScroll: height - innerHeight, fonts: document.fonts.status };
+      previous = height;
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    throw new Error("Restored Trophy content/fonts/document height did not settle");
+  });
+}
 try {
   if (process.argv.includes("--history-only")) {
     browser = await chromium.launch({ headless: true, ...(process.env.SHELL_TEST_CHROME ? { executablePath: process.env.SHELL_TEST_CHROME } : {}), args: ["--disable-webgl"] });
@@ -285,15 +300,28 @@ try {
       // departure position reflects the user's actual navigation action.
       await page.evaluate(() => {
         window.__shellBackDeparture = null;
+        window.__shellBackEvents = [];
+        const sample = kind => {
+          const box = e => { if (!e) return null; const r = e.getBoundingClientRect(); return { x: r.x, y: r.y, width: r.width, height: r.height }; };
+          const link = [...document.querySelectorAll('nav[aria-label="Primary"] a[href="/stocks"]')].find(e => e.getBoundingClientRect().width > 0);
+          const active = document.activeElement;
+          window.__shellBackEvents.push({ kind, scroll: scrollY, maxScroll: document.documentElement.scrollHeight - innerHeight,
+            height: document.documentElement.scrollHeight, fonts: document.fonts.status, focus: { tag: active?.tagName, id: active?.id, href: active?.getAttribute("href") },
+            header: box(document.querySelector("[data-site-chrome]")), link: box(link) });
+        };
+        for (const kind of ["pointerdown", "mousedown", "focusin", "click"]) document.addEventListener(kind, () => sample(kind), { once: true, capture: true });
+        window.addEventListener("popstate", () => sample("popstate"), { once: true });
         document.addEventListener("mousedown", () => { window.__shellBackDeparture = window.scrollY; }, { once: true, capture: true });
       });
       await page.mouse.click(linkBounds.x + linkBounds.width / 2, linkBounds.y + linkBounds.height / 2);
       await page.waitForURL(url => url.pathname === "/stocks");
       const departedScroll = await page.evaluate(() => window.__shellBackDeparture);
       assert.equal(departedScroll, previousScroll, "Native navigation must preserve the departure scroll position");
+      for (const event of await page.evaluate(() => window.__shellBackEvents)) assert.equal(event.scroll, previousScroll, "Pointer/focus/click must preserve prior scroll: " + JSON.stringify(event));
       await verifyShell(page);
       await page.goBack();
       await page.waitForURL(url => url.pathname === "/history");
+      const restoredDocument = await stableTrophy(page);
       await verifyShell(page, { title: false });
       await page.waitForFunction(previous => Math.abs(window.scrollY - previous) <= 2, previousScroll, { timeout: 3000 }).catch(async error => {
         console.log("Back metrics", { width, fontSize, previousScroll, restoredScroll: await page.evaluate(() => window.scrollY) });
@@ -301,7 +329,7 @@ try {
       });
       const restoredScroll = await page.evaluate(() => window.scrollY);
       await anchor(page);
-      record(`Production routes ${width}px, ${fontSize / 16 * 100}% text`, { routes: routes.length, height, safeArea, keyboard: "skip/primary visible", anchors: "clear chrome", back: { from: "/history", via: "/stocks", before: previousScroll, departed: departedScroll, restored: restoredScroll } });
+      record(`Production routes ${width}px, ${fontSize / 16 * 100}% text`, { routes: routes.length, height, safeArea, keyboard: "skip/primary visible", anchors: "clear chrome", back: { from: "/history", via: "/stocks", before: previousScroll, departed: departedScroll, restored: restoredScroll, document: restoredDocument, events: await page.evaluate(() => window.__shellBackEvents) } });
       await ctx.close();
     }
     await gameChecks(origin, false);
