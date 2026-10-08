@@ -37,6 +37,10 @@ The neutral comparisons live at
 Switch color at the same scroll position and width. All three use the current
 Courtside component tree, identical fixture content, arena crop, portraits and
 pennants. They are palette experiments, not redesigned page compositions.
+The broad teams divider remains unchanged for comparison; reducing its visual
+weight is a separate layout improvement. A labeled appendix supplies synthetic
+W/L, stock-move, live, medal and badge examples because the frozen fixture has
+no populated standings or quotes. Those examples are not league results.
 The black horizontal logo is an unchanged approved variant for light surfaces.
 The existing primary clay master remains the selected logo; no logo redesign is
 proposed. See the [review README](design-previews/neutral-courtside/README.md)
@@ -130,6 +134,7 @@ remain a small court reference or a labeled positive result.
 | --- | --- | --- | --- |
 | Canvas | `#F6F3EB` | `#F5F4EF` | `#F5F1E8` |
 | Raised/readable surface | `#FFFDF7` | `#FFFFFF` | `#FFFCF6` |
+| Row hover | `#EEECE4` | `#EBEEF0` | `#EEE9E0` |
 | Main ink | `#242824` | `#242D35` | `#2C2928` |
 | Secondary ink | `#63675F` | `#5F6870` | `#6A625C` |
 | Action/editorial accent | `#A54429` clay | `#345B77` slate | `#843F46` burgundy |
@@ -143,12 +148,21 @@ burgundy is warmer; review it beside actual basketball imagery to ensure the
 site still reads as a league rather than a café. Asset and permanent team
 colors stay unchanged across comparisons. These are unselected review tokens.
 
-Proposed semantic states on light surfaces: positive `#245A4B`, negative
-`#A13E3E`, live/action-needed `#A54429`, championship `#795C1C`, neutral
-secondary ink. Pair each with text/icon/shape: W/L, +/−, Live, Champion. Never
+Proposed semantic states on light surfaces, consistent across all three
+treatments: positive `#245A4B`, negative `#A13E3E`, live/action-needed
+`#A54429`, championship/first place `#795C1C`, second place `#5F6870`,
+third place `#855022`, neutral secondary ink. Pair each with text/icon/shape:
+W/L, +/−, Live, Champion and ordinal ranks. Never
 apply team colors as essential small text without checking contrast. Pale
 dividers are not adequate control boundaries or focus indicators. A white
 label on an accent-filled button needs its own contrast check.
+
+The isolated preview maps every inherited win/loss/live/silver/bronze token to
+these darker values and separates first-place gold from action color. Its
+accent-tinted status badge uses main ink for the label, including on hover.
+Calculated checks cover the actual canvas, surface, hover and 12% badge-tint
+pairs represented in the appendix; they do not replace rendered review. Do not
+carry legacy bright green/red/orange text onto light backgrounds unchanged.
 
 ### One semantic system, with bounded exceptions
 
@@ -169,7 +183,7 @@ per-route hardcoded hexes and no permanent fourth palette system.
 | Ink / secondary | `--gh-text`, `--gh-text-dim`, `--gh-text-faint` | Match CS text/ink/muted roles to context; no inverted light text left on new paper backgrounds. |
 | Action / on-action / focus | proposed `--gh-accent`, `--gh-on-accent`, `--gh-focus`, `--gh-focus-on-dark` | Separate label color from button fill and readable button text. Legacy gold and CS tan currently do several jobs; split those jobs before aliasing. |
 | Divider / control border | `--gh-border`, `--gh-border-strong` | Thin row rules versus perceivable inputs, disabled states and selected controls. |
-| Outcomes / identities | `--gh-win`, `--gh-loss`, `--gh-live`, championship role; `teamColorVar()` | Semantic meaning remains stable. Team colors are not backgrounds for entire pages. |
+| Outcomes / identities | `--gh-win`, `--gh-loss`, `--gh-live`, proposed `--gh-champion`, `--gh-silver`, `--gh-bronze`; `teamColorVar()` | Semantic meaning remains stable. Medal ranks keep ordinal labels and separate outcome color from action color. Team colors are not backgrounds for entire pages. |
 | Approved data workspace | proposed bounded exchange role aliases | Keep stocks layout, density, gold cues and list/detail behavior intact. Scope its current navy/gold values before changing shared global tokens, so a shell migration cannot accidentally recolor the approved board. Exact workspace recolor requires its own comparison. |
 | Court, historical objects and playable scene | material/scene-local tokens | Wood/fabric/court can remain within actual objects or a playable scene. Shared page text, spacing and navigation still follow the neutral system. |
 

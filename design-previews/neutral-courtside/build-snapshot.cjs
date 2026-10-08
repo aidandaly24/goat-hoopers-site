@@ -86,8 +86,12 @@ async function run() {
   html = html.replace(/<a\b[^>]*\bhref="https?:\/\/[^\"]+"[^>]*>/g, tag =>
     tag.slice(0, -1) + ' target="_blank" rel="noopener noreferrer">');
   html = html.replaceAll('Live roster check', 'Review roster snapshot');
-  const head = '<!doctype html><html lang="en" data-treatment="chalk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>GOAT Hoopers · neutral palette review snapshot</title><link rel="stylesheet" href="../../src/ui/tokens.css"><link rel="stylesheet" href="../../src/ui/courtside-tokens.css"><link rel="stylesheet" href="../../src/app/globals.css"><link rel="stylesheet" href="snapshot.css"><link rel="stylesheet" href="treatments.css"></head><body><p class="review-notice">Palette review · frozen Oct 8 sample content · application controls disabled. Live-site and source links open in a separate tab, preserving this comparison.</p>';
-  fs.writeFileSync(path.join(__dirname, 'home.html'), head + html + '</body></html>\n');
+  const example = fs.readFileSync(path.join(__dirname, 'state-examples.html'), 'utf8');
+  const template = example.match(/  <section[\s\S]*?<\/section>/)[0];
+  const states = example.replace(template, Object.entries({ canvas: 'Canvas', surface: 'Raised surface', hover: 'Row hover' }).map(([background, label]) =>
+    template.replaceAll('{{background}}', background).replaceAll('{{label}}', label)).join('\n'));
+  const head = '<!doctype html><html lang="en" data-treatment="chalk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>GOAT Hoopers · neutral palette review snapshot</title><link rel="stylesheet" href="../../src/ui/tokens.css"><link rel="stylesheet" href="../../src/ui/courtside-tokens.css"><link rel="stylesheet" href="../../src/app/globals.css"><link rel="stylesheet" href="snapshot.css"><link rel="stylesheet" href="treatments.css"></head><body><p class="review-notice">Palette review · frozen Oct 8 sample content · application controls disabled. Live-site and source links open in a separate tab, preserving this comparison. <a href="#review-semantic-states">Inspect synthetic color-state examples</a>.</p>';
+  fs.writeFileSync(path.join(__dirname, 'home.html'), head + html + states + '</body></html>\n');
   fs.writeFileSync(path.join(__dirname, 'snapshot.css'), '/* Generated from current production CSS modules. Do not hand-edit. */\n' + ordered(css).map(([, value]) => value).join('\n'));
   fs.writeFileSync(path.join(__dirname, 'snapshot-manifest.json'), JSON.stringify({
     baseCommit: 'a327e9c960259025ffc736da7004408942736106',

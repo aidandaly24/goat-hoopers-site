@@ -58,6 +58,20 @@ It removes global glow/grain and uses an approved black logo variant on paper;
 it does not change layout geometry, portrait sizes, crops or the scene. The
 palette's exact tokens are proposals. No production imports this directory.
 
+The source fixture has empty standings and quotes. `state-examples.html` adds
+an explicitly synthetic appendix after the current page, using existing
+standings/ticker/badge classes. The notice links directly to it. W/L, signed
+quote moves, LIVE plus its dot, all three medal ranks and badges appear on
+canvas, raised and hover backgrounds. The same samples and geometry appear in
+every palette. Darker semantic aliases replace inherited bright green/red/live
+orange and pale medal text; first-place color is separate from action color.
+Accent-tinted badge labels use main ink. These are color-state examples, not a
+recolor proposal for the approved Stocks workspace or invented league data.
+
+The wide teams divider stays as-is for like-for-like composition. Reducing
+its weight and the other excessive separators remains a separate layout PR;
+this comparison does not claim to solve that concern.
+
 Native roster details remain usable. Search/sort, matchup/figurine buttons and
 other application buttons are visibly disabled in this static snapshot. It
 does not demonstrate or reimplement their logic. Profile/player/navigation
@@ -98,7 +112,8 @@ user chooses exact production tokens.
 
 Offline renderer and script syntax pass. Source-only validation checks local
 asset references, module selectors, all 10 team disclosures and 228 roster
-references, and calculated light-palette contrast. Full repository typecheck
+references, semantic selector/alias mapping and calculated contrast on the
+represented canvas/surface/hover/badge fills. Full repository typecheck
 could not pass because the reused existing install lacks `vitest`/`vite`; no
 dependency installation or full build was performed. Focused preview/production
 typecheck results and contrast numbers are in `VALIDATION.md`.
