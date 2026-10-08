@@ -7,10 +7,16 @@
  */
 import { getStockMarketData } from "@/data/league";
 import { StockMarket } from "@/surfaces/stock-market/StockMarket";
+import { SectionNav } from "@/ui/SectionNav";
 
 export const revalidate = 300; // refresh prices every 5 minutes
 
 export default async function StocksPage() {
   const market = await getStockMarketData();
-  return <StockMarket market={market} />;
+  return (
+    <>
+      <SectionNav current="stocks" />
+      <StockMarket market={market} />
+    </>
+  );
 }
