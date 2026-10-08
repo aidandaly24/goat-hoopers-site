@@ -80,6 +80,7 @@ import { getStockStore } from "./stocks";
 import { getDb, type Db } from "./db";
 import { getStatProfiles, getSeasonHistory } from "./nba-stats";
 import { generateLeagueNews } from "./news";
+import { createTtlCache } from "./cache";
 
 export type SeasonHubData = {
   season: Season;
@@ -821,16 +822,50 @@ export async function getStockDetail(
 /**
  * Everything the League News Network needs: the auto-generated article
  * feed. Pure generation (`generateLeagueNews`) over the transaction
- * history and rookie draft board. Resilient like every loader — a failed
- * section degrades to an empty feed instead of throwing the page.
+ * history and rookie draft board.
+ *
+ * Reuse: the feed is public, read-only data (transactions, draft picks,
+ * teams — nothing session-scoped), so one cached copy is shared across
+ * requests — the root-layout ticker and /news no longer recompute it
+ * independently. Freshness is 5 minutes, matching the underlying
+ * transaction cache and the /news page revalidate. A failed refresh
+ * serves the last-good feed; a cold-start failure degrades to an empty
+ * feed instead of throwing the page.
  */
+export const LEAGUE_NEWS_TTL_MS = 5 * 60 * 1000;
+
+async function loadLeagueNews(): Promise<NewsArticle[]> {
+  const [{ transactions, teams }, { picks }] = await Promise.all([
+    getTransactionHistory(),
+    getDraftBoard(),
+  ]);
+  return generateLeagueNews({ transactions, picks, teams });
+}
+
+export type LeagueNewsCacheDeps = {
+  /** Injectable clock (tests). */
+  now?: () => number;
+  /** Injectable loader (tests). */
+  load?: () => Promise<NewsArticle[]>;
+  /** Injectable TTL (tests). */
+  ttlMs?: number;
+};
+
+/**
+ * Build the shared news cache. Dependency-inverted so tests can inject a
+ * fake clock and loader; production uses the module singleton behind
+ * getLeagueNews().
+ */
+export function createLeagueNewsCache(deps: LeagueNewsCacheDeps = {}) {
+  const { now, load = loadLeagueNews, ttlMs = LEAGUE_NEWS_TTL_MS } = deps;
+  return createTtlCache(load, { ttlMs, now });
+}
+
+const leagueNewsCache = createLeagueNewsCache();
+
 export async function getLeagueNews(): Promise<NewsArticle[]> {
   try {
-    const [{ transactions, teams }, { picks }] = await Promise.all([
-      getTransactionHistory(),
-      getDraftBoard(),
-    ]);
-    return generateLeagueNews({ transactions, picks, teams });
+    return await leagueNewsCache.get();
   } catch {
     return [];
   }

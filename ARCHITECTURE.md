@@ -472,9 +472,17 @@ Mobile and desktop are both first-class (rule 7). The convention:
 
 - League data (rosters, users, league meta, NBA state, matchups):
   `revalidate = 300` (5 min).
-- Player directory (~3MB, too big for Next's data cache): fetched with
-  `no-store` and ONLY when name resolution actually needs it (non-empty
-  transactions).
+- Player directory (~2.5MB raw): projected at parse time to the fields the
+  membrane reads (~330KB), cached per instance for 24h with last-good
+  fallback on refresh failure (`createPlayerDirectoryCache` in
+  `src/data/sleeper.ts`; `no-store` on the underlying fetch so the 24h TTL
+  is the single source of truth). Still fetched ONLY when name resolution
+  actually needs it — and never cached through the write-bearing market
+  producer (issue #44 owns that publication boundary).
+- League news feed (public, read-only): one shared copy per instance for
+  5 min (`createLeagueNewsCache` in `src/data/league.ts`), so the
+  root-layout ticker and `/news` don't recompute it independently. Nothing
+  session-scoped is ever cached across requests.
 
 ## Environment
 

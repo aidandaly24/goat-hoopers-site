@@ -6,10 +6,13 @@
  *   we need), never domain objects. Shaping into domain types happens in
  *   `transform.ts`.
  * - All requests go through `sleeperFetch`, which applies caching. League data
- *   revalidates every 5 minutes; the player directory revalidates daily.
+ *   revalidates every 5 minutes; the player directory is projected to the
+ *   fields we read and cached for 24h (see fetchPlayerDirectory).
  * - No other module in the app may import from this file except `transform.ts`
  *   and the high-level loaders in `league.ts`.
  */
+
+import { createTtlCache } from "./cache";
 
 const BASE = "https://api.sleeper.app/v1";
 
@@ -228,18 +231,94 @@ export function fetchWinnersBracket(): Promise<RawWinnersBracketEntry[]> {
 }
 
 /**
- * Full NBA player directory. Large (~3MB); Next's data cache can't hold it,
- * so this always refetches. Callers must only call it when they actually need
- * name resolution (see league.ts).
+ * Full NBA player directory. The raw payload is ~2.5MB, so each entry is
+ * projected to exactly the fields the membrane reads (see RawPlayerEntry) —
+ * the projected directory is ~330KB and safe to keep in memory.
+ *
+ * Freshness: cached per instance for 24h (player identity changes slowly;
+ * a day-old name/position/team is fine for a league site). On refresh
+ * failure the last-good value is served; on cold-start failure this throws
+ * and callers (safePlayerDirectory) degrade to null — the site renders
+ * without name resolution instead of crashing.
+ *
+ * The projection's source and version are declared as keys
+ * (PLAYER_DIRECTORY_SOURCE / PLAYER_DIRECTORY_PROJECTION_VERSION): bump
+ * the version when the kept field set changes so a stale shape is
+ * detectable.
  */
-export async function fetchPlayerDirectory(): Promise<
-  Record<string, RawPlayerEntry>
-> {
+export const PLAYER_DIRECTORY_SOURCE = "sleeper:/players/nba";
+export const PLAYER_DIRECTORY_PROJECTION_VERSION = 1;
+/** 24h in ms — the documented directory freshness (rule 14: daily cache). */
+export const PLAYER_DIRECTORY_TTL_MS = 24 * 60 * 60 * 1000;
+
+async function fetchRawPlayerDirectory(): Promise<Record<string, unknown>> {
+  // no-store: the 24h TTL cache above is the single source of truth for
+  // directory freshness — Next's fetch cache must not add a second layer.
   const res = await fetch(`${BASE}/players/nba`, { cache: "no-store" });
   if (!res.ok) {
     throw new Error(`Sleeper API ${res.status} on /players/nba`);
   }
-  return (await res.json()) as Record<string, RawPlayerEntry>;
+  return (await res.json()) as Record<string, unknown>;
+}
+
+/**
+ * Project the raw directory to the fields we read. Pure — safe to test
+ * with fixtures. Unknown/extra upstream fields are dropped, never read.
+ */
+export function projectPlayerDirectory(
+  raw: Record<string, unknown>,
+): Record<string, RawPlayerEntry> {
+  const out: Record<string, RawPlayerEntry> = {};
+  for (const [playerId, entry] of Object.entries(raw)) {
+    if (entry === null || typeof entry !== "object") continue;
+    const e = entry as Record<string, unknown>;
+    const projected: RawPlayerEntry = {};
+    if (typeof e.full_name === "string") projected.full_name = e.full_name;
+    if (typeof e.first_name === "string") projected.first_name = e.first_name;
+    if (typeof e.last_name === "string") projected.last_name = e.last_name;
+    if (typeof e.position === "string") projected.position = e.position;
+    if (typeof e.team === "string" || e.team === null) projected.team = e.team;
+    if (typeof e.age === "number") projected.age = e.age;
+    if (typeof e.injury_status === "string" || e.injury_status === null)
+      projected.injury_status = e.injury_status;
+    if (typeof e.years_exp === "number") projected.years_exp = e.years_exp;
+    out[playerId] = projected;
+  }
+  return out;
+}
+
+export type PlayerDirectoryCacheDeps = {
+  /** Injectable clock (tests). */
+  now?: () => number;
+  /** Injectable raw fetch (tests). */
+  fetchRaw?: () => Promise<Record<string, unknown>>;
+  /** Injectable TTL (tests). */
+  ttlMs?: number;
+};
+
+/**
+ * Build a projected, cached player directory. Dependency-inverted so tests
+ * can inject a fake clock and fetcher; production uses the module
+ * singleton behind fetchPlayerDirectory().
+ */
+export function createPlayerDirectoryCache(deps: PlayerDirectoryCacheDeps = {}) {
+  const {
+    now,
+    fetchRaw = fetchRawPlayerDirectory,
+    ttlMs = PLAYER_DIRECTORY_TTL_MS,
+  } = deps;
+  return createTtlCache(
+    async () => projectPlayerDirectory(await fetchRaw()),
+    { ttlMs, now },
+  );
+}
+
+const playerDirectoryCache = createPlayerDirectoryCache();
+
+export function fetchPlayerDirectory(): Promise<
+  Record<string, RawPlayerEntry>
+> {
+  return playerDirectoryCache.get();
 }
 
 /**
