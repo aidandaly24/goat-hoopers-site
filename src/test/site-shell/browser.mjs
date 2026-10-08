@@ -54,12 +54,22 @@ async function context(width, height = 900, owner = browser, safeArea = 0) {
   return { ctx, page };
 }
 async function settled(page) {
-  await page.locator("[data-site-chrome]").waitFor();
-  await page.waitForFunction(() => {
-    const chrome = document.querySelector("[data-site-chrome]");
-    return Math.abs(parseFloat(document.documentElement.style.getPropertyValue("--gh-chrome-h")) - chrome.getBoundingClientRect().height) < 1;
-  });
-  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      await page.waitForLoadState("networkidle");
+      await page.locator("[data-site-chrome]").waitFor();
+      await page.waitForFunction(() => {
+        const chrome = document.querySelector("[data-site-chrome]");
+        return Math.abs(parseFloat(document.documentElement.style.getPropertyValue("--gh-chrome-h")) - chrome.getBoundingClientRect().height) < 1;
+      });
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      return;
+    } catch (error) {
+      // Streamed auth/not-found redirects can replace the context after the
+      // first shell appears. Retry readiness only, never an acceptance assertion.
+      if (attempt === 2 || !String(error).includes("Execution context was destroyed")) throw error;
+    }
+  }
 }
 async function geometry(page, heading = true) {
   return page.evaluate(heading => {
@@ -143,7 +153,7 @@ async function gameChecks(origin, fixture) {
       const gameProfiles = [[741, 832, 16, 0], [720, 450, 16, 0], [390, 844, 16, 34], [320, 568, 16, 34], [741, 900, 32, 0], [390, 900, 32, 34], [320, 900, 32, 34]];
       for (const [width, height, fontSize, safeArea] of process.argv.includes("--game-narrow-only") ? gameProfiles.slice(-1) : gameProfiles) {
         const { ctx, page } = await context(width, height, gameBrowser, safeArea);
-        await page.goto(origin + "/arcade/free-throw" + (fixture ? "?ticker=1" : ""), { waitUntil: "domcontentloaded" });
+        await page.goto(origin + "/arcade/free-throw" + (fixture ? "?ticker=1" : ""), { waitUntil: "networkidle" });
         await page.evaluate(size => { document.documentElement.style.fontSize = size + "px"; }, fontSize);
         await page.locator('[data-shot-state="ready"]').waitFor({ timeout: 20000 });
         await settled(page);
@@ -216,7 +226,7 @@ try {
     const origin = await start(true);
     for (const [width, height, fontSize] of [[390, 844, 16], [320, 568, 16], [390, 900, 32], [320, 900, 32]]) for (const ticker of [false, true]) {
       const { ctx, page } = await context(width, height, browser, 34);
-      await page.goto(origin + "/history?history=1" + (ticker ? "&ticker=1" : ""), { waitUntil: "domcontentloaded" });
+      await page.goto(origin + "/history?history=1" + (ticker ? "&ticker=1" : ""), { waitUntil: "networkidle" });
       await page.evaluate(size => { document.documentElement.style.fontSize = size + "px"; }, fontSize);
       await verifyShell(page);
       await keyboard(page);
@@ -245,9 +255,11 @@ try {
     for (const [width, fontSize, height, safeArea] of [[1440, 16, 900, 0], [741, 16, 900, 0], [390, 16, 844, 34], [320, 16, 568, 34], [720, 16, 450, 0], [390, 32, 900, 34], [320, 32, 900, 34]]) {
       const { ctx, page } = await context(width, height, browser, safeArea);
       for (const route of routes) {
-        await page.goto(origin + route, { waitUntil: "domcontentloaded" });
+        console.log(`Checking Next ${width}px / ${fontSize / 16 * 100}% text: ${route}`);
+        await page.goto(origin + route, { waitUntil: "networkidle" });
         await page.evaluate(size => { document.documentElement.style.fontSize = size + "px"; }, fontSize);
-        await verifyShell(page);
+        const routeMetrics = await verifyShell(page);
+        assert.equal(routeMetrics.rootFontSize, fontSize, "The route retains the requested text enlargement after redirects");
         await keyboard(page);
         await anchor(page);
         if (route === "/history" && fontSize === 16 && [1440, 390, 320, 720].includes(width)) {
@@ -255,10 +267,10 @@ try {
           await page.screenshot({ path: path.join(evidence, `history-production-${width}.png`) });
         }
       }
-      await page.goto(origin + "/history", { waitUntil: "domcontentloaded" });
+      await page.goto(origin + "/history", { waitUntil: "networkidle" });
       await page.evaluate(size => { document.documentElement.style.fontSize = size + "px"; }, fontSize);
       await fixedNavScroll(page, width, fontSize);
-      await page.goto(origin + "/history", { waitUntil: "domcontentloaded" });
+      await page.goto(origin + "/history", { waitUntil: "networkidle" });
       await page.evaluate(size => { document.documentElement.style.fontSize = size + "px"; }, fontSize);
       await settled(page);
       await page.evaluate(() => window.scrollTo(0, 220));
@@ -301,7 +313,7 @@ try {
     for (const fontSize of [16, 32]) for (const signed of [false, true]) for (const ticker of [false, true]) {
       for (const route of ["/stocks", "/history"]) {
         const query = new URLSearchParams({ ...(signed ? { user: "1" } : {}), ...(ticker ? { ticker: "1" } : {}) });
-        await page.goto(origin + route + "?" + query, { waitUntil: "domcontentloaded" });
+        await page.goto(origin + route + "?" + query, { waitUntil: "networkidle" });
         await page.evaluate(size => { document.documentElement.style.fontSize = size + "px"; }, fontSize);
         const g = await verifyShell(page, { signed });
         if (width === 390 && fontSize === 32 && !signed && ticker && route === "/stocks") await page.screenshot({ path: path.join(evidence, "stocks-200-percent-text-390.png") });
@@ -328,7 +340,7 @@ try {
       }
     }
     for (const fontSize of [16, 32]) for (const ticker of [false, true]) {
-      await page.goto(origin + "/stocks?populated=1" + (ticker ? "&ticker=1" : ""), { waitUntil: "domcontentloaded" });
+      await page.goto(origin + "/stocks?populated=1" + (ticker ? "&ticker=1" : ""), { waitUntil: "networkidle" });
       await page.evaluate(size => { document.documentElement.style.fontSize = size + "px"; }, fontSize);
       await verifyShell(page);
       await page.getByRole("button", { name: "Price history for Synthetic player 1", exact: true }).click();
@@ -344,7 +356,7 @@ try {
       await visibleFocus(page.getByRole("button", { name: "Close player detail", exact: true }));
       if (fontSize === 16 && ticker && [741, 390].includes(width)) await page.screenshot({ path: path.join(evidence, `stocks-selected-${width}.png`), fullPage: false });
       await page.getByRole("button", { name: "Close player detail", exact: true }).click();
-      await page.goto(origin + "/?" + (ticker ? "ticker=1" : ""), { waitUntil: "domcontentloaded" });
+      await page.goto(origin + "/?" + (ticker ? "ticker=1" : ""), { waitUntil: "networkidle" });
       await page.evaluate(size => { document.documentElement.style.fontSize = size + "px"; }, fontSize);
       await verifyShell(page);
       const homeSkip = page.getByRole("link", { name: "Skip to this week’s players", exact: true });
