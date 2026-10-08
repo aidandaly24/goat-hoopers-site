@@ -11,7 +11,7 @@
  * a no-op store. The market still computes live prices; change % and the
  * movers sections simply show their "no history yet" states.
  */
-import { desc, eq, lt, sql } from "drizzle-orm";
+import { desc, eq, inArray, lt, sql } from "drizzle-orm";
 import type { PriceHistoryPoint, PriceSource } from "@/domain/stock";
 import { getDb, priceHistory, stockSnapshots } from "./db";
 
@@ -69,11 +69,14 @@ class DrizzleStockStore implements StockStore {
     const history: PriceHistory = {};
 
     // Reconstructed history: gamelog dense points + backtest yearly points.
-    // One query for all players; sampled per player below.
+    // Filtered to wanted players in SQL — the backfill writes one row per
+    // player per game (~100k+ rows), and fetching the whole table per page
+    // load would be a Neon free-tier tax on every market view.
     try {
       const recon = await db
         .select()
         .from(priceHistory)
+        .where(inArray(priceHistory.playerId, playerIds))
         .orderBy(priceHistory.date);
       for (const row of recon) {
         if (!wanted.has(row.playerId)) continue;
