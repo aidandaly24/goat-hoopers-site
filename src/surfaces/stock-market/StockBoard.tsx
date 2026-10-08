@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { PlayerStock } from "@/domain";
+import type { StockQuote } from "@/domain";
 import { StockRow } from "./StockRow";
 import styles from "./StockBoard.module.css";
 
@@ -14,7 +14,7 @@ const PAGE_SIZE = 25;
  * "All" resets everything; position chips single-select; "Rookies" is an
  * independent toggle that combines with the position filter.
  */
-export function StockBoard({ stocks }: { stocks: PlayerStock[] }) {
+export function StockBoard({ stocks }: { stocks: StockQuote[] }) {
   const [pos, setPos] = useState<string | null>(null);
   const [rookiesOnly, setRookiesOnly] = useState(false);
   const [query, setQuery] = useState("");
@@ -146,7 +146,7 @@ export function StockBoard({ stocks }: { stocks: PlayerStock[] }) {
         <>
           <ul className={styles.list}>
             {shown.map((s) => (
-              <StockRow key={s.playerId} stock={s} />
+              <StockRow key={s.playerId} quote={s} />
             ))}
           </ul>
           {visible < filtered.length && <div ref={sentinelRef} aria-hidden="true" />}

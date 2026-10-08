@@ -1,4 +1,7 @@
-import type { PlayerStock } from "@/domain";
+"use client";
+
+import { useRef, useState } from "react";
+import type { StockDetail, StockQuote } from "@/domain";
 import { formatPrice, formatPct, formatChange } from "./format";
 import styles from "./StockRow.module.css";
 
@@ -35,18 +38,127 @@ function Sparkline({ points }: { points: number[] }) {
 }
 
 /**
- * One player's stock as a Yahoo Finance-style quote row: name + meta on
- * the left, mono price + colored move on the right. Expands (native
- * <details>, no JavaScript) to the sparkline and the "why this price"
- * factor breakdown.
+ * Bloomberg-style season history chart: per-season fantasy PPG as bars,
+ * newest season highlighted. Compact — lives inside the expanded row.
+ * Inline SVG, no chart library.
  */
-export function StockRow({ stock: s }: { stock: PlayerStock }) {
+function SeasonChart({
+  history,
+}: {
+  history: StockDetail["seasonHistory"];
+}) {
+  if (history.length === 0) return null;
+  // Oldest → newest left to right; input is newest first.
+  const seasons = [...history].reverse();
+  const max = Math.max(...seasons.map((h) => h.fppg), 1);
+  const w = 280;
+  const h = 110;
+  const padB = 30;
+  const padT = 18;
+  const slotW = w / seasons.length;
+  const barW = Math.min(44, slotW * 0.55);
+  return (
+    <svg
+      viewBox={`0 0 ${w} ${h}`}
+      className={styles.seasonChart}
+      role="img"
+      aria-label="Fantasy points per game by season"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      {seasons.map((s, i) => {
+        const barH = Math.max(3, ((h - padB - padT) * s.fppg) / max);
+        const x = slotW * i + (slotW - barW) / 2;
+        const y = h - padB - barH;
+        const newest = i === seasons.length - 1;
+        return (
+          <g key={s.season}>
+            <title>
+              {s.season}: {s.fppg.toFixed(1)} fppg over {s.games} games
+            </title>
+            <rect
+              x={x}
+              y={y}
+              width={barW}
+              height={barH}
+              rx="2"
+              fill={
+                newest ? "var(--gh-term-amber)" : "var(--gh-term-faint)"
+              }
+              opacity={newest ? 1 : 0.75}
+            />
+            <text
+              x={x + barW / 2}
+              y={y - 5}
+              textAnchor="middle"
+              className={styles.chartValue}
+            >
+              {s.fppg.toFixed(1)}
+            </text>
+            <text
+              x={x + barW / 2}
+              y={h - padB + 14}
+              textAnchor="middle"
+              className={styles.chartLabel}
+            >
+              {s.season.slice(2)}
+            </text>
+            <text
+              x={x + barW / 2}
+              y={h - 4}
+              textAnchor="middle"
+              className={styles.chartGames}
+            >
+              {s.games}g
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+type DetailState =
+  | { status: "idle" }
+  | { status: "loading" }
+  | { status: "ready"; detail: StockDetail }
+  | { status: "error" };
+
+/**
+ * One player's stock as a Yahoo Finance-style quote row: name + meta on
+ * the left, mono price + colored move on the right.
+ *
+ * Per Rule 14 the row ships only its quote. Expanding fetches the deep
+ * data (sparkline, season history chart, factor breakdown) on demand from
+ * GET /api/stocks/[playerId] — never in the list HTML.
+ */
+export function StockRow({ quote: s }: { quote: StockQuote }) {
+  const [detail, setDetail] = useState<DetailState>({ status: "idle" });
+  const fetching = useRef(false);
+
   const moveClass =
     s.trend === "up" ? styles.up : s.trend === "down" ? styles.down : styles.flat;
   const arrow = s.trend === "up" ? "▲" : s.trend === "down" ? "▼" : "▪";
+
+  async function onToggle(e: React.SyntheticEvent<HTMLDetailsElement>) {
+    if (!e.currentTarget.open || detail.status !== "idle" || fetching.current)
+      return;
+    fetching.current = true;
+    setDetail({ status: "loading" });
+    try {
+      const res = await fetch(`/api/stocks/${s.playerId}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = (await res.json()) as StockDetail;
+      setDetail({ status: "ready", detail: data });
+    } catch {
+      setDetail({ status: "error" });
+    } finally {
+      fetching.current = false;
+    }
+  }
+
   return (
     <li className={styles.item}>
-      <details className={styles.row}>
+      <details className={styles.row} onToggle={onToggle}>
         <summary className={styles.quote}>
           <span className={styles.who}>
             <span className={styles.name}>{s.playerName}</span>
@@ -69,47 +181,51 @@ export function StockRow({ stock: s }: { stock: PlayerStock }) {
           </span>
         </summary>
         <div className={styles.detail}>
-          <div className={styles.detailHead}>
-            <Sparkline points={s.spark} />
-            <span className={styles.owned}>
-              {Math.round(s.ownership * 100)}% owned
-            </span>
-          </div>
-          {s.seasonHistory.length > 0 && (
+          {detail.status === "idle" || detail.status === "loading" ? (
+            <p className={styles.loading}>Loading the tape…</p>
+          ) : detail.status === "error" ? (
+            <p className={styles.loading}>
+              Couldn&apos;t load the detail — try expanding again.
+            </p>
+          ) : (
             <>
-              <p className={styles.whyHead}>Last {s.seasonHistory.length} seasons</p>
+              <div className={styles.detailHead}>
+                <Sparkline points={detail.detail.spark} />
+                <span className={styles.owned}>
+                  {Math.round(s.ownership * 100)}% owned
+                </span>
+              </div>
+              {detail.detail.seasonHistory.length > 0 && (
+                <>
+                  <p className={styles.whyHead}>
+                    Production history (fppg)
+                  </p>
+                  <SeasonChart history={detail.detail.seasonHistory} />
+                </>
+              )}
+              <p className={styles.whyHead}>Why this price</p>
               <ul className={styles.factors}>
-                {s.seasonHistory.map((h) => (
-                  <li key={h.season} className={styles.factor}>
-                    <span className={styles.factorLabel}>{h.season}</span>
-                    <span className={styles.dFlat}>{h.fppg.toFixed(1)} fppg</span>
-                    <span className={styles.factorNote}>{h.games} games</span>
+                {detail.detail.factors.map((f) => (
+                  <li key={f.kind} className={styles.factor}>
+                    <span className={styles.factorLabel}>{f.label}</span>
+                    <span
+                      className={
+                        f.delta > 0
+                          ? styles.dUp
+                          : f.delta < 0
+                            ? styles.dDown
+                            : styles.dFlat
+                      }
+                    >
+                      {f.delta > 0 ? "+" : ""}
+                      {f.delta.toFixed(2)}
+                    </span>
+                    <span className={styles.factorNote}>{f.note}</span>
                   </li>
                 ))}
               </ul>
             </>
           )}
-          <p className={styles.whyHead}>Why this price</p>
-          <ul className={styles.factors}>
-            {s.factors.map((f) => (
-              <li key={f.kind} className={styles.factor}>
-                <span className={styles.factorLabel}>{f.label}</span>
-                <span
-                  className={
-                    f.delta > 0
-                      ? styles.dUp
-                      : f.delta < 0
-                        ? styles.dDown
-                        : styles.dFlat
-                  }
-                >
-                  {f.delta > 0 ? "+" : ""}
-                  {f.delta.toFixed(2)}
-                </span>
-                <span className={styles.factorNote}>{f.note}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </details>
     </li>

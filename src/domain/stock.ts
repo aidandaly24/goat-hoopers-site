@@ -104,20 +104,63 @@ export type PlayerStock = {
 };
 
 export type PanicSignal = {
-  stock: PlayerStock;
+  stock: StockQuote;
   /** Why this is alarming, e.g. "Traded 3 times in 14 days". */
   reason: string;
   /** 1 = keep an eye on it, 2 = spicy, 3 = full panic. */
   intensity: 1 | 2 | 3;
 };
 
+/**
+ * The slim quote every list view gets: everything a row shows, nothing it
+ * doesn't. Per Rule 14, deep per-player data (factors, season history,
+ * sparkline) is NOT here — it loads on expand via `getStockDetail` /
+ * `GET /api/stocks/[playerId]`.
+ */
+export type StockQuote = {
+  /** Sleeper player_id. */
+  playerId: string;
+  playerName: string;
+  position: string | null;
+  nbaTeam: string | null;
+  /** Current modeled price in FAAB dollars. */
+  price: number;
+  /** Price at the previous snapshot; null when no history exists yet. */
+  prevPrice: number | null;
+  /** price - prevPrice; null when no history. */
+  change: number | null;
+  /** Percentage change vs prevPrice; null when no history. */
+  changePct: number | null;
+  trend: StockTrend;
+  /** Share of league teams rostering the player, 0–1. */
+  ownership: number;
+  /** Earliest overall pick in a league rookie draft; null for non-rookies. */
+  rookiePick: number | null;
+};
+
+/**
+ * One player's deep data, fetched on expand. Never ships in list HTML.
+ */
+export type StockDetail = {
+  playerId: string;
+  /** What moved the price, largest absolute delta first. */
+  factors: StockFactor[];
+  /**
+   * Per-season production, newest first (up to 5 seasons). Powers the
+   * history chart in the expanded row.
+   */
+  seasonHistory: Array<{ season: string; fppg: number; games: number }>;
+  /** Recent price points for the sparkline, oldest → newest. */
+  spark: number[];
+};
+
 export type StockMarket = {
-  /** Every priced player, sorted by price descending. */
-  stocks: PlayerStock[];
+  /** Every priced player, sorted by price descending. Slim quotes only. */
+  stocks: StockQuote[];
   /** Biggest gainers with real price history. Empty until snapshots exist. */
-  trending: PlayerStock[];
+  trending: StockQuote[];
   /** Biggest losers with real price history. Empty until snapshots exist. */
-  falling: PlayerStock[];
+  falling: StockQuote[];
   /** Unusual trade/drop activity worth a second look. */
   panic: PanicSignal[];
   /** Unix ms of computation. */

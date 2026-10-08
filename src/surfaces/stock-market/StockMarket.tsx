@@ -56,7 +56,7 @@ export function StockMarket({ market }: { market: StockMarketData }) {
           ) : (
             <ul className={styles.list}>
               {market.trending.slice(0, 5).map((s) => (
-                <StockRow key={s.playerId} stock={s} />
+                <StockRow key={s.playerId} quote={s} />
               ))}
             </ul>
           )}
@@ -73,7 +73,7 @@ export function StockMarket({ market }: { market: StockMarketData }) {
           ) : (
             <ul className={styles.list}>
               {market.falling.slice(0, 5).map((s) => (
-                <StockRow key={s.playerId} stock={s} />
+                <StockRow key={s.playerId} quote={s} />
               ))}
             </ul>
           )}

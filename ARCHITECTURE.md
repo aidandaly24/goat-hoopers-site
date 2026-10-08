@@ -103,8 +103,11 @@ src/
                  # and stock quotes, rendered by the root layout),
                  # StockMarket (top gainers / decliners, panic meter, full
                  # board), StockBoard (client-side position + rookie filter
-                 # chips), StockRow (Yahoo Finance-style quote row with
-                 # expandable factor breakdown), PanicMeter. Receives domain
+                 # chips), StockRow (client quote row; expands to fetch its
+                 # detail on demand), SeasonChart (inline-SVG fppg history),
+                 # PanicMeter. Receives domain objects, never fetches —
+                 # except StockRow, which calls GET /api/stocks/[playerId]
+                 # on expand for its detail (Rule 14).
                  # objects, never fetches.
     news/        # The League News Network: MyLeague-style auto-generated
                  # coverage. Newsroom (front page), NewsFeed (client-side
