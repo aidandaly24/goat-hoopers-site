@@ -12,6 +12,17 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { toStatus, toLiveGame, fetchLiveGames } from "@/data/espn";
 
+// Exact status shape supplied from ESPN's 2025-01-11 scoreboard:
+// events 401705098, 401705103 and 401705104. No live request is needed.
+const postponedStatus = {
+  id: "6", name: "STATUS_POSTPONED", state: "post",
+  completed: false, shortDetail: "Postponed",
+};
+const completedFinalStatus = {
+  id: "3", name: "STATUS_FINAL", state: "post",
+  completed: true, shortDetail: "Final",
+};
+
 function validEvent(overrides: Record<string, unknown> = {}) {
   return {
     id: "401123456",
@@ -39,6 +50,31 @@ function validEvent(overrides: Record<string, unknown> = {}) {
 }
 
 describe("toStatus", () => {
+  it("rejects ESPN's explicit postponed post-state rather than classifying it as final", () => {
+    expect(toStatus(postponedStatus)).toBeNull();
+  });
+
+  it("preserves a genuinely completed final", () => {
+    expect(toStatus(completedFinalStatus)).toBe("final");
+  });
+
+  it.each([
+    { name: "STATUS_POSTPONED", state: "pre", completed: true },
+    { id: "6", state: "pre" },
+    { name: "STATUS_CANCELED", state: "post", completed: true },
+    { name: "STATUS_CANCELLED", state: "pre" },
+    { state: "post", completed: false },
+    { id: "3", completed: false },
+  ])("rejects explicit excluded/unfinished terminal status %j", (status) => {
+    expect(toStatus(status)).toBeNull();
+  });
+
+  it("keeps noncompleted scheduled/live states and state precedence over legacy id", () => {
+    expect(toStatus({ id: "1", state: "pre", completed: false })).toBe("scheduled");
+    expect(toStatus({ id: "2", state: "in", completed: false })).toBe("in-progress");
+    expect(toStatus({ id: "3", state: "in", completed: false })).toBe("in-progress");
+  });
+
   it("classifies the documented lifecycle states", () => {
     expect(toStatus({ state: "pre" })).toBe("scheduled");
     expect(toStatus({ state: "in" })).toBe("in-progress");
@@ -68,6 +104,18 @@ describe("toStatus", () => {
 });
 
 describe("toLiveGame", () => {
+  it.each(["401705098", "401705103", "401705104"])(
+    "drops ESPN's postponed event %s",
+    (id) => {
+      expect(toLiveGame(validEvent({ id, status: { type: postponedStatus } }))).toBeNull();
+    },
+  );
+
+  it("maps a genuinely completed final", () => {
+    expect(toLiveGame(validEvent({ status: { type: completedFinalStatus } })))
+      .toMatchObject({ status: "final", clock: "Final", awayScore: 102, homeScore: 98 });
+  });
+
   it("maps a valid in-progress event", () => {
     const g = toLiveGame(validEvent());
     expect(g).toMatchObject({
@@ -164,6 +212,21 @@ describe("fetchLiveGames", () => {
       json: async () => body,
     } as Response;
   }
+
+  it("filters the provider-shaped postponed events while keeping live and completed-final siblings", async () => {
+    fakeFetch.mockResolvedValue(okResponse({
+      day: { date: "2025-01-11" },
+      events: [
+        ...["401705098", "401705103", "401705104"].map((id) =>
+          validEvent({ id, status: { type: postponedStatus } })),
+        validEvent(),
+        validEvent({ id: "completed-control", status: { type: completedFinalStatus } }),
+      ],
+    }));
+    const result = await fetchLiveGames();
+    expect(result.games.map((game) => game.id)).toEqual(["401123456", "completed-control"]);
+    expect(result.games.map((game) => game.status)).toEqual(["in-progress", "final"]);
+  });
 
   it("maps mixed valid and malformed events, keeping valid siblings", async () => {
     fakeFetch.mockResolvedValue(

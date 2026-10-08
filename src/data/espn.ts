@@ -93,6 +93,7 @@ const POLL_MS = 60_000;
 /** Raw ESPN shapes — every leaf is unknown until validated below (P2-4). */
 type RawStatusType = {
   id?: unknown;
+  name?: unknown;
   state?: unknown;
   completed?: unknown;
   shortDetail?: unknown;
@@ -143,6 +144,14 @@ export function toStatus(type: unknown): LiveGameStatus | null {
   const t = asStatusType(type);
   if (!t) return null;
   const state = typeof t.state === "string" ? t.state : null;
+  const name = asNonEmptyString(t.name);
+  // ESPN also uses "post" for postponed/canceled games. Explicit
+  // exclusions and a false terminal completion flag outrank that state.
+  if (
+    t.id === "6" || name === "STATUS_POSTPONED" ||
+    name === "STATUS_CANCELED" || name === "STATUS_CANCELLED" ||
+    ((state === "post" || (state === null && t.id === "3")) && t.completed === false)
+  ) return null;
   if (state !== null) {
     if (state === "in") return "in-progress";
     if (state === "post") return "final";
