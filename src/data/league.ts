@@ -25,6 +25,7 @@ import type {
   StockMarket,
   NewsArticle,
 } from "@/domain";
+import type { PlayerStatProfile } from "@/domain";
 import {
   fetchLeague,
   fetchRosters,
@@ -35,11 +36,13 @@ import {
   fetchDrafts,
   fetchDraftPicks,
   fetchPlayerDirectory,
+  fetchSeasonStats,
   fetchWinnersBracket,
   type RawMatchupEntry,
   type RawNbaState,
   type RawPlayerEntry,
   type RawTransaction,
+  type RawDraftPick,
 } from "./sleeper";
 import {
   toSeason,
@@ -66,6 +69,8 @@ import {
  * the shared transform import block above. */
 import { championRosterId } from "./transform";
 import { getStockStore } from "./stocks";
+import { getDb, type Db } from "./db";
+import { getStatProfiles } from "./nba-stats";
 import { generateLeagueNews } from "./news";
 
 export type SeasonHubData = {
@@ -626,24 +631,51 @@ export async function getStockMarketData(): Promise<StockMarket> {
     }
   }
 
-  // Rookie-draft capital: most recent draft, player_id → overall pick.
+  // Rookie-draft pedigree: earliest overall pick across ALL drafts.
+  // (v1 used only the latest draft, which is why every current rookie
+  // priced like a blue chip and last year's rookies got nothing.)
   const draftPick: Record<string, number> = {};
   try {
     const drafts = await fetchDrafts();
-    const latest = [...drafts].sort(
-      (a, b) => (b.start_time ?? 0) - (a.start_time ?? 0)
-    )[0];
-    if (latest) {
-      const picks = await fetchDraftPicks(latest.draft_id);
+    const ordered = [...drafts].sort(
+      (a, b) => (a.start_time ?? 0) - (b.start_time ?? 0)
+    );
+    for (const d of ordered) {
+      const picks = await fetchDraftPicks(d.draft_id).catch(
+        () => [] as RawDraftPick[]
+      );
       for (const p of picks) {
-        if (p.player_id && p.player_id !== "0") draftPick[p.player_id] = p.pick_no;
+        if (p.player_id && p.player_id !== "0" && draftPick[p.player_id] == null) {
+          draftPick[p.player_id] = p.pick_no;
+        }
       }
     }
   } catch {
-    // No draft capital — rookies price without the premium.
+    // No draft capital — rookies price on the replacement-level prior.
   }
 
   const directory = await safePlayerDirectory();
+
+  // Player fundamentals (trailing production + pedigree), cached daily.
+  // Best-effort: without them the engine prices on pedigree alone.
+  let statProfiles: Record<string, PlayerStatProfile> | null = null;
+  try {
+    let db: Db | null = null;
+    try {
+      db = getDb();
+    } catch {
+      db = null;
+    }
+    statProfiles = await getStatProfiles({
+      db,
+      scoring: league.scoring_settings ?? {},
+      fetchSeasonStats,
+      leaguePicks: draftPick,
+      seasons: [String(Number(league.season) - 1), String(Number(league.season) - 2)],
+    });
+  } catch {
+    statProfiles = null;
+  }
 
   // Previous prices for change %. Best-effort: without them the market
   // still computes, it just shows "new listing" states.
@@ -663,6 +695,7 @@ export async function getStockMarketData(): Promise<StockMarket> {
     flow,
     tradeCount,
     draftPick,
+    statProfiles,
     history,
     now,
   });

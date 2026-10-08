@@ -31,6 +31,8 @@ export type RawLeague = {
     /** Waiver budget in FAAB dollars; anchors the stock market's FAAB scale. */
     waiver_budget?: number;
   };
+  /** Fantasy scoring: stat field → points per unit (e.g. { pts: 0.5 }). */
+  scoring_settings: Record<string, number>;
 };
 
 export type RawRosterSettings = {
@@ -238,4 +240,19 @@ export async function fetchPlayerDirectory(): Promise<
     throw new Error(`Sleeper API ${res.status} on /players/nba`);
   }
   return (await res.json()) as Record<string, RawPlayerEntry>;
+}
+
+/**
+ * Season stat totals per player: player_id → { pts, reb, ast, …, gp, sp, … }.
+ * This is the real-production feed the stock market's valuation v2 runs on
+ * (it turned out Sleeper does expose per-player stats — the old "no stat
+ * feed" comment was wrong). One call returns the whole league. Cache a day.
+ */
+export async function fetchSeasonStats(
+  season: string
+): Promise<Record<string, Record<string, number>>> {
+  return sleeperFetch<Record<string, Record<string, number>>>(
+    `/stats/nba/regular/${season}`,
+    86400
+  );
 }

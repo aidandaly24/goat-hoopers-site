@@ -3,10 +3,11 @@
  *
  * The league runs its waiver wire on FAAB, so every player gets a modeled
  * price in FAAB dollars. Prices come from the valuation engine in
- * `src/data/transform.ts` (`computeStockMarket`), which blends real league
- * signals (ownership, FAAB spent, trades, add/drop velocity, rookie draft
- * capital) with fundamentals (age curve, injury status). Nothing here is
- * scraped from outside the league: the "market" is our ten managers.
+ * `src/data/transform.ts` (`computeStockMarket`), which blends fundamentals
+ * (trailing NBA production in our scoring, prospect pedigree, age curve)
+ * with bounded league sentiment (ownership, FAAB spent, trades, add/drop
+ * velocity). Trailing production comes from Sleeper's own stats feed —
+ * real box-score totals, not vibes.
  *
  * Price history comes from periodic snapshots persisted by the data layer.
  * Until the first snapshot exists, change fields are null and the UI shows
@@ -14,6 +15,28 @@
  */
 
 export type StockTrend = "up" | "down" | "flat";
+
+/**
+ * A player's fundamentals for valuation v2. Built by `src/data/nba-stats.ts`
+ * from Sleeper's stats feed (trailing production) and the league's rookie
+ * drafts (pedigree), cached in `player_stat_cache` and refreshed daily.
+ */
+export type PlayerStatProfile = {
+  /**
+   * Trailing fantasy PPG in our league's scoring
+   * (0.65 × last season + 0.35 × season before). Null when the player has
+   * no NBA stat line — the engine then prices pure pedigree.
+   */
+  fppg: number | null;
+  /** Estimated career NBA minutes (sums the seasons on record). */
+  careerMinutes: number;
+  /** In-season EMA of game fppg; null until games are played. */
+  emaFppg: number | null;
+  /** Games folded into emaFppg. */
+  emaGames: number;
+  /** Earliest league rookie-draft overall pick; null if never drafted. */
+  leaguePick: number | null;
+};
 
 /**
  * The inputs that move a player's price. `contract` is tracked as a kind
@@ -66,7 +89,7 @@ export type PlayerStock = {
   tradeCount: number;
   /** Share of league teams rostering the player, 0–1. */
   ownership: number;
-  /** Overall pick number in the latest rookie draft; null for non-rookies. */
+  /** Earliest overall pick in a league rookie draft; null for non-rookies. */
   rookiePick: number | null;
 };
 
@@ -91,4 +114,9 @@ export type StockMarket = {
   updatedAt: number;
   /** False on the very first snapshot — no change % yet. */
   hasHistory: boolean;
+  /**
+   * "preseason" until any player has in-season EMA games; the surface shows
+   * an honest "preseason pricing" badge in that state.
+   */
+  pricingBasis: "preseason" | "in-season";
 };

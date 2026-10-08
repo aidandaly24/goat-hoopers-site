@@ -29,6 +29,8 @@ src/
                  # types — teams are referenced by Sleeper roster id only.
   data/          # The ONLY place the outside world is touched.
     sleeper.ts   # Raw API client. Returns raw JSON, nothing else.
+    nba-stats.ts # Player fundamentals: Sleeper's stats feed → cached
+                 # PlayerStatProfiles (impure shell; math in transform.ts).
     transform.ts # Raw JSON -> domain objects. The membrane.
     analytics.ts # Pure data tools: computePowerRankings, computePlayoffOdds,
                  # computeRecordBook, computeMatchupPreviews. No fetching —
@@ -221,20 +223,37 @@ data, no context providers for league state, no prop drilling of raw JSON.
 `getStockMarketData` (in `src/data/league.ts`) prices every player with a
 market footprint like a stock, in FAAB dollars — the league's waiver
 currency. The math is the pure `computeStockMarket` in `transform.ts`
-(same dependency-inversion seam as stats): it blends real league signals
-(ownership share, FAAB spent on waiver bids, trade count, add/drop
-velocity, rookie-draft capital) with fundamentals (age curve, injury
-status). "Production" is market-implied — Sleeper's public API has no
-per-player stat feed, and the code says so; "contract" always resolves
-neutral because Sleeper tracks no contracts and the engine won't invent
-them.
+(same dependency-inversion seam as stats):
 
-Price history comes from the `stock_snapshots` table (`src/data/stocks.ts`
-owns the store contract). Change %, the trending/falling sections, and
-sparklines all derive from snapshots. When the database isn't provisioned
-the store is a no-op: prices still compute live, movers show their honest
-"no history yet" states, and nothing crashes. Snapshots older than 30 days
-are pruned on write.
+    price = K × ability × futureSeasons(age) × sentiment × injury
+
+- **ability** is a Bayesian blend of proven production and prospect
+  pedigree. Proven production is trailing fantasy PPG in our scoring
+  (0.65 × last season + 0.35 × season before), computed from Sleeper's
+  own stats feed (`/stats/nba/regular/{season}` — real box-score totals;
+  the old "Sleeper has no per-player stat feed" comment was wrong).
+  Pedigree is historical year-1–3 fantasy output for the player's league
+  rookie-draft slot. Blend weight w = exp(−careerMinutes/800): unproven
+  rookies price on pedigree, veterans on production.
+- **futureSeasons(age)** is the discounted remaining prime
+  (Σ ageCurve(age+t)/ageCurve(age) × 0.85^t) — the dynasty term.
+- **sentiment** is a bounded (±25%) overlay from revealed league behavior
+  (add/drop velocity, FAAB spent, trades).
+- In-season, trailing production blends toward a per-game EMA as games
+  accumulate (`emaUpdate` in transform.ts; small alpha for young players
+  so one game can't crater them). Preseason, prices run on trailing
+  production + pedigree and the page shows a "preseason pricing" badge.
+
+Fundamentals are cached in the `player_stat_cache` table (one row per
+player, UPSERTED, refreshed at most daily) by `src/data/nba-stats.ts`,
+so page loads never hit the stats feed and Neon stays quiet. Price
+history comes from the `stock_snapshots` table (`src/data/stocks.ts`
+owns the store contract), written at most daily for the same reason.
+Change %, the trending/falling sections, and sparklines all derive from
+snapshots. When the database isn't provisioned the store is a no-op:
+prices still compute live, movers show their honest "no history yet"
+states, and nothing crashes. Snapshots older than 30 days are pruned
+on write.
 
 The `CombinedTicker` marquee renders in the root layout above every page
 (ESPN style: news headlines and stock quotes alternate on a timer; pure

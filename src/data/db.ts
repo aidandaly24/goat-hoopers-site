@@ -27,6 +27,7 @@ import {
   boolean,
   integer,
   pgTable,
+  real,
   text,
   timestamp,
   uuid,
@@ -110,8 +111,9 @@ export const rewards = pgTable("rewards", {
 
 /**
  * Stock market price history. One row per player per snapshot; the loader
- * writes a snapshot each time it recomputes prices (at most every 5 min,
- * matching the league-data cache). Rows older than 30 days are pruned on
+ * writes a snapshot each time it recomputes prices (at most daily —
+ * fundamentals refresh daily, so anything more frequent is write
+ * amplification on Neon's free tier). Rows older than 30 days are pruned on
  * write, so this table stays small.
  *
  * Until the database is provisioned (see top of file) the stock market
@@ -127,6 +129,35 @@ export const stockSnapshots = pgTable("stock_snapshots", {
   snapshotAt: timestamp("snapshot_at").defaultNow().notNull(),
 });
 
+/**
+ * Player fundamentals cache for the stock market (valuation v2). One row
+ * per player, UPSERTED — never grows. Refreshed from Sleeper's stats feed
+ * at most once a day; the valuation engine reads only this table, never
+ * the network, so page loads stay fast and Neon stays quiet.
+ *
+ * Trailing production (fppg) is computed in our league's scoring from
+ * raw season totals. emaFppg/emaGames implement the in-season Bayesian
+ * update (see emaUpdate in transform.ts); null/0 in the preseason, when
+ * prices run on trailing production + pedigree alone.
+ */
+export const playerStatCache = pgTable("player_stat_cache", {
+  /** Sleeper player_id. */
+  playerId: text("player_id").primaryKey(),
+  /** Trailing fantasy PPG (0.65 × last season + 0.35 × season before), null if never played. */
+  fppg: real("fppg"),
+  /** Estimated career NBA minutes (sums the seasons we have). */
+  careerMinutes: integer("career_minutes").default(0).notNull(),
+  /** Games in the trailing window. */
+  gamesPlayed: integer("games_played").default(0).notNull(),
+  /** In-season exponential moving average of game fppg; null until games are played. */
+  emaFppg: real("ema_fppg"),
+  /** Games folded into emaFppg. */
+  emaGames: integer("ema_games").default(0).notNull(),
+  /** Earliest league rookie-draft overall pick; null if never drafted. */
+  leaguePick: integer("league_pick"),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 export const schema = {
   siteUsers,
   inviteCodes,
@@ -135,6 +166,7 @@ export const schema = {
   gameScores,
   rewards,
   stockSnapshots,
+  playerStatCache,
 };
 
 export type Db = ReturnType<typeof drizzle<typeof schema>>;

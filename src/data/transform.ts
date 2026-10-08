@@ -15,6 +15,7 @@ import type {
   Player,
   DraftPick,
   PlayerStock,
+  PlayerStatProfile,
   StockMarket,
   StockFactor,
   StockTrend,
@@ -444,33 +445,40 @@ export function championRosterId(
 /* ---------------- player stock market ---------------- */
 
 /**
- * Player stock market valuation — pure function, the rule-11 seam for
- * stocks. Fetching (transactions, rosters, drafts, snapshots) lives in
- * `league.ts`; every number below is computed from the input alone, so
- * tests can pass fake inputs straight in.
+ * Player stock market valuation v2 — pure function, the rule-11 seam for
+ * stocks. Fetching (transactions, rosters, drafts, snapshots, stat cache)
+ * lives in `league.ts`; every number below is computed from the input
+ * alone, so tests can pass fake inputs straight in.
  *
  * THE MODEL (all in FAAB dollars — the league's waiver currency):
  *
- *   price = clamp( BASE
- *     + production   (ownership-implied: 50 × rostered share)
- *     + faab         (40 × FAAB spent ÷ league budget, capped at 1 budget)
- *     + trades       (+3 per trade in the window, capped at 4)
- *     + draft        (rookie pick premium: (31 − pick) × 1.2, top 30)
- *     + dynasty      (+8 for 3rd-year-or-less players aged ≤24,
- *                      +4 for anyone else aged ≤24)
- *     + recent       (+2 per net add in the window, clamped to ±5)
- *     then × age curve × injury discount,
- *     clamped to [$1, $250] )
+ *   price = clamp( K × ability × futureSeasons(age)
+ *                  × sentimentMult × injuryMult, $1, $250 )
+ *
+ * - ability: Bayesian blend of proven production and prospect pedigree.
+ *   Proven production is trailing fantasy PPG in OUR scoring (0.65 × last
+ *   season + 0.35 × season before), computed from Sleeper's stats feed —
+ *   real box-score totals, not ownership vibes. Prospect pedigree is the
+ *   historical year-1–3 fantasy output for the player's league
+ *   rookie-draft slot. Blend weight w = exp(−careerMinutes/800): an
+ *   unproven rookie prices on pedigree alone; a veteran prices on
+ *   production alone. One bad game can't crater a young player because
+ *   most of his price is future potential, not last night's box score.
+ * - futureSeasons(age): discounted remaining prime —
+ *   Σ ageCurve(age+t)/ageCurve(age) × 0.85^t. A proven 21-year-old is
+ *   worth more than the same production at 30. This is the dynasty term
+ *   the old additive model got backwards (it paid a premium for 24).
+ * - sentimentMult: bounded (±25%) overlay from revealed league behavior —
+ *   add/drop velocity, FAAB spent, trades. Hype moves price but can't
+ *   invent value.
+ * - In-season, trailing production blends toward the per-game EMA
+ *   (see emaUpdate) as games accumulate; preseason it runs on trailing
+ *   production + pedigree alone.
  *
  * Honesty notes, enforced by the code not by comments:
- * - "Production" is market-implied. Sleeper's public API exposes no
- *   per-player stat feed, so we infer it from revealed behavior: managers
- *   roster and spend FAAB on players who produce. The factor note says so.
  * - "Contract" always resolves to $0. Sleeper tracks no contracts; the
  *   engine refuses to invent them. The factor still appears (neutral) so
  *   the model is explicit about what it doesn't know.
- * - "Recent performances" is add/drop velocity — adds mean someone's
- *   flashing, drops mean they're cold. Same revealed-behavior logic.
  * - Change % compares against the last persisted snapshot. With no
  *   snapshot history every change field is null (shown as "new listing").
  */
@@ -488,17 +496,23 @@ export type StockMarketInput = {
   flow: Record<string, { adds: number; drops: number }>;
   /** player_id → times traded in the window. */
   tradeCount: Record<string, number>;
-  /** player_id → overall rookie-draft pick number. */
+  /** player_id → earliest league rookie-draft overall pick. */
   draftPick: Record<string, number>;
+  /** player_id → fundamentals. Null = stats unavailable, price on pedigree. */
+  statProfiles: Record<string, PlayerStatProfile> | null;
   /** player_id → previous prices, oldest → newest. Null = no history yet. */
   history: Record<string, number[]> | null;
   /** Unix ms of computation. */
   now: number;
 };
 
-const STOCK_BASE = 18;
 const STOCK_FLOOR = 1;
 const STOCK_CAP = 250;
+/**
+ * Dollar calibration: Jokić's trailing ~40 fppg at age 30–31 lands ≈$75.
+ * Recompute if the scoring settings change materially.
+ */
+const K_STOCK = 0.5;
 /** Moves smaller than this read as noise → trend "flat". */
 const TREND_THRESHOLD_PCT = 1;
 /** Movers sections only list moves at least this big. */
@@ -511,14 +525,128 @@ function clamp(n: number, lo: number, hi: number): number {
   return Math.min(hi, Math.max(lo, n));
 }
 
-function ageCurve(age: number | undefined): { mult: number; note: string } {
-  if (age == null) return { mult: 0.9, note: "Age unknown — mild discount" };
-  if (age < 21) return { mult: 0.85, note: `${age} — raw upside, unproven` };
-  if (age <= 23) return { mult: 0.95, note: `${age} — still developing` };
-  if (age <= 29) return { mult: 1.1, note: `${age} — prime years` };
-  if (age <= 32) return { mult: 0.95, note: `${age} — veteran` };
-  if (age <= 34) return { mult: 0.75, note: `${age} — declining` };
-  return { mult: 0.5, note: `${age} — twilight` };
+/**
+ * Fantasy PPG from a Sleeper season stat line under the given scoring.
+ * `sp` is seconds played (Sleeper's field name). Returns null for empty
+ * lines (didn't play). Pure — used by the stats client and by tests.
+ */
+export function fppgUnderScoring(
+  line: Record<string, number>,
+  scoring: Record<string, number>
+): { fppg: number; games: number; minutes: number } | null {
+  const games = line.gp ?? 0;
+  if (!(games > 0)) return null;
+  let total = 0;
+  for (const [stat, pts] of Object.entries(scoring)) {
+    total += (line[stat] ?? 0) * pts;
+  }
+  return {
+    fppg: Math.round((total / games) * 100) / 100,
+    games,
+    minutes: (line.sp ?? 0) / 60,
+  };
+}
+
+/**
+ * NBA aging curve: multiplier of peak production by age. Peak 26–27,
+ * gentle ramp before, steeper decline after — the standard empirical shape.
+ */
+const AGE_CURVE: Array<[number, number]> = [
+  [19, 0.78], [20, 0.83], [21, 0.87], [22, 0.91], [23, 0.94], [24, 0.97],
+  [25, 0.99], [26, 1.0], [27, 1.0], [28, 0.98], [29, 0.95], [30, 0.91],
+  [31, 0.86], [32, 0.8], [33, 0.73], [34, 0.65], [35, 0.56], [36, 0.47],
+  [37, 0.38], [38, 0.3],
+];
+
+export function ageCurveMultiplier(age: number | undefined): number {
+  if (age == null || Number.isNaN(age)) return 0.9;
+  if (age <= 19) return 0.78;
+  if (age >= 38) return 0.3;
+  const lo = Math.floor(age);
+  const hi = lo + 1;
+  const loV = AGE_CURVE.find(([a]) => a === lo)?.[1] ?? 0.9;
+  const hiV = AGE_CURVE.find(([a]) => a === hi)?.[1] ?? loV;
+  return loV + (hiV - loV) * (age - lo);
+}
+
+export function ageCurveNote(age: number | undefined): string {
+  if (age == null) return "Age unknown — mild discount";
+  if (age <= 21) return `${age} — long runway, production still ramping`;
+  if (age <= 25) return `${age} — approaching prime`;
+  if (age <= 29) return `${age} — prime years`;
+  if (age <= 32) return `${age} — veteran, decline priced in`;
+  if (age <= 34) return `${age} — declining`;
+  return `${age} — twilight`;
+}
+
+/**
+ * Discounted future seasons of current production — the dynasty term.
+ * Σ ageCurve(age+t)/ageCurve(age) × 0.85^t. A proven 21-year-old carries
+ * ~6.5 discounted seasons; the same player at 31 carries ~3.7.
+ */
+export function futureSeasonValue(age: number | undefined): number {
+  const a = age ?? 27;
+  const base = ageCurveMultiplier(a);
+  let sum = 0;
+  for (let t = 0; t <= 38 - Math.min(Math.max(a, 19), 38); t++) {
+    sum += (ageCurveMultiplier(a + t) / base) * Math.pow(0.85, t);
+  }
+  return Math.round(sum * 100) / 100;
+}
+
+/**
+ * Prospect pedigree: historical year-1–3 fantasy PPG for a league
+ * rookie-draft slot. Undrafted/never-drafted → replacement level.
+ */
+export function pedigreeFppg(pick: number | null | undefined): number {
+  if (pick == null) return 2.0;
+  if (pick <= 3) return 13;
+  if (pick <= 7) return 9.5;
+  if (pick <= 14) return 6.5;
+  if (pick <= 20) return 5;
+  if (pick <= 30) return 3.5;
+  return 2.5;
+}
+
+/**
+ * Prospect weight: how much of the price is still pedigree vs proven
+ * production. Decays exponentially with NBA minutes — ~800 minutes
+ * (a quarter-season of rotation play) halves it. Veterans measured over
+ * only two seasons get years_exp × 1500 as a floor so an injured
+ * eight-year vet doesn't price like a rookie.
+ */
+export function prospectWeight(
+  careerMinutes: number,
+  yearsExp: number | undefined
+): number {
+  const effective = Math.max(careerMinutes, (yearsExp ?? 0) * 1500);
+  return Math.exp(-effective / 800);
+}
+
+/**
+ * Per-game Bayesian-ish update. alpha is the learning rate: small for
+ * rookies/young players (their price is mostly future potential, so one
+ * game barely moves it), larger for veterans (their price IS current
+ * production).
+ */
+export function emaUpdate(
+  ema: number | null,
+  games: number,
+  gameFppg: number,
+  alpha: number
+): { ema: number; games: number } {
+  const next = ema == null ? gameFppg : ema + alpha * (gameFppg - ema);
+  return { ema: round2(next), games: games + 1 };
+}
+
+/** Learning rate for the EMA: potential-dominated players learn slowly. */
+export function emaAlpha(
+  age: number | undefined,
+  careerMinutes: number
+): number {
+  if ((age ?? 99) <= 22 || careerMinutes < 800) return 0.025;
+  if ((age ?? 99) <= 25 || careerMinutes < 2500) return 0.05;
+  return 0.08;
 }
 
 function injuryDiscount(
@@ -557,11 +685,15 @@ export function computeStockMarket(input: StockMarketInput): StockMarket {
     flow,
     tradeCount,
     draftPick,
+    statProfiles,
     history,
     now,
   } = input;
 
   const priced: PlayerStock[] = [];
+  let anyInSeason = false;
+  /** Future seasons at peak age — the age factor is measured against this. */
+  const FS_PEAK = futureSeasonValue(27);
 
   for (const [id, entry] of Object.entries(players)) {
     const owned = rosteredCount[id] ?? 0;
@@ -577,88 +709,97 @@ export function computeStockMarket(input: StockMarketInput): StockMarket {
     const faabNorm = faabBudget > 0 ? Math.min(spent / faabBudget, 1) : 0;
     const age = entry.age;
     const yearsExp = entry.years_exp;
+    const prof = statProfiles?.[id] ?? null;
 
-    // Additive factors (FAAB dollars).
-    const fProduction = ownership * 50;
-    const fFaab = faabNorm * 40;
-    const fTrades = Math.min(trades, 4) * 3;
-    const fDraft = pick != null && pick <= 30 ? (31 - pick) * 1.2 : 0;
-    const fDynasty =
-      yearsExp != null && yearsExp <= 3 && (age ?? 99) <= 24
-        ? 8
-        : age != null && age <= 24
-          ? 4
-          : 0;
-    const fRecent = clamp(adds - drops, -5, 5) * 2;
+    // --- Fundamentals: Bayesian blend of proven production + pedigree ---
+    // In-season games count toward the prospect decay (est. 30 min/game)
+    // so a rookie's pedigree converts to production as he actually plays.
+    const w = prospectWeight(
+      (prof?.careerMinutes ?? 0) + (prof?.emaGames ?? 0) * 30,
+      yearsExp
+    );
+    const pedigree = pedigreeFppg(prof?.leaguePick ?? pick);
+    let trailing = prof?.fppg ?? null;
+    if (prof && prof.emaFppg != null && prof.emaGames > 0) {
+      anyInSeason = true;
+      // In-season: blend trailing production toward the current-season
+      // EMA as games accumulate (up to 50/50 after 20 games).
+      const sw = Math.min(prof.emaGames / 20, 0.5);
+      trailing =
+        trailing != null
+          ? round2((1 - sw) * trailing + sw * prof.emaFppg)
+          : prof.emaFppg;
+    }
+    const provenPart = trailing != null ? (1 - w) * trailing : 0;
+    const ability = provenPart + w * pedigree;
+    const fs = futureSeasonValue(age);
 
-    const subtotal =
-      STOCK_BASE + fProduction + fFaab + fTrades + fDraft + fDynasty + fRecent;
+    // --- Sentiment: bounded overlay from revealed league behavior ---
+    const netFlow = clamp(adds - drops, -5, 5);
+    const sentimentRaw =
+      netFlow * 0.02 + Math.min(faabNorm, 1) * 0.12 + Math.min(trades, 3) * 0.02;
+    const sentimentMult = clamp(1 + sentimentRaw, 0.75, 1.25);
 
-    // Multiplicative factors, recorded as their dollar delta.
-    const ageC = ageCurve(age);
-    const fAge = subtotal * (ageC.mult - 1);
     const injC = injuryDiscount(entry.injury_status);
-    const fInjury = (subtotal + fAge) * (injC.mult - 1);
+    const price = round2(
+      clamp(
+        K_STOCK * ability * fs * sentimentMult * injC.mult,
+        STOCK_FLOOR,
+        STOCK_CAP
+      )
+    );
 
-    const price = round2(clamp(subtotal + fAge + fInjury, STOCK_FLOOR, STOCK_CAP));
+    // Factors, decomposing the price exactly.
+    const fProduction = round2(K_STOCK * provenPart * FS_PEAK);
+    const fPedigree = round2(K_STOCK * w * pedigree * FS_PEAK);
+    const fAge = round2(K_STOCK * ability * (fs - FS_PEAK));
+    const fSentiment = round2(
+      (fProduction + fPedigree + fAge) * (sentimentMult - 1)
+    );
+    const fInjury = round2(
+      (fProduction + fPedigree + fAge + fSentiment) * (injC.mult - 1)
+    );
 
     const factors: StockFactor[] = [
       {
         kind: "production",
-        label: "Production",
-        delta: round2(fProduction),
-        note: `Market-implied — ${Math.round(ownership * 100)}% owned (Sleeper has no per-player stat feed)`,
-      },
-      {
-        kind: "faab",
-        label: "FAAB market",
-        delta: round2(fFaab),
+        label: "Proven production",
+        delta: fProduction,
         note:
-          spent > 0
-            ? `$${spent} in winning waiver bids lately`
-            : "No FAAB spent lately",
-      },
-      {
-        kind: "trades",
-        label: "League trades",
-        delta: round2(fTrades),
-        note:
-          trades > 0
-            ? `Traded ${trades}× lately — the league is talking`
-            : "No recent trades",
+          trailing != null
+            ? `${trailing.toFixed(1)} fppg trailing (65/35) × ${(100 * (1 - w)).toFixed(0)}% proven weight`
+            : "No NBA stat line — priced on pedigree alone",
       },
       {
         kind: "draft",
-        label: "Draft capital",
-        delta: round2(fDraft),
+        label: "Prospect pedigree",
+        delta: fPedigree,
         note:
-          pick != null
-            ? `Rookie draft pick #${pick}`
-            : "No rookie-draft capital",
+          w < 0.02
+            ? "Fully proven — pedigree weight ~0%"
+            : (prof?.leaguePick ?? pick) != null
+              ? `Rookie pick #${prof?.leaguePick ?? pick} → ${pedigree} fppg historical comps × ${(100 * w).toFixed(0)}% weight`
+              : `Undrafted → ${pedigree} fppg replacement-level prior`,
       },
       {
         kind: "dynasty",
-        label: "Dynasty outlook",
-        delta: round2(fDynasty),
-        note:
-          fDynasty > 0
-            ? "Young core piece — long runway"
-            : "Outlook priced on present value",
+        label: "Age curve",
+        delta: fAge,
+        note: `${ageCurveNote(age)} — ${fs.toFixed(1)} discounted seasons vs ${FS_PEAK.toFixed(1)} at peak`,
       },
       {
         kind: "recent",
-        label: "Recent form",
-        delta: round2(fRecent),
+        label: "Market sentiment",
+        delta: fSentiment,
         note:
-          adds !== 0 || drops !== 0
-            ? `${adds} adds vs ${drops} drops lately`
-            : "No recent adds/drops",
+          adds !== 0 || drops !== 0 || spent > 0 || trades > 0
+            ? `${adds} adds vs ${drops} drops, $${spent} FAAB, ${trades} trades — bounded ±25%`
+            : "No recent league buzz — sentiment neutral",
       },
-      { kind: "age", label: "Age curve", delta: round2(fAge), note: ageC.note },
       {
         kind: "injury",
         label: "Injuries",
-        delta: round2(fInjury),
+        delta: fInjury,
         note: injC.note,
       },
       {
@@ -764,5 +905,6 @@ export function computeStockMarket(input: StockMarketInput): StockMarket {
     panic: panic.slice(0, 5),
     updatedAt: now,
     hasHistory,
+    pricingBasis: anyInSeason ? "in-season" : "preseason",
   };
 }

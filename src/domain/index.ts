@@ -61,6 +61,7 @@ export type {
 export { PUBLICATIONS, NEWS_SECTIONS } from "./news";
 export type {
   PlayerStock,
+  PlayerStatProfile,
   StockMarket,
   StockFactor,
   StockFactorKind,

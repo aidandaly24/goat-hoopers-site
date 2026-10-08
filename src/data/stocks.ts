@@ -20,11 +20,12 @@ export type PriceHistory = Record<string, number[]>;
 const HISTORY_POINTS = 10;
 const RETENTION_DAYS = 30;
 /**
- * Minimum gap between snapshots. The site-wide ticker calls the loader on
- * every page view (force-dynamic layout), so without this each page view
- * would write ~1 row per priced player.
+ * Minimum gap between snapshots. Fundamentals refresh daily (see
+ * nba-stats.ts), so anything more frequent is pure write amplification
+ * on Neon's free tier. The 5-minute era wrote ~75k rows/day; daily
+ * writes ~262 rows/day against a 90-day retention.
  */
-const SNAPSHOT_MIN_INTERVAL_MS = 5 * 60 * 1000;
+const SNAPSHOT_MIN_INTERVAL_MS = 24 * 60 * 60 * 1000;
 
 export type StockStore = {
   getHistory(playerIds: string[]): Promise<PriceHistory>;
