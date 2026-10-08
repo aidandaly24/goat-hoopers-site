@@ -40,8 +40,10 @@ The comparison artifact remains separate from the integrated Next.js homepage; a
   dated, offline concept fixtures. They are not live loaders or scheduled
   publishing infrastructure. `build-data.cjs` typechecks and validates them
   before producing the small browser payload. Production injects live roster contracts through `getCourtsideHomeData`; the frozen directory remains comparison data.
-- `src/ui/courtside-tokens.css` owns this experiment's visual vocabulary;
-  the homepage and archive also load it. Production reuses existing Inter/Geist font assets and scopes the palette with a public home marker.
+- `src/ui/courtside-tokens.css` retains the experiment's layout/type vocabulary.
+  Production color names alias the selected Paper + Slate roles in
+  `src/ui/tokens.css`; homepage and archives reuse existing Inter/Geist assets.
+  See top-level `DESIGN.md` for current visual authority.
 - Native `<details>` retains all 228 roster references behind ten compact
   summaries. No player-detail or external API request is made by this preview.
   `court.js` loads installed Three modules and existing `public/3d/` assets
@@ -175,7 +177,7 @@ src/
                  # CombinedTicker is still rendered by the root layout.
     trade-analyzer/ # "Is this trade fair": hypothetical trades priced in
                  # FAAB dollars (TradeAnalyzer: two search pickers + running
-                 # totals + verdict). Same --gh-term-* Bloomberg island.
+                 # totals + verdict). --gh-term-* aliases the shared neutral palette.
                  # Verdict math (analyzeTrade, fair/leans/fleece bands) is
                  # pure domain (domain/trade.ts). Receives slim StockQuotes,
                  # never fetches.
@@ -191,8 +193,9 @@ src/
                  # generateLeagueNews (src/data/news.ts), voiced by five
                  # fictional publications (domain/news.ts). Receives domain
                  # objects, never fetches.
-    history/     # The trophy room: Saban-office-styled league history (a
-                 # deliberate themed island via the --gh-wood-* tokens).
+    history/     # The trophy room: neutral league history page; legacy
+                 # --gh-wood-* names alias shared roles. Banner fabric/brass
+                 # remain scoped materials within the championship object.
                  # TrophyRoom (hub: champions preview + records + HOF
                  # preview), ChampionsWall (hanging banners, one per title),
                  # ChampionBannerCard, RecordsGrid (engraved plaques),

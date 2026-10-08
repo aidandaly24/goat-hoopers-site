@@ -1,14 +1,12 @@
-/* Franchise history on the team page: wood-paneled archive card. */
+/* Franchise history uses the same readable surface as the team roster. */
 
 .franchise {
-  background:
-    linear-gradient(180deg, rgba(201, 162, 39, 0.06), transparent 30%),
-    var(--gh-wood-panel);
+  background: var(--gh-bg-raised);
   border: 1px solid var(--gh-wood-line-strong);
   border-radius: 10px;
   padding: 1.5rem;
   color: var(--gh-parchment);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--gh-shadow-sm);
 }
 
 .heading {

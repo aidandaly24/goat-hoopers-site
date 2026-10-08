@@ -1,26 +1,19 @@
 /**
- * Design tokens — the visual language of the site.
- *
- * Direction: "dark broadcast, elevated". Deep navy-black backgrounds with
- * real depth — radial glows, a whisper of film grain, layered surfaces —
- * one gold accent with championship energy, color reserved for meaning
- * (win/loss/live/team identity), never decoration. Handcrafted, never
- * flat, never monotone.
- *
- * Everything visual in every surface MUST reference these tokens, never
- * hardcoded colors/spacing. If you need a new token, add it here and
- * document why.
+ * Paper + Slate — selected by Aidan after rendered comparison on 2026-10-08.
+ * Canonical semantic roles are shared across page chrome and data tools.
+ * Legacy Courtside/terminal/history names are aliases during migration.
+ * Team/position identity and bounded scene/banner materials retain their meaning.
+ * See DESIGN.md; never import the disposable comparison tokens into the app.
  */
 
-/* The user-approved Arcade palette is scoped to its canvas. Site/homepage
- * colors stay under their own design owner; these variables do not override them. */
+/* Arcade uses the selected shared page palette without changing its layout. */
 .gh-arcade-canvas {
-  --gh-arcade-canvas: #f4f2ed;
-  --gh-arcade-paper: #fffdf9;
-  --gh-arcade-ink: #292923;
-  --gh-arcade-muted: #69675f;
-  --gh-arcade-line: #ddd9cf;
-  --gh-arcade-accent: #805334;
+  --gh-arcade-canvas: var(--gh-bg);
+  --gh-arcade-paper: var(--gh-bg-raised);
+  --gh-arcade-ink: var(--gh-text);
+  --gh-arcade-muted: var(--gh-text-dim);
+  --gh-arcade-line: var(--gh-border);
+  --gh-arcade-accent: var(--gh-accent);
 }
 
 /* With no ticker, Arcade keeps the shared header above its title/controls.
@@ -29,50 +22,77 @@ body:has([data-arcade-page]) > header:first-child,
 body:has([data-arcade-page]) > [hidden]:first-child + header { top: 0; }
 
 :root {
-  /* Scoped light chart roles from the proposed Chalk + clay direction.
-   * Existing route colors stay unchanged pending the wider palette review. */
-  --gh-neutral-canvas: #F6F3EB;
-  --gh-neutral-surface: #FFFDF7;
-  --gh-neutral-ink: #242824;
-  --gh-neutral-muted: #63675F;
-  --gh-neutral-accent: #A54429;
-  --gh-neutral-rule: #D9D6CC;
-  --gh-neutral-control: #898D83;
-  --gh-neutral-focus: #245A4B;
-  /* Brand */
-  --gh-gold: #e8a13c;
-  --gh-gold-soft: #f3bc62;
-  --gh-gold-deep: #b97a1f;
-  /* Medal metals for the standings top 3. */
-  --gh-silver: #c9ced8;
-  --gh-bronze: #d08a4e;
-  /* News network masthead accents — one per fictional publication. */
-  --gh-pub-espn: #e8002d;
-  --gh-pub-athletic: #d8d8d8;
-  --gh-pub-bleacher: #ff6b00;
-  --gh-pub-shams: #1d9bf0;
-  --gh-pub-bayless: #a855f7;
-  /* Dark ink for text sitting on gold / bright position pills. */
-  --gh-ink-on-accent: #241a05;
+  /* Canonical selected roles; historical names below are compatibility aliases. */
+  --gh-accent: #345b77;
+  --gh-on-accent: #ffffff;
+  --gh-focus: var(--gh-accent);
+  --gh-control: #7b858e;
+  --gh-ink-on-color: #242d35;
+  --gh-champion: #795c1c;
+  /* Material roles stay bounded to the existing championship banner object. */
+  --gh-banner-metal: #c9a227;
+  --gh-banner-metal-light: #e3c565;
+  --gh-banner-metal-dark: #8a6d1c;
+  --gh-banner-fabric: #9e1b32;
+  --gh-banner-text: #f0e4cc;
+  --gh-banner-text-muted: #e1d5b8;
+  /* Bounded game-scene roles preserve the readable approved HUD. */
+  --gh-scene-bg: #0a0e1a;
+  --gh-scene-raised: #111827;
+  --gh-scene-text: #f2f5fa;
+  --gh-scene-muted: #9ba8bc;
+  --gh-scene-faint: #8e97a9;
+  --gh-scene-accent: #e8a13c;
+  --gh-scene-accent-soft: #f3bc62;
+  --gh-scene-accent-deep: #b97a1f;
+  --gh-scene-control: #33405c;
+  --gh-scene-hover: #1a2332;
+  --gh-scene-on-accent: #241a05;
+  /* Chart owner role names retained, now mapped to the selected site palette. */
+  --gh-neutral-canvas: var(--gh-bg);
+  --gh-neutral-surface: var(--gh-bg-raised);
+  --gh-neutral-ink: var(--gh-text);
+  --gh-neutral-muted: var(--gh-text-dim);
+  --gh-neutral-accent: var(--gh-accent);
+  --gh-neutral-rule: var(--gh-border);
+  --gh-neutral-control: var(--gh-control);
+  --gh-neutral-focus: var(--gh-focus);
 
-  /* Surfaces — deep navy-black, layered by elevation */
-  --gh-bg: #0a0e1a;
-  --gh-bg-raised: #111827;
-  --gh-bg-card: #151d2e;
-  --gh-bg-hover: #1a2332;
-  --gh-border: #232c40;
-  --gh-border-strong: #33405c;
+
+  /* Legacy action aliases (the name does not imply gold page chrome). */
+  --gh-gold: var(--gh-accent);
+  --gh-gold-soft: var(--gh-accent);
+  --gh-gold-deep: var(--gh-accent);
+  /* Medal metals for the standings top 3. */
+  --gh-silver: #5f6870;
+  --gh-bronze: #855022;
+  /* News network masthead accents — one per fictional publication. */
+  --gh-pub-espn: #a70f2a;
+  --gh-pub-athletic: #5f6870;
+  --gh-pub-bleacher: #995000;
+  --gh-pub-shams: #286386;
+  --gh-pub-bayless: #7046a2;
+  /* Distinct labels for action fills and bright identity/position fills. */
+  --gh-ink-on-accent: var(--gh-on-accent);
+
+  /* Neutral page surfaces */
+  --gh-bg: #f5f4ef;
+  --gh-bg-raised: #ffffff;
+  --gh-bg-card: var(--gh-bg-raised);
+  --gh-bg-hover: #ebeef0;
+  --gh-border: #d7dade;
+  --gh-border-strong: var(--gh-control);
 
   /* Text — every tier clears WCAG AA on --gh-bg */
-  --gh-text: #f2f5fa;
-  --gh-text-dim: #9ba8bc;
-  --gh-text-faint: #8e97a9;
+  --gh-text: #242d35;
+  --gh-text-dim: #5f6870;
+  --gh-text-faint: var(--gh-text-dim);
 
   /* Semantic status — reserved EXCLUSIVELY for these meanings.
    * Never use decoratively (see REDESIGN-INSPO.md). */
-  --gh-win: #4ade80;
-  --gh-loss: #f87171;
-  --gh-live: #ff5c38;
+  --gh-win: #245a4b;
+  --gh-loss: #a13e3e;
+  --gh-live: #a54429;
 
   /* Team identity — one fixed color per roster, stable across seasons.
    * Roster id (Sleeper roster_id as string) -> color. Use only through
@@ -97,29 +117,22 @@ body:has([data-arcade-page]) > [hidden]:first-child + header { top: 0; }
   --gh-pos-c: #f87171;
 
   /* Type */
-  --gh-font-display: var(--font-display, "Anton", system-ui, sans-serif);
+  --gh-font-display: var(--font-body, "Inter", system-ui, sans-serif);
   --gh-font-body: var(--font-body, "Inter", system-ui, sans-serif);
   --gh-font-mono: var(--font-mono, "Geist Mono", ui-monospace, monospace);
 
-  /* Texture — the anti-flat kit. Compose, don't stack blindly. */
-  /* Film grain: SVG turbulence, applied at low opacity over surfaces. */
-  --gh-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
-  /* Ambient arena glow for page backgrounds (pairs with --gh-bg). */
-  --gh-glow-page:
-    radial-gradient(1100px 420px at 50% -8%, rgb(232 161 60 / 0.10), transparent 62%),
-    radial-gradient(800px 480px at 88% 4%, rgb(56 189 248 / 0.07), transparent 60%),
-    radial-gradient(700px 520px at 8% 12%, rgb(192 132 252 / 0.06), transparent 60%);
-  /* Card sheen: a top-light gradient for raised surfaces. */
-  --gh-gradient-card: linear-gradient(180deg, rgb(255 255 255 / 0.045), transparent 32%);
-  /* Gold accent gradient for CTAs and highlights. */
-  --gh-gradient-gold: linear-gradient(135deg, var(--gh-gold-soft), var(--gh-gold) 55%, var(--gh-gold-deep));
+  /* Quiet paper chrome; scene and fabric textures stay inside actual assets. */
+  --gh-grain: none;
+  --gh-glow-page: none;
+  --gh-gradient-card: none;
+  --gh-gradient-gold: linear-gradient(var(--gh-accent), var(--gh-accent));
 
   /* Elevation */
-  --gh-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.45);
-  --gh-shadow-md: 0 10px 28px rgb(0 0 0 / 0.5);
-  --gh-shadow-lg: 0 28px 70px rgb(0 0 0 / 0.55);
-  --gh-glow-gold: 0 0 26px rgb(232 161 60 / 0.32);
-  --gh-glow-live: 0 0 18px rgb(255 92 56 / 0.45);
+  --gh-shadow-sm: 0 1px 2px rgb(36 45 53 / 0.08);
+  --gh-shadow-md: 0 10px 28px rgb(36 45 53 / 0.10);
+  --gh-shadow-lg: 0 28px 70px rgb(36 45 53 / 0.16);
+  --gh-glow-gold: none;
+  --gh-glow-live: none;
 
   /* Spacing scale */
   --gh-s1: 0.25rem;
@@ -145,37 +158,31 @@ body:has([data-arcade-page]) > [hidden]:first-child + header { top: 0; }
   /* Chrome */
   --gh-tabbar-h: 4.25rem;
 
-  /* Terminal — the /stocks page is a deliberate dark island: a Bloomberg
-   * terminal room inside the broadcast desk. Pure-black canvas, amber
-   * accent, phosphor green/red for moves, mono everywhere. Scoped to the
-   * stock-market surface; nothing else should reach for these. */
-  --gh-term-bg: #060607;
-  --gh-term-panel: #0c0c0e;
-  --gh-term-raised: #131316;
-  --gh-term-line: #1e1e23;
-  --gh-term-text: #f4f4f2;
-  --gh-term-dim: #a7a7ae;
-  --gh-term-faint: #62626b;
-  --gh-term-amber: #ffa02e;
-  --gh-term-up: #2bd97c;
-  --gh-term-down: #ff5a5a;
+  /* Trade tool compatibility aliases; layout and verdict math are unchanged. */
+  --gh-term-bg: var(--gh-bg);
+  --gh-term-panel: var(--gh-bg-raised);
+  --gh-term-raised: var(--gh-bg-hover);
+  --gh-term-line: var(--gh-border);
+  --gh-term-text: var(--gh-text);
+  --gh-term-dim: var(--gh-text-dim);
+  --gh-term-faint: var(--gh-text-dim);
+  --gh-term-amber: var(--gh-accent);
+  --gh-term-up: var(--gh-win);
+  --gh-term-down: var(--gh-loss);
 
-  /* Trophy room — the /history pages are a deliberate themed island: Nick
-   * Saban's old Alabama office. Dark mahogany, brass, leather, a rationed
-   * crimson accent, parchment text. Scoped to the history surfaces; nothing
-   * else should reach for these. */
-  --gh-wood-bg: #150c06;
-  --gh-wood-panel: #201209;
-  --gh-wood-raised: #2c1a0d;
-  --gh-wood-line: #4a2c17;
-  --gh-wood-line-strong: #6b4423;
-  --gh-brass: #c9a227;
-  --gh-brass-soft: #e3c565;
-  --gh-brass-deep: #8a6d1c;
-  --gh-crimson: #9e1b32;
-  --gh-parchment: #f0e4cc;
-  --gh-parchment-dim: #c4b28c;
-  --gh-parchment-faint: #8f7f61;
+  /* History page aliases; material colors are scoped to the banner object. */
+  --gh-wood-bg: var(--gh-bg);
+  --gh-wood-panel: var(--gh-bg-raised);
+  --gh-wood-raised: var(--gh-bg-raised);
+  --gh-wood-line: var(--gh-border);
+  --gh-wood-line-strong: var(--gh-control);
+  --gh-brass: var(--gh-accent);
+  --gh-brass-soft: var(--gh-accent);
+  --gh-brass-deep: var(--gh-accent);
+  --gh-crimson: var(--gh-banner-fabric);
+  --gh-parchment: var(--gh-text);
+  --gh-parchment-dim: var(--gh-text-dim);
+  --gh-parchment-faint: var(--gh-text-dim);
 }
 
 /*

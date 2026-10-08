@@ -39,7 +39,7 @@ export function SiteHeader({ user, logoutAction }: Props) {
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link href="/" className={styles.wordmark} aria-label="GOAT Hoopers home">
-          <img src="/courtside/GOAT-HOOPERS-horizontal-white.svg" alt="GOAT Hoopers" width="208" height="55" />
+          <img src="/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers" width="208" height="55" />
         </Link>
         <nav className={styles.nav} aria-label="Primary">
           <Link href="/">Home</Link>

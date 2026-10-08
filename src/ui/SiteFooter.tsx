@@ -20,7 +20,7 @@ export function SiteFooter({ season }: { season: Season | null }) {
       <div className={styles.inner}>
         <div className={styles.brand}>
           <p className={styles.wordmark}>
-            <img src="/courtside/GOAT-HOOPERS-horizontal-white.svg" alt="GOAT Hoopers" width="208" height="55" />
+            <img src="/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers" width="208" height="55" />
           </p>
           {season && (
             <p className={styles.season}>

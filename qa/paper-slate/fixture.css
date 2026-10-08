@@ -1,0 +1,6 @@
+/* Fixture shell only. Production CSS/tokens are imported without review overrides. */
+@font-face { font-family: 'Fixture Inter'; src: url('/design-preview/neutral-courtside/assets/inter.woff2') format('woff2'); font-weight: 100 900; }
+@font-face { font-family: 'Fixture Mono'; src: url('/design-preview/neutral-courtside/assets/geist-mono.woff2') format('woff2'); font-weight: 100 900; }
+:root { --font-body:'Fixture Inter'; --font-mono:'Fixture Mono'; }
+.fixture-note { padding:8px 16px; background:var(--gh-bg-raised); color:var(--gh-text-dim); font-size:12px; }
+.fixture-wrap { padding:var(--gh-s8) var(--gh-s4); max-width:78rem; margin:auto; }

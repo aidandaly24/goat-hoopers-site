@@ -13,7 +13,7 @@
 }
 
 .gold {
-  color: var(--gh-gold);
+  color: var(--gh-text);
   border-color: color-mix(in srgb, var(--gh-gold) 45%, transparent);
   background: color-mix(in srgb, var(--gh-gold) 12%, transparent);
 }

@@ -1,6 +1,13 @@
 /* Hanging championship banner: brass frame, crimson felt, notched hem. */
 
 .banner {
+  --gh-brass: var(--gh-banner-metal);
+  --gh-brass-soft: var(--gh-banner-metal-light);
+  --gh-brass-deep: var(--gh-banner-metal-dark);
+  --gh-crimson: var(--gh-banner-fabric);
+  --gh-parchment: var(--gh-banner-text);
+  --gh-parchment-dim: var(--gh-banner-text-muted);
+  --gh-parchment-faint: var(--gh-banner-text-muted);
   display: block;
   width: 240px;
   background: linear-gradient(180deg, var(--gh-brass), var(--gh-brass-deep));
@@ -65,7 +72,7 @@
   font-family: var(--gh-font-display);
   font-size: 1.35rem;
   letter-spacing: 0.03em;
-  color: #fff;
+  color: var(--gh-on-accent);
   margin-top: 0.5rem;
   line-height: 1.2;
 }
