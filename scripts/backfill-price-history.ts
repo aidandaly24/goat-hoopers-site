@@ -84,10 +84,16 @@ async function main() {
   console.log(dryRun ? "DRY RUN — no writes." : "Loading inputs…");
 
   const mapped: MappedData = JSON.parse(
-    readFileSync("/tmp/gamelog_mapped.json", "utf8")
+    readFileSync(
+      process.env.GAMELOG_JSON ?? "/tmp/gamelog_mapped.json",
+      "utf8"
+    )
   );
   const directory: Record<string, any> = JSON.parse(
-    readFileSync("/tmp/sleeper_players.json", "utf8")
+    readFileSync(
+      process.env.SLEEPER_PLAYERS_JSON ?? "/tmp/sleeper_players.json",
+      "utf8"
+    )
   );
 
   // Current season (for the pruning window).
