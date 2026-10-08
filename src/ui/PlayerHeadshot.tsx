@@ -1,25 +1,28 @@
 "use client";
 
 import { useState, type CSSProperties } from "react";
+import { headshotUrl } from "@/data/espn";
 import { teamColorVar } from "./teamColors";
 import styles from "./PlayerHeadshot.module.css";
 
 /**
- * PlayerHeadshot — every player gets a face. Sleeper CDN headshot by
- * player id; on error (Sleeper 403s nonexistent ids) falls back to the
+ * PlayerHeadshot — every player gets a face. ESPN CDN headshot by ESPN
+ * athlete id (plain <img>, never next/image — Hobby's image-optimization
+ * quota); when there is no resolved espnId, or the image 404s (two-way /
+ * G League fringe players with no ESPN headshot), falls back to the
  * player's initials in a disc ringed with the team color.
  *
  * Client component: the onError fallback needs state. Props are plain
  * domain values — no data fetching inside (rule 6).
  */
 export function PlayerHeadshot({
-  playerId,
+  espnId,
   name,
   teamId = null,
   size = 40,
 }: {
-  /** Sleeper player_id — maps to sleepercdn.com/content/nba/players/{id}.jpg. */
-  playerId: string;
+  /** ESPN athlete id — null renders the initials fallback directly. */
+  espnId: string | null;
   /** Full name, for alt text and the fallback initials. */
   name: string;
   /** Sleeper roster id of the owning team — colors the fallback ring. */
@@ -35,12 +38,12 @@ export function PlayerHeadshot({
     "--ph-ring": ring,
   } as CSSProperties;
 
-  if (!failed) {
+  if (espnId && !failed) {
     return (
       <img
         className={styles.headshot}
         style={frame}
-        src={`https://sleepercdn.com/content/nba/players/${playerId}.jpg`}
+        src={headshotUrl(espnId)}
         alt={`${name} headshot`}
         loading="lazy"
         onError={() => setFailed(true)}

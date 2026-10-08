@@ -19,6 +19,16 @@ const SECTIONS = [
     title: "League Intel",
     blurb: "Power rankings, projections, title odds, record book.",
   },
+  {
+    href: "/stocks",
+    title: "Stock Market",
+    blurb: "Every player's FAAB price — trending, falling, panic meter.",
+  },
+  {
+    href: "/trade-analyzer",
+    title: "Trade Analyzer",
+    blurb: "Price a hypothetical trade: fair deal or fleece?",
+  },
 ];
 
 /**

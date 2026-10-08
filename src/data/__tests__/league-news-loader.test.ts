@@ -16,6 +16,8 @@ import {
   loadLeagueNews,
   getTransactionHistoryStrict,
   getDraftBoardStrict,
+  createLeagueNewsCache,
+  LEAGUE_NEWS_TTL_MS,
 } from "@/data/league";
 import type { TransactionHistoryData, DraftBoardData } from "@/data/league";
 import type { Team } from "@/domain/team";
@@ -61,6 +63,7 @@ function pick(): DraftPick {
     teamId: "1",
     position: "PG",
     nbaTeam: "BKN",
+    espnId: "5101761",
   };
 }
 
@@ -207,5 +210,60 @@ describe("getDraftBoardStrict", () => {
     });
     expect(result.picks).toEqual([]);
     expect(result.teams.length).toBeGreaterThan(0);
+  });
+});
+
+/**
+ * P1 end-to-end: the real loadLeagueNews wired into the real TTL cache.
+ * Prime a nonempty feed, expire the cache, 503 the transactions endpoint
+ * with healthy teams — last-good must survive, not be replaced by [].
+ */
+describe("news cache + real loader (P1 integration)", () => {
+  function fakeClock(start = 0) {
+    let t = start;
+    return {
+      now: () => t,
+      advance: (ms: number) => {
+        t += ms;
+      },
+    };
+  }
+
+  it("warm: failed refresh after expiry preserves last-good", async () => {
+    const clock = fakeClock();
+    let txDown = false;
+    const cache = createLeagueNewsCache({
+      now: clock.now,
+      load: () =>
+        loadLeagueNews({
+          fetchTxHistory: async () => {
+            if (txDown) throw new Error("Sleeper API 503 on /transactions/1");
+            return healthyTx;
+          },
+          fetchDraft: async () => healthyDraft,
+        }),
+    });
+
+    const first = await cache.get();
+    expect(first.length).toBeGreaterThan(0);
+
+    clock.advance(LEAGUE_NEWS_TTL_MS + 1);
+    txDown = true;
+    const second = await cache.get();
+    // Not an empty feed: the exact last-good value survives the 503.
+    expect(second).toBe(first);
+  });
+
+  it("cold: failed load throws so getLeagueNews degrades honestly", async () => {
+    const cache = createLeagueNewsCache({
+      load: () =>
+        loadLeagueNews({
+          fetchTxHistory: async () => {
+            throw new Error("Sleeper API 503 on /transactions/1");
+          },
+          fetchDraft: async () => healthyDraft,
+        }),
+    });
+    await expect(cache.get()).rejects.toThrow("Sleeper API 503");
   });
 });

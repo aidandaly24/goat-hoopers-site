@@ -24,6 +24,7 @@ import type {
   TeamProfile,
   Matchup,
   StockMarket,
+  StockQuote,
   StockDetail,
   NewsArticle,
 } from "@/domain";
@@ -81,6 +82,10 @@ import { getDb, type Db } from "./db";
 import { getStatProfiles, getSeasonHistory } from "./nba-stats";
 import { generateLeagueNews } from "./news";
 import { createTtlCache } from "./cache";
+/* Headshot seam: the Sleeper -> ESPN id map is injected into the toPlayer /
+ * toDraftPicks transforms here (rule 11). Swap SEED_ESPN_ID_MAP for Aidan's
+ * full mapping table when it lands — no component changes. */
+import { SEED_ESPN_ID_MAP, resolveEspnId } from "./espn";
 
 export type SeasonHubData = {
   season: Season;
@@ -258,7 +263,9 @@ export async function getTeamDetail(teamId: string): Promise<TeamDetail | null> 
   const ids = raw.players ?? [];
   if (ids.length === 0) return { team, players: [] };
   const directory = await safePlayerDirectory();
-  const players = ids.map((pid) => toPlayer(pid, directory?.[pid]));
+  const players = ids.map((pid) =>
+    toPlayer(pid, directory?.[pid], resolveEspnId(pid, SEED_ESPN_ID_MAP)),
+  );
   return { team, players };
 }
 
@@ -410,7 +417,10 @@ export async function getDraftBoard(): Promise<DraftBoardData> {
       drafts.find((d) => d.season === "2026" && d.status === "complete") ??
       drafts[0];
     if (!draft) return { picks: [], teams };
-    const picks = toDraftPicks(await fetchDraftPicks(draft.draft_id));
+    const picks = toDraftPicks(
+      await fetchDraftPicks(draft.draft_id),
+      SEED_ESPN_ID_MAP,
+    );
     return { picks, teams };
   } catch {
     return { picks: [], teams: [] };
@@ -461,7 +471,7 @@ async function fetchDraftPicksSafe(): Promise<DraftPick[]> {
       drafts.find((d) => d.season === "2026" && d.status === "complete") ??
       drafts[0];
     if (!draft) return [];
-    return toDraftPicks(await fetchDraftPicks(draft.draft_id));
+    return toDraftPicks(await fetchDraftPicks(draft.draft_id), SEED_ESPN_ID_MAP);
   } catch {
     return [];
   }
@@ -601,7 +611,11 @@ export async function getPlayerDetail(
       getTransactionHistory(),
       fetchDraftPicksSafe(),
     ]);
-    const player = toPlayer(playerId, directory?.[playerId]);
+    const player = toPlayer(
+      playerId,
+      directory?.[playerId],
+      resolveEspnId(playerId, SEED_ESPN_ID_MAP),
+    );
 
     let team: Team | null = null;
     for (const r of rosters) {
@@ -647,7 +661,7 @@ export async function getTeamProfile(
     const team = toTeam(raw, byId.get(raw.owner_id));
 
     const players = (raw.players ?? []).map((pid) =>
-      toPlayer(pid, directory?.[pid])
+      toPlayer(pid, directory?.[pid], resolveEspnId(pid, SEED_ESPN_ID_MAP)),
     );
 
     const matchupsByWeek = input?.matchupsByWeek ?? [];
@@ -875,6 +889,17 @@ export const getStockMarketData = cache(
   async (): Promise<StockMarket> => {
     const input = await getMarketInputs();
     const market = computeStockMarket(input);
+
+    // Attach headshot ids via the espn.ts seam (same rule-11 pattern as the
+    // toPlayer/toDraftPicks wiring — the pricing math stays pure).
+    const withHeadshots = (quotes: StockQuote[]): StockQuote[] =>
+      quotes.map((q) => ({
+        ...q,
+        espnId: resolveEspnId(q.playerId, SEED_ESPN_ID_MAP),
+      }));
+    market.stocks = withHeadshots(market.stocks);
+    market.trending = withHeadshots(market.trending);
+    market.falling = withHeadshots(market.falling);
 
     // Persist this snapshot for next time's change %. Fire-and-forget safe:
     // a failed write must never break the page.

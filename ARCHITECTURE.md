@@ -14,7 +14,9 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ```
 src/
-  domain/        # The shared language: Team, Standing, Matchup, Player,
+  domain/        # The shared language: Team, Standing, Matchup, Player
+                 # (carries espnId: string | null — the ESPN athlete id the
+                 # headshot renders from; null = initials fallback),
                  # Transaction, DraftPick, Season, LeagueStats, PlayerDetail,
                  # TeamProfile, PowerRanking, PlayoffOdds, RecordBook,
                  # MatchupPreview, PlayerMove, PlayerStock/StockMarket,
@@ -30,6 +32,11 @@ src/
                  # types — teams are referenced by Sleeper roster id only.
   data/          # The ONLY place the outside world is touched.
     sleeper.ts   # Raw API client. Returns raw JSON, nothing else.
+    espn.ts      # Sleeper -> ESPN athlete id mapping for headshots
+                 # (resolveEspnId + a checked-in SEED_ESPN_ID_MAP of
+                 # verified ids; injectable seam per rule 11 — swap the
+                 # seed map for the full mapping table with zero
+                 # component edits). Also the headshotUrl formatter.
     nba-stats.ts # Player fundamentals: Sleeper's stats feed → cached
                  # PlayerStatProfiles (impure shell; math in transform.ts).
     transform.ts # Raw JSON -> domain objects. The membrane.
@@ -98,26 +105,35 @@ src/
                  # broadcast-desk framing. Receives all four datasets;
                  # never fetches.
     stock-market/ # "What is every player worth": the FAAB-denominated
-                 # stock market, styled as a Bloomberg terminal (a deliberate
-                 # dark island via the --gh-term-* tokens). CombinedTicker
-                 # (site-wide ESPN-style marquee alternating news headlines
-                 # and stock quotes, rendered by the root layout),
-                 # StockMarket (top gainers / decliners, panic meter, full
-                 # board), StockBoard (client-side position + rookie filter
-                 # chips), StockRow (client quote row; expands to fetch its
-                 # detail on demand), detailMachine (extracted stock-detail
-                 # load state machine: idle/error → loading on expand or
-                 # Retry; in-flight dedupe; ready cached per mount),
-                 # SeasonChart (inline-SVG fppg history),
-                 # PanicMeter. Receives domain objects, never fetches —
-                 # except StockRow, which calls GET /api/stocks/[playerId]
-                 # on expand for its detail (Rule 14).
+                 # player exchange. The selected navy/gold board uses shared
+                 # site tokens, with market coverage and a compact tape.
+                 # StockMarket renders server summaries; StockBoard combines
+                 # search/position/draft/roster filters, sorts and progressive
+                 # rows. StockQuoteRow keeps list data slim; ExchangeIcon
+                 # provides stroked SVG inspection/navigation marks. StockInspector
+                 # shows production sample sizes, price components and a
+                 # dated/source-tagged value path on selection. Both reconstructed
+                 # sources are dashed estimates; recorded snapshots and the
+                 # current modeled quote are distinguished (PR49 semantics).
+                 # On-demand detail uses data/stock-detail-client.ts against
+                 # the existing GET /api/stocks/[playerId]. Per-board caching
+                 # deduplicates requests; explicit retry evicts failures and
+                 # request identities prevent stale detail from replacing the
+                 # selected player. No eager deep payloads or schema changes.
+                 # On mobile, close restores focus after the panel is removed.
+                 # StockRow remains as the legacy row, with PR40 detailMachine
+                 # retry on failed re-expansion, in-flight dedupe and ready
+                 # details cached per mount. Its merged source is preserved.
+                 # CombinedTicker is still rendered by the root layout.
     trade-analyzer/ # "Is this trade fair": hypothetical trades priced in
                  # FAAB dollars (TradeAnalyzer: two search pickers + running
                  # totals + verdict). Same --gh-term-* Bloomberg island.
                  # Verdict math (analyzeTrade, fair/leans/fleece bands) is
                  # pure domain (domain/trade.ts). Receives slim StockQuotes,
                  # never fetches.
+                 # Share contract: both sides encode as ?a=<ids>&b=<ids>
+                 # (router.replace, no reload); restored on load with unknown
+                 # IDs dropped silently. "> COPY LINK" copies the share URL.
                  # objects, never fetches.
     news/        # The League News Network: MyLeague-style auto-generated
                  # coverage. Newsroom (front page), NewsFeed (client-side
@@ -180,9 +196,11 @@ src/
                  # take state as props (dependency inversion); the root
                  # layout provides the user and the season.
                  # PositionPill colors PG/SG/SF/PF/C via --gh-pos-* tokens.
-                 # PlayerHeadshot renders the Sleeper CDN headshot with an
-                 # initials-in-team-colored-disc fallback (client component
-                 # for the onError switch).
+                 # PlayerHeadshot renders the ESPN CDN headshot by ESPN athlete
+                 # id (Player.espnId; plain <img>, never next/image — Hobby
+                 # quota) with an initials-in-team-colored-disc fallback
+                 # (client component for the onError switch). Unmapped or
+                 # broken images fall back to initials.
                  # SectionNav is the secondary tab row for the league pages
                  # (Transactions / Draft Board / Teams / Intel); pages provide the
                  # active tab.
@@ -363,15 +381,36 @@ impure shell, the math is a pure function of its inputs.
 
 ### Offline regression suite
 
-`npm test` (vitest, `vitest.config.ts`) runs the offline suite in
-`src/data/__tests__/`. Fixtures live in `__tests__/fixtures.ts` — tiny
+`npm test` (vitest, `vitest.config.mts`) runs the offline suite in
+`src/data/__tests__/`, plus the I/O boundary regressions in `src/test/`.
+Fixtures live in `__tests__/fixtures.ts` — tiny
 synthetic teams, transactions, matchups, and claim-store states, all
 credential-free. Tests assert observable domain results, never private
-function structure. The suite requires no network, secrets, or database;
-`.github/workflows/ci.yml` runs it plus `tsc --noEmit` on every PR.
+function structure. The default suite installs `src/test/offline.ts` before
+collecting tests: real `fetch` and Node socket connections fail immediately,
+and ambient application/import database URLs are removed. Fakes remain
+injectable. `.github/workflows/ci.yml` uses Node 22 from `.nvmrc`, installs the
+exact lockfile including dev tools (`npm ci --include=dev`) with engine
+validation, then runs tests, `npm run typecheck`, and the full `npm run build`
+sequentially. Any failure fails the check. PR runs test GitHub's merge commit
+against the base; logs record both that tested commit and the PR head. Push
+runs test the exact main commit. The existing check name remains unchanged.
+The production build has no database/import credentials and never seeds;
+it can download the public Google fonts used by `next/font`.
 The optional isolated-DB contract suite (FakeGameStore vs a throwaway
 test Postgres) is separate and fails closed when its target is absent —
-it never falls back to production credentials.
+it never falls back to production credentials. The explicit
+`npm run test:price-history:local` command sets `RUN_PRICE_HISTORY_LOCAL_TEST=1`
+and allows only its hardcoded synthetic Postgres target at
+`127.0.0.1:55438/price_history_test`. The claim suite introduced by PR53 uses
+`RUN_CLAIM_TEAM_LOCAL_TEST=1 npm test -- src/data/__tests__/claim-team-local.test.ts`
+and allows only `127.0.0.1:55441/claim_team_test`. The guard remains installed
+in both modes: fetch, remote hosts, other ports, implicit hosts and Unix
+sockets stay blocked. Each flag only enables its own port. Both flags may be
+set for a combined local run; CI explicitly clears both. The database names
+and synthetic schemas are fixed in the respective test fixtures; the socket
+guard enforces the network endpoints. Test workers are guarded, not arbitrary child processes:
+the build CLI regression invokes only `next build --help`.
 
 `LeagueStats` fields are all nullable. In the preseason (`/state/nba`
 says `"pre"`) the loader returns `hasGames: false` and every stat stays
