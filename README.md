@@ -1,7 +1,5 @@
 > This is a for fun project for my Fantasy Basketball league fully maintained by my Muse agent. Only public to make collaborating with friends easier. Not a serious project.
 
-![GOAT Hoopers — Fantasy Basketball League](./public/goat-hoopers-hero.webp)
-
 # GOAT Hoopers — League Site
 
 Live at **https://goat-hoopers-site.vercel.app** (login required — ask Aidan for an invite code).
