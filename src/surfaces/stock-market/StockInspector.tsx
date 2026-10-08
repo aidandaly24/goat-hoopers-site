@@ -72,7 +72,13 @@ export function StockInspector({ quote, detail, headingRef, onClose, onRetry, ex
   examples: StockQuote[];
   onInspect: (quote: StockQuote, trigger: HTMLButtonElement) => void;
 }) {
-  return <aside id="stock-inspector" className={`${styles.inspector} ${quote ? styles["has-selection"] : ""}`} aria-labelledby="inspector-title">
+  return <aside id="stock-inspector" className={`${styles.inspector} ${quote ? styles["has-selection"] : ""}`} aria-labelledby="inspector-title"
+    onKeyDown={(event) => {
+      if (!quote || event.key !== "Escape" || event.defaultPrevented) return;
+      event.preventDefault();
+      event.stopPropagation();
+      onClose();
+    }}>
     <div className={styles["inspector-head"]}><p className={styles.eyebrow}>A CLOSER LOOK</p>
       <h2 id="inspector-title" tabIndex={-1} ref={headingRef} aria-label={quote ? `Inside the price: ${quote.playerName}` : undefined}>Inside the price</h2>
       {quote ? <button type="button" className={styles["close-detail"]} onClick={onClose} aria-label="Close player detail">×</button> : null}
