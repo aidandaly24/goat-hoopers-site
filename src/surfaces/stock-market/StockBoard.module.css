@@ -1,26 +1,32 @@
-/* Filter chips — sticky below the site-wide ticker + header so the board
+/* Filter bar — sticky below the site-wide ticker + header so the board
  * stays navigable while scrolling. Offsets mirror SiteHeader. */
-.chips {
+.filters {
   position: sticky;
   top: calc(var(--gh-ticker-h) + 4rem);
   z-index: 10;
+  margin: 0 calc(var(--gh-s4) * -1);
+  padding: 0.75rem var(--gh-s4);
+  background: var(--gh-term-bg);
+  border-bottom: 1px solid var(--gh-term-line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+@media (max-width: 40rem) {
+  .filters {
+    top: calc(var(--gh-ticker-h) + 3.75rem);
+  }
+}
+
+.chips {
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
-  padding: 0.75rem var(--gh-s4);
-  margin: 0 calc(var(--gh-s4) * -1);
-  background: var(--gh-term-bg);
-  border-bottom: 1px solid var(--gh-term-line);
   scrollbar-width: none;
 }
 .chips::-webkit-scrollbar {
   display: none;
-}
-
-@media (max-width: 40rem) {
-  .chips {
-    top: calc(var(--gh-ticker-h) + 3.75rem);
-  }
 }
 
 .chip,
@@ -48,6 +54,61 @@
   background: var(--gh-term-amber);
   border-color: var(--gh-term-amber);
   color: #1a1005;
+}
+
+/* Search — terminal command line under the chips. */
+.searchWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.7rem;
+  width: 1rem;
+  height: 1rem;
+  color: var(--gh-term-faint);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.search {
+  width: 100%;
+  background: var(--gh-term-panel);
+  border: 1px solid var(--gh-term-line);
+  border-radius: 0.375rem;
+  color: var(--gh-term-text);
+  font-family: var(--gh-font-mono);
+  font-size: 0.85rem;
+  padding: 0.55rem 2.2rem 0.55rem 2.4rem;
+}
+
+.search::placeholder {
+  color: var(--gh-term-faint);
+}
+
+.search:focus {
+  outline: none;
+  border-color: var(--gh-term-amber);
+}
+
+.clear {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--gh-term-faint);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.clear:hover {
+  color: var(--gh-term-text);
 }
 
 .count {
