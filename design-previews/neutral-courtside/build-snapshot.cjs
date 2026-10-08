@@ -46,6 +46,12 @@ function moduleCss(file) {
 }
 
 async function run() {
+  const manifestFile = path.join(__dirname, 'snapshot-manifest.json');
+  const previousOrder = fs.existsSync(manifestFile)
+    ? Object.keys(JSON.parse(fs.readFileSync(manifestFile, 'utf8')).cssModules) : [];
+  const order = new Map(previousOrder.map((file, index) => [file, index]));
+  const ordered = map => [...map].sort(([a], [b]) =>
+    (order.get(a) ?? Infinity) - (order.get(b) ?? Infinity) || a.localeCompare(b));
   const result = await esbuild.build({
     entryPoints: [path.join(__dirname, 'snapshot-entry.tsx')],
     bundle: true, write: false, platform: 'node', format: 'cjs', jsx: 'automatic',
@@ -77,16 +83,18 @@ async function run() {
     .replace(/(<select\b[^>]*)(>)/g, '$1 disabled=""$2')
     .replace(/(<button\b[^>]*)(>)/g, '$1 disabled=""$2');
   html = html.replace(/href="\/(?!\/)([^"]*)"/g, 'href="https://goathoopers.com/$1"');
+  html = html.replace(/<a\b[^>]*\bhref="https?:\/\/[^\"]+"[^>]*>/g, tag =>
+    tag.slice(0, -1) + ' target="_blank" rel="noopener noreferrer">');
   html = html.replaceAll('Live roster check', 'Review roster snapshot');
-  const head = '<!doctype html><html lang="en" data-treatment="chalk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>GOAT Hoopers · neutral palette review snapshot</title><link rel="stylesheet" href="../../src/ui/tokens.css"><link rel="stylesheet" href="../../src/ui/courtside-tokens.css"><link rel="stylesheet" href="../../src/app/globals.css"><link rel="stylesheet" href="snapshot.css"><link rel="stylesheet" href="treatments.css"></head><body><p class="review-notice">Palette review · frozen Oct 8 sample content · application controls disabled. Team and player links open the live site.</p>';
+  const head = '<!doctype html><html lang="en" data-treatment="chalk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>GOAT Hoopers · neutral palette review snapshot</title><link rel="stylesheet" href="../../src/ui/tokens.css"><link rel="stylesheet" href="../../src/ui/courtside-tokens.css"><link rel="stylesheet" href="../../src/app/globals.css"><link rel="stylesheet" href="snapshot.css"><link rel="stylesheet" href="treatments.css"></head><body><p class="review-notice">Palette review · frozen Oct 8 sample content · application controls disabled. Live-site and source links open in a separate tab, preserving this comparison.</p>';
   fs.writeFileSync(path.join(__dirname, 'home.html'), head + html + '</body></html>\n');
-  fs.writeFileSync(path.join(__dirname, 'snapshot.css'), '/* Generated from current production CSS modules. Do not hand-edit. */\n' + [...css.values()].join('\n'));
+  fs.writeFileSync(path.join(__dirname, 'snapshot.css'), '/* Generated from current production CSS modules. Do not hand-edit. */\n' + ordered(css).map(([, value]) => value).join('\n'));
   fs.writeFileSync(path.join(__dirname, 'snapshot-manifest.json'), JSON.stringify({
     baseCommit: 'a327e9c960259025ffc736da7004408942736106',
     data: 'courtside-preview/data.js (frozen Oct 8 sample fixture; no network)',
     components: ['CourtsideHome', 'SiteHeader', 'SiteFooter', 'MobileNav', 'CombinedTicker'],
     adapters: ['Next Link to plain anchor', 'pathname fixed to /', 'optional Three viewer omitted', 'buttons/search/sort disabled; native details retained', 'local approved avatar assets', 'approved black horizontal logo variant'],
-    cssModules: Object.fromEntries(cssNames),
+    cssModules: Object.fromEntries(ordered(cssNames)),
   }, null, 2) + '\n');
   console.log('Rendered current Courtside component tree and', css.size, 'CSS modules. No network, install, Next build or production write.');
 }

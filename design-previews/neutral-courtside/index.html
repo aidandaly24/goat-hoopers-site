@@ -20,8 +20,8 @@
     a { color:#245a4b; display:inline-flex; align-items:center; }
     :focus-visible { outline:2px solid #245a4b; outline-offset:3px; }
     #selection { font-weight:600; }
-    .frame-wrap { margin-top:1rem; max-width:100%; overflow:auto; }
-    iframe { display:block; margin:auto; width:1440px; height:900px; border:1px solid #898d83; background:#f6f3eb; }
+    .frame-wrap { margin-top:1rem; max-width:100%; overflow:auto; border:1px solid #898d83; }
+    iframe { display:block; margin:auto; width:1440px; height:900px; border:0; background:#f6f3eb; }
     details { margin-top:1rem; max-width:85ch; }
     summary { min-height:44px; cursor:pointer; }
     table { border-collapse:collapse; width:100%; }
@@ -50,7 +50,7 @@
       <tr><th>Paper + slate</th><td><span class="swatch" style="background:#f5f4ef"></span>#F5F4EF</td><td>#242D35</td><td><span class="swatch" style="background:#345b77"></span>#345B77</td></tr>
       <tr><th>Linen + burgundy</th><td><span class="swatch" style="background:#f5f1e8"></span>#F5F1E8</td><td>#2C2928</td><td><span class="swatch" style="background:#843f46"></span>#843F46</td></tr>
     </tbody></table>
-    <p>This is an offline render of existing production components with the checked-in Oct 8 sample fixture. Native roster disclosures work. Search, sort, matchup and figurine buttons are visibly disabled in this snapshot; functionality belongs to the app and its separate fixes. Team/player/navigation links go to the live site. No application state, account, data or 3D model is changed.</p>
+    <p>This is an offline render of existing production components with the checked-in Oct 8 sample fixture. Native roster disclosures work. Search, sort, matchup and figurine buttons are visibly disabled in this snapshot; functionality belongs to the app and its separate fixes. Team/player/navigation links open the live site in a separate tab, preserving this comparison. No application state, account, data or 3D model is changed.</p>
     <p>The comparison controls use keyboard-operable native radios/selects with visible focus and a selection announcement. The review is static under every motion preference. No fresh browser rendering or screenshot verification is claimed: supported Mac Chrome selection timed out and the in-app browser was unavailable. The default Chalk snapshot remains readable without JavaScript.</p>
   </details>
   <noscript><p>JavaScript is needed to switch palette and width. <a href="home.html">Read the default Chalk snapshot</a>; all three token sets are listed above.</p></noscript>

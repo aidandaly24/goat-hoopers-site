@@ -14,7 +14,8 @@ python3 -m http.server 8793 --bind 127.0.0.1
 Then open `http://127.0.0.1:8793/design-previews/neutral-courtside/`. The toolbar
 offers Chalk + clay, Paper + slate and Linen + burgundy; switch without resetting
 scroll. Desktop uses 1440px; 390px and 320px set the iframe's actual
-layout viewport. The page uses native radios/select, visible focus, a status
+layout viewport. The iframe is borderless with its border on the wrapper, so
+the labeled widths equal its content viewport widths. The page uses native radios/select, visible focus, a status
 announcement and an iframe title. Without JavaScript, `home.html` remains a
 readable Chalk snapshot. Browser zoom remains available. This is an interactive
 comparison instead of claiming fresh screenshot captures.
@@ -60,7 +61,9 @@ palette's exact tokens are proposals. No production imports this directory.
 Native roster details remain usable. Search/sort, matchup/figurine buttons and
 other application buttons are visibly disabled in this static snapshot. It
 does not demonstrate or reimplement their logic. Profile/player/navigation
-links open their existing `goathoopers.com` routes. Sorting is owned by the
+links open their existing `goathoopers.com` routes in separate tabs with
+`noopener noreferrer`, retaining the comparison. Source links behave the same
+way; local disclosure and review controls stay in place. Sorting is owned by the
 separate homepage task; game discovery and its full path are owned by the
 Arcade task. Keep this separation in combined review.
 

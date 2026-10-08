@@ -11,6 +11,10 @@ const rosterCount = [...html.matchAll(/class="review_CourtsideHome_roster-list">
 if (entries !== 10 || players !== 10 || rosterCount !== 228) throw Error('Roster retention failed');
 const resources = [...html.matchAll(/(?:src|href)="([^"#]+)"/g)].map(match => match[1]).filter(value => !/^(https?:|data:)/.test(value));
 resources.forEach(value => { if (!fs.existsSync(path.resolve(__dirname, value))) throw Error('Missing resource: ' + value); });
+const externalLinks = [...html.matchAll(/<a\b[^>]*\bhref="https?:\/\/[^\"]+"[^>]*>/g)];
+if (!externalLinks.length || externalLinks.some(([tag]) => !tag.includes('target="_blank"') || !tag.includes('rel="noopener noreferrer"'))) throw Error('External destination could replace comparison');
+const reviewIndex = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
+if (!/iframe\s*\{[^}]*border:0;/.test(reviewIndex)) throw Error('Iframe border changes labeled content viewport width');
 const css = fs.readFileSync(path.join(__dirname, 'snapshot.css'), 'utf8');
 const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, 'snapshot-manifest.json'), 'utf8'));
 for (const names of Object.values(manifest.cssModules)) for (const scoped of Object.values(names)) if (!css.includes('.' + scoped)) throw Error('Missing scoped class: ' + scoped);
