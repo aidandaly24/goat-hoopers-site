@@ -187,6 +187,11 @@ page palettes; remove an alias only after its last consumer migrates.
 | Approved stocks workspace | Shared page roles plus owner-scoped chart roles | Preserve composition, useful density, list/detail behavior and provenance. The selected site-wide palette also applies to its working surfaces. Retain distinct estimated/recorded chart styles and the chart owner's token names; contrast-check them on white when that PR lands. No chart or pricing logic change here. |
 | Championship object / playable scene | `--gh-banner-*` / `--gh-scene-*` | Existing crimson fabric/brass banner and dark court HUD stay bounded to actual objects. History pages, game discovery and shared chrome remain paper. This exception cannot become another page-wide theme. |
 
+A scoped scene must set its actual `color` and raised-surface roles; changing
+custom property values alone does not change inherited body text. Status badges
+inside a scene use an opaque local surface so their text contrast is stable
+over moving court imagery.
+
 Publication hues are darkened to remain readable on paper, with their existing
 publication labels. The game's HUD locally restores its approved scene type
 and light text. Comparison `--review-*` variables stay isolated and never enter

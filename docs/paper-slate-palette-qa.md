@@ -42,8 +42,8 @@ initials fallback are explicitly labeled. It injects transport only inside the
 fixture; it never serves application API/data/account routes.
 
 Chrome 155.0.8059.40, Playwright 1.64.0 and Node22.23.3 used a private profile on
-Mac with reduced motion and WebGL disabled. **54 recorded checks passed and
-42 viewport screenshots** were retained at 1440×900, 390×844 and 320×844.
+Mac with reduced motion and WebGL disabled. **66 recorded checks passed and
+51 viewport screenshots** were retained at 1440×900, 390×844 and 320×844.
 Every tested route/state had page width equal to viewport width. Directory
 Order selection and visible slate focus, stock search/selected detail/Retry/
 close focus restoration, 10 team destinations, empty lists, actual game
@@ -54,6 +54,20 @@ Resolved text/outcome/accent combinations on canvas, white and hover meet
 is 7.22:1. Control boundaries pass 3:1 against those three surfaces. Retained
 position/team hues pass 4.5:1 with the separate dark-on-color label. These are
 specific resolved token-pair checks, not a whole-site accessibility certification.
+The independent review caught two scene-isolation gaps in initial head
+`5e753633`: actual inherited title/Streak/Best/loading text was 1.38:1 on the
+dark stage, and Prototype was 2.10:1 after its 0.65 group opacity. The minimal
+correction sets the stage's actual light foreground and dark raised role;
+Prototype now uses its solid local background at opacity1. Its actual pair is
+7.37:1 and inherited light text is 17.62:1. The fixture holds only the local
+renderer module to observe real loading, then releases it for the real WebGL
+fallback. Actual computed/composited checks cover title, values, loading,
+fallback/reload, help heading/prose/keys, fine labels and Prototype at all three
+widths; all 48 actual element pairs exceed 4.5:1. No production state/logic is
+fabricated. Prototype's solid background/full opacity avoids dependence on
+moving court imagery. Before measurements are retained as `scene-before.json`;
+after groups are in the refreshed evidence manifest.
+
 No unhandled page errors, external or non-GET browser requests occurred. Nine
 expected Three console messages report the deliberately disabled WebGL context
 (three per viewport); no other console errors occurred.
@@ -61,7 +75,8 @@ expected Three console messages report the deliberately disabled WebGL context
 Evidence is task-owned under `qa/paper-slate/evidence/`: `receipt.json`, plus
 `1440-home.png`, `390-home.png`, `390-home-directory.png`,
 `1440-stock-inspector.png`, `390-stock-inspector.png`, `320-teams.png`,
-`390-arcade.png`, `390-trade.png`, `1440-history.png`, error/empty/fallback
+`390-arcade.png`, `390-trade.png`, `1440-history.png`,
+`390-game-loading.png`, `390-game-help.png`, `390-game-fine-controls.png`, error/empty/fallback
 captures and the remaining widths. The final source fingerprint and screenshot
 hashes are recorded in [paper-slate-evidence.json](paper-slate-evidence.json).
 Screenshots are local review artifacts, not a published Vercel URL.

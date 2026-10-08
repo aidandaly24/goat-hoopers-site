@@ -39,8 +39,11 @@ review. Evidence and generated caches are ignored and task-owned. Run Vite with
 `--configLoader runner` when packages are linked read-only.
 
 The checks cover 1440×900, 390×844 and 320×844, reduced motion, canvas/overflow,
-resolved semantic contrast, directory sorting/focus, stock search/detail/error/
+resolved semantic contrast, actual scene text/badge contrast in loading/fallback/
+help/fine labels (including ancestor opacity), directory sorting/focus, stock search/detail/error/
 close-focus, team links/empty, game discovery/fallback/help/back, trade picks/
-remove and recovery. Screenshots retain their natural post-interaction scroll
+remove and recovery. The local renderer module is briefly held to capture the real loading UI; it
+is then released for the real disabled-WebGL fallback. No scene state or
+production logic is fabricated. Screenshots retain their natural post-interaction scroll
 positions. This is Chromium viewport emulation, not physical Safari/iOS or
 hosted backend verification. See [the QA record](../../docs/paper-slate-palette-qa.md).

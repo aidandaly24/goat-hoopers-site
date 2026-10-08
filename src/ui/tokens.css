@@ -38,6 +38,7 @@ body:has([data-arcade-page]) > [hidden]:first-child + header { top: 0; }
   --gh-banner-text-muted: #e1d5b8;
   /* Bounded game-scene roles preserve the readable approved HUD. */
   --gh-scene-bg: #0a0e1a;
+  --gh-scene-raised: #111827;
   --gh-scene-text: #f2f5fa;
   --gh-scene-muted: #9ba8bc;
   --gh-scene-faint: #8e97a9;

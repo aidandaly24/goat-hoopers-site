@@ -1,6 +1,7 @@
 /* The playable 3D scene keeps its approved dark HUD; the surrounding site is paper. */
 .stage {
   --gh-bg: var(--gh-scene-bg);
+  --gh-bg-raised: var(--gh-scene-raised);
   --gh-bg-hover: var(--gh-scene-hover);
   --gh-text: var(--gh-scene-text);
   --gh-text-dim: var(--gh-scene-muted);
@@ -13,6 +14,7 @@
   --gh-gradient-gold: linear-gradient(135deg, var(--gh-gold-soft), var(--gh-gold) 55%, var(--gh-gold-deep));
   --gh-font-display: var(--font-display, "Anton", system-ui, sans-serif);
   --gh-focus: var(--gh-gold-soft);
+  color: var(--gh-text);
 }
 .surface { max-width: 100rem; margin: 0 auto; padding: var(--gh-s4); }
 .stage { position: relative; isolation: isolate; height: calc(100dvh - var(--gh-ticker-h) - 4rem - var(--gh-s8)); min-height: 28rem; overflow: hidden; border: 1px solid var(--gh-border-strong); border-radius: var(--gh-radius-lg); background: var(--gh-bg); touch-action: none; cursor: grab; outline-offset: -4px; }
@@ -54,7 +56,8 @@
 .touchHint { display: none; }
 .keyboardHint > span { margin: 0 var(--gh-s1); }
 .stage kbd { font: inherit; color: var(--gh-text); border: 1px solid var(--gh-border-strong); border-radius: var(--gh-s1); padding: 0 var(--gh-s1); background: color-mix(in srgb, var(--gh-bg) 80%, transparent); }
-.prototype { position: absolute; left: var(--gh-s3); bottom: var(--gh-s3); pointer-events: none; opacity: 0.65; }
+/* Opaque scene surface keeps the status readable over varying court imagery. */
+.prototype { position: absolute; left: var(--gh-s3); bottom: var(--gh-s3); pointer-events: none; opacity: 1; }
 .help { position: absolute; z-index: 5; right: var(--gh-s4); top: 4.5rem; width: min(24rem, calc(100% - var(--gh-s8))); max-height: calc(100% - 5.5rem); overflow-y: auto; padding: var(--gh-s4); border: 1px solid var(--gh-border-strong); border-radius: var(--gh-radius); background: color-mix(in srgb, var(--gh-bg) 96%, transparent); box-shadow: var(--gh-shadow-lg); cursor: default; -webkit-user-select: text; user-select: text; touch-action: pan-y; }
 .help header { display: flex; align-items: center; justify-content: space-between; gap: var(--gh-s3); }
 .help h2 { margin: 0; font-size: 1.4rem; }

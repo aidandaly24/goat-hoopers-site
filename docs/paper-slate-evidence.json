@@ -1,10 +1,10 @@
 {
   "base": "be5546380f12d532a6ff7179a9de72378e97ede7",
-  "source_sha256": "49e0c53c593eebb97525067d9ed9f779863a1538ca4b91c68b740e81e6043259",
+  "source_sha256": "c2793635f75c251c20c7576559bb292453bfc3d2b1e3c25f44f956009cd57a45",
   "source_files_count": 301,
-  "fingerprint_method": "SHA256 of compact sorted path\u2192SHA256 JSON for every git-tracked src file, QA fixture top-level file and approved black logo bytes. Documents/generated caches excluded.",
+  "fingerprint_method": "SHA256 of compact sorted path\u2192SHA256 JSON for every git-tracked src file, QA fixture top-level file and approved black logo bytes. Root design/QA documents and generated caches excluded; fixture README included.",
   "browser": "155.0.8059.40",
-  "checks": 54,
+  "checks": 66,
   "pageErrors": [],
   "externalRequests": [],
   "nonGETRequests": [],
@@ -46,6 +46,1029 @@
       "text": "THREE.WebGLRenderer: THREE.WebGLRenderer: Error creating WebGL context."
     }
   ],
+  "sceneCorrectionBefore": {
+    "head": "5e75363321eee0a10f9f29397ce4809f47028eb3",
+    "actualComputedSamples": [
+      {
+        "label": "title",
+        "text": "Free throws",
+        "color": "rgb(36, 45, 53)",
+        "background": "rgba(0, 0, 0, 0)",
+        "groupOpacity": [],
+        "compositedInk": [
+          36,
+          45,
+          53
+        ],
+        "compositedBackground": [
+          10,
+          14,
+          26
+        ],
+        "ratio": 1.38
+      },
+      {
+        "label": "Streak",
+        "text": "0",
+        "color": "rgb(36, 45, 53)",
+        "background": "rgba(0, 0, 0, 0)",
+        "groupOpacity": [],
+        "compositedInk": [
+          36,
+          45,
+          53
+        ],
+        "compositedBackground": [
+          10,
+          14,
+          26
+        ],
+        "ratio": 1.38
+      },
+      {
+        "label": "Best",
+        "text": "0",
+        "color": "rgb(36, 45, 53)",
+        "background": "rgba(0, 0, 0, 0)",
+        "groupOpacity": [],
+        "compositedInk": [
+          36,
+          45,
+          53
+        ],
+        "compositedBackground": [
+          10,
+          14,
+          26
+        ],
+        "ratio": 1.38
+      },
+      {
+        "label": "loading",
+        "text": "Opening the court\u2026",
+        "color": "rgb(36, 45, 53)",
+        "background": "rgb(10, 14, 26)",
+        "groupOpacity": [],
+        "compositedInk": [
+          36,
+          45,
+          53
+        ],
+        "compositedBackground": [
+          10,
+          14,
+          26
+        ],
+        "ratio": 1.38
+      },
+      {
+        "label": "Prototype",
+        "text": "Prototype",
+        "color": "rgb(155, 168, 188)",
+        "background": "rgb(255, 255, 255)",
+        "groupOpacity": [
+          "0.65"
+        ],
+        "compositedInk": [
+          104.25,
+          114.1,
+          131.3
+        ],
+        "compositedBackground": [
+          169.25,
+          170.65,
+          174.85
+        ],
+        "ratio": 2.1
+      }
+    ]
+  },
+  "sceneContrastAfter": [
+    {
+      "check": "1440 game loading actual element contrast",
+      "detail": [
+        {
+          "label": "title",
+          "text": "Free throws",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Streak",
+          "text": "0",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Best",
+          "text": "0",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "loading",
+          "text": "Opening the court\u2026",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgb(10, 14, 26)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Prototype",
+          "text": "Prototype",
+          "color": "rgb(155, 168, 188)",
+          "background": "rgb(17, 24, 39)",
+          "groupOpacity": [],
+          "compositedInk": [
+            155,
+            168,
+            188
+          ],
+          "compositedBackground": [
+            17,
+            24,
+            39
+          ],
+          "ratio": 7.37
+        }
+      ]
+    },
+    {
+      "check": "1440 game fallback actual element contrast",
+      "detail": [
+        {
+          "label": "title",
+          "text": "Free throws",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "fallback",
+          "text": "3D court unavailable",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "fallback instruction",
+          "text": "Check your connection and WebGL support.",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "reload",
+          "text": "Reload practice",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgb(26, 35, 50)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            26,
+            35,
+            50
+          ],
+          "ratio": 14.44
+        },
+        {
+          "label": "Prototype",
+          "text": "Prototype",
+          "color": "rgb(155, 168, 188)",
+          "background": "rgb(17, 24, 39)",
+          "groupOpacity": [],
+          "compositedInk": [
+            155,
+            168,
+            188
+          ],
+          "compositedBackground": [
+            17,
+            24,
+            39
+          ],
+          "ratio": 7.37
+        }
+      ]
+    },
+    {
+      "check": "1440 game help actual element contrast",
+      "detail": [
+        {
+          "label": "help title",
+          "text": "Find your touch",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "help paragraph",
+          "text": "Focus the court. A / D or the arrow keys aim. Hold Space to build power, then release. Start near 50",
+          "color": "rgb(155, 168, 188)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            155,
+            168,
+            188
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 8
+        },
+        {
+          "label": "help key",
+          "text": "A",
+          "color": "rgb(242, 245, 250)",
+          "background": "color(srgb 0.0392157 0.054902 0.101961 / 0.8)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        }
+      ]
+    },
+    {
+      "check": "1440 game fine labels actual element contrast",
+      "detail": [
+        {
+          "label": "Aim label",
+          "text": "Aim",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Power label",
+          "text": "Power",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Aim guide",
+          "text": "Aim guide",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        }
+      ]
+    },
+    {
+      "check": "390 game loading actual element contrast",
+      "detail": [
+        {
+          "label": "title",
+          "text": "Free throws",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Streak",
+          "text": "0",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Best",
+          "text": "0",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "loading",
+          "text": "Opening the court\u2026",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgb(10, 14, 26)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Prototype",
+          "text": "Prototype",
+          "color": "rgb(155, 168, 188)",
+          "background": "rgb(17, 24, 39)",
+          "groupOpacity": [],
+          "compositedInk": [
+            155,
+            168,
+            188
+          ],
+          "compositedBackground": [
+            17,
+            24,
+            39
+          ],
+          "ratio": 7.37
+        }
+      ]
+    },
+    {
+      "check": "390 game fallback actual element contrast",
+      "detail": [
+        {
+          "label": "title",
+          "text": "Free throws",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "fallback",
+          "text": "3D court unavailable",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "fallback instruction",
+          "text": "Check your connection and WebGL support.",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "reload",
+          "text": "Reload practice",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgb(26, 35, 50)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            26,
+            35,
+            50
+          ],
+          "ratio": 14.44
+        },
+        {
+          "label": "Prototype",
+          "text": "Prototype",
+          "color": "rgb(155, 168, 188)",
+          "background": "rgb(17, 24, 39)",
+          "groupOpacity": [],
+          "compositedInk": [
+            155,
+            168,
+            188
+          ],
+          "compositedBackground": [
+            17,
+            24,
+            39
+          ],
+          "ratio": 7.37
+        }
+      ]
+    },
+    {
+      "check": "390 game help actual element contrast",
+      "detail": [
+        {
+          "label": "help title",
+          "text": "Find your touch",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "help paragraph",
+          "text": "Focus the court. A / D or the arrow keys aim. Hold Space to build power, then release. Start near 50",
+          "color": "rgb(155, 168, 188)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            155,
+            168,
+            188
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 8
+        },
+        {
+          "label": "help key",
+          "text": "A",
+          "color": "rgb(242, 245, 250)",
+          "background": "color(srgb 0.0392157 0.054902 0.101961 / 0.8)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        }
+      ]
+    },
+    {
+      "check": "390 game fine labels actual element contrast",
+      "detail": [
+        {
+          "label": "Aim label",
+          "text": "Aim",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Power label",
+          "text": "Power",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Aim guide",
+          "text": "Aim guide",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        }
+      ]
+    },
+    {
+      "check": "320 game loading actual element contrast",
+      "detail": [
+        {
+          "label": "title",
+          "text": "Free throws",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Streak",
+          "text": "0",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Best",
+          "text": "0",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "loading",
+          "text": "Opening the court\u2026",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgb(10, 14, 26)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Prototype",
+          "text": "Prototype",
+          "color": "rgb(155, 168, 188)",
+          "background": "rgb(17, 24, 39)",
+          "groupOpacity": [],
+          "compositedInk": [
+            155,
+            168,
+            188
+          ],
+          "compositedBackground": [
+            17,
+            24,
+            39
+          ],
+          "ratio": 7.37
+        }
+      ]
+    },
+    {
+      "check": "320 game fallback actual element contrast",
+      "detail": [
+        {
+          "label": "title",
+          "text": "Free throws",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "fallback",
+          "text": "3D court unavailable",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "fallback instruction",
+          "text": "Check your connection and WebGL support.",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "reload",
+          "text": "Reload practice",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgb(26, 35, 50)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            26,
+            35,
+            50
+          ],
+          "ratio": 14.44
+        },
+        {
+          "label": "Prototype",
+          "text": "Prototype",
+          "color": "rgb(155, 168, 188)",
+          "background": "rgb(17, 24, 39)",
+          "groupOpacity": [],
+          "compositedInk": [
+            155,
+            168,
+            188
+          ],
+          "compositedBackground": [
+            17,
+            24,
+            39
+          ],
+          "ratio": 7.37
+        }
+      ]
+    },
+    {
+      "check": "320 game help actual element contrast",
+      "detail": [
+        {
+          "label": "help title",
+          "text": "Find your touch",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "help paragraph",
+          "text": "Focus the court. A / D or the arrow keys aim. Hold Space to build power, then release. Start near 50",
+          "color": "rgb(155, 168, 188)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            155,
+            168,
+            188
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 8
+        },
+        {
+          "label": "help key",
+          "text": "A",
+          "color": "rgb(242, 245, 250)",
+          "background": "color(srgb 0.0392157 0.054902 0.101961 / 0.8)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        }
+      ]
+    },
+    {
+      "check": "320 game fine labels actual element contrast",
+      "detail": [
+        {
+          "label": "Aim label",
+          "text": "Aim",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Power label",
+          "text": "Power",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        },
+        {
+          "label": "Aim guide",
+          "text": "Aim guide",
+          "color": "rgb(242, 245, 250)",
+          "background": "rgba(0, 0, 0, 0)",
+          "groupOpacity": [],
+          "compositedInk": [
+            242,
+            245,
+            250
+          ],
+          "compositedBackground": [
+            10,
+            14,
+            26
+          ],
+          "ratio": 17.62
+        }
+      ]
+    }
+  ],
   "screenshots": {
     "1440-home.png": "a3676e477438411af3f423c91deaa3d76782031d33f8348ec5f5cbfc22b31010",
     "1440-home-directory.png": "3ce97757b2ff2491de8316446a953ded45abe226b2b8c81b6629105be60fa890",
@@ -55,7 +1078,10 @@
     "1440-stock-empty.png": "5a56f4988293b2e0d9508bd740dc022c1b616ca2c6eb29f37662a7007d8ae0f6",
     "1440-teams.png": "2925041cdcbd9224819aa7a7568cbf1a00bb0fcf031b6084aec292f071c613d1",
     "1440-arcade.png": "483ee908686d153988e7672c9c476809675aaa5b6fbc9ada5efafca1bca3e115",
-    "1440-game-fallback.png": "29b7f589a6fa9a9d1d3cb0460e41be0013688361f5c4a8b553b8d022ce354e2c",
+    "1440-game-loading.png": "4a21374fd73d56a9f06ba65158c426632f5859f198ec5f0443b2e8514c3e60de",
+    "1440-game-fallback.png": "d7a9528033166f225b133ed4f5caf400c996fe70197f032e7295e92ea0a766bf",
+    "1440-game-help.png": "c87d8daf608b7060f4751fc1844efbad68e373572dfb13199de8c7ac404299b0",
+    "1440-game-fine-controls.png": "624bea3cf73348bc6de0767acea003d29c693a77888ecfa547a6d199bbfcedd0",
     "1440-trade.png": "f6f8442c0fe429d52fe26a13b8a0fa0f458b8bafcabd1ec0168c6891d795a79b",
     "1440-history.png": "9348fdbe6309632bc9a66e7a43c41faef7230fabbd3f4edcbc0fe2810c0fc8cf",
     "1440-unavailable.png": "af26edd8726b5b4571f907079fb4a2c69a59840b70bb0bee5b53fd924599982e",
@@ -69,7 +1095,10 @@
     "390-stock-empty.png": "55d9dcb9dd85f5e02e980670fca734c73a3bc4c309dbdd82c29e021cfbd4ac97",
     "390-teams.png": "3f66f7aefc5603eff8e5d3bab4f97a4ae6dfc4eacfe9b6c651dccbc97a5cd902",
     "390-arcade.png": "6786a0446ca10e53fd3821f56003a57b42da34b854e1cfbd1544067ce0b96678",
-    "390-game-fallback.png": "9064b5cede10b17d9b035e16c768baf3fe20c04d359f30e67c68712e1e8d8de3",
+    "390-game-loading.png": "73cc0bde783fe6d2658f8b0e642ad63036471a26bd1300813fb1e651c6a2f80c",
+    "390-game-fallback.png": "dbc90e2a142e52bc8c67235fb035894e8453b0fb16fd8b693c94fd0819907b3b",
+    "390-game-help.png": "6a2a30e137e97ffa3be632b874dc0b984bb18eda7448512859073d0b6d07a85f",
+    "390-game-fine-controls.png": "f28cf6927b138a09fddcc744248a8023c2afc6a67cedaa35166b3f6bc78a270c",
     "390-trade.png": "ac721cd049a25b0bca51ce587354f4159c67b124f09f2aac1e5c7aa73333030e",
     "390-history.png": "1748973774b3578870acc919d0038d5a4f5db36168865c322c83407eb4f4c978",
     "390-unavailable.png": "79e8c0970b02fc43b1aaf6fea60c5e9506d6584e80a99a07140e4421347e93a3",
@@ -83,7 +1112,10 @@
     "320-stock-empty.png": "4c1b1001330c79567c2073193826f8685730ddf19d0cec09401b5a7fb161d7b4",
     "320-teams.png": "c954efe112dc23bd1461ae22ed31b50f3b9fe6bff4b4c9df864cd6690f11b029",
     "320-arcade.png": "ec5372562341648d83d7aa1fdb865cd5cdf25d4e4aef1af2777e7c520f96060c",
-    "320-game-fallback.png": "435ba8e4ad5036c68222c8f798e73fc11d39c3610f5dc0a1713f087ebf2c6f2e",
+    "320-game-loading.png": "35cf5328da901f8cb835636a5468581af875d29e82936b0791a5efa449f05b2a",
+    "320-game-fallback.png": "42cbf32ea3597874837aafa5dd41ea13890443e647f68c33cacdd9b6345dbf85",
+    "320-game-help.png": "d794eaa2c4f92be1370d3baacb6e26ff5e2fd9c8dc8f0f2411cb605056f3fd95",
+    "320-game-fine-controls.png": "6ad60bb7cab307ac4f9b84b7a1c77516c3ef8e86a3e991048e0751a731027408",
     "320-trade.png": "7d36f361999316ce0d7feacc2d86a849248605cb6a6287c6f6452b48bee4f907",
     "320-history.png": "353ae2139c1b775bc12b37d0d7d08bbe31c24c51674595d89bd10127a6897d4e",
     "320-unavailable.png": "6f79739b2d3977542ee30b9db31e4d19c76c49c4c3f15ec44e0a77971a62262b",
