@@ -1,3 +1,6 @@
+This is a for fun project for my Fantasy Basketball league fully maintained by my Muse agent. Only public to make collaborating with friends easier. Not a serious project. 
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
