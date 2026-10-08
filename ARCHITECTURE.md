@@ -12,6 +12,47 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ## Directory map
 
+### Courtside homepage and weekly archive
+
+`src/app/page.tsx` loads `getCourtsideHomeData`, archive references and approved portrait URLs, then composes `CourtsideHome` in the existing `season-hub` surface. `/weekly` and `/weekly/[editionId]` are source-controlled editorial routes. The old `SeasonHub`/`LeagueHero` components and static review stay available for comparison.
+
+`getCourtsideHomeData` accepts injectable clock/data dependencies. Live team identities, all roster references, current pairings and recent moves come through the existing Sleeper/transform membrane; `buildLiveClubhouseDirectory` is a pure projection. Only the slim roster player references are cached for a day, keyed by sorted current roster IDs. A changed roster ID set resolves immediately. The full player directory stays outside Next’s data cache. Existing 300-second league fetches deduplicate across layout and page. No DB/schema, environment, scheduler or publishing changes are involved.
+
+Editorial entries carry explicit draft/publication and date bounds. The latest started entry stays visible with a stale notice after its period ends, never invented weekly results. Source dates, selection reasons, NBA/college period qualifiers and verified historical finals are retained. NeuralNets’ 2025 record visibly names the previous manager in the collapsed summary and explains QBs Gremlins in the full roster.
+
+The server owns hero, player stories, wire and archive. Small client islands handle directory search/sort, native dialogs and one bounded CSS emblem settle. The settle pauses offscreen/hidden and is static under reduced motion. `CourtsideFigurine` is imported only after inspection, requests one unchanged GLB, freezes its supplied idle pose, renders only on load/resize/manual turn, and disposes downloads/GPU/bitmap resources on close. Shared account actions, bottom navigation, standings, stats, transaction links and league tools are retained. No arcade internals are imported or changed.
+
+`public/courtside/` preserves the exact supplied SVG variants, approved two pennants, existing arena and thirty bounded local portraits. Plain images serve pre-sized assets directly without image-optimizer quota. Fonts reuse root `next/font` assets. The optional Three module/model never participates in initial homepage rendering. Budgets, provenance and measured verification live in `courtside-preview/review/INTEGRATION.md`.
+
+### Isolated courtside homepage review
+
+`courtside-preview/` is a local, static design review artifact. It does not
+replace `/` or import another surface's internals. Run its commands in
+`courtside-preview/README.md` from the repository root, then serve that root.
+The comparison artifact remains separate from the integrated Next.js homepage; arcade code is unchanged.
+
+- `src/domain/weekly-spotlight.ts` defines dated editorial editions, explicit
+  draft/publication state, historical/upcoming matchup state, source checks,
+  and the three player editorial roles.
+- `src/domain/clubhouse-directory.ts` defines a homepage franchise summary
+  using the existing `Team` identity and `Player` reference contracts.
+- `src/data/weekly-spotlight.ts` and `src/data/clubhouse-directory.ts` contain
+  dated, offline concept fixtures. They are not live loaders or scheduled
+  publishing infrastructure. `build-data.cjs` typechecks and validates them
+  before producing the small browser payload. Production injects live roster contracts through `getCourtsideHomeData`; the frozen directory remains comparison data.
+- `src/ui/courtside-tokens.css` owns this experiment's visual vocabulary;
+  the homepage and archive also load it. Production reuses existing Inter/Geist font assets and scopes the palette with a public home marker.
+- Native `<details>` retains all 228 roster references behind ten compact
+  summaries. No player-detail or external API request is made by this preview.
+  `court.js` loads installed Three modules and existing `public/3d/` assets
+  only after a figurine request; it releases its canvas/resources on close.
+- `ASSET-PROVENANCE.json`, `DESIGN.md`, and `review/` pin the approved assets,
+  visual decisions, and captured desktop/mobile evidence. Weekly banner
+  regeneration remains a content workflow; only two approved samples ship.
+
+The trial's 70rem, 55rem, and 40rem breakpoints are documented in its token
+file. Removing the comparison artifact requires no DB or Vercel change. The production surface is independent of its generated browser payload.
+
 ```
 src/
   domain/        # The shared language: Team, Standing, Matchup, Player

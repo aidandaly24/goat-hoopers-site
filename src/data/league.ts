@@ -8,6 +8,11 @@
  * array instead of throwing the whole page.
  */
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
+import { buildLiveClubhouseDirectory } from "./courtside-home";
+import { selectWeeklyEdition, weeklyEditions, getWeeklyEdition } from "./weekly-spotlight";
+import type { LiveClubhouseDirectoryEntry } from "@/domain/clubhouse-directory";
+import type { WeeklyEdition } from "@/domain/weekly-spotlight";
 import type {
   Season,
   Team,
@@ -94,6 +99,66 @@ export type SeasonHubData = {
   stats: LeagueStats;
   transactions: Transaction[];
 };
+
+export { getWeeklyArchive, getWeeklyEdition } from "./weekly-spotlight";
+export { getCourtsidePortraits } from "./courtside-home";
+
+export type CourtsideHomeData = {
+  hub: SeasonHubData | null;
+  directory: LiveClubhouseDirectoryEntry[];
+  edition: WeeklyEdition | null;
+  checkedAt: string;
+  rosterNamesAvailable: boolean;
+};
+
+/* Cache only the slim roster references. The raw 3MB directory stays out of
+ * Next's data cache; a changed roster-id set creates a new cache key. */
+const getRosterReferences = unstable_cache(async (ids: string[]): Promise<Player[]> => {
+  const directory = await fetchPlayerDirectory();
+  return ids.map((id) => toPlayer(id, directory[id], resolveEspnId(id, SEED_ESPN_ID_MAP)));
+}, ["courtside-roster-references-v1"], { revalidate: 86400 });
+
+type CourtsideHomeDependencies = {
+  now: () => Date;
+  hub: typeof getSeasonHubData;
+  rosters: typeof fetchRosters;
+  state: typeof fetchNbaState;
+  references: typeof getRosterReferences;
+  matchups: typeof fetchMatchups;
+};
+const courtsideHomeDependencies: CourtsideHomeDependencies = {
+  now: () => new Date(), hub: getSeasonHubData, rosters: fetchRosters,
+  state: fetchNbaState, references: getRosterReferences, matchups: fetchMatchups,
+};
+
+/** Live data and source-controlled editorial are composed here, never in a surface. */
+export async function getCourtsideHomeData(editionId?: string, dependencies = courtsideHomeDependencies): Promise<CourtsideHomeData> {
+  const checkedAt = dependencies.now().toISOString();
+  const edition = editionId ? getWeeklyEdition(editionId) : selectWeeklyEdition(weeklyEditions, new Date(checkedAt));
+  const [hub, rosters, state] = await Promise.all([
+    dependencies.hub().catch(() => null),
+    dependencies.rosters().catch(() => null),
+    dependencies.state().catch(() => null),
+  ]);
+  if (!hub || !rosters) return { hub, directory: [], edition, checkedAt, rosterNamesAvailable: false };
+  const ids = [...new Set(rosters.flatMap((roster) => roster.players ?? []))].sort();
+  let rosterNamesAvailable = true;
+  let references: Player[];
+  try { references = await dependencies.references(ids); }
+  catch { rosterNamesAvailable = false; references = ids.map((id) => toPlayer(id, undefined, resolveEspnId(id, SEED_ESPN_ID_MAP))); }
+  const byId = new Map(references.map((player) => [player.id, player]));
+  const playersByTeam = Object.fromEntries(rosters.map((roster) => [String(roster.roster_id), (roster.players ?? []).map((id) => byId.get(id)!).filter(Boolean)]));
+  const weeks = validSeasonWeeks(state);
+  const week = weeks.at(-1);
+  const rawMatchups = week ? await dependencies.matchups(week).catch(() => []) : [];
+  const matchups = toMatchups(rawMatchups, hub.teams).map((matchup) => ({ ...matchup, week: week ?? 1,
+    homePoints: state?.season_type === "pre" ? null : matchup.homePoints,
+    awayPoints: state?.season_type === "pre" ? null : matchup.awayPoints,
+  }));
+  return { hub, edition, checkedAt, rosterNamesAvailable,
+    directory: buildLiveClubhouseDirectory(hub.teams, playersByTeam, matchups, hub.transactions),
+  };
+}
 
 /** Best-effort player directory; null when unavailable (offline, etc). */
 async function safePlayerDirectory(): Promise<Record<

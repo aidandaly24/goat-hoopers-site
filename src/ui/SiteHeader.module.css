@@ -260,3 +260,17 @@
     font-size: 0.8rem;
   }
 }
+
+.wordmark img { display:block; width:13rem; height:auto; }
+:global(body:has([data-courtside-home])) .header {
+  background:var(--gh-cs-wall); border-color:var(--gh-cs-line-light); box-shadow:none;
+}
+:global(body:has([data-courtside-home])) .inner { max-width:var(--gh-cs-wrap); min-height:5.5rem; }
+:global(body:has([data-courtside-home])) .claim {
+  background:var(--gh-cs-tan); color:var(--gh-cs-wall); box-shadow:none;
+}
+@media(max-width:55rem) { .wordmark img { width:10rem; } .inner { gap:var(--gh-s3); } }
+@media(max-width:40rem) {
+  .wordmark img { width:7.5rem; }
+  :global(body:has([data-courtside-home])) .inner { min-height:4.5rem; }
+}

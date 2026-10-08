@@ -1,0 +1,328 @@
+{
+  "verifiedAt": "2026-10-08",
+  "policy": "Exact provided originals; CSS crop only. No new raster is used on the website. Only two approved team fabric exports are used. No speculative honors or blanket banner generation.",
+  "kits": [
+    {
+      "role": "source-kit-preserved",
+      "name": "GOAT_HOOPERS_Embroidered_Banner_Template_v4.zip",
+      "sha256": "c2bde1f2db4bb5d16d6a25b39fbc7e05a3a5764f836b4635e52080bccc802f4e"
+    },
+    {
+      "role": "approved-embroidered-web-kit",
+      "name": "GOAT_HOOPERS_Embroidered_Banner_Web_Samples_v4.zip",
+      "sha256": "9f97c88e75405ebd1e2b5683c10445486d879e08336fa8be4bdc5f82d02b02e9"
+    },
+    {
+      "role": "approved-selected-hybrid-logo-kit",
+      "name": "GOAT-HOOPERS-Selected-Hybrid.zip",
+      "sha256": "489ce0c03e771d635b66ab6455a36869c13f3a2a9fe8368a6836601e61cf74a7"
+    }
+  ],
+  "materialization": "Exact supplied originals and web exports were checked against their supplied manifests. Source kits are preserved locally.",
+  "files": [
+    {
+      "path": "assets/GOAT-HOOPERS-emblem-clay.svg",
+      "bytes": 749,
+      "sha256": "ec4a87834c715ff8c8726a933469150a325ae41180993af3841df378376a7312",
+      "origin": "approved-selected-hybrid-logo-kit"
+    },
+    {
+      "path": "assets/GOAT-HOOPERS-horizontal-white.svg",
+      "bytes": 4469,
+      "sha256": "08320e360cc53c266425c0178b592573f5ddf32c04526de35d119306968b6ac2",
+      "origin": "approved-selected-hybrid-logo-kit"
+    },
+    {
+      "path": "assets/GOAT-HOOPERS-micro-white.svg",
+      "bytes": 687,
+      "sha256": "5d5379eb50c79e3b629d055ba4904bad64da19cd7cec177c7c432d30789ee767",
+      "origin": "approved-selected-hybrid-logo-kit"
+    },
+    {
+      "path": "assets/arena.jpg",
+      "bytes": 329398,
+      "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/banner-roster-1-reaves-dropper.webp",
+      "bytes": 37482,
+      "sha256": "bcb33c8360319814eac70f727a254111da2bc10c62168a9b3180bd949276d46c",
+      "origin": "approved-embroidered-web-kit"
+    },
+    {
+      "path": "assets/banner-roster-5-josh-diddys-roster.webp",
+      "bytes": 47800,
+      "sha256": "c617cf48c9858e601bc41409e9f795e84e98b504e3136588f71cf6a8f96f052f",
+      "origin": "approved-embroidered-web-kit"
+    },
+    {
+      "path": "assets/geist-mono.woff2",
+      "bytes": 23108,
+      "sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/inter.woff2",
+      "bytes": 48432,
+      "sha256": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1085.png",
+      "bytes": 62900,
+      "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1272.png",
+      "bytes": 57909,
+      "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1362.png",
+      "bytes": 28190,
+      "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1380.png",
+      "bytes": 60668,
+      "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1511.png",
+      "bytes": 68824,
+      "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1648.png",
+      "bytes": 64090,
+      "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1658.png",
+      "bytes": 75511,
+      "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1739.png",
+      "bytes": 64753,
+      "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1822.png",
+      "bytes": 66002,
+      "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1845.png",
+      "bytes": 63970,
+      "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1846.png",
+      "bytes": 60917,
+      "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1945.png",
+      "bytes": 62351,
+      "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1957.png",
+      "bytes": 47200,
+      "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1967.png",
+      "bytes": 65120,
+      "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-1970.png",
+      "bytes": 67211,
+      "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2126.png",
+      "bytes": 75165,
+      "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2133.png",
+      "bytes": 71681,
+      "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2161.png",
+      "bytes": 65934,
+      "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2179.png",
+      "bytes": 68817,
+      "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2259.png",
+      "bytes": 62805,
+      "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2267.png",
+      "bytes": 68438,
+      "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2289.png",
+      "bytes": 67169,
+      "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2304.png",
+      "bytes": 60394,
+      "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2308.png",
+      "bytes": 59711,
+      "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2455.png",
+      "bytes": 58083,
+      "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2458.png",
+      "bytes": 54022,
+      "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2574.png",
+      "bytes": 64532,
+      "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-2577.png",
+      "bytes": 63051,
+      "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-4760.png",
+      "bytes": 59589,
+      "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/player-4866.png",
+      "bytes": 53860,
+      "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/team-1.jpg",
+      "bytes": 2192,
+      "sha256": "e4e9d31268df4cd936a5dfacad05a7d80af06dc150ed2eb8d9f2b9879b76a967",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/team-10.jpg",
+      "bytes": 2279,
+      "sha256": "6b2dff19d65d21e20368a23c887449466ae2708f941dbc3008181861b3ed371d",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/team-2.jpg",
+      "bytes": 2640,
+      "sha256": "8c76232c7d177aaf332355ea23d6c2ea783c782953ad0dce87e57915410f8997",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/team-3.jpg",
+      "bytes": 3494,
+      "sha256": "47c6beb1a6cb6c9b19a1f45f33583879455f0ed1e70c68c8f7800ee9719c2654",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/team-4.jpg",
+      "bytes": 2637,
+      "sha256": "e473f903f2f9043dde3506e6690ca580491fb699b1dc93dc1a5c963a88e4c320",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/team-5.jpg",
+      "bytes": 2582,
+      "sha256": "43a6600b3062cf3f3a172a164e264cfc6068100f2e67828709c1f1478584a4d4",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/team-6.jpg",
+      "bytes": 2477,
+      "sha256": "458a6f819cf97db316819e56a93982617716a5f65e9b0e240385ac8d36839e52",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/team-7.jpg",
+      "bytes": 1774,
+      "sha256": "dc276ebf328f666b29667c2e13fa2bd236dc005f5560b07761ec639f5b043498",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/team-8.jpg",
+      "bytes": 3583,
+      "sha256": "debbe4ba0a87592746624beb27146bc56d63fb9c39e9c8ce7819fcf331ad6018",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/team-9.jpg",
+      "bytes": 2554,
+      "sha256": "e5cf55290a625f2b1462902e8e7768620bc274d91470ce71940d69143e63fb97",
+      "origin": "existing-player-options-preview-at-b939553"
+    },
+    {
+      "path": "assets/licenses/Inter-OFL.txt",
+      "bytes": 4377,
+      "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57",
+      "origin": "official-google-fonts-open-font-license"
+    },
+    {
+      "path": "assets/licenses/Geist-Mono-OFL.txt",
+      "bytes": 4387,
+      "sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f",
+      "origin": "official-google-fonts-open-font-license"
+    }
+  ],
+  "fontLicenses": {
+    "Inter": "assets/licenses/Inter-OFL.txt",
+    "Geist Mono": "assets/licenses/Geist-Mono-OFL.txt"
+  }
+}
