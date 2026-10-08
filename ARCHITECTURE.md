@@ -105,7 +105,10 @@ src/
                  # StockMarket (top gainers / decliners, panic meter, full
                  # board), StockBoard (client-side position + rookie filter
                  # chips), StockRow (client quote row; expands to fetch its
-                 # detail on demand), SeasonChart (inline-SVG fppg history),
+                 # detail on demand), detailMachine (extracted stock-detail
+                 # load state machine: idle/error → loading on expand or
+                 # Retry; in-flight dedupe; ready cached per mount),
+                 # SeasonChart (inline-SVG fppg history),
                  # PanicMeter. Receives domain objects, never fetches —
                  # except StockRow, which calls GET /api/stocks/[playerId]
                  # on expand for its detail (Rule 14).
