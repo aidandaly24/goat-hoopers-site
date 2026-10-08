@@ -13,4 +13,11 @@ export type Player = {
   position: string | null;
   /** NBA team abbreviation, e.g. "LAL". Null for free agents/rookies unsigned. */
   nbaTeam: string | null;
+  /**
+   * ESPN athlete id, e.g. "5142718". Null until resolved — resolution lives
+   * in the data layer (src/data/espn.ts); components never look this up.
+   * Feeds the PlayerHeadshot ESPN CDN URL; null renders the initials
+   * fallback.
+   */
+  espnId: string | null;
 };
