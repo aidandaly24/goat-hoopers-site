@@ -302,7 +302,9 @@ auto-switch under `prefers-reduced-motion`); the full market lives at
 `/stocks`. The scores mode (issue #56) is fed by ESPN's public scoreboard
 API via `fetchLiveGames`/`useLiveGames` in `src/data/espn-client.ts`:
 polled directly from the browser every 60s and only while games are live
-or scheduled, so Vercel/Neon stay at $0. `LiveGame` lives in
+or scheduled, so Vercel/Neon stay at $0. `LiveGame` and `LiveSlate`
+(games + the provider's `day.date`, so the poller detects the provider's
+day rollover independently of the browser clock) live in
 `src/domain/live-game.ts`. If ESPN is unreachable the mode silently never
 appears — the ticker parks on News/Stocks.
 

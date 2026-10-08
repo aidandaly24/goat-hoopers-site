@@ -168,6 +168,7 @@ describe("fetchLiveGames", () => {
   it("maps mixed valid and malformed events, keeping valid siblings", async () => {
     fakeFetch.mockResolvedValue(
       okResponse({
+        day: { date: "2026-10-08" },
         events: [
           validEvent(),
           null,
@@ -181,9 +182,17 @@ describe("fetchLiveGames", () => {
         ],
       }),
     );
-    const games = await fetchLiveGames();
-    expect(games.map((g) => g.id)).toEqual(["401123456", "401123457"]);
-    expect(games[1].status).toBe("final");
+    const slate = await fetchLiveGames();
+    expect(slate.games.map((g) => g.id)).toEqual(["401123456", "401123457"]);
+    expect(slate.games[1].status).toBe("final");
+    expect(slate.slateDate).toBe("2026-10-08");
+  });
+
+  it("returns a null slateDate when the provider omits day.date", async () => {
+    fakeFetch.mockResolvedValue(okResponse({ events: [validEvent()] }));
+    const slate = await fetchLiveGames();
+    expect(slate.games.map((g) => g.id)).toEqual(["401123456"]);
+    expect(slate.slateDate).toBeNull();
   });
 
   it("throws on HTTP errors", async () => {

@@ -83,7 +83,7 @@ export function headshotUrl(espnId: string): string {
 // null and the ticker silently parks on News/Stocks. Never throws to the
 // component, never a broken marquee.
 //
-import { type LiveGame, type LiveGameStatus } from "@/domain/live-game";
+import { type LiveGame, type LiveGameStatus, type LiveSlate } from "@/domain/live-game";
 
 const SCOREBOARD_URL =
   "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard";
@@ -215,25 +215,32 @@ export function toLiveGame(event: unknown): LiveGame | null {
 }
 
 /**
- * Fetch today's scoreboard and map it to LiveGames.
+ * Fetch today's scoreboard and map it to a LiveSlate.
+ * The provider's day.date rides along so the poller can detect the
+ * provider's day rollover independently of the browser clock (P2-2).
  * Throws on network/HTTP/shape errors — the hook converts to null.
  */
 export async function fetchLiveGames(
   signal?: AbortSignal,
-): Promise<LiveGame[]> {
+): Promise<LiveSlate> {
   const res = await fetch(SCOREBOARD_URL, { signal });
   if (!res.ok) throw new Error(`ESPN scoreboard HTTP ${res.status}`);
   const data: unknown = await res.json();
-  const events =
-    typeof data === "object" && data !== null
-      ? (data as { events?: unknown }).events
-      : undefined;
+  if (typeof data !== "object" || data === null) {
+    throw new Error("ESPN shape changed");
+  }
+  const { events } = data as { events?: unknown };
   if (!Array.isArray(events)) throw new Error("ESPN shape changed");
   const games: LiveGame[] = [];
   for (const event of events) {
     const game = toLiveGame(event);
     if (game) games.push(game);
   }
-  return games;
+  const day = (data as { day?: unknown }).day;
+  const slateDate =
+    typeof day === "object" && day !== null
+      ? asNonEmptyString((day as { date?: unknown }).date)
+      : null;
+  return { games, slateDate };
 }
 

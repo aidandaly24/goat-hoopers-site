@@ -9,24 +9,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { isGameDay, type LiveGame } from "@/domain/live-game";
+import { isGameDay, type LiveGame, type LiveSlate } from "@/domain/live-game";
 import { fetchLiveGames } from "./espn";
 
 /** Poll cadence while games are live/upcoming (rule 14). */
 const POLL_MS = 60_000;
-/** First retry after a transient failure; second retry backs off to POLL_MS. */
-const RETRY_1_MS = 30_000;
+/**
+ * Minimum spacing between request starts, applied to every path —
+ * bootstrap, retry, timer, visibility, online (P2-3; #56 AC3: at most one
+ * request per 60s per client).
+ */
+const MIN_SPACING_MS = 60_000;
 const MAX_RETRIES = 2;
 /**
- * Idle wake-up bound: visibility/online events only trigger a re-check when
- * the last attempt is older than this, so tab switches can't start a
- * request storm.
+ * Idle wake-up bound: visibility/online events only trigger a re-check of
+ * an idle slate when the last attempt is older than this, so tab switches
+ * can't start a request storm. Does not apply to failure recovery (P2-1).
  */
 const IDLE_WAKEUP_MS = 3_600_000;
+/**
+ * When an idle wake-up fires but the provider's slate date hasn't rolled
+ * (P2-2), re-check on this shorter cadence instead of waiting another day.
+ */
+const IDLE_RECHECK_MS = 2 * 3_600_000;
 
 /** Injected dependencies — the poller never touches globals directly. */
 export type LiveGamesPollerDeps = {
-  fetchGames: (signal: AbortSignal) => Promise<LiveGame[]>;
+  fetchGames: (signal: AbortSignal) => Promise<LiveSlate>;
   now: () => number;
   setTimeout: (fn: () => void, ms: number) => unknown;
   clearTimeout: (id: unknown) => void;
@@ -47,13 +56,17 @@ function msUntilLocalMidnight(nowMs: number): number {
  *
  * Behavior:
  * - Polls every 60s while a game is live or scheduled today.
- * - Transient failure: bounded retry (30s, then 60s backoff), then parks
- *   silently — online/visibility events recover it (P2-1).
+ * - One 60s floor gates every request start — bootstrap, retry, timer,
+ *   visibility, online (P2-3; #56 AC3). A wake-up inside the floor queues
+ *   a single deferred attempt instead of firing early or being dropped.
+ * - Transient failure: bounded retries at the 60s floor, then parks
+ *   silently with a needsRecovery flag — the next online/visibility event
+ *   always recovers it (P2-1), regardless of the 1h idle bound.
  * - Idle slate (empty or all-final): no continuous polling. Wakes once at
- *   the next local midnight to discover the new day's slate, plus a
- *   bounded wake-up on visibility/online if the last check is >1h old
- *   (P2-2). Stale finals are replaced by the fresh check, never rotated
- *   indefinitely.
+ *   the next local midnight to discover the new day's slate; if the
+ *   provider's slate date hasn't rolled, re-checks every 2h instead of
+ *   waiting 24h (P2-2). Stale finals are replaced by the fresh check,
+ *   never rotated indefinitely.
  * - Never overlaps requests: an in-flight guard drops re-entrant polls.
  */
 export function createLiveGamesPoller(
@@ -66,6 +79,10 @@ export function createLiveGamesPoller(
   let aborter: AbortController | null = null;
   let retries = 0;
   let lastAttempt = 0;
+  /** P2-1: parked after exhausting retries — wake events must recover. */
+  let needsRecovery = false;
+  /** P2-2: ESPN's day.date from the last idle response. */
+  let lastSlateDate: string | null = null;
   let unsubVisible: (() => void) | null = null;
   let unsubOnline: (() => void) | null = null;
 
@@ -80,8 +97,48 @@ export function createLiveGamesPoller(
     clearTimer();
     timer = deps.setTimeout(() => {
       timer = undefined;
-      void poll();
+      requestPoll();
     }, ms);
+  }
+
+  /** P2-3: ms until a new request may start under the 60s floor. */
+  function floorDelayMs(): number {
+    if (lastAttempt === 0) return 0;
+    return Math.max(0, lastAttempt + MIN_SPACING_MS - deps.now());
+  }
+
+  /**
+   * The single 60s-floor gate for every poll path (P2-3). When inside the
+   * floor, queues one deferred attempt instead of firing early — and
+   * instead of dropping a recovery wake-up (P2-1).
+   */
+  function requestPoll() {
+    if (stopped || inFlight) return;
+    const wait = floorDelayMs();
+    if (wait > 0) {
+      schedule(wait);
+      return;
+    }
+    void poll();
+  }
+
+  /**
+   * Idle-slate scheduling (P2-2): track the provider's slate date across
+   * wake-ups. A fresh or rolled slate waits for the next local midnight;
+   * an unrolled slate re-checks in 2h so a visible tab discovers the new
+   * day without waiting 24h.
+   */
+  function scheduleIdle(slateDate: string | null) {
+    if (
+      slateDate !== null &&
+      lastSlateDate !== null &&
+      slateDate === lastSlateDate
+    ) {
+      schedule(IDLE_RECHECK_MS);
+    } else {
+      lastSlateDate = slateDate;
+      schedule(msUntilLocalMidnight(deps.now()));
+    }
   }
 
   async function poll() {
@@ -92,25 +149,27 @@ export function createLiveGamesPoller(
     aborter = new AbortController();
     lastAttempt = deps.now();
     try {
-      const fresh = await deps.fetchGames(aborter.signal);
+      const slate = await deps.fetchGames(aborter.signal);
       if (stopped) return;
       retries = 0;
-      onUpdate(fresh);
-      if (isGameDay(fresh)) {
+      needsRecovery = false;
+      const games = slate.games;
+      onUpdate(games);
+      if (isGameDay(games)) {
+        lastSlateDate = null;
         schedule(POLL_MS);
       } else {
-        // Idle: one bounded wake-up at the next day boundary.
-        schedule(msUntilLocalMidnight(deps.now()));
+        scheduleIdle(slate.slateDate);
       }
     } catch {
       if (stopped) return;
       retries += 1;
-      if (retries === 1) {
-        schedule(RETRY_1_MS);
-      } else if (retries <= MAX_RETRIES) {
+      if (retries <= MAX_RETRIES) {
         schedule(POLL_MS);
       } else {
-        // Park silently; visibility/online listeners recover (P2-1).
+        // Park silently; needsRecovery makes the next visibility/online
+        // event recover instead of being dropped by the idle bound (P2-1).
+        needsRecovery = true;
         onUpdate(null);
       }
     } finally {
@@ -120,8 +179,13 @@ export function createLiveGamesPoller(
 
   function wake() {
     if (stopped || inFlight) return;
+    if (needsRecovery) {
+      // P2-1: parked after failures — always honor, via the 60s floor.
+      requestPoll();
+      return;
+    }
     if (deps.now() - lastAttempt > IDLE_WAKEUP_MS) {
-      void poll();
+      requestPoll();
     }
   }
 
@@ -129,7 +193,7 @@ export function createLiveGamesPoller(
     start() {
       unsubVisible = deps.onVisible(wake);
       unsubOnline = deps.onOnline(wake);
-      void poll();
+      requestPoll();
     },
     stop() {
       stopped = true;

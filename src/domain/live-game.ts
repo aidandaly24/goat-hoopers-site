@@ -33,3 +33,14 @@ export function isGameDay(games: LiveGame[]): boolean {
     (g) => g.status === "in-progress" || g.status === "scheduled"
   );
 }
+
+/**
+ * One provider response: the games plus ESPN's own slate date (P2-2).
+ * The provider's day can lag the browser's calendar, so the poller tracks
+ * this instead of assuming midnight == new slate.
+ */
+export type LiveSlate = {
+  games: LiveGame[];
+  /** ESPN's day.date for this response; null when the provider omits it. */
+  slateDate: string | null;
+};
