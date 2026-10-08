@@ -5,17 +5,49 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   unit:
+    # Keep the existing check name for repositories that require it.
     name: Offline tests + typecheck
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # No application/import credentials or local-DB opt-in in CI.
+      DATABASE_URL: ""
+      PRICE_HISTORY_IMPORT_URL: ""
+      RUN_PRICE_HISTORY_LOCAL_TEST: "0"
+      RUN_CLAIM_TEAM_LOCAL_TEST: "0"
+      NEXT_TELEMETRY_DISABLED: "1"
+      npm_config_engine_strict: "true"
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          node-version: 22
+          persist-credentials: false
+      - name: Record the tested revision
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          EVENT_SHA: ${{ github.sha }}
+        run: |
+          printf 'PR head: %s\nEvent SHA: %s\n' "$PR_HEAD_SHA" "$EVENT_SHA"
+          git log -1 --format='Tested commit: %H%nParents: %P'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
           cache: npm
-      - run: npm ci
-      # No network, secrets, or database: vitest is configured offline-only.
-      - run: npm test
-      - run: npx tsc --noEmit
+      - name: Install the locked dependencies (including test tools)
+        run: npm ci --include=dev
+      - name: Run offline regression tests
+        run: npm test
+      - name: Typecheck
+        run: npm run typecheck
+      # This compiles/prerenders the whole app. next/font may download public
+      # Google fonts; no database, import, migration or deployment is invoked.
+      - name: Compile the production app
+        run: npm run build

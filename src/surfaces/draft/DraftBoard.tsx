@@ -71,7 +71,7 @@ export function DraftBoard({ picks, teams }: DraftBoardProps) {
                       </Link>
                       <span className={styles.player}>
                         <PlayerHeadshot
-                          playerId={p.playerId}
+                          espnId={p.espnId}
                           name={p.playerName}
                           teamId={p.teamId}
                         />

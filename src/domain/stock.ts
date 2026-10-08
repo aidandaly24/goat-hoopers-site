@@ -160,6 +160,13 @@ export type StockQuote = {
   ownership: number;
   /** Earliest overall pick in a league rookie draft; null for non-rookies. */
   rookiePick: number | null;
+  /**
+   * ESPN athlete id for the headshot. Attached by the loader
+   * (getStockMarketData) via the src/data/espn.ts seam after pricing —
+   * the pure pricing functions don't know about it. Absent = unresolved,
+   * renders the initials fallback.
+   */
+  espnId?: string | null;
 };
 
 /**

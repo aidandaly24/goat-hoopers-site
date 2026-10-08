@@ -20,6 +20,12 @@ export type DraftPick = {
   position: string | null;
   /** NBA team abbreviation, e.g. "WAS". Null when unsigned/unknown. */
   nbaTeam: string | null;
+  /**
+   * ESPN athlete id (null until resolved). DraftPick carries its own copy
+   * because it doesn't go through the player directory — same rule-11 seam
+   * (src/data/espn.ts) resolves it at the membrane in toDraftPicks.
+   */
+  espnId: string | null;
   /** Sleeper roster_id that ended up with the player, as a string. */
   teamId: string;
 };
