@@ -1,91 +1,61 @@
-/* Hanging championship banner: brass frame, crimson felt, notched hem. */
+/* Approved v4 fabric is an unchanged image; results use Paper + Slate. */
 
 .banner {
-  --gh-brass: var(--gh-banner-metal);
-  --gh-brass-soft: var(--gh-banner-metal-light);
-  --gh-brass-deep: var(--gh-banner-metal-dark);
-  --gh-crimson: var(--gh-banner-fabric);
-  --gh-parchment: var(--gh-banner-text);
-  --gh-parchment-dim: var(--gh-banner-text-muted);
-  --gh-parchment-faint: var(--gh-banner-text-muted);
-  display: block;
-  width: 240px;
-  background: linear-gradient(180deg, var(--gh-brass), var(--gh-brass-deep));
-  padding: 3px;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 90%, 0 100%);
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.25s ease;
-}
-
-.banner:hover {
-  transform: translateY(-6px);
-}
-
-.inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  gap: 0.35rem;
-  background:
-    radial-gradient(100% 50% at 50% 0%, rgba(201, 162, 39, 0.16), transparent 70%),
-    linear-gradient(180deg, #7d1428, var(--gh-crimson) 60%, #6e1020);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 90%, 0 100%);
-  padding: 1.25rem 1rem 3rem;
-  min-height: 340px;
+  gap: var(--gh-s4);
+  width: 15rem;
+  max-width: 100%;
+  color: var(--gh-text);
+  text-decoration: none;
 }
 
-.grommets {
+.artwork {
+  display: block;
+  width: 11.25rem;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.details {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: var(--gh-s2);
   width: 100%;
-  margin-bottom: 0.25rem;
-}
-
-.grommets i {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, var(--gh-brass-soft), var(--gh-brass-deep));
-  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .year {
-  font-family: var(--gh-font-display);
-  font-size: 2.6rem;
-  letter-spacing: 0.06em;
-  color: var(--gh-brass-soft);
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.55);
-  line-height: 1;
-}
-
-.champions {
-  text-transform: uppercase;
-  letter-spacing: 0.42em;
-  font-size: 0.68rem;
-  color: var(--gh-parchment);
-  margin-left: 0.42em;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--gh-champion);
 }
 
 .team {
-  font-family: var(--gh-font-display);
-  font-size: 1.35rem;
-  letter-spacing: 0.03em;
-  color: var(--gh-on-accent);
-  margin-top: 0.5rem;
-  line-height: 1.2;
+  font-family: var(--gh-font-body);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
-.stats {
-  font-size: 0.78rem;
-  color: var(--gh-parchment-dim);
+.banner:hover .team {
+  text-decoration: underline;
+  text-underline-offset: var(--gh-s1);
 }
 
+.stats,
 .final {
-  font-size: 0.75rem;
-  color: var(--gh-parchment-faint);
-  font-style: italic;
-  margin-top: auto;
-  padding-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--gh-text-dim);
+}
+
+/* Existing compact-phone breakpoint; artwork stays naturally proportioned. */
+@media (max-width: 40rem) {
+  .artwork {
+    width: 8.75rem;
+  }
 }
