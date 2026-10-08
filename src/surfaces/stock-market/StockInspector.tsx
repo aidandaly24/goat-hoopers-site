@@ -21,20 +21,21 @@ function DetailContents({ detail }: { detail: StockDetail }) {
   const first = detail.spark[0];
   const last = detail.spark[detail.spark.length - 1];
   const sources = [...new Set(detail.spark.map((p) => p.source))];
-  const sourceLabels = { gamelog: "Game-log reconstruction", backtest: "Season backtest (dashed)", live: "Live snapshots" };
+  const hasRecordedPrices = detail.spark.slice(0, -1).some((p) => p.source === "live");
+  const sourceLabels = { gamelog: "Game-log FAAB estimates (dashed)", backtest: "Annual FAAB estimates (dashed)", live: hasRecordedPrices ? "Recorded site prices + current quote (solid)" : "Current modeled quote (solid)" };
   return <>
     <section className={styles["detail-section"]} aria-labelledby="stock-price-history">
-      <h4 id="stock-price-history">Recorded prices</h4>
+      <h4 id="stock-price-history">Value history</h4>
       {segments.length > 0 ? <>
         <svg className={styles.sparkline} viewBox="0 0 280 48" role="img"
-          aria-label={`Modeled price history from ${dateLabel(first.date)} to ${dateLabel(last.date)}. ${sources.map((s) => sourceLabels[s]).join("; ")}.`}>
+          aria-label={`FAAB value history from ${dateLabel(first.date)} to ${dateLabel(last.date)}. ${sources.map((s) => sourceLabels[s]).join("; ")}.`}>
           {segments.map((segment, index) => <polyline key={index} points={segment.coords.join(" ")} fill="none"
             stroke="var(--gh-gold)" strokeWidth="2" strokeDasharray={segment.dashed ? "4 3" : undefined}
             opacity={segment.dashed ? 0.7 : 1} />)}
         </svg>
-        <div className={`${styles["spark-caption"]} gh-num`}><span>{dateLabel(first.date)}<br />{formatPrice(first.price)}</span><span>{dateLabel(last.date)}<br />{formatPrice(last.price)}</span></div>
-        <p className={styles["section-note"]}>{sources.map((s) => sourceLabels[s]).join(" · ")}. All prices are modeled FAAB values.</p>
-      </> : <p className={styles["section-note"]}>{detail.spark.length === 1 ? "One recorded price is available. A chart appears when more points exist." : "Price history is unavailable. A chart appears when recorded points exist."}</p>}
+        <div className={`${styles["spark-caption"]} gh-num`}><span>{dateLabel(first.date)}<br />{formatPrice(first.price)}<br />{first.source === "live" ? "Recorded" : "Estimated"}</span><span>{dateLabel(last.date)}<br />{formatPrice(last.price)}<br />{last.source === "live" ? "Current quote" : "Estimated"}</span></div>
+        <p className={styles["section-note"]}>{sources.map((s) => sourceLabels[s]).join(" · ")}. Reconstructed estimates use historical inputs. Recorded prices are site snapshots; the final value is the current modeled quote. Values are in FAAB.</p>
+      </> : <p className={styles["section-note"]}>{detail.spark.length === 1 ? first.source === "live" ? "Current modeled quote only. Historical value points are unavailable." : `One ${first.source === "gamelog" ? "game-log FAAB estimate" : "annual FAAB estimate"} is available. A chart appears when more history points exist.` : "Value history is unavailable. A chart appears when history points exist."}</p>}
     </section>
     <section className={styles["detail-section"]} aria-labelledby="stock-production-history">
       <h4 id="stock-production-history">Production history</h4>

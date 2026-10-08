@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { StockQuote } from "@/domain";
 import { fetchStockDetail } from "@/data/stock-detail-client";
 import { DEFAULT_FILTERS, PAGE_SIZE, filterStocks, visibleStocks, type BoardFilters } from "./board";
@@ -27,7 +27,19 @@ export function StockBoard({ stocks, loadDetail = fetchStockDetail }: {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const boardHeadingRef = useRef<HTMLHeadingElement>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const restoreFocusRef = useRef(false);
   useEffect(() => () => { request.current += 1; }, []);
+  useLayoutEffect(() => {
+    if (selected !== null || !restoreFocusRef.current) return;
+    restoreFocusRef.current = false;
+    // Mobile hides the inspector above the board. Restore against the new
+    // row positions after that DOM change, before the browser paints.
+    const trigger = triggerRef.current;
+    if (trigger?.isConnected) {
+      trigger.focus({ preventScroll: true });
+      if (window.matchMedia("(max-width:64rem)").matches) trigger.scrollIntoView({ block: "center" });
+    } else boardHeadingRef.current?.focus();
+  }, [selected]);
 
   const filtered = filterStocks(stocks, filters);
   const shown = visibleStocks(filtered, visible);
@@ -43,6 +55,7 @@ export function StockBoard({ stocks, loadDetail = fetchStockDetail }: {
   }
 
   async function inspect(quote: StockQuote, trigger?: HTMLButtonElement) {
+    restoreFocusRef.current = false;
     if (trigger) triggerRef.current = trigger;
     const currentRequest = ++request.current;
     setSelected(quote);
@@ -63,13 +76,9 @@ export function StockBoard({ stocks, loadDetail = fetchStockDetail }: {
 
   function close() {
     request.current += 1;
+    restoreFocusRef.current = true;
     setSelected(null);
     setDetail({ status: "idle" });
-    const trigger = triggerRef.current;
-    if (trigger?.isConnected) {
-      trigger.focus({ preventScroll: true });
-      if (window.matchMedia("(max-width:64rem)").matches) trigger.scrollIntoView({ block: "center" });
-    } else boardHeadingRef.current?.focus();
   }
 
   return <div className={styles.workspace}>

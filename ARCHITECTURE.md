@@ -104,8 +104,10 @@ src/
                  # search/position/draft/roster filters, sorts and progressive
                  # rows. StockQuoteRow keeps list data slim; ExchangeIcon
                  # provides stroked SVG inspection/navigation marks. StockInspector
-                 # shows production sample sizes, price components and PR25's
-                 # dated/source-tagged price path on selection.
+                 # shows production sample sizes, price components and a
+                 # dated/source-tagged value path on selection. Both reconstructed
+                 # sources are dashed estimates; recorded snapshots and the
+                 # current modeled quote are distinguished (PR49 semantics).
                  # On-demand detail uses data/stock-detail-client.ts against
                  # the existing GET /api/stocks/[playerId]. Per-board caching
                  # deduplicates requests; explicit retry evicts failures and
@@ -266,12 +268,18 @@ history has two layers: `stock_snapshots` holds live daily snapshots
 — per-game `gamelog` points backfilled from real game logs plus yearly
 `backtest` points for seasons without log coverage. The store
 (`src/data/stocks.ts`) merges both for the sparkline, sampled to 40
-points; `pruneSuperseded()` keeps a rolling 5-season window and deletes
-`backtest` points once `gamelog` coverage arrives. `scripts/prepare-
-gamelog.py` + `scripts/backfill-price-history.ts` rebuild the backfill
-(idempotent full rebuild). Change %, the trending/falling sections, and
-sparklines all derive from the merged history — backtest segments render
-dashed so reconstruction is visually distinct. When the database isn't
+points. Both reconstructed sources render dashed and are labeled as
+current-model FAAB estimates; normal change % and movers use live
+snapshots only. `src/data/reconstruct-price-history.ts` is the pure,
+offline reconstruction seam. Sleeper season `2023` means `2023-24`,
+with a yearly fallback dated June 30, 2024. Game prices include that
+game; in-season EMA resets each season. Full prior-season production
+is used only in later seasons: frozen completed-season totals take precedence
+over partial/missing game logs; log means are the fallback when totals are absent.
+Current/future full-season totals never feed a dated game point. Calendar dates/birthdays use explicit
+UTC date-only semantics. A yearly point is superseded only when logs
+cover its expected games; the rolling window is applied in memory.
+When the database isn't
 provisioned the store is a no-op: prices still compute live, movers show
 their honest "no history yet" states, and nothing crashes.
 
@@ -279,6 +287,52 @@ The `CombinedTicker` marquee renders in the root layout above every page
 (ESPN style: news headlines and stock quotes alternate on a timer; pure
 CSS animation, pauses on hover, no auto-switch under
 `prefers-reduced-motion`); the full market lives at `/stocks`.
+
+### Explicit price-history imports
+
+Application builds never seed or repair the database. Domain contracts
+live in `src/domain/price-history-import.ts`; artifact hashes and validation
+live in `src/data/price-history-artifact.ts`.
+
+1. Freeze a JSON config with `directorySeason`, `currentSeasonStartYear`,
+   `directoryPath`, `gamelogPath`, `seasonHistoryPath`, `draftPicksPath`, and
+   `source: { description, revision, scoring, limitations }`. Paths are relative to the
+   config. Season history is a reviewed export, not a mutable runtime cache.
+   Draft picks include an `availableOn` calendar date; later drafts never
+   affect earlier prices. Record missing/approximate source fields honestly.
+2. `npm run price-history:prepare -- inputs.json candidate.json` runs offline
+   and produces points plus source/input/model/output hashes, model version,
+   reconstruction version, expected counts and approximation assumptions.
+   The dataset ID hashes the complete published manifest (excluding only its own
+   ID), including source/scoring/assumptions/season metadata and the points hash.
+3. Retain a read-only export with IDs and UTC dates. `npm run price-history:plan
+   -- backup.json candidate.json plan.json` reports exact affected classes and
+   hashes. `npm run price-history:import -- candidate.json --plan=plan.json`
+   validates only. Review date/season/player/source coverage and source scoring.
+4. Review/apply `migrations/price-history-import-state.sql` separately. The
+   unique natural point key and singleton publication state are additive;
+   duplicate groups must be zero before creating the index.
+5. Only after approving the exact candidate and target, use `--apply
+   --dataset=HASH --plan=plan.json` with `PRICE_HISTORY_IMPORT_URL`. It never falls back to
+   the application's `DATABASE_URL`. `publishReconstructedPoints` submits
+   an advisory lock, a check against the backup's reconstructed-row fingerprint,
+   reconstructed-point replacement and completion manifest
+   in one Neon HTTP transaction. Failed chunks leave the last committed
+   dataset available. Stable point IDs make identical reruns repeatable.
+   Live snapshots are excluded from replacement. Keep the previous artifact
+   for an explicitly reviewed rollback. No import is tied to deploy/CI.
+
+`docs/price-history-repair.md` defines the affected classes, backup/export and
+review sequence, opt-in local Postgres tests and remaining deployment limits.
+`data/README.md` and `data/source-audit.json` pin the verified upstream content
+and state scoring, coverage and identity limitations; game inputs are unchanged.
+
+Existing unversioned rows remain legacy reconstruction until a separately
+approved repair. The live ingestion/EMA updater is still unwired, and live
+snapshots still expire after 30 days. A longer observed-history product
+requires an explicit retention decision; reconstruction cannot recover old
+sentiment/injury observations. Raw box scores are needed to re-score old
+games under future league scoring changes.
 
 ### The League News Network
 

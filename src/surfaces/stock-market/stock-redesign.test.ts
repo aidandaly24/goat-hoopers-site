@@ -35,15 +35,19 @@ test("progressive rows stop at the actual total and tolerate empty markets", () 
   assert.equal(visibleStocks(many, PAGE_SIZE * 2).length, 33);
   assert.deepEqual(visibleStocks([], PAGE_SIZE), []);
 });
-test("dated paths preserve backtest boundaries and scale actual time gaps", () => {
+test("dated paths distinguish reconstructed estimates from recorded site prices and scale actual time gaps", () => {
   const points: PriceHistoryPoint[] = [
     { date: "2026-01-01", price: 10, source: "backtest" },
     { date: "2026-01-02", price: 15, source: "gamelog" },
+    { date: "2026-01-03", price: 18, source: "live" },
     { date: "2026-01-05", price: 20, source: "live" },
   ];
   const segments = priceSegments(points);
   assert.equal(segments[0].dashed, true);
+  assert.equal(segments[0].coords.length, 3);
   assert.equal(segments[1].dashed, false);
+  assert.equal(priceSegments(points.map((p) => ({ ...p, source: "gamelog" })))[0].dashed, true);
+  assert.equal(priceSegments(points.map((p) => ({ ...p, source: "live" })))[0].dashed, false);
   assert.equal(segments[0].coords[1].split(",")[0], "70.0");
   assert.equal(segments[1].coords[1].split(",")[0], "280.0");
   assert.deepEqual(priceSegments([]), []);

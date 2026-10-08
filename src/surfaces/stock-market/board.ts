@@ -40,7 +40,7 @@ export function visibleStocks(stocks: StockQuote[], visible: number) {
   return stocks.slice(0, visible);
 }
 
-/** SVG coordinates use actual dates; backtest styling follows PR #25. */
+/** SVG coordinates use actual dates; both reconstructed sources stay dashed (PR #49). */
 export function priceSegments(points: PriceHistoryPoint[]) {
   if (points.length < 2) return [];
   const times = points.map((p) => Date.parse(p.date));
@@ -54,7 +54,7 @@ export function priceSegments(points: PriceHistoryPoint[]) {
   });
   const segments: { coords: string[]; dashed: boolean }[] = [];
   for (let i = 0; i < coords.length - 1; i++) {
-    const dashed = points[i].source === "backtest" || points[i + 1].source === "backtest";
+    const dashed = points[i].source !== "live" || points[i + 1].source !== "live";
     const previous = segments[segments.length - 1];
     if (previous?.dashed === dashed) previous.coords.push(coords[i + 1]);
     else segments.push({ coords: [coords[i], coords[i + 1]], dashed });
