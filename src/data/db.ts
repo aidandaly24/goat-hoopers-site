@@ -32,6 +32,7 @@ import {
   text,
   timestamp,
   uuid,
+  index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
 
@@ -77,7 +78,7 @@ export const sessions = pgTable("sessions", {
     .references(() => siteUsers.id, { onDelete: "cascade" }),
   expiresAt: timestamp("expires_at").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => [index("sessions_user_id_idx").on(table.userId)]);
 
 /** Recorded game scores, scoped to league weeks. */
 export const gameScores = pgTable("game_scores", {
@@ -91,7 +92,7 @@ export const gameScores = pgTable("game_scores", {
   /** League week label, e.g. "2026-W06". */
   week: text("week").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => [index("game_scores_game_week_idx").on(table.gameId, table.week)]);
 
 /**
  * FAAB rewards owed to managers. The site records who earned what;
@@ -109,7 +110,7 @@ export const rewards = pgTable("rewards", {
   amountFaab: integer("amount_faab").notNull(),
   settled: boolean("settled").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => [index("rewards_user_id_idx").on(table.userId)]);
 
 /**
  * Stock market price history. One row per player per snapshot; the loader
@@ -129,7 +130,12 @@ export const stockSnapshots = pgTable("stock_snapshots", {
   /** Price in cents — integers dodge float drift. */
   priceCents: integer("price_cents").notNull(),
   snapshotAt: timestamp("snapshot_at").defaultNow().notNull(),
-});
+}, (table) => [
+  // The market page loads newest-first snapshots on every view
+  // (ORDER BY snapshot_at DESC LIMIT n). Without this index Postgres
+  // sorts the whole table each time — a Neon free-tier tax.
+  index("stock_snapshots_snapshot_at_idx").on(table.snapshotAt.desc()),
+]);
 
 /**
  * Player fundamentals cache for the stock market (valuation v2). One row
