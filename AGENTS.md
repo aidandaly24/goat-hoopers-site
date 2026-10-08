@@ -54,3 +54,10 @@ outrank general conventions. Keep them short, keep them enforced.
     with questions or status updates; collaborator agents should check back
     every ~10 minutes for replies. Never merge a destructive migration without
     Aidan's explicit approval.
+14. Fetch minimal data by default; drill down on click. List views request
+    only what the list shows (ids, names, prices, key stats). Deep per-player
+    data — factor breakdowns, full history, game logs, advanced stats — loads
+    only when a player is clicked/expanded. Never fetch the full player
+    directory (2.5MB) unless name resolution is actually needed, and never
+    refetch heavy endpoints per page view when a daily cache will do. The
+    free tier is a hard budget: every new fetch must justify its bytes.
