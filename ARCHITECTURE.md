@@ -382,9 +382,16 @@ it can download the public Google fonts used by `next/font`.
 The optional isolated-DB contract suite (FakeGameStore vs a throwaway
 test Postgres) is separate and fails closed when its target is absent —
 it never falls back to production credentials. The explicit
-`npm run test:price-history:local` command bypasses the default network guard
-to use its hardcoded synthetic Postgres target at localhost:55438; CI always
-clears that opt-in. Test workers are guarded, not arbitrary child processes:
+`npm run test:price-history:local` command sets `RUN_PRICE_HISTORY_LOCAL_TEST=1`
+and allows only its hardcoded synthetic Postgres target at
+`127.0.0.1:55438/price_history_test`. The claim suite introduced by PR53 uses
+`RUN_CLAIM_TEAM_LOCAL_TEST=1 npm test -- src/data/__tests__/claim-team-local.test.ts`
+and allows only `127.0.0.1:55441/claim_team_test`. The guard remains installed
+in both modes: fetch, remote hosts, other ports, implicit hosts and Unix
+sockets stay blocked. Each flag only enables its own port. Both flags may be
+set for a combined local run; CI explicitly clears both. The database names
+and synthetic schemas are fixed in the respective test fixtures; the socket
+guard enforces the network endpoints. Test workers are guarded, not arbitrary child processes:
 the build CLI regression invokes only `next build --help`.
 
 `LeagueStats` fields are all nullable. In the preseason (`/state/nba`

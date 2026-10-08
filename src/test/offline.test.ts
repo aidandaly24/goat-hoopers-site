@@ -5,8 +5,8 @@ import { Pool } from "pg";
 import { describe, expect, it } from "vitest";
 import { getDb } from "@/data/db";
 
-// The separate opt-in local database suite deliberately needs loopback I/O.
-describe.skipIf(process.env.RUN_PRICE_HISTORY_LOCAL_TEST === "1")("offline test boundary", () => {
+// These requests stay forbidden in both explicit local integration modes too.
+describe("offline test boundary", () => {
   it("rejects real HTTP before sending a request", async () => {
     await expect(fetch("https://example.invalid")).rejects.toThrow(/Offline tests cannot use the network/);
   });

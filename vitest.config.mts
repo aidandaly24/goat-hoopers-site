@@ -10,11 +10,9 @@ export default defineConfig({
   test: {
     // Offline only: no network, no secrets, no database.
     include: ["src/**/*.test.ts"],
-    // The existing explicit local Postgres command uses a hardcoded loopback
-    // target. The default suite rejects fetch and Node socket connections.
-    setupFiles: process.env.RUN_PRICE_HISTORY_LOCAL_TEST === "1"
-      ? []
-      : ["./src/test/offline.ts"],
+    // Always guard I/O. Each explicit local DB flag allows only its fixed
+    // numeric loopback host/port; fetch and every other socket stay blocked.
+    setupFiles: ["./src/test/offline.ts"],
     testTimeout: 5000,
   },
 });

@@ -23,6 +23,7 @@ jobs:
       DATABASE_URL: ""
       PRICE_HISTORY_IMPORT_URL: ""
       RUN_PRICE_HISTORY_LOCAL_TEST: "0"
+      RUN_CLAIM_TEAM_LOCAL_TEST: "0"
       NEXT_TELEMETRY_DISABLED: "1"
       npm_config_engine_strict: "true"
     steps:

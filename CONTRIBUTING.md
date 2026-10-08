@@ -38,8 +38,12 @@ npm run build    # must pass before opening a PR
 
 CI uses the same locked install and commands, and rejects unsupported package
 engines. Default tests need no database or secrets. The separate
-`npm run test:price-history:local` opt-in requires a synthetic local Postgres;
-it is never enabled in CI. Production builds may download public Google fonts.
+`npm run test:price-history:local` opt-in requires synthetic Postgres at
+`127.0.0.1:55438/price_history_test`. Once PR53's claim suite lands, run it with
+`RUN_CLAIM_TEAM_LOCAL_TEST=1 npm test -- src/data/__tests__/claim-team-local.test.ts`
+against `127.0.0.1:55441/claim_team_test`. The guard stays active: each flag
+allows only its own numeric loopback endpoint; fetch and other sockets stay
+blocked. Both flags are cleared in CI. Production builds may download public Google fonts.
 PR checks compile the merge result with the base branch; logs print that commit
 and the PR head so validation can be tied to the actual revision.
 
