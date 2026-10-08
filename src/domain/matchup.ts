@@ -33,7 +33,9 @@ export function winner(m: Matchup): Team | null {
  * Pure — takes matchups as a parameter, no fetching.
  *
  * Completion rule: trailing pending/future weeks (null scores) are
- * skipped to find the latest CONFIRMED completed matchup. An unplayed
+ * skipped to find the latest CONFIRMED completed matchup. A missing
+ * matchup ends this search: unavailable history cannot establish an active
+ * streak, even before counting starts. An unplayed
  * game is not a tie or a loss. Once counting starts, a tie, an opposite
  * result, or an unknown historical gap (missing/interior pending
  * matchup) ends the streak — we never silently join across a gap, since
@@ -55,7 +57,8 @@ export function signedStreak(
   let start = -1;
   for (let w = matchupsByWeek.length - 1; w >= 0; w--) {
     const m = findMatchup(matchupsByWeek[w]);
-    if (m && isFinal(m)) {
+    if (!m) return 0;
+    if (isFinal(m)) {
       start = w;
       break;
     }
