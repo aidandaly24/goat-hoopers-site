@@ -7,7 +7,7 @@
  *   `transform.ts`.
  * - All requests go through `sleeperFetch`, which applies caching. League data
  *   revalidates every 5 minutes; the player directory is projected to the
- *   fields we read and cached for 24h (see fetchPlayerDirectory).
+ *   fields we read and cached for 5 minutes (see fetchPlayerDirectory).
  * - No other module in the app may import from this file except `transform.ts`
  *   and the high-level loaders in `league.ts`.
  */
@@ -235,11 +235,12 @@ export function fetchWinnersBracket(): Promise<RawWinnersBracketEntry[]> {
  * projected to exactly the fields the membrane reads (see RawPlayerEntry) —
  * the projected directory is ~330KB and safe to keep in memory.
  *
- * Freshness: cached per instance for 24h (player identity changes slowly;
- * a day-old name/position/team is fine for a league site). On refresh
- * failure the last-good value is served; on cold-start failure this throws
- * and callers (safePlayerDirectory) degrade to null — the site renders
- * without name resolution instead of crashing.
+ * Freshness: cached per instance for 5 minutes (PLAYER_DIRECTORY_TTL_MS).
+ * Player identity changes slowly, but injury_status feeds valuation, so a
+ * longer TTL could ignore an injury change. On refresh failure the
+ * last-good value is served; on cold-start failure this throws and callers
+ * (safePlayerDirectory) degrade to null — the site renders without name
+ * resolution instead of crashing.
  *
  * The projection's source and version are declared as keys
  * (PLAYER_DIRECTORY_SOURCE / PLAYER_DIRECTORY_PROJECTION_VERSION): bump

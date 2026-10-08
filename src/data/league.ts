@@ -308,6 +308,67 @@ export async function getTransactionHistory(): Promise<TransactionHistoryData> {
   return { transactions: toTransactions(raw, teams, rosters, users, directory), teams };
 }
 
+/**
+ * Low-level fetchers for the strict news loaders. Injectable so tests can
+ * drive the real loaders with fake clients (rule 11). Defaults are the
+ * real Sleeper fetchers.
+ */
+export type NewsFetchers = {
+  fetchRosters?: typeof fetchRosters;
+  fetchUsers?: typeof fetchUsers;
+  fetchNbaState?: typeof fetchNbaState;
+  fetchTransactions?: typeof fetchTransactions;
+  fetchDrafts?: typeof fetchDrafts;
+  fetchDraftPicks?: typeof fetchDraftPicks;
+  fetchDirectory?: typeof safePlayerDirectory;
+};
+
+/**
+ * Strict transaction history for the news loader (P1 last-good fix).
+ *
+ * Unlike getTransactionHistory — which degrades per-week failures into []
+ * so stats/history pages stay resilient — every upstream failure here
+ * throws, so the news TTL cache preserves last-good instead of caching an
+ * empty feed for 5 minutes.
+ *
+ * Empty results are still legitimate: a quiet week returns no transactions,
+ * and that successfully-fetched emptiness is returned, not thrown. The
+ * invariant is "failure throws", not "empty throws".
+ */
+export async function getTransactionHistoryStrict(
+  fetchers: NewsFetchers = {}
+): Promise<TransactionHistoryData> {
+  const {
+    fetchRosters: getRosters = fetchRosters,
+    fetchUsers: getUsers = fetchUsers,
+    fetchNbaState: getState = fetchNbaState,
+    fetchTransactions: getTx = fetchTransactions,
+    fetchDirectory: getDirectory = safePlayerDirectory,
+  } = fetchers;
+  // No catch: rosters/users/state failures throw. State is required —
+  // without it we cannot know which weeks are "recent", and a week-1-only
+  // fallback could cache an empty feed mid-season.
+  const [rosters, users, nbaState] = await Promise.all([
+    getRosters(),
+    getUsers(),
+    getState(),
+  ]);
+  const teams = toTeams(rosters, users);
+  const weeks = validSeasonWeeks(nbaState);
+  const fetchWeeks = weeks.length > 0 ? weeks : [1];
+  // Strict: no per-week catch. A 503 on /transactions/1 throws here; the
+  // cache keeps last-good instead of mistaking the failure for "no moves".
+  const txWeeks = await Promise.all(fetchWeeks.map((w) => getTx(w)));
+  const raw = txWeeks.flat();
+  if (raw.length === 0) return { transactions: [], teams };
+  // Directory is best-effort (names degrade to stubs, not a failed feed).
+  const directory = await getDirectory();
+  return {
+    transactions: toTransactions(raw, teams, rosters, users, directory),
+    teams,
+  };
+}
+
 export type DraftBoardData = {
   /** Completed rookie draft picks, in pick order. Empty when none exists. */
   picks: DraftPick[];
@@ -354,6 +415,40 @@ export async function getDraftBoard(): Promise<DraftBoardData> {
   } catch {
     return { picks: [], teams: [] };
   }
+}
+
+/**
+ * Strict draft board for the news loader (P1 last-good fix).
+ *
+ * Every upstream failure throws: if the drafts, rosters, users, or picks
+ * fetch fails, the news TTL cache preserves last-good instead of caching
+ * a feed with a silently missing rookie-wire section.
+ *
+ * "No draft on record" is legitimate (pre-draft league) — that returns
+ * empty picks, not a throw. A successful-but-empty picks fetch is likewise
+ * returned as-is; the invariant is "failure throws", not "empty throws".
+ */
+export async function getDraftBoardStrict(
+  fetchers: NewsFetchers = {}
+): Promise<DraftBoardData> {
+  const {
+    fetchDrafts: getDrafts = fetchDrafts,
+    fetchRosters: getRosters = fetchRosters,
+    fetchUsers: getUsers = fetchUsers,
+    fetchDraftPicks: getPicks = fetchDraftPicks,
+  } = fetchers;
+  const [drafts, rosters, users] = await Promise.all([
+    getDrafts(),
+    getRosters(),
+    getUsers(),
+  ]);
+  const teams = toTeams(rosters, users);
+  const draft =
+    drafts.find((d) => d.season === "2026" && d.status === "complete") ??
+    drafts[0];
+  if (!draft) return { picks: [], teams };
+  const picks = toDraftPicks(await getPicks(draft.draft_id));
+  return { picks, teams };
 }
 
 /* ---------------- data tools (DATA pillar) ---------------- */
@@ -834,18 +929,37 @@ export async function getStockDetail(
  */
 export const LEAGUE_NEWS_TTL_MS = 5 * 60 * 1000;
 
-async function loadLeagueNews(): Promise<NewsArticle[]> {
+export type LeagueNewsLoadDeps = {
+  /** Strict transaction history loader. Defaults to getTransactionHistoryStrict. */
+  fetchTxHistory?: () => Promise<TransactionHistoryData>;
+  /** Strict draft board loader. Defaults to getDraftBoardStrict. */
+  fetchDraft?: () => Promise<DraftBoardData>;
+};
+
+/**
+ * Load one edition of the news feed.
+ *
+ * P1 last-good invariant: the default loaders are the strict variants,
+ * which throw on any upstream failure (transactions 503, draft fetch
+ * failure, rosters/users/state failure). The TTL cache then preserves
+ * last-good instead of caching a failure-degraded feed. Empty-but-
+ * successfully-fetched inputs are legitimate and return a (possibly
+ * quiet) feed — the invariant is "failure throws", not "empty throws".
+ *
+ * Loaders are injectable for tests (rule 11); production uses the
+ * module defaults.
+ */
+export async function loadLeagueNews(
+  deps: LeagueNewsLoadDeps = {}
+): Promise<NewsArticle[]> {
+  const {
+    fetchTxHistory = () => getTransactionHistoryStrict(),
+    fetchDraft = () => getDraftBoardStrict(),
+  } = deps;
   const [{ transactions, teams }, { picks }] = await Promise.all([
-    getTransactionHistory(),
-    getDraftBoard(),
+    fetchTxHistory(),
+    fetchDraft(),
   ]);
-  // P1: upstream loaders swallow errors into empty arrays. An empty teams
-  // list is never legitimate (10 teams always exist) — it means the fetch
-  // failed. Throw so the TTL cache preserves last-good instead of caching
-  // an empty feed for 5 minutes.
-  if (teams.length === 0) {
-    throw new Error("loadLeagueNews: empty teams — upstream fetch failed");
-  }
   return generateLeagueNews({ transactions, picks, teams });
 }
 
