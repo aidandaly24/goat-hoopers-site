@@ -54,6 +54,7 @@ import {
   toStandings,
   toMatchups,
   toTransactions,
+  selectRecentTransactions,
   toPlayer,
   toDraftPicks,
   computeLeagueStats,
@@ -101,6 +102,40 @@ async function safePlayerDirectory(): Promise<Record<
 }
 
 /**
+ * Valid season weeks for transaction/matchup fetching, derived from NBA
+ * state. Returns [1..currentWeek]. Preseason uses the week-1 convention
+ * (never week 0). Invalid, zero, negative, or non-finite week input
+ * yields an empty array — no invalid or runaway requests.
+ */
+export function validSeasonWeeks(state: RawNbaState | null): number[] {
+  const week = state?.week;
+  if (
+    typeof week !== "number" ||
+    !Number.isInteger(week) ||
+    !Number.isFinite(week) ||
+    week < 1
+  ) {
+    return [];
+  }
+  return Array.from({ length: week }, (_, i) => i + 1);
+}
+
+/**
+ * Fetch raw transactions for valid season weeks. One shared assembly
+ * powers stats, history, and the homepage feed. Partial week failures
+ * resolve to empty for that week — surviving moves are preserved.
+ */
+export async function fetchTransactionsByWeek(
+  weeks: number[]
+): Promise<RawTransaction[][]> {
+  return Promise.all(
+    weeks.map((w): Promise<RawTransaction[]> =>
+      fetchTransactions(w).catch(() => [])
+    )
+  );
+}
+
+/**
  * Assemble the plain-data input for computeLeagueStats.
  *
  * Fetching lives here; the math lives in `computeLeagueStats` (pure, takes
@@ -122,19 +157,14 @@ async function fetchStatsInput(teams: Team[]): Promise<LeagueStatsInput> {
   if (state === null || !hasGames) {
     return { teams, matchupsByWeek: [], transactionsByWeek: [], hasGames: false };
   }
-  const currentWeek = Math.max(1, state.week);
-  const weeks = Array.from({ length: currentWeek }, (_, i) => i + 1);
+  const weeks = validSeasonWeeks(state);
   const [matchupWeeks, txWeeks] = await Promise.all([
     Promise.all(
       weeks.map((w): Promise<RawMatchupEntry[]> =>
         fetchMatchups(w).catch(() => [])
       )
     ),
-    Promise.all(
-      weeks.map((w): Promise<RawTransaction[]> =>
-        fetchTransactions(w).catch(() => [])
-      )
-    ),
+    fetchTransactionsByWeek(weeks),
   ]);
   return {
     teams,
@@ -175,17 +205,21 @@ export async function getSeasonHubData(): Promise<SeasonHubData> {
     stats = emptyLeagueStats();
   }
 
-  // Recent transactions. Week 1 in the preseason; empty is a valid state.
+  // Recent transactions: the newest ten moves across valid season weeks
+  // (preseason = week 1 on the Sleeper API). Falls back to earlier weeks
+  // when the current week is quiet; empty is a valid state.
   // Transactions carry only player_ids, so names need the directory —
   // but only fetch it when there's actually something to resolve.
   let transactions: Transaction[] = [];
   try {
-    const rawTx = await fetchTransactions(1);
-    const directory = rawTx.length > 0 ? await safePlayerDirectory() : null;
-    transactions = toTransactions(rawTx, teams, rosters, users, directory).slice(
-      0,
-      10
+    const weeks = validSeasonWeeks(nbaState);
+    // Preseason convention: week 1, never week 0.
+    const fetchWeeks = weeks.length > 0 ? weeks : [1];
+    const rawTx = selectRecentTransactions(
+      await fetchTransactionsByWeek(fetchWeeks)
     );
+    const directory = rawTx.length > 0 ? await safePlayerDirectory() : null;
+    transactions = toTransactions(rawTx, teams, rosters, users, directory);
   } catch {
     transactions = [];
   }
@@ -253,11 +287,9 @@ export async function getTransactionHistory(): Promise<TransactionHistoryData> {
     return { transactions: [], teams: [] };
   }
   const teams = toTeams(rosters, users);
-  const maxWeek = Math.max(1, nbaState?.week ?? 1);
-  const weeks = Array.from({ length: maxWeek }, (_, i) => i + 1);
-  const txWeeks = await Promise.all(
-    weeks.map((w) => fetchTransactions(w).catch(() => [] as RawTransaction[]))
-  );
+  const weeks = validSeasonWeeks(nbaState);
+  const fetchWeeks = weeks.length > 0 ? weeks : [1];
+  const txWeeks = await fetchTransactionsByWeek(fetchWeeks);
   const raw = txWeeks.flat();
   if (raw.length === 0) return { transactions: [], teams };
   const directory = await safePlayerDirectory();

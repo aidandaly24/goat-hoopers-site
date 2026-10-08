@@ -209,6 +209,28 @@ export function toTransactions(
 }
 
 /**
+ * Select the newest ten raw transactions across weekly buckets.
+ * Pure: flatten → deduplicate by transaction_id → sort by created
+ * descending → take ten. Used by the homepage feed so it shows
+ * current-season activity instead of a hardcoded week.
+ */
+export function selectRecentTransactions(
+  rawByWeek: RawTransaction[][]
+): RawTransaction[] {
+  const seen = new Set<string>();
+  const deduped: RawTransaction[] = [];
+  for (const week of rawByWeek) {
+    for (const tx of week) {
+      if (seen.has(tx.transaction_id)) continue;
+      seen.add(tx.transaction_id);
+      deduped.push(tx);
+    }
+  }
+  deduped.sort((a, b) => b.created - a.created);
+  return deduped.slice(0, 10);
+}
+
+/**
  * Raw draft picks -> domain DraftPicks, sorted by pick number.
  * Player names come from the pick metadata (no directory needed).
  */
