@@ -703,6 +703,7 @@
   }
 
   .directory-tools {
+    flex-wrap: wrap;
     display: flex;
     gap: var(--gh-cs-s4);
     align-items: center;
@@ -756,6 +757,31 @@
     min-height: var(--gh-cs-control);
     padding: var(--gh-cs-s2);
     font-size: var(--gh-cs-secondary);
+  }
+
+  .column-sort,
+  .direction-sort {
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    min-height: var(--gh-cs-control);
+    min-width: var(--gh-cs-control);
+    cursor: pointer;
+  }
+
+  .column-sort {
+    text-align: left;
+  }
+
+  .column-sort[aria-pressed="true"] {
+    color: var(--gh-cs-text);
+    text-decoration: underline;
+    text-underline-offset: var(--gh-cs-s1);
+  }
+
+  .direction-sort {
+    font-size: var(--gh-cs-secondary);
+    padding: var(--gh-cs-s2);
   }
 
   .directory-labels {
