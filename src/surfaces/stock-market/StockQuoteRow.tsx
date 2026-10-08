@@ -21,7 +21,7 @@ export function StockQuoteRow({ quote, rank, selected, onInspect }: {
     <li className={`${styles.player} ${selected ? styles.selected : ""}`}>
       <span className={`${styles.rank} gh-num`} aria-label={`Value rank ${rank}`}>{String(rank).padStart(2, "0")}</span>
       <div className={styles["player-identity"]}>
-        <span className={styles.avatar}><PlayerHeadshot playerId={quote.playerId} name={quote.playerName} size={32} /></span>
+        <span className={styles.avatar}><PlayerHeadshot espnId={quote.espnId ?? null} name={quote.playerName} size={32} /></span>
         <div><span className={styles["player-name"]}><PlayerName player={{ id: quote.playerId, fullName: quote.playerName }} /></span>
           <span className={styles["player-meta"]}>{meta || "Player metadata unavailable"}</span></div>
       </div>

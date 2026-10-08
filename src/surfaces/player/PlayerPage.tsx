@@ -34,7 +34,7 @@ export function PlayerPage({
     <div className={styles.page}>
       <Card className={styles.identity}>
         <PlayerHeadshot
-          playerId={player.id}
+          espnId={player.espnId}
           name={player.fullName}
           teamId={team?.id ?? null}
           size={88}

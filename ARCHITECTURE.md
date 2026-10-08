@@ -14,7 +14,9 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ```
 src/
-  domain/        # The shared language: Team, Standing, Matchup, Player,
+  domain/        # The shared language: Team, Standing, Matchup, Player
+                 # (carries espnId: string | null — the ESPN athlete id the
+                 # headshot renders from; null = initials fallback),
                  # Transaction, DraftPick, Season, LeagueStats, PlayerDetail,
                  # TeamProfile, PowerRanking, PlayoffOdds, RecordBook,
                  # MatchupPreview, PlayerMove, PlayerStock/StockMarket,
@@ -30,6 +32,11 @@ src/
                  # types — teams are referenced by Sleeper roster id only.
   data/          # The ONLY place the outside world is touched.
     sleeper.ts   # Raw API client. Returns raw JSON, nothing else.
+    espn.ts      # Sleeper -> ESPN athlete id mapping for headshots
+                 # (resolveEspnId + a checked-in SEED_ESPN_ID_MAP of
+                 # verified ids; injectable seam per rule 11 — swap the
+                 # seed map for the full mapping table with zero
+                 # component edits). Also the headshotUrl formatter.
     nba-stats.ts # Player fundamentals: Sleeper's stats feed → cached
                  # PlayerStatProfiles (impure shell; math in transform.ts).
     transform.ts # Raw JSON -> domain objects. The membrane.
@@ -189,9 +196,11 @@ src/
                  # take state as props (dependency inversion); the root
                  # layout provides the user and the season.
                  # PositionPill colors PG/SG/SF/PF/C via --gh-pos-* tokens.
-                 # PlayerHeadshot renders the Sleeper CDN headshot with an
-                 # initials-in-team-colored-disc fallback (client component
-                 # for the onError switch).
+                 # PlayerHeadshot renders the ESPN CDN headshot by ESPN athlete
+                 # id (Player.espnId; plain <img>, never next/image — Hobby
+                 # quota) with an initials-in-team-colored-disc fallback
+                 # (client component for the onError switch). Unmapped or
+                 # broken images fall back to initials.
                  # SectionNav is the secondary tab row for the league pages
                  # (Transactions / Draft Board / Teams / Intel); pages provide the
                  # active tab.
