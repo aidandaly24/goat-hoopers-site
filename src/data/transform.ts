@@ -120,9 +120,16 @@ export function toSeason(league: RawLeague, nbaState: RawNbaState | null): Seaso
   };
 }
 
-const TYPE_LABEL: Record<string, Transaction["type"]> = {
+/**
+ * Sleeper → domain transaction-kind mapping, decoded once at the membrane.
+ * Exhaustive over the supported TransactionType union. Upstream kinds
+ * outside this map are filtered out (never silently reclassified) — see
+ * the unknown-type guard in toTransactions.
+ */
+const TRANSACTION_TYPE_MAP: Record<string, Transaction["type"]> = {
   waiver: "waiver",
   free_agent: "free_agent",
+  trade: "trade",
 };
 
 export function toTransactions(
@@ -142,7 +149,14 @@ export function toTransactions(
   const moveOf = (pid: string) => ({ playerId: pid, name: nameOf(pid) });
 
   return raw
-    .map((t) => {
+    .flatMap((t) => {
+      // Unknown upstream kinds are dropped, never silently reclassified.
+      // (console diagnostic: these indicate a Sleeper payload change.)
+      const kind = TRANSACTION_TYPE_MAP[t.type];
+      if (!kind) {
+        console.warn(`toTransactions: dropping unknown type "${t.type}"`);
+        return [];
+      }
       const rosterIds = new Set<number>();
       if (t.adds) Object.values(t.adds).forEach((rid) => rosterIds.add(rid));
       if (t.drops) Object.values(t.drops).forEach((rid) => rosterIds.add(rid));
@@ -168,7 +182,7 @@ export function toTransactions(
 
       return {
         id: t.transaction_id,
-        type: TYPE_LABEL[t.type] ?? "free_agent",
+        type: kind,
         week: t.leg,
         createdAt: t.created,
         summary,
