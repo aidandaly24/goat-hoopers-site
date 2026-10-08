@@ -13,7 +13,7 @@
  * `getDb()` when Postgres isn't provisioned — callers catch it and
  * render the provisioning notice.
  */
-import { and, desc, eq, isNull } from "drizzle-orm";
+import { and, desc, eq, isNull, sql } from "drizzle-orm";
 import { GAMES } from "@/domain/arcade";
 import type {
   Game,
@@ -270,6 +270,15 @@ export class DrizzleGameStore implements GameStore {
 
   async createSession(record: SessionRecord): Promise<void> {
     await this.db.insert(sessions).values(record);
+    // Opportunistic prune (F7): expired sessions otherwise accumulate
+    // forever — only already-expired rows are ever removed.
+    try {
+      await this.db
+        .delete(sessions)
+        .where(sql`${sessions.expiresAt} < now()`);
+    } catch {
+      // Prune is hygiene, never load-bearing.
+    }
   }
 
   async getSessionUser(

@@ -77,7 +77,7 @@ import {
 import { championRosterId } from "./transform";
 import { getStockStore } from "./stocks";
 import { getDb, type Db } from "./db";
-import { getStatProfiles } from "./nba-stats";
+import { getStatProfiles, getSeasonHistory } from "./nba-stats";
 import { generateLeagueNews } from "./news";
 
 export type SeasonHubData = {
@@ -764,7 +764,12 @@ export async function getStockDetail(
     const input = await getMarketInputs();
     const stocks = computePlayerStocks(input);
     const found = stocks.find((s) => s.playerId === playerId);
-    return found ? toStockDetail(found) : null;
+    if (!found) return null;
+    const detail = toStockDetail(found);
+    // Season history loads on expand only (F4) — overlay the single
+    // player's jsonb instead of carrying 700 rows through the hot path.
+    detail.seasonHistory = await getSeasonHistory(getDb(), playerId);
+    return detail;
   } catch {
     return null;
   }

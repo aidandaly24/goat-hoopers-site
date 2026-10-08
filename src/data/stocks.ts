@@ -27,7 +27,7 @@ const RETENTION_DAYS = 30;
  * Minimum gap between snapshots. Fundamentals refresh daily (see
  * nba-stats.ts), so anything more frequent is pure write amplification
  * on Neon's free tier. The 5-minute era wrote ~75k rows/day; daily
- * writes ~262 rows/day against a 90-day retention.
+ * writes ~262 rows/day against a 30-day retention.
  */
 const SNAPSHOT_MIN_INTERVAL_MS = 24 * 60 * 60 * 1000;
 /** Rolling window for reconstructed history — seasons, not days. */
@@ -101,7 +101,11 @@ class DrizzleStockStore implements StockStore {
     // milliseconds, so a Date round-tripped through the driver never
     // equals the stored value and the IN clause matches nothing.
     const rows = await db
-      .select()
+      .select({
+        playerId: stockSnapshots.playerId,
+        priceCents: stockSnapshots.priceCents,
+        snapshotAt: stockSnapshots.snapshotAt,
+      })
       .from(stockSnapshots)
       .orderBy(desc(stockSnapshots.snapshotAt))
       .limit(LIVE_POINTS * wanted.size);
