@@ -133,6 +133,23 @@
   --gh-term-amber: #ffa02e;
   --gh-term-up: #2bd97c;
   --gh-term-down: #ff5a5a;
+
+  /* Trophy room — the /history pages are a deliberate themed island: Nick
+   * Saban's old Alabama office. Dark mahogany, brass, leather, a rationed
+   * crimson accent, parchment text. Scoped to the history surfaces; nothing
+   * else should reach for these. */
+  --gh-wood-bg: #150c06;
+  --gh-wood-panel: #201209;
+  --gh-wood-raised: #2c1a0d;
+  --gh-wood-line: #4a2c17;
+  --gh-wood-line-strong: #6b4423;
+  --gh-brass: #c9a227;
+  --gh-brass-soft: #e3c565;
+  --gh-brass-deep: #8a6d1c;
+  --gh-crimson: #9e1b32;
+  --gh-parchment: #f0e4cc;
+  --gh-parchment-dim: #c4b28c;
+  --gh-parchment-faint: #8f7f61;
 }
 
 /*

@@ -63,6 +63,17 @@ export function MobileNav({ user }: { user: MobileNavUser }) {
       ),
     },
     {
+      href: "/history",
+      label: "History",
+      active: pathname === "/history" || pathname.startsWith("/history/"),
+      icon: (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 3h12v18l-3-2.2L12 21l-3-2.2L6 21z" />
+          <path d="M9 8h6M9 11.5h6" />
+        </svg>
+      ),
+    },
+    {
       href: "/team",
       label: "Team",
       active: pathname === "/team" || pathname.startsWith("/team/"),

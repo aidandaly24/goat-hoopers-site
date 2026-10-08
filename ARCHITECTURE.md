@@ -112,6 +112,19 @@ src/
                  # generateLeagueNews (src/data/news.ts), voiced by five
                  # fictional publications (domain/news.ts). Receives domain
                  # objects, never fetches.
+    history/     # The trophy room: Saban-office-styled league history (a
+                 # deliberate themed island via the --gh-wood-* tokens).
+                 # TrophyRoom (hub: champions preview + records + HOF
+                 # preview), ChampionsWall (hanging banners, one per title),
+                 # ChampionBannerCard, RecordsGrid (engraved plaques),
+                 # HallOfFameList (+ full page), FranchiseSection
+                 # (Wikipedia-style franchise history, embedded on team
+                 # pages). Domain: history.ts. Loaders: getLeagueHistory
+                 # and getFranchiseHistory (src/data/history.ts) — the
+                 # 2025 founding season is baked into history-2025.ts
+                 # (final, verified vs the Sleeper API); the current
+                 # season stays live. Hall of Fame inductees are curated
+                 # there too — real history only, no fabricated moments.
     arcade/      # "Play games, win FAAB": ArcadeHub (game list),
                  # GameDetail (rules + leaderboard + rewards),
                  # Leaderboard, RewardLedger, GameCard, ProvisionNotice.

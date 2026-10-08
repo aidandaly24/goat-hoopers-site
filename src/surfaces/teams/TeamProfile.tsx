@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Matchup, Team, TeamProfile } from "@/domain";
+import type { FranchiseHistory, Matchup, Team, TeamProfile } from "@/domain";
 import { isFinal } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
@@ -7,6 +7,7 @@ import { PlayerName, PlayerRow } from "@/ui/PlayerRow";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { TransactionSummary } from "@/ui/TransactionSummary";
+import { FranchiseSection } from "@/surfaces/history/FranchiseSection";
 import { HooperViewer } from "@/three/HooperViewer";
 import styles from "./TeamProfile.module.css";
 
@@ -77,9 +78,11 @@ function MatchupRow({ matchup }: { matchup: Matchup }) {
 export function TeamProfile({
   profile,
   teams,
+  franchise,
 }: {
   profile: TeamProfile;
   teams: Team[];
+  franchise?: FranchiseHistory | null;
 }) {
   const { team, players, matchups, streak, draftPicks, transactions } =
     profile;
@@ -117,6 +120,8 @@ export function TeamProfile({
           </div>
         </dl>
       </Card>
+
+      {franchise && <FranchiseSection history={franchise} />}
 
       <div className={styles.grid}>
         <Card>
