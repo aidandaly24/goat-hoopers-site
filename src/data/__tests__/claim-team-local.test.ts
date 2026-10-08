@@ -52,7 +52,7 @@ local("atomic claims against isolated local Postgres", () => {
       DROP TABLE IF EXISTS invite_codes, site_users CASCADE;
       CREATE TABLE site_users (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-        team_id TEXT NOT NULL CONSTRAINT site_users_team_id_unique UNIQUE,
+        team_id TEXT NOT NULL UNIQUE,
         display_name TEXT NOT NULL, password_hash TEXT NOT NULL,
         created_at TIMESTAMP NOT NULL DEFAULT now()
       );
@@ -61,9 +61,27 @@ local("atomic claims against isolated local Postgres", () => {
         created_at TIMESTAMP NOT NULL DEFAULT now()
       );
     `);
+    // An unnamed UNIQUE(team_id) gets the existing production-style
+    // Postgres name. Confirm the real fixture, not a mocked error string.
+    const constraints = await pool.query<{ conname: string }>(
+      "SELECT conname FROM pg_constraint WHERE conrelid = 'site_users'::regclass AND contype = 'u'",
+    );
+    expect(constraints.rows).toEqual([{ conname: "site_users_team_id_key" }]);
   });
 
   claimTeamContract("DrizzleGameStore (local Postgres)", store);
+
+  it("also rolls back a conflict with the repository-style team constraint name", async () => {
+    await pool.query("ALTER TABLE site_users RENAME CONSTRAINT site_users_team_id_key TO site_users_team_id_unique");
+    const claims = store();
+    await claims.createInviteCode("1", "111111");
+    await claims.createInviteCode("1", "222222");
+    expect((await claims.claimTeam(input("111111"))).ok).toBe(true);
+    await expect(claims.claimTeam(input("222222"))).resolves.toEqual({ ok: false, reason: "team_claimed" });
+    expect((await pool.query("SELECT id FROM site_users")).rowCount).toBe(1);
+    expect((await claims.getInviteByCode("222222"))?.usedBy).toBeNull();
+    expect((await claims.getInviteByCode("222222"))?.usedAt).toBeNull();
+  });
 
   // Wait for the server itself to confirm that independent claims overlap
   // at a lock, rather than relying on Promise.all scheduling alone.

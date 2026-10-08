@@ -522,9 +522,11 @@ preview deployment must never crash on a missing database.
   statement (CTE), so a failed claim leaves neither a partial account nor
   a consumed code. The neon-http driver has no interactive transactions;
   the single-statement CTE is the atomicity mechanism.
-  Team-constraint conflicts are read from the Drizzle error's cause; other
-  SQL and infrastructure errors propagate. Session creation happens after
-  the claim commits. If the session or cookie response fails, the account
+  Team-constraint conflicts are read from the Drizzle error's cause for
+  both `site_users_team_id_unique` (repository schema) and
+  `site_users_team_id_key` (existing Postgres constraint). Unknown constraints,
+  other SQL errors, and infrastructure errors propagate. Session creation
+  happens after the claim commits. If the session or cookie response fails, the account
   remains claimed: recover through `/login` with the password just set.
   Retrying a used invite never authorizes a session or creates another user.
 - **Login:** `/login` — team + password, bcrypt-compared server-side.

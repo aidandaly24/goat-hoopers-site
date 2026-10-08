@@ -198,6 +198,8 @@ export class DrizzleGameStore implements GameStore {
   private static isTeamClaimConflict(error: unknown): boolean {
     // Drizzle wraps driver failures; the SQLSTATE and constraint stay
     // on the cause. Direct driver errors are supported as well.
+    // The schema-generated name and the existing Postgres name both
+    // identify UNIQUE(team_id); all other constraints must propagate.
     const cause = error instanceof DrizzleQueryError ? error.cause : error;
     return (
       typeof cause === "object" &&
@@ -205,7 +207,8 @@ export class DrizzleGameStore implements GameStore {
       "code" in cause &&
       cause.code === "23505" &&
       "constraint" in cause &&
-      cause.constraint === "site_users_team_id_unique"
+      (cause.constraint === "site_users_team_id_unique" ||
+        cause.constraint === "site_users_team_id_key")
     );
   }
 
