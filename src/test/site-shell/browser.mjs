@@ -318,7 +318,11 @@ try {
       const departedScroll = await page.evaluate(() => window.__shellBackDeparture);
       assert.equal(departedScroll, previousScroll, "Native navigation must preserve the departure scroll position");
       for (const event of await page.evaluate(() => window.__shellBackEvents)) assert.equal(event.scroll, previousScroll, "Pointer/focus/click must preserve prior scroll: " + JSON.stringify(event));
-      await verifyShell(page);
+      // Next's documented default may retain scroll on a visible destination.
+      // Fresh-load titles are checked above; this intermediate page checks its
+      // active route/shell and then explicit anchor clearance before Back.
+      await verifyShell(page, { title: false });
+      await anchor(page);
       await page.goBack();
       await page.waitForURL(url => url.pathname === "/history");
       const restoredDocument = await stableTrophy(page);
