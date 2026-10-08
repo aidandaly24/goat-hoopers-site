@@ -102,18 +102,29 @@ async function safePlayerDirectory(): Promise<Record<
 }
 
 /**
- * Valid season weeks for transaction/matchup fetching, derived from NBA
- * state. Returns [1..currentWeek]. Preseason uses the week-1 convention
- * (never week 0). Invalid, zero, negative, or non-finite week input
- * yields an empty array — no invalid or runaway requests.
+ * Conservative calendar ceiling for one annual NBA season, including
+ * postseason: a 366-day window can overlap at most 54 weekly buckets
+ * when its first week is partial (ceil((366 + 6) / 7)). This is a safety
+ * bound, not the league's scheduled last week, so it does not truncate
+ * playoff or late-season activity. NBA calendar: https://www.nba.com/news/key-dates
+ */
+const MAX_NBA_SEASON_WEEKS = Math.ceil((366 + 6) / 7);
+
+/**
+ * Valid season weeks for transaction/matchup fetching. Preseason always
+ * uses week 1, regardless of the provider's placeholder week. Missing or
+ * invalid state yields [] before allocation; feed/history callers retain
+ * their explicitly bounded week-1 fallback.
  */
 export function validSeasonWeeks(state: RawNbaState | null): number[] {
+  if (state?.season_type === "pre") return [1];
   const week = state?.week;
   if (
     typeof week !== "number" ||
     !Number.isInteger(week) ||
     !Number.isFinite(week) ||
-    week < 1
+    week < 1 ||
+    week > MAX_NBA_SEASON_WEEKS
   ) {
     return [];
   }
