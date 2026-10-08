@@ -363,15 +363,29 @@ impure shell, the math is a pure function of its inputs.
 
 ### Offline regression suite
 
-`npm test` (vitest, `vitest.config.ts`) runs the offline suite in
-`src/data/__tests__/`. Fixtures live in `__tests__/fixtures.ts` — tiny
+`npm test` (vitest, `vitest.config.mts`) runs the offline suite in
+`src/data/__tests__/`, plus the I/O boundary regressions in `src/test/`.
+Fixtures live in `__tests__/fixtures.ts` — tiny
 synthetic teams, transactions, matchups, and claim-store states, all
 credential-free. Tests assert observable domain results, never private
-function structure. The suite requires no network, secrets, or database;
-`.github/workflows/ci.yml` runs it plus `tsc --noEmit` on every PR.
+function structure. The default suite installs `src/test/offline.ts` before
+collecting tests: real `fetch` and Node socket connections fail immediately,
+and ambient application/import database URLs are removed. Fakes remain
+injectable. `.github/workflows/ci.yml` uses Node 22 from `.nvmrc`, installs the
+exact lockfile including dev tools (`npm ci --include=dev`) with engine
+validation, then runs tests, `npm run typecheck`, and the full `npm run build`
+sequentially. Any failure fails the check. PR runs test GitHub's merge commit
+against the base; logs record both that tested commit and the PR head. Push
+runs test the exact main commit. The existing check name remains unchanged.
+The production build has no database/import credentials and never seeds;
+it can download the public Google fonts used by `next/font`.
 The optional isolated-DB contract suite (FakeGameStore vs a throwaway
 test Postgres) is separate and fails closed when its target is absent —
-it never falls back to production credentials.
+it never falls back to production credentials. The explicit
+`npm run test:price-history:local` command bypasses the default network guard
+to use its hardcoded synthetic Postgres target at localhost:55438; CI always
+clears that opt-in. Test workers are guarded, not arbitrary child processes:
+the build CLI regression invokes only `next build --help`.
 
 `LeagueStats` fields are all nullable. In the preseason (`/state/nba`
 says `"pre"`) the loader returns `hasGames: false` and every stat stays
