@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "units": "meters",
+  "gltf_axes": {
+    "up": "+Y",
+    "court_length": "Z",
+    "court_width": "X",
+    "hoop_faces": "+Z"
+  },
+  "court": {
+    "file": "GOAT_HOOPERS_Court.glb",
+    "origin": [
+      0,
+      0,
+      0
+    ],
+    "width_m": 15.24,
+    "length_m": 28.65,
+    "surface_y": 0,
+    "ground_collision": {
+      "type": "plane",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "constant": 0
+    },
+    "free_throw_line_z": [
+      -8.5338,
+      8.5338
+    ],
+    "triangles": 576,
+    "file_bytes": 939972
+  },
+  "hoop": {
+    "file": "GOAT_HOOPERS_Hoop.glb",
+    "local_origin": [
+      0,
+      0,
+      0
+    ],
+    "rim_top_center": [
+      0,
+      3.048,
+      0
+    ],
+    "rim_tube_center": [
+      0,
+      3.0380000000000003,
+      0
+    ],
+    "rim_inner_radius": 0.2286,
+    "rim_tube_radius": 0.01,
+    "rim_major_radius": 0.2386,
+    "scoring_plane_y": 3.048,
+    "backboard": {
+      "front_center": [
+        0,
+        3.2766,
+        -0.381
+      ],
+      "front_normal": [
+        0,
+        0,
+        1
+      ],
+      "width": 1.8288,
+      "height": 1.0668,
+      "collision_box_center": [
+        0,
+        3.2766,
+        -0.401
+      ],
+      "collision_box_half_extents": [
+        0.9144,
+        0.5334,
+        0.02
+      ]
+    },
+    "net_bottom_y": 2.5668,
+    "anchors": {
+      "RimCenter": [
+        0,
+        3.048,
+        0
+      ],
+      "RimTubeCenter": [
+        0,
+        3.0380000000000003,
+        0
+      ],
+      "BackboardFace": [
+        0,
+        3.2766,
+        -0.381
+      ],
+      "NetBottom": [
+        0,
+        2.5668,
+        0
+      ]
+    },
+    "triangles": 3866,
+    "file_bytes": 403968
+  },
+  "placements": [
+    {
+      "name": "near",
+      "position": [
+        0,
+        0,
+        -12.7248
+      ],
+      "rotation_y_radians": 0,
+      "world_rim_top_center": [
+        0,
+        3.048,
+        -12.7248
+      ]
+    },
+    {
+      "name": "far",
+      "position": [
+        0,
+        0,
+        12.7248
+      ],
+      "rotation_y_radians": 3.141592653589793,
+      "world_rim_top_center": [
+        0,
+        3.048,
+        12.7248
+      ]
+    }
+  ],
+  "ball_sphere_collider_radius": 0.12,
+  "source": "https://official.nba.com/rule-no-1-court-dimensions-equipment/",
+  "notes": [
+    "Static render assets; collision values are metadata, with no embedded physics engine.",
+    "Court length retains the earlier artwork value 28.65 m; exactly 94 feet would be 28.6512 m.",
+    "Rim upper edge and scoring plane are 3.048 m above the court. The steel tube centerline is 0.01 m lower.",
+    "The rim clear opening diameter is 0.4572 m, distinct from the torus centerline diameter."
+  ]
+}

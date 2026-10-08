@@ -13,7 +13,8 @@
     "test": "vitest run",
     "price-history:plan": "tsx scripts/plan-price-history.ts",
     "test:price-history:local": "RUN_PRICE_HISTORY_LOCAL_TEST=1 vitest run src/data/__tests__/price-history-local.test.ts",
-    "check:contracts": "tsx scripts/check-surface-contracts.ts"
+    "check:contracts": "tsx scripts/check-surface-contracts.ts",
+    "test:free-throw": "vitest run src/surfaces/arcade/free-throw"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",

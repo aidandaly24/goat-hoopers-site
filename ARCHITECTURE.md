@@ -703,3 +703,62 @@ marks them settled. The ledger shows pending vs settled per user.
 4. Scores go through `store.createScore()`; weekly winners earn a
    `store.createReward()` of `WEEKLY_FAAB_PRIZE` FAAB.
 5. Ship mobile + desktop layouts (project rule 7), then open a PR.
+
+
+## Free-throw practice prototype
+
+`/arcade/free-throw` explicitly composes `FreeThrowPractice` from
+`src/surfaces/arcade/free-throw/` before any arcade store lookup. It is
+local practice, labelled as a prototype: scores live only in memory and
+never call server actions, the GameStore, rewards or a leaderboard. The
+registry remains coming-soon for league competition. The root layout's
+existing account/league chrome is unchanged.
+
+The domain contract `src/domain/arcade/free-throw.ts` describes metre-space
+court colliders, aim and transient ball state. `physics.ts` is pure and
+uses 240 Hz fixed substeps, sphere-versus-torus rim contact, a backboard
+box and floor. A make is latched once per shot on a descending rim-plane
+crossing with full-ball clearance, before floor contact. Frames discard
+excess wall time; shots finish within six simulated seconds.
+
+`src/three/FreeThrowScene.ts` is a lazily loaded, asynchronous visual
+adapter. It loads the verified GLBs under `public/3d/free-throw/`, keeps
+authored PBR maps, transparency and metre scale, and uses a generated
+lighting environment. The supplied `ASSET_MANIFEST.json` is imported by
+the domain contract to define collider dimensions and the court offset.
+The near hoop stays at local origin; the court moves +12.7248 m on Z,
+putting the release on its near free-throw line. No collisions are inferred
+from render triangles. Asset loading failure and WebGL/context loss offer
+a readable retry fallback; textures, geometry, environment and observers
+are disposed. Character animation and league competition are later work.
+
+The presentation is one viewport with an overlaid score HUD, world-space
+aim reticle/trajectory and bottom aim/power meter. Reset and help are small
+in-court buttons. Native labelled sliders live only in the optional help
+panel's closed Fine controls section. The default view has no form panel.
+Left/right or A/D aim; Space hold/release or the compact touch button
+charges power. Court mouse/touch drag also releases a shot. Power clamps
+at 100% after 1.6 seconds; repeat keydown cannot restart a hold. Blur,
+hidden tabs, pointer cancellation and reset cancel pending input. The
+court and charge button suppress touch long-press selection menus.
+Pointer cancellation restores the prior aim without releasing a shot.
+After settling, a shot shows a brief result and automatically prepares
+the next ball at a new shooting spot. `positions.ts` selects one of nine
+bounded, reachable spots with injected randomness and excludes the previous
+spot. The fixed origin is carried by `PracticeBall`; camera/guide framing
+uses that origin without reloading any asset. Center aim faces the rim.
+All spots keep the same launch-speed calibration, so distance changes the
+required release power rather than granting a hidden assist. Reset/retry
+also selects a fresh spot; the first attempt starts at the free-throw line. Reset/unmount clear the pending retry timer. A resize
+observer and viewport HUD layouts support portrait, short phones and
+landscape. Reduced motion resolves shots to a still result. No render
+loop runs on an idle court.
+
+The collider configuration follows the supplied Blender
+manifest: scoring plane 3.048 m, rim centerline 3.038 m, rim major radius
+0.2386 m, tube radius 0.01 m, and ball radius 0.12 m. The clear opening
+radius is 0.2286 m. The 50% shot is calibrated to this practice setup.
+
+Run `npm run test:free-throw` for deterministic physics, charge and shipped
+asset map/bounds/anchor checks. See `docs/free-throw-practice-qa.md` for the
+browser evidence and local server handoff.

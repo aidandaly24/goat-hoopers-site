@@ -7,6 +7,8 @@
  * and hands domain objects to the GameDetail surface. Unknown game ids
  * 404. Unprovisioned database shows the notice.
  */
+import { FreeThrowPractice } from "@/surfaces/arcade/free-throw/FreeThrowPractice";
+import { PRACTICE_ASSETS, PRACTICE_COURT } from "@/domain/arcade/free-throw";
 import { notFound } from "next/navigation";
 import {
   currentWeekLabel,
@@ -30,6 +32,9 @@ export default async function GamePage({
   const { gameId } = await params;
   const game = getGame(gameId);
   if (!game) notFound();
+
+  // Practice is independent of accounts and league persistence.
+  if (game.id === "free-throw") return <FreeThrowPractice court={PRACTICE_COURT} assets={PRACTICE_ASSETS} />;
 
   const week = currentWeekLabel();
   let user: SiteUser | null = null;

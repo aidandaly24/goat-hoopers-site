@@ -13,7 +13,7 @@ export const GAMES: Game[] = [
     id: "free-throw",
     name: "Free Throw Shootout",
     description:
-      "Ten shots, one minute, pure touch. Highest score takes the week.",
+      "Find your touch in local free-throw practice. League competition later.",
     icon: "🎯",
     status: "coming-soon",
     howToPlay:
@@ -21,8 +21,8 @@ export const GAMES: Game[] = [
       "streaks earn bonus multipliers. Your best score each week counts — " +
       "the weekly winner takes home 10 FAAB.",
     launchNote:
-      "Not playable yet — the shooting engine is still in the workshop. " +
-      "The leaderboard opens the moment it ships.",
+      "Local practice prototype available. League competition and rewards " +
+      "stay closed while the shooting engine is validated.",
   },
   {
     id: "82-0-predictions",
