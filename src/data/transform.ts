@@ -65,11 +65,14 @@ export function toTeams(rosters: RawRoster[], users: RawUser[]): Team[] {
 
 /**
  * Resolve one player_id to a domain Player. Unknown ids degrade to a
- * "Player <id>" stub instead of disappearing from the roster.
+ * "Player <id>" stub instead of disappearing from the roster. The espnId is
+ * injected by the caller (rule 11) — toPlayer stays pure; league.ts resolves
+ * it via src/data/espn.ts.
  */
 export function toPlayer(
   pid: string,
   entry: RawPlayerEntry | undefined,
+  espnId: string | null = null,
 ): Player {
   const name =
     entry?.full_name ??
@@ -80,6 +83,7 @@ export function toPlayer(
     fullName: name || `Player ${pid}`,
     position: entry?.position ?? null,
     nbaTeam: entry?.team ?? null,
+    espnId,
   };
 }
 
@@ -234,8 +238,13 @@ export function selectRecentTransactions(
 /**
  * Raw draft picks -> domain DraftPicks, sorted by pick number.
  * Player names come from the pick metadata (no directory needed).
+ * The espnId map is injected (rule 11) so the seed map can be swapped for
+ * the full mapping table without touching this function.
  */
-export function toDraftPicks(raw: RawDraftPick[]): DraftPick[] {
+export function toDraftPicks(
+  raw: RawDraftPick[],
+  espnIdMap: Record<string, string> = {},
+): DraftPick[] {
   return raw
     .map((p) => {
       const meta = p.metadata ?? {};
@@ -250,6 +259,7 @@ export function toDraftPicks(raw: RawDraftPick[]): DraftPick[] {
         playerName: name || `Player ${p.player_id}`,
         position: meta.position ?? null,
         nbaTeam: meta.team ?? null,
+        espnId: espnIdMap[p.player_id] ?? null,
         teamId: String(p.roster_id),
       } satisfies DraftPick;
     })

@@ -24,6 +24,7 @@ import type {
   TeamProfile,
   Matchup,
   StockMarket,
+  StockQuote,
   StockDetail,
   NewsArticle,
 } from "@/domain";
@@ -80,6 +81,10 @@ import { getStockStore } from "./stocks";
 import { getDb, type Db } from "./db";
 import { getStatProfiles, getSeasonHistory } from "./nba-stats";
 import { generateLeagueNews } from "./news";
+/* Headshot seam: the Sleeper -> ESPN id map is injected into the toPlayer /
+ * toDraftPicks transforms here (rule 11). Swap SEED_ESPN_ID_MAP for Aidan's
+ * full mapping table when it lands — no component changes. */
+import { SEED_ESPN_ID_MAP, resolveEspnId } from "./espn";
 
 export type SeasonHubData = {
   season: Season;
@@ -102,18 +107,29 @@ async function safePlayerDirectory(): Promise<Record<
 }
 
 /**
- * Valid season weeks for transaction/matchup fetching, derived from NBA
- * state. Returns [1..currentWeek]. Preseason uses the week-1 convention
- * (never week 0). Invalid, zero, negative, or non-finite week input
- * yields an empty array — no invalid or runaway requests.
+ * Conservative calendar ceiling for one annual NBA season, including
+ * postseason: a 366-day window can overlap at most 54 weekly buckets
+ * when its first week is partial (ceil((366 + 6) / 7)). This is a safety
+ * bound, not the league's scheduled last week, so it does not truncate
+ * playoff or late-season activity. NBA calendar: https://www.nba.com/news/key-dates
+ */
+const MAX_NBA_SEASON_WEEKS = Math.ceil((366 + 6) / 7);
+
+/**
+ * Valid season weeks for transaction/matchup fetching. Preseason always
+ * uses week 1, regardless of the provider's placeholder week. Missing or
+ * invalid state yields [] before allocation; feed/history callers retain
+ * their explicitly bounded week-1 fallback.
  */
 export function validSeasonWeeks(state: RawNbaState | null): number[] {
+  if (state?.season_type === "pre") return [1];
   const week = state?.week;
   if (
     typeof week !== "number" ||
     !Number.isInteger(week) ||
     !Number.isFinite(week) ||
-    week < 1
+    week < 1 ||
+    week > MAX_NBA_SEASON_WEEKS
   ) {
     return [];
   }
@@ -246,7 +262,9 @@ export async function getTeamDetail(teamId: string): Promise<TeamDetail | null> 
   const ids = raw.players ?? [];
   if (ids.length === 0) return { team, players: [] };
   const directory = await safePlayerDirectory();
-  const players = ids.map((pid) => toPlayer(pid, directory?.[pid]));
+  const players = ids.map((pid) =>
+    toPlayer(pid, directory?.[pid], resolveEspnId(pid, SEED_ESPN_ID_MAP)),
+  );
   return { team, players };
 }
 
@@ -337,7 +355,10 @@ export async function getDraftBoard(): Promise<DraftBoardData> {
       drafts.find((d) => d.season === "2026" && d.status === "complete") ??
       drafts[0];
     if (!draft) return { picks: [], teams };
-    const picks = toDraftPicks(await fetchDraftPicks(draft.draft_id));
+    const picks = toDraftPicks(
+      await fetchDraftPicks(draft.draft_id),
+      SEED_ESPN_ID_MAP,
+    );
     return { picks, teams };
   } catch {
     return { picks: [], teams: [] };
@@ -354,7 +375,7 @@ async function fetchDraftPicksSafe(): Promise<DraftPick[]> {
       drafts.find((d) => d.season === "2026" && d.status === "complete") ??
       drafts[0];
     if (!draft) return [];
-    return toDraftPicks(await fetchDraftPicks(draft.draft_id));
+    return toDraftPicks(await fetchDraftPicks(draft.draft_id), SEED_ESPN_ID_MAP);
   } catch {
     return [];
   }
@@ -494,7 +515,11 @@ export async function getPlayerDetail(
       getTransactionHistory(),
       fetchDraftPicksSafe(),
     ]);
-    const player = toPlayer(playerId, directory?.[playerId]);
+    const player = toPlayer(
+      playerId,
+      directory?.[playerId],
+      resolveEspnId(playerId, SEED_ESPN_ID_MAP),
+    );
 
     let team: Team | null = null;
     for (const r of rosters) {
@@ -540,7 +565,7 @@ export async function getTeamProfile(
     const team = toTeam(raw, byId.get(raw.owner_id));
 
     const players = (raw.players ?? []).map((pid) =>
-      toPlayer(pid, directory?.[pid])
+      toPlayer(pid, directory?.[pid], resolveEspnId(pid, SEED_ESPN_ID_MAP)),
     );
 
     const matchupsByWeek = input?.matchupsByWeek ?? [];
@@ -768,6 +793,17 @@ export const getStockMarketData = cache(
   async (): Promise<StockMarket> => {
     const input = await getMarketInputs();
     const market = computeStockMarket(input);
+
+    // Attach headshot ids via the espn.ts seam (same rule-11 pattern as the
+    // toPlayer/toDraftPicks wiring — the pricing math stays pure).
+    const withHeadshots = (quotes: StockQuote[]): StockQuote[] =>
+      quotes.map((q) => ({
+        ...q,
+        espnId: resolveEspnId(q.playerId, SEED_ESPN_ID_MAP),
+      }));
+    market.stocks = withHeadshots(market.stocks);
+    market.trending = withHeadshots(market.trending);
+    market.falling = withHeadshots(market.falling);
 
     // Persist this snapshot for next time's change %. Fire-and-forget safe:
     // a failed write must never break the page.

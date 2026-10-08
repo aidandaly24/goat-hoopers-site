@@ -24,7 +24,7 @@ export function PlayerRow({
       className={styles.row}
       aria-label={`View ${player.fullName}`}
     >
-      <PlayerHeadshot playerId={player.id} name={player.fullName} teamId={teamId} />
+      <PlayerHeadshot espnId={player.espnId} name={player.fullName} teamId={teamId} />
       <span className={styles.identity}>
         <span className={styles.name}>{player.fullName}</span>
         <span className={styles.meta}>

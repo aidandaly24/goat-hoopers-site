@@ -1,12 +1,19 @@
 import Link from "next/link";
 import styles from "./SectionNav.module.css";
 
-export type LeagueSection = "transactions" | "teams" | "intel";
+export type LeagueSection =
+  | "transactions"
+  | "teams"
+  | "intel"
+  | "stocks"
+  | "trade-analyzer";
 
 const LINKS: { key: LeagueSection; href: string; label: string }[] = [
   { key: "transactions", href: "/transactions", label: "Transactions" },
   { key: "teams", href: "/teams", label: "Teams" },
   { key: "intel", href: "/intel", label: "Intel" },
+  { key: "stocks", href: "/stocks", label: "Stocks" },
+  { key: "trade-analyzer", href: "/trade-analyzer", label: "Trade Analyzer" },
 ];
 
 type Props = {
