@@ -182,15 +182,24 @@ export async function claimAccount(
   }
 
   const passwordHash = await hash(password, 12);
-  const user = await store.createUser({
-    teamId: invite.teamId,
+  // The store performs the claim atomically: account creation and
+  // invite consumption happen as one database operation. The prechecks
+  // above are UX only — claimTeam is the concurrency guarantee.
+  const result = await store.claimTeam({
+    code: normalized,
     displayName: name,
     passwordHash,
   });
-  const consumed = await store.consumeInviteCode(normalized, user.id);
-  if (!consumed) {
-    return fail("That code was just used. Try logging in.");
+  if (!result.ok) {
+    if (result.reason === "invalid_code") {
+      return fail("That code doesn't exist.");
+    }
+    if (result.reason === "already_used") {
+      return fail("That code was already used.");
+    }
+    return fail("This team is already claimed.");
   }
+  const user = result.user;
   await store.clearClaimAttempts(ipHash);
   await startSession(user.id);
   redirect("/arcade");

@@ -4,6 +4,8 @@
 export type {
   SiteUser,
   InviteCode,
+  ClaimTeamInput,
+  ClaimResult,
   GameSession,
   Game,
   GameScore,
