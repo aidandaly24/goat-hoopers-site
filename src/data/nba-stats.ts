@@ -106,7 +106,20 @@ async function readCache(
 ): Promise<{ profiles: Record<string, PlayerStatProfile>; fresh: boolean } | null> {
   if (!db) return null;
   try {
-    const rows = await db.select().from(playerStatCache);
+    // Slim select for the pricing hot path (F4): season_history is ~200KB
+    // of jsonb the pricer never reads — it loads on expand via
+    // getSeasonHistory instead.
+    const rows = await db
+      .select({
+        playerId: playerStatCache.playerId,
+        fppg: playerStatCache.fppg,
+        careerMinutes: playerStatCache.careerMinutes,
+        emaFppg: playerStatCache.emaFppg,
+        emaGames: playerStatCache.emaGames,
+        leaguePick: playerStatCache.leaguePick,
+        updatedAt: playerStatCache.updatedAt,
+      })
+      .from(playerStatCache);
     if (rows.length === 0) return { profiles: {}, fresh: false };
     const newest = Math.max(...rows.map((r) => r.updatedAt.getTime()));
     const profiles: Record<string, PlayerStatProfile> = {};
@@ -117,12 +130,53 @@ async function readCache(
         emaFppg: r.emaFppg,
         emaGames: r.emaGames ?? 0,
         leaguePick: r.leaguePick,
-        seasonHistory: (r.seasonHistory as PlayerStatProfile["seasonHistory"]) ?? [],
+        seasonHistory: [],
       };
     }
     return { profiles, fresh: Date.now() - newest < CACHE_TTL_MS };
   } catch {
     return null; // table missing etc. — caller refetches
+  }
+}
+
+/**
+ * One player's season history for the expanded stock row. Separate from
+ * the hot-path readCache (F4) — the jsonb only travels on expand.
+ */
+export async function getSeasonHistory(
+  db: Db | null,
+  playerId: string
+): Promise<PlayerStatProfile["seasonHistory"]> {
+  if (!db) return [];
+  try {
+    const rows = await db
+      .select({ seasonHistory: playerStatCache.seasonHistory })
+      .from(playerStatCache)
+      .where(sql`${playerStatCache.playerId} = ${playerId}`)
+      .limit(1);
+    const raw = rows[0]?.seasonHistory as
+      | PlayerStatProfile["seasonHistory"]
+      | null;
+    return raw ?? [];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Cheap self-healing check: did the cache ever get season_history?
+ * (Rows written before the column existed carry none.)
+ */
+async function hasAnySeasonHistory(db: Db): Promise<boolean> {
+  try {
+    const rows = await db
+      .select({ one: sql`1` })
+      .from(playerStatCache)
+      .where(sql`jsonb_array_length(${playerStatCache.seasonHistory}) > 0`)
+      .limit(1);
+    return rows.length > 0;
+  } catch {
+    return false;
   }
 }
 
@@ -175,15 +229,17 @@ export async function getStatProfiles(
   deps: StatClientDeps
 ): Promise<Record<string, PlayerStatProfile>> {
   const cached = await readCache(deps.db);
-  const hasSeasonHistory =
-    cached != null &&
-    Object.values(cached.profiles).some((p) => p.seasonHistory.length > 0);
   // Self-healing: rows written before the season_history column existed
   // carry no history — refresh once instead of serving them for a day.
+  // Cheap EXISTS check; the hot path never reads the jsonb (F4).
+  const hasHistory =
+    cached != null &&
+    deps.db != null &&
+    (await hasAnySeasonHistory(deps.db));
   if (
     cached &&
     cached.fresh &&
-    hasSeasonHistory &&
+    hasHistory &&
     Object.keys(cached.profiles).length > 0
   ) {
     return cached.profiles;
