@@ -141,9 +141,61 @@
   font-weight: 600;
 }
 
+/* Scores mode (issue #56). */
+.score {
+  color: var(--gh-text);
+  font-family: var(--gh-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.at {
+  color: var(--gh-text-faint);
+  font-size: 0.78rem;
+}
+
+.clock {
+  color: var(--gh-text-dim);
+  font-family: var(--gh-font-mono);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gh-s1);
+  color: var(--gh-live);
+  font-family: var(--gh-font-mono);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.liveDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background: var(--gh-live);
+  animation: gh-live-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes gh-live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .track {
     animation: none;
     transition: none;
+  }
+  .liveDot {
+    animation: none;
   }
 }

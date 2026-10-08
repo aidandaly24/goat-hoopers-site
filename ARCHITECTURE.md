@@ -296,9 +296,15 @@ provisioned the store is a no-op: prices still compute live, movers show
 their honest "no history yet" states, and nothing crashes.
 
 The `CombinedTicker` marquee renders in the root layout above every page
-(ESPN style: news headlines and stock quotes alternate on a timer; pure
-CSS animation, pauses on hover, no auto-switch under
-`prefers-reduced-motion`); the full market lives at `/stocks`.
+(ESPN style: news headlines, stock quotes, and — on NBA game days — live
+scores alternate on a timer; pure CSS animation, pauses on hover, no
+auto-switch under `prefers-reduced-motion`); the full market lives at
+`/stocks`. The scores mode (issue #56) is fed by ESPN's public scoreboard
+API via `fetchLiveGames`/`useLiveGames` in `src/data/espn-client.ts`:
+polled directly from the browser every 60s and only while games are live
+or scheduled, so Vercel/Neon stay at $0. `LiveGame` lives in
+`src/domain/live-game.ts`. If ESPN is unreachable the mode silently never
+appears — the ticker parks on News/Stocks.
 
 ### Explicit price-history imports
 

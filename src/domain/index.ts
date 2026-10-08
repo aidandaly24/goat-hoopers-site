@@ -75,6 +75,8 @@ export type {
 } from "./stock";
 export type { TradeSide, TradeVerdict } from "./trade";
 export { analyzeTrade, tradeTotal } from "./trade";
+export type { LiveGame, LiveGameStatus } from "./live-game";
+export { isGameDay } from "./live-game";
 export type { Season } from "./season";
 export { formatSeasonStatus } from "./season";
 export type {
