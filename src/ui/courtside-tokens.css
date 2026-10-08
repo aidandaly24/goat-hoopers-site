@@ -1,0 +1,56 @@
+/* Courtside vocabulary for the homepage, weekly archive and isolated comparison.
+ * The palette follows the existing arena floor, paint and selected logo.
+ * These names do not override the live site's broadcast tokens.
+ * Preview breakpoints: 70rem simplifies the lead portrait, 55rem stacks
+ * the opening and chrome, 40rem gives stories and team summaries phone layouts. */
+:root {
+  --gh-cs-wall: #173c3a;
+  --gh-cs-wall-deep: #123431;
+  --gh-cs-court: #c9d8d2;
+  --gh-cs-ink: #173c3a;
+  --gh-cs-text: #f3f5ef;
+  --gh-cs-muted-light: #c3d2c9;
+  --gh-cs-muted-dark: #3f5953;
+  --gh-cs-tan: #e9cda6;
+  --gh-cs-clay: #a54429;
+  --gh-cs-line-light: #76978a;
+  --gh-cs-line-dark: #829e91;
+  --gh-cs-paint: #eff3e8;
+  --gh-cs-scrim: rgb(0 0 0 / .35);
+  --gh-cs-font: 'Courtside Inter', system-ui, sans-serif;
+  --gh-cs-num: 'Courtside Mono', ui-monospace, monospace;
+  --gh-cs-title: clamp(2.5rem, 4vw, 3.75rem);
+  --gh-cs-heading: clamp(1.75rem, 2.7vw, 2.25rem);
+  --gh-cs-player: clamp(1.75rem, 3vw, 2.5rem);
+  --gh-cs-body: 1.0625rem;
+  --gh-cs-body-compact: 1rem;
+  --gh-cs-subhead: 1.125rem;
+  --gh-cs-small-stat: 1.25rem;
+  --gh-cs-story-title: 1.5rem;
+  --gh-cs-support-name: 1.625rem;
+  --gh-cs-mobile-name: 1.75rem;
+  --gh-cs-small-title: 1.375rem;
+  --gh-cs-secondary: .875rem;
+  --gh-cs-caption: .75rem;
+  --gh-cs-s1: .25rem;
+  --gh-cs-s2: .5rem;
+  --gh-cs-s3: .75rem;
+  --gh-cs-s4: 1rem;
+  --gh-cs-s5: 1.5rem;
+  --gh-cs-s6: 2rem;
+  --gh-cs-s7: 3rem;
+  --gh-cs-s8: 4rem;
+  --gh-cs-s9: 5rem;
+  --gh-cs-wrap: 78rem;
+  --gh-cs-gutter: clamp(1rem, 4.4vw, 4rem);
+  --gh-cs-radius: .375rem;
+  --gh-cs-control: 2.75rem;
+  --gh-cs-rule: 1px;
+  --gh-cs-border: 2px;
+  --gh-cs-shadow: 0 .5rem 1.25rem rgb(0 0 0 / .2);
+  --gh-cs-dialog-shadow: 0 1rem 4rem rgb(0 0 0 / .35);
+  --gh-cs-duration: 180ms;
+}
+
+/* The themed body is selected by a public surface marker; account/nav behavior stays shared. */
+body:has([data-courtside-home]) { background:var(--gh-cs-wall-deep); }

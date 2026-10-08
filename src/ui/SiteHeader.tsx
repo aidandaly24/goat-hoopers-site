@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element -- Approved, pre-sized local assets are served directly without image-optimizer quota. */
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { teamColorVar } from "./teamColors";
@@ -38,7 +39,7 @@ export function SiteHeader({ user, logoutAction }: Props) {
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link href="/" className={styles.wordmark} aria-label="GOAT Hoopers home">
-          GOAT&nbsp;<span>HOOPERS</span>
+          <img src="/courtside/GOAT-HOOPERS-horizontal-white.svg" alt="GOAT Hoopers" width="208" height="55" />
         </Link>
         <nav className={styles.nav} aria-label="Primary">
           <Link href="/">Home</Link>

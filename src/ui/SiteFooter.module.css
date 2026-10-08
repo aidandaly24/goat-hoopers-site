@@ -101,3 +101,9 @@
     flex-basis: 100%;
   }
 }
+
+.wordmark img { width:10rem; height:auto; display:block; }
+:global(body:has([data-courtside-home])) .footer { margin-top:0; background:var(--gh-cs-wall-deep); border-color:var(--gh-cs-line-light); }
+:global(body:has([data-courtside-home])) .inner { max-width:var(--gh-cs-wrap); }
+:global(body:has([data-courtside-home])) .disclaimer,
+:global(body:has([data-courtside-home])) .copy { color:var(--gh-cs-muted-light); font-size:var(--gh-cs-secondary); }

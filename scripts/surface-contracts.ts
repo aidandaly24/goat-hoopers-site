@@ -15,7 +15,7 @@ const COMPOSITE_ALLOWLIST: Record<string, readonly string[]> = {
 };
 
 const FORBIDDEN_RUNTIME = [
-  "data/sleeper", "data/db", "drizzle-orm", "@neondatabase/serverless",
+  "data/sleeper", "data/db", "data/transform", "drizzle-orm", "@neondatabase/serverless",
   "@vercel/postgres", "pg", "postgres", "api.sleeper.app",
 ];
 const SOURCE_EXTENSION = /\.(?:[cm]?[jt]s|[jt]sx)$/;
