@@ -839,6 +839,13 @@ async function loadLeagueNews(): Promise<NewsArticle[]> {
     getTransactionHistory(),
     getDraftBoard(),
   ]);
+  // P1: upstream loaders swallow errors into empty arrays. An empty teams
+  // list is never legitimate (10 teams always exist) — it means the fetch
+  // failed. Throw so the TTL cache preserves last-good instead of caching
+  // an empty feed for 5 minutes.
+  if (teams.length === 0) {
+    throw new Error("loadLeagueNews: empty teams — upstream fetch failed");
+  }
   return generateLeagueNews({ transactions, picks, teams });
 }
 

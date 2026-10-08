@@ -248,11 +248,16 @@ export function fetchWinnersBracket(): Promise<RawWinnersBracketEntry[]> {
  */
 export const PLAYER_DIRECTORY_SOURCE = "sleeper:/players/nba";
 export const PLAYER_DIRECTORY_PROJECTION_VERSION = 1;
-/** 24h in ms — the documented directory freshness (rule 14: daily cache). */
-export const PLAYER_DIRECTORY_TTL_MS = 24 * 60 * 60 * 1000;
+/**
+ * 5 minutes in ms. Issue #16 starts this cache at 300s: injury_status
+ * feeds valuation (0.45x for Out/IR vs 1x Healthy in transform.ts), so a
+ * 24h TTL could ignore an injury change for a full day. Revisit only with
+ * an explicit staleness decision or a stable-identity/dynamic-overlay split.
+ */
+export const PLAYER_DIRECTORY_TTL_MS = 5 * 60 * 1000;
 
 async function fetchRawPlayerDirectory(): Promise<Record<string, unknown>> {
-  // no-store: the 24h TTL cache above is the single source of truth for
+  // no-store: the 5min TTL cache above is the single source of truth for
   // directory freshness — Next's fetch cache must not add a second layer.
   const res = await fetch(`${BASE}/players/nba`, { cache: "no-store" });
   if (!res.ok) {
