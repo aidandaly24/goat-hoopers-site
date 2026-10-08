@@ -13,7 +13,7 @@
  * `getDb()` when Postgres isn't provisioned — callers catch it and
  * render the provisioning notice.
  */
-import { and, desc, eq, isNull, sql } from "drizzle-orm";
+import { and, desc, DrizzleQueryError, eq, isNull, sql } from "drizzle-orm";
 import { randomUUID } from "node:crypto";
 import { GAMES } from "@/domain/arcade";
 import type {
@@ -194,17 +194,18 @@ export class DrizzleGameStore implements GameStore {
     return toSiteUser(row);
   }
 
-  /**
-   * Postgres unique-violation code. The neon driver surfaces it on the
-   * thrown error; a 23505 from the claim CTE means the team unique
-   * constraint fired and the whole statement rolled back.
-   */
-  private static isUniqueViolation(e: unknown): boolean {
+  /** Only the team ownership constraint is an expected claim conflict. */
+  private static isTeamClaimConflict(error: unknown): boolean {
+    // Drizzle wraps driver failures; the SQLSTATE and constraint stay
+    // on the cause. Direct driver errors are supported as well.
+    const cause = error instanceof DrizzleQueryError ? error.cause : error;
     return (
-      typeof e === "object" &&
-      e !== null &&
-      "code" in e &&
-      (e as { code: unknown }).code === "23505"
+      typeof cause === "object" &&
+      cause !== null &&
+      "code" in cause &&
+      cause.code === "23505" &&
+      "constraint" in cause &&
+      cause.constraint === "site_users_team_id_unique"
     );
   }
 
@@ -215,7 +216,7 @@ export class DrizzleGameStore implements GameStore {
     // concurrent claims for the same code race on `used_by IS NULL`
     // and only one wins. The INSERT's team_id unique constraint is the
     // final defense for two different codes racing on the same team;
-    // a 23505 rolls back the whole statement, including the winner's
+    // a 23505 rolls back the whole statement, including the losing claim's
     // invite update.
     const userId = randomUUID();
     let rows: {
@@ -252,7 +253,7 @@ export class DrizzleGameStore implements GameStore {
         createdAt: Date;
       }[];
     } catch (e) {
-      if (DrizzleGameStore.isUniqueViolation(e)) {
+      if (DrizzleGameStore.isTeamClaimConflict(e)) {
         return { ok: false, reason: "team_claimed" };
       }
       throw e;
