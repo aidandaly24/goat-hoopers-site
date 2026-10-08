@@ -19,12 +19,12 @@ import { validatePriceHistoryArtifact } from "./price-history-artifact";
 import { validatePublicationPlan } from "./price-history-plan";
 import { getDb, priceHistory, priceHistoryImportState, stockSnapshots, type Db } from "./db";
 
-/** player_id → price points oldest → newest, sampled for sparklines. */
+/** player_id → history points; quote reads return at most one live point per ID. */
 export type PriceHistory = Record<string, PriceHistoryPoint[]>;
 
 /** Max points per player in the merged sparkline history. */
 const HISTORY_POINTS = 40;
-/** Live snapshots kept per player (unchanged behavior). */
+/** Live snapshots kept in a selected-player chart. */
 const LIVE_POINTS = 10;
 const RETENTION_DAYS = 30;
 /**
@@ -57,122 +57,72 @@ export function samplePoints(
 }
 
 export type StockStore = {
-  getHistory(playerIds: string[]): Promise<PriceHistory>;
+  /** At most one latest observed/live baseline per requested player; no reconstruction. */
+  getQuoteHistory(playerIds: string[]): Promise<PriceHistory>;
   saveSnapshot(prices: Record<string, number>): Promise<void>;
-  /** Full-resolution price path for one player (detail view). */
+  /** Selected-player chart: reconstruction + latest 10 live points, sampled to 40. */
   getPricePath(playerId: string): Promise<PriceHistoryPoint[]>;
 };
 
 class DrizzleStockStore implements StockStore {
-  async getHistory(playerIds: string[]): Promise<PriceHistory> {
-    if (playerIds.length === 0) return {};
-    const db = getDb();
-    const wanted = new Set(playerIds);
-    const history: PriceHistory = {};
+  constructor(private readonly db: Db) {}
 
-    // Reconstructed history: gamelog dense points + backtest yearly points.
-    // Filtered to wanted players in SQL — the backfill writes one row per
-    // player per game (~100k+ rows), and fetching the whole table per page
-    // load would be a Neon free-tier tax on every market view.
+  async getQuoteHistory(playerIds: string[]): Promise<PriceHistory> {
+    const ids = [...new Set(playerIds)];
+    if (ids.length === 0) return {};
     try {
-      const recon = await db
-        .select()
-        .from(priceHistory)
-        .where(inArray(priceHistory.playerId, playerIds))
-        .orderBy(priceHistory.date);
-      for (const row of recon) {
-        if (!wanted.has(row.playerId)) continue;
-        const list = history[row.playerId] ?? [];
-        list.push({
-          date: row.date.toISOString(),
-          price: row.priceCents / 100,
-          source: asSource(row.source),
-        });
-        history[row.playerId] = list;
-      }
+      // SQL selects one row per requested player before transfer. Timestamp
+      // ordering stays in Postgres (including microseconds); UUID breaks ties.
+      const rows = await this.db
+        .selectDistinctOn([stockSnapshots.playerId], {
+          playerId: stockSnapshots.playerId,
+          priceCents: stockSnapshots.priceCents,
+          snapshotAt: stockSnapshots.snapshotAt,
+        })
+        .from(stockSnapshots)
+        .where(inArray(stockSnapshots.playerId, ids))
+        .orderBy(stockSnapshots.playerId, desc(stockSnapshots.snapshotAt), desc(stockSnapshots.id));
+      return Object.fromEntries(rows.map(row => [row.playerId, [{
+        date: row.snapshotAt.toISOString(), price: row.priceCents / 100, source: "live",
+      }]]));
     } catch {
-      // Table missing (not yet provisioned) — fall through to live only.
+      // Missing live table/read failure: no baseline, never reconstructed fallback.
+      return {};
     }
-
-    // Live snapshots, newest-first from the store, appended after.
-    // Each snapshot writes one row per priced player, so
-    // LIVE_POINTS × players comfortably covers the window.
-    //
-    // Deliberately not SELECT DISTINCT snapshot_at + IN (...): Postgres
-    // timestamps carry microseconds that JS Dates truncate to
-    // milliseconds, so a Date round-tripped through the driver never
-    // equals the stored value and the IN clause matches nothing.
-    const rows = await db
-      .select({
-        playerId: stockSnapshots.playerId,
-        priceCents: stockSnapshots.priceCents,
-        snapshotAt: stockSnapshots.snapshotAt,
-      })
-      .from(stockSnapshots)
-      .orderBy(desc(stockSnapshots.snapshotAt))
-      .limit(LIVE_POINTS * wanted.size);
-    const live: PriceHistory = {};
-    for (const row of rows) {
-      if (!wanted.has(row.playerId)) continue;
-      const list = live[row.playerId] ?? [];
-      if (list.length >= LIVE_POINTS) continue;
-      list.push({
-        date: row.snapshotAt.toISOString(),
-        price: row.priceCents / 100,
-        source: "live" as PriceSource,
-      });
-      live[row.playerId] = list;
-    }
-    for (const id of Object.keys(live)) live[id].reverse(); // oldest → newest
-
-    // Merge: reconstructed path first, then live snapshots, sampled.
-    for (const id of Object.keys(live)) {
-      const merged = [...(history[id] ?? []), ...live[id]];
-      history[id] = samplePoints(merged, HISTORY_POINTS);
-    }
-    // Players with reconstructed history but no live snapshots yet.
-    for (const id of Object.keys(history)) {
-      history[id] = samplePoints(history[id], HISTORY_POINTS);
-    }
-    return history;
   }
 
   async getPricePath(playerId: string): Promise<PriceHistoryPoint[]> {
-    const db = getDb();
     const points: PriceHistoryPoint[] = [];
     try {
-      const recon = await db
-        .select()
+      const recon = await this.db
+        .select({ date: priceHistory.date, priceCents: priceHistory.priceCents, source: priceHistory.source })
         .from(priceHistory)
         .where(eq(priceHistory.playerId, playerId))
-        .orderBy(priceHistory.date);
+        .orderBy(priceHistory.date, priceHistory.source, priceHistory.id);
       for (const row of recon) {
-        points.push({
-          date: row.date.toISOString(),
-          price: row.priceCents / 100,
-          source: asSource(row.source),
-        });
+        points.push({ date: row.date.toISOString(), price: row.priceCents / 100, source: asSource(row.source) });
       }
     } catch {
-      // Table missing — live only.
+      // Reconstruction missing — retain the observed path if available.
     }
-    const live = await db
-      .select()
-      .from(stockSnapshots)
-      .where(eq(stockSnapshots.playerId, playerId))
-      .orderBy(stockSnapshots.snapshotAt);
-    for (const row of live) {
-      points.push({
-        date: row.snapshotAt.toISOString(),
-        price: row.priceCents / 100,
-        source: "live",
-      });
+    try {
+      const live = await this.db
+        .select({ snapshotAt: stockSnapshots.snapshotAt, priceCents: stockSnapshots.priceCents })
+        .from(stockSnapshots)
+        .where(eq(stockSnapshots.playerId, playerId))
+        .orderBy(desc(stockSnapshots.snapshotAt), desc(stockSnapshots.id))
+        .limit(LIVE_POINTS);
+      for (const row of live.reverse()) {
+        points.push({ date: row.snapshotAt.toISOString(), price: row.priceCents / 100, source: "live" });
+      }
+    } catch {
+      // Live table missing — chart estimates remain source-labelled.
     }
-    return points;
+    return samplePoints(points, HISTORY_POINTS);
   }
 
   async saveSnapshot(prices: Record<string, number>): Promise<void> {
-    const db = getDb();
+    const db = this.db;
     const entries = Object.entries(prices);
     if (entries.length === 0) return;
     // Throttle: skip the write when the latest snapshot is still fresh.
@@ -197,7 +147,7 @@ class DrizzleStockStore implements StockStore {
 }
 
 class NoopStockStore implements StockStore {
-  async getHistory(): Promise<PriceHistory> {
+  async getQuoteHistory(): Promise<PriceHistory> {
     return {};
   }
   async getPricePath(): Promise<PriceHistoryPoint[]> {
@@ -211,11 +161,11 @@ class NoopStockStore implements StockStore {
 /**
  * The store to use. Never throws: without DATABASE_URL this returns the
  * no-op store and the market degrades to live-prices-only mode.
+ * An injected Db supports offline clients; explicit null selects the no-op store.
  */
-export function getStockStore(): StockStore {
+export function getStockStore(db?: Db | null): StockStore {
   try {
-    getDb();
-    return new DrizzleStockStore();
+    return db === null ? new NoopStockStore() : new DrizzleStockStore(db ?? getDb());
   } catch {
     return new NoopStockStore();
   }
