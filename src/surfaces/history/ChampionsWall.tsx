@@ -4,8 +4,7 @@ import { ChampionBannerCard } from "./ChampionBannerCard";
 import styles from "./TrophyRoom.module.css";
 
 /**
- * The full Champions' Wall — every banner the league has ever hung,
- * plus the empty frame waiting for this season's winner.
+ * The full Champions' Wall — every completed title the league has hung.
  */
 export function ChampionsWall({
   champions,
@@ -25,10 +24,6 @@ export function ChampionsWall({
         </p>
       </header>
       <div className={styles.banners}>
-        <div className={styles.emptyBanner}>
-          <span className={styles.emptyYear}>2026</span>
-          <span className={styles.emptyText}>To be decided</span>
-        </div>
         {sorted.map((c) => (
           <ChampionBannerCard key={c.season} champion={c} />
         ))}
