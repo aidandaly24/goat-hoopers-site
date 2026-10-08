@@ -420,6 +420,11 @@ set for a combined local run; CI explicitly clears both. The database names
 and synthetic schemas are fixed in the respective test fixtures; the socket
 guard enforces the network endpoints. Test workers are guarded, not arbitrary child processes:
 the build CLI regression invokes only `next build --help`.
+The claim suite runs the shared FakeGameStore/Drizzle contract plus forced
+overlapping claims and mutation failure rollback. It uses a dedicated schema
+and the installed Neon HTTP/Drizzle stack with a local Postgres transport;
+two independent backend PIDs blocked at a lock prove actual query overlap.
+The suite has no configurable URL and never reads application DB credentials.
 
 `LeagueStats` fields are all nullable. In the preseason (`/state/nba`
 says `"pre"`) the loader returns `hasGames: false` and every stat stays
@@ -576,6 +581,13 @@ preview deployment must never crash on a missing database.
   statement (CTE), so a failed claim leaves neither a partial account nor
   a consumed code. The neon-http driver has no interactive transactions;
   the single-statement CTE is the atomicity mechanism.
+  Team-constraint conflicts are read from the Drizzle error's cause for
+  both `site_users_team_id_unique` (repository schema) and
+  `site_users_team_id_key` (existing Postgres constraint). Unknown constraints,
+  other SQL errors, and infrastructure errors propagate. Session creation
+  happens after the claim commits. If the session or cookie response fails, the account
+  remains claimed: recover through `/login` with the password just set.
+  Retrying a used invite never authorizes a session or creates another user.
 - **Login:** `/login` — team + password, bcrypt-compared server-side.
 - **Sessions:** 90-day httpOnly cookies, SHA-256-hashed tokens in the DB.
 - **Friends-grade security:** invite codes close the impersonation hole
