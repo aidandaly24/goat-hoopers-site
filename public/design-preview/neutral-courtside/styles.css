@@ -1,0 +1,3508 @@
+/**
+ * Design tokens — the visual language of the site.
+ *
+ * Direction: "dark broadcast, elevated". Deep navy-black backgrounds with
+ * real depth — radial glows, a whisper of film grain, layered surfaces —
+ * one gold accent with championship energy, color reserved for meaning
+ * (win/loss/live/team identity), never decoration. Handcrafted, never
+ * flat, never monotone.
+ *
+ * Everything visual in every surface MUST reference these tokens, never
+ * hardcoded colors/spacing. If you need a new token, add it here and
+ * document why.
+ */
+
+:root {
+  /* Brand */
+  --gh-gold: #e8a13c;
+  --gh-gold-soft: #f3bc62;
+  --gh-gold-deep: #b97a1f;
+  /* Medal metals for the standings top 3. */
+  --gh-silver: #c9ced8;
+  --gh-bronze: #d08a4e;
+  /* News network masthead accents — one per fictional publication. */
+  --gh-pub-espn: #e8002d;
+  --gh-pub-athletic: #d8d8d8;
+  --gh-pub-bleacher: #ff6b00;
+  --gh-pub-shams: #1d9bf0;
+  --gh-pub-bayless: #a855f7;
+  /* Dark ink for text sitting on gold / bright position pills. */
+  --gh-ink-on-accent: #241a05;
+
+  /* Surfaces — deep navy-black, layered by elevation */
+  --gh-bg: #0a0e1a;
+  --gh-bg-raised: #111827;
+  --gh-bg-card: #151d2e;
+  --gh-bg-hover: #1a2332;
+  --gh-border: #232c40;
+  --gh-border-strong: #33405c;
+
+  /* Text — every tier clears WCAG AA on --gh-bg */
+  --gh-text: #f2f5fa;
+  --gh-text-dim: #9ba8bc;
+  --gh-text-faint: #8e97a9;
+
+  /* Semantic status — reserved EXCLUSIVELY for these meanings.
+   * Never use decoratively (see REDESIGN-INSPO.md). */
+  --gh-win: #4ade80;
+  --gh-loss: #f87171;
+  --gh-live: #ff5c38;
+
+  /* Team identity — one fixed color per roster, stable across seasons.
+   * Roster id (Sleeper roster_id as string) -> color. Use only through
+   * teamColorVar() in src/ui/teamColors.ts, never by indexing here. */
+  --gh-team-1: #f2b33d;
+  --gh-team-2: #38bdf8;
+  --gh-team-3: #f472b6;
+  --gh-team-4: #a3e635;
+  --gh-team-5: #c084fc;
+  --gh-team-6: #fb923c;
+  --gh-team-7: #2dd4bf;
+  --gh-team-8: #f87171;
+  --gh-team-9: #94a3b8;
+  --gh-team-10: #818cf8;
+
+  /* Position pills — Sleeper-dialect color coding, one per position group.
+   * Rendered as a colored pill with dark text via PositionPill. */
+  --gh-pos-pg: #60a5fa;
+  --gh-pos-sg: #34d399;
+  --gh-pos-sf: #fbbf24;
+  --gh-pos-pf: #fb923c;
+  --gh-pos-c: #f87171;
+
+  /* Type */
+  --gh-font-display: var(--font-display, "Anton", system-ui, sans-serif);
+  --gh-font-body: var(--font-body, "Inter", system-ui, sans-serif);
+  --gh-font-mono: var(--font-mono, "Geist Mono", ui-monospace, monospace);
+
+  /* Texture — the anti-flat kit. Compose, don't stack blindly. */
+  /* Film grain: SVG turbulence, applied at low opacity over surfaces. */
+  --gh-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+  /* Ambient arena glow for page backgrounds (pairs with --gh-bg). */
+  --gh-glow-page:
+    radial-gradient(1100px 420px at 50% -8%, rgb(232 161 60 / 0.10), transparent 62%),
+    radial-gradient(800px 480px at 88% 4%, rgb(56 189 248 / 0.07), transparent 60%),
+    radial-gradient(700px 520px at 8% 12%, rgb(192 132 252 / 0.06), transparent 60%);
+  /* Card sheen: a top-light gradient for raised surfaces. */
+  --gh-gradient-card: linear-gradient(180deg, rgb(255 255 255 / 0.045), transparent 32%);
+  /* Gold accent gradient for CTAs and highlights. */
+  --gh-gradient-gold: linear-gradient(135deg, var(--gh-gold-soft), var(--gh-gold) 55%, var(--gh-gold-deep));
+
+  /* Elevation */
+  --gh-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.45);
+  --gh-shadow-md: 0 10px 28px rgb(0 0 0 / 0.5);
+  --gh-shadow-lg: 0 28px 70px rgb(0 0 0 / 0.55);
+  --gh-glow-gold: 0 0 26px rgb(232 161 60 / 0.32);
+  --gh-glow-live: 0 0 18px rgb(255 92 56 / 0.45);
+
+  /* Spacing scale */
+  --gh-s1: 0.25rem;
+  --gh-s2: 0.5rem;
+  --gh-s3: 0.75rem;
+  --gh-s4: 1rem;
+  --gh-s6: 1.5rem;
+  --gh-s8: 2rem;
+  --gh-s12: 3rem;
+  --gh-s16: 4rem;
+
+  /* Shape */
+  --gh-radius: 0.75rem;
+  --gh-radius-lg: 1.25rem;
+  --gh-radius-pill: 999px;
+
+  /* Chrome — the combined ticker's fixed height. The ticker sticks at
+   * top:0 and the site header sticks just below it
+   * (top: var(--gh-ticker-h)), so both stay visible while scrolling.
+   * Keep in sync with CombinedTicker.module.css. */
+  --gh-ticker-h: 2.5rem;
+
+  /* Chrome */
+  --gh-tabbar-h: 4.25rem;
+
+  /* Terminal — the /stocks page is a deliberate dark island: a Bloomberg
+   * terminal room inside the broadcast desk. Pure-black canvas, amber
+   * accent, phosphor green/red for moves, mono everywhere. Scoped to the
+   * stock-market surface; nothing else should reach for these. */
+  --gh-term-bg: #060607;
+  --gh-term-panel: #0c0c0e;
+  --gh-term-raised: #131316;
+  --gh-term-line: #1e1e23;
+  --gh-term-text: #f4f4f2;
+  --gh-term-dim: #a7a7ae;
+  --gh-term-faint: #62626b;
+  --gh-term-amber: #ffa02e;
+  --gh-term-up: #2bd97c;
+  --gh-term-down: #ff5a5a;
+
+  /* Trophy room — the /history pages are a deliberate themed island: Nick
+   * Saban's old Alabama office. Dark mahogany, brass, leather, a rationed
+   * crimson accent, parchment text. Scoped to the history surfaces; nothing
+   * else should reach for these. */
+  --gh-wood-bg: #150c06;
+  --gh-wood-panel: #201209;
+  --gh-wood-raised: #2c1a0d;
+  --gh-wood-line: #4a2c17;
+  --gh-wood-line-strong: #6b4423;
+  --gh-brass: #c9a227;
+  --gh-brass-soft: #e3c565;
+  --gh-brass-deep: #8a6d1c;
+  --gh-crimson: #9e1b32;
+  --gh-parchment: #f0e4cc;
+  --gh-parchment-dim: #c4b28c;
+  --gh-parchment-faint: #8f7f61;
+}
+
+/*
+ * Breakpoints — documented here, used as literals in @media rules.
+ * (CSS custom properties don't work inside @media conditions, so keep
+ * these values in sync by hand.)
+ *
+ * --gh-bp-sm: 40rem — below this, dense components switch to compact
+ *   mobile layouts (standings table -> team cards, stat grids stack),
+ *   and the bottom tab bar replaces the desktop nav.
+ * --gh-bp-md: 56rem — below this, two-column surface grids stack.
+ * --gh-bp-lg: 64rem — at/above this, surfaces may use multi-column
+ *   desktop layouts (season-hub's standings + activity side-by-side).
+ */
+
+/* Courtside vocabulary for the homepage, weekly archive and isolated comparison.
+ * The palette follows the existing arena floor, paint and selected logo.
+ * These names do not override the live site's broadcast tokens.
+ * Preview breakpoints: 70rem simplifies the lead portrait, 55rem stacks
+ * the opening and chrome, 40rem gives stories and team summaries phone layouts. */
+:root {
+  --gh-cs-wall: #173c3a;
+  --gh-cs-wall-deep: #123431;
+  --gh-cs-court: #c9d8d2;
+  --gh-cs-ink: #173c3a;
+  --gh-cs-text: #f3f5ef;
+  --gh-cs-muted-light: #c3d2c9;
+  --gh-cs-muted-dark: #3f5953;
+  --gh-cs-tan: #e9cda6;
+  --gh-cs-clay: #a54429;
+  --gh-cs-line-light: #76978a;
+  --gh-cs-line-dark: #829e91;
+  --gh-cs-paint: #eff3e8;
+  --gh-cs-scrim: rgb(0 0 0 / .35);
+  --gh-cs-font: 'Courtside Inter', system-ui, sans-serif;
+  --gh-cs-num: 'Courtside Mono', ui-monospace, monospace;
+  --gh-cs-title: clamp(2.5rem, 4vw, 3.75rem);
+  --gh-cs-heading: clamp(1.75rem, 2.7vw, 2.25rem);
+  --gh-cs-player: clamp(1.75rem, 3vw, 2.5rem);
+  --gh-cs-body: 1.0625rem;
+  --gh-cs-body-compact: 1rem;
+  --gh-cs-subhead: 1.125rem;
+  --gh-cs-small-stat: 1.25rem;
+  --gh-cs-story-title: 1.5rem;
+  --gh-cs-support-name: 1.625rem;
+  --gh-cs-mobile-name: 1.75rem;
+  --gh-cs-small-title: 1.375rem;
+  --gh-cs-secondary: .875rem;
+  --gh-cs-caption: .75rem;
+  --gh-cs-s1: .25rem;
+  --gh-cs-s2: .5rem;
+  --gh-cs-s3: .75rem;
+  --gh-cs-s4: 1rem;
+  --gh-cs-s5: 1.5rem;
+  --gh-cs-s6: 2rem;
+  --gh-cs-s7: 3rem;
+  --gh-cs-s8: 4rem;
+  --gh-cs-s9: 5rem;
+  --gh-cs-wrap: 78rem;
+  --gh-cs-gutter: clamp(1rem, 4.4vw, 4rem);
+  --gh-cs-radius: .375rem;
+  --gh-cs-control: 2.75rem;
+  --gh-cs-rule: 1px;
+  --gh-cs-border: 2px;
+  --gh-cs-shadow: 0 .5rem 1.25rem rgb(0 0 0 / .2);
+  --gh-cs-dialog-shadow: 0 1rem 4rem rgb(0 0 0 / .35);
+  --gh-cs-duration: 180ms;
+}
+
+/* The themed body is selected by a public surface marker; account/nav behavior stays shared. */
+body:has([data-courtside-home]) { background:var(--gh-cs-wall-deep); }
+
+/* Global resets + site-wide texture. Component styling lives in CSS
+ * modules; shared values in ui/tokens.css. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--gh-text);
+  font-family: var(--gh-font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Deep navy-black with ambient arena glow + film grain. The glow sits
+   * behind everything (fixed attachment); the grain adds texture without
+   * touching readability. */
+  background-color: var(--gh-bg);
+  background-image: var(--gh-glow-page), var(--gh-grain);
+  background-attachment: fixed, fixed;
+  background-size: auto, 160px 160px;
+  min-height: 100dvh;
+}
+
+/* Grain lives in its own low-opacity layer so it never muddies text. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--gh-grain);
+  background-size: 160px 160px;
+  opacity: 0.05;
+}
+
+/* Keep page content above the grain layer. */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--gh-font-display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+/* Numeric utility: mono + tabular figures for ALL stats, scores, records,
+ * timestamps, and FAAB amounts. Proportional digits in stats are a bug —
+ * see REDESIGN-INSPO.md. Usage: className="gh-num". */
+.gh-num {
+  font-family: var(--gh-font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Base link color. Components may override with tokens. */
+a {
+  color: var(--gh-gold);
+}
+
+/* Mobile: reserve room for the fixed bottom tab bar so the footer and
+ * last-row content are never covered. Matches --gh-bp-sm. */
+@media (max-width: 40rem) {
+  body {
+    padding-bottom: calc(var(--gh-tabbar-h) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Generated from current production CSS modules. Do not hand-edit. */
+.review_SiteFooter_footer {
+  border-top: 1px solid var(--gh-border);
+  background:
+    linear-gradient(180deg, transparent, color-mix(in srgb, var(--gh-bg) 45%, transparent)),
+    var(--gh-bg-raised);
+  margin-top: var(--gh-s16);
+}
+
+.review_SiteFooter_inner {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: var(--gh-s12) var(--gh-s4) var(--gh-s8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s6);
+}
+
+.review_SiteFooter_brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s1);
+}
+
+.review_SiteFooter_wordmark {
+  font-family: var(--gh-font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+  color: var(--gh-text);
+  margin: 0;
+}
+
+.review_SiteFooter_wordmark span {
+  color: var(--gh-gold);
+}
+
+.review_SiteFooter_season {
+  margin: 0;
+  font-family: var(--gh-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gh-text-dim);
+}
+
+.review_SiteFooter_disclaimer {
+  margin: var(--gh-s2) 0 0;
+  font-size: 0.82rem;
+  color: var(--gh-text-faint);
+}
+
+.review_SiteFooter_nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gh-s2) var(--gh-s6);
+}
+
+.review_SiteFooter_nav a {
+  color: var(--gh-text-dim);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.18s ease;
+}
+
+.review_SiteFooter_nav a:hover {
+  color: var(--gh-gold);
+}
+
+.review_SiteFooter_nav a:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review_SiteFooter_nav a {
+    transition: none;
+  }
+}
+
+.review_SiteFooter_copy {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--gh-text-faint);
+  border-top: 1px solid var(--gh-border);
+  padding-top: var(--gh-s4);
+}
+
+@media (min-width: 40rem) {
+  .review_SiteFooter_inner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .review_SiteFooter_copy {
+    flex-basis: 100%;
+  }
+}
+
+.review_SiteFooter_wordmark img { width:10rem; height:auto; display:block; }
+body:has([data-courtside-home]) .review_SiteFooter_footer { margin-top:0; background:var(--gh-cs-wall-deep); border-color:var(--gh-cs-line-light); }
+body:has([data-courtside-home]) .review_SiteFooter_inner { max-width:var(--gh-cs-wrap); }
+body:has([data-courtside-home]) .review_SiteFooter_disclaimer,
+body:has([data-courtside-home]) .review_SiteFooter_copy { color:var(--gh-cs-muted-light); font-size:var(--gh-cs-secondary); }
+
+/* Bottom tab bar — phones only (<=40rem). Desktop keeps the header nav. */
+
+.review_MobileNav_tabbar {
+  display: none;
+}
+
+@media (max-width: 40rem) {
+  .review_MobileNav_tabbar {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    height: calc(var(--gh-tabbar-h) + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: color-mix(in srgb, var(--gh-bg-raised) 92%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--gh-border);
+  }
+
+  .review_MobileNav_tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gh-s1);
+    min-height: 100%;
+    color: var(--gh-text-faint);
+    text-decoration: none;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.18s ease, background-color 0.18s ease;
+  }
+
+  .review_MobileNav_tab:hover {
+    color: var(--gh-text);
+  }
+
+  .review_MobileNav_tab:active {
+    background: color-mix(in srgb, var(--gh-text) 5%, transparent);
+  }
+
+  .review_MobileNav_tab:focus-visible {
+    outline: 2px solid var(--gh-gold);
+    outline-offset: -2px;
+  }
+
+  .review_MobileNav_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5rem;
+  }
+
+  .review_MobileNav_icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .review_MobileNav_active {
+    color: var(--gh-gold);
+  }
+
+  .review_MobileNav_active .review_MobileNav_icon svg {
+    stroke-width: 2.2;
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--gh-gold) 50%, transparent));
+  }
+
+  .review_MobileNav_miniAvatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    border: 2px solid var(--gh-gold);
+    background: var(--gh-bg-card);
+    color: var(--gh-text);
+    font-family: var(--gh-font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0;
+  }
+
+  .review_MobileNav_active .review_MobileNav_miniAvatar {
+    box-shadow: var(--gh-glow-gold);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .review_MobileNav_tab {
+      transition: none;
+    }
+  }
+}
+
+.review_CombinedTicker_ticker {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background: var(--gh-bg-raised);
+  border-bottom: 1px solid var(--gh-border);
+  height: var(--gh-ticker-h);
+  color: inherit;
+  /* Sticks at the very top; the site header sticks just below
+   * (top: var(--gh-ticker-h) in SiteHeader.module.css). */
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* Mode label — the bar's link to the full page. */
+.review_CombinedTicker_hint {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0 var(--gh-s3);
+  border-right: 1px solid var(--gh-border);
+  color: var(--gh-gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.review_CombinedTicker_ticker:hover .review_CombinedTicker_hint {
+  color: var(--gh-gold-soft);
+}
+
+.review_CombinedTicker_viewport {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* Two stacked marquees cross-fading on the mode timer. */
+.review_CombinedTicker_track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: gh-ticker-scroll 90s linear infinite;
+  will-change: transform;
+  transition: opacity 0.8s ease;
+}
+
+.review_CombinedTicker_visible {
+  opacity: 1;
+}
+
+.review_CombinedTicker_hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.review_CombinedTicker_ticker:hover .review_CombinedTicker_track {
+  animation-play-state: paused;
+}
+
+@keyframes gh-ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Exactly one copy's width — the two copies are identical. */
+    transform: translateX(-50%);
+  }
+}
+
+.review_CombinedTicker_copy {
+  display: flex;
+  gap: var(--gh-s8);
+  padding-right: var(--gh-s8);
+}
+
+.review_CombinedTicker_item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--gh-s2);
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+.review_CombinedTicker_name {
+  color: var(--gh-text-dim);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Stats are instruments: mono + tabular in both themes. */
+.review_CombinedTicker_price,
+.review_CombinedTicker_up,
+.review_CombinedTicker_down,
+.review_CombinedTicker_flat {
+  font-family: var(--gh-font-mono);
+}
+
+.review_CombinedTicker_price {
+  color: var(--gh-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.review_CombinedTicker_up {
+  color: var(--gh-win);
+  font-variant-numeric: tabular-nums;
+}
+
+.review_CombinedTicker_down {
+  color: var(--gh-loss);
+  font-variant-numeric: tabular-nums;
+}
+
+.review_CombinedTicker_flat {
+  color: var(--gh-text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* News mode. */
+.review_CombinedTicker_pub {
+  color: var(--gh-gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.review_CombinedTicker_headline {
+  color: var(--gh-text);
+  font-weight: 600;
+}
+
+/* Scores mode (issue #56). */
+.review_CombinedTicker_score {
+  color: var(--gh-text);
+  font-family: var(--gh-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.review_CombinedTicker_at {
+  color: var(--gh-text-faint);
+  font-size: 0.78rem;
+}
+
+.review_CombinedTicker_clock {
+  color: var(--gh-text-dim);
+  font-family: var(--gh-font-mono);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.review_CombinedTicker_live {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gh-s1);
+  color: var(--gh-live);
+  font-family: var(--gh-font-mono);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.review_CombinedTicker_liveDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background: var(--gh-live);
+  animation: gh-live-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes gh-live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review_CombinedTicker_track {
+    animation: none;
+    transition: none;
+  }
+  .review_CombinedTicker_liveDot {
+    animation: none;
+  }
+}
+
+/* SiteHeader — sticky site chrome. Tokens only, no one-off values. */
+
+.review_SiteHeader_header {
+  position: sticky;
+  /* The stock ticker sticks at top:0 above this header — offset by the
+   * shared --gh-ticker-h token so both stay visible while scrolling. */
+  top: var(--gh-ticker-h);
+  z-index: 50;
+  background: color-mix(in srgb, var(--gh-bg) 86%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gh-border);
+  /* A hairline of gold under the chrome — broadcast energy. */
+  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--gh-gold) 14%, transparent);
+}
+
+.review_SiteHeader_inner {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: var(--gh-s3) var(--gh-s4);
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s6);
+  min-height: 4rem;
+}
+
+.review_SiteHeader_wordmark {
+  font-family: var(--gh-font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  color: var(--gh-text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.review_SiteHeader_wordmark:hover {
+  color: var(--gh-gold-soft);
+}
+
+.review_SiteHeader_wordmark:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
+}
+
+.review_SiteHeader_wordmark span {
+  color: var(--gh-gold);
+}
+
+.review_SiteHeader_nav {
+  display: flex;
+  gap: var(--gh-s2);
+}
+
+.review_SiteHeader_nav a {
+  color: var(--gh-text-dim);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: var(--gh-s2) var(--gh-s3);
+  border-radius: var(--gh-radius);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+.review_SiteHeader_nav a:hover {
+  color: var(--gh-text);
+  background: color-mix(in srgb, var(--gh-text) 6%, transparent);
+}
+
+.review_SiteHeader_nav a:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+.review_SiteHeader_account {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s3);
+}
+
+.review_SiteHeader_claim {
+  background: var(--gh-gradient-gold);
+  color: var(--gh-ink-on-accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: var(--gh-s2) var(--gh-s4);
+  border-radius: var(--gh-radius);
+  text-decoration: none;
+  white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: var(--gh-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.review_SiteHeader_claim:hover {
+  box-shadow: var(--gh-glow-gold);
+  transform: translateY(-1px);
+}
+
+.review_SiteHeader_claim:focus-visible {
+  outline: 2px solid var(--gh-gold-soft);
+  outline-offset: 2px;
+}
+
+.review_SiteHeader_login {
+  color: var(--gh-text-dim);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: var(--gh-s2) var(--gh-s4);
+  border: 1px solid var(--gh-border-strong);
+  border-radius: var(--gh-radius);
+  white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.review_SiteHeader_login:hover {
+  color: var(--gh-text);
+  border-color: var(--gh-text-faint);
+}
+
+.review_SiteHeader_login:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+/* The single logged-in team entry point: team-colored avatar ring +
+ * display name, linking to /team. */
+.review_SiteHeader_displayName {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gh-s2);
+  color: var(--gh-text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  padding: var(--gh-s2) var(--gh-s2);
+  border-radius: var(--gh-radius);
+  min-height: 44px;
+  transition: background-color 0.18s ease;
+}
+
+.review_SiteHeader_displayName:hover {
+  background: color-mix(in srgb, var(--gh-text) 6%, transparent);
+}
+
+.review_SiteHeader_displayName:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+.review_SiteHeader_displayName:hover .review_SiteHeader_name {
+  color: var(--gh-gold-soft);
+}
+
+.review_SiteHeader_ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid var(--gh-ring, var(--gh-gold));
+  background: var(--gh-bg-card);
+  font-family: var(--gh-font-display);
+  font-size: 0.68rem;
+  color: var(--gh-text);
+  flex-shrink: 0;
+}
+
+.review_SiteHeader_name {
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.review_SiteHeader_logoutForm {
+  margin: 0;
+}
+
+.review_SiteHeader_logout {
+  background: transparent;
+  border: 1px solid var(--gh-border-strong);
+  color: var(--gh-text-dim);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: var(--gh-s2) var(--gh-s3);
+  border-radius: var(--gh-radius);
+  cursor: pointer;
+  font-family: var(--gh-font-body);
+  min-height: 44px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.review_SiteHeader_logout:hover {
+  color: var(--gh-text);
+  border-color: var(--gh-text-faint);
+}
+
+.review_SiteHeader_logout:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review_SiteHeader_wordmark,
+  .review_SiteHeader_nav a,
+  .review_SiteHeader_claim,
+  .review_SiteHeader_login,
+  .review_SiteHeader_displayName,
+  .review_SiteHeader_logout {
+    transition: none;
+  }
+
+  .review_SiteHeader_claim:hover {
+    transform: none;
+  }
+}
+
+/* Phones: the bottom tab bar carries Home / Arcade / Team, so the header
+ * collapses to wordmark + account cluster. Targets stay >= 44px. */
+@media (max-width: 40rem) {
+  .review_SiteHeader_nav {
+    display: none;
+  }
+
+  .review_SiteHeader_inner {
+    padding: var(--gh-s2) var(--gh-s3);
+    gap: var(--gh-s3);
+    min-height: 3.75rem;
+  }
+
+  .review_SiteHeader_wordmark {
+    font-size: 1rem;
+  }
+
+  .review_SiteHeader_name {
+    max-width: 6.5rem;
+    font-size: 0.85rem;
+  }
+
+  .review_SiteHeader_claim,
+  .review_SiteHeader_login {
+    font-size: 0.82rem;
+    padding: var(--gh-s2) var(--gh-s3);
+  }
+
+  .review_SiteHeader_logout {
+    font-size: 0.8rem;
+  }
+}
+
+.review_SiteHeader_wordmark img { display:block; width:13rem; height:auto; }
+body:has([data-courtside-home]) .review_SiteHeader_header {
+  background:var(--gh-cs-wall); border-color:var(--gh-cs-line-light); box-shadow:none;
+}
+body:has([data-courtside-home]) .review_SiteHeader_inner { max-width:var(--gh-cs-wrap); min-height:5.5rem; }
+body:has([data-courtside-home]) .review_SiteHeader_claim {
+  background:var(--gh-cs-tan); color:var(--gh-cs-wall); box-shadow:none;
+}
+@media(max-width:55rem) { .review_SiteHeader_wordmark img { width:10rem; } .review_SiteHeader_inner { gap:var(--gh-s3); } }
+@media(max-width:40rem) {
+  .review_SiteHeader_wordmark img { width:7.5rem; }
+  body:has([data-courtside-home]) .review_SiteHeader_inner { min-height:4.5rem; }
+}
+
+.review_TransactionFeed_feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s3);
+}
+
+.review_TransactionFeed_item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gh-s3);
+  padding: var(--gh-s3) 0;
+  border-bottom: 1px solid var(--gh-border);
+}
+
+.review_TransactionFeed_item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.review_TransactionFeed_summary {
+  color: var(--gh-text-dim);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.review_TransactionFeed_empty {
+  color: var(--gh-text-faint);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Mobile: give each row a comfortable touch target. */
+@media (max-width: 40rem) {
+  .review_TransactionFeed_item {
+    min-height: 44px;
+    align-items: center;
+  }
+}
+
+/* Courtside layout. Shared design vocabulary lives in src/ui/courtside-tokens.css. */
+.review_CourtsideHome_surface {
+  --gh-cs-font: var(--font-body), system-ui, sans-serif;
+  --gh-cs-num: var(--font-mono), ui-monospace, monospace;
+  color: var(--gh-cs-text);
+  background: var(--gh-cs-wall);
+  font: 400 var(--gh-cs-body)/1.55 var(--gh-cs-font);
+}
+.review_CourtsideHome_surface {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+  }
+
+  button,
+  input,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  button,
+  select,
+  summary {
+    cursor: pointer;
+  }
+
+  button {
+    border: 0;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  dl {
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--gh-cs-font);
+    text-transform: none;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--gh-cs-title);
+    font-weight: 780;
+    letter-spacing: -0.045em;
+  }
+
+  h2 {
+    font-size: var(--gh-cs-heading);
+    font-weight: 750;
+    letter-spacing: -0.035em;
+  }
+
+  h3 {
+    font-weight: 720;
+    letter-spacing: -0.025em;
+  }
+
+  h4 {
+    font-size: var(--gh-cs-body);
+  }
+
+  p {
+    max-width: 72ch;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  summary {
+    touch-action: manipulation;
+  }
+
+  :focus-visible {
+    outline: var(--gh-cs-border) solid var(--gh-cs-tan);
+    outline-offset: var(--gh-cs-s1);
+  }
+
+  .review_CourtsideHome_weekly-zone :focus-visible,
+  .review_CourtsideHome_archive-zone :focus-visible,
+  .review_CourtsideHome_roster-detail :focus-visible:not(dialog, dialog *),
+  .review_CourtsideHome_archive-page :focus-visible:not(dialog, dialog *) {
+    outline-color: var(--gh-cs-clay);
+  }
+
+  .review_CourtsideHome_wrap {
+    width: min(var(--gh-cs-wrap), calc(100% - var(--gh-cs-gutter) * 2));
+    margin-inline: auto;
+  }
+
+  .review_CourtsideHome_icon {
+    width: 1.1em;
+    height: 1.1em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+
+  .review_CourtsideHome_icon-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .review_CourtsideHome_sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .review_CourtsideHome_skip {
+    position: absolute;
+    top: var(--gh-cs-s2);
+    left: var(--gh-cs-s4);
+    padding: var(--gh-cs-s3);
+    background: var(--gh-cs-tan);
+    color: var(--gh-cs-wall);
+    z-index: 10;
+    transform: translateY(-180%);
+  }
+
+  .review_CourtsideHome_skip:focus {
+    transform: none;
+  }
+
+  .review_CourtsideHome_caption,
+  .review_CourtsideHome_preview-note {
+    font-size: var(--gh-cs-caption);
+    line-height: 1.5;
+  }
+
+  .review_CourtsideHome_secondary-copy,
+  .review_CourtsideHome_context-label {
+    font-size: var(--gh-cs-secondary);
+    line-height: 1.5;
+  }
+
+  .review_CourtsideHome_gh-num {
+    font-family: var(--gh-cs-num);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .review_CourtsideHome_text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--gh-cs-s2);
+    min-height: var(--gh-cs-control);
+    font-size: var(--gh-cs-secondary);
+    font-weight: 600;
+  }
+
+  .review_CourtsideHome_button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gh-cs-s3);
+    min-height: var(--gh-cs-control);
+    padding: var(--gh-cs-s3) var(--gh-cs-s5);
+    border-radius: var(--gh-cs-radius);
+    font-size: var(--gh-cs-secondary);
+    font-weight: 650;
+    background: var(--gh-cs-tan);
+    color: var(--gh-cs-wall);
+    border: var(--gh-cs-rule) solid var(--gh-cs-tan);
+  }
+
+  .review_CourtsideHome_button.review_CourtsideHome_secondary {
+    background: transparent;
+    color: inherit;
+    border-color: var(--gh-cs-line-light);
+  }
+
+  .review_CourtsideHome_button:hover {
+    text-decoration: none;
+    filter: brightness(1.06);
+  }
+
+  .review_CourtsideHome_header-edition {
+    padding-left: var(--gh-cs-s5);
+    border-left: var(--gh-cs-rule) solid var(--gh-cs-line-light);
+    font-size: var(--gh-cs-secondary);
+    flex-shrink: 0;
+  }
+
+  .review_CourtsideHome_header-edition span {
+    display: block;
+    color: var(--gh-cs-tan);
+  }
+
+  .review_CourtsideHome_opening-zone {
+    background: var(--gh-cs-wall);
+    padding-top: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_opening-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: var(--gh-cs-s7);
+    align-items: center;
+  }
+
+  .review_CourtsideHome_arena-scene {
+    height: 24rem;
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--gh-cs-radius);
+  }
+
+  .review_CourtsideHome_arena-scene img {
+    width: 100%;
+    height: 150%;
+    object-fit: cover;
+    object-position: 50% 100%;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .review_CourtsideHome_game-story {
+    padding-block: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_game-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gh-cs-s5);
+    margin-bottom: var(--gh-cs-s4);
+    font-size: var(--gh-cs-secondary);
+    color: var(--gh-cs-muted-light);
+  }
+
+  .review_CourtsideHome_game-meta strong {
+    color: var(--gh-cs-tan);
+    font-weight: 600;
+  }
+
+  .review_CourtsideHome_game-story .review_CourtsideHome_context {
+    margin-top: var(--gh-cs-s5);
+    line-height: 1.65;
+    max-width: 60ch;
+  }
+
+  .review_CourtsideHome_board-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--gh-cs-s4);
+    margin-top: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_matchup-rail {
+    margin-top: var(--gh-cs-s6);
+    padding-block: var(--gh-cs-s5);
+    border-top: var(--gh-cs-rule) solid var(--gh-cs-line-light);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--gh-cs-s6);
+    align-items: center;
+  }
+
+  .review_CourtsideHome_match-team {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--gh-cs-s5);
+    min-width: 0;
+  }
+
+  .review_CourtsideHome_match-team:last-child {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  .review_CourtsideHome_match-team .review_CourtsideHome_pennant-image {
+    width: 6.5rem;
+    height: 11.25rem;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(var(--gh-cs-shadow));
+  }
+
+  .review_CourtsideHome_match-team .review_CourtsideHome_avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .review_CourtsideHome_match-team strong {
+    font-size: var(--gh-cs-small-stat);
+    line-height: 1.25;
+    display: block;
+  }
+
+  .review_CourtsideHome_match-team small {
+    font-size: var(--gh-cs-secondary);
+    color: var(--gh-cs-muted-light);
+    display: block;
+    margin-top: var(--gh-cs-s1);
+  }
+
+  .review_CourtsideHome_match-team:last-child > div {
+    text-align: right;
+  }
+
+  .review_CourtsideHome_versus-label {
+    color: var(--gh-cs-tan);
+    font-size: var(--gh-cs-secondary);
+  }
+
+  .review_CourtsideHome_historical-score {
+    font-size: var(--gh-cs-story-title);
+    display: block;
+    margin-top: var(--gh-cs-s2);
+  }
+
+  .review_CourtsideHome_edition-links {
+    display: flex;
+    gap: var(--gh-cs-s5);
+    font-size: var(--gh-cs-secondary);
+    margin-top: var(--gh-cs-s4);
+  }
+
+  .review_CourtsideHome_stale-note {
+    padding: var(--gh-cs-s4);
+    border-left: var(--gh-cs-border) solid var(--gh-cs-tan);
+    font-size: var(--gh-cs-secondary);
+    margin-bottom: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_weekly-zone {
+    position: relative;
+    background: var(--gh-cs-court);
+    color: var(--gh-cs-ink);
+    padding-block: var(--gh-cs-s8);
+    overflow: hidden;
+  }
+
+  .review_CourtsideHome_weekly-zone::before,
+  .review_CourtsideHome_weekly-zone::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    border: var(--gh-cs-border) solid var(--gh-cs-paint);
+    width: 26rem;
+    height: 26rem;
+    border-radius: 50%;
+    top: 9rem;
+    opacity: 0.7;
+  }
+
+  .review_CourtsideHome_weekly-zone::before {
+    left: calc((100% - var(--gh-cs-wrap)) / 2 - 28rem);
+  }
+
+  .review_CourtsideHome_weekly-zone::after {
+    right: calc((100% - var(--gh-cs-wrap)) / 2 - 28rem);
+    top: 31rem;
+  }
+
+  .review_CourtsideHome_weekly-zone .review_CourtsideHome_wrap {
+    position: relative;
+  }
+
+  .review_CourtsideHome_section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_weekly-context {
+    font-size: var(--gh-cs-secondary);
+    color: var(--gh-cs-muted-dark);
+    margin-top: var(--gh-cs-s3);
+    max-width: 95ch;
+  }
+
+  .review_CourtsideHome_player-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: var(--gh-cs-s7);
+    margin-top: var(--gh-cs-s7);
+  }
+
+  .review_CourtsideHome_player-role {
+    font-size: var(--gh-cs-secondary);
+    font-weight: 650;
+    color: var(--gh-cs-clay);
+    margin-bottom: var(--gh-cs-s3);
+  }
+
+  .review_CourtsideHome_player-lead {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: var(--gh-cs-s5);
+    align-items: start;
+  }
+
+  .review_CourtsideHome_portrait {
+    display: flex;
+    align-items: flex-end;
+    min-width: 0;
+  }
+
+  .review_CourtsideHome_portrait img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .review_CourtsideHome_player-lead .review_CourtsideHome_portrait {
+    align-self: start;
+    align-items: flex-start;
+    padding-top: var(--gh-cs-s7);
+  }
+
+  .review_CourtsideHome_player-lead h3 {
+    font-size: var(--gh-cs-player);
+  }
+
+  .review_CourtsideHome_player-owner {
+    font-size: var(--gh-cs-secondary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--gh-cs-s1);
+    margin-top: var(--gh-cs-s2);
+    color: var(--gh-cs-muted-dark);
+  }
+
+  .review_CourtsideHome_player-take {
+    margin-top: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_player-take h4 {
+    font-size: var(--gh-cs-story-title);
+    font-weight: 700;
+    line-height: 1.22;
+  }
+
+  .review_CourtsideHome_player-take p {
+    margin-top: var(--gh-cs-s3);
+    font-size: var(--gh-cs-body);
+  }
+
+  .review_CourtsideHome_player-stats {
+    display: flex;
+    gap: var(--gh-cs-s5);
+    margin-top: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_player-stats > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review_CourtsideHome_player-stats dt {
+    order: 2;
+    font-size: var(--gh-cs-caption);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .review_CourtsideHome_player-stats dd {
+    font-family: var(--gh-cs-num);
+    font-size: var(--gh-cs-story-title);
+    line-height: 1.2;
+    margin: 0;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .review_CourtsideHome_stat-period {
+    font-size: var(--gh-cs-caption);
+    color: var(--gh-cs-muted-dark);
+    margin-top: var(--gh-cs-s3);
+  }
+
+  .review_CourtsideHome_supporting-picks {
+    border-left: var(--gh-cs-rule) solid var(--gh-cs-line-dark);
+    padding-left: var(--gh-cs-s6);
+  }
+
+  .review_CourtsideHome_player-support {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: var(--gh-cs-s4);
+    padding-block: var(--gh-cs-s5);
+    border-bottom: var(--gh-cs-rule) solid var(--gh-cs-line-dark);
+  }
+
+  .review_CourtsideHome_player-support:first-child {
+    padding-top: 0;
+  }
+
+  .review_CourtsideHome_player-support:last-child {
+    border: 0;
+    padding-bottom: 0;
+  }
+
+  .review_CourtsideHome_player-support .review_CourtsideHome_portrait {
+    align-items: flex-start;
+    padding-top: var(--gh-cs-s6);
+  }
+
+  .review_CourtsideHome_player-support h3 {
+    font-size: var(--gh-cs-support-name);
+  }
+
+  .review_CourtsideHome_player-support .review_CourtsideHome_player-take {
+    margin-top: var(--gh-cs-s3);
+  }
+
+  .review_CourtsideHome_player-support .review_CourtsideHome_player-take h4 {
+    font-size: var(--gh-cs-subhead);
+  }
+
+  .review_CourtsideHome_player-support .review_CourtsideHome_player-take p {
+    font-size: var(--gh-cs-body-compact);
+    margin-top: var(--gh-cs-s2);
+  }
+
+  .review_CourtsideHome_player-support .review_CourtsideHome_player-stats {
+    margin-top: var(--gh-cs-s3);
+  }
+
+  .review_CourtsideHome_player-support .review_CourtsideHome_player-stats dd {
+    font-size: var(--gh-cs-small-stat);
+  }
+
+  .review_CourtsideHome_shared-sources {
+    margin-top: var(--gh-cs-s6);
+    padding-top: var(--gh-cs-s4);
+    border-top: var(--gh-cs-rule) solid var(--gh-cs-line-dark);
+    font-size: var(--gh-cs-secondary);
+  }
+
+  .review_CourtsideHome_shared-sources summary {
+    min-height: var(--gh-cs-control);
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: var(--gh-cs-s2);
+    font-weight: 600;
+  }
+
+  .review_CourtsideHome_shared-sources ul {
+    padding-left: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_shared-sources li {
+    margin-block: var(--gh-cs-s3);
+  }
+
+  .review_CourtsideHome_shared-sources a {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .review_CourtsideHome_shared-sources p {
+    max-width: 85ch;
+  }
+
+  .review_CourtsideHome_source-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gh-cs-s5);
+    margin-top: var(--gh-cs-s4);
+  }
+
+  .review_CourtsideHome_sources h3 {
+    font-size: var(--gh-cs-body-compact);
+    margin-bottom: var(--gh-cs-s3);
+  }
+
+  .review_CourtsideHome_happenings {
+    margin-top: var(--gh-cs-s7);
+    padding-top: var(--gh-cs-s6);
+    border-top: var(--gh-cs-rule) solid var(--gh-cs-line-dark);
+  }
+
+  .review_CourtsideHome_wire-items {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gh-cs-s6);
+    margin-top: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_wire-item {
+    padding-left: var(--gh-cs-s4);
+    border-left: var(--gh-cs-border) solid var(--gh-cs-line-dark);
+  }
+
+  .review_CourtsideHome_wire-item time {
+    font-size: var(--gh-cs-caption);
+    font-family: var(--gh-cs-num);
+    color: var(--gh-cs-clay);
+    font-weight: 600;
+  }
+
+  .review_CourtsideHome_wire-item h3 {
+    font-size: var(--gh-cs-subhead);
+    margin-top: var(--gh-cs-s2);
+  }
+
+  .review_CourtsideHome_wire-item p {
+    font-size: var(--gh-cs-body-compact);
+    line-height: 1.6;
+    margin-top: var(--gh-cs-s2);
+  }
+
+  .review_CourtsideHome_transition-mark {
+    position: absolute;
+    width: 3.5rem;
+    height: 3.5rem;
+    right: var(--gh-cs-s4);
+    top: var(--gh-cs-s5);
+    pointer-events: none;
+  }
+
+  .review_CourtsideHome_transition-mark img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.65;
+  }
+
+  .review_CourtsideHome_transition-mark.review_CourtsideHome_settle {
+    animation: ball-settle 750ms cubic-bezier(0.2, 0.65, 0.35, 1) both;
+  }
+
+
+
+  .review_CourtsideHome_teams-zone {
+    background: var(--gh-cs-wall-deep);
+    padding-block: var(--gh-cs-s8);
+    border-top: var(--gh-cs-s2) solid var(--gh-cs-tan);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .review_CourtsideHome_teams-zone::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: var(--gh-grain);
+  }
+
+  .review_CourtsideHome_teams-zone .review_CourtsideHome_wrap {
+    position: relative;
+  }
+
+  .review_CourtsideHome_directory-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gh-cs-s6);
+    align-items: center;
+  }
+
+  .review_CourtsideHome_directory-heading p {
+    margin-top: var(--gh-cs-s3);
+    color: var(--gh-cs-muted-light);
+    font-size: var(--gh-cs-body);
+  }
+
+  .review_CourtsideHome_directory-date {
+    font-size: var(--gh-cs-caption);
+    color: var(--gh-cs-muted-light);
+    margin-top: var(--gh-cs-s4);
+  }
+
+  .review_CourtsideHome_directory-date span {
+    display: inline-block;
+    margin-left: var(--gh-cs-s4);
+  }
+
+  .review_CourtsideHome_directory-tools {
+    display: flex;
+    gap: var(--gh-cs-s4);
+    align-items: center;
+    margin-top: var(--gh-cs-s6);
+    padding-bottom: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_directory-search {
+    display: flex;
+    align-items: center;
+    gap: var(--gh-cs-s3);
+    border: var(--gh-cs-rule) solid var(--gh-cs-line-light);
+    padding-inline: var(--gh-cs-s4);
+    border-radius: var(--gh-cs-radius);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .review_CourtsideHome_directory-search input {
+    background: transparent;
+    border: 0;
+    width: 100%;
+    min-height: var(--gh-cs-control);
+    font-size: var(--gh-cs-secondary);
+    outline-offset: var(--gh-cs-s1);
+  }
+
+  .review_CourtsideHome_directory-search input::placeholder {
+    color: var(--gh-cs-muted-light);
+    opacity: 1;
+  }
+
+  .review_CourtsideHome_sort-label {
+    font-size: var(--gh-cs-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--gh-cs-s3);
+  }
+
+  .review_CourtsideHome_sort-label select {
+    background: var(--gh-cs-wall);
+    border: var(--gh-cs-rule) solid var(--gh-cs-line-light);
+    border-radius: var(--gh-cs-radius);
+    padding: var(--gh-cs-s3);
+    min-height: var(--gh-cs-control);
+    font-size: var(--gh-cs-secondary);
+  }
+
+  .review_CourtsideHome_clear-search {
+    background: transparent;
+    min-height: var(--gh-cs-control);
+    padding: var(--gh-cs-s2);
+    font-size: var(--gh-cs-secondary);
+  }
+
+  .review_CourtsideHome_directory-labels {
+    display: grid;
+    grid-template-columns: 2.4fr 1.1fr 1.9fr 1fr;
+    gap: var(--gh-cs-s5);
+    font-size: var(--gh-cs-caption);
+    color: var(--gh-cs-muted-light);
+    padding: var(--gh-cs-s3) var(--gh-cs-s4);
+  }
+
+  .review_CourtsideHome_team-entry {
+    border-top: var(--gh-cs-rule) solid var(--gh-cs-line-light);
+  }
+
+  .review_CourtsideHome_team-entry:last-child {
+    border-bottom: var(--gh-cs-rule) solid var(--gh-cs-line-light);
+  }
+
+  .review_CourtsideHome_team-summary {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 2.4fr 1.1fr 1.9fr 1fr;
+    gap: var(--gh-cs-s5);
+    padding: var(--gh-cs-s4);
+    align-items: center;
+    min-height: 5.25rem;
+  }
+
+  .review_CourtsideHome_team-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .review_CourtsideHome_team-summary:hover {
+    background: var(--gh-cs-wall);
+  }
+
+  .review_CourtsideHome_team-identity {
+    display: flex;
+    gap: var(--gh-cs-s4);
+    align-items: center;
+    min-width: 0;
+  }
+
+  .review_CourtsideHome_team-identity .review_CourtsideHome_avatar {
+    width: 2.75rem;
+    height: 2.75rem;
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .review_CourtsideHome_team-identity h3 {
+    font-size: var(--gh-cs-subhead);
+  }
+
+  .review_CourtsideHome_team-identity p {
+    font-size: var(--gh-cs-secondary);
+    color: var(--gh-cs-muted-light);
+    margin-top: var(--gh-cs-s1);
+  }
+
+  .review_CourtsideHome_team-record strong {
+    font-size: var(--gh-cs-story-title);
+    line-height: 1.2;
+    font-family: var(--gh-cs-num);
+    display: block;
+  }
+
+  .review_CourtsideHome_team-record small {
+    font-size: var(--gh-cs-caption);
+    color: var(--gh-cs-muted-light);
+  }
+
+  .review_CourtsideHome_team-opponent {
+    font-size: var(--gh-cs-secondary);
+    line-height: 1.4;
+  }
+
+  .review_CourtsideHome_roster-toggle {
+    font-size: var(--gh-cs-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gh-cs-s2);
+  }
+
+  .review_CourtsideHome_team-entry[open] > .review_CourtsideHome_team-summary {
+    border-bottom: var(--gh-cs-rule) solid var(--gh-cs-line-light);
+  }
+
+  .review_CourtsideHome_team-entry[open] .review_CourtsideHome_roster-toggle > .review_CourtsideHome_icon {
+    transform: rotate(180deg);
+  }
+
+  .review_CourtsideHome_roster-detail {
+    background: var(--gh-cs-court);
+    color: var(--gh-cs-ink);
+    padding: var(--gh-cs-s5) var(--gh-cs-s6);
+  }
+
+  .review_CourtsideHome_roster-detail-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gh-cs-s4);
+    margin-bottom: var(--gh-cs-s4);
+  }
+
+  .review_CourtsideHome_roster-detail-heading p {
+    font-size: var(--gh-cs-secondary);
+    font-weight: 600;
+  }
+
+  .review_CourtsideHome_anchor-detail {
+    display: flex;
+    align-items: center;
+    gap: var(--gh-cs-s4);
+    margin-bottom: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_anchor-faces {
+    display: flex;
+    gap: var(--gh-cs-s2);
+  }
+
+  .review_CourtsideHome_anchor-faces img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+  }
+
+  .review_CourtsideHome_anchor-detail p {
+    font-size: var(--gh-cs-secondary);
+    max-width: 60ch;
+  }
+
+  .review_CourtsideHome_roster-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--gh-cs-s6);
+    row-gap: var(--gh-cs-s2);
+  }
+
+  .review_CourtsideHome_roster-list li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gh-cs-s3);
+    font-size: var(--gh-cs-secondary);
+    padding-block: var(--gh-cs-s2);
+    min-height: var(--gh-cs-control);
+    border-bottom: var(--gh-cs-rule) solid var(--gh-cs-line-dark);
+  }
+
+  .review_CourtsideHome_roster-list small {
+    font-size: var(--gh-cs-caption);
+    white-space: nowrap;
+    color: var(--gh-cs-muted-dark);
+  }
+
+  .review_CourtsideHome_owner-note,
+  .review_CourtsideHome_roster-wire {
+    font-size: var(--gh-cs-secondary);
+    margin-top: var(--gh-cs-s4);
+  }
+
+  .review_CourtsideHome_figurine-link {
+    margin-top: var(--gh-cs-s4);
+  }
+
+  .review_CourtsideHome_search-hit {
+    font-size: var(--gh-cs-secondary);
+    padding: var(--gh-cs-s3) var(--gh-cs-s4);
+    color: var(--gh-cs-tan);
+  }
+
+  .review_CourtsideHome_directory-count {
+    font-size: var(--gh-cs-caption);
+    color: var(--gh-cs-muted-light);
+    margin-top: var(--gh-cs-s4);
+  }
+
+  .review_CourtsideHome_directory-method {
+    font-size: var(--gh-cs-secondary);
+    margin-top: var(--gh-cs-s3);
+  }
+
+  .review_CourtsideHome_directory-method summary {
+    min-height: var(--gh-cs-control);
+    display: flex;
+    align-items: center;
+    gap: var(--gh-cs-s2);
+    width: fit-content;
+  }
+
+  .review_CourtsideHome_directory-method p {
+    color: var(--gh-cs-muted-light);
+  }
+
+  .review_CourtsideHome_empty {
+    padding-block: var(--gh-cs-s5);
+    font-size: var(--gh-cs-body);
+  }
+
+  .review_CourtsideHome_archive-zone {
+    background: var(--gh-cs-court);
+    color: var(--gh-cs-ink);
+    padding-block: var(--gh-cs-s7);
+  }
+
+  .review_CourtsideHome_archive-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gh-cs-s7);
+    align-items: start;
+  }
+
+  .review_CourtsideHome_archive-preview h2 {
+    max-width: 13ch;
+  }
+
+  .review_CourtsideHome_archive-preview p {
+    font-size: var(--gh-cs-secondary);
+    color: var(--gh-cs-muted-dark);
+    margin-top: var(--gh-cs-s3);
+  }
+
+  .review_CourtsideHome_archive-preview .review_CourtsideHome_text-link {
+    font-size: var(--gh-cs-body);
+    font-weight: 700;
+  }
+
+  .review_CourtsideHome_archive-links {
+    display: grid;
+    gap: var(--gh-cs-s3);
+    font-size: var(--gh-cs-secondary);
+  }
+
+  .review_CourtsideHome_archive-links a {
+    display: block;
+    line-height: 1.5;
+  }
+
+  .review_CourtsideHome_archive-links time {
+    font-family: var(--gh-cs-num);
+    font-size: var(--gh-cs-caption);
+    display: block;
+  }
+
+  .review_CourtsideHome_arena-strip {
+    height: 7rem;
+    overflow: hidden;
+  }
+
+  .review_CourtsideHome_arena-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 58%;
+  }
+
+  .review_CourtsideHome_archive-page {
+    padding-block: var(--gh-cs-s7);
+    min-height: 65vh;
+    background: var(--gh-cs-court);
+    color: var(--gh-cs-ink);
+  }
+
+  .review_CourtsideHome_archive-page h1 {
+    margin-bottom: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_archive-page .review_CourtsideHome_archive-intro {
+    font-size: var(--gh-cs-body);
+    max-width: 65ch;
+    margin-bottom: var(--gh-cs-s4);
+  }
+
+  .review_CourtsideHome_archive-list {
+    display: grid;
+    margin-block: var(--gh-cs-s6);
+  }
+
+  .review_CourtsideHome_archive-row {
+    display: grid;
+    grid-template-columns: 12rem 1fr auto;
+    gap: var(--gh-cs-s6);
+    padding-block: var(--gh-cs-s5);
+    border-top: var(--gh-cs-rule) solid var(--gh-cs-line-dark);
+    align-items: center;
+  }
+
+  .review_CourtsideHome_archive-row time {
+    font-size: var(--gh-cs-secondary);
+    font-family: var(--gh-cs-num);
+  }
+
+  .review_CourtsideHome_archive-row h2 {
+    font-size: var(--gh-cs-support-name);
+  }
+
+  .review_CourtsideHome_archive-row p {
+    margin-top: var(--gh-cs-s2);
+    font-size: var(--gh-cs-secondary);
+  }
+
+  dialog {
+    border: var(--gh-cs-rule) solid var(--gh-cs-line-light);
+    border-radius: var(--gh-cs-radius);
+    padding: var(--gh-cs-s6);
+    width: min(45rem, calc(100% - var(--gh-cs-s6)));
+    max-height: 90dvh;
+    background: var(--gh-cs-wall);
+    color: var(--gh-cs-text);
+    box-shadow: var(--gh-cs-dialog-shadow);
+  }
+
+  dialog::backdrop {
+    background: var(--gh-cs-scrim);
+  }
+
+  .review_CourtsideHome_dialog-close {
+    position: absolute;
+    right: var(--gh-cs-s3);
+    top: var(--gh-cs-s3);
+    width: var(--gh-cs-control);
+    height: var(--gh-cs-control);
+    background: transparent;
+    color: inherit;
+    display: grid;
+    place-items: center;
+  }
+
+  .review_CourtsideHome_dialog-close .review_CourtsideHome_icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  dialog h2 {
+    padding-right: var(--gh-cs-s6);
+    margin-block: var(--gh-cs-s4);
+  }
+
+  dialog p {
+    margin-block: var(--gh-cs-s4);
+  }
+
+  .review_CourtsideHome_notes-teams,
+  .review_CourtsideHome_dialog-actions {
+    display: flex;
+    gap: var(--gh-cs-s5);
+    flex-wrap: wrap;
+  }
+
+  .review_CourtsideHome_club-scene {
+    height: 24rem;
+    max-height: 48dvh;
+    overflow: hidden;
+    border-radius: var(--gh-cs-radius);
+    background: var(--gh-cs-court);
+  }
+
+  .review_CourtsideHome_scene-status {
+    font-size: var(--gh-cs-secondary);
+    min-height: 1.5em;
+  }
+
+  .review_CourtsideHome_notes-sources {
+    font-size: var(--gh-cs-secondary);
+    margin-top: var(--gh-cs-s5);
+  }
+
+  .review_CourtsideHome_notes-sources summary {
+    min-height: var(--gh-cs-control);
+  }
+
+  .review_CourtsideHome_notes-sources li {
+    margin-block: var(--gh-cs-s3);
+  }
+
+  @media (max-width: 70rem) {
+    .review_CourtsideHome_header-edition {
+      padding-left: var(--gh-cs-s4);
+    }
+    .review_CourtsideHome_opening-layout {
+      gap: var(--gh-cs-s6);
+    }
+    .review_CourtsideHome_arena-scene {
+      height: 23rem;
+    }
+    .review_CourtsideHome_player-layout {
+      gap: var(--gh-cs-s6);
+    }
+    .review_CourtsideHome_player-lead {
+      grid-template-columns: 10rem minmax(0, 1fr);
+    }
+    .review_CourtsideHome_player-lead .review_CourtsideHome_portrait {
+      width: 100%;
+      align-self: auto;
+    }
+    .review_CourtsideHome_player-support {
+      grid-template-columns: 5rem 1fr;
+    }
+    .review_CourtsideHome_transition-mark {
+      display: none;
+    }
+    .review_CourtsideHome_team-summary,
+    .review_CourtsideHome_directory-labels {
+      grid-template-columns: 2fr 1fr 1.7fr 1fr;
+      gap: var(--gh-cs-s4);
+    }
+    .review_CourtsideHome_roster-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 55rem) {
+    .review_CourtsideHome_header-edition {
+      border: 0;
+      padding: 0;
+    }
+    .review_CourtsideHome_opening-layout {
+      grid-template-columns: 1fr;
+    }
+    .review_CourtsideHome_opening-zone {
+      padding-top: var(--gh-cs-s4);
+    }
+    .review_CourtsideHome_arena-scene {
+      height: 14rem;
+    }
+    .review_CourtsideHome_arena-scene img {
+      height: 175%;
+    }
+    .review_CourtsideHome_game-story {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .review_CourtsideHome_game-meta {
+      margin-bottom: var(--gh-cs-s3);
+    }
+    .review_CourtsideHome_game-story h1 {
+      max-width: 17ch;
+    }
+    .review_CourtsideHome_game-story .review_CourtsideHome_context {
+      margin-top: var(--gh-cs-s4);
+      max-width: 65ch;
+    }
+    .review_CourtsideHome_matchup-rail {
+      gap: var(--gh-cs-s4);
+      margin-top: var(--gh-cs-s5);
+      padding-block: var(--gh-cs-s4);
+    }
+    .review_CourtsideHome_match-team {
+      gap: var(--gh-cs-s3);
+    }
+    .review_CourtsideHome_match-team .review_CourtsideHome_pennant-image {
+      width: 4.5rem;
+      height: 7.875rem;
+    }
+    .review_CourtsideHome_match-team strong {
+      font-size: var(--gh-cs-body);
+    }
+    .review_CourtsideHome_match-team small {
+      font-size: var(--gh-cs-secondary);
+    }
+    .review_CourtsideHome_player-layout {
+      grid-template-columns: 1fr;
+    }
+    .review_CourtsideHome_player-lead {
+      grid-template-columns: 1fr 1.4fr;
+    }
+    .review_CourtsideHome_player-lead .review_CourtsideHome_portrait {
+      width: auto;
+    }
+    .review_CourtsideHome_supporting-picks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gh-cs-s5);
+      border-left: 0;
+      padding-left: 0;
+      border-top: var(--gh-cs-rule) solid var(--gh-cs-line-dark);
+      padding-top: var(--gh-cs-s5);
+    }
+    .review_CourtsideHome_player-support {
+      grid-template-columns: 5rem minmax(0, 1fr);
+      padding: 0;
+      border: 0;
+    }
+    .review_CourtsideHome_player-support:last-child {
+      border-left: var(--gh-cs-rule) solid var(--gh-cs-line-dark);
+      padding-left: var(--gh-cs-s5);
+    }
+    .review_CourtsideHome_player-support .review_CourtsideHome_player-role {
+      font-size: var(--gh-cs-caption);
+    }
+    .review_CourtsideHome_player-support h3 {
+      font-size: var(--gh-cs-small-title);
+    }
+    .review_CourtsideHome_player-support .review_CourtsideHome_player-stats {
+      gap: var(--gh-cs-s3);
+    }
+    .review_CourtsideHome_directory-labels {
+      display: none;
+    }
+    .review_CourtsideHome_team-summary {
+      grid-template-columns: 2.5fr 1fr 1fr;
+      row-gap: var(--gh-cs-s3);
+    }
+    .review_CourtsideHome_team-opponent {
+      grid-column: 1/3;
+      grid-row: 2;
+      font-size: var(--gh-cs-caption);
+    }
+    .review_CourtsideHome_roster-toggle {
+      grid-column: 3;
+      grid-row: 1/3;
+      align-self: center;
+    }
+    .review_CourtsideHome_team-record {
+      text-align: right;
+    }
+    .review_CourtsideHome_source-list {
+      grid-template-columns: 1fr;
+    }
+    .review_CourtsideHome_archive-preview {
+      gap: var(--gh-cs-s5);
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .review_CourtsideHome_header-edition {
+      font-size: var(--gh-cs-caption);
+      text-align: right;
+    }
+
+    .review_CourtsideHome_game-meta {
+      font-size: var(--gh-cs-caption);
+      gap: var(--gh-cs-s3);
+    }
+    .review_CourtsideHome_arena-scene {
+      height: 11rem;
+    }
+    .review_CourtsideHome_arena-scene img {
+      height: 160%;
+    }
+    .review_CourtsideHome_game-story .review_CourtsideHome_context {
+      font-size: var(--gh-cs-body-compact);
+    }
+    .review_CourtsideHome_board-actions {
+      margin-top: var(--gh-cs-s4);
+      gap: var(--gh-cs-s3);
+    }
+    .review_CourtsideHome_matchup-rail {
+      grid-template-columns: 1fr auto 1fr;
+      gap: var(--gh-cs-s3);
+    }
+    .review_CourtsideHome_match-team,
+    .review_CourtsideHome_match-team:last-child {
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: var(--gh-cs-s2);
+      text-align: center;
+    }
+    .review_CourtsideHome_match-team:last-child > div {
+      text-align: center;
+    }
+    .review_CourtsideHome_match-team .review_CourtsideHome_pennant-image {
+      width: 4.5rem;
+      height: 7.875rem;
+    }
+    .review_CourtsideHome_match-team strong {
+      font-size: var(--gh-cs-secondary);
+    }
+    .review_CourtsideHome_match-team small {
+      font-size: var(--gh-cs-secondary);
+    }
+    .review_CourtsideHome_versus-label {
+      align-self: center;
+    }
+    .review_CourtsideHome_weekly-zone,
+    .review_CourtsideHome_teams-zone {
+      padding-block: var(--gh-cs-s6);
+    }
+    .review_CourtsideHome_weekly-zone::before {
+      left: -24.5rem;
+      top: 8rem;
+    }
+    .review_CourtsideHome_weekly-zone::after {
+      right: -24.5rem;
+      top: 42rem;
+    }
+    .review_CourtsideHome_weekly-context {
+      font-size: var(--gh-cs-secondary);
+    }
+    .review_CourtsideHome_player-layout {
+      margin-top: var(--gh-cs-s6);
+      gap: var(--gh-cs-s5);
+    }
+    .review_CourtsideHome_player-lead {
+      grid-template-columns: 6.5rem minmax(0, 1fr);
+      column-gap: var(--gh-cs-s4);
+      row-gap: 0;
+      align-items: start;
+    }
+    .review_CourtsideHome_player-lead .review_CourtsideHome_portrait {
+      align-items: flex-start;
+      grid-row: 1;
+      grid-column: 1;
+      padding-top: var(--gh-cs-s6);
+    }
+    .review_CourtsideHome_player-lead .review_CourtsideHome_player-copy {
+      display: contents;
+    }
+    .review_CourtsideHome_player-lead .review_CourtsideHome_player-header {
+      grid-column: 2;
+    }
+    .review_CourtsideHome_player-lead .review_CourtsideHome_player-take {
+      grid-column: 1/-1;
+      margin-top: var(--gh-cs-s4);
+    }
+    .review_CourtsideHome_player-lead .review_CourtsideHome_player-take h4 {
+      font-size: var(--gh-cs-small-title);
+    }
+    .review_CourtsideHome_player-lead .review_CourtsideHome_player-take p {
+      font-size: var(--gh-cs-body-compact);
+    }
+    .review_CourtsideHome_player-lead .review_CourtsideHome_player-stats {
+      grid-column: 1/-1;
+      justify-content: space-between;
+      gap: var(--gh-cs-s6);
+      margin-top: var(--gh-cs-s4);
+    }
+    .review_CourtsideHome_player-lead .review_CourtsideHome_stat-period {
+      grid-column: 1/-1;
+      margin-top: var(--gh-cs-s2);
+    }
+    .review_CourtsideHome_player-lead h3 {
+      font-size: var(--gh-cs-mobile-name);
+    }
+    .review_CourtsideHome_supporting-picks {
+      display: block;
+      padding-top: 0;
+      border-top: 0;
+    }
+    .review_CourtsideHome_player-support {
+      grid-template-columns: 5rem minmax(0, 1fr);
+      padding-block: var(--gh-cs-s5);
+      border-top: var(--gh-cs-rule) solid var(--gh-cs-line-dark);
+    }
+    .review_CourtsideHome_player-support:first-child {
+      padding-top: var(--gh-cs-s5);
+    }
+    .review_CourtsideHome_player-support:last-child {
+      padding-left: 0;
+      border-left: 0;
+      border-top: var(--gh-cs-rule) solid var(--gh-cs-line-dark);
+    }
+    .review_CourtsideHome_player-support .review_CourtsideHome_player-role {
+      font-size: var(--gh-cs-secondary);
+      line-height: 1.35;
+    }
+    .review_CourtsideHome_player-support .review_CourtsideHome_player-take p {
+      font-size: var(--gh-cs-body-compact);
+    }
+    .review_CourtsideHome_player-support h3 {
+      font-size: var(--gh-cs-story-title);
+    }
+    .review_CourtsideHome_player-support .review_CourtsideHome_player-stats {
+      gap: var(--gh-cs-s5);
+    }
+    .review_CourtsideHome_shared-sources {
+      margin-top: var(--gh-cs-s4);
+    }
+    .review_CourtsideHome_happenings {
+      margin-top: var(--gh-cs-s5);
+      padding-top: var(--gh-cs-s5);
+    }
+    .review_CourtsideHome_wire-items {
+      grid-template-columns: 1fr;
+      gap: var(--gh-cs-s5);
+    }
+    .review_CourtsideHome_section-head {
+      align-items: baseline;
+    }
+    .review_CourtsideHome_section-head .review_CourtsideHome_text-link {
+      font-size: var(--gh-cs-caption);
+      white-space: nowrap;
+    }
+    .review_CourtsideHome_directory-heading {
+      display: block;
+    }
+    .review_CourtsideHome_directory-heading p {
+      font-size: var(--gh-cs-body-compact);
+    }
+    .review_CourtsideHome_directory-tools {
+      flex-wrap: wrap;
+      gap: var(--gh-cs-s3);
+      margin-top: var(--gh-cs-s5);
+    }
+    .review_CourtsideHome_directory-search {
+      flex-basis: 100%;
+    }
+    .review_CourtsideHome_sort-label {
+      flex: 1;
+      justify-content: space-between;
+    }
+    .review_CourtsideHome_sort-label select {
+      min-width: 10rem;
+    }
+    .review_CourtsideHome_team-summary {
+      padding: var(--gh-cs-s4) 0;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--gh-cs-s3) var(--gh-cs-s4);
+    }
+    .review_CourtsideHome_team-identity {
+      gap: var(--gh-cs-s3);
+    }
+    .review_CourtsideHome_team-identity h3 {
+      font-size: var(--gh-cs-body);
+    }
+    .review_CourtsideHome_team-identity p {
+      font-size: var(--gh-cs-secondary);
+    }
+    .review_CourtsideHome_team-record {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .review_CourtsideHome_team-record strong {
+      font-size: var(--gh-cs-small-stat);
+    }
+    .review_CourtsideHome_team-opponent {
+      grid-column: 1;
+      grid-row: 2;
+      font-size: var(--gh-cs-secondary);
+      padding-left: 3.5rem;
+    }
+    .review_CourtsideHome_roster-toggle {
+      grid-column: 2;
+      grid-row: 2;
+      font-size: var(--gh-cs-secondary);
+      justify-content: flex-end;
+    }
+    .review_CourtsideHome_roster-detail {
+      padding: var(--gh-cs-s4);
+      margin-inline: calc(var(--gh-cs-s4) * -1);
+    }
+    .review_CourtsideHome_roster-detail-heading {
+      align-items: flex-start;
+    }
+    .review_CourtsideHome_roster-list {
+      grid-template-columns: 1fr;
+    }
+    .review_CourtsideHome_anchor-detail {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .review_CourtsideHome_directory-date span {
+      margin-left: var(--gh-cs-s2);
+    }
+    .review_CourtsideHome_archive-preview {
+      grid-template-columns: 1fr;
+    }
+    .review_CourtsideHome_archive-preview h2 {
+      max-width: none;
+    }
+    .review_CourtsideHome_archive-links {
+      margin-top: var(--gh-cs-s2);
+    }
+    .review_CourtsideHome_arena-strip {
+      height: 5rem;
+    }
+
+    .review_CourtsideHome_archive-row {
+      grid-template-columns: 1fr auto;
+      gap: var(--gh-cs-s3);
+    }
+    .review_CourtsideHome_archive-row time {
+      grid-column: 1/-1;
+    }
+    .review_CourtsideHome_archive-row h2 {
+      font-size: var(--gh-cs-small-title);
+    }
+    dialog {
+      padding: var(--gh-cs-s5);
+    }
+    dialog h2 {
+      font-size: var(--gh-cs-support-name);
+    }
+    .review_CourtsideHome_notes-teams {
+      gap: var(--gh-cs-s3);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+    .review_CourtsideHome_transition-mark {
+      transform: none !important;
+      opacity: 1 !important;
+    }
+  }
+}
+
+/* Reviewed refinements: commentary spans the entire feature, keeping lead + two supports. */
+.review_CourtsideHome_surface {
+  .review_CourtsideHome_player-lead,
+  .review_CourtsideHome_player-support {
+    row-gap: 0;
+  }
+  .review_CourtsideHome_player-copy {
+    display: contents;
+  }
+  .review_CourtsideHome_player-header {
+    grid-column: 2;
+  }
+  .review_CourtsideHome_player-take,
+  .review_CourtsideHome_player-stats,
+  .review_CourtsideHome_stat-period {
+    grid-column: 1/-1;
+  }
+  .review_CourtsideHome_player-lead .review_CourtsideHome_portrait {
+    padding-top: var(--gh-cs-s6);
+  }
+  .review_CourtsideHome_player-support .review_CourtsideHome_player-take {
+    margin-top: var(--gh-cs-s4);
+  }
+  .review_CourtsideHome_header-edition {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gh-cs-s4);
+    padding-bottom: var(--gh-cs-s4);
+    border: 0;
+  }
+  .review_CourtsideHome_header-edition span {
+    color: var(--gh-cs-tan);
+  }
+  .review_CourtsideHome_edition-links {
+    flex-wrap: wrap;
+  }
+  .review_CourtsideHome_owner-qualifier {
+    font-weight: 600;
+    color: var(--gh-cs-tan);
+  }
+  .review_CourtsideHome_league-details {
+    margin-top: var(--gh-cs-s6);
+    border-top: var(--gh-cs-rule) solid var(--gh-cs-line-light);
+    padding-top: var(--gh-cs-s4);
+  }
+  .review_CourtsideHome_league-details > summary {
+    min-height: var(--gh-cs-control);
+    font-weight: 600;
+    font-size: var(--gh-cs-secondary);
+  }
+  .review_CourtsideHome_live-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: var(--gh-cs-s5);
+    margin-top: var(--gh-cs-s5);
+  }
+  .review_CourtsideHome_live-grid > div {
+    min-width: 0;
+  }
+  .review_CourtsideHome_live-grid h2,
+  .review_CourtsideHome_live-grid h3 {
+    font-size: var(--gh-cs-small-title);
+  }
+  .review_CourtsideHome_live-grid a {
+    color: var(--gh-cs-tan);
+  }
+  .review_CourtsideHome_roster-details-current {
+    margin-top: var(--gh-cs-s4);
+    font-size: var(--gh-cs-secondary);
+  }
+  .review_CourtsideHome_portrait-initials {
+    font-size: var(--gh-cs-heading);
+    font-weight: 700;
+    padding: var(--gh-cs-s5);
+  }
+  .review_CourtsideHome_scene-controls {
+    display: flex;
+    gap: var(--gh-cs-s3);
+  }
+  @media (max-width: 55rem) {
+    .review_CourtsideHome_live-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 40rem) {
+    .review_CourtsideHome_player-support .review_CourtsideHome_player-stats {
+      justify-content: space-between;
+    }
+    .review_CourtsideHome_team-record small {
+      max-width: 8rem;
+    }
+    .review_CourtsideHome_header-edition {
+      text-align: left;
+    }
+  }
+}
+
+.review_CourtsideHome_surface [id] {
+  scroll-margin-top: 9rem;
+}
+.review_CourtsideHome_surface .review_CourtsideHome_player-lead {
+  align-content: start;
+}
+.review_CourtsideHome_surface .review_CourtsideHome_player-lead .review_CourtsideHome_player-take {
+  margin-top: var(--gh-cs-s5);
+}
+@media (max-width: 40rem) {
+  .review_CourtsideHome_surface [id] {
+    scroll-margin-top: 8rem;
+  }
+}
+
+.review_CourtsideHome_surface .review_CourtsideHome_team-record .review_CourtsideHome_owner-qualifier {
+  display: block;
+  color: var(--gh-cs-tan);
+}
+
+  @keyframes ball-settle {
+    0% {
+      transform: translateY(-2rem) rotate(-50deg);
+      opacity: 0.3;
+    }
+    65% {
+      transform: translateY(0.25rem) rotate(8deg);
+      opacity: 1;
+    }
+    100% {
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+.review_Card_card {
+  background-color: var(--gh-bg-card);
+  background-image: var(--gh-gradient-card);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius-lg);
+  padding: var(--gh-s6);
+  box-shadow: var(--gh-shadow-sm);
+}
+
+.review_Badge_badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--gh-radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--gh-border-strong);
+  color: var(--gh-text-dim);
+  background: var(--gh-bg-raised);
+  white-space: nowrap;
+}
+
+.review_Badge_gold {
+  color: var(--gh-gold);
+  border-color: color-mix(in srgb, var(--gh-gold) 45%, transparent);
+  background: color-mix(in srgb, var(--gh-gold) 12%, transparent);
+}
+
+.review_Badge_win {
+  color: var(--gh-win);
+  border-color: color-mix(in srgb, var(--gh-win) 40%, transparent);
+}
+
+.review_Badge_loss {
+  color: var(--gh-loss);
+  border-color: color-mix(in srgb, var(--gh-loss) 40%, transparent);
+}
+
+.review_TeamAvatar_avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--gh-gold) 0%, var(--gh-gold-deep) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--gh-border-strong);
+}
+
+.review_TeamAvatar_initials {
+  font-family: var(--gh-font-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--gh-ink-on-accent);
+}
+
+/* Positioning context for the champion's crown. Inline-flex so the wrap
+ * never stretches a row layout. */
+.review_TeamAvatar_champWrap {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.review_SectionLinks_links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gh-s2);
+}
+
+.review_SectionLinks_link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "title arrow"
+    "blurb arrow";
+  gap: var(--gh-s1) var(--gh-s3);
+  align-items: center;
+  padding: var(--gh-s3);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius);
+  text-decoration: none;
+  min-height: 44px;
+  transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
+}
+
+.review_SectionLinks_link:hover {
+  border-color: var(--gh-border-strong);
+  background: var(--gh-bg-hover);
+  transform: translateY(-2px);
+}
+
+.review_SectionLinks_link:hover .review_SectionLinks_title {
+  color: var(--gh-gold-soft);
+}
+
+.review_SectionLinks_link:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review_SectionLinks_link {
+    transition: none;
+  }
+
+  .review_SectionLinks_link:hover {
+    transform: none;
+  }
+}
+
+.review_SectionLinks_title {
+  grid-area: title;
+  font-weight: 700;
+  color: var(--gh-text);
+  transition: color 0.18s ease;
+}
+
+.review_SectionLinks_blurb {
+  grid-area: blurb;
+  font-size: 0.85rem;
+  color: var(--gh-text-faint);
+  line-height: 1.4;
+}
+
+.review_SectionLinks_arrow {
+  grid-area: arrow;
+  color: var(--gh-gold);
+  font-size: 1.2rem;
+}
+
+/* Desktop: three cards side by side. */
+@media (min-width: 64rem) {
+  .review_SectionLinks_links {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.review_SectionHeading_wrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--gh-s4);
+  margin-bottom: var(--gh-s6);
+}
+
+.review_SectionHeading_eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gh-gold);
+  margin-bottom: var(--gh-s1);
+}
+
+.review_SectionHeading_title {
+  font-family: var(--gh-font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--gh-text);
+  margin: 0;
+}
+
+.review_SectionHeading_action {
+  flex-shrink: 0;
+}
+
+/* ChampionCrown — perched on a TeamAvatar (which provides the
+ * positioned wrapper). Tokens only. */
+
+.review_ChampionCrown_crown {
+  position: absolute;
+  /* Perched on top, nudged off-center like a human placed it. */
+  top: -10%;
+  right: 0;
+  width: 60%;
+  aspect-ratio: 24 / 19;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  line-height: 0;
+  /* The hand-placed tilt: a few degrees, never straight. */
+  transform: rotate(-9deg);
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.55));
+  transition: transform 0.18s ease;
+  z-index: 2;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.review_ChampionCrown_crown:hover {
+  transform: rotate(-9deg) scale(1.18);
+}
+
+.review_ChampionCrown_crown:active {
+  transform: rotate(-9deg) scale(0.94);
+}
+
+.review_ChampionCrown_crown:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s2);
+}
+
+.review_ChampionCrown_svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.review_ChampionCrown_still,
+.review_ChampionCrown_spinner {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The juicy bit: a full 360° with overshoot-and-settle, so the spin
+ * lands hand-crafted instead of mechanical. */
+.review_ChampionCrown_spinner {
+  animation: crown-spin 0.85s cubic-bezier(0.25, 0.8, 0.3, 1.15);
+}
+
+@keyframes crown-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  62% {
+    transform: rotate(388deg);
+  }
+  80% {
+    transform: rotate(351deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review_ChampionCrown_spinner {
+    animation: none;
+  }
+
+  .review_ChampionCrown_crown {
+    transition: none;
+  }
+}
+
+.review_StatsStrip_grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gh-s4);
+}
+
+/* Desktop: three-up stat grid. */
+@media (min-width: 64rem) {
+  .review_StatsStrip_grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.review_StatsStrip_cell {
+  padding: var(--gh-s4);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius);
+  background: var(--gh-bg-raised);
+  /* Comfortable touch target on mobile. */
+  min-height: 44px;
+}
+
+.review_StatsStrip_label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+  margin-bottom: var(--gh-s2);
+}
+
+.review_StatsStrip_value {
+  font-family: var(--gh-font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--gh-gold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  margin-bottom: var(--gh-s1);
+}
+
+.review_StatsStrip_detail {
+  font-size: 0.85rem;
+  color: var(--gh-text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Team names inside the detail line link to their team pages. */
+.review_StatsStrip_detailLink {
+  color: var(--gh-gold-soft);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.review_StatsStrip_detailLink:hover {
+  color: var(--gh-gold);
+  text-decoration: underline;
+}
+
+.review_StatsStrip_detailLink:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review_StatsStrip_detailLink {
+    transition: none;
+  }
+}
+
+.review_StatsStrip_empty {
+  color: var(--gh-text-faint);
+  margin: 0;
+  font-style: italic;
+}
+
+.review_TransactionSummary_teamLink {
+  color: var(--gh-gold-soft);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.review_TransactionSummary_teamLink:hover {
+  text-decoration: underline;
+  color: var(--gh-gold);
+}
+
+.review_TransactionSummary_teamLink:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review_TransactionSummary_teamLink {
+    transition: none;
+  }
+}
+
+.review_StandingsTable_table {
+  display: flex;
+  flex-direction: column;
+}
+
+.review_StandingsTable_head,
+.review_StandingsTable_row {
+  display: grid;
+  grid-template-columns: 2rem 1fr 3rem 3rem 4.5rem;
+  align-items: center;
+  gap: var(--gh-s2);
+  padding: var(--gh-s3) var(--gh-s2);
+}
+
+.review_StandingsTable_head {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+  border-bottom: 1px solid var(--gh-border);
+}
+
+.review_StandingsTable_row {
+  border-bottom: 1px solid var(--gh-border);
+  border-radius: var(--gh-s2);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.review_StandingsTable_row:last-child {
+  border-bottom: none;
+}
+
+.review_StandingsTable_row:hover {
+  background: var(--gh-bg-hover);
+}
+
+.review_StandingsTable_row:hover .review_StandingsTable_name {
+  color: var(--gh-gold-soft);
+}
+
+.review_StandingsTable_row:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+.review_StandingsTable_rank {
+  font-family: var(--gh-font-display);
+  font-weight: 800;
+  color: var(--gh-text-faint);
+}
+
+/* Medal metals for the top 3 — replaces the old nth-child gold rule. */
+.review_StandingsTable_medal1 {
+  color: var(--gh-gold);
+}
+
+.review_StandingsTable_medal2 {
+  color: var(--gh-silver);
+}
+
+.review_StandingsTable_medal3 {
+  color: var(--gh-bronze);
+}
+
+.review_StandingsTable_team {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s3);
+  min-width: 0;
+}
+
+.review_StandingsTable_name {
+  display: block;
+  font-weight: 700;
+  color: var(--gh-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.18s ease;
+}
+
+.review_StandingsTable_manager {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--gh-text-faint);
+}
+
+.review_StandingsTable_num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--gh-text-dim);
+}
+
+.review_StandingsTable_w { color: var(--gh-win); font-weight: 700; }
+.review_StandingsTable_l { color: var(--gh-loss); font-weight: 700; }
+
+/*
+ * Mobile: the table becomes compact team cards. Same DOM, re-laid-out —
+ * the header row hides and each row becomes a card with the team on top
+ * and W/L/PF as a labeled stat line underneath. Touch targets stay >=44px.
+ */
+@media (max-width: 40rem) {
+  .review_StandingsTable_head {
+    display: none;
+  }
+
+  .review_StandingsTable_table {
+    gap: var(--gh-s2);
+  }
+
+  .review_StandingsTable_row {
+    grid-template-columns: 1fr auto auto auto;
+    grid-template-areas:
+      "team team team rank"
+      "w l pf pf";
+    row-gap: var(--gh-s2);
+    border: 1px solid var(--gh-border);
+    border-radius: var(--gh-radius);
+    background: var(--gh-bg-raised);
+    padding: var(--gh-s3) var(--gh-s4);
+    min-height: 44px;
+  }
+
+  .review_StandingsTable_row:hover {
+    background: var(--gh-bg-hover);
+  }
+
+  .review_StandingsTable_team { grid-area: team; }
+  .review_StandingsTable_rank {
+    grid-area: rank;
+    justify-self: end;
+    align-self: start;
+  }
+  .review_StandingsTable_w { grid-area: w; }
+  .review_StandingsTable_l { grid-area: l; }
+  .review_StandingsTable_pf { grid-area: pf; }
+
+  .review_StandingsTable_w,
+  .review_StandingsTable_l,
+  .review_StandingsTable_pf {
+    text-align: left;
+    font-size: 0.85rem;
+  }
+
+  .review_StandingsTable_w::before,
+  .review_StandingsTable_l::before,
+  .review_StandingsTable_pf::before {
+    content: attr(data-label);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--gh-text-faint);
+    margin-right: var(--gh-s1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review_StandingsTable_row,
+  .review_StandingsTable_name {
+    transition: none;
+  }
+}
+
+.review_PlayerRow_row {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s3);
+  min-height: 3.25rem;
+  padding: var(--gh-s2) var(--gh-s3);
+  border-radius: var(--gh-radius);
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.18s ease;
+}
+
+.review_PlayerRow_row:hover {
+  background: var(--gh-bg-hover);
+}
+
+.review_PlayerRow_row:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+}
+
+.review_PlayerRow_identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s1);
+  min-width: 0;
+}
+
+.review_PlayerRow_name {
+  font-weight: 600;
+  color: var(--gh-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.review_PlayerRow_row:hover .review_PlayerRow_name {
+  color: var(--gh-gold-soft);
+}
+
+.review_PlayerRow_meta {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s2);
+}
+
+.review_PlayerRow_nbaTeam {
+  font-size: 0.75rem;
+  color: var(--gh-text-faint);
+  letter-spacing: 0.04em;
+}
+
+.review_PlayerRow_nameLink {
+  color: var(--gh-text);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--gh-border-strong);
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.review_PlayerRow_nameLink:hover {
+  color: var(--gh-gold-soft);
+  border-bottom-color: var(--gh-gold);
+}
+
+.review_PlayerRow_nameLink:focus-visible {
+  outline: 2px solid var(--gh-gold);
+  outline-offset: 2px;
+  border-radius: var(--gh-s1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review_PlayerRow_row,
+  .review_PlayerRow_nameLink {
+    transition: none;
+  }
+}
+
+.review_PlayerHeadshot_headshot,
+.review_PlayerHeadshot_fallback {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid var(--ph-ring, var(--gh-gold));
+  background: var(--gh-bg-raised);
+}
+
+.review_PlayerHeadshot_headshot {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.review_PlayerHeadshot_fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gh-bg-card);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gh-text) 6%, transparent);
+}
+
+.review_PlayerHeadshot_initials {
+  font-family: var(--gh-font-display);
+  color: var(--gh-text);
+  line-height: 1;
+}
+
+/* REVIEW ONLY. Proposed exact tokens, not a production palette decision. */
+@font-face { font-family: 'Review Inter'; src: url("/design-preview/neutral-courtside/assets/inter.woff2") format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Review Mono'; src: url("/design-preview/neutral-courtside/assets/geist-mono.woff2") format('woff2'); font-weight: 100 900; font-display: swap; }
+
+:root, :root[data-treatment='chalk'] {
+  --review-canvas: #f6f3eb;
+  --review-surface: #fffdf7;
+  --review-hover: #eeece4;
+  --review-ink: #242824;
+  --review-secondary: #63675f;
+  --review-accent: #a54429;
+  --review-rule: #d9d6cc;
+  --review-control: #898d83;
+  --review-focus: #245a4b;
+  --review-positive: #245a4b;
+  --review-negative: #a13e3e;
+  --review-live: #a54429;
+  --review-champion: #795c1c;
+  --review-silver: #5f6870;
+  --review-bronze: #855022;
+}
+:root[data-treatment='slate'] {
+  --review-canvas: #f5f4ef;
+  --review-surface: #ffffff;
+  --review-hover: #ebeef0;
+  --review-ink: #242d35;
+  --review-secondary: #5f6870;
+  --review-accent: #345b77;
+  --review-rule: #d7dade;
+  --review-control: #7b858e;
+  --review-focus: #345b77;
+  --review-positive: #245a4b;
+  --review-negative: #a13e3e;
+  --review-live: #a54429;
+  --review-champion: #795c1c;
+  --review-silver: #5f6870;
+  --review-bronze: #855022;
+}
+:root[data-treatment='linen'] {
+  --review-canvas: #f5f1e8;
+  --review-surface: #fffcf6;
+  --review-hover: #eee9e0;
+  --review-ink: #2c2928;
+  --review-secondary: #6a625c;
+  --review-accent: #843f46;
+  --review-rule: #dbd4ca;
+  --review-control: #91857b;
+  --review-focus: #843f46;
+  --review-positive: #245a4b;
+  --review-negative: #a13e3e;
+  --review-live: #a54429;
+  --review-champion: #795c1c;
+  --review-silver: #5f6870;
+  --review-bronze: #855022;
+}
+
+:root {
+  --font-body: 'Review Inter';
+  --font-mono: 'Review Mono';
+  --gh-font-display: var(--font-body), system-ui, sans-serif;
+  --gh-font-body: var(--font-body), system-ui, sans-serif;
+  --gh-font-mono: var(--font-mono), ui-monospace, monospace;
+  --gh-bg: var(--review-canvas);
+  --gh-bg-raised: var(--review-surface);
+  --gh-bg-card: var(--review-surface);
+  --gh-bg-hover: var(--review-hover);
+  --gh-border: var(--review-rule);
+  --gh-border-strong: var(--review-control);
+  --gh-text: var(--review-ink);
+  --gh-text-dim: var(--review-secondary);
+  --gh-text-faint: var(--review-secondary);
+  --gh-win: var(--review-positive);
+  --gh-loss: var(--review-negative);
+  --gh-live: var(--review-live);
+  --gh-silver: var(--review-silver);
+  --gh-bronze: var(--review-bronze);
+  --gh-gold: var(--review-accent);
+  --gh-gold-soft: var(--review-accent);
+  --gh-gold-deep: var(--review-accent);
+  --gh-ink-on-accent: var(--review-surface);
+  --gh-gradient-gold: linear-gradient(var(--review-accent), var(--review-accent));
+  --gh-glow-page: none;
+  --gh-grain: none;
+  --gh-cs-wall: var(--review-canvas);
+  --gh-cs-wall-deep: var(--review-canvas);
+  --gh-cs-court: var(--review-surface);
+  --gh-cs-ink: var(--review-ink);
+  --gh-cs-text: var(--review-ink);
+  --gh-cs-muted-light: var(--review-secondary);
+  --gh-cs-muted-dark: var(--review-secondary);
+  --gh-cs-tan: var(--review-accent);
+  --gh-cs-clay: var(--review-accent);
+  --gh-cs-line-light: var(--review-rule);
+  --gh-cs-line-dark: var(--review-rule);
+  --gh-cs-paint: var(--review-rule);
+  --gh-cs-font: var(--font-body), system-ui, sans-serif;
+  --gh-cs-num: var(--font-mono), ui-monospace, monospace;
+}
+
+/* Identical changes for every treatment. No composition, crop or sizing edits. */
+body { background-image: none; color: var(--review-ink); }
+body::before { display: none; }
+.review-notice { margin: 0; padding: .75rem 1rem; font-size: .875rem; background: var(--review-surface); color: var(--review-secondary); }
+.review_CourtsideHome_surface :focus-visible,
+body :focus-visible { outline: 2px solid var(--review-focus); outline-offset: 3px; }
+.review_CourtsideHome_surface .review_CourtsideHome_directory-search,
+.review_CourtsideHome_surface select,
+.review_CourtsideHome_surface .review_CourtsideHome_secondary { border-color: var(--review-control); }
+.review_SiteHeader_claim { color: var(--review-surface) !important; }
+.review_CourtsideHome_surface .review_CourtsideHome_button { color: var(--review-surface); }
+.review_CourtsideHome_surface .review_CourtsideHome_secondary { color: var(--review-ink); }
+.review_MobileNav_active .review_MobileNav_icon svg { filter: none; }
+.review_CombinedTicker_pub { color: var(--review-accent); }
+.review_StandingsTable_medal1 { color: var(--review-champion); }
+.review_Badge_gold { color: var(--review-ink); }
+/* An explicitly synthetic appendix, outside the unchanged homepage layout. */
+.review-state-fixtures { max-width: 78rem; margin: 2rem auto; padding: 1rem 1rem 6rem; }
+.review-state-fixtures h2 { font-size: 1.5rem; text-transform: none; letter-spacing: 0; }
+.review-state-fixtures p { max-width: 75ch; font-size: .875rem; color: var(--review-secondary); }
+.review-state-fixtures section { padding: 1rem; margin-top: 1rem; border: 1px solid var(--review-rule); }
+.review-state-fixtures h3 { margin: 0 0 .75rem; font-size: 1rem; text-transform: none; letter-spacing: 0; }
+.review-state-fixtures dl { margin: 0; display: grid; grid-template-columns: minmax(6rem, 1fr) 2fr; gap: .5rem 1rem; font-size: .875rem; }
+.review-state-fixtures dt, .review-state-fixtures dd { margin: 0; }
+.review-state-fixtures dd { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: center; }
+.review-state-fixtures [data-review-bg='canvas'] { background: var(--review-canvas); }
+.review-state-fixtures [data-review-bg='surface'] { background: var(--review-surface); }
+.review-state-fixtures [data-review-bg='hover'] { background: var(--review-hover); }
+.review-state-fixtures .review-state-champion { color: var(--review-champion); }
+.review-notice a { color: var(--review-focus); text-decoration: underline; }
+@media (max-width: 30rem) { .review-state-fixtures dl { grid-template-columns: 1fr; gap: .25rem; } .review-state-fixtures dd { margin-bottom: .75rem; } }
+button:disabled, input:disabled, select:disabled { opacity: 1; cursor: default; }
+*, *::before, *::after { animation: none !important; transition: none !important; }

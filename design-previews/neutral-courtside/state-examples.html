@@ -1,0 +1,15 @@
+<aside class="review-state-fixtures" id="review-semantic-states" aria-labelledby="review-states-heading">
+  <h2 id="review-states-heading">Color states · synthetic review examples</h2>
+  <p>Invented values for palette QA only; these are not league results or quotes. The same examples appear in every treatment. Existing standings, ticker and badge classes exercise light canvas, raised surface and hover backgrounds. The approved Stocks board keeps its current palette pending separate review.</p>
+  <!-- The builder repeats this template for the three actual background roles. -->
+  <section data-review-bg="{{background}}" aria-label="State examples on {{background}}">
+    <h3>{{label}}</h3>
+    <dl>
+      <dt>Record</dt><dd><span class="review_StandingsTable_w" data-review-role="positive">W 12</span><span class="review_StandingsTable_l" data-review-role="negative">L 5</span></dd>
+      <dt>Quote change</dt><dd><span class="review_CombinedTicker_up" data-review-role="positive">+0.4 · Up</span><span class="review_CombinedTicker_down" data-review-role="negative">−0.6 · Down</span><span class="review_CombinedTicker_flat" data-review-role="secondary">0.0 · Flat</span></dd>
+      <dt>Game state</dt><dd><span class="review_CombinedTicker_live" data-review-role="live"><span class="review_CombinedTicker_liveDot" aria-hidden="true" data-review-indicator="live"></span>LIVE · Q3</span></dd>
+      <dt>Finish</dt><dd><span class="review_StandingsTable_rank review_StandingsTable_medal1" data-review-role="champion">1st</span><span class="review_StandingsTable_rank review_StandingsTable_medal2" data-review-role="silver">2nd</span><span class="review_StandingsTable_rank review_StandingsTable_medal3" data-review-role="bronze">3rd</span><span class="review-state-champion" data-review-role="champion">Champion</span></dd>
+      <dt>Status badge</dt><dd><span class="review_Badge_badge review_Badge_win" data-review-badge="positive">Win</span><span class="review_Badge_badge review_Badge_loss" data-review-badge="negative">Loss</span><span class="review_Badge_badge review_Badge_gold" data-review-badge="accent">Selected</span></dd>
+    </dl>
+  </section>
+</aside>
