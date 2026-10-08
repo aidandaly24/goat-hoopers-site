@@ -12,6 +12,7 @@ import { MobileNav } from "@/ui/MobileNav";
 import {
   CombinedTicker,
   type TickerHeadline,
+  type TickerStock,
 } from "@/surfaces/stock-market/CombinedTicker";
 
 /* Display: condensed arena-signage energy for headlines and scores. */
@@ -54,14 +55,22 @@ export const dynamic = "force-dynamic";
  * than breaking the page.
  */
 async function Ticker() {
-  let stocks: PlayerStock[] = [];
+  let stocks: TickerStock[] = [];
   let headlines: TickerHeadline[] = [];
   try {
     const [market, news] = await Promise.all([
       getStockMarketData(),
       getLeagueNews(),
     ]);
-    stocks = market.stocks;
+    // Slim DTO: the ticker renders 25 names/prices — never ship the full
+    // 1.2 KB PlayerStock (factors/history) to every page. See issue #16.
+    stocks = market.stocks.slice(0, 25).map((s) => ({
+      playerId: s.playerId,
+      playerName: s.playerName,
+      price: s.price,
+      trend: s.trend,
+      changePct: s.changePct,
+    }));
     headlines = news.slice(0, 12).map((a) => ({
       text: a.headline,
       publication: PUBLICATIONS[a.publication].name,

@@ -23,7 +23,17 @@ export type TickerHeadline = {
   publication: string;
 };
 
-function StockItems({ stocks }: { stocks: PlayerStock[] }) {
+/**
+ * Slim ticker DTO — only what the ticker renders. The full PlayerStock
+ * (~1.2 KB each, mostly expand-only factors/history) never reaches the
+ * client for the ticker. See perf audit on issue #16.
+ */
+export type TickerStock = Pick<
+  PlayerStock,
+  "playerId" | "playerName" | "price" | "trend" | "changePct"
+>;
+
+function StockItems({ stocks }: { stocks: TickerStock[] }) {
   return (
     <>
       {stocks.slice(0, 25).map((s) => (
@@ -71,7 +81,7 @@ export function CombinedTicker({
   stocks,
   headlines,
 }: {
-  stocks: PlayerStock[];
+  stocks: TickerStock[];
   headlines: TickerHeadline[];
 }) {
   // If one feed is empty, park on the other permanently.

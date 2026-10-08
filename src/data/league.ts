@@ -7,6 +7,7 @@
  * optional section (e.g. transactions in the offseason) returns an empty
  * array instead of throwing the whole page.
  */
+import { cache } from "react";
 import type {
   Season,
   Team,
@@ -566,8 +567,13 @@ const STOCK_WINDOW_DAYS = 14;
  * then saves the new snapshot best-effort. Resilient like every loader —
  * a failed section degrades (no history, no draft capital) instead of
  * throwing the page.
+ *
+ * Wrapped in React.cache(): the layout ticker and the /stocks page both call
+ * this per request — without dedup it computed and serialized all 262
+ * players twice. See perf audit on issue #16.
  */
-export async function getStockMarketData(): Promise<StockMarket> {
+export const getStockMarketData = cache(
+  async (): Promise<StockMarket> => {
   const now = Date.now();
   const windowStart = now - STOCK_WINDOW_DAYS * 24 * 60 * 60 * 1000;
 
@@ -713,7 +719,8 @@ export async function getStockMarketData(): Promise<StockMarket> {
   }
 
   return market;
-}
+  }
+);
 
 /**
  * Everything the League News Network needs: the auto-generated article
