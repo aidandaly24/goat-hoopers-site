@@ -10,6 +10,9 @@
  * Contract:
  * - Receives the four datasets (each `| null` in the preseason).
  * - Never fetches. Never touches Sleeper. Domain objects in, JSX out.
+ * - Documented composite surface (ARCHITECTURE.md §3): composes the
+ *   public entrypoints of preview, playoffs, power-rankings, and
+ *   records. Does not import their private internals.
  */
 import type {
   MatchupPreview as MatchupPreviewT,

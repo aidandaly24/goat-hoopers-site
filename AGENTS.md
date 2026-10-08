@@ -19,11 +19,18 @@ outrank general conventions. Keep them short, keep them enforced.
 2. The Sleeper API is only touched in `src/data/`. Nowhere else, no exceptions.
 3. New league concept? Add the type to `src/domain/` first, then teach
    `src/data` to build it. Never invent a parallel shape inside a component.
-4. Surfaces don't import each other's internals. They share domain types only.
+4. Surfaces don't import each other's *private* internals. Documented
+   composite surfaces (IntelHub, TeamProfile — see ARCHITECTURE.md) may
+   compose sibling surfaces' public component entrypoints. Everything else
+   shares domain types only. `import type` is always allowed — types are
+   erased and create no runtime coupling.
 5. Every surface uses `src/ui/` primitives and tokens. No one-off colors,
    fonts, or spacing.
 6. Pages stay thin: load data via `@/data/league`, hand domain objects to
-   surfaces. No fetching in components.
+   surfaces. Components never touch Sleeper or the database directly — but a
+   client component may fetch the app's own `/api/*` routes for on-demand
+   detail loading (Rule 14's list/detail split). API routes delegate server
+   data access to `@/data/` loaders.
 7. Mobile and desktop are both first-class. Every new component ships both
    layouts.
 8. Update `ARCHITECTURE.md` when you add a surface, domain type, or data

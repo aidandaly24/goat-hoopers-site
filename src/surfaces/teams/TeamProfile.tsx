@@ -74,6 +74,8 @@ function MatchupRow({ matchup }: { matchup: Matchup }) {
  *   transaction actor links).
  * - Empty sections (preseason game log, no transactions) render honest
  *   empty states, never fake rows.
+ * - Documented composite surface (ARCHITECTURE.md §3): composes the
+ *   public `FranchiseSection` entrypoint from the history surface.
  */
 export function TeamProfile({
   profile,

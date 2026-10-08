@@ -153,6 +153,9 @@ function SeasonChart({
  * data (sparkline, season history chart, factor breakdown) on demand from
  * GET /api/stocks/[playerId] — never in the list HTML.
  *
+ * The same-origin detail fetch is an allowed client boundary
+ * (ARCHITECTURE.md §3): the API route owns server data access and
+ * delegates to @/data/ loaders. No Sleeper/DB access in this component.
  * Detail loading is driven by the state machine in ./detailMachine:
  * a failed request can be retried by re-expanding the row or with the
  * Retry button; in-flight requests are never duplicated and ready
