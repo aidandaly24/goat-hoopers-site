@@ -5,9 +5,6 @@
   background: var(--gh-bg-raised);
   border-bottom: 1px solid var(--gh-border);
   height: var(--gh-ticker-h);
-  /* The whole bar links to /stocks. */
-  cursor: pointer;
-  text-decoration: none;
   color: inherit;
   /* Sticks at the very top; the site header sticks just below
    * (top: var(--gh-ticker-h) in SiteHeader.module.css). */
@@ -16,15 +13,7 @@
   z-index: 50;
 }
 
-.ticker:hover {
-  background: var(--gh-bg-hover);
-}
-
-.ticker:hover .hint {
-  color: var(--gh-gold-soft);
-}
-
-/* Fixed label — signals the bar is clickable, doesn't scroll. */
+/* Mode label — the bar's link to the full page. */
 .hint {
   display: flex;
   align-items: center;
@@ -37,9 +26,16 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ticker:hover .hint {
+  color: var(--gh-gold-soft);
 }
 
 .viewport {
+  position: relative;
   flex: 1;
   display: flex;
   align-items: center;
@@ -47,11 +43,25 @@
   min-width: 0;
 }
 
+/* Two stacked marquees cross-fading on the mode timer. */
 .track {
+  position: absolute;
+  inset: 0;
   display: flex;
+  align-items: center;
   width: max-content;
   animation: gh-ticker-scroll 90s linear infinite;
   will-change: transform;
+  transition: opacity 0.8s ease;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .ticker:hover .track {
@@ -89,12 +99,11 @@
   letter-spacing: 0.04em;
 }
 
+/* Stats are instruments: mono + tabular in both themes. */
 .price,
 .up,
 .down,
 .flat {
-  /* Stats are instruments: mono + tabular in both the dark theme
-   * (Geist Mono) and the Broadcast Desk direction (IBM Plex Mono). */
   font-family: var(--gh-font-mono);
 }
 
@@ -118,8 +127,23 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* News mode. */
+.pub {
+  color: var(--gh-gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.headline {
+  color: var(--gh-text);
+  font-weight: 600;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .track {
     animation: none;
+    transition: none;
   }
 }

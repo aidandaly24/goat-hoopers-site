@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Season } from "@/domain";
 import { formatSeasonStatus } from "@/domain";
 import { Badge } from "@/ui/Badge";
@@ -23,7 +24,9 @@ export function LeagueHero({ season }: { season: Season }) {
       </p>
       <div className={styles.badges}>
         <Badge tone="gold">{season.seasonYear}</Badge>
-        <Badge>{season.totalTeams} managers</Badge>
+        <Link href="/teams" className={styles.teamsLink} aria-label="View all teams">
+          <Badge>{season.totalTeams} managers</Badge>
+        </Link>
       </div>
     </header>
   );

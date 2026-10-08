@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { Anton, Geist_Mono, Inter } from "next/font/google";
 import type { PlayerStock } from "@/domain";
+import { PUBLICATIONS } from "@/domain";
 import "@/ui/tokens.css";
 import "./globals.css";
 import { getCurrentUser, logout } from "@/app/actions";
-import { getSeasonMeta, getStockMarketData } from "@/data/league";
+import { getSeasonMeta, getStockMarketData, getLeagueNews } from "@/data/league";
 import { SiteHeader } from "@/ui/SiteHeader";
 import { SiteFooter } from "@/ui/SiteFooter";
 import { MobileNav } from "@/ui/MobileNav";
-import { StockTicker } from "@/surfaces/stock-market/StockTicker";
+import {
+  CombinedTicker,
+  type TickerHeadline,
+} from "@/surfaces/stock-market/CombinedTicker";
 
 /* Display: condensed arena-signage energy for headlines and scores. */
 const display = Anton({
@@ -45,19 +49,29 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 /**
- * Site-wide player stock ticker. Sits above the header (both stick —
- * the ticker at top:0, the header just below it). Fails silent: a
- * market outage renders nothing rather than breaking the page.
+ * Site-wide ticker, ESPN style: alternates league news headlines with
+ * stock quotes. Fails silent: a market/news outage renders nothing rather
+ * than breaking the page.
  */
 async function Ticker() {
   let stocks: PlayerStock[] = [];
+  let headlines: TickerHeadline[] = [];
   try {
-    const market = await getStockMarketData();
+    const [market, news] = await Promise.all([
+      getStockMarketData(),
+      getLeagueNews(),
+    ]);
     stocks = market.stocks;
+    headlines = news.slice(0, 12).map((a) => ({
+      text: a.headline,
+      publication: PUBLICATIONS[a.publication].name,
+    }));
   } catch {
     stocks = [];
+    headlines = [];
   }
-  return <StockTicker stocks={stocks} />;
+  if (stocks.length === 0 && headlines.length === 0) return null;
+  return <CombinedTicker stocks={stocks} headlines={headlines} />;
 }
 
 export default async function RootLayout({

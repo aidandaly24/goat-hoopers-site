@@ -15,7 +15,7 @@ import styles from "./StockMarket.module.css";
  * Contract:
  * - Receives a fully-loaded `StockMarket` (see `src/data/league.ts`).
  * - Never fetches. Never touches Sleeper. Domain objects in, JSX out.
- * - The site-wide ticker is a separate component (`StockTicker`),
+ * - The site-wide ticker is a separate component (`CombinedTicker`),
  *   rendered by the root layout — this surface owns the full page.
  * - The board's position/rookie filters live in the client component
  *   `StockBoard`; everything else renders on the server.

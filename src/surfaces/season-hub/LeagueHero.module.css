@@ -60,3 +60,12 @@
   gap: var(--gh-s2);
   justify-content: center;
 }
+
+/* The managers badge links to the teams page. */
+.teamsLink {
+  text-decoration: none;
+  border-radius: 999px;
+}
+.teamsLink:hover {
+  filter: brightness(1.12);
+}

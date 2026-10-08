@@ -1,0 +1,49 @@
+.chips {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: var(--gh-s4);
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar {
+  display: none;
+}
+
+.chip,
+.chipActive {
+  flex-shrink: 0;
+  font-family: var(--gh-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--gh-border);
+  background: var(--gh-bg-raised);
+  color: var(--gh-text-dim);
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--gh-border-strong);
+  color: var(--gh-text);
+}
+
+.chipActive {
+  background: var(--gh-gold);
+  border-color: var(--gh-gold);
+  color: var(--gh-ink-on-accent);
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s5);
+}
+
+.empty {
+  color: var(--gh-text-faint);
+  font-style: italic;
+  margin: var(--gh-s4) 0;
+}

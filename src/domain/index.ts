@@ -41,6 +41,14 @@ export type { MatchupPreview } from "./matchup-preview";
 export type { Transaction, TransactionType, PlayerMove } from "./transaction";
 export type { DraftPick } from "./draft";
 export type {
+  NewsArticle,
+  NewsKind,
+  NewsSection,
+  Publication,
+  PublicationId,
+} from "./news";
+export { PUBLICATIONS, NEWS_SECTIONS } from "./news";
+export type {
   PlayerStock,
   StockMarket,
   StockFactor,

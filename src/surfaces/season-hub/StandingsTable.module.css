@@ -52,8 +52,17 @@
   color: var(--gh-text-faint);
 }
 
-.row:nth-child(2) .rank {
+/* Medal metals for the top 3 — replaces the old nth-child gold rule. */
+.medal1 {
   color: var(--gh-gold);
+}
+
+.medal2 {
+  color: var(--gh-silver);
+}
+
+.medal3 {
+  color: var(--gh-bronze);
 }
 
 .team {

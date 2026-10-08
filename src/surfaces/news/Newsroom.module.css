@@ -1,0 +1,36 @@
+.room {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s6);
+  padding: var(--gh-s8) var(--gh-s4);
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-s2);
+}
+
+.eyebrow {
+  color: var(--gh-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.title {
+  font-size: 2.25rem;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.lede {
+  color: var(--gh-text-dim);
+  max-width: 42rem;
+  margin: 0;
+  line-height: 1.6;
+}
