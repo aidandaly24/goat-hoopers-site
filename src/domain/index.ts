@@ -66,6 +66,8 @@ export type {
   StockFactor,
   StockFactorKind,
   StockTrend,
+  StockQuote,
+  StockDetail,
   PanicSignal,
 } from "./stock";
 export type { Season } from "./season";

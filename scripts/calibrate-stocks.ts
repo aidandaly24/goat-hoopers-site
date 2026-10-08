@@ -1,6 +1,6 @@
 /* Calibration + sanity test for valuation v2. Run: npx tsx scripts/calibrate-stocks.ts */
 import {
-  computeStockMarket,
+  computePlayerStocks,
   futureSeasonValue,
   prospectWeight,
   pedigreeFppg,
@@ -51,7 +51,7 @@ for (const n of names) {
   rosteredCount[pid] = 10; // all rostered
 }
 
-const market = computeStockMarket({
+const priced = computePlayerStocks({
   players,
   rosteredCount,
   totalRosters: 10,
@@ -65,8 +65,8 @@ const market = computeStockMarket({
   now: Date.now(),
 });
 
-console.log("pricingBasis:", market.pricingBasis);
-for (const s of market.stocks) {
+
+for (const s of priced) {
   const p = profiles[s.playerId];
   console.log(
     `${s.playerName}: $${s.price} (trailing=${p?.fppg ?? "n/a"}, w=${prospectWeight(p?.careerMinutes ?? 0, (players[s.playerId] as any).years_exp).toFixed(2)}, fs=${futureSeasonValue((players[s.playerId] as any).age)})`
@@ -78,13 +78,13 @@ for (const s of market.stocks) {
 
 // Acceptance: one 5-fppg game moves a veteran <5% and a rookie <2%
 function priceWith(prof: any, pid: string) {
-  const m = computeStockMarket({
+  const priced = computePlayerStocks({
     players, rosteredCount, totalRosters: 10, faabSpent: {}, faabBudget: 200,
     flow: {}, tradeCount: {}, draftPick: leaguePicks,
     statProfiles: { ...profiles, [pid]: prof },
     history: null, now: Date.now(),
   });
-  return m.stocks.find(s => s.playerId === pid)!.price;
+  return priced.find(s => s.playerId === pid)!.price;
 }
 const vetPid = ids["Giannis Antetokounmpo"];
 const vetProf = { ...profiles[vetPid], emaFppg: 30, emaGames: 40 };

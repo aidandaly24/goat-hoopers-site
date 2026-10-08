@@ -19,6 +19,8 @@ import type {
   StockMarket,
   StockFactor,
   StockTrend,
+  StockQuote,
+  StockDetail,
   PanicSignal,
 } from "@/domain";
 import type {
@@ -675,7 +677,13 @@ function displayNameOf(id: string, entry: RawPlayerEntry): string {
   );
 }
 
-export function computeStockMarket(input: StockMarketInput): StockMarket {
+/**
+ * Price every player with a market footprint, full PlayerStock objects.
+ * Pure: same inputs, same outputs. Used by computeStockMarket (which slims
+ * the list to quotes for Rule 14) and by getStockDetail (one player's deep
+ * data for the expanded row).
+ */
+export function computePlayerStocks(input: StockMarketInput): PlayerStock[] {
   const {
     players,
     rosteredCount,
@@ -687,11 +695,9 @@ export function computeStockMarket(input: StockMarketInput): StockMarket {
     draftPick,
     statProfiles,
     history,
-    now,
   } = input;
 
   const priced: PlayerStock[] = [];
-  let anyInSeason = false;
   /** Future seasons at peak age — the age factor is measured against this. */
   const FS_PEAK = futureSeasonValue(27);
 
@@ -721,7 +727,6 @@ export function computeStockMarket(input: StockMarketInput): StockMarket {
     const pedigree = pedigreeFppg(prof?.leaguePick ?? pick);
     let trailing = prof?.fppg ?? null;
     if (prof && prof.emaFppg != null && prof.emaGames > 0) {
-      anyInSeason = true;
       // In-season: blend trailing production toward the current-season
       // EMA as games accumulate (up to 50/50 after 20 games).
       const sw = Math.min(prof.emaGames / 20, 0.5);
@@ -851,6 +856,15 @@ export function computeStockMarket(input: StockMarketInput): StockMarket {
   }
 
   priced.sort((a, b) => b.price - a.price);
+  return priced;
+}
+
+export function computeStockMarket(input: StockMarketInput): StockMarket {
+  const { flow, now, statProfiles } = input;
+  const priced = computePlayerStocks(input);
+  const anyInSeason = Object.values(statProfiles ?? {}).some(
+    (p) => p.emaGames > 0
+  );
 
   const hasHistory = priced.some((s) => s.changePct != null);
   const movers = priced.filter((s) => s.changePct != null);
@@ -866,28 +880,29 @@ export function computeStockMarket(input: StockMarketInput): StockMarket {
   // Panic meter — rule-based, documented, no vibes.
   const panic: PanicSignal[] = [];
   for (const s of priced) {
-    const { drops } = input.flow[s.playerId] ?? { drops: 0 };
+    const quote = toStockQuote(s);
+    const { drops } = flow[s.playerId] ?? { drops: 0 };
     if (s.tradeCount >= 3) {
       panic.push({
-        stock: s,
+        stock: quote,
         reason: `Traded ${s.tradeCount}× in 14 days — why is everyone moving him?`,
         intensity: 3,
       });
     } else if (s.tradeCount === 2) {
       panic.push({
-        stock: s,
+        stock: quote,
         reason: "Traded twice in 14 days — the league is restless",
         intensity: 2,
       });
     } else if (drops >= 2 && s.ownership >= 0.5) {
       panic.push({
-        stock: s,
+        stock: quote,
         reason: `Dropped by ${drops} managers despite ${Math.round(s.ownership * 100)}% ownership`,
         intensity: 2,
       });
-    } else if (drops - (input.flow[s.playerId]?.adds ?? 0) >= 3 && s.price >= 40) {
+    } else if (drops - (flow[s.playerId]?.adds ?? 0) >= 3 && s.price >= 40) {
       panic.push({
-        stock: s,
+        stock: quote,
         reason: `Getting dumped — ${drops} drops lately on a $${s.price.toFixed(2)} stock`,
         intensity: 1,
       });
@@ -900,12 +915,46 @@ export function computeStockMarket(input: StockMarketInput): StockMarket {
   );
 
   return {
-    stocks: priced,
-    trending,
-    falling,
+    stocks: priced.map(toStockQuote),
+    trending: trending.map(toStockQuote),
+    falling: falling.map(toStockQuote),
     panic: panic.slice(0, 5),
     updatedAt: now,
     hasHistory,
     pricingBasis: anyInSeason ? "in-season" : "preseason",
+  };
+}
+
+/**
+ * Slim a full PlayerStock down to its list-view quote. Per Rule 14, the
+ * list ships only what rows render — factors, season history, and the
+ * sparkline load on expand via getStockDetail.
+ */
+export function toStockQuote(s: PlayerStock): StockQuote {
+  return {
+    playerId: s.playerId,
+    playerName: s.playerName,
+    position: s.position,
+    nbaTeam: s.nbaTeam,
+    price: s.price,
+    prevPrice: s.prevPrice,
+    change: s.change,
+    changePct: s.changePct,
+    trend: s.trend,
+    ownership: s.ownership,
+    rookiePick: s.rookiePick,
+  };
+}
+
+/**
+ * Extract one player's deep data from a full PlayerStock. Powers
+ * getStockDetail — never ships in list HTML.
+ */
+export function toStockDetail(s: PlayerStock): StockDetail {
+  return {
+    playerId: s.playerId,
+    factors: s.factors,
+    seasonHistory: s.seasonHistory,
+    spark: s.spark,
   };
 }

@@ -24,6 +24,7 @@ import type {
   TeamProfile,
   Matchup,
   StockMarket,
+  StockDetail,
   NewsArticle,
 } from "@/domain";
 import type { PlayerStatProfile } from "@/domain";
@@ -56,9 +57,12 @@ import {
   toDraftPicks,
   computeLeagueStats,
   computeStockMarket,
+  computePlayerStocks,
+  toStockDetail,
   emptyLeagueStats,
   currentStreak,
   type LeagueStatsInput,
+  type StockMarketInput,
 } from "./transform";
 import {
   computePowerRankings,
@@ -572,8 +576,12 @@ const STOCK_WINDOW_DAYS = 14;
  * this per request — without dedup it computed and serialized all 262
  * players twice. See perf audit on issue #16.
  */
-export const getStockMarketData = cache(
-  async (): Promise<StockMarket> => {
+/**
+ * League-wide market inputs, cached per request. Shared by the list loader
+ * and the per-player detail loader so an expand doesn't refetch what the
+ * page already fetched.
+ */
+const getMarketInputs = cache(async (): Promise<StockMarketInput> => {
   const now = Date.now();
   const windowStart = now - STOCK_WINDOW_DAYS * 24 * 60 * 60 * 1000;
 
@@ -694,7 +702,7 @@ export const getStockMarketData = cache(
     history = null;
   }
 
-  const market = computeStockMarket({
+  return {
     players: directory ?? {},
     rosteredCount,
     totalRosters: league.total_rosters,
@@ -706,21 +714,46 @@ export const getStockMarketData = cache(
     statProfiles,
     history,
     now,
-  });
+  };
+});
 
-  // Persist this snapshot for next time's change %. Fire-and-forget safe:
-  // a failed write must never break the page.
-  try {
-    const prices: Record<string, number> = {};
-    for (const s of market.stocks) prices[s.playerId] = s.price;
-    await getStockStore().saveSnapshot(prices);
-  } catch {
-    // History stays as it was; next load tries again.
-  }
+export const getStockMarketData = cache(
+  async (): Promise<StockMarket> => {
+    const input = await getMarketInputs();
+    const market = computeStockMarket(input);
 
-  return market;
+    // Persist this snapshot for next time's change %. Fire-and-forget safe:
+    // a failed write must never break the page.
+    try {
+      const prices: Record<string, number> = {};
+      for (const s of market.stocks) prices[s.playerId] = s.price;
+      await getStockStore().saveSnapshot(prices);
+    } catch {
+      // History stays as it was; next load tries again.
+    }
+
+    return market;
   }
 );
+
+/**
+ * One player's deep data for the expanded stock row. Served by
+ * GET /api/stocks/[playerId] on expand — never in list HTML (Rule 14).
+ * Honest about cost: this recomputes the market for one player, so an
+ * expand is a real request, not free.
+ */
+export async function getStockDetail(
+  playerId: string
+): Promise<StockDetail | null> {
+  try {
+    const input = await getMarketInputs();
+    const stocks = computePlayerStocks(input);
+    const found = stocks.find((s) => s.playerId === playerId);
+    return found ? toStockDetail(found) : null;
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Everything the League News Network needs: the auto-generated article
