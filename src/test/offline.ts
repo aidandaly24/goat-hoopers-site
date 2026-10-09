@@ -11,3 +11,5 @@ Socket.prototype.connect = createGuardedConnect(Socket.prototype.connect, proces
 // Do not let a developer's ambient application credentials affect fixtures.
 delete process.env.DATABASE_URL;
 delete process.env.PRICE_HISTORY_IMPORT_URL;
+delete process.env.OPENAI_API_KEY;
+delete process.env.GOAT_AI_DECIDES_ENABLED;

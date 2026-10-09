@@ -51,3 +51,54 @@ jobs:
       # Google fonts; no database, import, migration or deployment is invoked.
       - name: Compile the production app
         run: npm run build
+
+  ai-postgres:
+    name: AI Decides disposable PostgreSQL
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      DATABASE_URL: ""
+      PRICE_HISTORY_IMPORT_URL: ""
+      OPENAI_API_KEY: ""
+      GOAT_AI_DECIDES_ENABLED: ""
+      RUN_PRICE_HISTORY_LOCAL_TEST: "0"
+      RUN_CLAIM_TEAM_LOCAL_TEST: "0"
+      RUN_AI_POSTGRES_TEST: "1"
+      npm_config_engine_strict: "true"
+    services:
+      postgres:
+        # Official image, fixed release; ephemeral synthetic database only.
+        image: postgres:16.15-alpine
+        env:
+          POSTGRES_USER: goat_ai_ci
+          POSTGRES_PASSWORD: synthetic-ci-only
+          POSTGRES_DB: goat_ai_decides_ci
+        ports:
+          - 127.0.0.1:55447:5432
+        options: >-
+          --cpus 1 --memory 768m --pids-limit 128 --shm-size 128m
+          --tmpfs /var/lib/postgresql/data:rw,size=384m
+          --health-cmd "pg_isready -U goat_ai_ci -d goat_ai_decides_ci"
+          --health-interval 3s --health-timeout 3s --health-retries 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Record the tested code and schema revision
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          EVENT_SHA: ${{ github.sha }}
+        run: |
+          printf 'PR head: %s\nEvent SHA: %s\n' "$PR_HEAD_SHA" "$EVENT_SHA"
+          git log -1 --format='Tested commit: %H%nSource tree: %T'
+          sha256sum migrations/ai-decider.sql
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install the locked dependencies
+        run: npm ci --include=dev
+      - name: Exercise real PostgreSQL CAS and immutable history
+        run: npx --no-install vitest run --config vitest.ai-postgres.config.mts
+      # The suite drops only its generated schema and closes its pool. GitHub
+      # always removes this job's service container; no persistent volume exists.

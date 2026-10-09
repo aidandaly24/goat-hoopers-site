@@ -750,6 +750,40 @@ Mobile and desktop are both first-class (rule 7). The convention:
   feed. Empty-but-successfully-fetched inputs are legitimate; the
   invariant is "failure throws", not "empty throws".
 
+## AI Decides
+
+`src/domain/ai-decider.ts` is the client-safe draft/result/slate contract, including
+every option probability, independent API confidence and frozen snapshot metadata.
+`src/data/ai-decider/` owns strict validation, the fixed server-only Decisions
+adapter, current-session validation, durable Postgres CAS budgets and immutable
+weekly prediction/outcome storage. Dependencies are injected for offline tests.
+`POST /api/ai-decides` delegates bounded same-origin drafts to that service;
+anonymous users can build drafts without provider calls. `GET` and
+`getAiDecidesData()` read cached weekly picks only. League fetch/preparation stays
+in `league.ts`; the new raw starter/reserve/taxi/slot/leg fields are optional and
+do not change existing transforms. No full player directory is requested.
+
+The explicit pre-week preparation/generation operation seals one snapshot,
+uses a versioned prompt/model and saves all five choice distributions in one
+batch, with incomplete matchups labeled unavailable. An experimental prior PPG
+baseline and append-only final outcome records remain separate from predictions.
+Each immutable week carries a hashed generation manifest; historical reads and
+outcomes use its frozen model/prompt rather than current generation constants.
+Globally unsupported inputs return before sealing. Usage is settled independently
+of prediction decoding, with idempotent CAS completion even for retained leases.
+Unknown scoring mode, preseason and unsupported Game Pick assumptions fail
+closed; Lock-In PPG is never multiplied by games. `migrations/ai-decider.sql`
+is unapplied in production and starts disabled. Existing auth/valuation/repair tables are reused
+or read without schema/behavior changes. UI/page integration has a separate owner.
+The dedicated disposable PostgreSQL CI job executes the AI migration only in a
+generated synthetic schema, verifying actual SQL/CAS/triggers with provider mocks.
+Its guarded loopback target and service lifecycle never use an application DB URL.
+Provider credentials and runtime stay behind `server-only`. `OPENAI_API_KEY`,
+`GOAT_AI_DECIDES_ENABLED=true` and an enabled durable control row are separate
+server activation gates; absent settings/state produce unavailable drafts.
+See [AI Decides handoff](docs/ai-decides.md) for limits, retention, exact contracts,
+auth findings and outstanding activation/verification work.
+
 ## Environment
 
 - `SLEEPER_LEAGUE_ID` — overrides the default league (GOAT Hoopers

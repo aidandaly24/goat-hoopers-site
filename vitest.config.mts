@@ -5,6 +5,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
+      // Next poisons this import in client bundles. Offline tests run the server modules.
+      "server-only": "next/dist/compiled/server-only/empty.js",
     },
   },
   test: {

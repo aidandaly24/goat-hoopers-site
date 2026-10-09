@@ -27,10 +27,14 @@ export type RawLeague = {
   season: string;
   status: string;
   total_rosters: number;
+  /** Ordered starting slots; unknown when absent. */
+  roster_positions?: string[];
   settings: {
     playoff_teams: number;
     playoff_week_start: number;
     divisions: number;
+    /** Raw code; never infer Lock-In/Game Pick without verification. */
+    game_mode?: number;
     /** Waiver budget in FAAB dollars; anchors the stock market's FAAB scale. */
     waiver_budget?: number;
   };
@@ -54,6 +58,9 @@ export type RawRoster = {
   settings: RawRosterSettings;
   /** All rostered player_ids (starters + bench + taxi + IR). */
   players: string[];
+  starters?: string[];
+  reserve?: string[] | null;
+  taxi?: string[] | null;
 };
 
 export type RawUser = {
@@ -69,6 +76,9 @@ export type RawNbaState = {
   /** "pre" | "regular" | "post". */
   season_type: string;
   season: string;
+  /** Sleeper NBA uses leg; preseason is zero. */
+  leg?: number;
+  season_start_date?: string;
 };
 
 export type RawMatchupEntry = {
@@ -77,6 +87,7 @@ export type RawMatchupEntry = {
   matchup_id: number;
   /** Fantasy points; null before the matchup is played. */
   points: number | null;
+  starters?: string[];
 };
 
 export type RawTransaction = {
