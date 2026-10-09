@@ -15,7 +15,8 @@ const states: DetailState[] = [
 function inspector(selected: StockQuote | null, detail: DetailState) {
   const onClose = vi.fn();
   const element = StockInspector({ quote: selected, detail, onClose, headingRef: null,
-    onRetry: vi.fn(), examples: [quote], onInspect: vi.fn() }) as ReactElement<HTMLAttributes<HTMLElement>>;
+    onRetry: vi.fn(), examples: [quote], onInspect: vi.fn(),
+    loadHistory: vi.fn(async () => { throw new Error("Keyboard test must not load history"); }) }) as ReactElement<HTMLAttributes<HTMLElement>>;
   return { onClose, element };
 }
 function key(key: string, defaultPrevented = false) {
