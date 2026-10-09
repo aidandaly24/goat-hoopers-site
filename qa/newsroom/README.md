@@ -1,4 +1,11 @@
-# Newsroom private browser fixture
+# Newsroom private browser fixture (historical)
+
+This is a historical QA record for the fictional Newsroom reader UI. [PR119](https://github.com/aidandaly24/goat-hoopers-site/pull/119)
+replaced that UI with real article links and removed `src/surfaces/news/stories.test.ts`
+and `src/surfaces/news/storyLinks.test.ts`. The browser runner still checks the old
+voices and reader dialogs, so its commands and coverage below are retained context,
+not a maintained runnable regression guide for the current Newsroom. Preserve the
+fixture and saved evidence; the old pending checks below do not describe current work.
 
 This mounts production Newsroom, SiteHeader and MobileNav with explicit synthetic
 stories. No loader, API route, auth/store or DB is imported. Fonts reuse approved

@@ -44,6 +44,10 @@ test("METRIC_INFO covers all five metrics with honest definitions", () => {
     METRIC_INFO.wireAggression.definition,
     /no FAAB bids exist in the transaction data/,
   );
+  assert.match(
+    METRIC_INFO.patience.definition,
+    /among managers with measured tenure/,
+  );
 });
 
 const MID: Record<MetricId, number> = {
@@ -104,6 +108,21 @@ test("assignArchetype reaches every archetype", () => {
   assert.equal(Object.keys(ARCHETYPES).length, 9);
 });
 
+test("archetype taglines carry no unsupported numbers", () => {
+  // Reusable tagline copy must not embed standalone numeric claims:
+  // drops/survivors are not in the raw schema, so no injected manager
+  // or future season may inherit one season's numbers from shared copy.
+  // (Age descriptors like "19-year-old" are generic copy, not stat
+  // claims, so hyphen-adjacent digits are excluded.)
+  const statNumber = /(?:^|[^\d\w-])\d+(?:[^\d\w-]|$)/;
+  for (const [id, a] of Object.entries(ARCHETYPES)) {
+    assert.ok(
+      !statNumber.test(a.tagline),
+      `${id} tagline embeds a numeric claim: ${a.tagline}`,
+    );
+  }
+});
+
 test("decision table: first match wins when several gates fire", () => {
   // Gate 1 beats the homer and hoarder gates.
   assert.equal(
@@ -160,7 +179,7 @@ function rawFixture(
   return { "1": { ...base, ...over } };
 }
 
-test("buildArchetypeProfiles: null tenure becomes the max observed tenure", () => {
+test("buildArchetypeProfiles: null tenure stays null; measured tenures rank within the measured cohort", () => {
   const base: RawGmMetrics2025 = {
     managerName: "x",
     teamName: null,
@@ -180,9 +199,48 @@ test("buildArchetypeProfiles: null tenure becomes the max observed tenure", () =
   const byName = Object.fromEntries(
     profiles.map((p) => [p.seasons[0].managerName, p.seasons[0].metrics]),
   );
-  // null -> max observed (20): ties share the top percentile with the 20-day manager.
-  assert.equal(byName.unknown.patience, byName.slow.patience);
-  assert.ok((byName.unknown.patience ?? 0) > (byName.quick.patience ?? 0));
+  // Unmeasured stays unmeasured: never a percentile, never a gate input.
+  assert.equal(byName.unknown.patience, null);
+  // Measured managers rank against the measured-only cohort.
+  assert.equal(byName.slow.patience, 100);
+  assert.equal(byName.quick.patience, 0);
+});
+
+test("buildArchetypeProfiles: an all-null tenure cohort cannot satisfy a measured-patience gate", () => {
+  const base: RawGmMetrics2025 = {
+    managerName: "x",
+    teamName: null,
+    draftCapital: 0,
+    trades: 0,
+    adds: 0,
+    avgAgeYears: 25,
+    medianTenureDays: null,
+    homerHerfindahl: 0.07,
+    fixhimAdds: 0,
+  };
+  // Extreme wire volume would have fallen back to patience 0 (and the
+  // dynasty-terrorist gate) under the old imputation.
+  const profiles = buildArchetypeProfiles({
+    "1": { ...base, managerName: "wirefiend", adds: 100, draftCapital: 5 },
+    "2": { ...base, managerName: "quiet", adds: 10, draftCapital: 0 },
+  });
+  for (const p of profiles) {
+    assert.equal(p.seasons[0].metrics.patience, null);
+  }
+  const fiend = profiles.find(
+    (p) => p.seasons[0].managerName === "wirefiend",
+  );
+  assert.ok(fiend);
+  assert.equal(fiend.seasons[0].metrics.wireAggression, 100);
+  assert.notEqual(fiend.seasons[0].archetype, "dynasty-terrorist");
+});
+
+test("2025 frozen managers with unmeasured tenure show patience as null", () => {
+  const profiles = buildArchetypeProfiles(GM_METRICS_2025);
+  const byId = Object.fromEntries(profiles.map((p) => [p.rosterId, p]));
+  // Rosters 8 and 9 have no timed stints in the baked artifact.
+  assert.equal(byId["8"].seasons[0].metrics.patience, null);
+  assert.equal(byId["9"].seasons[0].metrics.patience, null);
 });
 
 test("buildArchetypeProfiles: one entry per roster, sorted by roster id", () => {

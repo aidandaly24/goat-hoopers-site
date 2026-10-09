@@ -36,7 +36,7 @@ it("keeps the PostgreSQL suite out of offline collection and production build co
   const base = readFileSync("vitest.config.mts", "utf8");
   expect(dedicated).toContain("postgres.integration.ts");
   expect(dedicated).toContain("./src/test/ai-postgres.ts");
-  expect(base).toContain('include: ["src/**/*.test.ts"]');
+  expect(base).toContain('include: ["src/**/*.test.ts", "src/**/*.test.tsx"]');
   expect(JSON.parse(readFileSync("package.json", "utf8")).scripts.build).toBe("next build");
   const workflow = readFileSync(".github/workflows/ci.yml", "utf8");
   expect(workflow).toContain("image: postgres:16.15-alpine");
