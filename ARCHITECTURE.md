@@ -454,9 +454,12 @@ and actor links remain in the native reader with visible generated/parody labels
 pushes, voice changes replace, Back/Forward restore. Close/Escape goes Back only
 for an entry opened in the current visit; initial deep links close by replacement.
 Missing, duplicate, unguarded or changed article snapshots are explicitly
-unavailable. The presentation-only fingerprint includes all supplied fields;
-reused render slots cannot reopen another event, and regenerated content/time
-may expire a link. `qa/newsroom/` mounts production components with synthetic
+unavailable. New v2 fingerprints exclude only regenerated rookie/rumor/take
+timestamps; trade/waiver transaction-derived time, exact content and actor refs
+remain guarded. v1 matches only its complete original snapshot. Unverifiable
+versions offer explicit, labelled current-story navigation only for a unique
+candidate, never automatic substitution. Policy: `docs/newsroom-content-revisions.md`.
+`qa/newsroom/` mounts production components with synthetic
 props and approved local fonts/chrome, not an app route. Its native-anchor
 adapter does not verify Next App Router restoration.
 
