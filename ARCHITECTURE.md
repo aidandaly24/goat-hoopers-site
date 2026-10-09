@@ -63,7 +63,10 @@ src/
                  # Transaction, DraftPick, Season, LeagueStats, PlayerDetail,
                  # TeamProfile, PowerRanking, PlayoffOdds, RecordBook,
                  # MatchupPreview, PlayerMove, PlayerStock/StockMarket,
-                 # TradeVerdict/analyzeTrade.
+                 # TradeVerdict/analyzeTrade, ManagerArchetype (GM IQ:
+                 # per-season manager archetypes — MetricId, ARCHETYPES,
+                 # percentileRank, assignArchetype's documented decision
+                 # table, buildArchetypeProfiles, currentArchetype).
                  # Types + tiny helpers only. formatSeasonStatus(Season.status)
                  # renders the human status ("pre_season" -> "Preseason").
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
@@ -97,6 +100,12 @@ src/
                  # getDefendingChampion (champion roster id from the
                  # playoff winners bracket; null until someone wins —
                  # feeds TeamAvatar's isChampion).
+    manager-archetypes.ts # GM IQ loaders: getManagerArchetypes /
+                 # getManagerArchetype — pure reads of the baked 2025
+                 # metrics (gm-archetypes-2025.ts) through the domain's
+                 # buildArchetypeProfiles. No Sleeper, no DB, no cache:
+                 # the season is final, so the input never changes. The
+                 # raw map is an injectable parameter (rule 11).
     db.ts        # SECOND DOOR: Vercel Postgres via Drizzle. Schema +
                  # lazy client. Nothing else imports drizzle or SQL.
     arcade.ts    # GameStore contract + DrizzleGameStore + FakeGameStore
@@ -127,6 +136,11 @@ src/
                  # roster (headshots, every name -> player page), game
                  # log, rookie picks, recent wire moves. Receives domain
                  # objects, never fetches.
+                 # GmArchetypeCard: the GM IQ card — one manager's
+                 # archetype from real season behavior (archetype name +
+                 # tagline, five percentile bars, season label,
+                 # prior-manager note). Null archetype renders an honest
+                 # empty state.
     player/      # "Who is this guy": one NBA player's page — headshot,
                  # position pill, NBA team, owning GOAT Hoopers roster
                  # (or Free Agent), rookie-draft slot, wire history.
@@ -242,25 +256,31 @@ src/
                  # display name with a team-colored avatar ring is the
                  # single entry point to /team and "My Team" disappears;
                  # logged out, "My Team" stays as the login nudge.
-                 # Desktop/mobile order: Home / News / Stocks / History /
-                 # Arcade / Team, with boundary-aware nested active states.
-                 # MobileNav is the bottom tab bar with the same destinations
-                 # shown at <=40rem; the header nav hides there. Its measured
-                 # height reserves content/focus space at enlarged text sizes.
-                 # Header nav wraps into a complete row at <=64rem.
-                 # SiteFooter is the site-wide footer (league, season,
-                 # links, unaffiliated-with-NBA/Sleeper line). All three
-                 # take state as props (dependency inversion); the root
-                 # layout provides the user and the season.
+                 # Root layout supplies ui/siteDestinations.ts's small typed
+                 # ordered list to SiteHeader and filters its footer entries.
+                 # Desktop primary: Home / News / Stocks / History / Arcade.
+                 # League tools discloses Teams / Transactions / Draft / Intel /
+                 # Trade Analyzer / Weekly archive in the same phone/desktop order.
+                 # Phone: approved logo / persistent Stocks / Menu, with Stocks
+                 # omitted from Menu to avoid duplicate links/current states.
+                 # SiteHeader composes the existing server ticker slot and toolbar
+                 # inside SiteChrome; disclosure panels are normal-flow siblings,
+                 # so their enlarged height never inflates sticky target clearance.
+                 # Ordinary links/disclosures close on Escape, activation, route
+                 # changes and responsive layout exit; no focus trap or modal menu.
+                 # Phone account actions live only in Menu. The fixed bottom bar
+                 # and its body-space reservation are retired. MobileNav and
+                 # SectionNav keep null compatibility seams for unchanged owners'
+                 # pages/isolated reviews, with no destination lists or markup.
+                 # SiteFooter keeps league, season, existing links and disclaimer;
+                 # destinations derive from the root list. Ticker/poller, auth and
+                 # league/data ownership remain unchanged.
                  # PositionPill colors PG/SG/SF/PF/C via --gh-pos-* tokens.
                  # PlayerHeadshot renders the ESPN CDN headshot by ESPN athlete
                  # id (Player.espnId; plain <img>, never next/image — Hobby
                  # quota) with an initials-in-team-colored-disc fallback
                  # (client component for the onError switch). Unmapped or
                  # broken images fall back to initials.
-                 # SectionNav is the secondary tab row for the league pages
-                 # (Transactions / Draft Board / Teams / Intel); pages provide the
-                 # active tab.
                  # Reading the session cookie in the layout forces dynamic
                  # rendering (see layout.tsx) — deliberate: correct account
                  # state everywhere beats static caching for a ten-manager

@@ -8,7 +8,8 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 FAMILY = ROOT / "design/brand/swept-horns"
-BASE = "d80e9c4d515b7aed0a09998caaa6f1a1d9a92057"
+# Current integration scope base; source provenance keeps its original authoring base.
+BASE = "71fa01451e71228ee67d5916af9d884647ebb65a"
 NS = "{http://www.w3.org/2000/svg}"
 PALETTE = {"black": "#111111", "clay": "#A54429", "white": "#FFFFFF", "cream": "#F0D5B5"}
 EXPECTED = {(kind, color) for kind in ("emblem", "micro", "horizontal", "primary") for color in PALETTE if not (kind == "horizontal" and color == "cream")}
