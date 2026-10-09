@@ -162,9 +162,11 @@ src/
                  # objects, never fetches.
                  # GmArchetypeCard: the GM IQ card — one manager's
                  # archetype from real season behavior (archetype name +
-                 # tagline, five percentile bars, season label,
-                 # prior-manager note). Null archetype renders an honest
-                 # empty state.
+                 # tagline, five percentile bars with visible percentile
+                 # units and keyboard/touch-accessible metric definitions,
+                 # season label, prior-manager note). Unmeasured metrics
+                 # stay null and render as unavailable (never imputed).
+                 # Null archetype renders an honest empty state.
     player/      # "Who is this guy": one NBA player's page — headshot,
                  # position pill, NBA team, owning GOAT Hoopers roster
                  # (or Free Agent), rookie-draft slot, wire history.
@@ -480,20 +482,26 @@ games under future league scoring changes.
 
 ### The League News Network (real articles)
 
-`getLeagueNews` (in `src/data/league.ts`) feeds the `/news` page and the
-ticker's news mode with REAL NBA articles — no generated fiction. The
-pipeline:
+`getLeagueNews` (in `src/data/league.ts`) feeds the ticker's news mode
+and `getLeagueNewsEdition` feeds the `/news` page with REAL NBA
+articles — no generated fiction. The pipeline:
 
 ```
-ESPN + CBS Sports RSS  →  fetchRssFeed (src/data/real-news.ts, fetch injected)
-                       →  parseRssItems (pure, regex-based — no DOMParser server-side)
+ESPN + CBS Sports RSS  →  fetchRssFeed (src/data/real-news.ts, fetch injected,
+                          per-outlet source-host policy on destinations)
+                       →  parseRssItems (pure, regex-based — no DOMParser
+                          server-side; absolute http(s) links only)
                        →  matchPlayersToArticle (pure full-name matching vs the
-                          projected player directory)
+                          projected player directory, via the shared
+                          playerSearchKey from #116 — accent/apostrophe
+                          insensitive, Unicode-aware word boundaries)
                        →  buildRealNewsFeed (pure: strip HTML, ~200-char summaries,
-                          dedupe by URL, newest-first, section assignment)
+                          dedupe by URL, newest-first, section assignment —
+                          classification only from KNOWN identity inputs)
                        →  loadLeagueNews (src/data/league.ts: RSS in parallel via
                           Promise.allSettled + roster/directory/draft-board
-                          identity inputs, all injectable per rule 11)
+                          identity inputs, each recorded ok/unknown,
+                          all injectable per rule 11)
                        →  createLeagueNewsCache (5-min shared copy, last-good on
                           refresh failure)
 ```
@@ -501,44 +509,50 @@ ESPN + CBS Sports RSS  →  fetchRssFeed (src/data/real-news.ts, fetch injected)
 - **Sources:** `https://www.espn.com/espn/rss/nba/news` and
   `https://www.cbssports.com/rss/headlines/nba/`. The Athletic is
   paywalled and Bleacher Report's feed endpoint is dead — deliberately
-  not attempted.
-- **Sections:** every article is always in Latest. A mention of a
-  rostered league player adds League Players; a mention of a 2026
-  drafted rookie adds Rookie Wire; a mention of an NBA player on no
-  league roster adds Free Agency.
+  not attempted. Article destinations must be absolute http(s) URLs;
+  each feed additionally enforces its outlet's host allowlist
+  (espn.com / cbssports.com, subdomains allowed) — see the
+  source-host policy comment in `src/data/real-news.ts`.
+- **Sections:** every article is always in Latest. Classification beyond
+  that needs the identity inputs to be KNOWN: a rostered-league-player
+  mention adds League Players, a 2026-drafted-rookie mention adds Rookie
+  Wire, a mention of an NBA player on no league roster adds Free Agency.
+  A failed input is recorded as unknown in the edition's coverage — it
+  never looks like an empty real roster/draft, so a roster outage can't
+  invent Free Agency labels and a draft outage can't silently remove
+  Rookie Wire.
 - **Resilience:** one feed failing still yields the other; both feeds
   failing throws so the TTL cache preserves last-good (cold failure →
-  honest empty feed). Failed identity inputs (rosters/directory/draft)
-  degrade to articles without player chips rather than killing the feed.
-- **Matching:** full names only (never bare surnames), case-insensitive,
-  whole-word, suffix-aware ("Jr.", "II"), longest-first with matched
-  spans blanked so "Mikel Brown" can't false-positive inside
-  "Mikel Brown Jr.".
-- `/news` revalidates every 10 minutes (the requested article cadence);
-  the shared 5-min cache means the root-layout ticker and `/news` never
-  recompute independently. Surfaces render the outlet masthead, the
-  headline as an external link to the real article, a relative
-  timestamp, the summary, and subtle mentioned-player chips
-  (plain text until hover) linking to `/player/[playerId]`.
+  honest empty edition with all coverage unknown). Failed identity
+  inputs degrade to explicit unknown coverage, never to invented
+  classifications.
+- **Matching:** full names only (never bare surnames), normalized with
+  the shared `playerSearchKey` (accent/case/apostrophe-insensitive),
+  Unicode-aware whole-word boundaries, suffix-aware ("Jr.", "II"),
+  longest-first with matched spans blanked so "Mikel Brown" can't steal
+  "Mikel Brown Jr.". One normalized name shared by two playerIds is
+  ambiguous → no chip, never a wrong chip.
+- **Freshness, honestly:** the root layout is `force-dynamic` (session
+  cookie), so `/news` renders per request and its `revalidate = 600`
+  is inert — the effective freshness is the shared per-instance
+  5-minute TTL cache, which the ticker and `/news` both read. Open
+  pages do not auto-poll; a reload fetches the current cached edition.
+  Deliberately no client polling (free-tier budget).
+- **URL contract** (`src/surfaces/news/newsUrls.ts`): `?section=<id>`
+  selects a section with working Back/Forward/refresh. `?story=` /
+  `?revision=` are legacy params from the retired fictional story
+  reader: they render an honest "retired" notice with a path back to
+  the headlines, never a broken reader. Timestamps render relative
+  text with a deterministic UTC `title` (no `toLocaleString` — it
+  differs by server/client locale and breaks hydration).
+- Surfaces render the outlet masthead, the headline as an external link
+  to the real article, a relative timestamp, the summary, and subtle
+  mentioned-player chips (plain text until hover) linking to
+  `/player/[playerId]`.
 
-The Newsroom groups only recognized existing rookie/trade/waiver article-ID
-families with matching kind, section and complete player/team refs. Ambiguous
-families and standalone rumors/takes stay separate; encoded transaction prefixes
-are not durable upstream event IDs. No loader/cache contract changes. One lead
-and compact headlines replace repeated full articles. Original voices, bodies
-and actor links remain in the native reader with visible generated/parody labels.
-`?section=…&story=<original article id>&revision=<snapshot fingerprint>` preserves reading state: open
-pushes, voice changes replace, Back/Forward restore. Close/Escape goes Back only
-for an entry opened in the current visit; initial deep links close by replacement.
-Missing, duplicate, unguarded or changed article snapshots are explicitly
-unavailable. New v2 fingerprints exclude only regenerated rookie/rumor/take
-timestamps; trade/waiver transaction-derived time, exact content and actor refs
-remain guarded. v1 matches only its complete original snapshot. Unverifiable
-versions offer explicit, labelled current-story navigation only for a unique
-candidate, never automatic substitution. Policy: `docs/newsroom-content-revisions.md`.
-`qa/newsroom/` mounts production components with synthetic
-props and approved local fonts/chrome, not an app route. Its native-anchor
-adapter does not verify Next App Router restoration.
+`qa/newsroom/` mounts production components with synthetic editions and
+approved local fonts/chrome, not an app route; `verify.mts` asserts the
+acceptance checklist structurally (no browser in CI).
 
 ### The stats seam (dependency inversion in the read path)
 
@@ -766,6 +780,14 @@ remain accessible without a database. Preview deployment must never crash
 on a missing database.
 
 ## Accounts (how the auth works)
+
+Proposed future replacement: [friends-only account foundations](docs/friends-accounts.md).
+Dormant `src/domain/arcade/account-identity.ts` and `src/data/account-identity.ts`
+preserve the app UUID across provider credentials; `src/domain/arcade/competition.ts`
+defines bounded validation/cosmetic candidates. No current route imports them.
+Existing runtime below remains active; no provider, schema, reset or reward
+activation is included. The plan preserves score/reward ownership and coordinates
+AI Decides' atomic session check before any later credential/session reset.
 
 - **Claim:** Aidan generates one single-use invite code per Sleeper team
   at `/admin/invites` and distributes each privately. A manager enters the

@@ -9,9 +9,11 @@
 import { describe, expect, it } from "vitest";
 import {
   OUTLETS,
+  OUTLET_HOSTS,
   buildRealNewsFeed,
   fetchRssFeed,
   hashUrl,
+  isAllowedArticleUrl,
   matchPlayersToArticle,
   parseRssDate,
   parseRssItems,
@@ -60,6 +62,8 @@ function identity(overrides: Partial<NewsIdentityInput> = {}): NewsIdentityInput
     players: PLAYERS,
     rosteredPlayerIds: new Set(["p-brown", "p-lebron"]),
     rookiePlayerIds: new Set(["p-brown", "p-ament"]),
+    rostersKnown: true,
+    draftKnown: true,
     ...overrides,
   };
 }
@@ -298,18 +302,18 @@ describe("loadLeagueNews", () => {
   });
 
   it("one feed failing still yields the other's articles", async () => {
-    const articles = await loadLeagueNews(
+    const edition = await loadLeagueNews(
       deps((async (url: unknown) =>
         String(url).includes("espn")
           ? { ok: true, text: async () => ESPN_XML }
           : Promise.reject(new Error("cbs down"))) as typeof fetch)
     );
-    expect(articles.length).toBeGreaterThan(0);
-    expect(articles.every((a) => a.outlet.id === "espn")).toBe(true);
+    expect(edition.articles.length).toBeGreaterThan(0);
+    expect(edition.articles.every((a) => a.outlet.id === "espn")).toBe(true);
   });
 
-  it("failed identity inputs degrade to articles without player matches", async () => {
-    const articles = await loadLeagueNews(
+  it("failed identity inputs degrade to an explicit unknown-coverage edition", async () => {
+    const edition = await loadLeagueNews(
       deps(okFetch(ESPN_XML), {
         fetchRostersFn: async () => {
           throw new Error("rosters down");
@@ -320,31 +324,38 @@ describe("loadLeagueNews", () => {
         },
       })
     );
-    expect(articles.length).toBeGreaterThan(0);
-    expect(articles.every((a) => a.players.length === 0)).toBe(true);
-    expect(articles.every((a) => a.sections.includes("latest"))).toBe(true);
+    expect(edition.coverage).toEqual({
+      rosters: "unknown",
+      directory: "unknown",
+      draft: "unknown",
+    });
+    expect(edition.articles.length).toBeGreaterThan(0);
+    expect(edition.articles.every((a) => a.players.length === 0)).toBe(true);
+    // No invented classifications — latest only.
+    expect(edition.articles.every((a) => a.sections.join() === "latest")).toBe(true);
   });
 
   it("ignores Sleeper team-defense entries (position DEF) in mention matching", async () => {
     const xml = `<?xml version="1.0"?><rss version="2.0"><channel>
-<item><title>Dallas Mavericks win big</title><link>https://example.com/dal</link>
+<item><title>Dallas Mavericks win big</title><link>https://www.espn.com/nba/story/_/id/99/dal</link>
 <description>The Dallas Mavericks beat everyone.</description>
 <pubDate>Thu, 08 Oct 2026 19:21:47 +0000</pubDate></item>
 </channel></rss>`;
-    const articles = await loadLeagueNews(
+    const edition = await loadLeagueNews(
       deps(okFetch(xml), {
         fetchDirectoryFn: async () => ({
           DAL: { first_name: "Dallas", last_name: "Mavericks", position: "DEF" },
         }),
       })
     );
-    expect(articles).toHaveLength(1);
-    expect(articles[0].players).toEqual([]);
-    expect(articles[0].sections).toEqual(["latest"]);
+    expect(edition.articles).toHaveLength(1);
+    expect(edition.articles[0].players).toEqual([]);
+    expect(edition.articles[0].sections).toEqual(["latest"]);
   });
 
   it("classifies a rostered rookie into league + rookies sections", async () => {
-    const articles = await loadLeagueNews(deps(okFetch(ESPN_XML)));
+    const edition = await loadLeagueNews(deps(okFetch(ESPN_XML)));
+    const articles = edition.articles;
     const brown = articles.find((a) => a.headline.includes("Mikel Brown Jr."))!;
     expect(brown.players).toEqual([
       { playerId: "p-brown", name: "Mikel Brown Jr." },
@@ -382,5 +393,228 @@ describe("fetchRssFeed", () => {
     await expect(
       fetchRssFeed(fakeFetch("   "), "https://example.com/rss")
     ).rejects.toThrow("empty body");
+  });
+});
+
+describe("isAllowedArticleUrl", () => {
+  const espn = OUTLET_HOSTS.espn;
+  it("accepts https apex and subdomains", () => {
+    expect(isAllowedArticleUrl("https://www.espn.com/nba/story/_/id/1/x", espn)).toBe(true);
+    expect(isAllowedArticleUrl("https://espn.com/nba", espn)).toBe(true);
+    expect(isAllowedArticleUrl("http://www.espn.com/nba", espn)).toBe(true);
+  });
+  it("rejects non-http(s) schemes", () => {
+    expect(isAllowedArticleUrl("javascript:alert(1)", espn)).toBe(false);
+    expect(isAllowedArticleUrl("data:text/html,<h1>x</h1>", espn)).toBe(false);
+    expect(isAllowedArticleUrl("ftp://www.espn.com/nba", espn)).toBe(false);
+    expect(isAllowedArticleUrl("file:///etc/passwd", espn)).toBe(false);
+  });
+  it("rejects relative and malformed links", () => {
+    expect(isAllowedArticleUrl("/nba/story/_/id/1/x", espn)).toBe(false);
+    expect(isAllowedArticleUrl("www.espn.com/nba", espn)).toBe(false);
+    expect(isAllowedArticleUrl("", espn)).toBe(false);
+    expect(isAllowedArticleUrl("https://", espn)).toBe(false);
+  });
+  it("rejects off-host links when a host allowlist is given", () => {
+    expect(isAllowedArticleUrl("https://www.cbssports.com/nba/", espn)).toBe(false);
+    expect(isAllowedArticleUrl("https://espn.com.evil.com/nba", espn)).toBe(false);
+  });
+  it("is case-insensitive on the host", () => {
+    expect(isAllowedArticleUrl("https://WWW.ESPN.COM/nba", espn)).toBe(true);
+  });
+  it("without an allowlist, any absolute http(s) URL passes the scheme check", () => {
+    expect(isAllowedArticleUrl("https://example.com/1")).toBe(true);
+    expect(isAllowedArticleUrl("javascript:alert(1)")).toBe(false);
+  });
+});
+
+describe("parseRssItems link policy", () => {
+  const xml = (link: string) => `<?xml version="1.0"?><rss version="2.0"><channel>
+<item><title>Headline</title><link>${link}</link></item>
+</channel></rss>`;
+  it("skips javascript:, relative, and ftp destinations", () => {
+    expect(parseRssItems(xml("javascript:alert(1)"))).toHaveLength(0);
+    expect(parseRssItems(xml("/nba/relative"))).toHaveLength(0);
+    expect(parseRssItems(xml("ftp://www.espn.com/nba"))).toHaveLength(0);
+  });
+  it("keeps absolute http(s) links when no host allowlist is given", () => {
+    expect(parseRssItems(xml("https://example.com/1"))).toHaveLength(1);
+  });
+  it("enforces the outlet host allowlist when provided", () => {
+    const cbs = "https://www.cbssports.com/nba/news/x/";
+    expect(parseRssItems(xml(cbs), OUTLET_HOSTS.espn)).toHaveLength(0);
+    expect(parseRssItems(xml(cbs), OUTLET_HOSTS.cbs)).toHaveLength(1);
+  });
+});
+
+describe("entity decoding", () => {
+  it("decodes astral-plane numeric entities", () => {
+    expect(plainText("&#x1F600;")).toBe("😀");
+    expect(plainText("&#128512;")).toBe("😀");
+  });
+  it("replaces out-of-range and lone-surrogate code points with U+FFFD", () => {
+    expect(plainText("&#x110000;")).toBe("�");
+    expect(plainText("&#0;")).toBe("�");
+    expect(plainText("&#xD800;")).toBe("�");
+  });
+  it("strips encoded HTML tags instead of displaying them", () => {
+    expect(plainText("&lt;script&gt;alert(1)&lt;/script&gt;")).toBe("alert(1)");
+    expect(plainText("&lt;b&gt;bold&lt;/b&gt;")).toBe("bold");
+  });
+  it("keeps doubly-encoded text literal", () => {
+    expect(plainText("&amp;lt;")).toBe("&lt;");
+  });
+  it("preserves bare comparisons", () => {
+    expect(plainText("a &lt; b &gt; c")).toBe("a < b > c");
+  });
+});
+
+describe("matchPlayersToArticle via shared playerSearchKey", () => {
+  const JOKIC = [{ playerId: "p-jokic", name: "Nikola Jokić" }];
+  it("matches an accented name at the very end of a headline", () => {
+    // The exact #122 reproduction: ASCII \\b failed on the trailing diacritic.
+    expect(
+      matchPlayersToArticle("Nuggets win as Nikola Jokić", JOKIC)
+    ).toEqual([{ playerId: "p-jokic", name: "Nikola Jokić" }]);
+  });
+  it("matches unaccented source spellings against accented directory names", () => {
+    expect(matchPlayersToArticle("Nikola Jokic scores 30", JOKIC)).toEqual([
+      { playerId: "p-jokic", name: "Nikola Jokić" },
+    ]);
+  });
+  it("matches curly-apostrophe and apostrophe-less variants", () => {
+    const sharpe = [{ playerId: "p-sharpe", name: "Day'Ron Sharpe" }];
+    expect(matchPlayersToArticle("Day’Ron Sharpe returns", sharpe)).toEqual([
+      { playerId: "p-sharpe", name: "Day'Ron Sharpe" },
+    ]);
+    expect(matchPlayersToArticle("Dayron Sharpe returns", sharpe)).toEqual([
+      { playerId: "p-sharpe", name: "Day'Ron Sharpe" },
+    ]);
+  });
+  it("matches possessive mentions", () => {
+    const sharpe = [{ playerId: "p-sharpe", name: "Day'Ron Sharpe" }];
+    expect(
+      matchPlayersToArticle("Day'Ron Sharpe's big night", sharpe)
+    ).toEqual([{ playerId: "p-sharpe", name: "Day'Ron Sharpe" }]);
+  });
+  it("distinguishes Day'Ron Sharpe from Shaedon Sharpe", () => {
+    const players = [
+      { playerId: "p-dayron", name: "Day'Ron Sharpe" },
+      { playerId: "p-shaedon", name: "Shaedon Sharpe" },
+    ];
+    expect(
+      matchPlayersToArticle("Shaedon Sharpe drops 25", players)
+    ).toEqual([{ playerId: "p-shaedon", name: "Shaedon Sharpe" }]);
+    expect(
+      matchPlayersToArticle("Day'Ron Sharpe grabs 12 boards", players)
+    ).toEqual([{ playerId: "p-dayron", name: "Day'Ron Sharpe" }]);
+  });
+  it("no alias policy: lone shorter directory name does NOT match a suffixed mention", () => {
+    // "LeBron James Jr." in text with only "LeBron James" in the
+    // directory must not become LeBron James — the suffixed span is
+    // reserved, not attributed. Same for Sleeper's suffix-less
+    // "Mikel Brown" vs the real-world "Mikel Brown Jr.": fail closed
+    // until an approved alias policy exists.
+    expect(
+      matchPlayersToArticle("LeBron James Jr. signs a new deal", [
+        { playerId: "p-lebron", name: "LeBron James" },
+      ])
+    ).toEqual([]);
+    expect(
+      matchPlayersToArticle("Mikel Brown Jr. scores 20", [
+        { playerId: "p-brown", name: "Mikel Brown" },
+      ])
+    ).toEqual([]);
+  });
+  it("reserves EVERY occurrence of a longer name, not just the first", () => {
+    // Dot's repro: with "Mikel Brown Jr." twice in the text, the old
+    // matcher blanked only the first occurrence, letting the shorter
+    // "Mikel Brown" claim the second one.
+    const players = [
+      { playerId: "p-jr", name: "Mikel Brown Jr." },
+      { playerId: "p-short", name: "Mikel Brown" },
+    ];
+    expect(
+      matchPlayersToArticle(
+        "Mikel Brown Jr. shines. Mikel Brown Jr. scores20.",
+        players
+      )
+    ).toEqual([{ playerId: "p-jr", name: "Mikel Brown Jr." }]);
+  });
+  it("ambiguous longer spans still reserve: shorter name cannot steal them", () => {
+    // Two different playerIds share "Mikel Brown Jr." (ambiguous — no
+    // chip), plus a shorter unambiguous "Mikel Brown". The old matcher
+    // dropped the ambiguous candidates, letting the shorter ID match.
+    const players = [
+      { playerId: "p-a", name: "Mikel Brown Jr." },
+      { playerId: "p-b", name: "Mikel Brown Jr." },
+      { playerId: "p-short", name: "Mikel Brown" },
+    ];
+    expect(
+      matchPlayersToArticle("Mikel Brown Jr. scores 20", players)
+    ).toEqual([]);
+  });
+  it("ambiguous longer spans reserve across repeated occurrences", () => {
+    const players = [
+      { playerId: "p-a", name: "Mikel Brown Jr." },
+      { playerId: "p-b", name: "Mikel Brown Jr." },
+      { playerId: "p-short", name: "Mikel Brown" },
+    ];
+    expect(
+      matchPlayersToArticle(
+        "Mikel Brown Jr. shines. Mikel Brown Jr. scores20.",
+        players
+      )
+    ).toEqual([]);
+  });
+  it("ambiguous normalized names yield no chip, never a wrong chip", () => {
+    const players = [
+      { playerId: "p-a", name: "John Smith" },
+      { playerId: "p-b", name: "John Smith" },
+    ];
+    expect(matchPlayersToArticle("John Smith traded", players)).toEqual([]);
+  });
+});
+
+describe("buildRealNewsFeed identity states", () => {
+  function sourced() {
+    return parseRssItems(
+      `<?xml version="1.0"?><rss version="2.0"><channel>
+<item><title>LeBron James drops 40</title><link>https://www.espn.com/nba/story/_/id/10/x</link></item>
+<item><title>Mikel Brown Jr. shines</title><link>https://www.espn.com/nba/story/_/id/11/y</link></item>
+</channel></rss>`
+    ).map((item) => ({ outlet: OUTLETS.espn, item }));
+  }
+  function sectionsOf(articles: { headline: string; sections: string[] }[]) {
+    const map = new Map<string, string[]>();
+    for (const a of articles) map.set(a.headline, [...a.sections]);
+    return map;
+  }
+  it("rostersKnown=false invents no league/free-agency labels", () => {
+    const articles = buildRealNewsFeed(
+      sourced(),
+      identity({ rostersKnown: false })
+    );
+    const sections = sectionsOf(articles);
+    expect(sections.get("LeBron James drops 40")).toEqual(["latest"]);
+    // Draft board is known: Rookie Wire still classifies.
+    expect(sections.get("Mikel Brown Jr. shines")).toEqual([
+      "latest",
+      "rookies",
+    ]);
+  });
+  it("draftKnown=false removes Rookie Wire instead of silently emptying it", () => {
+    const articles = buildRealNewsFeed(
+      sourced(),
+      identity({ draftKnown: false })
+    );
+    const sections = sectionsOf(articles);
+    expect(sections.get("Mikel Brown Jr. shines")).toEqual([
+      "latest",
+      "league",
+    ]);
+    expect(
+      articles.some((a) => a.sections.includes("rookies"))
+    ).toBe(false);
   });
 });

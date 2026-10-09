@@ -1,6 +1,9 @@
 .directory {
   min-width: 0;
-  padding: var(--gh-s6) var(--gh-s4);
+  /* Same content rail and responsive gutters as CourtsideHome .wrap. */
+  width: min(var(--gh-cs-wrap), calc(100% - var(--gh-cs-gutter) * 2));
+  margin-inline: auto;
+  padding-block: var(--gh-s6);
 }
 
 .list {

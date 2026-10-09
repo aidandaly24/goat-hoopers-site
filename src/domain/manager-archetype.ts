@@ -32,8 +32,10 @@
  * Honest limitations (also documented on the artifact):
  * - wireAggression is add VOLUME, not FAAB dollars — the 2025 season used
  *   rolling waivers, and no waiver_bid values exist in the transaction data.
- * - A manager with no timed add->drop stints gets the max observed tenure
- *   (no evidence of quick hooks), not a guess.
+ * - A manager with no timed add->drop stints keeps patience = null
+ *   (unmeasured): it is never imputed, is shown as unavailable, and can
+ *   never satisfy a measured-patience archetype gate. Patience percentiles
+ *   are computed within the measured-only cohort.
  * - Roster 8 changed managers between seasons: the 2025 archetype describes
  *   slennox's management, never the current manager's (see priorManagerNote).
  */
@@ -72,7 +74,7 @@ export const METRIC_INFO: Record<
   patience: {
     label: "Patience",
     definition:
-      "Median days between adding and dropping the same player; managers with no timed stints get the max observed value.",
+      "Median days between adding and dropping the same player, ranked among managers with measured tenure. Managers with no timed stints are shown as unmeasured — unmeasured metrics never satisfy an archetype gate.",
   },
 };
 
@@ -126,7 +128,7 @@ export const ARCHETYPES: Record<
   },
   "dynasty-terrorist": {
     name: "The Dynasty Terrorist",
-    tagline: "72 adds. 65 drops. Zero survivors.",
+    tagline: "He adds them. He drops them. He remembers none of them.",
   },
 };
 
@@ -185,6 +187,13 @@ export type ManagerArchetype = {
  * (n - 1)). Ties share the value — equal managers get equal percentiles.
  * With one or fewer values there is nothing to rank against, so the
  * result is the neutral 50.
+ *
+ * The strict-below tie convention is intentional. Precondition: `values`
+ * must be the cohort `v` is ranked within — ranking a value against a
+ * cohort it was not drawn from is meaningless. Callers guard this by
+ * building the cohort and the ranked value from the same observations
+ * (e.g. patience percentiles use the measured-tenure cohort only, and a
+ * null tenure is never ranked at all).
  */
 export function percentileRank(values: number[], v: number): number {
   const n = values.length;
@@ -251,8 +260,11 @@ const PRIOR_MANAGER_NOTE_ROSTER_8 =
 /**
  * Build one ManagerArchetype per roster from a season's raw metrics.
  * Computes the five 0-100 percentiles per manager (youth from negated
- * avgAgeYears; a null tenure becomes the max observed tenure), then
- * assigns the archetype. Pure: same raw in, same profiles out.
+ * avgAgeYears). A null tenure is preserved as an unmeasured (null)
+ * patience metric: it ranks nobody, satisfies no measured-patience gate,
+ * and renders as unavailable. Patience percentiles for measured managers
+ * are computed within the measured-tenure cohort only. Pure: same raw
+ * in, same profiles out.
  */
 export function buildArchetypeProfiles(
   raw: Record<string, RawGmMetrics2025>,
@@ -262,21 +274,21 @@ export function buildArchetypeProfiles(
   const tradeCounts = entries.map(([, r]) => r.trades);
   const addCounts = entries.map(([, r]) => r.adds);
   const youthScores = entries.map(([, r]) => -r.avgAgeYears);
-  const observedTenures = entries
+  const measuredTenures = entries
     .map(([, r]) => r.medianTenureDays)
     .filter((t): t is number => t !== null);
-  const maxTenure =
-    observedTenures.length > 0 ? Math.max(...observedTenures) : 0;
-  const tenures = entries.map(([, r]) => r.medianTenureDays ?? maxTenure);
 
   return entries
     .map(([rosterId, r]) => {
-      const metrics: Record<MetricId, number> = {
+      const metrics: Record<MetricId, number | null> = {
         draftCapital: percentileRank(draftCapitals, r.draftCapital),
         tradeFrequency: percentileRank(tradeCounts, r.trades),
         wireAggression: percentileRank(addCounts, r.adds),
         youthPreference: percentileRank(youthScores, -r.avgAgeYears),
-        patience: percentileRank(tenures, r.medianTenureDays ?? maxTenure),
+        patience:
+          r.medianTenureDays === null
+            ? null
+            : percentileRank(measuredTenures, r.medianTenureDays),
       };
       const archetype = assignArchetype({
         metrics,
@@ -296,7 +308,12 @@ export function buildArchetypeProfiles(
     .sort((a, b) => Number(a.rosterId) - Number(b.rosterId));
 }
 
-/** The manager's current archetype: the last season entry. */
+/**
+ * The last stored season's archetype. "Current" means last stored, not
+ * automatically the current manager: a season's archetype describes the
+ * manager who ran that season (see priorManagerNote), and the roster 8
+ * exception must not be read as a claim of safe multi-season attribution.
+ */
 export function currentArchetype(p: ManagerArchetype): ArchetypeId | null {
   return p.seasons.length > 0
     ? p.seasons[p.seasons.length - 1].archetype

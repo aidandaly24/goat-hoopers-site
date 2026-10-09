@@ -1,4 +1,4 @@
-import type { RealNewsArticle } from "@/domain/news";
+import type { LeagueNewsEdition, NewsCoverage, RealNewsArticle } from "@/domain/news";
 
 // Explicit synthetic articles exercising the real-article contract:
 // outlet mastheads, external links, summaries, player chips, sections.
@@ -71,4 +71,33 @@ export function fixtureArticles(state: string | null = null): RealNewsArticle[] 
   if (state === "duplicate")
     articles = [base[0], { ...base[0], headline: "Another synthetic event sharing the same slot" }];
   return articles;
+}
+
+const OK_COVERAGE: NewsCoverage = { rosters: "ok", directory: "ok", draft: "ok" };
+
+/**
+ * Synthetic editions for the private browser/static fixture.
+ * ?state= selects the variant:
+ * - empty: cold-start outage (builtAt 0, all coverage unknown)
+ * - sparse: one article, full coverage
+ * - draft-unknown: Rookie Wire must render unavailable, not empty
+ * - rosters-unknown: League Players + Free Agency unavailable
+ * - (default): full edition, all coverage ok
+ */
+export function fixtureEdition(state: string | null = null): LeagueNewsEdition {
+  const articles = fixtureArticles(state);
+  if (state === "empty") {
+    return {
+      articles: [],
+      coverage: { rosters: "unknown", directory: "unknown", draft: "unknown" },
+      builtAt: 0,
+    };
+  }
+  const coverage: NewsCoverage =
+    state === "draft-unknown"
+      ? { ...OK_COVERAGE, draft: "unknown" }
+      : state === "rosters-unknown"
+        ? { ...OK_COVERAGE, rosters: "unknown" }
+        : OK_COVERAGE;
+  return { articles, coverage, builtAt: at };
 }

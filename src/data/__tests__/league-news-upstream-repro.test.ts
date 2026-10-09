@@ -9,10 +9,16 @@ vi.mock("@/data/db", () => ({ getDb: forbidden }));
 vi.mock("@/data/stocks", () => ({ getStockStore: forbidden }));
 vi.mock("@/data/nba-stats", () => ({ getStatProfiles: forbidden, getSeasonHistory: forbidden }));
 
-const RSS_XML = (outlet: string) => `<?xml version="1.0"?><rss version="2.0"><channel>
-<item><title>${outlet} headline</title><link>https://${outlet}.example/1</link>
+const RSS_XML = (outlet: "espn" | "cbs") => {
+  const link =
+    outlet === "espn"
+      ? "https://www.espn.com/nba/story/_/id/1/espn-headline"
+      : "https://www.cbssports.com/nba/news/cbs-headline/";
+  return `<?xml version="1.0"?><rss version="2.0"><channel>
+<item><title>${outlet} headline</title><link>${link}</link>
 <description>A big night.</description><pubDate>Thu, 08 Oct 2026 19:21:47 +0000</pubDate></item>
 </channel></rss>`;
+};
 
 const failures = ["espn", "cbs", "both"] as const;
 type Failure = (typeof failures)[number];
@@ -80,13 +86,13 @@ describe("real news loader upstream failure regression", () => {
   it("warm: one feed 503 still refreshes from the other", async () => {
     const f = await fixture();
     const first = await f.cache.get();
-    expect(first.length).toBe(2);
+    expect(first.articles.length).toBe(2);
     f.advance(); f.fail("espn");
     const partial = await f.cache.get();
     // Not last-good: a genuine refresh from the surviving feed.
     expect(partial).not.toBe(first);
-    expect(partial).toHaveLength(1);
-    expect(partial[0].outlet.id).toBe("cbs");
+    expect(partial.articles).toHaveLength(1);
+    expect(partial.articles[0].outlet.id).toBe("cbs");
     expect(f.unexpected).toEqual([]);
     expect(f.calls.some(c => c.status === 503)).toBe(true);
   });
@@ -95,7 +101,7 @@ describe("real news loader upstream failure regression", () => {
     const f = await fixture();
     const first = await f.cache.get();
     const before = f.cache.peek()!;
-    expect(first.length).toBe(2);
+    expect(first.articles.length).toBe(2);
     expect(f.ttl).toBe(300000);
     f.advance(); f.fail("both");
     const refreshed = await f.cache.get();
@@ -103,14 +109,14 @@ describe("real news loader upstream failure regression", () => {
     expect(f.unexpected).toEqual([]);
     expect(f.calls.some(c => c.status === 503)).toBe(true);
     expect.soft(refreshed === first, "last-good array reference").toBe(true);
-    expect.soft(refreshed.map(a => a.id), "last-good article IDs").toEqual(first.map(a => a.id));
+    expect.soft(refreshed.articles.map(a => a.id), "last-good article IDs").toEqual(first.articles.map(a => a.id));
     expect.soft(after.fetchedAt, "failed refresh must not restart TTL").toBe(before.fetchedAt);
   });
 
   it("cold: both feeds 503 rejects and immediate recovery retries", async () => {
     const f = await fixture();
     f.fail("both");
-    const result = await f.cache.get().then(value => ({ rejected: false, count: value.length }),
+    const result = await f.cache.get().then(value => ({ rejected: false, count: value.articles.length }),
       () => ({ rejected: true, count: null }));
     const coldPeek = f.cache.peek();
     const callsBefore = f.calls.length;
@@ -119,7 +125,7 @@ describe("real news loader upstream failure regression", () => {
     expect(f.unexpected).toEqual([]);
     expect.soft(result.rejected, "cache rejects; getLeagueNews owns empty UI fallback").toBe(true);
     expect.soft(coldPeek, "failed cold load is not a successful empty feed").toBeNull();
-    expect.soft(recovered.length, "immediate healthy recovery produces news").toBeGreaterThan(0);
+    expect.soft(recovered.articles.length, "immediate healthy recovery produces news").toBeGreaterThan(0);
     expect.soft(f.calls.length, "immediate healthy recovery issues requests").toBeGreaterThan(callsBefore);
   });
 });

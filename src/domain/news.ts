@@ -57,3 +57,51 @@ export type PlayerRef = {
   playerId: string;
   name: string;
 };
+
+/**
+ * Per-input health of the identity data an edition was classified under.
+ *
+ * A failed input is "unknown" — never an empty real roster/draft. The
+ * loader records this per input so the feed can stay honest instead of
+ * inventing classifications from missing data.
+ */
+export type NewsCoverage = {
+  /** "ok" when the roster fetch succeeded; "unknown" when it failed. */
+  rosters: "ok" | "unknown";
+  /** "ok" when the player directory succeeded; "unknown" when it failed. */
+  directory: "ok" | "unknown";
+  /** "ok" when the draft board succeeded; "unknown" when it failed. */
+  draft: "ok" | "unknown";
+};
+
+/** One built feed: the articles plus the coverage they were classified under. */
+export type LeagueNewsEdition = {
+  articles: RealNewsArticle[];
+  coverage: NewsCoverage;
+  /**
+   * Unix ms when this edition was built; 0 when no edition ever
+   * succeeded (cold-start outage — the honest empty state).
+   */
+  builtAt: number;
+};
+
+/**
+ * Whether a section can be trusted under the given coverage.
+ *
+ * "latest" is always available — it needs no identity inputs. The
+ * classified sections go UNAVAILABLE (never silently empty) when the
+ * input they depend on is unknown: without rosters nobody can be
+ * called a league player or a free agent; without the draft board
+ * there is no Rookie Wire; without the directory there is no name
+ * matching at all.
+ */
+export function sectionCoverageStatus(
+  section: RealNewsSection,
+  coverage: NewsCoverage
+): "available" | "unavailable" {
+  if (section === "latest") return "available";
+  if (coverage.directory === "unknown") return "unavailable";
+  if (section === "rookies")
+    return coverage.draft === "ok" ? "available" : "unavailable";
+  return coverage.rosters === "ok" ? "available" : "unavailable";
+}

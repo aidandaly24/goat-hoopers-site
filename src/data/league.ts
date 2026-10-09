@@ -91,10 +91,12 @@ import {
   ESPN_RSS_URL,
   CBS_RSS_URL,
   OUTLETS,
+  OUTLET_HOSTS,
   fetchRssFeed,
   buildRealNewsFeed,
   type SourcedRssItem,
 } from "./real-news";
+import type { LeagueNewsEdition } from "@/domain/news";
 import { createTtlCache } from "./cache";
 /* Headshot seam: the Sleeper -> ESPN id map is injected into the toPlayer /
  * toDraftPicks transforms here (rule 11). Swap SEED_ESPN_ID_MAP for Aidan's
@@ -1023,24 +1025,30 @@ export async function getStockDetail(
  * src/data/real-news.ts), classified by who they mention: league
  * players, 2026 rookies, or free agents.
  *
+ * Identity inputs (rosters, directory, draft board) fail INDEPENDENTLY
+ * and are recorded as unknown in the edition's coverage — a failed
+ * input never looks like an empty real roster/draft, so a roster
+ * outage can't invent Free Agency labels and a draft outage can't
+ * silently remove Rookie Wire.
+ *
  * Reuse: the feed is public, read-only data (RSS + rosters + draft —
  * nothing session-scoped), so one cached copy is shared across
  * requests — the root-layout ticker and /news no longer recompute it
- * independently. Freshness is 5 minutes, matching the /news page
- * revalidate. A failed refresh serves the last-good feed; a
- * cold-start failure degrades to an empty feed instead of throwing
- * the page.
+ * independently. Freshness is the shared per-instance 5-minute TTL
+ * cache (see below), not the /news page's revalidate. A failed refresh
+ * serves the last-good edition; a cold-start failure degrades to an
+ * honest empty edition instead of throwing the page.
  */
 export const LEAGUE_NEWS_TTL_MS = 5 * 60 * 1000;
 
 export type LeagueNewsLoadDeps = {
   /** Injectable fetch for the RSS feeds (tests). Defaults to global fetch. */
   fetchFn?: typeof fetch;
-  /** Strict roster loader. Defaults to fetchRosters. */
+  /** Roster loader. Defaults to fetchRosters. */
   fetchRostersFn?: () => Promise<RawRoster[]>;
   /** Player directory (names for mention matching). Defaults to safePlayerDirectory. */
   fetchDirectoryFn?: () => Promise<Record<string, RawPlayerEntry> | null>;
-  /** Draft board loader (2026 rookie identities). Defaults to getDraftBoard. */
+  /** Draft board loader (2026 rookie identities). Defaults to getDraftBoardStrict. */
   fetchDraftBoardFn?: () => Promise<DraftBoardData>;
 };
 
@@ -1052,25 +1060,33 @@ export type LeagueNewsLoadDeps = {
  * an empty feed. One feed succeeding is enough for a (possibly quiet)
  * edition — the invariant is "failure throws", not "empty throws".
  *
- * Identity inputs (rosters, directory, draft board) degrade
- * individually: a failed directory still yields articles, just without
- * player matching. Loaders are injectable for tests (rule 11);
+ * Identity inputs degrade individually into explicit unknown coverage
+ * (see NewsCoverage): failed rosters/directory/draft-board never read
+ * as empty real data. Loaders are injectable for tests (rule 11);
  * production uses the module defaults.
  */
 export async function loadLeagueNews(
   deps: LeagueNewsLoadDeps = {}
-): Promise<RealNewsArticle[]> {
+): Promise<LeagueNewsEdition> {
   const {
     fetchFn = fetch,
     fetchRostersFn = fetchRosters,
     fetchDirectoryFn = safePlayerDirectory,
-    fetchDraftBoardFn = getDraftBoard,
+    // Strict by default: getDraftBoard swallows upstream failures into
+    // empty picks, which would mark a draft outage as "ok" and silently
+    // drop Rookie Wire. The strict variant throws on failure so the
+    // outage is recorded as unknown coverage instead. A valid empty
+    // draft (no draft on record) still returns empty picks — distinct
+    // from an outage. getDraftBoard keeps its resilient contract for
+    // its other callers (the /draft page).
+    fetchDraftBoardFn = getDraftBoardStrict,
   } = deps;
 
   // Both RSS feeds in parallel; one failing still yields the other.
+  // Each feed enforces its outlet's source-host policy on destinations.
   const [espn, cbs] = await Promise.allSettled([
-    fetchRssFeed(fetchFn, ESPN_RSS_URL),
-    fetchRssFeed(fetchFn, CBS_RSS_URL),
+    fetchRssFeed(fetchFn, ESPN_RSS_URL, OUTLET_HOSTS.espn),
+    fetchRssFeed(fetchFn, CBS_RSS_URL, OUTLET_HOSTS.cbs),
   ]);
   const sources: SourcedRssItem[] = [];
   if (espn.status === "fulfilled") {
@@ -1083,11 +1099,24 @@ export async function loadLeagueNews(
     throw new Error("All news RSS feeds failed");
   }
 
-  const [rosters, directory, board] = await Promise.all([
-    fetchRostersFn().catch(() => [] as RawRoster[]),
-    fetchDirectoryFn().catch(() => null),
-    fetchDraftBoardFn().catch(() => ({ picks: [], teams: [] }) as DraftBoardData),
+  // Identity inputs fail independently; each failure is recorded, never
+  // mistaken for empty real data.
+  const [rostersR, directoryR, boardR] = await Promise.allSettled([
+    fetchRostersFn(),
+    fetchDirectoryFn(),
+    fetchDraftBoardFn(),
   ]);
+  const rostersKnown = rostersR.status === "fulfilled";
+  // safePlayerDirectory resolves null (not throw) when the directory is
+  // unavailable — null IS the unknown signal, not an empty real directory.
+  const directoryKnown =
+    directoryR.status === "fulfilled" && directoryR.value !== null;
+  const draftKnown = boardR.status === "fulfilled";
+  const rosters = rostersKnown ? rostersR.value : [];
+  const directory = directoryKnown ? directoryR.value : null;
+  const board = draftKnown
+    ? boardR.value
+    : ({ picks: [], teams: [] }) as DraftBoardData;
 
   const players = Object.entries(directory ?? {})
     .map(([playerId, entry]) => ({
@@ -1107,18 +1136,28 @@ export async function loadLeagueNews(
   );
   const rookiePlayerIds = new Set(board.picks.map((p) => p.playerId));
 
-  return buildRealNewsFeed(sources, {
-    players,
-    rosteredPlayerIds,
-    rookiePlayerIds,
-  });
+  return {
+    articles: buildRealNewsFeed(sources, {
+      players,
+      rosteredPlayerIds,
+      rookiePlayerIds,
+      rostersKnown,
+      draftKnown,
+    }),
+    coverage: {
+      rosters: rostersKnown ? "ok" : "unknown",
+      directory: directoryKnown ? "ok" : "unknown",
+      draft: draftKnown ? "ok" : "unknown",
+    },
+    builtAt: Date.now(),
+  };
 }
 
 export type LeagueNewsCacheDeps = {
   /** Injectable clock (tests). */
   now?: () => number;
   /** Injectable loader (tests). */
-  load?: () => Promise<RealNewsArticle[]>;
+  load?: () => Promise<LeagueNewsEdition>;
   /** Injectable TTL (tests). */
   ttlMs?: number;
 };
@@ -1135,10 +1174,31 @@ export function createLeagueNewsCache(deps: LeagueNewsCacheDeps = {}) {
 
 const leagueNewsCache = createLeagueNewsCache();
 
+/**
+ * Article list for the ticker. Unwraps the cached edition; a cold-start
+ * outage degrades to [] instead of throwing the layout.
+ */
 export async function getLeagueNews(): Promise<RealNewsArticle[]> {
+  try {
+    return (await leagueNewsCache.get()).articles;
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Full edition (articles + identity coverage) for the /news page.
+ * A cold-start outage yields an honest empty edition — builtAt 0, all
+ * coverage unknown — instead of throwing the page.
+ */
+export async function getLeagueNewsEdition(): Promise<LeagueNewsEdition> {
   try {
     return await leagueNewsCache.get();
   } catch {
-    return [];
+    return {
+      articles: [],
+      coverage: { rosters: "unknown", directory: "unknown", draft: "unknown" },
+      builtAt: 0,
+    };
   }
 }
