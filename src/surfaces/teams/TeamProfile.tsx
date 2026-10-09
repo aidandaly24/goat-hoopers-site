@@ -1,5 +1,11 @@
 import Link from "next/link";
-import type { FranchiseHistory, Matchup, Team, TeamProfile } from "@/domain";
+import type {
+  FranchiseHistory,
+  ManagerArchetype,
+  Matchup,
+  Team,
+  TeamProfile,
+} from "@/domain";
 import { fmtTotal, isFinal, totalLabel } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
@@ -8,6 +14,7 @@ import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { TransactionSummary } from "@/ui/TransactionSummary";
 import { FranchiseSection } from "@/surfaces/history/FranchiseSection";
+import { GmArchetypeCard } from "./GmArchetypeCard";
 import styles from "./TeamProfile.module.css";
 
 function streakBadge(streak: number) {
@@ -71,6 +78,9 @@ function MatchupRow({ matchup }: { matchup: Matchup }) {
  * Contract:
  * - Receives `profile` (TeamProfile) and `teams` (all league teams, for
  *   transaction actor links).
+ * - Optional `archetype` (ManagerArchetype | null): the GM IQ card renders
+ *   under the identity header when provided (null = honest empty state).
+ *   Omitted = no card (callers without archetype data are untouched).
  * - Empty sections (preseason game log, no transactions) render honest
  *   empty states, never fake rows.
  * - Documented composite surface (ARCHITECTURE.md §3): composes the
@@ -80,10 +90,12 @@ export function TeamProfile({
   profile,
   teams,
   franchise,
+  archetype,
 }: {
   profile: TeamProfile;
   teams: Team[];
   franchise?: FranchiseHistory | null;
+  archetype?: ManagerArchetype | null;
 }) {
   const { team, players, matchups, streak, draftPicks, transactions } =
     profile;
@@ -118,6 +130,8 @@ export function TeamProfile({
           </div>
         </dl>
       </Card>
+
+      {archetype !== undefined && <GmArchetypeCard archetype={archetype} />}
 
       {franchise && <FranchiseSection history={franchise} />}
 
