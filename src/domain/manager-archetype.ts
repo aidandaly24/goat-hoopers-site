@@ -74,7 +74,7 @@ export const METRIC_INFO: Record<
   patience: {
     label: "Patience",
     definition:
-      "Median days between adding and dropping the same player. Managers with no timed stints are shown as unmeasured — unmeasured metrics never satisfy an archetype gate.",
+      "Median days between adding and dropping the same player, ranked among managers with measured tenure. Managers with no timed stints are shown as unmeasured — unmeasured metrics never satisfy an archetype gate.",
   },
 };
 

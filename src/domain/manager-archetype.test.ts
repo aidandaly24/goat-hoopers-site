@@ -44,6 +44,10 @@ test("METRIC_INFO covers all five metrics with honest definitions", () => {
     METRIC_INFO.wireAggression.definition,
     /no FAAB bids exist in the transaction data/,
   );
+  assert.match(
+    METRIC_INFO.patience.definition,
+    /among managers with measured tenure/,
+  );
 });
 
 const MID: Record<MetricId, number> = {

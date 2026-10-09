@@ -55,12 +55,6 @@
   align-items: baseline;
   gap: var(--gh-s2);
   font-size: 0.85rem;
-  cursor: pointer;
-  list-style: none;
-}
-
-.metricHead::-webkit-details-marker {
-  display: none;
 }
 
 .label {
@@ -83,12 +77,29 @@
   line-height: 1;
 }
 
-.metricHead:hover .label,
-.metricHead:focus-visible .label {
+.definitionWrap {
+  margin: 0;
+}
+
+.definitionToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gh-s1);
+  font-size: 0.8rem;
+  color: var(--gh-text-dim);
+  cursor: pointer;
+  list-style: none;
+}
+
+.definitionToggle::-webkit-details-marker {
+  display: none;
+}
+
+.definitionToggle:hover {
   color: var(--gh-text);
 }
 
-.metricHead:focus-visible {
+.definitionToggle:focus-visible {
   outline: 2px solid var(--gh-accent);
   outline-offset: 2px;
   border-radius: var(--gh-radius);

@@ -10,10 +10,11 @@ import styles from "./GmArchetypeCard.module.css";
  * Contract:
  * - Receives `archetype` (ManagerArchetype | null). Renders the current
  *   season's archetype name (display face) + tagline, the five metric bars
- *   (label + mono value with a visible percentile unit + bar; definitions
- *   in a keyboard/touch-accessible disclosure under each label, never
- *   hover-only), the season label, and the prior-manager note when the
- *   roster changed managers between seasons.
+ *   (label + mono value with a visible percentile unit + bar, always visible
+ *   by default), the season label, and the prior-manager note when the
+ *   roster changed managers between seasons. Each metric's definition lives
+ *   in its own native keyboard/touch-accessible disclosure under the bar —
+ *   never hover-only, never hiding the bars themselves.
  * - A null archetype renders an honest empty state, never fake numbers.
  * - An unmeasured (null) metric renders as "—" with a visible "n/a" unit
  *   and an empty bar: unavailable is never dressed up as a measured value.
@@ -75,14 +76,9 @@ export function GmArchetypeCard({
             const v = season.metrics[id];
             const { label, definition } = METRIC_INFO[id];
             return (
-              <details key={id} className={styles.metric}>
-                <summary className={styles.metricHead}>
-                  <span className={styles.label}>
-                    {label}
-                    <span className={styles.info} aria-hidden="true">
-                      i
-                    </span>
-                  </span>
+              <div key={id} className={styles.metric}>
+                <div className={styles.metricHead}>
+                  <span className={styles.label}>{label}</span>
                   <span className="gh-num">
                     {v === null ? (
                       <>
@@ -96,8 +92,7 @@ export function GmArchetypeCard({
                       </>
                     )}
                   </span>
-                </summary>
-                <p className={styles.definition}>{definition}</p>
+                </div>
                 <div
                   className={styles.barTrack}
                   role="img"
@@ -112,7 +107,16 @@ export function GmArchetypeCard({
                     style={{ width: `${v ?? 0}%` }}
                   />
                 </div>
-              </details>
+                <details className={styles.definitionWrap}>
+                  <summary className={styles.definitionToggle}>
+                    <span className={styles.info} aria-hidden="true">
+                      i
+                    </span>
+                    What this measures
+                  </summary>
+                  <p className={styles.definition}>{definition}</p>
+                </details>
+              </div>
             );
           })}
         </div>
