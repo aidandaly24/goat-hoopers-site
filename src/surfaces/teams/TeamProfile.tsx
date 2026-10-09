@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { FranchiseHistory, Matchup, Team, TeamProfile } from "@/domain";
-import { isFinal } from "@/domain";
+import { fmtTotal, isFinal, totalLabel } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
 import { PlayerName, PlayerRow } from "@/ui/PlayerRow";
@@ -119,7 +119,9 @@ export function TeamProfile({
           </div>
           <div>
             <dt>PA</dt>
-            <dd>{(team.pointsAgainst / 100).toFixed(1)}</dd>
+            <dd aria-label={totalLabel("Points against", team.pointsAgainst)}>
+              {fmtTotal(team.pointsAgainst)}
+            </dd>
           </div>
         </dl>
       </Card>

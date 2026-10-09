@@ -60,10 +60,12 @@ function ScoreLine({ s }: { s: TeamWeekScore }) {
 export function RecordBook({ book }: { book: RecordBook | null }) {
   return (
     <Card>
-      <SectionHeading eyebrow="Immortality" title="Record Book" />
+      <SectionHeading eyebrow="Immortality" title="This Season's Record Book" />
       {book === null ? (
         <p className={styles.empty}>
-          No records yet — history starts when the first whistle blows.
+          No records yet this season — history starts when the first whistle
+          blows. The 2025 archive lives in the{" "}
+          <Link href="/history">Trophy Room</Link>.
         </p>
       ) : (
         <div className={styles.columns}>

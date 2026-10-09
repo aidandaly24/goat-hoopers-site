@@ -86,3 +86,4 @@ export type {
   ManagerActivity,
   MatchupHighlight,
 } from "./stats";
+export { UNAVAILABLE_TOTAL, fmtTotal, totalLabel } from "./format";
