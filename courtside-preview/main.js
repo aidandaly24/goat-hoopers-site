@@ -6,10 +6,8 @@
   const teams = snapshot.teams;
   const main = document.getElementById('content');
   const notes = document.getElementById('notes-dialog');
-  const figurine = document.getElementById('club-dialog');
   let selected = null;
   let view = '';
-  let viewerPromise = null;
   let motionObserver = null;
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const icon = name => `<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-${name}"/></svg>`;
@@ -56,7 +54,7 @@
       const opponent=entry.opener?teamById(entry.opener.opponentId):null;
       const anchors=entry.featuredPlayerIds.map(id=>entry.players.find(p=>p.id===id)).filter(Boolean);
       const hits=query?entry.players.filter(p=>p.fullName.toLocaleLowerCase().includes(query)).map(p=>p.fullName):[];
-      return `<details class="team-entry" data-team-id="${escape(team.id)}"><summary class="team-summary" aria-label="${escape(team.name)}, ${entry.players.length} players; expand roster"><div class="team-identity">${avatar(team)}<div><h3>${escape(team.name)}</h3><p>${escape(team.managerName)}${team.id==='5'?' · 2025 champion':''}</p></div></div><div class="team-record">${prior?`<strong>${prior.wins}–${prior.losses}</strong><small>2025 · ${ordinal(prior.finish)}</small>`:'<small>Record unavailable</small>'}</div><div class="team-opponent">${opponent?`<span>Week ${entry.opener.leagueWeek} vs ${escape(opponent.name)}</span>`:'Pairing pending'}</div><span class="roster-toggle">${entry.players.length} players ${icon('chevron')}</span></summary>${hits.length?`<p class="search-hit">On this roster: ${escape(hits.join(', '))}</p>`:''}<div class="roster-detail"><div class="roster-detail-heading"><p>Current roster · Oct 8</p><a class="text-link" href="${teamURL(team.id)}">Full team profile ${icon('arrow-up-right')}</a></div><div class="anchor-detail"><div class="anchor-faces">${anchors.map(p=>`<a href="${playerURL(p.id)}" aria-label="Open ${escape(p.fullName)} player page"><img src="assets/player-${escape(p.id)}.png" alt="" width="300" height="200" loading="lazy"></a>`).join('')}</div><p>Roster anchors: ${anchors.map(p=>`<a href="${playerURL(p.id)}">${escape(p.fullName)}</a>`).join(' / ')}</p></div><ul class="roster-list">${entry.players.map(p=>`<li><a href="${playerURL(p.id)}"><span>${escape(p.fullName)}</span><small>${escape(p.position||'—')} · ${escape(p.nbaTeam||'FA')}</small></a></li>`).join('')}</ul>${prior?.ownerNote?`<p class="owner-note">2025 context: ${escape(prior.ownerNote)}</p>`:''}${opponent?`<a class="text-link" href="${teamURL(opponent.id)}">Opening opponent: ${escape(opponent.name)} ${icon('arrow-up-right')}</a>`:''}${entry.recentMove?`<p class="roster-wire"><strong>Latest move · ${escape(entry.recentMove.dateLabel)}</strong> ${escape(entry.recentMove.text)}</p>`:''}<div><button class="button secondary figurine-link" data-inspect="${escape(team.id)}" aria-label="Inspect ${escape(team.name)} existing league figurine">${icon('cube')} Inspect existing league figurine</button></div></div></details>`;
+      return `<details class="team-entry" data-team-id="${escape(team.id)}"><summary class="team-summary" aria-label="${escape(team.name)}, ${entry.players.length} players; expand roster"><div class="team-identity">${avatar(team)}<div><h3>${escape(team.name)}</h3><p>${escape(team.managerName)}${team.id==='5'?' · 2025 champion':''}</p></div></div><div class="team-record">${prior?`<strong>${prior.wins}–${prior.losses}</strong><small>2025 · ${ordinal(prior.finish)}</small>`:'<small>Record unavailable</small>'}</div><div class="team-opponent">${opponent?`<span>Week ${entry.opener.leagueWeek} vs ${escape(opponent.name)}</span>`:'Pairing pending'}</div><span class="roster-toggle">${entry.players.length} players ${icon('chevron')}</span></summary>${hits.length?`<p class="search-hit">On this roster: ${escape(hits.join(', '))}</p>`:''}<div class="roster-detail"><div class="roster-detail-heading"><p>Current roster · Oct 8</p><a class="text-link" href="${teamURL(team.id)}">Full team profile ${icon('arrow-up-right')}</a></div><div class="anchor-detail"><div class="anchor-faces">${anchors.map(p=>`<a href="${playerURL(p.id)}" aria-label="Open ${escape(p.fullName)} player page"><img src="assets/player-${escape(p.id)}.png" alt="" width="300" height="200" loading="lazy"></a>`).join('')}</div><p>Roster anchors: ${anchors.map(p=>`<a href="${playerURL(p.id)}">${escape(p.fullName)}</a>`).join(' / ')}</p></div><ul class="roster-list">${entry.players.map(p=>`<li><a href="${playerURL(p.id)}"><span>${escape(p.fullName)}</span><small>${escape(p.position||'—')} · ${escape(p.nbaTeam||'FA')}</small></a></li>`).join('')}</ul>${prior?.ownerNote?`<p class="owner-note">2025 context: ${escape(prior.ownerNote)}</p>`:''}${opponent?`<a class="text-link" href="${teamURL(opponent.id)}">Opening opponent: ${escape(opponent.name)} ${icon('arrow-up-right')}</a>`:''}${entry.recentMove?`<p class="roster-wire"><strong>Latest move · ${escape(entry.recentMove.dateLabel)}</strong> ${escape(entry.recentMove.text)}</p>`:''}</div></details>`;
     }).join('');
   }
   function directory() {
@@ -109,14 +107,6 @@
     mark.addEventListener('animationend',()=>motionObserver?.disconnect(),{once:true});
     motionObserver.observe(mark);
   }
-  async function loadViewer() {
-    if(!viewerPromise)viewerPromise=new Promise((resolve,reject)=>{
-      const script=document.createElement('script');
-      script.src='court.js';script.onload=resolve;script.onerror=()=>{script.remove();viewerPromise=null;reject(new Error('Viewer unavailable'));};
-      document.head.append(script);
-    });
-    return viewerPromise;
-  }
   function route() {
     const hash=location.hash;
     document.querySelector('[data-home]').setAttribute('aria-current',hash==='#archive'?'false':'page');
@@ -135,7 +125,7 @@
     }
     scrollTo({top:0,behavior:'instant'});
   }
-  main.addEventListener('click',async event=>{
+  main.addEventListener('click',event=>{
     if(event.target.closest('#clear-search')){
       const input=document.getElementById('team-search');input.value='';updateDirectory();input.focus();
     }
@@ -143,26 +133,14 @@
       document.getElementById('matchup-notes').innerHTML=`<p class="context-label">${escape(selected.game.note)}</p><h2 id="notes-title">Why this matchup?</h2><p>${escape(selected.game.selectionReason)}</p><p class="caption">${selected.status==='draft'?'Proposed editorial selection for review.':'Curated weekly selection.'} ${selected.game.state==='upcoming'?'No projected result or live score is implied.':''}</p><div class="notes-teams">${(selected.game.teamIds||[]).map(id=>{const team=teamById(id);return team?`<a class="text-link" href="${teamURL(id)}">${escape(team.name)} ${icon('arrow-up-right')}</a>`:'';}).join('')}</div>${editorialSources(selected)}`;
       notes.showModal();
     }
-    const inspect=event.target.closest('[data-inspect]');
-    if(inspect){
-      const team=teamById(inspect.dataset.inspect);if(!team)return;
-      document.getElementById('figurine-title').textContent=team.name;
-      document.getElementById('figurine-team-link').href=teamURL(team.id);
-      document.getElementById('scene-status').textContent='Loading the existing league figurine…';
-      figurine.showModal();
-      try{await loadViewer();if(figurine.open)window.openClubScene?.(team.id,team.name);}
-      catch{document.getElementById('scene-status').textContent='The optional viewer is unavailable. The full team profile is still available.';}
-    }
   });
   main.addEventListener('input',event=>{if(event.target.id==='team-search')updateDirectory();});
   main.addEventListener('change',event=>{if(event.target.id==='team-sort')updateDirectory();});
   main.addEventListener('submit',event=>event.preventDefault());
-  for(const dialog of [notes,figurine]){
+  for(const dialog of [notes]){
     dialog.querySelector('[data-close]').addEventListener('click',()=>dialog.close());
     dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
   }
-  figurine.addEventListener('close',()=>window.closeClubScene?.());
-  document.getElementById('rotate-figurine').addEventListener('click',()=>window.rotateClubScene?.());
   document.addEventListener('visibilitychange',()=>{const mark=main.querySelector('.transition-mark');if(mark)mark.style.animationPlayState=document.hidden||mark.dataset.inView!=='true'?'paused':'running';});
   addEventListener('hashchange',route);
   route();
