@@ -2,11 +2,13 @@
 
 Run with Node 22, separately supplied Playwright and installed Chrome. The
 harness creates a private production-Next fixture from the real root layout,
-shared primitives, Stocks and Trade Analyzer pages/components. It records
+shared primitives, Stocks, Trade Analyzer and Newsroom pages/components. It records
 source hashes and the one fixture-only layout guard for ticker absence.
 Synthetic loader/session/poller adapters never access a database or account.
-Other destinations have clearly labeled placeholder bodies: only their shared
-navigation/current-route state is under test.
+The Newsroom/ticker receives a clearly synthetic RealNewsArticle with the
+current outlet shape; no RSS feed is fetched. Other destinations have clearly
+labeled placeholder bodies: only their shared navigation/current-route state
+is under test.
 
 ```sh
 NAV_TEST_PLAYWRIGHT=/absolute/path/to/playwright/index.mjs \

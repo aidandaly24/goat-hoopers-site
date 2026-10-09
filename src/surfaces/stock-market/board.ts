@@ -1,4 +1,5 @@
 import type { PriceHistoryPoint, StockQuote } from "@/domain";
+import { playerNameMatches } from "@/domain/player-search";
 
 export const PAGE_SIZE = 25;
 export type BoardFilters = {
@@ -14,9 +15,8 @@ export const DEFAULT_FILTERS: BoardFilters = {
 
 /** Presentation only: combine filters; keep absent changes behind known ones. */
 export function filterStocks(stocks: StockQuote[], filters: BoardFilters) {
-  const query = filters.query.trim().toLowerCase();
   return stocks.filter((s) =>
-    (!query || s.playerName.toLowerCase().includes(query)) &&
+    playerNameMatches(s.playerName, filters.query) &&
     (!filters.position || s.position === filters.position) &&
     (!filters.drafted || s.rookiePick !== null) &&
     (filters.roster === "all" ||

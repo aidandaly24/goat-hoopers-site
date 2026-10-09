@@ -32,7 +32,7 @@ async function copy(name) {
   const source = await readFile(path.join(repo, name)); assert.deepEqual(await readFile(target), source);
   summary.hashes[name] = createHash("sha256").update(source).digest("hex");
 }
-for (const dir of ["src/domain", "src/surfaces/stock-market", "src/surfaces/trade-analyzer"]) {
+for (const dir of ["src/domain", "src/surfaces/stock-market", "src/surfaces/trade-analyzer", "src/surfaces/news"]) {
   await cp(path.join(repo, dir), path.join(fixture, dir), { recursive: true, filter: n => !/(?:__tests__|\.test\.|\.md$)/.test(n) });
 }
 for (const name of ["SiteHeader", "SiteFooter", "SiteChrome", "SectionNav", "Badge", "Card", "PlayerRow", "PlayerHeadshot"]) {
@@ -40,16 +40,16 @@ for (const name of ["SiteHeader", "SiteFooter", "SiteChrome", "SectionNav", "Bad
   if (name !== "SectionNav") await copy(`src/ui/${name}.module.css`);
 }
 for (const name of ["currentRoute.ts", "siteDestinations.ts", "teamColors.ts", "tokens.css"]) await copy(`src/ui/${name}`);
-for (const name of ["src/data/espn.ts", "src/app/layout.tsx", "src/app/globals.css", "src/app/stocks/page.tsx", "src/app/trade-analyzer/page.tsx", "src/test/site-shell/stocks.ts", "src/surfaces/trade-analyzer/TradeAnalyzer.tsx", "src/surfaces/trade-analyzer/TradeAnalyzer.module.css", "src/surfaces/stock-market/StockMarket.tsx"]) await copy(name);
+for (const name of ["src/data/espn.ts", "src/app/layout.tsx", "src/app/globals.css", "src/app/stocks/page.tsx", "src/app/trade-analyzer/page.tsx", "src/app/news/page.tsx", "src/surfaces/news/Newsroom.tsx", "src/surfaces/news/Newsroom.module.css", "src/surfaces/news/NewsFeed.tsx", "src/surfaces/news/NewsFeed.module.css", "src/test/site-shell/stocks.ts", "src/surfaces/trade-analyzer/TradeAnalyzer.tsx", "src/surfaces/trade-analyzer/TradeAnalyzer.module.css", "src/surfaces/stock-market/StockMarket.tsx"]) await copy(name);
 if (!reusedReceipt) { await symlink(path.join(repo, "node_modules"), path.join(fixture, "node_modules")); await symlink(path.join(repo, "public"), path.join(fixture, "public")); }
 await file("package.json", JSON.stringify({ private: true }));
 await file("tsconfig.json", JSON.stringify({ compilerOptions: { target: "ES2017", lib: ["dom", "dom.iterable", "esnext"], strict: true, skipLibCheck: true, esModuleInterop: true, module: "esnext", moduleResolution: "bundler", jsx: "react-jsx", paths: { "@/*": ["./src/*"] } }, include: ["**/*.ts", "**/*.tsx"] }));
 await file("src/app/actions.ts", `"use server"; import { cookies } from 'next/headers';
 export async function getCurrentUser() { return (await cookies()).get('qa-user')?.value === 'signed' ? { displayName: 'Synthetic Alexandria Verylongmanagername', teamId: '1' } : null; }
 export async function logout() { throw new Error('Fixture refuses account writes'); }`);
-await file("src/data/league.ts", `import { syntheticStocks } from '@/test/site-shell/stocks'; import type { NewsArticle, Season, StockMarket } from '@/domain';
+await file("src/data/league.ts", `import { syntheticStocks } from '@/test/site-shell/stocks'; import type { RealNewsArticle, Season, StockMarket } from '@/domain';
 export async function getSeasonMeta(): Promise<Season | null> { return null; }
-export async function getLeagueNews(): Promise<NewsArticle[]> { return []; }
+export async function getLeagueNews(): Promise<RealNewsArticle[]> { return [{ id: 'navigation-fixture', outlet: { id: 'fixture', name: 'Synthetic outlet' }, headline: 'Synthetic navigation headline', url: 'https://example.invalid/navigation-fixture', publishedAt: 1791547200000, summary: 'Invented navigation-only article; no provider request.', players: [], sections: ['latest'] }]; }
 export async function getStockMarketData(): Promise<StockMarket> { return { stocks: syntheticStocks, trending: [], falling: [], panic: [], updatedAt: 1791547200000, pricingBasis: 'preseason', hasHistory: false }; }`);
 await file("src/data/espn-client.ts", `import type { LiveGame } from "@/domain"; export function useLiveGames(): LiveGame[] | null { return null; }`);
 await file("src/data/stock-detail-client.ts", `export { fetchStockDetail } from '@/test/site-shell/stocks';`);

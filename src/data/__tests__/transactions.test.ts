@@ -7,7 +7,6 @@
  */
 import { describe, expect, it } from "vitest";
 import { toTransactions } from "@/data/transform";
-import { generateLeagueNews } from "@/data/news";
 import {
   playerDirectory,
   rawTrade,
@@ -97,23 +96,6 @@ describe("toTransactions trade preservation (issue #27)", () => {
     const side2 = tx.sides!.find((s) => s.teamId === "2")!;
     expect(side1.received).toEqual([{ playerId: "p1", name: "Player One" }]);
     expect(side2.received).toEqual([{ playerId: "p2", name: "Player Two" }]);
-  });
-
-  it("a two-sided trade produces trade news articles", () => {
-    const [tx] = toTransactions(
-      [rawTrade()],
-      TEAMS,
-      [],
-      [],
-      playerDirectory()
-    );
-    const articles = generateLeagueNews({
-      transactions: [tx],
-      picks: [],
-      teams: TEAMS,
-    });
-    const trades = articles.filter((a) => a.kind === "trade");
-    expect(trades.length).toBeGreaterThan(0);
   });
 
   it("a pick-only trade keeps its trade type without fabricating players", () => {
