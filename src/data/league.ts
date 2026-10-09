@@ -39,6 +39,7 @@ import { stockDetailHistory, STOCK_CHART_POINTS } from "./stock-history-sampling
 import { signedStreak } from "@/domain";
 import {
   fetchLeague,
+  LEAGUE_ID,
   fetchRosters,
   fetchUsers,
   fetchMatchups,
@@ -88,6 +89,8 @@ import { getDb, type Db } from "./db";
 import { getStatProfiles, getSeasonHistory } from "./nba-stats";
 import { generateLeagueNews } from "./news";
 import { createTtlCache } from "./cache";
+import { aiMatchupPairs, buildAiWeeklyInput, type AiWeekPreparation } from "./ai-decider/inputs";
+import type { AiDecidesData, AiWeeklyInput } from "@/domain/ai-decider";
 /* Headshot seam: the Sleeper -> ESPN id map is injected into the toPlayer /
  * toDraftPicks transforms here (rule 11). Swap SEED_ESPN_ID_MAP for Aidan's
  * full mapping table when it lands — no component changes. */
@@ -1085,4 +1088,33 @@ export async function getLeagueNews(): Promise<NewsArticle[]> {
   } catch {
     return [];
   }
+}
+
+/** Small read-only context. Does not resolve names, stats or player directories. */
+export async function loadAiWeekContext(deps = { league: fetchLeague, state: fetchNbaState, matchups: fetchMatchups }) {
+  if (LEAGUE_ID !== "1387473752807190528") throw new Error("weekly_context");
+  const [league, state] = await Promise.all([deps.league(), deps.state()]);
+  if (!/^20\d{2}$/.test(league.season) || state.season !== league.season || !["pre", "regular", "post"].includes(state.season_type)) throw new Error("weekly_context");
+  const leg = state.leg ?? state.week;
+  if (!Number.isInteger(leg) || leg < 0 || leg > 30 || (leg === 0 && state.season_type !== "pre")) throw new Error("weekly_context");
+  const week = Math.max(1, leg);
+  const pairs = aiMatchupPairs(await deps.matchups(week));
+  const paired = pairs.flatMap(p => p.teamIds);
+  if (pairs.length !== 5 || new Set(paired).size !== 10 || paired.some(id => !/^(?:[1-9]|10)$/.test(id))) throw new Error("weekly_context");
+  return { leagueId: "1387473752807190528", season: league.season, week, matchups: pairs, phase: state.season_type };
+}
+
+/** Explicit preparation job seam, never invoked from page rendering. Dates/mode need review. */
+export async function loadAiWeeklyInput(preparation: AiWeekPreparation, deps = { league: fetchLeague, state: fetchNbaState, rosters: fetchRosters, matchups: fetchMatchups, stats: fetchSeasonStats, now: Date.now }): Promise<AiWeeklyInput> {
+  if (LEAGUE_ID !== "1387473752807190528") throw new Error("weekly_context");
+  const [league, state, rosters, matchups, stats] = await Promise.all([deps.league(), deps.state(), deps.rosters(), deps.matchups(preparation.week), deps.stats(preparation.statsSeason)]);
+  if (league.season !== preparation.season || state.season !== preparation.season || state.season_type !== preparation.phase || Number(preparation.statsSeason) >= Number(preparation.season)) throw new Error("weekly_context");
+  const capturedAt = new Date(deps.now()).toISOString();
+  return buildAiWeeklyInput({ ...preparation, capturedAt, statsAvailableAt: capturedAt }, league, rosters, matchups, stats);
+}
+
+/** Public page/homepage loader reads cached picks; never invokes generation. */
+export async function getAiDecidesData(): Promise<AiDecidesData> {
+  const { loadAiDecidesData } = await import("./ai-decider/runtime");
+  return loadAiDecidesData();
 }
