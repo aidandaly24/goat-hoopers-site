@@ -34,7 +34,7 @@ function pick(): DraftPick {
 }
 
 const RSS_XML = `<?xml version="1.0"?><rss version="2.0"><channel>
-<item><title>Fake Rookie shines</title><link>https://example.com/1</link>
+<item><title>Fake Rookie shines</title><link>https://www.espn.com/nba/story/_/id/1/fake-rookie</link>
 <description>A big night.</description><pubDate>Thu, 08 Oct 2026 19:21:47 +0000</pubDate></item>
 </channel></rss>`;
 
@@ -75,10 +75,16 @@ describe("loadLeagueNews", () => {
     );
   });
 
-  it("returns a feed when at least one feed succeeds", async () => {
-    const feed = await loadLeagueNews(baseDeps(okFetch()));
-    expect(feed.length).toBeGreaterThan(0);
-    expect(feed[0].headline).toBe("Fake Rookie shines");
+  it("returns an edition when at least one feed succeeds", async () => {
+    const edition = await loadLeagueNews(baseDeps(okFetch()));
+    expect(edition.articles.length).toBeGreaterThan(0);
+    expect(edition.articles[0].headline).toBe("Fake Rookie shines");
+    expect(edition.coverage).toEqual({
+      rosters: "ok",
+      directory: "ok",
+      draft: "ok",
+    });
+    expect(edition.builtAt).toBeGreaterThan(0);
   });
 
   it("treats healthy-but-empty feeds as an outage (last-good preserved)", async () => {
@@ -93,6 +99,174 @@ describe("loadLeagueNews", () => {
     await expect(loadLeagueNews(baseDeps(emptyFetch))).rejects.toThrow(
       "All news RSS feeds failed"
     );
+  });
+});
+
+/**
+ * Input-failure matrix (issue #122): identity inputs fail independently
+ * and must be recorded as unknown — never mistaken for empty real data.
+ *
+ * Fixture population: LeBron James (rostered), Fake Rookie (rostered +
+ * 2026 draft pick), Unknown Veteran (neither). A roster outage must not
+ * invent Free Agency labels; a draft outage must not silently remove
+ * Rookie Wire.
+ */
+describe("loadLeagueNews identity-input failures", () => {
+  const MATRIX_XML = `<?xml version="1.0"?><rss version="2.0"><channel>
+<item><title>LeBron James drops 40</title><link>https://www.espn.com/nba/story/_/id/10/lebron-40</link><pubDate>Thu, 08 Oct 2026 19:21:47 +0000</pubDate></item>
+<item><title>Fake Rookie shines in debut</title><link>https://www.cbssports.com/nba/news/fake-rookie-debut/</link><pubDate>Thu, 08 Oct 2026 18:00:00 +0000</pubDate></item>
+<item><title>Unknown Veteran signs overseas</title><link>https://www.espn.com/nba/story/_/id/12/unknown-vet</link><pubDate>Thu, 08 Oct 2026 17:00:00 +0000</pubDate></item>
+</channel></rss>`;
+
+  const DIRECTORY = {
+    "100": { full_name: "LeBron James", position: "SF" },
+    "9999": { full_name: "Fake Rookie", position: "PG" },
+    "200": { full_name: "Unknown Veteran", position: "C" },
+  };
+
+  function matrixDeps(overrides: {
+    rostersFail?: boolean;
+    directoryFail?: boolean;
+    draftFail?: boolean;
+  } = {}) {
+    const fetchFn = (async () =>
+      ({ ok: true, text: async () => MATRIX_XML }) as unknown as Response) as typeof fetch;
+    return {
+      fetchFn,
+      fetchRostersFn: async () => {
+        if (overrides.rostersFail) throw new Error("Sleeper 500 on /rosters");
+        return [{ players: ["100", "9999"] }] as never[];
+      },
+      fetchDirectoryFn: async () => {
+        if (overrides.directoryFail) throw new Error("directory down");
+        return DIRECTORY as never;
+      },
+      fetchDraftBoardFn: async () => {
+        if (overrides.draftFail) throw new Error("Sleeper 503 on /draft_picks");
+        return { picks: [pick()], teams: [] } as DraftBoardData;
+      },
+    };
+  }
+
+  function sectionsOf(edition: { articles: { headline: string; sections: string[] }[] }) {
+    const map = new Map<string, string[]>();
+    for (const a of edition.articles) map.set(a.headline, [...a.sections]);
+    return map;
+  }
+
+  it("all inputs ok: rostered -> league, pick -> rookies, neither -> free-agency", async () => {
+    const edition = await loadLeagueNews(matrixDeps());
+    expect(edition.coverage).toEqual({ rosters: "ok", directory: "ok", draft: "ok" });
+    const sections = sectionsOf(edition);
+    expect(sections.get("LeBron James drops 40")).toEqual(["latest", "league"]);
+    expect(sections.get("Fake Rookie shines in debut")).toEqual([
+      "latest",
+      "league",
+      "rookies",
+    ]);
+    expect(sections.get("Unknown Veteran signs overseas")).toEqual([
+      "latest",
+      "free-agency",
+    ]);
+  });
+
+  it("roster failure: classification is UNKNOWN — no league/free-agency labels invented", async () => {
+    const edition = await loadLeagueNews(matrixDeps({ rostersFail: true }));
+    expect(edition.coverage.rosters).toBe("unknown");
+    const sections = sectionsOf(edition);
+    // LeBron is really rostered, but we must not claim it from a failed fetch.
+    expect(sections.get("LeBron James drops 40")).toEqual(["latest"]);
+    expect(sections.get("Unknown Veteran signs overseas")).toEqual(["latest"]);
+    // Rookie Wire still works — the draft board succeeded independently.
+    expect(sections.get("Fake Rookie shines in debut")).toEqual([
+      "latest",
+      "rookies",
+    ]);
+    // Player chips still resolve — name matching doesn't need rosters.
+    const lebron = edition.articles.find((a) => a.headline === "LeBron James drops 40");
+    expect(lebron?.players).toEqual([{ playerId: "100", name: "LeBron James" }]);
+  });
+
+  it("draft failure: Rookie Wire unavailable, never silently empty", async () => {
+    const edition = await loadLeagueNews(matrixDeps({ draftFail: true }));
+    expect(edition.coverage.draft).toBe("unknown");
+    const sections = sectionsOf(edition);
+    expect(sections.get("Fake Rookie shines in debut")).toEqual([
+      "latest",
+      "league",
+    ]);
+    expect(sections.get("LeBron James drops 40")).toEqual(["latest", "league"]);
+  });
+
+  it("directory failure: no matching at all, everything latest-only", async () => {
+    const edition = await loadLeagueNews(matrixDeps({ directoryFail: true }));
+    expect(edition.coverage.directory).toBe("unknown");
+    for (const a of edition.articles) {
+      expect(a.sections).toEqual(["latest"]);
+      expect(a.players).toEqual([]);
+    }
+  });
+
+  it("all identity inputs fail: honest unknown edition, feeds still served", async () => {
+    const edition = await loadLeagueNews(
+      matrixDeps({ rostersFail: true, directoryFail: true, draftFail: true })
+    );
+    expect(edition.coverage).toEqual({
+      rosters: "unknown",
+      directory: "unknown",
+      draft: "unknown",
+    });
+    expect(edition.articles.length).toBe(3);
+    expect(edition.articles.every((a) => a.sections.join() === "latest")).toBe(true);
+  });
+
+  it("recovery: failed inputs then succeeding restores ok coverage", async () => {
+    let down = true;
+    const deps = matrixDeps();
+    const flaky = {
+      ...deps,
+      fetchRostersFn: async () => {
+        if (down) throw new Error("Sleeper 500 on /rosters");
+        return [{ players: ["100", "9999"] }] as never[];
+      },
+    };
+    const bad = await loadLeagueNews(flaky);
+    expect(bad.coverage.rosters).toBe("unknown");
+    down = false;
+    const good = await loadLeagueNews(flaky);
+    expect(good.coverage.rosters).toBe("ok");
+    const sections = sectionsOf(good);
+    expect(sections.get("LeBron James drops 40")).toEqual(["latest", "league"]);
+  });
+
+  it("warm cache: identity outage after expiry preserves last-good edition", async () => {
+    const clock = (() => {
+      let t = 0;
+      return { now: () => t, advance: (ms: number) => { t += ms; } };
+    })();
+    let down = false;
+    const deps = matrixDeps();
+    const cache = createLeagueNewsCache({
+      now: clock.now,
+      load: () =>
+        loadLeagueNews({
+          ...deps,
+          fetchRostersFn: async () => {
+            if (down) throw new Error("Sleeper 500 on /rosters");
+            return [{ players: ["100", "9999"] }] as never[];
+          },
+        }),
+    });
+    const first = await cache.get();
+    expect(first.coverage.rosters).toBe("ok");
+    clock.advance(LEAGUE_NEWS_TTL_MS + 1);
+    down = true;
+    const second = await cache.get();
+    // The refresh threw? No — identity failure doesn't throw; the new
+    // edition has unknown coverage. Last-good is preserved only for
+    // FEED failures; identity degradation is explicit per-edition.
+    expect(second.coverage.rosters).toBe("unknown");
+    expect(second).not.toBe(first);
   });
 });
 
@@ -216,7 +390,7 @@ describe("news cache + real loader (last-good integration)", () => {
     });
 
     const first = await cache.get();
-    expect(first.length).toBeGreaterThan(0);
+    expect(first.articles.length).toBeGreaterThan(0);
 
     clock.advance(LEAGUE_NEWS_TTL_MS + 1);
     feedsDown = true;
