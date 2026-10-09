@@ -39,7 +39,7 @@ function previewPeriod(snapshot: AiSnapshotMetadata | null): string | null {
 /** Featured matchup → read the editorial reason / select a pairing / inspect notes.
  * States: dated draft, historical final, live pairing, saved ready/stale pick and unavailable.
  * Saved probabilities require the same season, week and roster IDs; reads never generate.
- * Phones retain the court, five pairings and linked identities in reading order.
+ * Phones retain court → featured team context → five compact pairings in reading order.
  * The court is a still image; only deliberate team selection moves the context rail.
  * No projected scores, scroll hijacking, ornamental frames or standalone hoopers.
  */
@@ -77,8 +77,10 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
   const savedPick = (pair: DisplayPair) => aiWeekly?.status !== "unavailable" && aiWeekly?.season === season && aiWeekly.week === pair.week
     ? aiWeekly.matchups.find((pick) => pick.teamIds.includes(pair.home.id) && pick.teamIds.includes(pair.away.id))
     : undefined;
-  const selectedPick = selected ? savedPick(selected) : undefined;
-  const selectedResult = selectedPick?.status === "ready" ? selectedPick.result : null;
+  const detailPair = selected ?? pairs.find(pair => game.state === "upcoming" && game.leagueWeek === pair.week && game.teamIds?.every(id => [pair.home.id, pair.away.id].includes(id)));
+  const detailPick = detailPair ? savedPick(detailPair) : undefined;
+  const detailResult = detailPick?.status === "ready" ? detailPick.result : null;
+  const detailChoice = detailResult && teams.find(team => team.identity.id === detailResult.choice)?.identity.name;
 
   return <>
     <div className={cs("feature-heading")}>
@@ -86,84 +88,85 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
         <p className={cs("feature-label")}>{selected ? preseasonPreview ? "Selected preseason pairing" : "Selected matchup" : "Featured matchup"} · {status}</p>
         <h1 id="game-title">{title}</h1>
       </div>
-      <p className={cs("feature-context")}>{context}</p>
     </div>
     <div className={cs("clubhouse-layout")}>
       <div className={cs("court-column")}>
         <figure className={cs("clubhouse-court")} id="clubhouse-court">
           <img src="/courtside/arena.jpg" alt="The GOAT Hoopers basketball court, with players on the floor and fans in the stands" width="1440" height="810" fetchPriority="high" />
         </figure>
+        <p className={cs("feature-context")}>{context}</p>
+        {!!teams.length && <div className={cs("team-context-rail")} id="matchup-context">
+          <div className={cs("rail-controls")} role="group" aria-label="Select matchup team">
+            {teams.map((team, index) => <button type="button" key={team.identity.id} aria-pressed={side === index} aria-controls="team-context-window" onClick={() => setSide(index)}>{team.identity.name}{state === "final" && scores?.[index] !== null && <span className={cs("gh-num")}> · {scores?.[index]?.toFixed(1)}</span>}</button>)}
+          </div>
+          <div className={cs("team-context-window")} id="team-context-window">
+            <div className={cs("team-context-track")} style={{ transform: `translateX(-${side * 50}%)` }}>
+              {teams.map((team, index) => {
+                const prior = preseason ? team.previousSeason : null;
+                const record = prior ?? team.currentRecord;
+                return <dl key={team.identity.id} className={cs("team-context")} aria-hidden={side !== index}>
+                  <div><dt>{prior ? `2025 record${prior.ownerNote ? " · previous manager" : ""}` : "Current record"}</dt><dd>{record ? `${record.wins}–${record.losses}` : "—"}</dd></div>
+                  <div><dt>Roster players</dt><dd>{rosterCounts[team.identity.id] ?? "—"}</dd></div>
+                  <div><dt>{prior ? "2025 finish" : "Team profile"}</dt><dd>{prior ? `${prior.finish}${prior.finish === 1 ? "st" : prior.finish === 2 ? "nd" : prior.finish === 3 ? "rd" : "th"}` : <Link href={`/teams/${team.identity.id}`} tabIndex={side === index ? 0 : -1}>Open ↗</Link>}</dd></div>
+                </dl>;
+              })}
+            </div>
+          </div>
+          <Link className={cs("text-link")} href={`/teams/${teams[side]?.identity.id ?? teams[0].identity.id}`} prefetch={false}>Full team profile ↗</Link>
+        </div>}
+        <div className={cs("feature-actions")}>
+          <CourtsideDialog label={selected ? "Matchup notes" : "Featured matchup notes"} title={title}>
+            <p>{context}</p><p>{selected ? preseasonPreview ? "Pairing comes from saved preview inputs; no weekly score forecast is implied." : "Pairing and scores come from the current league check; no projected result is implied." : game.context}</p>
+            <p className={cs("caption")}>{selected ? preseasonPreview ? `Preview inputs captured ${aiWeekly.snapshot?.capturedAt ?? "unavailable"}` : `League check ${checkedAt.slice(0, 10)}` : game.note}</p>
+            <div className={cs("notes-teams")}>{teams.map((team) => <Link key={team.identity.id} href={`/teams/${team.identity.id}`}>{team.identity.name} ↗</Link>)}</div>
+            {!selected && sources}
+            {detailPick && aiWeekly && <>
+              <p>{aiWeekly.generatedAt ? <>Saved <time dateTime={aiWeekly.generatedAt}>{savedTimestamp(aiWeekly.generatedAt)}</time>.</> : "No saved prediction time available."}</p>
+              {previewPeriod(aiWeekly.snapshot) && <p>{previewPeriod(aiWeekly.snapshot)}</p>}
+            </>}
+            {detailResult && <>
+              <h3>{savedComparison(detailResult.snapshot) ?? "Saved model pick"}{aiWeekly?.status === "stale" ? " · past week" : ""}</h3>
+              <p>Current team names identify saved roster inputs. Model choice: {detailChoice ?? `Roster ${detailResult.choice}`}.</p>
+              <ul>{detailResult.probabilities.map(p => <li key={p.choice}>Roster {p.choice} · {teams.find(team => team.identity.id === p.choice)?.identity.name ?? "Team name unavailable"}: {Number((p.probability * 100).toFixed(1))}%</li>)}</ul>
+              <p>{AI_PROBABILITY_LABEL}. API confidence {Number((detailResult.confidence * 100).toFixed(1))}% is a separate signal.</p>
+              <p>{detailResult.model} · {detailResult.promptVersion} · Inputs captured {detailResult.snapshot?.capturedAt ?? "unavailable"}</p>
+              {detailResult.snapshot && <p>Scoring mode: {detailResult.snapshot.scoringMode}</p>}
+              <ul>{detailPick?.evidence.map((e, index) => <li key={index}>{e}</li>)}</ul>
+            </>}
+          </CourtsideDialog>
+          {selected && <button type="button" className={cs("text-link")} onClick={() => { setSelected(null); setSide(0); }}>Back to featured matchup</button>}
+          <p className={cs("feature-check")}>League check · {checkedAt.slice(0, 10)}</p>
+        </div>
       </div>
       <aside className={cs("week-desk")} aria-labelledby="this-week-title">
-        <div className={cs("week-heading")}><h2 id="this-week-title">{aiWeekly ? "AI Decides" : "This week"}</h2><span>{preseasonPreview ? "Preseason preview · target Week 1" : <>{aiWeekly && "This week · "}{week ? `Week ${week}` : "Pairings pending"}{preseason && <><br />Upcoming</>}</>}</span></div>
-        {aiWeekly && <p className={cs("week-provenance")}>Current team names · {savedComparison(aiWeekly.snapshot) ?? "saved model picks"}{aiWeekly.status === "stale" && " · past week"}</p>}
+        <div className={cs("week-heading")}><h2 id="this-week-title">{aiWeekly ? <Link href="/ai-decides">AI Decides</Link> : "This week"}</h2><span>{preseasonPreview ? "Preseason preview · target Week 1" : <>{aiWeekly && "This week · "}{week ? `Week ${week}` : "Pairings pending"}{preseason && <><br />Upcoming</>}</>}</span></div>
+        {aiWeekly && <p className={cs("week-provenance")}>Model estimates{aiWeekly.status === "stale" ? " · saved picks" : ""}{aiWeekly.status === "stale" && " · past week"}</p>}
         <div className={cs("week-games")}>
           {pairs.map((pair) => {
             const active = selected ? selected.week === pair.week && [selected.home.id, selected.away.id].every(id => [pair.home.id, pair.away.id].includes(id)) : game.state === "upcoming" && game.leagueWeek === pair.week && game.teamIds?.every((id) => [pair.home.id, pair.away.id].includes(id));
             const pick = savedPick(pair);
             const result = pick?.status === "ready" ? pick.result : null;
-            const choiceName = result && ([pair.home, pair.away].find((team) => team.id === result.choice)?.name ?? `Roster ${result.choice}`);
             const pickLabel = aiWeekly ? result
-              ? ` ${aiWeekly.status === "stale" ? "Past-week" : "Saved"} model probabilities: ${result.probabilities.map((p) => `Roster ${p.choice} ${Number((p.probability * 100).toFixed(1))}%`).join(", ")}. Model choice: ${choiceName}.`
+              ? ` ${aiWeekly.status === "stale" ? "Past-week" : "Saved"} model probabilities: ${result.probabilities.map((p) => `${[pair.home, pair.away].find(team => team.id === p.choice)?.name ?? 'Team name unavailable'} ${Number((p.probability * 100).toFixed(1))}%`).join(", ")}.`
               : " Prediction unavailable." : "";
             return <button type="button" key={`${pair.week}:${pair.home.id}:${pair.away.id}`} className={cs("week-game")} aria-pressed={!!active} aria-controls="game-title matchup-context" aria-label={`${pair.home.name} versus ${pair.away.name}, ${preseasonPreview ? "preseason lineup preview for target Week 1" : isFinal(pair) ? "final" : "upcoming"}.${pickLabel}`} onClick={() => { setSelected(pair); setSide(0); }}>
               {[pair.home, pair.away].map((team, index) => {
                 const probability = result?.probabilities.find((p) => p.choice === team.id);
                 return <span className={cs("week-team")} key={team.id}>
                 <TeamAvatar name={team.name} avatar={team.avatar} /><strong>{team.name}</strong>
-                <span className={cs("week-score", "gh-num")} aria-label={isFinal(pair) ? `${index === 0 ? pair.homePoints : pair.awayPoints} fantasy points` : preseasonPreview ? "Preview · score not forecast" : "Score pending"}>{isFinal(pair) ? (index === 0 ? pair.homePoints : pair.awayPoints)!.toFixed(1) : "—"}</span>
-                {probability && <span className={cs("week-probability")} data-probability-for={team.id}>
-                  <span className={cs("week-bar")} aria-hidden="true"><i style={{ width: `${probability.probability * 100}%` }} /></span>
-                  <span className={cs("gh-num")}>Roster {team.id} · {Number((probability.probability * 100).toFixed(1))}%</span>
-                </span>}
+                <span className={cs("week-score", "gh-num")} aria-label={probability ? `${Number((probability.probability * 100).toFixed(1))}% model estimate` : isFinal(pair) ? `${index === 0 ? pair.homePoints : pair.awayPoints} fantasy points` : preseasonPreview ? "Preview · score not forecast" : "Score pending"}>{probability ? `${Number((probability.probability * 100).toFixed(1))}%` : isFinal(pair) ? (index === 0 ? pair.homePoints : pair.awayPoints)!.toFixed(1) : "—"}</span>
+                {probability && <span className={cs("week-probability", "week-bar")} data-probability-for={team.id} aria-hidden="true"><i style={{ width: `${probability.probability * 100}%` }} /></span>}
+                {probability && isFinal(pair) && <span className={cs("week-final-score")}>{(index === 0 ? pair.homePoints : pair.awayPoints)!.toFixed(1)} fantasy points · Final</span>}
               </span>;
               })}
-              {aiWeekly && <span className={cs("week-pick-status")}>{result ? <>{aiWeekly.status === "stale" ? "Past-week pick" : "Model choice"}: {choiceName}</> : "Prediction unavailable"}</span>}
+              {aiWeekly && !result && <span className={cs("week-pick-status")}>Prediction unavailable</span>}
             </button>;
           })}
           {!pairs.length && <p className={cs("empty")}>{preseasonPreview ? "Saved preview team identities are temporarily unavailable." : "Current pairings are temporarily unavailable."} Team profiles remain available below.</p>}
         </div>
-        {aiWeekly && <>
-          <Link className={cs("week-playground", "text-link")} href="/ai-decides">Open AI playground ↗</Link>
-          <p className={cs("week-provenance")}>{AI_PROBABILITY_LABEL}. {aiWeekly.generatedAt ? <>Saved <time dateTime={aiWeekly.generatedAt}>{savedTimestamp(aiWeekly.generatedAt)}</time>.</> : "No saved prediction time available."}</p>
-          {previewPeriod(aiWeekly.snapshot) && <p className={cs("week-provenance")}>{previewPeriod(aiWeekly.snapshot)}</p>}
-        </>}
-        <CourtsideDialog label={selected ? "Matchup notes" : "Featured matchup notes"} title={title}>
-          <p>{context}</p><p>{selected ? preseasonPreview ? "Pairing comes from saved preview inputs; no weekly score forecast is implied." : "Pairing and scores come from the current league check; no projected result is implied." : game.context}</p>
-          <p className={cs("caption")}>{selected ? preseasonPreview ? `Preview inputs captured ${aiWeekly.snapshot?.capturedAt ?? "unavailable"}` : `League check ${checkedAt.slice(0, 10)}` : game.note}</p>
-          <div className={cs("notes-teams")}>{teams.map((team) => <Link key={team.identity.id} href={`/teams/${team.identity.id}`}>{team.identity.name} ↗</Link>)}</div>
-          {!selected && sources}
-          {selectedResult && <>
-            <h3>{savedComparison(selectedResult.snapshot) ?? "Saved model pick"}{aiWeekly?.status === "stale" ? " · past week" : ""}</h3>
-            <p>{AI_PROBABILITY_LABEL}. API confidence {Number((selectedResult.confidence * 100).toFixed(1))}% is a separate signal.</p>
-            <p>{selectedResult.model} · {selectedResult.promptVersion} · Inputs captured {selectedResult.snapshot?.capturedAt ?? "unavailable"}</p>
-            {selectedResult.snapshot && <p>Scoring mode: {selectedResult.snapshot.scoringMode}</p>}
-            <ul>{selectedPick?.evidence.map((e, index) => <li key={index}>{e}</li>)}</ul>
-          </>}
-        </CourtsideDialog>
-        {selected && <button type="button" className={cs("text-link")} onClick={() => { setSelected(null); setSide(0); }}>Back to featured matchup</button>}
-        <p className={cs("feature-check")}>League check · {checkedAt.slice(0, 10)}</p>
+        {aiWeekly && <Link className={cs("week-playground", "text-link")} href="/ai-decides">Open AI playground ↗</Link>}
       </aside>
     </div>
-    {!!teams.length && <div className={cs("team-context-rail")} id="matchup-context">
-      <div className={cs("rail-controls")} role="group" aria-label="Select matchup team">
-        {teams.map((team, index) => <button type="button" key={team.identity.id} aria-pressed={side === index} aria-controls="team-context-window" onClick={() => setSide(index)}>{team.identity.name}{state === "final" && scores?.[index] !== null && <span className={cs("gh-num")}> · {scores?.[index]?.toFixed(1)}</span>}</button>)}
-      </div>
-      <div className={cs("team-context-window")} id="team-context-window">
-        <div className={cs("team-context-track")} style={{ transform: `translateX(-${side * 50}%)` }}>
-          {teams.map((team, index) => {
-            const prior = preseason ? team.previousSeason : null;
-            const record = prior ?? team.currentRecord;
-            return <dl key={team.identity.id} className={cs("team-context")} aria-hidden={side !== index}>
-              <div><dt>{prior ? `2025 record${prior.ownerNote ? " · previous manager" : ""}` : "Current record"}</dt><dd>{record ? `${record.wins}–${record.losses}` : "—"}</dd></div>
-              <div><dt>Roster players</dt><dd>{rosterCounts[team.identity.id] ?? "—"}</dd></div>
-              <div><dt>{prior ? "2025 finish" : "Team profile"}</dt><dd>{prior ? `${prior.finish}${prior.finish === 1 ? "st" : prior.finish === 2 ? "nd" : prior.finish === 3 ? "rd" : "th"}` : <Link href={`/teams/${team.identity.id}`} tabIndex={side === index ? 0 : -1}>Open ↗</Link>}</dd></div>
-            </dl>;
-          })}
-        </div>
-      </div>
-      <Link className={cs("text-link")} href={`/teams/${teams[side]?.identity.id ?? teams[0].identity.id}`} prefetch={false}>Full team profile ↗</Link>
-    </div>}
     <p className={cs("sr-only")} role="status" aria-live="polite">{selected ? `Selected ${title}. ${status}.` : ""}</p>
   </>;
 }
