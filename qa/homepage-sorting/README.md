@@ -10,9 +10,8 @@ Open `http://127.0.0.1:8794/` in the supported browser. The fixture mounts the
 actual `CourtsideDirectory` and `StandingsTable` components with four synthetic
 teams. It does not import a league loader, ticker, auth, API route or database.
 Avatars/portraits are absent. The fixture replaces Next Link with a native anchor
-so destinations can be inspected without a Next server. The optional figurine
-still uses the real lazy viewer and local approved GLB; it is not part of sorting
-checks. This folder is not an application route.
+so destinations can be inspected without a Next server. Rejected figurine
+controls and loaders have been removed. This folder is not an application route.
 
 Standings live inside the actual homepage structure: the directory's children
 slot → `league-details` disclosure → `live-grid` → first-column wrapper. A
@@ -50,9 +49,6 @@ Manually check:
   closed/open and confirm sort state and controls remain intact.
 - Inspect team/player links without following them to a hosted site. Neither
   homepage list has pagination; all supplied rows remain available.
-- If inspecting the figurine separately, use the trigger below the expanded
-  roster. Check Close/Escape/profile link. Report WebGL unavailability as a
-  limitation, not as evidence of the character's appearance.
 
 Use the browser's network/console tools if available to record errors. Sorting
 must not request additional data. Preserve screenshots and the runner output in

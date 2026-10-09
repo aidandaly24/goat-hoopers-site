@@ -1,0 +1,436 @@
+{
+  "base": "92fb446c0e94f2b664bd2f3e5be3e574c2e3641d",
+  "removed": [
+    {
+      "path": "public/3d/hooper-1.glb",
+      "bytes": 2716068,
+      "sha256": "746c9846211dfad3098b3dce72b49bfdc6d0cf4af9cbf088996953cdb2a203b6"
+    },
+    {
+      "path": "public/3d/hooper-10.glb",
+      "bytes": 2716072,
+      "sha256": "d54d4bedab406a76d7a3963b5f8a9a6f92c288416ba09c393b9b82094ea8d491"
+    },
+    {
+      "path": "public/3d/hooper-2.glb",
+      "bytes": 2716072,
+      "sha256": "907a890bf27e8f62aee5d4b442bca1bdf4f3699b47cd521cb375ec25e5137654"
+    },
+    {
+      "path": "public/3d/hooper-3.glb",
+      "bytes": 2716068,
+      "sha256": "4b1ea77b5236dd112bb523bb44f79913270571057332c0c4ecef64484e4a97a6"
+    },
+    {
+      "path": "public/3d/hooper-4.glb",
+      "bytes": 2716072,
+      "sha256": "22638f690db4a9ce27ed8e7a79306e643dd2d5e9e2a4e8d2aa44853284078b1c"
+    },
+    {
+      "path": "public/3d/hooper-5.glb",
+      "bytes": 2716072,
+      "sha256": "9451ec01e13c9067f42fa3105c7f02848a0dbca5cc9a60e947ddbf2b0b6fbc33"
+    },
+    {
+      "path": "public/3d/hooper-6.glb",
+      "bytes": 2716072,
+      "sha256": "cae365d87f9a3b493b6c3e51917e7c320fca4e5f7c13bc58a34c7f953bef958e"
+    },
+    {
+      "path": "public/3d/hooper-7.glb",
+      "bytes": 2716072,
+      "sha256": "a7c76ad5cff460693f185177e891937877f881848cbfeabec096c30c68f53427"
+    },
+    {
+      "path": "public/3d/hooper-8.glb",
+      "bytes": 2716072,
+      "sha256": "f5bdf33c45299703d7afe5e54957784389616b34c2e6cb1b62015d3e014958a0"
+    },
+    {
+      "path": "public/3d/hooper-9.glb",
+      "bytes": 2716072,
+      "sha256": "c0071c6cd8f558e69f3da5113bf3af9cb348ca9038b28d6c2ea0e26fdc40dcd2"
+    },
+    {
+      "path": "public/3d/hooper-generic.glb",
+      "bytes": 2716076,
+      "sha256": "62bba6ce15b3c0685bb0a7079f1bac66fa0611cca1029628851be62c64353fba"
+    }
+  ],
+  "preserved": [
+    {
+      "path": "blender/GOAT_HOOPERS.blend",
+      "sha256": "4d312d0df8416fb7c01c8d1e7943ff59576ec0d91671d74fbca4836d0139dff2"
+    },
+    {
+      "path": "blender/PHOTO_REFERENCE_SOURCES.txt",
+      "sha256": "68a24e9252f3457f05786bfe35815463b082c1bf5532b4c199e36bf314487c49"
+    },
+    {
+      "path": "blender/README.md",
+      "sha256": "e30324f4632d2b0d5cc3d12b76ad6aa9254afdf836ca2ab3e8e5703b1b8811c3"
+    },
+    {
+      "path": "blender/build_scene.py",
+      "sha256": "2cb72310d81f6ad1533eeb6d8daaf5b9282fb1ef20e0f2f27bde4fd3b6a7a226"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/.gitignore",
+      "sha256": "6b1bbdc53151f20e2c0a540d84978d2bdc6771ce2e2c4f670113e1a44a523508"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/GOAT_HOOPERS_Banner_Template.blend",
+      "sha256": "50f2ab8d52bd21160ebfb1ef1e1eb26cfe1e2c4b38691fd69f27f936f6eccc24"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/PROVENANCE.json",
+      "sha256": "f481ba73b0ecb7379e2d90d6347447f32cf8895a4f4a3fc10baaaf2fcbb9e267"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/README.md",
+      "sha256": "538760ea6687b7728d68b448d3ad2af8a1695cc962ec2e4f62e2ab4f2ec001b6"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/README.txt",
+      "sha256": "3960e248944331d063a767bc8e0af9e0b5f3a6c9ed134062afd1d6cc557c89ed"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/configs/josh-diddys-roster.json",
+      "sha256": "87b69dfd3596f9d25172d19ad7ab1e58f1a86c0333ed1f63bcbc82ed53b6a9b5"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/configs/neutral.json",
+      "sha256": "c77a1fdee5a3fc7715d28971938f87bbf3ee14c6ea119c79804f2114701e48d6"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/configs/reaves-dropper.json",
+      "sha256": "71504d984b5a7ef739556c66f9d6c4e9137439774dfc6215049177d82f618559"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/fonts/DejaVuSansCondensed-Bold.ttf",
+      "sha256": "21f02ebcea75529d3ed9d26e089cd1b9c59a4b784119ba3a96e9bc83cf755ec7"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/fonts/LICENSE-DejaVu.txt",
+      "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/generate_banner.py",
+      "sha256": "c645cf9e0b52886aa6754af2a41ea3a2c6c8bb33ea70cdcd8f96301927f4b913"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/palettes.json",
+      "sha256": "447c7871990f41e465a33b1f6cfe421b42c657de7db0d8b295b196514fc5bf09"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/requirements.txt",
+      "sha256": "bb33eb11f9e0bb9c8f4419e6ce44cf554a25b5fea74ea90797200fa2946a56bc"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/samples/palette-forest-cream.webp",
+      "sha256": "8003bdf154629c7e2d4de0426b8803dda0230b10506ce5cd8fd13984dfd21444"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/samples/palette-navy-muted-gold.webp",
+      "sha256": "65dc35a456749f3d496b46a7721b4bc70ca69baab42ffe38bc0aa0b21e65f0d1"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/satin_lettering.py",
+      "sha256": "f9071c9a271d3387e5b7337278632143bd799961e343d7962d4fb396fff83609"
+    },
+    {
+      "path": "blender/embroidered-banners-v4/tests/verify_template.py",
+      "sha256": "b79264bbea661320b7a39c40a33d884b8203f140d2a55a49c5d79747f382e25c"
+    },
+    {
+      "path": "blender/goat-hoopers-render.png",
+      "sha256": "e18e038bab1c851f2219704f7466d35b92ab3ee4c3eb5fd7117e7e6c207c53f2"
+    },
+    {
+      "path": "blender/goat_players.py",
+      "sha256": "17255ce2fc339bfed038a43ebc4c07bedcaf6efbfdbc3402c04a3c6f11562c27"
+    },
+    {
+      "path": "public/3d/basketball.glb",
+      "sha256": "6915468fee29808f3752618ec4436cab48a94e0f881a4e9f74aba206c35fc293"
+    },
+    {
+      "path": "public/3d/crown.glb",
+      "sha256": "7cb386a847f89c24492863b7eb33f76c348eb20c871118ecf836f34cb402f549"
+    },
+    {
+      "path": "public/3d/free-throw/ASSET_MANIFEST.json",
+      "sha256": "ea01e043e5c733e1ec031af0ed1d9102253ea410747f1315bde802703fd017e3"
+    },
+    {
+      "path": "public/3d/free-throw/GOAT_HOOPERS_Basketball.glb",
+      "sha256": "a926a34966001bc41cabeac35a3173380483803acd65e48bd8bb498835d3f3cb"
+    },
+    {
+      "path": "public/3d/free-throw/GOAT_HOOPERS_Court.glb",
+      "sha256": "de5cb7d6dbbd2a616799d1b74505655bce607ceab64ea89709ead80df3dc6613"
+    },
+    {
+      "path": "public/3d/free-throw/GOAT_HOOPERS_Hoop.glb",
+      "sha256": "20eb36446cc9789d52beeb1dd9b184cd9be77e2dcef0900d75d11289f66f93ca"
+    },
+    {
+      "path": "public/3d/free-throw/README.txt",
+      "sha256": "27708c6caa462a65707b8baa40e372d93e12e067e615c035d6eb101b384668c3"
+    },
+    {
+      "path": "public/3d/hoop.glb",
+      "sha256": "afb04eeee769ccf27954c1fc9c3d267ca1b0527dfad80e55cb48b452a0c64b82"
+    },
+    {
+      "path": "public/3d/trophy.glb",
+      "sha256": "387f003e846970a2557bfa5f72bb13c2582ddc3a65672369512610011c0649da"
+    },
+    {
+      "path": "public/arcade/free-throw-preview.jpg",
+      "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c"
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-emblem-clay.svg",
+      "sha256": "ec4a87834c715ff8c8726a933469150a325ae41180993af3841df378376a7312"
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+      "sha256": "ecbd981058d9a86c90fdf8608ce15f064c3cae70c4285823b3d02b8d3236a47a"
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+      "sha256": "08320e360cc53c266425c0178b592573f5ddf32c04526de35d119306968b6ac2"
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-micro-white.svg",
+      "sha256": "5d5379eb50c79e3b629d055ba4904bad64da19cd7cec177c7c432d30789ee767"
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-primary-clay.svg",
+      "sha256": "4e74584a67397ec58e209a87a8d041882685a16ce20ac2f281e91970e3318afb"
+    },
+    {
+      "path": "public/courtside/arena.jpg",
+      "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177"
+    },
+    {
+      "path": "public/courtside/banner-roster-1-reaves-dropper.webp",
+      "sha256": "bcb33c8360319814eac70f727a254111da2bc10c62168a9b3180bd949276d46c"
+    },
+    {
+      "path": "public/courtside/banner-roster-5-josh-diddys-roster.webp",
+      "sha256": "c617cf48c9858e601bc41409e9f795e84e98b504e3136588f71cf6a8f96f052f"
+    },
+    {
+      "path": "public/courtside/portraits/player-1085.png",
+      "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb"
+    },
+    {
+      "path": "public/courtside/portraits/player-1272.png",
+      "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe"
+    },
+    {
+      "path": "public/courtside/portraits/player-1362.png",
+      "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411"
+    },
+    {
+      "path": "public/courtside/portraits/player-1380.png",
+      "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45"
+    },
+    {
+      "path": "public/courtside/portraits/player-1511.png",
+      "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9"
+    },
+    {
+      "path": "public/courtside/portraits/player-1648.png",
+      "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d"
+    },
+    {
+      "path": "public/courtside/portraits/player-1658.png",
+      "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2"
+    },
+    {
+      "path": "public/courtside/portraits/player-1739.png",
+      "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94"
+    },
+    {
+      "path": "public/courtside/portraits/player-1822.png",
+      "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d"
+    },
+    {
+      "path": "public/courtside/portraits/player-1845.png",
+      "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676"
+    },
+    {
+      "path": "public/courtside/portraits/player-1846.png",
+      "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716"
+    },
+    {
+      "path": "public/courtside/portraits/player-1945.png",
+      "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d"
+    },
+    {
+      "path": "public/courtside/portraits/player-1957.png",
+      "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c"
+    },
+    {
+      "path": "public/courtside/portraits/player-1967.png",
+      "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64"
+    },
+    {
+      "path": "public/courtside/portraits/player-1970.png",
+      "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842"
+    },
+    {
+      "path": "public/courtside/portraits/player-2126.png",
+      "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0"
+    },
+    {
+      "path": "public/courtside/portraits/player-2133.png",
+      "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693"
+    },
+    {
+      "path": "public/courtside/portraits/player-2161.png",
+      "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df"
+    },
+    {
+      "path": "public/courtside/portraits/player-2179.png",
+      "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8"
+    },
+    {
+      "path": "public/courtside/portraits/player-2259.png",
+      "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a"
+    },
+    {
+      "path": "public/courtside/portraits/player-2267.png",
+      "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149"
+    },
+    {
+      "path": "public/courtside/portraits/player-2289.png",
+      "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4"
+    },
+    {
+      "path": "public/courtside/portraits/player-2304.png",
+      "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6"
+    },
+    {
+      "path": "public/courtside/portraits/player-2308.png",
+      "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb"
+    },
+    {
+      "path": "public/courtside/portraits/player-2455.png",
+      "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf"
+    },
+    {
+      "path": "public/courtside/portraits/player-2458.png",
+      "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2"
+    },
+    {
+      "path": "public/courtside/portraits/player-2574.png",
+      "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65"
+    },
+    {
+      "path": "public/courtside/portraits/player-2577.png",
+      "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e"
+    },
+    {
+      "path": "public/courtside/portraits/player-4760.png",
+      "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af"
+    },
+    {
+      "path": "public/courtside/portraits/player-4866.png",
+      "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/GOAT-HOOPERS-horizontal-black.svg",
+      "sha256": "ecbd981058d9a86c90fdf8608ce15f064c3cae70c4285823b3d02b8d3236a47a"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/geist-mono.woff2",
+      "sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/inter.woff2",
+      "sha256": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/team-1.jpg",
+      "sha256": "e4e9d31268df4cd936a5dfacad05a7d80af06dc150ed2eb8d9f2b9879b76a967"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/team-10.jpg",
+      "sha256": "6b2dff19d65d21e20368a23c887449466ae2708f941dbc3008181861b3ed371d"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/team-2.jpg",
+      "sha256": "8c76232c7d177aaf332355ea23d6c2ea783c782953ad0dce87e57915410f8997"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/team-3.jpg",
+      "sha256": "47c6beb1a6cb6c9b19a1f45f33583879455f0ed1e70c68c8f7800ee9719c2654"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/team-4.jpg",
+      "sha256": "e473f903f2f9043dde3506e6690ca580491fb699b1dc93dc1a5c963a88e4c320"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/team-5.jpg",
+      "sha256": "43a6600b3062cf3f3a172a164e264cfc6068100f2e67828709c1f1478584a4d4"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/team-6.jpg",
+      "sha256": "458a6f819cf97db316819e56a93982617716a5f65e9b0e240385ac8d36839e52"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/team-7.jpg",
+      "sha256": "dc276ebf328f666b29667c2e13fa2bd236dc005f5560b07761ec639f5b043498"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/team-8.jpg",
+      "sha256": "debbe4ba0a87592746624beb27146bc56d63fb9c39e9c8ce7819fcf331ad6018"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/assets/team-9.jpg",
+      "sha256": "e5cf55290a625f2b1462902e8e7768620bc274d91470ce71940d69143e63fb97"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/compare.js",
+      "sha256": "32e51cba85543c9cc215b9b6cbed6aa74748926e91c20ba9a82cb0dc8ef336c7"
+    },
+    {
+      "path": "public/design-preview/neutral-courtside/index.html",
+      "sha256": "95f6056fb4ebb35863afbf47c4b9ae7f0880d4aabb5a0a8baef1cec662a1fee1"
+    },
+    {
+      "path": "public/file.svg",
+      "sha256": "2b67812c325c199a02536cdbeea0c593a72f707d323b72ee3e08dbab06753bd4"
+    },
+    {
+      "path": "public/globe.svg",
+      "sha256": "b614b9bf183925957661ac851498fe1d8029fd43a62fbfed86f9e2624a57e7cf"
+    },
+    {
+      "path": "public/next.svg",
+      "sha256": "55995dfad6ecb4945a1e856ddca03c5e16aa5bf13fd21b4df6a74ae79357bcfc"
+    },
+    {
+      "path": "public/social/goat-hoopers-blender-1200x630.jpg",
+      "sha256": "5402fd1ec017bde7e5860e2f9368f1b0676649d2d0906c5fc5caeef8ecb51b00"
+    },
+    {
+      "path": "public/vercel.svg",
+      "sha256": "f081337b2fee635b455b63275406a3e7f39d6a014e25ad90dab5a67e62a12ac4"
+    },
+    {
+      "path": "public/window.svg",
+      "sha256": "644768c4aaeb4767bce293344eeb0c125fb804a94d801440424072202d85e3a1"
+    }
+  ],
+  "notes": "Live-base removal-only release: all 92 retained files must remain byte-identical to live92fb446. No PR107 starter deletion exception applies to this release. Authoring/source remain recoverable; deleted generated models remain in the baseline Git history.",
+  "backportOf": {
+    "pr": 110,
+    "head": "1b59cf1be07b7b4a2afe71a19ddee1e0da43dd22",
+    "base": "f5be2b7ee6821ed8f69e22ca8782abb2a7192ea8"
+  }
+}

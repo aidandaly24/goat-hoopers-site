@@ -29,7 +29,7 @@ visual composition and functionality migrate through separate small PRs.
 | Confirmed | Preserve the meaningful arena/court, selected GOAT logo and reusable embroidered pennants. Generate the featured weekly banners; do not generate a banner for every team name. |
 | Confirmed | Preserve the approved stocks composition and useful dense data. Keep working search, filters, sorting, inspection and price provenance. |
 | Confirmed, newest usability rule | Arcade discovery shows actual playable games, a real preview of free-throw practice and clear Play navigation. Hide nonfunctional/fake catalog entries. Verify the whole path to play, not just an HTTP 200. Arcade improvements need not wait for the broad migration. |
-| Confirmed concern; resolution owned separately | Arbitrary figurines are unwelcome. Another task identifies their purpose and fixes homepage sorting. This documentation/prototype change neither removes models nor changes their logic. |
+| Confirmed removal · 2026-10-09 | Aidan rejects the bald/blocky hooper figurine family everywhere. Remove all 11 team/generic public GLBs, their loaders and inspection controls, including previews. Retain team avatars, readable identities, rosters and profile links; preserve approved arena, pennants, logo and unrelated props. No replacement figurine. |
 | Confirmed by Aidan after rendered desktop/phone comparison | **Paper + Slate**: the exact canvas, surface, ink, divider, control and slate accent values below. |
 | Proposed; verify per surface | Type sizes, section density, radii and performance ceilings. These are guidance, not a mandate to change every component at once. |
 
@@ -243,8 +243,8 @@ fallback; text-only data rows are allowed when a face adds no value.
 Proposed ceilings for the non-game shell:
 
 - **Initial WebGL/model requests: zero.** One optional scene at a time;
-  deferred Three/model loading, no parallel figurine gallery. The homepage
-  already keeps its optional viewer outside the initial manifest.
+  deferred Three/model loading for approved assets only, no parallel figurine
+  gallery. The rejected hooper family and homepage inspection action are removed.
 - **Idle scene rendering: zero continuous frames.** Render on load, resize or
   manual interaction; suspend offscreen/hidden; dispose GPU, canvas, download
   and decoded bitmap resources on close/unmount. A closed viewer cannot keep
@@ -321,10 +321,10 @@ every authenticated route or live backend was exercised is implied.
 | Routes / files | What to preserve | Bounded design work |
 | --- | --- | --- |
 | Shared shell: `layout.tsx`, `globals.css`, `SiteHeader`, `MobileNav`, `SectionNav`, `SiteFooter`, `CombinedTicker` | Account state, all destinations, site metadata, safe-area space, fail-soft ticker | Neutral chrome, selected logo variant, shared type/spacing/focus roles, consistent active-page semantics. Desktop header currently has no current-page state; mobile already uses `aria-current`. Reduce stacked bars without deleting destinations or hiding actions. |
-| `/`, `/weekly`, `/weekly/[editionId]` · `season-hub` | Weekly order, dated sources, archives, full live directory, inherited-manager note | Neutral tokens, smaller editorial footprint and fewer visual separators after palette selection. Source no-edition branch currently returns before the directory/standings: keep core tasks available independently of editorial. Sorting/figurine logic is separately owned. |
+| `/`, `/weekly`, `/weekly/[editionId]` · `season-hub` | Weekly order, dated sources, archives, full live directory, inherited-manager note | Neutral tokens, smaller editorial footprint and fewer visual separators after palette selection. Source no-edition branch currently returns before the directory/standings: keep core tasks available independently of editorial. Sorting remains intact; rejected figurine inspection is removed. |
 | `/stocks` · `stock-market` | Approved board/inspector composition, filters, slim quotes, recorded/reconstructed source labels, retry/cache/focus | Shared Paper + Slate shell/board/inspector; preserve chart owner roles and provenance. Review any density/size change separately against actual mobile usage. |
 | `/trade-analyzer` · `trade-analyzer` | Two pickers, domain verdict, FAAB totals, share query, Copy Link | Use selected shared neutral control/ink roles through terminal compatibility names. Never break URL restore or treat verdict color as the entire explanation. |
-| `/teams`, `/teams/[rosterId]`, `/team` · `teams`, `team` | Public profile links, complete roster, record/streak, game log, picks, wire, franchise history, private rewards ledger and redirects | Compact neutral identity/roster composition. TeamProfile currently puts `HooperViewer` in its identity stage: review necessity with the figurine owner; do not delete unique assets or move 3D ahead of useful roster data by default. Keep pending/settled rewards distinct. |
+| `/teams`, `/teams/[rosterId]`, `/team` · `teams`, `team` | Public profile links, complete roster, record/streak, game log, picks, wire, franchise history, private rewards ledger and redirects | Compact neutral identity/roster composition. TeamProfile uses the existing TeamAvatar/initials treatment; the rejected hooper family is removed without changing unrelated approved assets or roster data. Keep pending/settled rewards distinct. |
 | `/player/[playerId]` · `player` | Real identity, ownership, draft slot, transactions, honest unavailable stats | Reuse the compact identity/working-list treatment. Keep the current 88px headshot proportionate; do not turn it into a giant athlete hero or fabricate stats. |
 | `/transactions` · `transactions` | Type/team filters, real chronology, linked people/teams | Neutral readable timeline/list, control hierarchy, compact time metadata; no decorative wall of colored chips. |
 | `/draft` · `draft` | Round grouping, pick order, owner/player links | Desktop board and narrow pick feed share type/spacing; preserve the actual selections and units. |
