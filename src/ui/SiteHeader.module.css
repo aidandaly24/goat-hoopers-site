@@ -1,11 +1,7 @@
 /* SiteHeader — sticky site chrome. Tokens only, no one-off values. */
 
 .header {
-  position: sticky;
-  /* The stock ticker sticks at top:0 above this header — offset by the
-   * shared --gh-ticker-h token so both stay visible while scrolling. */
-  top: var(--gh-ticker-h);
-  z-index: 50;
+  /* SiteChrome owns sticky positioning for the whole ticker/header stack. */
   background: color-mix(in srgb, var(--gh-bg) 86%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -19,12 +15,14 @@
   margin: 0 auto;
   padding: var(--gh-s3) var(--gh-s4);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--gh-s6);
+  gap: var(--gh-s4) var(--gh-s6);
   min-height: 4rem;
 }
 
 .wordmark {
+  flex-shrink: 0;
   font-family: var(--gh-font-display);
   font-size: 1.15rem;
   letter-spacing: 0.08em;
@@ -50,6 +48,7 @@
 
 .nav {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--gh-s2);
 }
 
@@ -71,6 +70,13 @@
   background: color-mix(in srgb, var(--gh-text) 6%, transparent);
 }
 
+.nav a[aria-current="page"],
+.displayName[aria-current="page"] {
+  color: var(--gh-accent);
+  background: var(--gh-bg-hover);
+  box-shadow: inset 0 -2px var(--gh-accent);
+}
+
 .nav a:focus-visible {
   outline: 2px solid var(--gh-gold);
   outline-offset: 2px;
@@ -79,6 +85,9 @@
 .account {
   margin-left: auto;
   display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  min-width: 0;
   align-items: center;
   gap: var(--gh-s3);
 }
@@ -137,6 +146,7 @@
 /* The single logged-in team entry point: team-colored avatar ring +
  * display name, linking to /team. */
 .displayName {
+  min-width: 0;
   display: inline-flex;
   align-items: center;
   gap: var(--gh-s2);
@@ -228,7 +238,17 @@
   }
 }
 
-/* Phones: the bottom tab bar carries Home / Arcade / Team, so the header
+/* Tablet uses a complete second nav row before the desktop row can overflow.
+ * Reuses the documented shared 64rem breakpoint. */
+@media (max-width: 64rem) {
+  .nav {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: center;
+  }
+}
+
+/* Phones: the bottom tab bar carries every primary destination, so the header
  * collapses to wordmark + account cluster. Targets stay >= 44px. */
 @media (max-width: 40rem) {
   .nav {
@@ -271,6 +291,6 @@
 }
 @media(max-width:55rem) { .wordmark img { width:10rem; } .inner { gap:var(--gh-s3); } }
 @media(max-width:40rem) {
-  .wordmark img { width:7.5rem; }
+  .wordmark img { width:min(7.5rem, 28vw); }
   :global(body:has([data-courtside-home])) .inner { min-height:4.5rem; }
 }

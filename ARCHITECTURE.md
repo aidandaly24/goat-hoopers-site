@@ -20,9 +20,9 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 Editorial entries carry explicit draft/publication and date bounds. The latest started entry stays visible with a stale notice after its period ends, never invented weekly results. Source dates, selection reasons, NBA/college period qualifiers and verified historical finals are retained. NeuralNets’ 2025 record visibly names the previous manager in the collapsed summary and explains QBs Gremlins in the full roster.
 
-The server owns hero, player stories, wire and archive. Small client islands handle directory search/sort, native dialogs and one bounded CSS emblem settle. The settle pauses offscreen/hidden and is static under reduced motion. `CourtsideFigurine` is imported only after inspection, requests one unchanged GLB, freezes its supplied idle pose, renders only on load/resize/manual turn, and disposes downloads/GPU/bitmap resources on close. Shared account actions, bottom navigation, standings, stats, transaction links and league tools are retained. No arcade internals are imported or changed.
+The server owns hero, player stories, wire and archive. Small client islands handle directory search/sort, native dialogs and one bounded CSS emblem settle. The settle pauses offscreen/hidden and is static under reduced motion. The rejected hooper figurine family and its inspection dialogs/loaders are removed. Team avatars, names, roster disclosures and direct profile links provide identity without model requests. Shared account actions, bottom navigation, standings, stats, transaction links and league tools are retained. No arcade internals are imported or changed.
 
-`public/courtside/` preserves the exact supplied SVG variants, approved two pennants, existing arena and thirty bounded local portraits. Plain images serve pre-sized assets directly without image-optimizer quota. Fonts reuse root `next/font` assets. The optional Three module/model never participates in initial homepage rendering. Budgets, provenance and measured verification live in `courtside-preview/review/INTEGRATION.md`.
+`public/courtside/` preserves the exact supplied SVG variants, approved two pennants, existing arena and thirty bounded local portraits. Plain images serve pre-sized assets directly without image-optimizer quota. Fonts reuse root `next/font` assets. The homepage does not import a hooper viewer or request rejected models. Budgets, provenance and measured verification live in `courtside-preview/review/INTEGRATION.md`.
 
 ### Isolated courtside homepage review
 
@@ -46,8 +46,8 @@ The comparison artifact remains separate from the integrated Next.js homepage; a
   See top-level `DESIGN.md` for current visual authority.
 - Native `<details>` retains all 228 roster references behind ten compact
   summaries. No player-detail or external API request is made by this preview.
-  `court.js` loads installed Three modules and existing `public/3d/` assets
-  only after a figurine request; it releases its canvas/resources on close.
+  Rejected figurine controls, the optional viewer and its asset preparation
+  script are removed from this preview too; profile links remain available.
 - `ASSET-PROVENANCE.json`, `DESIGN.md`, and `review/` pin the approved assets,
   visual decisions, and captured desktop/mobile evidence. Weekly banner
   regeneration remains a content workflow; only two approved samples ship.
@@ -105,11 +105,12 @@ src/
                  # passed as a parameter). Dependency inversion lives here.
   three/         # Interactive 3D viewers (client components). GLBViewer
                  # (GLTFLoader + AnimationMixer, idle loop, click one-shots),
-                 # HooperViewer (team figurine by roster id), PropViewer
-                 # (basketball/trophy/crown/hoop). Assets in public/3d/,
+                 # PropViewer (basketball/trophy/crown/hoop). Team identities
+                 # use TeamAvatar; rejected hooper loaders/assets are removed.
+                 # Prop assets in public/3d/,
                  # built by the Blender pipeline in 3d/ (see 3d/README.md).
-  public/3d/     # Static GLB assets (hooper-1..10, hooper-generic,
-                 # basketball, trophy, crown, hoop) with named animation
+  public/3d/     # Approved props (basketball, trophy, crown, hoop)
+                 # and independently owned free-throw assets with named animation
                  # clips. Do not hand-edit; regenerate via 3d/build_all.sh.
   surfaces/      # Bounded experiences. One folder per surface.
     season-hub/  # "What's happening in the league": hero, standings,
@@ -235,13 +236,20 @@ src/
                  # TransactionSummary renders one transaction as a sentence
                  # with player names -> player pages and the acting team ->
                  # its team page, built from structured adds/drops.
-                 # SiteHeader is the site-wide chrome (wordmark, Home/Arcade
+                 # SiteChrome groups ticker/header in one sticky stack and
+                 # measures its actual height for anchor/focus clearance.
+                 # A clipped skip link focuses the root content container.
+                 # SiteHeader is the site-wide chrome (wordmark, primary
                  # nav, account state). Nav rule: logged in, the manager's
                  # display name with a team-colored avatar ring is the
                  # single entry point to /team and "My Team" disappears;
                  # logged out, "My Team" stays as the login nudge.
-                 # MobileNav is the bottom tab bar (Home / Arcade / Team)
-                 # shown at <=40rem; the header nav hides there.
+                 # Desktop/mobile order: Home / News / Stocks / History /
+                 # Arcade / Team, with boundary-aware nested active states.
+                 # MobileNav is the bottom tab bar with the same destinations
+                 # shown at <=40rem; the header nav hides there. Its measured
+                 # height reserves content/focus space at enlarged text sizes.
+                 # Header nav wraps into a complete row at <=64rem.
                  # SiteFooter is the site-wide footer (league, season,
                  # links, unaffiliated-with-NBA/Sleeper line). All three
                  # take state as props (dependency inversion); the root
@@ -340,8 +348,13 @@ requested player in one SQL query (zero queries for an empty set), with
 Reconstruction never supplies a quote baseline. The shared market-candidate
 selector controls the requested set. `getPricePath(id)` reads only the
 selected player's reconstruction and latest ten live rows (player filter
-before the limit), then merges and samples the chart to 40 points. The detail
-loader retains its current modeled point last and caps the response at 40.
+before the limit). The detail loader requests 39 historical points, reserving
+the fortieth slot for its unchanged current modeled quote. The pure
+`stock-history-sampling.ts` orders existing points, preserves both endpoints
+and both sides of provenance changes, then prefers extrema and splits the
+largest remaining index gaps. It never averages prices, invents dates or
+deduplicates a recorded/current same-date pair. Provenance that alone exceeds
+the requested budget fails closed instead of being silently hidden.
 The list/ticker never request chart history; see `docs/quote-history-queries.md`.
 Both reconstructed sources render dashed and are labeled as
 current-model FAAB estimates; normal change % and movers use live
@@ -442,9 +455,12 @@ and actor links remain in the native reader with visible generated/parody labels
 pushes, voice changes replace, Back/Forward restore. Close/Escape goes Back only
 for an entry opened in the current visit; initial deep links close by replacement.
 Missing, duplicate, unguarded or changed article snapshots are explicitly
-unavailable. The presentation-only fingerprint includes all supplied fields;
-reused render slots cannot reopen another event, and regenerated content/time
-may expire a link. `qa/newsroom/` mounts production components with synthetic
+unavailable. New v2 fingerprints exclude only regenerated rookie/rumor/take
+timestamps; trade/waiver transaction-derived time, exact content and actor refs
+remain guarded. v1 matches only its complete original snapshot. Unverifiable
+versions offer explicit, labelled current-story navigation only for a unique
+candidate, never automatic substitution. Policy: `docs/newsroom-content-revisions.md`.
+`qa/newsroom/` mounts production components with synthetic
 props and approved local fonts/chrome, not an app route. Its native-anchor
 adapter does not verify Next App Router restoration.
 

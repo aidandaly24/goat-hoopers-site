@@ -1,7 +1,11 @@
 /* eslint-disable @next/next/no-img-element -- Approved, pre-sized local assets are served directly without image-optimizer quota. */
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { CSSProperties } from "react";
 import { teamColorVar } from "./teamColors";
+import { isCurrentRoute } from "./currentRoute";
 import styles from "./SiteHeader.module.css";
 
 export type SiteHeaderUser = {
@@ -32,9 +36,11 @@ type Props = {
  * session cookie, which opts the whole route tree into dynamic rendering
  * (deliberate: correct account state everywhere beats static caching for
  * a ten-manager league site). On phones the nav links hide — the bottom
- * tab bar (MobileNav) carries Home / Arcade / Team instead.
+ * tab bar (MobileNav) carries the same destinations and order instead.
  */
 export function SiteHeader({ user, logoutAction }: Props) {
+  const pathname = usePathname();
+  const current = (href: string) => isCurrentRoute(pathname, href) ? "page" as const : undefined;
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -42,11 +48,12 @@ export function SiteHeader({ user, logoutAction }: Props) {
           <img src="/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers" width="208" height="55" />
         </Link>
         <nav className={styles.nav} aria-label="Primary">
-          <Link href="/">Home</Link>
-          <Link href="/news">News</Link>
-          <Link href="/history">History</Link>
-          <Link href="/arcade">Arcade</Link>
-          {!user && <Link href="/team">My Team</Link>}
+          <Link href="/" aria-current={current("/")}>Home</Link>
+          <Link href="/news" aria-current={current("/news")}>News</Link>
+          <Link href="/stocks" aria-current={current("/stocks")}>Stocks</Link>
+          <Link href="/history" aria-current={current("/history")}>History</Link>
+          <Link href="/arcade" aria-current={current("/arcade")}>Arcade</Link>
+          {!user && <Link href="/team" aria-current={current("/team")}>My Team</Link>}
         </nav>
         <div className={styles.account}>
           {user ? (
@@ -54,6 +61,7 @@ export function SiteHeader({ user, logoutAction }: Props) {
               <Link
                 href="/team"
                 className={styles.displayName}
+                aria-current={current("/team")}
                 style={{ "--gh-ring": teamColorVar(user.teamId) } as CSSProperties}
               >
                 <span className={styles.ring} aria-hidden="true">
@@ -69,10 +77,10 @@ export function SiteHeader({ user, logoutAction }: Props) {
             </>
           ) : (
             <>
-              <Link href="/claim" className={styles.claim}>
+              <Link href="/claim" className={styles.claim} aria-current={current("/claim")}>
                 Claim team
               </Link>
-              <Link href="/login" className={styles.login}>
+              <Link href="/login" className={styles.login} aria-current={current("/login")}>
                 Log in
               </Link>
             </>

@@ -7,6 +7,7 @@ import "./globals.css";
 import { getCurrentUser, logout } from "@/app/actions";
 import { getSeasonMeta, getStockMarketData, getLeagueNews } from "@/data/league";
 import { SiteHeader } from "@/ui/SiteHeader";
+import { SiteChrome } from "@/ui/SiteChrome";
 import { SiteFooter } from "@/ui/SiteFooter";
 import { MobileNav } from "@/ui/MobileNav";
 import {
@@ -135,9 +136,11 @@ export default async function RootLayout({
       className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
       <body>
-        <Ticker />
-        <SiteHeader user={headerUser} logoutAction={logout} />
-        {children}
+        <SiteChrome>
+          <Ticker />
+          <SiteHeader user={headerUser} logoutAction={logout} />
+        </SiteChrome>
+        <div id="main-content" tabIndex={-1}>{children}</div>
         <SiteFooter season={season} />
         <MobileNav user={headerUser} />
       </body>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { FranchiseHistory, Matchup, Team, TeamProfile } from "@/domain";
-import { isFinal } from "@/domain";
+import { fmtTotal, isFinal, totalLabel } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
 import { PlayerName, PlayerRow } from "@/ui/PlayerRow";
@@ -8,7 +8,6 @@ import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { TransactionSummary } from "@/ui/TransactionSummary";
 import { FranchiseSection } from "@/surfaces/history/FranchiseSection";
-import { HooperViewer } from "@/three/HooperViewer";
 import styles from "./TeamProfile.module.css";
 
 function streakBadge(streak: number) {
@@ -92,13 +91,7 @@ export function TeamProfile({
   return (
     <div className={styles.page}>
       <Card className={styles.identity}>
-        <div className={styles.hooperStage}>
-          <HooperViewer
-            rosterId={Number.parseInt(team.id, 10)}
-            teamName={team.name}
-            ariaLabel={`${team.name} figurine. Activate for a trick.`}
-          />
-        </div>
+        <TeamAvatar name={team.name} avatar={team.avatar} />
         <div className={styles.identityText}>
           <h1 className={styles.teamName}>{team.name}</h1>
           <p className={styles.manager}>managed by {team.managerName}</p>
@@ -119,7 +112,9 @@ export function TeamProfile({
           </div>
           <div>
             <dt>PA</dt>
-            <dd>{(team.pointsAgainst / 100).toFixed(1)}</dd>
+            <dd aria-label={totalLabel("Points against", team.pointsAgainst)}>
+              {fmtTotal(team.pointsAgainst)}
+            </dd>
           </div>
         </dl>
       </Card>

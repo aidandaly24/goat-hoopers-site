@@ -5,7 +5,6 @@
 import { useRef, useState, type ReactNode } from "react";
 import type { LiveClubhouseDirectoryEntry } from "@/domain/clubhouse-directory";
 import { TeamAvatar } from "@/ui/TeamAvatar";
-import { FigurineDialog } from "./CourtsideDialog";
 import { cs } from "./CourtsideStyles";
 import {
   directoryInitialDirection, nextSort, sortDirectory,
@@ -322,9 +321,6 @@ export function CourtsideDirectory({
                         {entry.latestMove.summary}
                       </p>
                     )}
-                    <div>
-                      <FigurineDialog teamId={team.id} name={team.name} />
-                    </div>
                   </div>
                 </details>
               );

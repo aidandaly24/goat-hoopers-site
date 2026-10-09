@@ -1,41 +1,39 @@
-.grid {
+.directory {
+  min-width: 0;
+  padding: var(--gh-s6) var(--gh-s4);
+}
+
+.list {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--gh-s3);
 }
 
-.teamCard {
-  display: flex;
+.list > li + li {
+  border-top: 1px solid var(--gh-border);
+}
+
+.teamRow {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
   align-items: center;
   gap: var(--gh-s3);
-  padding: var(--gh-s3);
-  border: 1px solid var(--gh-border);
-  border-radius: var(--gh-radius);
+  padding: var(--gh-s3) var(--gh-s2);
   min-height: 44px;
   color: inherit;
   text-decoration: none;
-  width: 100%;
   box-sizing: border-box;
-  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  transition: background-color 0.18s ease;
 }
 
-.teamCard:hover {
+.teamRow:hover {
   background: var(--gh-bg-hover);
-  border-color: var(--gh-border-strong);
-  transform: translateY(-2px);
-  box-shadow: var(--gh-shadow-md);
 }
 
-.teamCard:hover .name {
-  color: var(--gh-gold-soft);
-}
-
-.teamCard:focus-visible {
-  outline: 2px solid var(--gh-gold);
+.teamRow:focus-visible {
+  outline: 2px solid var(--gh-focus);
   outline-offset: 2px;
+  background: var(--gh-bg-hover);
 }
 
 .info {
@@ -43,76 +41,94 @@
   flex-direction: column;
   gap: var(--gh-s1);
   min-width: 0;
-  flex: 1;
+  overflow-wrap: anywhere;
 }
 
 .name {
+  display: flex;
+  align-items: baseline;
+  gap: var(--gh-s2);
   font-weight: 700;
   color: var(--gh-text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: color 0.18s ease;
+}
+
+.name > span:last-child {
+  min-width: 0;
+}
+
+.teamColor {
+  width: var(--gh-s2);
+  height: var(--gh-s2);
+  border-radius: var(--gh-radius-pill);
+  flex-shrink: 0;
 }
 
 .manager {
-  font-size: 0.82rem;
-  color: var(--gh-text-faint);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--gh-text-dim);
 }
 
 .record {
   display: flex;
-  gap: var(--gh-s4);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--gh-s3);
+  grid-column: 1 / -1;
   margin: 0;
-  flex-shrink: 0;
+  min-width: 0;
+  font-family: var(--gh-font-mono);
 }
 
-.record div {
-  text-align: center;
+.record > div {
+  flex: 0 0 3ch;
+  min-width: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.record > div:last-child {
+  flex-basis: 8ch;
 }
 
 .record dt {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--gh-text-faint);
+  font-family: var(--gh-font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--gh-text-dim);
+}
+
+.record abbr {
+  text-decoration: none;
 }
 
 .record dd {
   margin: var(--gh-s1) 0 0;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--gh-text);
 }
 
 .empty {
-  color: var(--gh-text-faint);
+  color: var(--gh-text-dim);
   margin: 0;
   font-style: italic;
 }
 
-/* Desktop: two columns of team cards. */
+/* One consistent stat rail; names keep the remaining width and always wrap. */
 @media (min-width: 64rem) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .teamRow {
+    grid-template-columns: 2.5rem minmax(0, 1fr) minmax(0, 16rem);
+    gap: var(--gh-s4);
   }
-}
 
-/* Narrow phones retain names and every record field without page overflow. */
-@media (max-width: 40rem) {
-  .teamCard { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); }
-  .name { white-space: normal; overflow-wrap: anywhere; }
-  .manager { overflow-wrap: anywhere; }
-  .record { grid-column: 2; flex-wrap: wrap; }
+  .record {
+    grid-column: auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .teamCard,
-  .name {
+  .teamRow {
     transition: none;
-  }
-
-  .teamCard:hover {
-    transform: none;
   }
 }

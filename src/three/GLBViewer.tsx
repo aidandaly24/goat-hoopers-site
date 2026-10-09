@@ -6,7 +6,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import styles from "./GLBViewer.module.css";
 
 export type GLBViewerProps = {
-  /** Path to the .glb, e.g. "/3d/hooper-8.glb". */
+  /** Path to the .glb, e.g. "/3d/hoop.glb". */
   src: string;
   /** One-shot animation clip names to cycle through on click. */
   clickClips: string[];

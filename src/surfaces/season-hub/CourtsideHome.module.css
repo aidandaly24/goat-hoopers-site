@@ -954,10 +954,6 @@
     margin-top: var(--gh-cs-s4);
   }
 
-  .figurine-link {
-    margin-top: var(--gh-cs-s4);
-  }
-
   .search-hit {
     font-size: var(--gh-cs-secondary);
     padding: var(--gh-cs-s3) var(--gh-cs-s4);
@@ -1694,7 +1690,7 @@
 }
 
 .surface [id] {
-  scroll-margin-top: 9rem;
+  scroll-margin-top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4));
 }
 .surface .player-lead {
   align-content: start;
@@ -1704,7 +1700,7 @@
 }
 @media (max-width: 40rem) {
   .surface [id] {
-    scroll-margin-top: 8rem;
+    scroll-margin-top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4));
   }
 }
 

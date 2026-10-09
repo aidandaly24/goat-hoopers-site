@@ -1,0 +1,15 @@
+import { defineConfig } from "vite";
+import { fileURLToPath } from "node:url";
+
+export default defineConfig({
+  publicDir: fileURLToPath(new URL("../../../public", import.meta.url)),
+  resolve: { alias: [
+    { find: "next/link", replacement: fileURLToPath(new URL("./link.tsx", import.meta.url)) },
+    { find: "next/navigation", replacement: fileURLToPath(new URL("./navigation.ts", import.meta.url)) },
+    { find: "@/data/espn-client", replacement: fileURLToPath(new URL("./scores.ts", import.meta.url)) },
+    { find: "@/data/stock-detail-client", replacement: fileURLToPath(new URL("./stocks.ts", import.meta.url)) },
+    { find: "@", replacement: fileURLToPath(new URL("../../", import.meta.url)) },
+  ] },
+  define: { "process.env": JSON.stringify({ NODE_ENV: "development" }) },
+  server: { host: "127.0.0.1", port: 0 },
+});

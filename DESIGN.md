@@ -19,6 +19,12 @@ numbers, clear navigation and clickable identities still apply. Architectural
 and security contracts remain authoritative. The selected palette now has canonical runtime roles in `src/ui/tokens.css`;
 visual composition and functionality migrate through separate small PRs.
 
+The project-only [goat-hoopers-design skill](.agents/skills/goat-hoopers-design/SKILL.md)
+routes design tasks to short, optional review references. This document remains
+the decision record; the skill does not introduce a second palette or install
+external skills. Its references attribute the ten UI source studies without
+importing their manuals or framework/package-manager preferences.
+
 ## Decisions and review status
 
 | Status | Direction |
@@ -29,9 +35,22 @@ visual composition and functionality migrate through separate small PRs.
 | Confirmed | Preserve the meaningful arena/court, selected GOAT logo and reusable embroidered pennants. Generate the featured weekly banners; do not generate a banner for every team name. |
 | Confirmed | Preserve the approved stocks composition and useful dense data. Keep working search, filters, sorting, inspection and price provenance. |
 | Confirmed, newest usability rule | Arcade discovery shows actual playable games, a real preview of free-throw practice and clear Play navigation. Hide nonfunctional/fake catalog entries. Verify the whole path to play, not just an HTTP 200. Arcade improvements need not wait for the broad migration. |
-| Confirmed concern; resolution owned separately | Arbitrary figurines are unwelcome. Another task identifies their purpose and fixes homepage sorting. This documentation/prototype change neither removes models nor changes their logic. |
+| Confirmed removal · 2026-10-09 | Aidan rejects the bald/blocky hooper figurine family everywhere. Remove all 11 team/generic public GLBs, their loaders and inspection controls, including previews. Retain team avatars, readable identities, rosters and profile links; preserve approved arena, pennants, logo and unrelated props. No replacement figurine. |
 | Confirmed by Aidan after rendered desktop/phone comparison | **Paper + Slate**: the exact canvas, surface, ink, divider, control and slate accent values below. |
 | Proposed; verify per surface | Type sizes, section density, radii and performance ceilings. These are guidance, not a mandate to change every component at once. |
+| Proposed; implementation review pending | One root-owned global destination definition and a compact phone disclosure; exact labels/grouping below are recommendations, not an Aidan-approved menu specification. Follow on from #84 / PR #87. |
+| Proposed; verify per interaction | Extend the current Courtside 180ms motion token with small feedback/overlay roles and persistent ticker Pause/Resume. No animation library or blanket motion pass. |
+
+**Implementation evidence, inspected main `32794327df2ec8cd3d2b30935c2df51b354f63ca`:**
+Paper + Slate roles and Inter/Geist Mono are in source; this pass does not
+re-measure their rendering. Desktop `SiteHeader`, `MobileNav` and page-injected
+`SectionNav` still define different menus; neither primary menu includes
+Stocks. PR #87 owns that repair and remains separate from this document.
+`CombinedTicker` still pauses its CSS marquee on hover, rotates modes every
+15 seconds and checks reduced motion when its rotation effect starts; there
+is no persistent Pause/Resume button or live preference-change subscription.
+The proposed global navigation and motion refinements below are not implemented
+by these documentation edits. Later work must re-inspect its exact source head.
 
 The neutral comparisons live at
 [design-previews/neutral-courtside/index.html](design-previews/neutral-courtside/index.html).
@@ -68,6 +87,14 @@ tools. Failed live data must never masquerade as a result. Distinguish sample,
 published, historical, upcoming, current and unavailable states. A preseason
 pairing with null scores says Upcoming; an old 2025 record says 2025 and keeps
 its previous-manager qualification. A modeled price is not a real transaction.
+
+For each changed surface, add a short design contract to its existing entry
+comment or review record: **user question → primary action → relevant states
+→ narrow layout → forbidden patterns**. For example, the exchange answers
+“What is this player worth?” with Inspect; its states include loading,
+unavailable detail and source-labelled history; its narrow layout retains
+filters, units and Close; it forbids eager full-history payloads and oversized
+portrait cards. This extends the existing surface contract, not a new registry.
 
 ## Composition and components
 
@@ -218,14 +245,21 @@ production imports. No new palette framework, assets or fetching is needed.
 - Keyboard users get a skip link, meaningful landmark/heading order and a
   visible focus ring. Focus contrast is at least 3:1 against its adjacent
   surfaces, and controls/state indicators also meet 3:1 where required.
-  Normal text needs 4.5:1; large text needs 3:1. Check actual combinations,
-  including muted text, hover, accent fill, disabled state and dark exceptions.
+  Normal text needs 4.5:1; large text needs 3:1. Large means at least **18pt
+  regular or 14pt bold** (24px or about 18.67px), not 18px/14px. Measure actual
+  rendered foreground/background pairs, including composited tints, opacity,
+  muted text, hover, accent fill and dark exceptions. Disabled/inactive controls
+  have WCAG exceptions; review their readability without claiming a required
+  contrast pass. Token names or a palette swatch alone do not prove compliance.
 - Dialogs/panels have a named heading and Close. Escape, focus containment
   where modal, restoration to the trigger (or a stable board heading) and
-  sensible Back behavior must work. Preserve the stock inspector's existing
+  sensible Back/Forward behavior must work. Preserve the stock inspector's existing
   retry, cached details, stale-response protection and post-close focus fix.
-- Touch targets are at least 44×44px, including icon-only inspect/close,
-  sort, mobile tabs and disclosures. Give icon-only buttons accessible names.
+- The **site design target is 44×44 CSS px**, including icon-only inspect/close,
+  sort, mobile tabs and disclosures. This is stronger than WCAG 2.2 AA's
+  **24×24 CSS px minimum**, which has spacing, inline, equivalent-control,
+  user-agent and essential exceptions. Record an applicable exception rather
+  than calling every smaller inline link an AA failure. Give icon-only buttons accessible names.
   Announce changed counts/errors politely; decorative duplicates in a ticker
   must not repeat for assistive technology.
 
@@ -243,17 +277,25 @@ fallback; text-only data rows are allowed when a face adds no value.
 Proposed ceilings for the non-game shell:
 
 - **Initial WebGL/model requests: zero.** One optional scene at a time;
-  deferred Three/model loading, no parallel figurine gallery. The homepage
-  already keeps its optional viewer outside the initial manifest.
+  deferred Three/model loading for approved assets only, no parallel figurine
+  gallery. The rejected hooper family and homepage inspection action are removed.
 - **Idle scene rendering: zero continuous frames.** Render on load, resize or
   manual interaction; suspend offscreen/hidden; dispose GPU, canvas, download
   and decoded bitmap resources on close/unmount. A closed viewer cannot keep
   work alive. Respect a reduced-motion preference change during a session.
-- **Functional transitions: 120–200ms.** No looping bobbing, autoplay camera,
+- **Functional transitions: generally 120–200ms.** Extend the existing
+  `--gh-cs-duration: 180ms` rather than introducing a parallel timing system;
+  proposed feedback/state/overlay timings and lifecycle checks live in the
+  optional [motion reference](.agents/skills/goat-hoopers-design/references/motion.md).
+  Focus, price inspection and numeric price updates are immediate. No looping bobbing, autoplay camera,
   parallax, scrolljacking, forced scenic scrolling, pulse or banner carousel.
-  A single optional emblem settle, currently 750ms, can be retained only if
-  it earns its space; reduced motion makes it static. A ticker needs Pause
-  and a readable static reduced-motion state if automatic motion remains.
+  At most one restrained authored basketball moment is appropriate per surface;
+  the optional emblem settle, currently 750ms, must earn its space and becomes
+  static under reduced motion. Do not add generic scroll reveals or hide
+  essential content awaiting an observer or animation. A ticker needs a
+  persistent keyboard/touch **Pause/Resume** control that stops automatic
+  movement and mode rotation, plus a readable static reduced-motion state.
+  Hover pause alone is insufficient. These ticker refinements remain a follow-up.
 - **Incremental homepage interaction: ≤15KB gzip**, excluding deferred
   installed Three. Retain the existing roughly 329KB arena rather than
   introduce a multi-megabyte hero. Lazy-load below-fold portraits/rosters;
@@ -305,9 +347,37 @@ page, the primary navigation or the default roster experience.
 Desktop and mobile share destinations, meaningful order, current-page/section
 state and account semantics. Preserve the signed-in manager's single `/team`
 entry, login/claim actions, logout, mobile safe areas and active nested-route
-state. Essential tools must stay reachable from both sizes. Evaluate the first
+state. **Stocks must stay directly reachable everywhere**, independent of the
+ticker's current mode or whether it has content. Essential tools must stay reachable from both sizes. Evaluate the first
 phone screen with real content: identity plus the next useful action should be
 clear without three consecutive navigation/status strips dominating it.
+
+### Global navigation recommendation — follow on from PR #87
+
+After the current shared-shell repair is reviewed, consolidate main and league
+bars from one small ordered destination definition composed by the root layout.
+Avoid three drifting lists and page-injected global navigation. Local section
+links may remain where they explain that page; no generic route registry is
+needed. The shared-shell owner implements this in a subsequent bounded PR.
+
+Recommended desktop grouping: **Home, News, Stocks, History, Arcade**, with a
+labeled **League tools** disclosure for Teams, Transactions, Draft, Intel and
+Trade Analyzer. Recommended phone opening: compact approved logo, direct
+**Stocks**, and **Menu**, opening a **nonmodal, in-flow** disclosure with the
+same destinations/order and league tools. Exact labels/grouping need
+implementation review; Aidan has not approved this exact menu specification.
+Preserve `/weekly` archives, history children, footer/profile links and every
+existing destination. Retain logged-in display-name → `/team` as the single
+account entry in the active layout, logged-out My Team/login/claim actions and
+logout; do not conflate public `/teams` with private `/team`.
+
+Use ordinary links and disclosure buttons with visible names, `aria-expanded`
+and `aria-controls`, not application-menu roles or a focus trap. Escape closes
+an open disclosure and restores its trigger focus; closing it must remove its
+hidden children from the tab order. Match nested current routes at a slash
+boundary. Inspect real Back/Forward restoration and direct anchor clearance
+with and without the ticker, enlarged text and wrapped chrome. The existing
+PR #87 owns current offsets and skip/focus repair; these docs do not change it.
 
 ## Existing route audit and small-PR migration
 
@@ -321,10 +391,10 @@ every authenticated route or live backend was exercised is implied.
 | Routes / files | What to preserve | Bounded design work |
 | --- | --- | --- |
 | Shared shell: `layout.tsx`, `globals.css`, `SiteHeader`, `MobileNav`, `SectionNav`, `SiteFooter`, `CombinedTicker` | Account state, all destinations, site metadata, safe-area space, fail-soft ticker | Neutral chrome, selected logo variant, shared type/spacing/focus roles, consistent active-page semantics. Desktop header currently has no current-page state; mobile already uses `aria-current`. Reduce stacked bars without deleting destinations or hiding actions. |
-| `/`, `/weekly`, `/weekly/[editionId]` · `season-hub` | Weekly order, dated sources, archives, full live directory, inherited-manager note | Neutral tokens, smaller editorial footprint and fewer visual separators after palette selection. Source no-edition branch currently returns before the directory/standings: keep core tasks available independently of editorial. Sorting/figurine logic is separately owned. |
+| `/`, `/weekly`, `/weekly/[editionId]` · `season-hub` | Weekly order, dated sources, archives, full live directory, inherited-manager note | Neutral tokens, smaller editorial footprint and fewer visual separators after palette selection. Source no-edition branch currently returns before the directory/standings: keep core tasks available independently of editorial. Sorting remains intact; rejected figurine inspection is removed. |
 | `/stocks` · `stock-market` | Approved board/inspector composition, filters, slim quotes, recorded/reconstructed source labels, retry/cache/focus | Shared Paper + Slate shell/board/inspector; preserve chart owner roles and provenance. Review any density/size change separately against actual mobile usage. |
 | `/trade-analyzer` · `trade-analyzer` | Two pickers, domain verdict, FAAB totals, share query, Copy Link | Use selected shared neutral control/ink roles through terminal compatibility names. Never break URL restore or treat verdict color as the entire explanation. |
-| `/teams`, `/teams/[rosterId]`, `/team` · `teams`, `team` | Public profile links, complete roster, record/streak, game log, picks, wire, franchise history, private rewards ledger and redirects | Compact neutral identity/roster composition. TeamProfile currently puts `HooperViewer` in its identity stage: review necessity with the figurine owner; do not delete unique assets or move 3D ahead of useful roster data by default. Keep pending/settled rewards distinct. |
+| `/teams`, `/teams/[rosterId]`, `/team` · `teams`, `team` | Public profile links, complete roster, record/streak, game log, picks, wire, franchise history, private rewards ledger and redirects | Compact neutral identity/roster composition. TeamProfile uses the existing TeamAvatar/initials treatment; the rejected hooper family is removed without changing unrelated approved assets or roster data. Keep pending/settled rewards distinct. |
 | `/player/[playerId]` · `player` | Real identity, ownership, draft slot, transactions, honest unavailable stats | Reuse the compact identity/working-list treatment. Keep the current 88px headshot proportionate; do not turn it into a giant athlete hero or fabricate stats. |
 | `/transactions` · `transactions` | Type/team filters, real chronology, linked people/teams | Neutral readable timeline/list, control hierarchy, compact time metadata; no decorative wall of colored chips. |
 | `/draft` · `draft` | Round grouping, pick order, owner/player links | Desktop board and narrow pick feed share type/spacing; preserve the actual selections and units. |
@@ -370,12 +440,20 @@ the plan if actual usability evidence contradicts a proposed token or component.
 ## Concrete acceptance checks
 
 For each migrated surface, review actual rendering at desktop, 390px and 320px,
-then 200% text zoom, long team/player names, empty/error states and reduced
-motion. Use keyboard through real controls, profile navigation, Back, Close,
+then test **200% text enlargement separately from 320 CSS px reflow**. Browser
+zoom, text enlargement and a narrow viewport establish different evidence;
+record the method. Include long team/player names, empty/error states and reduced
+motion. Use keyboard through real controls, profile navigation, Back/Forward, Close,
 Retry and focus restoration. Check that fixed chrome never covers content or
 focus. Run a complete Arcade catalog → Play → usable game → reset/exit path.
 An HTTP 200, a source inspection or a homepage screenshot is not proof that
-the rest of the site works.
+the rest of the site works. Label evidence as **source**, **component fixture**,
+**real Next route**, **actual device** or **screen reader**, with exact revision,
+route/state and test method. A fixture's native anchors do not establish Next
+history restoration; an accessibility-tree inspection is not a screen-reader
+pass, and an emulated safe area is not physical iOS evidence. Keep unperformed
+checks explicit. The optional [navigation/accessibility reference](.agents/skills/goat-hoopers-design/references/navigation-accessibility.md)
+helps select the relevant checks without implying they have passed.
 
 Compare before/after with identical data and asset crops. Check contrast for
 each real surface/state, touch targets, full-roster retention, table sorting,
@@ -395,3 +473,4 @@ this design work.
 | Upcoming/null scores, 2025 record and “Previous manager” | Fabricated live zero score or inherited poor record blamed on today's manager |
 | Play free-throw practice using a real preview | A catalog of fake games whose links merely return successful HTTP responses |
 | Clear sort labels, units and keyboard focus | Pretty headers that cannot sort, color-only verdicts or unreadable small labels |
+

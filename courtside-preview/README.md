@@ -9,17 +9,14 @@ From the repository root, with the existing dependencies installed:
 
 ```sh
 node courtside-preview/build-data.cjs
-node courtside-preview/prepare-viewer.cjs
 python3 -m http.server 8790 --bind 127.0.0.1
 ```
 
 Open <http://127.0.0.1:8790/courtside-preview/>. Serve the repository root because
-the shared UI tokens are referenced from `src/ui/`. `prepare-viewer.cjs` copies
-only the required installed Three modules into ignored local output and links
-the existing league GLBs. No new package, CDN or 3D engine is needed.
-
-The generated data payload is committed so the bulletin itself opens without
-a build. The optional figurine action requires the preparation step above.
+the shared UI tokens are referenced from `src/ui/`. The generated data payload
+is committed so the bulletin opens without a build. Rejected hooper figurines,
+inspection controls and the optional Three preparation/loading path are removed.
+Team identity and full profile links remain available.
 
 - `#watch`: this week's three player stories.
 - `#teams`: searchable team directory with native roster disclosures.

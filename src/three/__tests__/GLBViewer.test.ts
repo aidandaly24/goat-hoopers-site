@@ -1,10 +1,8 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
 import { type ReactElement } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
 import * as THREE from "three";
 import type { GLTF } from "three/addons/loaders/GLTFLoader.js";
 import { GLBViewer, type GLBViewerProps } from "../GLBViewer";
-import { HooperViewer } from "../HooperViewer";
 import { PropViewer } from "../PropViewer";
 
 // Exercise the component's actual effect with browser/renderer fakes, without
@@ -462,17 +460,6 @@ describe("supported behavior", () => {
     expect(retry.render().props.children).toBeNull();
     expect(fakes.load).toHaveBeenCalledTimes(1);
     retry.cleanup();
-  });
-
-  it("provides a token-colored accessible jersey using the existing team name", () => {
-    const hooper = HooperViewer({ rosterId: 8, teamName: "Offline Hoopers" });
-    const html = renderToStaticMarkup(hooper.props.fallback);
-    expect(html).toContain('role="img"');
-    expect(html).toContain('aria-label="Offline Hoopers jersey. 3D preview unavailable."');
-    expect(html).toContain('stroke="var(--gh-team-8)"');
-    expect(html).toContain('aria-hidden="true"');
-    const neutral = HooperViewer({ rosterId: null });
-    expect(renderToStaticMarkup(neutral.props.fallback)).toContain('stroke="var(--gh-gold)"');
   });
 });
 
