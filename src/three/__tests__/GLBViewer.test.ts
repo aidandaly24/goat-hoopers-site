@@ -8,7 +8,8 @@ import { HooperViewer } from "../HooperViewer";
 import { PropViewer } from "../PropViewer";
 
 // Exercise the component's actual effect with browser/renderer fakes, without
-// adding a DOM package. Real React mounting is covered by the local fixture.
+// adding a DOM package. Effect replay is modeled explicitly below; this suite
+// does not claim real React/browser mounting or physical WebGL verification.
 const hooks = vi.hoisted(() => ({
   mount: null as unknown,
   failed: false,
@@ -38,6 +39,21 @@ class Canvas extends EventTarget {
   setAttribute(name: string, value: string) { this.attributes[name] = value; }
 }
 
+class MotionPreference extends EventTarget {
+  matches = false;
+  change(matches: boolean) {
+    this.matches = matches;
+    this.dispatchEvent(new Event("change"));
+  }
+}
+class PageVisibility extends EventTarget {
+  hidden = false;
+  change(hidden: boolean) {
+    this.hidden = hidden;
+    this.dispatchEvent(new Event("visibilitychange"));
+  }
+}
+
 let canvas: Canvas;
 let renderer: { domElement: Canvas; setPixelRatio: ReturnType<typeof vi.fn>; setSize: ReturnType<typeof vi.fn>; render: ReturnType<typeof vi.fn>; dispose: ReturnType<typeof vi.fn> };
 let mount: { clientWidth: number; clientHeight: number; appendChild: ReturnType<typeof vi.fn>; removeChild: ReturnType<typeof vi.fn> };
@@ -48,6 +64,12 @@ let frames: Map<number, FrameRequestCallback>;
 let nextFrame: number;
 let resolveLoad: (asset: GLTF) => void;
 let rejectLoad: (error: Error) => void;
+let motion: MotionPreference;
+let page: PageVisibility;
+let windowEvents: EventTarget;
+let intersect: (visible: boolean) => void;
+let intersectionDisconnect: ReturnType<typeof vi.fn>;
+let frameTime: number;
 
 function component(props: Partial<GLBViewerProps> = {}) {
   const element = GLBViewer({ src: "/offline.glb", clickClips: ["spin", "jump", "dunk"], fallback: "Static jersey", ...props });
@@ -87,10 +109,16 @@ async function load(gltf = asset().gltf) {
   await Promise.resolve();
 }
 
-function frame() {
+function frame(time = frameTime + 50) {
   const [id, callback] = [...frames][0];
   frames.delete(id);
-  callback(16);
+  frameTime = time;
+  callback(time);
+}
+
+function settle() {
+  for (let limit = 0; frames.size && limit < 40; limit++) frame();
+  expect(frames.size).toBe(0);
 }
 
 beforeEach(() => {
@@ -112,7 +140,16 @@ beforeEach(() => {
   }));
   frames = new Map();
   nextFrame = 0;
-  vi.stubGlobal("window", { devicePixelRatio: 3, matchMedia: () => ({ matches: false }) });
+  frameTime = 0;
+  motion = new MotionPreference();
+  page = new PageVisibility();
+  windowEvents = new EventTarget();
+  vi.stubGlobal("document", page);
+  vi.stubGlobal("window", {
+    devicePixelRatio: 3, matchMedia: () => motion,
+    addEventListener: windowEvents.addEventListener.bind(windowEvents),
+    removeEventListener: windowEvents.removeEventListener.bind(windowEvents),
+  });
   vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) => {
     frames.set(++nextFrame, callback);
     return nextFrame;
@@ -124,6 +161,14 @@ beforeEach(() => {
     constructor(callback: () => void) { resize = callback; }
     observe = observe;
     disconnect = disconnect;
+  });
+  intersectionDisconnect = vi.fn();
+  vi.stubGlobal("IntersectionObserver", class {
+    constructor(callback: IntersectionObserverCallback) {
+      intersect = (visible) => callback([{ target: mount, isIntersecting: visible } as unknown as IntersectionObserverEntry], this as unknown as IntersectionObserver);
+    }
+    observe() { intersect(true); }
+    disconnect = intersectionDisconnect;
   });
 });
 afterEach(() => { vi.restoreAllMocks(); vi.unstubAllGlobals(); });
@@ -174,10 +219,12 @@ describe("viewer failure containment", () => {
     await load(owned.gltf);
     if (stage === "later render") {
       renderer.render.mockImplementation(() => { throw new Error(stage); });
+      canvas.dispatchEvent(new Event("pointerdown"));
       expect(frame).not.toThrow();
     }
     if (stage === "mixer update") {
       vi.spyOn(THREE.AnimationMixer.prototype, "update").mockImplementation(() => { throw new Error(stage); });
+      canvas.dispatchEvent(new Event("pointerdown"));
       expect(frame).not.toThrow();
     }
     if (stage === "resize") {
@@ -197,7 +244,7 @@ describe("viewer failure containment", () => {
     if (stage !== "model setup") {
       // Pointer activation intentionally cancels actions before the failed
       // clip setup; disposal makes the separate final stopAllAction call.
-      expect(stop).toHaveBeenCalledTimes(stage === "pointer animation" ? 2 : 1);
+      expect(stop).toHaveBeenCalledTimes(["pointer animation", "later render", "mixer update"].includes(stage) ? 2 : 1);
       expect(uncache).toHaveBeenCalledTimes(2);
     }
     const renderCount = renderer.render.mock.calls.length;
@@ -311,7 +358,8 @@ describe("supported behavior", () => {
       mixer.update(0.41);
       mixer.update(0.1);
       expect(transition).toHaveBeenCalledTimes(1);
-      expect(idle.isRunning()).toBe(true);
+      expect(idle.isScheduled()).toBe(true);
+      expect(idle.paused).toBe(true);
     } else {
       mixer.update(0.15);
       expect(transition).not.toHaveBeenCalled();
@@ -331,7 +379,8 @@ describe("supported behavior", () => {
     expect(transition).toHaveBeenCalledTimes(transitionsBeforeRestart + 1);
     expect(transition.mock.calls.at(-1)).toEqual([idle, 0.25, false]);
     expect(finishedEvents).toHaveBeenCalledTimes(finishesBeforeRestart + 1);
-    expect(idle.isRunning()).toBe(true);
+    expect(idle.isScheduled()).toBe(true);
+    expect(idle.paused).toBe(true);
     expect(idle.getEffectiveWeight()).toBe(1);
     expect(owned.gltf.scene.position.x).toBeCloseTo(2);
     for (const clip of owned.gltf.animations.filter((clip) => clip.name !== "idle")) {
@@ -349,7 +398,7 @@ describe("supported behavior", () => {
     for (const dispose of owned.disposers) expect(dispose).toHaveBeenCalledTimes(1);
   });
 
-  it("preserves camera, capped pixel ratio, frame loop, idle and keyboard/pointer cycling", async () => {
+  it("preserves camera, capped pixel ratio, still idle pose and keyboard/pointer cycling", async () => {
     const clipAction = vi.spyOn(THREE.AnimationMixer.prototype, "clipAction");
     const addListener = vi.spyOn(THREE.AnimationMixer.prototype, "addEventListener");
     const viewer = component({ ariaLabel: "Offline team figurine" });
@@ -374,7 +423,7 @@ describe("supported behavior", () => {
     expect(type).toBe("finished");
     const action = clipAction.mock.results.at(-1)!.value;
     listener({ action } as never);
-    expect(clipAction.mock.results[0].value.isRunning()).toBe(true);
+    expect(clipAction.mock.results[0].value.paused).toBe(true);
     frame();
     expect(renderer.render).toHaveBeenCalledTimes(2);
     expect(frames.size).toBe(1);
@@ -384,16 +433,18 @@ describe("supported behavior", () => {
   });
 
   it("honors reduced motion and the prop viewer's static no-clip caller", async () => {
-    vi.stubGlobal("window", { devicePixelRatio: 1, matchMedia: () => ({ matches: true }) });
+    motion.matches = true;
     const clipAction = vi.spyOn(THREE.AnimationMixer.prototype, "clipAction");
     const update = vi.spyOn(THREE.AnimationMixer.prototype, "update");
     const viewer = component({ clickClips: [] });
     await load();
     canvas.dispatchEvent(new Event("pointerdown"));
-    frame();
-    expect(clipAction).not.toHaveBeenCalled();
-    expect(update).not.toHaveBeenCalled();
-    expect(renderer.render).toHaveBeenCalledTimes(2);
+    // The old test consumed a continuously queued frame. A still pose now
+    // needs one load render and no idle RAF, while evaluating its idle pose.
+    expect(clipAction.mock.calls.map(([clip]) => (clip as THREE.AnimationClip).name)).toEqual(["idle"]);
+    expect(update).toHaveBeenCalledExactlyOnceWith(0);
+    expect(renderer.render).toHaveBeenCalledTimes(1);
+    expect(frames.size).toBe(0);
     expect(canvas.style.cursor).toBe("default");
     const prop = PropViewer({ prop: "hoop" });
     expect(prop.props).toMatchObject({ src: "/3d/hoop.glb", clickClips: [] });
@@ -422,5 +473,331 @@ describe("supported behavior", () => {
     expect(html).toContain('aria-hidden="true"');
     const neutral = HooperViewer({ rosterId: null });
     expect(renderToStaticMarkup(neutral.props.fallback)).toContain('stroke="var(--gh-gold)"');
+  });
+});
+
+describe("demand rendering and live preferences", () => {
+  it("keeps an evaluated idle pose static with zero pending frames", async () => {
+    const owned = asset();
+    owned.gltf.animations[0] = new THREE.AnimationClip("idle", 1, [
+      new THREE.NumberKeyframeTrack(".position[x]", [0, 1], [2, 9]),
+    ]);
+    const viewer = component();
+    await load(owned.gltf);
+    expect(owned.gltf.scene.position.x).toBe(2);
+    expect(renderer.render).toHaveBeenCalledTimes(1);
+    expect(frames.size).toBe(0);
+    resize();
+    expect(renderer.render).toHaveBeenCalledTimes(2);
+    expect(frames.size).toBe(0);
+    expect(fakes.load).toHaveBeenCalledExactlyOnceWith("/offline.glb");
+    viewer.cleanup();
+  });
+
+  it.each([false, true])("leaves a no-animation model static with reduced motion=%s", async (reduce) => {
+    motion.matches = reduce;
+    const owned = asset();
+    owned.gltf.animations = [];
+    const viewer = component();
+    await load(owned.gltf);
+    canvas.dispatchEvent(new Event("pointerdown"));
+    expect(renderer.render).toHaveBeenCalledTimes(1);
+    expect(frames.size).toBe(0);
+    viewer.cleanup();
+  });
+
+  it.each([true, false])("settles a manual animation with idle=%s and wakes on the next activation", async (withIdle) => {
+    const owned = asset();
+    owned.gltf.animations = [
+      ...(withIdle ? [new THREE.AnimationClip("idle", 1, [
+        new THREE.NumberKeyframeTrack(".position[x]", [0, 1], [2, 9]),
+      ])] : []),
+      new THREE.AnimationClip("spin", 0.1, [
+        new THREE.NumberKeyframeTrack(".position[x]", [0, 0.1], [10, 20]),
+      ]),
+    ];
+    const transition = vi.spyOn(THREE.AnimationAction.prototype, "crossFadeTo");
+    const viewer = component({ clickClips: ["spin"] });
+    await load(owned.gltf);
+    expect(frames.size).toBe(0);
+    for (let activation = 0; activation < 2; activation++) {
+      canvas.dispatchEvent(new Event("pointerdown"));
+      expect(frames.size).toBe(1);
+      frame();
+      expect(frames.size).toBe(1);
+      frame();
+      expect(owned.gltf.scene.position.x).toBeCloseTo(15);
+      settle();
+      expect(owned.gltf.scene.position.x).toBeCloseTo(withIdle ? 2 : 20);
+      expect(frames.size).toBe(0);
+    }
+    expect(transition).toHaveBeenCalledTimes(withIdle ? 2 : 0);
+    viewer.cleanup();
+  });
+
+  it.each(["before load", "during one-shot", "during fade-back"])("responds to reduced motion %s without an automatic restart", async (stage) => {
+    const actions = vi.spyOn(THREE.AnimationMixer.prototype, "clipAction");
+    const transition = vi.spyOn(THREE.AnimationAction.prototype, "crossFadeTo");
+    const viewer = component();
+    if (stage === "before load") motion.change(true);
+    await load();
+    if (stage !== "before load") {
+      canvas.dispatchEvent(new Event("pointerdown"));
+      frame();
+      frame();
+      if (stage === "during fade-back") {
+        frame();
+        expect(transition).toHaveBeenCalledTimes(1);
+      }
+      motion.change(true);
+    }
+    expect(frames.size).toBe(0);
+    const renders = renderer.render.mock.calls.length;
+    const actionCalls = actions.mock.calls.length;
+    canvas.dispatchEvent(new Event("pointerdown"));
+    const enter = new Event("keydown", { cancelable: true });
+    Object.assign(enter, { key: "Enter" });
+    canvas.dispatchEvent(enter);
+    expect(enter.defaultPrevented).toBe(true);
+    expect(canvas.tabIndex).toBe(0);
+    expect(actions).toHaveBeenCalledTimes(actionCalls);
+    expect(renderer.render).toHaveBeenCalledTimes(renders);
+    motion.change(false);
+    expect(frames.size).toBe(0);
+    canvas.dispatchEvent(new Event("pointerdown"));
+    expect(frames.size).toBe(1);
+    settle();
+    expect(fakes.load).toHaveBeenCalledTimes(1);
+    viewer.cleanup();
+  });
+
+  it("starts reduced, returns to the idle pose and resumes only on manual interaction", async () => {
+    motion.matches = true;
+    const viewer = component();
+    await load();
+    expect(frames.size).toBe(0);
+    motion.change(false);
+    expect(frames.size).toBe(0);
+    canvas.dispatchEvent(new Event("pointerdown"));
+    expect(frames.size).toBe(1);
+    settle();
+    expect(frames.size).toBe(0);
+    viewer.cleanup();
+  });
+
+  it.each(["hidden", "offscreen"])("defers load rendering while %s and redraws once on return", async (reason) => {
+    const viewer = component();
+    if (reason === "hidden") page.change(true);
+    else intersect(false);
+    await load();
+    resize();
+    expect(renderer.render).not.toHaveBeenCalled();
+    expect(frames.size).toBe(0);
+    if (reason === "hidden") page.change(false);
+    else intersect(true);
+    expect(renderer.render).toHaveBeenCalledTimes(1);
+    expect(frames.size).toBe(0);
+    viewer.cleanup();
+  });
+
+  it("waits for an intersection result before rendering a loaded model", async () => {
+    vi.stubGlobal("IntersectionObserver", class {
+      constructor(callback: IntersectionObserverCallback) {
+        intersect = (visible) => callback([{ target: mount, isIntersecting: visible } as unknown as IntersectionObserverEntry], this as unknown as IntersectionObserver);
+      }
+      observe() {}
+      disconnect = intersectionDisconnect;
+    });
+    const viewer = component();
+    await load();
+    expect(renderer.render).not.toHaveBeenCalled();
+    intersect(true);
+    expect(renderer.render).toHaveBeenCalledTimes(1);
+    expect(frames.size).toBe(0);
+    viewer.cleanup();
+  });
+
+  it.each(["hidden", "offscreen"])("suspends an active animation while %s without advancing hidden time", async (reason) => {
+    const actions = vi.spyOn(THREE.AnimationMixer.prototype, "clipAction");
+    const viewer = component();
+    await load();
+    canvas.dispatchEvent(new Event("pointerdown"));
+    frame();
+    frame();
+    const action = actions.mock.results.at(-1)!.value as THREE.AnimationAction;
+    const time = action.time;
+    const renders = renderer.render.mock.calls.length;
+    if (reason === "hidden") page.change(true);
+    else intersect(false);
+    resize();
+    canvas.dispatchEvent(new Event("pointerdown"));
+    expect(frames.size).toBe(0);
+    expect(renderer.render).toHaveBeenCalledTimes(renders);
+    expect(action.time).toBe(time);
+    if (reason === "hidden") page.change(false);
+    else intersect(true);
+    expect(frames.size).toBe(1);
+    frame(frameTime + 60_000);
+    expect(action.time).toBe(time);
+    expect(frames.size).toBe(1);
+    settle();
+    viewer.cleanup();
+  });
+
+  it("keeps document and intersection visibility independent and does not restart a reduced pose", async () => {
+    const viewer = component();
+    await load();
+    canvas.dispatchEvent(new Event("pointerdown"));
+    page.change(true);
+    intersect(false);
+    const renders = renderer.render.mock.calls.length;
+    motion.change(true);
+    page.change(false);
+    expect(frames.size).toBe(0);
+    expect(renderer.render).toHaveBeenCalledTimes(renders);
+    intersect(true);
+    expect(renderer.render).toHaveBeenCalledTimes(renders + 1);
+    expect(frames.size).toBe(0);
+    motion.change(false);
+    expect(frames.size).toBe(0);
+    viewer.cleanup();
+  });
+
+  it("coalesces rapid activations, resize and repeated visibility notifications into one RAF", async () => {
+    const actions = vi.spyOn(THREE.AnimationMixer.prototype, "clipAction");
+    const viewer = component();
+    await load();
+    for (let i = 0; i < 9; i++) {
+      canvas.dispatchEvent(new Event("pointerdown"));
+      resize();
+      page.change(false);
+      intersect(true);
+      expect(frames.size).toBe(1);
+    }
+    const mixer = actions.mock.contexts[0] as THREE.AnimationMixer;
+    const finishes = vi.fn();
+    mixer.addEventListener("finished", finishes);
+    settle();
+    expect(finishes).toHaveBeenCalledTimes(1);
+    expect(frames.size).toBe(0);
+    viewer.cleanup();
+  });
+
+  it("supports missing observers/matchMedia with demand rendering and a cleaned resize fallback", async () => {
+    vi.stubGlobal("IntersectionObserver", undefined);
+    vi.stubGlobal("ResizeObserver", undefined);
+    vi.stubGlobal("window", {
+      devicePixelRatio: 1,
+      addEventListener: windowEvents.addEventListener.bind(windowEvents),
+      removeEventListener: windowEvents.removeEventListener.bind(windowEvents),
+    });
+    const add = vi.spyOn(windowEvents, "addEventListener");
+    // Bind after spying so the wrapper records the actual subscription.
+    window.addEventListener = windowEvents.addEventListener.bind(windowEvents);
+    const remove = vi.spyOn(windowEvents, "removeEventListener");
+    window.removeEventListener = windowEvents.removeEventListener.bind(windowEvents);
+    const viewer = component();
+    await load();
+    expect(frames.size).toBe(0);
+    windowEvents.dispatchEvent(new Event("resize"));
+    expect(renderer.render).toHaveBeenCalledTimes(2);
+    expect(add).toHaveBeenCalledTimes(1);
+    viewer.cleanup();
+    expect(remove.mock.calls[0]).toEqual(add.mock.calls[0]);
+    windowEvents.dispatchEvent(new Event("resize"));
+    expect(renderer.render).toHaveBeenCalledTimes(2);
+  });
+
+  it("supports legacy media listeners and removes the exact callback", async () => {
+    const addListener = vi.fn((listener: EventListener) => motion.addEventListener("change", listener));
+    const removeListener = vi.fn((listener: EventListener) => motion.removeEventListener("change", listener));
+    window.matchMedia = () => ({ get matches() { return motion.matches; }, addListener, removeListener }) as unknown as MediaQueryList;
+    const viewer = component();
+    await load();
+    canvas.dispatchEvent(new Event("pointerdown"));
+    expect(frames.size).toBe(1);
+    motion.change(true);
+    expect(frames.size).toBe(0);
+    viewer.cleanup();
+    expect(removeListener.mock.calls).toEqual(addListener.mock.calls);
+  });
+
+  it.each(["unmount", "context loss", "load failure"])("removes motion/visibility/observer/canvas listeners on %s", async (end) => {
+    const motionAdd = vi.spyOn(motion, "addEventListener");
+    const motionRemove = vi.spyOn(motion, "removeEventListener");
+    const pageAdd = vi.spyOn(page, "addEventListener");
+    const pageRemove = vi.spyOn(page, "removeEventListener");
+    const canvasAdd = vi.spyOn(canvas, "addEventListener");
+    const canvasRemove = vi.spyOn(canvas, "removeEventListener");
+    const viewer = component();
+    if (end === "load failure") {
+      rejectLoad(new Error("Offline failure"));
+      await Promise.resolve(); await Promise.resolve();
+    } else {
+      await load();
+      canvas.dispatchEvent(new Event("pointerdown"));
+      if (end === "context loss") canvas.dispatchEvent(new Event("webglcontextlost"));
+    }
+    const stale = [...frames.values()][0];
+    viewer.cleanup();
+    viewer.cleanup();
+    expect(motionRemove.mock.calls).toEqual(motionAdd.mock.calls);
+    expect(pageRemove.mock.calls).toEqual(pageAdd.mock.calls);
+    for (const call of canvasAdd.mock.calls) expect(canvasRemove.mock.calls).toContainEqual(call);
+    expect(disconnect).toHaveBeenCalledTimes(1);
+    expect(intersectionDisconnect).toHaveBeenCalledTimes(1);
+    expect(renderer.dispose).toHaveBeenCalledTimes(1);
+    const renders = renderer.render.mock.calls.length;
+    stale?.(frameTime + 50);
+    motion.change(true);
+    page.change(true);
+    intersect(true);
+    resize();
+    expect(renderer.render).toHaveBeenCalledTimes(renders);
+    expect(frames.size).toBe(0);
+  });
+
+  it("contains a live preference update failure and tears down its listeners", async () => {
+    const remove = vi.spyOn(motion, "removeEventListener");
+    const viewer = component();
+    await load();
+    canvas.dispatchEvent(new Event("pointerdown"));
+    vi.spyOn(THREE.AnimationMixer.prototype, "update").mockImplementation(() => { throw new Error("Pose update"); });
+    motion.change(true);
+    expect(viewer.render().props.children).toBe("Static jersey");
+    expect(frames.size).toBe(0);
+    expect(remove).toHaveBeenCalledTimes(1);
+    viewer.cleanup();
+    expect(renderer.dispose).toHaveBeenCalledTimes(1);
+  });
+
+  it("models StrictMode setup/cleanup replay and disposes stale load results without affecting the fresh effect", async () => {
+    const firstAsset = asset();
+    const first = component();
+    const finishFirst = resolveLoad;
+    first.cleanup();
+    first.cleanup();
+    const firstCanvas = canvas;
+    const firstRenderer = renderer;
+    canvas = new Canvas();
+    renderer = { domElement: canvas, setPixelRatio: vi.fn(), setSize: vi.fn(), render: vi.fn(), dispose: vi.fn() };
+    const second = component();
+    finishFirst(firstAsset.gltf);
+    await Promise.resolve(); await Promise.resolve();
+    const secondAsset = asset();
+    await load(secondAsset.gltf);
+    firstCanvas.dispatchEvent(new Event("pointerdown"));
+    expect(firstRenderer.render).not.toHaveBeenCalled();
+    expect(renderer.render).toHaveBeenCalledTimes(1);
+    expect(frames.size).toBe(0);
+    canvas.dispatchEvent(new Event("pointerdown"));
+    expect(frames.size).toBe(1);
+    second.cleanup();
+    expect(frames.size).toBe(0);
+    expect(fakes.load).toHaveBeenCalledTimes(2);
+    expect(firstRenderer.dispose).toHaveBeenCalledTimes(1);
+    expect(renderer.dispose).toHaveBeenCalledTimes(1);
+    for (const dispose of [...firstAsset.disposers, ...secondAsset.disposers]) expect(dispose).toHaveBeenCalledTimes(1);
+    expect(hooks.setFailed).not.toHaveBeenCalled();
   });
 });

@@ -10,7 +10,7 @@ export type GLBViewerProps = {
   src: string;
   /** One-shot animation clip names to cycle through on click. */
   clickClips: string[];
-  /** Name of the ambient looping clip. Defaults to "idle". */
+  /** Clip providing the settled still pose. Defaults to "idle". */
   idleClip?: string;
   /** Extra class names for the wrapper. */
   className?: string;
@@ -23,9 +23,10 @@ export type GLBViewerProps = {
 };
 
 /**
- * GLBViewer — loads a GLB, plays its ambient idle loop, and fires a
+ * GLBViewer — loads a GLB, holds its supplied idle pose, and fires a
  * one-shot click animation (cycling through `clickClips`) on click/tap
- * or keyboard activation, cross-fading back to idle when done.
+ * or keyboard activation, cross-fading back to the still pose when done.
+ * Frames run only during visible manual animations and their fade-back.
  * Respects `prefers-reduced-motion` (renders a still frame, no
  * click animations).
  */
@@ -53,12 +54,15 @@ function GLBViewerAsset({
     let stopped = false;
     let renderer: THREE.WebGLRenderer | undefined;
     let observer: ResizeObserver | undefined;
+    let intersection: IntersectionObserver | undefined;
+    let removeMotionListener = () => {};
     let raf = 0;
     let mixer: THREE.AnimationMixer | null = null;
     let idleAction: THREE.AnimationAction | null = null;
     let clips: THREE.AnimationClip[] = [];
     let models: THREE.Object3D[] = [];
     let finished: ((e: { action: THREE.AnimationAction }) => void) | undefined;
+    let syncVisibility = () => {};
     const released = new Set<object>();
 
     // Cleanup must continue even if a lost context makes a disposer throw.
@@ -105,6 +109,10 @@ function GLBViewerAsset({
       stopped = true;
       safely(() => cancelAnimationFrame(raf));
       safely(() => observer?.disconnect());
+      safely(() => intersection?.disconnect());
+      safely(removeMotionListener);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.removeEventListener?.("resize", onWindowResize);
       const el = renderer?.domElement;
       if (el) {
         el.removeEventListener("pointerdown", onPointerDown);
@@ -138,6 +146,9 @@ function GLBViewerAsset({
       fail();
     };
     const onPointerDown = () => guard(playClickClip);
+    const onVisibilityChange = () => guard(syncVisibility);
+    let resize = () => {};
+    const onWindowResize = () => resize();
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -147,7 +158,14 @@ function GLBViewerAsset({
 
     let playClickClip = () => {};
     try {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const motion = typeof window.matchMedia === "function"
+        ? window.matchMedia("(prefers-reduced-motion: reduce)") : undefined;
+      let reduceMotion = motion?.matches ?? false;
+      let visible = typeof IntersectionObserver === "undefined";
+      let ready = false;
+      let lastFrame: number | null = null;
+      let activeAction: THREE.AnimationAction | null = null;
+      let settleUntil = 0;
       const activeRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer = activeRenderer;
       const el = activeRenderer.domElement;
@@ -167,7 +185,88 @@ function GLBViewerAsset({
       rim.position.set(-4, 3, -3);
       scene.add(rim);
       const loader = new GLTFLoader();
-      const clock = new THREE.Clock();
+      const canRender = () => ready && visible && !document.hidden && !stopped;
+      const animating = () => !reduceMotion &&
+        (activeAction?.isRunning() || (mixer !== null && mixer.time < settleUntil));
+      const pauseFrames = () => {
+        cancelAnimationFrame(raf);
+        raf = 0;
+        lastFrame = null;
+      };
+      const requestFrame = () => {
+        if (!raf && canRender() && animating()) raf = requestAnimationFrame(tick);
+      };
+      const render = () => {
+        if (canRender()) activeRenderer.render(scene, camera);
+      };
+      const tick = (time: number) => guard(() => {
+        raf = 0;
+        if (!canRender() || !animating()) {
+          lastFrame = null;
+          return;
+        }
+        const dt = lastFrame === null ? 0 : Math.min((time - lastFrame) / 1000, 0.05);
+        lastFrame = time;
+        mixer?.update(dt);
+        // A mixer "finished" callback can fail and dispose this viewer.
+        if (stopped) return;
+        if (settleUntil && mixer && mixer.time >= settleUntil) {
+          activeAction?.stop();
+          activeAction = null;
+          settleUntil = 0;
+          idleAction?.setEffectiveWeight(1);
+          mixer.update(0);
+        }
+        render();
+        requestFrame();
+        if (!raf) lastFrame = null;
+      });
+      const holdIdlePose = () => {
+        if (finished) mixer?.removeEventListener("finished", finished);
+        finished = undefined;
+        mixer?.stopAllAction();
+        activeAction = null;
+        settleUntil = 0;
+        if (idleAction) {
+          idleAction.reset().play();
+          idleAction.paused = true;
+          mixer?.update(0);
+        }
+      };
+      syncVisibility = () => {
+        if (!canRender()) pauseFrames();
+        else {
+          render();
+          requestFrame();
+        }
+      };
+      const onMotionChange = () => guard(() => {
+        const next = motion?.matches ?? false;
+        if (next === reduceMotion) return;
+        reduceMotion = next;
+        if (reduceMotion) {
+          pauseFrames();
+          holdIdlePose();
+        }
+        render();
+      });
+      if (motion?.addEventListener) {
+        motion.addEventListener("change", onMotionChange);
+        removeMotionListener = () => motion.removeEventListener("change", onMotionChange);
+      } else if (motion?.addListener) {
+        motion.addListener(onMotionChange);
+        removeMotionListener = () => motion.removeListener(onMotionChange);
+      }
+      document.addEventListener("visibilitychange", onVisibilityChange);
+      if (typeof IntersectionObserver !== "undefined") {
+        intersection = new IntersectionObserver((entries) => guard(() => {
+          const entry = entries.find((entry) => entry.target === mount);
+          if (!entry || visible === entry.isIntersecting) return;
+          visible = entry.isIntersecting;
+          syncVisibility();
+        }));
+        intersection.observe(mount);
+      }
 
       const fitCamera = (object: THREE.Object3D) => {
         const box = new THREE.Box3().setFromObject(object);
@@ -183,7 +282,7 @@ function GLBViewerAsset({
       };
 
       playClickClip = () => {
-        if (!mixer || clickClips.length === 0 || reduceMotion) return;
+        if (!mixer || clickClips.length === 0 || reduceMotion || !canRender()) return;
         const name = clickClips[clickIndexRef.current % clickClips.length];
         clickIndexRef.current += 1;
         const clip = clips.find((c) => c.name === name);
@@ -191,7 +290,9 @@ function GLBViewerAsset({
         if (finished) mixer.removeEventListener("finished", finished);
         // Stop any in-flight one-shot so rapid clicks feel responsive.
         mixer.stopAllAction();
+        settleUntil = 0;
         const action = mixer.clipAction(clip);
+        activeAction = action;
         action.setLoop(THREE.LoopOnce, 1);
         action.clampWhenFinished = true;
         finished = (e: { action: THREE.AnimationAction }) => guard(() => {
@@ -201,10 +302,13 @@ function GLBViewerAsset({
           if (idleAction) {
             action.crossFadeTo(idleAction, 0.25, false);
             idleAction.reset().play();
+            idleAction.paused = true;
+            settleUntil = mixer!.time + 0.25;
           }
         });
         mixer.addEventListener("finished", finished);
         action.reset().play();
+        requestFrame();
       };
 
       loader
@@ -224,9 +328,11 @@ function GLBViewerAsset({
             clips = gltf.animations;
             mixer = new THREE.AnimationMixer(model);
             const idle = clips.find((c) => c.name === idleClip);
-            if (idle && !reduceMotion) {
+            if (idle) {
               idleAction = mixer.clipAction(idle);
               idleAction.play();
+              idleAction.paused = true;
+              mixer.update(0);
             }
 
             el.addEventListener("pointerdown", onPointerDown);
@@ -240,29 +346,26 @@ function GLBViewerAsset({
             el.style.cursor = clickClips.length > 0 ? "pointer" : "default";
             el.style.display = "block";
 
-            const tick = () => guard(() => {
-              raf = 0;
-              const dt = Math.min(clock.getDelta(), 0.05);
-              if (mixer && !reduceMotion) mixer.update(dt);
-              // A mixer "finished" callback can fail and dispose this viewer.
-              if (stopped) return;
-              activeRenderer.render(scene, camera);
-              if (!stopped) raf = requestAnimationFrame(tick);
-            });
-            tick();
+            ready = true;
+            render();
           });
         })
         .catch(fail);
 
-      const resize = () => guard(() => {
+      resize = () => guard(() => {
         const w = mount.clientWidth || 1;
         const h = mount.clientHeight || 1;
         activeRenderer.setSize(w, h);
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
+        render();
       });
-      observer = new ResizeObserver(resize);
-      observer.observe(mount);
+      if (typeof ResizeObserver !== "undefined") {
+        observer = new ResizeObserver(resize);
+        observer.observe(mount);
+      } else {
+        window.addEventListener?.("resize", onWindowResize);
+      }
       resize();
     } catch {
       fail();
