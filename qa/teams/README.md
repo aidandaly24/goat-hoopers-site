@@ -30,9 +30,18 @@ the runner config loader to keep shared dependency directories read-only.
 
 Checks cover full content, href/value parity, stat alignment, no overflow or
 nested controls, 44px actions, all ten keyboard stops, visible focus, Enter,
-touch selection, empty state and unbroken strings at 1440/390/320 CSS pixels.
-200% root text enlargement is separately named and tested at those widths; it
-does not claim actual browser UI zoom. Native anchor destination/Back checks
+touch selection, empty state and unbroken strings at 1440/768/640/639/390/320 CSS pixels.
+The 639–768px cases guard the enlarged-text breakpoint squeeze; statistic fields
+wrap together rather than splitting ordinary point totals across lines.
+200% root text enlargement is separately named and tested at those widths.
+`native-zoom.mjs` uses the visible Chrome Page zoom setting in a fresh task-owned
+profile, with the same two installed-tool arguments. It verifies DPR2, root16px,
+body/CSS zoom1 and unchanged data. Actual1440/768/640 windows yield720/384/320
+CSSpx. Chrome clamps smaller requested windows to500: those are labelled250
+CSSpx, not exact320/390 phone zoom checks. CDP captures the complete visible
+browser view; ordinary viewport screenshots clip under native Chrome zoom.
+The temporary profile is removed and its own browser/server close on completion.
+Native anchor destination/Back checks
 do not prove Next App Router restoration. Physical iOS/Safari, screen-reader,
 hosted data and shared-shell integration remain reviewer checks.
 

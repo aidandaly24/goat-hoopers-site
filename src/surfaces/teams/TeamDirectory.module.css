@@ -70,21 +70,29 @@
 }
 
 .record {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(0, 2fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: var(--gh-s3);
   grid-column: 1 / -1;
   margin: 0;
   min-width: 0;
+  font-family: var(--gh-font-mono);
 }
 
 .record > div {
+  flex: 0 0 3ch;
   min-width: 0;
   text-align: right;
   overflow-wrap: anywhere;
 }
 
+.record > div:last-child {
+  flex-basis: 8ch;
+}
+
 .record dt {
+  font-family: var(--gh-font-body);
   font-size: 0.875rem;
   line-height: 1.5;
   color: var(--gh-text-dim);
@@ -108,7 +116,7 @@
 }
 
 /* One consistent stat rail; names keep the remaining width and always wrap. */
-@media (min-width: 40rem) {
+@media (min-width: 64rem) {
   .teamRow {
     grid-template-columns: 2.5rem minmax(0, 1fr) minmax(0, 16rem);
     gap: var(--gh-s4);

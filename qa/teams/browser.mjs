@@ -46,7 +46,7 @@ try {
   }
   browser = await chromium.launch({ executablePath: process.argv[3], headless: true, args: ["--disable-webgl"] });
   receipt.browser = browser.version();
-  for (const width of [1440, 390, 320]) {
+  for (const width of [1440, 768, 640, 639, 390, 320]) {
     const context = await browser.newContext({ viewport: { width, height: width === 1440 ? 900 : 844 }, hasTouch: width !== 1440, reducedMotion: "reduce" });
     await context.route("**/*", route => {
       const request = route.request();
@@ -107,6 +107,14 @@ try {
         }
         for (const [index, edge] of row.statEdges.entries()) assert.ok(Math.abs(edge - result.rows[0].statEdges[index]) <= 1);
       }
+      const names = await page.locator('main li > a > div > span:first-child > span:last-child').evaluateAll(elements =>
+        elements.map(el => ({ width: el.getBoundingClientRect().width, fontSize: parseFloat(getComputedStyle(el).fontSize) })));
+      for (const name of names) assert.ok(name.width >= name.fontSize * 2, JSON.stringify(name));
+      const stats = await page.locator('main dd').evaluateAll(elements => elements.map(el => {
+        const range = document.createRange(); range.selectNodeContents(el);
+        return { text: el.textContent, lineCount: range.getClientRects().length };
+      }));
+      for (const stat of stats) assert.equal(stat.lineCount, 1, JSON.stringify(stat));
       record(`${width} ${label} geometry/content/alignment`, result);
     };
     for (const enlarged of [false, true]) {
