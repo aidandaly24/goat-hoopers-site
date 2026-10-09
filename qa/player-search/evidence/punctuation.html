@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>#116 evidence — punctuation</title><style>
+body { font-family: ui-sans-serif, system-ui, sans-serif; margin: 0; padding: 24px; background: #f5f1e8; color: #1a1a1a; }
+h1 { font-size: 20px; } h2 { font-size: 15px; margin: 28px 0 8px; } h3 { font-size: 14px; margin: 0 0 4px; }
+.note { font-size: 12px; color: #555; max-width: 70ch; }
+.width-block { border: 2px solid #b3541e; margin: 12px 0; padding: 12px; background: #fffdf8; overflow-x: auto; }
+.width-label { font-size: 12px; font-weight: 700; color: #b3541e; margin-bottom: 8px; }
+.verdict { font-size: 13px; font-weight: 700; padding: 6px 10px; display: inline-block; margin: 8px 0; }
+.verdict.same { background: #e6f0e6; } .verdict.fixed { background: #fff3d6; }
+.player-list { list-style: none; padding: 0; margin: 0; }
+.player { display: flex; gap: 12px; align-items: center; padding: 8px 4px; border-bottom: 1px solid #ddd; }
+.rank, .price, .change { font-family: ui-monospace, monospace; }
+.player-identity { flex: 1; } .player-name { font-weight: 600; }
+.player-meta { display: block; font-size: 12px; color: #555; }
+.empty-result { border: 1px dashed #999; padding: 16px; margin-top: 8px; }
+.board-caption { font-size: 13px; display: flex; gap: 12px; }
+</style></head>
+<body><h1>Guard: punctuation-only query “...” matches nothing, not everything</h1>
+<p class="note">Scenario <b>punctuation</b> · filters {"query":"...","position":"","drafted":false,"roster":"all","sort":"price"}. Rows rendered by the production <code>StockQuoteRow</code> component; counts by production <code>filterStocks</code>. Styling is approximate (CSS modules stubbed); DOM structure, order, counts and display spelling are production. Before/after: <span class="verdict same">IDENTICAL</span></p>
+<div class="width-block" style="max-width:1280px"><div class="width-label">1280px viewport</div>
+<h3>Before (base f5be2b7 predicate)</h3><p class="board-caption"><span class="gh-num" role="status" aria-live="polite">0 of 0 players</span><span>Change vs previous recorded price</span></p>
+<div class="empty-result"><h3>No players match</h3><p>Try another name, position, or roster status.</p><button type="button" class="outline-button">Reset filters</button></div>
+<h3>After (#116 normalized predicate)</h3><p class="board-caption"><span class="gh-num" role="status" aria-live="polite">0 of 0 players</span><span>Change vs previous recorded price</span></p>
+<div class="empty-result"><h3>No players match</h3><p>Try another name, position, or roster status.</p><button type="button" class="outline-button">Reset filters</button></div></div>
+<div class="width-block" style="max-width:390px"><div class="width-label">390px viewport</div>
+<h3>Before (base f5be2b7 predicate)</h3><p class="board-caption"><span class="gh-num" role="status" aria-live="polite">0 of 0 players</span><span>Change vs previous recorded price</span></p>
+<div class="empty-result"><h3>No players match</h3><p>Try another name, position, or roster status.</p><button type="button" class="outline-button">Reset filters</button></div>
+<h3>After (#116 normalized predicate)</h3><p class="board-caption"><span class="gh-num" role="status" aria-live="polite">0 of 0 players</span><span>Change vs previous recorded price</span></p>
+<div class="empty-result"><h3>No players match</h3><p>Try another name, position, or roster status.</p><button type="button" class="outline-button">Reset filters</button></div></div>
+<div class="width-block" style="max-width:320px"><div class="width-label">320px viewport</div>
+<h3>Before (base f5be2b7 predicate)</h3><p class="board-caption"><span class="gh-num" role="status" aria-live="polite">0 of 0 players</span><span>Change vs previous recorded price</span></p>
+<div class="empty-result"><h3>No players match</h3><p>Try another name, position, or roster status.</p><button type="button" class="outline-button">Reset filters</button></div>
+<h3>After (#116 normalized predicate)</h3><p class="board-caption"><span class="gh-num" role="status" aria-live="polite">0 of 0 players</span><span>Change vs previous recorded price</span></p>
+<div class="empty-result"><h3>No players match</h3><p>Try another name, position, or roster status.</p><button type="button" class="outline-button">Reset filters</button></div></div>
+</body></html>
