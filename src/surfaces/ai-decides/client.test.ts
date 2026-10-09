@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { AI_PROBABILITY_LABEL } from "@/domain/ai-decider";
-import { comparisonLabel, draftError, percent, periodLabel, postDecision, postWeeklyPreviews, readDecisionResponse, readWeeklyPublishResponse } from "./client";
+import { comparisonLabel, draftError, failureHeading, percent, periodLabel, postDecision, postWeeklyPreviews, readDecisionResponse, readWeeklyPublishResponse } from "./client";
 import { cachedData, interactiveResult } from "./test/fixtures";
 
 const ready = () => ({ status: "ready", result: { model: "historical-model", promptVersion: "frozen-v0", choice: "B", confidence: .21, probabilities: [{ choice: "A", probability: .3333333333 }, { choice: "B", probability: .3333333333 }, { choice: "C", probability: .3333333334 }], evidence: ["Prior completed-season inputs only"], probabilityLabel: AI_PROBABILITY_LABEL, snapshot: null } });
@@ -13,6 +13,17 @@ const published = () => {
   return { status: "ready", weekly };
 };
 describe("AI Decides client boundary", () => {
+  it("distinguishes the duplicate admission wait from busy work and missing model output", () => {
+    const duplicate = readDecisionResponse({ status: "busy", code: "duplicate", message: "This identical request is already running. Try again after it finishes.", retryAfterSeconds: 42 });
+    expect(duplicate.status).toBe("busy");
+    if (duplicate.status === "ready") throw new Error("Unexpected result");
+    expect(failureHeading(duplicate)).toBe("Already running. Please wait.");
+    expect(duplicate).toHaveProperty("retryAfterSeconds", 42);
+    expect(duplicate).not.toHaveProperty("result");
+    expect(failureHeading({ status: "busy", code: "busy", message: "Running" })).toBe("A decision is already running.");
+    expect(failureHeading({ status: "unavailable", code: "connection", message: "Missing" })).toBe("No result available.");
+    expect(failureHeading({ status: "rate_limited", code: "global_token_budget", message: "Shared budget" })).toBe("Shared daily budget reached.");
+  });
   it("preserves every raw probability, order, chosen option, independent confidence and historical model", () => {
     const value = ready(); expect(readDecisionResponse(value, ["A", "B", "C"])).toBe(value);
     expect(percent(value.result.probabilities[2].probability)).toBe("33.3%");

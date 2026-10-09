@@ -5,12 +5,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { AiDecideRequest, AiDecideResponse, AiDecidesData, AiWeeklySlate } from "@/domain/ai-decider";
 import { AiWeekly, ChoiceLabel, ProbabilityRows, type AiTeam } from "./AiWeekly";
-import { comparisonLabel, draftError, percent, periodLabel, postDecision, postWeeklyPreviews, readDecisionResponse, readWeeklyPublishResponse, timestamp, type DecisionTransport, type WeeklyTransport } from "./client";
+import { comparisonLabel, draftError, failureHeading, percent, periodLabel, postDecision, postWeeklyPreviews, readDecisionResponse, readWeeklyPublishResponse, timestamp, type DecisionTransport, type WeeklyTransport } from "./client";
 import { createPickerHistory } from "./pickerHistory";
 import { restorePickerFocus } from "./pickerFocus";
 import styles from "./AiDecides.module.css";
 
 type State = Exclude<AiDecideResponse, { status: "ready" }> | (Extract<AiDecideResponse, { status: "ready" }> & { teamIds?: [string, string] }) | { status: "idle" } | { status: "pending" };
+type Failure = Exclude<AiDecideResponse, { status: "ready" }>;
+type Ready = Extract<State, { status: "ready" }>;
 type Picker = { mode: "wins" | "edge"; opener: HTMLElement; ids: [string, string]; path: string };
 
 /** Public surface. The optional transport is an offline fixture seam, never a provider client. */
@@ -19,7 +21,10 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
   const [prompt, setPrompt] = useState("");
   const [choices, setChoices] = useState(["", ""]);
   const [matchup, setMatchup] = useState<[string, string] | null>(null);
+  const [mode, setMode] = useState<"custom" | Picker["mode"]>("custom");
   const [state, setState] = useState<State>({ status: "idle" });
+  const [notice, setNotice] = useState<Failure | null>(null);
+  const previousResult = useRef<{ key: string; state: Ready } | null>(null);
   const [validation, setValidation] = useState("");
   const [saved, setSaved] = useState("");
   const [picker, setPicker] = useState<Picker | null>(null);
@@ -95,10 +100,10 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
   }, [picker]);
   useEffect(() => () => { cancelFocusRestore.current?.(); }, []);
 
-  function invalidate() { sequence.current++; controller.current?.abort(); controller.current = null; setState({ status: "idle" }); setSaved(""); }
-  function editPrompt(value: string) { invalidate(); setMatchup(null); setPrompt(value); }
-  function editChoices(value: string[]) { invalidate(); setMatchup(null); setChoices(value); }
-  function reset() { invalidate(); setMatchup(null); setPrompt(""); setChoices(["", ""]); setValidation(""); question.current?.focus(); }
+  function invalidate() { sequence.current++; controller.current?.abort(); controller.current = null; previousResult.current = null; setNotice(null); setState({ status: "idle" }); setSaved(""); }
+  function editPrompt(value: string) { invalidate(); setMode("custom"); setMatchup(null); setPrompt(value); }
+  function editChoices(value: string[]) { invalidate(); setMode("custom"); setMatchup(null); setChoices(value); }
+  function reset() { invalidate(); setMode("custom"); setMatchup(null); setPrompt(""); setChoices(["", ""]); setValidation(""); question.current?.focus(); }
   function closePicker() { pickerHistory.current?.close(); }
   function openPicker(mode: Picker["mode"], opener: HTMLElement, ids?: [string, string]) {
     setPickerError("");
@@ -112,22 +117,32 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
     const [a, b] = teamIds.map(id => teams.find(t => t.id === id));
     if (!a || !b || a.id === b.id) { setPickerError("Pick two different available teams."); return; }
     invalidate(); setPrompt(picker?.mode === "edge" ? `Which team has the stronger long-term roster: ${a.name} or ${b.name}?` : `Who wins: ${a.name} or ${b.name}?`);
-    setChoices([a.name, b.name]); setMatchup(picker?.mode === "wins" ? [a.id, b.id] : null);
+    setMode(picker?.mode ?? "custom"); setChoices([a.name, b.name]); setMatchup(picker?.mode === "wins" ? [a.id, b.id] : null);
     setValidation(""); setSaved("Pairing saved to your editable draft."); restoredFocus.current = question.current; closePicker();
   }
   async function run(event: React.FormEvent) {
     event.preventDefault();
     const error = draftError(prompt, choices); setValidation(error ?? "");
     if (error) { question.current?.focus(); return; }
-    if (!canRun || state.status === "pending") return;
+    if (!canRun || state.status === "pending" || controller.current) return;
     const request: AiDecideRequest = matchup ? { kind: "matchup", teamIds: matchup } : { kind: "custom", prompt: prompt.trim(), choices: choices.map(c => c.trim()) };
-    const id = ++sequence.current, abort = new AbortController(); controller.current = abort; setState({ status: "pending" });
+    const key = JSON.stringify(request);
+    const id = ++sequence.current, abort = new AbortController(); controller.current = abort; setNotice(null); setState({ status: "pending" });
+    function complete(response: AiDecideResponse) {
+      if (id !== sequence.current || abort.signal.aborted) return;
+      if (response.status === "ready") {
+        const ready: Ready = { ...response, ...(request.kind === "matchup" ? { teamIds: request.teamIds } : {}) };
+        previousResult.current = { key, state: ready }; setState(ready);
+      } else if (previousResult.current?.key === key) {
+        setState(previousResult.current.state); setNotice(response);
+      } else setState(response);
+    }
     try {
       const response = await decide(request, abort.signal);
       const verified = readDecisionResponse(response, request.kind === "matchup" ? request.teamIds : request.choices);
-      if (id === sequence.current && !abort.signal.aborted) setState(verified.status === "ready" ? { ...verified, ...(request.kind === "matchup" ? { teamIds: request.teamIds } : {}) } : verified);
+      complete(verified);
     } catch {
-      if (id === sequence.current && !abort.signal.aborted) setState({ status: "unavailable", code: "connection", message: "The request could not return a result. Your draft is preserved." });
+      complete({ status: "unavailable", code: "connection", message: "The request could not return a result. Your draft is preserved." });
     } finally { if (id === sequence.current) controller.current = null; }
   }
 
@@ -162,7 +177,7 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
       <form className={styles.composer} onSubmit={run} noValidate>
         <h2 id="ai-draft-title">Your turn. Make the call.</h2>
         <p className={styles.intro}>Start with a preset, or ask your own question.</p>
-        <div className={styles.presets}><button type="button" disabled={teams.length < 2} onClick={e => openPicker("wins", e.currentTarget)}>Who wins?</button><button type="button" disabled={teams.length < 2} onClick={e => openPicker("edge", e.currentTarget)}>Who has the edge?</button><button type="button" onClick={reset}>Custom question +</button></div>
+        <div className={styles.presets} role="group" aria-label="Question presets"><button type="button" aria-pressed={mode === "wins"} disabled={teams.length < 2} onClick={e => openPicker("wins", e.currentTarget)}>Who wins?</button><button type="button" aria-pressed={mode === "edge"} disabled={teams.length < 2} onClick={e => openPicker("edge", e.currentTarget)}>Who has the edge?</button><button type="button" aria-pressed={mode === "custom"} onClick={reset}>Custom question +</button></div>
         <label htmlFor="ai-question">The question</label><textarea ref={question} id="ai-question" value={prompt} onChange={e => editPrompt(e.target.value)} maxLength={2000} rows={2} placeholder="What should we decide?" />
         <p className={styles.helper}>{matchup ? "Hypothetical pairing from verified weekly inputs. Edit to make it custom." : "Custom uses only your prompt and choices; no live research."}</p>
         <div className={styles.choicesHeading}><strong>The choices</strong><span>{choices.length} / 8</span></div>
@@ -174,12 +189,12 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
         {validation && <p role="alert" className={styles.validation}>{validation}</p>}
         <div className={styles.formActions}><button className={styles.primary} disabled={!canRun || state.status === "pending"}>{state.status === "pending" ? "Making the call…" : state.status === "ready" ? "Decide again" : "Let AI decide"}</button><button type="button" className={styles.quiet} onClick={reset}>Reset</button></div>
         <p className={styles.saved} aria-live="polite">{saved}</p>
-        <p className={styles.limits}>{authUnavailable ? "Session verification unavailable. Runs are disabled; cached picks and draft editing remain available." : !signedIn ? <><Link href="/login">Sign in</Link> to run. You can edit the draft now.</> : data.availability.status !== "available" ? data.availability.message : "Runs use the current site session and server limits."}</p>
+        <p className={styles.limits}>{authUnavailable ? "Session verification unavailable. Runs are disabled; cached picks and draft editing remain available." : !signedIn ? <><Link href="/login">Sign in</Link> to run. You can edit the draft now.</> : data.availability.status !== "available" ? data.availability.message : "Runs use the current site session. Active requests and the shared budget are protected."}</p>
       </form>
       <aside ref={resultArea} className={styles.resultArea} aria-label="Personal experiment">
         <div className={styles.resultHeading}><h2>Your result</h2><button type="button" className={styles.quiet} aria-pressed={paused} disabled={reduced} onClick={() => setPaused(v => !v)}>{reduced ? "Reduced motion" : paused ? "Resume motion" : "Pause motion"}</button></div>
         <div aria-live="polite" aria-atomic="true" className={styles.result} key={replay}>
-          {state.status === "idle" ? <><span className={styles.resultStatus}>Your experiment · private draft</span><h3>Make a call.</h3><p>Your choice and every option probability will appear here.</p></> : state.status === "pending" ? <><span className={styles.resultStatus}>Request pending</span><h3>Weighing your options.</h3><p>Reset or edit to cancel this draft.</p><div className={styles.pendingTrack} aria-hidden="true"><i /></div></> : state.status === "ready" ? <><span className={styles.resultStatus}>Model choice</span><h3><ChoiceLabel choice={state.result.choice} matchup={resultMatchup} /></h3><ProbabilityRows result={state.result} matchup={resultMatchup} /><div className={styles.confidence}><strong>API confidence</strong><span>{percent(state.result.confidence)}</span></div><p className={styles.helper}>Separate from the option probabilities.</p><p className={styles.provenance}>{state.result.probabilityLabel}. Percentages are rounded for display.</p><details className={styles.source}><summary>Source &amp; model details</summary><p>{state.result.model} · {state.result.promptVersion}<br />{state.result.snapshot ? `Snapshot captured ${timestamp(state.result.snapshot.capturedAt)}` : "Custom text only · no live research or league facts supplied"}</p><ul>{state.result.evidence.map((e, i) => <li key={i}>{e}</li>)}</ul>{state.result.snapshot && <p>{comparisonLabel(state.result.snapshot) && <>{comparisonLabel(state.result.snapshot)}<br /></>}Cutoff {timestamp(state.result.snapshot.cutoffAt)}<br />{periodLabel(state.result.snapshot)}<br />Prior stats: {state.result.snapshot.statsSeason} · Scoring mode: {state.result.snapshot.scoringMode} · {state.result.snapshot.baselineVersion}</p>}</details><button type="button" className={styles.quiet} disabled={paused || reduced} onClick={() => setReplay(v => v + 1)}>Replay bars</button></> : <><span className={styles.resultStatus}>{state.status.replaceAll("_", " ")}</span><h3>No result available.</h3><p>{state.message}</p>{state.retryAfterSeconds !== undefined && <p>Try again after {Math.ceil(state.retryAfterSeconds)} seconds.</p>}<button type="button" onClick={() => question.current?.focus()}>Edit draft</button></>}
+          {state.status === "idle" ? <><span className={styles.resultStatus}>Your experiment · private draft</span><h3>Make a call.</h3><p>Your choice and every option probability will appear here.</p></> : state.status === "pending" ? <><span className={styles.resultStatus}>Request pending</span><h3>Weighing your options.</h3><p>Reset or edit to cancel this draft.</p><div className={styles.pendingTrack} aria-hidden="true"><i /></div></> : state.status === "ready" ? <><>{notice && <div className={styles.attemptNotice}><strong>{failureHeading(notice)}</strong><FailureDetails failure={notice} /></div>}<span className={styles.resultStatus}>{notice ? "Previous result · unchanged draft" : "Model choice"}</span></><h3><ChoiceLabel choice={state.result.choice} matchup={resultMatchup} /></h3><ProbabilityRows result={state.result} matchup={resultMatchup} /><div className={styles.confidence}><strong>API confidence</strong><span>{percent(state.result.confidence)}</span></div><p className={styles.helper}>Separate from the option probabilities.</p><p className={styles.provenance}>{state.result.snapshot === null ? "Model estimate, not measured evidence" : state.result.probabilityLabel}. Percentages are rounded for display.</p><details className={styles.source}><summary>Source &amp; model details</summary><p>{state.result.model} · {state.result.promptVersion}<br />{state.result.snapshot ? `Snapshot captured ${timestamp(state.result.snapshot.capturedAt)}` : "Custom text only · no live research or league facts supplied"}</p><ul>{state.result.evidence.map((e, i) => <li key={i}>{e}</li>)}</ul>{state.result.snapshot && <p>{comparisonLabel(state.result.snapshot) && <>{comparisonLabel(state.result.snapshot)}<br /></>}Cutoff {timestamp(state.result.snapshot.cutoffAt)}<br />{periodLabel(state.result.snapshot)}<br />Prior stats: {state.result.snapshot.statsSeason} · Scoring mode: {state.result.snapshot.scoringMode} · {state.result.snapshot.baselineVersion}</p>}</details><button type="button" className={styles.quiet} disabled={paused || reduced} onClick={() => setReplay(v => v + 1)}>Replay bars</button></> : <><span className={styles.resultStatus}>{state.code === "duplicate" ? "Active request" : state.status.replaceAll("_", " ")}</span><h3>{failureHeading(state)}</h3><FailureDetails failure={state} /><button type="button" onClick={() => question.current?.focus()}>Edit draft</button></>}
         </div>
       </aside>
     </section>
@@ -191,4 +206,8 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
       <div className={styles.modalActions}><button type="button" onClick={closePicker}>Cancel</button><button type="button" className={styles.primary} onClick={savePair}>Save to draft</button></div>
     </dialog>
   </div>;
+}
+
+function FailureDetails({ failure }: { failure: Failure }) {
+  return <><p>{failure.message}</p>{failure.status !== "busy" && failure.retryAfterSeconds !== undefined && <p>Server retry guidance: {Math.ceil(failure.retryAfterSeconds)} seconds.</p>}</>;
 }
