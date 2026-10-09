@@ -61,6 +61,24 @@ describe("versioned continuous modeled-state contract", () => {
     expect(valuationAt(timeline, quotes[0].date).priceCents).toBe(10000);
     expect(JSON.stringify(original)).toBe(before); expect(timeline.publishable).toBe(false);
   });
+  it("preserves microsecond snapshot timestamps and excludes records just after the cutoff", () => {
+    const early = Object.freeze({ id: "early", date: "2024-06-15T00:00:00.123456Z", priceCents: 11111 });
+    const late = { id: "late", date: "2024-06-15T00:00:00.123457Z", priceCents: -1 };
+    const timeline = build({ asOf: early.date, recordedSnapshots: [early, late] });
+    expect(timeline.recordedSnapshots).toEqual([early]); expect(timeline.recordedSnapshots[0]).toBe(early);
+    expect(valuationAt(timeline, early.date).recordedSnapshots[0]).toBe(early);
+    expect(valuationAt(timeline, "2024-06-15T00:00:00.123Z").recordedSnapshots).toEqual([]);
+  });
+  it("orders model events across mixed timestamp precision and treats equivalent instants consistently", () => {
+    const base = update("2024-06-15", 10000), later = { ...base, id: "later",
+      effectiveAt: "2024-06-15T00:00:00.000001Z", evidenceAsOf: "2024-06-15T00:00:00.000001Z", priceCents: 12000 };
+    const timeline = build({ updates: [later, base] });
+    expect(valuationAt(timeline, base.effectiveAt).priceCents).toBe(10000);
+    expect(valuationAt(timeline, later.effectiveAt).priceCents).toBe(12000);
+    expect(timeline.intervals.filter(i => i.from.startsWith("2024-06-15")).map(i => i.priceCents)).toEqual([10000, 12000]);
+    expect(valuationAt(timeline, "2024-06-15T00:00:00.000000Z").source).toBe("model-update");
+    expect(() => build({ updates: [base, { ...base, id: "same", effectiveAt: "2024-06-15T00:00:00.000000Z" }] })).toThrow();
+  });
   it("filters future values, versions, snapshots, calendars and coverage before they can affect a prefix", () => {
     const early = input({ asOf: iso("2024-08-01") });
     const future = { ...update("2024-10-23", -999), modelVersion: "later-model", calibrationVersion: "later-scale" };

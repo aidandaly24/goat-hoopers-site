@@ -27,6 +27,12 @@ silently mix scales or normalize prices by today's most valuable player.
 value between games. This PR supplies the implementation and tests; live loader
 and rendering integration require the source/retention work below.
 
+Canonical UTC timestamps retain three through six fractional digits. Cutoffs,
+ordering and equality compare padded microsecond keys without changing original
+strings or objects. Evidence-age readouts are descriptive at millisecond
+precision. A raw timestamp without a timezone must be resolved by the source
+adapter; this helper does not guess its timezone or overwrite its raw fields.
+
 ## What currently prevents full history
 
 Current `stocks.ts` reads all selected-player reconstruction rows, then at most
