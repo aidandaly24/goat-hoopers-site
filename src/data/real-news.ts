@@ -279,13 +279,19 @@ function endsWithNameSuffix(norm: string): boolean {
  * spanEnd. Lets a reservation cover the full suffixed mention
  * ("LeBron James Jr.") instead of stopping at the directory name's
  * shorter prefix ("LeBron James").
+ *
+ * The suffix word is read as a plain [a-z0-9] run, stopping at a
+ * space OR punctuation. playerSearchKey keeps punctuation other
+ * than periods/apostrophes/hyphens, so "LeBron James Jr., ..." —
+ * normalized to "... jr, ..." — still reads the "jr" suffix; reading
+ * only until a space would see "jr," and miss it.
  */
 function suffixSpanEnd(text: string, spanEnd: number): number {
   // Normalized text: lowercase, single-space separated words.
   if (!text.startsWith(" ", spanEnd)) return spanEnd;
   const wordStart = spanEnd + 1;
   let wordEnd = wordStart;
-  while (wordEnd < text.length && text[wordEnd] !== " ") wordEnd++;
+  while (wordEnd < text.length && /[a-z0-9]/.test(text[wordEnd])) wordEnd++;
   return NAME_SUFFIXES.has(text.slice(wordStart, wordEnd))
     ? wordEnd
     : spanEnd;
