@@ -30,3 +30,11 @@ owners and are not verified here. Current Courtside alias CSS is injected only
 for a labelled root-token probe. This does not establish live providers/auth,
 physical iOS/Safari or screen-reader announcements. Unchanged Stocks doubled-text
 body clipping is recorded by navigation QA and remains outside this scope.
+
+For the recorded resource-bounded continuation only,
+`THEME_TEST_RESUME_RECEIPT=/private/first-resize-attempt.json` carries the first
+40 passed checks after validating exact input hashes and zero browser errors.
+It runs only the five remaining enlarged/prepaint/alias cases. The first attempt
+and logs remain saved; its heading assertion incorrectly applied initial-load
+clearance to the naturally scrolled page after resize. Product source was
+unchanged. A normal run without this flag executes all cases.

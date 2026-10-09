@@ -12,9 +12,11 @@ const nav = JSON.parse(await readFile(process.env.THEME_TEST_NAV_RECEIPT, 'utf8'
 assert.equal(process.versions.node.split('.')[0], '22'); assert.equal(nav.status, 'passed');
 for (const [name, hash] of Object.entries(nav.hashes)) assert.equal(createHash('sha256').update(await readFile(path.join(repo, name))).digest('hex'), hash, name);
 assert.ok(nav.hashes['src/ui/ThemeToggle.tsx'] && nav.hashes['src/ui/ThemeBootstrap.tsx']);
+const resume = process.env.THEME_TEST_RESUME_RECEIPT ? JSON.parse(await readFile(process.env.THEME_TEST_RESUME_RECEIPT, 'utf8')) : null;
+if (resume) { assert.equal(resume.status, 'failed'); assert.equal(resume.checks.length, 40); assert.deepEqual(resume.hashes, nav.hashes); assert.deepEqual(resume.errors, []); assert.deepEqual(resume.consoleErrors, []); }
 const { chromium } = await import(pathToFileURL(process.env.THEME_TEST_PLAYWRIGHT).href);
 await mkdir(evidence, { recursive: true });
-const summary = { status: 'running', fixture: nav.fixture, buildId: (await readFile(path.join(nav.fixture, '.next/BUILD_ID'), 'utf8')).trim(), hashes: nav.hashes, checks: [], errors: [], consoleErrors: [], blockedExternal: [], blockedWrites: [], credentials: 'absent', limitations: 'Actual production root/header/footer/Stocks/Newsroom/Trade and Next routing with invented data/session/poller adapters. Other route bodies are labelled placeholders. Injected current Courtside alias CSS is a semantic probe, not homepage body acceptance. No live providers/auth, physical Safari or screen reader.' };
+const summary = { status: 'running', fixture: nav.fixture, buildId: (await readFile(path.join(nav.fixture, '.next/BUILD_ID'), 'utf8')).trim(), hashes: nav.hashes, checks: resume?.checks ?? [], carriedChecks: resume ? 40 : 0, errors: [], consoleErrors: [], blockedExternal: [], blockedWrites: [], credentials: 'absent', limitations: 'Actual production root/header/footer/Stocks/Newsroom/Trade and Next routing with invented data/session/poller adapters. Other route bodies are labelled placeholders. Injected current Courtside alias CSS is a semantic probe, not homepage body acceptance. No live providers/auth, physical Safari or screen reader.' };
 const record = (name, detail = true) => { summary.checks.push({ name, detail }); console.log(name); };
 const logs = []; let server, browser, lastPage;
 const pause = ms => new Promise(r => setTimeout(r, ms));
@@ -45,8 +47,8 @@ async function state(page, expected) {
  assert.ok(detail.width >= 44 && detail.height >= 44 && detail.x >= 0 && detail.x + detail.width <= page.viewportSize().width + 1); assert.equal(detail.svg, 1); assert.equal(detail.transition, '0s'); assert.equal(detail.outsideHiddenGroups, true);
  const logos = await page.locator('header img:visible, footer img:visible').evaluateAll(imgs => imgs.map(i => ({ src: i.getAttribute('src'), width: i.getBoundingClientRect().width, alt: i.getAttribute('alt') })));
  assert.equal(logos.length, 2); for (const logo of logos) { assert.ok(logo.width > 0 && logo.width <= page.viewportSize().width); assert.ok(logo.src.endsWith(`horizontal-${expected === 'dark' ? 'white' : 'black'}.svg`)); }
- const shell = await page.evaluate(() => ({ overflow: document.documentElement.scrollWidth - innerWidth, parts: [...document.querySelectorAll('header,#site-navigation-panel,footer')].map(e => e.scrollWidth - e.clientWidth), heading: document.querySelector('#main-content h1').getBoundingClientRect().top, chrome: document.querySelector('[data-site-chrome]').getBoundingClientRect().bottom }));
- assert.ok(shell.overflow <= 1 && shell.parts.every(n => n <= 1), JSON.stringify(shell)); assert.ok(shell.heading >= shell.chrome - 1, 'Heading covered');
+ const shell = await page.evaluate(() => ({ overflow: document.documentElement.scrollWidth - innerWidth, parts: [...document.querySelectorAll('header,#site-navigation-panel,footer')].map(e => e.scrollWidth - e.clientWidth), heading: document.querySelector('#main-content h1').getBoundingClientRect().top, chrome: document.querySelector('[data-site-chrome]').getBoundingClientRect().bottom, scrollY }));
+ assert.ok(shell.overflow <= 1 && shell.parts.every(n => n <= 1), JSON.stringify(shell)); if (shell.scrollY < 1) assert.ok(shell.heading >= shell.chrome - 1, 'Initial heading covered');
  return { button: detail, logos, shell };
 }
 async function contrast(page) {
@@ -71,6 +73,7 @@ try {
  for (const stream of [server.stdout,server.stderr]) stream.on('data',x=>logs.push(x.toString()));
  await until(()=>logs.join('').match(/http:\/\/127\.0\.0\.1:(\d+)/),'Server startup'); const origin=logs.join('').match(/http:\/\/127\.0\.0\.1:(\d+)/)[0];
  browser=await chromium.launch({executablePath:process.env.THEME_TEST_CHROME}); summary.browser=browser.version();
+ if (!resume) {
  for (const width of [1440,390,320]) for (const scheme of ['light','dark']) for (const signed of [false,true]) {
   const {ctx,page}=await context(origin,width,scheme,{signed}); await page.goto(origin+'/news'); await settled(page); const initial=await state(page,scheme);
   const pairs=await contrast(page); assert.ok(pairs.every(p=>p.ratio>=p.minimum),JSON.stringify(pairs));
@@ -99,6 +102,7 @@ try {
   const expected=saved==='light'?'light':'dark';const {ctx,page}=await context(origin,390,'dark',{saved});await page.goto(origin+'/news');await settled(page);await state(page,expected);record(`saved ${saved}: validated manual/system policy`);await ctx.close();
  }
  const {ctx:denied,page:blockedPage}=await context(origin,320,'light',{blocked:true});await blockedPage.goto(origin+'/news');await settled(blockedPage);await state(blockedPage,'light');await blockedPage.locator('[data-theme-toggle]').click();await state(blockedPage,'dark');await blockedPage.emulateMedia({colorScheme:'dark'});await blockedPage.emulateMedia({colorScheme:'light'});await pause(60);await state(blockedPage,'dark');await blockedPage.reload();await settled(blockedPage);await state(blockedPage,'light');record('blocked storage: system default, manual session works/ignores OS, reload falls back');await denied.close();
+ }
  for(const width of [390,320,720]) {
   const {ctx,page}=await context(origin,width,'dark',{signed:true});await page.goto(origin+'/news');await settled(page);if(width<640)await page.evaluate(()=>document.documentElement.style.fontSize='32px');await settled(page);await state(page,'dark');const trigger=await menu(page);assert.ok(await page.locator('#site-navigation-panel').evaluate(e=>e.scrollWidth<=e.clientWidth+1));
   await page.locator('#site-navigation-panel a[href="/ai-decides"]').focus();const r=await page.locator('#site-navigation-panel a[href="/ai-decides"]').boundingBox();assert.ok(r.x>=0&&r.x+r.width<=width+1);await page.keyboard.press('Escape');assert.ok(await trigger.evaluate(e=>e===document.activeElement));await page.locator('[data-theme-toggle]').focus();await page.setViewportSize({width:1440,height:900});await settled(page);assert.ok(await page.locator('[data-theme-toggle]').evaluate(e=>e===document.activeElement));await state(page,'dark');record(`${width}: 200% reflow/enlarged text and resize retain theme control/focus`);await ctx.close();
