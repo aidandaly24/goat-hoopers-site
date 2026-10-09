@@ -25,6 +25,7 @@
 .crosshair{stroke:var(--gh-neutral-focus);stroke-width:1;stroke-dasharray:3 3}
 .selectedPoint{fill:none;stroke:var(--gh-neutral-focus);stroke-width:2.5}
 .sliderLabel{display:flex;justify-content:space-between;gap:var(--gh-s2);font-size:.875rem;margin-top:var(--gh-s3)}
+.sliderReadout{display:block;font-size:.875rem;line-height:1.5;margin:var(--gh-s2) 0;color:var(--gh-neutral-ink)}
 .slider{display:block!important;width:100%;min-height:calc(var(--gh-s8) + var(--gh-s3));accent-color:var(--gh-neutral-accent);padding:0!important;cursor:pointer}
 .slider:disabled{cursor:default}
 .help,.note{font-size:.75rem;color:var(--gh-neutral-muted);margin:var(--gh-s2) 0!important;line-height:1.5}

@@ -35,8 +35,37 @@ export function pointSource(point: ChartPoint): string {
 
 /** A maximal run of consecutive supplied points drawn as one straight SVG path. */
 export type ChartPath = { kind: "estimate" | "recorded" | "current"; d: string };
+
+/**
+ * Display heuristics for gap labels (rendering only, never data):
+ * - GAP_LABEL_CHAR_W estimates SVG units per monospace character at the 11px
+ *   label size, used only to keep wrapped labels inside the plot and off each
+ *   other.
+ * - GAP_LABEL_LINE_H is the baseline step between the two wrapped lines.
+ * - GAP_LABEL_ROW_STEP separates stacked rows so adjacent gap labels cannot
+ *   collide.
+ */
+export const GAP_LABEL_CHAR_W = 6.7;
+export const GAP_LABEL_LINE_H = 13;
+export const GAP_LABEL_ROW_STEP = 30;
+
+/** "Jan 2023" style label for a supplied sample date. */
+export function shortMonthYear(date: string) {
+  return new Intl.DateTimeFormat("en-GB", {
+    month: "short", year: "numeric", timeZone: "UTC",
+  }).format(new Date(date));
+}
+
 /** A classified long interval between two supplied samples; never bridged by a path. */
-export type ChartGap = { fromDate: string; toDate: string; x: number };
+export type ChartGap = {
+  fromDate: string; toDate: string;
+  /** Label center x, clamped so the wrapped label stays inside the plot. */
+  x: number;
+  /** Two wrapped label lines; together they read the honest interval label. */
+  lines: [string, string];
+  /** Vertical row (0 = lowest) chosen greedily so neighboring labels never collide. */
+  row: number;
+};
 
 function pairKind(a: ChartPoint, b: ChartPoint): ChartPath["kind"] {
   if (a.current || b.current) return "current";
@@ -66,9 +95,12 @@ export function priceChartModel(history: PriceHistoryPoint[], range: ChartRange)
   // Group consecutive same-kind pairs into single straight paths. A path run
   // breaks at a classified long gap (never bridged) or a provenance kind
   // change (a boundary worth marking). `marked` keeps a decorative dot for
-  // run endpoints (series ends, gap edges, provenance boundaries) and for
-  // isolated samples; every supplied point stays inspectable through the
-  // pointer target, keyboard slider, and ARIA readout regardless.
+  // run endpoints (series ends, gap edges, provenance kind changes), for
+  // isolated samples, and for actual source transitions (e.g. backtest to
+  // gamelog): those keep their provenance marker independently of line
+  // styling, even when both sides render as the same "estimate" path kind.
+  // Every supplied point stays inspectable through the pointer target,
+  // keyboard slider, and ARIA readout regardless.
   const paths: ChartPath[] = [];
   const gaps: ChartGap[] = [];
   const marked = points.map(() => false);
@@ -87,9 +119,16 @@ export function priceChartModel(history: PriceHistoryPoint[], range: ChartRange)
     if (points[index + 1].time - points[index].time >= LONG_GAP_MS) {
       closeRun(index);
       gaps.push({ fromDate: points[index].date, toDate: points[index + 1].date,
-        x: (positions[index].x + positions[index + 1].x) / 2 });
+        x: (positions[index].x + positions[index + 1].x) / 2,
+        lines: ["No samples supplied between",
+          `${shortMonthYear(points[index].date)} – ${shortMonthYear(points[index + 1].date)}`],
+        row: 0 });
       runStart = index + 1;
       continue;
+    }
+    if (points[index].source !== points[index + 1].source) {
+      marked[index] = true;
+      marked[index + 1] = true;
     }
     const kind = pairKind(points[index], points[index + 1]);
     if (runKind === null) runKind = kind;
@@ -100,6 +139,25 @@ export function priceChartModel(history: PriceHistoryPoint[], range: ChartRange)
     }
   }
   closeRun(points.length - 1);
+  // Collision-safe gap labels: wrap to two lines, clamp the center so the
+  // estimated box stays inside the plot, and stack neighboring labels on the
+  // lowest non-overlapping row.
+  const rowBoxes: { x0: number; x1: number }[][] = [];
+  for (const gap of gaps) {
+    const half = Math.max(gap.lines[0].length, gap.lines[1].length) * GAP_LABEL_CHAR_W / 2;
+    gap.x = half * 2 > PLOT.right - PLOT.left
+      ? (PLOT.left + PLOT.right) / 2
+      : Math.min(Math.max(gap.x, PLOT.left + half), PLOT.right - half);
+    let row = 0;
+    for (;;) {
+      const boxes = rowBoxes[row] ?? [];
+      const overlaps = boxes.some((box) => gap.x - half < box.x1 + 8 && gap.x + half > box.x0 - 8);
+      if (!overlaps) break;
+      row++;
+    }
+    (rowBoxes[row] ??= []).push({ x0: gap.x - half, x1: gap.x + half });
+    gap.row = row;
+  }
   return { points, positions, ticks, paths, gaps, marked };
 }
 

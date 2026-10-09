@@ -3,14 +3,11 @@
 import { useId, useRef, useState, type PointerEvent } from "react";
 import type { PriceHistoryPoint } from "@/domain";
 import { formatPrice } from "./format";
-import { CHART_RANGES, LONG_GAP_DAYS, PLOT, nearestChartPoint, pointSource, priceChartModel, type ChartRange } from "./price-history-chart";
+import { CHART_RANGES, GAP_LABEL_LINE_H, GAP_LABEL_ROW_STEP, LONG_GAP_DAYS, PLOT, nearestChartPoint, pointSource, priceChartModel, shortMonthYear, type ChartRange } from "./price-history-chart";
 import styles from "./PriceHistoryChart.module.css";
 
 const dateLabel = (date: string) => new Intl.DateTimeFormat("en-GB", {
   day: "numeric", month: "short", year: "numeric", timeZone: "UTC",
-}).format(new Date(date));
-const axisDate = (date: string) => new Intl.DateTimeFormat("en-GB", {
-  month: "short", year: "numeric", timeZone: "UTC",
 }).format(new Date(date));
 
 /** Inspect only the existing bounded detail points. No fetching or repricing. */
@@ -65,10 +62,16 @@ export function PriceHistoryChart({ history, playerName }: { history: PriceHisto
       <line className={styles.axisLine} x1={PLOT.left} x2={PLOT.left} y1={PLOT.top} y2={PLOT.bottom} />
       <line className={styles.axisLine} x1={PLOT.left} x2={PLOT.right} y1={PLOT.bottom} y2={PLOT.bottom} />
       {model.paths.map((path, pathIndex) => <path key={pathIndex} className={`${styles.path} ${styles[path.kind]}`} d={path.d} />)}
-      {model.gaps.map((gap, gapIndex) => <text key={gapIndex} className={styles.gapLabel}
-        x={gap.x} y={PLOT.bottom - 10} textAnchor="middle">
-        {`No samples supplied between ${axisDate(gap.fromDate)} and ${axisDate(gap.toDate)}`}
-      </text>)}
+      {model.gaps.map((gap, gapIndex) => {
+        // Wrapped two-line labels on collision-safe rows: neighboring gap
+        // descriptions never share a row, and each row is clamped inside the
+        // plot by the model.
+        const y = PLOT.bottom - 10 - gap.row * GAP_LABEL_ROW_STEP;
+        return <g key={gapIndex}>
+          <text className={styles.gapLabel} x={gap.x} y={y} textAnchor="middle">{gap.lines[0]}</text>
+          <text className={styles.gapLabel} x={gap.x} y={y + GAP_LABEL_LINE_H} textAnchor="middle">{gap.lines[1]}</text>
+        </g>;
+      })}
       {model.positions.map((position, pointIndex) => model.points[pointIndex].current
         ? <path key={pointIndex} className={styles.currentPoint} d={`M${position.x} ${position.y - 5}l5 5-5 5-5-5Z`} />
         : model.marked[pointIndex]
@@ -76,14 +79,15 @@ export function PriceHistoryChart({ history, playerName }: { history: PriceHisto
           : null)}
       <line className={styles.crosshair} x1={position.x} x2={position.x} y1={PLOT.top} y2={PLOT.bottom} />
       <circle className={styles.selectedPoint} cx={position.x} cy={position.y} r="8" />
-      <text className={styles.axis} x={PLOT.left} y={PLOT.bottom + 22}>{axisDate(first.date)}</text>
-      {first.time !== last.time ? <text className={styles.axis} x={PLOT.right} y={PLOT.bottom + 22} textAnchor="end">{axisDate(last.date)}</text> : null}
+      <text className={styles.axis} x={PLOT.left} y={PLOT.bottom + 22}>{shortMonthYear(first.date)}</text>
+      {first.time !== last.time ? <text className={styles.axis} x={PLOT.right} y={PLOT.bottom + 22} textAnchor="end">{shortMonthYear(last.date)}</text> : null}
       <text className={styles.axis} x={(PLOT.left + PLOT.right) / 2} y={PLOT.height - 2} textAnchor="middle">Date (UTC)</text>
     </svg>
     <label className={styles.sliderLabel} htmlFor={`${id}-point`}>Inspect a point <span className="gh-num">{selected + 1} / {model.points.length}</span></label>
     <input ref={slider} id={`${id}-point`} className={styles.slider} type="range" min={0} max={model.points.length - 1}
       step={1} value={selected} disabled={model.points.length === 1} aria-label={`Inspect price history for ${playerName}`}
       aria-valuetext={valueText} aria-describedby={`${id}-help`} onChange={(event) => setIndex(Number(event.target.value))} />
+    <output htmlFor={`${id}-point`} className={styles.sliderReadout} aria-live="polite">{valueText}</output>
     <p id={`${id}-help`} className={styles.help}>{model.points.length === 1
       ? point.current ? "Current quote only in this range. Historical movement is unavailable." : "One supplied point in this range. There is no movement to compare."
       : "Touch or move across the graph to inspect. Use the slider with arrow keys, Home or End for each supplied point."}</p>

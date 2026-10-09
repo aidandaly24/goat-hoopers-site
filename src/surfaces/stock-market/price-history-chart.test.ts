@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import type { PriceHistoryPoint } from "@/domain";
 import { PriceHistoryChart } from "./PriceHistoryChart";
-import { chartPoints, LONG_GAP_DAYS, nearestChartPoint, pointSource, PLOT, priceChartModel } from "./price-history-chart";
+import { chartPoints, GAP_LABEL_CHAR_W, LONG_GAP_DAYS, nearestChartPoint, pointSource, PLOT, priceChartModel } from "./price-history-chart";
 
 const history: PriceHistoryPoint[] = [
   { date: "2025-10-08T00:00:00Z", price: 10, source: "backtest" },
@@ -82,8 +82,10 @@ describe("bounded price history chart", () => {
       }
     }
     const html = render();
-    expect(html).toContain("No samples supplied between Oct 2025 and Jan 2026");
-    expect(html).toContain("No samples supplied between Jan 2026 and Sept 2026");
+    // Honest wrapped label: two lines that together read the full interval.
+    expect(html).toContain("No samples supplied between");
+    expect(html).toContain("Oct 2025 – Jan 2026");
+    expect(html).toContain("Jan 2026 – Sept 2026");
     expect(html).toContain("2 long gaps not connected");
     expect(html).not.toContain("raw source data");
   });
@@ -128,6 +130,51 @@ describe("bounded price history chart", () => {
     expect(html).toContain('aria-valuetext="8 Oct 2026, $30.00 FAAB, Current modeled quote"');
     expect(nearestChartPoint(model.positions, model.positions[0].x)).toBe(0);
     expect(nearestChartPoint(model.positions, model.positions[2].x)).toBe(2);
+  });
+
+  it("places a live selected readout adjacent to the slider", () => {
+    const html = render();
+    // The readout sits directly after the slider in DOM order, so it stays
+    // visible next to the active control at 200% zoom and reduced heights.
+    const sliderAt = html.indexOf('type="range"');
+    const outputAt = html.indexOf("<output");
+    expect(sliderAt).toBeGreaterThan(-1);
+    expect(outputAt).toBeGreaterThan(sliderAt);
+    expect(html).toContain('aria-live="polite"');
+    expect(html).toContain("8 Oct 2026, $30.00 FAAB, Current modeled quote");
+    // Native range semantics: arrows/Home/End move one supplied point per step.
+    expect(html).toContain('step="1"');
+    expect(html).toContain('min="0"');
+  });
+
+  it("wraps gap descriptions and stacks neighboring labels on separate rows", () => {
+    const annual: PriceHistoryPoint[] = [
+      { date: "2023-01-01T00:00:00Z", price: 5, source: "backtest" },
+      { date: "2024-01-01T00:00:00Z", price: 50, source: "backtest" },
+      { date: "2025-01-01T00:00:00Z", price: 15, source: "backtest" },
+    ];
+    const model = priceChartModel(annual, "All")!;
+    expect(model.gaps).toHaveLength(2);
+    for (const gap of model.gaps) {
+      expect(gap.lines).toHaveLength(2);
+      expect(gap.lines[0]).toBe("No samples supplied between");
+    }
+    expect(model.gaps[0].lines[1]).toBe("Jan 2023 – Jan 2024");
+    expect(model.gaps[1].lines[1]).toBe("Jan 2024 – Jan 2025");
+    // Estimated boxes stay inside the plot; the two ~144-unit-apart labels do
+    // not share a row, so they cannot collide.
+    const boxes = model.gaps.map((gap) => {
+      const half = Math.max(gap.lines[0].length, gap.lines[1].length) * GAP_LABEL_CHAR_W / 2;
+      return { x0: gap.x - half, x1: gap.x + half, row: gap.row };
+    });
+    for (const box of boxes) {
+      expect(box.x0).toBeGreaterThanOrEqual(PLOT.left - 0.01);
+      expect(box.x1).toBeLessThanOrEqual(PLOT.right + 0.01);
+    }
+    expect(boxes[0].row).not.toBe(boxes[1].row);
+    const html = render(annual);
+    expect(html).toContain("Jan 2023 – Jan 2024");
+    expect(html).toContain("Jan 2024 – Jan 2025");
   });
 
   it("handles annual-only inputs and extrema without inventing samples", () => {
@@ -175,8 +222,11 @@ describe("bounded price history chart", () => {
     // Pairs: estimate, estimate, estimate (gamelog side), current. Two runs.
     expect(model.paths.map((p) => p.kind)).toEqual(["estimate", "current"]);
     expect(model.gaps).toHaveLength(0);
-    // Run endpoints only: series start, the estimate/current boundary, series end.
-    expect(model.marked).toEqual([true, false, false, true, true]);
+    // Source transitions keep their provenance markers independently of line
+    // styling: the backtest→gamelog boundary (0–1) and gamelog→live boundary
+    // (2–3) stay marked even though the pairs render as the same "estimate"
+    // path kind. The estimate/current split marks 3–4 as before.
+    expect(model.marked).toEqual([true, true, true, true, true]);
     const html = render(mixed);
     expect(html).not.toContain("No samples supplied between");
   });
