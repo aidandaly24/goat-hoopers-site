@@ -699,6 +699,14 @@ with confidence and factual evidence separate. Shared semantic tokens and the
 shell-owned theme apply; there is no page-local theme provider or credential.
 `AiDecidesHomeEntry` in `AiWeekly.tsx` is the public homepage composition seam.
 Its home/nav integration remains with those owners; reads never generate picks.
+Matchup/weekly choices remain roster IDs. Explicit request/slate context adds
+current display names with visible IDs; numeric custom options stay literal, and
+request IDs constrain response validation. Frozen evidence is never rewritten.
+The scoped picker history listener survives closure, restores Forward entries and
+selection/trigger context, coalesces stale entries and preserves Next state.
+Route/unmount cleanup never restores an old URL over a new route. A failed page
+session lookup renders a distinct auth-unavailable editor/cache view with runs
+disabled; server authorization and shared auth remain untouched.
 
 ## Environment
 

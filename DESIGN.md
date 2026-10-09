@@ -45,6 +45,11 @@ or certainty. Numeric labels remain readable and static. Reduced motion and
 Pause retain all data and controls. Mobile trims gaps and repeated helper copy,
 with readable labels, complete options and at least 44px control targets.
 The page consumes the shared shell's theme and navigation; it owns neither.
+Weekly and personal matchup results show the actual returned choice, not the
+first probability or an inferred winner. Roster IDs remain visible; any name is
+labelled as a current display name, not frozen prediction metadata. Numeric
+custom choices are literal. Session verification failure keeps cached content
+and editing available with a distinct message and disabled generation.
 
 ## Decisions and review status
 

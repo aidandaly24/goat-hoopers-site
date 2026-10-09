@@ -7,6 +7,7 @@ export const metadata: Metadata = { title: "AI Decides | GOAT Hoopers", descript
 
 /** Thin page. Load cached picks/identities through data; the server owns admission. */
 export default async function AiDecidesPage() {
-  const [data, teams, user] = await Promise.all([getAiDecidesData(), getTeams(), getCurrentUser()]);
-  return <AiDecides data={data} teams={teams.map(({ id, name }) => ({ id, name }))} signedIn={user !== null} />;
+  const session = getCurrentUser().then(user => ({ signedIn: user !== null, authUnavailable: false })).catch(() => ({ signedIn: false, authUnavailable: true }));
+  const [data, teams, auth] = await Promise.all([getAiDecidesData(), getTeams(), session]);
+  return <AiDecides data={data} teams={teams.map(({ id, name }) => ({ id, name }))} {...auth} />;
 }

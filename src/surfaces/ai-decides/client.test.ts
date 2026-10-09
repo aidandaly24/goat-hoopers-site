@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { AI_PROBABILITY_LABEL } from "@/domain/ai-decider";
 import { draftError, percent, postDecision, readDecisionResponse } from "./client";
+import { interactiveResult } from "./test/fixtures";
 
 const ready = () => ({ status: "ready", result: { model: "historical-model", promptVersion: "frozen-v0", choice: "B", confidence: .21, probabilities: [{ choice: "A", probability: .3333333333 }, { choice: "B", probability: .3333333333 }, { choice: "C", probability: .3333333334 }], evidence: ["Prior completed-season inputs only"], probabilityLabel: AI_PROBABILITY_LABEL, snapshot: null } });
 describe("AI Decides client boundary", () => {
@@ -27,6 +28,17 @@ describe("AI Decides client boundary", () => {
   it("calls only the relative app route, once, with the current abort signal", async () => {
     const fetcher = vi.fn().mockResolvedValue({ ok: true, json: async () => ready() }); vi.stubGlobal("fetch", fetcher);
     try { const signal = new AbortController().signal; await postDecision({ kind: "custom", prompt: "Pick?", choices: ["A", "B", "C"] }, signal); expect(fetcher).toHaveBeenCalledTimes(1); expect(fetcher).toHaveBeenCalledWith("/api/ai-decides", expect.objectContaining({ credentials: "same-origin", method: "POST", signal, cache: "no-store" })); } finally { vi.unstubAllGlobals(); }
+  });
+  it("validates a backend-shaped matchup response against the exact requested roster IDs", async () => {
+    const valid = { status: "ready", result: interactiveResult() };
+    const fetcher = vi.fn().mockResolvedValue({ ok: true, json: async () => valid }); vi.stubGlobal("fetch", fetcher);
+    try {
+      const response = await postDecision({ kind: "matchup", teamIds: ["1", "2"] }, new AbortController().signal);
+      expect(response).toBe(valid); expect(valid.result.probabilities.map(p => p.choice)).toEqual(["2", "1"]);
+      expect((await postDecision({ kind: "matchup", teamIds: ["6", "10"] }, new AbortController().signal)).status).toBe("unavailable");
+      valid.result.probabilities[0].choice = "Current Two";
+      expect((await postDecision({ kind: "matchup", teamIds: ["1", "2"] }, new AbortController().signal)).status).toBe("unavailable");
+    } finally { vi.unstubAllGlobals(); }
   });
   it("supports eight choices, rejects blanks/duplicates/oversize, and never changes the draft", () => {
     const choices = Array.from({ length: 8 }, (_, i) => `Option ${i}`); expect(draftError("Pick?", choices)).toBeNull(); expect(choices).toHaveLength(8);

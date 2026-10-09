@@ -30,7 +30,7 @@ export const postDecision: DecisionTransport = async (request, signal) => {
   const response = await fetch("/api/ai-decides", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: JSON.stringify(request), signal, cache: "no-store" });
   const value: unknown = await response.json();
   if (!response.ok && object(value) && value.status === "ready") return unavailable();
-  return readDecisionResponse(value, request.kind === "custom" ? request.choices : undefined);
+  return readDecisionResponse(value, request.kind === "custom" ? request.choices : request.teamIds);
 };
 
 export function draftError(prompt: string, choices: string[]): string | null {

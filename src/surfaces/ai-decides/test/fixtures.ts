@@ -1,0 +1,8 @@
+import { AI_PROBABILITY_LABEL, type AiDecisionResult, type AiDecidesData } from "@/domain/ai-decider";
+
+/** Synthetic backend-shaped inputs: matchup choices are IDs, never team names. */
+export const teams = [{ id: "1", name: "Current One" }, { id: "2", name: "Current Two" }, { id: "6", name: "Current Six" }, { id: "10", name: "Current Ten" }];
+export const snapshot = { hash: "frozen", model: "frozen-model", promptVersion: "frozen-v0", capturedAt: "2026-10-09T18:00:00Z", cutoffAt: "2026-10-09T18:00:00Z", startsAt: "2026-10-12T00:00:00Z", endsAt: "2026-10-19T00:00:00Z", statsSeason: "2025", scoringMode: "lock_in" as const, baselineVersion: "prior-starter-ppg-v1" };
+export const interactiveResult = (): AiDecisionResult => ({ model: snapshot.model, promptVersion: snapshot.promptVersion, choice: "1", confidence: .21, probabilities: [{ choice: "2", probability: .67 }, { choice: "1", probability: .33 }], evidence: ["Frozen roster 1 prior inputs"], probabilityLabel: AI_PROBABILITY_LABEL, snapshot });
+export const weeklyResult = (): AiDecisionResult => ({ ...interactiveResult(), choice: "6", probabilities: [{ choice: "10", probability: .62 }, { choice: "6", probability: .38 }], evidence: ["Frozen roster 6 prior inputs"] });
+export const cachedData = (): AiDecidesData => ({ availability: { status: "available", code: "available", message: "Available" }, weekly: { leagueId: "fixture", season: "2026", week: 1, status: "ready", message: "Cached test pick", generatedAt: snapshot.capturedAt, snapshot, matchups: [{ matchupId: "fixture-6-10", teamIds: ["6", "10"], status: "ready", message: "Saved test pick", result: weeklyResult(), evidence: ["Frozen roster 6 prior inputs"], baseline: null }] } });
