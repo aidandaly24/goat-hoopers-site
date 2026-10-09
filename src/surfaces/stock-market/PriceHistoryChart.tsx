@@ -3,14 +3,11 @@
 import { useId, useRef, useState, type PointerEvent } from "react";
 import type { PriceHistoryPoint } from "@/domain";
 import { formatPrice } from "./format";
-import { CHART_RANGES, PLOT, nearestChartPoint, pointSource, priceChartModel, type ChartRange } from "./price-history-chart";
+import { CHART_RANGES, LONG_GAP_DAYS, PLOT, nearestChartPoint, pointSource, priceChartModel, shortMonthYear, type ChartRange } from "./price-history-chart";
 import styles from "./PriceHistoryChart.module.css";
 
 const dateLabel = (date: string) => new Intl.DateTimeFormat("en-GB", {
   day: "numeric", month: "short", year: "numeric", timeZone: "UTC",
-}).format(new Date(date));
-const axisDate = (date: string) => new Intl.DateTimeFormat("en-GB", {
-  month: "short", year: "numeric", timeZone: "UTC",
 }).format(new Date(date));
 
 /** Inspect only the existing bounded detail points. No fetching or repricing. */
@@ -51,7 +48,7 @@ export function PriceHistoryChart({ history, playerName }: { history: PriceHisto
       <span>{pointSource(point)}</span>
     </div>
     <svg className={styles.plot} viewBox={`0 0 ${PLOT.width} ${PLOT.height}`} role="img"
-      aria-label={`${playerName} price history. ${model.points.length} supplied points from ${dateLabel(first.date)} to ${dateLabel(last.date)}. ${valueText}.`}
+      aria-label={`${playerName} price history. ${model.points.length} supplied points from ${dateLabel(first.date)} to ${dateLabel(last.date)}.${model.gaps.length ? ` ${model.gaps.length} long gap${model.gaps.length === 1 ? "" : "s"} not connected.` : ""} ${valueText}.`}
       onPointerDown={(event) => {
         if (event.button !== 0) return;
         slider.current?.focus({ preventScroll: true });
@@ -64,21 +61,26 @@ export function PriceHistoryChart({ history, playerName }: { history: PriceHisto
       </g>)}
       <line className={styles.axisLine} x1={PLOT.left} x2={PLOT.left} y1={PLOT.top} y2={PLOT.bottom} />
       <line className={styles.axisLine} x1={PLOT.left} x2={PLOT.right} y1={PLOT.bottom} y2={PLOT.bottom} />
-      {model.segments.map((segment, segmentIndex) => <line key={segmentIndex} className={`${styles.path} ${styles[segment.kind]}`}
-        x1={segment.from.x} y1={segment.from.y} x2={segment.to.x} y2={segment.to.y} />)}
+      {model.paths.map((path, pathIndex) => <path key={pathIndex} className={`${styles.path} ${styles[path.kind]}`} d={path.d} />)}
       {model.positions.map((position, pointIndex) => model.points[pointIndex].current
         ? <path key={pointIndex} className={styles.currentPoint} d={`M${position.x} ${position.y - 5}l5 5-5 5-5-5Z`} />
-        : <circle key={pointIndex} className={styles.point} cx={position.x} cy={position.y} r="2.5" />)}
+        : model.marked[pointIndex]
+          ? <circle key={pointIndex} className={styles.point} cx={position.x} cy={position.y} r="2.5" />
+          : null)}
       <line className={styles.crosshair} x1={position.x} x2={position.x} y1={PLOT.top} y2={PLOT.bottom} />
       <circle className={styles.selectedPoint} cx={position.x} cy={position.y} r="8" />
-      <text className={styles.axis} x={PLOT.left} y={PLOT.bottom + 22}>{axisDate(first.date)}</text>
-      {first.time !== last.time ? <text className={styles.axis} x={PLOT.right} y={PLOT.bottom + 22} textAnchor="end">{axisDate(last.date)}</text> : null}
+      <text className={styles.axis} x={PLOT.left} y={PLOT.bottom + 22}>{shortMonthYear(first.date)}</text>
+      {first.time !== last.time ? <text className={styles.axis} x={PLOT.right} y={PLOT.bottom + 22} textAnchor="end">{shortMonthYear(last.date)}</text> : null}
       <text className={styles.axis} x={(PLOT.left + PLOT.right) / 2} y={PLOT.height - 2} textAnchor="middle">Date (UTC)</text>
     </svg>
+    {model.gaps.length ? <ul className={styles.gapList} aria-label="Unconnected intervals">
+      {model.gaps.map((gap, gapIndex) => <li key={gapIndex}>{gap.label}</li>)}
+    </ul> : null}
     <label className={styles.sliderLabel} htmlFor={`${id}-point`}>Inspect a point <span className="gh-num">{selected + 1} / {model.points.length}</span></label>
     <input ref={slider} id={`${id}-point`} className={styles.slider} type="range" min={0} max={model.points.length - 1}
       step={1} value={selected} disabled={model.points.length === 1} aria-label={`Inspect price history for ${playerName}`}
       aria-valuetext={valueText} aria-describedby={`${id}-help`} onChange={(event) => setIndex(Number(event.target.value))} />
+    <output htmlFor={`${id}-point`} className={styles.sliderReadout} aria-live="polite">{valueText}</output>
     <p id={`${id}-help`} className={styles.help}>{model.points.length === 1
       ? point.current ? "Current quote only in this range. Historical movement is unavailable." : "One supplied point in this range. There is no movement to compare."
       : "Touch or move across the graph to inspect. Use the slider with arrow keys, Home or End for each supplied point."}</p>
@@ -87,6 +89,6 @@ export function PriceHistoryChart({ history, playerName }: { history: PriceHisto
       {hasRecorded ? <li><span className={styles.recordedKey} aria-hidden="true" />Recorded snapshot · solid</li> : null}
       {hasCurrent ? <li><span aria-hidden="true">◇</span>Current modeled quote · diamond</li> : null}
     </ul>
-    <p className={styles.note}>Showing supplied, sampled points only. Lines connect samples; daily prices between them are not shown. Reconstructed estimates are not prices recorded at the time.</p>
+    <p className={styles.note}>Showing supplied, sampled points only. Paths connect samples within {LONG_GAP_DAYS} days; longer intervals between supplied samples are not connected. Daily prices between samples are not shown. Reconstructed estimates are not prices recorded at the time.</p>
   </section>;
 }

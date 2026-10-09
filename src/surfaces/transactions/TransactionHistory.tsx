@@ -1,4 +1,5 @@
 import type { Team, Transaction } from "@/domain";
+import { Suspense } from "react";
 import { TransactionFilters } from "./TransactionFilters";
 
 export type TransactionHistoryProps = {
@@ -20,5 +21,9 @@ export type TransactionHistoryProps = {
  * - Never fetches. Never touches Sleeper. Domain objects in, JSX out.
  */
 export function TransactionHistory({ transactions, teams }: TransactionHistoryProps) {
-  return <TransactionFilters transactions={transactions} teams={teams} />;
+  return (
+    <Suspense fallback={<p role="status">Loading transactions…</p>}>
+      <TransactionFilters transactions={transactions} teams={teams} />
+    </Suspense>
+  );
 }
