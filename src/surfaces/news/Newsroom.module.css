@@ -2,6 +2,5 @@
 .head { margin-bottom: var(--gh-s6); }
 .title { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin: 0 0 var(--gh-s3); font-weight: 750; overflow-wrap: anywhere; }
 .dot { color: var(--gh-accent); }
-.lede { margin: 0; line-height: 1.6; font-size: 1.125rem; }
-.disclosure { color: var(--gh-text-dim); line-height: 1.5; font-size: .875rem; margin: var(--gh-s2) 0 0; max-width: 60ch; }
+.lede { margin: 0; line-height: 1.6; font-size: 1.125rem; max-width: 62ch; }
 @media (min-width: 64rem) { .room { padding: var(--gh-s12) var(--gh-s8); } .head { margin-bottom: var(--gh-s8); } }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Geist_Mono, Inter } from "next/font/google";
 import type { PlayerStock } from "@/domain";
-import { PUBLICATIONS } from "@/domain";
 import "@/ui/tokens.css";
 import "./globals.css";
 import { getCurrentUser, logout } from "@/app/actions";
@@ -100,7 +99,7 @@ async function Ticker() {
     }));
     headlines = news.slice(0, 12).map((a) => ({
       text: a.headline,
-      publication: PUBLICATIONS[a.publication].name,
+      publication: a.outlet.name,
     }));
   } catch {
     stocks = [];
