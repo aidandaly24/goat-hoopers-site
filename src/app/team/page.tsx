@@ -8,11 +8,13 @@
  * to the team surface.
  */
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import type { Reward } from "@/domain/arcade";
 import { getCurrentUser } from "@/app/actions";
 import { getTeamDetail } from "@/data/league";
 import { getGameStore } from "@/data/arcade";
 import { TeamPage } from "@/surfaces/team/TeamPage";
+import { friendsAuthEnabled, friendsEnrollmentEnabled } from "@/data/friends-auth/config";
 
 export const dynamic = "force-dynamic";
 
@@ -35,11 +37,14 @@ export default async function TeamRoute() {
   );
 
   return (
+    <>
+    {friendsAuthEnabled() ? <p><Link href="/account">Account settings</Link></p> : friendsEnrollmentEnabled() ? <p><Link href="/login?legacy=1">Set up email login</Link></p> : null}
     <TeamPage
       team={detail.team}
       players={detail.players}
       rewards={sorted}
       displayName={user.displayName}
     />
+    </>
   );
 }

@@ -26,6 +26,21 @@ jobs:
       RUN_CLAIM_TEAM_LOCAL_TEST: "0"
       NEXT_TELEMETRY_DISABLED: "1"
       npm_config_engine_strict: "true"
+    services:
+      auth-postgres:
+        # Reuse the existing local claim-fixture boundary; no application credentials.
+        image: postgres:16.15-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: claim_team_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 127.0.0.1:55441:5432
+        options: >-
+          --cpus 1 --memory 768m --pids-limit 128 --shm-size 128m
+          --tmpfs /var/lib/postgresql/data:rw,size=384m
+          --health-cmd "pg_isready -U postgres -d claim_team_test"
+          --health-interval 3s --health-timeout 3s --health-retries 10
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -45,6 +60,10 @@ jobs:
         run: npm ci --include=dev
       - name: Run offline regression tests
         run: npm test
+      - name: Smoke invite enrollment against disposable PostgreSQL
+        env:
+          RUN_CLAIM_TEAM_LOCAL_TEST: "1"
+        run: npm test -- src/data/__tests__/friends-auth-local.test.ts --maxWorkers=1
       - name: Typecheck
         run: npm run typecheck
       # This compiles/prerenders the whole app. next/font may download public

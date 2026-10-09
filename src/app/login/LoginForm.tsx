@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import Link from "next/link";
-import { login, type ActionResult } from "@/app/actions";
+import { login, loginForEnrollment, type ActionResult } from "@/app/actions";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
 import styles from "../claim/ClaimForm.module.css";
@@ -13,13 +13,15 @@ const initial: ActionResult = { ok: true };
 export function LoginForm({
   teams,
   notice,
+  enrollment = false,
 }: {
   teams: { id: string; name: string }[];
   notice?: string | null;
+  enrollment?: boolean;
 }) {
   const [state, formAction, pending] = useActionState(
     async (_prev: ActionResult, formData: FormData): Promise<ActionResult> => {
-      return login(
+      return (enrollment ? loginForEnrollment : login)(
         String(formData.get("teamId") ?? ""),
         String(formData.get("password") ?? ""),
       );
@@ -32,8 +34,7 @@ export function LoginForm({
       <SectionHeading eyebrow="Account" title="Log in" />
       {notice && <p className={styles.notice}>{notice}</p>}
       <p className={styles.lede}>
-        Pick your team and enter your password. You stay logged in for 90
-        days — on any device.
+        {enrollment ? "Sign in with your existing team password to keep your account when you add email login." : "Pick your team and enter your password. You stay logged in for 90 days — on any device."}
       </p>
       <form action={formAction} className={styles.form}>
         <label className={styles.field}>

@@ -833,13 +833,28 @@ on a missing database.
 
 ## Accounts (how the auth works)
 
-Proposed future replacement: [friends-only account foundations](docs/friends-accounts.md).
-Dormant `src/domain/arcade/account-identity.ts` and `src/data/account-identity.ts`
-preserve the app UUID across provider credentials; `src/domain/arcade/competition.ts`
-defines bounded validation/cosmetic candidates. No current route imports them.
-Existing runtime below remains active; no provider, schema, reset or reward
-activation is included. The plan preserves score/reward ownership and coordinates
-AI Decides' atomic session check before any later credential/session reset.
+Working provider source: [friends auth runtime and operator setup](docs/friends-auth-runtime.md).
+`src/data/friends-auth/` owns the pinned Better Auth configuration, separate
+transactional node-postgres adapter, additive schema, account linking, email
+delivery and HTTP boundaries. `src/domain/friends-accounts.ts` validates enrollment;
+`src/surfaces/accounts/AccountForm.tsx` uses shared primitives for the account forms.
+`/api/auth/*` mounts the provider except public signup; `/api/accounts/enroll`
+atomically creates credentials and invite membership or links a freshly proven
+legacy owner. `/account`, `/account/setup`, `/forgot-password`, `/reset-password`
+provide private lifecycle/setup forms. Claim/login choose the existing forms by
+default. `FRIENDS_AUTH_ENABLED=1` is the coordinated provider cutover;
+`FRIENDS_AUTH_ENROLLMENT=1` permits existing-owner setup while current auth stays
+active. Neither flag is configured by this patch. AI's separately owned admission
+switch must land before cutover. Existing UUIDs, passwords, sessions and history
+are retained; the generated `db/friends-auth/` migration creates only new tables.
+
+Earlier [friends-only account foundations](docs/friends-accounts.md) record the
+source audit and recoverable reset plan. `src/domain/arcade/account-identity.ts`
+and `src/data/account-identity.ts` preserve the app UUID across provider credentials;
+the new provider runtime uses that resolver. Competition/cosmetic candidates remain
+dormant. The legacy runtime below remains the default; no live provider, schema,
+reset or reward activation has occurred. AI Decides' atomic session check is
+coordinated before provider cutover.
 
 - **Claim:** Aidan generates one single-use invite code per Sleeper team
   at `/admin/invites` and distributes each privately. A manager enters the
