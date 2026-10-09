@@ -3,6 +3,9 @@ import Link from "next/link";
 import type { Season } from "@/domain";
 import { formatSeasonStatus } from "@/domain";
 import styles from "./SiteFooter.module.css";
+import { SITE_DESTINATIONS, type SiteDestination } from "./siteDestinations";
+
+const footerDestinations = SITE_DESTINATIONS.filter(d => d.footer);
 
 /**
  * SiteFooter — site-wide footer, rendered by the root layout under every
@@ -13,7 +16,7 @@ import styles from "./SiteFooter.module.css";
  * getSeasonMeta(). Null renders the footer without the season line
  * rather than guessing.
  */
-export function SiteFooter({ season }: { season: Season | null }) {
+export function SiteFooter({ season, destinations = footerDestinations }: { season: Season | null; destinations?: readonly SiteDestination[] }) {
   const year = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
@@ -32,11 +35,7 @@ export function SiteFooter({ season }: { season: Season | null }) {
           </p>
         </div>
         <nav className={styles.nav} aria-label="Footer">
-          <Link href="/">Home</Link>
-          <Link href="/arcade">Arcade</Link>
-          <Link href="/teams">Teams</Link>
-          <Link href="/transactions">Transactions</Link>
-          <Link href="/weekly">Weekly archive</Link>
+          {destinations.map(d => <Link key={d.href} href={d.href}>{d.label}</Link>)}
         </nav>
         <p className={styles.copy}>© {year} GOAT Hoopers. Built for the league, by the league.</p>
       </div>
