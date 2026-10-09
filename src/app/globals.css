@@ -22,6 +22,13 @@ body {
   min-height: 100dvh;
 }
 
+/* Keep clearance on the target itself. Root scroll padding also participates
+ * in Next's route visibility checks and can disturb history restoration. */
+:where([id], h1, h2, h3, a, button, input, select, textarea, summary) {
+  scroll-margin-top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4));
+  scroll-margin-bottom: calc(var(--gh-mobile-nav-h, 0px) + var(--gh-s4));
+}
+
 /* Preserve page stacking around sticky navigation and dialogs. */
 body > * {
   position: relative;
@@ -55,7 +62,7 @@ a {
  * last-row content are never covered. Matches --gh-bp-sm. */
 @media (max-width: 40rem) {
   body {
-    padding-bottom: calc(var(--gh-tabbar-h) + env(safe-area-inset-bottom, 0px));
+    padding-bottom: var(--gh-mobile-nav-h, calc(var(--gh-tabbar-h) + env(safe-area-inset-bottom, 0px)));
   }
 }
 

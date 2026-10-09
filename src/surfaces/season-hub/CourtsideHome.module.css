@@ -1694,7 +1694,7 @@
 }
 
 .surface [id] {
-  scroll-margin-top: 9rem;
+  scroll-margin-top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4));
 }
 .surface .player-lead {
   align-content: start;
@@ -1704,7 +1704,7 @@
 }
 @media (max-width: 40rem) {
   .surface [id] {
-    scroll-margin-top: 8rem;
+    scroll-margin-top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4));
   }
 }
 

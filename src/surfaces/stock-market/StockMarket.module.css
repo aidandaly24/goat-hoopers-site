@@ -19,9 +19,9 @@
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
-.skip { position: absolute; top: -10rem; left: var(--gh-s4); background: var(--gh-gold); color: var(--gh-ink-on-accent); padding: var(--gh-s4); z-index: 60; }
+.skip { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-.skip:focus { top: var(--gh-s4); }
+.skip:focus { position: fixed; top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4)); left: var(--gh-s4); width: auto; height: auto; min-height: 44px; max-width: calc(100vw - 2 * var(--gh-s4)); clip-path: none; white-space: normal; background: var(--gh-gold); color: var(--gh-ink-on-accent); padding: var(--gh-s4); z-index: 60; }
 
 .exchange{max-width:90rem;margin:auto;padding:var(--gh-s8)}
 .page-head{display:flex;align-items:center;justify-content:space-between;gap:var(--gh-s6);padding:var(--gh-s4) 0 var(--gh-s8)}
@@ -224,13 +224,13 @@
 }
 
 /* Existing sticky chrome stays in the root layout. */
-.inspector { top: calc(var(--gh-ticker-h) + var(--gh-s16) + var(--gh-s4)); scroll-margin-top: calc(var(--gh-ticker-h) + var(--gh-s16) + var(--gh-s4)); }
+.inspector { top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4)); scroll-margin-top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4)); }
 
 .exchange input, .exchange select, .chip, .inspect-button { min-height: calc(var(--gh-s8) + var(--gh-s3)); }
 
 .detail-identity a:hover { color: var(--gh-gold); }
 
-.player { scroll-margin-top: calc(var(--gh-ticker-h) + var(--gh-s16) + var(--gh-s4)); }
+.player { scroll-margin-top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4)); }
 
 .market-signals { margin-bottom: var(--gh-s6); border: 1px solid var(--gh-border); border-radius: var(--gh-radius); background: var(--gh-bg-raised); }
 
