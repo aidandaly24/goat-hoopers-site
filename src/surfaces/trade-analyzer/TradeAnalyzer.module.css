@@ -1,3 +1,15 @@
+.returnLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: var(--gh-s2);
+  color: var(--gh-accent);
+  font-family: var(--gh-font-body);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: var(--gh-s1);
+}
+
 /* Trade workspace: compatibility names resolve to shared Paper + Slate roles. */
 
 .terminal {

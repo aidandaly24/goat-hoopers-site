@@ -1,0 +1,555 @@
+{
+  "synthetic": true,
+  "provenance": "Invented by generate-fixtures.mjs; never copied, relabeled or derived from captured league records.",
+  "leagueId": "demo-league-2032",
+  "season": "2032",
+  "teams": [
+    {
+      "id": "701",
+      "name": "Juniper Jets",
+      "managerName": "Demo Juniper",
+      "avatar": null,
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0
+    },
+    {
+      "id": "702",
+      "name": "Marble Meteors",
+      "managerName": "Demo Marble",
+      "avatar": null,
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0
+    },
+    {
+      "id": "703",
+      "name": "Saffron Suns",
+      "managerName": "Demo Saffron",
+      "avatar": null,
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0
+    },
+    {
+      "id": "704",
+      "name": "Violet Voyagers",
+      "managerName": "Demo Violet",
+      "avatar": null,
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0
+    },
+    {
+      "id": "707",
+      "name": "Copper Comets",
+      "managerName": "Demo Cedar",
+      "avatar": null,
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0
+    }
+  ],
+  "raw": [
+    {
+      "transaction_id": "demo-2032-move-14",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986638400000,
+      "status_updated": 1986638400000,
+      "adds": {
+        "demo-player-vega": 702
+      },
+      "drops": null,
+      "roster_ids": [
+        702
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-13",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986552000000,
+      "status_updated": 1986552000000,
+      "adds": null,
+      "drops": {
+        "demo-player-orion": 701
+      },
+      "roster_ids": [
+        701
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-12",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986465600000,
+      "status_updated": 1986465600000,
+      "adds": {
+        "demo-player-nova": 704
+      },
+      "drops": {
+        "demo-player-unknown": 704
+      },
+      "roster_ids": [
+        704
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-26",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986465600000,
+      "status_updated": 1986465600000,
+      "adds": {
+        "demo-player-vega": 702
+      },
+      "drops": null,
+      "roster_ids": [
+        702
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-11",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986379200000,
+      "status_updated": 1986379200000,
+      "adds": {
+        "demo-player-vega": 703
+      },
+      "drops": null,
+      "roster_ids": [
+        703
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-25",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986379200000,
+      "status_updated": 1986379200000,
+      "adds": null,
+      "drops": {
+        "demo-player-orion": 701
+      },
+      "roster_ids": [
+        701
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-10",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986292800000,
+      "status_updated": 1986292800000,
+      "adds": null,
+      "drops": {
+        "demo-player-orion": 702
+      },
+      "roster_ids": [
+        702
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-24",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986292800000,
+      "status_updated": 1986292800000,
+      "adds": {
+        "demo-player-nova": 704
+      },
+      "drops": {
+        "demo-player-unknown": 704
+      },
+      "roster_ids": [
+        704
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-01",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986206400000,
+      "status_updated": 1986206400000,
+      "adds": null,
+      "drops": {
+        "demo-player-lyra": 707
+      },
+      "roster_ids": [
+        707
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-09",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986206400000,
+      "status_updated": 1986206400000,
+      "adds": {
+        "demo-player-nova": 701
+      },
+      "drops": {
+        "demo-player-unknown": 701
+      },
+      "roster_ids": [
+        701
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-23",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986206400000,
+      "status_updated": 1986206400000,
+      "adds": {
+        "demo-player-vega": 703
+      },
+      "drops": null,
+      "roster_ids": [
+        703
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-08",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986120000000,
+      "status_updated": 1986120000000,
+      "adds": {
+        "demo-player-vega": 704
+      },
+      "drops": null,
+      "roster_ids": [
+        704
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-22",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986120000000,
+      "status_updated": 1986120000000,
+      "adds": null,
+      "drops": {
+        "demo-player-orion": 702
+      },
+      "roster_ids": [
+        702
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-07",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986033600000,
+      "status_updated": 1986033600000,
+      "adds": null,
+      "drops": {
+        "demo-player-orion": 703
+      },
+      "roster_ids": [
+        703
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-21",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1986033600000,
+      "status_updated": 1986033600000,
+      "adds": {
+        "demo-player-nova": 701
+      },
+      "drops": {
+        "demo-player-unknown": 701
+      },
+      "roster_ids": [
+        701
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-06",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1985947200000,
+      "status_updated": 1985947200000,
+      "adds": {
+        "demo-player-nova": 702
+      },
+      "drops": {
+        "demo-player-unknown": 702
+      },
+      "roster_ids": [
+        702
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-20",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1985947200000,
+      "status_updated": 1985947200000,
+      "adds": {
+        "demo-player-vega": 704
+      },
+      "drops": null,
+      "roster_ids": [
+        704
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-05",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1985860800000,
+      "status_updated": 1985860800000,
+      "adds": {
+        "demo-player-vega": 701
+      },
+      "drops": null,
+      "roster_ids": [
+        701
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-19",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1985860800000,
+      "status_updated": 1985860800000,
+      "adds": null,
+      "drops": {
+        "demo-player-orion": 703
+      },
+      "roster_ids": [
+        703
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-04",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1985774400000,
+      "status_updated": 1985774400000,
+      "adds": null,
+      "drops": {
+        "demo-player-orion": 704
+      },
+      "roster_ids": [
+        704
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-18",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1985774400000,
+      "status_updated": 1985774400000,
+      "adds": {
+        "demo-player-nova": 702
+      },
+      "drops": {
+        "demo-player-unknown": 702
+      },
+      "roster_ids": [
+        702
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-02",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1985688000000,
+      "status_updated": 1985688000000,
+      "adds": {
+        "demo-player-lyra": 707
+      },
+      "drops": null,
+      "roster_ids": [
+        707
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-03",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1985688000000,
+      "status_updated": 1985688000000,
+      "adds": {
+        "demo-player-nova": 707
+      },
+      "drops": {
+        "demo-player-unknown": 707
+      },
+      "roster_ids": [
+        707
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-17",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1985688000000,
+      "status_updated": 1985688000000,
+      "adds": {
+        "demo-player-vega": 701
+      },
+      "drops": null,
+      "roster_ids": [
+        701
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-16",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1985601600000,
+      "status_updated": 1985601600000,
+      "adds": null,
+      "drops": {
+        "demo-player-orion": 704
+      },
+      "roster_ids": [
+        704
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    },
+    {
+      "transaction_id": "demo-2032-move-15",
+      "type": "free_agent",
+      "status": "complete",
+      "leg": 1,
+      "created": 1985515200000,
+      "status_updated": 1985515200000,
+      "adds": {
+        "demo-player-nova": 703
+      },
+      "drops": {
+        "demo-player-unknown": 703
+      },
+      "roster_ids": [
+        703
+      ],
+      "draft_picks": [],
+      "waiver_budget": [],
+      "settings": null
+    }
+  ],
+  "playerNames": {
+    "demo-player-orion": "Orion Vale",
+    "demo-player-lyra": "Lyra Flint",
+    "demo-player-vega": "Vega Moss",
+    "demo-player-nova": "Nova Reed"
+  }
+}

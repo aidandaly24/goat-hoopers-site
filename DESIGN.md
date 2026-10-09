@@ -61,7 +61,7 @@ and editing available with a distinct message and disabled generation.
 | Confirmed | Preserve the meaningful arena/court, selected GOAT logo and reusable embroidered pennants. Generate the featured weekly banners; do not generate a banner for every team name. |
 | Confirmed | Preserve the approved stocks composition and useful dense data. Keep working search, filters, sorting, inspection and price provenance. |
 | Confirmed, newest usability rule | Arcade discovery shows actual playable games, a real preview of free-throw practice and clear Play navigation. Hide nonfunctional/fake catalog entries. Verify the whole path to play, not just an HTTP 200. Arcade improvements need not wait for the broad migration. |
-| Confirmed concern; resolution owned separately | Arbitrary figurines are unwelcome. Another task identifies their purpose and fixes homepage sorting. This documentation/prototype change neither removes models nor changes their logic. |
+| Confirmed removal · 2026-10-09 | Aidan rejects the bald/blocky hooper figurine family everywhere. Remove all 11 team/generic public GLBs, their loaders and inspection controls, including previews. Retain team avatars, readable identities, rosters and profile links; preserve approved arena, pennants, logo and unrelated props. No replacement figurine. |
 | Confirmed by Aidan after rendered desktop/phone comparison | **Paper + Slate**: the exact canvas, surface, ink, divider, control and slate accent values below. |
 | Proposed; verify per surface | Type sizes, section density, radii and performance ceilings. These are guidance, not a mandate to change every component at once. |
 | Proposed; implementation review pending | One root-owned global destination definition and a compact phone disclosure; exact labels/grouping below are recommendations, not an Aidan-approved menu specification. Follow on from #84 / PR #87. |
@@ -303,8 +303,8 @@ fallback; text-only data rows are allowed when a face adds no value.
 Proposed ceilings for the non-game shell:
 
 - **Initial WebGL/model requests: zero.** One optional scene at a time;
-  deferred Three/model loading, no parallel figurine gallery. The homepage
-  already keeps its optional viewer outside the initial manifest.
+  deferred Three/model loading for approved assets only, no parallel figurine
+  gallery. The rejected hooper family and homepage inspection action are removed.
 - **Idle scene rendering: zero continuous frames.** Render on load, resize or
   manual interaction; suspend offscreen/hidden; dispose GPU, canvas, download
   and decoded bitmap resources on close/unmount. A closed viewer cannot keep
@@ -386,16 +386,37 @@ Avoid three drifting lists and page-injected global navigation. Local section
 links may remain where they explain that page; no generic route registry is
 needed. The shared-shell owner implements this in a subsequent bounded PR.
 
-Recommended desktop grouping: **Home, News, Stocks, History, Arcade**, with a
-labeled **League tools** disclosure for Teams, Transactions, Draft, Intel and
-Trade Analyzer. Recommended phone opening: compact approved logo, direct
-**Stocks**, and **Menu**, opening a **nonmodal, in-flow** disclosure with the
-same destinations/order and league tools. Exact labels/grouping need
-implementation review; Aidan has not approved this exact menu specification.
-Preserve `/weekly` archives, history children, footer/profile links and every
-existing destination. Retain logged-in display-name → `/team` as the single
-account entry in the active layout, logged-out My Team/login/claim actions and
-logout; do not conflate public `/teams` with private `/team`.
+The bounded consolidation uses desktop **Home, News, Stocks, History, Arcade**,
+then **League tools**: Teams, Transactions, Draft, Intel, Trade Analyzer and
+Weekly archive, in that order. Root layout supplies one typed destination list;
+footer entries derive from it. On phones the approved logo, direct **Stocks**
+shortcut and **Menu** replace the fixed six-tab bar. The Menu deliberately omits
+Stocks to keep one visible Stocks destination and current-page announcement;
+the other primary links retain their relative order, followed by identical
+league tools and account actions. This shortcut is the documented exception to
+displaying the complete primary sequence in one row.
+
+Only the compact ticker/header belongs to the measured sticky stack. Expanded
+disclosures are normal-flow siblings before page content, using natural page
+scrolling at enlarged sizes. Opening from a scrolled page reveals their first
+row while retaining trigger focus. Hidden children leave the tab order; Escape
+closes and restores trigger focus, and activation, route changes and responsive
+layout changes close the disclosure. No modal role, focus trap, fixed panel or
+internal menu scroll area is introduced.
+
+This grouping received independent intended desktop/mobile design review for
+issue #84's follow-on; its rendered and actual Next evidence belongs to that
+draft PR. It does not claim Aidan approved these exact labels before review.
+Preserve /weekly archives, history children, footer/profile links and every
+existing destination. Retain logged-in display-name → /team as the single
+account entry in the active layout; phone account actions are in Menu. Retain
+logged-out My Team/login/claim and logout, and keep public /teams separate from
+private /team. Trade Analyzer provides an ordinary **Back to Stocks** link
+beside its existing workspace heading without changing share/picker behavior.
+
+Current navigation uses a plain accent underline without a selected pill or inset
+shadow; keyboard focus keeps its separate outline. The logo link shares the
+44px target floor with navigation controls.
 
 Use ordinary links and disclosure buttons with visible names, `aria-expanded`
 and `aria-controls`, not application-menu roles or a focus trap. Escape closes
@@ -417,10 +438,10 @@ every authenticated route or live backend was exercised is implied.
 | Routes / files | What to preserve | Bounded design work |
 | --- | --- | --- |
 | Shared shell: `layout.tsx`, `globals.css`, `SiteHeader`, `MobileNav`, `SectionNav`, `SiteFooter`, `CombinedTicker` | Account state, all destinations, site metadata, safe-area space, fail-soft ticker | Neutral chrome, selected logo variant, shared type/spacing/focus roles, consistent active-page semantics. Desktop header currently has no current-page state; mobile already uses `aria-current`. Reduce stacked bars without deleting destinations or hiding actions. |
-| `/`, `/weekly`, `/weekly/[editionId]` · `season-hub` | Weekly order, dated sources, archives, full live directory, inherited-manager note | Neutral tokens, smaller editorial footprint and fewer visual separators after palette selection. Source no-edition branch currently returns before the directory/standings: keep core tasks available independently of editorial. Sorting/figurine logic is separately owned. |
+| `/`, `/weekly`, `/weekly/[editionId]` · `season-hub` | Weekly order, dated sources, archives, full live directory, inherited-manager note | Neutral tokens, smaller editorial footprint and fewer visual separators after palette selection. Source no-edition branch currently returns before the directory/standings: keep core tasks available independently of editorial. Sorting remains intact; rejected figurine inspection is removed. |
 | `/stocks` · `stock-market` | Approved board/inspector composition, filters, slim quotes, recorded/reconstructed source labels, retry/cache/focus | Shared Paper + Slate shell/board/inspector; preserve chart owner roles and provenance. Review any density/size change separately against actual mobile usage. |
 | `/trade-analyzer` · `trade-analyzer` | Two pickers, domain verdict, FAAB totals, share query, Copy Link | Use selected shared neutral control/ink roles through terminal compatibility names. Never break URL restore or treat verdict color as the entire explanation. |
-| `/teams`, `/teams/[rosterId]`, `/team` · `teams`, `team` | Public profile links, complete roster, record/streak, game log, picks, wire, franchise history, private rewards ledger and redirects | Compact neutral identity/roster composition. TeamProfile currently puts `HooperViewer` in its identity stage: review necessity with the figurine owner; do not delete unique assets or move 3D ahead of useful roster data by default. Keep pending/settled rewards distinct. |
+| `/teams`, `/teams/[rosterId]`, `/team` · `teams`, `team` | Public profile links, complete roster, record/streak, game log, picks, wire, franchise history, private rewards ledger and redirects | Compact neutral identity/roster composition. TeamProfile uses the existing TeamAvatar/initials treatment; the rejected hooper family is removed without changing unrelated approved assets or roster data. Keep pending/settled rewards distinct. |
 | `/player/[playerId]` · `player` | Real identity, ownership, draft slot, transactions, honest unavailable stats | Reuse the compact identity/working-list treatment. Keep the current 88px headshot proportionate; do not turn it into a giant athlete hero or fabricate stats. |
 | `/transactions` · `transactions` | Type/team filters, real chronology, linked people/teams | Neutral readable timeline/list, control hierarchy, compact time metadata; no decorative wall of colored chips. |
 | `/draft` · `draft` | Round grouping, pick order, owner/player links | Desktop board and narrow pick feed share type/spacing; preserve the actual selections and units. |

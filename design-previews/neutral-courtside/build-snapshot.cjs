@@ -63,7 +63,7 @@ async function run() {
         args.path === 'next/link'
           ? 'const React=require("react");module.exports=({href,prefetch,children,...props})=>React.createElement("a",{...props,href},children);'
           : args.path === 'next/navigation' ? 'exports.usePathname=()=>"/";'
-          : 'exports.CourtsideFigurine=()=>null;', loader: 'js' }));
+          : 'module.exports={};', loader: 'js' }));
       build.onLoad({ filter: /\.module\.css$/ }, args => ({ contents: `export default ${JSON.stringify(moduleCss(args.path))}`, loader: 'js' }));
       build.onLoad({ filter: /\.css$/ }, args => ({ contents: '', loader: 'js' }));
     }}],

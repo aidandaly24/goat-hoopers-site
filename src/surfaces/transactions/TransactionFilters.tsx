@@ -1,12 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import type { Team, Transaction, TransactionType } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TransactionSummary } from "@/ui/TransactionSummary";
 import styles from "./TransactionHistory.module.css";
+import { readTransactionFilters, transactionFilterHref, type TransactionFilterState } from "./transactionQuery";
 
 const TONE: Record<TransactionType, "gold" | "neutral"> = {
   trade: "gold",
@@ -27,8 +29,6 @@ const TYPE_FILTERS = [
   { value: "free_agent", label: "Free agents" },
 ] as const;
 
-type TypeFilter = (typeof TYPE_FILTERS)[number]["value"];
-
 function weekLabel(week: number): string {
   return week <= 0 ? "Preseason" : `Week ${week}`;
 }
@@ -42,7 +42,8 @@ function dateLabel(createdAt: number): string {
 
 /**
  * Client-side filter controls + list. All filtering happens in-memory
- * over the fully-loaded props — no refetching, no URL state.
+ * over the fully-loaded props. URL state survives direct entry and history;
+ * the native Next history integration changes no loaded data or fetch budget.
  */
 export function TransactionFilters({
   transactions,
@@ -51,22 +52,23 @@ export function TransactionFilters({
   transactions: Transaction[];
   teams: Team[];
 }) {
-  const [typeFilter, setTypeFilter] = useState<TypeFilter>("all");
-  const [teamFilter, setTeamFilter] = useState<string>("all");
+  const query = useSearchParams();
+  const filters = readTransactionFilters(query, teams.map(t => t.id));
+  const typeFilter = filters.type;
+  const teamFilter = filters.team;
+  const update = (patch: Partial<TransactionFilterState>) => {
+    const href = transactionFilterHref(window.location.href, { ...filters, ...patch });
+    window.history.pushState(null, "", href);
+  };
 
   const sortedTeams = useMemo(
     () => [...teams].sort((a, b) => a.name.localeCompare(b.name)),
     [teams]
   );
 
-  const visible = useMemo(
-    () =>
-      transactions.filter(
-        (t) =>
-          (typeFilter === "all" || t.type === typeFilter) &&
-          (teamFilter === "all" || t.teamIds.includes(teamFilter))
-      ),
-    [transactions, typeFilter, teamFilter]
+  const visible = transactions.filter(
+    t => (typeFilter === "all" || t.type === typeFilter) &&
+      (teamFilter === "all" || t.teamIds.includes(teamFilter))
   );
 
   return (
@@ -86,7 +88,7 @@ export function TransactionFilters({
                 typeFilter === f.value ? styles.active : ""
               }`}
               aria-pressed={typeFilter === f.value}
-              onClick={() => setTypeFilter(f.value)}
+              onClick={() => update({ type: f.value })}
             >
               {f.label}
             </button>
@@ -97,7 +99,7 @@ export function TransactionFilters({
           <select
             className={styles.teamSelect}
             value={teamFilter}
-            onChange={(e) => setTeamFilter(e.target.value)}
+            onChange={(e) => update({ team: e.target.value })}
             aria-label="Filter by team"
           >
             <option value="all">All teams</option>

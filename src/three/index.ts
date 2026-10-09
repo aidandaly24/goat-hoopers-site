@@ -10,8 +10,6 @@
  * the canvas in an effect.
  */
 export { GLBViewer } from "./GLBViewer";
-export { HooperViewer } from "./HooperViewer";
 export { PropViewer } from "./PropViewer";
 export type { GLBViewerProps } from "./GLBViewer";
-export type { HooperViewerProps } from "./HooperViewer";
 export type { PropViewerProps, PropKind } from "./PropViewer";

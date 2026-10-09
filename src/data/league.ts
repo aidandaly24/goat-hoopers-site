@@ -31,7 +31,7 @@ import type {
   StockMarket,
   StockQuote,
   StockDetail,
-  NewsArticle,
+  RealNewsArticle,
 } from "@/domain";
 import type { PlayerStatProfile } from "@/domain";
 import type { PriceHistoryPoint } from "@/domain";
@@ -53,6 +53,7 @@ import {
   type RawMatchupEntry,
   type RawNbaState,
   type RawPlayerEntry,
+  type RawRoster,
   type RawTransaction,
   type RawDraftPick,
 } from "./sleeper";
@@ -87,7 +88,14 @@ import { championRosterId } from "./transform";
 import { getStockStore } from "./stocks";
 import { getDb, type Db } from "./db";
 import { getStatProfiles, getSeasonHistory } from "./nba-stats";
-import { generateLeagueNews } from "./news";
+import {
+  ESPN_RSS_URL,
+  CBS_RSS_URL,
+  OUTLETS,
+  fetchRssFeed,
+  buildRealNewsFeed,
+  type SourcedRssItem,
+} from "./real-news";
 import { createTtlCache } from "./cache";
 import { aiMatchupPairs, buildAiWeeklyInput, type AiWeekPreparation } from "./ai-decider/inputs";
 import type { AiDecidesData, AiWeeklyInput } from "@/domain/ai-decider";
@@ -1013,59 +1021,107 @@ export async function getStockDetail(
 }
 
 /**
- * Everything the League News Network needs: the auto-generated article
- * feed. Pure generation (`generateLeagueNews`) over the transaction
- * history and rookie draft board.
+ * Everything the League News Network needs: the real-article feed.
+ * Real NBA headlines from the ESPN + CBS Sports RSS feeds (see
+ * src/data/real-news.ts), classified by who they mention: league
+ * players, 2026 rookies, or free agents.
  *
- * Reuse: the feed is public, read-only data (transactions, draft picks,
- * teams — nothing session-scoped), so one cached copy is shared across
+ * Reuse: the feed is public, read-only data (RSS + rosters + draft —
+ * nothing session-scoped), so one cached copy is shared across
  * requests — the root-layout ticker and /news no longer recompute it
- * independently. Freshness is 5 minutes, matching the underlying
- * transaction cache and the /news page revalidate. A failed refresh
- * serves the last-good feed; a cold-start failure degrades to an empty
- * feed instead of throwing the page.
+ * independently. Freshness is 5 minutes, matching the /news page
+ * revalidate. A failed refresh serves the last-good feed; a
+ * cold-start failure degrades to an empty feed instead of throwing
+ * the page.
  */
 export const LEAGUE_NEWS_TTL_MS = 5 * 60 * 1000;
 
 export type LeagueNewsLoadDeps = {
-  /** Strict transaction history loader. Defaults to getTransactionHistoryStrict. */
-  fetchTxHistory?: () => Promise<TransactionHistoryData>;
-  /** Strict draft board loader. Defaults to getDraftBoardStrict. */
-  fetchDraft?: () => Promise<DraftBoardData>;
+  /** Injectable fetch for the RSS feeds (tests). Defaults to global fetch. */
+  fetchFn?: typeof fetch;
+  /** Strict roster loader. Defaults to fetchRosters. */
+  fetchRostersFn?: () => Promise<RawRoster[]>;
+  /** Player directory (names for mention matching). Defaults to safePlayerDirectory. */
+  fetchDirectoryFn?: () => Promise<Record<string, RawPlayerEntry> | null>;
+  /** Draft board loader (2026 rookie identities). Defaults to getDraftBoard. */
+  fetchDraftBoardFn?: () => Promise<DraftBoardData>;
 };
 
 /**
  * Load one edition of the news feed.
  *
- * P1 last-good invariant: the default loaders are the strict variants,
- * which throw on any upstream failure (transactions 503, draft fetch
- * failure, rosters/users/state failure). The TTL cache then preserves
- * last-good instead of caching a failure-degraded feed. Empty-but-
- * successfully-fetched inputs are legitimate and return a (possibly
- * quiet) feed — the invariant is "failure throws", not "empty throws".
+ * Last-good invariant: the RSS fetch throws when BOTH feeds are down,
+ * so the TTL cache preserves last-good instead of caching an outage as
+ * an empty feed. One feed succeeding is enough for a (possibly quiet)
+ * edition — the invariant is "failure throws", not "empty throws".
  *
- * Loaders are injectable for tests (rule 11); production uses the
- * module defaults.
+ * Identity inputs (rosters, directory, draft board) degrade
+ * individually: a failed directory still yields articles, just without
+ * player matching. Loaders are injectable for tests (rule 11);
+ * production uses the module defaults.
  */
 export async function loadLeagueNews(
   deps: LeagueNewsLoadDeps = {}
-): Promise<NewsArticle[]> {
+): Promise<RealNewsArticle[]> {
   const {
-    fetchTxHistory = () => getTransactionHistoryStrict(),
-    fetchDraft = () => getDraftBoardStrict(),
+    fetchFn = fetch,
+    fetchRostersFn = fetchRosters,
+    fetchDirectoryFn = safePlayerDirectory,
+    fetchDraftBoardFn = getDraftBoard,
   } = deps;
-  const [{ transactions, teams }, { picks }] = await Promise.all([
-    fetchTxHistory(),
-    fetchDraft(),
+
+  // Both RSS feeds in parallel; one failing still yields the other.
+  const [espn, cbs] = await Promise.allSettled([
+    fetchRssFeed(fetchFn, ESPN_RSS_URL),
+    fetchRssFeed(fetchFn, CBS_RSS_URL),
   ]);
-  return generateLeagueNews({ transactions, picks, teams });
+  const sources: SourcedRssItem[] = [];
+  if (espn.status === "fulfilled") {
+    for (const item of espn.value) sources.push({ outlet: OUTLETS.espn, item });
+  }
+  if (cbs.status === "fulfilled") {
+    for (const item of cbs.value) sources.push({ outlet: OUTLETS.cbs, item });
+  }
+  if (sources.length === 0) {
+    throw new Error("All news RSS feeds failed");
+  }
+
+  const [rosters, directory, board] = await Promise.all([
+    fetchRostersFn().catch(() => [] as RawRoster[]),
+    fetchDirectoryFn().catch(() => null),
+    fetchDraftBoardFn().catch(() => ({ picks: [], teams: [] }) as DraftBoardData),
+  ]);
+
+  const players = Object.entries(directory ?? {})
+    .map(([playerId, entry]) => ({
+      playerId,
+      name:
+        entry.full_name ??
+        [entry.first_name, entry.last_name].filter(Boolean).join(" "),
+      // Sleeper's directory includes team-defense entries (position "DEF",
+      // e.g. playerId "DAL" / "Dallas Mavericks") — they are not players
+      // and must never become mention chips.
+      isTeam: entry.position === "DEF",
+    }))
+    .filter((p) => p.name.length > 0 && !p.isTeam)
+    .map(({ playerId, name }) => ({ playerId, name }));
+  const rosteredPlayerIds = new Set(
+    rosters.flatMap((r) => r.players ?? [])
+  );
+  const rookiePlayerIds = new Set(board.picks.map((p) => p.playerId));
+
+  return buildRealNewsFeed(sources, {
+    players,
+    rosteredPlayerIds,
+    rookiePlayerIds,
+  });
 }
 
 export type LeagueNewsCacheDeps = {
   /** Injectable clock (tests). */
   now?: () => number;
   /** Injectable loader (tests). */
-  load?: () => Promise<NewsArticle[]>;
+  load?: () => Promise<RealNewsArticle[]>;
   /** Injectable TTL (tests). */
   ttlMs?: number;
 };
@@ -1082,7 +1138,7 @@ export function createLeagueNewsCache(deps: LeagueNewsCacheDeps = {}) {
 
 const leagueNewsCache = createLeagueNewsCache();
 
-export async function getLeagueNews(): Promise<NewsArticle[]> {
+export async function getLeagueNews(): Promise<RealNewsArticle[]> {
   try {
     return await leagueNewsCache.get();
   } catch {
