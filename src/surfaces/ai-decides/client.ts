@@ -76,6 +76,17 @@ export function draftError(prompt: string, choices: string[]): string | null {
   return null;
 }
 
+/** Admission waits are distinct from missing or rejected model output. */
+export function failureHeading(failure: Exclude<AiDecideResponse, { status: "ready" }>): string {
+  if (failure.status === "busy") return failure.code === "duplicate" ? "Already submitted. Please wait." : "A decision is already running.";
+  if (failure.status === "rate_limited") return "Usage limit reached.";
+  if (failure.status === "unauthenticated") return "Sign in to run.";
+  if (failure.status === "invalid") return "Check your draft.";
+  if (failure.status === "refused") return "Request declined.";
+  if (failure.status === "timeout") return "Request timed out.";
+  return "No result available.";
+}
+
 export const percent = (n: number) => `${Number((n * 100).toFixed(1))}%`;
 export const timestamp = (v: string | null | undefined) => v && Number.isFinite(Date.parse(v)) ? new Date(v).toLocaleString("en-GB", { timeZone: "UTC", dateStyle: "medium", timeStyle: "short" }) + " UTC" : "Not available";
 

@@ -8,6 +8,12 @@ import { cachedData, interactiveResult, teams } from "./test/fixtures";
 vi.mock("next/navigation", () => ({ useRouter: () => ({ refresh: vi.fn() }) }));
 
 describe("backend roster-ID display", () => {
+  it("starts with Custom selected rather than a cosmetic Who wins highlight", () => {
+    const html = renderToStaticMarkup(createElement(AiDecides, { data: cachedData(), teams, signedIn: true }));
+    expect(html).toMatch(/aria-pressed="false"[^>]*>Who wins\?/);
+    expect(html).toMatch(/aria-pressed="false"[^>]*>Who has the edge\?/);
+    expect(html).toMatch(/aria-pressed="true"[^>]*>Custom question \+/);
+  });
   it.each(["weekly", "home"])("shows the actual %s choice independently of order/probability/confidence", surface => {
     const data = cachedData(), before = JSON.stringify(data);
     const html = surface === "weekly" ? renderToStaticMarkup(createElement(AiWeekly, { data, teams, onPair: () => {} })) : renderToStaticMarkup(createElement(AiDecidesHomeEntry, { data, teams }));
