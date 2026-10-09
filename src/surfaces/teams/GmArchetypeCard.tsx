@@ -9,11 +9,15 @@ import styles from "./GmArchetypeCard.module.css";
  *
  * Contract:
  * - Receives `archetype` (ManagerArchetype | null). Renders the current
- *   season's archetype name (display face) + tagline, the five percentile
- *   bars (label + mono .gh-num value + bar; definitions as tooltips),
- *   the season label, and the prior-manager note when the roster changed
- *   managers between seasons.
+ *   season's archetype name (display face) + tagline, the five metric bars
+ *   (label + mono value with a visible percentile unit + bar, always visible
+ *   by default), the season label, and the prior-manager note when the
+ *   roster changed managers between seasons. Each metric's definition lives
+ *   in its own native keyboard/touch-accessible disclosure under the bar —
+ *   never hover-only, never hiding the bars themselves.
  * - A null archetype renders an honest empty state, never fake numbers.
+ * - An unmeasured (null) metric renders as "—" with a visible "n/a" unit
+ *   and an empty bar: unavailable is never dressed up as a measured value.
  * - Pure presentational: no fetching (rule 6), ui primitives + --gh-*
  *   tokens only (rule 5), mobile-first with 2-col desktop (rule 7).
  */
@@ -64,27 +68,54 @@ export function GmArchetypeCard({
           )}
         </div>
         <div className={styles.metrics}>
+          <p className={styles.metricScale}>
+            League percentiles (0–100) vs that season&apos;s GMs — higher is
+            more of the named behavior
+          </p>
           {METRIC_ORDER.map((id) => {
             const v = season.metrics[id];
-            const label = METRIC_INFO[id].label;
+            const { label, definition } = METRIC_INFO[id];
             return (
               <div key={id} className={styles.metric}>
                 <div className={styles.metricHead}>
-                  <span title={METRIC_INFO[id].definition}>{label}</span>
-                  <span className="gh-num">{v === null ? "—" : v}</span>
+                  <span className={styles.label}>{label}</span>
+                  <span className="gh-num">
+                    {v === null ? (
+                      <>
+                        —
+                        <span className={styles.unit}>n/a</span>
+                      </>
+                    ) : (
+                      <>
+                        {v}
+                        <span className={styles.unit}>pct</span>
+                      </>
+                    )}
+                  </span>
                 </div>
                 <div
                   className={styles.barTrack}
                   role="img"
-                  aria-label={`${label}: ${
-                    v === null ? "unmeasured" : `${v}th percentile`
-                  }`}
+                  aria-label={
+                    v === null
+                      ? `${label}: unmeasured`
+                      : `${label}: ${v}th percentile`
+                  }
                 >
                   <div
                     className={styles.barFill}
                     style={{ width: `${v ?? 0}%` }}
                   />
                 </div>
+                <details className={styles.definitionWrap}>
+                  <summary className={styles.definitionToggle}>
+                    <span className={styles.info} aria-hidden="true">
+                      i
+                    </span>
+                    What this measures
+                  </summary>
+                  <p className={styles.definition}>{definition}</p>
+                </details>
               </div>
             );
           })}

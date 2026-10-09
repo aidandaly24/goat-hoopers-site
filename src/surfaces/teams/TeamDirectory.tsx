@@ -3,6 +3,7 @@ import type { Team } from "@/domain";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { teamColorVar } from "@/ui/teamColors";
+import "@/ui/courtside-tokens.css";
 import styles from "./TeamDirectory.module.css";
 
 /**

@@ -1,0 +1,17 @@
+{
+  "nextVersion": "16.3.8",
+  "sourceParity": true,
+  "sourceBlob": "23f4d0c0f4471ea37173064dc28835644d068550",
+  "iconBytes": 1212,
+  "removedDefaultFavicon": true,
+  "deploymentEnabled": false,
+  "generatedMetadata": [
+    {
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "url": "/icon.svg?b1a6fe24805eff52"
+    }
+  ],
+  "verification": "Actual locked cached Next metadata loader, URL helper, MIME map, hashing and image-size implementation; native-install hook disabled, unused dynamic/server seams fail if accessed.",
+  "limits": "Isolated compiler metadata check only; no app build, install, browser, render export, hosted request or deployment."
+}
