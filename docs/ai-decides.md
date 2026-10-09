@@ -129,8 +129,8 @@ multiplies PPG by games. Current injuries, schedules and recent form are unknown
 and labeled as such. No known result/post-cutoff/current-full-season evidence is
 included. Five choice questions share one frozen input batch; unavailable pairs
 remain explicitly unavailable. The prompt, input and model enter the snapshot
-hash, so an instruction/model change also invalidates the old cache even if a
-version bump was missed.
+hash, so an instruction/model change gives new generation a different identity
+even if a version bump was missed. Historical reads retain their frozen manifest.
 
 The first sealed snapshot wins its league/season/week key. Prepared facts,
 baseline, input and successful/refused results cannot be replaced. An interrupted
