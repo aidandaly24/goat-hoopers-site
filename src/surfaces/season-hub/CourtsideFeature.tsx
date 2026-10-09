@@ -6,6 +6,7 @@ import Link from "next/link";
 import { isFinal, type Matchup } from "@/domain";
 import type { LiveClubhouseDirectoryEntry } from "@/domain/clubhouse-directory";
 import type { WeeklyEdition } from "@/domain/weekly-spotlight";
+import { AI_PROBABILITY_LABEL, type AiWeeklySlate } from "@/domain/ai-decider";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { CourtsideDialog } from "./CourtsideDialog";
 import { cs } from "./CourtsideStyles";
@@ -16,15 +17,18 @@ type Props = {
   rosterCounts: Record<string, number>;
   preseason: boolean;
   checkedAt: string;
+  season: string | null;
+  aiWeekly?: AiWeeklySlate;
   sources: ReactNode;
 };
 
 /** This week's story → select a pairing / inspect the floor.
- * States: dated draft, historical final, live pairing, pending and unavailable.
+ * States: dated draft, historical final, live pairing, saved ready/stale pick and unavailable.
+ * Saved probabilities require the same season, week and roster IDs; reads never generate.
  * Phones retain the court, five pairings and linked identities in reading order.
  * No projected scores, scroll hijacking, ornamental frames or standalone hoopers.
  */
-export function CourtsideFeature({ edition, entries, rosterCounts, preseason, checkedAt, sources }: Props) {
+export function CourtsideFeature({ edition, entries, rosterCounts, preseason, checkedAt, season, aiWeekly, sources }: Props) {
   const [selected, setSelected] = useState<Matchup | null>(null);
   const [side, setSide] = useState(0);
   const [inspecting, setInspecting] = useState(false);
@@ -52,6 +56,11 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
     : "Current league pairing. Scores are pending; select a team below for its league context."
     : game.context;
   const week = pairs[0]?.week;
+  const savedPick = (pair: Matchup) => aiWeekly?.status !== "unavailable" && aiWeekly?.season === season && aiWeekly.week === pair.week
+    ? aiWeekly.matchups.find((pick) => pick.teamIds.includes(pair.home.id) && pick.teamIds.includes(pair.away.id))
+    : undefined;
+  const selectedPick = selected ? savedPick(selected) : undefined;
+  const selectedResult = selectedPick?.status === "ready" ? selectedPick.result : null;
 
   useEffect(() => {
     const node = court.current;
@@ -86,24 +95,49 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
         </div>
       </div>
       <aside className={cs("week-desk")} aria-labelledby="this-week-title">
-        <div className={cs("week-heading")}><h2 id="this-week-title">This week</h2><span>{week ? `Week ${week}` : "Pairings pending"}{preseason && <><br />Upcoming</>}</span></div>
+        <div className={cs("week-heading")}><h2 id="this-week-title">{aiWeekly ? "AI Decides" : "This week"}</h2><span>{aiWeekly && "This week · "}{week ? `Week ${week}` : "Pairings pending"}{preseason && <><br />Upcoming</>}</span></div>
+        {aiWeekly && <p className={cs("week-provenance")}>Current team names · saved model picks{aiWeekly.status === "stale" && " · past week"}</p>}
         <div className={cs("week-games")}>
           {pairs.map((pair) => {
             const active = selected === pair || (!selected && game.state === "upcoming" && game.leagueWeek === pair.week && game.teamIds?.every((id) => [pair.home.id, pair.away.id].includes(id)));
-            return <button type="button" key={`${pair.week}:${pair.home.id}:${pair.away.id}`} className={cs("week-game")} aria-pressed={!!active} aria-controls="game-title matchup-context" aria-label={`${pair.home.name} versus ${pair.away.name}, ${isFinal(pair) ? "final" : "upcoming"}`} onClick={() => { setSelected(pair); setSide(0); }}>
-              {[pair.home, pair.away].map((team, index) => <span className={cs("week-team")} key={team.id}>
+            const pick = savedPick(pair);
+            const result = pick?.status === "ready" ? pick.result : null;
+            const choiceName = result && ([pair.home, pair.away].find((team) => team.id === result.choice)?.name ?? `Roster ${result.choice}`);
+            const pickLabel = aiWeekly ? result
+              ? ` ${aiWeekly.status === "stale" ? "Past-week" : "Saved"} model probabilities: ${result.probabilities.map((p) => `Roster ${p.choice} ${Number((p.probability * 100).toFixed(1))}%`).join(", ")}. Model choice: ${choiceName}.`
+              : " Prediction unavailable." : "";
+            return <button type="button" key={`${pair.week}:${pair.home.id}:${pair.away.id}`} className={cs("week-game")} aria-pressed={!!active} aria-controls="game-title matchup-context" aria-label={`${pair.home.name} versus ${pair.away.name}, ${isFinal(pair) ? "final" : "upcoming"}.${pickLabel}`} onClick={() => { setSelected(pair); setSide(0); }}>
+              {[pair.home, pair.away].map((team, index) => {
+                const probability = result?.probabilities.find((p) => p.choice === team.id);
+                return <span className={cs("week-team")} key={team.id}>
                 <TeamAvatar name={team.name} avatar={team.avatar} /><strong>{team.name}</strong>
                 <span className={cs("week-score", "gh-num")} aria-label={isFinal(pair) ? `${index === 0 ? pair.homePoints : pair.awayPoints} fantasy points` : "Score pending"}>{isFinal(pair) ? (index === 0 ? pair.homePoints : pair.awayPoints)!.toFixed(1) : "—"}</span>
-              </span>)}
+                {probability && <span className={cs("week-probability")} data-probability-for={team.id}>
+                  <span className={cs("week-bar")} aria-hidden="true"><i style={{ width: `${probability.probability * 100}%` }} /></span>
+                  <span className={cs("gh-num")}>Roster {team.id} · {Number((probability.probability * 100).toFixed(1))}%</span>
+                </span>}
+              </span>;
+              })}
+              {aiWeekly && <span className={cs("week-pick-status")}>{result ? <>{aiWeekly.status === "stale" ? "Past-week pick" : "Model choice"}: {choiceName}</> : "Prediction unavailable"}</span>}
             </button>;
           })}
           {!pairs.length && <p className={cs("empty")}>Current pairings are temporarily unavailable. Team profiles remain available below.</p>}
         </div>
+        {aiWeekly && <>
+          <Link className={cs("week-playground", "text-link")} href="/ai-decides">Open AI playground ↗</Link>
+          <p className={cs("week-provenance")}>{AI_PROBABILITY_LABEL}. {aiWeekly.generatedAt ? <>Saved <time dateTime={aiWeekly.generatedAt}>{aiWeekly.generatedAt.slice(0, 16).replace("T", " ")} UTC</time>.</> : "No saved prediction time available."}</p>
+        </>}
         <CourtsideDialog label={selected ? "Matchup notes" : "Featured matchup notes"} title={title}>
           <p>{context}</p><p>{selected ? "Pairing and scores come from the current league check; no projected result is implied." : game.selectionReason}</p>
           <p className={cs("caption")}>{selected ? `League check ${checkedAt.slice(0, 10)}` : game.note}</p>
           <div className={cs("notes-teams")}>{teams.map((team) => <Link key={team.identity.id} href={`/teams/${team.identity.id}`}>{team.identity.name} ↗</Link>)}</div>
           {!selected && sources}
+          {selectedResult && <>
+            <h3>Saved model pick{aiWeekly?.status === "stale" ? " · past week" : ""}</h3>
+            <p>{AI_PROBABILITY_LABEL}. API confidence {Number((selectedResult.confidence * 100).toFixed(1))}% is a separate signal.</p>
+            <p>{selectedResult.model} · {selectedResult.promptVersion} · As of {selectedResult.snapshot?.capturedAt ?? aiWeekly?.generatedAt ?? "unavailable"}</p>
+            <ul>{selectedPick?.evidence.map((e, index) => <li key={index}>{e}</li>)}</ul>
+          </>}
         </CourtsideDialog>
         {selected && <button type="button" className={cs("text-link")} onClick={() => { setSelected(null); setSide(0); }}>Back to Game of the Week</button>}
         <p className={cs("feature-check")}>League check · {checkedAt.slice(0, 10)}</p>

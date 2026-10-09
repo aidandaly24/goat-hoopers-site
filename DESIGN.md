@@ -97,7 +97,7 @@ The existing primary clay master remains the selected logo; no logo redesign is
 proposed. See the [review README](design-previews/neutral-courtside/README.md)
 for provenance, reproduction and verification limits.
 
-Direction B homepage implementation keeps the court left and This Week right within the existing 78rem/responsive-gutter contract. The selected row uses type weight alone: no frame, dark strip or selected stripe. Compact good/bad/watch stories, saved AI picks below the court, live directory and visible Stocks/Arcade entries reuse the current data contracts and shared Paper + Slate theme.
+Direction B homepage implementation keeps the court left and This Week right within the existing 78rem/responsive-gutter contract. The selected row uses type weight alone: no frame, dark strip or selected stripe. AI Decides and This Week share that right-hand sidebar: retain team pictures, selectable pairings, matchup details and the AI playground link, with full bars only for actual saved ready probabilities and explicit unavailable/past-week states. The duplicate lower AI preview is removed. Mobile stacks the sidebar below the court. Compact good/bad/watch stories, the live directory and visible Stocks/Arcade entries reuse the current data contracts and shared Paper + Slate theme.
 
 ## Shared reading theme — bounded follow-on to #84
 

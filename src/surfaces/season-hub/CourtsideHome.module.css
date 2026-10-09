@@ -26,6 +26,13 @@
   .week-game[aria-pressed="true"] strong { font-weight: 600; }
   .week-game:hover strong { text-decoration: underline; text-underline-offset: var(--gh-cs-s1); }
   .week-score { font-size: var(--gh-cs-caption); text-align: right; color: var(--gh-cs-muted-light); }
+  .week-provenance, .week-pick-status { font-size: var(--gh-cs-caption); line-height: 1.4; color: var(--gh-cs-muted-light); }
+  .week-pick-status { display: block; margin-top: var(--gh-cs-s1); padding-left: calc(var(--gh-cs-s5) + var(--gh-cs-s3)); }
+  .week-probability { grid-column: 2 / -1; display: flex; align-items: center; gap: var(--gh-cs-s3); font-size: var(--gh-cs-caption); }
+  .week-probability > :last-child { white-space: nowrap; }
+  .week-bar { flex: 1; height: var(--gh-cs-s1); background: var(--gh-cs-line-light); }
+  .week-bar i { display: block; height: 100%; background: var(--gh-cs-tan); }
+  .week-playground { display: inline-flex; align-items: center; min-height: var(--gh-cs-control); }
   .feature-check { font-size: var(--gh-cs-caption); color: var(--gh-cs-muted-light); }
   .week-desk > .button { background: transparent; color: var(--gh-cs-text); padding-inline: 0; border: 0; font-weight: 600; }
   .team-context-rail { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 0 var(--gh-cs-s6); border-top: var(--gh-cs-rule) solid var(--gh-cs-line-light); border-bottom: var(--gh-cs-rule) solid var(--gh-cs-line-light); padding-block: var(--gh-cs-s4); }
@@ -39,7 +46,6 @@
   .team-context dt { font-size: var(--gh-cs-caption); color: var(--gh-cs-muted-light); }
   .team-context dd { font-family: var(--gh-cs-num); font-variant-numeric: tabular-nums; font-size: var(--gh-cs-small-stat); margin: 0; }
   .team-context-rail > .text-link { grid-column: 2; justify-self: end; }
-  .home-ai-entry { margin-top: var(--gh-cs-s5); }
   .weekly-zone { background: var(--gh-cs-wall); padding-block: var(--gh-cs-s6); }
   .weekly-zone::before, .weekly-zone::after { content: none; }
   .player-layout { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gh-cs-s6); margin-top: var(--gh-cs-s5); }
