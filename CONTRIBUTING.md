@@ -5,9 +5,9 @@
 1. **Branch** off `main`: `git checkout -b <your-name>/<what>`.
 2. **Build** following `ARCHITECTURE.md` — domain types first, data layer
    second, surface last. UI from `@/ui` primitives and `--gh-*` tokens.
-3. **Open a PR** against `main`. Every PR gets a **preview deployment** on
-   Vercel automatically — check your changes live on the preview URL before
-   asking for review.
+3. **Open a PR** against `main`. Include relevant local validation and wait
+   for CI and review. Automatic Vercel preview builds are disabled; coordinate
+   a separately approved preview with Aidan when hosted testing is needed.
 4. **Aidan reviews and merges.** `main` is protected: PRs required, no direct
    pushes.
 
@@ -49,7 +49,23 @@ and the PR head so validation can be tied to the actual revision.
 
 ## Deployments
 
-- Push to `main` → production deploys automatically.
-- Open a PR → preview deployment with its own URL.
-- The production URL is the source of truth; verify your change there after
-  merge.
+- Reviewed merges to `main` trigger automatic production deployment through
+  the existing Vercel Git integration. Keep its production branch mapping
+  and project settings unchanged.
+- `vercel.json` enables `main` and disables all other Git branches with
+  `"**": false`, including names containing `/`. PR source branches do not
+  automatically build previews. Vercel enables a deployment if any matching
+  rule is `true`, so `main` remains enabled despite the catch-all rule. See
+  [Vercel's branch rules](https://vercel.com/docs/project-configuration/git-configuration#git.deploymentenabled).
+- Merge only after review and required CI pass. A merge can consume one
+  production build; check Vercel's deployment for the merged commit and its
+  `READY` status before verifying **https://goathoopers.com**. Do not start a
+  duplicate manual build. Branch rules do not bypass quota or provider limits.
+- These rules apply to revisions containing this configuration. Update older
+  branches from `main` before pushing; earlier configurations may differ.
+  Manual deployments and deploy hooks are separate from automatic Git builds
+  and need their own coordinated approval.
+- To pause automatic deployments again, review a PR restoring
+  `git.deploymentEnabled` to `false`. This prevents subsequent automatic Git
+  builds; it does not undo a running build or change the currently served
+  deployment. A production rollback is a separate release decision.

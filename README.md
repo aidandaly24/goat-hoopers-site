@@ -31,7 +31,9 @@ Sleeper API → src/data/sleeper.ts (raw fetch) → src/data/transform.ts (→ d
 → src/data/league.ts (loaders) → page.tsx → Surface (domain objects only)
 ```
 
-- Pushes to `main` auto-deploy on Vercel.
+- Reviewed merges to `main` auto-deploy production on Vercel. Automatic
+  builds for other branches and PRs are disabled to conserve build quota;
+  see [Deployments](./CONTRIBUTING.md#deployments).
 - Never force-push `main` (Rule 12).
 - DB/Vercel changes go through PR review or GitHub issues — collaborators' agents cut PRs since they don't have Vercel access (Rule 13).
 
