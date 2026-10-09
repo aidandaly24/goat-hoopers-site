@@ -12,6 +12,15 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ## Directory map
 
+### Modeled valuation timeline contract
+
+`src/domain/modeled-valuation-timeline.ts` and the pure data helper define a
+versioned continuous held-model state with exact updates and separate recorded
+snapshots. Calendar and coverage provenance stay explicit; no daily observed
+rows are synthesized. The helper has no live loader/store caller. Read
+`docs/modeled-valuation-timeline.md` for paging and source/retention integration
+gates; chart rendering and the bounded sampling fix remain separately owned.
+
 ### Courtside homepage and weekly archive
 
 `src/app/page.tsx` loads `getCourtsideHomeData`, archive references and approved portrait URLs, then composes `CourtsideHome` in the existing `season-hub` surface. `/weekly` and `/weekly/[editionId]` are source-controlled editorial routes. The old `SeasonHub`/`LeagueHero` components and static review stay available for comparison.
