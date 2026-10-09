@@ -5,7 +5,6 @@ import {
   getCourtsidePortraits,
   getAiDecidesData,
 } from "@/data/league";
-import { AiDecidesHomeEntry } from "@/surfaces/ai-decides/AiWeekly";
 import { CourtsideHome } from "@/surfaces/season-hub/CourtsideHome";
 
 export const revalidate = 300;
@@ -17,7 +16,7 @@ export default async function Home() {
       data={data}
       archive={getWeeklyArchive()}
       portraits={getCourtsidePortraits()}
-      aiEntry={<AiDecidesHomeEntry data={aiData} teams={(data.hub?.teams ?? []).map(({ id, name }) => ({ id, name }))} />}
+      aiWeekly={aiData.weekly}
     />
   );
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { CourtsideHomeData } from "@/data/league";
 import type { WeeklyEdition } from "@/domain/weekly-spotlight";
 import { formatSeasonStatus } from "@/domain";
-import type { ReactNode } from "react";
+import type { AiWeeklySlate } from "@/domain/ai-decider";
 import { CourtsideFeature } from "./CourtsideFeature";
 import { CourtsideDirectory } from "./CourtsideDirectory";
 import { StatsStrip } from "./StatsStrip";
@@ -18,7 +18,7 @@ type Props = {
   archive: WeeklyEdition[];
   portraits: Record<string, string>;
   archived?: boolean;
-  aiEntry?: ReactNode;
+  aiWeekly?: AiWeeklySlate;
 };
 const labels = {
   "player-of-week": "Player of the Week",
@@ -129,7 +129,7 @@ export function CourtsideHome({
   archive,
   portraits,
   archived = false,
-  aiEntry,
+  aiWeekly,
 }: Props) {
   const { edition, hub } = data;
   const preseason =
@@ -151,7 +151,7 @@ export function CourtsideHome({
             </Link>
             <SectionLinks />
             <Link className={cs("text-link")} href="/arcade">Arcade ↗</Link>
-            {aiEntry}
+            <Link className={cs("text-link")} href="/ai-decides">AI Decides playground ↗</Link>
           </div>
         </section>
         <CourtsideDirectory entries={data.directory} seasonLabel={seasonLabel} checkedAt={data.checkedAt} preseason={preseason} rosterNamesAvailable={data.rosterNamesAvailable} portraits={portraits} />
@@ -192,6 +192,8 @@ export function CourtsideHome({
             rosterCounts={Object.fromEntries(data.directory.map((entry) => [entry.identity.id, entry.players.length]))}
             preseason={preseason}
             checkedAt={data.checkedAt}
+            season={hub?.season.seasonYear ?? null}
+            aiWeekly={aiWeekly}
             sources={<Sources edition={edition} />}
           />
           <div className={cs("edition-links")}>
@@ -200,7 +202,6 @@ export function CourtsideHome({
             <Link href="/weekly">Weekly archive</Link>
             <Link href="/intel">League intel ↗</Link>
           </div>
-          {aiEntry && <div className={cs("home-ai-entry")}>{aiEntry}</div>}
         </div>
       </section>
       <div className={cs("weekly-zone")}>
