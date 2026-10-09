@@ -101,6 +101,8 @@ Direction B homepage implementation keeps the court left and This Week right wit
 
 Aidan’s October 9 homepage correction removes the player-specific skip shortcut and the Pause motion / Inspect the floor controls. The shared shell retains focus-only keyboard skip access. The court stays static; deliberate team selection retains its brief reduced-motion-aware context rail. Label the default story **Featured matchup** and show its existing editorial selection reason; selected sidebar pairings are labelled separately. The approved court-left/sidebar-right grid and saved AI preview remain intact.
 
+The populated-slate correction keeps all five saved matchup rows on the right, with avatars, current names and roster-matched percentages in the value column. The AI Decides heading and playground both link to `/ai-decides`. The court uses its natural 16:9 frame; the editorial reason, real team context and matchup notes sit directly beneath it in the left column. Detailed roster IDs, model choice, generation/input timestamps and source evidence stay in matchup notes or the full AI page. The sidebar keeps a concise preseason/weekly signal and model-estimate label; it has no fixed-height scroll area. Phone reading order is court, featured team context, then all five picks. The shared container/gutters stay unchanged.
+
 ## Shared reading theme — bounded follow-on to #84
 
 Aidan requested one SVG sun/moon button instead of an Appearance dropdown.

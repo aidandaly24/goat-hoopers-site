@@ -34,7 +34,12 @@ describe("integrated saved-pick matchup sidebar", () => {
       expect(html).toMatch(/data-probability-for="6"[^]*?width:38%/);
       expect(html).toMatch(/data-probability-for="10"[^]*?width:62%/);
       expect(html).toContain("Model choice: Current 6");
-      expect(html).toContain("Roster 6 · 38%");
+      expect(html).toContain('aria-label="38% model estimate">38%');
+      const sidebar = html.match(/<aside[^]*?<\/aside>/)?.[0];
+      expect(sidebar).not.toContain("Roster 6");
+      expect(sidebar).not.toContain("Model choice: Current 6");
+      expect(html).toMatch(/<dialog[^]*?Model choice: Current 6[^]*?<\/dialog>/);
+      expect(html).toMatch(/<dialog[^]*?Roster 6 · Current 6: 38%[^]*?<\/dialog>/);
       expect(html).toContain("Current team names");
       expect(html).toContain("fixture-avatar-6");
       expect(html).toContain('aria-controls="game-title matchup-context"');
@@ -42,6 +47,7 @@ describe("integrated saved-pick matchup sidebar", () => {
       expect(html).toContain(AI_PROBABILITY_LABEL);
       expect(html).toContain("Featured matchup · Week 1 · Upcoming");
       expect(html).toContain("Synthetic selection");
+      expect(html).toMatch(/<figure[^]*?<\/figure>[^]*?Synthetic selection[^]*?id="matchup-context"[^]*?Full team profile ↗[^]*?<aside/);
       expect(html).not.toContain("Pause motion");
       expect(html).not.toContain("Inspect the floor");
       expect(html).not.toContain("data-inspecting");
@@ -64,11 +70,19 @@ describe("integrated saved-pick matchup sidebar", () => {
     expect(html).toContain('href="/ai-decides"');
   });
 
+  it("keeps current saved-pick provenance out of historical featured-game notes", () => {
+    const html = renderToStaticMarkup(createElement(CourtsideFeature, { edition: { ...edition, season: "2025", game: { ...edition.game, state: "final", scores: [100, 90] } }, entries, rosterCounts: {}, preseason: true, checkedAt: "2026-10-09T00:00:00Z", season: "2026", aiWeekly: weekly(), sources: null }));
+    const notes = html.match(/<dialog[^]*?<\/dialog>/)?.[0];
+    expect(notes).not.toContain("Model choice");
+    expect(notes).not.toContain("Saved <time");
+    expect(html).toContain('data-probability-for="6"');
+  });
+
   it("labels expired matching saved picks as past-week, while retaining their actual distribution", () => {
     const html = render({ ...weekly(), status: "stale" });
-    expect(html).toContain("Past-week pick: Current 6");
+    expect(html).toContain("Past-week model probabilities:");
     expect(html).toContain("width:38%");
-    expect(html).toContain("saved model picks · past week");
+    expect(html).toContain("Model estimates · saved picks · past week");
   });
 
   it.each(["preseason_lineup_preview", "weekly_lineup_preview"] as const)("identifies %s without changing the sidebar distribution or generation timestamp", comparison => {
@@ -79,6 +93,11 @@ describe("integrated saved-pick matchup sidebar", () => {
     expect(html).toContain(comparison === "preseason_lineup_preview" ? "Preseason lineup preview" : "Weekly lineup preview");
     expect(html).toContain(comparison === "preseason_lineup_preview" ? "Publication closes 2026-10-20 00:00 UTC." : "Period dates unavailable.");
     expect(html).toContain('Saved <time dateTime="2026-10-09T00:00:00Z">2026-10-09 00:00 UTC</time>');
+    const sidebar = html.match(/<aside[^]*?<\/aside>/)?.[0];
+    expect(sidebar).not.toContain("Inputs captured");
+    expect(sidebar).not.toContain("Publication closes");
+    expect(sidebar).not.toContain("Saved <time");
+    expect(html).toContain("Inputs captured 2026-10-08T23:00:00Z");
     expect(html).toContain("width:38%"); expect(html).toContain("width:62%");
     expect(html).not.toContain("lock_in"); expect(JSON.stringify(data)).toBe(before);
   });
@@ -112,9 +131,9 @@ describe("integrated saved-pick matchup sidebar", () => {
   it("renders one AI section in the court sidebar and retains the playground when the edition is missing", () => {
     const data = { hub: null, directory: entries, edition, checkedAt: "2026-10-09T00:00:00Z", rosterNamesAvailable: true };
     const html = renderToStaticMarkup(createElement(CourtsideHome, { data, archive: [], portraits: {}, aiWeekly: weekly() }));
-    expect(html.match(/>AI Decides<\/h2>/g)).toHaveLength(1);
-    expect(html).toMatch(/<aside[^]*?>AI Decides<\/h2>[^]*?Open AI playground ↗[^]*?<\/aside>/);
-    expect(html.match(/href="\/ai-decides"/g)).toHaveLength(1);
+    expect(html.match(/>AI Decides<\/a><\/h2>/g)).toHaveLength(1);
+    expect(html).toMatch(/<aside[^]*?<h2 id="this-week-title"><a href="\/ai-decides">AI Decides<\/a><\/h2>[^]*?Open AI playground ↗[^]*?<\/aside>/);
+    expect(html.match(/href="\/ai-decides"/g)).toHaveLength(2);
     expect(html).not.toContain('href="#watch"');
     expect(html).not.toContain("Skip to this week’s players");
     const empty = renderToStaticMarkup(createElement(CourtsideHome, { data: { ...data, edition: null }, archive: [], portraits: {}, aiWeekly: weekly() }));
