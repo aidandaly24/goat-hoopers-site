@@ -46,7 +46,12 @@ const home: CourtsideHomeData = {
   rosterNamesAvailable: true,
 };
 const empty = new URLSearchParams(location.search).get("state") === "empty";
-const teamId = location.pathname.match(/^\/teams\/(\d+)$/)?.[1];
+const teamId = location.pathname.match(/^\/(?:baseline\/)?teams\/(\d+)$/)?.[1];
+const baseline = location.pathname.startsWith("/baseline/");
+const baselineModules = import.meta.glob("./.baseline/TeamProfile.tsx", { eager: true }) as unknown as Record<string, { TeamProfile: typeof TeamProfile }>;
+const BaselineProfile = Object.values(baselineModules).at(0)?.TeamProfile;
+if (baseline && !BaselineProfile) throw new Error("Prepare the model-disabled live baseline before comparing it.");
+const ProfileView = baseline && BaselineProfile ? BaselineProfile : TeamProfile;
 const selected = teams.find(team => team.id === teamId);
 const entry = directory.find(item => item.identity.id === teamId);
 const profile: Profile | null = selected && entry ? {
@@ -67,7 +72,7 @@ const profile: Profile | null = selected && entry ? {
 createRoot(document.getElementById("root")!).render(<>
   <aside className="fixture-note">Live-base removal QA · dated fixture data · no provider, DB or account calls</aside>
   <SiteHeader user={null} logoutAction={async () => {}} />
-  {profile ? <main id="content" className="fixture-wrap"><TeamProfile profile={profile} teams={teams} /></main>
+  {profile ? <main id="content" className="fixture-wrap"><ProfileView profile={profile} teams={teams} /></main>
     : <CourtsideHome data={home} archive={weeklyEditions} portraits={{}} />}
   <SiteFooter season={season} /><MobileNav user={null} />
 </>);

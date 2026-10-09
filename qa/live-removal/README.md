@@ -21,6 +21,9 @@ the repository root:
 node qa/live-removal/browser.mjs /existing/playwright/index.mjs /existing/chrome
 ```
 
+Append `320` to run only the affected viewport and retain completed desktop/390
+evidence without repeating it. The receipt records the selected viewports.
+
 The runner starts its own loopback-only Vite child at port 8869 with a whitelist
 environment, a fresh headless Chrome profile and desktop/390/320 viewports.
 It checks native matchup dialog Close/Escape/focus, directory search/clear/sort,
@@ -34,3 +37,11 @@ are retained. The complete source tree/head are recorded in each run.
 The draft review base must stay frozen at live92fb446. Normal CI tests its
 synthetic merge; verify the logged checkout SHA and tree before releasing.
 The author never merges or deploys this candidate.
+
+The runner prepares `/baseline/teams/2` from exact live92fb Git source/CSS.
+Its sole source substitution replaces the HooperViewer import with a null
+component; no rejected loader or model can run. Generated files/provenance live
+in `.baseline/` and are not published. It proves roster/grid markup, remaining
+CSS and shared UI are byte-identical to live, then compares the team2 grid at
+320px. Inherited overflow confined to that unchanged grid is recorded as a
+separate defect; any new identity/outside-grid overflow still fails acceptance.
