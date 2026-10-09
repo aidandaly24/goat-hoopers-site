@@ -5,6 +5,8 @@
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/app/actions";
 import { ClaimForm } from "./ClaimForm";
+import { friendsAuthEnabled } from "@/data/friends-auth/config";
+import { AccountForm } from "@/surfaces/accounts/AccountForm";
 
 export const dynamic = "force-dynamic";
 
@@ -17,5 +19,5 @@ export default async function ClaimPage() {
     // will explain. Better than a dead page.
   }
   if (user) redirect("/arcade");
-  return <ClaimForm />;
+  return friendsAuthEnabled() ? <AccountForm mode="signup" /> : <ClaimForm />;
 }

@@ -32,6 +32,7 @@ import {
   type GameStore,
 } from "@/data/arcade";
 import type { SiteUser } from "@/domain/arcade";
+import { friendsAuthEnabled, friendsEnrollmentEnabled } from "@/data/friends-auth/config";
 
 const SESSION_COOKIE = "gh_session";
 /** 90 days, in seconds. "Remember me" is the default. */
@@ -86,6 +87,15 @@ async function startSession(userId: string): Promise<void> {
  * never the client.
  */
 export async function getCurrentUser(): Promise<SiteUser | null> {
+  if (friendsAuthEnabled()) {
+    const { getProviderUser } = await import("@/data/friends-auth/runtime");
+    return getProviderUser(await headers());
+  }
+  return getLegacyCurrentUser();
+}
+
+/** Used only to prove existing ownership during additive enrollment, never provider authorization. */
+export async function getLegacyCurrentUser(): Promise<SiteUser | null> {
   const store = getStore();
   if (!store) return null;
   const cookieStore = await cookies();
@@ -133,6 +143,7 @@ export async function claimAccount(
   password: string,
   displayName: string,
 ): Promise<ActionResult> {
+  if (friendsAuthEnabled()) return { ok: false, error: "Use the email account signup form." };
   const store = getStore();
   if (!store) return storeUnavailable();
 
@@ -210,6 +221,7 @@ export async function login(
   teamId: string,
   password: string,
 ): Promise<ActionResult> {
+  if (friendsAuthEnabled()) return { ok: false, error: "Use your email to log in, or set up your existing account." };
   const store = getStore();
   if (!store) return storeUnavailable();
 
@@ -227,8 +239,27 @@ export async function login(
   redirect("/arcade");
 }
 
+/** A fresh legacy sign-in proves the existing app UUID; it never signs into the provider runtime. */
+export async function loginForEnrollment(teamId: string, password: string): Promise<ActionResult> {
+  if (!friendsEnrollmentEnabled()) return { ok: false, error: "Email account setup is not active yet." };
+  const { consumeAuthAttempt } = await import("@/data/friends-auth/runtime");
+  if (!await consumeAuthAttempt("legacy-enrollment-login", 30)) return { ok: false, error: "Too many attempts; try again in 15 minutes." };
+  if (!teamId || teamId.length > 40 || password.length > 128) return { ok: false, error: "Check your team and password." };
+  const store = getStore();
+  if (!store) return storeUnavailable();
+  const passwordHash = await store.getPasswordHash(teamId);
+  const user = await store.getUserByTeam(teamId);
+  if (!passwordHash || !user || !await compare(password, passwordHash)) return { ok: false, error: "Check your team and password." };
+  await startSession(user.id);
+  redirect("/account/setup");
+}
+
 /** Log out: kill the server session and clear the cookie. */
 export async function logout(): Promise<void> {
+  if (friendsEnrollmentEnabled()) {
+    const { getFriendsAuth } = await import("@/data/friends-auth/runtime");
+    await getFriendsAuth().api.signOut({ headers: await headers() });
+  }
   const store = getStore();
   const cookieStore = await cookies();
   const token = cookieStore.get(SESSION_COOKIE)?.value;
