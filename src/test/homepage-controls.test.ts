@@ -28,7 +28,7 @@ describe("homepage initial HTML contracts", () => {
     expect(html.match(/role="cell"/g)).toHaveLength(10);
   });
 
-  it("retains both working selector options, search/disclosures and lazy figurine controls without fetching", () => {
+  it("retains working selectors, search/disclosures and profile links without fetching or rejected figurines", () => {
     const fetch = vi.spyOn(globalThis, "fetch");
     try {
       const entries: LiveClubhouseDirectoryEntry[] = [{ identity: team, currentRecord: null,
@@ -47,7 +47,7 @@ describe("homepage initial HTML contracts", () => {
       expect(html).toContain('href="/player/hidden-player"');
       expect(html).toContain('href="/teams/synthetic"');
       expect(html).toContain("Previous manager");
-      expect(html).toContain("Inspect existing league figurine");
+      expect(html).not.toContain("Inspect existing league figurine");
       expect(fetch).not.toHaveBeenCalled();
     } finally { fetch.mockRestore(); }
   });
