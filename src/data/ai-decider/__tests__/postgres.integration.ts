@@ -6,7 +6,7 @@ import { Pool } from "pg";
 import { PgDialect } from "drizzle-orm/pg-core";
 import type { SQL } from "drizzle-orm";
 import type { Db } from "../../db";
-import { AiDeciderStore, PostgresAiPersistence, emptyBudgetState, AI_BUDGET, type AiIdentity, type AiBudgetState, type AiStoredWeek } from "../store";
+import { AiDeciderStore, PostgresAiPersistence, emptyBudgetState, AI_BUDGET, type AiIdentity, type AiLegacyIdentity, type AiBudgetState, type AiStoredWeek } from "../store";
 import { generateWeeklyPicks, resolveAiIdentity, runAiDecision } from "../service";
 import { loadAiDecidesData } from "../runtime";
 import { decodeDecision } from "../provider";
@@ -30,7 +30,9 @@ const db = { execute: async (statement: SQL) => {
 const persistence = () => new PostgresAiPersistence(db);
 const store = () => new AiDeciderStore(persistence());
 const token = (n = 1) => n.toString(16).padStart(64, "0");
-const principal = (n = 1): AiIdentity => ({ userId: identity(n).userId, tokenHash: createHash("sha256").update(token(n)).digest("hex") });
+const principal = (n = 1): AiLegacyIdentity => ({ kind: "legacy", userId: identity(n).userId, tokenHash: createHash("sha256").update(token(n)).digest("hex") });
+const providerPrincipal = (n = 1): Extract<AiIdentity, { kind: "friends" }> => ({ kind: "friends", userId: identity(n).userId,
+  sessionId: `provider-session-${n}`, subject: `provider-subject-${n}` });
 const control = async () => (await persistence().readControl())!;
 const updateState = async (state: AiBudgetState) => pool.query("UPDATE ai_decider_control SET state=$1::jsonb", [JSON.stringify(state)]);
 const draft = { kind: "custom", prompt: "Synthetic option?", choices: ["One", "Two"] };
@@ -68,11 +70,19 @@ beforeEach(async () => {
   if (!ownsSchema) throw new Error("Synthetic schema not owned");
   await pool.query(`DROP SCHEMA "${schema}" CASCADE; CREATE SCHEMA "${schema}"`);
   await pool.query(`CREATE TABLE site_users (id uuid PRIMARY KEY,team_id text NOT NULL,display_name text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
-    CREATE TABLE sessions (token_hash text PRIMARY KEY,user_id uuid NOT NULL REFERENCES site_users(id),expires_at timestamptz NOT NULL)`);
+    CREATE TABLE sessions (token_hash text PRIMARY KEY,user_id uuid NOT NULL REFERENCES site_users(id),expires_at timestamptz NOT NULL);
+    CREATE TABLE auth_user (id text PRIMARY KEY,email_verified boolean NOT NULL DEFAULT false);
+    CREATE TABLE auth_session (id text PRIMARY KEY,token text UNIQUE NOT NULL,user_id text NOT NULL REFERENCES auth_user(id) ON DELETE CASCADE,expires_at timestamptz NOT NULL);
+    CREATE TABLE account_identities (subject text PRIMARY KEY REFERENCES auth_user(id) ON DELETE RESTRICT,
+      user_id uuid UNIQUE NOT NULL REFERENCES site_users(id) ON DELETE RESTRICT,active boolean NOT NULL DEFAULT true)`);
   for (let n = 1; n <= 10; n++) {
     const user = principal(n);
     await pool.query("INSERT INTO site_users(id,team_id,display_name) VALUES($1,$2,'Synthetic CI user')", [user.userId, String(n)]);
     await pool.query("INSERT INTO sessions(token_hash,user_id,expires_at) VALUES($1,$2,'2126-01-01T00:00:00Z')", [user.tokenHash, user.userId]);
+    const provider = providerPrincipal(n);
+    await pool.query("INSERT INTO auth_user(id,email_verified) VALUES($1,true)", [provider.subject]);
+    await pool.query("INSERT INTO auth_session(id,token,user_id,expires_at) VALUES($1,$2,$3,'2126-01-01T00:00:00Z')", [provider.sessionId, `synthetic-ci-token-${n}`, provider.subject]);
+    await pool.query("INSERT INTO account_identities(subject,user_id) VALUES($1,$2)", [provider.subject, provider.userId]);
   }
   // This exact additive file is applied only in the generated disposable schema.
   await pool.query(migration);
@@ -87,6 +97,63 @@ afterAll(async () => {
       console.info("Owned AI schema removed; no persistent test data retained");
     }
   } finally { await pool.end(); }
+});
+
+describe("actual PostgreSQL provider-session admission", () => {
+  it("preserves one UUID budget across legacy and provider reservations", async () => {
+    const s = store(), legacy = await s.reserve(principal(), fingerprint(1), 100, NOW);
+    if (legacy.status !== "reserved") throw new Error("Expected reservation");
+    await s.finish(legacy.leaseId, 100, false, false, NOW);
+    expect((await s.reserve(providerPrincipal(), fingerprint(2), 100, NOW)).status).toBe("reserved");
+    const state = (await control()).state;
+    expect(state.requests).toBe(2); expect(state.tokens).toBe(200);
+    expect(Object.keys(state.users)).toEqual([principal().userId]);
+    expect(state.users[principal().userId].hourly).toBe(2);
+    expect(JSON.stringify(state)).not.toMatch(/provider-session|provider-subject|synthetic-ci-token/);
+  });
+
+  it("serializes mixed-auth same-user overlap against the existing shared lease", async () => {
+    const results = await Promise.all([store().reserve(principal(), fingerprint(1), 100, NOW),
+      store().reserve(providerPrincipal(), fingerprint(2), 100, NOW)]);
+    expect(results.map(r => r.status).sort()).toEqual(["busy", "reserved"]);
+    expect((await control()).state.requests).toBe(1);
+  });
+
+  it("serializes the last global request across provider and legacy instances", async () => {
+    const state = emptyBudgetState(NOW); state.requests = AI_BUDGET.globalDay - 1; await updateState(state);
+    const results = await Promise.all([store().reserve(providerPrincipal(1), fingerprint(1), 100, NOW),
+      store().reserve(principal(2), fingerprint(2), 100, NOW)]);
+    expect(results.map(r => r.status).sort()).toEqual(["rate_limited", "reserved"]);
+    expect((await control()).state.requests).toBe(AI_BUDGET.globalDay);
+  });
+
+  it.each(["revoked", "expired", "inactive", "unverified", "wrong_session", "wrong_subject", "wrong_user", "invalid_team"])("rejects %s after initial provider verification without charging or calling the model", async change => {
+    const h = realHarness(), provider = providerPrincipal();
+    h.runtime.providerSession = async () => ({ user: { id: provider.userId, teamId: "1", displayName: "Synthetic", createdAt: new Date(NOW) },
+      sessionId: provider.sessionId, subject: provider.subject, expiresAt: new Date(NOW + 86400000) });
+    expect(await resolveAiIdentity(undefined, h.runtime)).toEqual(provider);
+    if (change === "revoked") await pool.query("DELETE FROM auth_session WHERE id=$1", [provider.sessionId]);
+    if (change === "expired") await pool.query("UPDATE auth_session SET expires_at=now()-interval '1 second' WHERE id=$1", [provider.sessionId]);
+    if (change === "inactive") await pool.query("UPDATE account_identities SET active=false WHERE subject=$1", [provider.subject]);
+    if (change === "unverified") await pool.query("UPDATE auth_user SET email_verified=false WHERE id=$1", [provider.subject]);
+    if (change === "wrong_session") await pool.query("UPDATE auth_session SET id='changed-session' WHERE id=$1", [provider.sessionId]);
+    if (change === "wrong_subject") await pool.query("UPDATE auth_session SET user_id=$1 WHERE id=$2", [providerPrincipal(2).subject, provider.sessionId]);
+    if (change === "wrong_user") {
+      await pool.query("DELETE FROM account_identities WHERE subject=$1", [providerPrincipal(2).subject]);
+      await pool.query("UPDATE account_identities SET user_id=$1 WHERE subject=$2", [principal(2).userId, provider.subject]);
+    }
+    if (change === "invalid_team") await pool.query("UPDATE site_users SET team_id='11' WHERE id=$1", [provider.userId]);
+    const before = await control();
+    expect(await runAiDecision(draft, token(), h.runtime)).toMatchObject({ status: "unavailable", code: "state_unavailable" });
+    expect(h.create).not.toHaveBeenCalled(); expect(await control()).toEqual(before);
+  });
+
+  it("fails closed when the provider session table is unavailable", async () => {
+    await pool.query("DROP TABLE auth_session");
+    const before = await control();
+    await expect(store().reserve(providerPrincipal(), fingerprint(), 100, NOW)).rejects.toThrow();
+    expect(await control()).toEqual(before);
+  });
 });
 
 describe("actual PostgreSQL admission and completion", () => {

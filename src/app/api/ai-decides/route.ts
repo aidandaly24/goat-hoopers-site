@@ -11,6 +11,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const token = (await cookies()).get("gh_session")?.value;
-  return handleAiPost(request, token, createAiRuntime());
+  const dependencies = createAiRuntime(request.headers);
+  const token = dependencies.providerSession ? undefined : (await cookies()).get("gh_session")?.value;
+  return handleAiPost(request, token, dependencies);
 }

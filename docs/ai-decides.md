@@ -72,6 +72,19 @@ AI lookup rejects malformed tokens, invalid identity/team IDs and expired
 sessions. Budget reservation rechecks active session ownership in the same SQL
 mutation. Anonymous visitors can build drafts; they cannot spend a budget.
 
+The separately reviewed provider cutover uses the shared
+`friendsAuthEnabled()` predicate (`FRIENDS_AUTH_ENABLED=1`). Its lazy server
+verifier receives request headers and returns only validated app UUID, provider
+subject, session ID and expiry to AI admission. A failed/missing provider
+verification never falls back to the legacy cookie. The atomic budget update
+rechecks the exact provider session and subject, unexpired session, active
+account link, same app UUID, verified email and valid team. The unchanged UUID
+budget key preserves spending across the switch. Session IDs/subjects/tokens
+are absent from provider payloads and budget state. Without the cutover flag,
+the current hashed legacy-session path stays active. No AI schema or counter
+reset is required; provider schema/configuration and activation belong to the
+auth/release owners.
+
 The existing login action has no dedicated brute-force guard; persistence/reset
 work is deferred. An authenticated account is not proof against abuse. These
 independent launch limits constrain a compromised or automated account:

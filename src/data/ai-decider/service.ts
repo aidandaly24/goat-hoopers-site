@@ -2,9 +2,10 @@ import "server-only";
 import { createHash } from "node:crypto";
 import type { AiDecideRequest, AiDecideResponse, AiDecisionResult, AiWeeklyInput, AiWeeklySlate } from "@/domain/ai-decider";
 import type { GameStore } from "../arcade";
+import type { getProviderIdentity } from "../friends-auth/runtime";
 import { AI_LIMITS, parseAiRequest, teamIdValid, uuidValid } from "./validation";
 import { callWithTimeout, customDecision, decodeDecision, inputTokenReservation, readDecisionUsage, type DecisionsClient, type DecisionPayload, type DecisionSpec } from "./provider";
-import { AiDeciderStore, type AiIdentity, type AiStoredWeek } from "./store";
+import { AiDeciderStore, validAiIdentity, type AiIdentity, type AiStoredWeek } from "./store";
 import { AI_WEEKLY_MANIFEST, cachedWeek, canonicalJson, currentGenerationManifest, preparePlaygroundMatchup, prepareWeeklySlate, validWeeklyInput, weekHash, weekKey, weeklyDecision, weeklyReadiness } from "./weekly";
 import { aiDataDeadline } from "./deadline";
 
@@ -13,19 +14,27 @@ export type AiRuntime = {
   client: DecisionsClient | null;
   store: AiDeciderStore | null;
   sessions: Pick<GameStore, "getSessionUser"> | null;
+  /** Present only for the server-selected provider cutover; failure never uses legacy auth. */
+  providerSession?: () => ReturnType<typeof getProviderIdentity>;
   now: () => number;
   getWeekKey: () => Promise<string>;
   timeoutMs?: number;
 };
 export const failure = (status: Exclude<AiDecideResponse["status"], "ready">, code: string, message: string, retryAfterSeconds?: number): AiDecideResponse => ({ status, code, message, ...(retryAfterSeconds === undefined ? {} : { retryAfterSeconds }) });
 
-/** The existing session store is the authority; cookies/body never supply user IDs. */
+/** Server-selected session verifier is the authority; request bodies never supply identity. */
 export async function resolveAiIdentity(token: string | undefined, runtime: AiRuntime): Promise<AiIdentity | null> {
+  if (runtime.providerSession) {
+    const record = await aiDataDeadline(runtime.providerSession());
+    if (!record || !teamIdValid(record.user.teamId) || !(record.expiresAt instanceof Date) || !Number.isFinite(record.expiresAt.getTime()) || record.expiresAt.getTime() <= runtime.now()) return null;
+    const identity: AiIdentity = { kind: "friends", userId: record.user.id, sessionId: record.sessionId, subject: record.subject };
+    return validAiIdentity(identity) ? identity : null;
+  }
   if (!token || !/^[a-f0-9]{64}$/.test(token) || !runtime.sessions) return null;
   const tokenHash = createHash("sha256").update(token).digest("hex");
   const record = await aiDataDeadline(runtime.sessions.getSessionUser(tokenHash));
   if (!record || !uuidValid(record.user.id) || !teamIdValid(record.user.teamId) || !(record.expiresAt instanceof Date) || !Number.isFinite(record.expiresAt.getTime()) || record.expiresAt.getTime() <= runtime.now()) return null;
-  return { userId: record.user.id, tokenHash };
+  return { kind: "legacy", userId: record.user.id, tokenHash };
 }
 
 export async function availability(runtime: AiRuntime): Promise<{ status: "available" | "unavailable"; code: string; message: string }> {

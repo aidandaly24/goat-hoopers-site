@@ -7,14 +7,19 @@ import { availability, type AiRuntime } from "./service";
 import { getAiDeciderStore } from "./store";
 import { cachedWeek, weekKey } from "./weekly";
 import { aiDataDeadline } from "./deadline";
+import { friendsAuthEnabled } from "../friends-auth/config";
 
-export function createAiRuntime(): AiRuntime {
+export function createAiRuntime(headers?: Headers): AiRuntime {
   const enabled = process.env.GOAT_AI_DECIDES_ENABLED === "true";
+  const providerAuth = friendsAuthEnabled();
   // Server-only env; absent credentials mean unavailable, with no network call.
   const key = process.env.OPENAI_API_KEY;
   let store: AiRuntime["store"] = null, sessions: AiRuntime["sessions"] = null;
-  try { store = getAiDeciderStore(); sessions = getGameStore(); } catch { /* fail closed */ }
-  return { enabled, client: key ? createOpenAiDecisionsClient(key) : null, store, sessions, now: Date.now, getWeekKey: async () => weekKey(await aiDataDeadline(loadAiWeekContext(), 3000)) };
+  try { store = getAiDeciderStore(); if (!providerAuth) sessions = getGameStore(); } catch { /* fail closed */ }
+  // Lazy provider import keeps the default legacy path independent of provider configuration.
+  const providerSession = providerAuth ? async () => headers
+    ? (await import("../friends-auth/runtime")).getProviderIdentity(headers) : null : undefined;
+  return { enabled, client: key ? createOpenAiDecisionsClient(key) : null, store, sessions, providerSession, now: Date.now, getWeekKey: async () => weekKey(await aiDataDeadline(loadAiWeekContext(), 3000)) };
 }
 
 export async function loadAiDecidesData(runtime = createAiRuntime(), context = loadAiWeekContext): Promise<AiDecidesData> {
