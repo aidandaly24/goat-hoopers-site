@@ -37,20 +37,20 @@ export function AccountForm({ mode, token, notice }: { mode: Mode; token?: strin
     let path: string;
     let body: Record<string, unknown>;
     if (mode === "signup" || mode === "setup") {
-      path = "/api/accounts/enroll";
+      path = "accounts/enroll";
       body = { kind: mode === "signup" ? "invite" : "existing", email: value("email"), password: value("password"),
         ...(mode === "signup" ? { displayName: value("displayName"), inviteCode: value("inviteCode") } : {}) };
     } else if (mode === "login") {
-      path = "/api/auth/sign-in/email"; body = { email: value("email"), password: value("password"), rememberMe: true };
+      path = "auth/sign-in/email"; body = { email: value("email"), password: value("password"), rememberMe: true };
     } else if (mode === "forgot") {
-      path = "/api/auth/request-password-reset"; body = { email: value("email"), redirectTo: `${window.location.origin}/reset-password` };
+      path = "auth/request-password-reset"; body = { email: value("email"), redirectTo: `${window.location.origin}/reset-password` };
     } else if (mode === "reset") {
-      path = "/api/auth/reset-password"; body = { token, newPassword: value("password") };
+      path = "auth/reset-password"; body = { token, newPassword: value("password") };
     } else {
-      path = "/api/auth/change-password"; body = { currentPassword: value("currentPassword"), newPassword: value("password"), revokeOtherSessions: true };
+      path = "auth/change-password"; body = { currentPassword: value("currentPassword"), newPassword: value("password"), revokeOtherSessions: true };
     }
     try {
-      const response = await fetch(path, { method: "POST", credentials: "same-origin",
+      const response = await fetch(`/api/${path}`, { method: "POST", credentials: "same-origin",
         headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
       if (!response.ok) {
         setError(mode === "login" ? "Could not log in. Check your email, password and email verification." :
