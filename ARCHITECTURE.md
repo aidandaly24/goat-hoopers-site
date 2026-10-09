@@ -23,6 +23,11 @@ It never invokes pricing, upstream stats, publishers or snapshot writes. Lists
 and existing detail/chart payloads are unchanged; PR99 owns renderer integration.
 See `docs/stock-history-range-integration.md` for range/timezone/retention semantics.
 
+`data/stock-history-client.ts` is the browser-safe, injected same-origin page
+adapter for that endpoint. It preserves raw records and held intervals, propagates
+abort, exposes generation409/restart and source503 detail, and never fetches later
+pages automatically. The separately owned chart connects it only on inspection.
+
 `src/domain/modeled-valuation-timeline.ts` and the pure data helper define a
 versioned continuous held-model state with exact updates and separate recorded
 snapshots. Calendar and coverage provenance stay explicit; no daily observed
