@@ -30,8 +30,11 @@ response. If delivery fails, request verification again from login.
 Protected identity reads verify the provider session and an active unique link;
 there is no legacy fallback after cutover. Account deletion/email change/social
 linking are not exposed. Provider HTTP limits use the database. Fixed-key atomic
-global limits additionally cap account requests at 120/15 minutes per endpoint,
-and enrollment/reset/verification mail at 10/15 minutes; these do not trust a
+global limits additionally cap account requests at 120/15 minutes per endpoint
+and enrollment/reset/resend attempts at 10/15 minutes. Every production mail
+emission also consumes one shared durable `mail:verify` or `mail:reset` allowance
+of 10/15 minutes, covering automatic verification on sign-in and post-commit
+enrollment mail. Verified login consumes no mail allowance. These do not trust a
 caller-supplied proxy IP and cannot grow unlimited abuse-key rows.
 
 The account form's primary action is claim, sign in or change/recover a password.

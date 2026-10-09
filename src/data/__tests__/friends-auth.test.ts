@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { randomBytes } from "node:crypto";
 import { memoryAdapter } from "better-auth/adapters/memory";
 import { getAuthTables } from "better-auth/db";
@@ -7,6 +7,7 @@ import { createFriendsAuth, providerModels, type AccountMail } from "../friends-
 import { providerSchema } from "../friends-auth/schema";
 import { parseEnrollment } from "@/domain/friends-accounts";
 import { resolveAccountUser } from "../account-identity";
+import { sendAccountMail } from "../friends-auth/mail";
 
 const origin = "https://goat.test";
 const initialPassword = "synthetic-password-only-1";
@@ -80,6 +81,31 @@ describe("friends accounts with the actual pinned provider", () => {
     expect(storage.authUser).toHaveLength(1);
     expect(created.user.id).toBe(verified?.user.id);
   }, 15000);
+
+  it("caps automatic unverified sign-in mail without consuming mail allowance for verified login", async () => {
+    const storage = { authUser: [], authAccount: [], authSession: [], authVerification: [], authRateLimit: [] };
+    const mail: AccountMail[] = [];
+    // Nine other emissions have already used this shared window.
+    let used = 9;
+    const consume = vi.fn(async (_key: string, max: number) => ++used <= max);
+    const options = { database: memoryAdapter(storage),
+      config: { origin, secret: randomBytes(48).toString("hex"), secureCookies: true },
+      sendMail: (message: AccountMail) => sendAccountMail(message, consume, async (delivered) => { mail.push(delivered); }) };
+    const auth = createFriendsAuth(options);
+    await createFriendsAuth({ ...options, allowSignup: true }).api.signUpEmail({ body: {
+      name: "Synthetic manager", email: "bounded@example.test", password: initialPassword, callbackURL: `${origin}/login`,
+    } });
+    const login = () => auth.handler(new Request(`${origin}/api/auth/sign-in/email`, {
+      method: "POST", headers: { Origin: origin, "Content-Type": "application/json" },
+      body: JSON.stringify({ email: "bounded@example.test", password: initialPassword }),
+    }));
+    expect((await login()).status).toBe(403);
+    expect(consume.mock.calls).toEqual([["mail:verify", 10], ["mail:verify", 10]]);
+    expect(mail).toHaveLength(1);
+    expect((await auth.handler(new Request(mail[0].url))).status).toBe(302);
+    expect((await login()).ok).toBe(true);
+    expect(consume).toHaveBeenCalledTimes(2);
+  });
 
   it("accepts only bounded enrollment fields and rejects client-owned identity claims", () => {
     const input = { kind: "invite", email: "manager@example.test", password: initialPassword, displayName: "Manager", inviteCode: "123456" };

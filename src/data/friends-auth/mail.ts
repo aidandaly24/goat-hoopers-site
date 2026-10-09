@@ -1,7 +1,14 @@
-import type { AccountMail } from "./provider";
+import type { AccountMail, SendAccountMail } from "./provider";
+
+/** Every emission shares a durable per-kind cap, including automatic sign-in verification. */
+export async function sendAccountMail(mail: AccountMail,
+  consume: (key: string, max: number) => Promise<boolean>, deliver: SendAccountMail = deliverAccountMail): Promise<void> {
+  if (!await consume(`mail:${mail.kind}`, 10)) return;
+  await deliver(mail);
+}
 
 /** No provisioning or secret export. Aidan supplies an authorized sending key and verified sender. */
-export async function sendAccountMail(mail: AccountMail): Promise<void> {
+async function deliverAccountMail(mail: AccountMail): Promise<void> {
   const key = process.env.RESEND_API_KEY;
   const from = process.env.AUTH_EMAIL_FROM;
   if (!key || !from) throw new Error("Account email delivery is not configured");
