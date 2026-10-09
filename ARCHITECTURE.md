@@ -208,6 +208,12 @@ src/
                  # slider. Reconstruction, recorded snapshots and the appended
                  # current modeled quote retain separate labels/line treatments.
                  # Its light semantic tokens are scoped to the chart; no repricing.
+                 # RetainedHistory adds an explicit selected-player date-range
+                 # load using the injected stock-history-client. Recorded native
+                 # calendar dots and UTC held reconstructions stay separate;
+                 # manual pages preserve raw records. Range changes, player
+                 # changes and Close abort pending reads; 409 requires restart.
+                 # Exhausted retained pages still have unknown coverage.
                  # On mobile, close restores focus after the panel is removed.
                  # StockRow remains as the legacy row, with PR40 detailMachine
                  # retry on failed re-expansion, in-flight dedupe and ready
