@@ -31,4 +31,14 @@ describe("AI page session admission", () => {
     expect(element.props.signedIn).toBe(true); expect(element.props.authUnavailable).toBe(false);
     expect(html).toMatch(/<button(?![^>]*disabled)[^>]*>Let AI decide/);
   });
+  it("passes current team pictures through the slim page projection", async () => {
+    mocks.user.mockResolvedValue(null);
+    mocks.teams.mockResolvedValue(teams.map(t => ({ ...t, managerName: "Not needed by this page" })));
+    const element = await Page();
+    expect(element.props.teams).toEqual(teams);
+    const html = renderToStaticMarkup(element);
+    expect(html).toContain("https://sleepercdn.com/avatars/thumbs/fixture-avatar-6");
+    expect(html).toContain("https://sleepercdn.com/avatars/thumbs/fixture-avatar-10");
+    expect(html).not.toContain("Not needed by this page");
+  });
 });

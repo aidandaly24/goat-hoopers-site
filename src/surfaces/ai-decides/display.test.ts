@@ -35,4 +35,28 @@ describe("backend roster-ID display", () => {
     expect(html).toContain("Model choice: Roster 6"); expect(html).toContain("Name unavailable");
     expect(html).toContain("Frozen roster 6 prior inputs"); expect(html).not.toContain("Current Six");
   });
+  it("renders each saved option's full bar and current picture by roster ID", () => {
+    const data = cachedData(), before = JSON.stringify(data);
+    const html = renderToStaticMarkup(createElement(AiWeekly, { data, teams, onPair: () => {} }));
+    expect(html).toMatch(/data-choice-id="10"[^]*?fixture-avatar-10[^]*?width:62%/);
+    expect(html).toMatch(/data-choice-id="6"[^]*?fixture-avatar-6[^]*?width:38%/);
+    expect(html).toContain("Model choice: Current Six");
+    expect(JSON.stringify(data)).toBe(before);
+  });
+  it("keeps generation time distinct from the frozen input capture", () => {
+    const data = cachedData();
+    data.weekly.generatedAt = "2026-10-09T18:04:00Z";
+    const html = renderToStaticMarkup(createElement(AiWeekly, { data, teams, onPair: () => {} }));
+    expect(html).toMatch(/Generated <time [^>]*="2026-10-09T18:04:00Z">[^<]*18:04 UTC<\/time>/);
+    expect(html).toContain("Inputs captured 9 Oct 2026, 18:00 UTC");
+  });
+  it("retains pictures and honest empty metadata without creating unavailable bars", () => {
+    const data = cachedData();
+    data.weekly.status = "unavailable"; data.weekly.generatedAt = null;
+    data.weekly.matchups[0].status = "unavailable"; data.weekly.matchups[0].result = null;
+    const html = renderToStaticMarkup(createElement(AiWeekly, { data, teams, onPair: () => {} }));
+    expect(html).toContain("Generation time unavailable.");
+    expect(html).toContain("fixture-avatar-6"); expect(html).toContain("fixture-avatar-10");
+    expect(html).not.toContain("data-choice-id"); expect(html).not.toContain("width:");
+  });
 });
