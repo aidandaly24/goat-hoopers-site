@@ -23,7 +23,7 @@ Use their stated prerequisites and limitations; synthetic fixtures do not establ
 hosted behavior or physical-device coverage.
 
 - [Homepage sorting](../qa/homepage-sorting/README.md) — UI reviewers: directory/standings controls and the actual split-column layout.
-- [Newsroom](../qa/newsroom/README.md) — UI reviewers: synthetic stories, reader links, native dialogs and navigation limits.
+- [Newsroom (historical)](../qa/newsroom/README.md) — UI reviewers: preserved fictional-reader fixture and evidence; current Newsroom QA requires an updated harness.
 - [Paper + Slate](../qa/paper-slate/README.md) — UI reviewers: component palette, responsive states and recovery fixtures.
 - [Shared shell](../src/test/site-shell/README.md) — navigation contributors: headers, anchors, mobile clearance and Next Back restoration.
 - [Stock inspector](../src/test/stock-inspector/README.md) — Stocks contributors: board alignment, detail states, keyboard dismissal and focus.
