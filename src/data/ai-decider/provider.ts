@@ -1,6 +1,6 @@
 import "server-only";
 import { AI_CUSTOM_PROMPT_VERSION, AI_DECISION_MODEL, AI_PROBABILITY_LABEL, type AiDecisionResult, type AiSnapshotMetadata } from "@/domain/ai-decider";
-import { AI_LIMITS, isRecord } from "./validation";
+import { AI_LIMITS, exactKeys, isRecord } from "./validation";
 
 export type DecisionQuestion = { type: "choice"; name: string; instructions: string; choices: { value: string; description: string }[] };
 export type DecisionPayload = { model: typeof AI_DECISION_MODEL; input: string; questions: DecisionQuestion[]; safety_identifier: string };
@@ -28,10 +28,16 @@ export function inputTokenReservation(payload: DecisionPayload, max: number = AI
 const probability = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 1;
 const tokenCount = (v: unknown): v is number => Number.isSafeInteger(v) && (v as number) >= 0;
 
+/** Usage is independently trustworthy even when the prediction shape is invalid. */
+export function readDecisionUsage(raw: unknown): number | null {
+  if (!isRecord(raw) || !isRecord(raw.usage) || !exactKeys(raw.usage, ["input_tokens", "output_tokens", "total_tokens"]) || !tokenCount(raw.usage.input_tokens) || raw.usage.output_tokens !== 0 || raw.usage.total_tokens !== raw.usage.input_tokens) return null;
+  return raw.usage.input_tokens;
+}
+
 /** Decode only the documented Decisions choice/refusal shape, never prose or tool calls. */
-export function decodeDecision(raw: unknown, specs: DecisionSpec[]): { results: (AiDecisionResult | null)[]; inputTokens: number } {
+export function decodeDecision(raw: unknown, specs: DecisionSpec[]): { results: (AiDecisionResult | null)[] } {
   if (isRecord(raw) && Object.keys(raw).some(k => !["model", "answers", "usage"].includes(k))) throw new Error("provider_response");
-  if (!isRecord(raw) || raw.model !== AI_DECISION_MODEL || !Array.isArray(raw.answers) || raw.answers.length !== specs.length || !isRecord(raw.usage) || !tokenCount(raw.usage.input_tokens) || raw.usage.output_tokens !== 0 || raw.usage.total_tokens !== raw.usage.input_tokens) throw new Error("provider_response");
+  if (!isRecord(raw) || raw.model !== AI_DECISION_MODEL || !Array.isArray(raw.answers) || raw.answers.length !== specs.length) throw new Error("provider_response");
   const results = raw.answers.map((answer: unknown, i: number) => {
     const spec = specs[i];
     if (!isRecord(answer) || answer.name !== spec.name) throw new Error("provider_response");
@@ -48,7 +54,7 @@ export function decodeDecision(raw: unknown, specs: DecisionSpec[]): { results: 
     if (Math.abs(probabilities.reduce((s, p) => s + p.probability, 0) - 1) > 0.0001) throw new Error("provider_response");
     return { model: AI_DECISION_MODEL, promptVersion: spec.promptVersion, choice: spec.labels[expected.indexOf(answer.choice)], confidence: answer.confidence, probabilities, evidence: [...spec.evidence], probabilityLabel: AI_PROBABILITY_LABEL, snapshot: spec.snapshot ?? null };
   });
-  return { results, inputTokens: raw.usage.input_tokens };
+  return { results };
 }
 
 export function createOpenAiDecisionsClient(key: string, fetcher: typeof fetch = fetch): DecisionsClient {

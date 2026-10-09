@@ -13,6 +13,7 @@ INSERT INTO ai_decider_control (id, state) VALUES ('goat-hoopers',
 CREATE TABLE ai_decider_weeks (
   week_key text PRIMARY KEY,
   input_hash text NOT NULL CHECK (input_hash ~ '^[a-f0-9]{64}$'),
+  generation_manifest jsonb NOT NULL,
   input jsonb NOT NULL,
   prepared_slate jsonb NOT NULL,
   result jsonb
@@ -21,6 +22,7 @@ CREATE FUNCTION ai_decider_protect_week() RETURNS trigger LANGUAGE plpgsql AS $$
 BEGIN
   IF TG_OP = 'DELETE' THEN RAISE EXCEPTION 'AI week is immutable'; END IF;
   IF NEW.week_key IS DISTINCT FROM OLD.week_key OR NEW.input_hash IS DISTINCT FROM OLD.input_hash
+     OR NEW.generation_manifest IS DISTINCT FROM OLD.generation_manifest
      OR NEW.input IS DISTINCT FROM OLD.input OR NEW.prepared_slate IS DISTINCT FROM OLD.prepared_slate
      OR OLD.result IS NOT NULL THEN
     RAISE EXCEPTION 'AI week is immutable';

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { callWithTimeout, createOpenAiDecisionsClient, customDecision, decodeDecision, inputTokenReservation } from "../provider";
+import { callWithTimeout, createOpenAiDecisionsClient, customDecision, decodeDecision, inputTokenReservation, readDecisionUsage } from "../provider";
 import { handleAiPost } from "../http";
 import { AI_LIMITS, parseAiRequest, readAiBody } from "../validation";
 import { harness, providerAnswer, TOKEN } from "./fixtures";
@@ -65,7 +65,7 @@ describe("fixed documented Decisions protocol", () => {
     expect(result.probabilities).toEqual([{ choice: "Follow rules", probability: 0.65 }, { choice: "Ignore rules", probability: 0.35 }]);
     expect(result.probabilityLabel).toContain("not calibrated sports odds");
   });
-  it.each(["model", "name", "unknown_choice", "duplicate_probability", "missing_probability", "not_sum_one", "nan", "confidence", "explanation", "tools", "usage", "output", "negative_usage", "answer_count"])("rejects malformed provider response: %s", change => {
+  it.each(["model", "name", "unknown_choice", "duplicate_probability", "missing_probability", "not_sum_one", "nan", "confidence", "explanation", "tools", "answer_count"])("rejects malformed provider response: %s", change => {
     const d = decision(); const raw = providerAnswer(d.payload) as unknown as Record<string, unknown>;
     const a = (raw.answers as Record<string, unknown>[])[0];
     const ps = a.probabilities as { value: string; probability: number }[];
@@ -79,11 +79,13 @@ describe("fixed documented Decisions protocol", () => {
     if (change === "confidence") a.confidence = 2;
     if (change === "explanation") a.explanation = "Invented prose";
     if (change === "tools") raw.tools = [];
-    if (change === "usage") raw.usage = {};
-    if (change === "output") (raw.usage as Record<string, unknown>).output_tokens = 1;
-    if (change === "negative_usage") (raw.usage as Record<string, unknown>).input_tokens = -1;
     if (change === "answer_count") raw.answers = [];
     expect(() => decodeDecision(raw, d.specs)).toThrow("provider_response");
+  });
+  it("extracts usage independently of malformed answers or extra response fields", () => {
+    const raw = { answers: "invalid", tools: [], usage: { input_tokens: 40000, output_tokens: 0, total_tokens: 40000 } };
+    expect(readDecisionUsage(raw)).toBe(40000);
+    expect(() => decodeDecision(raw, decision().specs)).toThrow("provider_response");
   });
   it("handles documented refusal without an invented reason field", () => {
     const d = decision(), raw = providerAnswer(d.payload);

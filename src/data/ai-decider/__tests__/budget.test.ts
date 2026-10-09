@@ -56,7 +56,7 @@ describe("durable shared spending/abuse policy under CAS contention", () => {
     for (let n = 0; n < 3; n++) {
       const r = await s.reserve(identity(), fingerprint(n), 100, NOW);
       if (r.status !== "reserved") throw new Error("fixture");
-      await s.finish(r.leaseId, null, true, false, NOW);
+      await s.finish(r.leaseId, 50, true, false, NOW);
     }
     expect((await s.reserve(identity(), fingerprint(4), 100, NOW)).status).toBe("rate_limited");
     expect((await s.reserve(identity(), fingerprint(4), 100, NOW + 3600000)).status).toBe("reserved");
@@ -72,6 +72,47 @@ describe("durable shared spending/abuse policy under CAS contention", () => {
     p.control = { enabled: true, revision: 0, state: emptyBudgetState(NOW) }; p.revoked.add(identity().userId);
     await expect(s.reserve(identity(), fingerprint(2), 100, NOW)).rejects.toThrow("state_unavailable");
     expect(p.control.state.requests).toBe(0);
+  });
+  it.each([false, true])("settles a completion exactly once under overlap and CAS retries, unknown spend: %s", async unknown => {
+    const p = new TestPersistence(), s = new AiDeciderStore(p);
+    const r = await s.reserve(identity(), fingerprint(), 100, NOW);
+    if (r.status !== "reserved") throw new Error("fixture");
+    const compare = p.compareControl.bind(p);
+    let retries = 2;
+    vi.spyOn(p, "compareControl").mockImplementation(async (...args) => retries-- > 0 ? false : compare(...args));
+    await Promise.all([s.finish(r.leaseId, 150, true, unknown, NOW), new AiDeciderStore(p).finish(r.leaseId, 150, true, unknown, NOW)]);
+    await s.finish(r.leaseId, 150, true, unknown, NOW);
+    expect(p.control!.state.tokens).toBe(150); expect(p.control!.enabled).toBe(false);
+    expect(p.control!.state.users[identity().userId].signals).toBe(1);
+    expect(p.control!.state.leases).toHaveLength(unknown ? 1 : 0);
+    if (unknown) expect(p.control!.state.leases[0].completed).toBe(true);
+    expect(p.compareControl).toHaveBeenCalledTimes(4);
+  });
+  it("retains unknown reservations and makes duplicate completion a no-op", async () => {
+    const p = new TestPersistence(), s = new AiDeciderStore(p);
+    const r = await s.reserve(identity(), fingerprint(), 100, NOW);
+    if (r.status !== "reserved") throw new Error("fixture");
+    await s.finish(r.leaseId, null, true, false, NOW);
+    const completed = structuredClone(p.control);
+    await s.finish(r.leaseId, null, true, false, NOW);
+    expect(p.control).toEqual(completed); expect(p.control!.state.tokens).toBe(100);
+    expect((await s.reserve(identity(), fingerprint(2), 100, NOW)).status).toBe("busy");
+  });
+  it("still charges a known overrun when completion crosses a UTC day boundary", async () => {
+    const p = new TestPersistence(), s = new AiDeciderStore(p);
+    const r = await s.reserve(identity(), fingerprint(), 100, NOW);
+    if (r.status !== "reserved") throw new Error("fixture");
+    await s.finish(r.leaseId, 150, true, false, NOW + 86400000);
+    expect(p.control!.state.tokens).toBe(150); expect(p.control!.enabled).toBe(false);
+  });
+  it("fails closed when completion CAS retries exhaust, retaining the original reservation", async () => {
+    const p = new TestPersistence(), s = new AiDeciderStore(p);
+    const r = await s.reserve(identity(), fingerprint(), 100, NOW);
+    if (r.status !== "reserved") throw new Error("fixture");
+    const control = structuredClone(p.control);
+    const compare = vi.spyOn(p, "compareControl").mockResolvedValue(false);
+    await expect(s.finish(r.leaseId, 150, true, false, NOW)).rejects.toThrow("state_unavailable");
+    expect(compare).toHaveBeenCalledTimes(8); expect(p.control).toEqual(control);
   });
   it("compacts old signals/fingerprints and safely resets the next UTC day", async () => {
     const p = new TestPersistence(), s = new AiDeciderStore(p);

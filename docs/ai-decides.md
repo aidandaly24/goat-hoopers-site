@@ -53,8 +53,15 @@ reservation, not a precise tokenizer estimate: 6,144 per interactive request,
 20,000 per weekly batch. This launch adapter expects the documented non-generative
 usage shape with zero output tokens. Unexpected usage/result shapes fail closed.
 A reported input-token overrun charges the excess and disables the database
-kill switch. Timeouts retain their full charge because provider work may already
-have occurred. No automatic retry issues a second paid request.
+kill switch, even if probabilities or other output fields are malformed. Usage
+validation runs independently of prediction decoding. Missing or invalid usage,
+transport failures and timeouts return no result and retain the full reservation
+and lease until expiry because provider work may already have occurred. A settled
+retained lease has a durable completion marker; overlapping/repeated completion
+cannot double-charge an overrun or add another signal. Bounded completion CAS
+failure withholds the result and leaves the existing reservation in place. No
+automatic retry issues a second paid request. Late output after timeout is ignored
+and does not replace the committed unknown-spend reservation.
 
 ## Auth and abuse controls
 
@@ -108,6 +115,10 @@ Preparation supplies reviewed UTC cutoff/week bounds and an explicitly confirmed
 mode. The loader owns capture/source-read timestamps. It never maps raw
 `game_mode=1` to a product rule. Current unknown mode/preseason remain unavailable.
 Game Pick remains unsupported until its rules and schedule source are verified.
+Globally unsupported inputs (including preseason and unknown mode) return before
+sealing the week, so corrected ready inputs can still be submitted before cutoff.
+An empty slate with no eligible matchups also remains unsealed. An intentionally
+partial eligible slate remains immutable once sealed.
 The accepted Lock-In starter shape is PG, SG, G, SF, PF, F, C, UTIL ×3. Missing,
 duplicate, zero, reserve/taxi or unowned starters and absent prior production
 block their pair. Missing reserve/taxi fields cannot establish eligibility.
@@ -128,6 +139,16 @@ successful slates are returned from storage without another call. Partial slate
 status is unavailable while valid individual picks remain visible. Ended weeks
 are labeled stale. Outcomes are separately append-only, require confirmed final
 scores after the week ends, and never alter a prediction or baseline.
+
+The frozen generation manifest stores schema version, model, prompt version, full
+instructions and baseline version. Its canonical content and input enter the hash;
+the unapplied schema also protects the manifest from updates/deletion. Cache reads
+and outcome recording validate model/prompt metadata against that manifest, not
+today's generation constants. Schema/baseline v1 reconstruction remains supported
+for older policy records; future schema/baseline changes must retain that decoder.
+New generation always uses the current fixed policy. Interactive comparisons refuse
+an older-policy snapshot while its immutable cached predictions remain readable.
+No observed outcome enters the input or generation manifest.
 
 ## Activation after review
 

@@ -3,9 +3,9 @@ import { createHash } from "node:crypto";
 import type { AiDecideRequest, AiDecideResponse, AiDecisionResult, AiWeeklyInput, AiWeeklySlate } from "@/domain/ai-decider";
 import type { GameStore } from "../arcade";
 import { AI_LIMITS, parseAiRequest, teamIdValid, uuidValid } from "./validation";
-import { callWithTimeout, customDecision, decodeDecision, inputTokenReservation, type DecisionsClient, type DecisionPayload, type DecisionSpec } from "./provider";
+import { callWithTimeout, customDecision, decodeDecision, inputTokenReservation, readDecisionUsage, type DecisionsClient, type DecisionPayload, type DecisionSpec } from "./provider";
 import { AiDeciderStore, type AiIdentity, type AiStoredWeek } from "./store";
-import { cachedWeek, canonicalJson, preparePlaygroundMatchup, prepareWeeklySlate, validWeeklyInput, weekHash, weekKey, weeklyDecision } from "./weekly";
+import { AI_WEEKLY_MANIFEST, cachedWeek, canonicalJson, currentGenerationManifest, preparePlaygroundMatchup, prepareWeeklySlate, validWeeklyInput, weekHash, weekKey, weeklyDecision, weeklyReadiness } from "./weekly";
 import { aiDataDeadline } from "./deadline";
 
 export type AiRuntime = {
@@ -52,13 +52,20 @@ async function evaluate(runtime: AiRuntime, identity: AiIdentity, payload: Decis
   } catch { return failure("unavailable", "state_unavailable", "AI Decides usage controls are unavailable. Try later."); }
 
   let decoded: ReturnType<typeof decodeDecision> | null = null;
+  let actualTokens: number | null = null;
   let errorCode: string | null = null;
-  try { decoded = decodeDecision(await callWithTimeout(runtime.client, payload, runtime.timeoutMs), specs); }
+  try {
+    const raw = await callWithTimeout(runtime.client, payload, runtime.timeoutMs);
+    actualTokens = readDecisionUsage(raw);
+    if (actualTokens === null) errorCode = "usage_unknown";
+    else decoded = decodeDecision(raw, specs);
+  }
   catch (e) { errorCode = e instanceof Error && e.message === "provider_timeout" ? "provider_timeout" : "provider_unavailable"; }
-  try { await runtime.store.finish(leaseId, decoded?.inputTokens ?? null, errorCode !== null || decoded?.results.some(r => r === null) === true, errorCode === "provider_timeout", runtime.now()); }
+  try { await runtime.store.finish(leaseId, actualTokens, errorCode !== null || decoded?.results.some(r => r === null) === true, actualTokens === null, runtime.now()); }
   catch { return failure("unavailable", "state_unavailable", "The decision could not be safely recorded. Try later."); }
-  if (decoded && decoded.inputTokens > reserved) return failure("unavailable", "usage_overrun", "The input accounting guard stopped AI Decides. Review is required.");
+  if (actualTokens !== null && actualTokens > reserved) return failure("unavailable", "usage_overrun", "The input accounting guard stopped AI Decides. Review is required.");
   if (errorCode === "provider_timeout") return failure("timeout", "provider_timeout", "The decision timed out. Its usage reservation remains counted.");
+  if (errorCode === "usage_unknown") return failure("unavailable", "usage_unknown", "Provider usage could not be validated. Its full reservation and lease remain counted.");
   if (!decoded) return failure("unavailable", "provider_unavailable", "The decision provider is unavailable or returned an invalid result.");
   return { results: decoded.results };
 }
@@ -81,6 +88,7 @@ export async function runAiDecision(raw: unknown, token: string | undefined, run
       if (!record) return failure("unavailable", "weekly_not_ready", "A verified weekly input snapshot has not been prepared yet.");
       const slate = cachedWeek(record, runtime.now());
       if (slate.status === "stale" || runtime.now() >= Date.parse(record.input.startsAt)) return failure("unavailable", "weekly_closed", "This weekly prediction window has closed.");
+      if (!currentGenerationManifest(record.manifest)) return failure("unavailable", "weekly_policy", "This snapshot uses an earlier generation policy. Its cached picks remain available.");
       const pairing = preparePlaygroundMatchup(record.input, request.teamIds, runtime.now());
       if (!pairing.baseline || !pairing.baseline.teamValues.every(v => v.value !== null)) return failure("unavailable", "matchup_not_ready", pairing.message);
       const selected: AiWeeklySlate = { ...slate, matchups: [pairing] };
@@ -98,6 +106,9 @@ export async function runAiDecision(raw: unknown, token: string | undefined, run
 export async function generateWeeklyPicks(input: AiWeeklyInput, token: string | undefined, runtime: AiRuntime): Promise<AiWeeklySlate | AiDecideResponse> {
   if (!validWeeklyInput(input)) return failure("invalid", "weekly_input", "Weekly inputs are incomplete or invalid.");
   const prepared = prepareWeeklySlate(input, runtime.now());
+  const readiness = weeklyReadiness(input, runtime.now());
+  if (readiness) return failure("unavailable", "weekly_not_ready", readiness);
+  if (!prepared.matchups.some(m => m.baseline?.teamValues.every(v => v.value !== null))) return failure("unavailable", "weekly_not_ready", "No matchups have complete eligible starter production. The week has not been sealed.");
   if (runtime.now() > Date.parse(input.cutoffAt) || runtime.now() >= Date.parse(input.startsAt)) return failure("unavailable", "weekly_closed", "A new snapshot must be sealed by its reviewed pre-week cutoff.");
   if (!runtime.store) return failure("unavailable", "state_unavailable", "The weekly store is unavailable.");
   const state = await availability(runtime);
@@ -105,7 +116,7 @@ export async function generateWeeklyPicks(input: AiWeeklyInput, token: string | 
   let identity: AiIdentity | null;
   try { identity = await resolveAiIdentity(token, runtime); } catch { return failure("unavailable", "session_unavailable", "Your session could not be validated."); }
   if (!identity) return failure("unauthenticated", "sign_in_required", "A validated manager session is required.");
-  const candidate: AiStoredWeek = { key: weekKey(input), hash: weekHash(input), input: structuredClone(input), slate: prepared, result: null };
+  const candidate: AiStoredWeek = { key: weekKey(input), hash: weekHash(input), manifest: structuredClone(AI_WEEKLY_MANIFEST), input: structuredClone(input), slate: prepared, result: null };
   let record: AiStoredWeek;
   try {
     record = await runtime.store.persistence.sealWeek(candidate);

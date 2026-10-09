@@ -676,6 +676,10 @@ The explicit pre-week preparation/generation operation seals one snapshot,
 uses a versioned prompt/model and saves all five choice distributions in one
 batch, with incomplete matchups labeled unavailable. An experimental prior PPG
 baseline and append-only final outcome records remain separate from predictions.
+Each immutable week carries a hashed generation manifest; historical reads and
+outcomes use its frozen model/prompt rather than current generation constants.
+Globally unsupported inputs return before sealing. Usage is settled independently
+of prediction decoding, with idempotent CAS completion even for retained leases.
 Unknown scoring mode, preseason and unsupported Game Pick assumptions fail
 closed; Lock-In PPG is never multiplied by games. `migrations/ai-decider.sql`
 is unapplied and starts disabled. Existing auth/valuation/repair tables are reused

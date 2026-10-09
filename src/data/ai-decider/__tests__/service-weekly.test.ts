@@ -47,6 +47,7 @@ describe("authenticated paid entry point", () => {
     h.create.mockRejectedValueOnce(new Error("synthetic-credential-marker full prompt"));
     const error = await runAiDecision({ ...draft, prompt: "Different" }, TOKEN, h.runtime);
     expect(error.status).toBe("unavailable"); expect(JSON.stringify(error)).not.toContain("synthetic-credential-marker");
+    h.setTime(NOW + 61000); // Unknown spend retains the previous lease until expiry.
     vi.useFakeTimers(); h.runtime.timeoutMs = 10;
     h.create.mockImplementationOnce(async () => new Promise(() => {}));
     const run = runAiDecision({ ...draft, prompt: "Third" }, TOKEN, h.runtime);

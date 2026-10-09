@@ -2,7 +2,7 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { sql, type SQL } from "drizzle-orm";
 import { getDb, type Db } from "../db";
-import type { AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
+import type { AiGenerationManifest, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
 import { isRecord, uuidValid } from "./validation";
 import { aiDataDeadline } from "./deadline";
 
@@ -16,11 +16,11 @@ export type AiBudgetState = {
   requests: number;
   tokens: number;
   users: Record<string, UserCounter>;
-  leases: { id: string; userId: string; fingerprint: string; expires: number; reserved: number; shared: boolean }[];
+  leases: { id: string; userId: string; fingerprint: string; expires: number; reserved: number; shared: boolean; completed?: true }[];
   duplicates: { userId: string; fingerprint: string; expires: number; shared: boolean }[];
 };
 export type AiControl = { enabled: boolean; revision: number; state: AiBudgetState };
-export type AiStoredWeek = { key: string; hash: string; input: AiWeeklyInput; slate: AiWeeklySlate; result: AiWeeklySlate | null };
+export type AiStoredWeek = { key: string; hash: string; manifest: AiGenerationManifest; input: AiWeeklyInput; slate: AiWeeklySlate; result: AiWeeklySlate | null };
 /** Purpose-built CAS and append-only operations, not a generic storage framework. */
 export type AiPersistence = {
   readControl(): Promise<AiControl | null>;
@@ -43,7 +43,7 @@ export function validBudgetState(v: unknown): v is AiBudgetState {
   }
   const ids = new Set<string>();
   for (const lease of v.leases) {
-    if (!isRecord(lease) || !uuidValid(lease.id) || ids.has(lease.id) || !uuidValid(lease.userId) || !hashValid(lease.fingerprint) || !count(lease.expires) || !count(lease.reserved) || typeof lease.shared !== "boolean") return false;
+    if (!isRecord(lease) || !uuidValid(lease.id) || ids.has(lease.id) || !uuidValid(lease.userId) || !hashValid(lease.fingerprint) || !count(lease.expires) || !count(lease.reserved) || typeof lease.shared !== "boolean" || (lease.completed !== undefined && lease.completed !== true)) return false;
     ids.add(lease.id);
   }
   return v.duplicates.every(d => isRecord(d) && uuidValid(d.userId) && hashValid(d.fingerprint) && count(d.expires) && typeof d.shared === "boolean");
@@ -101,18 +101,19 @@ export class AiDeciderStore {
     throw new Error("state_unavailable");
   }
 
-  /** Charges remain reserved after failure. A timeout retains its lease until expiry. */
-  async finish(leaseId: string, actualTokens: number | null, signal: boolean, timedOut: boolean, now: number): Promise<void> {
+  /** No refunds. Unknown spend retains a settled lease; its completion is idempotent. */
+  async finish(leaseId: string, actualTokens: number | null, signal: boolean, unknownSpend: boolean, now: number): Promise<void> {
+    if (!uuidValid(leaseId) || (actualTokens !== null && !count(actualTokens)) || !count(now)) throw new Error("state_unavailable");
     for (let attempt = 0; attempt < 8; attempt++) {
       const control = checked(await this.persistence.readControl());
       const state = structuredClone(control.state);
       const lease = state.leases.find(l => l.id === leaseId);
-      if (!lease) return;
-      if (actualTokens !== null && !count(actualTokens)) throw new Error("state_unavailable");
+      if (!lease || lease.completed) return;
       const overrun = actualTokens !== null && actualTokens > lease.reserved;
-      if (overrun && state.day === new Date(now).toISOString().slice(0, 10)) state.tokens += actualTokens - lease.reserved;
+      if (overrun) state.tokens += actualTokens - lease.reserved;
       if (signal && state.users[lease.userId]) state.users[lease.userId].signals = Math.min(state.users[lease.userId].signals + 1, 1000000);
-      if (!timedOut) state.leases = state.leases.filter(l => l.id !== leaseId);
+      if (unknownSpend || actualTokens === null) lease.completed = true;
+      else state.leases = state.leases.filter(l => l.id !== leaseId);
       if (await this.persistence.compareControl(control.revision, state, undefined, overrun)) return;
     }
     throw new Error("state_unavailable");
@@ -135,15 +136,15 @@ export class PostgresAiPersistence implements AiPersistence {
     return result.rows.length === 1;
   }
   async sealWeek(week: AiStoredWeek): Promise<AiStoredWeek> {
-    await this.execute(sql`INSERT INTO ai_decider_weeks (week_key, input_hash, input, prepared_slate) VALUES (${week.key}, ${week.hash}, ${JSON.stringify(week.input)}::jsonb, ${JSON.stringify(week.slate)}::jsonb) ON CONFLICT (week_key) DO NOTHING`);
+    await this.execute(sql`INSERT INTO ai_decider_weeks (week_key, input_hash, generation_manifest, input, prepared_slate) VALUES (${week.key}, ${week.hash}, ${JSON.stringify(week.manifest)}::jsonb, ${JSON.stringify(week.input)}::jsonb, ${JSON.stringify(week.slate)}::jsonb) ON CONFLICT (week_key) DO NOTHING`);
     const sealed = await this.getWeek(week.key);
     if (!sealed) throw new Error("state_unavailable");
     return sealed;
   }
   async getWeek(key: string): Promise<AiStoredWeek | null> {
-    const result = await this.execute(sql`SELECT week_key, input_hash, input, prepared_slate, result FROM ai_decider_weeks WHERE week_key = ${key} LIMIT 1`);
+    const result = await this.execute(sql`SELECT week_key, input_hash, generation_manifest, input, prepared_slate, result FROM ai_decider_weeks WHERE week_key = ${key} LIMIT 1`);
     const row = result.rows[0];
-    return row ? { key: row.week_key as string, hash: row.input_hash as string, input: row.input as AiWeeklyInput, slate: row.prepared_slate as AiWeeklySlate, result: row.result as AiWeeklySlate | null } : null;
+    return row ? { key: row.week_key as string, hash: row.input_hash as string, manifest: row.generation_manifest as AiGenerationManifest, input: row.input as AiWeeklyInput, slate: row.prepared_slate as AiWeeklySlate, result: row.result as AiWeeklySlate | null } : null;
   }
   async completeWeek(key: string, hash: string, slate: AiWeeklySlate): Promise<boolean> {
     const result = await this.execute(sql`UPDATE ai_decider_weeks SET result = ${JSON.stringify(slate)}::jsonb WHERE week_key = ${key} AND input_hash = ${hash} AND result IS NULL RETURNING week_key`);
