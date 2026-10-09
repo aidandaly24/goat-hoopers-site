@@ -14,14 +14,15 @@ const published = () => {
 };
 describe("AI Decides client boundary", () => {
   it("distinguishes the duplicate admission wait from busy work and missing model output", () => {
-    const duplicate = readDecisionResponse({ status: "busy", code: "duplicate", message: "This request was recently submitted. Wait before running it again.", retryAfterSeconds: 600 });
+    const duplicate = readDecisionResponse({ status: "busy", code: "duplicate", message: "This identical request is already running. Try again after it finishes.", retryAfterSeconds: 42 });
     expect(duplicate.status).toBe("busy");
     if (duplicate.status === "ready") throw new Error("Unexpected result");
-    expect(failureHeading(duplicate)).toBe("Already submitted. Please wait.");
-    expect(duplicate).toHaveProperty("retryAfterSeconds", 600);
+    expect(failureHeading(duplicate)).toBe("Already running. Please wait.");
+    expect(duplicate).toHaveProperty("retryAfterSeconds", 42);
     expect(duplicate).not.toHaveProperty("result");
     expect(failureHeading({ status: "busy", code: "busy", message: "Running" })).toBe("A decision is already running.");
     expect(failureHeading({ status: "unavailable", code: "connection", message: "Missing" })).toBe("No result available.");
+    expect(failureHeading({ status: "rate_limited", code: "global_token_budget", message: "Shared budget" })).toBe("Shared daily budget reached.");
   });
   it("preserves every raw probability, order, chosen option, independent confidence and historical model", () => {
     const value = ready(); expect(readDecisionResponse(value, ["A", "B", "C"])).toBe(value);

@@ -78,8 +78,8 @@ export function draftError(prompt: string, choices: string[]): string | null {
 
 /** Admission waits are distinct from missing or rejected model output. */
 export function failureHeading(failure: Exclude<AiDecideResponse, { status: "ready" }>): string {
-  if (failure.status === "busy") return failure.code === "duplicate" ? "Already submitted. Please wait." : "A decision is already running.";
-  if (failure.status === "rate_limited") return "Usage limit reached.";
+  if (failure.status === "busy") return failure.code === "duplicate" ? "Already running. Please wait." : "A decision is already running.";
+  if (failure.status === "rate_limited") return failure.code === "global_token_budget" ? "Shared daily budget reached." : "Usage limit reached.";
   if (failure.status === "unauthenticated") return "Sign in to run.";
   if (failure.status === "invalid") return "Check your draft.";
   if (failure.status === "refused") return "Request declined.";
