@@ -22,6 +22,10 @@
 }
 
 .wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
   flex-shrink: 0;
   font-family: var(--gh-font-display);
   font-size: 1.15rem;
@@ -73,8 +77,10 @@
 .nav a[aria-current="page"],
 .displayName[aria-current="page"] {
   color: var(--gh-accent);
-  background: var(--gh-bg-hover);
-  box-shadow: inset 0 -2px var(--gh-accent);
+  background: transparent;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
 }
 
 .nav a:focus-visible {
@@ -190,9 +196,8 @@
 
 .name {
   max-width: 10rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .logoutForm {
@@ -248,8 +253,7 @@
   }
 }
 
-/* Phones: the bottom tab bar carries every primary destination, so the header
- * collapses to wordmark + account cluster. Targets stay >= 44px. */
+/* Phones use a persistent Stocks shortcut and an in-flow Menu. */
 @media (max-width: 40rem) {
   .nav {
     display: none;
@@ -293,4 +297,104 @@
 @media(max-width:40rem) {
   .wordmark img { width:min(7.5rem, 28vw); }
   :global(body:has([data-courtside-home])) .inner { min-height:4.5rem; }
+}
+
+/* Ordinary disclosures share link targets and focus styling. */
+.disclosure {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gh-s2);
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--gh-s2) var(--gh-s3);
+  border: 1px solid var(--gh-control);
+  border-radius: var(--gh-radius);
+  background: var(--gh-bg-raised);
+  color: var(--gh-text);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.disclosure:hover { background: var(--gh-bg-hover); }
+.disclosure[data-current] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.4em; }
+.compactNav { display: none; }
+
+/* Normal page flow outside SiteChrome: enlarged menus scroll with the page. */
+.panel {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: var(--gh-s4);
+  background: var(--gh-bg-raised);
+  border-bottom: 1px solid var(--gh-border);
+}
+.panel[hidden] { display: none; }
+.panelLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gh-s2);
+}
+.panelLinks + .panelLinks { margin-top: var(--gh-s4); }
+.panelTitle {
+  flex-basis: 100%;
+  margin: 0;
+  font-family: var(--gh-font-body);
+  font-size: 0.95rem;
+  color: var(--gh-text-dim);
+}
+.panelLinks a,
+.compactNav a,
+.panelAccount > a {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--gh-s2) var(--gh-s3);
+  border-radius: var(--gh-radius);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.panelLinks a,
+.compactNav a { color: var(--gh-text-dim); }
+.panelLinks a:hover,
+.compactNav a:hover { color: var(--gh-text); background: var(--gh-bg-hover); }
+.panelLinks a[aria-current="page"],
+.compactNav a[aria-current="page"] {
+  color: var(--gh-accent);
+  background: transparent;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
+}
+.panelAccount {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gh-s3);
+  margin-top: var(--gh-s4);
+  padding-top: var(--gh-s4);
+  border-top: 1px solid var(--gh-border);
+}
+.panelAccount .name { max-width: none; }
+.panelAccount .displayName { max-width: 100%; }
+@media not all and (max-width: 40rem) { .panel[data-kind="menu"] { display: none; } }
+@media (max-width: 40rem) {
+  .inner { padding: var(--gh-s2); gap: var(--gh-s2); }
+  .account { display: none; }
+  .compactNav {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    min-width: 0;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--gh-s1);
+  }
+  .compactNav a,
+  .compactNav .disclosure { padding: var(--gh-s2) var(--gh-s1); font-size: 0.875rem; }
+  .panel[data-kind="league"] { display: none; }
+  .panelLinks a { flex: 1 1 calc(50% - var(--gh-s2)); }
 }
