@@ -63,7 +63,10 @@ src/
                  # Transaction, DraftPick, Season, LeagueStats, PlayerDetail,
                  # TeamProfile, PowerRanking, PlayoffOdds, RecordBook,
                  # MatchupPreview, PlayerMove, PlayerStock/StockMarket,
-                 # TradeVerdict/analyzeTrade.
+                 # TradeVerdict/analyzeTrade, ManagerArchetype (GM IQ:
+                 # per-season manager archetypes — MetricId, ARCHETYPES,
+                 # percentileRank, assignArchetype's documented decision
+                 # table, buildArchetypeProfiles, currentArchetype).
                  # Types + tiny helpers only. formatSeasonStatus(Season.status)
                  # renders the human status ("pre_season" -> "Preseason").
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
@@ -97,6 +100,12 @@ src/
                  # getDefendingChampion (champion roster id from the
                  # playoff winners bracket; null until someone wins —
                  # feeds TeamAvatar's isChampion).
+    manager-archetypes.ts # GM IQ loaders: getManagerArchetypes /
+                 # getManagerArchetype — pure reads of the baked 2025
+                 # metrics (gm-archetypes-2025.ts) through the domain's
+                 # buildArchetypeProfiles. No Sleeper, no DB, no cache:
+                 # the season is final, so the input never changes. The
+                 # raw map is an injectable parameter (rule 11).
     db.ts        # SECOND DOOR: Vercel Postgres via Drizzle. Schema +
                  # lazy client. Nothing else imports drizzle or SQL.
     arcade.ts    # GameStore contract + DrizzleGameStore + FakeGameStore
@@ -127,6 +136,11 @@ src/
                  # roster (headshots, every name -> player page), game
                  # log, rookie picks, recent wire moves. Receives domain
                  # objects, never fetches.
+                 # GmArchetypeCard: the GM IQ card — one manager's
+                 # archetype from real season behavior (archetype name +
+                 # tagline, five percentile bars, season label,
+                 # prior-manager note). Null archetype renders an honest
+                 # empty state.
     player/      # "Who is this guy": one NBA player's page — headshot,
                  # position pill, NBA team, owning GOAT Hoopers roster
                  # (or Free Agent), rookie-draft slot, wire history.
