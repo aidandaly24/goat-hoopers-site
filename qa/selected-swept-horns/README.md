@@ -1,6 +1,6 @@
 # Selected A artwork evidence
 
-Actual selected production SVGs, authored by Aidan's Dot on base `f5be2b7ee6821ed8f69e22ca8782abb2a7192ea8`.
+Actual selected production SVGs, authored by Aidan's Dot on base `d80e9c4d515b7aed0a09998caaa6f1a1d9a92057`.
 
 - `validation.json`: offline artifact/consumer checks; rerun `python3 scripts/verify-swept-horns-logo.py` from the repo root.
 - `metadata-check.json`: actual locked cached Next metadata-loader output; isolated compiler check, not an app build.

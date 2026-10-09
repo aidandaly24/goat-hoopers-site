@@ -8,7 +8,7 @@ Favicon light mode retains existing clay `#A54429`; dark mode uses existing crea
 
 ## Ownership and review gate
 
-Aidan's Dot owns branch `dot/selected-swept-horns`, base `f5be2b7ee6821ed8f69e22ca8782abb2a7192ea8`. In-progress HOLD note was posted on #91 before edits. PR93 is merged and untouched. Eight current open PR file lists were checked; no asset overlap. PR113/#84 retains shared-shell and DESIGN.md ownership; PR110 retains rejected-hooper removal. DESIGN.md's older logo decision needs the coordinator's narrow reconciliation after reviewing this selected publication. This PR intentionally avoids those concurrently owned files.
+Aidan's Dot owns branch `dot/selected-swept-horns`, base `d80e9c4d515b7aed0a09998caaa6f1a1d9a92057`. In-progress HOLD note was posted on #91 before edits. PR93 is merged and untouched. Eight current open PR file lists were checked; no asset overlap. Main advanced with the independent real-news/search change during publication; it was merged into this owned branch without conflict or changes to that work. PR113/#84 retains shared-shell and DESIGN.md ownership; PR110 retains rejected-hooper removal. DESIGN.md's older logo decision needs the coordinator's narrow reconciliation after reviewing this selected publication. This PR intentionally avoids those concurrently owned files.
 
 **Draft / HOLD MERGE.** Independent exact-head artwork/source review is required. No self-merge or deployment. `vercel.json` remains unchanged with `git.deploymentEnabled=false`.
 
