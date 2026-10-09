@@ -42,13 +42,10 @@ export type { MatchupPreview } from "./matchup-preview";
 export type { Transaction, TransactionType, PlayerMove } from "./transaction";
 export type { DraftPick } from "./draft";
 export type {
-  NewsArticle,
-  NewsKind,
-  NewsSection,
+  RealNewsArticle,
+  RealNewsSection,
+  NewsOutlet,
   PlayerRef,
-  TeamRef,
-  Publication,
-  PublicationId,
 } from "./news";
 export type {
   ChampionBanner,
@@ -59,7 +56,7 @@ export type {
   LeagueRecord,
   TimelineEntry,
 } from "./history";
-export { PUBLICATIONS, NEWS_SECTIONS } from "./news";
+export { NEWS_SECTIONS } from "./news";
 export type {
   PlayerStock,
   PlayerStatProfile,

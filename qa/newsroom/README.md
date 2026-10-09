@@ -34,10 +34,26 @@ At 200% root text, the unchanged shared header overflows (630px at phone widths,
 bounds; it does not claim a full-page zoom pass. Shared navigation is separately
 owned. Tokens/globals/header are unchanged.
 
-`?state=empty`, `?state=sparse`, `?state=long` and `?state=changed` supply bounded variants. Native
+`?state=empty`, `?state=sparse`, `?state=long`, `?state=changed`,
+`?state=timestamp` and `?state=duplicate` supply bounded frozen variants. Native
 story/section history retains unrelated fixture queries. Pure grouping tests
 run in the offline suite under `src/surfaces/news/stories.test.ts`. Reader links
-include a complete supplied-article snapshot fingerprint. A later feed reusing
-an ID, an unguarded legacy link or an ambiguous ID must show unavailable;
+include a meaningful-content fingerprint: only regenerated rookie/rumor/take
+clocks are excluded, while transaction-derived time is retained. A meaningful
+replacement, an unguarded link or an ambiguous ID must show unavailable;
 `storyLinks.test.ts` verifies that regression without a DB or browser. The runner
-also contains the revised browser checks, which still await disk clearance.
+also contains the revised browser checks.
+
+For the stable-revision follow-on, coordinate the shared Chrome slot first, then:
+
+```sh
+node --import tsx qa/newsroom/revisions.mjs /absolute/path/playwright/index.mjs '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+```
+
+This focused runner uses the same production components and frozen fixture
+function, no production/DB requests. It compares separately loaded timestamp
+and changed-content snapshots, exercises exact v1 compatibility/expiry and v2
+direct reading, explicit current-story recovery, voices, history and focus. It
+records the exact Git head/tree and checks, stops above the128MiB disk floor,
+preserves old evidence and closes its own browser/server. It adds no Next build
+or installation, and retains the App Router/physical-iOS limitation above.

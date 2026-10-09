@@ -185,14 +185,13 @@ src/
                  # (router.replace, no reload); restored on load with unknown
                  # IDs dropped silently. "> COPY LINK" copies the share URL.
                  # objects, never fetches.
-    news/        # The League News Network: MyLeague-style auto-generated
-                 # coverage. Newsroom (front page), NewsFeed (client-side
-                 # section chips: Latest / Rookie Wire / Rumor Mill /
-                 # Hot Takes), native full-story reader with exact voice URLs.
-                 # Articles are generated from real league events by
-                 # generateLeagueNews (src/data/news.ts), voiced by five
-                 # fictional publications (domain/news.ts). Receives domain
-                 # objects, never fetches.
+    news/        # The League News Network: real NBA articles from the
+                 # ESPN + CBS Sports RSS feeds. Newsroom (front page),
+                 # NewsFeed (client-side section chips: Latest / League
+                 # Players / Rookie Wire / Free Agency). Headlines link
+                 # out to the real article; mentioned players chip-link
+                 # to /player/[playerId]. Receives domain objects,
+                 # never fetches.
     history/     # The trophy room: neutral league history page; legacy
                  # --gh-wood-* names alias shared roles. Banner fabric/brass
                  # remain scoped materials within the championship object.
@@ -429,20 +428,48 @@ requires an explicit retention decision; reconstruction cannot recover old
 sentiment/injury observations. Raw box scores are needed to re-score old
 games under future league scoring changes.
 
-### The League News Network
+### The League News Network (real articles)
 
 `getLeagueNews` (in `src/data/league.ts`) feeds the `/news` page and the
-ticker's news mode. The pure `generateLeagueNews` in `src/data/news.ts`
-turns real league events into articles: recent trades get the full
-five-publication treatment (Shams breaks it, ESPN analyzes, The Athletic
-goes deep on the numbers, Bleacher Report gets DRAMATIC, Skip Bayless
-loses his mind), waiver splashes get three voices, and the top 10 rookie
-draft picks get covered on the Rookie Wire. Rumors (repeat-trade
-candidates, the busiest front office, buy-low watch) and hot takes are
-derived from real signals and always labeled as what they are — the
-fiction is honest. `Transaction.sides` (per-team trade view, added in
-`toTransactions`) powers the trade narratives. Empty inputs → empty feed;
-surfaces render honest empty states and the ticker falls back to stocks.
+ticker's news mode with REAL NBA articles — no generated fiction. The
+pipeline:
+
+```
+ESPN + CBS Sports RSS  →  fetchRssFeed (src/data/real-news.ts, fetch injected)
+                       →  parseRssItems (pure, regex-based — no DOMParser server-side)
+                       →  matchPlayersToArticle (pure full-name matching vs the
+                          projected player directory)
+                       →  buildRealNewsFeed (pure: strip HTML, ~200-char summaries,
+                          dedupe by URL, newest-first, section assignment)
+                       →  loadLeagueNews (src/data/league.ts: RSS in parallel via
+                          Promise.allSettled + roster/directory/draft-board
+                          identity inputs, all injectable per rule 11)
+                       →  createLeagueNewsCache (5-min shared copy, last-good on
+                          refresh failure)
+```
+
+- **Sources:** `https://www.espn.com/espn/rss/nba/news` and
+  `https://www.cbssports.com/rss/headlines/nba/`. The Athletic is
+  paywalled and Bleacher Report's feed endpoint is dead — deliberately
+  not attempted.
+- **Sections:** every article is always in Latest. A mention of a
+  rostered league player adds League Players; a mention of a 2026
+  drafted rookie adds Rookie Wire; a mention of an NBA player on no
+  league roster adds Free Agency.
+- **Resilience:** one feed failing still yields the other; both feeds
+  failing throws so the TTL cache preserves last-good (cold failure →
+  honest empty feed). Failed identity inputs (rosters/directory/draft)
+  degrade to articles without player chips rather than killing the feed.
+- **Matching:** full names only (never bare surnames), case-insensitive,
+  whole-word, suffix-aware ("Jr.", "II"), longest-first with matched
+  spans blanked so "Mikel Brown" can't false-positive inside
+  "Mikel Brown Jr.".
+- `/news` revalidates every 10 minutes (the requested article cadence);
+  the shared 5-min cache means the root-layout ticker and `/news` never
+  recompute independently. Surfaces render the outlet masthead, the
+  headline as an external link to the real article, a relative
+  timestamp, the summary, and subtle mentioned-player chips
+  (plain text until hover) linking to `/player/[playerId]`.
 
 The Newsroom groups only recognized existing rookie/trade/waiver article-ID
 families with matching kind, section and complete player/team refs. Ambiguous
@@ -454,9 +481,12 @@ and actor links remain in the native reader with visible generated/parody labels
 pushes, voice changes replace, Back/Forward restore. Close/Escape goes Back only
 for an entry opened in the current visit; initial deep links close by replacement.
 Missing, duplicate, unguarded or changed article snapshots are explicitly
-unavailable. The presentation-only fingerprint includes all supplied fields;
-reused render slots cannot reopen another event, and regenerated content/time
-may expire a link. `qa/newsroom/` mounts production components with synthetic
+unavailable. New v2 fingerprints exclude only regenerated rookie/rumor/take
+timestamps; trade/waiver transaction-derived time, exact content and actor refs
+remain guarded. v1 matches only its complete original snapshot. Unverifiable
+versions offer explicit, labelled current-story navigation only for a unique
+candidate, never automatic substitution. Policy: `docs/newsroom-content-revisions.md`.
+`qa/newsroom/` mounts production components with synthetic
 props and approved local fonts/chrome, not an app route. Its native-anchor
 adapter does not verify Next App Router restoration.
 
