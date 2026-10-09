@@ -526,6 +526,18 @@ describe("matchPlayersToArticle via shared playerSearchKey", () => {
       ])
     ).toEqual([]);
   });
+  it("suffix is recognized before punctuation: 'LeBron James Jr.,' yields no chip", () => {
+    // #122 follow-up: suffixSpanEnd read the post-span word until a
+    // space, so "LeBron James Jr., ..." normalized to "... jr, ..."
+    // was not recognized as suffixed and the lone shorter directory
+    // name "LeBron James" incorrectly got the chip. The suffix word
+    // must read until a space OR punctuation.
+    expect(
+      matchPlayersToArticle("LeBron James Jr., and not Sr., dropped 40", [
+        { playerId: "p-lebron", name: "LeBron James" },
+      ])
+    ).toEqual([]);
+  });
   it("reserves EVERY occurrence of a longer name, not just the first", () => {
     // Dot's repro: with "Mikel Brown Jr." twice in the text, the old
     // matcher blanked only the first occurrence, letting the shorter
