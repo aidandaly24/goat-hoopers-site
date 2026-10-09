@@ -79,6 +79,7 @@ export type RawNbaState = {
   /** Sleeper NBA uses leg; preseason is zero. */
   leg?: number;
   season_start_date?: string;
+  previous_season?: string;
 };
 
 export type RawMatchupEntry = {
@@ -182,6 +183,11 @@ export function fetchUsers(): Promise<RawUser[]> {
 /** NBA season state (current week, pre/regular/post). Cache 5 min. */
 export function fetchNbaState(): Promise<RawNbaState> {
   return sleeperFetch<RawNbaState>(`/state/nba`, 300);
+}
+
+/** Publication rechecks use a fresh leg; no cached state may reopen a closed week. */
+export function fetchAiPublicationState(): Promise<RawNbaState> {
+  return sleeperFetch<RawNbaState>(`/state/nba`, 0);
 }
 
 /**

@@ -9,7 +9,9 @@ import { aiDataDeadline } from "./deadline";
 /** Fixed launch budgets for ten managers, shared across all serverless instances. */
 export const AI_BUDGET = Object.freeze({ userHour: 5, userDay: 20, globalDay: 100, globalTokensDay: 100000, concurrent: 2, leaseMs: 60000, duplicateMs: 600000, retentionMs: 7 * 86400000 });
 export type AiLegacyIdentity = { kind: "legacy"; userId: string; tokenHash: string };
-export type AiIdentity = AiLegacyIdentity | { kind: "friends"; userId: string; sessionId: string; subject: string };
+/** Only a secret-authenticated server cron may construct this fixed app principal. */
+export type AiWeeklyJobIdentity = { kind: "weekly_job"; userId: string; auth: "legacy" | "friends" };
+export type AiIdentity = AiLegacyIdentity | { kind: "friends"; userId: string; sessionId: string; subject: string } | AiWeeklyJobIdentity;
 type UserCounter = { day: string; requests: number; hour: string; hourly: number; denied: number; signals: number; lastSeen: number };
 export type AiBudgetState = {
   version: 1;
@@ -26,6 +28,7 @@ export type AiStoredWeek = { key: string; hash: string; manifest: AiGenerationMa
 export type AiPersistence = {
   readControl(): Promise<AiControl | null>;
   compareControl(revision: number, state: AiBudgetState, identity?: AiIdentity, disable?: boolean): Promise<boolean>;
+  authorizeWeeklyOperator(identity: AiWeeklyJobIdentity): Promise<boolean>;
   sealWeek(week: AiStoredWeek): Promise<AiStoredWeek>;
   getWeek(key: string): Promise<AiStoredWeek | null>;
   completeWeek(key: string, hash: string, slate: AiWeeklySlate): Promise<boolean>;
@@ -37,7 +40,8 @@ const hashValid = (v: unknown): v is string => typeof v === "string" && /^[a-f0-
 const authIdValid = (v: unknown): v is string => typeof v === "string" && v.length > 0 && v.length <= 256 && !/[\s\u0000-\u001f\u007f]/.test(v);
 export function validAiIdentity(identity: AiIdentity): boolean {
   return uuidValid(identity.userId) && (identity.kind === "legacy" ? hashValid(identity.tokenHash)
-    : identity.kind === "friends" && authIdValid(identity.sessionId) && authIdValid(identity.subject));
+    : identity.kind === "friends" ? authIdValid(identity.sessionId) && authIdValid(identity.subject)
+      : identity.kind === "weekly_job" && ["legacy", "friends"].includes(identity.auth));
 }
 const dateValid = (v: unknown) => typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v) && Number.isFinite(Date.parse(v));
 
@@ -128,7 +132,7 @@ export class AiDeciderStore {
 
 /** Real shared Postgres persistence. CAS guarantees survive cold starts and overlap. */
 export class PostgresAiPersistence implements AiPersistence {
-  constructor(private readonly db: Db) {}
+  constructor(private readonly db: Db, private readonly weeklyOperator?: { userId: string; auth: "legacy" | "friends" }) {}
   private execute(statement: SQL) { return aiDataDeadline(this.db.execute(statement)); }
   async readControl(): Promise<AiControl | null> {
     const result = await this.execute(sql`SELECT enabled, revision, state FROM ai_decider_control WHERE id = 'goat-hoopers'`);
@@ -137,7 +141,10 @@ export class PostgresAiPersistence implements AiPersistence {
   }
   async compareControl(revision: number, state: AiBudgetState, identity?: AiIdentity, disable = false): Promise<boolean> {
     if (!validBudgetState(state) || (identity && !validAiIdentity(identity))) throw new Error("state_unavailable");
-    const auth = !identity ? sql`` : identity.kind === "legacy"
+    if (identity?.kind === "weekly_job" && !this.matchesWeeklyOperator(identity)) return false;
+    const auth = !identity ? sql`` : identity.kind === "weekly_job"
+      ? sql`AND enabled = true AND EXISTS (${this.weeklyMembership(identity)})`
+      : identity.kind === "legacy"
       ? sql`AND enabled = true AND EXISTS (SELECT 1 FROM sessions s JOIN site_users u ON u.id = s.user_id WHERE s.token_hash = ${identity.tokenHash} AND u.id = ${identity.userId}::uuid AND u.team_id ~ '^(?:[1-9]|10)$' AND s.expires_at > now())`
       : sql`AND enabled = true AND EXISTS (
           SELECT 1 FROM auth_session s
@@ -149,6 +156,19 @@ export class PostgresAiPersistence implements AiPersistence {
             AND u.team_id ~ '^(?:[1-9]|10)$' AND s.expires_at > now())`;
     const result = await this.execute(sql`UPDATE ai_decider_control SET state = ${JSON.stringify(state)}::jsonb, revision = revision + 1, enabled = CASE WHEN ${disable} THEN false ELSE enabled END WHERE id = 'goat-hoopers' AND revision = ${revision} ${auth} RETURNING revision`);
     return result.rows.length === 1;
+  }
+  private matchesWeeklyOperator(identity: AiWeeklyJobIdentity): boolean {
+    return validAiIdentity(identity) && identity.userId === this.weeklyOperator?.userId && identity.auth === this.weeklyOperator?.auth;
+  }
+  private weeklyMembership(identity: AiWeeklyJobIdentity): SQL {
+    return identity.auth === "friends"
+      ? sql`SELECT 1 FROM site_users u JOIN account_identities i ON i.user_id = u.id JOIN auth_user a ON a.id = i.subject WHERE u.id = ${identity.userId}::uuid AND u.team_id ~ '^(?:[1-9]|10)$' AND i.active = true AND a.email_verified = true`
+      : sql`SELECT 1 FROM site_users u WHERE u.id = ${identity.userId}::uuid AND u.team_id ~ '^(?:[1-9]|10)$'`;
+  }
+  async authorizeWeeklyOperator(identity: AiWeeklyJobIdentity): Promise<boolean> {
+    if (!this.matchesWeeklyOperator(identity)) return false;
+    const result = await this.execute(sql`SELECT EXISTS (${this.weeklyMembership(identity)}) AS authorized`);
+    return result.rows[0]?.authorized === true;
   }
   async sealWeek(week: AiStoredWeek): Promise<AiStoredWeek> {
     await this.execute(sql`INSERT INTO ai_decider_weeks (week_key, input_hash, generation_manifest, input, prepared_slate) VALUES (${week.key}, ${week.hash}, ${JSON.stringify(week.manifest)}::jsonb, ${JSON.stringify(week.input)}::jsonb, ${JSON.stringify(week.slate)}::jsonb) ON CONFLICT (week_key) DO NOTHING`);
@@ -171,4 +191,4 @@ export class PostgresAiPersistence implements AiPersistence {
   }
 }
 
-export function getAiDeciderStore(): AiDeciderStore { return new AiDeciderStore(new PostgresAiPersistence(getDb())); }
+export function getAiDeciderStore(weeklyOperator?: { userId: string; auth: "legacy" | "friends" }): AiDeciderStore { return new AiDeciderStore(new PostgresAiPersistence(getDb(), weeklyOperator)); }

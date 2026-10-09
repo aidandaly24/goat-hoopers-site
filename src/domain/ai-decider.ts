@@ -2,6 +2,7 @@
 export const AI_DECISION_MODEL = "gpt-6-luna" as const;
 export const AI_CUSTOM_PROMPT_VERSION = "goat-custom-choice-v1";
 export const AI_WEEKLY_PROMPT_VERSION = "goat-weekly-lock-in-v1";
+export const AI_LINEUP_PREVIEW_PROMPT_VERSION = "goat-lineup-preview-v2";
 export const AI_PROBABILITY_LABEL = "Model probability — not calibrated sports odds" as const;
 
 /** Drafts need no account. Only an authenticated server run spends a budget. */
@@ -27,20 +28,23 @@ export type AiSnapshotMetadata = {
   promptVersion: string;
   capturedAt: string;
   cutoffAt: string;
-  startsAt: string;
-  endsAt: string;
+  /** Null when Sleeper's leg, rather than an unverified calendar, bounds a preview. */
+  startsAt: string | null;
+  endsAt: string | null;
   statsSeason: string;
   scoringMode: AiWeeklyInput["scoringMode"];
   baselineVersion: string;
+  comparison?: "preseason_lineup_preview" | "weekly_lineup_preview";
+  sourceLeg?: number;
 };
 
 /** Immutable generation provenance. Historical reads do not use today's policy. */
 export type AiGenerationManifest = {
-  schemaVersion: 1;
+  schemaVersion: 1 | 2;
   model: string;
   promptVersion: string;
   instructions: string;
-  baselineVersion: "prior-starter-ppg-v1";
+  baselineVersion: "prior-starter-ppg-v1" | "prior-observed-starter-ppg-v2";
 };
 
 export type AiFailureStatus = "unavailable" | "invalid" | "unauthenticated" | "rate_limited" | "busy" | "refused" | "timeout";
@@ -89,14 +93,21 @@ export type AiWeeklyInput = {
   week: number;
   capturedAt: string;
   cutoffAt: string;
-  startsAt: string;
-  endsAt: string;
+  startsAt: string | null;
+  endsAt: string | null;
   phase: "pre" | "regular" | "post";
   scoringMode: "lock_in" | "game_pick" | "unknown";
   scoring: Record<string, number>;
   starterSlots: string[];
   statsSeason: string;
   statsAvailableAt: string;
+  /** Supplied only by the server's public-source loader. No numeric mode mapping. */
+  preview?: {
+    kind: "lineup_strength";
+    sourceLeg: number;
+    seasonStartDate: string;
+    gameModeCode: number | null;
+  };
   matchups: { matchupId: string; teamIds: [string, string] }[];
   teams: {
     teamId: string;
@@ -114,4 +125,21 @@ export type AiWeeklyOutcome = {
   recordedAt: string;
   final: true;
   teamPoints: { teamId: string; points: number }[];
+};
+
+/** Publication is an operator operation; public reads never generate. */
+export type AiWeeklyPublishResponse =
+  | { status: "ready"; weekly: AiWeeklySlate }
+  | Exclude<AiDecideResponse, { status: "ready" }>;
+
+/** Minimal public-source context for the next pre-generated lineup preview. */
+export type AiPublicationContext = {
+  leagueId: string;
+  season: string;
+  phase: "pre" | "regular";
+  leg: number;
+  week: number;
+  seasonStartDate: string;
+  statsSeason: string;
+  gameModeCode: number | null;
 };

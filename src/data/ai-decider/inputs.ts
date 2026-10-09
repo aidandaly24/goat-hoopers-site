@@ -5,7 +5,7 @@ import { fppgUnderScoring } from "../transform";
 import { GOAT_LEAGUE_ID } from "./weekly";
 
 /** Reviewed week dates/mode are explicit. The numeric game_mode is not mapped. */
-export type AiWeekPreparation = Pick<AiWeeklyInput, "season" | "week" | "capturedAt" | "cutoffAt" | "startsAt" | "endsAt" | "phase" | "scoringMode" | "statsSeason" | "statsAvailableAt">;
+export type AiWeekPreparation = Pick<AiWeeklyInput, "season" | "week" | "capturedAt" | "cutoffAt" | "startsAt" | "endsAt" | "phase" | "scoringMode" | "statsSeason" | "statsAvailableAt" | "preview">;
 
 export function aiMatchupPairs(entries: RawMatchupEntry[]): AiWeeklyInput["matchups"] {
   const groups = new Map<number, string[]>();
@@ -23,12 +23,13 @@ export function buildAiWeeklyInput(preparation: AiWeekPreparation, league: RawLe
     leagueId: GOAT_LEAGUE_ID,
     ...preparation,
     scoring: { ...league.scoring_settings },
-    starterSlots: [...(league.roster_positions ?? [])],
+    // BN denotes bench slots, not starters. Unknown positions remain unsupported.
+    starterSlots: (league.roster_positions ?? []).filter(slot => slot !== "BN"),
     matchups: aiMatchupPairs(matchups),
     teams: rosters.map(roster => {
       // Week-specific matchup starters are authoritative. Missing is unknown.
       const starters = matchups.find(m => m.roster_id === roster.roster_id)?.starters;
-      return { teamId: String(roster.roster_id), starters: [...(starters ?? [])], reserve: [...(roster.reserve ?? [])], taxi: [...(roster.taxi ?? [])], eligibilityKnown: Object.hasOwn(roster, "reserve") && Object.hasOwn(roster, "taxi"), players: [...new Set(starters ?? [])].filter(id => id !== "0").map(playerId => {
+      return { teamId: String(roster.roster_id), starters: [...(starters ?? [])], reserve: [...(roster.reserve ?? [])], taxi: [...(roster.taxi ?? [])], eligibilityKnown: Object.hasOwn(roster, "reserve") && Object.hasOwn(roster, "taxi") && !!starters && starters.every(id => roster.players.includes(id)), players: [...new Set(starters ?? [])].filter(id => id !== "0").map(playerId => {
         const production = stats[playerId] && roster.players.includes(playerId) ? fppgUnderScoring(stats[playerId], league.scoring_settings) : null;
         return { playerId, priorFantasyPpg: production?.fppg ?? null, priorGames: production?.games ?? null };
       }) };
