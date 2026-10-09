@@ -6,7 +6,7 @@ import type { MouseEvent } from "react";
 import type { NewsArticle, NewsSection } from "@/domain/news";
 import { NEWS_SECTIONS, PUBLICATIONS } from "@/domain/news";
 import { KIND_LABEL, readingStories, storyDate } from "./stories";
-import { resolveStory, storyHref, storyRevision } from "./storyLinks";
+import { resolveStory, storyHref, storyRevision, uniqueStory } from "./storyLinks";
 import { StoryText } from "./StoryText";
 import styles from "./NewsFeed.module.css";
 
@@ -42,6 +42,7 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
   const storyId = params.get("story");
   const stories = readingStories(articles, section);
   const selected = resolveStory(articles, storyId, params.get("revision"));
+  const currentStory = !selected ? uniqueStory(articles, storyId) : undefined;
   const selectedStory = selected ? readingStories(articles, "latest").find(s => s.reactions.includes(selected)) : undefined;
   const lead = stories[0];
   const dialog = useRef<HTMLDialogElement>(null);
@@ -51,6 +52,7 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
   const readerVisit = useRef<string | null>(null);
   const wasOpen = useRef(false);
   const closing = useRef(false);
+  const focusCurrent = useRef(false);
 
   useEffect(() => {
     const node = dialog.current;
@@ -62,7 +64,11 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
         heading.current?.focus();
         node.scrollTop = 0;
         wasOpen.current = true;
-      } else if (!selected) heading.current?.focus();
+      } else if (!selected || focusCurrent.current) {
+        heading.current?.focus();
+        if (focusCurrent.current) node.scrollTop = 0;
+      }
+      focusCurrent.current = false;
     } else if (node.open) {
       node.close();
       if (wasOpen.current) {
@@ -92,6 +98,12 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
     closing.current = true;
     if (readerVisit.current && window.history.state?.newsroomReader === readerVisit.current) window.history.back();
     else navigate(section, null, true);
+  }
+  function readCurrent(event: MouseEvent<HTMLAnchorElement>, article: NewsArticle) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    focusCurrent.current = true;
+    navigate(section, article, true);
   }
 
   return <div>
@@ -145,7 +157,15 @@ export function NewsFeed({ articles }: { articles: NewsArticle[] }) {
             {selected.players.map(p => <Link key={`p-${p.playerId}`} href={`/player/${p.playerId}`}>{p.name}</Link>)}
             {selected.teams.map(t => <Link key={`t-${t.teamId}`} href={`/teams/${t.teamId}`}>{t.name}</Link>)}
           </nav>}
-        </> : <><h2 ref={heading} id="news-reader-title" tabIndex={-1} className={styles.readerTitle}>Story unavailable</h2><p>This story is no longer in the current feed. Its link has not been replaced with a different reaction.</p><button className={styles.action} onClick={close}>Return to headlines</button></>}
+        </> : <>
+          <h2 ref={heading} id="news-reader-title" tabIndex={-1} className={styles.readerTitle}>Story unavailable</h2>
+          <p>The version in this link can’t be verified against the current feed. Older links can expire when generated coverage refreshes.</p>
+          {currentStory && <>
+            <p>The current story below may cover a different event.</p>
+            <p><a className={styles.read} href={storyHref(section, currentStory)} onClick={e => readCurrent(e, currentStory)}>Read current story: {currentStory.headline}</a></p>
+          </>}
+          <button className={styles.action} onClick={close}>Return to headlines</button>
+        </>}
       </div>
     </dialog>
   </div>;

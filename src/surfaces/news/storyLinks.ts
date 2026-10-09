@@ -40,21 +40,35 @@ function sha256(text: string): string {
   return state.map(n => n.toString(16).padStart(8, "0")).join("");
 }
 
-/** Render keys can be reused. Bind a link to every observable snapshot field. */
-export function storyRevision(article: NewsArticle): string {
-  return `v1-${sha256(JSON.stringify([
+/** Trade/waiver time is transaction-derived; other kinds regenerate their clock. */
+function revisionFor(article: NewsArticle, version: "v1" | "v2"): string {
+  return `${version}-${sha256(JSON.stringify([
     article.id, article.publication, article.kind, article.section,
-    article.headline, article.body, article.publishedAt,
+    article.headline, article.body,
+    ...(version === "v1" || article.kind === "trade" || article.kind === "waiver" ? [article.publishedAt] : []),
     article.players.map(p => [p.playerId, p.name]),
     article.teams.map(t => [t.teamId, t.name]),
   ]))}`;
 }
 
-/** Legacy, changed and ambiguous links never open a replacement reaction. */
+/** Ignore only volatile generation time; exact text, actor order and IDs stay guarded. */
+export function storyRevision(article: NewsArticle): string {
+  return revisionFor(article, "v2");
+}
+
+/** An unverified current candidate, also used for explicit recovery navigation. */
+export function uniqueStory(articles: NewsArticle[], id: string | null): NewsArticle | undefined {
+  const matches = articles.filter(a => a.id === id);
+  return matches.length === 1 ? matches[0] : undefined;
+}
+
+/** v1 is recoverable only by its exact original tuple; never guess its old time. */
 export function resolveStory(articles: NewsArticle[], id: string | null, revision: string | null): NewsArticle | undefined {
   if (!id || !revision) return undefined;
-  const matches = articles.filter(a => a.id === id);
-  return matches.length === 1 && storyRevision(matches[0]) === revision ? matches[0] : undefined;
+  const article = uniqueStory(articles, id);
+  if (!article) return undefined;
+  const version = revision.startsWith("v1-") ? "v1" : revision.startsWith("v2-") ? "v2" : null;
+  return version && revisionFor(article, version) === revision ? article : undefined;
 }
 
 export function storyHref(section: NewsSection, article: NewsArticle): string {
