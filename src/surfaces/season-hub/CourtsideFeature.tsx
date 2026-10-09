@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element -- Existing, pre-sized court image bypasses optimizer quota. */
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import type { Matchup } from "@/domain";
 import type { LiveClubhouseDirectoryEntry } from "@/domain/clubhouse-directory";
@@ -36,18 +36,16 @@ function previewPeriod(snapshot: AiSnapshotMetadata | null): string | null {
   return snapshot?.startsAt && snapshot.endsAt ? null : "Period dates unavailable.";
 }
 
-/** This week's story → select a pairing / inspect the floor.
+/** Featured matchup → read the editorial reason / select a pairing / inspect notes.
  * States: dated draft, historical final, live pairing, saved ready/stale pick and unavailable.
  * Saved probabilities require the same season, week and roster IDs; reads never generate.
  * Phones retain the court, five pairings and linked identities in reading order.
+ * The court is a still image; only deliberate team selection moves the context rail.
  * No projected scores, scroll hijacking, ornamental frames or standalone hoopers.
  */
 export function CourtsideFeature({ edition, entries, rosterCounts, preseason, checkedAt, season, aiWeekly, sources }: Props) {
   const [selected, setSelected] = useState<DisplayPair | null>(null);
   const [side, setSide] = useState(0);
-  const [inspecting, setInspecting] = useState(false);
-  const [paused, setPaused] = useState(false);
-  const court = useRef<HTMLElement>(null);
   const livePairs = entries.flatMap((entry, index) => {
     const matchup = entry.currentMatchup;
     return matchup && !entries.slice(0, index).some((previous) =>
@@ -74,7 +72,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
   const context = selected ? preseasonPreview ? "Saved preseason roster pairing. This lineup comparison is not a fantasy-week score forecast; select a team below for its current league context." : isFinal(selected)
     ? "Completed fantasy matchup. Select a team below for its league context."
     : "Current league pairing. Scores are pending; select a team below for its league context."
-    : game.context;
+    : game.selectionReason;
   const week = pairs[0]?.week;
   const savedPick = (pair: DisplayPair) => aiWeekly?.status !== "unavailable" && aiWeekly?.season === season && aiWeekly.week === pair.week
     ? aiWeekly.matchups.find((pick) => pick.teamIds.includes(pair.home.id) && pick.teamIds.includes(pair.away.id))
@@ -82,37 +80,19 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
   const selectedPick = selected ? savedPick(selected) : undefined;
   const selectedResult = selectedPick?.status === "ready" ? selectedPick.result : null;
 
-  useEffect(() => {
-    const node = court.current;
-    if (!node) return;
-    const preference = matchMedia("(prefers-reduced-motion: reduce)");
-    let visible = true;
-    const sync = () => { node.dataset.motion = !paused && !preference.matches && visible && !document.hidden ? "on" : "off"; };
-    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); });
-    observer.observe(node);
-    preference.addEventListener("change", sync);
-    document.addEventListener("visibilitychange", sync);
-    sync();
-    return () => { observer.disconnect(); preference.removeEventListener("change", sync); document.removeEventListener("visibilitychange", sync); };
-  }, [paused]);
-
   return <>
     <div className={cs("feature-heading")}>
       <div>
-        <p className={cs("feature-label")}>{selected ? preseasonPreview ? "Saved preview" : "This week" : "Game of the week"} · {status}</p>
+        <p className={cs("feature-label")}>{selected ? preseasonPreview ? "Selected preseason pairing" : "Selected matchup" : "Featured matchup"} · {status}</p>
         <h1 id="game-title">{title}</h1>
       </div>
       <p className={cs("feature-context")}>{context}</p>
     </div>
     <div className={cs("clubhouse-layout")}>
       <div className={cs("court-column")}>
-        <figure ref={court} className={cs("clubhouse-court")} data-inspecting={inspecting} data-motion="off" id="clubhouse-court">
+        <figure className={cs("clubhouse-court")} id="clubhouse-court">
           <img src="/courtside/arena.jpg" alt="The GOAT Hoopers basketball court, with players on the floor and fans in the stands" width="1440" height="810" fetchPriority="high" />
         </figure>
-        <div className={cs("court-actions")}>
-          <button type="button" aria-pressed={paused} onClick={() => setPaused(!paused)}>{paused ? "Resume motion" : "Pause motion"}</button>
-          <button type="button" aria-pressed={inspecting} aria-controls="clubhouse-court" onClick={() => setInspecting(!inspecting)}>{inspecting ? "Return to wide view" : "Inspect the floor"}</button>
-        </div>
       </div>
       <aside className={cs("week-desk")} aria-labelledby="this-week-title">
         <div className={cs("week-heading")}><h2 id="this-week-title">{aiWeekly ? "AI Decides" : "This week"}</h2><span>{preseasonPreview ? "Preseason preview · target Week 1" : <>{aiWeekly && "This week · "}{week ? `Week ${week}` : "Pairings pending"}{preseason && <><br />Upcoming</>}</>}</span></div>
@@ -149,7 +129,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
           {previewPeriod(aiWeekly.snapshot) && <p className={cs("week-provenance")}>{previewPeriod(aiWeekly.snapshot)}</p>}
         </>}
         <CourtsideDialog label={selected ? "Matchup notes" : "Featured matchup notes"} title={title}>
-          <p>{context}</p><p>{selected ? preseasonPreview ? "Pairing comes from saved preview inputs; no weekly score forecast is implied." : "Pairing and scores come from the current league check; no projected result is implied." : game.selectionReason}</p>
+          <p>{context}</p><p>{selected ? preseasonPreview ? "Pairing comes from saved preview inputs; no weekly score forecast is implied." : "Pairing and scores come from the current league check; no projected result is implied." : game.context}</p>
           <p className={cs("caption")}>{selected ? preseasonPreview ? `Preview inputs captured ${aiWeekly.snapshot?.capturedAt ?? "unavailable"}` : `League check ${checkedAt.slice(0, 10)}` : game.note}</p>
           <div className={cs("notes-teams")}>{teams.map((team) => <Link key={team.identity.id} href={`/teams/${team.identity.id}`}>{team.identity.name} ↗</Link>)}</div>
           {!selected && sources}
@@ -161,7 +141,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
             <ul>{selectedPick?.evidence.map((e, index) => <li key={index}>{e}</li>)}</ul>
           </>}
         </CourtsideDialog>
-        {selected && <button type="button" className={cs("text-link")} onClick={() => { setSelected(null); setSide(0); }}>Back to Game of the Week</button>}
+        {selected && <button type="button" className={cs("text-link")} onClick={() => { setSelected(null); setSide(0); }}>Back to featured matchup</button>}
         <p className={cs("feature-check")}>League check · {checkedAt.slice(0, 10)}</p>
       </aside>
     </div>

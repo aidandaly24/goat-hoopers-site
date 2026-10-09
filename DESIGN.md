@@ -99,6 +99,8 @@ for provenance, reproduction and verification limits.
 
 Direction B homepage implementation keeps the court left and This Week right within the existing 78rem/responsive-gutter contract. The selected row uses type weight alone: no frame, dark strip or selected stripe. AI Decides and This Week share that right-hand sidebar: retain team pictures, selectable pairings, matchup details and the AI playground link, with full bars only for actual saved ready probabilities and explicit unavailable/past-week states. The duplicate lower AI preview is removed. Mobile stacks the sidebar below the court. Compact good/bad/watch stories, the live directory and visible Stocks/Arcade entries reuse the current data contracts and shared Paper + Slate theme.
 
+Aidan’s October 9 homepage correction removes the player-specific skip shortcut and the Pause motion / Inspect the floor controls. The shared shell retains focus-only keyboard skip access. The court stays static; deliberate team selection retains its brief reduced-motion-aware context rail. Label the default story **Featured matchup** and show its existing editorial selection reason; selected sidebar pairings are labelled separately. The approved court-left/sidebar-right grid and saved AI preview remain intact.
+
 ## Shared reading theme — bounded follow-on to #84
 
 Aidan requested one SVG sun/moon button instead of an Appearance dropdown.
