@@ -52,7 +52,9 @@ deadlines. The route has a 60-second maximum duration.
 Token admission uses serialized UTF-8 bytes plus 256 as a conservative upper
 reservation, not a precise tokenizer estimate: 6,144 per interactive request,
 20,000 per weekly batch. This launch adapter expects the documented non-generative
-usage shape with zero output tokens. Unexpected usage/result shapes fail closed.
+usage shape, including input cache details and output reasoning details, with
+zero output/reasoning tokens. Cache detail counts are validated and never
+subtracted from the charged input count. Unexpected usage/result shapes fail closed.
 A reported input-token overrun charges the excess and disables the database
 kill switch, even if probabilities or other output fields are malformed. Usage
 validation runs independently of prediction decoding. Missing or invalid usage,

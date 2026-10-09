@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { generateWeeklyPicks, runAiDecision } from "../service";
 import { loadAiDecidesData } from "../runtime";
 import { AI_WEEKLY_MANIFEST, cachedWeek, currentGenerationManifest, prepareWeeklySlate, recordWeeklyOutcome, validGenerationManifest, weekHash, weekKey, weeklyDecision } from "../weekly";
-import { harness, NOW, providerAnswer, TOKEN, weeklyInput } from "./fixtures";
+import { harness, NOW, providerAnswer, providerUsage, TOKEN, weeklyInput } from "./fixtures";
 
 afterEach(() => vi.useRealTimers());
 const draft = { kind: "custom", prompt: "Which snack?", choices: ["Apple", "Pear"] };
@@ -26,11 +26,26 @@ describe("usage settlement independent of prediction validation", () => {
   });
   it.each([
     undefined, null, {},
-    { input_tokens: -1, output_tokens: 0, total_tokens: -1 },
-    { input_tokens: 1.5, output_tokens: 0, total_tokens: 1.5 },
-    { input_tokens: 100, output_tokens: 1, total_tokens: 101 },
-    { input_tokens: 100, output_tokens: 0, total_tokens: 99 },
-    { input_tokens: 100, output_tokens: 0, total_tokens: 100, unknown: true },
+    { ...providerUsage(), input_tokens: -1, total_tokens: -1 },
+    { ...providerUsage(), input_tokens: 1.5, total_tokens: 1.5 },
+    { ...providerUsage(), input_tokens: Number.MAX_SAFE_INTEGER + 1, total_tokens: Number.MAX_SAFE_INTEGER + 1 },
+    { ...providerUsage(), output_tokens: 1, total_tokens: 101 },
+    { ...providerUsage(), total_tokens: 99 },
+    { ...providerUsage(), unknown: true },
+    { input_tokens: 100, output_tokens: 0, total_tokens: 100 },
+    { ...providerUsage(), input_tokens_details: undefined },
+    { ...providerUsage(), input_tokens_details: null },
+    { ...providerUsage(), input_tokens_details: {} },
+    { ...providerUsage(), input_tokens_details: { cached_tokens: -1, cache_write_tokens: 0 } },
+    { ...providerUsage(), input_tokens_details: { cached_tokens: 0, cache_write_tokens: 0.5 } },
+    { ...providerUsage(), input_tokens_details: { cached_tokens: 101, cache_write_tokens: 0 } },
+    { ...providerUsage(), input_tokens_details: { cached_tokens: 0, cache_write_tokens: 101 } },
+    { ...providerUsage(), input_tokens_details: { cached_tokens: 0, cache_write_tokens: 0, unknown: true } },
+    { ...providerUsage(), output_tokens_details: undefined },
+    { ...providerUsage(), output_tokens_details: null },
+    { ...providerUsage(), output_tokens_details: {} },
+    { ...providerUsage(), output_tokens_details: { reasoning_tokens: 1 } },
+    { ...providerUsage(), output_tokens_details: { reasoning_tokens: 0, unknown: true } },
   ])("fails closed with missing/invalid usage %#, retaining its full reservation and lease", async usage => {
     const h = harness();
     h.create.mockImplementationOnce(async p => ({ ...providerAnswer(p), usage }));

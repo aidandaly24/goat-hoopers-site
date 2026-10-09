@@ -30,8 +30,14 @@ const tokenCount = (v: unknown): v is number => Number.isSafeInteger(v) && (v as
 
 /** Usage is independently trustworthy even when the prediction shape is invalid. */
 export function readDecisionUsage(raw: unknown): number | null {
-  if (!isRecord(raw) || !isRecord(raw.usage) || !exactKeys(raw.usage, ["input_tokens", "output_tokens", "total_tokens"]) || !tokenCount(raw.usage.input_tokens) || raw.usage.output_tokens !== 0 || raw.usage.total_tokens !== raw.usage.input_tokens) return null;
-  return raw.usage.input_tokens;
+  if (!isRecord(raw) || !isRecord(raw.usage)) return null;
+  const usage = raw.usage;
+  if (!exactKeys(usage, ["input_tokens", "input_tokens_details", "output_tokens", "output_tokens_details", "total_tokens"]) || !tokenCount(usage.input_tokens) || usage.output_tokens !== 0 || usage.total_tokens !== usage.input_tokens) return null;
+  const inputDetails = usage.input_tokens_details, outputDetails = usage.output_tokens_details;
+  if (!isRecord(inputDetails) || !exactKeys(inputDetails, ["cached_tokens", "cache_write_tokens"]) || !tokenCount(inputDetails.cached_tokens) || !tokenCount(inputDetails.cache_write_tokens) || inputDetails.cached_tokens > usage.input_tokens || inputDetails.cache_write_tokens > usage.input_tokens) return null;
+  if (!isRecord(outputDetails) || !exactKeys(outputDetails, ["reasoning_tokens"]) || outputDetails.reasoning_tokens !== 0) return null;
+  // Decisions bills all input tokens; cache details never reduce the charged count.
+  return usage.input_tokens;
 }
 
 /** Decode only the documented Decisions choice/refusal shape, never prose or tool calls. */
