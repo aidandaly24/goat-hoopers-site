@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element -- Approved, pre-sized local assets are served directly without image-optimizer quota. */
 import Link from "next/link";
+import { ThemedLogo } from "./ThemedLogo";
 import type { Season } from "@/domain";
 import { formatSeasonStatus } from "@/domain";
 import styles from "./SiteFooter.module.css";
@@ -23,7 +23,7 @@ export function SiteFooter({ season, destinations = footerDestinations }: { seas
       <div className={styles.inner}>
         <div className={styles.brand}>
           <p className={styles.wordmark}>
-            <img src="/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers" width="208" height="55" />
+            <ThemedLogo />
           </p>
           {season && (
             <p className={styles.season}>

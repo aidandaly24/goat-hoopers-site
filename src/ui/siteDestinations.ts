@@ -15,6 +15,7 @@ export const SITE_DESTINATIONS: readonly SiteDestination[] = [
   { href: "/transactions", label: "Transactions", group: "league", footer: true },
   { href: "/draft", label: "Draft", group: "league" },
   { href: "/intel", label: "Intel", group: "league" },
+  { href: "/ai-decides", label: "AI Decides", group: "league" },
   { href: "/trade-analyzer", label: "Trade Analyzer", group: "league" },
   { href: "/weekly", label: "Weekly archive", group: "league", footer: true },
   { href: "/team", label: "My Team", group: "account" },

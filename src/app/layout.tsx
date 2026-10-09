@@ -1,3 +1,4 @@
+import { ThemeBootstrap } from "@/ui/ThemeBootstrap";
 import type { Metadata } from "next";
 import { Anton, Geist_Mono, Inter } from "next/font/google";
 import type { PlayerStock } from "@/domain";
@@ -131,8 +132,10 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
+      <head><ThemeBootstrap /></head>
       <body>
         <SiteHeader user={headerUser} logoutAction={logout} destinations={SITE_DESTINATIONS} ticker={<Ticker />} />
         <div id="main-content" tabIndex={-1}>{children}</div>

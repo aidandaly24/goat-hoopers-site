@@ -71,6 +71,48 @@ The existing primary clay master remains the selected logo; no logo redesign is
 proposed. See the [review README](design-previews/neutral-courtside/README.md)
 for provenance, reproduction and verification limits.
 
+## Shared reading theme — bounded follow-on to #84
+
+Aidan requested one SVG sun/moon button instead of an Appearance dropdown.
+The shared root header owns the sole `ThemeToggle` export from
+`@/ui/ThemeToggle`; pages consume semantic `--gh-*` roles and never mount a
+second control or add page-local theme state/provider. The effective preference
+lives on **`html[data-theme="light|dark"]`**. Only manual `light`/`dark` choices
+use **`goat-hoopers.theme`** in localStorage. Missing, invalid or unreadable
+storage follows the system preference (light if unavailable). System changes
+remain live until a manual choice; blocked writes retain the manual choice for
+the current mount but cannot promise persistence after reload.
+
+The root head applies the preference before paint; the button's deterministic
+server/first-client loading state becomes an ordinary button named for its
+next action: **Switch to dark theme** / **Switch to light theme** after hydration.
+Its action name changes, so it does not use pressed-toggle semantics. Its target is 44×44px at every width, outside phone-hidden
+account/navigation groups. Theme glyph and control colors switch immediately,
+without a hover/background fade. The existing black/white horizontal logos
+switch by CSS at the same dimensions; original SVG assets remain unchanged.
+No reset dropdown, cookie, new provider, framework or data service is added.
+
+Paper + Slate's selected light values remain exact. Slate night uses canvas
+`#151D24`, raised `#1E2932`, hover `#293844`, ink `#F5F4EF`, secondary `#BCC5CD`,
+accent/focus `#9FC3DE` with label `#17212A`, control `#94A2AF` and divider
+`#455462`. Semantic win/loss/live use `#94D5B9` / `#F0AAAA` / `#EDB494`;
+champion/silver/bronze use `#DEC68B` / `#B9C3CC` / `#D5A578`. Existing aliases
+resolve from the html root. Fixed identity/position colors and bounded scene,
+chart-specific and banner materials retain their owners' meanings.
+
+User question → change the reading theme; primary action → toggle dark theme;
+relevant states → system, manual, storage unavailable and loading; narrow layout
+→ one persistent button beside Stocks/Menu; forbidden patterns → appearance
+menu, duplicate provider/control, theme fade with mismatched foreground,
+page-body redesign or logo regeneration. Issue #126 tracks implementation and
+revision-bound evidence; this section does not claim physical Safari or screen
+reader acceptance.
+
+The one shared league list adds **AI Decides** after Intel and before Trade
+Analyzer. Its frontend and homepage entry remain their separate owners' scope;
+this shared-shell draft cannot establish the unfinished destination's body or
+activation. No page-local menu is introduced.
+
 ## What each view should accomplish
 
 1. **Orient:** show league identity, current location and an obvious route back.
