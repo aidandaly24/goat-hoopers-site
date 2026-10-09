@@ -367,6 +367,28 @@ maintainer removes aliases after the last consumer migrates and preserves the
 frozen comparison after the choice, keeping the decision/provenance record. Revisit
 the plan if actual usability evidence contradicts a proposed token or component.
 
+## Navigation consolidation
+
+The bounded navigation release uses desktop **Home, News, Stocks, History,
+Arcade**, then **League tools**: Teams, Transactions, Draft, Intel, Trade
+Analyzer and Weekly archive. The root supplies one typed destination list;
+footer entries derive from it. Phones retain the approved logo, direct
+**Stocks** shortcut and **Menu**. Menu omits Stocks to avoid a duplicate
+destination/current-page announcement, then exposes the other primary links,
+league tools and existing account actions in the same order.
+
+Only the compact ticker/header belongs to the measured sticky stack.
+Disclosures stay in page flow, without a modal role, focus trap or internal
+scroll area. Escape restores trigger focus; activation, route changes and
+responsive layout changes close them. Current links use a plain underline;
+keyboard focus keeps its separate outline and controls retain 44px targets.
+
+Public Teams remains separate from private My Team. Preserve logged-in
+display-name access, logged-out My Team/login/claim and logout. Trade Analyzer
+adds ordinary **Back to Stocks** navigation without changing its share/picker
+behavior. The reviewed navigation delta does not change the live publication
+ticker contract, News bodies, selected artwork or removal paths.
+
 ## Concrete acceptance checks
 
 For each migrated surface, review actual rendering at desktop, 390px and 320px,

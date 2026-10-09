@@ -58,14 +58,6 @@ a {
   color: var(--gh-gold);
 }
 
-/* Mobile: reserve room for the fixed bottom tab bar so the footer and
- * last-row content are never covered. Matches --gh-bp-sm. */
-@media (max-width: 40rem) {
-  body {
-    padding-bottom: var(--gh-mobile-nav-h, calc(var(--gh-tabbar-h) + env(safe-area-inset-bottom, 0px)));
-  }
-}
-
 /* Perceivable control boundaries without making every decorative row rule dark. */
 :where(input:not([type="range"]), select, textarea, label:has(> input[type="search"]), label:has(> input[type="text"])) {
   --gh-border: var(--gh-control);

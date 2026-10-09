@@ -148,3 +148,45 @@ describe("toTransactions trade preservation (issue #27)", () => {
     expect(txs).toHaveLength(0);
   });
 });
+
+describe("Transactions participant and completion repairs", () => {
+  it("keeps declared pick-only participants without player moves or empty sides", () => {
+    const [tx] = toTransactions([rawTrade({roster_ids:[702,703,702],adds:null,drops:null})],TEAMS,[],[],playerDirectory());
+    expect(tx.teamIds).toEqual(["702","703"]);
+    expect(tx.adds).toEqual([]);
+    expect(tx.drops).toEqual([]);
+    expect(tx.sides).toBeUndefined();
+  });
+  it("preserves move-derived order and sides while appending declared-only participants", () => {
+    const [tx] = toTransactions([rawTrade({roster_ids:[703,2,1]})],TEAMS,[],[],playerDirectory());
+    expect(tx.teamIds).toEqual(["1","2","703"]);
+    expect(tx.sides?.map(s=>s.teamId)).toEqual(["1","2"]);
+    expect(tx.sides?.map(s=>s.received.map(p=>p.playerId))).toEqual([["p1"],["p2"]]);
+  });
+  it("does not infer pick owners when declared and player participants are absent", () => {
+    const [tx] = toTransactions([rawTrade({adds:null,drops:null,draft_picks:[{owner_id:703}]})],TEAMS,[],[],null);
+    expect(tx.teamIds).toEqual([]);
+    expect(tx.sides).toBeUndefined();
+  });
+  it("never fabricates empty received-player sides for declared or sending-only teams", () => {
+    const [tx] = toTransactions([rawTrade({adds:{p1:702},drops:{p1:701},roster_ids:[703]})],TEAMS,[],[],playerDirectory());
+    expect(tx.teamIds).toEqual(["702","701","703"]);
+    expect(tx.sides?.map(s=>s.teamId)).toEqual(["702"]);
+    const [empty] = toTransactions([rawTrade({adds:{},drops:null,roster_ids:[703]})],TEAMS,[],[],null);
+    expect(empty.sides).toBeUndefined();
+  });
+  it("ignores malformed, zero, negative, fractional and nonfinite declared IDs", () => {
+    const [tx] = toTransactions([rawTrade({adds:null,drops:null,roster_ids:[0,-1,NaN,Infinity,2.5,Number.MAX_SAFE_INTEGER+1,"703",703] as number[]})],TEAMS,[],[],null);
+    expect(tx.teamIds).toEqual(["703"]);
+  });
+  it.each(["failed","pending","unknown",""])("does not turn explicit %s status into successful activity", status=>{
+    expect(toTransactions([rawWaiver({status})],TEAMS,[],[],playerDirectory())).toEqual([]);
+  });
+  it("preserves completed and status-absent legacy IDs, moves and ordering", () => {
+    const legacy=rawWaiver({transaction_id:"demo-legacy",created:1});
+    const complete=rawTrade({transaction_id:"demo-complete",created:2,status:"complete"});
+    const result=toTransactions([legacy,complete],TEAMS,[],[],playerDirectory());
+    expect(result.map(t=>t.id)).toEqual(["demo-complete","demo-legacy"]);
+    expect(result[1].adds).toEqual([{playerId:"p1",name:"Player One"}]);
+  });
+});
