@@ -13,7 +13,7 @@ export const providerModels = {
       "/send-verification-email": { window: 900, max: 3 } } },
 };
 
-/** Only the private transactional enrollment factory enables signup. The mounted factory never does. */
+/** Only bounded transactional registration/enrollment factories enable signup; the mounted factory never does. */
 export function createFriendsAuth(options: {
   database: BetterAuthOptions["database"];
   config: FriendsAuthConfig;

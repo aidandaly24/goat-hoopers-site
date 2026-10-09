@@ -5,7 +5,7 @@
  * can also get from their invite).
  */
 import { redirect } from "next/navigation";
-import { getCurrentUser } from "@/app/actions";
+import { getCurrentUser, getLegacyCurrentUser } from "@/app/actions";
 import { getSeasonHubData } from "@/data/league";
 import { LoginForm } from "./LoginForm";
 import { friendsAuthEnabled, friendsEnrollmentEnabled } from "@/data/friends-auth/config";
@@ -22,11 +22,11 @@ export default async function LoginPage({
   const enrollment = legacy === "1" && friendsEnrollmentEnabled();
   let user = null;
   try {
-    user = await getCurrentUser();
+    user = enrollment ? await getLegacyCurrentUser() : await getCurrentUser();
   } catch {
     // Not provisioned yet — render anyway; the action explains.
   }
-  if (user && !enrollment && notice !== "reverify") redirect("/arcade");
+  if (user && !enrollment && notice !== "reverify" && !friendsEnrollmentEnabled()) redirect("/arcade");
   if (friendsAuthEnabled() && !enrollment) return <AccountForm mode="login" notice={notice === "verified" ? "Email verified. You can log in now." : notice === "team" ? "Log in to see your team." : notice === "reverify" ? "Sign in again to confirm account changes." : null} />;
 
   let teams: { id: string; name: string }[] = [];
@@ -41,6 +41,8 @@ export default async function LoginPage({
     <LoginForm
       teams={teams}
       enrollment={enrollment}
+      accountsAvailable={friendsEnrollmentEnabled()}
+      initialTeamId={enrollment ? user?.teamId : undefined}
       notice={notice === "team" ? "Log in to see your team." : null}
     />
   );

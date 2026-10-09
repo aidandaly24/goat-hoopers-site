@@ -855,50 +855,49 @@ on a missing database.
 ## Accounts (how the auth works)
 
 Working provider source: [friends auth runtime and operator setup](docs/friends-auth-runtime.md).
-`src/data/friends-auth/` owns the pinned Better Auth configuration, separate
-transactional node-postgres adapter, additive schema, account linking, email
-delivery and HTTP boundaries. `src/domain/friends-accounts.ts` validates enrollment;
-`src/surfaces/accounts/AccountForm.tsx` uses shared primitives for the account forms.
-`/api/auth/*` mounts the provider except public signup; `/api/accounts/enroll`
-atomically creates credentials and invite membership or links a freshly proven
-legacy owner. `/account`, `/account/setup`, `/forgot-password`, `/reset-password`
-provide private lifecycle/setup forms. Claim/login choose the existing forms by
-default. `FRIENDS_AUTH_ENABLED=1` is the coordinated provider cutover;
-`FRIENDS_AUTH_ENROLLMENT=1` permits existing-owner setup while current auth stays
-active. Neither flag is configured by this patch. AI's separately owned admission
-switch must land before cutover. Existing UUIDs, passwords, sessions and history
-are retained; the generated `db/friends-auth/` migration creates only new tables.
+`src/data/friends-auth/` owns pinned Better Auth, its transactional PostgreSQL
+adapter, email delivery, verified account reads and team linking. Domain parsers
+validate exact request fields; `AccountForm` uses shared account primitives.
 
-Earlier [friends-only account foundations](docs/friends-accounts.md) record the
-source audit and recoverable reset plan. `src/domain/arcade/account-identity.ts`
-and `src/data/account-identity.ts` preserve the app UUID across provider credentials;
-the new provider runtime uses that resolver. Competition/cosmetic candidates remain
-dormant. The legacy runtime below remains the default; no live provider, schema,
-reset or reward activation has occurred. AI Decides' atomic session check is
-coordinated before provider cutover.
+An individual email account exists independently of a league team. `/signup`
+creates provider credentials with a normalized personal username, without a code,
+`site_users` row or membership link. `auth_user.id` is the individual account
+principal; `auth_user.name` is the non-email username. An additive case-insensitive
+unique index prevents two accounts taking the same username. The mounted provider
+signup endpoint stays disabled; the bounded same-origin registration endpoint is
+the only public account creation path.
 
-- **Claim:** Aidan generates one single-use invite code per Sleeper team
-  at `/admin/invites` and distributes each privately. A manager enters the
-  code at `/claim`, picks a display name, sets a password. The code is
-  consumed, the account is created, and they're logged in. Codes are plain
-  strings on purpose — device-free, so claiming on a phone and playing on
-  a laptop just works. The claim is atomic: `GameStore.claimTeam()` does
-  the account insert and the guarded invite consume as a single SQL
-  statement (CTE), so a failed claim leaves neither a partial account nor
-  a consumed code. The neon-http driver has no interactive transactions;
-  the single-statement CTE is the atomicity mechanism.
-  Team-constraint conflicts are read from the Drizzle error's cause for
-  both `site_users_team_id_unique` (repository schema) and
-  `site_users_team_id_key` (existing Postgres constraint). Unknown constraints,
-  other SQL errors, and infrastructure errors propagate. Session creation
-  happens after the claim commits. If the session or cookie response fails, the account
-  remains claimed: recover through `/login` with the password just set.
-  Retrying a used invite never authorizes a session or creates another user.
-- **Login:** `/login` — team + password, bcrypt-compared server-side.
-- **Sessions:** 90-day httpOnly cookies, SHA-256-hashed tokens in the DB.
-- **Friends-grade security:** invite codes close the impersonation hole
-  (randoms can't claim teams). This is not bank-grade auth and doesn't
-  need to be — it's ten friends playing for FAAB.
+After verifying email and signing in, `/account` optionally claims an unused team
+code. The ownership transaction rechecks the exact verified provider session,
+locks the invitation, inserts membership/link and consumes the code together.
+The existing unique `site_users.team_id` constraint permits one owner, including
+races using different codes. Used codes and inactive links cannot replace owners.
+Existing team owners instead confirm their old password at `/login?legacy=1`;
+a fresh five-minute legacy proof links their original app UUID without a code.
+
+`getVerifiedAccount(headers)` authorizes individual account lifecycle and the
+separately owned personal-game feature without requiring a team. Games own their
+account-keyed persistence and League/Everyone filter; team claiming must not
+transfer personal scores. `getCurrentUser()` and `getProviderIdentity(headers)`
+retain linked `SiteUser` UUID semantics for team and paid AI access. The AI owner
+rechecks exact provider session/link/verified-email/valid-team atomically; its
+budget keys remain the original `site_users.id`.
+
+Account login, change/reset password and verification are available with either
+account flag enabled. Recovery by email works for unclaimed accounts; team recovery
+resolves the active verified linked recipient only on the server, returning a
+generic response. Reset revokes provider sessions; cookies are remembered for
+90 days, httpOnly, SameSite=Lax and secure on HTTPS. Cookie caching is disabled.
+`FRIENDS_AUTH_ENABLED=1` chooses full provider app auth with no legacy fallback;
+`FRIENDS_AUTH_ENROLLMENT=1` opens account lifecycle/setup while legacy app auth
+remains active. New team claims require the full flag. Source changes do not
+configure either flag, migrate live data or deploy.
+
+The original legacy claim/team-password runtime remains when both flags are
+unset. Original UUIDs, hashes, sessions, scores, rewards and AI counters remain
+preserved. The account repair does not issue rewards or FAAB. See the focused
+[account access repair contract](docs/account-access-repair.md) for its migration
+and validation boundaries.
 
 ## Rewards (the FAAB ledger)
 

@@ -1,31 +1,43 @@
-# Invite-only Better Auth runtime
+# Email accounts and one-time team claims
 
-Separate follow-up to foundation #134; default-off source, no live configuration
-or migration applied. Existing team/password login and sessions continue when
-both flags are unset. No accounts, hashes, sessions, scores, rewards or AI budget
-counters are deleted. No rewards work is included.
+Pinned Better Auth account runtime, separate from optional league membership.
+Source defaults keep legacy app login when both flags are unset. The source repair
+changes no deployed setting or existing app data. No reward work is included.
 
 ## Working path
 
-- New manager: `/claim` → unused six-digit invite + email + private password →
-  verification email → `/login` → remembered provider session → same app identity
-  on `/team`. Public provider signup is disabled and not mounted.
-- Existing manager: `/login?legacy=1` → private existing team/password → fresh
-  five-minute legacy session → `/account/setup` → email/new private password →
-  verification → email login. The transaction links the original `site_users.id`;
-  matching a team/name/email or resubmitting a used invite cannot relink it.
-- Account settings are linked from My Team. Password change requires the current
-  provider password and revokes other provider sessions. Recovery sends a generic
-  response and a provider-owned 30-minute token; successful reset revokes all
-  provider sessions. Session lifetime is 90 days of activity, refreshed daily;
-  cookies are httpOnly, SameSite=Lax and secure on HTTPS. Cookie caching is off.
+- Individual friend: `/signup` → unique username + email + private password →
+  verification → `/account/login`. Registration needs no team code and creates
+  no `site_users` row. The account can recover/change its password without a team.
+- Optional league membership: verified account → `/account` → unused team code.
+  A transaction rechecks the exact provider session, locks the code, inserts
+  membership/link and consumes the invitation. The existing team uniqueness
+  constraint permits exactly one owner; no automatic reassignment exists.
+- Existing owner: `/login?legacy=1` → old team/password privately → fresh
+  five-minute legacy proof → `/account/setup`. Create email credentials and a
+  personal username, or sign into an already-created email account and confirm
+  its link. No invite is required. The original `site_users.id` and hash remain.
+- Login visibly links password recovery. Email recovery is account-based; team
+  recovery resolves only the active verified linked email on the server and
+  never accepts a recipient from the browser. Unknown accounts/teams return
+  generic responses. Reset tokens expire after 30 minutes and revoke sessions.
+- Provider sessions last 90 days of activity and refresh daily. Cookies are
+  httpOnly, SameSite=Lax and secure on HTTPS; cookie caching is disabled.
 
-One node-postgres/Drizzle transaction wraps provider user/account/verification
-creation and invitation consumption or existing-UUID linking. Adapter operations
-use that transaction; internal verification mutations use pg savepoints. A duplicate
-provider email, duplicate team or duplicate identity rolls back the whole claim.
-Mail is queued only after commit using Next `after`; no token appears in our API
-response. If delivery fails, request verification again from login.
+Personal account identity is `auth_user.id`, returned as `subject` only after
+provider verification. Its `name` is a non-email username: normalized lowercase,
+3–20 letters/numbers/underscores, enforced by request validation plus an additive
+case-insensitive unique index. `getVerifiedAccount(headers)` returns
+`{ subject, sessionId, name } | null` without team privileges. Personal game
+persistence is separately owned and uses this subject; League reads filter by
+current active membership. Claiming a team does not change individual identity.
+Team/AI identity continues to use the original linked `SiteUser` UUID.
+
+Registration uses the provider adapter inside a PostgreSQL transaction. Existing
+owner setup also creates its identity link in that transaction. Mail queues only
+after commit; no verification/reset token is returned by our account API. The
+old combined invite/signup HTTP route is rejected. Team claim requires the full
+provider flag, preventing new provider-only members under the legacy runtime.
 
 Protected identity reads verify the provider session and an active unique link;
 there is no legacy fallback after cutover. Account deletion/email change/social
@@ -64,7 +76,11 @@ rollback. The source migration is **additive only**, generated offline by
 Review/apply only `db/friends-auth/0000_friends_auth.sql` in a transaction; it creates
 seven new tables and restrictive app identity links. Do not run broad schema push,
 drop existing auth tables, import guessed password hashes or blindly reset accounts.
-Rehearse with an isolated restored database and reconcile original owners first.
+Rehearse with an isolated database and preserve the existing owner link. The account
+repair additionally requires reviewed `0001_account_usernames.sql` before rollout.
+It creates one unique index only; first check for duplicate `lower(name)` values.
+If duplicates exist, stop for owner review; never delete, rename or merge accounts
+automatically. No leaguewide account migration is required for absent game scores.
 
 Roll back a failed additive migration transaction. Runtime rollback before final
 cutover keeps current auth. After provider cutover, any runtime rollback requires
@@ -96,10 +112,12 @@ verification, remembered secure cookie, UUID resolution, unmapped denial, passwo
 change, generic reset response, one-use reset and session revocation. Schema tests
 compare every core field with the installed provider's `getAuthTables`.
 
-One real PostgreSQL smoke reuses existing pg/Vitest and the fixed
+Four real PostgreSQL smoke cases reuse existing pg/Vitest and the fixed
 `127.0.0.1:55441/claim_team_test` guard. It covers a concurrent same-invite winner,
-duplicate-email rollback, preserved existing UUID/hash, provider verification/login,
-and concurrent durable caps. Only its explicit CI step enables the fixture; ordinary
+duplicate-email/username rollback, unclaimed account recovery without membership,
+preserved existing UUID/hash, provider verification/login, stale ownership-proof
+denial, a blocked simultaneous claim, replay/second-code denial, server-selected
+recovery recipient, inactive-link denial and concurrent durable caps. Only its explicit CI step enables the fixture; ordinary
 tests keep database opt-ins off and no application secret/reference enters CI.
 It is a disposable synthetic database with no persistent volume. Local PostgreSQL
 is unavailable; the normal CI step is the real-database check. No live mailbox,

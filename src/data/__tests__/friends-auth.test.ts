@@ -5,7 +5,7 @@ import { getAuthTables } from "better-auth/db";
 import { getTableConfig } from "drizzle-orm/pg-core";
 import { createFriendsAuth, providerModels, type AccountMail } from "../friends-auth/provider";
 import { providerSchema } from "../friends-auth/schema";
-import { parseEnrollment } from "@/domain/friends-accounts";
+import { parseEnrollment, parseRegistration, parseTeamClaim, parseTeamRecovery } from "@/domain/friends-accounts";
 import { resolveAccountUser } from "../account-identity";
 import { sendAccountMail } from "../friends-auth/mail";
 
@@ -114,5 +114,20 @@ describe("friends accounts with the actual pinned provider", () => {
     expect(parseEnrollment({ ...input, inviteCode: "1234567" })).toBeNull();
     expect(parseEnrollment({ ...input, password: "x".repeat(129) })).toBeNull();
     expect(parseEnrollment({ ...input, kind: "existing", teamId: "forged-team" })).toBeNull();
+  });
+
+  it("separates account registration, team claim and recipient-free team recovery", () => {
+    const account = { email: "manager@example.test", password: initialPassword, username: "manager" };
+    expect(parseRegistration(account)).toEqual(account);
+    expect(parseRegistration({ ...account, username: " MANAGER " })).toEqual(account);
+    expect(parseRegistration({ ...account, username: "private@example.test" })).toBeNull();
+    expect(parseRegistration({ ...account, username: "ab" })).toBeNull();
+    expect(parseRegistration({ ...account, username: "x".repeat(21) })).toBeNull();
+    expect(parseRegistration({ ...account, inviteCode: "123456" })).toBeNull();
+    expect(parseRegistration({ ...account, userId: "forged" })).toBeNull();
+    expect(parseTeamClaim({ inviteCode: "123456" })).toEqual({ inviteCode: "123456" });
+    expect(parseTeamClaim({ inviteCode: "123456", subject: "forged" })).toBeNull();
+    expect(parseTeamRecovery({ teamId: "1" })).toEqual({ teamId: "1" });
+    expect(parseTeamRecovery({ teamId: "1", email: "forged@example.test" })).toBeNull();
   });
 });

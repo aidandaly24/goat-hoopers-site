@@ -1,4 +1,5 @@
-import { bigint, boolean, index, integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
+import { bigint, boolean, index, integer, pgTable, text, timestamp, uniqueIndex, uuid } from "drizzle-orm/pg-core";
 import { siteUsers } from "@/data/db";
 
 // Core fields match Better Auth 1.7.7 getAuthTables; tested against its actual schema.
@@ -7,7 +8,7 @@ export const authUser = pgTable("auth_user", {
   email: text("email").notNull().unique(), emailVerified: boolean("email_verified").notNull().default(false),
   image: text("image"), createdAt: timestamp("created_at", { withTimezone: true }).notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull(),
-});
+}, (t) => [uniqueIndex("auth_user_username_unique").on(sql`lower(${t.name})`)]);
 export const authSession = pgTable("auth_session", {
   id: text("id").primaryKey(), expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
   token: text("token").notNull().unique(), createdAt: timestamp("created_at", { withTimezone: true }).notNull(),
