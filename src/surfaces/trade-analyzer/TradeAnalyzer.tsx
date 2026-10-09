@@ -239,6 +239,7 @@ export function TradeAnalyzer({ stocks }: { stocks: StockQuote[] }) {
   return (
     <div className={styles.terminal}>
       <header className={styles.head}>
+        <Link href="/stocks" className={styles.returnLink}>← Back to Stocks</Link>
         <p className={styles.prompt}>~/goat-hoopers $ trade-analyzer</p>
         <h1 className={styles.title}>Trade Analyzer</h1>
         <p className={styles.lede}>

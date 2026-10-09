@@ -138,6 +138,15 @@ const TRANSACTION_TYPE_MAP: Record<string, Transaction["type"]> = {
   trade: "trade",
 };
 
+/** Preserve legacy status-absent inputs; never summarize unsuccessful activity. */
+function isCompletedActivity(t: RawTransaction): boolean {
+  return t.status === undefined || t.status === "complete";
+}
+
+function validRosterId(id: number): boolean {
+  return Number.isSafeInteger(id) && id > 0;
+}
+
 export function toTransactions(
   raw: RawTransaction[],
   teams: Team[],
@@ -156,6 +165,7 @@ export function toTransactions(
 
   return raw
     .flatMap((t) => {
+      if (!isCompletedActivity(t)) return [];
       // Unknown upstream kinds are dropped, never silently reclassified.
       // (console diagnostic: these indicate a Sleeper payload change.)
       const kind = TRANSACTION_TYPE_MAP[t.type];
@@ -164,8 +174,14 @@ export function toTransactions(
         return [];
       }
       const rosterIds = new Set<number>();
-      if (t.adds) Object.values(t.adds).forEach((rid) => rosterIds.add(rid));
-      if (t.drops) Object.values(t.drops).forEach((rid) => rosterIds.add(rid));
+      if (t.adds) Object.values(t.adds).filter(validRosterId).forEach((rid) => rosterIds.add(rid));
+      if (t.drops) Object.values(t.drops).filter(validRosterId).forEach((rid) => rosterIds.add(rid));
+      // Keep existing move-derived order/sides. Declared-only participants
+      // extend team filtering without inventing received players or pick owners.
+      const teamIds = new Set(rosterIds);
+      if (Array.isArray(t.roster_ids)) {
+        t.roster_ids.filter(validRosterId).forEach((rid) => teamIds.add(rid));
+      }
       const actor =
         rosterIds.size === 1
           ? teamByRosterId.get(String([...rosterIds][0]))?.name ?? "A team"
@@ -192,12 +208,12 @@ export function toTransactions(
         week: t.leg,
         createdAt: t.created,
         summary,
-        teamIds: [...rosterIds].map(String),
+        teamIds: [...teamIds].map(String),
         adds: t.adds ? Object.keys(t.adds).map(moveOf) : [],
         drops: t.drops ? Object.keys(t.drops).map(moveOf) : [],
-        // Per-team trade view for the news network: who received whom.
+        // Per-team view derived only from actual received-player movements.
         sides:
-          t.type === "trade" && t.adds
+          t.type === "trade" && t.adds && Object.keys(t.adds).length > 0
             ? [...rosterIds].map((rid) => {
                 const team = teamByRosterId.get(String(rid));
                 return {
@@ -207,7 +223,7 @@ export function toTransactions(
                     .filter(([, toRid]) => toRid === rid)
                     .map(([pid]) => moveOf(pid)),
                 };
-              })
+              }).filter(side => side.received.length > 0)
             : undefined,
       } satisfies Transaction;
     })
@@ -227,6 +243,9 @@ export function selectRecentTransactions(
   const deduped: RawTransaction[] = [];
   for (const week of rawByWeek) {
     for (const tx of week) {
+      // Eligibility precedes deduplication and the ten-item cap: unsuccessful
+      // records must not displace older completed activity.
+      if (!isCompletedActivity(tx)) continue;
       if (seen.has(tx.transaction_id)) continue;
       seen.add(tx.transaction_id);
       deduped.push(tx);
