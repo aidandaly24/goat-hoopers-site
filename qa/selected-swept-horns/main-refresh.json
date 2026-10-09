@@ -1,0 +1,764 @@
+{
+  "repository": "aidandaly24/goat-hoopers-site",
+  "reviewed_logo_head": "53e9915e15f54ebcc2bc3771c03b391bb406d299",
+  "reviewed_logo_tree": "68ce999a40ba6d4c6eff4a6b5d175a11befd8878",
+  "integration_base": "71fa01451e71228ee67d5916af9d884647ebb65a",
+  "integration_base_tree": "0713a59c53da69b1682ddfb0f11a7265050cb1d2",
+  "previous_integration_base": "d80e9c4d515b7aed0a09998caaa6f1a1d9a92057",
+  "merge_conflicts": [],
+  "asset_and_provenance_files_preserved": [
+    {
+      "path": "design/brand/swept-horns/PROVENANCE.json",
+      "git_blob": "a09b0035f87a7309a740d3869131bf9b8b6d9f90",
+      "reviewed_git_blob": "a09b0035f87a7309a740d3869131bf9b8b6d9f90",
+      "sha256": "b668cd621c3ab412d04a812032a3917f7d83c56d55ba228adaeacfe7ccf607fa",
+      "bytes": 8412
+    },
+    {
+      "path": "design/brand/swept-horns/README.md",
+      "git_blob": "4854a9935473b15ca5421c18267786df20de31a9",
+      "reviewed_git_blob": "4854a9935473b15ca5421c18267786df20de31a9",
+      "sha256": "e666add3a96ace5bffc6c60b2b88adfe7f2be44e1a5136bffb18ac4389540d06",
+      "bytes": 2044
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-emblem-black.svg",
+      "git_blob": "1719306f2b235c32f0321e0eed72d612f7f6bbfe",
+      "reviewed_git_blob": "1719306f2b235c32f0321e0eed72d612f7f6bbfe",
+      "sha256": "bb1a27bcdb399e3d16eb7f8f22ec0aed4eaf3c61a470d12637ec1f42ade28457",
+      "bytes": 1399
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-emblem-clay.svg",
+      "git_blob": "8e33681a6246b669b5c5507724d25bd338dec8a6",
+      "reviewed_git_blob": "8e33681a6246b669b5c5507724d25bd338dec8a6",
+      "sha256": "cb64f7efe712c0332733eb9baefd2fda9916250b6d0a3cafcc6a13d00aeb1379",
+      "bytes": 1398
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-emblem-cream.svg",
+      "git_blob": "25d853b541651aa4783eef87454a71e7908d5e05",
+      "reviewed_git_blob": "25d853b541651aa4783eef87454a71e7908d5e05",
+      "sha256": "3e3b8a0fbab99350c6c50c4ef9676ae746ce3947345a85d5ab342e5a2f571dc4",
+      "bytes": 1399
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-emblem-white.svg",
+      "git_blob": "c287dc4385ee48ef17b6036fdf9e78601bc60b7e",
+      "reviewed_git_blob": "c287dc4385ee48ef17b6036fdf9e78601bc60b7e",
+      "sha256": "87a62368eae34c7141eaf71aba8ceb44784ce54da7b7be012e99dcf612df146b",
+      "bytes": 1399
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-horizontal-black.svg",
+      "git_blob": "73e630b71f8fee847d4b64a803f464426815c9b4",
+      "reviewed_git_blob": "73e630b71f8fee847d4b64a803f464426815c9b4",
+      "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+      "bytes": 5117
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-horizontal-clay.svg",
+      "git_blob": "699014955d17bbd5217abdd3c2639a4fb6f718e8",
+      "reviewed_git_blob": "699014955d17bbd5217abdd3c2639a4fb6f718e8",
+      "sha256": "6cb8fa79abe64f9f5d51d267a88cd0a3c65467adb7decec6bed99e5835010ae0",
+      "bytes": 5116
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-horizontal-white.svg",
+      "git_blob": "e516a3061c768000b00b2030445632599a19cfdf",
+      "reviewed_git_blob": "e516a3061c768000b00b2030445632599a19cfdf",
+      "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+      "bytes": 5117
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-micro-black.svg",
+      "git_blob": "f4217340ce1bb26faaf2be309810a6113d536204",
+      "reviewed_git_blob": "f4217340ce1bb26faaf2be309810a6113d536204",
+      "sha256": "ef8c54f63fb9a3a5b8f17037175f1b1e8244f9710e3e1061ee5b140ba1388319",
+      "bytes": 1088
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-micro-clay.svg",
+      "git_blob": "247e136a8f15f213850acc91c919f438da6c7a0b",
+      "reviewed_git_blob": "247e136a8f15f213850acc91c919f438da6c7a0b",
+      "sha256": "3479f64c1ad4318159861df6510736355ac1f913686a230ff3349319489cb0ec",
+      "bytes": 1087
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-micro-cream.svg",
+      "git_blob": "6a1b55758dd786e2204fbb36e3bc482257ce79b3",
+      "reviewed_git_blob": "6a1b55758dd786e2204fbb36e3bc482257ce79b3",
+      "sha256": "d3521c878954d891f05476bbd81fccb2bbf4d9f82a433ca7f9f1d49c818ff5c5",
+      "bytes": 1088
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-micro-white.svg",
+      "git_blob": "ed056efefeac452fbe77a14e9225013ffab29b74",
+      "reviewed_git_blob": "ed056efefeac452fbe77a14e9225013ffab29b74",
+      "sha256": "58f066a514ef43f4218dc1100f710ac66c18d86d1075ca9aa0751bf1a02fe626",
+      "bytes": 1088
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-primary-black.svg",
+      "git_blob": "3508468acbcd700998eaaf2a003c79e0a2bce462",
+      "reviewed_git_blob": "3508468acbcd700998eaaf2a003c79e0a2bce462",
+      "sha256": "fadee559356b746032c79fbd42cf1502a467e4ede4299f309f12cfb4f9613b8d",
+      "bytes": 8796
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-primary-clay.svg",
+      "git_blob": "3fd346259cd9fdd3a70adea2a4bbed0a3ab92f35",
+      "reviewed_git_blob": "3fd346259cd9fdd3a70adea2a4bbed0a3ab92f35",
+      "sha256": "9de46dbf77cb55164d4947e4c84f98383fb80c297ac2bffbc8208bc698374946",
+      "bytes": 8795
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-primary-cream.svg",
+      "git_blob": "65cdbe55400afddb32d0435b76a2d0749c27e270",
+      "reviewed_git_blob": "65cdbe55400afddb32d0435b76a2d0749c27e270",
+      "sha256": "033be73387adc01d88e9d6ea769dfe239dc67ad4a3b9ec9bdbc64cd890996ea0",
+      "bytes": 8796
+    },
+    {
+      "path": "design/brand/swept-horns/assets/GOAT-HOOPERS-primary-white.svg",
+      "git_blob": "b7ec64312dc978e74e817a73bdda4b6072b504e5",
+      "reviewed_git_blob": "b7ec64312dc978e74e817a73bdda4b6072b504e5",
+      "sha256": "21aa403a0948f631425cbc03228f854ea662a2c5da166cc575f62f269ba84edd",
+      "bytes": 8796
+    },
+    {
+      "path": "design/brand/swept-horns/favicon.svg",
+      "git_blob": "23f4d0c0f4471ea37173064dc28835644d068550",
+      "reviewed_git_blob": "23f4d0c0f4471ea37173064dc28835644d068550",
+      "sha256": "d4256cf74bc767dac7233d5efbebdc27866bbf9fa627ba6ec958012903eb4614",
+      "bytes": 1212
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-emblem-clay.svg",
+      "git_blob": "8e33681a6246b669b5c5507724d25bd338dec8a6",
+      "reviewed_git_blob": "8e33681a6246b669b5c5507724d25bd338dec8a6",
+      "sha256": "cb64f7efe712c0332733eb9baefd2fda9916250b6d0a3cafcc6a13d00aeb1379",
+      "bytes": 1398
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+      "git_blob": "73e630b71f8fee847d4b64a803f464426815c9b4",
+      "reviewed_git_blob": "73e630b71f8fee847d4b64a803f464426815c9b4",
+      "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+      "bytes": 5117
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+      "git_blob": "e516a3061c768000b00b2030445632599a19cfdf",
+      "reviewed_git_blob": "e516a3061c768000b00b2030445632599a19cfdf",
+      "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+      "bytes": 5117
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-micro-white.svg",
+      "git_blob": "ed056efefeac452fbe77a14e9225013ffab29b74",
+      "reviewed_git_blob": "ed056efefeac452fbe77a14e9225013ffab29b74",
+      "sha256": "58f066a514ef43f4218dc1100f710ac66c18d86d1075ca9aa0751bf1a02fe626",
+      "bytes": 1088
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-primary-clay.svg",
+      "git_blob": "3fd346259cd9fdd3a70adea2a4bbed0a3ab92f35",
+      "reviewed_git_blob": "3fd346259cd9fdd3a70adea2a4bbed0a3ab92f35",
+      "sha256": "9de46dbf77cb55164d4947e4c84f98383fb80c297ac2bffbc8208bc698374946",
+      "bytes": 8795
+    },
+    {
+      "path": "src/app/icon.svg",
+      "git_blob": "23f4d0c0f4471ea37173064dc28835644d068550",
+      "reviewed_git_blob": "23f4d0c0f4471ea37173064dc28835644d068550",
+      "sha256": "d4256cf74bc767dac7233d5efbebdc27866bbf9fa627ba6ec958012903eb4614",
+      "bytes": 1212
+    }
+  ],
+  "historical_selected_hybrid_tree": "9bbd35178e9a62056be3e0ec67fefe3de76bddbc",
+  "unchanged_proof_paths": [
+    "qa/selected-swept-horns/metadata-check.json",
+    "qa/selected-swept-horns/render-method.json",
+    "qa/selected-swept-horns/selected-A-production-proof.svg",
+    "qa/selected-swept-horns/browser-proof.html"
+  ],
+  "artifact_assertions_passed": 191,
+  "source_variants": 15,
+  "runtime_copies": 6,
+  "owned_refresh_paths": [
+    "scripts/verify-swept-horns-logo.py",
+    "qa/selected-swept-horns/validation.json",
+    "qa/selected-swept-horns/README.md",
+    "qa/selected-swept-horns/main-refresh.json",
+    "docs/selected-swept-horns-logo.md"
+  ],
+  "inherited_main_changes": [
+    {
+      "path": "ARCHITECTURE.md",
+      "old_blob": "a00e99f49ae66835b2f7edc0387f94482bfe3156",
+      "main_blob": "e5bd738891eaca252dab8fe2359a889fffc539bf"
+    },
+    {
+      "path": "DESIGN.md",
+      "old_blob": "1d7a1da171fbd34d3393d078a526c7cbe917cc04",
+      "main_blob": "9167ecfe897f13af9ad8765bf9b21ba827a5ff18"
+    },
+    {
+      "path": "qa/transactions/.gitignore",
+      "old_blob": null,
+      "main_blob": "d80d3ca117a18ffe043459caa2a473290495a5df"
+    },
+    {
+      "path": "qa/transactions/README.md",
+      "old_blob": null,
+      "main_blob": "c59bf049db068a6c1e567ab23b219f67f1fcd734"
+    },
+    {
+      "path": "qa/transactions/SOURCE-FIX-SCOPE.md",
+      "old_blob": null,
+      "main_blob": "bff39bd51734c965d5b8bc35a2ddde428b795f1b"
+    },
+    {
+      "path": "qa/transactions/browser.mjs",
+      "old_blob": null,
+      "main_blob": "608a7448f1aba65644155663bb52a48e0d79df6d"
+    },
+    {
+      "path": "qa/transactions/data.ts",
+      "old_blob": null,
+      "main_blob": "2913d1aa79ab4626a6ab2d220ba75f75c926fce0"
+    },
+    {
+      "path": "qa/transactions/generate-fixtures.mjs",
+      "old_blob": null,
+      "main_blob": "985d056467a69bbbce292add41954f142a6238b3"
+    },
+    {
+      "path": "qa/transactions/index.html",
+      "old_blob": null,
+      "main_blob": "31aa6d089e43d915388bce87204e9f91cdac2195"
+    },
+    {
+      "path": "qa/transactions/link.tsx",
+      "old_blob": null,
+      "main_blob": "f16add570f7698724817c33e7766d7e6aeb374b6"
+    },
+    {
+      "path": "qa/transactions/main.tsx",
+      "old_blob": null,
+      "main_blob": "c9b32da45a0b4dfca39ca5493840d49dd4944def"
+    },
+    {
+      "path": "qa/transactions/navigation.ts",
+      "old_blob": null,
+      "main_blob": "6be3e23acd0ee7c2a472396e16c0fc68fda88933"
+    },
+    {
+      "path": "qa/transactions/next-browser.mjs",
+      "old_blob": null,
+      "main_blob": "c9e19e9f7672b7d94445ef72f9aea41bbfdbbe3e"
+    },
+    {
+      "path": "qa/transactions/next/app/layout.tsx",
+      "old_blob": null,
+      "main_blob": "fa151f48bad9034dc31f19aadf1e0a73a502cc00"
+    },
+    {
+      "path": "qa/transactions/next/app/teams/[id]/page.tsx",
+      "old_blob": "d80e9c4d515b7aed0a09998caaa6f1a1d9a92057:qa/transactions/next/app/teams/[id]/page.tsx",
+      "main_blob": "73dbc44834a8d77e2c5f714ad29ada4ce81021cc"
+    },
+    {
+      "path": "qa/transactions/next/app/teams/page.tsx",
+      "old_blob": null,
+      "main_blob": "4c84ea7c7a5dc2e800d5330136f4017f415c2267"
+    },
+    {
+      "path": "qa/transactions/next/app/transactions/page.tsx",
+      "old_blob": null,
+      "main_blob": "28e6c2637916adf31d0d00c50dfcd7d7fd583008"
+    },
+    {
+      "path": "qa/transactions/next/next.config.mjs",
+      "old_blob": null,
+      "main_blob": "37deb0845b620ff34f29a142a5f76db36348b27b"
+    },
+    {
+      "path": "qa/transactions/next/public",
+      "old_blob": null,
+      "main_blob": "eb251ce1e0ca53d7d880ff73b2d81c68fb9e2b5a"
+    },
+    {
+      "path": "qa/transactions/next/tsconfig.json",
+      "old_blob": null,
+      "main_blob": "54e04a3be6c49515de92151aa3f5fcc86459a55a"
+    },
+    {
+      "path": "qa/transactions/sanitize.mjs",
+      "old_blob": null,
+      "main_blob": "3966094f65860a66ace8f074fa33703a5487a61f"
+    },
+    {
+      "path": "qa/transactions/source-regressions.test.ts",
+      "old_blob": null,
+      "main_blob": "67ff0e860f5ddab0c674404672a02ae4041e3b01"
+    },
+    {
+      "path": "qa/transactions/synthetic-2031.json",
+      "old_blob": null,
+      "main_blob": "c605e6a310ead2abc585268729b91ab387ce8d41"
+    },
+    {
+      "path": "qa/transactions/synthetic-2032.json",
+      "old_blob": null,
+      "main_blob": "41aa4776c7b7ee2d25c94040d499e69ca724cb66"
+    },
+    {
+      "path": "qa/transactions/vite.config.mts",
+      "old_blob": null,
+      "main_blob": "fa9edcab68dec0c9e3fd2068024047bc7a881858"
+    },
+    {
+      "path": "qa/transactions/vitest.config.mts",
+      "old_blob": null,
+      "main_blob": "b5b718dc452eed5dcd2e1cc69de55fdd1fa26ccb"
+    },
+    {
+      "path": "qa/transactions/wire.css",
+      "old_blob": null,
+      "main_blob": "3b4424e68642ec8d4ea7394c3fc434215dc8dc31"
+    },
+    {
+      "path": "qa/transactions/wire.jsx",
+      "old_blob": null,
+      "main_blob": "fa91a2c4ed7e779634b15e55279749df72e156b4"
+    },
+    {
+      "path": "src/app/globals.css",
+      "old_blob": "dc13baa79386bd42e4e626cb6cfd59a7272a68ea",
+      "main_blob": "233e5a15b40d4d8d017686d9c25c0c966ea6b470"
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "old_blob": "7d79fe1256dd2310267ba40244e22bf5150d32b0",
+      "main_blob": "5a2a1ac69c1b80c2dd05dfbcdf03ea99074ad4c4"
+    },
+    {
+      "path": "src/app/teams/[rosterId]/page.tsx",
+      "old_blob": "a08e36255fe01346cf91f8dba4a24fa4f6f77403",
+      "main_blob": "da6e3fa996f87b6e86cc409f565b15915c134e4d"
+    },
+    {
+      "path": "src/data/__tests__/manager-archetypes.test.ts",
+      "old_blob": null,
+      "main_blob": "7f9023381a4d0730a696b91495ff0899f4e433eb"
+    },
+    {
+      "path": "src/data/__tests__/recent-activity.test.ts",
+      "old_blob": "ab9ed7b160e52b74245476cfce082596d714d27b",
+      "main_blob": "2018b34b15f92c6a7e57d0100d3265c6281cd795"
+    },
+    {
+      "path": "src/data/__tests__/transactions.test.ts",
+      "old_blob": "2d881a4111720133f706176a7be0437de30d7f41",
+      "main_blob": "4748d9bbe4c9d3f611c1c75919b9fc508f9f0d74"
+    },
+    {
+      "path": "src/data/gm-archetypes-2025.ts",
+      "old_blob": null,
+      "main_blob": "4ec1c9ea13d94bfd9ebff2d7e6fc881496c01a41"
+    },
+    {
+      "path": "src/data/manager-archetypes.ts",
+      "old_blob": null,
+      "main_blob": "cc057a8eaa5a42ebb87ea618a26d16a99d8ff539"
+    },
+    {
+      "path": "src/data/sleeper.ts",
+      "old_blob": "7d540646b5ea1decb517193474ff3b7aae3ae4f1",
+      "main_blob": "da73635535b08b9e78c9535a5062d4017aae175b"
+    },
+    {
+      "path": "src/data/transform.ts",
+      "old_blob": "066f2d4291929ff9b183b98844c0e482263d6559",
+      "main_blob": "cd39d17af57e1f563c97518985c35a2cd11c3fdc"
+    },
+    {
+      "path": "src/domain/index.ts",
+      "old_blob": "9cd32a172157959b70f272ce24848113d23792be",
+      "main_blob": "3e7d16012ef201e09af152e6b393cfa062b711a8"
+    },
+    {
+      "path": "src/domain/manager-archetype.test.ts",
+      "old_blob": null,
+      "main_blob": "24c54b074b03f72640037acfa9a1f74c4528df0f"
+    },
+    {
+      "path": "src/domain/manager-archetype.ts",
+      "old_blob": null,
+      "main_blob": "484e8c68ac5dae71155417c3f81cfa22c97af4b1"
+    },
+    {
+      "path": "src/surfaces/teams/GmArchetypeCard.module.css",
+      "old_blob": null,
+      "main_blob": "2583aaf195d6bd26b028635e04584a144febf126"
+    },
+    {
+      "path": "src/surfaces/teams/GmArchetypeCard.tsx",
+      "old_blob": null,
+      "main_blob": "4cd75a54eb1ff55b2c1d4191a09cf22be71264a0"
+    },
+    {
+      "path": "src/surfaces/teams/TeamProfile.tsx",
+      "old_blob": "52b0c43c55ba92640ee3336b99ba1b59ba1c7258",
+      "main_blob": "cfdcf7c6fc54e8c31da80040834234fdbd7e9598"
+    },
+    {
+      "path": "src/surfaces/trade-analyzer/TradeAnalyzer.module.css",
+      "old_blob": "73f68bf60d067b0cf6877eb457695ef08d7019ee",
+      "main_blob": "89fd4144937f13d71fd8005c544128c0234d97f7"
+    },
+    {
+      "path": "src/surfaces/trade-analyzer/TradeAnalyzer.tsx",
+      "old_blob": "52b239fb1495079b45e2bbb484ed130efed196a4",
+      "main_blob": "73dec980e8818e4a2346ee75af8c28d3f3a6d9e7"
+    },
+    {
+      "path": "src/surfaces/transactions/TransactionFilters.tsx",
+      "old_blob": "827a611809ac6b80300734f3aa8ba5afdee9efa5",
+      "main_blob": "2e972586f1b6d5de28ec7faf4e63533a957207df"
+    },
+    {
+      "path": "src/surfaces/transactions/TransactionHistory.tsx",
+      "old_blob": "c0017b9b54855015eb1fe790faec269fbbf2e779",
+      "main_blob": "3de2cf68eacb8f6b066237289085619b6789e1bb"
+    },
+    {
+      "path": "src/surfaces/transactions/transactionQuery.test.ts",
+      "old_blob": null,
+      "main_blob": "36ed4e5a6e13159ff14be178ee53359c571dcd2b"
+    },
+    {
+      "path": "src/surfaces/transactions/transactionQuery.ts",
+      "old_blob": null,
+      "main_blob": "8c6217a5eb9d5e5f592eb2449f9b78dd6b5126de"
+    },
+    {
+      "path": "src/test/navigation/README.md",
+      "old_blob": null,
+      "main_blob": "92617d75d8dea467c73c88a297e253ffef91ae5f"
+    },
+    {
+      "path": "src/test/navigation/browser.mjs",
+      "old_blob": null,
+      "main_blob": "48dcd29cb02edd1ba63145aeee05aa9c6017cb0c"
+    },
+    {
+      "path": "src/test/site-shell/browser.mjs",
+      "old_blob": "3a86a8ea61883c8c60b3facec09ddd7064a68ea7",
+      "main_blob": "751f85ad0ce217249548e77b593d36cc36cbb829"
+    },
+    {
+      "path": "src/test/site-shell/fixture.tsx",
+      "old_blob": "301eb4df02d414efe8185401aa779b2ba3d8b0d4",
+      "main_blob": "07330ad36516002298a6dd0cc7ed4b58208976f0"
+    },
+    {
+      "path": "src/ui/MobileNav.module.css",
+      "old_blob": "f11929fd839d16b6094c1637694b652b63ae90ea",
+      "main_blob": null
+    },
+    {
+      "path": "src/ui/MobileNav.tsx",
+      "old_blob": "79a346428b4f32a9123d2a721ca39cf7e865931f",
+      "main_blob": "c80e58c08f291b29a2a4f14df61d99e1bb1f1693"
+    },
+    {
+      "path": "src/ui/SectionNav.module.css",
+      "old_blob": "c6c2afcfc5173a213e260a1a6cb88c69fdfa1d61",
+      "main_blob": null
+    },
+    {
+      "path": "src/ui/SectionNav.tsx",
+      "old_blob": "a62f94c042f1da40655b51a178e3a8e6e4d78ac3",
+      "main_blob": "1feb00b3450ac43111c0cdecf6cbf067f43445c5"
+    },
+    {
+      "path": "src/ui/SiteFooter.module.css",
+      "old_blob": "ed7ccc1715d7491401753a35a8b985c4fd9fb4dc",
+      "main_blob": "bf5fbf547d5e3777a1b64b641c0d5b74519a97b6"
+    },
+    {
+      "path": "src/ui/SiteFooter.tsx",
+      "old_blob": "57b537e68e2ec3819e13a52d152f32b1e857af27",
+      "main_blob": "5e9a702c5542f85db0d03925bf30398afc660a49"
+    },
+    {
+      "path": "src/ui/SiteHeader.module.css",
+      "old_blob": "5e515c5ab3358e5d607691734389a2d5d7c9fda9",
+      "main_blob": "1f9aa1fdb7c5423fed56407d2c78645c9a23cdc9"
+    },
+    {
+      "path": "src/ui/SiteHeader.tsx",
+      "old_blob": "dae1c1b9f6a8be03ee3aed6804b451c11fea6c1f",
+      "main_blob": "b4cee5c8a761a9ca4cd7f106fecc6dd258726063"
+    },
+    {
+      "path": "src/ui/siteDestinations.ts",
+      "old_blob": null,
+      "main_blob": "2973571f614cbbfcc57c129f14f63787c7e27c6f"
+    }
+  ],
+  "theme_http_evidence": {
+    "reviewed_theme_head": "d6294940f7bbe60ac362587d633bf44157ca4a80",
+    "joint_receipt_sha256": "ab423cc74e299f9224bf5cdb20eadf80c7e38b12cad64dc8ff9e30d8febb99e8",
+    "comment": "https://github.com/aidandaly24/goat-hoopers-site/pull/132#issuecomment-6074013306",
+    "unchanged": 28,
+    "changed": 5,
+    "absent": 6,
+    "hash_comparison": [
+      {
+        "path": "src/ui/SiteHeader.tsx",
+        "reviewed_theme_sha256": "6cc2a6c621e78de1dec38530ff24c2697b6eab81c12f31fdd22628f0b4ce5605",
+        "current_sha256": "d066fc4717b66cb8142e728fe82432b0b05cb59a4c82488827421b2637d1060f",
+        "matches": false
+      },
+      {
+        "path": "src/ui/SiteHeader.module.css",
+        "reviewed_theme_sha256": "52da8e72862a4208db0fad0055187e983bbc80f27441ac465833ae39f0641364",
+        "current_sha256": "52da8e72862a4208db0fad0055187e983bbc80f27441ac465833ae39f0641364",
+        "matches": true
+      },
+      {
+        "path": "src/ui/SiteFooter.tsx",
+        "reviewed_theme_sha256": "66ad5964b14d7ecc8e1d03639e9d7fdee2717c1a67b92b1e16057d0a76ac619a",
+        "current_sha256": "f8cd7f5c354524bc5fe21b6173cccc6ab3dd890b7466ce0c28f2fce453f2b2b2",
+        "matches": false
+      },
+      {
+        "path": "src/ui/SiteFooter.module.css",
+        "reviewed_theme_sha256": "fd20cadede4614dc5922210510163382dba48091cde74881b6c26096b4c7256d",
+        "current_sha256": "fd20cadede4614dc5922210510163382dba48091cde74881b6c26096b4c7256d",
+        "matches": true
+      },
+      {
+        "path": "src/ui/SiteChrome.tsx",
+        "reviewed_theme_sha256": "4a54caac908e38ab9dbcf7fd8eebcc9ab748a282807a99a3632be96f0edd30ba",
+        "current_sha256": "4a54caac908e38ab9dbcf7fd8eebcc9ab748a282807a99a3632be96f0edd30ba",
+        "matches": true
+      },
+      {
+        "path": "src/ui/SiteChrome.module.css",
+        "reviewed_theme_sha256": "7814c8fc964a50317d58d9d3eeecc07b81ce27dadeb2d4b7c9f2dd7a4868b926",
+        "current_sha256": "7814c8fc964a50317d58d9d3eeecc07b81ce27dadeb2d4b7c9f2dd7a4868b926",
+        "matches": true
+      },
+      {
+        "path": "src/ui/ThemeToggle.tsx",
+        "reviewed_theme_sha256": "af3b7eb2d9d16a2227c9bea5b209c3be7e1762f58ec48ab855d75059b00471a5",
+        "current_sha256": null,
+        "matches": false
+      },
+      {
+        "path": "src/ui/ThemeToggle.module.css",
+        "reviewed_theme_sha256": "66ff7f9eed34282f356f1d9eaadee4e45c0cb327501e243d7d67a8d38c7b6e18",
+        "current_sha256": null,
+        "matches": false
+      },
+      {
+        "path": "src/ui/ThemedLogo.tsx",
+        "reviewed_theme_sha256": "ea60533f46e02ecd7404fe2cf3625fa4e9411088fc6ecffc8190b1fa61b7a1f2",
+        "current_sha256": null,
+        "matches": false
+      },
+      {
+        "path": "src/ui/ThemedLogo.module.css",
+        "reviewed_theme_sha256": "c329ea1906964af541028cc51a9685dbc905b5ae30f99e68856fdae142ca58b6",
+        "current_sha256": null,
+        "matches": false
+      },
+      {
+        "path": "src/ui/SectionNav.tsx",
+        "reviewed_theme_sha256": "692e21fd00592e37cbcbfbb4ce9b1064f819898ca5b48f9ee902e89fdaef1633",
+        "current_sha256": "692e21fd00592e37cbcbfbb4ce9b1064f819898ca5b48f9ee902e89fdaef1633",
+        "matches": true
+      },
+      {
+        "path": "src/ui/Badge.tsx",
+        "reviewed_theme_sha256": "ef0f6d9e3029c437241b93c369b18f45cef375e2734c96d278ab7c4d91816ee2",
+        "current_sha256": "ef0f6d9e3029c437241b93c369b18f45cef375e2734c96d278ab7c4d91816ee2",
+        "matches": true
+      },
+      {
+        "path": "src/ui/Badge.module.css",
+        "reviewed_theme_sha256": "a946e2a97909fa0ef387ed8fec76a7025d63372117bf056acbc8487e60491ec1",
+        "current_sha256": "a946e2a97909fa0ef387ed8fec76a7025d63372117bf056acbc8487e60491ec1",
+        "matches": true
+      },
+      {
+        "path": "src/ui/Card.tsx",
+        "reviewed_theme_sha256": "a2d264dbcc36ddb2c0198603aa9bbbb5289a5baaafb0af2315ad581c29c3e2a3",
+        "current_sha256": "a2d264dbcc36ddb2c0198603aa9bbbb5289a5baaafb0af2315ad581c29c3e2a3",
+        "matches": true
+      },
+      {
+        "path": "src/ui/Card.module.css",
+        "reviewed_theme_sha256": "66ea63a63c8a71d952155a1ad2c40cef97efb5f9d15a62fe8f5ab89e7abe64ba",
+        "current_sha256": "66ea63a63c8a71d952155a1ad2c40cef97efb5f9d15a62fe8f5ab89e7abe64ba",
+        "matches": true
+      },
+      {
+        "path": "src/ui/PlayerRow.tsx",
+        "reviewed_theme_sha256": "ea1e4051321f2c9fce67963e90de5402bd02598aed78ff5d651059860639cb19",
+        "current_sha256": "ea1e4051321f2c9fce67963e90de5402bd02598aed78ff5d651059860639cb19",
+        "matches": true
+      },
+      {
+        "path": "src/ui/PlayerRow.module.css",
+        "reviewed_theme_sha256": "a5ab7ddbdd6ee55c488d8337bdefef10d846030c21428a750079a9bc64fa45f6",
+        "current_sha256": "a5ab7ddbdd6ee55c488d8337bdefef10d846030c21428a750079a9bc64fa45f6",
+        "matches": true
+      },
+      {
+        "path": "src/ui/PlayerHeadshot.tsx",
+        "reviewed_theme_sha256": "25fde10d1d83aafa6e59a1629a43b27ae7505312458c5f3e3df40ea1fde02e0d",
+        "current_sha256": "25fde10d1d83aafa6e59a1629a43b27ae7505312458c5f3e3df40ea1fde02e0d",
+        "matches": true
+      },
+      {
+        "path": "src/ui/PlayerHeadshot.module.css",
+        "reviewed_theme_sha256": "f37c0d06806c0aa763e0ffa49ae0d9d9fcc45956ffaa846bd0d9c2d1108c1169",
+        "current_sha256": "f37c0d06806c0aa763e0ffa49ae0d9d9fcc45956ffaa846bd0d9c2d1108c1169",
+        "matches": true
+      },
+      {
+        "path": "src/ui/currentRoute.ts",
+        "reviewed_theme_sha256": "f1a535c940a65c32283d210f7f3f93933646e48307eba5707e13e8f16c79961c",
+        "current_sha256": "f1a535c940a65c32283d210f7f3f93933646e48307eba5707e13e8f16c79961c",
+        "matches": true
+      },
+      {
+        "path": "src/ui/siteDestinations.ts",
+        "reviewed_theme_sha256": "602d2fffb75a9ffe9f3a6a4cb0f47ea642e69ac1c2f4351fb568c43d44d3792e",
+        "current_sha256": "748a89ed04522eda17f5d28efee6eee8804f99f4e46c7c2aa22315b9f5de16e8",
+        "matches": false
+      },
+      {
+        "path": "src/ui/teamColors.ts",
+        "reviewed_theme_sha256": "3525149b0e4fabf5de417f13beab73f70535dbf7e1caa799d40fb39a99e07062",
+        "current_sha256": "3525149b0e4fabf5de417f13beab73f70535dbf7e1caa799d40fb39a99e07062",
+        "matches": true
+      },
+      {
+        "path": "src/ui/tokens.css",
+        "reviewed_theme_sha256": "fce8cab3b64aa89d5b7337eabc302406aa5e036181d02002d970dba689166f65",
+        "current_sha256": "85a6c30223af93bccf009bab3d4bc2fde877df3eac1bd23e3aec425a86b34dc9",
+        "matches": false
+      },
+      {
+        "path": "src/ui/theme.ts",
+        "reviewed_theme_sha256": "43d52d6a7860be096253961091ef7ca3daed37289765cb2096dec31d170e483a",
+        "current_sha256": null,
+        "matches": false
+      },
+      {
+        "path": "src/ui/ThemeBootstrap.tsx",
+        "reviewed_theme_sha256": "0dc2f8edfa28b74a921308635907ff18ce9de616ad77e6ddea9bedb11c192cec",
+        "current_sha256": null,
+        "matches": false
+      },
+      {
+        "path": "src/data/espn.ts",
+        "reviewed_theme_sha256": "da2c36d7dca3fee62b3a31fe32a50a635c726c58737696a472d84dea3a349f34",
+        "current_sha256": "da2c36d7dca3fee62b3a31fe32a50a635c726c58737696a472d84dea3a349f34",
+        "matches": true
+      },
+      {
+        "path": "src/app/layout.tsx",
+        "reviewed_theme_sha256": "4ed954edbc16a748206dfe1d0c84fe7041b5e622ad7a5b8508ad33dad025e222",
+        "current_sha256": "47b36ba8d0da1478b3124c6bcc7c1709564681d6ab5f811b09540b458756d999",
+        "matches": false
+      },
+      {
+        "path": "src/app/globals.css",
+        "reviewed_theme_sha256": "6b1106e0548ef43b7e20c6ae9f1bb1b4437d5c31a06bb23b17154063f338056b",
+        "current_sha256": "6b1106e0548ef43b7e20c6ae9f1bb1b4437d5c31a06bb23b17154063f338056b",
+        "matches": true
+      },
+      {
+        "path": "src/app/stocks/page.tsx",
+        "reviewed_theme_sha256": "cf81de177321abda745880e8eabfef04b8f7de75b68a4c258607f59e43c9e8f7",
+        "current_sha256": "cf81de177321abda745880e8eabfef04b8f7de75b68a4c258607f59e43c9e8f7",
+        "matches": true
+      },
+      {
+        "path": "src/app/trade-analyzer/page.tsx",
+        "reviewed_theme_sha256": "cd4ff5468dec40159cba03eadaaf0d2b36b9de6ed3033ffaa27a8b79b878ba35",
+        "current_sha256": "cd4ff5468dec40159cba03eadaaf0d2b36b9de6ed3033ffaa27a8b79b878ba35",
+        "matches": true
+      },
+      {
+        "path": "src/app/news/page.tsx",
+        "reviewed_theme_sha256": "cf414f023e3eb9799b4ce35dc64fe299d6c7b7b7a8ef39dfc6db87dd6701b2f0",
+        "current_sha256": "cf414f023e3eb9799b4ce35dc64fe299d6c7b7b7a8ef39dfc6db87dd6701b2f0",
+        "matches": true
+      },
+      {
+        "path": "src/surfaces/news/Newsroom.tsx",
+        "reviewed_theme_sha256": "2927052152bb922f2fc5cba9fcc7edc836478430f540b18c6b1428d3bed37376",
+        "current_sha256": "2927052152bb922f2fc5cba9fcc7edc836478430f540b18c6b1428d3bed37376",
+        "matches": true
+      },
+      {
+        "path": "src/surfaces/news/Newsroom.module.css",
+        "reviewed_theme_sha256": "ba441fd1d577f6c2fdbe0053d1ef11b9876f7da11faac7d52177f18ca783278a",
+        "current_sha256": "ba441fd1d577f6c2fdbe0053d1ef11b9876f7da11faac7d52177f18ca783278a",
+        "matches": true
+      },
+      {
+        "path": "src/surfaces/news/NewsFeed.tsx",
+        "reviewed_theme_sha256": "4c7d56d1af3f67f866e3f0e5f1e4cc543778b20034d1cc9dae907833ec001706",
+        "current_sha256": "4c7d56d1af3f67f866e3f0e5f1e4cc543778b20034d1cc9dae907833ec001706",
+        "matches": true
+      },
+      {
+        "path": "src/surfaces/news/NewsFeed.module.css",
+        "reviewed_theme_sha256": "c26fb4c33f87521db2c6fa51818c697e6e94d8e07e53ec33aea9be38edad3f9e",
+        "current_sha256": "c26fb4c33f87521db2c6fa51818c697e6e94d8e07e53ec33aea9be38edad3f9e",
+        "matches": true
+      },
+      {
+        "path": "src/test/site-shell/stocks.ts",
+        "reviewed_theme_sha256": "ac22398ecc2c27af881bb00017288cf7dc219344a116252cf934d381a7c1a733",
+        "current_sha256": "ac22398ecc2c27af881bb00017288cf7dc219344a116252cf934d381a7c1a733",
+        "matches": true
+      },
+      {
+        "path": "src/surfaces/trade-analyzer/TradeAnalyzer.tsx",
+        "reviewed_theme_sha256": "0dc3834ffcad297a6e412feb8e2edaada9777a3f3a15132529f269e599cd226e",
+        "current_sha256": "0dc3834ffcad297a6e412feb8e2edaada9777a3f3a15132529f269e599cd226e",
+        "matches": true
+      },
+      {
+        "path": "src/surfaces/trade-analyzer/TradeAnalyzer.module.css",
+        "reviewed_theme_sha256": "240b552f02c0bc9beaf806b938ffdf4dfcbce999f8aaa69cf379b6514e561834",
+        "current_sha256": "240b552f02c0bc9beaf806b938ffdf4dfcbce999f8aaa69cf379b6514e561834",
+        "matches": true
+      },
+      {
+        "path": "src/surfaces/stock-market/StockMarket.tsx",
+        "reviewed_theme_sha256": "806065a9fbf4a3619aa63afc6f2c50487dcff86473572e04ac5cfd6e69ab5fae",
+        "current_sha256": "806065a9fbf4a3619aa63afc6f2c50487dcff86473572e04ac5cfd6e69ab5fae",
+        "matches": true
+      }
+    ],
+    "usable_scope": "Identical SVG bytes, MIME and OS-media fill observations retain their artwork evidence. Theme switching/navigation screenshots remain tied to the exact reviewed theme inputs, not current-main consumer acceptance. Main retains direct black header/footer images; theme PR132 is separate."
+  },
+  "verification_need": "Normal remote CI for final current-base compilation and independent final-head integration clearance. Native browser-tab discovery/cache/appearance remains a documented post-deploy smoke check; no new local browser/render/build under resource slot.",
+  "no_new_local_full_build": true,
+  "no_install": true,
+  "no_browser_render_or_recording": true,
+  "deployment_enabled": false,
+  "author_merge": false
+}
