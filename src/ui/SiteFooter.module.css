@@ -102,7 +102,7 @@
   }
 }
 
-.wordmark img { width:10rem; height:auto; display:block; }
+.wordmark img { width:10rem; max-width:100%; height:auto; display:block; }
 :global(body:has([data-courtside-home])) .footer { margin-top:0; background:var(--gh-cs-wall-deep); border-color:var(--gh-cs-line-light); }
 :global(body:has([data-courtside-home])) .inner { max-width:var(--gh-cs-wrap); }
 :global(body:has([data-courtside-home])) .disclaimer,
