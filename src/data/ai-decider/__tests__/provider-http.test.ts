@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { callWithTimeout, createOpenAiDecisionsClient, customDecision, decodeDecision, inputTokenReservation, readDecisionUsage } from "../provider";
 import { handleAiPost } from "../http";
 import { AI_LIMITS, parseAiRequest, readAiBody } from "../validation";
-import { harness, providerAnswer, TOKEN } from "./fixtures";
+import { harness, providerAnswer, providerUsage, TOKEN } from "./fixtures";
 
 afterEach(() => vi.useRealTimers());
 const draft = { kind: "custom", prompt: "Which snack?", choices: ["Apple", "Pear"] };
@@ -83,9 +83,14 @@ describe("fixed documented Decisions protocol", () => {
     expect(() => decodeDecision(raw, d.specs)).toThrow("provider_response");
   });
   it("extracts usage independently of malformed answers or extra response fields", () => {
-    const raw = { answers: "invalid", tools: [], usage: { input_tokens: 40000, output_tokens: 0, total_tokens: 40000 } };
+    const raw = { answers: "invalid", tools: [], usage: providerUsage(40000) };
     expect(readDecisionUsage(raw)).toBe(40000);
     expect(() => decodeDecision(raw, decision().specs)).toThrow("provider_response");
+  });
+  it("accepts the complete official usage example and charges cached input in full", () => {
+    const usage = { input_tokens: 42, input_tokens_details: { cached_tokens: 0, cache_write_tokens: 0 }, output_tokens: 0, output_tokens_details: { reasoning_tokens: 0 }, total_tokens: 42 };
+    expect(readDecisionUsage({ usage })).toBe(42);
+    expect(readDecisionUsage({ usage: { ...usage, input_tokens_details: { cached_tokens: 8, cache_write_tokens: 5 } } })).toBe(42);
   });
   it("handles documented refusal without an invented reason field", () => {
     const d = decision(), raw = providerAnswer(d.payload);

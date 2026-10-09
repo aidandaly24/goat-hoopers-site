@@ -52,8 +52,11 @@ export function weeklyInput(): AiWeeklyInput {
   };
 }
 
+export function providerUsage(inputTokens = 100) {
+  return { input_tokens: inputTokens, input_tokens_details: { cached_tokens: 0, cache_write_tokens: 0 }, output_tokens: 0, output_tokens_details: { reasoning_tokens: 0 }, total_tokens: inputTokens };
+}
 export function providerAnswer(payload: DecisionPayload, inputTokens = 100) {
-  return { model: "gpt-6-luna", answers: payload.questions.map(q => ({ type: "choice", name: q.name, choice: "c1", confidence: 0.65, probabilities: q.choices.map((c, i) => ({ value: c.value, probability: i === 1 ? 0.65 : 0.35 / (q.choices.length - 1) })) })), usage: { input_tokens: inputTokens, output_tokens: 0, total_tokens: inputTokens } };
+  return { model: "gpt-6-luna", answers: payload.questions.map(q => ({ type: "choice", name: q.name, choice: "c1", confidence: 0.65, probabilities: q.choices.map((c, i) => ({ value: c.value, probability: i === 1 ? 0.65 : 0.35 / (q.choices.length - 1) })) })), usage: providerUsage(inputTokens) };
 }
 export function harness() {
   const persistence = new TestPersistence();
