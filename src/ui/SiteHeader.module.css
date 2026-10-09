@@ -396,5 +396,5 @@
   .compactNav a,
   .compactNav .disclosure { padding: var(--gh-s2) var(--gh-s1); font-size: 0.875rem; }
   .panel[data-kind="league"] { display: none; }
-  .panelLinks a { flex: 1 1 calc(50% - var(--gh-s2)); }
+  .panelLinks a { flex: 1 1 max(8rem, calc(50% - var(--gh-s2))); }
 }

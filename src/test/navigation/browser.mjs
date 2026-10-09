@@ -136,6 +136,7 @@ try {
     assert.deepEqual(await page.locator('#site-navigation-panel nav[aria-label="League tools"] a').evaluateAll(a => a.map(e => e.getAttribute('href'))), league);
     if (expanded.compact) assert.deepEqual(await page.locator('#site-navigation-panel nav[aria-label="More destinations"] a').evaluateAll(a => a.map(e => e.getAttribute('href'))), primary.filter(h => h !== '/stocks'));
     assert.equal(expanded.controls.filter(c => c.href === '/team').length, 1);
+    if (expanded.compact && profile.font) assert.ok(await page.locator('#site-navigation-panel nav a').evaluateAll(links => links.every(link => { const s = getComputedStyle(link); const canvas = document.createElement('canvas'); const context = canvas.getContext('2d'); context.font = s.font; const longest = Math.max(...link.textContent.trim().split(/\s+/).map(word => context.measureText(word).width)); return longest <= link.clientWidth - parseFloat(s.paddingLeft) - parseFloat(s.paddingRight) + 1; })), 'Enlarged menu words should fit without fragmentation');
     if (ticker && !signed && ['desktop', 'phone390', 'phone320'].includes(profile.name)) await page.screenshot({ path: path.join(evidence, `${profile.name}-menu.png`) });
     if (expanded.compact && profile.font && signed) {
       await page.screenshot({ path: path.join(evidence, `${profile.name}-signed-menu-${ticker ? 'ticker' : 'plain'}.png`) });
