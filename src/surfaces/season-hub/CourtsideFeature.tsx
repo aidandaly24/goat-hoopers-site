@@ -3,13 +3,19 @@
 /* eslint-disable @next/next/no-img-element -- Existing, pre-sized court image bypasses optimizer quota. */
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
-import { isFinal, type Matchup } from "@/domain";
+import type { Matchup } from "@/domain";
 import type { LiveClubhouseDirectoryEntry } from "@/domain/clubhouse-directory";
 import type { WeeklyEdition } from "@/domain/weekly-spotlight";
 import { AI_PROBABILITY_LABEL, type AiSnapshotMetadata, type AiWeeklySlate } from "@/domain/ai-decider";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { CourtsideDialog } from "./CourtsideDialog";
 import { cs } from "./CourtsideStyles";
+
+type DisplayPair = Pick<Matchup, "week" | "homePoints" | "awayPoints"> & {
+  home: LiveClubhouseDirectoryEntry["identity"];
+  away: LiveClubhouseDirectoryEntry["identity"];
+};
+const isFinal = (pair: Pick<Matchup, "homePoints" | "awayPoints">) => pair.homePoints !== null && pair.awayPoints !== null;
 
 type Props = {
   edition: WeeklyEdition;
@@ -37,7 +43,7 @@ function previewPeriod(snapshot: AiSnapshotMetadata | null): string | null {
  * No projected scores, scroll hijacking, ornamental frames or standalone hoopers.
  */
 export function CourtsideFeature({ edition, entries, rosterCounts, preseason, checkedAt, season, aiWeekly, sources }: Props) {
-  const [selected, setSelected] = useState<Matchup | null>(null);
+  const [selected, setSelected] = useState<DisplayPair | null>(null);
   const [side, setSide] = useState(0);
   const [inspecting, setInspecting] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -50,7 +56,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
     ) ? [matchup] : [];
   });
   const preseasonPreview = aiWeekly?.status === "ready" && aiWeekly.season === season && aiWeekly.week === 1 && aiWeekly.snapshot?.comparison === "preseason_lineup_preview" && (aiWeekly.snapshot.sourceLeg === 0 || aiWeekly.snapshot.sourceLeg === 1);
-  const pairs: Matchup[] = preseasonPreview ? aiWeekly.matchups.flatMap(pick => {
+  const pairs: DisplayPair[] = preseasonPreview ? aiWeekly.matchups.flatMap(pick => {
     const home = entries.find(entry => entry.identity.id === pick.teamIds[0])?.identity;
     const away = entries.find(entry => entry.identity.id === pick.teamIds[1])?.identity;
     return home && away ? [{ week: aiWeekly.week, home, away, homePoints: null, awayPoints: null }] : [];
@@ -70,7 +76,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
     : "Current league pairing. Scores are pending; select a team below for its league context."
     : game.context;
   const week = pairs[0]?.week;
-  const savedPick = (pair: Matchup) => aiWeekly?.status !== "unavailable" && aiWeekly?.season === season && aiWeekly.week === pair.week
+  const savedPick = (pair: DisplayPair) => aiWeekly?.status !== "unavailable" && aiWeekly?.season === season && aiWeekly.week === pair.week
     ? aiWeekly.matchups.find((pick) => pick.teamIds.includes(pair.home.id) && pick.teamIds.includes(pair.away.id))
     : undefined;
   const selectedPick = selected ? savedPick(selected) : undefined;
