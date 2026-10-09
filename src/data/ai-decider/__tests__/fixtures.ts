@@ -2,14 +2,14 @@ import { createHash } from "node:crypto";
 import { vi } from "vitest";
 import type { AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
 import type { AiRuntime } from "../service";
-import { AiDeciderStore, emptyBudgetState, type AiControl, type AiBudgetState, type AiIdentity, type AiPersistence, type AiStoredWeek } from "../store";
+import { AiDeciderStore, emptyBudgetState, type AiControl, type AiBudgetState, type AiIdentity, type AiLegacyIdentity, type AiPersistence, type AiStoredWeek } from "../store";
 import type { DecisionPayload, DecisionsClient } from "../provider";
 import { weekKey } from "../weekly";
 
 export const NOW = Date.parse("2026-10-19T07:00:00Z");
 export const TOKEN = "a".repeat(64);
 export const USER = "00000000-0000-4000-8000-000000000001";
-export const identity = (n = 1): AiIdentity => ({ userId: `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`, tokenHash: createHash("sha256").update(TOKEN).digest("hex") });
+export const identity = (n = 1): AiLegacyIdentity => ({ kind: "legacy", userId: `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`, tokenHash: createHash("sha256").update(TOKEN).digest("hex") });
 export const fingerprint = (n = 1) => createHash("sha256").update(`synthetic-${n}`).digest("hex");
 
 /** Test-only atomic persistence, shared by independent stores to force CAS contention. */

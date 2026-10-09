@@ -781,6 +781,12 @@ Its guarded loopback target and service lifecycle never use an application DB UR
 Provider credentials and runtime stay behind `server-only`. `OPENAI_API_KEY`,
 `GOAT_AI_DECIDES_ENABLED=true` and an enabled durable control row are separate
 server activation gates; absent settings/state produce unavailable drafts.
+The optional friends-auth cutover uses the shared exact-`1` predicate and a lazy
+server verifier. Only validated session ID/subject/app UUID reach atomic AI
+admission; its SQL rechecks expiry, active mapping, verified email and valid team
+in the budget mutation. Failed provider verification has no legacy fallback.
+The app UUID remains the budget key, preserving counters through cutover; the
+legacy default and client request/result contracts remain unchanged.
 See [AI Decides handoff](docs/ai-decides.md) for limits, retention, exact contracts,
 auth findings and outstanding activation/verification work.
 

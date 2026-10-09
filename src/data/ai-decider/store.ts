@@ -8,7 +8,8 @@ import { aiDataDeadline } from "./deadline";
 
 /** Fixed launch budgets for ten managers, shared across all serverless instances. */
 export const AI_BUDGET = Object.freeze({ userHour: 5, userDay: 20, globalDay: 100, globalTokensDay: 100000, concurrent: 2, leaseMs: 60000, duplicateMs: 600000, retentionMs: 7 * 86400000 });
-export type AiIdentity = { userId: string; tokenHash: string };
+export type AiLegacyIdentity = { kind: "legacy"; userId: string; tokenHash: string };
+export type AiIdentity = AiLegacyIdentity | { kind: "friends"; userId: string; sessionId: string; subject: string };
 type UserCounter = { day: string; requests: number; hour: string; hourly: number; denied: number; signals: number; lastSeen: number };
 export type AiBudgetState = {
   version: 1;
@@ -33,6 +34,11 @@ export type AiPersistence = {
 export type AiReservation = { status: "reserved"; leaseId: string } | { status: "disabled" | "rate_limited" | "busy" | "duplicate"; retryAfterSeconds?: number };
 const count = (v: unknown): v is number => typeof v === "number" && Number.isSafeInteger(v) && v >= 0;
 const hashValid = (v: unknown): v is string => typeof v === "string" && /^[a-f0-9]{64}$/.test(v);
+const authIdValid = (v: unknown): v is string => typeof v === "string" && v.length > 0 && v.length <= 256 && !/[\s\u0000-\u001f\u007f]/.test(v);
+export function validAiIdentity(identity: AiIdentity): boolean {
+  return uuidValid(identity.userId) && (identity.kind === "legacy" ? hashValid(identity.tokenHash)
+    : identity.kind === "friends" && authIdValid(identity.sessionId) && authIdValid(identity.subject));
+}
 const dateValid = (v: unknown) => typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v) && Number.isFinite(Date.parse(v));
 
 /** Corrupt/missing counters must never silently reset a spending budget. */
@@ -62,7 +68,7 @@ export class AiDeciderStore {
   async available(): Promise<boolean> { return checked(await this.persistence.readControl()).enabled; }
 
   async reserve(identity: AiIdentity, fingerprint: string, tokens: number, now: number, shared = false): Promise<AiReservation> {
-    if (!uuidValid(identity.userId) || !hashValid(identity.tokenHash) || !hashValid(fingerprint) || !count(tokens) || tokens === 0 || tokens > 20000 || !count(now)) throw new Error("invalid_reservation");
+    if (!validAiIdentity(identity) || !hashValid(fingerprint) || !count(tokens) || tokens === 0 || tokens > 20000 || !count(now)) throw new Error("invalid_reservation");
     for (let attempt = 0; attempt < 8; attempt++) {
       const control = checked(await this.persistence.readControl());
       if (!control.enabled) return { status: "disabled" };
@@ -130,8 +136,17 @@ export class PostgresAiPersistence implements AiPersistence {
     return r ? { enabled: r.enabled as boolean, revision: Number(r.revision), state: r.state as AiBudgetState } : null;
   }
   async compareControl(revision: number, state: AiBudgetState, identity?: AiIdentity, disable = false): Promise<boolean> {
-    if (!validBudgetState(state)) throw new Error("state_unavailable");
-    const auth = identity ? sql`AND enabled = true AND EXISTS (SELECT 1 FROM sessions s JOIN site_users u ON u.id = s.user_id WHERE s.token_hash = ${identity.tokenHash} AND u.id = ${identity.userId}::uuid AND u.team_id ~ '^(?:[1-9]|10)$' AND s.expires_at > now())` : sql``;
+    if (!validBudgetState(state) || (identity && !validAiIdentity(identity))) throw new Error("state_unavailable");
+    const auth = !identity ? sql`` : identity.kind === "legacy"
+      ? sql`AND enabled = true AND EXISTS (SELECT 1 FROM sessions s JOIN site_users u ON u.id = s.user_id WHERE s.token_hash = ${identity.tokenHash} AND u.id = ${identity.userId}::uuid AND u.team_id ~ '^(?:[1-9]|10)$' AND s.expires_at > now())`
+      : sql`AND enabled = true AND EXISTS (
+          SELECT 1 FROM auth_session s
+          JOIN account_identities i ON i.subject = s.user_id
+          JOIN auth_user a ON a.id = i.subject
+          JOIN site_users u ON u.id = i.user_id
+          WHERE s.id = ${identity.sessionId} AND s.user_id = ${identity.subject}
+            AND u.id = ${identity.userId}::uuid AND i.active = true AND a.email_verified = true
+            AND u.team_id ~ '^(?:[1-9]|10)$' AND s.expires_at > now())`;
     const result = await this.execute(sql`UPDATE ai_decider_control SET state = ${JSON.stringify(state)}::jsonb, revision = revision + 1, enabled = CASE WHEN ${disable} THEN false ELSE enabled END WHERE id = 'goat-hoopers' AND revision = ${revision} ${auth} RETURNING revision`);
     return result.rows.length === 1;
   }
