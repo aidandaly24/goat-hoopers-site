@@ -81,7 +81,7 @@ export function SiteHeader({ user, logoutAction, destinations = SITE_DESTINATION
     if (!open) return;
     const trigger = open === "menu" ? menuRef.current : leagueRef.current;
     const frame = requestAnimationFrame(() => {
-      panelRef.current?.querySelector("a")?.scrollIntoView({ block: "start" });
+      panelRef.current?.scrollIntoView({ block: "start" });
       trigger?.focus({ preventScroll: true });
     });
     const escape = (event: KeyboardEvent) => {

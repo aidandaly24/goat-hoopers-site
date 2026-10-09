@@ -87,7 +87,7 @@ async function geometry(page) {
     const controls = [...header.querySelectorAll('a,button'), ...panel.querySelectorAll('a,button')].filter(visible);
     return { compact: matchMedia('(max-width:40rem)').matches, chrome: box(chrome), heading: document.querySelector('#main-content h1') ? box(document.querySelector('#main-content h1')) : null, overflow: document.documentElement.scrollWidth - innerWidth, rootFont: parseFloat(getComputedStyle(document.documentElement).fontSize), sharedOverflow: [header, panel, document.querySelector("footer")].map(e => ({ name: e.tagName, overflow: e.scrollWidth - e.clientWidth })), headingTextRight: (() => { const h = document.querySelector("#main-content h1"); if (!h) return null; const r = document.createRange(); r.selectNodeContents(h); return r.getBoundingClientRect().right; })(),
       controls: controls.map(e => ({ text: e.textContent, href: e.getAttribute('href'), current: e.getAttribute('aria-current'), ...box(e) })), primary: [...primary.querySelectorAll('a')].map(e => e.getAttribute('href')),
-      panel: { ...box(panel), hidden: !visible(panel), position: getComputedStyle(panel).position, insideChrome: chrome.contains(panel) }, bottomPadding: getComputedStyle(document.body).paddingBottom,
+      panelHeading: panel.querySelector("h2") && visible(panel) ? box(panel.querySelector("h2")) : null, panel: { ...box(panel), hidden: !visible(panel), position: getComputedStyle(panel).position, insideChrome: chrome.contains(panel) }, bottomPadding: getComputedStyle(document.body).paddingBottom,
       focus: document.activeElement?.textContent?.slice(0, 90), focusId: document.activeElement?.id, scrollY };
   });
 }
@@ -105,7 +105,7 @@ async function shell(page, signed = false, route = "/stocks", open = false) {
   const active = [...primary, ...league, "/team", "/claim", "/login"].find(h => route === h || h !== "/" && route.startsWith(h + "/"));
   const expected = g.compact && !open && active !== "/stocks" ? [] : !g.compact && league.includes(active) && !open ? [] : active ? [active] : [];
   assert.deepEqual(current, expected);
-  if (open) { assert.ok(["static", "relative"].includes(g.panel.position)); assert.equal(g.panel.insideChrome, false); assert.equal(g.panel.hidden, false); }
+  if (open) { assert.ok(["static", "relative"].includes(g.panel.position)); assert.equal(g.panel.insideChrome, false); assert.equal(g.panel.hidden, false); assert.ok(g.panelHeading.top >= g.chrome.bottom - 1, "Disclosure heading covered by chrome"); }
   return g;
 }
 async function openMenu(page) { const g = await geometry(page); const button = page.getByRole('button', { name: g.compact ? /^Menu/ : /^League tools/ }); await button.click(); await until(async () => (await geometry(page)).panel.hidden === false, "Menu did not open"); await pause(70); return button; }
