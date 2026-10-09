@@ -1,0 +1,8 @@
+.logo { display: inline-flex; max-width: 100%; }
+.logo img.dark { display: none; }
+:global(html[data-theme="dark"]) .logo img.light { display: none; }
+:global(html[data-theme="dark"]) .logo img.dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :global(html:not([data-theme])) .logo img.light { display: none; }
+  :global(html:not([data-theme])) .logo img.dark { display: block; }
+}

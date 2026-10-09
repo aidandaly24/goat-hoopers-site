@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element -- Approved pre-sized local logo. */
 "use client";
 
 import Link from "next/link";
@@ -9,6 +8,8 @@ import { isCurrentRoute } from "./currentRoute";
 import { SiteChrome } from "./SiteChrome";
 import { SITE_DESTINATIONS, type SiteDestination } from "./siteDestinations";
 import styles from "./SiteHeader.module.css";
+import { ThemeToggle } from "./ThemeToggle";
+import { ThemedLogo } from "./ThemedLogo";
 
 export type SiteHeaderUser = { displayName: string; teamId: string } | null;
 type Disclosure = { kind: "menu" | "league"; pathname: string };
@@ -126,7 +127,7 @@ export function SiteHeader({ user, logoutAction, destinations = SITE_DESTINATION
       <header ref={headerRef} className={styles.header}>
         <div className={styles.inner}>
           <Link href="/" className={styles.wordmark} aria-label="GOAT Hoopers home" onClick={activated}>
-            <img src="/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers" width="208" height="55" />
+            <ThemedLogo />
           </Link>
           <nav className={styles.nav} aria-label="Primary">
             {links(primary)}
@@ -146,6 +147,7 @@ export function SiteHeader({ user, logoutAction, destinations = SITE_DESTINATION
               onClick={() => toggle("menu")}>Menu <span aria-hidden="true">{open === "menu" ? "−" : "+"}</span></button>
           </nav>
           <div className={styles.account}>{accountActions}</div>
+          <ThemeToggle />
         </div>
       </header>
     </SiteChrome>

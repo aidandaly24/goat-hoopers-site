@@ -35,11 +35,11 @@ async function copy(name) {
 for (const dir of ["src/domain", "src/surfaces/stock-market", "src/surfaces/trade-analyzer", "src/surfaces/news"]) {
   await cp(path.join(repo, dir), path.join(fixture, dir), { recursive: true, filter: n => !/(?:__tests__|\.test\.|\.md$)/.test(n) });
 }
-for (const name of ["SiteHeader", "SiteFooter", "SiteChrome", "SectionNav", "Badge", "Card", "PlayerRow", "PlayerHeadshot"]) {
+for (const name of ["SiteHeader", "SiteFooter", "SiteChrome", "ThemeToggle", "ThemedLogo", "SectionNav", "Badge", "Card", "PlayerRow", "PlayerHeadshot"]) {
   await copy(`src/ui/${name}.tsx`);
   if (name !== "SectionNav") await copy(`src/ui/${name}.module.css`);
 }
-for (const name of ["currentRoute.ts", "siteDestinations.ts", "teamColors.ts", "tokens.css"]) await copy(`src/ui/${name}`);
+for (const name of ["currentRoute.ts", "siteDestinations.ts", "teamColors.ts", "tokens.css", "theme.ts", "ThemeBootstrap.tsx"]) await copy(`src/ui/${name}`);
 for (const name of ["src/data/espn.ts", "src/app/layout.tsx", "src/app/globals.css", "src/app/stocks/page.tsx", "src/app/trade-analyzer/page.tsx", "src/app/news/page.tsx", "src/surfaces/news/Newsroom.tsx", "src/surfaces/news/Newsroom.module.css", "src/surfaces/news/NewsFeed.tsx", "src/surfaces/news/NewsFeed.module.css", "src/test/site-shell/stocks.ts", "src/surfaces/trade-analyzer/TradeAnalyzer.tsx", "src/surfaces/trade-analyzer/TradeAnalyzer.module.css", "src/surfaces/stock-market/StockMarket.tsx"]) await copy(name);
 if (!reusedReceipt) { await symlink(path.join(repo, "node_modules"), path.join(fixture, "node_modules")); await symlink(path.join(repo, "public"), path.join(fixture, "public")); }
 await file("package.json", JSON.stringify({ private: true }));
@@ -92,7 +92,7 @@ async function geometry(page) {
   });
 }
 const primary = ["/", "/news", "/stocks", "/history", "/arcade"];
-const league = ["/teams", "/transactions", "/draft", "/intel", "/trade-analyzer", "/weekly"];
+const league = ["/teams", "/transactions", "/draft", "/intel", "/ai-decides", "/trade-analyzer", "/weekly"];
 async function shell(page, signed = false, route = "/stocks", open = false) {
   await settled(page); const g = await geometry(page);
   if (g.overflow > 1) { assert.equal(g.rootFont, 32, "Unexpected page overflow " + JSON.stringify(g)); assert.ok(fixturePhase, "Real app page overflow"); summary.knownBodyOverflow ??= []; summary.knownBodyOverflow.push({ route, rootFont: g.rootFont, viewport: (await page.viewportSize()).width, overflow: g.overflow, headingTextRight: g.headingTextRight }); }
@@ -170,13 +170,13 @@ try {
     record(`${profile.name} ticker=${ticker} signed=${signed}: inventory, targets, current, menu, Escape${!signed ? ', actual Next round trip/Back/Forward/shared URL' : ''}`, { initial, expanded }); await ctx.close();
   }
   const { ctx, page } = await make(origin, profiles[2], false, true);
-  for (const route of ['/', '/news', '/history/champions', '/arcade', '/teams/1', '/transactions', '/draft', '/intel', '/trade-analyzer', '/weekly/archive', '/team', '/claim', '/login']) {
+  for (const route of ['/', '/news', '/history/champions', '/arcade', '/teams/1', '/transactions', '/draft', '/intel', '/ai-decides', '/trade-analyzer', '/weekly/archive', '/team', '/claim', '/login']) {
     await page.goto(origin + route); await openMenu(page); await shell(page, false, route, true); record('current route ' + route);
   }
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto(origin + '/'); await settled(page);
   await page.getByRole('link', { name: 'Home', exact: true }).first().click(); assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Home');
   const desktopTrigger = await openMenu(page);
-  for (let i = 0; i < 9; i++) { await page.keyboard.press('Tab'); assert.ok(await page.evaluate(() => document.activeElement.getClientRects().length > 0)); }
+  for (let i = 0; i < league.length + 4; i++) { await page.keyboard.press('Tab'); assert.ok(await page.evaluate(() => document.activeElement.getClientRects().length > 0)); }
   assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Weekly archive'); await page.keyboard.press('Escape'); assert.ok(await desktopTrigger.evaluate(e => document.activeElement === e)); record('desktop keyboard header/account and all league links; current Home focus');
   await page.screenshot({ path: path.join(evidence, 'desktop-home-current.png'), clip: { x: 0, y: 0, width: 1440, height: 220 } });
   await page.locator('#main-content main').evaluate(e => e.setAttribute('data-courtside-home', '')); await settled(page); await page.screenshot({ path: path.join(evidence, 'desktop-home-current-courtside.png'), clip: { x: 0, y: 0, width: 1440, height: 220 } }); record('Home current state, including production courtside CSS condition on labeled synthetic body');
@@ -187,7 +187,7 @@ try {
   await page.locator('header a[href="/stocks"]:visible').click(); assert.equal(await page.evaluate(() => document.activeElement.getAttribute('href')), '/stocks'); record('ordinary current link retains its own focus');
   let trigger = await openMenu(page);
   const panelLinks = await page.locator('#site-navigation-panel a').count();
-  for (let i = 0; i < panelLinks; i++) { await page.keyboard.press('Tab'); const visible = await page.evaluate(() => { const r = document.activeElement.getBoundingClientRect(); return r.height > 0 && r.top >= document.querySelector('[data-site-chrome]').getBoundingClientRect().bottom - 1 && r.bottom <= innerHeight + 1; }); assert.ok(visible, 'Open-menu keyboard target hidden by sticky chrome'); }
+  for (let i = 0; i < panelLinks + 1; i++) { await page.keyboard.press('Tab'); const visible = await page.evaluate(() => { const r = document.activeElement.getBoundingClientRect(); return r.height > 0 && (document.activeElement.matches('[data-theme-toggle]') ? r.top >= 0 : r.top >= document.querySelector('[data-site-chrome]').getBoundingClientRect().bottom - 1) && r.bottom <= innerHeight + 1; }); assert.ok(visible, 'Open-menu keyboard target hidden by sticky chrome'); }
   assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Log in'); await page.keyboard.press('Escape'); assert.ok(await trigger.evaluate(e => e === document.activeElement)); await page.keyboard.press('Tab'); assert.equal(await page.evaluate(() => document.activeElement.closest('#site-navigation-panel') !== null), false); record('all menu destinations/account keyboard, Escape and closed tab order');
   await openMenu(page); await page.evaluate(() => { document.querySelector('#site-navigation-panel a').addEventListener('click', e => e.preventDefault(), { once: true }); }); await page.locator('#site-navigation-panel a').first().click({ modifiers: ['Meta'] }); assert.equal(await trigger.getAttribute('aria-expanded'), 'true'); record('modified click preserves current disclosure');
   await page.evaluate(() => { const d = document.createElement('dialog'); d.innerHTML = '<button>Fixture modal</button>'; document.body.append(d); d.showModal(); }); await page.keyboard.press('Escape'); assert.equal(await trigger.getAttribute('aria-expanded'), 'true'); assert.equal(await page.locator('dialog').evaluate(d => d.open), false); record('native modal Escape priority');

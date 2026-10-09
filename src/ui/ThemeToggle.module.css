@@ -1,0 +1,27 @@
+.toggle {
+  display: inline-flex;
+  flex: 0 0 44px;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--gh-control);
+  border-radius: var(--gh-radius);
+  color: var(--gh-text);
+  background: var(--gh-bg-raised);
+  cursor: pointer;
+  /* Theme colors and glyph apply together; never fade through an old surface. */
+  transition: none;
+}
+.toggle:hover { background: var(--gh-bg-hover); }
+.toggle:focus-visible { outline: 2px solid var(--gh-focus); outline-offset: 3px; }
+.toggle:disabled { cursor: default; }
+.toggle svg { width: 20px; height: 20px; }
+.moon { display: none; }
+:global(html[data-theme="dark"]) .sun { display: none; }
+:global(html[data-theme="dark"]) .moon { display: inline; }
+@media (prefers-color-scheme: dark) {
+  :global(html:not([data-theme])) .sun { display: none; }
+  :global(html:not([data-theme])) .moon { display: inline; }
+}

@@ -17,6 +17,7 @@
 }
 
 :root {
+  color-scheme: light;
   /* Canonical selected roles; historical names below are compatibility aliases. */
   --gh-accent: #345b77;
   --gh-on-accent: #ffffff;
@@ -186,3 +187,44 @@
  * --gh-bp-lg: 64rem — at/above this, surfaces may use multi-column
  *   desktop layouts (season-hub's standings + activity side-by-side).
  */
+
+/* Slate night counterparts; identity, scene and banner materials stay fixed. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --gh-accent: #9fc3de;
+  --gh-on-accent: #17212a;
+  --gh-control: #94a2af;
+  --gh-champion: #dec68b;
+  --gh-silver: #b9c3cc;
+  --gh-bronze: #d5a578;
+  --gh-bg: #151d24;
+  --gh-bg-raised: #1e2932;
+  --gh-bg-hover: #293844;
+  --gh-border: #455462;
+  --gh-text: #f5f4ef;
+  --gh-text-dim: #bcc5cd;
+  --gh-win: #94d5b9;
+  --gh-loss: #f0aaaa;
+  --gh-live: #edb494;
+}
+/* System preference also works if scripts are unavailable. Manual light wins. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --gh-accent: #9fc3de;
+    --gh-on-accent: #17212a;
+    --gh-control: #94a2af;
+    --gh-champion: #dec68b;
+    --gh-silver: #b9c3cc;
+    --gh-bronze: #d5a578;
+    --gh-bg: #151d24;
+    --gh-bg-raised: #1e2932;
+    --gh-bg-hover: #293844;
+    --gh-border: #455462;
+    --gh-text: #f5f4ef;
+    --gh-text-dim: #bcc5cd;
+    --gh-win: #94d5b9;
+    --gh-loss: #f0aaaa;
+    --gh-live: #edb494;
+  }
+}
