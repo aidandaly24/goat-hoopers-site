@@ -2,9 +2,10 @@ import type { MatchupHighlight } from "./stats";
 import type { Team } from "./team";
 
 /**
- * RecordBook — the league's all-time lists, computed from every final
- * matchup. All lists are top-5, newest-first ties broken by recency.
- * Null/empty in the preseason: no games, no records.
+ * RecordBook — the league's current-season lists, computed from every final
+ * matchup this season. All lists are top-5, newest-first ties broken by
+ * recency. Null/empty in the preseason: no games, no records. The all-time
+ * archive lives in the league history (Trophy Room), not here.
  */
 export type TeamWeekScore = {
   team: Team;

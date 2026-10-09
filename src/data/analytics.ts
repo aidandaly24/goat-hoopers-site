@@ -326,7 +326,7 @@ export type RecordBookInput = {
 };
 
 /**
- * All-time top-5 lists from every final: biggest blowouts, closest games,
+ * Current-season top-5 lists from every final: biggest blowouts, closest games,
  * highest single-week team scores. Null when nothing's been played.
  */
 export function computeRecordBook(

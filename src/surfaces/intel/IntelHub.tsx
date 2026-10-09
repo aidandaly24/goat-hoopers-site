@@ -44,7 +44,7 @@ export function IntelHub({
         <h1 className={styles.title}>League Intel</h1>
         <p className={styles.blurb}>
           Computed from live league data — projections, power order, title
-          odds, and the all-time lists. No vibes, just math.
+          odds, and the season&apos;s record lists. No vibes, just math.
         </p>
       </header>
       <div className={styles.grid}>
