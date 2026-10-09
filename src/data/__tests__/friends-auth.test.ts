@@ -72,6 +72,7 @@ describe("friends accounts with the actual pinned provider", () => {
     const known = await call("request-password-reset", { email: "manager@example.test", redirectTo: `${origin}/reset-password` });
     const unknown = await call("request-password-reset", { email: "missing@example.test", redirectTo: `${origin}/reset-password` });
     expect(known.status).toBe(unknown.status); expect(await known.json()).toEqual(await unknown.json());
+    expect(mail.filter((message) => message.kind === "reset")).toHaveLength(1);
     const resetMail = mail.findLast((message) => message.kind === "reset")!;
     const resetToken = new URL(resetMail.url).pathname.split("/").at(-1)!;
     expect((await call("reset-password", { token: resetToken, newPassword: resetPassword })).ok).toBe(true);

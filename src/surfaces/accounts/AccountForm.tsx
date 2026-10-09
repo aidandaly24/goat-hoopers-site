@@ -88,6 +88,10 @@ export function AccountForm({ mode, token, notice, teams = [], initialTeamId = "
     <SectionHeading eyebrow="Account" title={titles[mode]} />
     {notice && <p className={styles.notice}>{notice}</p>}
     <p className={styles.lede}>{descriptions[mode]}</p>
+    {(mode === "forgot" || mode === "team-recovery") && <p className={styles.notice}>
+      Previously signed in with a team password? <Link href="/login?legacy=1">Set up email login for your existing team</Link> first.
+      {" "}Confirm your old team password once, then add and verify your email. No team code is needed.
+    </p>}
     {done ? <p role="status" className={styles.notice}>
       {mode === "password" ? "Your password changed." : mode === "reset" ? "Your password changed. Log in with your new password." :
         mode === "team-recovery" ? "If your team has a verified recovery email, a reset link will arrive there. Check spam too. If you haven’t added an email yet, set up email login first." :
