@@ -15,7 +15,6 @@ import { TeamAvatar } from "@/ui/TeamAvatar";
 import { TransactionSummary } from "@/ui/TransactionSummary";
 import { FranchiseSection } from "@/surfaces/history/FranchiseSection";
 import { GmArchetypeCard } from "./GmArchetypeCard";
-import { HooperViewer } from "@/three/HooperViewer";
 import styles from "./TeamProfile.module.css";
 
 function streakBadge(streak: number) {
@@ -104,13 +103,7 @@ export function TeamProfile({
   return (
     <div className={styles.page}>
       <Card className={styles.identity}>
-        <div className={styles.hooperStage}>
-          <HooperViewer
-            rosterId={Number.parseInt(team.id, 10)}
-            teamName={team.name}
-            ariaLabel={`${team.name} figurine. Activate for a trick.`}
-          />
-        </div>
+        <TeamAvatar name={team.name} avatar={team.avatar} />
         <div className={styles.identityText}>
           <h1 className={styles.teamName}>{team.name}</h1>
           <p className={styles.manager}>managed by {team.managerName}</p>

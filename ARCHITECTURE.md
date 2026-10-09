@@ -14,6 +14,20 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ### Modeled valuation timeline contract
 
+The selected-player read-only `/api/stocks/[playerId]/history` route delegates
+to `data/stock-history-range.ts` and its injected SQL store. It pages all retained
+observed/reconstructed records within explicit calendar-day bounds, preserves
+native microsecond timestamps and exact cents, exposes publication/coverage status,
+and returns conservative held reconstructed intervals with a preceding anchor.
+It never invokes pricing, upstream stats, publishers or snapshot writes. Lists
+and existing detail/chart payloads are unchanged; PR99 owns renderer integration.
+See `docs/stock-history-range-integration.md` for range/timezone/retention semantics.
+
+`data/stock-history-client.ts` is the browser-safe, injected same-origin page
+adapter for that endpoint. It preserves raw records and held intervals, propagates
+abort, exposes generation409/restart and source503 detail, and never fetches later
+pages automatically. The separately owned chart connects it only on inspection.
+
 `src/domain/modeled-valuation-timeline.ts` and the pure data helper define a
 versioned continuous held-model state with exact updates and separate recorded
 snapshots. Calendar and coverage provenance stay explicit; no daily observed
@@ -29,9 +43,9 @@ gates; chart rendering and the bounded sampling fix remain separately owned.
 
 Editorial entries carry explicit draft/publication and date bounds. The latest started entry stays visible with a stale notice after its period ends, never invented weekly results. Source dates, selection reasons, NBA/college period qualifiers and verified historical finals are retained. NeuralNets’ 2025 record visibly names the previous manager in the collapsed summary and explains QBs Gremlins in the full roster.
 
-The server owns hero, player stories, wire and archive. Small client islands handle directory search/sort, native dialogs and one bounded CSS emblem settle. The settle pauses offscreen/hidden and is static under reduced motion. `CourtsideFigurine` is imported only after inspection, requests one unchanged GLB, freezes its supplied idle pose, renders only on load/resize/manual turn, and disposes downloads/GPU/bitmap resources on close. Shared account actions, bottom navigation, standings, stats, transaction links and league tools are retained. No arcade internals are imported or changed.
+The server owns hero, player stories, wire and archive. Small client islands handle directory search/sort, native dialogs and one bounded CSS emblem settle. The settle pauses offscreen/hidden and is static under reduced motion. The rejected hooper figurine family and its inspection dialogs/loaders are removed. Team avatars, names, roster disclosures and direct profile links provide identity without model requests. Shared account actions, bottom navigation, standings, stats, transaction links and league tools are retained. No arcade internals are imported or changed.
 
-`public/courtside/` preserves the exact supplied SVG variants, approved two pennants, existing arena and thirty bounded local portraits. Plain images serve pre-sized assets directly without image-optimizer quota. Fonts reuse root `next/font` assets. The optional Three module/model never participates in initial homepage rendering. Budgets, provenance and measured verification live in `courtside-preview/review/INTEGRATION.md`.
+`public/courtside/` preserves the exact supplied SVG variants, approved two pennants, existing arena and thirty bounded local portraits. Plain images serve pre-sized assets directly without image-optimizer quota. Fonts reuse root `next/font` assets. The homepage does not import a hooper viewer or request rejected models. Budgets, provenance and measured verification live in `courtside-preview/review/INTEGRATION.md`.
 
 ### Isolated courtside homepage review
 
@@ -55,8 +69,8 @@ The comparison artifact remains separate from the integrated Next.js homepage; a
   See top-level `DESIGN.md` for current visual authority.
 - Native `<details>` retains all 228 roster references behind ten compact
   summaries. No player-detail or external API request is made by this preview.
-  `court.js` loads installed Three modules and existing `public/3d/` assets
-  only after a figurine request; it releases its canvas/resources on close.
+  Rejected figurine controls, the optional viewer and its asset preparation
+  script are removed from this preview too; profile links remain available.
 - `ASSET-PROVENANCE.json`, `DESIGN.md`, and `review/` pin the approved assets,
   visual decisions, and captured desktop/mobile evidence. Weekly banner
   regeneration remains a content workflow; only two approved samples ship.
@@ -123,11 +137,12 @@ src/
                  # passed as a parameter). Dependency inversion lives here.
   three/         # Interactive 3D viewers (client components). GLBViewer
                  # (GLTFLoader + AnimationMixer, idle loop, click one-shots),
-                 # HooperViewer (team figurine by roster id), PropViewer
-                 # (basketball/trophy/crown/hoop). Assets in public/3d/,
+                 # PropViewer (basketball/trophy/crown/hoop). Team identities
+                 # use TeamAvatar; rejected hooper loaders/assets are removed.
+                 # Prop assets in public/3d/,
                  # built by the Blender pipeline in 3d/ (see 3d/README.md).
-  public/3d/     # Static GLB assets (hooper-1..10, hooper-generic,
-                 # basketball, trophy, crown, hoop) with named animation
+  public/3d/     # Approved props (basketball, trophy, crown, hoop)
+                 # and independently owned free-throw assets with named animation
                  # clips. Do not hand-edit; regenerate via 3d/build_all.sh.
   surfaces/      # Bounded experiences. One folder per surface.
     season-hub/  # "What's happening in the league": hero, standings,
