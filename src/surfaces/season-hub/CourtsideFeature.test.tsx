@@ -40,6 +40,11 @@ describe("integrated saved-pick matchup sidebar", () => {
       expect(html).toContain('aria-controls="game-title matchup-context"');
       expect(html).toContain('href="/ai-decides"');
       expect(html).toContain(AI_PROBABILITY_LABEL);
+      expect(html).toContain("Featured matchup · Week 1 · Upcoming");
+      expect(html).toContain("Synthetic selection");
+      expect(html).not.toContain("Pause motion");
+      expect(html).not.toContain("Inspect the floor");
+      expect(html).not.toContain("data-inspecting");
       expect(JSON.stringify(data)).toBe(before);
       expect(fetch).not.toHaveBeenCalled();
     } finally { fetch.mockRestore(); }
@@ -110,6 +115,8 @@ describe("integrated saved-pick matchup sidebar", () => {
     expect(html.match(/>AI Decides<\/h2>/g)).toHaveLength(1);
     expect(html).toMatch(/<aside[^]*?>AI Decides<\/h2>[^]*?Open AI playground ↗[^]*?<\/aside>/);
     expect(html.match(/href="\/ai-decides"/g)).toHaveLength(1);
+    expect(html).not.toContain('href="#watch"');
+    expect(html).not.toContain("Skip to this week’s players");
     const empty = renderToStaticMarkup(createElement(CourtsideHome, { data: { ...data, edition: null }, archive: [], portraits: {}, aiWeekly: weekly() }));
     expect(empty).toContain('href="/ai-decides"');
     expect(empty).toContain('href="/teams/6"');

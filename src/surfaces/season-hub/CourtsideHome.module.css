@@ -9,11 +9,6 @@
   .court-column { min-width: 0; }
   .clubhouse-court { margin: 0; height: 30rem; overflow: hidden; position: relative; background: var(--gh-cs-paint); }
   .clubhouse-court img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; transform: scale(1.65); transform-origin: 55% 100%; }
-  .clubhouse-court[data-motion="on"] img { transition: transform 550ms cubic-bezier(.23, 1, .32, 1); }
-  .clubhouse-court[data-inspecting="true"] img { transform: scale(1.95); }
-  .court-actions { display: flex; justify-content: space-between; gap: var(--gh-cs-s4); }
-  .court-actions button { background: transparent; padding: 0; min-height: var(--gh-cs-control); font-size: var(--gh-cs-caption); }
-  .court-actions button:hover { text-decoration: underline; text-underline-offset: var(--gh-cs-s1); }
   .week-heading { display: flex; justify-content: space-between; align-items: start; gap: var(--gh-cs-s4); margin-bottom: var(--gh-cs-s3); }
   .week-heading h2 { font-size: var(--gh-cs-small-title); }
   .week-heading > span { font-size: var(--gh-cs-caption); text-align: right; color: var(--gh-cs-muted-light); }
@@ -216,21 +211,6 @@
     clip-path: inset(50%);
     overflow: hidden;
     white-space: nowrap;
-  }
-
-  .skip {
-    position: absolute;
-    top: var(--gh-cs-s2);
-    left: var(--gh-cs-s4);
-    padding: var(--gh-cs-s3);
-    background: var(--gh-cs-tan);
-    color: var(--gh-cs-wall);
-    z-index: 10;
-    transform: translateY(-180%);
-  }
-
-  .skip:focus {
-    transform: none;
   }
 
   .caption,

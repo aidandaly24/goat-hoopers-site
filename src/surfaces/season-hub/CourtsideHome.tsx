@@ -168,9 +168,6 @@ export function CourtsideHome({
   const supports = edition.playerSpotlights.filter((player) => player !== lead);
   return (
     <main className={cs("surface", "editorial-home")} data-courtside-home id="content">
-      <a className={cs("skip")} href="#watch">
-        Skip to this week’s players
-      </a>
       <section className={cs("opening-zone")} aria-labelledby="game-title">
         <div className={cs("wrap")}>
           <div className={cs("header-edition")}>
