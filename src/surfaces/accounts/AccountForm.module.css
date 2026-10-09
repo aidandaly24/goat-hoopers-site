@@ -12,4 +12,6 @@
 .submit:disabled { opacity: .6; cursor: wait; }
 .switch { margin-top: var(--gh-s4); overflow-wrap: anywhere; }
 .switch a { color: var(--gh-gold); font-weight: 700; }
+.switch button { color: var(--gh-gold); font: inherit; font-weight: 700; background: transparent; border: 0; padding: 0; cursor: pointer; }
+.switch button:focus-visible { outline: 2px solid var(--gh-gold); outline-offset: 3px; }
 @media (max-width: 40rem) { .card { margin: var(--gh-s8) var(--gh-s3); } }
