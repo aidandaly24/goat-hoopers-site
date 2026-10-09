@@ -66,6 +66,44 @@ describe("integrated saved-pick matchup sidebar", () => {
     expect(html).toContain("saved model picks · past week");
   });
 
+  it.each(["preseason_lineup_preview", "weekly_lineup_preview"] as const)("identifies %s without changing the sidebar distribution or generation timestamp", comparison => {
+    const data = weekly();
+    data.snapshot = { hash: "fixture", model: "fixture-model", promptVersion: "goat-lineup-preview-v2", comparison, sourceLeg: 0, capturedAt: "2026-10-08T23:00:00Z", cutoffAt: "2026-10-08T23:00:00Z", startsAt: comparison === "preseason_lineup_preview" ? "2026-10-20T00:00:00Z" : null, endsAt: null, statsSeason: "2025", scoringMode: "unknown", baselineVersion: "prior-observed-starter-ppg-v2" };
+    data.matchups[0].result!.snapshot = data.snapshot;
+    const before = JSON.stringify(data), html = render(data);
+    expect(html).toContain(comparison === "preseason_lineup_preview" ? "Preseason lineup preview" : "Weekly lineup preview");
+    expect(html).toContain(comparison === "preseason_lineup_preview" ? "Publication closes 2026-10-20 00:00 UTC." : "Period dates unavailable.");
+    expect(html).toContain('Saved <time dateTime="2026-10-09T00:00:00Z">2026-10-09 00:00 UTC</time>');
+    expect(html).toContain("width:38%"); expect(html).toContain("width:62%");
+    expect(html).not.toContain("lock_in"); expect(JSON.stringify(data)).toBe(before);
+  });
+  it("formats offset publication closure and generation instants in UTC", () => {
+    const data = weekly();
+    data.generatedAt = "2026-10-09T02:00:00+02:00";
+    data.snapshot = { hash: "fixture", model: "fixture-model", promptVersion: "goat-lineup-preview-v2", comparison: "preseason_lineup_preview", sourceLeg: 0, capturedAt: "2026-10-08T23:00:00Z", cutoffAt: "2026-10-08T23:00:00Z", startsAt: "2026-10-20T02:00:00+02:00", endsAt: null, statsSeason: "2025", scoringMode: "unknown", baselineVersion: "prior-observed-starter-ppg-v2" };
+    const html = render(data);
+    expect(html).toContain("Publication closes 2026-10-20 00:00 UTC.");
+    expect(html).toContain('>2026-10-09 00:00 UTC</time>');
+    expect(html).not.toContain("02:00 UTC");
+  });
+
+  it.each([0, 1])("uses saved target-week-1 preseason roster pairs at source leg %s despite a week-2 homepage", sourceLeg => {
+    const data = weekly();
+    data.snapshot = { hash: "fixture", model: "fixture-model", promptVersion: "goat-lineup-preview-v2", comparison: "preseason_lineup_preview", sourceLeg, capturedAt: "2026-10-08T23:00:00Z", cutoffAt: "2026-10-08T23:00:00Z", startsAt: "2026-10-20T00:00:00Z", endsAt: null, statsSeason: "2025", scoringMode: "unknown", baselineVersion: "prior-observed-starter-ppg-v2" };
+    const currentEntries = entries.map((entry, index) => ({ ...entry, currentMatchup: { week: 2, home: entry.identity, away: team(String(index + 1)), homePoints: null, awayPoints: null } }));
+    const props = { edition: { ...edition, game: { ...edition.game, leagueWeek: 2 } }, entries: currentEntries, rosterCounts: {}, preseason: true, checkedAt: "2026-10-09T00:00:00Z", season: "2026", aiWeekly: data, sources: null };
+    const before = JSON.stringify(props), html = renderToStaticMarkup(createElement(CourtsideFeature, props));
+    expect(html).toContain("Preseason preview · target Week 1");
+    expect(html).toContain("Current 10 versus Current 6, preseason lineup preview for target Week 1");
+    expect(html).toContain('data-probability-for="6"'); expect(html).toContain('data-probability-for="10"');
+    expect(html).not.toContain('data-probability-for="1"'); expect(html).not.toContain('data-probability-for="2"');
+    expect(html).toContain("width:38%"); expect(html).toContain("width:62%");
+    expect(html).not.toContain("This week · Week 2"); expect(JSON.stringify(props)).toBe(before);
+    const regular = renderToStaticMarkup(createElement(CourtsideFeature, { ...props, aiWeekly: { ...data, snapshot: { ...data.snapshot!, comparison: "weekly_lineup_preview" } } }));
+    expect(regular).not.toContain("data-probability-for");
+    expect(regular).toContain("This week · Week 2");
+  });
+
   it("renders one AI section in the court sidebar and retains the playground when the edition is missing", () => {
     const data = { hub: null, directory: entries, edition, checkedAt: "2026-10-09T00:00:00Z", rosterNamesAvailable: true };
     const html = renderToStaticMarkup(createElement(CourtsideHome, { data, archive: [], portraits: {}, aiWeekly: weekly() }));

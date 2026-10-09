@@ -44,6 +44,7 @@ import {
   fetchUsers,
   fetchMatchups,
   fetchNbaState,
+  fetchAiPublicationState,
   fetchTransactions,
   fetchDrafts,
   fetchDraftPicks,
@@ -100,7 +101,7 @@ import {
 import type { LeagueNewsEdition } from "@/domain/news";
 import { createTtlCache } from "./cache";
 import { aiMatchupPairs, buildAiWeeklyInput, type AiWeekPreparation } from "./ai-decider/inputs";
-import type { AiDecidesData, AiWeeklyInput } from "@/domain/ai-decider";
+import type { AiDecidesData, AiPublicationContext, AiWeeklyInput } from "@/domain/ai-decider";
 /* Headshot seam: the Sleeper -> ESPN id map is injected into the toPlayer /
  * toDraftPicks transforms here (rule 11). Swap SEED_ESPN_ID_MAP for Aidan's
  * full mapping table when it lands — no component changes. */
@@ -1201,6 +1202,34 @@ export async function loadAiWeekContext(deps = { league: fetchLeague, state: fet
   const paired = pairs.flatMap(p => p.teamIds);
   if (pairs.length !== 5 || new Set(paired).size !== 10 || paired.some(id => !/^(?:[1-9]|10)$/.test(id))) throw new Error("weekly_context");
   return { leagueId: "1387473752807190528", season: league.season, week, matchups: pairs, phase: state.season_type };
+}
+
+/** Fixed-source next-leg context; numeric game mode remains explicitly unconfirmed. */
+export async function loadAiPublicationContext(deps = { league: fetchLeague, state: fetchAiPublicationState }): Promise<AiPublicationContext> {
+  if (LEAGUE_ID !== "1387473752807190528") throw new Error("weekly_context");
+  const [league, state] = await Promise.all([deps.league(), deps.state()]);
+  if (!/^20\d{2}$/.test(league.season) || state.season !== league.season || !["pre", "regular"].includes(state.season_type) || !Number.isSafeInteger(state.leg) || state.leg! < 0 || state.leg! > 29 || (state.season_type === "pre" ? state.leg !== 0 : state.leg! < 1)) throw new Error("weekly_context");
+  const seasonStartDate = state.season_start_date;
+  if (!seasonStartDate || !/^20\d{2}-\d{2}-\d{2}$/.test(seasonStartDate) || !Number.isFinite(Date.parse(seasonStartDate)) || new Date(seasonStartDate).toISOString().slice(0, 10) !== seasonStartDate || seasonStartDate.slice(0, 4) !== league.season || !state.previous_season || !/^20\d{2}$/.test(state.previous_season) || Number(state.previous_season) >= Number(state.season)) throw new Error("weekly_context");
+  const mode = league.settings.game_mode;
+  if (mode !== undefined && (!Number.isSafeInteger(mode) || mode < 0 || mode > 100)) throw new Error("weekly_context");
+  return { leagueId: "1387473752807190528", season: league.season, phase: state.season_type as "pre" | "regular", leg: state.leg!, week: state.leg! + 1, seasonStartDate, statsSeason: state.previous_season, gameModeCode: mode ?? null };
+}
+
+/** No fantasy calendar is guessed. Phase/leg, prior stats and actual source reads are frozen. */
+export async function loadAiLineupPreview(context: AiPublicationContext, deps = { league: fetchLeague, state: fetchAiPublicationState, rosters: fetchRosters, matchups: fetchMatchups, stats: fetchSeasonStats, now: Date.now }): Promise<AiWeeklyInput> {
+  const [league, state, rosters, matchups, stats] = await Promise.all([deps.league(), deps.state(), deps.rosters(), deps.matchups(context.week), deps.stats(context.statsSeason)]);
+  if (LEAGUE_ID !== context.leagueId || league.season !== context.season || state.season !== context.season || state.season_type !== context.phase || state.leg !== context.leg || context.week !== context.leg + 1 || state.previous_season !== context.statsSeason || state.season_start_date !== context.seasonStartDate || (league.settings.game_mode ?? null) !== context.gameModeCode) throw new Error("weekly_context");
+  const capturedAt = new Date(deps.now()).toISOString();
+  const expiresAt = `${context.seasonStartDate}T00:00:00.000Z`;
+  return buildAiWeeklyInput({ season: context.season, week: context.week, phase: context.phase, scoringMode: "unknown", capturedAt, statsAvailableAt: capturedAt, statsSeason: context.statsSeason, cutoffAt: context.phase === "pre" ? new Date(Date.parse(expiresAt) - 1).toISOString() : capturedAt, startsAt: context.phase === "pre" ? expiresAt : null, endsAt: null, preview: { kind: "lineup_strength", sourceLeg: context.leg, seasonStartDate: context.seasonStartDate, gameModeCode: context.gameModeCode } }, league, rosters, matchups, stats);
+}
+
+/** Fresh source state only; no rosters, stats, outcomes or player directory. */
+export async function loadAiPublicationState(deps = { state: fetchAiPublicationState }) {
+  const state = await deps.state();
+  if (!/^20\d{2}$/.test(state.season) || !["pre", "regular", "post"].includes(state.season_type) || !Number.isSafeInteger(state.leg) || state.leg! < 0 || state.leg! > 30) throw new Error("weekly_context");
+  return { season: state.season, leg: state.leg!, phase: state.season_type };
 }
 
 /** Explicit preparation job seam, never invoked from page rendering. Dates/mode need review. */

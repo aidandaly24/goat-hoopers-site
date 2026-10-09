@@ -5,6 +5,7 @@ import { cachedData, teams } from "@/surfaces/ai-decides/test/fixtures";
 const mocks = vi.hoisted(() => ({ user: vi.fn(), data: vi.fn(), teams: vi.fn() }));
 vi.mock("@/app/actions", () => ({ getCurrentUser: mocks.user }));
 vi.mock("@/data/league", () => ({ getAiDecidesData: mocks.data, getTeams: mocks.teams }));
+vi.mock("next/navigation", () => ({ useRouter: () => ({ refresh: vi.fn() }) }));
 import Page from "./page";
 
 describe("AI page session admission", () => {

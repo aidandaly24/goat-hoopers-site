@@ -195,7 +195,7 @@ describe("server-only credentials and reviewed migration boundaries", () => {
     const root = resolve(process.cwd(), "src");
     const contract = readFileSync(resolve(root, "domain/ai-decider.ts"), "utf8");
     expect(contract).not.toMatch(/process\.env|OPENAI_API_KEY|Authorization|\/data\//);
-    for (const name of ["provider", "store", "service", "runtime", "http", "weekly"]) expect(readFileSync(resolve(root, `data/ai-decider/${name}.ts`), "utf8")).toContain('import "server-only";');
+    for (const name of ["provider", "store", "service", "runtime", "http", "weekly", "publication"]) expect(readFileSync(resolve(root, `data/ai-decider/${name}.ts`), "utf8")).toContain('import "server-only";');
     const walk = (dir: string): string[] => readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(resolve(dir, e.name)) : /\.tsx?$/.test(e.name) ? [resolve(dir, e.name)] : []);
     for (const path of walk(root)) {
       const source = readFileSync(path, "utf8");

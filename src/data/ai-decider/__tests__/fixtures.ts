@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { vi } from "vitest";
 import type { AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
 import type { AiRuntime } from "../service";
-import { AiDeciderStore, emptyBudgetState, type AiControl, type AiBudgetState, type AiIdentity, type AiLegacyIdentity, type AiPersistence, type AiStoredWeek } from "../store";
+import { AiDeciderStore, emptyBudgetState, type AiControl, type AiBudgetState, type AiIdentity, type AiLegacyIdentity, type AiPersistence, type AiStoredWeek, type AiWeeklyJobIdentity } from "../store";
 import type { DecisionPayload, DecisionsClient } from "../provider";
 import { weekKey } from "../weekly";
 
@@ -19,6 +19,7 @@ export class TestPersistence implements AiPersistence {
   outcomes = new Map<string, AiWeeklyOutcome>();
   revoked = new Set<string>();
   conflicts = 0;
+  async authorizeWeeklyOperator(auth: AiWeeklyJobIdentity) { return auth.userId === USER && !this.revoked.has(auth.userId); }
   async readControl() { return structuredClone(this.control); }
   async compareControl(revision: number, state: AiBudgetState, auth?: AiIdentity, disable = false) {
     if (!this.control || this.control.revision !== revision || (auth && (this.revoked.has(auth.userId) || !this.control.enabled))) { this.conflicts++; return false; }
@@ -44,7 +45,7 @@ export class TestPersistence implements AiPersistence {
   }
 }
 
-export function weeklyInput(): AiWeeklyInput {
+export function weeklyInput(): AiWeeklyInput & { startsAt: string; endsAt: string } {
   return {
     leagueId: "1387473752807190528", season: "2026", week: 1, capturedAt: new Date(NOW).toISOString(), cutoffAt: "2026-10-19T12:00:00Z", startsAt: "2026-10-20T00:00:00Z", endsAt: "2026-10-27T00:00:00Z", phase: "regular", scoringMode: "lock_in", scoring: { pts: 1 }, starterSlots: ["PG", "SG", "G", "SF", "PF", "F", "C", "UTIL", "UTIL", "UTIL"], statsSeason: "2025", statsAvailableAt: "2026-07-01T00:00:00Z",
     matchups: [["6", "10"], ["2", "8"], ["3", "4"], ["1", "5"], ["7", "9"]].map((p, i) => ({ matchupId: String(i + 1), teamIds: p as [string, string] })),
