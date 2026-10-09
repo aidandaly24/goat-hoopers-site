@@ -29,4 +29,8 @@
 .empty { max-width: 60ch; line-height: 1.6; padding-bottom: var(--gh-s12); }
 .empty h2 { font-size: 1.5rem; margin: 0 0 var(--gh-s3); }
 .empty p { color: var(--gh-text-dim); }
+.retired { border: 1px solid var(--gh-border); border-radius: var(--gh-s1); padding: var(--gh-s4) var(--gh-s6); margin-bottom: var(--gh-s6); background: var(--gh-bg-card); line-height: 1.6; }
+.retired p { margin: 0 0 var(--gh-s3); }
+.retired button { font: inherit; font-size: .875rem; font-weight: 650; padding: var(--gh-s2) var(--gh-s4); min-height: 2.75rem; border: 1px solid var(--gh-control); border-radius: var(--gh-s1); background: transparent; color: var(--gh-text); cursor: pointer; }
+.retired button:hover { background: var(--gh-bg-hover); }
 @media (min-width: 64rem) { .layout { grid-template-columns: 1.25fr 1fr; gap: var(--gh-s16); } .headlines { padding-left: var(--gh-s8); border-left: 1px solid var(--gh-border); } }
