@@ -14,6 +14,15 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ### Modeled valuation timeline contract
 
+The selected-player read-only `/api/stocks/[playerId]/history` route delegates
+to `data/stock-history-range.ts` and its injected SQL store. It pages all retained
+observed/reconstructed records within explicit calendar-day bounds, preserves
+native microsecond timestamps and exact cents, exposes publication/coverage status,
+and returns conservative held reconstructed intervals with a preceding anchor.
+It never invokes pricing, upstream stats, publishers or snapshot writes. Lists
+and existing detail/chart payloads are unchanged; PR99 owns renderer integration.
+See `docs/stock-history-range-integration.md` for range/timezone/retention semantics.
+
 `src/domain/modeled-valuation-timeline.ts` and the pure data helper define a
 versioned continuous held-model state with exact updates and separate recorded
 snapshots. Calendar and coverage provenance stay explicit; no daily observed
