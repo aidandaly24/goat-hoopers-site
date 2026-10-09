@@ -360,16 +360,37 @@ Avoid three drifting lists and page-injected global navigation. Local section
 links may remain where they explain that page; no generic route registry is
 needed. The shared-shell owner implements this in a subsequent bounded PR.
 
-Recommended desktop grouping: **Home, News, Stocks, History, Arcade**, with a
-labeled **League tools** disclosure for Teams, Transactions, Draft, Intel and
-Trade Analyzer. Recommended phone opening: compact approved logo, direct
-**Stocks**, and **Menu**, opening a **nonmodal, in-flow** disclosure with the
-same destinations/order and league tools. Exact labels/grouping need
-implementation review; Aidan has not approved this exact menu specification.
-Preserve `/weekly` archives, history children, footer/profile links and every
-existing destination. Retain logged-in display-name → `/team` as the single
-account entry in the active layout, logged-out My Team/login/claim actions and
-logout; do not conflate public `/teams` with private `/team`.
+The bounded consolidation uses desktop **Home, News, Stocks, History, Arcade**,
+then **League tools**: Teams, Transactions, Draft, Intel, Trade Analyzer and
+Weekly archive, in that order. Root layout supplies one typed destination list;
+footer entries derive from it. On phones the approved logo, direct **Stocks**
+shortcut and **Menu** replace the fixed six-tab bar. The Menu deliberately omits
+Stocks to keep one visible Stocks destination and current-page announcement;
+the other primary links retain their relative order, followed by identical
+league tools and account actions. This shortcut is the documented exception to
+displaying the complete primary sequence in one row.
+
+Only the compact ticker/header belongs to the measured sticky stack. Expanded
+disclosures are normal-flow siblings before page content, using natural page
+scrolling at enlarged sizes. Opening from a scrolled page reveals their first
+row while retaining trigger focus. Hidden children leave the tab order; Escape
+closes and restores trigger focus, and activation, route changes and responsive
+layout changes close the disclosure. No modal role, focus trap, fixed panel or
+internal menu scroll area is introduced.
+
+This grouping received independent intended desktop/mobile design review for
+issue #84's follow-on; its rendered and actual Next evidence belongs to that
+draft PR. It does not claim Aidan approved these exact labels before review.
+Preserve /weekly archives, history children, footer/profile links and every
+existing destination. Retain logged-in display-name → /team as the single
+account entry in the active layout; phone account actions are in Menu. Retain
+logged-out My Team/login/claim and logout, and keep public /teams separate from
+private /team. Trade Analyzer provides an ordinary **Back to Stocks** link
+beside its existing workspace heading without changing share/picker behavior.
+
+Current navigation uses a plain accent underline without a selected pill or inset
+shadow; keyboard focus keeps its separate outline. The logo link shares the
+44px target floor with navigation controls.
 
 Use ordinary links and disclosure buttons with visible names, `aria-expanded`
 and `aria-controls`, not application-menu roles or a focus trap. Escape closes

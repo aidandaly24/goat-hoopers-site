@@ -7,6 +7,7 @@
 import { notFound } from "next/navigation";
 import { getTeamProfile, getTeams } from "@/data/league";
 import { getFranchiseHistory } from "@/data/history";
+import { getManagerArchetype } from "@/data/manager-archetypes";
 import { TeamProfile } from "@/surfaces/teams/TeamProfile";
 import { SectionNav } from "@/ui/SectionNav";
 
@@ -18,16 +19,22 @@ export default async function TeamProfilePage({
   params: Promise<{ rosterId: string }>;
 }) {
   const { rosterId } = await params;
-  const [profile, teams, franchise] = await Promise.all([
+  const [profile, teams, franchise, archetype] = await Promise.all([
     getTeamProfile(rosterId),
     getTeams(),
     getFranchiseHistory(rosterId),
+    getManagerArchetype(rosterId),
   ]);
   if (!profile) notFound();
   return (
     <>
       <SectionNav current="teams" />
-      <TeamProfile profile={profile} teams={teams} franchise={franchise} />
+      <TeamProfile
+        profile={profile}
+        teams={teams}
+        franchise={franchise}
+        archetype={archetype}
+      />
     </>
   );
 }
