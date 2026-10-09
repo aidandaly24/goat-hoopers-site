@@ -27,6 +27,7 @@ export function createGuardedConnect(original: Socket["connect"], env: TestEnvir
   const ports = new Set<number>();
   if (env.RUN_PRICE_HISTORY_LOCAL_TEST === "1") ports.add(55438);
   if (env.RUN_CLAIM_TEAM_LOCAL_TEST === "1") ports.add(55441);
+  if (env.GITHUB_ACTIONS === "true" && env.CI === "true" && env.RUN_AI_POSTGRES_TEST === "1") ports.add(55447);
 
   return function (this: Socket, ...args: unknown[]) {
     const target = connectionTarget(args);

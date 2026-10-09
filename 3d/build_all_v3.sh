@@ -1,8 +1,9 @@
 #!/bin/bash
-# Batch build all hooper variants + basketball
-cd ~/workspace/goat-hoopers-site/3d
+# Historical hooper batch: archive-only output, never public delivery
+cd "$(dirname "$0")"
 BLENDER=~/workspace/blender/blender-4.5.3-linux-x64/blender
-OUT=../public/3d
+OUT=./archive/hoopers
+mkdir -p "$OUT"
 
 for team in 1 2 3 4 5 6 7 8 9 10 generic; do
   if [ "$team" = "generic" ]; then

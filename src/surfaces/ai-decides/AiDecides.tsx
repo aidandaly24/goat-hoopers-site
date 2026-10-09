@@ -6,6 +6,7 @@ import type { AiDecideRequest, AiDecideResponse, AiDecidesData } from "@/domain/
 import { AiWeekly, ChoiceLabel, ProbabilityRows, type AiTeam } from "./AiWeekly";
 import { draftError, percent, postDecision, readDecisionResponse, timestamp, type DecisionTransport } from "./client";
 import { createPickerHistory } from "./pickerHistory";
+import { restorePickerFocus } from "./pickerFocus";
 import styles from "./AiDecides.module.css";
 
 type State = Exclude<AiDecideResponse, { status: "ready" }> | (Extract<AiDecideResponse, { status: "ready" }> & { teamIds?: [string, string] }) | { status: "idle" } | { status: "pending" };
@@ -33,6 +34,7 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
   const controller = useRef<AbortController | null>(null);
   const sequence = useRef(0);
   const restoredFocus = useRef<HTMLElement | null>(null);
+  const cancelFocusRestore = useRef<(() => void) | null>(null);
   const pickerHistory = useRef<ReturnType<typeof createPickerHistory<Picker>> | null>(null);
   const canRun = !authUnavailable && signedIn && data.availability.status === "available";
 
@@ -67,16 +69,18 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
   }, []);
   useEffect(() => {
     if (!picker) return;
+    cancelFocusRestore.current?.();
     const node = dialog.current;
     if (!node) return;
     node.showModal(); firstTeam.current?.focus();
     return () => {
       node.close();
       const target = restoredFocus.current ?? picker.opener;
-      if (target.isConnected && window.location.pathname === picker.path) target.focus({ preventScroll: true });
+      cancelFocusRestore.current = restorePickerFocus(target, picker.path, node);
       restoredFocus.current = null;
     };
   }, [picker]);
+  useEffect(() => () => { cancelFocusRestore.current?.(); }, []);
 
   function invalidate() { sequence.current++; controller.current?.abort(); controller.current = null; setState({ status: "idle" }); setSaved(""); }
   function editPrompt(value: string) { invalidate(); setMatchup(null); setPrompt(value); }

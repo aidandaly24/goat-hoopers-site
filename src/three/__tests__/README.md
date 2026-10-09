@@ -6,7 +6,7 @@ DOM packages are required. Application and import database URLs must be absent.
 ```sh
 env -u DATABASE_URL -u PRICE_HISTORY_IMPORT_URL npm test
 env -u DATABASE_URL -u PRICE_HISTORY_IMPORT_URL npm run typecheck
-env -u DATABASE_URL -u PRICE_HISTORY_IMPORT_URL npm exec -- eslint src/three/GLBViewer.tsx src/three/HooperViewer.tsx src/three/__tests__ src/surfaces/teams/TeamProfile.tsx
+env -u DATABASE_URL -u PRICE_HISTORY_IMPORT_URL npm exec -- eslint src/three/GLBViewer.tsx src/three/__tests__ src/surfaces/teams/TeamProfile.tsx
 env -u DATABASE_URL -u PRICE_HISTORY_IMPORT_URL npm run build
 ```
 
@@ -29,17 +29,17 @@ env -u DATABASE_URL -u PRICE_HISTORY_IMPORT_URL node node_modules/vite/bin/vite.
 
 Open `http://127.0.0.1:4173/src/three/__tests__/browser/index.html` with:
 
-- `?mode=normal`: actual WebGL renderer, GLBs and idle/click animations.
+- `?mode=normal`: team identity plus the unrelated basketball prop’s WebGL renderer/animations.
 - `?mode=disabled`: canvas WebGL context acquisition returns null before React
   mounts; the real Three renderer constructor fails. This simulates an
   unavailable context without changing browser/GPU settings or launch flags.
 - `?mode=load-error`: local GLB requests receive a synthetic 404.
 
-Check the accessible jersey label, team record/history/roster and player link
-after failure. Test 320px, 390px and desktop widths, repeated remounts,
+Check the team avatar/initials, record/history/roster and player link. Team
+profiles have no figurine or WebGL dependency; generic prop fallback remains. Test 320px, 390px and desktop widths, repeated remounts,
 unmount/mount, pointer/Enter/Space activation and visible keyboard focus.
 In normal mode, **Lose real WebGL context** uses `WEBGL_lose_context`; only
-the team viewer should fall back, and **Remount viewer** should recover.
+the prop viewer should fall back, and **Remount viewer** should recover.
 There is no automatic retry or production reload.
 
 The fixture server binds only `127.0.0.1:4173` with a strict port. If the

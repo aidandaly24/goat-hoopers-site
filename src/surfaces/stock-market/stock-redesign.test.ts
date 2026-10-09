@@ -21,6 +21,30 @@ test("search combines with position, recorded draft and roster filters", () => {
   assert.deepEqual(ids(filterStocks(stocks, { ...DEFAULT_FILTERS, roster: "unrostered" })), ["Beta"]);
   assert.equal(filterStocks(stocks, { ...DEFAULT_FILTERS, drafted: true }).length, 1);
 });
+test("normalized search finds accented names and still intersects every filter", () => {
+  const accented = [
+    quote("jokic", { playerName: "Nikola Jokić", position: "C", price: 95, ownership: 1 }),
+    quote("doncic", { playerName: "Luka Dončić", position: "PG", price: 94, ownership: 1 }),
+    quote("sengun", { playerName: "Alperen Şengün", position: "C", price: 60, ownership: 0 }),
+    quote("sharpe", { playerName: "Day'Ron Sharpe", position: "C", price: 30, ownership: 0, rookiePick: 12 }),
+  ];
+  // Plain queries find accented display names; spelling and ids are preserved.
+  assert.deepEqual(ids(filterStocks(accented, { ...DEFAULT_FILTERS, query: "jokic" })), ["jokic"]);
+  assert.deepEqual(ids(filterStocks(accented, { ...DEFAULT_FILTERS, query: "DONCIC" })), ["doncic"]);
+  assert.deepEqual(ids(filterStocks(accented, { ...DEFAULT_FILTERS, query: "sengun" })), ["sengun"]);
+  assert.deepEqual(ids(filterStocks(accented, { ...DEFAULT_FILTERS, query: "dayron" })), ["sharpe"]);
+  assert.equal(filterStocks(accented, { ...DEFAULT_FILTERS, query: "jokic" })[0].playerName, "Nikola Jokić");
+  // Search intersects position, drafted and roster filters.
+  assert.deepEqual(ids(filterStocks(accented, { ...DEFAULT_FILTERS, query: "jokic", position: "PG" })), []);
+  assert.deepEqual(ids(filterStocks(accented, { ...DEFAULT_FILTERS, query: "jokic", position: "C" })), ["jokic"]);
+  assert.deepEqual(ids(filterStocks(accented, { ...DEFAULT_FILTERS, query: "e", drafted: true })), ["sharpe"]);
+  assert.deepEqual(ids(filterStocks(accented, { ...DEFAULT_FILTERS, query: "e", roster: "unrostered" })), ["sengun", "sharpe"]);
+  // Blank query still lists everything; punctuation-only and no-match queries list nothing.
+  assert.equal(filterStocks(accented, DEFAULT_FILTERS).length, 4);
+  assert.deepEqual(ids(filterStocks(accented, { ...DEFAULT_FILTERS, query: "   " })), ["jokic", "doncic", "sengun", "sharpe"]);
+  assert.deepEqual(filterStocks(accented, { ...DEFAULT_FILTERS, query: "..." }), []);
+  assert.deepEqual(filterStocks(accented, { ...DEFAULT_FILTERS, query: "zzz" }), []);
+});
 test("each sort is stable, leaves missing baselines last and preserves inputs", () => {
   const original = structuredClone(stocks);
   assert.deepEqual(ids(filterStocks(stocks, DEFAULT_FILTERS)), ["Alpha", "Beta", "Gamma", "Delta"]);

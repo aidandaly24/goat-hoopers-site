@@ -93,6 +93,10 @@ export type RawMatchupEntry = {
 export type RawTransaction = {
   transaction_id: string;
   type: string;
+  /** Missing on legacy inputs; explicit non-complete records are not activity. */
+  status?: string;
+  /** Declared participants include trades with no player movements. */
+  roster_ids?: number[];
   /** Sleeper calls the week number "leg". */
   leg: number;
   created: number;

@@ -6,7 +6,7 @@ import { PropViewer } from "../../PropViewer";
 import "@/ui/tokens.css";
 import "./fixture.css";
 
-// Standalone local fixture: synthetic domain props, local GLBs, no app layout,
+// Standalone local fixture: synthetic team identity and approved prop GLB, no app layout,
 // data loaders, hosted images, auth, database, or production routes.
 const mode = new URLSearchParams(location.search).get("mode") ?? "normal";
 const getContext = HTMLCanvasElement.prototype.getContext;
@@ -52,7 +52,7 @@ function Fixture() {
         }}>Lose real WebGL context</button>
       </div>
       {mounted ? <TeamProfile key={generation} profile={profile} teams={[profile.team]} franchise={franchise} /> : <p>Viewer unmounted</p>}
-      <div className="fixtureProp"><PropViewer prop="basketball" /></div>
+      {mounted && <div className="fixtureProp"><PropViewer key={generation} prop="basketball" /></div>}
       <a href="#fixture-end">Surrounding page link</a>
       <p id="fixture-end">End of local fixture</p>
     </main>

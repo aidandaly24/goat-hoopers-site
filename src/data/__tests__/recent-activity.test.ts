@@ -76,6 +76,18 @@ describe("selectRecentTransactions", () => {
     const recent = selectRecentTransactions(byWeek);
     expect(recent.map((t) => t.transaction_id)).toEqual(["week-2"]);
   });
+  it("excludes unsuccessful records before capping the newest ten", () => {
+    const complete=Array.from({length:12},(_,i)=>rawTransaction({transaction_id:`demo-complete-${i}`,created:i,status:"complete"}));
+    const failed=Array.from({length:12},(_,i)=>rawTransaction({transaction_id:`demo-failed-${i}`,created:100+i,status:i%2?"failed":"pending"}));
+    const result=selectRecentTransactions([failed,complete]);
+    expect(result.map(t=>t.transaction_id)).toEqual(complete.slice(2).reverse().map(t=>t.transaction_id));
+  });
+  it("a failed duplicate does not displace completed or legacy activity", () => {
+    const failed=rawTransaction({transaction_id:"demo-same",created:20,status:"failed"});
+    const completed={...failed,created:10,status:"complete"};
+    const legacy=rawTransaction({transaction_id:"demo-legacy",created:1});
+    expect(selectRecentTransactions([[failed],[completed,legacy]])).toEqual([completed,legacy]);
+  });
 });
 
 describe("validSeasonWeeks", () => {

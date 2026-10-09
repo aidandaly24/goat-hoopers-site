@@ -4,7 +4,7 @@
 
 # GOAT Hoopers — League Site
 
-Live at **https://goathoopers.com** (login required — ask Aidan for an invite code).
+Live at **https://goathoopers.com**. Home, Stocks, and Arcade are public. My Team requires login; ask Aidan for an invite code to claim a manager account.
 
 A home page for our 10-team NBA dynasty fantasy league on Sleeper: standings, stats, matchup previews, power rankings, playoff odds, a league news network, head-to-head history, and a **player stock market** that prices every player in FAAB dollars.
 

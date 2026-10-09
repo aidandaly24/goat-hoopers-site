@@ -1,7 +1,8 @@
 # AI Decides server handoff
 
 Ownership: issue #112, Aidan's Dot. UI/page ownership is separate. This change
-does not enable paid calls, apply a migration, configure credentials or deploy.
+does not enable paid calls, apply a production migration, configure credentials or
+deploy. The explicit CI job applies the AI schema only in a disposable test schema.
 
 ## Contract
 
@@ -142,7 +143,7 @@ scores after the week ends, and never alter a prediction or baseline.
 
 The frozen generation manifest stores schema version, model, prompt version, full
 instructions and baseline version. Its canonical content and input enter the hash;
-the unapplied schema also protects the manifest from updates/deletion. Cache reads
+the production-unapplied schema also protects the manifest from updates/deletion. Cache reads
 and outcome recording validate model/prompt metadata against that manifest, not
 today's generation constants. Schema/baseline v1 reconstruction remains supported
 for older policy records; future schema/baseline changes must retain that decoder.
@@ -150,15 +151,44 @@ New generation always uses the current fixed policy. Interactive comparisons ref
 an older-policy snapshot while its immutable cached predictions remain readable.
 No observed outcome enters the input or generation manifest.
 
+## Disposable PostgreSQL verification
+
+The additive `AI Decides disposable PostgreSQL` job in `.github/workflows/ci.yml`
+uses an official `postgres:16.15-alpine` service, following the
+[GitHub service-container pattern](https://docs.github.com/en/actions/tutorials/use-containerized-services/create-postgresql-service-containers).
+It has an eight-minute timeout, one CPU, 768 MiB memory, 128 PIDs and a bounded
+temporary data filesystem. Only runner loopback port 55447 is published. The
+database name/user/password are fixed synthetic test fixtures; no secret or
+application `DATABASE_URL` is used. Fetch is blocked and the socket guard permits
+only that numeric loopback endpoint after all three explicit CI flags match.
+Local Docker access is unavailable; this job does not retry that socket or change
+host permissions. The ordinary offline suite never collects the integration file.
+
+The explicit command is `npx --no-install vitest run --config vitest.ai-postgres.config.mts`.
+The suite verifies an empty public schema, creates only its generated test schema,
+executes the exact `migrations/ai-decider.sql`, and checks disabled-by-default state.
+It executes production `PostgresAiPersistence` parameterized Drizzle SQL through a
+native `pg` transport. Real overlapping admission/completion, bounded CAS retries,
+session expiry/revocation, global/user budgets, lock failure, malformed output and
+usage accounting are exercised with a mock provider and deterministic clock.
+Competing snapshot/result/outcome writes and immutable/append-only triggers run
+on PostgreSQL, including frozen historical prompt/model reads and no outcome leakage.
+
+The job logs the tested PR/merge commit, source tree, PostgreSQL version and
+migration SHA-256. Teardown drops only the owned generated schema, confirms it is
+absent and closes the pool. GitHub removes the service container even when a step
+fails; no persistent volume exists. This verifies real PostgreSQL behavior while
+the deployed Neon HTTP transport and beta provider remain separate activation gates.
+Only a successful exact-head CI run confirms this database gate has passed.
+
 ## Activation after review
 
-`migrations/ai-decider.sql` is an additive reviewed file only. No existing auth,
+`migrations/ai-decider.sql` remains an additive reviewed file for production. No existing auth,
 stock, repair or production snapshot table is changed. Its initial database kill
 switch is false. It is not registered in an automatic migration/build command.
 Do not enable calls before independent migration/atomicity review and normal CI.
-The migration and real database overlap/trigger behavior have not been exercised
-against Postgres in this task; deterministic shared-store contention and the
-installed Drizzle SQL boundary are tested offline.
+The dedicated CI job exercises the migration and real overlap/trigger behavior
+against disposable PostgreSQL only. It does not authorize production provisioning.
 
 When review and UI integration are ready, Aidan can enter `OPENAI_API_KEY`
 directly in the authorized Vercel project's **Environment Variables**, scoped to

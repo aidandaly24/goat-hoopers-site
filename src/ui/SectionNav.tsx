@@ -1,45 +1,8 @@
-import Link from "next/link";
-import styles from "./SectionNav.module.css";
+export type LeagueSection = "transactions" | "teams" | "intel" | "stocks" | "trade-analyzer";
 
-export type LeagueSection =
-  | "transactions"
-  | "teams"
-  | "intel"
-  | "stocks"
-  | "trade-analyzer";
-
-const LINKS: { key: LeagueSection; href: string; label: string }[] = [
-  { key: "transactions", href: "/transactions", label: "Transactions" },
-  { key: "teams", href: "/teams", label: "Teams" },
-  { key: "intel", href: "/intel", label: "Intel" },
-  { key: "stocks", href: "/stocks", label: "Stocks" },
-  { key: "trade-analyzer", href: "/trade-analyzer", label: "Trade Analyzer" },
-];
-
-type Props = {
-  /** Which tab is active. Injected so the component stays pure (rule 11). */
-  current: LeagueSection;
-};
-
-/**
- * SectionNav — secondary navigation for the league content pages.
- * The main header only carries Home / Arcade / My Team; this row lets a
- * visitor move between Transactions, Teams, and Intel
- * without going back to the home page first.
- */
-export function SectionNav({ current }: Props) {
-  return (
-    <nav className={styles.nav} aria-label="League sections">
-      {LINKS.map((l) => (
-        <Link
-          key={l.key}
-          href={l.href}
-          aria-current={l.key === current ? "page" : undefined}
-          className={l.key === current ? styles.active : styles.link}
-        >
-          {l.label}
-        </Link>
-      ))}
-    </nav>
-  );
+/** Compatibility seam for unchanged league-page owners. All these destinations
+ * now live in root-owned navigation; no second global bar is injected here. */
+export function SectionNav(props: { current: LeagueSection }) {
+  void props;
+  return null;
 }

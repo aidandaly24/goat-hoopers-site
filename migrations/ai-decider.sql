@@ -1,4 +1,5 @@
--- REVIEW ONLY: not applied by builds, CI or this feature. Reuses existing Postgres.
+-- PRODUCTION REVIEW ONLY: never applied by builds or runtime. Reuses existing Postgres.
+-- Explicit disposable CI executes this file inside its generated test schema only.
 -- Initial kill switch is OFF. Enable only after independent schema/config review.
 CREATE TABLE ai_decider_control (
   id text PRIMARY KEY CHECK (id = 'goat-hoopers'),

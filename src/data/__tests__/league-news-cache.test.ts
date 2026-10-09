@@ -9,19 +9,18 @@
  */
 import { describe, expect, it } from "vitest";
 import { createLeagueNewsCache, LEAGUE_NEWS_TTL_MS } from "@/data/league";
-import type { NewsArticle } from "@/domain/news";
+import type { RealNewsArticle } from "@/domain/news";
 
-function article(id: string, headline: string): NewsArticle {
+function article(id: string, headline: string): RealNewsArticle {
   return {
     id,
-    publication: "espn",
-    kind: "trade",
-    section: "latest",
+    outlet: { id: "espn", name: "ESPN" },
     headline,
-    body: ["Body."],
+    url: `https://www.espn.com/nba/story/_/id/${id}`,
     publishedAt: 0,
+    summary: "Summary.",
     players: [],
-    teams: [],
+    sections: ["latest"],
   };
 }
 
@@ -80,7 +79,7 @@ describe("createLeagueNewsCache", () => {
     const cache = createLeagueNewsCache({
       now: clock.now,
       load: async () => {
-        if (fail) throw new Error("transactions feed down");
+        if (fail) throw new Error("RSS feeds down");
         return [article("a", "Headline A")];
       },
     });
@@ -93,11 +92,11 @@ describe("createLeagueNewsCache", () => {
     const cold = createLeagueNewsCache({
       now: clock.now,
       load: async () => {
-        throw new Error("transactions feed down");
+        throw new Error("RSS feeds down");
       },
     });
     // getLeagueNews catches this and renders the honest empty feed.
-    await expect(cold.get()).rejects.toThrow("transactions feed down");
+    await expect(cold.get()).rejects.toThrow("RSS feeds down");
   });
 
   it("uses the documented 5-minute TTL", () => {
