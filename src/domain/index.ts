@@ -47,6 +47,8 @@ export type {
   RealNewsArticle,
   RealNewsSection,
   NewsOutlet,
+  NewsCoverage,
+  LeagueNewsEdition,
   PlayerRef,
 } from "./news";
 export type {
