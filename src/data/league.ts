@@ -1048,7 +1048,7 @@ export type LeagueNewsLoadDeps = {
   fetchRostersFn?: () => Promise<RawRoster[]>;
   /** Player directory (names for mention matching). Defaults to safePlayerDirectory. */
   fetchDirectoryFn?: () => Promise<Record<string, RawPlayerEntry> | null>;
-  /** Draft board loader (2026 rookie identities). Defaults to getDraftBoard. */
+  /** Draft board loader (2026 rookie identities). Defaults to getDraftBoardStrict. */
   fetchDraftBoardFn?: () => Promise<DraftBoardData>;
 };
 
@@ -1072,7 +1072,14 @@ export async function loadLeagueNews(
     fetchFn = fetch,
     fetchRostersFn = fetchRosters,
     fetchDirectoryFn = safePlayerDirectory,
-    fetchDraftBoardFn = getDraftBoard,
+    // Strict by default: getDraftBoard swallows upstream failures into
+    // empty picks, which would mark a draft outage as "ok" and silently
+    // drop Rookie Wire. The strict variant throws on failure so the
+    // outage is recorded as unknown coverage instead. A valid empty
+    // draft (no draft on record) still returns empty picks — distinct
+    // from an outage. getDraftBoard keeps its resilient contract for
+    // its other callers (the /draft page).
+    fetchDraftBoardFn = getDraftBoardStrict,
   } = deps;
 
   // Both RSS feeds in parallel; one failing still yields the other.

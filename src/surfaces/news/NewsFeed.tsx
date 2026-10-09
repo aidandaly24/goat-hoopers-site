@@ -10,7 +10,6 @@ import type {
 } from "@/domain/news";
 import { NEWS_SECTIONS, sectionCoverageStatus } from "@/domain/news";
 import {
-  clearLegacyParamsHref,
   hasLegacyStoryParams,
   parseSectionParam,
   sectionHref,
@@ -182,7 +181,9 @@ export function NewsFeed({ edition }: { edition: LeagueNewsEdition }) {
   }
 
   function dismissRetired() {
-    navigate(clearLegacyParamsHref(search), true);
+    // The button reads "Back to the latest headlines", so it selects
+    // Latest — not just the current section minus legacy params.
+    navigate(sectionHref("latest"), true);
   }
 
   const sectionLabel =
@@ -222,8 +223,14 @@ export function NewsFeed({ edition }: { edition: LeagueNewsEdition }) {
         })}
       </div>
       <p className={styles.count} role="status">
-        <span className="gh-num">{filtered.length}</span>{" "}
-        {filtered.length === 1 ? "article" : "articles"} · {sectionLabel}
+        {availability === "unavailable" ? (
+          <>Unavailable · {sectionLabel}</>
+        ) : (
+          <>
+            <span className="gh-num">{filtered.length}</span>{" "}
+            {filtered.length === 1 ? "article" : "articles"} · {sectionLabel}
+          </>
+        )}
       </p>
 
       {availability === "unavailable" ? (

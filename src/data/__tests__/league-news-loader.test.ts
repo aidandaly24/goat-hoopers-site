@@ -16,6 +16,7 @@ import {
   createLeagueNewsCache,
   LEAGUE_NEWS_TTL_MS,
 } from "@/data/league";
+import { sectionCoverageStatus } from "@/domain/news";
 import type { DraftBoardData } from "@/data/league";
 import type { DraftPick } from "@/domain/draft";
 
@@ -404,5 +405,223 @@ describe("news cache + real loader (last-good integration)", () => {
       load: () => loadLeagueNews(baseDeps(failFetch())),
     });
     await expect(cache.get()).rejects.toThrow("All news RSS feeds failed");
+  });
+});
+
+/**
+ * Default draft path (issue #122 repair 1): loadLeagueNews must use the
+ * strict draft board by DEFAULT — the resilient getDraftBoard swallows
+ * upstream failures into empty picks, which marked a draft outage as
+ * "ok" and silently dropped Rookie Wire.
+ *
+ * These tests drive the REAL default: no fetchDraftBoardFn override, so
+ * the default getDraftBoardStrict runs with its real default fetchers.
+ * Only the underlying Sleeper HTTP is stubbed (globalThis.fetch);
+ * RSS, rosters, and the directory stay injected fakes so the draft
+ * path is isolated. Injected rejecting-loader tests bypassed this —
+ * these don't.
+ */
+describe("loadLeagueNews default draft path (real getDraftBoardStrict)", () => {
+  const DRAFT_XML = `<?xml version="1.0"?><rss version="2.0"><channel>
+<item><title>Fake Rookie shines in debut</title><link>https://www.espn.com/nba/story/_/id/20/fake-rookie</link>
+<description>A big night for the rookie.</description><pubDate>Thu, 08 Oct 2026 19:21:47 +0000</pubDate></item>
+</channel></rss>`;
+
+  const DIRECTORY = {
+    "9999": { full_name: "Fake Rookie", position: "PG" },
+  };
+
+  const RAW_PICK = {
+    pick_no: 1,
+    round: 1,
+    draft_slot: 1,
+    player_id: "9999",
+    roster_id: 1,
+    metadata: { full_name: "Fake Rookie", position: "PG" },
+  };
+
+  const SETTINGS = {
+    wins: 0,
+    losses: 0,
+    ties: 0,
+    fpts: 0,
+    fpts_decimal: 0,
+    fpts_against: 0,
+    fpts_against_decimal: 0,
+  };
+
+  // Deps WITHOUT fetchDraftBoardFn — the real default applies.
+  function defaultPathDeps() {
+    const fetchFn = (async () =>
+      ({ ok: true, text: async () => DRAFT_XML }) as unknown as Response) as typeof fetch;
+    return {
+      fetchFn,
+      fetchRostersFn: async () => [{ players: ["9999"] }] as never[],
+      fetchDirectoryFn: async () => DIRECTORY as never,
+    };
+  }
+
+  // Stub the Sleeper HTTP layer used by getDraftBoardStrict's default
+  // fetchers. Returns a restore function; callers must restore in
+  // finally (the offline setup file replaces fetch globally, so this
+  // reassignment is the sanctioned seam).
+  function stubSleeperFetch(
+    opts: {
+      draftsFail?: boolean;
+      picksFail?: boolean;
+      emptyDrafts?: boolean;
+      picks?: unknown[];
+    } = {}
+  ): () => void {
+    const realFetch = globalThis.fetch;
+    const rosters = [
+      {
+        roster_id: 1,
+        owner_id: "u1",
+        players: ["9999"],
+        settings: SETTINGS,
+      },
+    ];
+    const users = [{ user_id: "u1", display_name: "amy" }];
+    globalThis.fetch = (async (url: unknown) => {
+      const u = String(url);
+      if (u.endsWith("/drafts")) {
+        if (opts.draftsFail) throw new Error("Sleeper API 503 on /drafts");
+        return {
+          ok: true,
+          json: async () =>
+            opts.emptyDrafts
+              ? []
+              : [{ draft_id: "d1", season: "2026", status: "complete" }],
+        };
+      }
+      if (/\/draft\/[^/]+\/picks$/.test(u)) {
+        if (opts.picksFail) throw new Error("Sleeper API 503 on /draft_picks");
+        return { ok: true, json: async () => opts.picks ?? [] };
+      }
+      if (u.endsWith("/rosters")) {
+        return { ok: true, json: async () => rosters };
+      }
+      if (u.endsWith("/users")) {
+        return { ok: true, json: async () => users };
+      }
+      throw new Error(`unexpected Sleeper URL in test: ${u}`);
+    }) as typeof fetch;
+    return () => {
+      globalThis.fetch = realFetch;
+    };
+  }
+
+  it("draft-list failure through the real default marks draft unknown (cold)", async () => {
+    const restore = stubSleeperFetch({ draftsFail: true });
+    try {
+      const edition = await loadLeagueNews(defaultPathDeps());
+      expect(edition.coverage.draft).toBe("unknown");
+      // Feeds still served; Rookie Wire unavailable, never silently empty.
+      expect(edition.articles.length).toBeGreaterThan(0);
+      expect(sectionCoverageStatus("rookies", edition.coverage)).toBe(
+        "unavailable"
+      );
+      for (const a of edition.articles) {
+        expect(a.sections).not.toContain("rookies");
+      }
+    } finally {
+      restore();
+    }
+  });
+
+  it("draft-picks failure through the real default marks draft unknown (cold)", async () => {
+    const restore = stubSleeperFetch({ picksFail: true });
+    try {
+      const edition = await loadLeagueNews(defaultPathDeps());
+      expect(edition.coverage.draft).toBe("unknown");
+      expect(sectionCoverageStatus("rookies", edition.coverage)).toBe(
+        "unavailable"
+      );
+    } finally {
+      restore();
+    }
+  });
+
+  it("valid empty draft (no draft on record) stays ok — distinct from an outage", async () => {
+    const restore = stubSleeperFetch({ emptyDrafts: true });
+    try {
+      const edition = await loadLeagueNews(defaultPathDeps());
+      expect(edition.coverage.draft).toBe("ok");
+      // Rookie Wire is AVAILABLE but empty — the honest empty state,
+      // not the unavailable state an outage produces.
+      expect(sectionCoverageStatus("rookies", edition.coverage)).toBe(
+        "available"
+      );
+    } finally {
+      restore();
+    }
+  });
+
+  it("healthy default path classifies the rookie", async () => {
+    const restore = stubSleeperFetch({ picks: [RAW_PICK] });
+    try {
+      const edition = await loadLeagueNews(defaultPathDeps());
+      expect(edition.coverage.draft).toBe("ok");
+      const rookie = edition.articles.find((a) =>
+        a.headline.includes("Fake Rookie")
+      );
+      expect(rookie?.sections).toEqual(["latest", "league", "rookies"]);
+    } finally {
+      restore();
+    }
+  });
+
+  it("warm: draft outage after cache expiry yields unknown draft, not last-good", async () => {
+    const clock = (() => {
+      let t = 0;
+      return { now: () => t, advance: (ms: number) => { t += ms; } };
+    })();
+    let restore = stubSleeperFetch({ picks: [RAW_PICK] });
+    const cache = createLeagueNewsCache({
+      now: clock.now,
+      // Real default draft path on every load.
+      load: () => loadLeagueNews(defaultPathDeps()),
+    });
+    try {
+      const first = await cache.get();
+      expect(first.coverage.draft).toBe("ok");
+      expect(
+        first.articles.find((a) => a.headline.includes("Fake Rookie"))
+          ?.sections
+      ).toContain("rookies");
+
+      clock.advance(LEAGUE_NEWS_TTL_MS + 1);
+      restore();
+      restore = stubSleeperFetch({ draftsFail: true });
+      const second = await cache.get();
+      // Identity degradation is per-edition (accepted): the outage is
+      // explicit unknown coverage, not a preserved stale edition.
+      expect(second.coverage.draft).toBe("unknown");
+      expect(second).not.toBe(first);
+      expect(sectionCoverageStatus("rookies", second.coverage)).toBe(
+        "unavailable"
+      );
+    } finally {
+      restore();
+    }
+  });
+
+  it("recovery: draft outage then success restores ok coverage", async () => {
+    let restore = stubSleeperFetch({ draftsFail: true });
+    try {
+      const bad = await loadLeagueNews(defaultPathDeps());
+      expect(bad.coverage.draft).toBe("unknown");
+      restore();
+      restore = stubSleeperFetch({ picks: [RAW_PICK] });
+      const good = await loadLeagueNews(defaultPathDeps());
+      expect(good.coverage.draft).toBe("ok");
+      const rookie = good.articles.find((a) =>
+        a.headline.includes("Fake Rookie")
+      );
+      expect(rookie?.sections).toContain("rookies");
+    } finally {
+      restore();
+    }
   });
 });

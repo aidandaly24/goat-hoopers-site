@@ -241,11 +241,14 @@ function isLetter(ch: string): boolean {
 /**
  * Index of `needle` in `haystack` where the characters on both sides
  * are non-letters (Unicode-aware whole-word boundaries). -1 when no
- * such occurrence exists. ASCII `\b` is blind on non-decomposable
- * letters, so boundaries are checked explicitly instead.
+ * such occurrence exists at or after `from`. ASCII `\b` is blind on
+ * non-decomposable letters, so boundaries are checked explicitly instead.
  */
-function findWholeWord(haystack: string, needle: string): number {
-  let from = 0;
+function findWholeWord(
+  haystack: string,
+  needle: string,
+  from: number = 0
+): number {
   for (;;) {
     const i = haystack.indexOf(needle, from);
     if (i < 0) return -1;
@@ -258,6 +261,37 @@ function findWholeWord(haystack: string, needle: string): number {
 }
 
 /**
+ * Generational suffixes that may trail a name in article text.
+ * Compared against playerSearchKey-normalized text (lowercase, periods
+ * stripped, single spaces), so these are the plain-word forms.
+ */
+const NAME_SUFFIXES = new Set(["jr", "sr", "ii", "iii", "iv", "v"]);
+
+/** True when the normalized name's final word is a generational suffix. */
+function endsWithNameSuffix(norm: string): boolean {
+  const words = norm.split(" ");
+  return NAME_SUFFIXES.has(words[words.length - 1]);
+}
+
+/**
+ * If the normalized text right after `spanEnd` is a generational
+ * suffix word, return the index just past it; otherwise return
+ * spanEnd. Lets a reservation cover the full suffixed mention
+ * ("LeBron James Jr.") instead of stopping at the directory name's
+ * shorter prefix ("LeBron James").
+ */
+function suffixSpanEnd(text: string, spanEnd: number): number {
+  // Normalized text: lowercase, single-space separated words.
+  if (!text.startsWith(" ", spanEnd)) return spanEnd;
+  const wordStart = spanEnd + 1;
+  let wordEnd = wordStart;
+  while (wordEnd < text.length && text[wordEnd] !== " ") wordEnd++;
+  return NAME_SUFFIXES.has(text.slice(wordStart, wordEnd))
+    ? wordEnd
+    : spanEnd;
+}
+
+/**
  * Find which players an article mentions. PURE.
  *
  * Both the article text and candidate names go through the shared
@@ -267,16 +301,22 @@ function findWholeWord(haystack: string, needle: string): number {
  * ASCII matcher lost, including an accented name at the very end of a
  * headline (where `\b` failed on the trailing diacritic).
  *
- * Safeguards, retained from the original matcher:
+ * Safeguards:
  * - Full names only (never bare surnames — "Brown" alone matches nothing).
- * - Suffixes ("Jr", "II", "III") are part of the name; candidates are
- *   tried longest-first and matched spans are blanked, so "Mikel Brown"
- *   never steals "Mikel Brown Jr." (and a lone "Mikel Brown" directory
- *   entry still matches "Mikel Brown Jr." in text — Sleeper itself
- *   stores the name without the suffix, so that IS the same player).
+ * - Candidates are tried longest-first and EVERY occurrence of a longer
+ *   name is blanked before shorter names are tried — including
+ *   occurrences of ambiguous longer names, which reserve their spans
+ *   without emitting a chip. So "Mikel Brown" never matches inside any
+ *   "Mikel Brown Jr." mention, even a repeated or ambiguous one.
+ * - No suffix inference without an approved alias policy: a directory
+ *   name shorter than the mention ("LeBron James" vs "LeBron James Jr."
+ *   in text) does NOT match — the suffixed span is reserved, not
+ *   attributed. Fail closed; the alias mapping is future work, not a
+ *   guess.
  * - Possessive "'s" is stripped before matching ("Sharpe's big night").
  * - Ambiguity: one normalized name shared by two different playerIds
- *   yields NO chip — never a wrong chip.
+ *   yields NO chip — never a wrong chip (but still reserves spans, see
+ *   above).
  *
  * @param text article title + description to search
  * @param players candidate {playerId, name} list
@@ -287,7 +327,9 @@ export function matchPlayersToArticle(
 ): PlayerRef[] {
   const haystack = playerSearchKey(text.replace(POSSESSIVE_RE, ""));
 
-  // Group by normalized name to detect ambiguity.
+  // Group by normalized name. Ambiguous norms stay in the candidate
+  // list: they reserve spans without emitting chips, so a shorter
+  // unambiguous name can't claim an ambiguous longer mention.
   const byNorm = new Map<string, { playerId: string; name: string }[]>();
   for (const p of players) {
     const trimmed = p.name.trim();
@@ -299,25 +341,42 @@ export function matchPlayersToArticle(
     byNorm.set(norm, list);
   }
   const candidates = [...byNorm.entries()]
-    .filter(([, list]) => new Set(list.map((p) => p.playerId)).size === 1)
-    .map(([norm, list]) => ({
-      norm,
-      playerId: list[0].playerId,
-      name: list[0].name,
-    }))
+    .map(([norm, list]) => {
+      const ids = new Set(list.map((p) => p.playerId));
+      return {
+        norm,
+        // Null = ambiguous: reserves spans, never emits a chip.
+        playerId: ids.size === 1 ? list[0].playerId : null,
+        name: list[0].name,
+      };
+    })
     .sort((a, b) => b.norm.length - a.norm.length);
 
   const matched: PlayerRef[] = [];
   let remaining = haystack;
   for (const c of candidates) {
-    const idx = findWholeWord(remaining, c.norm);
-    if (idx >= 0) {
-      matched.push({ playerId: c.playerId, name: c.name });
-      // Blank the matched span so shorter names can't re-match inside it.
+    let emitted = false;
+    let from = 0;
+    for (;;) {
+      const idx = findWholeWord(remaining, c.norm, from);
+      if (idx < 0) break;
+      // Reserve the whole mention. A trailing generational suffix the
+      // candidate doesn't include ("jr" after "mikel brown") extends
+      // the reservation — the span belongs to someone, but without an
+      // alias policy it is nobody we can name, so no chip is emitted.
+      const end = endsWithNameSuffix(c.norm)
+        ? idx + c.norm.length
+        : suffixSpanEnd(remaining, idx + c.norm.length);
+      const hasUnclaimedSuffix = end > idx + c.norm.length;
       remaining =
         remaining.slice(0, idx) +
-        " ".repeat(c.norm.length) +
-        remaining.slice(idx + c.norm.length);
+        " ".repeat(end - idx) +
+        remaining.slice(end);
+      if (c.playerId !== null && !hasUnclaimedSuffix) emitted = true;
+      from = end;
+    }
+    if (emitted && c.playerId !== null) {
+      matched.push({ playerId: c.playerId, name: c.name });
     }
   }
   return matched;

@@ -509,13 +509,63 @@ describe("matchPlayersToArticle via shared playerSearchKey", () => {
       matchPlayersToArticle("Day'Ron Sharpe grabs 12 boards", players)
     ).toEqual([{ playerId: "p-dayron", name: "Day'Ron Sharpe" }]);
   });
-  it("suffix safety: lone directory name still matches suffixed text (same player)", () => {
-    // Sleeper stores "Mikel Brown" (no Jr.) — that IS the same player.
+  it("no alias policy: lone shorter directory name does NOT match a suffixed mention", () => {
+    // "LeBron James Jr." in text with only "LeBron James" in the
+    // directory must not become LeBron James — the suffixed span is
+    // reserved, not attributed. Same for Sleeper's suffix-less
+    // "Mikel Brown" vs the real-world "Mikel Brown Jr.": fail closed
+    // until an approved alias policy exists.
+    expect(
+      matchPlayersToArticle("LeBron James Jr. signs a new deal", [
+        { playerId: "p-lebron", name: "LeBron James" },
+      ])
+    ).toEqual([]);
     expect(
       matchPlayersToArticle("Mikel Brown Jr. scores 20", [
         { playerId: "p-brown", name: "Mikel Brown" },
       ])
-    ).toEqual([{ playerId: "p-brown", name: "Mikel Brown" }]);
+    ).toEqual([]);
+  });
+  it("reserves EVERY occurrence of a longer name, not just the first", () => {
+    // Dot's repro: with "Mikel Brown Jr." twice in the text, the old
+    // matcher blanked only the first occurrence, letting the shorter
+    // "Mikel Brown" claim the second one.
+    const players = [
+      { playerId: "p-jr", name: "Mikel Brown Jr." },
+      { playerId: "p-short", name: "Mikel Brown" },
+    ];
+    expect(
+      matchPlayersToArticle(
+        "Mikel Brown Jr. shines. Mikel Brown Jr. scores20.",
+        players
+      )
+    ).toEqual([{ playerId: "p-jr", name: "Mikel Brown Jr." }]);
+  });
+  it("ambiguous longer spans still reserve: shorter name cannot steal them", () => {
+    // Two different playerIds share "Mikel Brown Jr." (ambiguous — no
+    // chip), plus a shorter unambiguous "Mikel Brown". The old matcher
+    // dropped the ambiguous candidates, letting the shorter ID match.
+    const players = [
+      { playerId: "p-a", name: "Mikel Brown Jr." },
+      { playerId: "p-b", name: "Mikel Brown Jr." },
+      { playerId: "p-short", name: "Mikel Brown" },
+    ];
+    expect(
+      matchPlayersToArticle("Mikel Brown Jr. scores 20", players)
+    ).toEqual([]);
+  });
+  it("ambiguous longer spans reserve across repeated occurrences", () => {
+    const players = [
+      { playerId: "p-a", name: "Mikel Brown Jr." },
+      { playerId: "p-b", name: "Mikel Brown Jr." },
+      { playerId: "p-short", name: "Mikel Brown" },
+    ];
+    expect(
+      matchPlayersToArticle(
+        "Mikel Brown Jr. shines. Mikel Brown Jr. scores20.",
+        players
+      )
+    ).toEqual([]);
   });
   it("ambiguous normalized names yield no chip, never a wrong chip", () => {
     const players = [
