@@ -35,6 +35,7 @@ import type {
 } from "@/domain";
 import type { PlayerStatProfile } from "@/domain";
 import type { PriceHistoryPoint } from "@/domain";
+import { stockDetailHistory, STOCK_CHART_POINTS } from "./stock-history-sampling";
 import { signedStreak } from "@/domain";
 import {
   fetchLeague,
@@ -997,8 +998,8 @@ export async function getStockDetail(
     const detail = toStockDetail(found);
     // Only the selected player's chart crosses the store boundary on expand.
     // Preserve the pricing engine's current modeled point and its date/source.
-    const pricePath = await getStockStore().getPricePath(playerId);
-    detail.spark = [...pricePath.slice(-39), found.spark[found.spark.length - 1]];
+    const pricePath = await getStockStore().getPricePath(playerId, STOCK_CHART_POINTS - 1);
+    detail.spark = stockDetailHistory(pricePath, found.spark[found.spark.length - 1]);
     // Season history loads on expand only (F4) — overlay the single
     // player's jsonb instead of carrying 700 rows through the hot path.
     detail.seasonHistory = await getSeasonHistory(getDb(), playerId);

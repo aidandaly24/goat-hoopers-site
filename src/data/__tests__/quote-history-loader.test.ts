@@ -71,7 +71,7 @@ describe("quote/detail read wiring", () => {
     getQuoteHistory.mockClear(); saveSnapshot.mockClear();
     const detail = await getStockDetail("owned");
     expect(getQuoteHistory).toHaveBeenCalledOnce();
-    expect(getPricePath).toHaveBeenCalledExactlyOnceWith("owned");
+    expect(getPricePath).toHaveBeenCalledExactlyOnceWith("owned", 39);
     expect(detail?.spark).toEqual([
       ...await getPricePath.mock.results[0].value,
       { date: "2026-10-08T12:00:00.000Z", price: quote.price, source: "live" },
@@ -87,7 +87,9 @@ describe("quote/detail read wiring", () => {
     })));
     const detail = await getStockDetail("owned");
     expect(detail?.spark).toHaveLength(40);
-    expect(detail?.spark[0].date).toBe("2025-01-02T00:00:00.000Z");
+    expect(getPricePath).toHaveBeenCalledExactlyOnceWith("owned", 39);
+    expect(detail?.spark[0].date).toBe("2025-01-01T00:00:00.000Z");
+    expect(detail?.spark.at(-2)?.date).toBe("2025-02-09T00:00:00.000Z");
     expect(detail?.spark.at(-1)?.date).toBe("2026-10-08T12:00:00.000Z");
     expect(detail?.spark.at(-1)?.source).toBe("live");
   });

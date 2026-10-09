@@ -18,12 +18,14 @@ import type { PriceHistoryArtifact, PriceHistoryPublicationPlan } from "../domai
 import { validatePriceHistoryArtifact } from "./price-history-artifact";
 import { validatePublicationPlan } from "./price-history-plan";
 import { getDb, priceHistory, priceHistoryImportState, stockSnapshots, type Db } from "./db";
+import { samplePoints, STOCK_CHART_POINTS } from "./stock-history-sampling";
+export { samplePoints } from "./stock-history-sampling";
 
 /** player_id → history points; quote reads return at most one live point per ID. */
 export type PriceHistory = Record<string, PriceHistoryPoint[]>;
 
 /** Max points per player in the merged sparkline history. */
-const HISTORY_POINTS = 40;
+const HISTORY_POINTS = STOCK_CHART_POINTS;
 /** Live snapshots kept in a selected-player chart. */
 const LIVE_POINTS = 10;
 const RETENTION_DAYS = 30;
@@ -38,30 +40,12 @@ const SNAPSHOT_MIN_INTERVAL_MS = 24 * 60 * 60 * 1000;
 const asSource = (s: string): PriceSource =>
   s === "gamelog" ? "gamelog" : "backtest";
 
-/**
- * Evenly sample points down to `max`, always keeping first and last.
- * A 120px sparkline can't show 400 games; the shape survives sampling.
- */
-export function samplePoints(
-  points: PriceHistoryPoint[],
-  max: number
-): PriceHistoryPoint[] {
-  if (points.length <= max) return points;
-  const out: PriceHistoryPoint[] = [points[0]];
-  const step = (points.length - 1) / (max - 1);
-  for (let i = 1; i < max - 1; i++) {
-    out.push(points[Math.round(i * step)]);
-  }
-  out.push(points[points.length - 1]);
-  return out;
-}
-
 export type StockStore = {
   /** At most one latest observed/live baseline per requested player; no reconstruction. */
   getQuoteHistory(playerIds: string[]): Promise<PriceHistory>;
   saveSnapshot(prices: Record<string, number>): Promise<void>;
-  /** Selected-player chart: reconstruction + latest 10 live points, sampled to 40. */
-  getPricePath(playerId: string): Promise<PriceHistoryPoint[]>;
+  /** Selected-player chart: reconstruction + latest 10 live points; caller reserves its current-quote slot. */
+  getPricePath(playerId: string, maxPoints?: number): Promise<PriceHistoryPoint[]>;
 };
 
 class DrizzleStockStore implements StockStore {
@@ -91,7 +75,7 @@ class DrizzleStockStore implements StockStore {
     }
   }
 
-  async getPricePath(playerId: string): Promise<PriceHistoryPoint[]> {
+  async getPricePath(playerId: string, maxPoints = HISTORY_POINTS): Promise<PriceHistoryPoint[]> {
     const points: PriceHistoryPoint[] = [];
     try {
       const recon = await this.db
@@ -118,7 +102,7 @@ class DrizzleStockStore implements StockStore {
     } catch {
       // Live table missing — chart estimates remain source-labelled.
     }
-    return samplePoints(points, HISTORY_POINTS);
+    return samplePoints(points, maxPoints);
   }
 
   async saveSnapshot(prices: Record<string, number>): Promise<void> {

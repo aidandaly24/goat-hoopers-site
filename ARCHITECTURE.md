@@ -347,8 +347,13 @@ requested player in one SQL query (zero queries for an empty set), with
 Reconstruction never supplies a quote baseline. The shared market-candidate
 selector controls the requested set. `getPricePath(id)` reads only the
 selected player's reconstruction and latest ten live rows (player filter
-before the limit), then merges and samples the chart to 40 points. The detail
-loader retains its current modeled point last and caps the response at 40.
+before the limit). The detail loader requests 39 historical points, reserving
+the fortieth slot for its unchanged current modeled quote. The pure
+`stock-history-sampling.ts` orders existing points, preserves both endpoints
+and both sides of provenance changes, then prefers extrema and splits the
+largest remaining index gaps. It never averages prices, invents dates or
+deduplicates a recorded/current same-date pair. Provenance that alone exceeds
+the requested budget fails closed instead of being silently hidden.
 The list/ticker never request chart history; see `docs/quote-history-queries.md`.
 Both reconstructed sources render dashed and are labeled as
 current-model FAAB estimates; normal change % and movers use live

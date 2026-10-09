@@ -175,6 +175,10 @@ describe("selected-player dated/source-labelled chart history", () => {
     expect(points.at(-1)).toEqual({ date: "2026-10-01T00:00:00.000Z", price: 12.34, source: "live" });
     expect(points.slice(1, -1).every(p => p.source === "gamelog")).toBe(true);
     expect(calls[0].rows).toBe(81); expect(calls[0].params).toEqual(["p"]);
+    const reserved = await getStockStore(db).getPricePath("p", 39);
+    expect(reserved).toHaveLength(39);
+    expect(reserved[0]).toEqual(points[0]);
+    expect(reserved.at(-1)).toEqual(points.at(-1));
   });
 
   it.each(["price_history", "stock_snapshots", "both"])("keeps the available source when %s is missing", async (missing) => {
