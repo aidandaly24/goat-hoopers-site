@@ -6,7 +6,7 @@ import { Pool } from "pg";
 import { PgDialect } from "drizzle-orm/pg-core";
 import type { SQL } from "drizzle-orm";
 import type { Db } from "../../db";
-import { AiDeciderStore, PostgresAiPersistence, emptyBudgetState, AI_BUDGET, type AiIdentity, type AiLegacyIdentity, type AiBudgetState, type AiStoredWeek } from "../store";
+import { AiDeciderStore, PostgresAiPersistence, emptyBudgetState, AI_BUDGET, type AiIdentity, type AiLegacyIdentity, type AiBudgetState, type AiStoredWeek, type AiWeeklyJobIdentity } from "../store";
 import { generateWeeklyPicks, resolveAiIdentity, runAiDecision } from "../service";
 import { loadAiDecidesData } from "../runtime";
 import { decodeDecision } from "../provider";
@@ -153,6 +153,39 @@ describe("actual PostgreSQL provider-session admission", () => {
     const before = await control();
     await expect(store().reserve(providerPrincipal(), fingerprint(), 100, NOW)).rejects.toThrow();
     expect(await control()).toEqual(before);
+  });
+});
+
+describe("actual stable weekly job admission", () => {
+  const operator = (auth: "legacy" | "friends" = "legacy"): AiWeeklyJobIdentity => ({ kind: "weekly_job", userId: principal().userId, auth });
+  const jobStore = (auth: "legacy" | "friends" = "legacy") => new AiDeciderStore(new PostgresAiPersistence(db, operator(auth)));
+  it.each(["legacy", "friends"] as const)("uses the configured stable app UUID independently of personal sessions (%s)", async auth => {
+    await pool.query("DELETE FROM sessions"); await pool.query("DELETE FROM auth_session");
+    const s = jobStore(auth), job = operator(auth);
+    expect(await s.persistence.authorizeWeeklyOperator(job)).toBe(true);
+    const lease = await s.reserve(job, fingerprint(), 100, NOW, true);
+    if (lease.status !== "reserved") throw new Error("Expected reservation");
+    await s.finish(lease.leaseId, 100, false, false, NOW);
+    expect((await control()).state.users[job.userId].requests).toBe(1);
+    expect(JSON.stringify((await control()).state)).not.toMatch(/weekly_job|provider-subject|tokenHash/);
+  });
+  it.each(["unconfigured", "wrong_uuid", "wrong_auth", "invalid_team", "inactive", "unverified"])("rejects %s job authority at both initial and atomic checks", async change => {
+    const job = operator("friends"), s = change === "unconfigured" ? store() : jobStore("friends");
+    if (change === "wrong_uuid") job.userId = principal(2).userId;
+    if (change === "wrong_auth") job.auth = "legacy";
+    if (change === "invalid_team") await pool.query("UPDATE site_users SET team_id='11' WHERE id=$1", [job.userId]);
+    if (change === "inactive") await pool.query("UPDATE account_identities SET active=false WHERE user_id=$1", [job.userId]);
+    if (change === "unverified") await pool.query("UPDATE auth_user SET email_verified=false WHERE id=$1", [providerPrincipal().subject]);
+    expect(await s.persistence.authorizeWeeklyOperator(job)).toBe(false);
+    await expect(s.reserve(job, fingerprint(), 100, NOW, true)).rejects.toThrow("state_unavailable");
+    expect((await control()).state.requests).toBe(0);
+  });
+  it("rechecks membership revocation during the same atomic budget mutation", async () => {
+    const job = operator("friends"), s = jobStore("friends");
+    expect(await s.persistence.authorizeWeeklyOperator(job)).toBe(true);
+    await pool.query("UPDATE account_identities SET active=false WHERE user_id=$1", [job.userId]);
+    await expect(s.reserve(job, fingerprint(), 100, NOW, true)).rejects.toThrow("state_unavailable");
+    expect((await control()).state.requests).toBe(0);
   });
 });
 

@@ -116,55 +116,110 @@ systems may physically retain expired entries longer. Storage stays bounded by
 ten accounts, two leases and at most 100 fingerprints. Immutable weekly facts
 and outcomes are retained for season review; they contain no custom user prompt.
 
-## Weekly operation
+## Weekly publication and previews
 
-The explicit server seams are `loadAiWeeklyInput(preparation, deps)` and
-`generateWeeklyPicks(input, sessionToken, runtime)`. There is no public generation
-endpoint and no new scheduler. An operator must separately coordinate the
-pre-week runner and secure session acquisition; never pass a token in a command
-argument, issue, chat or log. The caller uses a validated manager session and the
-same durable spending controls. The loader fetches only league meta/state,
-rosters, one matchup week and one completed season of raw stats. It never loads
-the full player directory or touches valuation caches/repair tables.
+The public page/homepage and `GET /api/ai-decides` remain read-only cache consumers.
+`POST /api/ai-decides/weekly` is an explicit same-origin manager operation with
+JSON `{}` and the existing validated session. Clients supply no facts, dates,
+mode, prompt, provider URL or identity. A ready response is
+`{ status: "ready", weekly: AiWeeklySlate }`, with all five rows ready; failures
+use the existing failure shape. The separately owned surface provides a manual
+Publish weekly previews control. No render or automatic client effect invokes it.
 
-Preparation supplies reviewed UTC cutoff/week bounds and an explicitly confirmed
-mode. The loader owns capture/source-read timestamps. It never maps raw
-`game_mode=1` to a product rule. Current unknown mode/preseason remain unavailable.
-Game Pick remains unsupported until its rules and schedule source are verified.
-Globally unsupported inputs (including preseason and unknown mode) return before
-sealing the week, so corrected ready inputs can still be submitted before cutoff.
-An empty slate with no eligible matchups also remains unsealed. An intentionally
-partial eligible slate remains immutable once sealed.
-The accepted Lock-In starter shape is PG, SG, G, SF, PF, F, C, UTIL ×3. Missing,
-duplicate, zero, reserve/taxi or unowned starters and absent prior production
-block their pair. Missing reserve/taxi fields cannot establish eligibility.
+`loadAiPublicationContext` verifies the fixed league, NBA phase/season, fresh
+integer leg, prior stats season and season-start source date. Preseason leg0
+prepares week1 even when the unrelated display week is2. During the regular
+season it prepares leg+1, before that matchup week. `loadAiLineupPreview` fetches
+only league/state, rosters, that one week and completed prior-season raw stats.
+It strips BN from the starter slot declaration, uses week-specific starters,
+checks roster ownership plus explicit reserve/taxi fields, and freezes the actual
+source-read time. No player directory, current scores, valuation cache or repair
+table enters the input. Missing/duplicate/zero/IR/taxi/unowned starters block
+publication. All five pairs must be supported before the runner seals a week.
 
-The experimental baseline sums the ten starters' completed-prior-season fantasy
-PPG under supplied league scoring. It is not a weekly score forecast. It never
-multiplies PPG by games. Current injuries, schedules and recent form are unknown
-and labeled as such. No known result/post-cutoff/current-full-season evidence is
-included. Five choice questions share one frozen input batch; unavailable pairs
-remain explicitly unavailable. The prompt, input and model enter the snapshot
-hash, so an instruction/model change gives new generation a different identity
-even if a version bump was missed. Historical reads retain their frozen manifest.
+The current explicit preview policy is `goat-lineup-preview-v2`, manifest schema2,
+model `gpt-6-luna`, baseline `prior-observed-starter-ppg-v2`. It requires a complete
+eligible ten-starter lineup and observed prior production for at least8 starters
+per team. Missing production remains null and its coverage is displayed; it is
+never replaced with zero. The separate baseline is the mean of observed starter
+fantasy PPG under actual league scoring. It is neither a ten-starter total nor a
+weekly score forecast. The model sees individual observed production, games and
+unknowns, and the prompt directs it to consider coverage and uncertainty.
+Schedules, current injuries, recent form, lineup changes and game-selection
+choices remain unknown. No game-count multiplier or inferred selection strategy
+is used. Raw `game_mode=1` is preserved as source evidence but never mapped to a
+named mode; `scoringMode` remains unknown pending authoritative confirmation.
+[Sleeper's Lock-In rules](https://support.sleeper.com/en/articles/6522833-lock-in-mode-details)
+and [Game Pick rules](https://support.sleeper.com/en/articles/4701537-game-pick-details)
+establish different selection mechanics, not a public numeric-code mapping.
 
-The first sealed snapshot wins its league/season/week key. Prepared facts,
-baseline, input and successful/refused results cannot be replaced. An interrupted
-attempt may retry only against the same snapshot and after the duplicate guard;
-successful slates are returned from storage without another call. Partial slate
-status is unavailable while valid individual picks remain visible. Ended weeks
-are labeled stale. Outcomes are separately append-only, require confirmed final
-scores after the week ends, and never alter a prediction or baseline.
+Snapshot metadata adds optional `comparison` (`preseason_lineup_preview` or
+`weekly_lineup_preview`) and `sourceLeg` (integer0–29). Capture/cutoff remain ISO
+strings; startsAt/endsAt now allow null. For preseason, startsAt is the conservative
+publication closure at00:00UTC on Sleeper's season_start_date, cutoffAt is one
+millisecond earlier, and endsAt is null because no fantasy-week end calendar has
+been verified. For regular previews both period dates are null; cutoffAt is the
+source-read evidence cutoff and sourceLeg<week establishes pre-week preparation.
+A fresh, uncached phase/season/leg check occurs before paid work and after the
+model completes. An advanced/unavailable source boundary withholds publication
+while retaining the usage count. Cached previews remain readable during their
+actual target leg and become stale once a later source leg is observed.
+These fields are not invented matchup start/end times.
 
-The frozen generation manifest stores schema version, model, prompt version, full
-instructions and baseline version. Its canonical content and input enter the hash;
-the production-unapplied schema also protects the manifest from updates/deletion. Cache reads
-and outcome recording validate model/prompt metadata against that manifest, not
-today's generation constants. Schema/baseline v1 reconstruction remains supported
-for older policy records; future schema/baseline changes must retain that decoder.
-New generation always uses the current fixed policy. Interactive comparisons refuse
-an older-policy snapshot while its immutable cached predictions remain readable.
-No observed outcome enters the input or generation manifest.
+Five choice questions share one frozen input batch. Input, instructions, model,
+prompt/baseline versions and provenance enter its hash. The first snapshot and
+successful/refused results are immutable. A cache lookup precedes stats loading
+and paid calls, so repeated successful publications are free reads. An existing
+incomplete attempt returns `publication_incomplete`; the daily runner never
+retries it even after the ten-minute duplicate window. Operator review must
+coordinate any bounded retry against the same sealed snapshot through the
+existing server seam. Invalid/unsupported/oversized preparation remains unsealed.
+Partial/refused completed batches remain immutable and return
+`publication_partial`; individual saved rows remain visible on the public read.
+No outcome is fed back into a prompt. Preview outcome recording refuses an
+unverified calendar/finality; the existing append-only reviewed-calendar v1
+outcome path is preserved.
+
+The older `loadAiWeeklyInput`/`generateWeeklyPicks` reviewed-calendar Lock-In path
+and its schema1 `goat-weekly-lock-in-v1`/`prior-starter-ppg-v1` reconstruction stay
+supported. That path still requires confirmed Lock-In, regular-season dates and
+all ten prior-production values. Historical reads validate the frozen manifest,
+not today's policy constants. Existing immutable records are never upgraded.
+
+## Protected daily refresh handoff
+
+`vercel.json` declares one daily `09:00UTC` invocation of
+`GET /api/ai-decides/weekly`, compatible with the existing free-tier cadence.
+[Vercel's cron rules](https://vercel.com/docs/cron-jobs/usage-and-pricing) permit
+once-daily Hobby execution with an hour-wide timing window. The function checks
+sources for the upcoming leg and existing immutable rows; it is not a per-visit
+model call and does not assume exact cron delivery. Existing durable CAS budgets,
+shared weekly fingerprints, two global leases and the60-second lease bound still
+apply across scheduled/manual overlap. There is no new service, queue or limiter.
+
+Aidan/root must privately set **CRON_SECRET** (32–256 non-whitespace characters)
+and **GOAT_AI_WEEKLY_USER_ID** (one existing manager's persistent SiteUser UUID)
+in the intended server environment after source review. Neither setting is
+created/read/transmitted by this source task. Never use NEXT_PUBLIC prefixes.
+[Vercel supplies the bearer header](https://vercel.com/docs/cron-jobs/manage-cron-jobs)
+for the configured secret; the server compares its digest in constant time.
+Unauthenticated or query-bearing requests fail before source reads or paid work.
+Missing scheduler secret/app UUID leaves the scheduler unavailable; manual
+same-origin publication can establish this week's rows using current authorized
+configuration without either new scheduler setting.
+
+The job is a purpose-specific server identity tied to the configured app UUID,
+not an expiring personal browser session or a fake manager. Its initial check and
+atomic budget mutation both require the exact configured UUID/auth mode and valid
+league membership. With FRIENDS_AUTH_ENABLED exactly1, both also require an active
+one-to-one account mapping and verified provider account; failure never uses the
+legacy branch. Interactive/manual calls retain the existing exact session CAS.
+The per-user counter key is the same stable UUID for all paths, preserving limits
+through auth cutover. No session/hash/token/key is persisted in budget state.
+Missing/corrupt/disabled controls and membership failures fail closed. A budget
+or provider failure never resets or refunds counters. Both feature gates and the
+kill switch continue to govern the job. No authentication runtime, schema,
+production setting, credential or counter was changed in this source task.
 
 ## Disposable PostgreSQL verification
 
@@ -211,14 +266,16 @@ the intended server deployment. Never use a `NEXT_PUBLIC_` prefix or paste the
 value into chat/repo/logs. Existing `DATABASE_URL` is reused; no new paid service
 is required. `GOAT_AI_DECIDES_ENABLED=true` is a second, separate activation
 gate; the database `ai_decider_control.enabled` must also be true after separately
-approved provisioning. Both gates stay off here. To stop new calls immediately,
+approved provisioning. This source change does not alter either gate. To stop new calls immediately,
 disable the database control row; an environment change takes effect on its
 deployment's runtime. Do not reset counters to bypass budgets.
 
-No key or live call was tested. End-to-end provider validation, current source
-readiness, reviewed week dates/mode, scheduler integration, UI integration and
-independent merge/deployment remain outstanding. Auth reset/persistence overhaul
-is outside this feature.
+The original offline feature task did not call the provider. A later authorized
+activation/smoke and usage-parser correction were independently coordinated;
+this publication source change makes no paid calls or live setting changes.
+Root owns the final saved-five-picks and custom-result verification after review,
+plus private scheduler setup. Named league mode and full schedule evidence remain
+explicit limitations of lineup previews. Auth cutover/reset is outside this task.
 
 ## Complexity decision
 
@@ -228,8 +285,9 @@ results, evidence provenance and independent spend/abuse bounds. Imported work
 is beta Decisions protocol, serverless overlap, current auth and incomplete
 Sleeper facts. The singleton CAS concentrates the existing DB coordination cost
 and is adequate at this scale. A separate limiter service or generic AI framework
-would add accidental complexity without a required outcome. The baseline is a
-transitional experiment owned by #112; revisit after separately recorded outcomes
-support calibration. Scoring mode, schedules and provider integration are unknowns
-with explicit activation gates. No new infrastructure or auth rewrite is needed
-to review this feature.
+would add accidental complexity without a required outcome. Issue #149 adds the missing weekly caller and BN normalization, removing accidental
+readiness/publication gaps. The two frozen baseline decoders and explicit preview
+coverage are transitional complexity; verified mode/calendar/schedule and later
+outcome calibration remain unknowns. One purpose-built runner reuses the existing
+store and paid guards. No generic framework, new infrastructure or auth rewrite
+is needed to review this feature.

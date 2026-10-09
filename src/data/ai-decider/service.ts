@@ -5,8 +5,8 @@ import type { GameStore } from "../arcade";
 import type { getProviderIdentity } from "../friends-auth/runtime";
 import { AI_LIMITS, parseAiRequest, teamIdValid, uuidValid } from "./validation";
 import { callWithTimeout, customDecision, decodeDecision, inputTokenReservation, readDecisionUsage, type DecisionsClient, type DecisionPayload, type DecisionSpec } from "./provider";
-import { AiDeciderStore, validAiIdentity, type AiIdentity, type AiStoredWeek } from "./store";
-import { AI_WEEKLY_MANIFEST, cachedWeek, canonicalJson, currentGenerationManifest, preparePlaygroundMatchup, prepareWeeklySlate, validWeeklyInput, weekHash, weekKey, weeklyDecision, weeklyReadiness } from "./weekly";
+import { AiDeciderStore, validAiIdentity, type AiIdentity, type AiStoredWeek, type AiWeeklyJobIdentity } from "./store";
+import { cachedWeek, canonicalJson, currentGenerationManifest, manifestForInput, preparePlaygroundMatchup, prepareWeeklySlate, validWeeklyInput, weekHash, weekKey, weeklyDecision, weeklyReadiness } from "./weekly";
 import { aiDataDeadline } from "./deadline";
 
 export type AiRuntime = {
@@ -18,9 +18,19 @@ export type AiRuntime = {
   providerSession?: () => ReturnType<typeof getProviderIdentity>;
   now: () => number;
   getWeekKey: () => Promise<string>;
+  /** Fresh public NBA state rechecks the source-leg publication boundary. */
+  getSourceState?: () => Promise<{ season: string; leg: number; phase: string }>;
+  weeklyOperator?: AiWeeklyJobIdentity | null;
   timeoutMs?: number;
 };
-export const failure = (status: Exclude<AiDecideResponse["status"], "ready">, code: string, message: string, retryAfterSeconds?: number): AiDecideResponse => ({ status, code, message, ...(retryAfterSeconds === undefined ? {} : { retryAfterSeconds }) });
+export const failure = (status: Exclude<AiDecideResponse["status"], "ready">, code: string, message: string, retryAfterSeconds?: number): Exclude<AiDecideResponse, { status: "ready" }> => ({ status, code, message, ...(retryAfterSeconds === undefined ? {} : { retryAfterSeconds }) });
+
+async function predictionOpen(input: AiWeeklyInput, runtime: AiRuntime): Promise<boolean> {
+  if (!input.preview) return !!input.startsAt && runtime.now() < Date.parse(input.startsAt);
+  if (!runtime.getSourceState) return false;
+  const source = await aiDataDeadline(runtime.getSourceState(), 3000);
+  return source.season === input.season && source.phase === input.phase && Number.isSafeInteger(source.leg) && source.leg === input.preview.sourceLeg && (!input.startsAt || runtime.now() < Date.parse(input.startsAt));
+}
 
 /** Server-selected session verifier is the authority; request bodies never supply identity. */
 export async function resolveAiIdentity(token: string | undefined, runtime: AiRuntime): Promise<AiIdentity | null> {
@@ -96,7 +106,7 @@ export async function runAiDecision(raw: unknown, token: string | undefined, run
       const record = await runtime.store!.persistence.getWeek(await runtime.getWeekKey());
       if (!record) return failure("unavailable", "weekly_not_ready", "A verified weekly input snapshot has not been prepared yet.");
       const slate = cachedWeek(record, runtime.now());
-      if (slate.status === "stale" || runtime.now() >= Date.parse(record.input.startsAt)) return failure("unavailable", "weekly_closed", "This weekly prediction window has closed.");
+      if (slate.status === "stale" || !(await predictionOpen(record.input, runtime))) return failure("unavailable", "weekly_closed", "This weekly prediction window has closed.");
       if (!currentGenerationManifest(record.manifest)) return failure("unavailable", "weekly_policy", "This snapshot uses an earlier generation policy. Its cached picks remain available.");
       const pairing = preparePlaygroundMatchup(record.input, request.teamIds, runtime.now());
       if (!pairing.baseline || !pairing.baseline.teamValues.every(v => v.value !== null)) return failure("unavailable", "matchup_not_ready", pairing.message);
@@ -113,19 +123,31 @@ export async function runAiDecision(raw: unknown, token: string | undefined, run
 
 /** Explicit pre-week operation; no page/API GET calls it. Uses the same paid-call guards. */
 export async function generateWeeklyPicks(input: AiWeeklyInput, token: string | undefined, runtime: AiRuntime): Promise<AiWeeklySlate | AiDecideResponse> {
+  let identity: AiIdentity | null;
+  try { identity = await resolveAiIdentity(token, runtime); } catch { return failure("unavailable", "session_unavailable", "Your session could not be validated."); }
+  if (!identity) return failure("unauthenticated", "sign_in_required", "A validated manager session is required.");
+  return generateWeeklyPicksAsIdentity(input, identity, runtime);
+}
+
+/** Server operator seam. The unchanged atomic budget CAS revalidates this exact session. */
+export async function generateWeeklyPicksAsIdentity(input: AiWeeklyInput, identity: AiIdentity, runtime: AiRuntime): Promise<AiWeeklySlate | AiDecideResponse> {
+  if (!validAiIdentity(identity)) return failure("unauthenticated", "sign_in_required", "A validated manager session is required.");
   if (!validWeeklyInput(input)) return failure("invalid", "weekly_input", "Weekly inputs are incomplete or invalid.");
   const prepared = prepareWeeklySlate(input, runtime.now());
   const readiness = weeklyReadiness(input, runtime.now());
   if (readiness) return failure("unavailable", "weekly_not_ready", readiness);
   if (!prepared.matchups.some(m => m.baseline?.teamValues.every(v => v.value !== null))) return failure("unavailable", "weekly_not_ready", "No matchups have complete eligible starter production. The week has not been sealed.");
-  if (runtime.now() > Date.parse(input.cutoffAt) || runtime.now() >= Date.parse(input.startsAt)) return failure("unavailable", "weekly_closed", "A new snapshot must be sealed by its reviewed pre-week cutoff.");
+  try {
+    if ((!input.preview && runtime.now() > Date.parse(input.cutoffAt)) || !(await predictionOpen(input, runtime))) return failure("unavailable", "weekly_closed", "A new snapshot must be sealed before its prediction window closes.");
+  } catch { return failure("unavailable", "source_unavailable", "The publication boundary could not be validated."); }
   if (!runtime.store) return failure("unavailable", "state_unavailable", "The weekly store is unavailable.");
   const state = await availability(runtime);
   if (state.status === "unavailable") return failure("unavailable", state.code, state.message);
-  let identity: AiIdentity | null;
-  try { identity = await resolveAiIdentity(token, runtime); } catch { return failure("unavailable", "session_unavailable", "Your session could not be validated."); }
-  if (!identity) return failure("unauthenticated", "sign_in_required", "A validated manager session is required.");
-  const candidate: AiStoredWeek = { key: weekKey(input), hash: weekHash(input), manifest: structuredClone(AI_WEEKLY_MANIFEST), input: structuredClone(input), slate: prepared, result: null };
+  const safety = createHash("sha256").update(`goat-ai:${identity.userId}`).digest("hex");
+  // Reject oversized preparation before consuming the immutable week key.
+  try { inputTokenReservation(weeklyDecision(input, prepared, safety).payload, AI_LIMITS.weeklyInputTokens); }
+  catch { return failure("invalid", "input_limit", "This weekly snapshot exceeds the bounded input budget. The week remains unsealed."); }
+  const candidate: AiStoredWeek = { key: weekKey(input), hash: weekHash(input), manifest: structuredClone(manifestForInput(input)), input: structuredClone(input), slate: prepared, result: null };
   let record: AiStoredWeek;
   try {
     record = await runtime.store.persistence.sealWeek(candidate);
@@ -133,7 +155,6 @@ export async function generateWeeklyPicks(input: AiWeeklyInput, token: string | 
     const cached = cachedWeek(record, runtime.now());
     if (record.result) return cached;
   } catch { return failure("unavailable", "state_unavailable", "The weekly snapshot could not be safely sealed."); }
-  const safety = createHash("sha256").update(`goat-ai:${identity.userId}`).digest("hex");
   const decision = weeklyDecision(record.input, record.slate, safety);
   let completed = structuredClone(record.slate);
   if (decision.specs.length > 0) {
@@ -141,14 +162,16 @@ export async function generateWeeklyPicks(input: AiWeeklyInput, token: string | 
     const response = await evaluate(runtime, identity, decision.payload, decision.specs, fingerprint, AI_LIMITS.weeklyInputTokens, true);
     if (!("results" in response)) return response;
     const generatedAt = new Date(runtime.now()).toISOString();
-    if (runtime.now() >= Date.parse(input.startsAt)) return failure("unavailable", "weekly_closed", "Generation completed after the prediction window closed.");
+    try {
+      if (!(await predictionOpen(input, runtime))) return failure("unavailable", "weekly_closed", "Generation completed after the prediction window closed.");
+    } catch { return failure("unavailable", "source_unavailable", "The completed pick's publication boundary could not be validated."); }
     completed = { ...completed, generatedAt, matchups: completed.matchups.map(m => {
       const n = decision.eligible.findIndex(e => e.matchupId === m.matchupId);
       const result = n < 0 ? null : response.results[n];
-      return result ? { ...m, status: "ready", result, message: "Cached experimental AI pick, based on the frozen supplied evidence." } : { ...m, message: n < 0 ? m.message : "The model declined this matchup." };
+      return result ? { ...m, status: "ready", result, message: input.preview ? "Saved experimental lineup-strength preview; missing facts remain unknown." : "Cached experimental AI pick, based on the frozen supplied evidence." } : { ...m, message: n < 0 ? m.message : "The model declined this matchup." };
     }) };
     completed.status = completed.matchups.every(m => m.status === "ready") ? "ready" : "unavailable";
-    completed.message = completed.status === "ready" ? "Five cached experimental picks. Model probabilities are not calibrated sports odds." : "Some matchups are unavailable; missing evidence is not replaced with a guess.";
+    completed.message = completed.status === "ready" ? (input.preview ? `${input.phase === "pre" ? "Preseason" : "Upcoming-week"} lineup previews: five saved picks with explicit prior-stat coverage. Model probabilities are not calibrated sports odds.` : "Five cached experimental picks. Model probabilities are not calibrated sports odds.") : "Some matchups are unavailable; missing evidence is not replaced with a guess.";
   }
   try {
     await runtime.store.persistence.completeWeek(record.key, record.hash, completed);

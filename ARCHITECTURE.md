@@ -771,9 +771,14 @@ Each immutable week carries a hashed generation manifest; historical reads and
 outcomes use its frozen model/prompt rather than current generation constants.
 Globally unsupported inputs return before sealing. Usage is settled independently
 of prediction decoding, with idempotent CAS completion even for retained leases.
-Unknown scoring mode, preseason and unsupported Game Pick assumptions fail
-closed; Lock-In PPG is never multiplied by games. `migrations/ai-decider.sql`
-is unapplied in production and starts disabled. Existing auth/valuation/repair tables are reused
+The reviewed-calendar schema1 path still refuses unsupported scoring/phase facts.
+Schema2 lineup previews explicitly retain preseason, missing prior-stat coverage
+and unknown mode without inferring selection mechanics. BN slots are excluded;
+complete eligible starters plus at least8/10 observed stats per team are required.
+The separate observed-starter mean is not a full score forecast. Both versions
+retain their frozen decoders; no PPG-by-games multiplier is used.
+`migrations/ai-decider.sql` starts disabled and was separately provisioned under
+root authorization before this source change; no new migration is introduced. Existing auth/valuation/repair tables are reused
 or read without schema/behavior changes. UI/page integration has a separate owner.
 The dedicated disposable PostgreSQL CI job executes the AI migration only in a
 generated synthetic schema, verifying actual SQL/CAS/triggers with provider mocks.
@@ -787,6 +792,15 @@ admission; its SQL rechecks expiry, active mapping, verified email and valid tea
 in the budget mutation. Failed provider verification has no legacy fallback.
 The app UUID remains the budget key, preserving counters through cutover; the
 legacy default and client request/result contracts remain unchanged.
+`loadAiPublicationContext`/`loadAiLineupPreview` prepare the next verified Sleeper
+leg, using fresh source-state checks before/after paid generation. Preview bounds
+may be null where no calendar is verified; captured source and generated result
+timestamps stay distinct. `POST /api/ai-decides/weekly` accepts only an empty
+same-origin manager request; the protected daily GET uses CRON_SECRET and one
+configured stable app UUID with atomic membership checks. It never borrows a
+browser session, resets counters or automatically retries a sealed incomplete
+attempt. Cache lookup precedes stats/provider work. Scheduler settings and first
+live publication remain root-owned handoff steps, outside this source change.
 See [AI Decides handoff](docs/ai-decides.md) for limits, retention, exact contracts,
 auth findings and outstanding activation/verification work.
 
