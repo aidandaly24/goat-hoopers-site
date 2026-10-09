@@ -25,15 +25,15 @@ try{
   await page.goBack({waitUntil:'domcontentloaded'});await count(3);
   await page.getByRole('link',{name:'Copper Comets',exact:true}).first().click();await page.getByRole('heading',{name:'Copper Comets',exact:true}).waitFor();
   await page.goBack({waitUntil:'domcontentloaded'});await count(3);record('Integrated desktop filters and profile Back retain query state');
-  await page.getByRole('button',{name:'League tools',exact:true}).click();
+  await page.getByRole('button',{name:/^League tools(?:, current:.*)?$/}).click();
   await page.getByRole('link',{name:'Transactions',exact:true}).click();await count(26);assert.equal(new URL(page.url()).search,'');
   record('Production League tools opens plain Transactions');await shot('integrated-desktop');
-  await page.setViewportSize({width:390,height:1000});await page.getByRole('button',{name:'Menu',exact:true}).click();
+  await page.setViewportSize({width:390,height:1000});await page.getByRole('button',{name:/^Menu(?:, current:.*)?$/}).click();
   await page.getByRole('link',{name:'Teams',exact:true}).click();await page.getByRole('heading',{name:'Teams',exact:true}).waitFor();
   await page.getByRole('link',{name:'Copper Comets',exact:true}).click();await page.getByRole('link',{name:'Transactions for Copper Comets',exact:true}).click();await count(3);
   await page.goBack({waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'Copper Comets',exact:true}).waitFor();
-  await page.getByRole('button',{name:'Menu',exact:true}).click();await page.getByRole('link',{name:'Transactions',exact:true}).click();await count(26);
-  const menu=await page.getByRole('button',{name:'Menu',exact:true}).boundingBox();assert.ok(menu.width>=44&&menu.height>=44);
+  await page.getByRole('button',{name:/^Menu(?:, current:.*)?$/}).click();await page.getByRole('link',{name:'Transactions',exact:true}).click();await count(26);
+  const menu=await page.getByRole('button',{name:/^Menu(?:, current:.*)?$/}).boundingBox();assert.ok(menu.width>=44&&menu.height>=44);
   record('Production mobile Menu, public profile and Transactions return integrate');await shot('integrated-mobile');
  }else{
  await visit('');await count(26);record('Plain global Transactions is unfiltered');
