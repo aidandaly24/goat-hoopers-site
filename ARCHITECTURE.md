@@ -162,9 +162,11 @@ src/
                  # objects, never fetches.
                  # GmArchetypeCard: the GM IQ card — one manager's
                  # archetype from real season behavior (archetype name +
-                 # tagline, five percentile bars, season label,
-                 # prior-manager note). Null archetype renders an honest
-                 # empty state.
+                 # tagline, five percentile bars with visible percentile
+                 # units and keyboard/touch-accessible metric definitions,
+                 # season label, prior-manager note). Unmeasured metrics
+                 # stay null and render as unavailable (never imputed).
+                 # Null archetype renders an honest empty state.
     player/      # "Who is this guy": one NBA player's page — headshot,
                  # position pill, NBA team, owning GOAT Hoopers roster
                  # (or Free Agent), rookie-draft slot, wire history.
