@@ -1,0 +1,327 @@
+/** CI-only: actual PostgreSQL SQL/locks/triggers, fixed synthetic endpoint, no Neon/provider I/O. */
+import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+import { createHash, randomUUID } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { Pool } from "pg";
+import { PgDialect } from "drizzle-orm/pg-core";
+import type { SQL } from "drizzle-orm";
+import type { Db } from "../../db";
+import { AiDeciderStore, PostgresAiPersistence, emptyBudgetState, AI_BUDGET, type AiIdentity, type AiBudgetState, type AiStoredWeek } from "../store";
+import { generateWeeklyPicks, resolveAiIdentity, runAiDecision } from "../service";
+import { loadAiDecidesData } from "../runtime";
+import { decodeDecision } from "../provider";
+import { AI_WEEKLY_MANIFEST, cachedWeek, prepareWeeklySlate, recordWeeklyOutcome, weekHash, weekKey, weeklyDecision } from "../weekly";
+import { fingerprint, harness, identity, NOW, providerAnswer, weeklyInput } from "./fixtures";
+
+if (process.env.GITHUB_ACTIONS !== "true" || process.env.CI !== "true" || process.env.RUN_AI_POSTGRES_TEST !== "1") throw new Error("Disposable CI database opt-in required");
+const schema = `ai_decides_ci_${randomUUID().replaceAll("-", "")}`;
+const pool = new Pool({ host: "127.0.0.1", port: 55447, database: "goat_ai_decides_ci", user: "goat_ai_ci", password: "synthetic-ci-only", ssl: false,
+  max: 6, connectionTimeoutMillis: 1500, query_timeout: 1500, statement_timeout: 1000,
+  options: `-c search_path=${schema} -c lock_timeout=250 -c idle_in_transaction_session_timeout=5000` });
+const migration = readFileSync("migrations/ai-decider.sql", "utf8");
+const migrationHash = createHash("sha256").update(migration).digest("hex");
+const dialect = new PgDialect();
+// Only the driver transport changes: production PostgresAiPersistence emits the
+// actual parameterized Drizzle SQL, executed on PostgreSQL by pg. Not a Neon test.
+const db = { execute: async (statement: SQL) => {
+  const query = dialect.sqlToQuery(statement);
+  return pool.query(query.sql, query.params);
+} } as unknown as Db;
+const persistence = () => new PostgresAiPersistence(db);
+const store = () => new AiDeciderStore(persistence());
+const token = (n = 1) => n.toString(16).padStart(64, "0");
+const principal = (n = 1): AiIdentity => ({ userId: identity(n).userId, tokenHash: createHash("sha256").update(token(n)).digest("hex") });
+const control = async () => (await persistence().readControl())!;
+const updateState = async (state: AiBudgetState) => pool.query("UPDATE ai_decider_control SET state=$1::jsonb", [JSON.stringify(state)]);
+const draft = { kind: "custom", prompt: "Synthetic option?", choices: ["One", "Two"] };
+let ownsSchema = false;
+
+function realHarness() {
+  const h = harness(); h.runtime.store = store();
+  h.runtime.sessions = { getSessionUser: async hash => {
+    const result = await pool.query<{ id: string; team_id: string; display_name: string; created_at: Date; expires_at: Date }>(
+      "SELECT u.id,u.team_id,u.display_name,u.created_at,s.expires_at FROM sessions s JOIN site_users u ON u.id=s.user_id WHERE s.token_hash=$1", [hash]);
+    const row = result.rows[0];
+    return row ? { user: { id: row.id, teamId: row.team_id, displayName: row.display_name, createdAt: row.created_at }, expiresAt: row.expires_at } : null;
+  } };
+  return h;
+}
+function candidate(input = weeklyInput()): AiStoredWeek {
+  return { key: weekKey(input), hash: weekHash(input), manifest: structuredClone(AI_WEEKLY_MANIFEST), input, slate: prepareWeeklySlate(input, NOW), result: null };
+}
+function completed(record: AiStoredWeek) {
+  const decision = weeklyDecision(record.input, record.slate, "f".repeat(64));
+  const results = decodeDecision(providerAnswer(decision.payload), decision.specs).results;
+  return { ...record.slate, status: "ready" as const, generatedAt: new Date(NOW).toISOString(),
+    matchups: record.slate.matchups.map((m, i) => ({ ...m, status: "ready" as const, result: results[i] })) };
+}
+
+beforeAll(async () => {
+  const proof = (await pool.query("SELECT current_database() AS db,current_user AS usr,current_setting('server_version_num') AS version")).rows[0];
+  expect(proof.db).toBe("goat_ai_decides_ci"); expect(proof.usr).toBe("goat_ai_ci");
+  expect(Number(proof.version)).toBeGreaterThanOrEqual(160000); expect(Number(proof.version)).toBeLessThan(170000);
+  expect((await pool.query("SELECT tablename FROM pg_tables WHERE schemaname='public'")).rows).toHaveLength(0);
+  await pool.query(`CREATE SCHEMA "${schema}"`); ownsSchema = true;
+  console.info(`Disposable PostgreSQL ${proof.version}; migration SHA256 ${migrationHash}`);
+});
+beforeEach(async () => {
+  if (!ownsSchema) throw new Error("Synthetic schema not owned");
+  await pool.query(`DROP SCHEMA "${schema}" CASCADE; CREATE SCHEMA "${schema}"`);
+  await pool.query(`CREATE TABLE site_users (id uuid PRIMARY KEY,team_id text NOT NULL,display_name text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
+    CREATE TABLE sessions (token_hash text PRIMARY KEY,user_id uuid NOT NULL REFERENCES site_users(id),expires_at timestamptz NOT NULL)`);
+  for (let n = 1; n <= 10; n++) {
+    const user = principal(n);
+    await pool.query("INSERT INTO site_users(id,team_id,display_name) VALUES($1,$2,'Synthetic CI user')", [user.userId, String(n)]);
+    await pool.query("INSERT INTO sessions(token_hash,user_id,expires_at) VALUES($1,$2,'2126-01-01T00:00:00Z')", [user.tokenHash, user.userId]);
+  }
+  // This exact additive file is applied only in the generated disposable schema.
+  await pool.query(migration);
+  expect((await control()).enabled).toBe(false);
+  await pool.query("UPDATE ai_decider_control SET enabled=true,state=$1::jsonb", [JSON.stringify(emptyBudgetState(NOW))]);
+});
+afterAll(async () => {
+  try {
+    if (ownsSchema) {
+      await pool.query(`DROP SCHEMA "${schema}" CASCADE`);
+      expect((await pool.query("SELECT nspname FROM pg_namespace WHERE nspname=$1", [schema])).rows).toHaveLength(0);
+      console.info("Owned AI schema removed; no persistent test data retained");
+    }
+  } finally { await pool.end(); }
+});
+
+describe("actual PostgreSQL admission and completion", () => {
+  it("admits only two overlapping users and one lease per user across independent stores", async () => {
+    const results = await Promise.allSettled(Array.from({ length: 10 }, (_, n) => store().reserve(principal(n + 1), fingerprint(n), 100, NOW)));
+    expect(results.filter(r => r.status === "fulfilled" && r.value.status === "reserved")).toHaveLength(2);
+    expect(results.filter(r => r.status === "rejected").every(r => r.status === "rejected" && r.reason.message === "state_unavailable")).toBe(true);
+    const state = (await control()).state;
+    expect(state.requests).toBe(2); expect(state.tokens).toBe(200); expect(state.leases).toHaveLength(2);
+    expect(new Set(state.leases.map(l => l.userId)).size).toBe(2);
+  });
+  it("serializes same-user overlap without exceeding the per-user in-flight limit", async () => {
+    const results = await Promise.all([store().reserve(principal(), fingerprint(1), 100, NOW), store().reserve(principal(), fingerprint(2), 100, NOW)]);
+    expect(results.map(r => r.status).sort()).toEqual(["busy", "reserved"]);
+    expect((await control()).state.requests).toBe(1);
+  });
+  it.each(["requests", "tokens"])("serializes the last global %s reservation", async field => {
+    const state = emptyBudgetState(NOW);
+    if (field === "requests") state.requests = AI_BUDGET.globalDay - 1;
+    else state.tokens = AI_BUDGET.globalTokensDay - 100;
+    await updateState(state);
+    const results = await Promise.all([store().reserve(principal(1), fingerprint(1), 100, NOW), store().reserve(principal(2), fingerprint(2), 100, NOW)]);
+    expect(results.map(r => r.status).sort()).toEqual(["rate_limited", "reserved"]);
+    expect((await control()).state.requests).toBeLessThanOrEqual(AI_BUDGET.globalDay);
+    expect((await control()).state.tokens).toBeLessThanOrEqual(AI_BUDGET.globalTokensDay);
+  });
+  it("enforces hourly/daily user budgets and preserves conservative reservation charges", async () => {
+    for (let hour = 0; hour < 4; hour++) {
+      const now = NOW + hour * 3600000;
+      for (let n = 0; n < 5; n++) {
+        const s = store(), reservation = await s.reserve(principal(), fingerprint(hour * 10 + n), 100, now);
+        if (reservation.status !== "reserved") throw new Error("Expected reservation");
+        await s.finish(reservation.leaseId, 20, false, false, now);
+      }
+      expect((await store().reserve(principal(), fingerprint(100 + hour), 100, now)).status).toBe("rate_limited");
+    }
+    expect((await store().reserve(principal(), fingerprint(200), 100, NOW + 4 * 3600000)).status).toBe("rate_limited");
+    expect((await control()).state.tokens).toBe(2000); expect((await control()).state.requests).toBe(20);
+  });
+  it("deduplicates shared fingerprints atomically across distinct managers", async () => {
+    const responses = await Promise.all([store().reserve(principal(1), fingerprint(), 100, NOW, true), store().reserve(principal(2), fingerprint(), 100, NOW, true)]);
+    expect(responses.map(r => r.status).sort()).toEqual(["duplicate", "reserved"]);
+    const reservation = responses.find(r => r.status === "reserved")!;
+    if (reservation.status !== "reserved") throw new Error("Expected reservation");
+    await store().finish(reservation.leaseId, 50, false, false, NOW);
+    expect((await store().reserve(principal(2), fingerprint(), 100, NOW, true)).status).toBe("duplicate");
+    expect((await control()).state.requests).toBe(1);
+  });
+  it("retains unknown-spend leases, deduplicates completion and expires only the appropriate windows", async () => {
+    const r = await store().reserve(principal(), fingerprint(), 100, NOW);
+    if (r.status !== "reserved") throw new Error("Expected reservation");
+    await Promise.all([store().finish(r.leaseId, null, true, true, NOW), store().finish(r.leaseId, null, true, true, NOW)]);
+    const settled = await control();
+    expect(settled.state.tokens).toBe(100); expect(settled.state.users[principal().userId].signals).toBe(1);
+    expect(settled.state.leases[0].completed).toBe(true);
+    await store().finish(r.leaseId, null, true, true, NOW); expect(await control()).toEqual(settled);
+    expect((await store().reserve(principal(), fingerprint(2), 100, NOW)).status).toBe("busy");
+    expect((await store().reserve(principal(), fingerprint(), 100, NOW + 61000)).status).toBe("duplicate");
+    expect((await store().reserve(principal(), fingerprint(2), 100, NOW + 61000)).status).toBe("reserved");
+  });
+  it("charges one oversized completion and disables admission under actual CAS overlap", async () => {
+    const r = await store().reserve(principal(), fingerprint(), 100, NOW);
+    if (r.status !== "reserved") throw new Error("Expected reservation");
+    await Promise.all([store().finish(r.leaseId, 150, true, false, NOW), store().finish(r.leaseId, 150, true, false, NOW)]);
+    await store().finish(r.leaseId, 150, true, false, NOW);
+    const result = await control();
+    expect(result.state.tokens).toBe(150); expect(result.state.users[principal().userId].signals).toBe(1); expect(result.enabled).toBe(false);
+    expect((await store().reserve(principal(2), fingerprint(2), 100, NOW)).status).toBe("disabled");
+  });
+  it("rejects stale SQL revisions and retries genuine competing revision mutations", async () => {
+    const p = persistence(), initial = await control();
+    expect(await p.compareControl(initial.revision, initial.state)).toBe(true);
+    expect(await p.compareControl(initial.revision, initial.state)).toBe(false);
+    let interference = 2;
+    class ContendedPersistence extends PostgresAiPersistence {
+      override async compareControl(...args: Parameters<PostgresAiPersistence["compareControl"]>) {
+        if (interference-- > 0) await pool.query("UPDATE ai_decider_control SET revision=revision+1");
+        return super.compareControl(...args);
+      }
+    }
+    const s = new AiDeciderStore(new ContendedPersistence(db));
+    expect((await s.reserve(principal(), fingerprint(), 100, NOW)).status).toBe("reserved");
+    interference = 8;
+    const before = (await control()).state;
+    await expect(s.reserve(principal(2), fingerprint(2), 100, NOW)).rejects.toThrow("state_unavailable");
+    expect((await control()).state).toEqual(before);
+  });
+  it.each(["expired", "revoked"])("rejects %s sessions in the atomic admission mutation", async kind => {
+    if (kind === "expired") await pool.query("UPDATE sessions SET expires_at=now()-interval '1 second' WHERE token_hash=$1", [principal().tokenHash]);
+    else await pool.query("DELETE FROM sessions WHERE token_hash=$1", [principal().tokenHash]);
+    await expect(store().reserve(principal(), fingerprint(), 100, NOW)).rejects.toThrow("state_unavailable");
+    expect((await control()).state.requests).toBe(0);
+  });
+  it("retries completion conflicts and fails closed on exhausted real SQL revisions", async () => {
+    let interference = 0;
+    class ContendedCompletion extends PostgresAiPersistence {
+      override async compareControl(...args: Parameters<PostgresAiPersistence["compareControl"]>) {
+        if (interference-- > 0) await pool.query("UPDATE ai_decider_control SET revision=revision+1");
+        return super.compareControl(...args);
+      }
+    }
+    const s = new AiDeciderStore(new ContendedCompletion(db));
+    const first = await s.reserve(principal(), fingerprint(), 100, NOW);
+    if (first.status !== "reserved") throw new Error("Expected reservation");
+    interference = 2;
+    await s.finish(first.leaseId, 50, true, false, NOW);
+    expect((await control()).state.users[principal().userId].signals).toBe(1);
+    const second = await s.reserve(principal(), fingerprint(2), 100, NOW);
+    if (second.status !== "reserved") throw new Error("Expected reservation");
+    const before = (await control()).state;
+    interference = 8;
+    await expect(s.finish(second.leaseId, 150, true, false, NOW)).rejects.toThrow("state_unavailable");
+    expect((await control()).state).toEqual(before);
+    expect((await s.reserve(principal(), fingerprint(3), 100, NOW)).status).toBe("busy");
+  });
+  it("revalidates revocation between the actual session lookup and paid admission", async () => {
+    const h = realHarness(), lookup = h.runtime.sessions!.getSessionUser;
+    expect(await resolveAiIdentity(token(), h.runtime)).toEqual(principal());
+    h.runtime.sessions = { getSessionUser: async hash => {
+      const found = await lookup(hash);
+      await pool.query("DELETE FROM sessions WHERE token_hash=$1", [hash]);
+      return found;
+    } };
+    expect(await runAiDecision(draft, token(), h.runtime)).toMatchObject({ status: "unavailable", code: "state_unavailable" });
+    expect(h.create).not.toHaveBeenCalled(); expect((await control()).state.requests).toBe(0);
+  });
+  it.each(["missing", "corrupt", "disabled"])("fails closed on %s durable state without a provider call", async kind => {
+    if (kind === "missing") await pool.query("DELETE FROM ai_decider_control");
+    if (kind === "corrupt") await pool.query("UPDATE ai_decider_control SET state='{}'");
+    if (kind === "disabled") await pool.query("UPDATE ai_decider_control SET enabled=false");
+    const h = realHarness();
+    expect((await runAiDecision(draft, token(), h.runtime)).status).toBe("unavailable"); expect(h.create).not.toHaveBeenCalled();
+  });
+  it("withholds results when a real lock timeout prevents durable completion", async () => {
+    const h = realHarness(), held = await pool.connect();
+    h.create.mockImplementationOnce(async payload => {
+      await held.query("BEGIN"); await held.query("SELECT * FROM ai_decider_control FOR UPDATE");
+      return providerAnswer(payload);
+    });
+    try {
+      expect(await runAiDecision(draft, token(), h.runtime)).toMatchObject({ status: "unavailable", code: "state_unavailable" });
+    } finally { await held.query("ROLLBACK"); held.release(); }
+    expect(h.create).toHaveBeenCalledTimes(1); expect((await control()).state.requests).toBe(1);
+    expect((await control()).state.leases).toHaveLength(1);
+  });
+  it.each(["probability", "extra_field"])("accounts oversized usage despite malformed %s output", async kind => {
+    const h = realHarness();
+    h.create.mockImplementationOnce(async payload => {
+      const answer = providerAnswer(payload, 40000);
+      if (kind === "probability") answer.answers[0].probabilities.pop();
+      else Object.assign(answer.answers[0], { explanation: "invalid" });
+      return answer;
+    });
+    expect(await runAiDecision(draft, token(), h.runtime)).toMatchObject({ code: "usage_overrun" });
+    expect((await control()).state.tokens).toBe(40000); expect((await control()).enabled).toBe(false);
+  });
+  it.each(["missing", "invalid", "timeout"])("persists full reservations and settled leases for %s usage", async kind => {
+    const h = realHarness(); h.runtime.timeoutMs = 10;
+    h.create.mockImplementationOnce(async payload => kind === "timeout" ? new Promise(() => {}) : ({ ...providerAnswer(payload), usage: kind === "missing" ? undefined : { input_tokens: -1 } }));
+    expect((await runAiDecision(draft, token(), h.runtime)).status).toBe(kind === "timeout" ? "timeout" : "unavailable");
+    const state = (await control()).state;
+    expect(state.tokens).toBe(state.leases[0].reserved); expect(state.leases[0].completed).toBe(true);
+    expect(state.users[principal().userId].signals).toBe(1);
+  });
+});
+
+describe("actual immutable weekly tables and lifecycle", () => {
+  it("serializes competing snapshot/result/outcome first writes and executes immutable triggers", async () => {
+    const p = persistence(), a = candidate(), b = candidate(); b.input.teams[0].players[0].priorFantasyPpg = 99;
+    b.hash = weekHash(b.input); b.slate = prepareWeeklySlate(b.input, NOW);
+    const sealed = await Promise.all([p.sealWeek(a), persistence().sealWeek(b)]);
+    expect(sealed[0]).toEqual(sealed[1]);
+    const frozen = sealed[0];
+    for (const sql of ["UPDATE ai_decider_weeks SET input='{}'", "UPDATE ai_decider_weeks SET generation_manifest='{}'", "UPDATE ai_decider_weeks SET input_hash=repeat('0',64)", "UPDATE ai_decider_weeks SET prepared_slate='{}'", "DELETE FROM ai_decider_weeks"]) {
+      await expect(pool.query(sql)).rejects.toThrow("AI week is immutable");
+    }
+    const final = completed(frozen);
+    const writes = await Promise.all([p.completeWeek(frozen.key, frozen.hash, final), persistence().completeWeek(frozen.key, frozen.hash, final)]);
+    expect(writes.filter(Boolean)).toHaveLength(1);
+    await expect(pool.query("UPDATE ai_decider_weeks SET result='{}'")).rejects.toThrow("AI week is immutable");
+    expect(cachedWeek((await p.getWeek(frozen.key))!, NOW).status).toBe("ready");
+    const outcome = { matchupId: "1", recordedAt: "2026-10-27T01:00:00Z", final: true as const, teamPoints: [{ teamId: "6", points: 123 }, { teamId: "10", points: 122 }] };
+    const results = await Promise.all([recordWeeklyOutcome(p, frozen.key, outcome, Date.parse(outcome.recordedAt)), recordWeeklyOutcome(persistence(), frozen.key, outcome, Date.parse(outcome.recordedAt))]);
+    expect(results.filter(Boolean)).toHaveLength(1);
+    await expect(pool.query("UPDATE ai_decider_outcomes SET outcome='{}'")).rejects.toThrow("AI outcome is append-only");
+    await expect(pool.query("DELETE FROM ai_decider_outcomes")).rejects.toThrow("AI outcome is append-only");
+    expect((await p.getWeek(frozen.key))!.input).toEqual(frozen.input);
+    expect(weeklyDecision(frozen.input, frozen.slate, "f".repeat(64)).payload.input).not.toContain("teamPoints");
+  });
+  it.each(["preseason", "unknown", "empty"])("does not consume the week for %s input, then generates once when ready", async kind => {
+    const h = realHarness(), input = weeklyInput(), unsupported = structuredClone(input);
+    if (kind === "preseason") unsupported.phase = "pre";
+    if (kind === "unknown") unsupported.scoringMode = "unknown";
+    if (kind === "empty") unsupported.teams.forEach(t => { t.players[0].priorFantasyPpg = null; });
+    expect(await generateWeeklyPicks(unsupported, token(), h.runtime)).toMatchObject({ code: "weekly_not_ready" });
+    expect(await persistence().getWeek(weekKey(input))).toBeNull(); expect(h.create).not.toHaveBeenCalled();
+    expect((await generateWeeklyPicks(input, token(), h.runtime)).status).toBe("ready");
+    expect((await generateWeeklyPicks(input, token(), h.runtime)).status).toBe("ready");
+    expect(h.create).toHaveBeenCalledTimes(1);
+  });
+  it("persists a partial slate immutably without inventing missing production", async () => {
+    const h = realHarness(), input = weeklyInput(); input.teams[1].starters[0] = "0";
+    const result = await generateWeeklyPicks(input, token(), h.runtime);
+    if (!("matchups" in result)) throw new Error("Expected slate");
+    expect(result.matchups.filter(m => m.status === "ready")).toHaveLength(4);
+    expect(await generateWeeklyPicks(weeklyInput(), token(), h.runtime)).toMatchObject({ code: "snapshot_conflict" });
+    expect(h.create).toHaveBeenCalledTimes(1);
+  });
+  it("rejects malformed stored results on a real cache read without generating or repairing", async () => {
+    const p = persistence(), sealed = await p.sealWeek(candidate()), corrupt = completed(sealed);
+    corrupt.matchups[0].result!.probabilities[0].probability = -1;
+    await p.completeWeek(sealed.key, sealed.hash, corrupt);
+    const h = realHarness(), input = weeklyInput();
+    const read = await loadAiDecidesData(h.runtime, async () => ({ leagueId: input.leagueId, season: input.season, week: input.week, matchups: input.matchups, phase: input.phase }));
+    expect(read.weekly.status).toBe("unavailable"); expect(h.create).not.toHaveBeenCalled();
+    expect((await p.getWeek(sealed.key))!.result).toEqual(corrupt);
+  });
+  it("retains old model/prompt manifests and idempotent final outcomes after current policy changes", async () => {
+    const p = persistence(), record = candidate(), final = completed(record);
+    record.manifest = { ...record.manifest, model: "prior-beta-model", promptVersion: "prior-prompt-v1", instructions: "Prior frozen instructions." };
+    record.hash = weekHash(record.input, record.manifest); record.slate = prepareWeeklySlate(record.input, NOW, record.manifest);
+    final.snapshot = record.slate.snapshot;
+    final.matchups.forEach(m => { m.result!.model = record.manifest.model; m.result!.promptVersion = record.manifest.promptVersion; m.result!.snapshot = record.slate.snapshot; });
+    await p.sealWeek(record); await p.completeWeek(record.key, record.hash, final);
+    const before = await p.getWeek(record.key);
+    vi.resetModules();
+    vi.doMock("@/domain/ai-decider", async original => ({ ...await original<typeof import("@/domain/ai-decider")>(), AI_DECISION_MODEL: "hypothetical-future-policy", AI_WEEKLY_PROMPT_VERSION: "future-test-policy" }));
+    try {
+      const future = await import("../weekly");
+      expect(future.currentGenerationManifest(record.manifest)).toBe(false);
+      expect(future.cachedWeek(before!, NOW)).toEqual(final);
+      const outcome = { matchupId: "1", recordedAt: "2026-10-27T01:00:00Z", final: true as const, teamPoints: [{ teamId: "6", points: 123 }, { teamId: "10", points: 122 }] };
+      expect(await future.recordWeeklyOutcome(p, record.key, outcome, Date.parse(outcome.recordedAt))).toBe(true);
+      expect(await future.recordWeeklyOutcome(p, record.key, outcome, Date.parse(outcome.recordedAt))).toBe(false);
+      expect(await p.getWeek(record.key)).toEqual(before);
+    } finally { vi.doUnmock("@/domain/ai-decider"); vi.resetModules(); }
+  });
+});

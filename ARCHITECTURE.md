@@ -682,8 +682,11 @@ Globally unsupported inputs return before sealing. Usage is settled independentl
 of prediction decoding, with idempotent CAS completion even for retained leases.
 Unknown scoring mode, preseason and unsupported Game Pick assumptions fail
 closed; Lock-In PPG is never multiplied by games. `migrations/ai-decider.sql`
-is unapplied and starts disabled. Existing auth/valuation/repair tables are reused
+is unapplied in production and starts disabled. Existing auth/valuation/repair tables are reused
 or read without schema/behavior changes. UI/page integration has a separate owner.
+The dedicated disposable PostgreSQL CI job executes the AI migration only in a
+generated synthetic schema, verifying actual SQL/CAS/triggers with provider mocks.
+Its guarded loopback target and service lifecycle never use an application DB URL.
 Provider credentials and runtime stay behind `server-only`. `OPENAI_API_KEY`,
 `GOAT_AI_DECIDES_ENABLED=true` and an enabled durable control row are separate
 server activation gates; absent settings/state produce unavailable drafts.
