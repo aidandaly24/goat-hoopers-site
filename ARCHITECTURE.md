@@ -731,6 +731,14 @@ on a missing database.
 
 ## Accounts (how the auth works)
 
+Proposed future replacement: [friends-only account foundations](docs/friends-accounts.md).
+Dormant `src/domain/arcade/account-identity.ts` and `src/data/account-identity.ts`
+preserve the app UUID across provider credentials; `src/domain/arcade/competition.ts`
+defines bounded validation/cosmetic candidates. No current route imports them.
+Existing runtime below remains active; no provider, schema, reset or reward
+activation is included. The plan preserves score/reward ownership and coordinates
+AI Decides' atomic session check before any later credential/session reset.
+
 - **Claim:** Aidan generates one single-use invite code per Sleeper team
   at `/admin/invites` and distributes each privately. A manager enters the
   code at `/claim`, picks a display name, sets a password. The code is
