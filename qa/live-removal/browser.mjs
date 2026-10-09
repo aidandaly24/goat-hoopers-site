@@ -22,7 +22,8 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 let server, browser, serverLog = "";
 await mkdir(evidence, { recursive: true });
 assert.equal(process.versions.node.split(".")[0], "22");
-assert.equal(git("show", "-s", "--format=%P", "HEAD"), receipt.liveBase, "Release has only the exact live parent");
+assert.equal(git("merge-base", "HEAD", receipt.liveBase), receipt.liveBase, "Release descends from the exact live baseline");
+assert.equal(git("rev-list", "--merges", `${receipt.liveBase}..HEAD`), "", "Release does not merge later feature history");
 assert.equal(git("status", "--porcelain", "--untracked-files=no"), "", "Run the committed candidate");
 const assets = JSON.parse(await readFile(path.join(root, "src/test/fixtures/rejected-hoopers-assets.json"), "utf8"));
 for (const { path: file, sha256 } of assets.preserved) {
@@ -84,10 +85,11 @@ try {
     await visit("/"); await geometry("homepage");
     const expected = await page.evaluate(() => window.removalExpected);
     assert.equal(expected.teams.length, 10); assert.equal(expected.rosterCount, 228);
-    const arena = page.locator('img[src="/courtside/arena.jpg"]');
+    const arena = page.locator('img[src="/courtside/arena.jpg"]').first();
     assert.ok(await arena.evaluate(image => image.complete && image.naturalWidth > 0));
     assert.equal(await page.locator('img[src*="banner-roster-"]').count(), 2);
     assert.ok(await page.locator('img[src*="banner-roster-"]').evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0)));
+    assert.ok(await page.locator('img[src="/courtside/GOAT-HOOPERS-horizontal-black.svg"]').first().evaluate(image => image.complete && image.naturalWidth > 0));
     await capture("home");
     record(`${width} approved arena, two embroidered pennants and logo load`, "existing local files; zero model requests");
 
