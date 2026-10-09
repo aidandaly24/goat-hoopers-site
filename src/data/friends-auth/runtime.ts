@@ -14,7 +14,7 @@ import { sendAccountMail } from "./mail";
 
 export function getFriendsAuth() {
   return createFriendsAuth({ database: drizzleAdapter(getFriendsDb(), { provider: "pg", schema: providerSchema, transaction: true }),
-    config: readFriendsAuthConfig(), sendMail: sendAccountMail, serverActions: true,
+    config: readFriendsAuthConfig(), sendMail: (mail) => sendAccountMail(mail, consumeAuthAttempt), serverActions: true,
     background: (task) => after(async () => { try { await task; } catch { console.error("Account email delivery failed"); } }),
   });
 }
@@ -103,7 +103,7 @@ export async function enrollFriend(input: EnrollmentInput, legacyTokenHash: stri
   if (dependencies) { dependencies.queueMail(mail); return; }
   after(async () => {
     for (const message of mail) {
-      try { await sendAccountMail(message); } catch { console.error("Account verification delivery failed"); }
+      try { await sendAccountMail(message, consumeAuthAttempt); } catch { console.error("Account verification delivery failed"); }
     }
   });
 }
