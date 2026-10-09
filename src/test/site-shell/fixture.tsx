@@ -1,7 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { SiteHeader } from "@/ui/SiteHeader";
-import { SiteChrome } from "@/ui/SiteChrome";
-import { MobileNav } from "@/ui/MobileNav";
+import { SITE_DESTINATIONS } from "@/ui/siteDestinations";
 import { CombinedTicker } from "@/surfaces/stock-market/CombinedTicker";
 import { StockMarket } from "@/surfaces/stock-market/StockMarket";
 import { TrophyRoom } from "@/surfaces/history/TrophyRoom";
@@ -41,9 +40,8 @@ const style = document.createElement("style");
 style.textContent = "#root { display: contents; } :where(#root) > * { position: relative; z-index: 1; }";
 document.head.append(style);
 createRoot(document.getElementById("root")!).render(<>
-  <SiteChrome>{ticker}<SiteHeader user={user} logoutAction={logout} /></SiteChrome>
+  <SiteHeader user={user} logoutAction={logout} destinations={SITE_DESTINATIONS} ticker={ticker} />
   <div id="main-content" tabIndex={-1}>{content}</div>
   <p style={{ padding: "var(--gh-s4)" }}>Local shell fixture. Static 2025 history matches the repository. Named synthetic quote/home examples are layout-only. No live requests.</p>
   <SiteFooter season={null} />
-  <MobileNav user={user} />
 </>);

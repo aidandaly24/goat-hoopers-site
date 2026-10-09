@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import { Anton, Geist_Mono, Inter } from "next/font/google";
 import type { PlayerStock } from "@/domain";
-import { PUBLICATIONS } from "@/domain";
 import "@/ui/tokens.css";
 import "./globals.css";
 import { getCurrentUser, logout } from "@/app/actions";
 import { getSeasonMeta, getStockMarketData, getLeagueNews } from "@/data/league";
 import { SiteHeader } from "@/ui/SiteHeader";
-import { SiteChrome } from "@/ui/SiteChrome";
 import { SiteFooter } from "@/ui/SiteFooter";
-import { MobileNav } from "@/ui/MobileNav";
+import { SITE_DESTINATIONS } from "@/ui/siteDestinations";
 import {
   CombinedTicker,
   type TickerHeadline,
@@ -100,7 +98,7 @@ async function Ticker() {
     }));
     headlines = news.slice(0, 12).map((a) => ({
       text: a.headline,
-      publication: PUBLICATIONS[a.publication].name,
+      publication: a.outlet.name,
     }));
   } catch {
     stocks = [];
@@ -136,13 +134,9 @@ export default async function RootLayout({
       className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
       <body>
-        <SiteChrome>
-          <Ticker />
-          <SiteHeader user={headerUser} logoutAction={logout} />
-        </SiteChrome>
+        <SiteHeader user={headerUser} logoutAction={logout} destinations={SITE_DESTINATIONS} ticker={<Ticker />} />
         <div id="main-content" tabIndex={-1}>{children}</div>
-        <SiteFooter season={season} />
-        <MobileNav user={headerUser} />
+        <SiteFooter season={season} destinations={SITE_DESTINATIONS.filter(d => d.footer)} />
       </body>
     </html>
   );
