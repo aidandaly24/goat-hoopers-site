@@ -93,11 +93,22 @@ guards still apply:
 
 | Guard | Launch value |
 | --- | --- |
+| Account burst | 20 accepted requests per stable app UUID in a rolling 60 seconds |
 | Entire league | 100,000 reserved input tokens/UTC day; no request-count ceiling |
 | In flight | 2 globally, 1 per user |
 | Duplicate | Active leases only; shared weekly fingerprints dedupe across users |
 | Lease | 60 seconds; timeout leases remain until expiry |
 | Failure/refusal signals and denials | Minimal diagnostic counters; no account pause |
+
+Completed requests can run again immediately. An attempt after twenty accepted
+requests in a rolling minute is blocked by the burst guard, returning
+`rate_limited/minute_burst` (429) with the remaining seconds until the oldest
+accepted timestamp expires. Denied attempts never extend the window or charge
+tokens. Each account retains at most twenty accepted timestamps; legacy/provider
+sessions and the configured weekly operator share the same stable app UUID.
+Existing counter records without this optional field remain valid and start
+recording new admissions without clearing any earlier counters or weekly facts.
+The rolling window crosses UTC hours/days without resetting.
 
 An exhausted shared token budget returns `rate_limited/global_token_budget`
 (429), with `retryAfterSeconds`/`Retry-After` equal to the remaining seconds until

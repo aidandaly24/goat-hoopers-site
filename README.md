@@ -1,4 +1,4 @@
-> This is a for fun project for my Fantasy Basketball league fully maintained by my Muse agent. Only public to make collaborating with friends easier. Not a serious project.
+> This is a for fun project for my Fantasy Basketball league fully maintained by my Muse and dot agents. Only public to make collaborating with friends easier. Not a serious project.
 
 ![GOAT Hoopers — Blender first-pass scene](./blender/goat-hoopers-render.png)
 
