@@ -47,6 +47,8 @@ export type {
   RealNewsArticle,
   RealNewsSection,
   NewsOutlet,
+  NewsCoverage,
+  LeagueNewsEdition,
   PlayerRef,
 } from "./news";
 export type {
@@ -102,3 +104,8 @@ export type {
   MatchupHighlight,
 } from "./stats";
 export { UNAVAILABLE_TOTAL, fmtTotal, totalLabel } from "./format";
+export type {
+  AiBaseline, AiDecideRequest, AiDecideResponse, AiDecisionResult, AiDecidesData,
+  AiFailureStatus, AiGenerationManifest, AiSnapshotMetadata, AiWeeklyInput, AiWeeklyOutcome,
+  AiWeeklyPick, AiWeeklySlate,
+} from "./ai-decider";

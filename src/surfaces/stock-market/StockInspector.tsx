@@ -5,16 +5,28 @@ import Link from "next/link";
 import { formatPct, formatPrice } from "./format";
 import { moveClass } from "./StockQuoteRow";
 import { PriceHistoryChart } from "./PriceHistoryChart";
+import { RetainedHistory } from "./RetainedHistory";
+import type { LoadStockHistoryPage } from "@/data/stock-history-client";
 import { ExchangeIcon } from "./ExchangeIcon";
 import styles from "./StockMarket.module.css";
 
 export type DetailState = { status: "idle" | "loading" | "error" } | { status: "ready"; detail: StockDetail };
 
-function DetailContents({ detail, playerName }: { detail: StockDetail; playerName: string }) {
+function DetailContents({ detail, playerName, loadHistory }: { detail: StockDetail; playerName: string; loadHistory: LoadStockHistoryPage }) {
   const seasons = [...detail.seasonHistory].reverse();
   const maxFppg = Math.max(...seasons.map((s) => s.fppg), 1);
+  const dates = detail.spark.map(point => point.date.slice(0, 10)).filter(date => {
+    const time = Date.parse(`${date}T00:00:00Z`);
+    return /^\d{4}-\d{2}-\d{2}$/.test(date) && Number.isFinite(time) && new Date(time).toISOString().slice(0, 10) === date;
+  }).sort();
+  const lastDay = dates.at(-1) ?? new Date().toISOString().slice(0, 10);
+  const nextDay = new Date(`${lastDay}T00:00:00Z`);
+  nextDay.setUTCDate(nextDay.getUTCDate() + 1);
   return <>
     <PriceHistoryChart key={detail.playerId} history={detail.spark} playerName={playerName} />
+    <RetainedHistory key={`retained-${detail.playerId}`} playerId={detail.playerId} playerName={playerName}
+      initialFrom={dates[0] ?? `${Number(lastDay.slice(0, 4)) - 1}${lastDay.slice(4)}`}
+      initialTo={nextDay.toISOString().slice(0, 10)} loadPage={loadHistory} />
     <section className={styles["detail-section"]} aria-labelledby="stock-production-history">
       <h4 id="stock-production-history">Production history</h4>
       {seasons.length ? <>
@@ -41,7 +53,7 @@ function DetailContents({ detail, playerName }: { detail: StockDetail; playerNam
   </>;
 }
 
-export function StockInspector({ quote, detail, headingRef, onClose, onRetry, examples, onInspect }: {
+export function StockInspector({ quote, detail, headingRef, onClose, onRetry, examples, onInspect, loadHistory }: {
   quote: StockQuote | null;
   detail: DetailState;
   headingRef: Ref<HTMLHeadingElement>;
@@ -49,6 +61,7 @@ export function StockInspector({ quote, detail, headingRef, onClose, onRetry, ex
   onRetry: () => void;
   examples: StockQuote[];
   onInspect: (quote: StockQuote, trigger: HTMLButtonElement) => void;
+  loadHistory: LoadStockHistoryPage;
 }) {
   return <aside id="stock-inspector" className={`${styles.inspector} ${quote ? styles["has-selection"] : ""}`} aria-labelledby="inspector-title"
     onKeyDown={(event) => {
@@ -70,7 +83,7 @@ export function StockInspector({ quote, detail, headingRef, onClose, onRetry, ex
             <span className={moveClass(quote.changePct)}>{quote.changePct === null ? "— No baseline" : formatPct(quote.changePct)}</span></div>
           <p className={styles["detail-baseline"]}>{quote.prevPrice === null ? "Previous recorded price unavailable" : `Previous recorded price ${formatPrice(quote.prevPrice)}`} · FAAB</p>
         </div>
-        {detail.status === "ready" ? <DetailContents detail={detail.detail} playerName={quote.playerName} /> :
+        {detail.status === "ready" ? <DetailContents detail={detail.detail} playerName={quote.playerName} loadHistory={loadHistory} /> :
           <div className={styles["detail-state"]} role="status" aria-live="polite" aria-busy={detail.status === "loading"}>
             {detail.status === "error" ? <><h3>Detail temporarily unavailable</h3><p>The quote remains available. Retry the detail when ready.</p>
               <button type="button" className={styles["outline-button"]} onClick={onRetry}>Retry detail</button></> : <p>Loading player detail…</p>}

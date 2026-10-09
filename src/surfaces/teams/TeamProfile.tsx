@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import type {
   FranchiseHistory,
   ManagerArchetype,
@@ -9,13 +10,14 @@ import type {
 import { fmtTotal, isFinal, totalLabel } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
-import { PlayerName, PlayerRow } from "@/ui/PlayerRow";
+import { PlayerName } from "@/ui/PlayerRow";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { TransactionSummary } from "@/ui/TransactionSummary";
 import { FranchiseSection } from "@/surfaces/history/FranchiseSection";
 import { GmArchetypeCard } from "./GmArchetypeCard";
-import { HooperViewer } from "@/three/HooperViewer";
+import { TeamRoster, TeamRosterList } from "./TeamRoster";
+import "@/ui/courtside-tokens.css";
 import styles from "./TeamProfile.module.css";
 
 function streakBadge(streak: number) {
@@ -46,23 +48,37 @@ function MatchupRow({ matchup }: { matchup: Matchup }) {
   const awayWon =
     final && (matchup.awayPoints as number) > (matchup.homePoints as number);
   return (
-    <li className={styles.game}>
+    <li className={styles.game} data-matchup-week={matchup.week}>
+      <div className={styles.gameHead}>
+        <span>
+          Week <span className="gh-num">{matchup.week}</span>
+        </span>
+        <span>{final ? (homeWon || awayWon ? "Final" : "Tie") : "Pending"}</span>
+      </div>
       <Link href={`/teams/${matchup.home.id}`} className={styles.gameTeam}>
         <TeamAvatar name={matchup.home.name} avatar={matchup.home.avatar} />
         <span className={styles.gameTeamName}>{matchup.home.name}</span>
         {homeWon && <Badge tone="win">W</Badge>}
         {awayWon && <Badge tone="loss">L</Badge>}
       </Link>
-      <span className={styles.score}>
-        {fmtPts(matchup.homePoints)} — {fmtPts(matchup.awayPoints)}
+      <span
+        className={`${styles.score} gh-num`}
+        aria-label={`${matchup.home.name} points: ${fmtPts(matchup.homePoints)}`}
+      >
+        {fmtPts(matchup.homePoints)}
       </span>
       <Link href={`/teams/${matchup.away.id}`} className={styles.gameTeam}>
+        <TeamAvatar name={matchup.away.name} avatar={matchup.away.avatar} />
+        <span className={styles.gameTeamName}>{matchup.away.name}</span>
         {awayWon && <Badge tone="win">W</Badge>}
         {homeWon && <Badge tone="loss">L</Badge>}
-        <span className={styles.gameTeamName}>{matchup.away.name}</span>
-        <TeamAvatar name={matchup.away.name} avatar={matchup.away.avatar} />
       </Link>
-      <span className={styles.week}>Week {matchup.week}</span>
+      <span
+        className={`${styles.score} gh-num`}
+        aria-label={`${matchup.away.name} points: ${fmtPts(matchup.awayPoints)}`}
+      >
+        {fmtPts(matchup.awayPoints)}
+      </span>
     </li>
   );
 }
@@ -80,7 +96,7 @@ function MatchupRow({ matchup }: { matchup: Matchup }) {
  * - Receives `profile` (TeamProfile) and `teams` (all league teams, for
  *   transaction actor links).
  * - Optional `archetype` (ManagerArchetype | null): the GM IQ card renders
- *   under the identity header when provided (null = honest empty state).
+ *   when provided (null = honest empty state).
  *   Omitted = no card (callers without archetype data are untouched).
  * - Empty sections (preseason game log, no transactions) render honest
  *   empty states, never fake rows.
@@ -100,74 +116,119 @@ export function TeamProfile({
 }) {
   const { team, players, matchups, streak, draftPicks, transactions } =
     profile;
+  // Supplied weeks are newest-first. Find the earliest unfinished pairing
+  // without sorting/mutating the full game log or inventing a current week.
+  const nextMatchup = matchups.reduce<Matchup | null>(
+    (next, matchup) =>
+      !isFinal(matchup) && (!next || matchup.week < next.week) ? matchup : next,
+    null,
+  );
+  const opponent = nextMatchup && (
+    nextMatchup.home.id === team.id ? nextMatchup.away : nextMatchup.home
+  );
 
   return (
     <div className={styles.page}>
-      <Card className={styles.identity}>
-        <div className={styles.hooperStage}>
-          <HooperViewer
-            rosterId={Number.parseInt(team.id, 10)}
-            teamName={team.name}
-            ariaLabel={`${team.name} figurine. Activate for a trick.`}
-          />
-        </div>
+      <div className={styles.breadcrumbs}>
+        <Link href="/teams">← All teams</Link>
+        <span>Public team profile</span>
+      </div>
+      <header className={styles.identity}>
+        <TeamAvatar name={team.name} avatar={team.avatar} />
         <div className={styles.identityText}>
           <h1 className={styles.teamName}>{team.name}</h1>
           <p className={styles.manager}>managed by {team.managerName}</p>
-          <div className={styles.badges}>{streakBadge(streak)}</div>
+          {streak !== 0 && (
+            <div className={styles.badges} aria-label="Active streak">
+              {streakBadge(streak)}
+            </div>
+          )}
         </div>
         <dl className={styles.record}>
           <div>
             <dt>W</dt>
-            <dd className={styles.win}>{team.wins}</dd>
+            <dd className={`${styles.win} gh-num`}>{team.wins}</dd>
           </div>
           <div>
             <dt>L</dt>
-            <dd className={styles.loss}>{team.losses}</dd>
+            <dd className={`${styles.loss} gh-num`}>{team.losses}</dd>
           </div>
+          {team.ties !== 0 && (
+            <div>
+              <dt>T</dt>
+              <dd className="gh-num">{team.ties}</dd>
+            </div>
+          )}
           <div>
             <dt>PF</dt>
-            <dd>{(team.pointsFor / 100).toFixed(1)}</dd>
+            <dd className="gh-num" aria-label={totalLabel("Points for", team.pointsFor)}>
+              {(team.pointsFor / 100).toFixed(1)}
+            </dd>
           </div>
           <div>
             <dt>PA</dt>
-            <dd aria-label={totalLabel("Points against", team.pointsAgainst)}>
+            <dd className="gh-num" aria-label={totalLabel("Points against", team.pointsAgainst)}>
               {fmtTotal(team.pointsAgainst)}
             </dd>
           </div>
         </dl>
-      </Card>
+      </header>
+      <nav className={styles.sections} aria-label="Team profile sections">
+        <a href="#team-roster">Roster</a>
+        <a href="#team-matchup">Matchup</a>
+        <a href="#team-games">Game log</a>
+        <a href="#team-picks">Picks</a>
+        <a href="#team-moves">Moves</a>
+        {archetype !== undefined && <a href="#team-gm">GM IQ</a>}
+        {franchise && <a href="#team-history">History</a>}
+      </nav>
 
-      {archetype !== undefined && <GmArchetypeCard archetype={archetype} />}
-
-      {franchise && <FranchiseSection history={franchise} />}
+      <section id="team-matchup" aria-label="Next matchup">
+        <Card className={styles.next}>
+          <div className={styles.nextHeading}>
+            <h2>Next matchup</h2>
+            {nextMatchup && (
+              <span>Week <span className="gh-num">{nextMatchup.week}</span></span>
+            )}
+          </div>
+          {opponent ? (
+            <Link className={styles.opponent} href={`/teams/${opponent.id}`}>
+              <TeamAvatar name={opponent.name} avatar={opponent.avatar} />
+              <span className={styles.opponentIdentity}>
+                <strong>{opponent.name}</strong>
+                <span>managed by {opponent.managerName}</span>
+              </span>
+              <span className="gh-num" aria-label={`${opponent.wins} wins, ${opponent.losses} losses`}>
+                {opponent.wins}–{opponent.losses}
+              </span>
+            </Link>
+          ) : (
+            <p className={styles.empty}>No upcoming matchup supplied.</p>
+          )}
+        </Card>
+      </section>
 
       <div className={styles.grid}>
-        <Card>
-          <SectionHeading
-            eyebrow="Roster"
-            title={`${players.length} players`}
-          />
+        <section id="team-roster" className={styles.rosterSection} aria-label="Roster">
+          <div className={styles.heading}>
+            <SectionHeading eyebrow="Roster" title={`${players.length} players`} />
+          </div>
           {players.length === 0 ? (
             <p className={styles.empty}>Roster unavailable right now.</p>
           ) : (
-            <ul className={styles.roster}>
-              {players.map((p) => (
-                <li key={p.id}>
-                  <PlayerRow player={p} teamId={team.id} />
-                </li>
-              ))}
-            </ul>
+            <Suspense fallback={<TeamRosterList players={players} teamId={team.id} />}>
+              <TeamRoster players={players} teamId={team.id} />
+            </Suspense>
           )}
-        </Card>
+        </section>
 
         <div className={styles.side}>
-          <Card>
-            <SectionHeading eyebrow="Season" title="Game log" />
+          <section id="team-games" className={styles.detail} aria-label="Game log">
+            <div className={styles.heading}>
+              <SectionHeading eyebrow="Season" title="Game log" />
+            </div>
             {matchups.length === 0 ? (
-              <p className={styles.empty}>
-                No games yet — the season tips off and this fills in week by week.
-              </p>
+              <p className={styles.empty}>No games supplied yet.</p>
             ) : (
               <ul className={styles.games}>
                 {matchups.map((m) => (
@@ -175,16 +236,18 @@ export function TeamProfile({
                 ))}
               </ul>
             )}
-          </Card>
+          </section>
 
-          <Card>
-            <SectionHeading eyebrow="2026 draft" title="Rookie picks" />
+          <section id="team-picks" className={styles.detail} aria-label="Rookie picks">
+            <div className={styles.heading}>
+              <SectionHeading eyebrow="Draft" title="Rookie picks" />
+            </div>
             {draftPicks.length === 0 ? (
               <p className={styles.empty}>No picks on record.</p>
             ) : (
               <ul className={styles.picks}>
                 {draftPicks.map((p) => (
-                  <li key={p.pickNo} className={styles.pick}>
+                  <li key={p.pickNo} className={styles.pick} data-pick-number={p.pickNo}>
                     <Badge tone="gold">#{p.pickNo}</Badge>
                     <PlayerName
                       player={{ id: p.playerId, fullName: p.playerName }}
@@ -194,26 +257,34 @@ export function TeamProfile({
                 ))}
               </ul>
             )}
-          </Card>
+          </section>
 
-          <Card>
-            <SectionHeading eyebrow="The wire" title="Recent moves" />
+          <section id="team-moves" className={styles.detail} aria-label="Recent moves">
+            <div className={styles.heading}>
+              <SectionHeading eyebrow="The wire" title="Recent moves" />
+            </div>
             {transactions.length === 0 ? (
-              <p className={styles.empty}>
-                Quiet on the wire for {team.name}. For now.
-              </p>
+              <p className={styles.empty}>No recent moves supplied.</p>
             ) : (
               <ul className={styles.moves}>
                 {transactions.map((t) => (
-                  <li key={t.id} className={styles.move}>
+                  <li key={t.id} className={styles.move} data-transaction-id={t.id}>
                     <TransactionSummary transaction={t} teams={teams} />
                   </li>
                 ))}
               </ul>
             )}
-          </Card>
+          </section>
         </div>
       </div>
+      {archetype !== undefined && (
+        <section id="team-gm" aria-label="GM IQ">
+          <GmArchetypeCard archetype={archetype} />
+        </section>
+      )}
+      {franchise && (
+        <div id="team-history"><FranchiseSection history={franchise} /></div>
+      )}
     </div>
   );
 }

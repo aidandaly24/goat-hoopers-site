@@ -1,0 +1,15 @@
+.card { max-width: 28rem; margin: var(--gh-s16) auto; }
+.lede, .switch { color: var(--gh-text-dim); line-height: 1.6; margin: 0 0 var(--gh-s4); }
+.form { display: flex; flex-direction: column; gap: var(--gh-s4); }
+.field { display: flex; flex-direction: column; gap: var(--gh-s2); font-weight: 700; color: var(--gh-text); }
+.input { width: 100%; min-width: 0; box-sizing: border-box; background: var(--gh-bg-raised); border: 1px solid var(--gh-border);
+  border-radius: var(--gh-s2); color: var(--gh-text); padding: var(--gh-s3); font: inherit; }
+.input:focus-visible, .submit:focus-visible, .switch a:focus-visible { outline: 2px solid var(--gh-gold); outline-offset: 3px; }
+.error { color: var(--gh-loss); margin: 0; }
+.notice { color: var(--gh-text); padding: var(--gh-s3); border: 1px solid var(--gh-border); border-radius: var(--gh-radius); overflow-wrap: anywhere; }
+.submit { background: var(--gh-gold); color: var(--gh-ink-on-accent); border: 0; border-radius: var(--gh-s2);
+  padding: var(--gh-s3); font: inherit; font-weight: 800; cursor: pointer; }
+.submit:disabled { opacity: .6; cursor: wait; }
+.switch { margin-top: var(--gh-s4); overflow-wrap: anywhere; }
+.switch a { color: var(--gh-gold); font-weight: 700; }
+@media (max-width: 40rem) { .card { margin: var(--gh-s8) var(--gh-s3); } }

@@ -4,7 +4,7 @@
 
 # GOAT Hoopers — League Site
 
-Live at **https://goathoopers.com** (login required — ask Aidan for an invite code).
+Live at **https://goathoopers.com**. Home, Stocks, and Arcade are public. My Team requires login; ask Aidan for an invite code to claim a manager account.
 
 A home page for our 10-team NBA dynasty fantasy league on Sleeper: standings, stats, matchup previews, power rankings, playoff odds, a league news network, head-to-head history, and a **player stock market** that prices every player in FAAB dollars.
 
@@ -31,7 +31,9 @@ Sleeper API → src/data/sleeper.ts (raw fetch) → src/data/transform.ts (→ d
 → src/data/league.ts (loaders) → page.tsx → Surface (domain objects only)
 ```
 
-- Pushes to `main` auto-deploy on Vercel.
+- Reviewed merges to `main` auto-deploy production on Vercel. Automatic
+  builds for other branches and PRs are disabled to conserve build quota;
+  see [Deployments](./CONTRIBUTING.md#deployments).
 - Never force-push `main` (Rule 12).
 - DB/Vercel changes go through PR review or GitHub issues — collaborators' agents cut PRs since they don't have Vercel access (Rule 13).
 

@@ -2,11 +2,9 @@
 import Link from "next/link";
 import type { CourtsideHomeData } from "@/data/league";
 import type { WeeklyEdition } from "@/domain/weekly-spotlight";
-import type { Team } from "@/domain";
 import { formatSeasonStatus } from "@/domain";
-import { TeamAvatar } from "@/ui/TeamAvatar";
-import { CourtsideDialog } from "./CourtsideDialog";
-import { CourtsideMoment } from "./CourtsideMoment";
+import type { ReactNode } from "react";
+import { CourtsideFeature } from "./CourtsideFeature";
 import { CourtsideDirectory } from "./CourtsideDirectory";
 import { StatsStrip } from "./StatsStrip";
 import { StandingsTable } from "./StandingsTable";
@@ -20,6 +18,7 @@ type Props = {
   archive: WeeklyEdition[];
   portraits: Record<string, string>;
   archived?: boolean;
+  aiEntry?: ReactNode;
 };
 const labels = {
   "player-of-week": "Player of the Week",
@@ -45,43 +44,6 @@ function Sources({ edition }: { edition: WeeklyEdition }) {
         ))}
       </ul>
     </details>
-  );
-}
-
-function MatchTeam({ team, score }: { team: Team; score: number | null }) {
-  const pennant =
-    team.id === "1"
-      ? "banner-roster-1-reaves-dropper.webp"
-      : team.id === "5"
-        ? "banner-roster-5-josh-diddys-roster.webp"
-        : null;
-  return (
-    <Link
-      className={cs("match-team")}
-      href={`/teams/${team.id}`}
-      prefetch={false}
-    >
-      {pennant ? (
-        <img
-          className={cs("pennant-image")}
-          src={`/courtside/${pennant}`}
-          alt={`${team.name}${team.id === "5" ? ", 2025 champion" : ""} embroidered pennant`}
-          width="512"
-          height="896"
-        />
-      ) : (
-        <TeamAvatar name={team.name} avatar={team.avatar} />
-      )}
-      <div>
-        <strong>{team.name}</strong>
-        <small>{team.managerName}</small>
-        {score !== null && (
-          <span className={cs("historical-score", "gh-num")}>
-            {score.toFixed(1)}
-          </span>
-        )}
-      </div>
-    </Link>
   );
 }
 
@@ -167,8 +129,14 @@ export function CourtsideHome({
   archive,
   portraits,
   archived = false,
+  aiEntry,
 }: Props) {
   const { edition, hub } = data;
+  const preseason =
+    hub?.season.status === "pre_season" || hub?.season.status === "pre_draft";
+  const seasonLabel = hub
+    ? `${hub.season.seasonYear} ${formatSeasonStatus(hub.season.status).toLowerCase()}`
+    : "Season status unavailable";
   if (!edition)
     return (
       <main className={cs("surface")} data-courtside-home>
@@ -182,36 +150,24 @@ export function CourtsideHome({
               Weekly archive →
             </Link>
             <SectionLinks />
+            <Link className={cs("text-link")} href="/arcade">Arcade ↗</Link>
+            {aiEntry}
           </div>
         </section>
+        <CourtsideDirectory entries={data.directory} seasonLabel={seasonLabel} checkedAt={data.checkedAt} preseason={preseason} rosterNamesAvailable={data.rosterNamesAvailable} portraits={portraits} />
       </main>
     );
-  const game = edition.game;
-  const pair = game.teamIds?.map((id) =>
-    hub?.teams.find((team) => team.id === id),
-  );
-  const validPair =
-    pair?.length === 2 &&
-    pair.every((team): team is Team => !!team) &&
-    game.state !== "unavailable";
-  const scores =
-    game.state === "final" && game.scores ? game.scores : [null, null];
   const previousIndex = archive.findIndex((entry) => entry.id === edition.id);
   const previous = archive[previousIndex + 1];
   const newer = archive[previousIndex - 1];
   const stale =
     !archived && Date.parse(data.checkedAt) >= Date.parse(edition.endsAt);
-  const preseason =
-    hub?.season.status === "pre_season" || hub?.season.status === "pre_draft";
-  const seasonLabel = hub
-    ? `${hub.season.seasonYear} ${formatSeasonStatus(hub.season.status).toLowerCase()}`
-    : "Season status unavailable";
   const lead = edition.playerSpotlights.find(
     (player) => player.role === "player-of-week",
   );
   const supports = edition.playerSpotlights.filter((player) => player !== lead);
   return (
-    <main className={cs("surface")} data-courtside-home id="content">
+    <main className={cs("surface", "editorial-home")} data-courtside-home id="content">
       <a className={cs("skip")} href="#watch">
         Skip to this week’s players
       </a>
@@ -230,91 +186,24 @@ export function CourtsideHome({
               next weekly spotlight is pending.
             </p>
           )}
-          <div className={cs("opening-layout")}>
-            <div className={cs("arena-scene")}>
-              <img
-                src="/courtside/arena.jpg"
-                alt="The league’s existing Blender basketball arena"
-                width="1440"
-                height="810"
-                fetchPriority="high"
-              />
-            </div>
-            <div className={cs("game-story")}>
-              <div className={cs("game-meta")}>
-                <strong>Game of the week</strong>
-                <span>
-                  {game.state === "final"
-                    ? "Historical final · 2025"
-                    : game.state === "upcoming"
-                      ? `Week ${game.leagueWeek} · Upcoming`
-                      : "Spotlight pending"}
-                </span>
-              </div>
-              <h1 id="game-title">{game.title}</h1>
-              <p className={cs("context")}>{game.context}</p>
-              <div className={cs("board-actions")}>
-                <CourtsideDialog
-                  label="Matchup notes"
-                  title="Why this matchup?"
-                >
-                  <p className={cs("context-label")}>{game.note}</p>
-                  <h2>Why this matchup?</h2>
-                  <p>{game.selectionReason}</p>
-                  <p className={cs("caption")}>
-                    {edition.status === "draft"
-                      ? "Proposed editorial selection for review."
-                      : "Curated weekly selection."}{" "}
-                    {game.state === "upcoming" &&
-                      "No projected result or live score is implied."}
-                  </p>
-                  <div className={cs("notes-teams")}>
-                    {pair?.map(
-                      (team) =>
-                        team && (
-                          <Link
-                            className={cs("text-link")}
-                            key={team.id}
-                            href={`/teams/${team.id}`}
-                          >
-                            {team.name} ↗
-                          </Link>
-                        ),
-                    )}
-                  </div>
-                  <Sources edition={edition} />
-                </CourtsideDialog>
-                <Link className={cs("text-link")} href="/intel">
-                  League intel ↗
-                </Link>
-              </div>
-              <div className={cs("edition-links")}>
-                {previous && (
-                  <Link href={`/weekly/${previous.id}`}>Previous edition</Link>
-                )}
-                {newer && (
-                  <Link href={`/weekly/${newer.id}`}>Newer edition</Link>
-                )}
-                <Link href="/weekly">Weekly archive</Link>
-              </div>
-            </div>
+          <CourtsideFeature
+            edition={edition}
+            entries={data.directory.map(({ identity, previousSeason, currentRecord, currentMatchup }) => ({ identity, previousSeason, currentRecord, currentMatchup }))}
+            rosterCounts={Object.fromEntries(data.directory.map((entry) => [entry.identity.id, entry.players.length]))}
+            preseason={preseason}
+            checkedAt={data.checkedAt}
+            sources={<Sources edition={edition} />}
+          />
+          <div className={cs("edition-links")}>
+            {previous && <Link href={`/weekly/${previous.id}`}>Previous edition</Link>}
+            {newer && <Link href={`/weekly/${newer.id}`}>Newer edition</Link>}
+            <Link href="/weekly">Weekly archive</Link>
+            <Link href="/intel">League intel ↗</Link>
           </div>
-          {validPair ? (
-            <div className={cs("matchup-rail")} aria-label="Featured matchup">
-              <MatchTeam team={pair[0]!} score={scores[0]} />
-              <span className={cs("versus-label")}>vs</span>
-              <MatchTeam team={pair[1]!} score={scores[1]} />
-            </div>
-          ) : (
-            <p className={cs("empty")}>
-              The selected team identities are temporarily unavailable. Team
-              profiles remain available below.
-            </p>
-          )}
+          {aiEntry && <div className={cs("home-ai-entry")}>{aiEntry}</div>}
         </div>
       </section>
       <div className={cs("weekly-zone")}>
-        <CourtsideMoment />
         <div className={cs("wrap")}>
           {!!edition.playerSpotlights.length && (
             <section id="watch" aria-labelledby="watch-title">
@@ -419,11 +308,21 @@ export function CourtsideHome({
             </p>
           )}
         </details>
-        <details className={cs("league-details")}>
-          <summary>Explore teams, league intel, stocks & trades</summary>
-          <SectionLinks />
-        </details>
       </CourtsideDirectory>
+      <section className={cs("home-tools")} aria-label="League tools">
+        <div className={cs("wrap", "home-tools-layout")}>
+          <div>
+            <h2><Link href="/stocks">Stocks ↗</Link></h2>
+            <p>Player prices, trends and the next move. Inspect the market.</p>
+            <Link className={cs("text-link")} href="/trade-analyzer">Price a trade ↗</Link>
+          </div>
+          <div>
+            <h2><Link href="/arcade">Arcade ↗</Link></h2>
+            <p>Step onto the practice court. Play free throw.</p>
+            <Link className={cs("text-link")} href="/arcade/free-throw">Play free throw ↗</Link>
+          </div>
+        </div>
+      </section>
       <section className={cs("archive-zone")}>
         <div className={cs("wrap", "archive-preview")}>
           <div>

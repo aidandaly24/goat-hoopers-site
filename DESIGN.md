@@ -25,6 +25,32 @@ the decision record; the skill does not introduce a second palette or install
 external skills. Its references attribute the ten UI source studies without
 importing their manuals or framework/package-manager preferences.
 
+## AI Decides — approved page composition
+
+Aidan approved the separate AI Decides desktop layout on October 9, 2026.
+Keep published weekly pairings in one compact strip, followed by the editable
+question/choices and a personal result on the same open canvas. The arena and
+court photo belong on the homepage; its compact prediction preview links here.
+Presets open a two-team picker; Save fills an editable draft. Custom decisions
+support 2–8 choices, add/remove and Reset. Published picks stay separate from
+personal experiments. Show every returned probability, independent confidence,
+experimental status and returned model/prompt/as-of metadata. Missing or stale
+inputs have explicit states; no mock percentages or invented explanations ship.
+
+Continue refinement through useful detail, depth, control feedback and authored
+motion while retaining the approved composition. Avoid nested panels, repeated
+boxes, decorative gauges, random shapes and large empty areas. Probability
+motion may reveal the returned distribution; it must never imply new evidence
+or certainty. Numeric labels remain readable and static. Reduced motion and
+Pause retain all data and controls. Mobile trims gaps and repeated helper copy,
+with readable labels, complete options and at least 44px control targets.
+The page consumes the shared shell's theme and navigation; it owns neither.
+Weekly and personal matchup results show the actual returned choice, not the
+first probability or an inferred winner. Roster IDs remain visible; any name is
+labelled as a current display name, not frozen prediction metadata. Numeric
+custom choices are literal. Session verification failure keeps cached content
+and editing available with a distinct message and disabled generation.
+
 ## Decisions and review status
 
 | Status | Direction |
@@ -35,7 +61,7 @@ importing their manuals or framework/package-manager preferences.
 | Confirmed | Preserve the meaningful arena/court, selected GOAT logo and reusable embroidered pennants. Generate the featured weekly banners; do not generate a banner for every team name. |
 | Confirmed | Preserve the approved stocks composition and useful dense data. Keep working search, filters, sorting, inspection and price provenance. |
 | Confirmed, newest usability rule | Arcade discovery shows actual playable games, a real preview of free-throw practice and clear Play navigation. Hide nonfunctional/fake catalog entries. Verify the whole path to play, not just an HTTP 200. Arcade improvements need not wait for the broad migration. |
-| Confirmed concern; resolution owned separately | Arbitrary figurines are unwelcome. Another task identifies their purpose and fixes homepage sorting. This documentation/prototype change neither removes models nor changes their logic. |
+| Confirmed removal · 2026-10-09 | Aidan rejects the bald/blocky hooper figurine family everywhere. Remove all 11 team/generic public GLBs, their loaders and inspection controls, including previews. Retain team avatars, readable identities, rosters and profile links; preserve approved arena, pennants, logo and unrelated props. No replacement figurine. |
 | Confirmed by Aidan after rendered desktop/phone comparison | **Paper + Slate**: the exact canvas, surface, ink, divider, control and slate accent values below. |
 | Proposed; verify per surface | Type sizes, section density, radii and performance ceilings. These are guidance, not a mandate to change every component at once. |
 | Proposed; implementation review pending | One root-owned global destination definition and a compact phone disclosure; exact labels/grouping below are recommendations, not an Aidan-approved menu specification. Follow on from #84 / PR #87. |
@@ -70,6 +96,8 @@ The black horizontal logo is an unchanged approved variant for light surfaces.
 The existing primary clay master remains the selected logo; no logo redesign is
 proposed. See the [review README](design-previews/neutral-courtside/README.md)
 for provenance, reproduction and verification limits.
+
+Direction B homepage implementation keeps the court left and This Week right within the existing 78rem/responsive-gutter contract. The selected row uses type weight alone: no frame, dark strip or selected stripe. Compact good/bad/watch stories, saved AI picks below the court, live directory and visible Stocks/Arcade entries reuse the current data contracts and shared Paper + Slate theme.
 
 ## Shared reading theme — bounded follow-on to #84
 
@@ -110,8 +138,8 @@ reader acceptance.
 
 The one shared league list adds **AI Decides** after Intel and before Trade
 Analyzer. Its frontend and homepage entry remain their separate owners' scope;
-this shared-shell draft cannot establish the unfinished destination's body or
-activation. No page-local menu is introduced.
+this shared-shell change defines only theme/navigation and does not alter its
+body or runtime activation. No page-local menu is introduced.
 
 ## What each view should accomplish
 
@@ -319,8 +347,8 @@ fallback; text-only data rows are allowed when a face adds no value.
 Proposed ceilings for the non-game shell:
 
 - **Initial WebGL/model requests: zero.** One optional scene at a time;
-  deferred Three/model loading, no parallel figurine gallery. The homepage
-  already keeps its optional viewer outside the initial manifest.
+  deferred Three/model loading for approved assets only, no parallel figurine
+  gallery. The rejected hooper family and homepage inspection action are removed.
 - **Idle scene rendering: zero continuous frames.** Render on load, resize or
   manual interaction; suspend offscreen/hidden; dispose GPU, canvas, download
   and decoded bitmap resources on close/unmount. A closed viewer cannot keep
@@ -454,10 +482,10 @@ every authenticated route or live backend was exercised is implied.
 | Routes / files | What to preserve | Bounded design work |
 | --- | --- | --- |
 | Shared shell: `layout.tsx`, `globals.css`, `SiteHeader`, `MobileNav`, `SectionNav`, `SiteFooter`, `CombinedTicker` | Account state, all destinations, site metadata, safe-area space, fail-soft ticker | Neutral chrome, selected logo variant, shared type/spacing/focus roles, consistent active-page semantics. Desktop header currently has no current-page state; mobile already uses `aria-current`. Reduce stacked bars without deleting destinations or hiding actions. |
-| `/`, `/weekly`, `/weekly/[editionId]` · `season-hub` | Weekly order, dated sources, archives, full live directory, inherited-manager note | Neutral tokens, smaller editorial footprint and fewer visual separators after palette selection. Source no-edition branch currently returns before the directory/standings: keep core tasks available independently of editorial. Sorting/figurine logic is separately owned. |
+| `/`, `/weekly`, `/weekly/[editionId]` · `season-hub` | Weekly order, dated sources, archives, full live directory, inherited-manager note | Neutral tokens, smaller editorial footprint and fewer visual separators after palette selection. Source no-edition branch currently returns before the directory/standings: keep core tasks available independently of editorial. Sorting remains intact; rejected figurine inspection is removed. |
 | `/stocks` · `stock-market` | Approved board/inspector composition, filters, slim quotes, recorded/reconstructed source labels, retry/cache/focus | Shared Paper + Slate shell/board/inspector; preserve chart owner roles and provenance. Review any density/size change separately against actual mobile usage. |
 | `/trade-analyzer` · `trade-analyzer` | Two pickers, domain verdict, FAAB totals, share query, Copy Link | Use selected shared neutral control/ink roles through terminal compatibility names. Never break URL restore or treat verdict color as the entire explanation. |
-| `/teams`, `/teams/[rosterId]`, `/team` · `teams`, `team` | Public profile links, complete roster, record/streak, game log, picks, wire, franchise history, private rewards ledger and redirects | Compact neutral identity/roster composition. TeamProfile currently puts `HooperViewer` in its identity stage: review necessity with the figurine owner; do not delete unique assets or move 3D ahead of useful roster data by default. Keep pending/settled rewards distinct. |
+| `/teams`, `/teams/[rosterId]`, `/team` · `teams`, `team` | Public profile links, complete roster, record/streak, game log, picks, wire, franchise history, private rewards ledger and redirects | Compact neutral identity/roster composition. TeamProfile uses the existing TeamAvatar/initials treatment; the rejected hooper family is removed without changing unrelated approved assets or roster data. Keep pending/settled rewards distinct. |
 | `/player/[playerId]` · `player` | Real identity, ownership, draft slot, transactions, honest unavailable stats | Reuse the compact identity/working-list treatment. Keep the current 88px headshot proportionate; do not turn it into a giant athlete hero or fabricate stats. |
 | `/transactions` · `transactions` | Type/team filters, real chronology, linked people/teams | Neutral readable timeline/list, control hierarchy, compact time metadata; no decorative wall of colored chips. |
 | `/draft` · `draft` | Round grouping, pick order, owner/player links | Desktop board and narrow pick feed share type/spacing; preserve the actual selections and units. |

@@ -8,21 +8,26 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/app/actions";
 import { getSeasonHubData } from "@/data/league";
 import { LoginForm } from "./LoginForm";
+import { friendsAuthEnabled, friendsEnrollmentEnabled } from "@/data/friends-auth/config";
+import { AccountForm } from "@/surfaces/accounts/AccountForm";
 
 export const dynamic = "force-dynamic";
 
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ notice?: string }>;
+  searchParams: Promise<{ notice?: string; legacy?: string }>;
 }) {
+  const { notice, legacy } = await searchParams;
+  const enrollment = legacy === "1" && friendsEnrollmentEnabled();
   let user = null;
   try {
     user = await getCurrentUser();
   } catch {
     // Not provisioned yet — render anyway; the action explains.
   }
-  if (user) redirect("/arcade");
+  if (user && !enrollment && notice !== "reverify") redirect("/arcade");
+  if (friendsAuthEnabled() && !enrollment) return <AccountForm mode="login" notice={notice === "verified" ? "Email verified. You can log in now." : notice === "team" ? "Log in to see your team." : notice === "reverify" ? "Sign in again to confirm account changes." : null} />;
 
   let teams: { id: string; name: string }[] = [];
   try {
@@ -32,10 +37,10 @@ export default async function LoginPage({
     teams = [];
   }
 
-  const { notice } = await searchParams;
   return (
     <LoginForm
       teams={teams}
+      enrollment={enrollment}
       notice={notice === "team" ? "Log in to see your team." : null}
     />
   );

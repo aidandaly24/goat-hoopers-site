@@ -12,6 +12,29 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ## Directory map
 
+### Modeled valuation timeline contract
+
+The selected-player read-only `/api/stocks/[playerId]/history` route delegates
+to `data/stock-history-range.ts` and its injected SQL store. It pages all retained
+observed/reconstructed records within explicit calendar-day bounds, preserves
+native microsecond timestamps and exact cents, exposes publication/coverage status,
+and returns conservative held reconstructed intervals with a preceding anchor.
+It never invokes pricing, upstream stats, publishers or snapshot writes. Lists
+and existing detail/chart payloads are unchanged; PR99 owns renderer integration.
+See `docs/stock-history-range-integration.md` for range/timezone/retention semantics.
+
+`data/stock-history-client.ts` is the browser-safe, injected same-origin page
+adapter for that endpoint. It preserves raw records and held intervals, propagates
+abort, exposes generation409/restart and source503 detail, and never fetches later
+pages automatically. The separately owned chart connects it only on inspection.
+
+`src/domain/modeled-valuation-timeline.ts` and the pure data helper define a
+versioned continuous held-model state with exact updates and separate recorded
+snapshots. Calendar and coverage provenance stay explicit; no daily observed
+rows are synthesized. The helper has no live loader/store caller. Read
+`docs/modeled-valuation-timeline.md` for paging and source/retention integration
+gates; chart rendering and the bounded sampling fix remain separately owned.
+
 ### Courtside homepage and weekly archive
 
 `src/app/page.tsx` loads `getCourtsideHomeData`, archive references and approved portrait URLs, then composes `CourtsideHome` in the existing `season-hub` surface. `/weekly` and `/weekly/[editionId]` are source-controlled editorial routes. The old `SeasonHub`/`LeagueHero` components and static review stay available for comparison.
@@ -20,9 +43,9 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 Editorial entries carry explicit draft/publication and date bounds. The latest started entry stays visible with a stale notice after its period ends, never invented weekly results. Source dates, selection reasons, NBA/college period qualifiers and verified historical finals are retained. NeuralNets’ 2025 record visibly names the previous manager in the collapsed summary and explains QBs Gremlins in the full roster.
 
-The server owns hero, player stories, wire and archive. Small client islands handle directory search/sort, native dialogs and one bounded CSS emblem settle. The settle pauses offscreen/hidden and is static under reduced motion. `CourtsideFigurine` is imported only after inspection, requests one unchanged GLB, freezes its supplied idle pose, renders only on load/resize/manual turn, and disposes downloads/GPU/bitmap resources on close. Shared account actions, bottom navigation, standings, stats, transaction links and league tools are retained. No arcade internals are imported or changed.
+The server owns the edition, player stories, wire and archive. The private `CourtsideFeature` client island composes the existing court left / selectable current matchups right, using existing domain projections and no new fetches. Its bounded CSS camera inspection stops transitions offscreen/hidden and respects live reduced motion; the team context rail follows selection. Homepage roster inspection retains search/sort and native matchup dialogs. The dependency cleanup removes the rejected hooper family and its inspection dialogs/loaders; team avatars, names, roster disclosures and direct profile links provide identity without model requests. The page composes the public `AiDecidesHomeEntry` below the court from cached `getAiDecidesData()` and existing slim team identities; rendering the homepage never generates an AI pick. Explicit Stocks and Arcade entries remain visible. Shared shell/theme/navigation is retained and no arcade internals are imported or changed.
 
-`public/courtside/` preserves the exact supplied SVG variants, approved two pennants, existing arena and thirty bounded local portraits. Plain images serve pre-sized assets directly without image-optimizer quota. Fonts reuse root `next/font` assets. The optional Three module/model never participates in initial homepage rendering. Budgets, provenance and measured verification live in `courtside-preview/review/INTEGRATION.md`.
+`public/courtside/` preserves the exact supplied SVG variants, approved two pennants, existing arena and thirty bounded local portraits. Plain images serve pre-sized assets directly without image-optimizer quota. Fonts reuse root `next/font` assets. The homepage does not import a hooper viewer or request rejected models. Budgets, provenance and measured verification live in `courtside-preview/review/INTEGRATION.md`.
 
 ### Isolated courtside homepage review
 
@@ -46,8 +69,8 @@ The comparison artifact remains separate from the integrated Next.js homepage; a
   See top-level `DESIGN.md` for current visual authority.
 - Native `<details>` retains all 228 roster references behind ten compact
   summaries. No player-detail or external API request is made by this preview.
-  `court.js` loads installed Three modules and existing `public/3d/` assets
-  only after a figurine request; it releases its canvas/resources on close.
+  Rejected figurine controls, the optional viewer and its asset preparation
+  script are removed from this preview too; profile links remain available.
 - `ASSET-PROVENANCE.json`, `DESIGN.md`, and `review/` pin the approved assets,
   visual decisions, and captured desktop/mobile evidence. Weekly banner
   regeneration remains a content workflow; only two approved samples ship.
@@ -114,11 +137,12 @@ src/
                  # passed as a parameter). Dependency inversion lives here.
   three/         # Interactive 3D viewers (client components). GLBViewer
                  # (GLTFLoader + AnimationMixer, idle loop, click one-shots),
-                 # HooperViewer (team figurine by roster id), PropViewer
-                 # (basketball/trophy/crown/hoop). Assets in public/3d/,
+                 # PropViewer (basketball/trophy/crown/hoop). Team identities
+                 # use TeamAvatar; rejected hooper loaders/assets are removed.
+                 # Prop assets in public/3d/,
                  # built by the Blender pipeline in 3d/ (see 3d/README.md).
-  public/3d/     # Static GLB assets (hooper-1..10, hooper-generic,
-                 # basketball, trophy, crown, hoop) with named animation
+  public/3d/     # Approved props (basketball, trophy, crown, hoop)
+                 # and independently owned free-throw assets with named animation
                  # clips. Do not hand-edit; regenerate via 3d/build_all.sh.
   surfaces/      # Bounded experiences. One folder per surface.
     season-hub/  # "What's happening in the league": hero, standings,
@@ -138,9 +162,11 @@ src/
                  # objects, never fetches.
                  # GmArchetypeCard: the GM IQ card — one manager's
                  # archetype from real season behavior (archetype name +
-                 # tagline, five percentile bars, season label,
-                 # prior-manager note). Null archetype renders an honest
-                 # empty state.
+                 # tagline, five percentile bars with visible percentile
+                 # units and keyboard/touch-accessible metric definitions,
+                 # season label, prior-manager note). Unmeasured metrics
+                 # stay null and render as unavailable (never imputed).
+                 # Null archetype renders an honest empty state.
     player/      # "Who is this guy": one NBA player's page — headshot,
                  # position pill, NBA team, owning GOAT Hoopers roster
                  # (or Free Agent), rookie-draft slot, wire history.
@@ -184,6 +210,12 @@ src/
                  # slider. Reconstruction, recorded snapshots and the appended
                  # current modeled quote retain separate labels/line treatments.
                  # Its light semantic tokens are scoped to the chart; no repricing.
+                 # RetainedHistory adds an explicit selected-player date-range
+                 # load using the injected stock-history-client. Recorded native
+                 # calendar dots and UTC held reconstructions stay separate;
+                 # manual pages preserve raw records. Range changes, player
+                 # changes and Close abort pending reads; 409 requires restart.
+                 # Exhausted retained pages still have unknown coverage.
                  # On mobile, close restores focus after the panel is removed.
                  # StockRow remains as the legacy row, with PR40 detailMachine
                  # retry on failed re-expansion, in-flight dedupe and ready
@@ -450,20 +482,26 @@ games under future league scoring changes.
 
 ### The League News Network (real articles)
 
-`getLeagueNews` (in `src/data/league.ts`) feeds the `/news` page and the
-ticker's news mode with REAL NBA articles — no generated fiction. The
-pipeline:
+`getLeagueNews` (in `src/data/league.ts`) feeds the ticker's news mode
+and `getLeagueNewsEdition` feeds the `/news` page with REAL NBA
+articles — no generated fiction. The pipeline:
 
 ```
-ESPN + CBS Sports RSS  →  fetchRssFeed (src/data/real-news.ts, fetch injected)
-                       →  parseRssItems (pure, regex-based — no DOMParser server-side)
+ESPN + CBS Sports RSS  →  fetchRssFeed (src/data/real-news.ts, fetch injected,
+                          per-outlet source-host policy on destinations)
+                       →  parseRssItems (pure, regex-based — no DOMParser
+                          server-side; absolute http(s) links only)
                        →  matchPlayersToArticle (pure full-name matching vs the
-                          projected player directory)
+                          projected player directory, via the shared
+                          playerSearchKey from #116 — accent/apostrophe
+                          insensitive, Unicode-aware word boundaries)
                        →  buildRealNewsFeed (pure: strip HTML, ~200-char summaries,
-                          dedupe by URL, newest-first, section assignment)
+                          dedupe by URL, newest-first, section assignment —
+                          classification only from KNOWN identity inputs)
                        →  loadLeagueNews (src/data/league.ts: RSS in parallel via
                           Promise.allSettled + roster/directory/draft-board
-                          identity inputs, all injectable per rule 11)
+                          identity inputs, each recorded ok/unknown,
+                          all injectable per rule 11)
                        →  createLeagueNewsCache (5-min shared copy, last-good on
                           refresh failure)
 ```
@@ -471,44 +509,50 @@ ESPN + CBS Sports RSS  →  fetchRssFeed (src/data/real-news.ts, fetch injected)
 - **Sources:** `https://www.espn.com/espn/rss/nba/news` and
   `https://www.cbssports.com/rss/headlines/nba/`. The Athletic is
   paywalled and Bleacher Report's feed endpoint is dead — deliberately
-  not attempted.
-- **Sections:** every article is always in Latest. A mention of a
-  rostered league player adds League Players; a mention of a 2026
-  drafted rookie adds Rookie Wire; a mention of an NBA player on no
-  league roster adds Free Agency.
+  not attempted. Article destinations must be absolute http(s) URLs;
+  each feed additionally enforces its outlet's host allowlist
+  (espn.com / cbssports.com, subdomains allowed) — see the
+  source-host policy comment in `src/data/real-news.ts`.
+- **Sections:** every article is always in Latest. Classification beyond
+  that needs the identity inputs to be KNOWN: a rostered-league-player
+  mention adds League Players, a 2026-drafted-rookie mention adds Rookie
+  Wire, a mention of an NBA player on no league roster adds Free Agency.
+  A failed input is recorded as unknown in the edition's coverage — it
+  never looks like an empty real roster/draft, so a roster outage can't
+  invent Free Agency labels and a draft outage can't silently remove
+  Rookie Wire.
 - **Resilience:** one feed failing still yields the other; both feeds
   failing throws so the TTL cache preserves last-good (cold failure →
-  honest empty feed). Failed identity inputs (rosters/directory/draft)
-  degrade to articles without player chips rather than killing the feed.
-- **Matching:** full names only (never bare surnames), case-insensitive,
-  whole-word, suffix-aware ("Jr.", "II"), longest-first with matched
-  spans blanked so "Mikel Brown" can't false-positive inside
-  "Mikel Brown Jr.".
-- `/news` revalidates every 10 minutes (the requested article cadence);
-  the shared 5-min cache means the root-layout ticker and `/news` never
-  recompute independently. Surfaces render the outlet masthead, the
-  headline as an external link to the real article, a relative
-  timestamp, the summary, and subtle mentioned-player chips
-  (plain text until hover) linking to `/player/[playerId]`.
+  honest empty edition with all coverage unknown). Failed identity
+  inputs degrade to explicit unknown coverage, never to invented
+  classifications.
+- **Matching:** full names only (never bare surnames), normalized with
+  the shared `playerSearchKey` (accent/case/apostrophe-insensitive),
+  Unicode-aware whole-word boundaries, suffix-aware ("Jr.", "II"),
+  longest-first with matched spans blanked so "Mikel Brown" can't steal
+  "Mikel Brown Jr.". One normalized name shared by two playerIds is
+  ambiguous → no chip, never a wrong chip.
+- **Freshness, honestly:** the root layout is `force-dynamic` (session
+  cookie), so `/news` renders per request and its `revalidate = 600`
+  is inert — the effective freshness is the shared per-instance
+  5-minute TTL cache, which the ticker and `/news` both read. Open
+  pages do not auto-poll; a reload fetches the current cached edition.
+  Deliberately no client polling (free-tier budget).
+- **URL contract** (`src/surfaces/news/newsUrls.ts`): `?section=<id>`
+  selects a section with working Back/Forward/refresh. `?story=` /
+  `?revision=` are legacy params from the retired fictional story
+  reader: they render an honest "retired" notice with a path back to
+  the headlines, never a broken reader. Timestamps render relative
+  text with a deterministic UTC `title` (no `toLocaleString` — it
+  differs by server/client locale and breaks hydration).
+- Surfaces render the outlet masthead, the headline as an external link
+  to the real article, a relative timestamp, the summary, and subtle
+  mentioned-player chips (plain text until hover) linking to
+  `/player/[playerId]`.
 
-The Newsroom groups only recognized existing rookie/trade/waiver article-ID
-families with matching kind, section and complete player/team refs. Ambiguous
-families and standalone rumors/takes stay separate; encoded transaction prefixes
-are not durable upstream event IDs. No loader/cache contract changes. One lead
-and compact headlines replace repeated full articles. Original voices, bodies
-and actor links remain in the native reader with visible generated/parody labels.
-`?section=…&story=<original article id>&revision=<snapshot fingerprint>` preserves reading state: open
-pushes, voice changes replace, Back/Forward restore. Close/Escape goes Back only
-for an entry opened in the current visit; initial deep links close by replacement.
-Missing, duplicate, unguarded or changed article snapshots are explicitly
-unavailable. New v2 fingerprints exclude only regenerated rookie/rumor/take
-timestamps; trade/waiver transaction-derived time, exact content and actor refs
-remain guarded. v1 matches only its complete original snapshot. Unverifiable
-versions offer explicit, labelled current-story navigation only for a unique
-candidate, never automatic substitution. Policy: `docs/newsroom-content-revisions.md`.
-`qa/newsroom/` mounts production components with synthetic
-props and approved local fonts/chrome, not an app route. Its native-anchor
-adapter does not verify Next App Router restoration.
+`qa/newsroom/` mounts production components with synthetic editions and
+approved local fonts/chrome, not an app route; `verify.mts` asserts the
+acceptance checklist structurally (no browser in CI).
 
 ### The stats seam (dependency inversion in the read path)
 
@@ -706,6 +750,64 @@ Mobile and desktop are both first-class (rule 7). The convention:
   feed. Empty-but-successfully-fetched inputs are legitimate; the
   invariant is "failure throws", not "empty throws".
 
+## AI Decides
+
+`src/domain/ai-decider.ts` is the client-safe draft/result/slate contract, including
+every option probability, independent API confidence and frozen snapshot metadata.
+`src/data/ai-decider/` owns strict validation, the fixed server-only Decisions
+adapter, current-session validation, durable Postgres CAS budgets and immutable
+weekly prediction/outcome storage. Dependencies are injected for offline tests.
+`POST /api/ai-decides` delegates bounded same-origin drafts to that service;
+anonymous users can build drafts without provider calls. `GET` and
+`getAiDecidesData()` read cached weekly picks only. League fetch/preparation stays
+in `league.ts`; the new raw starter/reserve/taxi/slot/leg fields are optional and
+do not change existing transforms. No full player directory is requested.
+
+The explicit pre-week preparation/generation operation seals one snapshot,
+uses a versioned prompt/model and saves all five choice distributions in one
+batch, with incomplete matchups labeled unavailable. An experimental prior PPG
+baseline and append-only final outcome records remain separate from predictions.
+Each immutable week carries a hashed generation manifest; historical reads and
+outcomes use its frozen model/prompt rather than current generation constants.
+Globally unsupported inputs return before sealing. Usage is settled independently
+of prediction decoding, with idempotent CAS completion even for retained leases.
+Unknown scoring mode, preseason and unsupported Game Pick assumptions fail
+closed; Lock-In PPG is never multiplied by games. `migrations/ai-decider.sql`
+is unapplied in production and starts disabled. Existing auth/valuation/repair tables are reused
+or read without schema/behavior changes. UI/page integration has a separate owner.
+The dedicated disposable PostgreSQL CI job executes the AI migration only in a
+generated synthetic schema, verifying actual SQL/CAS/triggers with provider mocks.
+Its guarded loopback target and service lifecycle never use an application DB URL.
+Provider credentials and runtime stay behind `server-only`. `OPENAI_API_KEY`,
+`GOAT_AI_DECIDES_ENABLED=true` and an enabled durable control row are separate
+server activation gates; absent settings/state produce unavailable drafts.
+The optional friends-auth cutover uses the shared exact-`1` predicate and a lazy
+server verifier. Only validated session ID/subject/app UUID reach atomic AI
+admission; its SQL rechecks expiry, active mapping, verified email and valid team
+in the budget mutation. Failed provider verification has no legacy fallback.
+The app UUID remains the budget key, preserving counters through cutover; the
+legacy default and client request/result contracts remain unchanged.
+See [AI Decides handoff](docs/ai-decides.md) for limits, retention, exact contracts,
+auth findings and outstanding activation/verification work.
+
+`src/surfaces/ai-decides/AiDecides.tsx` owns the editable frontend and its native
+team dialog. The thin `/ai-decides` page loads cached AI data, slim team identities
+and current-user status in parallel. Only a manual authenticated run can POST to
+the app route; injected transports keep fixtures offline. Editing, Reset and
+unmount abort/ignore stale responses. All returned probabilities remain unchanged,
+with confidence and factual evidence separate. Shared semantic tokens and the
+shell-owned theme apply; there is no page-local theme provider or credential.
+`AiDecidesHomeEntry` in `AiWeekly.tsx` is the public homepage composition seam.
+Its home/nav integration remains with those owners; reads never generate picks.
+Matchup/weekly choices remain roster IDs. Explicit request/slate context adds
+current display names with visible IDs; numeric custom options stay literal, and
+request IDs constrain response validation. Frozen evidence is never rewritten.
+The scoped picker history listener survives closure, restores Forward entries and
+selection/trigger context, coalesces stale entries and preserves Next state.
+Route/unmount cleanup never restores an old URL over a new route. A failed page
+session lookup renders a distinct auth-unavailable editor/cache view with runs
+disabled; server authorization and shared auth remain untouched.
+
 ## Environment
 
 - `SLEEPER_LEAGUE_ID` — overrides the default league (GOAT Hoopers
@@ -736,6 +838,29 @@ remain accessible without a database. Preview deployment must never crash
 on a missing database.
 
 ## Accounts (how the auth works)
+
+Working provider source: [friends auth runtime and operator setup](docs/friends-auth-runtime.md).
+`src/data/friends-auth/` owns the pinned Better Auth configuration, separate
+transactional node-postgres adapter, additive schema, account linking, email
+delivery and HTTP boundaries. `src/domain/friends-accounts.ts` validates enrollment;
+`src/surfaces/accounts/AccountForm.tsx` uses shared primitives for the account forms.
+`/api/auth/*` mounts the provider except public signup; `/api/accounts/enroll`
+atomically creates credentials and invite membership or links a freshly proven
+legacy owner. `/account`, `/account/setup`, `/forgot-password`, `/reset-password`
+provide private lifecycle/setup forms. Claim/login choose the existing forms by
+default. `FRIENDS_AUTH_ENABLED=1` is the coordinated provider cutover;
+`FRIENDS_AUTH_ENROLLMENT=1` permits existing-owner setup while current auth stays
+active. Neither flag is configured by this patch. AI's separately owned admission
+switch must land before cutover. Existing UUIDs, passwords, sessions and history
+are retained; the generated `db/friends-auth/` migration creates only new tables.
+
+Earlier [friends-only account foundations](docs/friends-accounts.md) record the
+source audit and recoverable reset plan. `src/domain/arcade/account-identity.ts`
+and `src/data/account-identity.ts` preserve the app UUID across provider credentials;
+the new provider runtime uses that resolver. Competition/cosmetic candidates remain
+dormant. The legacy runtime below remains the default; no live provider, schema,
+reset or reward activation has occurred. AI Decides' atomic session check is
+coordinated before provider cutover.
 
 - **Claim:** Aidan generates one single-use invite code per Sleeper team
   at `/admin/invites` and distributes each privately. A manager enters the

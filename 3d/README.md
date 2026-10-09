@@ -8,12 +8,24 @@ Python API (`bpy`), exported as binary glTF (`.glb`), served statically from
 pipeline: scripts + docs. Another agent owns the Three.js integration.
 The 3D preview renders live in `previews/` (one PNG per asset).
 
+## Rejected hooper family — retired from public delivery
+
+On 2026-10-09 Aidan rejected the Quaternius-based bald/blocky basketball
+figurine in all 11 team/generic variants. `public/3d/hooper-*.glb` and the
+site/preview loaders are removed. Authoring scripts, source base, color mapping
+and historical preview/provenance files remain here; the removed generated
+bytes are recoverable from Git history. Do not publish or reintroduce this family.
+
+`build_all.sh` now rebuilds only basketball, trophy, crown and hoop props.
+The historical `build_all_v3.sh` writes under `3d/archive/hoopers`, outside
+public delivery. Single-model authoring commands below are historical examples,
+not approved site output. The unrelated original arena scene, embroidered
+banners, logo and playable free-throw assets retain their separate approval.
+
 ## Files in `public/3d/`
 
 | File | What | Clips | Size |
 |------|------|-------|------|
-| `hooper-1.glb` … `hooper-10.glb` | Team figurine (roster id → file) | `idle`, `spin`, `jump`, `dunk` | ~290 KB each |
-| `hooper-generic.glb` | Neutral figurine (no team) | `idle`, `spin`, `jump`, `dunk` | ~290 KB |
 | `basketball.glb` | Ball with seam lines | `idle`, `bounce` | ~70 KB |
 | `trophy.glb` | Championship cup + confetti | `idle`, `celebrate` | ~180 KB |
 | `crown.glb` | Champion's crown (sits over the champ's avatar) | `idle`, `spin` | ~160 KB |

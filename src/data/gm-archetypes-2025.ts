@@ -22,8 +22,9 @@
  *   (approx opening night), from Sleeper birth_date values.
  * - medianTenureDays: median days between a manager's add of a player
  *   and their drop of that same player. Null = no timed add->drop
- *   stints observed (treated as max observed tenure: no evidence of
- *   quick hooks).
+ *   stints observed. A null is preserved as unavailable (never imputed):
+ *   it renders as unmeasured and can never satisfy a measured-patience
+ *   archetype gate.
  * - homerHerfindahl: Herfindahl index of NBA-team concentration on
  *   the final roster (1.0 = entire roster from one NBA team).
  * - fixhimAdds: adds within 14 days of another manager's drop of the

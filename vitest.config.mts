@@ -5,11 +5,15 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
+      // Next poisons this import in client bundles. Offline tests run the server modules.
+      "server-only": "next/dist/compiled/server-only/empty.js",
     },
   },
   test: {
     // Offline only: no network, no secrets, no database.
-    include: ["src/**/*.test.ts"],
+    // .test.tsx covers presentational surface contracts via
+    // react-dom/server static markup (no DOM, no browser needed).
+    include: ["src/**/*.test.ts", "src/**/*.test.tsx"],
     // Always guard I/O. Each explicit local DB flag allows only its fixed
     // numeric loopback host/port; fetch and every other socket stay blocked.
     setupFiles: ["./src/test/offline.ts"],
