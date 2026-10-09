@@ -25,6 +25,32 @@ the decision record; the skill does not introduce a second palette or install
 external skills. Its references attribute the ten UI source studies without
 importing their manuals or framework/package-manager preferences.
 
+## AI Decides — approved page composition
+
+Aidan approved the separate AI Decides desktop layout on October 9, 2026.
+Keep published weekly pairings in one compact strip, followed by the editable
+question/choices and a personal result on the same open canvas. The arena and
+court photo belong on the homepage; its compact prediction preview links here.
+Presets open a two-team picker; Save fills an editable draft. Custom decisions
+support 2–8 choices, add/remove and Reset. Published picks stay separate from
+personal experiments. Show every returned probability, independent confidence,
+experimental status and returned model/prompt/as-of metadata. Missing or stale
+inputs have explicit states; no mock percentages or invented explanations ship.
+
+Continue refinement through useful detail, depth, control feedback and authored
+motion while retaining the approved composition. Avoid nested panels, repeated
+boxes, decorative gauges, random shapes and large empty areas. Probability
+motion may reveal the returned distribution; it must never imply new evidence
+or certainty. Numeric labels remain readable and static. Reduced motion and
+Pause retain all data and controls. Mobile trims gaps and repeated helper copy,
+with readable labels, complete options and at least 44px control targets.
+The page consumes the shared shell's theme and navigation; it owns neither.
+Weekly and personal matchup results show the actual returned choice, not the
+first probability or an inferred winner. Roster IDs remain visible; any name is
+labelled as a current display name, not frozen prediction metadata. Numeric
+custom choices are literal. Session verification failure keeps cached content
+and editing available with a distinct message and disabled generation.
+
 ## Decisions and review status
 
 | Status | Direction |

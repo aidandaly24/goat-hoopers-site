@@ -784,6 +784,24 @@ server activation gates; absent settings/state produce unavailable drafts.
 See [AI Decides handoff](docs/ai-decides.md) for limits, retention, exact contracts,
 auth findings and outstanding activation/verification work.
 
+`src/surfaces/ai-decides/AiDecides.tsx` owns the editable frontend and its native
+team dialog. The thin `/ai-decides` page loads cached AI data, slim team identities
+and current-user status in parallel. Only a manual authenticated run can POST to
+the app route; injected transports keep fixtures offline. Editing, Reset and
+unmount abort/ignore stale responses. All returned probabilities remain unchanged,
+with confidence and factual evidence separate. Shared semantic tokens and the
+shell-owned theme apply; there is no page-local theme provider or credential.
+`AiDecidesHomeEntry` in `AiWeekly.tsx` is the public homepage composition seam.
+Its home/nav integration remains with those owners; reads never generate picks.
+Matchup/weekly choices remain roster IDs. Explicit request/slate context adds
+current display names with visible IDs; numeric custom options stay literal, and
+request IDs constrain response validation. Frozen evidence is never rewritten.
+The scoped picker history listener survives closure, restores Forward entries and
+selection/trigger context, coalesces stale entries and preserves Next state.
+Route/unmount cleanup never restores an old URL over a new route. A failed page
+session lookup renders a distinct auth-unavailable editor/cache view with runs
+disabled; server authorization and shared auth remain untouched.
+
 ## Environment
 
 - `SLEEPER_LEAGUE_ID` — overrides the default league (GOAT Hoopers
