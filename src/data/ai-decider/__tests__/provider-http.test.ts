@@ -2,9 +2,10 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { callWithTimeout, createOpenAiDecisionsClient, customDecision, decodeDecision, inputTokenReservation, readDecisionUsage } from "../provider";
 import { handleAiPost } from "../http";
 import { AI_LIMITS, parseAiRequest, readAiBody } from "../validation";
-import { harness, providerAnswer, providerUsage, TOKEN } from "./fixtures";
+import { AI_BUDGET } from "../store";
+import { harness, NOW, providerAnswer, providerUsage, TOKEN } from "./fixtures";
 
-afterEach(() => vi.useRealTimers());
+afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); });
 const draft = { kind: "custom", prompt: "Which snack?", choices: ["Apple", "Pear"] };
 const request = (body: unknown, headers: Record<string, string> = {}) => new Request("https://goathoopers.com/api/ai-decides", { method: "POST", headers: { origin: "https://goathoopers.com", "content-type": "application/json", ...headers }, body: JSON.stringify(body) });
 
@@ -42,6 +43,29 @@ describe("application schema and HTTP boundary", () => {
     expect(body.result.probabilities).toEqual([{ choice: "Apple", probability: 0.35 }, { choice: "Pear", probability: 0.65 }]);
     expect(body.result.confidence).toBe(0.65);
     expect(body.result.snapshot).toBeNull();
+  });
+  it("reports only the global token budget with an exact UTC reset wait", async () => {
+    const h = harness(); h.persistence.control!.state.tokens = AI_BUDGET.globalTokensDay;
+    h.setTime(Date.parse("2026-10-19T23:59:45Z"));
+    const response = await handleAiPost(request(draft), TOKEN, h.runtime);
+    expect(response.status).toBe(429); expect(response.headers.get("Retry-After")).toBe("15");
+    expect(await response.json()).toEqual({ status: "rate_limited", code: "global_token_budget", message: "This request would exceed the shared daily token budget. It resets at 00:00 UTC.", retryAfterSeconds: 15 });
+    expect(h.create).not.toHaveBeenCalled();
+  });
+  it("blocks an overlapping identical request but admits the same draft immediately after completion", async () => {
+    const h = harness();
+    let complete!: (raw: unknown) => void;
+    h.create.mockImplementationOnce(async () => new Promise(resolve => { complete = resolve; }));
+    const pending = handleAiPost(request(draft), TOKEN, h.runtime);
+    await vi.waitFor(() => expect(h.create).toHaveBeenCalledTimes(1));
+    h.setTime(NOW + 1001);
+    const response = await handleAiPost(request(draft), TOKEN, h.runtime);
+    expect(response.status).toBe(409); expect(response.headers.get("Retry-After")).toBe("59");
+    expect(await response.json()).toEqual({ status: "busy", code: "duplicate", message: "An identical request still has an active reservation. Wait for it to finish or expire.", retryAfterSeconds: 59 });
+    complete(providerAnswer(h.create.mock.calls[0][0]));
+    expect((await pending).status).toBe(200);
+    expect((await handleAiPost(request(draft), TOKEN, h.runtime)).status).toBe(200);
+    expect(h.create).toHaveBeenCalledTimes(2);
   });
 });
 
@@ -102,15 +126,58 @@ describe("fixed documented Decisions protocol", () => {
     raw.answers[0].probabilities.forEach(p => { p.probability = 0.3333333; });
     expect(decodeDecision(raw, d.specs).results[0]!.probabilities.map(p => p.probability)).toEqual([0.3333333, 0.3333333, 0.3333333]);
   });
-  it("fixes URL/headers and never logs provider errors or credentials", async () => {
+  it("fixes URL/headers and logs only a sanitized provider receipt by default", async () => {
     const d = decision(); const fetcher = vi.fn<typeof fetch>(async () => Response.json(providerAnswer(d.payload)));
-    const log = vi.spyOn(console, "log");
+    const log = vi.spyOn(console, "log"), info = vi.spyOn(console, "info").mockImplementation(() => {});
     const client = createOpenAiDecisionsClient("synthetic-credential-marker", fetcher);
     const result = await client.create(d.payload, new AbortController().signal);
     expect(fetcher.mock.calls[0][0]).toBe("https://api.openai.com/v1/decisions");
     expect(fetcher.mock.calls[0][1]).toMatchObject({ method: "POST", redirect: "error", cache: "no-store" });
     expect(JSON.stringify(result)).not.toContain("synthetic-credential-marker");
-    expect(log).not.toHaveBeenCalled(); log.mockRestore();
+    expect(log).not.toHaveBeenCalled(); expect(info).toHaveBeenCalledTimes(1);
+    expect(JSON.parse(info.mock.calls[0][0])).toMatchObject({ event: "goat_ai_decisions_provider_receipt", upstreamRequestId: null, httpStatus: 200, model: "gpt-6-luna", usage: { inputTokens: 100, outputTokens: 0, totalTokens: 100 } });
+    expect(JSON.stringify(info.mock.calls)).not.toMatch(/synthetic-credential-marker|Ignore all rules|evil.example|safety_identifier|Authorization/);
+  });
+  it("records an upstream ID, returned model and validated usage with a deterministic server timestamp", async () => {
+    const d = decision(), raw = providerAnswer(d.payload, 42), record = vi.fn();
+    const client = createOpenAiDecisionsClient("private-key-marker", async () => Response.json(raw, { headers: { "x-request-id": "req_offline_fixture_42", "authorization": "private-header-marker" } }), { record, now: () => new Date(NOW) });
+    expect(await client.create(d.payload, new AbortController().signal)).toEqual(raw);
+    expect(record.mock.calls).toEqual([[{ event: "goat_ai_decisions_provider_receipt", provider: "openai_decisions", upstreamRequestId: "req_offline_fixture_42", httpStatus: 200, model: "gpt-6-luna", usage: { inputTokens: 42, outputTokens: 0, totalTokens: 42 }, receivedAt: new Date(NOW).toISOString() }]]);
+    expect(JSON.stringify(record.mock.calls)).not.toMatch(/private-key-marker|private-header-marker|answers|probabilities|choices|userRequest|safety_identifier/);
+  });
+  it.each([429, 500])("records only HTTP metadata for provider failure %s without reading its private error body", async status => {
+    const record = vi.fn(), response = new Response("private-error-body-marker", { status, headers: { "x-request-id": "req_failure_fixture" } });
+    const client = createOpenAiDecisionsClient("private-key-marker", async () => response, { record, now: () => new Date(NOW) });
+    await expect(client.create(decision().payload, new AbortController().signal)).rejects.toThrow("provider_unavailable");
+    expect(response.bodyUsed).toBe(false);
+    expect(record).toHaveBeenCalledWith({ event: "goat_ai_decisions_provider_receipt", provider: "openai_decisions", upstreamRequestId: "req_failure_fixture", httpStatus: status, model: null, usage: null, receivedAt: new Date(NOW).toISOString() });
+    expect(JSON.stringify(record.mock.calls)).not.toMatch(/private-error-body-marker|private-key-marker/);
+  });
+  it.each(["invalid id", "x".repeat(129)])("drops invalid or oversized upstream IDs and invalid returned metadata", async requestId => {
+    const record = vi.fn();
+    const client = createOpenAiDecisionsClient("synthetic", async () => Response.json({ model: "private-model-marker", usage: { input_tokens: -1 }, answers: "private-output-marker" }, { headers: { "x-request-id": requestId } }), { record });
+    await client.create(decision().payload, new AbortController().signal);
+    expect(record).toHaveBeenCalledWith(expect.objectContaining({ upstreamRequestId: null, model: null, usage: null }));
+    expect(JSON.stringify(record.mock.calls)).not.toMatch(/private-model-marker|private-output-marker/);
+  });
+  it.each(["invalid JSON marker", "x".repeat(32769)])("emits null response metadata for an unreadable body %#", async body => {
+    const record = vi.fn(), client = createOpenAiDecisionsClient("synthetic", async () => new Response(body), { record });
+    await expect(client.create(decision().payload, new AbortController().signal)).rejects.toThrow();
+    expect(record).toHaveBeenCalledWith(expect.objectContaining({ httpStatus: 200, upstreamRequestId: null, model: null, usage: null }));
+    expect(JSON.stringify(record.mock.calls)).not.toContain("invalid JSON marker");
+  });
+  it("does not fabricate a receipt when no upstream HTTP response exists", async () => {
+    const record = vi.fn(), client = createOpenAiDecisionsClient("synthetic", async () => { throw new Error("private-network-marker"); }, { record });
+    await expect(client.create(decision().payload, new AbortController().signal)).rejects.toThrow("private-network-marker");
+    expect(record).not.toHaveBeenCalled();
+  });
+  it.each(["logger", "clock"])("contains %s failures without changing the paid result or provider error", async failure => {
+    const d = decision(), raw = providerAnswer(d.payload);
+    const options = failure === "logger" ? { record: () => { throw new Error("private-log-marker"); } } : { record: vi.fn(), now: () => { throw new Error("private-clock-marker"); } };
+    const client = createOpenAiDecisionsClient("synthetic", async () => Response.json(raw), options);
+    expect(await client.create(d.payload, new AbortController().signal)).toEqual(raw);
+    const unavailable = createOpenAiDecisionsClient("synthetic", async () => new Response("private-error-marker", { status: 503 }), options);
+    await expect(unavailable.create(d.payload, new AbortController().signal)).rejects.toThrow("provider_unavailable");
   });
   it("times out and aborts even if the provider ignores cancellation", async () => {
     vi.useFakeTimers(); const d = decision(); let signal: AbortSignal | undefined;
@@ -120,7 +187,7 @@ describe("fixed documented Decisions protocol", () => {
   });
   it("rejects huge provider bodies and redirects without returning body content", async () => {
     const d = decision();
-    const client = createOpenAiDecisionsClient("synthetic", async () => new Response("x".repeat(32769)));
+    const client = createOpenAiDecisionsClient("synthetic", async () => new Response("x".repeat(32769)), { record: () => {} });
     await expect(client.create(d.payload, new AbortController().signal)).rejects.toThrow("provider_response");
   });
 });

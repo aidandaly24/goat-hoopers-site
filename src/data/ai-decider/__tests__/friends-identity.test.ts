@@ -46,16 +46,16 @@ describe("provider identity at the AI boundary", () => {
     expect(h.getSessionUser).not.toHaveBeenCalled(); expect(h.create).not.toHaveBeenCalled();
   });
 
-  it("keeps the same hourly budget across the legacy-to-provider switch", async () => {
+  it("keeps the same diagnostic counters across the legacy-to-provider switch without an account quota", async () => {
     const h = harness();
     for (let n = 0; n < 4; n++) expect((await runAiDecision({ ...draft, prompt: `Before ${n}` }, TOKEN, h.runtime)).status).toBe("ready");
     h.runtime.providerSession = async () => session();
     expect((await runAiDecision({ ...draft, prompt: "After" }, undefined, h.runtime)).status).toBe("ready");
-    expect((await runAiDecision({ ...draft, prompt: "Budget exhausted" }, undefined, h.runtime)).status).toBe("rate_limited");
-    expect(h.create).toHaveBeenCalledTimes(5);
-    expect(h.persistence.control!.state.users[USER].hourly).toBe(5);
+    expect((await runAiDecision({ ...draft, prompt: "Another ordinary request" }, undefined, h.runtime)).status).toBe("ready");
+    expect(h.create).toHaveBeenCalledTimes(6);
+    expect(h.persistence.control!.state.users[USER].hourly).toBe(6);
     expect(Object.keys(h.persistence.control!.state.users)).toEqual([USER]);
-    expect(h.persistence.control!.state.requests).toBe(5);
+    expect(h.persistence.control!.state.requests).toBe(6);
   });
 });
 

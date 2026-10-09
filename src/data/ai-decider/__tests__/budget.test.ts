@@ -16,50 +16,68 @@ describe("durable shared spending/abuse policy under CAS contention", () => {
     const again = await new AiDeciderStore(p).reserve(identity(1), fingerprint(100), 100, NOW);
     expect(again.status).toBe("busy");
   });
-  it.each(["requests", "tokens"])("never exceeds the global daily %s budget during overlapping reservations", async field => {
+  it("never exceeds the global daily token budget during overlapping reservations", async () => {
     const p = new TestPersistence();
-    p.control!.state.requests = field === "requests" ? AI_BUDGET.globalDay - 1 : 0;
-    p.control!.state.tokens = field === "tokens" ? AI_BUDGET.globalTokensDay - 100 : 0;
+    p.control!.state.requests = 1000;
+    p.control!.state.tokens = AI_BUDGET.globalTokensDay - 100;
     const stores = [new AiDeciderStore(p), new AiDeciderStore(p)];
     const results = await Promise.all(stores.map((s, i) => s.reserve(identity(i + 1), fingerprint(i), 100, NOW)));
     expect(results.filter(r => r.status === "reserved")).toHaveLength(1);
     expect(results.filter(r => r.status === "rate_limited")).toHaveLength(1);
-    expect(p.control!.state.requests).toBeLessThanOrEqual(AI_BUDGET.globalDay);
-    expect(p.control!.state.tokens).toBeLessThanOrEqual(AI_BUDGET.globalTokensDay);
+    expect(p.control!.state.requests).toBe(1001);
+    expect(p.control!.state.tokens).toBe(AI_BUDGET.globalTokensDay);
   });
-  it("enforces per-user hourly and daily counters across independent store instances", async () => {
+  it("allows ordinary completed repeats beyond former hourly/daily quotas while retaining counters", async () => {
     const p = new TestPersistence();
-    let n = 0;
-    for (let hour = 0; hour < 4; hour++) {
-      for (let attempt = 0; attempt < 5; attempt++) {
-        const store = new AiDeciderStore(p), time = NOW + hour * 3600000;
-        const r = await store.reserve(identity(), fingerprint(n++), 100, time);
-        expect(r.status).toBe("reserved");
-        if (r.status === "reserved") await store.finish(r.leaseId, 30, false, false, time);
-      }
-      expect((await new AiDeciderStore(p).reserve(identity(), fingerprint(n++), 100, NOW + hour * 3600000)).status).toBe("rate_limited");
+    p.control!.state.requests = 6; p.control!.state.tokens = 22997;
+    p.control!.state.users[identity().userId] = { day: "2026-10-19", hour: "2026-10-19T07", requests: 6, hourly: 5, denied: 5, signals: 1, lastSeen: NOW };
+    const legacy = { userId: identity().userId, fingerprint: fingerprint(), expires: NOW + 600000, shared: false };
+    p.control!.state.duplicates.push(legacy);
+    for (let attempt = 0; attempt < 26; attempt++) {
+      const store = new AiDeciderStore(p);
+      const r = await store.reserve(identity(), fingerprint(), 100, NOW);
+      expect(r.status).toBe("reserved");
+      if (r.status === "reserved") await store.finish(r.leaseId, 30, false, false, NOW);
     }
-    expect((await new AiDeciderStore(p).reserve(identity(), fingerprint(n++), 100, NOW + 4 * 3600000)).status).toBe("rate_limited");
-    expect(p.control!.state.requests).toBe(20); expect(p.control!.state.tokens).toBe(2000);
+    expect(p.control!.state.requests).toBe(32); expect(p.control!.state.tokens).toBe(25597);
+    expect(p.control!.state.users[identity().userId]).toMatchObject({ requests: 32, hourly: 31, denied: 5, signals: 1 });
+    expect(p.control!.state.duplicates).toEqual([legacy]);
   });
-  it("counts timeouts without refund, retains leases, and suppresses duplicates after completion", async () => {
+  it("counts timeouts without refund and blocks duplicates only until the active lease expires", async () => {
     const p = new TestPersistence(), s = new AiDeciderStore(p);
     const r = await s.reserve(identity(), fingerprint(), 100, NOW);
     if (r.status !== "reserved") throw new Error("fixture");
     await s.finish(r.leaseId, null, true, true, NOW);
     expect(p.control!.state.leases).toHaveLength(1); expect(p.control!.state.tokens).toBe(100);
-    expect((await new AiDeciderStore(p).reserve(identity(), fingerprint(), 100, NOW + 61000)).status).toBe("duplicate");
-    expect((await new AiDeciderStore(p).reserve(identity(), fingerprint(2), 100, NOW + 61000)).status).toBe("reserved");
+    expect(await new AiDeciderStore(p).reserve(identity(), fingerprint(), 100, NOW + 1001)).toEqual({ status: "duplicate", retryAfterSeconds: 59 });
+    expect((await new AiDeciderStore(p).reserve(identity(), fingerprint(), 100, NOW + 61000)).status).toBe("reserved");
   });
-  it("pauses repeated refusal/error signals and excessive denials for the current hour", async () => {
+  it("retains refusal/error signals and denials as diagnostics without an account pause", async () => {
     const p = new TestPersistence(), s = new AiDeciderStore(p);
     for (let n = 0; n < 3; n++) {
       const r = await s.reserve(identity(), fingerprint(n), 100, NOW);
       if (r.status !== "reserved") throw new Error("fixture");
       await s.finish(r.leaseId, 50, true, false, NOW);
     }
-    expect((await s.reserve(identity(), fingerprint(4), 100, NOW)).status).toBe("rate_limited");
-    expect((await s.reserve(identity(), fingerprint(4), 100, NOW + 3600000)).status).toBe("reserved");
+    p.control!.state.users[identity().userId].denied = 100;
+    expect((await s.reserve(identity(), fingerprint(4), 100, NOW)).status).toBe("reserved");
+    expect(p.control!.state.users[identity().userId]).toMatchObject({ signals: 3, denied: 100 });
+  });
+  it("reports the remaining global reset and each effective active-lease wait", async () => {
+    const p = new TestPersistence(), s = new AiDeciderStore(p);
+    const first = await s.reserve(identity(1), fingerprint(1), 100, NOW);
+    const second = await s.reserve(identity(2), fingerprint(2), 100, NOW + 10000);
+    if (first.status !== "reserved" || second.status !== "reserved") throw new Error("fixture");
+    expect(await s.reserve(identity(3), fingerprint(3), 100, NOW + 20000)).toEqual({ status: "busy", retryAfterSeconds: 40 });
+    expect(await s.reserve(identity(2), fingerprint(3), 100, NOW + 20000)).toEqual({ status: "busy", retryAfterSeconds: 50 });
+    expect(await s.reserve(identity(3), fingerprint(2), 100, NOW + 20000, true)).toEqual({ status: "duplicate", retryAfterSeconds: 50 });
+    await s.finish(first.leaseId, 20, false, false, NOW + 20000);
+    await s.finish(second.leaseId, 20, false, false, NOW + 20000);
+    p.control!.state.tokens = AI_BUDGET.globalTokensDay;
+    const midnight = Date.parse("2026-10-20T00:00:00Z");
+    expect(await s.reserve(identity(), fingerprint(), 100, midnight - 15000)).toEqual({ status: "rate_limited", retryAfterSeconds: 15 });
+    expect((await s.reserve(identity(), fingerprint(), 100, midnight)).status).toBe("reserved");
+    expect(p.control!.state.tokens).toBe(100);
   });
   it("kills new calls on usage overrun, missing state, disabled state or revoked identity", async () => {
     const p = new TestPersistence(), s = new AiDeciderStore(p);
@@ -116,12 +134,13 @@ describe("durable shared spending/abuse policy under CAS contention", () => {
   });
   it("compacts old signals/fingerprints and safely resets the next UTC day", async () => {
     const p = new TestPersistence(), s = new AiDeciderStore(p);
+    p.control!.state.duplicates.push({ userId: identity().userId, fingerprint: fingerprint(), expires: NOW + 600000, shared: true });
     const r = await s.reserve(identity(), fingerprint(), 100, NOW);
     if (r.status !== "reserved") throw new Error("fixture");
     await s.finish(r.leaseId, null, true, false, NOW);
     await s.reserve(identity(2), fingerprint(2), 100, NOW + AI_BUDGET.retentionMs + 1);
     expect(p.control!.state.users[identity().userId]).toBeUndefined();
-    expect(p.control!.state.duplicates).toHaveLength(1); expect(p.control!.state.requests).toBe(1);
+    expect(p.control!.state.duplicates).toHaveLength(0); expect(p.control!.state.requests).toBe(1);
     expect(JSON.stringify(p.control!.state)).not.toMatch(/prompt|password|tokenHash|apiKey|ipAddress/);
     await expect(s.reserve(identity(2), fingerprint(3), 100, NOW)).rejects.toThrow("state_unavailable");
   });

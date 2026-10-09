@@ -6,8 +6,8 @@ import type { AiGenerationManifest, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlat
 import { isRecord, uuidValid } from "./validation";
 import { aiDataDeadline } from "./deadline";
 
-/** Fixed launch budgets for ten managers, shared across all serverless instances. */
-export const AI_BUDGET = Object.freeze({ userHour: 5, userDay: 20, globalDay: 100, globalTokensDay: 100000, concurrent: 2, leaseMs: 60000, duplicateMs: 600000, retentionMs: 7 * 86400000 });
+/** Shared spend/concurrency guards; ordinary signed-in calls have no account quota. */
+export const AI_BUDGET = Object.freeze({ globalTokensDay: 100000, concurrent: 2, leaseMs: 60000, retentionMs: 7 * 86400000 });
 export type AiLegacyIdentity = { kind: "legacy"; userId: string; tokenHash: string };
 /** Only a secret-authenticated server cron may construct this fixed app principal. */
 export type AiWeeklyJobIdentity = { kind: "weekly_job"; userId: string; auth: "legacy" | "friends" };
@@ -20,6 +20,7 @@ export type AiBudgetState = {
   tokens: number;
   users: Record<string, UserCounter>;
   leases: { id: string; userId: string; fingerprint: string; expires: number; reserved: number; shared: boolean; completed?: true }[];
+  /** Retained legacy entries expire normally; completed fingerprints no longer gate calls. */
   duplicates: { userId: string; fingerprint: string; expires: number; shared: boolean }[];
 };
 export type AiControl = { enabled: boolean; revision: number; state: AiBudgetState };
@@ -47,7 +48,7 @@ const dateValid = (v: unknown) => typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/
 
 /** Corrupt/missing counters must never silently reset a spending budget. */
 export function validBudgetState(v: unknown): v is AiBudgetState {
-  if (!isRecord(v) || v.version !== 1 || !dateValid(v.day) || !count(v.requests) || !count(v.tokens) || !isRecord(v.users) || Object.keys(v.users).length > 10 || !Array.isArray(v.leases) || v.leases.length > AI_BUDGET.concurrent || !Array.isArray(v.duplicates) || v.duplicates.length > AI_BUDGET.globalDay) return false;
+  if (!isRecord(v) || v.version !== 1 || !dateValid(v.day) || !count(v.requests) || !count(v.tokens) || !isRecord(v.users) || Object.keys(v.users).length > 10 || !Array.isArray(v.leases) || v.leases.length > AI_BUDGET.concurrent || !Array.isArray(v.duplicates) || v.duplicates.length > 100) return false;
   for (const [id, u] of Object.entries(v.users)) {
     if (!uuidValid(id) || !isRecord(u) || !dateValid(u.day) || typeof u.hour !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}$/.test(u.hour) || ![u.requests, u.hourly, u.denied, u.signals, u.lastSeen].every(count)) return false;
   }
@@ -94,16 +95,18 @@ export class AiDeciderStore {
       state.users[identity.userId] = user;
       if (Object.keys(state.users).length > 10) throw new Error("state_unavailable");
       let denial: AiReservation | null = null;
-      if (user.denied >= 10 || user.signals >= 3) denial = { status: "rate_limited", retryAfterSeconds: 3600 };
-      else if (state.duplicates.some(d => d.fingerprint === fingerprint && (shared || d.shared || d.userId === identity.userId))) denial = { status: "duplicate", retryAfterSeconds: 600 };
-      else if (state.leases.length >= AI_BUDGET.concurrent || state.leases.some(l => l.userId === identity.userId)) denial = { status: "busy", retryAfterSeconds: 60 };
-      else if (user.hourly >= AI_BUDGET.userHour || user.requests >= AI_BUDGET.userDay || state.requests >= AI_BUDGET.globalDay || state.tokens + tokens > AI_BUDGET.globalTokensDay) denial = { status: "rate_limited", retryAfterSeconds: user.hourly >= AI_BUDGET.userHour ? 3600 : 86400 };
+      const duplicate = state.leases.find(l => l.fingerprint === fingerprint && (shared || l.shared || l.userId === identity.userId));
+      const ownLease = state.leases.find(l => l.userId === identity.userId);
+      const globalExpiry = state.leases.length >= AI_BUDGET.concurrent ? Math.min(...state.leases.map(l => l.expires)) : 0;
+      const leaseWait = (expires: number) => Math.max(1, Math.ceil((expires - now) / 1000));
+      if (duplicate) denial = { status: "duplicate", retryAfterSeconds: leaseWait(duplicate.expires) };
+      else if (ownLease || globalExpiry) denial = { status: "busy", retryAfterSeconds: leaseWait(Math.max(ownLease?.expires ?? 0, globalExpiry)) };
+      else if (state.tokens + tokens > AI_BUDGET.globalTokensDay) denial = { status: "rate_limited", retryAfterSeconds: Math.max(1, Math.ceil(((Math.floor(now / 86400000) + 1) * 86400000 - now) / 1000)) };
       if (denial) user.denied = Math.min(user.denied + 1, 1000000);
       else {
         user.requests++; user.hourly++; state.requests++; state.tokens += tokens;
         const lease = { id: randomUUID(), userId: identity.userId, fingerprint, expires: now + AI_BUDGET.leaseMs, reserved: tokens, shared };
         state.leases.push(lease);
-        state.duplicates.push({ userId: identity.userId, fingerprint, expires: now + AI_BUDGET.duplicateMs, shared });
       }
       // Identity is revalidated inside the same SQL mutation as the budget reservation.
       if (await this.persistence.compareControl(control.revision, state, identity)) return denial ?? { status: "reserved", leaseId: state.leases.at(-1)!.id };

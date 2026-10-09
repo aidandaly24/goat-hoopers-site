@@ -87,19 +87,26 @@ the current hashed legacy-session path stays active. No AI schema or counter
 reset is required; provider schema/configuration and activation belong to the
 auth/release owners.
 
-The existing login action has no dedicated brute-force guard; persistence/reset
-work is deferred. An authenticated account is not proof against abuse. These
-independent launch limits constrain a compromised or automated account:
+Ordinary signed-in calls have no hourly/daily account quota or completed-request
+cooldown. Validated identity, bounded inputs and the shared spending/concurrency
+guards still apply:
 
 | Guard | Launch value |
 | --- | --- |
-| Per user | 5/hour, 20/UTC day |
-| Entire league | 100 requests/UTC day, 100,000 reserved input tokens/UTC day |
+| Entire league | 100,000 reserved input tokens/UTC day; no request-count ceiling |
 | In flight | 2 globally, 1 per user |
-| Duplicate | 10 minutes; weekly batch fingerprints dedupe across users |
+| Duplicate | Active leases only; shared weekly fingerprints dedupe across users |
 | Lease | 60 seconds; timeout leases remain until expiry |
-| Failure/refusal signals | 3 in the current hour pauses new runs |
-| Excessive denials | 10 in the current hour pauses new runs |
+| Failure/refusal signals and denials | Minimal diagnostic counters; no account pause |
+
+An exhausted shared token budget returns `rate_limited/global_token_budget`
+(429), with `retryAfterSeconds`/`Retry-After` equal to the remaining seconds until
+00:00 UTC. Active identical reservations return `busy/duplicate` (409); other
+concurrency blocks return `busy/busy` (409). Their wait is the remaining active
+lease lifetime (at most 60 seconds), and known completions release the lease
+immediately. Unknown spend retains its reservation until expiry. Every admitted
+call retains its full conservative charge; there are no refunds or budget resets
+on a policy release. Provider-reported overruns add the excess and disable new calls.
 
 One existing-Postgres singleton row holds bounded counters, hashed fingerprints
 and leases. Atomic revision CAS protects overlapping serverless instances; no
@@ -110,11 +117,27 @@ in-flight calls may finish after it is switched off.
 
 No raw IP, prompt, choice, password, session token or provider key is stored in
 the limiter or logged by default. Signal/denial counters reset with the hour;
-inactive user counters expire after seven days. Fingerprints/leases expire after
-their short windows. Expired entries compact on the next reservation, so idle
+inactive user counters expire after seven days. Leases expire after 60 seconds.
+Legacy completed-fingerprint entries remain valid state, expire normally and
+no longer block calls; new reservations do not add them. Expired entries compact
+on the next reservation, so idle
 systems may physically retain expired entries longer. Storage stays bounded by
 ten accounts, two leases and at most 100 fingerprints. Immutable weekly facts
 and outcomes are retained for season review; they contain no custom user prompt.
+
+The fixed server provider client emits one JSON `goat_ai_decisions_provider_receipt`
+event after an upstream HTTP response completes or fails to decode. It records
+only the upstream `x-request-id` (1–128 ASCII letters/digits/underscore/hyphen),
+HTTP status, exact returned `gpt-6-luna` model when valid, independently validated
+input/output/total usage, and server `receivedAt` timestamp. Missing/invalid
+metadata is null. No HTTP response means no fabricated receipt. Receipt failures
+cannot change the paid result or budget settlement. Existing platform log retention
+applies; no new logging service or database retention is introduced.
+
+Receipts contain no prompts, choices, outputs, provider errors, credentials,
+authorization headers, session metadata or internal user/lease/snapshot IDs.
+They apply to future responses only and cannot establish provenance for earlier
+requests or explain a historical provider-dashboard request count.
 
 ## Weekly publication and previews
 
@@ -171,7 +194,7 @@ prompt/baseline versions and provenance enter its hash. The first snapshot and
 successful/refused results are immutable. A cache lookup precedes stats loading
 and paid calls, so repeated successful publications are free reads. An existing
 incomplete attempt returns `publication_incomplete`; the daily runner never
-retries it even after the ten-minute duplicate window. Operator review must
+retries it even after the active lease expires. Operator review must
 coordinate any bounded retry against the same sealed snapshot through the
 existing server seam. Invalid/unsupported/oversized preparation remains unsealed.
 Partial/refused completed batches remain immutable and return

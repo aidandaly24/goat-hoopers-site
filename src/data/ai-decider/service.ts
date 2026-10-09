@@ -64,8 +64,8 @@ async function evaluate(runtime: AiRuntime, identity: AiIdentity, payload: Decis
   try {
     const reservation = await runtime.store.reserve(identity, fingerprint, reserved, runtime.now(), shared);
     if (reservation.status === "disabled") return failure("unavailable", "disabled", "AI Decides is switched off.");
-    if (reservation.status === "rate_limited") return failure("rate_limited", "usage_limit", "The user or shared daily usage budget is exhausted.", reservation.retryAfterSeconds);
-    if (reservation.status === "busy" || reservation.status === "duplicate") return failure("busy", reservation.status, reservation.status === "duplicate" ? "This request was recently submitted. Wait before running it again." : "A decision is already running. Try again shortly.", reservation.retryAfterSeconds);
+    if (reservation.status === "rate_limited") return failure("rate_limited", "global_token_budget", "This request would exceed the shared daily token budget. It resets at 00:00 UTC.", reservation.retryAfterSeconds);
+    if (reservation.status === "busy" || reservation.status === "duplicate") return failure("busy", reservation.status, reservation.status === "duplicate" ? "An identical request still has an active reservation. Wait for it to finish or expire." : "The active request limit is reached. Wait for a decision to finish or its reservation to expire.", reservation.retryAfterSeconds);
     if (reservation.status !== "reserved") return failure("unavailable", "state_unavailable", "The usage reservation could not be validated.");
     leaseId = reservation.leaseId;
   } catch { return failure("unavailable", "state_unavailable", "AI Decides usage controls are unavailable. Try later."); }

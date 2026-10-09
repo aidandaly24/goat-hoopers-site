@@ -119,12 +119,13 @@ describe("actual PostgreSQL provider-session admission", () => {
     expect((await control()).state.requests).toBe(1);
   });
 
-  it("serializes the last global request across provider and legacy instances", async () => {
-    const state = emptyBudgetState(NOW); state.requests = AI_BUDGET.globalDay - 1; await updateState(state);
+  it("serializes the last global token allowance across provider and legacy instances", async () => {
+    const state = emptyBudgetState(NOW); state.requests = 1000; state.tokens = AI_BUDGET.globalTokensDay - 100; await updateState(state);
     const results = await Promise.all([store().reserve(providerPrincipal(1), fingerprint(1), 100, NOW),
       store().reserve(principal(2), fingerprint(2), 100, NOW)]);
     expect(results.map(r => r.status).sort()).toEqual(["rate_limited", "reserved"]);
-    expect((await control()).state.requests).toBe(AI_BUDGET.globalDay);
+    expect((await control()).state.requests).toBe(1001);
+    expect((await control()).state.tokens).toBe(AI_BUDGET.globalTokensDay);
   });
 
   it.each(["revoked", "expired", "inactive", "unverified", "wrong_session", "wrong_subject", "wrong_user", "invalid_team"])("rejects %s after initial provider verification without charging or calling the model", async change => {
@@ -203,28 +204,29 @@ describe("actual PostgreSQL admission and completion", () => {
     expect(results.map(r => r.status).sort()).toEqual(["busy", "reserved"]);
     expect((await control()).state.requests).toBe(1);
   });
-  it.each(["requests", "tokens"])("serializes the last global %s reservation", async field => {
-    const state = emptyBudgetState(NOW);
-    if (field === "requests") state.requests = AI_BUDGET.globalDay - 1;
-    else state.tokens = AI_BUDGET.globalTokensDay - 100;
+  it("serializes the last global token reservation", async () => {
+    const state = emptyBudgetState(NOW); state.requests = 1000;
+    state.tokens = AI_BUDGET.globalTokensDay - 100;
     await updateState(state);
     const results = await Promise.all([store().reserve(principal(1), fingerprint(1), 100, NOW), store().reserve(principal(2), fingerprint(2), 100, NOW)]);
     expect(results.map(r => r.status).sort()).toEqual(["rate_limited", "reserved"]);
-    expect((await control()).state.requests).toBeLessThanOrEqual(AI_BUDGET.globalDay);
-    expect((await control()).state.tokens).toBeLessThanOrEqual(AI_BUDGET.globalTokensDay);
+    expect((await control()).state.requests).toBe(1001);
+    expect((await control()).state.tokens).toBe(AI_BUDGET.globalTokensDay);
   });
-  it("enforces hourly/daily user budgets and preserves conservative reservation charges", async () => {
-    for (let hour = 0; hour < 4; hour++) {
-      const now = NOW + hour * 3600000;
-      for (let n = 0; n < 5; n++) {
-        const s = store(), reservation = await s.reserve(principal(), fingerprint(hour * 10 + n), 100, now);
-        if (reservation.status !== "reserved") throw new Error("Expected reservation");
-        await s.finish(reservation.leaseId, 20, false, false, now);
-      }
-      expect((await store().reserve(principal(), fingerprint(100 + hour), 100, now)).status).toBe("rate_limited");
+  it("allows completed repeats beyond former account quotas without resetting existing counters or fingerprints", async () => {
+    const state = emptyBudgetState(NOW); state.requests = 1000; state.tokens = 22997;
+    state.users[principal().userId] = { day: "2026-10-19", hour: "2026-10-19T07", requests: 20, hourly: 5, denied: 100, signals: 3, lastSeen: NOW };
+    const legacy = { userId: principal().userId, fingerprint: fingerprint(), expires: NOW + 600000, shared: true };
+    state.duplicates.push(legacy); await updateState(state);
+    for (let n = 0; n < 26; n++) {
+      const s = store(), reservation = await s.reserve(n % 2 ? providerPrincipal() : principal(), fingerprint(), 100, NOW);
+      if (reservation.status !== "reserved") throw new Error("Expected reservation");
+      await s.finish(reservation.leaseId, 20, false, false, NOW);
     }
-    expect((await store().reserve(principal(), fingerprint(200), 100, NOW + 4 * 3600000)).status).toBe("rate_limited");
-    expect((await control()).state.tokens).toBe(2000); expect((await control()).state.requests).toBe(20);
+    const result = (await control()).state;
+    expect(result.tokens).toBe(25597); expect(result.requests).toBe(1026);
+    expect(result.users[principal().userId]).toMatchObject({ requests: 46, hourly: 31, denied: 100, signals: 3 });
+    expect(result.duplicates).toEqual([legacy]);
   });
   it("deduplicates shared fingerprints atomically across distinct managers", async () => {
     const responses = await Promise.all([store().reserve(principal(1), fingerprint(), 100, NOW, true), store().reserve(principal(2), fingerprint(), 100, NOW, true)]);
@@ -232,8 +234,8 @@ describe("actual PostgreSQL admission and completion", () => {
     const reservation = responses.find(r => r.status === "reserved")!;
     if (reservation.status !== "reserved") throw new Error("Expected reservation");
     await store().finish(reservation.leaseId, 50, false, false, NOW);
-    expect((await store().reserve(principal(2), fingerprint(), 100, NOW, true)).status).toBe("duplicate");
-    expect((await control()).state.requests).toBe(1);
+    expect((await store().reserve(principal(2), fingerprint(), 100, NOW, true)).status).toBe("reserved");
+    expect((await control()).state.requests).toBe(2);
   });
   it("retains unknown-spend leases, deduplicates completion and expires only the appropriate windows", async () => {
     const r = await store().reserve(principal(), fingerprint(), 100, NOW);
@@ -244,8 +246,8 @@ describe("actual PostgreSQL admission and completion", () => {
     expect(settled.state.leases[0].completed).toBe(true);
     await store().finish(r.leaseId, null, true, true, NOW); expect(await control()).toEqual(settled);
     expect((await store().reserve(principal(), fingerprint(2), 100, NOW)).status).toBe("busy");
-    expect((await store().reserve(principal(), fingerprint(), 100, NOW + 61000)).status).toBe("duplicate");
-    expect((await store().reserve(principal(), fingerprint(2), 100, NOW + 61000)).status).toBe("reserved");
+    expect(await store().reserve(principal(), fingerprint(), 100, NOW + 1001)).toEqual({ status: "duplicate", retryAfterSeconds: 59 });
+    expect((await store().reserve(principal(), fingerprint(), 100, NOW + 61000)).status).toBe("reserved");
   });
   it("charges one oversized completion and disables admission under actual CAS overlap", async () => {
     const r = await store().reserve(principal(), fingerprint(), 100, NOW);
