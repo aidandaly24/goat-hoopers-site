@@ -79,6 +79,7 @@ async function geometry(page, heading = true) {
     const links = [...nav.querySelectorAll("a")];
     const target = document.querySelector("#main-content h1");
     return { chrome: box(chrome), heading: heading && target ? box(target) : null, viewport: innerWidth,
+      compact: window.matchMedia("(max-width: 40rem)").matches,
       nav: box(nav), links: links.map(e => ({ href: e.getAttribute("href"), current: e.getAttribute("aria-current"), ...box(e) })),
       controls: [...chrome.querySelectorAll("a, button")].filter(e => e.getBoundingClientRect().width > 1).map(e => ({ text: e.textContent, ...box(e) })),
       targetMarginTop: target ? parseFloat(getComputedStyle(target).scrollMarginTop) : parseFloat(getComputedStyle(document.getElementById("main-content")).scrollMarginTop),
@@ -101,10 +102,10 @@ async function verifyShell(page, { signed = false, title = true } = {}) {
   for (const link of g.links) {
     assert.ok(link.width >= 44 && link.height >= 44, "Primary touch target: " + JSON.stringify(link));
   }
-  assert.deepEqual(g.links.map(e => e.href), signed && g.navPosition !== "fixed" ? destinations.slice(0, -1) : destinations);
+  assert.deepEqual(g.links.map(e => e.href), g.compact ? ["/stocks"] : signed ? destinations.slice(0, -1) : destinations);
   const pathname = new URL(page.url()).pathname;
   const active = destinations.find(href => pathname === href || (href !== "/" && pathname.startsWith(href + "/")));
-  const expected = signed && active === "/team" && g.navPosition !== "fixed" ? [] : active ? [active] : [];
+  const expected = g.compact ? active === "/stocks" ? [active] : [] : signed && active === "/team" ? [] : active ? [active] : [];
   assert.deepEqual(g.links.filter(e => e.current === "page").map(e => e.href), expected);
   if (g.heading) assert.ok(g.heading.top >= g.chrome.bottom - 1, "Initial/anchored title must clear chrome: " + JSON.stringify(g));
   if (g.navPosition === "fixed") {
@@ -349,7 +350,7 @@ try {
         await page.evaluate(size => { document.documentElement.style.fontSize = size + "px"; }, fontSize);
         const g = await verifyShell(page, { signed });
         if (width === 390 && fontSize === 32 && !signed && ticker && route === "/stocks") await page.screenshot({ path: path.join(evidence, "stocks-200-percent-text-390.png") });
-        if (signed) assert.equal(await page.locator("[data-site-chrome]").getByRole("link").filter({ hasText: "Synthetic manager" }).count(), 1);
+        if (signed && !g.compact) assert.equal(await page.locator("[data-site-chrome]").getByRole("link").filter({ hasText: "Synthetic manager" }).count(), 1);
         const skip = page.getByRole("link", { name: "Skip to content", exact: true });
         assert.equal(await skip.evaluate(e => getComputedStyle(e).clipPath), "inset(50%)");
         if (fontSize === 16 && !signed && ticker && [1440, 390, 320].includes(width)) {

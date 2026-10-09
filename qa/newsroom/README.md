@@ -1,4 +1,45 @@
-# Newsroom private browser fixture
+# Newsroom private browser fixture (historical)
+
+This is a historical QA record for the fictional Newsroom reader UI. [PR119](https://github.com/aidandaly24/goat-hoopers-site/pull/119)
+replaced that UI with real article links and removed `src/surfaces/news/stories.test.ts`
+and `src/surfaces/news/storyLinks.test.ts`. The browser runner still checks the old
+voices and reader dialogs, so its commands and coverage below are retained context,
+not a maintained runnable regression guide for the current Newsroom. Preserve the
+fixture and saved evidence; the old pending checks below do not describe current work.
+
+> Current harness (real-article feed, #122): `verify.mts` below. The
+> `browser.mjs` runner further down targets the retired fictional story
+> reader and is stale — kept for reference, not for the current UI.
+
+## Static verification (current)
+
+`verify.mts` renders the production Newsroom against the synthetic
+editions in `fixtures.ts` (no browser, no network, no DB) and asserts
+the #122 acceptance checklist structurally:
+
+```sh
+npx tsx --import ./qa/newsroom/hooks.register.mts qa/newsroom/verify.mts
+```
+
+Checks: both outlets, external-link attributes (`target=_blank`,
+`rel=noopener noreferrer`, real hrefs), player-chip return links,
+section chips + counts, unavailable states for failed identity inputs
+(`?state=draft-unknown`, `?state=rosters-unknown`), cold-outage empty
+state (`?state=empty`), deterministic UTC timestamp titles, hydration
+stability (deterministic server markup, empty pre-effect timestamps),
+keyboard-safe markup (native buttons/links, explicit types, pressed
+states), the responsive contract (mobile-first + 64rem enhancement,
+44px targets), and the URL-contract pure helpers. CSS modules are
+stubbed to class-name passthrough, so styling is approximate.
+
+Method limits: no browser is available in this environment, so there
+are no screenshots and no live keystroke/Back-Forward capture. Section
+selection via `?section=` and the retired `?story=` notice are
+client-side (useSyncExternalStore); their contract is unit-tested in
+`src/surfaces/news/__tests__/newsUrls.test.ts`. Fixtures are wholly
+synthetic — no league data.
+
+## Legacy browser runner (stale)
 
 This mounts production Newsroom, SiteHeader and MobileNav with explicit synthetic
 stories. No loader, API route, auth/store or DB is imported. Fonts reuse approved

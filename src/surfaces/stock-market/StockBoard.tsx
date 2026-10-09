@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { StockQuote } from "@/domain";
 import { fetchStockDetail } from "@/data/stock-detail-client";
+import { fetchStockHistoryPage, type LoadStockHistoryPage } from "@/data/stock-history-client";
 import { DEFAULT_FILTERS, PAGE_SIZE, filterStocks, visibleStocks, type BoardFilters } from "./board";
 import { createDetailLoader, type LoadStockDetail } from "./detail";
 import { StockQuoteRow } from "./StockQuoteRow";
@@ -13,10 +14,11 @@ import styles from "./StockMarket.module.css";
 const POSITIONS = ["PG", "SG", "SF", "PF", "C"];
 
 /** Slim quotes first; this board owns one cached, on-demand inspector. */
-export function StockBoard({ stocks, loadDetail = fetchStockDetail }: {
+export function StockBoard({ stocks, loadDetail = fetchStockDetail, loadHistory = fetchStockHistoryPage }: {
   stocks: StockQuote[];
   /** Existing same-origin endpoint by default; injectable for focused UI tests. */
   loadDetail?: LoadStockDetail;
+  loadHistory?: LoadStockHistoryPage;
 }) {
   const [filters, setFilters] = useState<BoardFilters>(DEFAULT_FILTERS);
   const [visible, setVisible] = useState(PAGE_SIZE);
@@ -121,7 +123,7 @@ export function StockBoard({ stocks, loadDetail = fetchStockDetail }: {
         {stocks.length > 0 ? <button type="button" className={styles["outline-button"]} onClick={() => updateFilters(DEFAULT_FILTERS)}>Reset filters</button> : null}
       </div>}
     </section>
-    <StockInspector quote={selected} detail={detail} headingRef={headingRef} onClose={close}
+    <StockInspector quote={selected} detail={detail} headingRef={headingRef} onClose={close} loadHistory={loadHistory}
       onRetry={() => { if (selected && detail.status === "error") void inspect(selected); }} examples={examples} onInspect={inspect} />
   </div>;
 }

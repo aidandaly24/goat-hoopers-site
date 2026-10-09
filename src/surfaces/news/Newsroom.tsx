@@ -1,4 +1,4 @@
-import type { RealNewsArticle } from "@/domain";
+import type { LeagueNewsEdition } from "@/domain";
 import { NewsFeed } from "./NewsFeed";
 import styles from "./Newsroom.module.css";
 
@@ -10,11 +10,16 @@ import styles from "./Newsroom.module.css";
  * rookies, or free agents. Headlines link out to the real article.
  *
  * Contract:
- * - Receives `RealNewsArticle[]` (see `src/data/league.ts`).
+ * - Receives a `LeagueNewsEdition` (articles + identity coverage —
+ *   see `src/data/league.ts`). Sections whose identity input failed
+ *   render as explicitly unavailable, never silently empty.
  * - Never fetches. Domain objects in, JSX out.
- * - Section filtering lives in the client component `NewsFeed`.
+ * - Section filtering + the legacy-link contract live in the client
+ *   component `NewsFeed` (see ./newsUrls.ts): `?section=` selects a
+ *   section with working Back/Forward/refresh; `?story=`/`?revision=`
+ *   from the retired fictional reader show an honest "retired" notice.
  */
-export function Newsroom({ articles }: { articles: RealNewsArticle[] }) {
+export function Newsroom({ edition }: { edition: LeagueNewsEdition }) {
   return (
     <div className={styles.room}>
       <header className={styles.head}>
@@ -24,7 +29,7 @@ export function Newsroom({ articles }: { articles: RealNewsArticle[] }) {
           mention: league players, rookies, or the open market.
         </p>
       </header>
-      <NewsFeed articles={articles} />
+      <NewsFeed edition={edition} />
     </div>
   );
 }

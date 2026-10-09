@@ -1,5 +1,10 @@
 # Meaningful Newsroom revisions
 
+> RETIRED (2026-10-09): this policy governed the fictional story reader's
+> revision fingerprints. The real-article feed (PR #119) removed the reader;
+> `?story=`/`?revision=` links now surface an honest "retired" notice (see
+> `src/surfaces/news/newsUrls.ts`). Kept for history.
+
 Follow-on to released PR86, scoped to issue82. The target is dependable reading
 for the league's ten friends, owned by the existing Newsroom surface. The current
 release/refresh cycle is the decision horizon. No loader, cache, database,

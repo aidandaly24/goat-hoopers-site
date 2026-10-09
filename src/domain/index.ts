@@ -18,6 +18,8 @@
  * - PlayerStock / StockMarket: the dynasty stock market — every player's
  *   value modeled like a stock in FAAB dollars, with movers and panic signals
  * - Season: league metadata for the current season
+ * - ManagerArchetype / SeasonArchetype: GM IQ — per-season manager
+ *   archetypes computed from real behavior (percentiles + decision table)
  * - PowerRanking: the computed power order (formula in the type's doc)
  * - PlayoffOdds: simulated postseason chances (model in the type's doc)
  * - RecordBook: all-time biggest blowouts, closest games, top scores
@@ -45,6 +47,8 @@ export type {
   RealNewsArticle,
   RealNewsSection,
   NewsOutlet,
+  NewsCoverage,
+  LeagueNewsEdition,
   PlayerRef,
 } from "./news";
 export type {
@@ -72,6 +76,22 @@ export type {
 } from "./stock";
 export type { TradeSide, TradeVerdict } from "./trade";
 export { analyzeTrade, tradeTotal } from "./trade";
+export type {
+  MetricId,
+  ArchetypeId,
+  RawGmMetrics2025,
+  SeasonArchetype,
+  ManagerArchetype,
+  ArchetypeSignals,
+} from "./manager-archetype";
+export {
+  METRIC_INFO,
+  ARCHETYPES,
+  percentileRank,
+  assignArchetype,
+  buildArchetypeProfiles,
+  currentArchetype,
+} from "./manager-archetype";
 export type { LiveGame, LiveGameStatus } from "./live-game";
 export { isGameDay } from "./live-game";
 export type { Season } from "./season";
@@ -84,3 +104,8 @@ export type {
   MatchupHighlight,
 } from "./stats";
 export { UNAVAILABLE_TOTAL, fmtTotal, totalLabel } from "./format";
+export type {
+  AiBaseline, AiDecideRequest, AiDecideResponse, AiDecisionResult, AiDecidesData,
+  AiFailureStatus, AiGenerationManifest, AiSnapshotMetadata, AiWeeklyInput, AiWeeklyOutcome,
+  AiWeeklyPick, AiWeeklySlate,
+} from "./ai-decider";
