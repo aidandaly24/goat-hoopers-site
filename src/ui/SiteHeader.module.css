@@ -243,6 +243,13 @@
   }
 }
 
+/* Give the theme control room near the desktop row's width limit. */
+@media (min-width: 64rem) and (max-width: 76rem) {
+  .inner {
+    column-gap: var(--gh-s3);
+  }
+}
+
 /* Tablet uses a complete second nav row before the desktop row can overflow.
  * Reuses the documented shared 64rem breakpoint. */
 @media (max-width: 64rem) {
