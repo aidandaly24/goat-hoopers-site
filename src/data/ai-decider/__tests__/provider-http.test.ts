@@ -67,6 +67,18 @@ describe("application schema and HTTP boundary", () => {
     expect((await handleAiPost(request(draft), TOKEN, h.runtime)).status).toBe(200);
     expect(h.create).toHaveBeenCalledTimes(2);
   });
+  it("admits twenty immediate completed repeats and reports the precise rolling-burst HTTP boundary", async () => {
+    const h = harness();
+    for (let n = 0; n < 20; n++) expect((await handleAiPost(request(draft), TOKEN, h.runtime)).status).toBe(200);
+    h.setTime(NOW + 59001);
+    const response = await handleAiPost(request(draft), TOKEN, h.runtime);
+    expect(response.status).toBe(429); expect(response.headers.get("Retry-After")).toBe("1");
+    expect(await response.json()).toEqual({ status: "rate_limited", code: "minute_burst", message: "This account has started 20 requests in the last minute. Try again when the oldest request leaves that window.", retryAfterSeconds: 1 });
+    expect(h.create).toHaveBeenCalledTimes(20);
+    h.setTime(NOW + 60000);
+    expect((await handleAiPost(request(draft), TOKEN, h.runtime)).status).toBe(200);
+    expect(h.create).toHaveBeenCalledTimes(21);
+  });
 });
 
 describe("fixed documented Decisions protocol", () => {

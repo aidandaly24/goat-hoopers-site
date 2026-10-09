@@ -35,13 +35,63 @@ describe("durable shared spending/abuse policy under CAS contention", () => {
     p.control!.state.duplicates.push(legacy);
     for (let attempt = 0; attempt < 26; attempt++) {
       const store = new AiDeciderStore(p);
-      const r = await store.reserve(identity(), fingerprint(), 100, NOW);
+      const time = NOW + attempt * 4000;
+      const r = await store.reserve(identity(), fingerprint(), 100, time);
       expect(r.status).toBe("reserved");
-      if (r.status === "reserved") await store.finish(r.leaseId, 30, false, false, NOW);
+      if (r.status === "reserved") await store.finish(r.leaseId, 30, false, false, time);
     }
     expect(p.control!.state.requests).toBe(32); expect(p.control!.state.tokens).toBe(25597);
     expect(p.control!.state.users[identity().userId]).toMatchObject({ requests: 32, hourly: 31, denied: 5, signals: 1 });
     expect(p.control!.state.duplicates).toEqual([legacy]);
+  });
+  it("allows twenty back-to-back completed calls and expires only the oldest rolling entry", async () => {
+    const p = new TestPersistence(), s = new AiDeciderStore(p);
+    for (let n = 0; n < 20; n++) {
+      const time = NOW + (n === 0 ? 0 : 1000);
+      const r = await s.reserve(identity(), fingerprint(), 100, time);
+      if (r.status !== "reserved") throw new Error("fixture");
+      await s.finish(r.leaseId, 30, false, false, time);
+    }
+    const recent = structuredClone(p.control!.state.users[identity().userId].recent);
+    expect(await s.reserve(identity(), fingerprint(), 100, NOW + 59001)).toEqual({ status: "burst_limited", retryAfterSeconds: 1 });
+    expect(await s.reserve(identity(), fingerprint(), 100, NOW + 59999)).toEqual({ status: "burst_limited", retryAfterSeconds: 1 });
+    expect(p.control!.state.tokens).toBe(2000); expect(p.control!.state.requests).toBe(20);
+    expect(p.control!.state.users[identity().userId].recent).toEqual(recent);
+    const r = await s.reserve(identity(), fingerprint(), 100, NOW + 60000);
+    if (r.status !== "reserved") throw new Error("fixture");
+    await s.finish(r.leaseId, 30, false, false, NOW + 60000);
+    expect(await s.reserve(identity(), fingerprint(), 100, NOW + 60000)).toEqual({ status: "burst_limited", retryAfterSeconds: 1 });
+    expect((await s.reserve(identity(), fingerprint(), 100, NOW + 61000)).status).toBe("reserved");
+    expect(p.control!.state.users[identity().userId].recent).toHaveLength(2);
+    expect(p.control!.state.requests).toBe(22);
+  });
+  it("atomically shares the final burst slot across legacy/provider sessions but isolates another account", async () => {
+    const p = new TestPersistence(), s = new AiDeciderStore(p);
+    p.control!.state.users[identity().userId] = { day: "2026-10-19", hour: "2026-10-19T07", requests: 19, hourly: 19, denied: 0, signals: 0, lastSeen: NOW, recent: Array(19).fill(NOW) };
+    const provider = { kind: "friends" as const, userId: identity().userId, sessionId: "synthetic-session", subject: "synthetic-subject" };
+    const results = await Promise.all([s.reserve(identity(), fingerprint(1), 100, NOW), new AiDeciderStore(p).reserve(provider, fingerprint(2), 100, NOW)]);
+    expect(results.map(r => r.status).sort()).toEqual(["busy", "reserved"]);
+    const r = results.find(r => r.status === "reserved")!;
+    if (r.status !== "reserved") throw new Error("fixture");
+    await s.finish(r.leaseId, 30, false, false, NOW);
+    expect(await new AiDeciderStore(p).reserve(provider, fingerprint(3), 100, NOW)).toEqual({ status: "burst_limited", retryAfterSeconds: 60 });
+    expect(p.control!.state.users[identity().userId].recent).toHaveLength(20);
+    expect((await s.reserve(identity(2), fingerprint(3), 100, NOW)).status).toBe("reserved");
+    expect(p.control!.state.users[identity(2).userId].recent).toEqual([NOW]);
+  });
+  it("keeps the rolling window across UTC hour/day rollover and fails closed on clock rollback", async () => {
+    const p = new TestPersistence(), s = new AiDeciderStore(p), time = Date.parse("2026-10-19T23:59:59.900Z");
+    for (let n = 0; n < 20; n++) {
+      const r = await s.reserve(identity(), fingerprint(), 100, time);
+      if (r.status !== "reserved") throw new Error("fixture");
+      await s.finish(r.leaseId, 30, false, false, time);
+    }
+    expect(await s.reserve(identity(), fingerprint(), 100, time + 100)).toEqual({ status: "burst_limited", retryAfterSeconds: 60 });
+    expect(p.control!.state.users[identity().userId].recent).toHaveLength(20);
+    expect((await s.reserve(identity(), fingerprint(), 100, time + 60000)).status).toBe("reserved");
+    const state = structuredClone(p.control);
+    await expect(s.reserve(identity(), fingerprint(2), 100, time + 59999)).rejects.toThrow("state_unavailable");
+    expect(p.control).toEqual(state);
   });
   it("counts timeouts without refund and blocks duplicates only until the active lease expires", async () => {
     const p = new TestPersistence(), s = new AiDeciderStore(p);
@@ -151,6 +201,14 @@ describe("durable shared spending/abuse policy under CAS contention", () => {
       p.control!.state = raw as ReturnType<typeof emptyBudgetState>;
       await expect(s.available()).rejects.toThrow("state_unavailable");
     }
+  });
+  it.each([null, "invalid", [NOW + 0.5], [-1], [NOW + 1, NOW], Array(21).fill(NOW)])("rejects corrupt or unbounded rolling timestamp state %#", async recent => {
+    const p = new TestPersistence(), s = new AiDeciderStore(p), state = emptyBudgetState(NOW);
+    state.users[identity().userId] = { day: "2026-10-19", hour: "2026-10-19T07", requests: 0, hourly: 0, denied: 0, signals: 0, lastSeen: NOW, recent: recent as number[] };
+    expect(validBudgetState(state)).toBe(false);
+    p.control!.state = state;
+    await expect(s.reserve(identity(), fingerprint(), 100, NOW)).rejects.toThrow("state_unavailable");
+    expect(p.control!.state.requests).toBe(0);
   });
 });
 

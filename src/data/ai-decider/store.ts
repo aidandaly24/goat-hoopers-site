@@ -6,13 +6,13 @@ import type { AiGenerationManifest, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlat
 import { isRecord, uuidValid } from "./validation";
 import { aiDataDeadline } from "./deadline";
 
-/** Shared spend/concurrency guards; ordinary signed-in calls have no account quota. */
-export const AI_BUDGET = Object.freeze({ globalTokensDay: 100000, concurrent: 2, leaseMs: 60000, retentionMs: 7 * 86400000 });
+/** Shared spending, active-request and rolling burst guards; no ordinary cooldown. */
+export const AI_BUDGET = Object.freeze({ userBurst: 20, burstMs: 60000, globalTokensDay: 100000, concurrent: 2, leaseMs: 60000, retentionMs: 7 * 86400000 });
 export type AiLegacyIdentity = { kind: "legacy"; userId: string; tokenHash: string };
 /** Only a secret-authenticated server cron may construct this fixed app principal. */
 export type AiWeeklyJobIdentity = { kind: "weekly_job"; userId: string; auth: "legacy" | "friends" };
 export type AiIdentity = AiLegacyIdentity | { kind: "friends"; userId: string; sessionId: string; subject: string } | AiWeeklyJobIdentity;
-type UserCounter = { day: string; requests: number; hour: string; hourly: number; denied: number; signals: number; lastSeen: number };
+type UserCounter = { day: string; requests: number; hour: string; hourly: number; denied: number; signals: number; lastSeen: number; recent?: number[] };
 export type AiBudgetState = {
   version: 1;
   day: string;
@@ -35,7 +35,7 @@ export type AiPersistence = {
   completeWeek(key: string, hash: string, slate: AiWeeklySlate): Promise<boolean>;
   recordOutcome(key: string, outcome: AiWeeklyOutcome): Promise<boolean>;
 };
-export type AiReservation = { status: "reserved"; leaseId: string } | { status: "disabled" | "rate_limited" | "busy" | "duplicate"; retryAfterSeconds?: number };
+export type AiReservation = { status: "reserved"; leaseId: string } | { status: "disabled" | "rate_limited" | "burst_limited" | "busy" | "duplicate"; retryAfterSeconds?: number };
 const count = (v: unknown): v is number => typeof v === "number" && Number.isSafeInteger(v) && v >= 0;
 const hashValid = (v: unknown): v is string => typeof v === "string" && /^[a-f0-9]{64}$/.test(v);
 const authIdValid = (v: unknown): v is string => typeof v === "string" && v.length > 0 && v.length <= 256 && !/[\s\u0000-\u001f\u007f]/.test(v);
@@ -51,6 +51,7 @@ export function validBudgetState(v: unknown): v is AiBudgetState {
   if (!isRecord(v) || v.version !== 1 || !dateValid(v.day) || !count(v.requests) || !count(v.tokens) || !isRecord(v.users) || Object.keys(v.users).length > 10 || !Array.isArray(v.leases) || v.leases.length > AI_BUDGET.concurrent || !Array.isArray(v.duplicates) || v.duplicates.length > 100) return false;
   for (const [id, u] of Object.entries(v.users)) {
     if (!uuidValid(id) || !isRecord(u) || !dateValid(u.day) || typeof u.hour !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}$/.test(u.hour) || ![u.requests, u.hourly, u.denied, u.signals, u.lastSeen].every(count)) return false;
+    if (u.recent !== undefined && (!Array.isArray(u.recent) || u.recent.length > AI_BUDGET.userBurst || !u.recent.every((time, i, times) => count(time) && (i === 0 || time >= times[i - 1])))) return false;
   }
   const ids = new Set<string>();
   for (const lease of v.leases) {
@@ -91,6 +92,9 @@ export class AiDeciderStore {
       const user: UserCounter = prev ?? { day, requests: 0, hour, hourly: 0, denied: 0, signals: 0, lastSeen: now };
       if (user.day !== day) { user.day = day; user.requests = 0; }
       if (user.hour !== hour) { user.hour = hour; user.hourly = 0; user.denied = 0; user.signals = 0; }
+      // Additive bounded state: existing counters need no migration or reset.
+      if ((user.recent?.at(-1) ?? 0) > now) throw new Error("state_unavailable");
+      user.recent = (user.recent ?? []).filter(time => time > now - AI_BUDGET.burstMs);
       user.lastSeen = now;
       state.users[identity.userId] = user;
       if (Object.keys(state.users).length > 10) throw new Error("state_unavailable");
@@ -102,9 +106,11 @@ export class AiDeciderStore {
       if (duplicate) denial = { status: "duplicate", retryAfterSeconds: leaseWait(duplicate.expires) };
       else if (ownLease || globalExpiry) denial = { status: "busy", retryAfterSeconds: leaseWait(Math.max(ownLease?.expires ?? 0, globalExpiry)) };
       else if (state.tokens + tokens > AI_BUDGET.globalTokensDay) denial = { status: "rate_limited", retryAfterSeconds: Math.max(1, Math.ceil(((Math.floor(now / 86400000) + 1) * 86400000 - now) / 1000)) };
+      else if (user.recent.length >= AI_BUDGET.userBurst) denial = { status: "burst_limited", retryAfterSeconds: leaseWait(user.recent[0] + AI_BUDGET.burstMs) };
       if (denial) user.denied = Math.min(user.denied + 1, 1000000);
       else {
         user.requests++; user.hourly++; state.requests++; state.tokens += tokens;
+        user.recent.push(now);
         const lease = { id: randomUUID(), userId: identity.userId, fingerprint, expires: now + AI_BUDGET.leaseMs, reserved: tokens, shared };
         state.leases.push(lease);
       }

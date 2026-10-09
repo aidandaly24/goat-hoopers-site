@@ -219,14 +219,33 @@ describe("actual PostgreSQL admission and completion", () => {
     const legacy = { userId: principal().userId, fingerprint: fingerprint(), expires: NOW + 600000, shared: true };
     state.duplicates.push(legacy); await updateState(state);
     for (let n = 0; n < 26; n++) {
-      const s = store(), reservation = await s.reserve(n % 2 ? providerPrincipal() : principal(), fingerprint(), 100, NOW);
+      const time = NOW + n * 4000;
+      const s = store(), reservation = await s.reserve(n % 2 ? providerPrincipal() : principal(), fingerprint(), 100, time);
       if (reservation.status !== "reserved") throw new Error("Expected reservation");
-      await s.finish(reservation.leaseId, 20, false, false, NOW);
+      await s.finish(reservation.leaseId, 20, false, false, time);
     }
     const result = (await control()).state;
     expect(result.tokens).toBe(25597); expect(result.requests).toBe(1026);
     expect(result.users[principal().userId]).toMatchObject({ requests: 46, hourly: 31, denied: 100, signals: 3 });
     expect(result.duplicates).toEqual([legacy]);
+  });
+  it("atomically shares the final rolling burst slot across legacy/provider identities and preserves it through completion", async () => {
+    const state = emptyBudgetState(NOW); state.requests = 19; state.tokens = 1900;
+    state.users[principal().userId] = { day: "2026-10-19", hour: "2026-10-19T07", requests: 19, hourly: 19, denied: 0, signals: 0, lastSeen: NOW, recent: Array(19).fill(NOW) };
+    await updateState(state);
+    const responses = await Promise.all([store().reserve(principal(), fingerprint(1), 100, NOW), store().reserve(providerPrincipal(), fingerprint(2), 100, NOW)]);
+    expect(responses.map(r => r.status).sort()).toEqual(["busy", "reserved"]);
+    const reservation = responses.find(r => r.status === "reserved")!;
+    if (reservation.status !== "reserved") throw new Error("Expected reservation");
+    await store().finish(reservation.leaseId, 20, false, false, NOW);
+    expect(await store().reserve(providerPrincipal(), fingerprint(), 100, NOW + 59999)).toEqual({ status: "burst_limited", retryAfterSeconds: 1 });
+    let result = (await control()).state;
+    expect(result.requests).toBe(20); expect(result.tokens).toBe(2000); expect(result.users[principal().userId].recent).toHaveLength(20);
+    expect((await store().reserve(principal(2), fingerprint(), 100, NOW + 59999)).status).toBe("reserved");
+    expect((await store().reserve(providerPrincipal(), fingerprint(), 100, NOW + 60000)).status).toBe("reserved");
+    result = (await control()).state;
+    expect(result.users[principal().userId].recent).toEqual([NOW + 60000]);
+    expect(result.requests).toBe(22); expect(result.tokens).toBe(2200);
   });
   it("deduplicates shared fingerprints atomically across distinct managers", async () => {
     const responses = await Promise.all([store().reserve(principal(1), fingerprint(), 100, NOW, true), store().reserve(principal(2), fingerprint(), 100, NOW, true)]);
