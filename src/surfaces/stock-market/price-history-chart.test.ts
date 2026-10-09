@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import type { PriceHistoryPoint } from "@/domain";
 import { PriceHistoryChart } from "./PriceHistoryChart";
-import { chartPoints, GAP_LABEL_CHAR_W, LONG_GAP_DAYS, nearestChartPoint, pointSource, PLOT, priceChartModel } from "./price-history-chart";
+import { chartPoints, LONG_GAP_DAYS, nearestChartPoint, pointSource, PLOT, priceChartModel } from "./price-history-chart";
 
 const history: PriceHistoryPoint[] = [
   { date: "2025-10-08T00:00:00Z", price: 10, source: "backtest" },
@@ -82,10 +82,11 @@ describe("bounded price history chart", () => {
       }
     }
     const html = render();
-    // Honest wrapped label: two lines that together read the full interval.
-    expect(html).toContain("No samples supplied between");
-    expect(html).toContain("Oct 2025 – Jan 2026");
-    expect(html).toContain("Jan 2026 – Sept 2026");
+    // Honest single-sentence labels render as a wrapping HTML list outside the
+    // fixed-height plot; the SVG keeps the path break and boundary markers.
+    expect(html).toContain("No samples supplied between Oct 2025 – Jan 2026");
+    expect(html).toContain("No samples supplied between Jan 2026 – Sept 2026");
+    expect(html).toContain('aria-label="Unconnected intervals"');
     expect(html).toContain("2 long gaps not connected");
     expect(html).not.toContain("raw source data");
   });
@@ -147,34 +148,32 @@ describe("bounded price history chart", () => {
     expect(html).toContain('min="0"');
   });
 
-  it("wraps gap descriptions and stacks neighboring labels on separate rows", () => {
-    const annual: PriceHistoryPoint[] = [
-      { date: "2023-01-01T00:00:00Z", price: 5, source: "backtest" },
-      { date: "2024-01-01T00:00:00Z", price: 50, source: "backtest" },
-      { date: "2025-01-01T00:00:00Z", price: 15, source: "backtest" },
-    ];
+  it("bounds gap-label layout with at least seven gaps: HTML list, never SVG rows", () => {
+    // Regression: row allocation used to be unlimited (y = 164 - row*30), so
+    // the seventh label of eight annual samples landed entirely above the
+    // plot. Descriptions now render as wrapping HTML outside the fixed-height
+    // plot, so the layout is bounded for any gap count.
+    const annual: PriceHistoryPoint[] = Array.from({ length: 8 }, (_, year) => ({
+      date: `20${19 + year}-01-01T00:00:00Z`, price: 5 + year * 7, source: "backtest" as const,
+    }));
     const model = priceChartModel(annual, "All")!;
-    expect(model.gaps).toHaveLength(2);
+    expect(model.gaps).toHaveLength(7);
+    expect(model.paths).toHaveLength(0);
+    expect(model.points.map((p) => p.price)).toEqual([5, 12, 19, 26, 33, 40, 47, 54]);
     for (const gap of model.gaps) {
-      expect(gap.lines).toHaveLength(2);
-      expect(gap.lines[0]).toBe("No samples supplied between");
+      // No unbounded row/x geometry survives on the model.
+      expect("row" in gap).toBe(false);
+      expect("x" in gap).toBe(false);
+      expect(gap.label).toMatch(/^No samples supplied between \w{3,4} 20\d{2} – \w{3,4} 20\d{2}\.$/);
     }
-    expect(model.gaps[0].lines[1]).toBe("Jan 2023 – Jan 2024");
-    expect(model.gaps[1].lines[1]).toBe("Jan 2024 – Jan 2025");
-    // Estimated boxes stay inside the plot; the two ~144-unit-apart labels do
-    // not share a row, so they cannot collide.
-    const boxes = model.gaps.map((gap) => {
-      const half = Math.max(gap.lines[0].length, gap.lines[1].length) * GAP_LABEL_CHAR_W / 2;
-      return { x0: gap.x - half, x1: gap.x + half, row: gap.row };
-    });
-    for (const box of boxes) {
-      expect(box.x0).toBeGreaterThanOrEqual(PLOT.left - 0.01);
-      expect(box.x1).toBeLessThanOrEqual(PLOT.right + 0.01);
-    }
-    expect(boxes[0].row).not.toBe(boxes[1].row);
+    expect(model.gaps[0].label).toBe("No samples supplied between Jan 2019 – Jan 2020.");
+    expect(model.gaps[6].label).toBe("No samples supplied between Jan 2025 – Jan 2026.");
     const html = render(annual);
-    expect(html).toContain("Jan 2023 – Jan 2024");
-    expect(html).toContain("Jan 2024 – Jan 2025");
+    // Every description renders in the HTML list; no gap text lives in the SVG.
+    expect(html.match(/No samples supplied between/g)?.length).toBe(7);
+    expect(html).toContain('aria-label="Unconnected intervals"');
+    expect(html).not.toContain("gapLabel");
+    expect(html).toContain("7 long gaps not connected");
   });
 
   it("handles annual-only inputs and extrema without inventing samples", () => {

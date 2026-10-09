@@ -3,7 +3,7 @@
 import { useId, useRef, useState, type PointerEvent } from "react";
 import type { PriceHistoryPoint } from "@/domain";
 import { formatPrice } from "./format";
-import { CHART_RANGES, GAP_LABEL_LINE_H, GAP_LABEL_ROW_STEP, LONG_GAP_DAYS, PLOT, nearestChartPoint, pointSource, priceChartModel, shortMonthYear, type ChartRange } from "./price-history-chart";
+import { CHART_RANGES, LONG_GAP_DAYS, PLOT, nearestChartPoint, pointSource, priceChartModel, shortMonthYear, type ChartRange } from "./price-history-chart";
 import styles from "./PriceHistoryChart.module.css";
 
 const dateLabel = (date: string) => new Intl.DateTimeFormat("en-GB", {
@@ -62,16 +62,6 @@ export function PriceHistoryChart({ history, playerName }: { history: PriceHisto
       <line className={styles.axisLine} x1={PLOT.left} x2={PLOT.left} y1={PLOT.top} y2={PLOT.bottom} />
       <line className={styles.axisLine} x1={PLOT.left} x2={PLOT.right} y1={PLOT.bottom} y2={PLOT.bottom} />
       {model.paths.map((path, pathIndex) => <path key={pathIndex} className={`${styles.path} ${styles[path.kind]}`} d={path.d} />)}
-      {model.gaps.map((gap, gapIndex) => {
-        // Wrapped two-line labels on collision-safe rows: neighboring gap
-        // descriptions never share a row, and each row is clamped inside the
-        // plot by the model.
-        const y = PLOT.bottom - 10 - gap.row * GAP_LABEL_ROW_STEP;
-        return <g key={gapIndex}>
-          <text className={styles.gapLabel} x={gap.x} y={y} textAnchor="middle">{gap.lines[0]}</text>
-          <text className={styles.gapLabel} x={gap.x} y={y + GAP_LABEL_LINE_H} textAnchor="middle">{gap.lines[1]}</text>
-        </g>;
-      })}
       {model.positions.map((position, pointIndex) => model.points[pointIndex].current
         ? <path key={pointIndex} className={styles.currentPoint} d={`M${position.x} ${position.y - 5}l5 5-5 5-5-5Z`} />
         : model.marked[pointIndex]
@@ -83,6 +73,9 @@ export function PriceHistoryChart({ history, playerName }: { history: PriceHisto
       {first.time !== last.time ? <text className={styles.axis} x={PLOT.right} y={PLOT.bottom + 22} textAnchor="end">{shortMonthYear(last.date)}</text> : null}
       <text className={styles.axis} x={(PLOT.left + PLOT.right) / 2} y={PLOT.height - 2} textAnchor="middle">Date (UTC)</text>
     </svg>
+    {model.gaps.length ? <ul className={styles.gapList} aria-label="Unconnected intervals">
+      {model.gaps.map((gap, gapIndex) => <li key={gapIndex}>{gap.label}</li>)}
+    </ul> : null}
     <label className={styles.sliderLabel} htmlFor={`${id}-point`}>Inspect a point <span className="gh-num">{selected + 1} / {model.points.length}</span></label>
     <input ref={slider} id={`${id}-point`} className={styles.slider} type="range" min={0} max={model.points.length - 1}
       step={1} value={selected} disabled={model.points.length === 1} aria-label={`Inspect price history for ${playerName}`}

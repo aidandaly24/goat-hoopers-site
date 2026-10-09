@@ -36,18 +36,7 @@ export function pointSource(point: ChartPoint): string {
 /** A maximal run of consecutive supplied points drawn as one straight SVG path. */
 export type ChartPath = { kind: "estimate" | "recorded" | "current"; d: string };
 
-/**
- * Display heuristics for gap labels (rendering only, never data):
- * - GAP_LABEL_CHAR_W estimates SVG units per monospace character at the 11px
- *   label size, used only to keep wrapped labels inside the plot and off each
- *   other.
- * - GAP_LABEL_LINE_H is the baseline step between the two wrapped lines.
- * - GAP_LABEL_ROW_STEP separates stacked rows so adjacent gap labels cannot
- *   collide.
- */
-export const GAP_LABEL_CHAR_W = 6.7;
-export const GAP_LABEL_LINE_H = 13;
-export const GAP_LABEL_ROW_STEP = 30;
+
 
 /** "Jan 2023" style label for a supplied sample date. */
 export function shortMonthYear(date: string) {
@@ -56,15 +45,14 @@ export function shortMonthYear(date: string) {
   }).format(new Date(date));
 }
 
-/** A classified long interval between two supplied samples; never bridged by a path. */
+/** A classified long interval between two supplied samples; never bridged by a path.
+ * Descriptions render as wrapping HTML outside the fixed-height plot, so the
+ * layout is bounded no matter how many gaps a range holds. */
 export type ChartGap = {
   fromDate: string; toDate: string;
-  /** Label center x, clamped so the wrapped label stays inside the plot. */
-  x: number;
-  /** Two wrapped label lines; together they read the honest interval label. */
-  lines: [string, string];
-  /** Vertical row (0 = lowest) chosen greedily so neighboring labels never collide. */
-  row: number;
+  /** Honest single-sentence interval description, e.g. "No samples supplied
+   * between Jan 2023 – Jan 2024." */
+  label: string;
 };
 
 function pairKind(a: ChartPoint, b: ChartPoint): ChartPath["kind"] {
@@ -119,10 +107,7 @@ export function priceChartModel(history: PriceHistoryPoint[], range: ChartRange)
     if (points[index + 1].time - points[index].time >= LONG_GAP_MS) {
       closeRun(index);
       gaps.push({ fromDate: points[index].date, toDate: points[index + 1].date,
-        x: (positions[index].x + positions[index + 1].x) / 2,
-        lines: ["No samples supplied between",
-          `${shortMonthYear(points[index].date)} – ${shortMonthYear(points[index + 1].date)}`],
-        row: 0 });
+        label: `No samples supplied between ${shortMonthYear(points[index].date)} – ${shortMonthYear(points[index + 1].date)}.` });
       runStart = index + 1;
       continue;
     }
@@ -139,25 +124,6 @@ export function priceChartModel(history: PriceHistoryPoint[], range: ChartRange)
     }
   }
   closeRun(points.length - 1);
-  // Collision-safe gap labels: wrap to two lines, clamp the center so the
-  // estimated box stays inside the plot, and stack neighboring labels on the
-  // lowest non-overlapping row.
-  const rowBoxes: { x0: number; x1: number }[][] = [];
-  for (const gap of gaps) {
-    const half = Math.max(gap.lines[0].length, gap.lines[1].length) * GAP_LABEL_CHAR_W / 2;
-    gap.x = half * 2 > PLOT.right - PLOT.left
-      ? (PLOT.left + PLOT.right) / 2
-      : Math.min(Math.max(gap.x, PLOT.left + half), PLOT.right - half);
-    let row = 0;
-    for (;;) {
-      const boxes = rowBoxes[row] ?? [];
-      const overlaps = boxes.some((box) => gap.x - half < box.x1 + 8 && gap.x + half > box.x0 - 8);
-      if (!overlaps) break;
-      row++;
-    }
-    (rowBoxes[row] ??= []).push({ x0: gap.x - half, x1: gap.x + half });
-    gap.row = row;
-  }
   return { points, positions, ticks, paths, gaps, marked };
 }
 

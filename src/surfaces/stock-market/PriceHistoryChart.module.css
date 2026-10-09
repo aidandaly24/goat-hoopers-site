@@ -19,7 +19,7 @@
 .estimate{stroke-dasharray:6 4}
 .recorded{stroke-dasharray:none}
 .current{stroke-dasharray:2 3}
-.gapLabel{fill:var(--gh-neutral-muted);font-family:var(--gh-font-mono);font-size:11px}
+.gapList{list-style:none;padding:0;margin:var(--gh-s2) 0;display:grid;gap:var(--gh-s1);font-size:.75rem;color:var(--gh-neutral-muted);line-height:1.5}
 .point{fill:var(--gh-neutral-accent)}
 .currentPoint{fill:var(--gh-neutral-surface);stroke:var(--gh-neutral-accent);stroke-width:2}
 .crosshair{stroke:var(--gh-neutral-focus);stroke-width:1;stroke-dasharray:3 3}
