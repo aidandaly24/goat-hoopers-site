@@ -1,23 +1,31 @@
-import type { AiDecideRequest } from "@/domain/ai-decider";
+import type { AiContextPreview, AiDecideRequest } from "@/domain/ai-decider";
 import type { AiTeam } from "./AiWeekly";
 
-/** Mirrors the server's canonical-name equality; no aliases or fuzzy matching. */
+/** Mirrors canonical-name equality; no aliases or fuzzy matching. */
 export const choiceKey = (name: string) => name.trim().normalize("NFKC").toLocaleLowerCase("en-US");
 
-export function decisionDraft(prompt: string, choices: string[], teams: AiTeam[], matchup: [string, string] | null): AiDecideRequest {
-  if (matchup) return { kind: "matchup", teamIds: matchup };
-  const trimmed = choices.map(choice => choice.trim());
-  if (trimmed.length === 2 && trimmed.every(Boolean)) {
-    const matches = trimmed.map(choice => teams.filter(team => choiceKey(team.name) === choiceKey(choice)));
-    if (matches.every(pair => pair.length === 1) && matches[0][0].id !== matches[1][0].id && matches.every(pair => /^(?:[1-9]|10)$/.test(pair[0].id))) {
-      return { kind: "league", prompt: prompt.trim(), choices: [trimmed[0], trimmed[1]], teamIds: [matches[0][0].id, matches[1][0].id] };
-    }
-  }
-  return { kind: "custom", prompt: prompt.trim(), choices: trimmed };
+export function recognizedTeamPair(choices: string[], teams: AiTeam[]): [string, string] | null {
+  if (choices.length !== 2 || choices.some(choice => !choice.trim())) return null;
+  const matches = choices.map(choice => teams.filter(team => choiceKey(team.name) === choiceKey(choice)));
+  if (matches.some(pair => pair.length !== 1) || matches[0][0].id === matches[1][0].id || matches.some(pair => !/^(?:[1-9]|10)$/.test(pair[0].id))) return null;
+  return [matches[0][0].id, matches[1][0].id];
 }
 
-export function draftContextLabel(request: AiDecideRequest): string {
-  if (request.kind === "matchup") return "Weekly starter context requested. Edit to make it custom.";
-  if (request.kind === "league") return `Full-roster league context requested for ${request.choices[0]} and ${request.choices[1]}. The server verifies names and available evidence before running.`;
-  return "Text-only custom: choices do not uniquely identify two league teams. No league roster data will be supplied.";
+/** Only the exact visible suffix can retain the server's source check. */
+export function previewIsIntact(prompt: string, choices: string[], preview: AiContextPreview | null): boolean {
+  return !!preview && prompt.endsWith("\n\n" + preview.text) && !!prompt.slice(0, -(preview.text.length + 2)).trim() && choices.length === 2 && choices.every((choice, i) => choiceKey(choice) === choiceKey(preview.choices[i]));
+}
+
+export function decisionDraft(prompt: string, choices: string[], preview: AiContextPreview | null = null): AiDecideRequest {
+  if (previewIsIntact(prompt, choices, preview) && preview) {
+    return { kind: "league", prompt, choices: [choices[0], choices[1]], teamIds: [...preview.teamIds], contextDigest: preview.digest };
+  }
+  // The entire editable text is sent once; recognition alone never adds hidden data.
+  return { kind: "custom", prompt, choices: [...choices] };
+}
+
+export function draftContextLabel(request: AiDecideRequest, preview: AiContextPreview | null = null): string {
+  if (request.kind === "league" && request.contextDigest) return "Roster/stats are in this prompt. The server checks the unchanged data before running; question edits are allowed.";
+  if (preview) return "Edited draft: all visible text is sent as custom content. Roster/stat edits and changed choices are not verified league evidence.";
+  return "Text-only custom: only this prompt and your choices are sent. Add roster/stats for two recognized league teams, or use a preset.";
 }

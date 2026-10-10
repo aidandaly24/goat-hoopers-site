@@ -10,13 +10,14 @@ const draft = { kind: "custom", prompt: "Which snack?", choices: ["Apple", "Pear
 const request = (body: unknown, headers: Record<string, string> = {}) => new Request("https://goathoopers.com/api/ai-decides", { method: "POST", headers: { origin: "https://goathoopers.com", "content-type": "application/json", ...headers }, body: JSON.stringify(body) });
 
 describe("application schema and HTTP boundary", () => {
-  it("accepts custom drafts and two distinct league teams, trims choices", () => {
-    expect(parseAiRequest({ ...draft, choices: [" Apple ", " Pear "] })).toEqual(draft);
+  it("accepts drafts while preserving submitted prompt and choice bytes", () => {
+    const bytes = { ...draft, prompt: "  Which snack?\n", choices: [" Apple ", " Pear "] };
+    expect(parseAiRequest(bytes)).toEqual(bytes);
     expect(parseAiRequest({ kind: "matchup", teamIds: ["1", "10"] })).toEqual({ kind: "matchup", teamIds: ["1", "10"] });
   });
-  it.each([null, [], {}, { ...draft, userId: "spoof" }, { ...draft, model: "other" }, { ...draft, apiKey: "synthetic" }, { ...draft, url: "https://evil.example" }, { ...draft, headers: {} }, { ...draft, tools: [] }, { ...draft, input: [] }, { ...draft, choices: ["Yes", "yes"] }, { ...draft, choices: ["Ａ", "A"] }, { ...draft, choices: ["one"] }, { ...draft, choices: Array(9).fill("one") }, { ...draft, choices: [true, "no"] }, { ...draft, prompt: "" }, { ...draft, prompt: "x".repeat(2001) }, { ...draft, choices: ["x".repeat(121), "two"] }, { ...draft, prompt: "bad\0prompt" }, { kind: "matchup", teamIds: ["1", "1"] }, { kind: "matchup", teamIds: ["11", "1"] }, { kind: "matchup", teamIds: [1, 2] }])("rejects malformed/transport fields %#", value => expect(parseAiRequest(value)).toBeNull());
+  it.each([null, [], {}, { ...draft, userId: "spoof" }, { ...draft, model: "other" }, { ...draft, apiKey: "synthetic" }, { ...draft, url: "https://evil.example" }, { ...draft, headers: {} }, { ...draft, tools: [] }, { ...draft, input: [] }, { ...draft, choices: ["Yes", "yes"] }, { ...draft, choices: ["Ａ", "A"] }, { ...draft, choices: ["one"] }, { ...draft, choices: Array(9).fill("one") }, { ...draft, choices: [true, "no"] }, { ...draft, prompt: "" }, { ...draft, prompt: "x".repeat(AI_LIMITS.promptChars + 1) }, { ...draft, choices: ["x".repeat(121), "two"] }, { ...draft, prompt: "bad\0prompt" }, { kind: "matchup", teamIds: ["1", "1"] }, { kind: "matchup", teamIds: ["11", "1"] }, { kind: "matchup", teamIds: [1, 2] }])("rejects malformed/transport fields %#", value => expect(parseAiRequest(value)).toBeNull());
   it("bounds streamed UTF-8 bytes regardless of Content-Length", async () => {
-    await expect(readAiBody(request({ ...draft, prompt: "😀".repeat(2100) }))).rejects.toThrow();
+    await expect(readAiBody(request({ ...draft, prompt: "😀".repeat(Math.ceil(AI_LIMITS.bodyBytes / 4)) }))).rejects.toThrow();
     await expect(readAiBody(request(draft, { "content-length": String(AI_LIMITS.bodyBytes + 1) }))).rejects.toThrow();
     await expect(readAiBody(request(draft, { "content-type": "text/plain" }))).rejects.toThrow();
     await expect(readAiBody(request(draft, { "content-encoding": "gzip" }))).rejects.toThrow();
