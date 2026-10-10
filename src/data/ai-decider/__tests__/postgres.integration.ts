@@ -100,6 +100,29 @@ afterAll(async () => {
 });
 
 describe("actual PostgreSQL provider-session admission", () => {
+  it("retains prior counters and admits all ten current verified league principals without expanding the global spend cap", async () => {
+    const state = emptyBudgetState(NOW); state.requests = 123; state.tokens = AI_BUDGET.globalTokensDay - 1000;
+    for (let n = 11; n <= 20; n++) state.users[identity(n).userId] = {
+      day: "2026-10-19", hour: "2026-10-19T07", requests: n, hourly: n,
+      denied: 2, signals: 1, lastSeen: NOW - 60000, recent: [NOW - 60000],
+    };
+    await updateState(state);
+    for (let n = 1; n <= 10; n++) {
+      const s = store(), r = await s.reserve(providerPrincipal(n), fingerprint(n), 100, NOW);
+      if (r.status !== "reserved") throw new Error("Expected current verified principal admission");
+      await s.finish(r.leaseId, 30, false, false, NOW);
+    }
+    const result = (await control()).state;
+    expect(Object.keys(result.users)).toHaveLength(AI_BUDGET.retainedUserCapacity);
+    for (const [id, counter] of Object.entries(state.users)) expect(result.users[id]).toEqual(counter);
+    expect(result.requests).toBe(133); expect(result.tokens).toBe(AI_BUDGET.globalTokensDay);
+    expect((await store().reserve(providerPrincipal(), fingerprint(100), 100, NOW)).status).toBe("rate_limited");
+    expect((await control()).state.tokens).toBe(AI_BUDGET.globalTokensDay);
+    const before = await control();
+    await expect(store().reserve(providerPrincipal(11), fingerprint(101), 100, NOW)).rejects.toThrow("state_unavailable");
+    expect(await control()).toEqual(before);
+  });
+
   it("preserves one UUID budget across legacy and provider reservations", async () => {
     const s = store(), legacy = await s.reserve(principal(), fingerprint(1), 100, NOW);
     if (legacy.status !== "reserved") throw new Error("Expected reservation");
@@ -160,6 +183,16 @@ describe("actual PostgreSQL provider-session admission", () => {
 describe("actual stable weekly job admission", () => {
   const operator = (auth: "legacy" | "friends" = "legacy"): AiWeeklyJobIdentity => ({ kind: "weekly_job", userId: principal().userId, auth });
   const jobStore = (auth: "legacy" | "friends" = "legacy") => new AiDeciderStore(new PostgresAiPersistence(db, operator(auth)));
+  it("keeps a configured retired weekly principal unauthorized despite its preserved counter record", async () => {
+    const retired: AiWeeklyJobIdentity = { kind: "weekly_job", userId: identity(11).userId, auth: "friends" };
+    const state = emptyBudgetState(NOW); state.requests = 3; state.tokens = 1000;
+    state.users[retired.userId] = { day: "2026-10-19", hour: "2026-10-19T07", requests: 3, hourly: 3, denied: 0, signals: 0, lastSeen: NOW };
+    await updateState(state);
+    const s = new AiDeciderStore(new PostgresAiPersistence(db, retired)), before = await control();
+    expect(await s.persistence.authorizeWeeklyOperator(retired)).toBe(false);
+    await expect(s.reserve(retired, fingerprint(), 100, NOW, true)).rejects.toThrow("state_unavailable");
+    expect(await control()).toEqual(before);
+  });
   it.each(["legacy", "friends"] as const)("uses the configured stable app UUID independently of personal sessions (%s)", async auth => {
     await pool.query("DELETE FROM sessions"); await pool.query("DELETE FROM auth_session");
     const s = jobStore(auth), job = operator(auth);

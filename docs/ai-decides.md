@@ -133,7 +133,14 @@ Legacy completed-fingerprint entries remain valid state, expire normally and
 no longer block calls; new reservations do not add them. Expired entries compact
 on the next reservation, so idle
 systems may physically retain expired entries longer. Storage stays bounded by
-ten accounts, two leases and at most 100 fingerprints. Immutable weekly facts
+twenty retained app-UUID counter records, two leases and at most 100 fingerprints.
+This allows one complete ten-account rotation without removing unexpired old
+counters or blocking ten fresh league identities. It changes storage capacity,
+not membership: atomic admission still requires a current linked, verified
+account with a valid league team in provider mode. Retired identities gain no
+authority from retained counters. More than one complete account rotation within
+the seven-day retention period needs coordinated capacity review; overflow and
+corrupt state still fail closed. Immutable weekly facts
 and outcomes are retained for season review; they contain no custom user prompt.
 
 The fixed server provider client emits one JSON `goat_ai_decisions_provider_receipt`
@@ -250,6 +257,11 @@ one-to-one account mapping and verified provider account; failure never uses the
 legacy branch. Interactive/manual calls retain the existing exact session CAS.
 The per-user counter key is the same stable UUID for all paths, preserving limits
 through auth cutover. No session/hash/token/key is persisted in budget state.
+After an account reset creates new app UUIDs, the configured weekly principal
+must be reviewed after the owner reclaims their team. The retired principal is
+not reused: new paid weekly admission waits for the newly claimed app UUID's
+active provider link, verified email and valid team, then an explicit private
+setting/release update by root. Cached public weeks remain readable throughout.
 Missing/corrupt/disabled controls and membership failures fail closed. A budget
 or provider failure never resets or refunds counters. Both feature gates and the
 kill switch continue to govern the job. No authentication runtime, schema,

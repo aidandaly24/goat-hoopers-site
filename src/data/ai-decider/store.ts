@@ -7,7 +7,8 @@ import { isRecord, uuidValid } from "./validation";
 import { aiDataDeadline } from "./deadline";
 
 /** Shared spending, active-request and rolling burst guards; no ordinary cooldown. */
-export const AI_BUDGET = Object.freeze({ userBurst: 20, burstMs: 60000, globalTokensDay: 100000, concurrent: 2, leaseMs: 60000, retentionMs: 7 * 86400000 });
+// Counter storage covers ten current managers plus one retained account generation.
+export const AI_BUDGET = Object.freeze({ retainedUserCapacity: 20, userBurst: 20, burstMs: 60000, globalTokensDay: 100000, concurrent: 2, leaseMs: 60000, retentionMs: 7 * 86400000 });
 export type AiLegacyIdentity = { kind: "legacy"; userId: string; tokenHash: string };
 /** Only a secret-authenticated server cron may construct this fixed app principal. */
 export type AiWeeklyJobIdentity = { kind: "weekly_job"; userId: string; auth: "legacy" | "friends" };
@@ -48,7 +49,7 @@ const dateValid = (v: unknown) => typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/
 
 /** Corrupt/missing counters must never silently reset a spending budget. */
 export function validBudgetState(v: unknown): v is AiBudgetState {
-  if (!isRecord(v) || v.version !== 1 || !dateValid(v.day) || !count(v.requests) || !count(v.tokens) || !isRecord(v.users) || Object.keys(v.users).length > 10 || !Array.isArray(v.leases) || v.leases.length > AI_BUDGET.concurrent || !Array.isArray(v.duplicates) || v.duplicates.length > 100) return false;
+  if (!isRecord(v) || v.version !== 1 || !dateValid(v.day) || !count(v.requests) || !count(v.tokens) || !isRecord(v.users) || Object.keys(v.users).length > AI_BUDGET.retainedUserCapacity || !Array.isArray(v.leases) || v.leases.length > AI_BUDGET.concurrent || !Array.isArray(v.duplicates) || v.duplicates.length > 100) return false;
   for (const [id, u] of Object.entries(v.users)) {
     if (!uuidValid(id) || !isRecord(u) || !dateValid(u.day) || typeof u.hour !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}$/.test(u.hour) || ![u.requests, u.hourly, u.denied, u.signals, u.lastSeen].every(count)) return false;
     if (u.recent !== undefined && (!Array.isArray(u.recent) || u.recent.length > AI_BUDGET.userBurst || !u.recent.every((time, i, times) => count(time) && (i === 0 || time >= times[i - 1])))) return false;
@@ -97,7 +98,7 @@ export class AiDeciderStore {
       user.recent = (user.recent ?? []).filter(time => time > now - AI_BUDGET.burstMs);
       user.lastSeen = now;
       state.users[identity.userId] = user;
-      if (Object.keys(state.users).length > 10) throw new Error("state_unavailable");
+      if (Object.keys(state.users).length > AI_BUDGET.retainedUserCapacity) throw new Error("state_unavailable");
       let denial: AiReservation | null = null;
       const duplicate = state.leases.find(l => l.fingerprint === fingerprint && (shared || l.shared || l.userId === identity.userId));
       const ownLease = state.leases.find(l => l.userId === identity.userId);
