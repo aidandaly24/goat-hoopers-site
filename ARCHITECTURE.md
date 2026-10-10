@@ -757,11 +757,23 @@ every option probability, independent API confidence and frozen snapshot metadat
 `src/data/ai-decider/` owns strict validation, the fixed server-only Decisions
 adapter, current-session validation, durable Postgres CAS budgets and immutable
 weekly prediction/outcome storage. Dependencies are injected for offline tests.
+The explicit `kind:"league"` interactive draft maps two choice names to two
+roster IDs, verified again against current canonical server names.
+`loadAiLeagueRosterContext` in `league.ts` reuses existing source caches only
+after validated identity. The pure bounded projection/prompt in
+`ai-decider/roster-context.ts` sends both complete current rosters, known
+names/ages and available observed current/prior fantasy stats under league scoring.
+Unknown fields remain null. Retrieval time, unknown source update time, cache
+revalidation/stale-fallback caveats and coverage appear in separate
+`AiLeagueContextMetadata`; weekly snapshots remain immutable and unchanged.
+Plain custom text receives no automatic league facts, and the existing request,
+input-token and spending limits apply without truncating oversized evidence.
 `POST /api/ai-decides` delegates bounded same-origin drafts to that service;
 anonymous users can build drafts without provider calls. `GET` and
 `getAiDecidesData()` read cached weekly picks only. League fetch/preparation stays
 in `league.ts`; the new raw starter/reserve/taxi/slot/leg fields are optional and
-do not change existing transforms. No full player directory is requested.
+do not change existing transforms. Weekly preparation/public cache reads request
+no player directory; only the explicit authenticated roster drill-down resolves names.
 
 The explicit pre-week preparation/generation operation seals one snapshot,
 uses a versioned prompt/model and saves all five choice distributions in one

@@ -3,7 +3,7 @@ import { afterEach, beforeEach, expect, it, vi } from "vitest";
 const mocks = vi.hoisted(() => ({ legacy: vi.fn(() => null), store: vi.fn(() => null),
   provider: vi.fn(async () => null), cookies: vi.fn(async () => ({ get: () => ({ value: "a".repeat(64) }) })) }));
 vi.mock("../../arcade", () => ({ getGameStore: mocks.legacy }));
-vi.mock("../../league", () => ({ loadAiWeekContext: vi.fn(), loadAiPublicationState: vi.fn() }));
+vi.mock("../../league", () => ({ loadAiWeekContext: vi.fn(), loadAiPublicationState: vi.fn(), loadAiLeagueRosterContext: vi.fn() }));
 vi.mock("../store", () => ({ getAiDeciderStore: mocks.store, validAiIdentity: vi.fn() }));
 vi.mock("../../friends-auth/runtime", () => ({ getProviderIdentity: mocks.provider }));
 vi.mock("next/headers", () => ({ cookies: mocks.cookies }));
