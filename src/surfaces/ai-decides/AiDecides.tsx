@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { AiDecideRequest, AiDecideResponse, AiDecidesData, AiWeeklySlate } from "@/domain/ai-decider";
+import type { AiDecideResponse, AiDecidesData, AiWeeklySlate } from "@/domain/ai-decider";
 import { AiWeekly, ChoiceLabel, ProbabilityRows, type AiTeam } from "./AiWeekly";
-import { comparisonLabel, draftError, failureHeading, percent, periodLabel, postDecision, postWeeklyPreviews, readDecisionResponse, readWeeklyPublishResponse, timestamp, type DecisionTransport, type WeeklyTransport } from "./client";
+import { comparisonLabel, draftError, failureHeading, leagueContextLines, percent, periodLabel, postDecision, postWeeklyPreviews, readDecisionResponse, readWeeklyPublishResponse, timestamp, type DecisionTransport, type WeeklyTransport } from "./client";
+import { decisionDraft, draftContextLabel } from "./draft";
 import { createPickerHistory } from "./pickerHistory";
 import { restorePickerFocus } from "./pickerFocus";
 import styles from "./AiDecides.module.css";
@@ -51,6 +52,7 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
   const pickerHistory = useRef<ReturnType<typeof createPickerHistory<Picker>> | null>(null);
   const canRun = !authUnavailable && signedIn && data.availability.status === "available";
   const weekly = savedWeekly?.source === data.weekly ? savedWeekly.slate : data.weekly;
+  const draft = decisionDraft(prompt, choices, teams, matchup);
 
   useEffect(() => () => { sequence.current++; controller.current?.abort(); publicationController.current?.abort(); }, []);
   useEffect(() => {
@@ -125,7 +127,7 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
     const error = draftError(prompt, choices); setValidation(error ?? "");
     if (error) { question.current?.focus(); return; }
     if (!canRun || state.status === "pending" || controller.current) return;
-    const request: AiDecideRequest = matchup ? { kind: "matchup", teamIds: matchup } : { kind: "custom", prompt: prompt.trim(), choices: choices.map(c => c.trim()) };
+    const request = draft;
     const key = JSON.stringify(request);
     const id = ++sequence.current, abort = new AbortController(); controller.current = abort; setNotice(null); setState({ status: "pending" });
     function complete(response: AiDecideResponse) {
@@ -139,7 +141,7 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
     }
     try {
       const response = await decide(request, abort.signal);
-      const verified = readDecisionResponse(response, request.kind === "matchup" ? request.teamIds : request.choices);
+      const verified = readDecisionResponse(response, request.kind === "matchup" ? request.teamIds : request.choices, request);
       complete(verified);
     } catch {
       complete({ status: "unavailable", code: "connection", message: "The request could not return a result. Your draft is preserved." });
@@ -179,7 +181,7 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
         <p className={styles.intro}>Start with a preset, or ask your own question.</p>
         <div className={styles.presets} role="group" aria-label="Question presets"><button type="button" aria-pressed={mode === "wins"} disabled={teams.length < 2} onClick={e => openPicker("wins", e.currentTarget)}>Who wins?</button><button type="button" aria-pressed={mode === "edge"} disabled={teams.length < 2} onClick={e => openPicker("edge", e.currentTarget)}>Who has the edge?</button><button type="button" aria-pressed={mode === "custom"} onClick={reset}>Custom question +</button></div>
         <label htmlFor="ai-question">The question</label><textarea ref={question} id="ai-question" value={prompt} onChange={e => editPrompt(e.target.value)} maxLength={2000} rows={2} placeholder="What should we decide?" />
-        <p className={styles.helper}>{matchup ? "Hypothetical pairing from verified weekly inputs. Edit to make it custom." : "Custom uses only your prompt and choices; no live research."}</p>
+        <p id="ai-draft-context" className={styles.helper}>{draftContextLabel(draft)}</p>
         <div className={styles.choicesHeading}><strong>The choices</strong><span>{choices.length} / 8</span></div>
         <div>{choices.map((choice, index) => <div className={styles.option} key={index}>
           <span className={styles.optionNumber} aria-hidden="true">0{index + 1}</span><label className={styles.sr} htmlFor={`ai-choice-${index}`}>Choice {index + 1}</label><input id={`ai-choice-${index}`} value={choice} maxLength={120} placeholder="Add your choice" onChange={e => editChoices(choices.map((c, i) => i === index ? e.target.value : c))} />
@@ -194,7 +196,7 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
       <aside ref={resultArea} className={styles.resultArea} aria-label="Personal experiment">
         <div className={styles.resultHeading}><h2>Your result</h2><button type="button" className={styles.quiet} aria-pressed={paused} disabled={reduced} onClick={() => setPaused(v => !v)}>{reduced ? "Reduced motion" : paused ? "Resume motion" : "Pause motion"}</button></div>
         <div aria-live="polite" aria-atomic="true" className={styles.result} key={replay}>
-          {state.status === "idle" ? <><span className={styles.resultStatus}>Your experiment · private draft</span><h3>Make a call.</h3><p>Your choice and every option probability will appear here.</p></> : state.status === "pending" ? <><span className={styles.resultStatus}>Request pending</span><h3>Weighing your options.</h3><p>Reset or edit to cancel this draft.</p><div className={styles.pendingTrack} aria-hidden="true"><i /></div></> : state.status === "ready" ? <><>{notice && <div className={styles.attemptNotice}><strong>{failureHeading(notice)}</strong><FailureDetails failure={notice} /></div>}<span className={styles.resultStatus}>{notice ? "Previous result · unchanged draft" : "Model choice"}</span></><h3><ChoiceLabel choice={state.result.choice} matchup={resultMatchup} /></h3><ProbabilityRows result={state.result} matchup={resultMatchup} /><div className={styles.confidence}><strong>API confidence</strong><span>{percent(state.result.confidence)}</span></div><p className={styles.helper}>Separate from the option probabilities.</p><p className={styles.provenance}>{state.result.snapshot === null ? "Model estimate, not measured evidence" : state.result.probabilityLabel}. Percentages are rounded for display.</p><details className={styles.source}><summary>Source &amp; model details</summary><p>{state.result.model} · {state.result.promptVersion}<br />{state.result.snapshot ? `Snapshot captured ${timestamp(state.result.snapshot.capturedAt)}` : "Custom text only · no live research or league facts supplied"}</p><ul>{state.result.evidence.map((e, i) => <li key={i}>{e}</li>)}</ul>{state.result.snapshot && <p>{comparisonLabel(state.result.snapshot) && <>{comparisonLabel(state.result.snapshot)}<br /></>}Cutoff {timestamp(state.result.snapshot.cutoffAt)}<br />{periodLabel(state.result.snapshot)}<br />Prior stats: {state.result.snapshot.statsSeason} · Scoring mode: {state.result.snapshot.scoringMode} · {state.result.snapshot.baselineVersion}</p>}</details><button type="button" className={styles.quiet} disabled={paused || reduced} onClick={() => setReplay(v => v + 1)}>Replay bars</button></> : <><span className={styles.resultStatus}>{state.code === "duplicate" ? "Active request" : state.status.replaceAll("_", " ")}</span><h3>{failureHeading(state)}</h3><FailureDetails failure={state} /><button type="button" onClick={() => question.current?.focus()}>Edit draft</button></>}
+          {state.status === "idle" ? <><span className={styles.resultStatus}>Your experiment · private draft</span><h3>Make a call.</h3><p>Your choice and every option probability will appear here.</p></> : state.status === "pending" ? <><span className={styles.resultStatus}>Request pending</span><h3>Weighing your options.</h3><p>Reset or edit to cancel this draft.</p><div className={styles.pendingTrack} aria-hidden="true"><i /></div></> : state.status === "ready" ? <><>{notice && <div className={styles.attemptNotice}><strong>{failureHeading(notice)}</strong><FailureDetails failure={notice} /></div>}<span className={styles.resultStatus}>{notice ? "Previous result · unchanged draft" : "Model choice"}</span></><h3><ChoiceLabel choice={state.result.choice} matchup={resultMatchup} /></h3><ProbabilityRows result={state.result} matchup={resultMatchup} /><div className={styles.confidence}><strong>API confidence</strong><span>{percent(state.result.confidence)}</span></div><p className={styles.helper}>Separate from the option probabilities.</p><p className={styles.provenance}>{state.result.snapshot === null ? "Model estimate, not measured evidence" : state.result.probabilityLabel}. Percentages are rounded for display.</p><details className={styles.source}><summary>Source &amp; model details</summary><p>{state.result.model} · {state.result.promptVersion}<br />{state.result.snapshot ? `Snapshot captured ${timestamp(state.result.snapshot.capturedAt)}` : state.result.leagueContext ? "Full-roster league context supplied" : "Custom text only · no live research or league facts supplied"}</p>{state.result.leagueContext && <ul>{leagueContextLines(state.result.leagueContext).map((line, i) => <li key={i}>{line}</li>)}</ul>}<ul>{state.result.evidence.map((e, i) => <li key={i}>{e}</li>)}</ul>{state.result.snapshot && <p>{comparisonLabel(state.result.snapshot) && <>{comparisonLabel(state.result.snapshot)}<br /></>}Cutoff {timestamp(state.result.snapshot.cutoffAt)}<br />{periodLabel(state.result.snapshot)}<br />Prior stats: {state.result.snapshot.statsSeason} · Scoring mode: {state.result.snapshot.scoringMode} · {state.result.snapshot.baselineVersion}</p>}</details><button type="button" className={styles.quiet} disabled={paused || reduced} onClick={() => setReplay(v => v + 1)}>Replay bars</button></> : <><span className={styles.resultStatus}>{state.code === "duplicate" ? "Active request" : state.status.replaceAll("_", " ")}</span><h3>{failureHeading(state)}</h3><FailureDetails failure={state} /><button type="button" onClick={() => question.current?.focus()}>Edit draft</button></>}
         </div>
       </aside>
     </section>
