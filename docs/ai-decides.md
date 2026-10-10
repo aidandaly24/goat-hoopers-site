@@ -397,6 +397,52 @@ Root owns the final saved-five-picks and custom-result verification after review
 plus private scheduler setup. Named league mode and full schedule evidence remain
 explicit limitations of lineup previews. Auth cutover/reset is outside this task.
 
+## One-time Week 1 replacement
+
+Issue #165 separately owns the explicit rerun request. The production source is
+default-off: only server setting `GOAT_AI_WEEK1_REFRESH_ENABLED=1` enables this
+path, independent of the existing key, feature/control gates and spending caps.
+`POST /api/ai-decides/weekly/refresh` accepts only same-origin empty JSON (1,024
+streamed bytes) from a currently validated manager session. It accepts no week,
+identity, dates, prompt, evidence, credential or provider settings. Cron and
+normal publication never start this replacement. The only supported target is
+Sleeper league 1387473752807190528, 2026/week1 while phase is preseason/leg0.
+The rerun route explicitly sets `fetchCache="force-no-store"` so its league,
+roster, matchup and prior-stat reads bypass Next's persistent source caches.
+Normal publication/cache helpers are unchanged. Tests execute the installed
+Next fetch implementation with a synthetic stored response for both300/86400
+second helper intervals; no real upstream call occurs. `capturedAt` records
+retrieval time, not a verified source update timestamp.
+
+The reviewed original hash is fixed in `refresh-policy.ts`. Its immutable
+`ai_decider_weeks` row remains the complete archive, including input, manifest,
+prepared baseline and all original results. A second row at
+`1387473752807190528:2026:1:refresh:1` seals the new complete evidence. An atomic
+INSERT checks the original, no outcomes, enabled control and current session
+membership; only its winner can enter the unchanged paid CAS evaluator. The
+claim is never removed or retried, including budget denial, refusal, timeout or
+unknown spend. No reset or migration is required.
+
+Public reads keep the original throughout pending/failed work. Completion checks
+all five validated distributions, unchanged evidence/snapshot, fresh source
+window, active session and control again before storing one immutable result.
+Only that complete replacement becomes public while the flag is enabled.
+The selected complete public snapshot is read once; a SQL existence check
+validates the archived original hash without returning its duplicate full input.
+Removing the flag and using the ordinary reviewed deployment restores the
+original, leaving both complete histories available. No result or trigger is
+rewritten or deleted. `AiDecidesData.week1Refresh` is optional and reports
+available/sealed/published/unavailable for an explicitly owned manager control;
+`AiWeeklyPublishResponse` remains the run response type. Sealed failures require
+review, not an automatic paid retry.
+
+Release handoff: independent exact-head source review, normal CI including the
+existing disposable PostgreSQL job, and compatible explicit manager UI must pass
+before setting activation. Then exactly one supported genuine manager click may
+run the requested batch. Do not extract session tokens, impersonate an account,
+read/export credentials, change scheduler settings or reset counters. No paid
+implementation calls or live settings/data changes occurred in this source task.
+
 ## Complexity decision
 
 Boundary: ten friends, one monolith and existing Postgres, launch horizon.
@@ -411,3 +457,12 @@ coverage are transitional complexity; verified mode/calendar/schedule and later
 outcome calibration remain unknowns. One purpose-built runner reuses the existing
 store and paid guards. No generic framework, new infrastructure or auth rewrite
 is needed to review this feature.
+For the one-shot replacement, retaining the original, admitting one paid attempt
+and publishing all five together are essential. The existing immutable row and
+serverless overlap are imported constraints. An extra archive service, mutable
+history or migration would add accidental complexity: one additional protected
+row suffices. The default-off setting is a bounded transitional control owned by
+root; keeping the flag enabled retains the replacement as public, while disabling
+it restores the original. The sealed attempt prevents more paid reruns. Manager UI and
+supported session readiness remain separate release checks. Neither future
+recurring refreshes nor arbitrary-week revisions are part of this implementation.

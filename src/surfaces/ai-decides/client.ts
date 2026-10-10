@@ -1,4 +1,4 @@
-import { AI_LEAGUE_ROSTER_PROMPT_VERSION, AI_VISIBLE_LEAGUE_PROMPT_VERSION, AI_PROMPT_MAX_CHARS, AI_PROBABILITY_LABEL, type AiContextPreviewRequest, type AiContextPreviewResponse, type AiDecideRequest, type AiDecideResponse, type AiLeagueContextMetadata, type AiSnapshotMetadata, type AiWeeklyPublishResponse } from "@/domain/ai-decider";
+import { AI_LEAGUE_ROSTER_PROMPT_VERSION, AI_VISIBLE_LEAGUE_PROMPT_VERSION, AI_PROMPT_MAX_CHARS, AI_PROBABILITY_LABEL, type AiContextPreviewRequest, type AiContextPreviewResponse, type AiDecideRequest, type AiDecideResponse, type AiLeagueContextMetadata, type AiSnapshotMetadata, type AiWeeklyPublishResponse, type AiWeeklySlate } from "@/domain/ai-decider";
 import { choiceKey } from "./draft";
 
 export type DecisionTransport = (request: AiDecideRequest, signal: AbortSignal) => Promise<AiDecideResponse>;
@@ -112,6 +112,29 @@ export const postWeeklyPreviews: WeeklyTransport = async signal => {
   const response = await fetch("/api/ai-decides/weekly", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: "{}", signal, cache: "no-store" });
   const value: unknown = await response.json();
   if (!response.ok && object(value) && value.status === "ready") return weeklyUnavailable();
+  return readWeeklyPublishResponse(value);
+};
+
+const refreshUnavailable = (): AiWeeklyPublishResponse => ({ status: "unavailable", code: "invalid_response", message: "No verified five-matchup replacement was returned. Reload to check the one-time attempt state." });
+
+/** Bind a complete saved replacement to the currently displayed Week 1 pairings. */
+export function readWeek1RefreshResponse(value: unknown, expected: AiWeeklySlate): AiWeeklyPublishResponse {
+  const response = readWeeklyPublishResponse(value);
+  if (response.status !== "ready") return response;
+  const weekly = response.weekly;
+  if (expected.status !== "ready" || expected.week !== 1 || weekly.week !== 1 || weekly.leagueId !== expected.leagueId || weekly.season !== expected.season || expected.matchups.length !== 5 || new Set(expected.matchups.map(p => p.matchupId)).size !== 5 || new Set(expected.matchups.flatMap(p => p.teamIds)).size !== 10) return refreshUnavailable();
+  if (!weekly.matchups.every(row => {
+    const pair = expected.matchups.find(p => p.matchupId === row.matchupId);
+    return pair && pair.teamIds[0] === row.teamIds[0] && pair.teamIds[1] === row.teamIds[1];
+  })) return refreshUnavailable();
+  return response;
+}
+
+/** One deliberate manager action. A lost response may already have sealed the attempt. */
+export const postWeek1Refresh: WeeklyTransport = async signal => {
+  const response = await fetch("/api/ai-decides/weekly/refresh", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: "{}", signal, cache: "no-store" });
+  const value: unknown = await response.json();
+  if (!response.ok && object(value) && value.status === "ready") return refreshUnavailable();
   return readWeeklyPublishResponse(value);
 };
 

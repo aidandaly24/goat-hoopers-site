@@ -1,6 +1,6 @@
 import "server-only";
 import { createHash } from "node:crypto";
-import { AI_DECISION_MODEL, AI_LINEUP_PREVIEW_PROMPT_VERSION, AI_WEEKLY_PROMPT_VERSION, type AiBaseline, type AiGenerationManifest, type AiSnapshotMetadata, type AiWeeklyInput, type AiWeeklyOutcome, type AiWeeklyPick, type AiWeeklySlate } from "@/domain/ai-decider";
+import { AI_DECISION_MODEL, AI_LINEUP_PREVIEW_PROMPT_VERSION, AI_WEEKLY_PROMPT_VERSION, type AiBaseline, type AiDecisionResult, type AiGenerationManifest, type AiSnapshotMetadata, type AiWeeklyInput, type AiWeeklyOutcome, type AiWeeklyPick, type AiWeeklySlate } from "@/domain/ai-decider";
 import { exactKeys, isRecord, teamIdValid } from "./validation";
 import { makePayload, type DecisionSpec } from "./provider";
 import type { AiPersistence, AiStoredWeek } from "./store";
@@ -155,7 +155,18 @@ export function weeklyDecision(input: AiWeeklyInput, slate: AiWeeklySlate, safet
   return { payload: makePayload(canonicalJson({ promptVersion: manifest.promptVersion, snapshot }), specs, safetyIdentifier), specs, eligible };
 }
 
-/** Cache reads cannot generate. Stale predictions are labeled and retain their frozen evidence. */
+/** Apply validated choices without generating prose or changing supplied evidence. */
+export function completeWeeklySlate(input: AiWeeklyInput, prepared: AiWeeklySlate, eligible: { matchupId: string }[], results: (AiDecisionResult | null)[], generatedAt: string): AiWeeklySlate {
+  const matchups = prepared.matchups.map(m => {
+    const n = eligible.findIndex(e => e.matchupId === m.matchupId), result = n < 0 ? null : results[n];
+    return result ? { ...m, status: "ready" as const, result, message: input.preview ? "Saved experimental lineup-strength preview; missing facts remain unknown." : "Cached experimental AI pick, based on the frozen supplied evidence." } : { ...m, message: n < 0 ? m.message : "The model declined this matchup." };
+  });
+  const status = matchups.every(m => m.status === "ready") ? "ready" : "unavailable";
+  const message = status === "ready" ? (input.preview ? `${input.phase === "pre" ? "Preseason" : "Upcoming-week"} lineup previews: five saved picks with explicit prior-stat coverage. Model probabilities are not calibrated sports odds.` : "Five cached experimental picks. Model probabilities are not calibrated sports odds.") : "Some matchups are unavailable; missing evidence is not replaced with a guess.";
+  return { ...prepared, generatedAt, matchups, status, message };
+}
+
+/** Cache reads cannot generate. Stale predictions retain their frozen evidence. */
 export function cachedWeek(record: AiStoredWeek, now: number, sourceLeg?: number): AiWeeklySlate {
   if (!validGenerationManifest(record.manifest) || !validWeeklyInput(record.input) || record.key !== weekKey(record.input) || record.hash !== weekHash(record.input, record.manifest)) throw new Error("weekly_cache");
   const prepared = prepareWeeklySlate(record.input, Date.parse(record.input.capturedAt), record.manifest);

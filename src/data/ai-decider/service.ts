@@ -6,7 +6,8 @@ import type { getProviderIdentity } from "../friends-auth/runtime";
 import { AI_LIMITS, parseAiRequest, teamIdValid, uuidValid } from "./validation";
 import { callWithTimeout, customDecision, decodeDecision, inputTokenReservation, readDecisionUsage, type DecisionsClient, type DecisionPayload, type DecisionSpec } from "./provider";
 import { AiDeciderStore, validAiIdentity, type AiIdentity, type AiStoredWeek, type AiWeeklyJobIdentity } from "./store";
-import { cachedWeek, canonicalJson, currentGenerationManifest, manifestForInput, preparePlaygroundMatchup, prepareWeeklySlate, validWeeklyInput, weekHash, weekKey, weeklyDecision, weeklyReadiness } from "./weekly";
+import { cachedWeek, canonicalJson, completeWeeklySlate, currentGenerationManifest, manifestForInput, preparePlaygroundMatchup, prepareWeeklySlate, validWeeklyInput, weekHash, weekKey, weeklyDecision, weeklyReadiness } from "./weekly";
+import type { AiWeek1RefreshPolicy } from "./refresh-policy";
 import { aiDataDeadline } from "./deadline";
 import { leagueRosterDecision } from "./roster-context";
 import { visibleRosterDecision } from "./context-preview";
@@ -25,11 +26,12 @@ export type AiRuntime = {
   /** Fresh public NBA state rechecks the source-leg publication boundary. */
   getSourceState?: () => Promise<{ season: string; leg: number; phase: string }>;
   weeklyOperator?: AiWeeklyJobIdentity | null;
+  week1Refresh?: AiWeek1RefreshPolicy;
   timeoutMs?: number;
 };
 export const failure = (status: Exclude<AiDecideResponse["status"], "ready">, code: string, message: string, retryAfterSeconds?: number): Exclude<AiDecideResponse, { status: "ready" }> => ({ status, code, message, ...(retryAfterSeconds === undefined ? {} : { retryAfterSeconds }) });
 
-async function predictionOpen(input: AiWeeklyInput, runtime: AiRuntime): Promise<boolean> {
+export async function predictionOpen(input: AiWeeklyInput, runtime: AiRuntime): Promise<boolean> {
   if (!input.preview) return !!input.startsAt && runtime.now() < Date.parse(input.startsAt);
   if (!runtime.getSourceState) return false;
   const source = await aiDataDeadline(runtime.getSourceState(), 3000);
@@ -60,7 +62,7 @@ export async function availability(runtime: AiRuntime): Promise<{ status: "avail
   } catch { return { status: "unavailable", code: "state_unavailable", message: "AI Decides usage controls are unavailable. Try later." }; }
 }
 
-async function evaluate(runtime: AiRuntime, identity: AiIdentity, payload: DecisionPayload, specs: DecisionSpec[], fingerprint: string, maxTokens: number, shared = false): Promise<{ results: (AiDecisionResult | null)[] } | AiDecideResponse> {
+export async function evaluate(runtime: AiRuntime, identity: AiIdentity, payload: DecisionPayload, specs: DecisionSpec[], fingerprint: string, maxTokens: number, shared = false): Promise<{ results: (AiDecisionResult | null)[] } | AiDecideResponse> {
   if (!runtime.client || !runtime.store) return failure("unavailable", "provider_unconfigured", "AI Decides is not configured yet.");
   let reserved: number;
   try { reserved = inputTokenReservation(payload, maxTokens); } catch { return failure("invalid", "input_limit", "This request exceeds the input budget. Shorten the prompt or choices."); }
@@ -182,13 +184,7 @@ export async function generateWeeklyPicksAsIdentity(input: AiWeeklyInput, identi
     try {
       if (!(await predictionOpen(input, runtime))) return failure("unavailable", "weekly_closed", "Generation completed after the prediction window closed.");
     } catch { return failure("unavailable", "source_unavailable", "The completed pick's publication boundary could not be validated."); }
-    completed = { ...completed, generatedAt, matchups: completed.matchups.map(m => {
-      const n = decision.eligible.findIndex(e => e.matchupId === m.matchupId);
-      const result = n < 0 ? null : response.results[n];
-      return result ? { ...m, status: "ready", result, message: input.preview ? "Saved experimental lineup-strength preview; missing facts remain unknown." : "Cached experimental AI pick, based on the frozen supplied evidence." } : { ...m, message: n < 0 ? m.message : "The model declined this matchup." };
-    }) };
-    completed.status = completed.matchups.every(m => m.status === "ready") ? "ready" : "unavailable";
-    completed.message = completed.status === "ready" ? (input.preview ? `${input.phase === "pre" ? "Preseason" : "Upcoming-week"} lineup previews: five saved picks with explicit prior-stat coverage. Model probabilities are not calibrated sports odds.` : "Five cached experimental picks. Model probabilities are not calibrated sports odds.") : "Some matchups are unavailable; missing evidence is not replaced with a guess.";
+    completed = completeWeeklySlate(input, completed, decision.eligible, response.results, generatedAt);
   }
   try {
     await runtime.store.persistence.completeWeek(record.key, record.hash, completed);

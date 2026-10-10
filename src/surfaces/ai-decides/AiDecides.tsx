@@ -9,6 +9,7 @@ import { comparisonLabel, draftError, failureHeading, leagueContextLines, percen
 import { decisionDraft, draftContextLabel, previewIsIntact, recognizedTeamPair } from "./draft";
 import { createPickerHistory } from "./pickerHistory";
 import { restorePickerFocus } from "./pickerFocus";
+import { Week1Refresh } from "./Week1Refresh";
 import styles from "./AiDecides.module.css";
 
 type State = Exclude<AiDecideResponse, { status: "ready" }> | (Extract<AiDecideResponse, { status: "ready" }> & { teamIds?: [string, string] }) | { status: "idle" } | { status: "pending" };
@@ -17,7 +18,7 @@ type Ready = Extract<State, { status: "ready" }>;
 type Picker = { mode: "wins" | "edge"; opener: HTMLElement; ids: [string, string]; path: string };
 
 /** Public surface. The optional transport is an offline fixture seam, never a provider client. */
-export function AiDecides({ data, teams, signedIn, authUnavailable = false, decide = postDecision, publishWeekly = postWeeklyPreviews, loadContext = postContextPreview }: { data: AiDecidesData; teams: AiTeam[]; signedIn: boolean; authUnavailable?: boolean; decide?: DecisionTransport; publishWeekly?: WeeklyTransport; loadContext?: ContextTransport }) {
+export function AiDecides({ data, teams, signedIn, authUnavailable = false, decide = postDecision, publishWeekly = postWeeklyPreviews, loadContext = postContextPreview, refreshWeek1 }: { data: AiDecidesData; teams: AiTeam[]; signedIn: boolean; authUnavailable?: boolean; decide?: DecisionTransport; publishWeekly?: WeeklyTransport; loadContext?: ContextTransport; refreshWeek1?: WeeklyTransport }) {
   const router = useRouter();
   const [prompt, setPrompt] = useState("");
   const [choices, setChoices] = useState(["", ""]);
@@ -210,6 +211,7 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
       <p className={styles.helper}>Generates one shared batch of five previews within the existing model budget. Incomplete attempts need review before retrying.</p>
     </div>}
     <p ref={publicationStatus} tabIndex={-1} className={styles.publicationStatus} role="status" aria-live="polite">{publicationMessage}{publication === "failed" && <> <button type="button" className={styles.quiet} onClick={() => router.refresh()}>Refresh saved picks</button></>}</p>
+    <Week1Refresh metadata={data.week1Refresh} weekly={weekly} signedIn={signedIn} authUnavailable={authUnavailable} canRun={canRun} refresh={refreshWeek1} onReady={slate => setSavedWeekly({ source: data.weekly, slate })} />
     <section className={styles.workspace} aria-labelledby="ai-draft-title">
       <form className={styles.composer} onSubmit={run} noValidate>
         <h2 id="ai-draft-title">Your turn. Make the call.</h2>

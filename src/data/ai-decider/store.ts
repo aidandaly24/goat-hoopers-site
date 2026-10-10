@@ -5,6 +5,8 @@ import { getDb, type Db } from "../db";
 import type { AiGenerationManifest, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
 import { isRecord, uuidValid } from "./validation";
 import { aiDataDeadline } from "./deadline";
+import { refreshStorageKey, WEEK1_REFRESH_KEY, type AiWeek1RefreshPolicy } from "./refresh-policy";
+import { cachedWeek } from "./weekly";
 
 /** Shared spending, active-request and rolling burst guards; no ordinary cooldown. */
 // Counter storage covers ten current managers plus one retained account generation.
@@ -25,7 +27,7 @@ export type AiBudgetState = {
   duplicates: { userId: string; fingerprint: string; expires: number; shared: boolean }[];
 };
 export type AiControl = { enabled: boolean; revision: number; state: AiBudgetState };
-export type AiStoredWeek = { key: string; hash: string; manifest: AiGenerationManifest; input: AiWeeklyInput; slate: AiWeeklySlate; result: AiWeeklySlate | null };
+export type AiStoredWeek = { key: string; hash: string; manifest: AiGenerationManifest; input: AiWeeklyInput; slate: AiWeeklySlate; result: AiWeeklySlate | null; refreshed?: true };
 /** Purpose-built CAS and append-only operations, not a generic storage framework. */
 export type AiPersistence = {
   readControl(): Promise<AiControl | null>;
@@ -33,6 +35,11 @@ export type AiPersistence = {
   authorizeWeeklyOperator(identity: AiWeeklyJobIdentity): Promise<boolean>;
   sealWeek(week: AiStoredWeek): Promise<AiStoredWeek>;
   getWeek(key: string): Promise<AiStoredWeek | null>;
+  getOriginalWeek(key: string): Promise<AiStoredWeek | null>;
+  getWeekRefresh(): Promise<AiStoredWeek | null>;
+  hasWeekRefresh(): Promise<boolean>;
+  claimWeekRefresh(week: AiStoredWeek, identity: AiIdentity): Promise<boolean>;
+  completeWeekRefresh(hash: string, slate: AiWeeklySlate, identity: AiIdentity): Promise<boolean>;
   completeWeek(key: string, hash: string, slate: AiWeeklySlate): Promise<boolean>;
   recordOutcome(key: string, outcome: AiWeeklyOutcome): Promise<boolean>;
 };
@@ -142,7 +149,7 @@ export class AiDeciderStore {
 
 /** Real shared Postgres persistence. CAS guarantees survive cold starts and overlap. */
 export class PostgresAiPersistence implements AiPersistence {
-  constructor(private readonly db: Db, private readonly weeklyOperator?: { userId: string; auth: "legacy" | "friends" }) {}
+  constructor(private readonly db: Db, private readonly weeklyOperator?: { userId: string; auth: "legacy" | "friends" }, private readonly refreshPolicy?: AiWeek1RefreshPolicy) {}
   private execute(statement: SQL) { return aiDataDeadline(this.db.execute(statement)); }
   async readControl(): Promise<AiControl | null> {
     const result = await this.execute(sql`SELECT enabled, revision, state FROM ai_decider_control WHERE id = 'goat-hoopers'`);
@@ -187,9 +194,69 @@ export class PostgresAiPersistence implements AiPersistence {
     return sealed;
   }
   async getWeek(key: string): Promise<AiStoredWeek | null> {
+    if (this.refreshPolicy && key === WEEK1_REFRESH_KEY) {
+      // Only the selected complete snapshot crosses the DB boundary. The original
+      // hash check is inside SQL; no duplicate full archive read on every visit.
+      const result = await this.execute(sql`SELECT week_key,input_hash,generation_manifest,input,prepared_slate,result FROM ai_decider_weeks
+        WHERE week_key=${refreshStorageKey(key)} AND result IS NOT NULL
+          AND EXISTS (SELECT 1 FROM ai_decider_weeks original WHERE original.week_key=${key} AND original.input_hash=${this.refreshPolicy.originalHash}) LIMIT 1`);
+      const row = result.rows[0];
+      if (row) {
+        const replacement: AiStoredWeek = { key, hash: row.input_hash as string, manifest: row.generation_manifest as AiGenerationManifest, input: row.input as AiWeeklyInput, slate: row.prepared_slate as AiWeeklySlate, result: row.result as AiWeeklySlate, refreshed: true };
+        if (cachedWeek(replacement, Date.parse(replacement.result!.generatedAt ?? "")).status !== "ready") throw new Error("weekly_cache");
+        return replacement;
+      }
+    }
+    return this.getOriginalWeek(key);
+  }
+  async getOriginalWeek(key: string): Promise<AiStoredWeek | null> {
     const result = await this.execute(sql`SELECT week_key, input_hash, generation_manifest, input, prepared_slate, result FROM ai_decider_weeks WHERE week_key = ${key} LIMIT 1`);
     const row = result.rows[0];
     return row ? { key: row.week_key as string, hash: row.input_hash as string, manifest: row.generation_manifest as AiGenerationManifest, input: row.input as AiWeeklyInput, slate: row.prepared_slate as AiWeeklySlate, result: row.result as AiWeeklySlate | null } : null;
+  }
+  async getWeekRefresh(): Promise<AiStoredWeek | null> {
+    if (!this.refreshPolicy) return null;
+    const stored = await this.getOriginalWeek(refreshStorageKey(WEEK1_REFRESH_KEY));
+    return stored ? { ...stored, key: WEEK1_REFRESH_KEY } : null;
+  }
+  async hasWeekRefresh(): Promise<boolean> {
+    if (!this.refreshPolicy) return false;
+    const result = await this.execute(sql`SELECT EXISTS (SELECT 1 FROM ai_decider_weeks WHERE week_key=${refreshStorageKey(WEEK1_REFRESH_KEY)}) AS present`);
+    const present = result.rows[0]?.present;
+    if (typeof present !== "boolean") throw new Error("refresh_state");
+    return present;
+  }
+  private refreshAdmission(identity: AiIdentity): SQL {
+    if (identity.kind === "weekly_job" || !validAiIdentity(identity)) throw new Error("refresh_identity");
+    return identity.kind === "legacy"
+      ? sql`SELECT 1 FROM sessions s JOIN site_users u ON u.id=s.user_id WHERE s.token_hash=${identity.tokenHash} AND u.id=${identity.userId}::uuid AND u.team_id ~ '^(?:[1-9]|10)$' AND s.expires_at>now()`
+      : sql`SELECT 1 FROM auth_session s JOIN account_identities i ON i.subject=s.user_id JOIN auth_user a ON a.id=i.subject JOIN site_users u ON u.id=i.user_id WHERE s.id=${identity.sessionId} AND s.user_id=${identity.subject} AND u.id=${identity.userId}::uuid AND i.active=true AND a.email_verified=true AND u.team_id ~ '^(?:[1-9]|10)$' AND s.expires_at>now()`;
+  }
+  async claimWeekRefresh(week: AiStoredWeek, identity: AiIdentity): Promise<boolean> {
+    if (!this.refreshPolicy || week.key !== WEEK1_REFRESH_KEY || week.result !== null) return false;
+    cachedWeek(week, Date.parse(week.input.capturedAt));
+    const admission = this.refreshAdmission(identity);
+    const result = await this.execute(sql`INSERT INTO ai_decider_weeks (week_key,input_hash,generation_manifest,input,prepared_slate)
+      SELECT ${refreshStorageKey(week.key)},${week.hash},${JSON.stringify(week.manifest)}::jsonb,${JSON.stringify(week.input)}::jsonb,${JSON.stringify(week.slate)}::jsonb
+      FROM ai_decider_weeks original WHERE original.week_key=${week.key} AND original.input_hash=${this.refreshPolicy.originalHash}
+        AND original.result->>'status'='ready' AND NOT EXISTS (SELECT 1 FROM ai_decider_outcomes WHERE week_key=${week.key})
+        AND EXISTS (SELECT 1 FROM ai_decider_control WHERE id='goat-hoopers' AND enabled=true)
+        AND EXISTS (${admission}) ON CONFLICT (week_key) DO NOTHING RETURNING week_key`);
+    return result.rows.length === 1;
+  }
+  async completeWeekRefresh(hash: string, slate: AiWeeklySlate, identity: AiIdentity): Promise<boolean> {
+    if (!this.refreshPolicy || slate.status !== "ready" || !slate.generatedAt) return false;
+    const record = await this.getWeekRefresh();
+    if (!record || record.hash !== hash || record.result) return false;
+    if (cachedWeek({ ...record, result: slate }, Date.parse(slate.generatedAt)).status !== "ready") return false;
+    const admission = this.refreshAdmission(identity);
+    const result = await this.execute(sql`UPDATE ai_decider_weeks SET result=${JSON.stringify(slate)}::jsonb
+      WHERE week_key=${refreshStorageKey(WEEK1_REFRESH_KEY)} AND input_hash=${hash} AND result IS NULL
+        AND EXISTS (SELECT 1 FROM ai_decider_weeks original WHERE original.week_key=${WEEK1_REFRESH_KEY} AND original.input_hash=${this.refreshPolicy.originalHash} AND original.result->>'status'='ready')
+        AND NOT EXISTS (SELECT 1 FROM ai_decider_outcomes WHERE week_key=${WEEK1_REFRESH_KEY})
+        AND EXISTS (SELECT 1 FROM ai_decider_control WHERE id='goat-hoopers' AND enabled=true)
+        AND EXISTS (${admission}) RETURNING week_key`);
+    return result.rows.length === 1;
   }
   async completeWeek(key: string, hash: string, slate: AiWeeklySlate): Promise<boolean> {
     const result = await this.execute(sql`UPDATE ai_decider_weeks SET result = ${JSON.stringify(slate)}::jsonb WHERE week_key = ${key} AND input_hash = ${hash} AND result IS NULL RETURNING week_key`);
@@ -201,4 +268,4 @@ export class PostgresAiPersistence implements AiPersistence {
   }
 }
 
-export function getAiDeciderStore(weeklyOperator?: { userId: string; auth: "legacy" | "friends" }): AiDeciderStore { return new AiDeciderStore(new PostgresAiPersistence(getDb(), weeklyOperator)); }
+export function getAiDeciderStore(weeklyOperator?: { userId: string; auth: "legacy" | "friends" }, refreshPolicy?: AiWeek1RefreshPolicy): AiDeciderStore { return new AiDeciderStore(new PostgresAiPersistence(getDb(), weeklyOperator, refreshPolicy)); }

@@ -133,6 +133,8 @@ export type AiWeeklySlate = {
 };
 
 export type AiDecidesData = {
+  /** Present only while the separately reviewed one-shot Week 1 refresh is enabled. */
+  week1Refresh?: { status: "available" | "sealed" | "published" | "unavailable"; message: string };
   availability: { status: "available" | "unavailable"; code: string; message: string };
   weekly: AiWeeklySlate;
 };
