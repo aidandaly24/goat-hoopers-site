@@ -42,7 +42,7 @@ describe("one reversible Week 1 replacement", () => {
   it("allows only the durable INSERT winner across overlapping different captures and later repeats", async () => {
     const h = await prepared(), other = { ...h.sources, input: async () => preview(NOW + 500) };
     const results = await Promise.all([refreshWeek1(identity(), h.runtime, h.sources), refreshWeek1(identity(2), h.runtime, other)]);
-    expect(results.filter(r => r.status === "ready")).toHaveLength(1); expect(h.create).toHaveBeenCalledTimes(1);
+    expect(results.some(r => r.status === "ready")).toBe(true); expect(h.create).toHaveBeenCalledTimes(1);
     h.setTime(NOW + 601000); await refreshWeek1(identity(3), h.runtime, h.sources);
     expect(h.create).toHaveBeenCalledTimes(1); expect(h.persistence.weeks.get(WEEK1_REFRESH_KEY)).toEqual(h.original);
   });

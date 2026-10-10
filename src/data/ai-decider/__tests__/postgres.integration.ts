@@ -504,7 +504,10 @@ describe("actual PostgreSQL one-time refresh preservation and admission", () => 
     h.runtime.getSourceState = async () => ({ season: "2026", phase: "pre", leg: 0 });
     const sources = { context: async () => ({ leagueId: "1387473752807190528", season: "2026", phase: "pre" as const, leg: 0, week: 1, seasonStartDate: "2026-10-20", statsSeason: "2025", gameModeCode: 1 }), input: async () => fixture.replacement.input };
     const results = await Promise.all([refreshWeek1(principal(), h.runtime, sources), refreshWeek1(principal(2), h.runtime, sources)]);
-    expect(results.filter(r => r.status === "ready")).toHaveLength(1); expect(h.create).toHaveBeenCalledTimes(1);
+    // A later overlapping reader may get the same completed result for free.
+    expect(results.some(r => r.status === "ready")).toBe(true); expect(h.create).toHaveBeenCalledTimes(1);
+    const saved = results.filter(r => r.status === "ready");
+    if (saved.length === 2) expect(saved[1]).toEqual(saved[0]);
     expect((await control()).state.requests).toBe(1);
     expect((await fixture.enabled().getWeek(WEEK1_REFRESH_KEY))?.hash).toBe(fixture.replacement.hash);
     expect(await persistence().getWeek(WEEK1_REFRESH_KEY)).toEqual(fixture.original);
@@ -517,7 +520,9 @@ describe("actual PostgreSQL one-time refresh preservation and admission", () => 
     expect(await h.enabled().getWeek(WEEK1_REFRESH_KEY)).toEqual(h.original);
     expect(await persistence().getOriginalWeek(WEEK1_REFRESH_KEY)).toEqual(h.original);
     expect(await control()).toEqual(before); // Claim neither resets nor spends.
-    const changed = structuredClone(h.replacement); changed.input.capturedAt = new Date(NOW + 2000).toISOString(); changed.hash = weekHash(changed.input);
+    const changed = structuredClone(h.replacement), capturedAt = new Date(NOW + 2000).toISOString();
+    Object.assign(changed.input, { capturedAt, cutoffAt: capturedAt, statsAvailableAt: capturedAt });
+    changed.hash = weekHash(changed.input); changed.slate = prepareWeeklySlate(changed.input, NOW + 2000);
     expect(await h.enabled().claimWeekRefresh(changed, providerPrincipal())).toBe(false);
     expect((await pool.query("SELECT count(*)::int AS n FROM ai_decider_weeks")).rows[0].n).toBe(2);
   });
