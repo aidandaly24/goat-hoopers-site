@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
-import { AI_PROBABILITY_LABEL } from "@/domain/ai-decider";
-import { comparisonLabel, draftError, failureHeading, percent, periodLabel, postDecision, postWeeklyPreviews, readDecisionResponse, readWeeklyPublishResponse } from "./client";
-import { cachedData, interactiveResult } from "./test/fixtures";
+import { AI_PROBABILITY_LABEL, type AiDecideRequest } from "@/domain/ai-decider";
+import { comparisonLabel, draftError, failureHeading, leagueContextLines, percent, periodLabel, postDecision, postWeeklyPreviews, readDecisionResponse, readWeeklyPublishResponse } from "./client";
+import { cachedData, interactiveResult, leagueContext, leagueResult } from "./test/fixtures";
 
 const ready = () => ({ status: "ready", result: { model: "historical-model", promptVersion: "frozen-v0", choice: "B", confidence: .21, probabilities: [{ choice: "A", probability: .3333333333 }, { choice: "B", probability: .3333333333 }, { choice: "C", probability: .3333333334 }], evidence: ["Prior completed-season inputs only"], probabilityLabel: AI_PROBABILITY_LABEL, snapshot: null } });
 const published = () => {
@@ -107,6 +107,66 @@ describe("AI Decides client boundary", () => {
   });
 });
 
+describe("league response proof", () => {
+  const request: Extract<AiDecideRequest, { kind: "league" }> = { kind: "league", prompt: "Which roster?", choices: ["Current One", "Current Two"], teamIds: ["1", "2"] };
+  const read = (result: unknown) => readDecisionResponse({ status: "ready", result }, request.choices, request);
+  it("preserves raw probability order and independent confidence while proving request-order context", async () => {
+    const response = { status: "ready", result: leagueResult() };
+    const fetcher = vi.fn().mockResolvedValue({ ok: true, json: async () => response }); vi.stubGlobal("fetch", fetcher);
+    try {
+      expect(await postDecision(request, new AbortController().signal)).toBe(response);
+      expect(fetcher).toHaveBeenCalledTimes(1);
+      expect(fetcher).toHaveBeenCalledWith("/api/ai-decides", expect.objectContaining({ body: JSON.stringify(request), credentials: "same-origin" }));
+      expect(response.result.probabilities.map(p => p.choice)).toEqual(["Current Two", "Current One"]);
+      expect(response.result.confidence).toBe(.21);
+    } finally { vi.unstubAllGlobals(); }
+  });
+  it("rejects absent proof, wrong prompt version, weekly snapshot, stale names and reversed IDs", () => {
+    for (const result of [
+      { ...leagueResult(), leagueContext: undefined },
+      { ...leagueResult(), promptVersion: "custom-v1" },
+      { ...leagueResult(), snapshot: interactiveResult().snapshot },
+      { ...leagueResult(), leagueContext: { ...leagueContext(), teams: [...leagueContext().teams].reverse() } },
+      { ...leagueResult(), leagueContext: { ...leagueContext(), teams: leagueContext().teams.map((team, i) => i ? team : { ...team, name: "Old name" }) } },
+      { ...leagueResult(), probabilities: [{ choice: "1", probability: .4 }, { choice: "2", probability: .6 }] },
+    ]) expect(read(result).status).toBe("unavailable");
+  });
+  it.each([
+    { hash: "not-a-hash" }, { hash: "A".repeat(64) }, { source: "other" }, { leagueId: "other" },
+    { capturedAt: "2026-02-30T00:00:00.000Z" }, { capturedAt: "2026-10-10T04:00:00Z" },
+    { season: "2026/27" }, { priorStatsSeason: "2026" }, { scoringMode: "lock_in" },
+    { sourceUpdatedAt: "2026-10-10T04:00:00.000Z" }, { phase: "unknown" },
+    { cacheRevalidateSeconds: { league: 300, rosters: 300, players: 300, stats: 300 } },
+    { availability: { players: "unavailable", priorStats: "available", currentStats: "preseason_not_started" } },
+    { availability: { players: "available", priorStats: "unavailable", currentStats: "preseason_not_started" } },
+    { availability: { players: "available", priorStats: "available", currentStats: "available" } },
+  ])("rejects malformed source metadata %s", fields => {
+    expect(read({ ...leagueResult(), leagueContext: { ...leagueContext(), ...fields } }).status).toBe("unavailable");
+  });
+  it.each([{ rosterSize: 0 }, { rosterSize: 31 }, { namedPlayers: 0 }, { namedPlayers: 26 }, { priorStatsPlayers: -1 }, { priorStatsPlayers: 26 }, { priorStatsPlayers: 1.5 }, { currentStatsPlayers: 1 }, { startersKnown: 1 }, { reserveKnown: null }, { taxiKnown: undefined }, { teamId: "11" }, { name: "" }])("rejects malformed team coverage %s", fields => {
+    const context = leagueContext();
+    expect(read({ ...leagueResult(), leagueContext: { ...context, teams: context.teams.map((team, i) => i ? team : { ...team, ...fields }) } }).status).toBe("unavailable");
+  });
+  it("rejects ambiguous names/repeated IDs and proof attached to text-only or weekly requests", () => {
+    const context = leagueContext();
+    for (const teams of [[context.teams[0]], [context.teams[0], context.teams[0]], [context.teams[0], { ...context.teams[1], name: " CURRENT ONE " }]]) expect(read({ ...leagueResult(), leagueContext: { ...context, teams } }).status).toBe("unavailable");
+    expect(readDecisionResponse({ status: "ready", result: leagueResult() }, request.choices, { kind: "custom", prompt: request.prompt, choices: request.choices }).status).toBe("unavailable");
+    expect(readDecisionResponse({ status: "ready", result: leagueResult() }, request.choices, { kind: "matchup", teamIds: request.teamIds }).status).toBe("unavailable");
+  });
+  it("accepts regular-season missing stats as unknown, with honest coverage/cache labels", () => {
+    const context = leagueContext(); context.phase = "regular"; context.availability.currentStats = "unavailable"; context.availability.priorStats = "unavailable"; context.teams.forEach(team => { team.priorStatsPlayers = 0; });
+    expect(read({ ...leagueResult(), leagueContext: context }).status).toBe("ready");
+    const lines = leagueContextLines(context).join("\n");
+    expect(lines).toContain("2025 stats 0/25 (source unavailable)");
+    expect(lines).toContain("2026 stats 0/25 (source unavailable)");
+    expect(lines).toContain("source update time unknown");
+    expect(lines).toContain("Failed refreshes may serve older data");
+    expect(lines).toContain("no verified long-term projection");
+    expect(leagueContextLines(leagueContext()).join("\n")).toContain("2026 stats not started");
+    expect(draftError("Pick?", ["Current One", "Ｃｕｒｒｅｎｔ Ｏｎｅ"])).toBe("Each choice needs to be different.");
+  });
+});
+
 describe("manual weekly publication boundary", () => {
   it("preserves the complete five-pick slate and independent model choice", () => {
     const value = published(), before = JSON.stringify(value);
@@ -124,6 +184,11 @@ describe("manual weekly publication boundary", () => {
     const probability = published(); probability.weekly.matchups[0].result!.probabilities[0].probability = NaN;
     const baseline = published(); baseline.weekly.matchups[0].baseline = { version: "fixture", label: "Fixture", pick: null, teamValues: [{ teamId: "1", value: NaN }] };
     for (const value of [partial, stale, date, count, repeated, probability, baseline]) expect(readWeeklyPublishResponse(value).status).toBe("unavailable");
+  });
+  it("rejects a league-context result masquerading as a ready saved weekly pick", () => {
+    const value = published();
+    value.weekly.matchups[0].result = { ...leagueResult(), choice: "1", probabilities: [{ choice: "2", probability: .67 }, { choice: "1", probability: .33 }], leagueContext: { ...leagueContext(), teams: leagueContext().teams.map(team => ({ ...team, name: team.teamId })) } };
+    expect(readWeeklyPublishResponse(value).status).toBe("unavailable");
   });
   it("posts only an empty same-origin body once and retains backend failure messages", async () => {
     const signal = new AbortController().signal;

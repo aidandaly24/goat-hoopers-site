@@ -24,3 +24,6 @@
 .publication{margin-top:var(--gh-s4)}.publication button[aria-disabled=true]{opacity:.55;cursor:not-allowed}.publicationStatus{font-size:.75rem;line-height:1.5;color:var(--gh-text-dim);margin:var(--gh-s3) 0}.publicationStatus:empty{display:none}
 
 .attemptNotice{padding-bottom:var(--gh-s3);margin-bottom:var(--gh-s3);border-bottom:1px solid var(--gh-border);font-size:.8125rem;line-height:1.5}.attemptNotice p{color:var(--gh-text-dim);margin:var(--gh-s2) 0}
+
+/* Team names and returned source details must reflow at narrow widths. */
+.helper,.source{overflow-wrap:anywhere}

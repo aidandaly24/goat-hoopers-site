@@ -13,6 +13,8 @@ describe("backend roster-ID display", () => {
     expect(html).toMatch(/aria-pressed="false"[^>]*>Who wins\?/);
     expect(html).toMatch(/aria-pressed="false"[^>]*>Who has the edge\?/);
     expect(html).toMatch(/aria-pressed="true"[^>]*>Custom question \+/);
+    expect(html).toContain("Text-only custom");
+    expect(html).not.toContain("Full-roster league context requested");
   });
   it.each(["weekly", "home"])("shows the actual %s choice independently of order/probability/confidence", surface => {
     const data = cachedData(), before = JSON.stringify(data);
