@@ -1,4 +1,5 @@
-import { AI_LEAGUE_ROSTER_PROMPT_VERSION, AI_PROBABILITY_LABEL, type AiDecisionResult, type AiDecidesData, type AiLeagueContextMetadata } from "@/domain/ai-decider";
+import { createHash } from "node:crypto";
+import { AI_LEAGUE_ROSTER_PROMPT_VERSION, AI_VISIBLE_LEAGUE_PROMPT_VERSION, AI_PROBABILITY_LABEL, type AiContextPreview, type AiDecisionResult, type AiDecidesData, type AiLeagueContextMetadata } from "@/domain/ai-decider";
 
 /** Synthetic backend-shaped inputs: matchup choices are IDs, never team names. */
 export const teams = [{ id: "1", name: "Current One", avatar: "fixture-avatar-1" }, { id: "2", name: "Current Two", avatar: null }, { id: "6", name: "Current Six", avatar: "fixture-avatar-6" }, { id: "10", name: "Current Ten", avatar: "fixture-avatar-10" }];
@@ -9,3 +10,9 @@ export const cachedData = (): AiDecidesData => ({ availability: { status: "avail
 
 export const leagueContext = (): AiLeagueContextMetadata => ({ hash: "a".repeat(64), source: "sleeper", leagueId: "1387473752807190528", capturedAt: "2026-10-10T04:00:00.000Z", season: "2026", phase: "pre", priorStatsSeason: "2025", scoringMode: "unknown", sourceUpdatedAt: null, cacheRevalidateSeconds: { league: 300, rosters: 300, players: 300, stats: 86400 }, availability: { players: "available", priorStats: "available", currentStats: "preseason_not_started" }, teams: ["1", "2"].map((teamId, i) => ({ teamId, name: teams[i].name, rosterSize: 25, namedPlayers: 24, priorStatsPlayers: 20, currentStatsPlayers: 0, startersKnown: true, reserveKnown: false, taxiKnown: true })) });
 export const leagueResult = (): AiDecisionResult => ({ ...interactiveResult(), promptVersion: AI_LEAGUE_ROSTER_PROMPT_VERSION, choice: "Current One", probabilities: [{ choice: "Current Two", probability: .67 }, { choice: "Current One", probability: .33 }], snapshot: null, leagueContext: leagueContext(), evidence: ["Synthetic full-roster evidence; no verified long-term projection."] });
+
+export const contextPreview = (): AiContextPreview => {
+  const text = "Synthetic roster/stats block.\nCurrent One: Fixture Player A — 2025 FPPG 20; GP 50.\nCurrent Two: Fixture Player B — 2025 stats missing; 2026 preseason not started.\nSource update time unknown; failed refreshes may serve older cached data.";
+  return { text, digest: createHash("sha256").update(text).digest("hex"), teamIds: ["1", "2"], choices: ["Current One", "Current Two"], context: leagueContext(), promptVersion: AI_VISIBLE_LEAGUE_PROMPT_VERSION };
+};
+export const visibleLeagueResult = (): AiDecisionResult => ({ ...leagueResult(), promptVersion: AI_VISIBLE_LEAGUE_PROMPT_VERSION });
