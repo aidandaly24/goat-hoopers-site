@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { AI_PROBABILITY_LABEL, AI_PROMPT_MAX_CHARS, type AiDecideRequest } from "@/domain/ai-decider";
-import { comparisonLabel, draftError, failureHeading, leagueContextLines, percent, periodLabel, postContextPreview, postDecision, postWeeklyPreviews, readContextPreviewResponse, readDecisionResponse, readWeeklyPublishResponse } from "./client";
+import { comparisonLabel, draftError, failureHeading, leagueContextLines, percent, periodLabel, postContextPreview, postDecision, postWeeklyPreviews, postWeek1Refresh, readContextPreviewResponse, readDecisionResponse, readWeeklyPublishResponse, readWeek1RefreshResponse } from "./client";
 import { cachedData, contextPreview, interactiveResult, leagueContext, leagueResult, visibleLeagueResult } from "./test/fixtures";
 
 const ready = () => ({ status: "ready", result: { model: "historical-model", promptVersion: "frozen-v0", choice: "B", confidence: .21, probabilities: [{ choice: "A", probability: .3333333333 }, { choice: "B", probability: .3333333333 }, { choice: "C", probability: .3333333334 }], evidence: ["Prior completed-season inputs only"], probabilityLabel: AI_PROBABILITY_LABEL, snapshot: null } });
@@ -104,6 +104,60 @@ describe("AI Decides client boundary", () => {
   it("supports eight choices, rejects blanks/duplicates/oversize, and never changes the draft", () => {
     const choices = Array.from({ length: 8 }, (_, i) => `Option ${i}`); expect(draftError("Pick?", choices)).toBeNull(); expect(choices).toHaveLength(8);
     expect(draftError("", choices)).not.toBeNull(); expect(draftError("Pick?", [" A ", "a"])).not.toBeNull(); expect(draftError("Pick?", ["", "B"])).not.toBeNull(); expect(draftError("x".repeat(AI_PROMPT_MAX_CHARS), choices)).toBeNull(); expect(draftError("x".repeat(AI_PROMPT_MAX_CHARS + 1), choices)).not.toBeNull(); expect(draftError("Pick?", [...choices, "ninth"])).not.toBeNull();
+  });
+});
+
+describe("one-time Week 1 replacement boundary", () => {
+  it("preserves a complete replacement, raw probabilities and the original slate", () => {
+    const original = published().weekly, replacement = published();
+    replacement.weekly.generatedAt = "2026-10-10T18:00:00Z";
+    replacement.weekly.matchups.reverse();
+    const before = JSON.stringify(original);
+    expect(readWeek1RefreshResponse(replacement, original)).toBe(replacement);
+    expect(JSON.stringify(original)).toBe(before);
+  });
+  it.each(["league", "season", "week", "row-id", "pair-order", "pair-mapping", "partial", "probabilities", "date"])("rejects a %s replacement mismatch without repairing the rows", field => {
+    const original = published().weekly, replacement = published();
+    if (field === "league") replacement.weekly.leagueId = "other";
+    if (field === "season") replacement.weekly.season = "2027";
+    if (field === "week") replacement.weekly.week = 2;
+    if (field === "row-id") replacement.weekly.matchups[0].matchupId = "unexpected";
+    if (field === "pair-order") replacement.weekly.matchups[0].teamIds.reverse();
+    if (field === "pair-mapping") [replacement.weekly.matchups[0].matchupId, replacement.weekly.matchups[1].matchupId] = [replacement.weekly.matchups[1].matchupId, replacement.weekly.matchups[0].matchupId];
+    if (field === "partial") replacement.weekly.matchups.pop();
+    if (field === "probabilities") replacement.weekly.matchups[0].result!.probabilities[0].probability = .2;
+    if (field === "date") replacement.weekly.generatedAt = "2026-02-30T00:00:00Z";
+    const before = JSON.stringify(replacement);
+    expect(readWeek1RefreshResponse(replacement, original).status).toBe("unavailable");
+    expect(JSON.stringify(replacement)).toBe(before);
+  });
+  it("rejects an incomplete or non-Week-1 expected slate", () => {
+    const original = published().weekly;
+    original.week = 2; expect(readWeek1RefreshResponse(published(), original).status).toBe("unavailable");
+    original.week = 1; original.matchups.pop(); expect(readWeek1RefreshResponse(published(), original).status).toBe("unavailable");
+  });
+  it.each(["invalid", "unauthenticated", "unavailable", "busy", "rate_limited", "refused", "timeout"])("retains %s server guidance without a replacement", status => {
+    const value = { status, code: status === "unavailable" ? "refresh_sealed" : "fixture", message: "Server guidance", retryAfterSeconds: 30 };
+    expect(readWeek1RefreshResponse(value, published().weekly)).toEqual(value);
+  });
+  it("posts only {} to the explicit relative refresh route with the current browser session", async () => {
+    const fetcher = vi.fn().mockResolvedValue({ ok: true, json: async () => published() }); vi.stubGlobal("fetch", fetcher);
+    try {
+      const signal = new AbortController().signal;
+      expect((await postWeek1Refresh(signal)).status).toBe("ready");
+      expect(fetcher).toHaveBeenCalledExactlyOnceWith("/api/ai-decides/weekly/refresh", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: "{}", signal, cache: "no-store" });
+    } finally { vi.unstubAllGlobals(); }
+  });
+  it("does not retry failed HTTP, invalid JSON or lost network replies", async () => {
+    const fetcher = vi.fn().mockResolvedValue({ ok: false, json: async () => published() }); vi.stubGlobal("fetch", fetcher);
+    try {
+      expect((await postWeek1Refresh(new AbortController().signal)).status).toBe("unavailable");
+      fetcher.mockRejectedValue(new Error("Lost reply"));
+      await expect(postWeek1Refresh(new AbortController().signal)).rejects.toThrow("Lost reply");
+      fetcher.mockResolvedValue({ ok: true, json: async () => { throw new Error("Invalid JSON"); } });
+      await expect(postWeek1Refresh(new AbortController().signal)).rejects.toThrow("Invalid JSON");
+      expect(fetcher).toHaveBeenCalledTimes(3);
+    } finally { vi.unstubAllGlobals(); }
   });
 });
 
