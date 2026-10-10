@@ -7,13 +7,54 @@ deploy. The explicit CI job applies the AI schema only in a disposable test sche
 ## Contract
 
 The client-safe source of truth is `src/domain/ai-decider.ts`. A draft is either
-`{kind:"custom",prompt,choices}` or `{kind:"matchup",teamIds:[id,id]}`. No client
+`{kind:"custom",prompt,choices}`, `{kind:"matchup",teamIds:[id,id]}`, or
+`{kind:"league",prompt,choices:[name,name],teamIds:[id,id]}`. No client
 identity, model, credential, header, URL, image, tool or provider payload is
 accepted. Matchup mode can compare any two teams from a verified frozen weekly
 input; it labels the result a hypothetical comparison. Custom mode has only the
 user-supplied text and options, without live research or automatic league facts.
 
-`POST /api/ai-decides` requires same-origin JSON and the current `gh_session`.
+The explicit league variant maps choice index to roster-ID index. Exactly two
+distinct choices/IDs are required. The server verifies current canonical
+team names (trim, NFKC, en-US lowercase exact match); aliases/substrings are not
+resolved. Duplicate canonical names, missing owners/rosters or invalid source
+facts fail closed; mismatched/stale choice labels return
+`invalid/league_choices_changed`. Source failures return
+`unavailable/league_context_unavailable`, before any provider reservation.
+Client-provided roster/stat data is rejected by the request allowlist.
+
+Only after existing validated identity does this path call the injected
+`loadAiLeagueRosterContext` loader. It reuses existing Sleeper league, user,
+roster, player-directory and season-stat caches; the directory is needed
+only for this deliberate identity drill-down, never page/home/cache reads.
+Only the two selected complete rosters (at most thirty players each), canonical
+player names/ages/positions, membership arrays and observed current/prior
+fantasy PPG/games under actual league scoring reach the model. A missing weighted
+stat or unknown identity/age remains null; no zero or projection is invented.
+Current regular-season stats are not fetched in preseason. Optional stat failure
+is explicitly unavailable; absence of all player names on either roster blocks
+the decision. Raw owner IDs, team scores/outcomes, unrelated teams/players,
+injury data and projected future statistics are excluded.
+
+Every successful league result keeps the supplied choice labels and uses
+`goat-league-roster-v1`, `snapshot:null`, plus server-owned `leagueContext`
+metadata and factual evidence. Its hash describes the on-demand roster projection,
+not an immutable weekly record. Capture time means retrieval, never source update
+time (`sourceUpdatedAt:null`). `cacheRevalidateSeconds` reports the existing
+five-minute league/roster/player and daily stat intervals; failed refreshes may
+serve older last-good data, so these are not freshness guarantees.
+Per-team metadata reports roster/name/stat coverage and known membership arrays.
+Long-term development, contracts, draft picks, injuries, schedules and selection
+rules remain unknown; this is not a verified long-term projection.
+
+The existing 6,144 input reservation limit still applies to question plus full
+context. Oversized evidence returns `invalid/input_limit` without truncation,
+spend or a provider call. No new persistence, weekly-snapshot change, migration,
+auth behavior, spending limit or log payload is introduced. Frontend-owned
+recognition must show context explicitly; unrelated custom decisions stay text-only.
+
+`POST /api/ai-decides` requires same-origin JSON and the current server-selected
+validated session (provider or legacy).
 Success is `{status:"ready",result}`. Every returned option probability is
 preserved numerically, independently of the chosen option and API confidence.
 The server checks unit intervals, distinct exact choice coverage and distribution

@@ -19,6 +19,12 @@ export function parseAiRequest(raw: unknown): AiDecideRequest | null {
   if (raw.kind === "matchup" && exactKeys(raw, ["kind", "teamIds"]) && Array.isArray(raw.teamIds) && raw.teamIds.length === 2 && raw.teamIds.every(teamIdValid) && raw.teamIds[0] !== raw.teamIds[1]) {
     return { kind: "matchup", teamIds: [raw.teamIds[0], raw.teamIds[1]] };
   }
+  if (raw.kind === "league" && exactKeys(raw, ["kind", "prompt", "choices", "teamIds"])) {
+    const draft = parseAiRequest({ kind: "custom", prompt: raw.prompt, choices: raw.choices });
+    const pair = parseAiRequest({ kind: "matchup", teamIds: raw.teamIds });
+    if (draft?.kind !== "custom" || draft.choices.length !== 2 || pair?.kind !== "matchup") return null;
+    return { kind: "league", prompt: draft.prompt, choices: [draft.choices[0], draft.choices[1]], teamIds: pair.teamIds };
+  }
   return null;
 }
 

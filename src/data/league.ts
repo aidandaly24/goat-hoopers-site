@@ -101,7 +101,8 @@ import {
 import type { LeagueNewsEdition } from "@/domain/news";
 import { createTtlCache } from "./cache";
 import { aiMatchupPairs, buildAiWeeklyInput, type AiWeekPreparation } from "./ai-decider/inputs";
-import type { AiDecidesData, AiPublicationContext, AiWeeklyInput } from "@/domain/ai-decider";
+import type { AiDecidesData, AiLeagueRosterInput, AiPublicationContext, AiWeeklyInput } from "@/domain/ai-decider";
+import { buildAiLeagueRosterInput } from "./ai-decider/roster-context";
 /* Headshot seam: the Sleeper -> ESPN id map is injected into the toPlayer /
  * toDraftPicks transforms here (rule 11). Swap SEED_ESPN_ID_MAP for Aidan's
  * full mapping table when it lands — no component changes. */
@@ -1239,6 +1240,15 @@ export async function loadAiWeeklyInput(preparation: AiWeekPreparation, deps = {
   if (league.season !== preparation.season || state.season !== preparation.season || state.season_type !== preparation.phase || Number(preparation.statsSeason) >= Number(preparation.season)) throw new Error("weekly_context");
   const capturedAt = new Date(deps.now()).toISOString();
   return buildAiWeeklyInput({ ...preparation, capturedAt, statsAvailableAt: capturedAt }, league, rosters, matchups, stats);
+}
+
+/** Explicit authenticated playground drill-down only. Existing caches are reused. */
+export async function loadAiLeagueRosterContext(teamIds: [string, string], deps = { league: fetchLeague, state: fetchNbaState, rosters: fetchRosters, users: fetchUsers, players: fetchPlayerDirectory, stats: fetchSeasonStats, now: Date.now }): Promise<AiLeagueRosterInput> {
+  if (LEAGUE_ID !== "1387473752807190528" || !teamIds.every(id => /^(?:[1-9]|10)$/.test(id)) || teamIds[0] === teamIds[1]) throw new Error("league_context");
+  const [league, state, rosters, users] = await Promise.all([deps.league(), deps.state(), deps.rosters(), deps.users()]);
+  if (!/^20\d{2}$/.test(league.season) || state.season !== league.season || !/^20\d{2}$/.test(state.previous_season ?? "") || Number(state.previous_season) >= Number(state.season) || !["pre", "regular", "post"].includes(state.season_type)) throw new Error("league_context");
+  const [directory, prior, current] = await Promise.allSettled([deps.players(), deps.stats(state.previous_season!), state.season_type === "pre" ? Promise.resolve(null) : deps.stats(state.season)]);
+  return buildAiLeagueRosterInput({ teamIds, league, state, rosters, users, directory: directory.status === "fulfilled" ? directory.value : null, prior: prior.status === "fulfilled" ? prior.value : null, current: current.status === "fulfilled" ? current.value : null, capturedAt: new Date(deps.now()).toISOString() });
 }
 
 /** Public page/homepage loader reads cached picks; never invokes generation. */

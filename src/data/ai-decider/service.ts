@@ -1,6 +1,6 @@
 import "server-only";
 import { createHash } from "node:crypto";
-import type { AiDecideRequest, AiDecideResponse, AiDecisionResult, AiWeeklyInput, AiWeeklySlate } from "@/domain/ai-decider";
+import type { AiDecideRequest, AiDecideResponse, AiDecisionResult, AiWeeklyInput, AiWeeklySlate, AiLeagueRosterInput } from "@/domain/ai-decider";
 import type { GameStore } from "../arcade";
 import type { getProviderIdentity } from "../friends-auth/runtime";
 import { AI_LIMITS, parseAiRequest, teamIdValid, uuidValid } from "./validation";
@@ -8,6 +8,7 @@ import { callWithTimeout, customDecision, decodeDecision, inputTokenReservation,
 import { AiDeciderStore, validAiIdentity, type AiIdentity, type AiStoredWeek, type AiWeeklyJobIdentity } from "./store";
 import { cachedWeek, canonicalJson, currentGenerationManifest, manifestForInput, preparePlaygroundMatchup, prepareWeeklySlate, validWeeklyInput, weekHash, weekKey, weeklyDecision, weeklyReadiness } from "./weekly";
 import { aiDataDeadline } from "./deadline";
+import { leagueRosterDecision } from "./roster-context";
 
 export type AiRuntime = {
   enabled: boolean;
@@ -18,6 +19,8 @@ export type AiRuntime = {
   providerSession?: () => ReturnType<typeof getProviderIdentity>;
   now: () => number;
   getWeekKey: () => Promise<string>;
+  /** Only explicit authenticated league requests load current roster evidence. */
+  getLeagueContext?: (teamIds: [string, string]) => Promise<AiLeagueRosterInput>;
   /** Fresh public NBA state rechecks the source-leg publication boundary. */
   getSourceState?: () => Promise<{ season: string; leg: number; phase: string }>;
   weeklyOperator?: AiWeeklyJobIdentity | null;
@@ -102,6 +105,16 @@ export async function runAiDecision(raw: unknown, token: string | undefined, run
   const safety = createHash("sha256").update(`goat-ai:${identity.userId}`).digest("hex");
   let decision: { payload: DecisionPayload; specs: DecisionSpec[] };
   if (request.kind === "custom") decision = customDecision(request.prompt, request.choices, safety);
+  else if (request.kind === "league") {
+    try {
+      if (!runtime.getLeagueContext) throw new Error("league_context");
+      const context = await aiDataDeadline(runtime.getLeagueContext(request.teamIds), 3000);
+      decision = leagueRosterDecision(request, context, runtime.now(), safety);
+    } catch (e) {
+      if (e instanceof Error && e.message === "league_choices_changed") return failure("invalid", "league_choices_changed", "Team names changed or do not match the selected roster IDs. Refresh the teams and check your choices.");
+      return failure("unavailable", "league_context_unavailable", "The selected teams' roster evidence could not be validated. No decision was run; refresh or try later.");
+    }
+  }
   else {
     try {
       const record = await runtime.store!.persistence.getWeek(await runtime.getWeekKey());

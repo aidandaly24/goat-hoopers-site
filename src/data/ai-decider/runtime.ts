@@ -1,7 +1,7 @@
 import "server-only";
 import type { AiDecidesData, AiWeeklySlate } from "@/domain/ai-decider";
 import { getGameStore } from "../arcade";
-import { loadAiPublicationState, loadAiWeekContext } from "../league";
+import { loadAiLeagueRosterContext, loadAiPublicationState, loadAiWeekContext } from "../league";
 import { createOpenAiDecisionsClient } from "./provider";
 import { availability, type AiRuntime } from "./service";
 import { getAiDeciderStore } from "./store";
@@ -22,7 +22,7 @@ export function createAiRuntime(headers?: Headers): AiRuntime {
   // Lazy provider import keeps the default legacy path independent of provider configuration.
   const providerSession = providerAuth ? async () => headers
     ? (await import("../friends-auth/runtime")).getProviderIdentity(headers) : null : undefined;
-  return { enabled, client: key ? createOpenAiDecisionsClient(key) : null, store, sessions, providerSession, weeklyOperator, now: Date.now, getSourceState: loadAiPublicationState, getWeekKey: async () => weekKey(await aiDataDeadline(loadAiWeekContext(), 3000)) };
+  return { enabled, client: key ? createOpenAiDecisionsClient(key) : null, store, sessions, providerSession, weeklyOperator, now: Date.now, getLeagueContext: loadAiLeagueRosterContext, getSourceState: loadAiPublicationState, getWeekKey: async () => weekKey(await aiDataDeadline(loadAiWeekContext(), 3000)) };
 }
 
 export async function loadAiDecidesData(runtime = createAiRuntime(), context = loadAiWeekContext): Promise<AiDecidesData> {
