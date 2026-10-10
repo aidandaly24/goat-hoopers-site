@@ -49,6 +49,14 @@ is explicit; Refresh retains the question and replaces only an intact block.
 Unrelated custom choices keep the ordinary text-only flow. Saved weekly picks
 remain separate and immutable.
 
+The optional Week 1 operator control is shown only to a signed-in manager when
+the server exposes refresh metadata. Its explicit action states the one-time
+paid five-matchup batch and shared token budget. Existing picks stay visible
+until a complete replacement matches all current IDs and ordered pairs. Errors
+retain the slate and offer a free reload to inspect the attempt; they never
+start an automatic retry or change the personal draft. Sealed, unavailable and
+published states cannot start another local batch.
+
 Continue refinement through useful detail, depth, control feedback and authored
 motion while retaining the approved composition. Avoid nested panels, repeated
 boxes, decorative gauges, random shapes and large empty areas. Probability
