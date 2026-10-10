@@ -90,7 +90,7 @@ export function AccountForm({ mode, token, notice, teams = [], initialTeamId = "
     <p className={styles.lede}>{descriptions[mode]}</p>
     {done ? <p role="status" className={styles.notice}>
       {mode === "password" ? "Your password changed." : mode === "reset" ? "Your password changed. Log in with your new password." :
-        mode === "team-recovery" ? "If your team has a verified recovery email, a reset link will arrive there. Check spam too. If you haven’t added an email yet, set up email login first." :
+        mode === "team-recovery" ? "If your team has a verified recovery email, a reset link will arrive there. Check spam too." :
         mode === "forgot" ? "If this email matches a verified account, a reset link will arrive there. Check spam too." :
         "Check your email to verify your account, then log in with email. Check spam too."}
       {(mode === "signup" || mode === "setup") && <> <Link href="/account/login">Log in with email</Link></>}
@@ -116,10 +116,10 @@ export function AccountForm({ mode, token, notice, teams = [], initialTeamId = "
       </button>
     </form>}
     <p className={styles.switch}><Link href="/account/login">Log in with email</Link> · <Link href="/forgot-password?account=1">Reset password</Link>
-      {mode === "team-recovery" && <> · <Link href="/login?legacy=1">Set up email login for my existing team</Link> · <Link href="/signup">Create account</Link></>}
+      {mode === "team-recovery" && <> · <Link href="/signup">Create account</Link></>}
       {(mode === "setup" || mode === "link") && <> · <Link href="/login?legacy=1">Confirm existing team password</Link></>}
       {mode === "password" && <> · <Link href="/login?notice=reverify">Confirm your login again</Link></>}
-      {mode === "login" && <> · <Link href="/signup">Create account</Link> · <Link href="/login?legacy=1">Link your existing team</Link></>}
+      {mode === "login" && <> · <Link href="/signup">Create account</Link></>}
       {["claim", "link", "password"].includes(mode) && <> · <button type="button" disabled={pending} onClick={async () => {
         setPending(true);
         try {
