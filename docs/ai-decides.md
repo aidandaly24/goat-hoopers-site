@@ -374,6 +374,12 @@ streamed bytes) from a currently validated manager session. It accepts no week,
 identity, dates, prompt, evidence, credential or provider settings. Cron and
 normal publication never start this replacement. The only supported target is
 Sleeper league 1387473752807190528, 2026/week1 while phase is preseason/leg0.
+The rerun route explicitly sets `fetchCache="force-no-store"` so its league,
+roster, matchup and prior-stat reads bypass Next's persistent source caches.
+Normal publication/cache helpers are unchanged. Tests execute the installed
+Next fetch implementation with a synthetic stored response for both300/86400
+second helper intervals; no real upstream call occurs. `capturedAt` records
+retrieval time, not a verified source update timestamp.
 
 The reviewed original hash is fixed in `refresh-policy.ts`. Its immutable
 `ai_decider_weeks` row remains the complete archive, including input, manifest,
@@ -388,6 +394,8 @@ Public reads keep the original throughout pending/failed work. Completion checks
 all five validated distributions, unchanged evidence/snapshot, fresh source
 window, active session and control again before storing one immutable result.
 Only that complete replacement becomes public while the flag is enabled.
+The selected complete public snapshot is read once; a SQL existence check
+validates the archived original hash without returning its duplicate full input.
 Removing the flag and using the ordinary reviewed deployment restores the
 original, leaving both complete histories available. No result or trigger is
 rewritten or deleted. `AiDecidesData.week1Refresh` is optional and reports
@@ -421,6 +429,7 @@ and publishing all five together are essential. The existing immutable row and
 serverless overlap are imported constraints. An extra archive service, mutable
 history or migration would add accidental complexity: one additional protected
 row suffices. The default-off setting is a bounded transitional control owned by
-root; its exit is the completed rerun or closed preseason window. Manager UI and
+root; keeping the flag enabled retains the replacement as public, while disabling
+it restores the original. The sealed attempt prevents more paid reruns. Manager UI and
 supported session readiness remain separate release checks. Neither future
 recurring refreshes nor arbitrary-week revisions are part of this implementation.

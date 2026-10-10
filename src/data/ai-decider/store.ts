@@ -27,7 +27,7 @@ export type AiBudgetState = {
   duplicates: { userId: string; fingerprint: string; expires: number; shared: boolean }[];
 };
 export type AiControl = { enabled: boolean; revision: number; state: AiBudgetState };
-export type AiStoredWeek = { key: string; hash: string; manifest: AiGenerationManifest; input: AiWeeklyInput; slate: AiWeeklySlate; result: AiWeeklySlate | null };
+export type AiStoredWeek = { key: string; hash: string; manifest: AiGenerationManifest; input: AiWeeklyInput; slate: AiWeeklySlate; result: AiWeeklySlate | null; refreshed?: true };
 /** Purpose-built CAS and append-only operations, not a generic storage framework. */
 export type AiPersistence = {
   readControl(): Promise<AiControl | null>;
@@ -37,6 +37,7 @@ export type AiPersistence = {
   getWeek(key: string): Promise<AiStoredWeek | null>;
   getOriginalWeek(key: string): Promise<AiStoredWeek | null>;
   getWeekRefresh(): Promise<AiStoredWeek | null>;
+  hasWeekRefresh(): Promise<boolean>;
   claimWeekRefresh(week: AiStoredWeek, identity: AiIdentity): Promise<boolean>;
   completeWeekRefresh(hash: string, slate: AiWeeklySlate, identity: AiIdentity): Promise<boolean>;
   completeWeek(key: string, hash: string, slate: AiWeeklySlate): Promise<boolean>;
@@ -193,13 +194,20 @@ export class PostgresAiPersistence implements AiPersistence {
     return sealed;
   }
   async getWeek(key: string): Promise<AiStoredWeek | null> {
-    const original = await this.getOriginalWeek(key);
-    if (!this.refreshPolicy || key !== WEEK1_REFRESH_KEY || original?.hash !== this.refreshPolicy.originalHash) return original;
-    const replacement = await this.getWeekRefresh();
-    if (!replacement?.result) return original;
-    // Completed corrupt/partial data must not silently become a publication.
-    if (cachedWeek(replacement, Date.parse(replacement.result.generatedAt ?? "")).status !== "ready") throw new Error("weekly_cache");
-    return replacement;
+    if (this.refreshPolicy && key === WEEK1_REFRESH_KEY) {
+      // Only the selected complete snapshot crosses the DB boundary. The original
+      // hash check is inside SQL; no duplicate full archive read on every visit.
+      const result = await this.execute(sql`SELECT week_key,input_hash,generation_manifest,input,prepared_slate,result FROM ai_decider_weeks
+        WHERE week_key=${refreshStorageKey(key)} AND result IS NOT NULL
+          AND EXISTS (SELECT 1 FROM ai_decider_weeks original WHERE original.week_key=${key} AND original.input_hash=${this.refreshPolicy.originalHash}) LIMIT 1`);
+      const row = result.rows[0];
+      if (row) {
+        const replacement: AiStoredWeek = { key, hash: row.input_hash as string, manifest: row.generation_manifest as AiGenerationManifest, input: row.input as AiWeeklyInput, slate: row.prepared_slate as AiWeeklySlate, result: row.result as AiWeeklySlate, refreshed: true };
+        if (cachedWeek(replacement, Date.parse(replacement.result!.generatedAt ?? "")).status !== "ready") throw new Error("weekly_cache");
+        return replacement;
+      }
+    }
+    return this.getOriginalWeek(key);
   }
   async getOriginalWeek(key: string): Promise<AiStoredWeek | null> {
     const result = await this.execute(sql`SELECT week_key, input_hash, generation_manifest, input, prepared_slate, result FROM ai_decider_weeks WHERE week_key = ${key} LIMIT 1`);
@@ -210,6 +218,13 @@ export class PostgresAiPersistence implements AiPersistence {
     if (!this.refreshPolicy) return null;
     const stored = await this.getOriginalWeek(refreshStorageKey(WEEK1_REFRESH_KEY));
     return stored ? { ...stored, key: WEEK1_REFRESH_KEY } : null;
+  }
+  async hasWeekRefresh(): Promise<boolean> {
+    if (!this.refreshPolicy) return false;
+    const result = await this.execute(sql`SELECT EXISTS (SELECT 1 FROM ai_decider_weeks WHERE week_key=${refreshStorageKey(WEEK1_REFRESH_KEY)}) AS present`);
+    const present = result.rows[0]?.present;
+    if (typeof present !== "boolean") throw new Error("refresh_state");
+    return present;
   }
   private refreshAdmission(identity: AiIdentity): SQL {
     if (identity.kind === "weekly_job" || !validAiIdentity(identity)) throw new Error("refresh_identity");

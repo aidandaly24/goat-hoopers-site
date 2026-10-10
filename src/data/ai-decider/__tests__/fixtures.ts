@@ -35,13 +35,14 @@ export class TestPersistence implements AiPersistence {
   async getOriginalWeek(key: string) { return structuredClone(this.weeks.get(key) ?? null); }
   async getWeek(key: string) {
     const original = await this.getOriginalWeek(key), refresh = this.refreshPolicy && key === WEEK1_REFRESH_KEY && original?.hash === this.refreshPolicy.originalHash ? await this.getWeekRefresh() : null;
-    if (refresh?.result) { cachedWeek(refresh, Date.parse(refresh.result.generatedAt!)); return refresh; }
+    if (refresh?.result) { cachedWeek(refresh, Date.parse(refresh.result.generatedAt!)); return { ...refresh, refreshed: true as const }; }
     return original;
   }
   async getWeekRefresh() {
     const value = this.refreshPolicy ? await this.getOriginalWeek(refreshStorageKey(WEEK1_REFRESH_KEY)) : null;
     return value ? { ...value, key: WEEK1_REFRESH_KEY } : null;
   }
+  async hasWeekRefresh() { return !!this.refreshPolicy && this.weeks.has(refreshStorageKey(WEEK1_REFRESH_KEY)); }
   async claimWeekRefresh(record: AiStoredWeek, auth: AiIdentity) {
     const key = refreshStorageKey(WEEK1_REFRESH_KEY), original = this.weeks.get(record.key);
     if (!this.refreshPolicy || record.key !== WEEK1_REFRESH_KEY || original?.hash !== this.refreshPolicy.originalHash || original.result?.status !== "ready" || this.weeks.has(key) || auth.kind === "weekly_job" || this.revoked.has(auth.userId) || !this.control?.enabled || this.outcomes.size) return false;

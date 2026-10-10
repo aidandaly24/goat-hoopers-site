@@ -37,12 +37,10 @@ export async function loadAiDecidesData(runtime = createAiRuntime(), context = l
     const record = await runtime.store?.persistence.getWeek(weekKey(current));
     if (record) weekly = cachedWeek(record, runtime.now(), current.phase === "pre" ? 0 : current.week);
     if (runtime.week1Refresh && weekKey(current) === WEEK1_REFRESH_KEY && runtime.store) {
-      const original = await runtime.store.persistence.getOriginalWeek(WEEK1_REFRESH_KEY);
-      const attempt = await runtime.store.persistence.getWeekRefresh();
-      week1Refresh = original?.hash !== runtime.week1Refresh.originalHash || !original.result || current.phase !== "pre" || weekly.status !== "ready"
+      week1Refresh = !record?.result || current.phase !== "pre" || weekly.status !== "ready" || (!record.refreshed && record.hash !== runtime.week1Refresh.originalHash)
         ? { status: "unavailable", message: "The reviewed one-time preseason refresh is unavailable." }
-        : attempt?.result ? { status: "published", message: "The one-time replacement is saved; its original snapshot and picks remain archived." }
-        : attempt ? { status: "sealed", message: "The one-time attempt is sealed. Original picks remain public; no automatic retry is allowed." }
+        : record.refreshed ? { status: "published", message: "The one-time replacement is saved; its original snapshot and picks remain archived." }
+        : await runtime.store.persistence.hasWeekRefresh() ? { status: "sealed", message: "The one-time attempt is sealed. Original picks remain public; no automatic retry is allowed." }
         : { status: "available", message: "One explicit manager refresh is available. Original picks remain public until all five replacements are saved." };
     }
   } catch { /* Leave an honest unavailable slate; no generation fallback. */ }

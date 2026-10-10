@@ -821,6 +821,11 @@ manifest, result and outcomes stay untouched. Auth, control and original-hash
 conditions are rechecked atomically at claim/completion; only a validated complete
 five-pair result replaces public reads. Timeout, refusal, denial or failed
 completion leaves the original public and the sealed attempt unretryable.
+The rerun route alone sets `fetchCache="force-no-store"`, overriding the normal
+source helpers' positive revalidation intervals. Installed Next fetch tests
+verify upstream reads without persistent cache reuse; retrieval time still does
+not claim a verified upstream update time. A complete public replacement reads
+one selected snapshot, retaining the original-hash check within SQL.
 Removing the flag restores original reads without deleting either record.
 It adds no migration, counter reset or cron behavior. This source is dormant
 until separate review/release/setting clearance and a genuine manager action.

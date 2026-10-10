@@ -512,6 +512,15 @@ describe("actual PostgreSQL one-time refresh preservation and admission", () => 
     expect((await fixture.enabled().getWeek(WEEK1_REFRESH_KEY))?.hash).toBe(fixture.replacement.hash);
     expect(await persistence().getWeek(WEEK1_REFRESH_KEY)).toEqual(fixture.original);
     await refreshWeek1(principal(3), h.runtime, sources); expect(h.create).toHaveBeenCalledTimes(1);
+    const reads = vi.spyOn(db, "execute");
+    let data: Awaited<ReturnType<typeof loadAiDecidesData>>, count: number;
+    try {
+      data = await loadAiDecidesData(h.runtime, async () => ({ ...await sources.context(), matchups: fixture.replacement.input.matchups }));
+      count = reads.mock.calls.length;
+    } finally { reads.mockRestore(); }
+    expect(data.week1Refresh?.status).toBe("published"); expect(data.weekly.snapshot?.hash).toBe(fixture.replacement.hash);
+    // One small control read and one selected full snapshot, no duplicate archive.
+    expect(count).toBe(2); expect(h.create).toHaveBeenCalledTimes(1);
   });
   it("allows exactly one claim across independent stores and different capture hashes", async () => {
     const h = await refreshFixture(), before = await control();
