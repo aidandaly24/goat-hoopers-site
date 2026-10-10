@@ -768,6 +768,20 @@ revalidation/stale-fallback caveats and coverage appear in separate
 `AiLeagueContextMetadata`; weekly snapshots remain immutable and unchanged.
 Plain custom text receives no automatic league facts, and the existing request,
 input-token and spending limits apply without truncating oversized evidence.
+`POST /api/ai-decides/context` delegates a bounded same-origin two-team read to
+`context-http.ts` after current manager validation. It loads no provider or budget
+operation. `context-preview.ts` serializes every selected roster/player/stat fact
+into complete editable column text, with deterministic text digest and separate
+source/coverage metadata. Both new interactive presets can fill the visible
+question plus roster text. An optional `contextDigest` league run reloads current
+canonical facts and verifies the exact text suffix and ordered names before paid
+admission. Its `goat-visible-roster-v1` payload supplies the full displayed prompt
+once, without a second hidden roster block. Question edits preserve canonical
+fact proof; edited/removed roster text uses ordinary custom input with no proof.
+Prompt bytes and choice labels are preserved; equality uses trim/NFKC/en-US case
+only for identity validation. Transport permits 12,000 characters/32 KiB while the
+unchanged 6,144 conservative provider-input budget still rejects excess before
+spend. No signing key, token, preview persistence or schema is added.
 `POST /api/ai-decides` delegates bounded same-origin drafts to that service;
 anonymous users can build drafts without provider calls. `GET` and
 `getAiDecidesData()` read cached weekly picks only. League fetch/preparation stays
