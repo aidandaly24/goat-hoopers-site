@@ -37,6 +37,18 @@ personal experiments. Show every returned probability, independent confidence,
 experimental status and returned model/prompt/as-of metadata. Missing or stale
 inputs have explicit states; no mock percentages or invented explanations ship.
 
+Aidan clarified on October 10 that presets must put the question and actual
+selected-team roster/stat evidence directly into the editable prompt. Both
+Who wins? and Who has the edge? load that visible content through a free,
+authenticated source preview; the run sends the complete textarea once.
+Question-only edits retain the source check when the roster block is intact.
+Roster edits or changed choices submit visible custom content with an explicit
+unverified label and no additional hidden roster data. Loading, errors, Cancel
+and stale responses preserve the existing draft. Replacing an existing draft
+is explicit; Refresh retains the question and replaces only an intact block.
+Unrelated custom choices keep the ordinary text-only flow. Saved weekly picks
+remain separate and immutable.
+
 Continue refinement through useful detail, depth, control feedback and authored
 motion while retaining the approved composition. Avoid nested panels, repeated
 boxes, decorative gauges, random shapes and large empty areas. Probability

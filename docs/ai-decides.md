@@ -8,7 +8,7 @@ deploy. The explicit CI job applies the AI schema only in a disposable test sche
 
 The client-safe source of truth is `src/domain/ai-decider.ts`. A draft is either
 `{kind:"custom",prompt,choices}`, `{kind:"matchup",teamIds:[id,id]}`, or
-`{kind:"league",prompt,choices:[name,name],teamIds:[id,id]}`. No client
+`{kind:"league",prompt,choices:[name,name],teamIds:[id,id],contextDigest?}`. No client
 identity, model, credential, header, URL, image, tool or provider payload is
 accepted. Matchup mode can compare any two teams from a verified frozen weekly
 input; it labels the result a hypothetical comparison. Custom mode has only the
@@ -21,7 +21,8 @@ resolved. Duplicate canonical names, missing owners/rosters or invalid source
 facts fail closed; mismatched/stale choice labels return
 `invalid/league_choices_changed`. Source failures return
 `unavailable/league_context_unavailable`, before any provider reservation.
-Client-provided roster/stat data is rejected by the request allowlist.
+Structured client roster/stat fields are rejected by the request allowlist.
+Editable text is accepted as the visible prompt, with the proof rules below.
 
 Only after existing validated identity does this path call the injected
 `loadAiLeagueRosterContext` loader. It reuses existing Sleeper league, user,
@@ -37,7 +38,7 @@ the decision. Raw owner IDs, team scores/outcomes, unrelated teams/players,
 injury data and projected future statistics are excluded.
 
 Every successful league result keeps the supplied choice labels and uses
-`goat-league-roster-v1`, `snapshot:null`, plus server-owned `leagueContext`
+`snapshot:null`, plus server-owned `leagueContext`
 metadata and factual evidence. Its hash describes the on-demand roster projection,
 not an immutable weekly record. Capture time means retrieval, never source update
 time (`sourceUpdatedAt:null`). `cacheRevalidateSeconds` reports the existing
@@ -52,6 +53,38 @@ context. Oversized evidence returns `invalid/input_limit` without truncation,
 spend or a provider call. No new persistence, weekly-snapshot change, migration,
 auth behavior, spending limit or log payload is introduced. Frontend-owned
 recognition must show context explicitly; unrelated custom decisions stay text-only.
+
+### Visible roster input
+
+`POST /api/ai-decides/context` accepts only `{teamIds:[id,id]}` in at most
+1,024 streamed bytes, with same-origin and current manager-session checks. It is
+a free source read: it does not require a provider key, inspect the paid feature
+gate, reserve a budget or call the model. The response is
+`{status:"ready",preview:{text,digest,teamIds,choices,context,promptVersion}}`.
+`text` includes every selected roster's player identity, membership and available
+observed stats, with unknown/cache caveats. It has no leading/trailing whitespace
+or newline. `digest` is lowercase SHA-256 of these exact text bytes, not a signed
+token. Retrieval time stays in `context`; identical facts retain the same text
+digest across retrievals. Failures use the normal safe status/code/message shape.
+
+Both interactive presets submit the displayed question, two newlines and the
+complete preview text as `prompt`, with ordered `teamIds`, `choices` and
+`contextDigest`. The server reloads canonical evidence and checks that exact
+suffix and digest before paid admission. Its `goat-visible-roster-v1` payload
+sends `{userRequest:prompt}` once; it adds no hidden roster block. Question-only
+edits retain proof. Changed/removed evidence, mismatched choices or changed
+source facts cannot claim proof: a forged/stale league request returns
+`unavailable/context_changed` without spend. The frontend uses ordinary custom
+input for deliberately edited facts and labels them unverified.
+
+Prompt bytes and original choice labels are preserved; trim/NFKC/en-US case
+comparison applies only to choice identity/distinctness. Preview text leaves
+2,000 characters for a question, but the unchanged conservative 6,144 input
+reservation applies to the entire payload and can still reject an oversized
+question/context before spend. No roster is truncated to make it fit. Legacy
+league requests without `contextDigest` keep their 2,000-character question cap
+and `goat-league-roster-v1` server-context payload for compatibility. The frozen
+weekly pipeline is unchanged.
 
 `POST /api/ai-decides` requires same-origin JSON and the current server-selected
 validated session (provider or legacy).
@@ -84,7 +117,7 @@ generated explanation field is assumed. Refusal is its own answer variant.
 The fixed instructions treat user text/choice descriptions as untrusted task
 data. Opaque `c0`… choice values prevent labels becoming protocol fields.
 
-Body: 8,192 streamed UTF-8 bytes, three-second read deadline. Prompt: 2,000
+Body: 32,768 streamed UTF-8 bytes, three-second read deadline. Prompt: 12,000
 characters. Choices: 2–8 distinct labels, 120 characters each. Transport
 redirects are rejected; response bodies are capped at 32 KiB. Provider deadline:
 eight seconds, with both abort and a promise race. Data operations have bounded

@@ -10,6 +10,7 @@ import { cachedWeek, canonicalJson, completeWeeklySlate, currentGenerationManife
 import type { AiWeek1RefreshPolicy } from "./refresh-policy";
 import { aiDataDeadline } from "./deadline";
 import { leagueRosterDecision } from "./roster-context";
+import { visibleRosterDecision } from "./context-preview";
 
 export type AiRuntime = {
   enabled: boolean;
@@ -98,7 +99,7 @@ export async function evaluate(runtime: AiRuntime, identity: AiIdentity, payload
 /** Safe entry point for interactive runs; accepts only our application schema. */
 export async function runAiDecision(raw: unknown, token: string | undefined, runtime: AiRuntime): Promise<AiDecideResponse> {
   const request = parseAiRequest(raw);
-  if (!request) return failure("invalid", "invalid_request", "Choose 2–8 distinct options and a prompt up to 2,000 characters.");
+  if (!request) return failure("invalid", "invalid_request", "Choose 2–8 distinct options and keep the draft within its input limit.");
   const state = await availability(runtime);
   if (state.status === "unavailable") return failure("unavailable", state.code, state.message);
   let identity: AiIdentity | null;
@@ -111,9 +112,11 @@ export async function runAiDecision(raw: unknown, token: string | undefined, run
     try {
       if (!runtime.getLeagueContext) throw new Error("league_context");
       const context = await aiDataDeadline(runtime.getLeagueContext(request.teamIds), 3000);
-      decision = leagueRosterDecision(request, context, runtime.now(), safety);
+      decision = request.contextDigest === undefined ? leagueRosterDecision(request, context, runtime.now(), safety) : visibleRosterDecision(request, context, runtime.now(), safety);
     } catch (e) {
       if (e instanceof Error && e.message === "league_choices_changed") return failure("invalid", "league_choices_changed", "Team names changed or do not match the selected roster IDs. Refresh the teams and check your choices.");
+      if (e instanceof Error && e.message === "context_changed") return failure("unavailable", "context_changed", "The displayed roster text changed or no longer matches current evidence. Refresh it, or submit your edits as custom input. No decision was run.");
+      if (e instanceof Error && e.message === "input_limit") return failure("invalid", "input_limit", "The complete roster context exceeds the input budget. No decision was run.");
       return failure("unavailable", "league_context_unavailable", "The selected teams' roster evidence could not be validated. No decision was run; refresh or try later.");
     }
   }

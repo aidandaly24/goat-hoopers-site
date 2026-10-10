@@ -27,3 +27,5 @@
 
 /* Team names and returned source details must reflow at narrow widths. */
 .helper,.source{overflow-wrap:anywhere}
+
+.promptHeading{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:var(--gh-s2);margin-bottom:var(--gh-s2)}.promptHeading label{margin:0}.promptHeading>span{font:.6875rem var(--gh-font-mono);color:var(--gh-text-dim);white-space:nowrap}.page textarea.rosterPrompt{min-height:18rem;line-height:1.5}.contextActions{display:flex;align-items:center;flex-wrap:wrap;gap:var(--gh-s2);margin:var(--gh-s2) 0}.contextActions:empty{display:none}.page .contextActions button{font-size:.75rem;background:transparent}.contextActions .helper{margin:0}
