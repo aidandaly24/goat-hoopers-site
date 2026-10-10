@@ -12,6 +12,7 @@ import { POST } from "@/app/api/ai-decides/route";
 
 beforeEach(() => {
   vi.clearAllMocks(); vi.stubEnv("OPENAI_API_KEY", ""); vi.stubEnv("GOAT_AI_DECIDES_ENABLED", ""); vi.stubEnv("GOAT_AI_WEEKLY_USER_ID", "");
+  vi.stubEnv("GOAT_AI_WEEK1_REFRESH_ENABLED", "");
 });
 afterEach(() => vi.unstubAllEnvs());
 
@@ -52,7 +53,14 @@ it.each(["0", "1"])("binds a valid server-owned weekly app UUID to the selected 
   const userId = "00000000-0000-4000-8000-000000000001";
   vi.stubEnv("GOAT_AI_WEEKLY_USER_ID", userId);
   expect(createAiRuntime().weeklyOperator).toEqual({ kind: "weekly_job", userId, auth: flag === "1" ? "friends" : "legacy" });
-  expect(mocks.store).toHaveBeenCalledWith({ kind: "weekly_job", userId, auth: flag === "1" ? "friends" : "legacy" });
+  expect(mocks.store).toHaveBeenCalledWith({ kind: "weekly_job", userId, auth: flag === "1" ? "friends" : "legacy" }, undefined);
   vi.stubEnv("GOAT_AI_WEEKLY_USER_ID", "client-supplied");
   expect(createAiRuntime().weeklyOperator).toBeNull();
+});
+
+it.each([undefined, "", "0", "true", "1"])("keeps one-shot refresh default off and uses only exact1 (%s)", flag => {
+  vi.stubEnv("GOAT_AI_WEEK1_REFRESH_ENABLED", flag);
+  const runtime = createAiRuntime();
+  expect(!!runtime.week1Refresh).toBe(flag === "1");
+  if (flag === "1") expect(runtime.week1Refresh?.originalHash).toBe("181fead854819a7554ab6e66118da7a1716b0f8b576519db0562aa136a989802");
 });

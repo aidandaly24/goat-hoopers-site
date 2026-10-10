@@ -4,7 +4,8 @@ import type { AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-
 import type { AiRuntime } from "../service";
 import { AiDeciderStore, emptyBudgetState, type AiControl, type AiBudgetState, type AiIdentity, type AiLegacyIdentity, type AiPersistence, type AiStoredWeek, type AiWeeklyJobIdentity } from "../store";
 import type { DecisionPayload, DecisionsClient } from "../provider";
-import { weekKey } from "../weekly";
+import { cachedWeek, weekKey } from "../weekly";
+import { refreshStorageKey, WEEK1_REFRESH_KEY, type AiWeek1RefreshPolicy } from "../refresh-policy";
 
 export const NOW = Date.parse("2026-10-19T07:00:00Z");
 export const TOKEN = "a".repeat(64);
@@ -19,6 +20,7 @@ export class TestPersistence implements AiPersistence {
   outcomes = new Map<string, AiWeeklyOutcome>();
   revoked = new Set<string>();
   conflicts = 0;
+  refreshPolicy?: AiWeek1RefreshPolicy;
   async authorizeWeeklyOperator(auth: AiWeeklyJobIdentity) { return auth.userId === USER && !this.revoked.has(auth.userId); }
   async readControl() { return structuredClone(this.control); }
   async compareControl(revision: number, state: AiBudgetState, auth?: AiIdentity, disable = false) {
@@ -30,7 +32,28 @@ export class TestPersistence implements AiPersistence {
     if (!this.weeks.has(record.key)) this.weeks.set(record.key, structuredClone(record));
     return structuredClone(this.weeks.get(record.key)!);
   }
-  async getWeek(key: string) { return structuredClone(this.weeks.get(key) ?? null); }
+  async getOriginalWeek(key: string) { return structuredClone(this.weeks.get(key) ?? null); }
+  async getWeek(key: string) {
+    const original = await this.getOriginalWeek(key), refresh = this.refreshPolicy && key === WEEK1_REFRESH_KEY && original?.hash === this.refreshPolicy.originalHash ? await this.getWeekRefresh() : null;
+    if (refresh?.result) { cachedWeek(refresh, Date.parse(refresh.result.generatedAt!)); return refresh; }
+    return original;
+  }
+  async getWeekRefresh() {
+    const value = this.refreshPolicy ? await this.getOriginalWeek(refreshStorageKey(WEEK1_REFRESH_KEY)) : null;
+    return value ? { ...value, key: WEEK1_REFRESH_KEY } : null;
+  }
+  async claimWeekRefresh(record: AiStoredWeek, auth: AiIdentity) {
+    const key = refreshStorageKey(WEEK1_REFRESH_KEY), original = this.weeks.get(record.key);
+    if (!this.refreshPolicy || record.key !== WEEK1_REFRESH_KEY || original?.hash !== this.refreshPolicy.originalHash || original.result?.status !== "ready" || this.weeks.has(key) || auth.kind === "weekly_job" || this.revoked.has(auth.userId) || !this.control?.enabled || this.outcomes.size) return false;
+    cachedWeek(record, Date.parse(record.input.capturedAt));
+    this.weeks.set(key, structuredClone({ ...record, key })); return true;
+  }
+  async completeWeekRefresh(hash: string, slate: AiWeeklySlate, auth: AiIdentity) {
+    const record = this.weeks.get(refreshStorageKey(WEEK1_REFRESH_KEY));
+    if (!record || record.hash !== hash || record.result || slate.status !== "ready" || auth.kind === "weekly_job" || this.revoked.has(auth.userId) || !this.control?.enabled || this.outcomes.size) return false;
+    cachedWeek({ ...record, key: WEEK1_REFRESH_KEY, result: slate }, Date.parse(slate.generatedAt!));
+    record.result = structuredClone(slate); return true;
+  }
   async completeWeek(key: string, hash: string, slate: AiWeeklySlate) {
     const record = this.weeks.get(key);
     if (!record || record.hash !== hash || record.result) return false;

@@ -29,10 +29,10 @@ export function parseAiRequest(raw: unknown): AiDecideRequest | null {
 }
 
 /** Streamed cap also handles dishonest/missing Content-Length and UTF-8 bodies. */
-export async function readAiBody(request: Request): Promise<unknown> {
+export async function readAiBody(request: Request, maxBytes: number = AI_LIMITS.bodyBytes): Promise<unknown> {
   if (request.headers.get("content-type")?.split(";")[0].trim() !== "application/json" || request.headers.has("content-encoding")) throw new Error("invalid_body");
   const declared = request.headers.get("content-length");
-  if (declared !== null && (!/^\d+$/.test(declared) || Number(declared) > AI_LIMITS.bodyBytes)) throw new Error("invalid_body");
+  if (declared !== null && (!/^\d+$/.test(declared) || Number(declared) > maxBytes)) throw new Error("invalid_body");
   const reader = request.body?.getReader();
   if (!reader) throw new Error("invalid_body");
   const chunks: Uint8Array[] = [];
@@ -44,7 +44,7 @@ export async function readAiBody(request: Request): Promise<unknown> {
       const part = await reader.read();
       if (part.done) break;
       bytes += part.value.length;
-      if (bytes > AI_LIMITS.bodyBytes) throw new Error("invalid_body");
+      if (bytes > maxBytes) throw new Error("invalid_body");
       chunks.push(part.value);
     }
     if (timedOut) throw new Error("invalid_body");

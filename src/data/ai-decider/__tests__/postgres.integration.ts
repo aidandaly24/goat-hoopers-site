@@ -10,7 +10,9 @@ import { AiDeciderStore, PostgresAiPersistence, emptyBudgetState, AI_BUDGET, typ
 import { generateWeeklyPicks, resolveAiIdentity, runAiDecision } from "../service";
 import { loadAiDecidesData } from "../runtime";
 import { decodeDecision } from "../provider";
-import { AI_WEEKLY_MANIFEST, cachedWeek, prepareWeeklySlate, recordWeeklyOutcome, weekHash, weekKey, weeklyDecision } from "../weekly";
+import { AI_WEEKLY_MANIFEST, cachedWeek, manifestForInput, prepareWeeklySlate, recordWeeklyOutcome, weekHash, weekKey, weeklyDecision } from "../weekly";
+import { refreshStorageKey, WEEK1_REFRESH_KEY } from "../refresh-policy";
+import { refreshWeek1 } from "../week1-refresh";
 import { fingerprint, harness, identity, NOW, providerAnswer, weeklyInput } from "./fixtures";
 
 if (process.env.GITHUB_ACTIONS !== "true" || process.env.CI !== "true" || process.env.RUN_AI_POSTGRES_TEST !== "1") throw new Error("Disposable CI database opt-in required");
@@ -56,6 +58,20 @@ function completed(record: AiStoredWeek) {
   const results = decodeDecision(providerAnswer(decision.payload), decision.specs).results;
   return { ...record.slate, status: "ready" as const, generatedAt: new Date(NOW).toISOString(),
     matchups: record.slate.matchups.map((m, i) => ({ ...m, status: "ready" as const, result: results[i] })) };
+}
+
+async function refreshFixture() {
+  const base = weeklyInput();
+  const input = { ...base, phase: "pre" as const, scoringMode: "unknown" as const, cutoffAt: base.capturedAt, statsAvailableAt: base.capturedAt, startsAt: "2026-10-20T00:00:00.000Z", endsAt: null,
+    preview: { kind: "lineup_strength" as const, sourceLeg: 0, seasonStartDate: "2026-10-20", gameModeCode: 1 } };
+  const original: AiStoredWeek = { key: WEEK1_REFRESH_KEY, input, hash: weekHash(input), manifest: { ...manifestForInput(input) }, slate: prepareWeeklySlate(input, NOW), result: null };
+  const p = persistence(); await p.sealWeek(original); await p.completeWeek(original.key, original.hash, completed(original));
+  const capturedAt = new Date(NOW + 1000).toISOString(), fresh = { ...input, capturedAt, cutoffAt: capturedAt, statsAvailableAt: capturedAt };
+  const replacement: AiStoredWeek = { key: WEEK1_REFRESH_KEY, input: fresh, hash: weekHash(fresh), manifest: { ...manifestForInput(fresh) }, slate: prepareWeeklySlate(fresh, NOW + 1000), result: null };
+  const policy = { originalHash: original.hash };
+  const enabled = () => new PostgresAiPersistence(db, undefined, policy);
+  const result = completed(replacement); result.generatedAt = capturedAt;
+  return { original: (await p.getOriginalWeek(original.key))!, replacement, result, enabled };
 }
 
 beforeAll(async () => {
@@ -477,5 +493,76 @@ describe("actual immutable weekly tables and lifecycle", () => {
       expect(await future.recordWeeklyOutcome(p, record.key, outcome, Date.parse(outcome.recordedAt))).toBe(false);
       expect(await p.getWeek(record.key)).toEqual(before);
     } finally { vi.doUnmock("@/domain/ai-decider"); vi.resetModules(); }
+  });
+});
+
+
+describe("actual PostgreSQL one-time refresh preservation and admission", () => {
+  it("runs one mocked five-pair batch through real claim, paid CAS and complete publication", async () => {
+    const fixture = await refreshFixture(), h = realHarness(); h.setTime(NOW + 1000);
+    h.runtime.store = new AiDeciderStore(fixture.enabled()); h.runtime.week1Refresh = { originalHash: fixture.original.hash };
+    h.runtime.getSourceState = async () => ({ season: "2026", phase: "pre", leg: 0 });
+    const sources = { context: async () => ({ leagueId: "1387473752807190528", season: "2026", phase: "pre" as const, leg: 0, week: 1, seasonStartDate: "2026-10-20", statsSeason: "2025", gameModeCode: 1 }), input: async () => fixture.replacement.input };
+    const results = await Promise.all([refreshWeek1(principal(), h.runtime, sources), refreshWeek1(principal(2), h.runtime, sources)]);
+    expect(results.filter(r => r.status === "ready")).toHaveLength(1); expect(h.create).toHaveBeenCalledTimes(1);
+    expect((await control()).state.requests).toBe(1);
+    expect((await fixture.enabled().getWeek(WEEK1_REFRESH_KEY))?.hash).toBe(fixture.replacement.hash);
+    expect(await persistence().getWeek(WEEK1_REFRESH_KEY)).toEqual(fixture.original);
+    await refreshWeek1(principal(3), h.runtime, sources); expect(h.create).toHaveBeenCalledTimes(1);
+  });
+  it("allows exactly one claim across independent stores and different capture hashes", async () => {
+    const h = await refreshFixture(), before = await control();
+    const claims = await Promise.all(Array.from({ length: 5 }, (_, n) => h.enabled().claimWeekRefresh(h.replacement, providerPrincipal(n + 1))));
+    expect(claims.filter(Boolean)).toHaveLength(1);
+    expect(await h.enabled().getWeek(WEEK1_REFRESH_KEY)).toEqual(h.original);
+    expect(await persistence().getOriginalWeek(WEEK1_REFRESH_KEY)).toEqual(h.original);
+    expect(await control()).toEqual(before); // Claim neither resets nor spends.
+    const changed = structuredClone(h.replacement); changed.input.capturedAt = new Date(NOW + 2000).toISOString(); changed.hash = weekHash(changed.input);
+    expect(await h.enabled().claimWeekRefresh(changed, providerPrincipal())).toBe(false);
+    expect((await pool.query("SELECT count(*)::int AS n FROM ai_decider_weeks")).rows[0].n).toBe(2);
+  });
+  it("publishes a complete valid batch atomically once and rollback reads the byte-identical original", async () => {
+    const h = await refreshFixture(); expect(await h.enabled().claimWeekRefresh(h.replacement, providerPrincipal())).toBe(true);
+    const results = await Promise.all([h.enabled().completeWeekRefresh(h.replacement.hash, h.result, providerPrincipal()), h.enabled().completeWeekRefresh(h.replacement.hash, h.result, providerPrincipal())]);
+    expect(results.filter(Boolean)).toHaveLength(1);
+    expect((await h.enabled().getWeek(WEEK1_REFRESH_KEY))?.hash).toBe(h.replacement.hash);
+    expect(cachedWeek((await h.enabled().getWeek(WEEK1_REFRESH_KEY))!, NOW + 1000).status).toBe("ready");
+    expect(await persistence().getWeek(WEEK1_REFRESH_KEY)).toEqual(h.original);
+    expect(await h.enabled().getWeekRefresh()).toMatchObject({ hash: h.replacement.hash, result: h.result });
+    await expect(pool.query("DELETE FROM ai_decider_weeks WHERE week_key=$1", [refreshStorageKey(WEEK1_REFRESH_KEY)])).rejects.toThrow("immutable");
+    await expect(pool.query("UPDATE ai_decider_weeks SET input='{}'::jsonb WHERE week_key=$1", [refreshStorageKey(WEEK1_REFRESH_KEY)])).rejects.toThrow("immutable");
+    await expect(pool.query("UPDATE ai_decider_weeks SET result='{}'::jsonb WHERE week_key=$1", [WEEK1_REFRESH_KEY])).rejects.toThrow("immutable");
+  });
+  it.each(["expired", "subject", "uuid", "inactive", "unverified", "team", "control", "outcome"])("rejects %s at atomic claim without modifying archive or spend", async change => {
+    const h = await refreshFixture(), auth = providerPrincipal(), before = (await control()).state;
+    if (change === "expired") await pool.query("UPDATE auth_session SET expires_at='2000-01-01' WHERE id=$1", [auth.sessionId]);
+    if (change === "subject") auth.subject = providerPrincipal(2).subject;
+    if (change === "uuid") auth.userId = providerPrincipal(2).userId;
+    if (change === "inactive") await pool.query("UPDATE account_identities SET active=false WHERE user_id=$1", [auth.userId]);
+    if (change === "unverified") await pool.query("UPDATE auth_user SET email_verified=false WHERE id=$1", [auth.subject]);
+    if (change === "team") await pool.query("UPDATE site_users SET team_id='11' WHERE id=$1", [auth.userId]);
+    if (change === "control") await pool.query("UPDATE ai_decider_control SET enabled=false");
+    if (change === "outcome") await pool.query("INSERT INTO ai_decider_outcomes(week_key,matchup_id,outcome)VALUES($1,'1','{}'::jsonb)", [WEEK1_REFRESH_KEY]);
+    expect(await h.enabled().claimWeekRefresh(h.replacement, auth)).toBe(false);
+    expect(await h.enabled().getWeekRefresh()).toBeNull(); expect(await persistence().getOriginalWeek(WEEK1_REFRESH_KEY)).toEqual(h.original);
+    expect((await control()).state).toEqual(before);
+  });
+  it("fails closed on revoked completion and invalid partial/probability results, retaining old public picks", async () => {
+    const h = await refreshFixture(), p = h.enabled(), auth = providerPrincipal();
+    expect(await p.claimWeekRefresh(h.replacement, auth)).toBe(true);
+    const partial = { ...structuredClone(h.result), status: "unavailable" as const };
+    expect(await p.completeWeekRefresh(h.replacement.hash, partial, auth)).toBe(false);
+    const malformed = structuredClone(h.result); malformed.matchups[0].result!.probabilities[0].probability = 2;
+    await expect(p.completeWeekRefresh(h.replacement.hash, malformed, auth)).rejects.toThrow("weekly_cache");
+    await pool.query("UPDATE account_identities SET active=false WHERE user_id=$1", [auth.userId]);
+    expect(await p.completeWeekRefresh(h.replacement.hash, h.result, auth)).toBe(false);
+    expect(await p.getWeek(WEEK1_REFRESH_KEY)).toEqual(h.original); expect((await p.getWeekRefresh())?.result).toBeNull();
+    expect(await p.claimWeekRefresh(h.replacement, providerPrincipal(2))).toBe(false);
+  });
+  it("keeps refresh disabled by default and refuses scheduler identities", async () => {
+    const h = await refreshFixture();
+    expect(await persistence().claimWeekRefresh(h.replacement, providerPrincipal())).toBe(false);
+    await expect(h.enabled().claimWeekRefresh(h.replacement, { kind: "weekly_job", userId: principal().userId, auth: "friends" })).rejects.toThrow("refresh_identity");
+    expect(await persistence().getWeek(WEEK1_REFRESH_KEY)).toEqual(h.original);
   });
 });

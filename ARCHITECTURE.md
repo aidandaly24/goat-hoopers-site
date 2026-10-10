@@ -813,6 +813,17 @@ configured stable app UUID with atomic membership checks. It never borrows a
 browser session, resets counters or automatically retries a sealed incomplete
 attempt. Cache lookup precedes stats/provider work. Scheduler settings and first
 live publication remain root-owned handoff steps, outside this source change.
+The separately reviewed `week1-refresh.ts` path permits one explicit preseason
+2026/week1 replacement only when `GOAT_AI_WEEK1_REFRESH_ENABLED=1`. Its fixed
+original hash is checked before a new immutable `:refresh:1` row is claimed;
+only the INSERT winner may call the existing paid evaluator. The original input,
+manifest, result and outcomes stay untouched. Auth, control and original-hash
+conditions are rechecked atomically at claim/completion; only a validated complete
+five-pair result replaces public reads. Timeout, refusal, denial or failed
+completion leaves the original public and the sealed attempt unretryable.
+Removing the flag restores original reads without deleting either record.
+It adds no migration, counter reset or cron behavior. This source is dormant
+until separate review/release/setting clearance and a genuine manager action.
 See [AI Decides handoff](docs/ai-decides.md) for limits, retention, exact contracts,
 auth findings and outstanding activation/verification work.
 
