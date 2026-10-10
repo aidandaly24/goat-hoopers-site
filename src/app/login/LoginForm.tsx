@@ -73,7 +73,6 @@ export function LoginForm({
       </form>
       {accountsAvailable && <p className={styles.switch}>
         <Link href={selectedTeam ? `/forgot-password?team=${encodeURIComponent(selectedTeam)}` : "/forgot-password"}>Reset password</Link> · <Link href="/signup">Create account</Link> · <Link href="/account/login">Log in with email</Link>
-        {!enrollment && <> · <Link href="/login?legacy=1">Set up email login for my existing team</Link></>}
       </p>}
       {!enrollment && <p className={styles.switch}>
         Have a team code? <Link href="/claim">Claim your team</Link>
