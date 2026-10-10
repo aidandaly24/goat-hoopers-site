@@ -5,7 +5,58 @@ import { createImportDb } from "../../db";
 import { AI_BUDGET, AiDeciderStore, PostgresAiPersistence, emptyBudgetState, validBudgetState } from "../store";
 import { fingerprint, identity, NOW, TestPersistence } from "./fixtures";
 
+function retainedCounters(size: number) {
+  const state = emptyBudgetState(NOW);
+  state.requests = 123; state.tokens = AI_BUDGET.globalTokensDay - 1000;
+  for (let n = 1; n <= size; n++) state.users[identity(n).userId] = {
+    day: "2026-10-19", hour: "2026-10-19T07", requests: n, hourly: n,
+    denied: 2, signals: 1, lastSeen: NOW - 60000, recent: [NOW - 60000],
+  };
+  return state;
+}
+
 describe("durable shared spending/abuse policy under CAS contention", () => {
+  it("preserves ten retired counters while admitting ten fresh identities within the unchanged shared spend cap", async () => {
+    const p = new TestPersistence(), s = new AiDeciderStore(p);
+    p.control!.state = retainedCounters(10);
+    const retired = structuredClone(p.control!.state.users);
+    for (const id of Object.keys(retired)) p.revoked.add(id);
+    for (let n = 11; n <= 20; n++) {
+      const current = { kind: "friends" as const, userId: identity(n).userId, sessionId: `current-session-${n}`, subject: `current-subject-${n}` };
+      const r = await s.reserve(current, fingerprint(n), 100, NOW);
+      if (r.status !== "reserved") throw new Error("Expected fresh identity admission");
+      await s.finish(r.leaseId, 30, false, false, NOW);
+    }
+    expect(validBudgetState(p.control!.state)).toBe(true);
+    expect(Object.keys(p.control!.state.users)).toHaveLength(20);
+    for (const [id, counter] of Object.entries(retired)) expect(p.control!.state.users[id]).toEqual(counter);
+    expect(p.control!.state.requests).toBe(133); expect(p.control!.state.tokens).toBe(AI_BUDGET.globalTokensDay);
+    expect((await s.reserve(identity(11), fingerprint(100), 100, NOW)).status).toBe("rate_limited");
+    expect(p.control!.state.requests).toBe(133); expect(p.control!.state.tokens).toBe(AI_BUDGET.globalTokensDay);
+    const before = structuredClone(p.control);
+    await expect(s.reserve(identity(1), fingerprint(101), 100, NOW)).rejects.toThrow("state_unavailable");
+    expect(p.control).toEqual(before);
+  });
+  it("serializes the final retained-counter slot without deleting history or overfilling under CAS contention", async () => {
+    const p = new TestPersistence(); p.control!.state = retainedCounters(19);
+    const before = structuredClone(p.control!.state.users);
+    const results = await Promise.allSettled([20, 21].map(n => new AiDeciderStore(p).reserve(identity(n), fingerprint(n), 100, NOW)));
+    expect(results.filter(r => r.status === "fulfilled" && r.value.status === "reserved")).toHaveLength(1);
+    expect(results.filter(r => r.status === "rejected" && r.reason.message === "state_unavailable")).toHaveLength(1);
+    expect(p.conflicts).toBeGreaterThan(0);
+    expect(Object.keys(p.control!.state.users)).toHaveLength(AI_BUDGET.retainedUserCapacity);
+    for (const [id, counter] of Object.entries(before)) expect(p.control!.state.users[id]).toEqual(counter);
+    expect(p.control!.state.requests).toBe(124); expect(p.control!.state.tokens).toBe(AI_BUDGET.globalTokensDay - 900);
+  });
+  it("fails closed on over-capacity retained state without clearing records or resetting budgets", async () => {
+    const p = new TestPersistence(), s = new AiDeciderStore(p);
+    p.control!.state = retainedCounters(AI_BUDGET.retainedUserCapacity + 1);
+    const before = structuredClone(p.control);
+    expect(validBudgetState(p.control!.state)).toBe(false);
+    await expect(s.available()).rejects.toThrow("state_unavailable");
+    await expect(s.reserve(identity(22), fingerprint(), 100, NOW)).rejects.toThrow("state_unavailable");
+    expect(p.control).toEqual(before);
+  });
   it("allows at most two overlapping users and one in-flight call per user", async () => {
     const p = new TestPersistence();
     const responses = await Promise.allSettled(Array.from({ length: 10 }, (_, n) => new AiDeciderStore(p).reserve(identity(n + 1), fingerprint(n), 100, NOW)));
