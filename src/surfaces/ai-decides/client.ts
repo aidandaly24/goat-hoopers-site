@@ -1,8 +1,9 @@
-import { AI_LEAGUE_ROSTER_PROMPT_VERSION, AI_PROBABILITY_LABEL, type AiDecideRequest, type AiDecideResponse, type AiLeagueContextMetadata, type AiSnapshotMetadata, type AiWeeklyPublishResponse } from "@/domain/ai-decider";
+import { AI_LEAGUE_ROSTER_PROMPT_VERSION, AI_VISIBLE_LEAGUE_PROMPT_VERSION, AI_PROMPT_MAX_CHARS, AI_PROBABILITY_LABEL, type AiContextPreviewRequest, type AiContextPreviewResponse, type AiDecideRequest, type AiDecideResponse, type AiLeagueContextMetadata, type AiSnapshotMetadata, type AiWeeklyPublishResponse } from "@/domain/ai-decider";
 import { choiceKey } from "./draft";
 
 export type DecisionTransport = (request: AiDecideRequest, signal: AbortSignal) => Promise<AiDecideResponse>;
 export type WeeklyTransport = (signal: AbortSignal) => Promise<AiWeeklyPublishResponse>;
+export type ContextTransport = (request: AiContextPreviewRequest, signal: AbortSignal) => Promise<AiContextPreviewResponse>;
 const failures = new Set(["unavailable", "invalid", "unauthenticated", "rate_limited", "busy", "refused", "timeout"]);
 const unavailable = (): AiDecideResponse => ({ status: "unavailable", code: "invalid_response", message: "No verified result is available. Your draft is preserved." });
 const object = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null;
@@ -45,9 +46,10 @@ export function readDecisionResponse(value: unknown, expectedChoices?: string[],
   if (new Set(labels).size !== labels.length || !labels.includes(r.choice) || Math.abs(probabilities.reduce((sum, p) => sum + (p.probability as number), 0) - 1) > .0001) return unavailable();
   if (expectedChoices && (labels.length !== expectedChoices.length || !expectedChoices.every(c => labels.includes(c)))) return unavailable();
   if (!snapshotValid(r.snapshot)) return unavailable();
-  if (r.leagueContext !== undefined && (!leagueContextValid(r.leagueContext) || r.snapshot !== null || r.promptVersion !== AI_LEAGUE_ROSTER_PROMPT_VERSION)) return unavailable();
+  if (r.leagueContext !== undefined && (!leagueContextValid(r.leagueContext) || r.snapshot !== null || ![AI_LEAGUE_ROSTER_PROMPT_VERSION, AI_VISIBLE_LEAGUE_PROMPT_VERSION].includes(r.promptVersion))) return unavailable();
   if (request?.kind === "league") {
-    if (!leagueContextValid(r.leagueContext) || r.snapshot !== null || r.promptVersion !== AI_LEAGUE_ROSTER_PROMPT_VERSION || r.leagueContext.teams.some((team, i) => team.teamId !== request.teamIds[i] || choiceKey(team.name) !== choiceKey(request.choices[i]))) return unavailable();
+    const version = request.contextDigest ? AI_VISIBLE_LEAGUE_PROMPT_VERSION : AI_LEAGUE_ROSTER_PROMPT_VERSION;
+    if (!leagueContextValid(r.leagueContext) || r.snapshot !== null || r.promptVersion !== version || r.leagueContext.teams.some((team, i) => team.teamId !== request.teamIds[i] || choiceKey(team.name) !== choiceKey(request.choices[i]))) return unavailable();
   } else if (request && r.leagueContext !== undefined) return unavailable();
   return value as AiDecideResponse;
 }
@@ -58,6 +60,34 @@ export const postDecision: DecisionTransport = async (request, signal) => {
   const value: unknown = await response.json();
   if (!response.ok && object(value) && value.status === "ready") return unavailable();
   return readDecisionResponse(value, request.kind === "matchup" ? request.teamIds : request.choices, request);
+};
+
+const contextUnavailable = (): AiContextPreviewResponse => ({ status: "unavailable", code: "invalid_context_response", message: "No verified roster/stats draft was returned. Your prompt is preserved." });
+
+/** Validate both ordered metadata and the exact text digest before filling a draft. */
+export async function readContextPreviewResponse(value: unknown, teamIds: [string, string]): Promise<AiContextPreviewResponse> {
+  if (!object(value) || value.status !== "ready") {
+    const failure = readDecisionResponse(value);
+    return failure.status === "ready" ? contextUnavailable() : failure;
+  }
+  const p = value.preview;
+  if (!object(p) || typeof p.text !== "string" || !p.text || p.text.length > AI_PROMPT_MAX_CHARS || p.text.trim() !== p.text || typeof p.digest !== "string" || !/^[a-f0-9]{64}$/.test(p.digest) || p.promptVersion !== AI_VISIBLE_LEAGUE_PROMPT_VERSION) return contextUnavailable();
+  const ids = p.teamIds, choices = p.choices, context = p.context;
+  if (!Array.isArray(ids) || ids.length !== 2 || !teamIds.every((id, i) => id === ids[i]) || !Array.isArray(choices) || choices.length !== 2 || !choices.every(name) || !leagueContextValid(context) || context.teams.some((team, i) => team.teamId !== teamIds[i] || team.name !== choices[i])) return contextUnavailable();
+  try {
+    const bytes = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(p.text));
+    const digest = Array.from(new Uint8Array(bytes), byte => byte.toString(16).padStart(2, "0")).join("");
+    if (digest !== p.digest) return contextUnavailable();
+  } catch { return contextUnavailable(); }
+  return value as AiContextPreviewResponse;
+}
+
+/** Explicit free source read. This endpoint never runs a model or reserves spend. */
+export const postContextPreview: ContextTransport = async (request, signal) => {
+  const response = await fetch("/api/ai-decides/context", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: JSON.stringify(request), signal, cache: "no-store" });
+  const value: unknown = await response.json();
+  if (!response.ok && object(value) && value.status === "ready") return contextUnavailable();
+  return readContextPreviewResponse(value, request.teamIds);
 };
 
 const weeklyUnavailable = (): AiWeeklyPublishResponse => ({ status: "unavailable", code: "invalid_response", message: "No verified saved slate was returned. Review the publication attempt before retrying." });
@@ -87,7 +117,7 @@ export const postWeeklyPreviews: WeeklyTransport = async signal => {
 
 export function draftError(prompt: string, choices: string[]): string | null {
   if (!prompt.trim() || choices.some(c => !c.trim())) return "Add a question and fill in every choice.";
-  if (prompt.length > 2000 || choices.length < 2 || choices.length > 8 || choices.some(c => c.length > 120)) return "Use a question up to 2,000 characters and 2–8 choices up to 120 characters each.";
+  if (prompt.length > AI_PROMPT_MAX_CHARS || choices.length < 2 || choices.length > 8 || choices.some(c => c.length > 120)) return "Use a prompt up to 12,000 characters and 2–8 choices up to 120 characters each. The model's input budget still applies.";
   if (new Set(choices.map(choiceKey)).size !== choices.length) return "Each choice needs to be different.";
   return null;
 }

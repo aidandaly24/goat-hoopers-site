@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
-import { AI_PROBABILITY_LABEL, type AiDecideRequest } from "@/domain/ai-decider";
-import { comparisonLabel, draftError, failureHeading, leagueContextLines, percent, periodLabel, postDecision, postWeeklyPreviews, readDecisionResponse, readWeeklyPublishResponse } from "./client";
-import { cachedData, interactiveResult, leagueContext, leagueResult } from "./test/fixtures";
+import { AI_PROBABILITY_LABEL, AI_PROMPT_MAX_CHARS, type AiDecideRequest } from "@/domain/ai-decider";
+import { comparisonLabel, draftError, failureHeading, leagueContextLines, percent, periodLabel, postContextPreview, postDecision, postWeeklyPreviews, readContextPreviewResponse, readDecisionResponse, readWeeklyPublishResponse } from "./client";
+import { cachedData, contextPreview, interactiveResult, leagueContext, leagueResult, visibleLeagueResult } from "./test/fixtures";
 
 const ready = () => ({ status: "ready", result: { model: "historical-model", promptVersion: "frozen-v0", choice: "B", confidence: .21, probabilities: [{ choice: "A", probability: .3333333333 }, { choice: "B", probability: .3333333333 }, { choice: "C", probability: .3333333334 }], evidence: ["Prior completed-season inputs only"], probabilityLabel: AI_PROBABILITY_LABEL, snapshot: null } });
 const published = () => {
@@ -103,7 +103,7 @@ describe("AI Decides client boundary", () => {
   });
   it("supports eight choices, rejects blanks/duplicates/oversize, and never changes the draft", () => {
     const choices = Array.from({ length: 8 }, (_, i) => `Option ${i}`); expect(draftError("Pick?", choices)).toBeNull(); expect(choices).toHaveLength(8);
-    expect(draftError("", choices)).not.toBeNull(); expect(draftError("Pick?", [" A ", "a"])).not.toBeNull(); expect(draftError("Pick?", ["", "B"])).not.toBeNull(); expect(draftError("x".repeat(2001), choices)).not.toBeNull(); expect(draftError("Pick?", [...choices, "ninth"])).not.toBeNull();
+    expect(draftError("", choices)).not.toBeNull(); expect(draftError("Pick?", [" A ", "a"])).not.toBeNull(); expect(draftError("Pick?", ["", "B"])).not.toBeNull(); expect(draftError("x".repeat(AI_PROMPT_MAX_CHARS), choices)).toBeNull(); expect(draftError("x".repeat(AI_PROMPT_MAX_CHARS + 1), choices)).not.toBeNull(); expect(draftError("Pick?", [...choices, "ninth"])).not.toBeNull();
   });
 });
 
@@ -164,6 +164,49 @@ describe("league response proof", () => {
     expect(lines).toContain("no verified long-term projection");
     expect(leagueContextLines(leagueContext()).join("\n")).toContain("2026 stats not started");
     expect(draftError("Pick?", ["Current One", "Ｃｕｒｒｅｎｔ Ｏｎｅ"])).toBe("Each choice needs to be different.");
+  });
+});
+
+describe("visible roster context boundary", () => {
+  it("verifies the exact text digest, canonical choices and requested team order without changing the text", async () => {
+    const value = { status: "ready", preview: contextPreview() }, before = JSON.stringify(value);
+    expect(await readContextPreviewResponse(value, ["1", "2"])).toBe(value);
+    expect(JSON.stringify(value)).toBe(before);
+    expect((await readContextPreviewResponse(value, ["2", "1"])).status).toBe("unavailable");
+  });
+  it.each([
+    { text: "tampered" }, { text: "" }, { text: "x".repeat(12001) },
+    { digest: "A".repeat(64) }, { digest: "b".repeat(64) }, { promptVersion: "goat-league-roster-v1" },
+    { teamIds: ["1", "1"] }, { teamIds: ["2", "1"] }, { choices: ["Current Two", "Current One"] },
+    { choices: ["Current One", "Other"] }, { context: undefined }, { context: { ...leagueContext(), capturedAt: "bad" } },
+  ])("fails closed on malformed preview %s", async fields => {
+    expect((await readContextPreviewResponse({ status: "ready", preview: { ...contextPreview(), ...fields } }, ["1", "2"])).status).toBe("unavailable");
+  });
+  it("loads only the free same-origin context route with IDs, once, and honors HTTP failures", async () => {
+    const value = { status: "ready", preview: contextPreview() }, signal = new AbortController().signal;
+    const fetcher = vi.fn().mockResolvedValue({ ok: true, json: async () => value }); vi.stubGlobal("fetch", fetcher);
+    try {
+      expect(await postContextPreview({ teamIds: ["1", "2"] }, signal)).toBe(value);
+      expect(fetcher).toHaveBeenCalledTimes(1);
+      expect(fetcher).toHaveBeenCalledWith("/api/ai-decides/context", expect.objectContaining({ method: "POST", credentials: "same-origin", body: '{"teamIds":["1","2"]}', signal, cache: "no-store" }));
+      fetcher.mockResolvedValue({ ok: false, json: async () => value });
+      expect((await postContextPreview({ teamIds: ["1", "2"] }, signal)).status).toBe("unavailable");
+      const failure = { status: "unavailable", code: "league_context_unavailable", message: "Source unavailable" };
+      fetcher.mockResolvedValue({ ok: false, json: async () => failure });
+      expect(await postContextPreview({ teamIds: ["1", "2"] }, signal)).toEqual(failure);
+    } finally { vi.unstubAllGlobals(); }
+  });
+  it("requires the visible version and proof for checked input, and rejects proof on edited custom input", async () => {
+    const preview = contextPreview();
+    const request: AiDecideRequest = { kind: "league", prompt: "Who wins?\n\n" + preview.text, choices: preview.choices, teamIds: preview.teamIds, contextDigest: preview.digest };
+    const value = { status: "ready", result: visibleLeagueResult() };
+    expect(readDecisionResponse(value, request.choices, request)).toBe(value);
+    expect(readDecisionResponse({ status: "ready", result: leagueResult() }, request.choices, request).status).toBe("unavailable");
+    expect(readDecisionResponse({ status: "ready", result: { ...value.result, leagueContext: undefined } }, request.choices, request).status).toBe("unavailable");
+    expect(readDecisionResponse(value, request.choices, { kind: "custom", prompt: request.prompt, choices: request.choices }).status).toBe("unavailable");
+    const fetcher = vi.fn().mockResolvedValue({ ok: true, json: async () => value }); vi.stubGlobal("fetch", fetcher);
+    try { await postDecision(request, new AbortController().signal); expect(fetcher).toHaveBeenCalledWith("/api/ai-decides", expect.objectContaining({ body: JSON.stringify(request) })); }
+    finally { vi.unstubAllGlobals(); }
   });
 });
 
