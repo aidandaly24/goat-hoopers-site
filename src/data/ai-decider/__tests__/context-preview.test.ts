@@ -32,6 +32,9 @@ describe("complete editable canonical roster preview", () => {
     expect(preview.text).toContain(phase === "pre" ? "preseason_not_started" : "25,5");
     expect(preview.text).toContain("Failed refreshes may serve older data");
     expect(preview.context.teams.map(t => t.rosterSize)).toEqual([30, 30]);
+    expect(preview.text.indexOf("Player 1000 | 1000")).toBeLessThan(300);
+    expect(preview.text.indexOf("Player 1029 | 1029")).toBeLessThan(preview.text.indexOf("Starter IDs: 1000"));
+    expect(preview.text.indexOf("Player 1129 | 1129")).toBeLessThan(preview.text.indexOf("Fantasy scoring weights:"));
     const decision = visibleRosterDecision(visible(value), value, NOW, "synthetic-safety");
     expect(inputTokenReservation(decision.payload)).toBeLessThanOrEqual(AI_LIMITS.inputTokens);
   });

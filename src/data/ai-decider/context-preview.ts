@@ -17,19 +17,20 @@ export function buildAiContextPreview(input: AiLeagueRosterInput, teamIds: [stri
   const { leagueContext } = leagueRosterEvidence({ kind: "league", prompt: "Roster context", choices, teamIds }, input, now);
   const lines = [
     "[GOAT roster context]",
-    `Sleeper league ${input.leagueId}; season ${input.season}; phase ${input.phase}; scoring mode unknown.`,
-    `Observed stats: ${input.priorStatsSeason} ${input.availability.priorStats}; ${input.season} ${input.availability.currentStats}. Missing values are unknown, never zero.`,
-    `Fantasy scoring weights: ${Object.entries(input.scoring).sort(([a], [b]) => a.localeCompare(b, "en-US")).map(([key, value]) => `${key}=${value}`).join(", ")}.`,
-    "Source update time unknown. Revalidation: league/rosters/players 5 minutes; stats 24 hours. Failed refreshes may serve older data.",
-    "Injuries, schedules, contracts, draft picks, future development and game-selection rules are unknown. No verified long-term projection or weekly-score forecast; no PPG-by-games adjustment.",
+    `Season ${input.season}; phase ${input.phase}; observed fantasy stats. Missing values are unknown, never zero.`,
   ];
   for (const team of input.teams) {
     lines.push("", `${team.name} (roster ${team.teamId}) — ${team.players.length} players`,
-      `Starter IDs: ${team.starters === null ? "unknown" : team.starters.join(", ") || "none"}; 0 means empty slot.`,
-      `Reserve IDs: ${team.reserve === null ? "unknown" : team.reserve.join(", ") || "none"}. Taxi IDs: ${team.taxi === null ? "unknown" : team.taxi.join(", ") || "none"}.`,
       `Player | ID | Age | Position | ${input.priorStatsSeason} fantasy PPG,games | ${input.season} fantasy PPG,games`);
     for (const player of team.players) lines.push(`${unknown(player.name)} | ${player.id} | ${unknown(player.age)} | ${unknown(player.position)} | ${stats(player.prior)} | ${stats(player.current)}`);
+    lines.push(`Starter IDs: ${team.starters === null ? "unknown" : team.starters.join(", ") || "none"}; 0 means empty slot.`,
+      `Reserve IDs: ${team.reserve === null ? "unknown" : team.reserve.join(", ") || "none"}. Taxi IDs: ${team.taxi === null ? "unknown" : team.taxi.join(", ") || "none"}.`);
   }
+  lines.push("", `Sleeper league ${input.leagueId}; scoring mode unknown.`,
+    `Fantasy scoring weights: ${Object.entries(input.scoring).sort(([a], [b]) => a.localeCompare(b, "en-US")).map(([key, value]) => `${key}=${value}`).join(", ")}.`,
+    `Observed stats: ${input.priorStatsSeason} ${input.availability.priorStats}; ${input.season} ${input.availability.currentStats}.`,
+    "Source update time unknown. Revalidation: league/rosters/players 5 minutes; stats 24 hours. Failed refreshes may serve older data.",
+    "Injuries, schedules, contracts, draft picks, future development and game-selection rules are unknown. No verified long-term projection or weekly-score forecast; no PPG-by-games adjustment.");
   lines.push("[/GOAT roster context]");
   const text = lines.join("\n");
   // Leave room for a 2,000-character question. Never drop players or round facts.
