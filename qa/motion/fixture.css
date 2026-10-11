@@ -1,0 +1,7 @@
+@font-face { font-family: 'Fixture Inter'; src: url('../../courtside-preview/assets/inter.woff2') format('woff2'); font-style: normal; font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Fixture Mono'; src: url('../../courtside-preview/assets/geist-mono.woff2') format('woff2'); font-style: normal; font-weight: 100 900; font-display: swap; }
+:root { --font-body: 'Fixture Inter'; --font-mono: 'Fixture Mono'; }
+.qa-controls { padding: var(--gh-s4); border-bottom: 1px solid var(--gh-border); font-size: .875rem; }
+.qa-controls button { min-height: 44px; padding: .5rem 1rem; background: var(--gh-bg-raised); color: var(--gh-text); border: 1px solid var(--gh-control); border-radius: var(--gh-radius); }
+.qa-controls p { margin-block: .5rem; }
+.qa-controls pre { white-space: pre-wrap; max-width: 80ch; }
