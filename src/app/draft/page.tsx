@@ -6,6 +6,14 @@
  */
 import { getDraftBoard } from "@/data/league";
 import { DraftBoard } from "@/surfaces/draft/DraftBoard";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Rookie Draft Board | GOAT Hoopers",
+  description:
+    "The GOAT Hoopers rookie draft board, round by round.",
+  alternates: { canonical: "/draft" },
+};
 
 export default async function DraftPage() {
   const board = await getDraftBoard();

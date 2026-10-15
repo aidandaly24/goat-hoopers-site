@@ -13,6 +13,14 @@ import {
 } from "@/data/league";
 import { IntelHub } from "@/surfaces/intel/IntelHub";
 import { SectionNav } from "@/ui/SectionNav";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "League Intel | GOAT Hoopers",
+  description:
+    "Power rankings, playoff odds, records, and matchup previews for GOAT Hoopers.",
+  alternates: { canonical: "/intel" },
+};
 
 export const revalidate = 300; // refresh league data every 5 minutes
 

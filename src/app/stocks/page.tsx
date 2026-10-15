@@ -8,6 +8,14 @@
 import { getStockMarketData } from "@/data/league";
 import { StockMarket } from "@/surfaces/stock-market/StockMarket";
 import { SectionNav } from "@/ui/SectionNav";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Player Stock Market | GOAT Hoopers",
+  description:
+    "Player stock prices, risers, and fallers in the GOAT Hoopers league.",
+  alternates: { canonical: "/stocks" },
+};
 
 export const revalidate = 300; // refresh prices every 5 minutes
 

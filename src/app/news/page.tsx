@@ -15,6 +15,14 @@
  */
 import { getLeagueNewsEdition } from "@/data/league";
 import { Newsroom } from "@/surfaces/news/Newsroom";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "News | GOAT Hoopers",
+  description:
+    "League headlines and NBA news for the GOAT Hoopers dynasty league.",
+  alternates: { canonical: "/news" },
+};
 
 export const revalidate = 600;
 
