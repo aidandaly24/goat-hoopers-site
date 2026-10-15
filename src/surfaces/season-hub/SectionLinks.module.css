@@ -20,7 +20,7 @@
   border-radius: var(--gh-radius);
   text-decoration: none;
   min-height: 44px;
-  transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
+  transition: border-color var(--gh-dur-base) var(--gh-ease-out), background-color var(--gh-dur-base) var(--gh-ease-out), transform var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .link:hover {
@@ -52,7 +52,7 @@
   grid-area: title;
   font-weight: 700;
   color: var(--gh-text);
-  transition: color 0.18s ease;
+  transition: color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .blurb {

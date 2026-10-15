@@ -43,7 +43,7 @@
   font-weight: 700;
   text-decoration: none;
   border-bottom: 1px dotted var(--gh-gold);
-  transition: color 0.18s ease, border-color 0.18s ease;
+  transition: color var(--gh-dur-base) var(--gh-ease-out), border-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .link:hover {

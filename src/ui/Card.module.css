@@ -6,3 +6,19 @@
   padding: var(--gh-s6);
   box-shadow: var(--gh-shadow-sm);
 }
+
+/* Shared card hover (build spec §8.1): one duration, one easing, tint only.
+ * Applies only when the card is itself a link or button. */
+.card:is(a, button) {
+  color: inherit;
+  text-decoration: none;
+  transition: background-color var(--gh-dur-base) var(--gh-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .card:is(a, button):hover { background-color: var(--gh-bg-hover); }
+}
+.card:is(a, button):active { background-color: var(--gh-bg-hover); }
+.card:is(a, button):focus-visible { outline: 2px solid var(--gh-focus); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .card:is(a, button) { transition-duration: 0ms; }
+}

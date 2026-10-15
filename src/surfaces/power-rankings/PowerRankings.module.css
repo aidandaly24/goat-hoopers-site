@@ -54,7 +54,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: color 0.18s ease;
+  transition: color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .name:hover {

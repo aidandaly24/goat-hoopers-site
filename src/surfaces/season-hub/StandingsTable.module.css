@@ -59,7 +59,7 @@
   border-radius: var(--gh-s2);
   text-decoration: none;
   color: inherit;
-  transition: background-color 0.18s ease, border-color 0.18s ease;
+  transition: background-color var(--gh-dur-base) var(--gh-ease-out), border-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .row:last-child {
@@ -112,7 +112,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: color 0.18s ease;
+  transition: color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .manager {

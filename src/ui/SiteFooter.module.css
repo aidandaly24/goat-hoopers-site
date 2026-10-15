@@ -62,7 +62,7 @@
   min-height: 44px;
   display: inline-flex;
   align-items: center;
-  transition: color 0.18s ease;
+  transition: color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .nav a:hover {

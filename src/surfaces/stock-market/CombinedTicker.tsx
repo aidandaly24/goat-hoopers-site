@@ -166,6 +166,8 @@ export function CombinedTicker({
   }, [headlines.length, stocks.length, hasScores]);
 
   const [mode, setMode] = useState<TickerMode>("news");
+  // Pause resets on each load (spec Q5); no persistence.
+  const [paused, setPaused] = useState(false);
 
   // If the current mode loses its content (shouldn't happen for
   // news/stocks, but cheap insurance), park on the first available.
@@ -176,7 +178,7 @@ export function CombinedTicker({
   }, [modes, mode]);
 
   useEffect(() => {
-    if (modes.length <= 1) return;
+    if (modes.length <= 1 || paused) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = setInterval(() => {
       setMode((m) => {
@@ -185,7 +187,7 @@ export function CombinedTicker({
       });
     }, MODE_MS);
     return () => clearInterval(t);
-  }, [modes]);
+  }, [modes, paused]);
 
   const meta = MODE_META[mode];
   const hint = meta.external ? (
@@ -211,7 +213,7 @@ export function CombinedTicker({
   );
 
   return (
-    <div className={styles.ticker}>
+    <aside aria-label="Live ticker" className={styles.ticker} data-paused={paused ? "true" : "false"}>
       {hint}
       <div className={styles.viewport}>
         <div
@@ -245,6 +247,22 @@ export function CombinedTicker({
           ))}
         </div>
       </div>
-    </div>
+      <button
+        type="button"
+        className={styles.pause}
+        aria-pressed={paused}
+        aria-label={paused ? "Play ticker" : "Pause ticker"}
+        onClick={() => setPaused((p) => !p)}
+      >
+        {paused ? (
+          <span className={styles.playIcon} aria-hidden="true" />
+        ) : (
+          <span className={styles.pauseIcon} aria-hidden="true">
+            <i />
+            <i />
+          </span>
+        )}
+      </button>
+    </aside>
   );
 }

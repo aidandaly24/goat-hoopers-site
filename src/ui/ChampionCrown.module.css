@@ -16,7 +16,7 @@
   /* The hand-placed tilt: a few degrees, never straight. */
   transform: rotate(-9deg);
   filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.55));
-  transition: transform 0.18s ease;
+  transition: transform var(--gh-dur-base) var(--gh-ease-out);
   z-index: 2;
   -webkit-tap-highlight-color: transparent;
 }

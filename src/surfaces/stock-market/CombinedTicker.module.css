@@ -52,7 +52,7 @@
   width: max-content;
   animation: gh-ticker-scroll 90s linear infinite;
   will-change: transform;
-  transition: opacity 0.8s ease;
+  transition: opacity var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .visible {
@@ -64,8 +64,36 @@
   pointer-events: none;
 }
 
-.ticker:hover .track {
+.ticker:hover .track,
+.ticker:focus-within .track,
+.ticker[data-paused="true"] .track {
   animation-play-state: paused;
+}
+
+/* Pause control (WCAG 2.2.2). 40px square, 44px on coarse pointers via --gh-ticker-h. */
+.pause {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--gh-ticker-h);
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid var(--gh-border);
+  background: var(--gh-bg-raised);
+  color: var(--gh-text);
+  cursor: pointer;
+  transition: transform var(--gh-dur-press) var(--gh-ease-out);
+}
+.pause:active:not(:focus-visible) { transform: scale(.97); }
+.pause:focus-visible { outline: 2px solid var(--gh-focus); outline-offset: -2px; }
+.pauseIcon { display: flex; gap: 3px; }
+.pauseIcon i { display: block; width: 3px; height: 12px; background: currentColor; }
+.playIcon {
+  width: 0; height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 10px solid currentColor;
 }
 
 @keyframes gh-ticker-scroll {
@@ -197,5 +225,9 @@
   }
   .liveDot {
     animation: none;
+  }
+  .pause {
+    display: none;
+    transform: none !important;
   }
 }
