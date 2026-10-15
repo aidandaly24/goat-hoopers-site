@@ -7,6 +7,14 @@
 import { getTeams } from "@/data/league";
 import { TeamDirectory } from "@/surfaces/teams/TeamDirectory";
 import { SectionNav } from "@/ui/SectionNav";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Teams | GOAT Hoopers",
+  description:
+    "Every franchise in the GOAT Hoopers dynasty league: managers, records, and rosters.",
+  alternates: { canonical: "/teams" },
+};
 
 export const revalidate = 300; // refresh league data every 5 minutes
 

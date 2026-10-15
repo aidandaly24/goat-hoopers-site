@@ -8,6 +8,14 @@
 import { getTransactionHistory } from "@/data/league";
 import { TransactionHistory } from "@/surfaces/transactions/TransactionHistory";
 import { SectionNav } from "@/ui/SectionNav";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Transactions | GOAT Hoopers",
+  description:
+    "Every trade, waiver claim, and free-agent move in GOAT Hoopers history.",
+  alternates: { canonical: "/transactions" },
+};
 
 export const revalidate = 300; // refresh league data every 5 minutes
 

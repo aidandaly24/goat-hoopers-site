@@ -15,6 +15,15 @@ import { getTeamDetail } from "@/data/league";
 import { getGameStore } from "@/data/arcade";
 import { TeamPage } from "@/surfaces/team/TeamPage";
 import { friendsAuthEnabled } from "@/data/friends-auth/config";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My Team | GOAT Hoopers",
+  description:
+    "Your GOAT Hoopers roster, record, and arcade winnings.",
+  alternates: { canonical: "/team" },
+  robots: { index: false },
+};
 
 export const dynamic = "force-dynamic";
 

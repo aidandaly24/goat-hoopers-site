@@ -6,6 +6,12 @@ import {
   getAiDecidesData,
 } from "@/data/league";
 import { CourtsideHome } from "@/surfaces/season-hub/CourtsideHome";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "GOAT Hoopers — Fantasy Basketball League",
+  alternates: { canonical: "/" },
+};
 
 export const revalidate = 300;
 
