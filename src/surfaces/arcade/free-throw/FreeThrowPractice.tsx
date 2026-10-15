@@ -329,7 +329,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
   const quiet = ready && !charging && !dragging && (status === "Find your touch" || status.startsWith("Next ball ready") || status.startsWith("Fresh session"));
 
   return (
-    <main className={styles.surface} data-arcade-page>
+    <div className={styles.surface} data-arcade-page>
       <section ref={stage} className={`${styles.stage} ${dragging ? styles.dragging : ""}`}
         data-shot-state={phase} data-charging={charging} tabIndex={available ? 0 : -1}
         role="group" aria-label="Court controls" aria-describedby="court-instructions"
@@ -403,7 +403,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
         {phase === "unavailable" && <div className={styles.overlay}><p>3D court unavailable</p><p>Check your connection and WebGL support.</p><button className={styles.secondary} onClick={() => window.location.reload()}>Reload practice</button></div>}
         <span className={styles.prototype}><Badge>Prototype</Badge></span>
       </section>
-    </main>
+    </div>
   );
 }
 

@@ -23,6 +23,7 @@ export default async function TransactionsPage() {
   const { transactions, teams } = await getTransactionHistory();
   return (
     <>
+      <h1 className="visually-hidden">Transactions</h1>
       <SectionNav current="transactions" />
       <TransactionHistory transactions={transactions} teams={teams} />
     </>

@@ -40,7 +40,7 @@ export function DraftBoard({ picks, teams }: DraftBoardProps) {
 
   return (
     <Card>
-      <SectionHeading eyebrow="The league" title="2026 Rookie Draft" />
+      <SectionHeading level={1} eyebrow="The league" title="2026 Rookie Draft" />
       {picks.length === 0 ? (
         <p className={styles.empty}>
           No draft on record yet. The board appears once the league drafts.

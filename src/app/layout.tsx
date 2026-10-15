@@ -138,7 +138,7 @@ export default async function RootLayout({
       <head><ThemeBootstrap /></head>
       <body>
         <SiteHeader user={headerUser} logoutAction={logout} destinations={SITE_DESTINATIONS} ticker={<Ticker />} />
-        <div id="main-content" tabIndex={-1}>{children}</div>
+        <main id="main-content" tabIndex={-1}>{children}</main>
         <SiteFooter season={season} destinations={SITE_DESTINATIONS.filter(d => d.footer)} />
       </body>
     </html>

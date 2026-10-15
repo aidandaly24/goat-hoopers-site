@@ -28,14 +28,14 @@ export function SeasonHub({ data }: { data: SeasonHubData }) {
       <div className={styles.sections}>
         <SectionLinks />
       </div>
-      <main className={styles.grid}>
+      <div className={styles.grid}>
         <section className={styles.standings}>
           <StandingsTable standings={data.standings} />
         </section>
         <div className={styles.side}>
           <TransactionFeed transactions={data.transactions} teams={data.teams} />
         </div>
-      </main>
+      </div>
     </div>
   );
 }

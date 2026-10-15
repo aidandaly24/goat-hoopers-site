@@ -22,6 +22,7 @@ export default async function TeamsPage() {
   const teams = await getTeams();
   return (
     <>
+      <h1 className="visually-hidden">Teams</h1>
       <SectionNav current="teams" />
       <TeamDirectory teams={teams} />
     </>

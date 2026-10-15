@@ -36,7 +36,7 @@ export function LoginForm({
 
   return (
     <Card className={styles.card}>
-      <SectionHeading eyebrow="Account" title={enrollment ? "Confirm your existing team" : "Log in"} />
+      <SectionHeading level={1} eyebrow="Account" title={enrollment ? "Confirm your existing team" : "Log in"} />
       {notice && <p className={styles.notice}>{notice}</p>}
       <p className={styles.lede}>
         {enrollment ? "Enter your old team password once to keep your team when you add email login. Next you’ll enter your email and new password. No team code is needed." : "Pick your team and enter your password. You stay logged in for 90 days — on any device."}

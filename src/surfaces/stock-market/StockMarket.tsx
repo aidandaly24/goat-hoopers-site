@@ -15,7 +15,7 @@ export function StockMarket({ market }: { market: StockMarketData }) {
     day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "UTC",
   }).format(new Date(market.updatedAt));
   const hasSignals = market.trending.length > 0 || market.falling.length > 0 || market.panic.length > 0;
-  return <main className={styles.exchange}>
+  return <div className={styles.exchange}>
     <a className={styles.skip} href="#player-board">Skip to player board</a>
     <header className={styles["page-head"]}>
       <div><p className={styles.eyebrow}>THE LEAGUE / PLAYER VALUES</p>
@@ -58,5 +58,5 @@ export function StockMarket({ market }: { market: StockMarketData }) {
       <p>Change compares today’s quote with the previous available recorded price. It is not a fixed 24-hour return. A missing baseline is shown as unavailable, never as a zero move.</p>
       <p>“Drafted” means a recorded league draft pick exists. “Rostered” means the player is held in this league. This board lists players with a league market footprint, rather than the entire NBA.</p>
     </div></details>
-  </main>;
+  </div>;
 }
