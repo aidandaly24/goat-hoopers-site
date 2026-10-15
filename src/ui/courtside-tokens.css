@@ -1,8 +1,10 @@
 /* Courtside vocabulary for the homepage, weekly archive and isolated comparison.
  * Compatibility aliases use the selected shared Paper + Slate roles.
  * Existing layout/type sizes and approved court assets stay unchanged.
- * Preview breakpoints: 70rem simplifies the lead portrait, 55rem stacks
- * the opening and chrome, 40rem gives stories and team summaries phone layouts. */
+ * Breakpoints: 76rem simplifies the lead portrait, 64rem stacks the opening
+ * and chrome, 40rem gives stories and team summaries phone layouts.
+ * Type collapses onto the shared 12/14/16/20 scale plus --gh-cs-heading;
+ * spacing aliases the shared scale (build spec 2026-10-14 §1b). */
 :root {
   --gh-cs-wall: var(--gh-bg);
   --gh-cs-wall-deep: var(--gh-bg);
@@ -22,34 +24,39 @@
   --gh-cs-title: clamp(2.5rem, 4vw, 3.75rem);
   --gh-cs-heading: clamp(1.75rem, 2.7vw, 2.25rem);
   --gh-cs-player: clamp(1.75rem, 3vw, 2.5rem);
-  --gh-cs-body: 1.0625rem;
-  --gh-cs-body-compact: 1rem;
-  --gh-cs-subhead: 1.125rem;
-  --gh-cs-small-stat: 1.25rem;
-  --gh-cs-story-title: 1.5rem;
-  --gh-cs-support-name: 1.625rem;
-  --gh-cs-mobile-name: 1.75rem;
-  --gh-cs-small-title: 1.375rem;
-  --gh-cs-secondary: .875rem;
-  --gh-cs-caption: .75rem;
-  --gh-cs-s1: .25rem;
-  --gh-cs-s2: .5rem;
-  --gh-cs-s3: .75rem;
-  --gh-cs-s4: 1rem;
-  --gh-cs-s5: 1.5rem;
-  --gh-cs-s6: 2rem;
-  --gh-cs-s7: 3rem;
-  --gh-cs-s8: 4rem;
-  --gh-cs-s9: 5rem;
+  --gh-cs-body: var(--gh-text-md);
+  --gh-cs-body-compact: var(--gh-text-md);
+  --gh-cs-subhead: var(--gh-text-lg);
+  --gh-cs-small-stat: var(--gh-text-lg);
+  --gh-cs-story-title: var(--gh-cs-heading);
+  --gh-cs-support-name: var(--gh-cs-heading);
+  --gh-cs-mobile-name: var(--gh-cs-heading);
+  --gh-cs-small-title: var(--gh-cs-heading);
+  --gh-cs-secondary: var(--gh-text-sm);
+  --gh-cs-caption: var(--gh-text-xs);
+  --gh-cs-s1: var(--gh-s1);
+  --gh-cs-s2: var(--gh-s2);
+  --gh-cs-s3: var(--gh-s3);
+  --gh-cs-s4: var(--gh-s4);
+  --gh-cs-s5: var(--gh-s6);
+  --gh-cs-s6: var(--gh-s8);
+  --gh-cs-s7: var(--gh-s12);
+  --gh-cs-s8: var(--gh-s16);
+  --gh-cs-s9: 5rem; /* off-scale (80px); no shared token */
   --gh-cs-wrap: 78rem;
-  --gh-cs-gutter: clamp(1rem, 4.4vw, 4rem);
+  --gh-cs-gutter: var(--gh-s4);
   --gh-cs-radius: .375rem;
   --gh-cs-control: 2.75rem;
   --gh-cs-rule: 1px;
   --gh-cs-border: 2px;
   --gh-cs-shadow: 0 .5rem 1.25rem rgb(0 0 0 / .2);
   --gh-cs-dialog-shadow: 0 1rem 4rem rgb(0 0 0 / .35);
-  --gh-cs-duration: 180ms;
+  --gh-cs-duration: var(--gh-dur-base);
+}
+
+/* Token gutters: 16px phone, 32px tablet/desktop; from 76rem the wrap centers the column. */
+@media (min-width: 40rem) {
+  :root { --gh-cs-gutter: var(--gh-s8); }
 }
 
 /* The themed body is selected by a public surface marker; account/nav behavior stays shared. */

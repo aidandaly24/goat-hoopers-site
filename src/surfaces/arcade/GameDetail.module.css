@@ -102,7 +102,7 @@
 }
 
 /* Mobile: stack everything */
-@media (max-width: 56rem) {
+@media (max-width: 64rem) {
   .grid {
     grid-template-columns: 1fr;
   }

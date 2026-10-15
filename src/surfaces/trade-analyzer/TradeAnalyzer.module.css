@@ -73,7 +73,7 @@
   margin-bottom: 1.5rem;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 64rem) {
   .columns {
     grid-template-columns: 1fr 1fr;
   }
@@ -109,7 +109,7 @@
   color: var(--gh-term-text);
   font-family: var(--gh-font-mono);
   font-size: 0.85rem;
-  padding: 0.6rem 0.75rem;
+  padding: var(--gh-s2) 0.75rem;
 }
 
 .search::placeholder {
@@ -169,7 +169,7 @@
 }
 
 .noResults {
-  padding: 0.6rem 0.75rem;
+  padding: var(--gh-s2) 0.75rem;
   font-size: 0.8rem;
   color: var(--gh-term-faint);
   background: var(--gh-term-raised);
@@ -188,11 +188,11 @@
 .pick {
   display: flex;
   align-items: baseline;
-  gap: 0.6rem;
+  gap: var(--gh-s2);
   background: var(--gh-term-raised);
   border: 1px solid var(--gh-term-line);
   border-radius: 6px;
-  padding: 0.5rem 0.6rem;
+  padding: 0.5rem var(--gh-s2);
   font-size: 0.82rem;
 }
 
