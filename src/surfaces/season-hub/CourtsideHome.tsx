@@ -139,7 +139,7 @@ export function CourtsideHome({
     : "Season status unavailable";
   if (!edition)
     return (
-      <main className={cs("surface")} data-courtside-home>
+      <div className={cs("surface")} data-courtside-home>
         <section className={cs("archive-page")}>
           <div className={cs("wrap")}>
             <h1>The next weekly story is on its way.</h1>
@@ -155,7 +155,7 @@ export function CourtsideHome({
           </div>
         </section>
         <CourtsideDirectory entries={data.directory} seasonLabel={seasonLabel} checkedAt={data.checkedAt} preseason={preseason} rosterNamesAvailable={data.rosterNamesAvailable} portraits={portraits} />
-      </main>
+      </div>
     );
   const previousIndex = archive.findIndex((entry) => entry.id === edition.id);
   const previous = archive[previousIndex + 1];
@@ -167,7 +167,7 @@ export function CourtsideHome({
   );
   const supports = edition.playerSpotlights.filter((player) => player !== lead);
   return (
-    <main className={cs("surface", "editorial-home")} data-courtside-home id="content">
+    <div className={cs("surface", "editorial-home")} data-courtside-home id="content">
       <section className={cs("opening-zone")} aria-labelledby="game-title">
         <div className={cs("wrap")}>
           <div className={cs("header-edition")}>
@@ -354,6 +354,6 @@ export function CourtsideHome({
           loading="lazy"
         />
       </div>
-    </main>
+    </div>
   );
 }

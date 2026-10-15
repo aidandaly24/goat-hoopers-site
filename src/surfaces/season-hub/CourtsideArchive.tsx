@@ -5,7 +5,7 @@ import "@/ui/courtside-tokens.css";
 
 export function CourtsideArchive({ editions }: { editions: WeeklyEdition[] }) {
   return (
-    <main className={cs("surface")} data-courtside-home>
+    <div className={cs("surface")} data-courtside-home>
       <section className={cs("archive-page")}>
         <div className={cs("wrap")}>
           <h1>Every week has a story.</h1>
@@ -41,6 +41,6 @@ export function CourtsideArchive({ editions }: { editions: WeeklyEdition[] }) {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

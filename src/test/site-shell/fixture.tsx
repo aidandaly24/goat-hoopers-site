@@ -41,7 +41,7 @@ style.textContent = "#root { display: contents; } :where(#root) > * { position: 
 document.head.append(style);
 createRoot(document.getElementById("root")!).render(<>
   <SiteHeader user={user} logoutAction={logout} destinations={SITE_DESTINATIONS} ticker={ticker} />
-  <div id="main-content" tabIndex={-1}>{content}</div>
+  <main id="main-content" tabIndex={-1}>{content}</main>
   <p style={{ padding: "var(--gh-s4)" }}>Local shell fixture. Static 2025 history matches the repository. Named synthetic quote/home examples are layout-only. No live requests.</p>
   <SiteFooter season={null} />
 </>);

@@ -8,7 +8,7 @@ import styles from "./ArcadeHub.module.css";
 
 export function ArcadeHub({ games }: { games: readonly PlayableGame[] }) {
   return (
-    <main className={`gh-arcade-canvas ${styles.surface}`} data-arcade-page>
+    <div className={`gh-arcade-canvas ${styles.surface}`} data-arcade-page>
       <div className={styles.inner}>
         <header className={styles.hero}>
           <p className={styles.eyebrow}>GOAT Hoopers · Game room</p>
@@ -20,6 +20,6 @@ export function ArcadeHub({ games }: { games: readonly PlayableGame[] }) {
           {games.length === 0 && <p>No games are available right now.</p>}
         </section>
       </div>
-    </main>
+    </div>
   );
 }

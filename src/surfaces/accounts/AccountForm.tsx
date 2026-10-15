@@ -85,7 +85,7 @@ export function AccountForm({ mode, token, notice, teams = [], initialTeamId = "
   }
 
   return <Card className={styles.card}>
-    <SectionHeading eyebrow="Account" title={titles[mode]} />
+    <SectionHeading level={1} eyebrow="Account" title={titles[mode]} />
     {notice && <p className={styles.notice}>{notice}</p>}
     <p className={styles.lede}>{descriptions[mode]}</p>
     {done ? <p role="status" className={styles.notice}>
