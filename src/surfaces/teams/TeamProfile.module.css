@@ -67,3 +67,17 @@
   .grid { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
 }
 @media (prefers-reduced-motion: reduce) { .pick :global(a), .move :global(a) { transition: none; } }
+
+/* Optional Trade Analyzer entry point (spec §7, Q6). */
+.tradeLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--gh-target-min);
+  margin-left: auto;
+  color: var(--gh-accent);
+  font-size: var(--gh-text-sm);
+  font-weight: 600;
+}
+@media (pointer: coarse) {
+  .tradeLink { min-height: var(--gh-target-touch); }
+}

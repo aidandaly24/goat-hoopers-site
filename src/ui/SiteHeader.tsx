@@ -140,10 +140,9 @@ export function SiteHeader({ user, logoutAction, destinations = SITE_DESTINATION
             {!user && links(account)}
           </nav>
           <nav className={styles.compactNav} aria-label="Primary">
-            {links(primary.filter(d => d.href === "/stocks"))}
-            <button ref={menuRef} type="button" className={styles.disclosure}
+                        <button ref={menuRef} type="button" className={styles.disclosure}
               aria-expanded={open === "menu"} aria-controls="site-navigation-panel"
-              aria-label={"Menu" + (active && active.href !== "/stocks" ? ", current: " + active.label : "")}
+              aria-label={"Menu" + (active ? ", current: " + active.label : "")}
               onClick={() => toggle("menu")}>Menu <span aria-hidden="true">{open === "menu" ? "−" : "+"}</span></button>
           </nav>
           <div className={styles.account}>{accountActions}</div>
@@ -152,7 +151,7 @@ export function SiteHeader({ user, logoutAction, destinations = SITE_DESTINATION
       </header>
     </SiteChrome>
     <div ref={panelRef} id="site-navigation-panel" className={styles.panel} hidden={!open} data-kind={open}>
-      {open === "menu" && <nav className={styles.panelLinks} aria-label="More destinations">{links(primary.filter(d => d.href !== "/stocks"))}</nav>}
+      {open === "menu" && <nav className={styles.panelLinks} aria-label="More destinations">{links(primary)}</nav>}
       <nav className={styles.panelLinks} aria-label="League tools"><h2 className={styles.panelTitle}>League tools</h2>{links(league)}</nav>
       {open === "menu" && <div className={styles.panelAccount}>
         {!user && links(account)}{accountActions}
