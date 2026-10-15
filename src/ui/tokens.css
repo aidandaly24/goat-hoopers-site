@@ -131,8 +131,25 @@
   --gh-s4: 1rem;
   --gh-s6: 1.5rem;
   --gh-s8: 2rem;
+  --gh-s10: 2.5rem; /* 40px: fills the gap between s8 and s12 */
   --gh-s12: 3rem;
   --gh-s16: 4rem;
+
+  /* Type scale 12/14/16/20 (build spec 2026-10-14 §1a) */
+  --gh-text-xs: 0.75rem;   --gh-lh-xs: 1.5;
+  --gh-text-sm: 0.875rem;  --gh-lh-sm: 1.5;
+  --gh-text-md: 1rem;      --gh-lh-md: 1.5;
+  --gh-text-lg: 1.25rem;   --gh-lh-lg: 1.4;
+  --gh-weight-bold: 700;
+
+  /* Motion: one base duration, one press/exit duration, one easing. */
+  --gh-dur-base: 180ms;
+  --gh-dur-press: 120ms;
+  --gh-ease-out: cubic-bezier(.23, 1, .32, 1);
+
+  /* Hit targets: 24px minimum (WCAG 2.5.8), 44px on coarse pointers. */
+  --gh-target-min: 1.5rem;
+  --gh-target-touch: 2.75rem;
 
   /* Shape */
   --gh-radius: 0.75rem;
@@ -183,10 +200,17 @@
  * --gh-bp-sm: 40rem — below this, dense components switch to compact
  *   mobile layouts (standings table -> team cards, stat grids stack),
  *   and the bottom tab bar replaces the desktop nav.
- * --gh-bp-md: 56rem — below this, two-column surface grids stack.
- * --gh-bp-lg: 64rem — at/above this, surfaces may use multi-column
- *   desktop layouts (season-hub's standings + activity side-by-side).
+ * --gh-bp-md: 64rem — below this, two-column surface grids stack; at/above
+ *   it surfaces may use multi-column desktop layouts.
+ * --gh-bp-lg: 76rem — wide desktop (lead portrait, centered wrap column).
+ * Only 40rem / 64rem / 76rem are used in width queries; the 64–76rem band
+ * is written (min-width: 64rem) and (max-width: 75.99rem).
  */
+
+/* Coarse pointers get a 44px ticker so its pause button is a full touch target. */
+@media (pointer: coarse) {
+  :root { --gh-ticker-h: 2.75rem; }
+}
 
 /* Slate night counterparts; identity, scene and banner materials stay fixed. */
 :root[data-theme="dark"] {

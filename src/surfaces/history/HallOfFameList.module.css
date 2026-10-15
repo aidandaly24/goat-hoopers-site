@@ -60,7 +60,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--gh-wood-line-strong);
-  padding-bottom: 0.6rem;
+  padding-bottom: var(--gh-s2);
   margin-bottom: 0.9rem;
 }
 
@@ -78,14 +78,14 @@
   color: var(--gh-parchment-faint);
   border: 1px solid var(--gh-wood-line-strong);
   border-radius: 999px;
-  padding: 0.25rem 0.6rem;
+  padding: 0.25rem var(--gh-s2);
 }
 
 .title {
   font-family: var(--gh-font-display);
   font-size: 1.15rem;
   letter-spacing: 0.03em;
-  margin: 0 0 0.6rem;
+  margin: 0 0 var(--gh-s2);
   color: var(--gh-parchment);
 }
 

@@ -155,7 +155,7 @@
 }
 
 /* Switch rows before their 1022px desktop budget plus a classic scrollbar. */
-@media(max-width:65rem){
+@media(max-width:64rem){
 .column-labels,.rank{display:none}
 .player{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:'identity price' 'status change' 'actions actions'}
 .player-identity{grid-area:identity}

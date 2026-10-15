@@ -10,7 +10,7 @@
   border-bottom: 1px solid var(--gh-term-line);
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: var(--gh-s2);
 }
 
 @media (max-width: 40rem) {

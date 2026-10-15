@@ -1,7 +1,7 @@
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.15rem 0.6rem;
+  padding: 0 var(--gh-s2);
   border-radius: var(--gh-radius-pill);
   font-size: 0.72rem;
   font-weight: 700;

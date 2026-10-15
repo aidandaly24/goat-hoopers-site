@@ -29,7 +29,7 @@
 .who {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: var(--gh-s1);
   min-width: 0;
 }
 
@@ -57,7 +57,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.15rem;
+  gap: var(--gh-s1);
   flex-shrink: 0;
   font-family: var(--gh-font-mono);
 }
@@ -162,7 +162,7 @@
   font-size: 0.8rem;
   font-style: normal;
   margin-left: var(--gh-s2);
-  padding: 0.15rem 0.6rem;
+  padding: var(--gh-s1) var(--gh-s2);
 }
 
 .retry:hover {
