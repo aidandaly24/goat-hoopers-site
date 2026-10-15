@@ -52,7 +52,7 @@
   color: var(--gh-gold-soft);
   font-weight: 600;
   text-decoration: none;
-  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+  transition: color var(--gh-dur-base) var(--gh-ease-out), text-decoration-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .detailLink:hover {

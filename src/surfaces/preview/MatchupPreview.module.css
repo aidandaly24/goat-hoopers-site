@@ -55,7 +55,7 @@
   min-height: 3.5rem;
   padding: var(--gh-s2);
   border-radius: var(--gh-radius);
-  transition: background-color 0.18s ease;
+  transition: background-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .side:hover {

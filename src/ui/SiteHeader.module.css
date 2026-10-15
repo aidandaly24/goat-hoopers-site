@@ -33,7 +33,7 @@
   color: var(--gh-text);
   text-decoration: none;
   white-space: nowrap;
-  transition: color 0.18s ease;
+  transition: color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .wordmark:hover {
@@ -66,7 +66,7 @@
   min-height: 44px;
   display: inline-flex;
   align-items: center;
-  transition: color 0.18s ease, background-color 0.18s ease;
+  transition: color var(--gh-dur-base) var(--gh-ease-out), background-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .nav a:hover {
@@ -110,13 +110,12 @@
   min-height: 44px;
   display: inline-flex;
   align-items: center;
-  box-shadow: var(--gh-shadow-sm);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: background-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
-.claim:hover {
-  box-shadow: var(--gh-glow-gold);
-  transform: translateY(-1px);
+/* One hover everywhere (spec §8.1, Q10): no lift or shadow, just a tint. */
+@media (hover: hover) and (pointer: fine) {
+  .claim:hover { background: color-mix(in srgb, var(--gh-accent) 88%, var(--gh-text)); }
 }
 
 .claim:focus-visible {
@@ -136,7 +135,7 @@
   min-height: 44px;
   display: inline-flex;
   align-items: center;
-  transition: color 0.18s ease, border-color 0.18s ease;
+  transition: color var(--gh-dur-base) var(--gh-ease-out), border-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .login:hover {
@@ -163,7 +162,7 @@
   padding: var(--gh-s2) var(--gh-s2);
   border-radius: var(--gh-radius);
   min-height: 44px;
-  transition: background-color 0.18s ease;
+  transition: background-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .displayName:hover {
@@ -215,7 +214,7 @@
   cursor: pointer;
   font-family: var(--gh-font-body);
   min-height: 44px;
-  transition: color 0.18s ease, border-color 0.18s ease;
+  transition: color var(--gh-dur-base) var(--gh-ease-out), border-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .logout:hover {
@@ -236,10 +235,6 @@
   .displayName,
   .logout {
     transition: none;
-  }
-
-  .claim:hover {
-    transform: none;
   }
 }
 

@@ -25,7 +25,7 @@
   border-bottom: 1px solid var(--gh-border);
   text-decoration: none;
   color: inherit;
-  transition: background-color 0.18s ease;
+  transition: background-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .row:last-child {
@@ -110,7 +110,7 @@
   border-bottom: 1px solid var(--gh-border);
   text-decoration: none;
   color: inherit;
-  transition: background-color 0.18s ease;
+  transition: background-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .cardRow:last-child {

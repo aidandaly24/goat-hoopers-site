@@ -50,7 +50,7 @@
   font-weight: 600;
   color: var(--gh-text);
   text-decoration: none;
-  transition: color 0.18s ease;
+  transition: color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .teamLink:hover {
