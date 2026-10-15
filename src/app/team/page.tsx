@@ -1,7 +1,7 @@
 /**
  * /team — "My Team". The logged-in manager's home: identity + record,
  * full roster, and arcade FAAB winnings. Redirects to /login when logged
- * out.
+ * out, and to /teams when the account has no resolvable team.
  *
  * Thin page: loads the user via the session, the roster via the Sleeper
  * data layer, and rewards via the GameStore, then hands domain objects
@@ -32,7 +32,8 @@ export default async function TeamRoute() {
   if (!user) redirect("/login?notice=team");
 
   const detail = await getTeamDetail(user.teamId);
-  if (!detail) redirect("/");
+  // No roster resolved for this account: fall back to the team directory.
+  if (!detail) redirect("/teams");
 
   // Rewards are best-effort: a store hiccup shouldn't blank the page.
   let rewards: Reward[] = [];
