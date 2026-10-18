@@ -33,6 +33,20 @@ export const GAMES: Game[] = [
       "stay closed while the shooting engine is validated.",
   },
   {
+    id: "week-2-preview",
+    name: "82–0",
+    description: "A team drawn at random. A player chosen by you. Build your perfect five.",
+    icon: "🏀",
+    status: "coming-soon",
+    play: {
+      mode: "preview",
+      preview: { label: "82–0", caption: "Week 2 · The roster draft" },
+      touchInstructions: "Reveal a team, choose a player and lock your pick. Repeat to build a five-player lineup.",
+    },
+    howToPlay: "Try the five-pick roster draft preview. Ranked play, scoring and competition rules remain under review.",
+    launchNote: "Playable, unranked preview. Week 2 competition remains closed.",
+  },
+  {
     id: "82-0-predictions",
     name: "82-0 Predictions",
     description:

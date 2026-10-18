@@ -7,7 +7,9 @@ import ArcadePage from "./page";
 describe("public Arcade discovery", () => {
   it("advertises implemented practice while league competition stays closed", () => {
     expect(getGame("free-throw")?.status).toBe("coming-soon");
-    expect(getPlayableGames().map(game => game.id)).toEqual(["free-throw"]);
+    expect(getPlayableGames().map(game => game.id)).toEqual(["free-throw", "week-2-preview"]);
+    expect(getGame("week-2-preview")?.play?.mode).toBe("preview");
+    expect(getGame("week-2-preview")?.status).toBe("coming-soon");
     expect(getGame("82-0-predictions")).not.toBeNull();
   });
 
@@ -21,6 +23,9 @@ describe("public Arcade discovery", () => {
     expect(html).toContain("Actual gameplay");
     expect(html).toContain("No sign-in needed");
     expect(html).toContain("Lift your finger to shoot");
+    expect(html).toContain('href="/arcade/week-2-preview"');
+    expect(html).toContain("Week 2 · Unranked preview");
+    expect(html).toContain("Week 2 competition stays closed");
     for (const misleading of ["82-0 Predictions", "Not yet live", "Claim your team", "FAAB", "Details →"]) {
       expect(html).not.toContain(misleading);
     }
