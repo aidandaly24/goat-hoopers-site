@@ -100,9 +100,9 @@ export type Game = {
   status: "live" | "coming-soon";
   /** Present only when a real play implementation is available at this game's route. */
   play?: {
-    mode: "practice" | "competition";
-    /** A screenshot of the actual implementation, never a placeholder. */
-    preview: { src: string; alt: string };
+    mode: "practice" | "preview" | "competition";
+    /** Actual gameplay screenshot, or explicitly labelled typographic preview art. */
+    preview: { src: string; alt: string } | { label: string; caption: string };
     touchInstructions: string;
   };
   /**

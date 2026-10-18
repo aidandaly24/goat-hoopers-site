@@ -981,7 +981,13 @@ marks them settled. The ledger shows pending vs settled per user.
 
 ## Week 2 roster draft design preview
 
-`/arcade/week-2-preview` is an unlisted, noindex review route. It passes the static
+`/arcade/week-2-preview` is a noindex preview route, now discoverable on the public
+Arcade through a separate `week-2-preview` registry entry. Its explicit preview
+mode stays independent of competition status; the planned season-prediction
+ballot remains closed. The hub presents two compact game cards and direct launch
+shortcuts, with controls in native disclosures on narrow screens. Preview artwork
+is typographic and labelled; the free-throw card retains its actual screenshot.
+Neither discovery path reads an account or game store. The draft passes the static
 illustrative player pool from `data/week-two-demo.ts` to the public
 `surfaces/arcade/week-two/WeekTwoDraft` entrypoint. `domain/arcade/roster-draft.ts`
 owns the browser-local draw/pick state machine; it has no scoring or persistence.

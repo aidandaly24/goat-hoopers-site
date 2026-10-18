@@ -24,8 +24,12 @@
   text-transform: none;
 }
 .sub { margin: 0; color: var(--gh-arcade-muted); line-height: 1.6; }
-.games { display: grid; gap: var(--gh-s6); }
+.shortcuts { display: flex; flex-wrap: wrap; gap: var(--gh-s2) var(--gh-s6); margin-top: var(--gh-s4); }
+.shortcuts a { display: inline-flex; align-items: center; gap: var(--gh-s3); min-height: var(--gh-target-touch); color: var(--gh-arcade-ink); font-size: var(--gh-text-sm); text-underline-offset: .25em; }
+.shortcuts a:focus-visible { outline: 2px solid var(--gh-focus); outline-offset: 4px; }
+.games { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: var(--gh-s6); }
 @media (max-width: 40rem) {
   .surface { padding: var(--gh-s8) var(--gh-s4) calc(var(--gh-tabbar-h) + var(--gh-s8)); }
   .hero { margin-bottom: var(--gh-s6); }
+  .games { grid-template-columns: minmax(0, 1fr); }
 }
