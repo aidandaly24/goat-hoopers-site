@@ -15,7 +15,7 @@
   overflow: hidden;
   background: var(--gh-bg);
 }
-.image { width: 100%; aspect-ratio: 2.4 / 1; object-fit: cover; display: block; }
+.image { width: 100%; height: auto; aspect-ratio: 2.4 / 1; object-fit: cover; display: block; }
 .draftArt { aspect-ratio: 2.4 / 1; min-height: 10rem; display: flex; flex-direction: column; justify-content: space-between; padding: var(--gh-s4) var(--gh-s6); background: var(--gh-scene-bg); color: var(--gh-scene-text); }
 .artEdition, .artNote { font-family: var(--gh-font-mono); font-size: .6rem; letter-spacing: .08em; text-transform: uppercase; }
 .artEdition { color: var(--gh-scene-accent); }
