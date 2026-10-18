@@ -1,11 +1,13 @@
 import type { DraftDemo, DraftPick, DraftPlayer } from "@/domain/arcade/roster-draft";
 
-/** Load only the exact approved same-origin portrait paths supplied by the demo. */
+/** Export source portraits only when CORS allows it; otherwise keep a readable text poster. */
 function portrait(player: DraftPlayer): Promise<HTMLImageElement | null> {
   return new Promise(resolve => {
     const image = new Image();
-    image.onload = () => resolve(image);
-    image.onerror = () => resolve(null);
+    const timer = window.setTimeout(() => { image.onload = null; image.onerror = null; image.src = ""; resolve(null); }, 4000);
+    image.onload = () => { clearTimeout(timer); resolve(image); };
+    image.onerror = () => { clearTimeout(timer); resolve(null); };
+    image.crossOrigin = "anonymous";
     image.src = player.portrait;
   });
 }
@@ -48,7 +50,7 @@ export async function downloadLineup(demo: DraftDemo, picks: readonly DraftPick[
   text("YOUR DEMO LINEUP / FIVE PICKS", 64, 296, 18, white, false, true);
   rows.forEach(({ team, player }, index) => {
     const y = 330 + index * 170;
-    const color = token(`--gh-draft-${team.id}`), ink = token(`--gh-draft-${team.id}-ink`);
+    const color = token("--gh-draft-row"), ink = gold;
     ctx.save();
     ctx.fillStyle = color; ctx.fillRect(64, y, 952, 164);
     ctx.beginPath(); ctx.rect(64, y, 952, 164); ctx.clip();
@@ -72,7 +74,7 @@ export async function downloadLineup(demo: DraftDemo, picks: readonly DraftPick[
     ctx.restore();
   });
   text("WEEK 02 / UNRANKED DEMO", 64, 1234, 19, gold, false, true);
-  text("ILLUSTRATIVE TEAM PAIRINGS · NO SEASON PREDICTION", 64, 1274, 17, white, false, true);
+  text("YOUR FIVE · UNRANKED PREVIEW · NO SEASON PREDICTION", 64, 1274, 17, white, false, true);
   const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(new Error("Poster export failed")), "image/png"));
   const url = URL.createObjectURL(blob);
   try {

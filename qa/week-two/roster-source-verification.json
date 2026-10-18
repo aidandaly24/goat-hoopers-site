@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-10-18T19:22:35.069Z",
+  "scope": "Read-only public ESPN source verification; source observations, not an NBA roster guarantee or prediction. No database or infrastructure access.",
+  "directory": {
+    "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams?limit=30",
+    "rawBytes": 134851,
+    "rawSha256": "9133e21f5de866c269df1d9e6e49bf20cf84b9e856313cabfbdb4e1845895e99",
+    "listedTeams": 30,
+    "projectedTeams": 30,
+    "projectedBytes": 4005,
+    "seasonLabel": "2026-27",
+    "sourceUpdatedAt": null
+  },
+  "rosterSamples": [
+    {
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/13/roster",
+      "sourceUpdatedAt": "2026-10-18T19:17:31.000Z",
+      "seasonLabel": "2026-27",
+      "teamId": "13",
+      "team": "Los Angeles Lakers",
+      "rawBytes": 91643,
+      "rawSha256": "dd6e71fd543efd73c06d79f8492fc059b8305d1f9c43345ce19d93764956957a",
+      "listedAthletes": 19,
+      "projectedAthletes": 19,
+      "projectedBytes": 3910
+    },
+    {
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/25/roster",
+      "sourceUpdatedAt": "2026-10-18T19:21:06.000Z",
+      "seasonLabel": "2026-27",
+      "teamId": "25",
+      "team": "Oklahoma City Thunder",
+      "rawBytes": 87043,
+      "rawSha256": "7c53b6c7ad48f0744bc1e589cc21b5b609a7f87cb850ced900a950d1a2371639",
+      "listedAthletes": 18,
+      "projectedAthletes": 18,
+      "projectedBytes": 3662
+    }
+  ],
+  "coverage": "The full 30-team directory and two selected-team roster responses were checked. Every source-listed athlete in each response is preserved; the application loads only the team drawn, not all 30 rosters.",
+  "limits": {
+    "directoryBytes": 262144,
+    "rosterBytes": 524288,
+    "sourceTimeoutMs": 8000,
+    "projectedCacheRevalidateSeconds": 86400
+  },
+  "freshness": "Original observation and provider timestamps travel with cached projections. Stale data is labeled; source availability and transaction timing are not guaranteed.",
+  "runtimeCheck": "Node 24 built-in fetch with the existing environment proxy (NODE_USE_ENV_PROXY=1 for QA child only) returned HTTP 200 / 30 teams. This QA process variable is not added to application or deployment configuration."
+}

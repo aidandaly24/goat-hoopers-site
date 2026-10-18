@@ -987,22 +987,46 @@ mode stays independent of competition status; the planned season-prediction
 ballot remains closed. The hub presents two compact game cards and direct launch
 shortcuts, with controls in native disclosures on narrow screens. Preview artwork
 is typographic and labelled; the free-throw card retains its actual screenshot.
-Neither discovery path reads an account or game store. The draft passes the static
-illustrative player pool from `data/week-two-demo.ts` to the public
+Neither discovery path reads an account or game store. The page composes the
+client adapter `DraftPreview` with the injected public
 `surfaces/arcade/week-two/WeekTwoDraft` entrypoint. `domain/arcade/roster-draft.ts`
-owns the browser-local draw/pick state machine; it has no scoring or persistence.
-Five picks and the sample franchise pairings are demo content, not adopted
-competition rules or verified current NBA rosters. Week 2 competition stays locked.
+owns the browser-local five-pick state machine, distinct team draw and duplicate
+player guard. This preview format is not an adopted competition rule. It has no
+score, account persistence, season forecast or prize entry. Week 2 competition
+stays closed.
 
-The surface reuses the shared typography, `Badge`, existing approved portraits
-and bounded `ui/week-two-draft-tokens.css` scene/team materials. Explicit reveals,
-selection and lock-in have finite CSS motion with a live reduced-motion fallback.
-The optional lazy poster module renders a user-requested 1080×1350 PNG on-device.
-There is no upload, auth/score/reward endpoint, leaderboard integration or registry
-change. Existing root layout behavior is unchanged. The offline Vite fixture in
-`qa/week-two` composes the real surface/header without root data/auth loaders;
-its browser verifier blocks external, API and non-GET requests. This establishes
-component behavior, not production deployment, Next routing or physical-phone proof.
+`domain/arcade/nba-rosters.ts` owns slim NBA identities, source observations and
+the roster client contract. The read-only `/api/arcade/nba/teams` and selected
+`/api/arcade/nba/teams/[teamId]/roster` routes delegate to `data/nba-rosters.ts`.
+The directory loads on entering the demo; a roster loads only after its team is
+drawn. The loader uses ESPN's current public NBA feed with bounded time/bytes,
+strict complete-list decoding and a daily cache of only the slim projection.
+All source-listed athletes are retained, including inactive statuses. Source
+season, retrieval/provider dates and stale observations remain visible; there
+is no guarantee that every recent transaction is already reflected. Failure
+preserves the drawn team for retry. The old static `week-two-demo.ts` pool is
+historical review content and is not used by the public route.
+
+The surface reuses shared typography, `Badge` and scoped draft material tokens.
+The finite team-selection animation has Skip, keyboard access and a live
+reduced-motion/hidden-tab finish. Source portraits are lazy within the selected
+roster, with initials fallback. The optional lazy poster module renders a
+user-requested 1080×1350 PNG on-device and tolerates unavailable/CORS-blocked
+portraits. No upload or auth/score/reward endpoint is called. Existing root layout
+behavior is unchanged. The offline Vite fixture in `qa/week-two` injects explicit
+synthetic full rosters and omits root data/auth loaders; it does not establish
+live data, Next routing, deployment or physical-phone behavior. Source verification
+is recorded separately in `qa/week-two/roster-source-verification.json`.
+
+`domain/arcade/weekly-leaderboard.ts` defines a display-only weekly board
+projection. `surfaces/arcade/WeeklyLeaderboard` receives validated rows, weekly
+period/timezone and controlled scope/retry callbacks; it performs no I/O. The top
+three, current-user marker, makes/attempts, accuracy and best streak come only
+from returned rows. Closed/loading/error/empty states never substitute scores
+or dates. The public `/arcade/leaderboard` route uses only its closed state and
+imports no ranked runtime/client or database. The Arcade links to this status
+page. Live ranked integration remains on the separate, unpublished foundation
+branch; the public frontend does not activate ranking or claim live entrants.
 
 ## Free-throw practice prototype
 

@@ -5,6 +5,7 @@
  * competition stays closed. No account/store gate or invented competition data.
  */
 import type { PlayableGame } from "@/domain/arcade";
+import Link from "next/link";
 import { GameCard } from "./GameCard";
 import styles from "./ArcadeHub.module.css";
 
@@ -17,7 +18,8 @@ export function ArcadeHub({ games }: { games: readonly PlayableGame[] }) {
           <h1 className={styles.title}>The Arcade</h1>
           <p className={styles.sub}>Find your touch. Build your five. Make your next play.</p>
           <nav className={styles.shortcuts} aria-label="Jump into a game">
-            {games.map(game => <a key={game.id} href={`/arcade/${game.id}`}>{game.name} <span aria-hidden="true">↗</span></a>)}
+            {games.map(game => <Link key={game.id} href={`/arcade/${game.id}`} prefetch={false}>{game.name} <span aria-hidden="true">↗</span></Link>)}
+            <Link href="/arcade/leaderboard" prefetch={false}>Weekly leaderboard <span aria-hidden="true">↗</span></Link>
           </nav>
         </header>
         <section className={styles.games} aria-label="Available games">

@@ -1,0 +1,67 @@
+.wrap { min-width: 0; color: var(--gh-text); }
+.card { padding: var(--gh-s6); }
+.header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--gh-s3); }
+.header > div { margin-bottom: var(--gh-s4); }
+.header > div, .header > div > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+.status { padding: var(--gh-s1) 0; color: var(--gh-text-dim); font: 0.75rem/1.5 var(--gh-font-mono); }
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--gh-s3); padding-bottom: var(--gh-s4); }
+.scopes { display: inline-flex; border: 1px solid var(--gh-control); border-radius: var(--gh-radius); padding: var(--gh-s1); gap: var(--gh-s1); }
+.scope, .retry { min-height: 44px; padding: var(--gh-s2) var(--gh-s4); border: 0; border-radius: calc(var(--gh-radius) - var(--gh-s1)); background: transparent; color: var(--gh-text); font: inherit; font-weight: 600; cursor: pointer; transition: background-color var(--gh-dur-base) var(--gh-ease-out), color var(--gh-dur-base) var(--gh-ease-out); }
+.scope[aria-pressed="true"] { background: var(--gh-accent); color: var(--gh-on-accent); }
+.scope:disabled { cursor: default; }
+.scope:disabled[aria-pressed="false"] { color: var(--gh-text-dim); }
+.scope:focus-visible, .retry:focus-visible { outline: 2px solid var(--gh-focus); outline-offset: 3px; }
+.scope:enabled:hover, .retry:hover { background: var(--gh-bg-hover); color: var(--gh-text); }
+.retry { margin-top: var(--gh-s2); border: 1px solid var(--gh-control); }
+.wrap .period { margin: 0; font-size: var(--gh-text-sm); color: var(--gh-text-dim); }
+.notice { padding: var(--gh-s6) 0 var(--gh-s4); border-top: 1px solid var(--gh-border); }
+.notice p { margin: 0 0 var(--gh-s2); max-width: 62ch; color: var(--gh-text-dim); font-size: var(--gh-text-sm); line-height: 1.6; overflow-wrap: anywhere; }
+.notice .noticeTitle { color: var(--gh-text); font-size: var(--gh-text-lg); font-weight: 650; letter-spacing: -0.02em; }
+.rankings { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--gh-s3); list-style: none; padding: 0; margin: var(--gh-s2) 0 var(--gh-s6); }
+.entry { display: grid; grid-column: 1 / -1; grid-template-columns: 2.25rem minmax(0, 1fr) auto; align-items: center; gap: var(--gh-s2) var(--gh-s3); padding: var(--gh-s4) var(--gh-s3); border-bottom: 1px solid var(--gh-border); min-width: 0; }
+.rank { font: 0.875rem/1.5 var(--gh-font-mono); color: var(--gh-text-dim); }
+.rank[data-rank="1"] { color: var(--gh-champion); }
+.rank[data-rank="2"] { color: var(--gh-silver); }
+.rank[data-rank="3"] { color: var(--gh-bronze); }
+.identity { display: flex; align-items: center; flex-wrap: wrap; gap: var(--gh-s2); min-width: 0; }
+.username { font-size: var(--gh-text-md); line-height: var(--gh-lh-md); overflow-wrap: anywhere; }
+.you { display: inline-block; padding: 0 var(--gh-s2); color: var(--gh-accent); font-size: var(--gh-text-xs); font-weight: 700; border: 1px solid var(--gh-control); border-radius: var(--gh-radius); }
+.score { display: flex; gap: var(--gh-s1); align-items: baseline; justify-content: flex-end; font-variant-numeric: tabular-nums; }
+.score strong { font-size: var(--gh-text-lg); line-height: var(--gh-lh-lg); }
+.score span { color: var(--gh-text-dim); font-size: var(--gh-text-xs); }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gh-s3); grid-column: 2 / -1; margin: 0; min-width: 0; }
+.stats div { min-width: 0; }
+.stats dt { color: var(--gh-text-dim); font-size: var(--gh-text-xs); line-height: var(--gh-lh-xs); overflow-wrap: anywhere; }
+.stats dd { margin: var(--gh-s1) 0 0; font-size: var(--gh-text-sm); font-variant-numeric: tabular-nums; }
+.entry[data-leading="true"] { display: flex; flex-direction: column; align-items: stretch; grid-row: 1; grid-column: span 2; border: 1px solid var(--gh-border); border-radius: var(--gh-radius); background: var(--gh-bg); padding: var(--gh-s4); gap: var(--gh-s3); }
+.entry[data-leading="true"] .rank { font-size: var(--gh-text-lg); font-weight: 700; }
+.entry[data-leading="true"] .score { justify-content: flex-start; }
+.entry[data-leading="true"] .score strong { font-size: 2.25rem; font-weight: 750; letter-spacing: -0.05em; line-height: 1; }
+.entry[data-leading="true"] .stats { margin-top: auto; gap: var(--gh-s2); padding-top: var(--gh-s2); }
+.entry[data-leading="true"]:nth-child(1) { grid-column: 3 / span 2; border-top: 3px solid var(--gh-champion); }
+.entry[data-leading="true"]:nth-child(2) { grid-column: 1 / span 2; }
+.entry[data-leading="true"]:nth-child(3) { grid-column: 5 / span 2; }
+.rankings[data-leader-count="1"] .entry:first-child { grid-column: 1 / -1; }
+.rankings[data-leader-count="2"] .entry:first-child { grid-column: 1 / span 3; }
+.rankings[data-leader-count="2"] .entry:nth-child(2) { grid-column: 4 / span 3; }
+.entry[data-current="true"] { background: var(--gh-bg-hover); border-inline-start: 3px solid var(--gh-accent); }
+.rules { border-top: 1px solid var(--gh-border); padding-top: var(--gh-s4); }
+.rules p { margin: 0 0 var(--gh-s2); color: var(--gh-text-dim); font-size: var(--gh-text-xs); line-height: 1.6; overflow-wrap: anywhere; }
+@media (max-width: 40rem) {
+  .card { padding: var(--gh-s4); }
+  .header > div { margin-bottom: var(--gh-s2); }
+  .header { gap: 0 var(--gh-s3); margin-bottom: var(--gh-s3); }
+  .toolbar { align-items: flex-start; }
+  .scopes { width: 100%; flex-wrap: wrap; }
+  .scope { flex: 1 1 7rem; min-width: 0; padding-inline: var(--gh-s2); overflow-wrap: anywhere; }
+  .rankings { display: block; }
+  .entry, .entry[data-leading="true"] { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr) auto; gap: var(--gh-s2); padding: var(--gh-s4) var(--gh-s2); margin-bottom: var(--gh-s2); }
+  .entry[data-leading="true"] .rank { font-size: var(--gh-text-md); }
+  .entry[data-leading="true"] .score { justify-content: flex-end; flex-wrap: wrap; }
+  .entry[data-leading="true"] .score strong { font-size: 1.5rem; }
+  .entry[data-leading="true"] .stats { padding: 0; }
+  .username { font-size: var(--gh-text-sm); }
+  .score { flex-direction: column; align-items: flex-end; gap: 0; }
+  .stats { gap: var(--gh-s2); }
+}
+@media (prefers-reduced-motion: reduce) { .scope, .retry { transition: none; } }
