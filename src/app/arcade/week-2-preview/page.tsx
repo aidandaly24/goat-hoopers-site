@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { getWeekTwoDemo } from "@/data/week-two-demo";
-import { WeekTwoDraft } from "@/surfaces/arcade/week-two/WeekTwoDraft";
+import { DraftPreview } from "./DraftPreview";
 
 export const metadata: Metadata = {
   title: "82–0 · Week 2 first look | GOAT Hoopers",
@@ -8,7 +7,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-/** Isolated review route. No account, competition, score, reward or data-store access. */
+/** Public unranked preview. Read-only roster APIs; no account, score or reward writes. */
 export default function WeekTwoPreviewPage() {
-  return <WeekTwoDraft demo={getWeekTwoDemo()} />;
+  return <DraftPreview />;
 }

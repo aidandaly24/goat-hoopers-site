@@ -20,6 +20,7 @@
   --gh-draft-rockets-ink: #ffdbd9;
   --gh-draft-cavaliers: #6c183f;
   --gh-draft-cavaliers-ink: #f9d69b;
+  --gh-draft-row: color-mix(in srgb, var(--gh-scene-bg) 82%, var(--gh-scene-text));
   --gh-draft-team: var(--gh-draft-night);
   --gh-draft-team-ink: var(--gh-draft-gold);
   --gh-draft-reveal-time: 480ms;

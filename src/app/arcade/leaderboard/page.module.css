@@ -1,0 +1,5 @@
+.page { max-width: 72rem; margin: auto; padding: var(--gh-s8) var(--gh-s4) var(--gh-s12); }
+.back, .practice a { display: inline-flex; align-items: center; min-height: var(--gh-target-touch); color: var(--gh-text); font-size: var(--gh-text-sm); text-underline-offset: .2em; }
+.back { margin-bottom: var(--gh-s4); }
+.back:focus-visible, .practice a:focus-visible { outline: 2px solid var(--gh-focus); outline-offset: 3px; }
+.practice { margin: var(--gh-s4) 0 0; }

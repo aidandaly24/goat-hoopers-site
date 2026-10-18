@@ -5,6 +5,7 @@ import { EMPTY_DRAFT, shuffleDemoTeams, transitionDraft, type DraftAction, type 
 const demo = getWeekTwoDemo();
 const order = demo.teams.map(team => team.id);
 const step = (state: DraftState, action: DraftAction) => transitionDraft(state, action, demo);
+const reveal = (state: DraftState) => step(step(state, { type: "reveal" }), { type: "finish-reveal" });
 const started = () => step(EMPTY_DRAFT, { type: "start", order });
 
 describe("unranked roster draft concept", () => {
@@ -33,14 +34,31 @@ describe("unranked roster draft concept", () => {
     expect(step(state, { type: "next" })).toBe(state);
     expect(step(state, { type: "lock" })).toBe(state);
     expect(step(state, { type: "select", playerId: demo.teams[0].players[0].id })).toBe(state);
-    state = step(state, { type: "reveal" });
+    state = reveal(state);
     expect(step(state, { type: "lock" })).toBe(state);
     expect(step(state, { type: "select", playerId: demo.teams[1].players[0].id })).toBe(state);
     expect(state.picks).toEqual([]);
   });
 
+  it("cannot select or lock while the team draw is animating", () => {
+    const drawing = step(started(), { type: "reveal" });
+    expect(drawing.phase).toBe("drawing");
+    expect(step(drawing, { type: "select", playerId: demo.teams[0].players[0].id })).toBe(drawing);
+    expect(step(drawing, { type: "lock" })).toBe(drawing);
+    expect(step(drawing, { type: "reveal" })).toBe(drawing);
+    expect(step(drawing, { type: "finish-reveal" }).phase).toBe("revealed");
+  });
+
+  it("rejects a roster that has not arrived without consuming the drawn team", () => {
+    const state = reveal(started());
+    const unloaded = { ...demo, teams: demo.teams.map(team => ({ ...team, players: [] })) };
+    expect(transitionDraft(state, { type: "select", playerId: demo.teams[0].players[0].id }, unloaded)).toBe(state);
+    expect(transitionDraft(state, { type: "lock" }, unloaded)).toBe(state);
+    expect(state.order).toEqual(order);
+  });
+
   it("locks a pick once; stale select/reveal/lock events cannot alter it", () => {
-    let state = step(started(), { type: "reveal" });
+    let state = reveal(started());
     state = step(state, { type: "select", playerId: demo.teams[0].players[0].id });
     state = step(state, { type: "lock" });
     expect(state.phase).toBe("locked");
@@ -54,10 +72,22 @@ describe("unranked roster draft concept", () => {
     expect(state.selectedId).toBeNull();
   });
 
+  it("cannot draft the same athlete again if source rosters overlap during a transaction", () => {
+    let state = reveal(started());
+    const playerId = demo.teams[0].players[0].id;
+    state = step(step(state, { type: "select", playerId }), { type: "lock" });
+    state = reveal(step(state, { type: "next" }));
+    const overlap = { ...demo, teams: demo.teams.map((team, index) => index === 1 ? { ...team, players: [demo.teams[0].players[0], ...team.players] } : team) };
+    expect(transitionDraft(state, { type: "select", playerId }, overlap)).toBe(state);
+    const forgedSelection = { ...state, selectedId: playerId };
+    expect(transitionDraft(forgedSelection, { type: "lock" }, overlap)).toBe(forgedSelection);
+    expect(state.picks).toHaveLength(1);
+  });
+
   it("completes five distinct demo picks without any generated score or forecast", () => {
     let state = started();
     for (const [index, team] of demo.teams.entries()) {
-      state = step(state, { type: "reveal" });
+      state = reveal(state);
       state = step(state, { type: "select", playerId: team.players[0].id });
       state = step(state, { type: "lock" });
       if (index < demo.pickCount - 1) state = step(state, { type: "next" });

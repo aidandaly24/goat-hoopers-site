@@ -26,6 +26,7 @@ describe("public Arcade discovery", () => {
     expect(html).toContain('href="/arcade/week-2-preview"');
     expect(html).toContain("Week 2 · Unranked preview");
     expect(html).toContain("Week 2 competition stays closed");
+    expect(html).toContain('href="/arcade/leaderboard"');
     for (const misleading of ["82-0 Predictions", "Not yet live", "Claim your team", "FAAB", "Details →"]) {
       expect(html).not.toContain(misleading);
     }

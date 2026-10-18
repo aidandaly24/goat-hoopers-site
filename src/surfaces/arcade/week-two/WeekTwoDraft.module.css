@@ -172,9 +172,9 @@
   .lede { order: 2; font-size: .82rem; line-height: 1.5; margin-bottom: var(--gh-s6) !important; }
   .lede br:first-child { display: none; }
   .lede br:first-child::after { content: " "; }
-  .teaserPoster { order: 3; aspect-ratio: 1.12; }
-  .teaserCopy > .primary { order: 4; width: 100%; margin-top: var(--gh-s4); }
-  .ctaNote { order: 5; font-size: .5rem; text-align: center; }
+  .teaserPoster { order: 5; aspect-ratio: 1.12; margin-top: var(--gh-s6); }
+  .teaserCopy > .primary { order: 3; width: 100%; margin-top: 0; }
+  .ctaNote { order: 4; font-size: .5rem; text-align: center; }
   .posterMast { padding: var(--gh-s4) var(--gh-s4) 0; font-size: .42rem; }
   .bigRecord { font-size: 7rem; padding-top: var(--gh-s1); }
   .posterRule { padding-inline: var(--gh-s4); font-size: .42rem; }
@@ -267,4 +267,68 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .root *, .root *::before, .root *::after { animation: none !important; transition: none !important; }
+}
+
+/* The draw is the single finite authored motion; roster rows remain immediately usable. */
+.teaserSlots { position: absolute; inset: 49% var(--gh-s6) 26%; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gh-s2); align-items: stretch; }
+.teaserSlots > span { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--gh-s3); border: 1px solid color-mix(in srgb, var(--gh-draft-white) 25%, transparent); background: color-mix(in srgb, var(--gh-draft-white) 4%, transparent); transform: rotate(-5deg); }
+.teaserSlots > span:nth-child(even) { transform: translateY(var(--gh-s4)) rotate(5deg); }
+.teaserSlots small { font-family: var(--gh-font-mono); font-size: .5rem; letter-spacing: .1em; }
+.teaserSlots strong { font-size: clamp(1.8rem, 3vw, 3rem); line-height: 1; font-weight: 500; letter-spacing: -.08em; }
+.teaserSlots svg { font-size: 1.2rem; color: var(--gh-draft-gold); }
+.drawContent { position: relative; padding: var(--gh-s6); text-align: center; }
+.drawWindow { display: flex; min-height: 17rem; flex-direction: column; justify-content: center; gap: var(--gh-s4); border-block: 1px solid color-mix(in srgb, var(--gh-draft-white) 25%, transparent); }
+.drawWindow small { font-family: var(--gh-font-mono); font-size: .55rem; letter-spacing: .12em; color: var(--gh-draft-silver); }
+.drawWindow strong { display: block; font-size: clamp(5rem, 9vw, 8rem); line-height: 1; letter-spacing: -.08em; font-weight: 850; color: var(--gh-draft-gold); animation: drawStep 80ms var(--gh-ease-out); }
+.drawWindow > span { font-size: var(--gh-text-sm); }
+.drawTrack { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gh-s2); margin-top: var(--gh-s4); font-family: var(--gh-font-mono); font-size: .55rem; color: var(--gh-draft-silver); }
+.drawTrack > span { padding: var(--gh-s1); }
+.stageLogo { position: absolute; inset: 28% 18% 20%; display: grid; place-items: center; }
+.teamLogo { width: 100%; height: 100%; max-height: 16rem; object-fit: contain; filter: drop-shadow(0 1rem 1rem color-mix(in srgb, var(--gh-draft-night) 40%, transparent)); }
+.logoFallback { font-size: 5rem; font-weight: 800; color: var(--gh-draft-gold); letter-spacing: -.08em; }
+.decision { justify-content: start; padding-inline: var(--gh-s6); }
+.choiceHeading { align-items: start; }
+.choiceHeading > span { padding-top: var(--gh-s1); }
+.rosterSearch { display: block; font-family: var(--gh-font-mono); font-size: .6rem; color: var(--gh-draft-muted); margin-bottom: var(--gh-s4); line-height: 1.5; }
+.rosterSearch input { display: block; width: 100%; margin-top: var(--gh-s2); border: 1px solid var(--gh-control); background: var(--gh-draft-paper); color: var(--gh-draft-ink); padding: var(--gh-s3); font: 400 var(--gh-text-sm) var(--gh-font-body); border-radius: var(--gh-radius-sm); min-height: var(--gh-target-touch); }
+.playerChoices { max-height: 25rem; overflow-y: auto; scrollbar-gutter: stable; overscroll-behavior-y: contain; padding-inline: var(--gh-s1); }
+.playerChoice { min-height: 4.5rem; padding-block: var(--gh-s2); gap: var(--gh-s3); }
+.playerChoice > .portrait { width: 3.8rem; height: 3.5rem; }
+.choiceName > span { font-size: .7rem; }
+.choiceName > strong { font-size: 1rem; letter-spacing: -.025em; }
+.choiceName > small { margin-top: var(--gh-s1); font-size: .6rem; line-height: 1.45; }
+.playerChoice .portraitFallback { font-size: 1.5rem; opacity: .7; }
+.lockAction { margin-block: var(--gh-s4); }
+.rosterLoading { margin-block: auto; padding-block: var(--gh-s6); }
+.rosterLoading h2 { font-size: 1.7rem; letter-spacing: -.04em; }
+.rosterLoading p { color: var(--gh-draft-muted); font-size: var(--gh-text-sm); line-height: 1.7; margin-block: var(--gh-s4); }
+.rosterLoading .primary { width: 100%; }
+.emptySearch { font-size: var(--gh-text-sm); color: var(--gh-draft-muted); line-height: 1.6; padding-block: var(--gh-s4); }
+.emptySearch .textButton { color: var(--gh-draft-ink); text-decoration: underline; }
+.poolNote a { color: inherit; text-decoration: underline; text-underline-offset: .2em; }
+.poolNote { margin-top: auto; }
+.resultActions > a.textButton { text-decoration: none; }
+@keyframes drawStep { from { transform: translateY(-.12em); opacity: .5; } to { transform: translateY(0); opacity: 1; } }
+@media (max-width: 40rem) {
+  .teaserSlots { inset: 51% var(--gh-s4) 25%; gap: var(--gh-s1); }
+  .teaserSlots strong { font-size: 1.6rem; }
+  .teaserSlots small { font-size: .4rem; }
+  .teaserSlots > span { gap: var(--gh-s2); }
+  .teaserSlots svg { font-size: .8rem; }
+  .drawContent { padding: 0 var(--gh-s4) var(--gh-s4); }
+  .drawWindow { min-height: 11rem; gap: var(--gh-s3); }
+  .drawWindow strong { font-size: 4.5rem; }
+  .drawWindow > span { font-size: .75rem; }
+  .drawTrack { margin-top: var(--gh-s2); font-size: .45rem; gap: var(--gh-s1); }
+  .stageLogo { inset: 25% 22% 18%; }
+  .decision { padding-inline: 0; }
+  .playerChoices { max-height: 25rem; }
+  .playerChoice { min-height: 4.5rem; }
+  .playerChoice > .portrait { width: min(3.8rem, 18vw); height: min(3.5rem, 18vw); }
+  .choiceName > strong { font-size: 1rem; }
+  .rosterSearch { font-size: .65rem; }
+  .rosterLoading { padding-block: var(--gh-s2) var(--gh-s4); }
+  .rosterLoading .bigStep { display: none; }
+  .rosterLoading h2 { font-size: 1.5rem; }
+  .rosterLoading p { font-size: .8rem; }
 }

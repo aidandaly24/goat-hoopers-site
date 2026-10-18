@@ -404,6 +404,22 @@ reading league content, navigating to teams or discovering the game. Provide
 a real poster, explanation and working navigation rather than an empty canvas.
 Do not invent a successful score or claim rewards that are inactive.
 
+The 82–0 preview uses a deliberate, finite team draw before each of its five
+local picks. A short animated sequence makes the random selection legible;
+Skip and live reduced-motion/hidden-tab handling reveal the same selected team
+immediately. Each draw opens the complete source-listed ESPN roster, with search,
+player count, season and actual source/retrieval dates. A failed roster request
+keeps the team and offers retry. Never present a curated subset as a full roster
+or generate an unsupported season prediction. The five-pick preview, poster and
+restart remain separate from competition eligibility, scoring and prizes.
+
+The Arcade keeps Free Throw practice, 82–0 Week 2 preview and weekly leaderboard
+status discoverable near its heading. Compact cards replace the single oversized
+game treatment; mobile controls use native disclosures. The weekly board uses
+actual server ranks when connected: top three, username, makes and current-user
+marker, with Everyone/League scope and visible weekly cutoff. A closed public
+board shows its status with disabled filters and no invented entrants or dates.
+
 ## Content voice and weekly workflow
 
 Write like informed friends watching basketball: short, specific and a little

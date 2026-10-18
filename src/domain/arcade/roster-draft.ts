@@ -18,7 +18,7 @@ export type DraftTeam = {
 export type DraftPick = { teamId: string; playerId: string };
 export type DraftDemo = { teams: readonly DraftTeam[]; pickCount: number };
 export type DraftState = {
-  phase: "teaser" | "sealed" | "revealed" | "locked" | "complete";
+  phase: "teaser" | "sealed" | "drawing" | "revealed" | "locked" | "complete";
   order: readonly string[];
   picks: readonly DraftPick[];
   selectedId: string | null;
@@ -26,6 +26,7 @@ export type DraftState = {
 export type DraftAction =
   | { type: "start"; order: readonly string[] }
   | { type: "reveal" }
+  | { type: "finish-reveal" }
   | { type: "select"; playerId: string }
   | { type: "lock" }
   | { type: "next" }
@@ -55,12 +56,13 @@ export function transitionDraft(state: DraftState, action: DraftAction, demo: Dr
   }
   if (action.type === "next") return state.phase === "locked"
     ? { ...state, phase: "sealed", selectedId: null } : state;
-  if (action.type === "reveal") return state.phase === "sealed" ? { ...state, phase: "revealed" } : state;
+  if (action.type === "reveal") return state.phase === "sealed" ? { ...state, phase: "drawing" } : state;
+  if (action.type === "finish-reveal") return state.phase === "drawing" ? { ...state, phase: "revealed" } : state;
   const team = demo.teams.find(team => team.id === state.order[state.picks.length]);
   if (!team || state.phase !== "revealed") return state;
-  if (action.type === "select") return team.players.some(player => player.id === action.playerId)
+  if (action.type === "select") return !state.picks.some(pick => pick.playerId === action.playerId) && team.players.some(player => player.id === action.playerId)
     ? { ...state, selectedId: action.playerId } : state;
-  if (action.type === "lock" && state.selectedId && team.players.some(player => player.id === state.selectedId)) {
+  if (action.type === "lock" && state.selectedId && !state.picks.some(pick => pick.playerId === state.selectedId) && team.players.some(player => player.id === state.selectedId)) {
     const picks = [...state.picks, { teamId: team.id, playerId: state.selectedId }];
     return { ...state, picks, phase: picks.length === demo.pickCount ? "complete" : "locked" };
   }
