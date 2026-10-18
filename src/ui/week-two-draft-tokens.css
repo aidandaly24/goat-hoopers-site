@@ -1,0 +1,31 @@
+/* Bounded draft-stage materials and NBA identity colors; shared reading chrome is unchanged. */
+.gh-week-two-draft {
+  --gh-draft-display: var(--gh-font-display);
+  --gh-draft-paper: var(--gh-bg);
+  --gh-draft-ink: var(--gh-text);
+  --gh-draft-muted: var(--gh-text-dim);
+  --gh-draft-line: var(--gh-border);
+  --gh-draft-night: var(--gh-scene-bg);
+  --gh-draft-white: var(--gh-scene-text);
+  --gh-draft-silver: var(--gh-scene-muted);
+  --gh-draft-gold: var(--gh-scene-accent);
+  --gh-draft-on-gold: var(--gh-scene-on-accent);
+  --gh-draft-lakers: #552a83;
+  --gh-draft-lakers-ink: #ffc85a;
+  --gh-draft-thunder: #053a63;
+  --gh-draft-thunder-ink: #ff9368;
+  --gh-draft-magic: #064c99;
+  --gh-draft-magic-ink: #bde4ff;
+  --gh-draft-rockets: #9b1235;
+  --gh-draft-rockets-ink: #ffdbd9;
+  --gh-draft-cavaliers: #6c183f;
+  --gh-draft-cavaliers-ink: #f9d69b;
+  --gh-draft-team: var(--gh-draft-night);
+  --gh-draft-team-ink: var(--gh-draft-gold);
+  --gh-draft-reveal-time: 480ms;
+}
+.gh-week-two-draft [data-draft-team="lakers"] { --gh-draft-team: var(--gh-draft-lakers); --gh-draft-team-ink: var(--gh-draft-lakers-ink); }
+.gh-week-two-draft [data-draft-team="thunder"] { --gh-draft-team: var(--gh-draft-thunder); --gh-draft-team-ink: var(--gh-draft-thunder-ink); }
+.gh-week-two-draft [data-draft-team="magic"] { --gh-draft-team: var(--gh-draft-magic); --gh-draft-team-ink: var(--gh-draft-magic-ink); }
+.gh-week-two-draft [data-draft-team="rockets"] { --gh-draft-team: var(--gh-draft-rockets); --gh-draft-team-ink: var(--gh-draft-rockets-ink); }
+.gh-week-two-draft [data-draft-team="cavaliers"] { --gh-draft-team: var(--gh-draft-cavaliers); --gh-draft-team-ink: var(--gh-draft-cavaliers-ink); }

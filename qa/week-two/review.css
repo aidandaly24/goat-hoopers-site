@@ -1,0 +1,5 @@
+@font-face { font-family: "Review Inter"; src: url("/design-preview/neutral-courtside/assets/inter.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Review Mono"; src: url("/design-preview/neutral-courtside/assets/geist-mono.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+:root { --font-body: "Review Inter", sans-serif; --font-mono: "Review Mono", monospace; }
+#root { display: contents; }
+#root > * { position: relative; z-index: 1; }

@@ -979,6 +979,25 @@ marks them settled. The ledger shows pending vs settled per user.
 5. Ship mobile + desktop layouts (project rule 7), then open a PR.
 
 
+## Week 2 roster draft design preview
+
+`/arcade/week-2-preview` is an unlisted, noindex review route. It passes the static
+illustrative player pool from `data/week-two-demo.ts` to the public
+`surfaces/arcade/week-two/WeekTwoDraft` entrypoint. `domain/arcade/roster-draft.ts`
+owns the browser-local draw/pick state machine; it has no scoring or persistence.
+Five picks and the sample franchise pairings are demo content, not adopted
+competition rules or verified current NBA rosters. Week 2 competition stays locked.
+
+The surface reuses the shared typography, `Badge`, existing approved portraits
+and bounded `ui/week-two-draft-tokens.css` scene/team materials. Explicit reveals,
+selection and lock-in have finite CSS motion with a live reduced-motion fallback.
+The optional lazy poster module renders a user-requested 1080×1350 PNG on-device.
+There is no upload, auth/score/reward endpoint, leaderboard integration or registry
+change. Existing root layout behavior is unchanged. The offline Vite fixture in
+`qa/week-two` composes the real surface/header without root data/auth loaders;
+its browser verifier blocks external, API and non-GET requests. This establishes
+component behavior, not production deployment, Next routing or physical-phone proof.
+
 ## Free-throw practice prototype
 
 `/arcade/free-throw` explicitly composes `FreeThrowPractice` from
