@@ -17,6 +17,7 @@ import { notFound } from "next/navigation";
 import {
   currentWeekLabel,
   getGame,
+  pricedInDealIdentity,
   samplePricedInRounds,
   type LeaderboardEntry,
   type PricedInRound,
@@ -72,7 +73,11 @@ export default async function GamePage({
     }
     return (
       <PricedIn
-        key={rounds.map((round) => round.playerId).join("|")}
+        // Keyed by the complete deal identity (players, prices and
+        // lines): a refresh that re-deals the same players at fresh
+        // lines remounts the surface, so no prior game's state can
+        // pair with the new deal.
+        key={pricedInDealIdentity(rounds)}
         rounds={rounds}
         pricingBasis={pricingBasis}
       />

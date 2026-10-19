@@ -1,13 +1,21 @@
 import { describe, expect, it } from "vitest";
 import {
   PRICED_IN_MAX_SCORE,
+  PRICED_IN_MIN_LINE_OFFSET,
   PRICED_IN_MIN_PRICE,
   PRICED_IN_ROUND_COUNT,
+  advancePricedIn,
+  callPricedIn,
   pricedInCallIsCorrect,
+  pricedInDealIdentity,
   pricedInLine,
+  receivePricedInDeal,
+  requestPricedInRedeal,
   samplePricedInRounds,
   scorePricedInCall,
+  startPricedInGame,
   type PricedInCandidate,
+  type PricedInGameState,
   type PricedInRound,
 } from "./priced-in";
 
@@ -104,15 +112,137 @@ describe("scoring", () => {
     expect(pricedInCallIsCorrect(round(30, 40), "over")).toBe(false);
   });
 
-  it("a correct call scores 100 plus a closeness bonus that decays with distance", () => {
-    expect(scorePricedInCall(round(45, 40), "over")).toBe(145);
-    expect(scorePricedInCall(round(90, 40), "over")).toBe(100);
-    expect(scorePricedInCall(round(30, 40), "under")).toBe(140);
+  it("a correct call scores 100 plus a closeness bonus anchored at the tightest dealt gap", () => {
+    // Full bonus at the dealer's minimum offset, one point less per
+    // dollar beyond it, gone once the line sits 50 past that anchor.
+    expect(scorePricedInCall(round(42, 40), "over")).toBe(150);
+    expect(scorePricedInCall(round(45, 40), "over")).toBe(147);
+    expect(scorePricedInCall(round(30, 40), "under")).toBe(142);
+    expect(scorePricedInCall(round(90, 40), "over")).toBe(102);
+    expect(scorePricedInCall(round(92, 40), "over")).toBe(100);
   });
 
-  it("a wrong call scores zero, and a perfect game tops out at the max", () => {
+  it("a wrong call scores zero", () => {
     expect(scorePricedInCall(round(30, 40), "over")).toBe(0);
-    expect(scorePricedInCall(round(41, 40), "over")).toBe(149);
+    expect(scorePricedInCall(round(41, 40), "under")).toBe(0);
+  });
+});
+
+describe("reachable maximum", () => {
+  it("a best-case actual deal reaches the advertised maximum", () => {
+    // The review probe: five $5 candidates and an RNG pinned at 0
+    // deal the tightest line the dealer can set on every round.
+    const cheap = pool(5, { price: 5 });
+    const rounds = samplePricedInRounds(cheap, () => 0);
+    expect(rounds).toHaveLength(PRICED_IN_ROUND_COUNT);
+    for (const round of rounds) {
+      expect(Math.abs(round.price - round.line)).toBe(PRICED_IN_MIN_LINE_OFFSET);
+    }
+    const total = rounds.reduce(
+      (sum, round) =>
+        sum + scorePricedInCall(round, pricedInCallIsCorrect(round, "over") ? "over" : "under"),
+      0,
+    );
+    expect(total).toBe(PRICED_IN_MAX_SCORE);
     expect(PRICED_IN_MAX_SCORE).toBe(750);
+  });
+
+  it("no dealt game can beat the advertised maximum", () => {
+    const rounds = samplePricedInRounds(pool(12), cycling([0.3, 0.7, 0.1, 0.9]));
+    const total = rounds.reduce(
+      (sum, round) =>
+        sum + scorePricedInCall(round, pricedInCallIsCorrect(round, "over") ? "over" : "under"),
+      0,
+    );
+    expect(total).toBeLessThanOrEqual(PRICED_IN_MAX_SCORE);
+  });
+});
+
+describe("deal identity", () => {
+  const deal = (offset: number): PricedInRound[] =>
+    pool(5).map((c) => ({ ...c, line: c.price - offset }));
+
+  it("is stable for identical deal content", () => {
+    expect(pricedInDealIdentity(deal(2))).toBe(pricedInDealIdentity(deal(2)));
+  });
+
+  it("changes when the same players are re-dealt at different lines or prices", () => {
+    expect(pricedInDealIdentity(deal(2))).not.toBe(pricedInDealIdentity(deal(3)));
+    const repriced = deal(2).map((round) => ({ ...round, price: round.price + 5 }));
+    expect(pricedInDealIdentity(deal(2))).not.toBe(pricedInDealIdentity(repriced));
+  });
+});
+
+describe("game state", () => {
+  const deal = (price: number, line: number): PricedInRound[] =>
+    Array.from({ length: PRICED_IN_ROUND_COUNT }, (_, i) => ({
+      ...candidate({ playerId: `g${i + 1}`, price }),
+      line,
+    }));
+
+  const playOut = (state: PricedInGameState): PricedInGameState => {
+    let current = state;
+    for (const round of state.rounds) {
+      current = callPricedIn(current, pricedInCallIsCorrect(round, "over") ? "over" : "under");
+      current = advancePricedIn(current);
+    }
+    return current;
+  };
+
+  const total = (state: PricedInGameState) =>
+    state.results.reduce((sum, result) => sum + result.points, 0);
+
+  it("plays a full game and finishes on the last advance", () => {
+    const finished = playOut(startPricedInGame(deal(20, 18)));
+    expect(finished.finished).toBe(true);
+    expect(finished.results).toHaveLength(PRICED_IN_ROUND_COUNT);
+    expect(total(finished)).toBe(PRICED_IN_MAX_SCORE);
+  });
+
+  it("ignores a second call on a revealed round and an advance before any call", () => {
+    const start = startPricedInGame(deal(20, 18));
+    expect(advancePricedIn(start)).toBe(start);
+    const called = callPricedIn(start, "over");
+    expect(callPricedIn(called, "under")).toBe(called);
+  });
+
+  it("re-deal locks the old deal, then a fresh deal replaces the game wholesale", () => {
+    // The review reproduction, as state transitions: finish a game on
+    // a $18 line over a $20 player, press Play again while the refresh
+    // is pending, try to call the still-visible old line, then deliver
+    // the same players with a fresh $22 line.
+    const finished = playOut(startPricedInGame(deal(20, 18)));
+    expect(total(finished)).toBe(PRICED_IN_MAX_SCORE);
+
+    const redealing = requestPricedInRedeal(finished);
+    expect(redealing.redealing).toBe(true);
+    // Old-deal input during the re-deal is refused, not scored.
+    expect(callPricedIn(redealing, "over")).toBe(redealing);
+    expect(advancePricedIn(redealing)).toBe(redealing);
+
+    const fresh = receivePricedInDeal(redealing, deal(20, 22));
+    expect(fresh).not.toBe(redealing);
+    expect(fresh.redealing).toBe(false);
+    expect(fresh.finished).toBe(false);
+    expect(fresh.roundIndex).toBe(0);
+    expect(fresh.results).toEqual([]);
+    expect(fresh.rounds[0]?.line).toBe(22);
+    expect(total(fresh)).toBe(0);
+
+    // The first call of the new game scores against the new deal only.
+    const called = callPricedIn(fresh, "under");
+    expect(called.results[0]?.round.line).toBe(22);
+    expect(called.results[0]?.points).toBe(150);
+  });
+
+  it("delivering the same deal again leaves a running game untouched", () => {
+    const start = startPricedInGame(deal(20, 18));
+    const called = callPricedIn(start, "over");
+    expect(receivePricedInDeal(called, deal(20, 18))).toBe(called);
+  });
+
+  it("play again is only armed from the finished state", () => {
+    const start = startPricedInGame(deal(20, 18));
+    expect(requestPricedInRedeal(start)).toBe(start);
   });
 });

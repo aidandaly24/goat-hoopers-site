@@ -10,6 +10,13 @@
  * `domain/arcade/priced-in.ts` (correct side 100, closeness bonus up
  * to 50, best game 750).
  *
+ * All game state lives in the domain's pure state machine
+ * (`PricedInGameState`), which ties every result to one complete deal
+ * identity: pressing Play again locks input while the refresh is in
+ * flight, and a refreshed deal with different prices or lines — even
+ * for the same players — replaces the game wholesale instead of
+ * pairing the old deal's calls with fresh rounds.
+ *
  * Practice only, like free-throw: scores live in this session's
  * memory. Nothing here calls a server action or the GameStore, so no
  * client-computed score is ever recorded as a leaderboard truth.
@@ -22,8 +29,12 @@ import { useRouter } from "next/navigation";
 import {
   PRICED_IN_MAX_SCORE,
   PRICED_IN_ROUND_COUNT,
+  advancePricedIn,
+  callPricedIn,
   pricedInCallIsCorrect,
-  scorePricedInCall,
+  receivePricedInDeal,
+  requestPricedInRedeal,
+  startPricedInGame,
   type PricedInCall,
   type PricedInRound,
 } from "@/domain/arcade";
@@ -31,8 +42,6 @@ import { Badge } from "@/ui/Badge";
 import { PlayerHeadshot } from "@/ui/PlayerHeadshot";
 import controls from "@/ui/controls.module.css";
 import styles from "./PricedIn.module.css";
-
-type PricedInResult = { round: PricedInRound; call: PricedInCall; points: number };
 
 const faab = (value: number) => `$${value.toFixed(2)}`;
 
@@ -46,14 +55,22 @@ export function PricedIn({
   pricingBasis: "preseason" | "in-season";
 }) {
   const router = useRouter();
-  const [roundIndex, setRoundIndex] = useState(0);
-  const [results, setResults] = useState<PricedInResult[]>([]);
-  const [finished, setFinished] = useState(false);
+  const [game, setGame] = useState(() => startPricedInGame(rounds));
 
-  const total = results.reduce((sum, result) => sum + result.points, 0);
-  const round = rounds[roundIndex];
-  const current = results[roundIndex];
+  // A refresh delivers a new deal through props. Reconcile before
+  // deriving anything: a different deal identity starts a fresh game
+  // (the render-phase adjustment React prescribes for prop-driven
+  // resets); the same identity leaves the running game untouched.
+  const active = receivePricedInDeal(game, rounds);
+  if (active !== game) setGame(active);
+
+  const total = active.results.reduce((sum, result) => sum + result.points, 0);
+  const roundIndex = active.roundIndex;
+  const round = active.rounds[roundIndex];
+  const current = active.results[roundIndex];
   const revealed = current !== undefined;
+  const finished = active.finished;
+  const redealing = active.redealing;
 
   if (rounds.length < PRICED_IN_ROUND_COUNT || !round) {
     return (
@@ -79,26 +96,14 @@ export function PricedIn({
     );
   }
 
-  const choose = (call: PricedInCall) => {
-    if (revealed) return;
-    setResults((previous) => [
-      ...previous,
-      { round, call, points: scorePricedInCall(round, call) },
-    ]);
-  };
+  const choose = (call: PricedInCall) => setGame(callPricedIn(active, call));
 
-  const advance = () => {
-    if (roundIndex === rounds.length - 1) {
-      setFinished(true);
-    } else {
-      setRoundIndex(roundIndex + 1);
-    }
-  };
+  const advance = () => setGame(advancePricedIn(active));
 
   const playAgain = () => {
-    setResults([]);
-    setRoundIndex(0);
-    setFinished(false);
+    // Lock input on the old deal first; the fresh game starts only
+    // when the refresh delivers a deal with a different identity.
+    setGame(requestPricedInRedeal(active));
     // Re-deals server-side: a refresh samples a fresh set of rounds.
     router.refresh();
   };
@@ -142,7 +147,7 @@ export function PricedIn({
               <span className={styles.finalMax}> of <span className="gh-num">{PRICED_IN_MAX_SCORE}</span></span>
             </p>
             <ul className={styles.recap}>
-              {results.map(({ round: played, call, points }) => (
+              {active.results.map(({ round: played, call, points }) => (
                 <li key={played.playerId} className={styles.recapRow}>
                   <span className={styles.recapName}>{played.playerName}</span>
                   <span className="gh-num">
@@ -153,8 +158,14 @@ export function PricedIn({
               ))}
             </ul>
             <div className={styles.calls}>
-              <button type="button" className={controls.primary} onClick={playAgain}>
-                Play again
+              <button
+                type="button"
+                className={controls.primary}
+                onClick={playAgain}
+                disabled={redealing}
+                aria-live="polite"
+              >
+                {redealing ? "Dealing a fresh game…" : "Play again"}
               </button>
               <Link href="/arcade" prefetch={false} className={controls.secondary}>
                 Back to the Arcade
@@ -162,9 +173,9 @@ export function PricedIn({
             </div>
           </section>
         ) : (
-          <section className={styles.card} aria-label={`Player ${roundIndex + 1} of ${rounds.length}`}>
+          <section className={styles.card} aria-label={`Player ${roundIndex + 1} of ${active.rounds.length}`}>
             <div className={styles.progress}>
-              <span>Player <span className="gh-num">{roundIndex + 1}</span> of <span className="gh-num">{rounds.length}</span></span>
+              <span>Player <span className="gh-num">{roundIndex + 1}</span> of <span className="gh-num">{active.rounds.length}</span></span>
               <span>Score <span className="gh-num">{total}</span></span>
             </div>
             <div className={styles.player}>
@@ -208,7 +219,7 @@ export function PricedIn({
                 </p>
                 <div className={styles.calls}>
                   <button type="button" className={controls.primary} onClick={advance}>
-                    {roundIndex === rounds.length - 1 ? "See final score" : "Next player"}
+                    {roundIndex === active.rounds.length - 1 ? "See final score" : "Next player"}
                   </button>
                 </div>
               </div>
