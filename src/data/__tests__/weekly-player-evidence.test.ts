@@ -492,6 +492,21 @@ function singlePlayerMatchups(points: number) {
   );
 }
 
+/** All ten teams with a single recorded zero each — the placeholder shape
+ *  an unplayed week serves (see the preseason trap in the docs). */
+function zeroMatchups() {
+  return Array.from({ length: 10 }, (_, i) => ({
+    roster_id: i + 1,
+    matchup_id: Math.ceil((i + 1) / 2),
+    points: 0,
+    custom_points: null,
+    players: [`p${i + 1}`],
+    players_points: { [`p${i + 1}`]: 0 },
+    starters: [`p${i + 1}`],
+    starters_points: [0],
+  }));
+}
+
 describe("review regressions — cache identity (PR #197 finding 1)", () => {
   it("never serves league A's points under league B: a league change inside the TTL re-reads", async () => {
     const leg2State = { ...STATE, week: 2, leg: 2 };
@@ -522,19 +537,29 @@ describe("review regressions — cache identity (PR #197 finding 1)", () => {
 
   it("never serves one season's points under another: a season change inside the TTL re-reads", async () => {
     const leg2State2026 = { ...STATE, week: 2, leg: 2 };
-    // No season_start_date: the field is optional; absence must not block.
+    // No season_start_date: the field is optional, and absence must not
+    // block a context whose clock is chronologically inside that season
+    // (see the finding-4 re-review regressions for the pre-start case).
     const leg2State2027 = withoutKeys(
       { ...STATE, week: 2, leg: 2, season: "2027", league_season: "2027" },
       ["season_start_date"],
     );
-    const { adapter, sources } = makeAdapter({
-      loadState: vi.fn(async () => leg2State2026),
-      loadLeague: vi.fn(async () => LEAGUE),
-      loadMatchups: vi
-        .fn()
-        .mockResolvedValueOnce(singlePlayerMatchups(12.5))
-        .mockResolvedValue(singlePlayerMatchups(99)),
-    });
+    // Chronologically valid clock per context (dot's re-review
+    // instruction): Nov 2026 for the 2026 read, Nov 2027 for the 2027
+    // read. A fixed Nov 2026 clock would make the 2027 context a
+    // pre-start season, which the adapter must reject, not serve.
+    let nowMs = FIXED_NOW;
+    const { adapter, sources } = makeAdapter(
+      {
+        loadState: vi.fn(async () => leg2State2026),
+        loadLeague: vi.fn(async () => LEAGUE),
+        loadMatchups: vi
+          .fn()
+          .mockResolvedValueOnce(singlePlayerMatchups(12.5))
+          .mockResolvedValue(singlePlayerMatchups(99)),
+      },
+      { now: () => nowMs },
+    );
     sources.loadRosters = vi.fn(async () =>
       rosters().map((r) => (r.roster_id === 3 ? { ...r, players: ["a"] } : r)),
     );
@@ -544,6 +569,7 @@ describe("review regressions — cache identity (PR #197 finding 1)", () => {
     expect(first.evidence.players[0]?.fantasyPoints).toBe(12.5);
     sources.loadState = vi.fn(async () => leg2State2027);
     sources.loadLeague = vi.fn(async () => ({ ...LEAGUE, season: "2027" }));
+    nowMs = Date.UTC(2027, 10, 2, 12, 0, 0); // inside the 2027 season
     const second = await adapter.getObservedPreviousWeek(3);
     if (second.status !== "available") throw new Error("expected available");
     expect(second.evidence.season).toBe("2027");
@@ -607,16 +633,6 @@ describe("review regressions — duplicate current roster (PR #197 finding 3)", 
 
 describe("review regressions — pre-start context (PR #197 finding 4)", () => {
   it("returns unavailable, not a week of zeros, for a regular leg-2 state whose season starts tomorrow", async () => {
-    const zeroMatchups = Array.from({ length: 10 }, (_, i) => ({
-      roster_id: i + 1,
-      matchup_id: Math.ceil((i + 1) / 2),
-      points: 0,
-      custom_points: null,
-      players: [`p${i + 1}`],
-      players_points: { [`p${i + 1}`]: 0 },
-      starters: [`p${i + 1}`],
-      starters_points: [0],
-    }));
     const { adapter } = makeAdapter({
       loadState: vi.fn(async () => ({
         ...STATE,
@@ -624,8 +640,53 @@ describe("review regressions — pre-start context (PR #197 finding 4)", () => {
         leg: 2,
         season_start_date: "2026-11-03", // tomorrow at FIXED_NOW (2026-11-02)
       })),
-      loadMatchups: vi.fn(async () => zeroMatchups),
+      loadMatchups: vi.fn(async () => zeroMatchups()),
     });
     expectUnavailable(await adapter.getObservedPreviousWeek(3), "state-invalid");
+  });
+});
+
+describe("review regressions — calendar/clock validation (PR #197 finding 4, re-review)", () => {
+  it.each(["2026-00-01", "2026-02-31", "2026-04-31"])(
+    "rejects season_start_date %s: it matches the shape but is not a real calendar date",
+    (season_start_date) => {
+      const result = resolveObservedWeekContext(
+        { ...STATE, season_start_date },
+        LEAGUE,
+        FIXED_NOW, // Date.UTC(2026, 10, 2, 12) — the dot's probe clock
+      );
+      expect(result.ok).toBe(false);
+      if (!result.ok) expect(result.reason).toBe("state-invalid");
+    },
+  );
+
+  it("rejects a future season with no season_start_date instead of certifying its placeholder week 1", async () => {
+    // The dot's probe: Nov 2026 clock, matching state/league season
+    // "2027", regular leg 2 / week 2, season_start_date ABSENT, and a
+    // zero-point matchup. An absent date must not waive the pre-start
+    // check — season 2027 cannot have started by Nov 2026.
+    const futureState = withoutKeys(
+      { ...STATE, week: 2, leg: 2, season: "2027", league_season: "2027" },
+      ["season_start_date"],
+    );
+    const { adapter } = makeAdapter({
+      loadState: vi.fn(async () => futureState),
+      loadLeague: vi.fn(async () => ({ ...LEAGUE, season: "2027" })),
+      loadMatchups: vi.fn(async () => zeroMatchups()),
+    });
+    expectUnavailable(await adapter.getObservedPreviousWeek(3), "state-invalid");
+  });
+
+  it("rejects that same future-season context at the pure resolver level", () => {
+    const result = resolveObservedWeekContext(
+      withoutKeys(
+        { ...STATE, week: 2, leg: 2, season: "2027", league_season: "2027" },
+        ["season_start_date"],
+      ),
+      { ...LEAGUE, season: "2027" },
+      FIXED_NOW,
+    );
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.reason).toBe("state-invalid");
   });
 });

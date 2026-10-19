@@ -185,9 +185,17 @@ const START_DATE_FORMAT = /^(\d{4})-(\d{2})-(\d{2})$/;
  *
  * Context is validated, not merely present: the season must be a
  * four-digit year on both payloads (a matching but malformed season such
- * as "bad" certifies nothing), and `season_start_date`, when present,
- * must agree with the season and must not lie in the future — `regular`
- * and `season_has_scores: true` already occur before tipoff, so a leg-2
+ * as "bad" certifies nothing), and the season must be certifiably
+ * started. `season_start_date`, when present, must be a real calendar
+ * date — its components must survive a UTC round-trip, because Date.UTC
+ * silently normalizes impossible dates ("2026-02-31" becomes Mar 3) —
+ * must agree with the season and must not lie in the future. When the
+ * date is absent the pre-start check is not waived: the only
+ * certifiable bound is October 1 of the season's year (seasons tip in
+ * October of their labelled year — the state receipt carries
+ * 2026-10-20 for season "2026"), and a clock before that bound is
+ * certainly pre-start, hence uncertifiable. `regular` and
+ * `season_has_scores: true` already occur before tipoff, so a leg-2
  * state whose season has not started yet is a contradictory/pre-start
  * context, not a completed week, however its placeholder matchups look.
  * League status is never consulted — a "complete" league cannot certify
@@ -251,11 +259,24 @@ export function resolveObservedWeekContext(
         reason: "state-invalid",
         detail: "NBA state season_start_date is not a YYYY-MM-DD date.",
       };
-    const startMs = Date.UTC(
-      Number(match[1]),
-      Number(match[2]) - 1,
-      Number(match[3]),
-    );
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const day = Number(match[3]);
+    const startMs = Date.UTC(year, month - 1, day);
+    // Shape is not validity: Date.UTC silently normalizes impossible
+    // components (month 00 rolls back a year, Feb 31 becomes Mar 3), so
+    // the parsed components must survive a round-trip unchanged.
+    const roundTripped = new Date(startMs);
+    if (
+      roundTripped.getUTCFullYear() !== year ||
+      roundTripped.getUTCMonth() !== month - 1 ||
+      roundTripped.getUTCDate() !== day
+    )
+      return {
+        ok: false,
+        reason: "state-invalid",
+        detail: `NBA state season_start_date (${startDate}) is not a real calendar date.`,
+      };
     if (match[1] !== season)
       return {
         ok: false,
@@ -268,6 +289,18 @@ export function resolveObservedWeekContext(
         reason: "state-invalid",
         detail: `NBA state season_start_date (${startDate}) is in the future; the season has not started, so no week is complete.`,
       };
+  } else if (nowMs < Date.UTC(Number(season), 9, 1)) {
+    // An absent start date never waives the pre-start check. Without the
+    // date, the only certifiable bound is the earliest the season could
+    // possibly have begun: seasons tip in October of their labelled year
+    // (the state receipt carries 2026-10-20 for season "2026"). A clock
+    // before that October is certainly pre-start, so the season is
+    // uncertifiable as started and no week can be complete.
+    return {
+      ok: false,
+      reason: "state-invalid",
+      detail: `NBA state season ${season} carries no season_start_date and the current time precedes October ${season}, the earliest that season could begin; the season has not started, so no week is complete.`,
+    };
   }
   const leg = stateRaw.leg;
   if (leg === undefined)

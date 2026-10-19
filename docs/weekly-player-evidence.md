@@ -71,14 +71,23 @@ Context is validated, not merely present:
 - The season must be a four-digit year on the state payload and match the
   league payload (and the state's own `league_season`, when present). A
   matching but malformed season such as `"bad"` certifies nothing.
-- `season_start_date`, when present, must be a `YYYY-MM-DD` date in the
-  season's year and must not lie in the future (checked against the
-  adapter's injectable clock). `regular` and `season_has_scores: true`
-  already occur before tipoff (see the state receipt), so a leg-2 state
-  whose season has not started is a contradictory/pre-start context and
-  is rejected — its placeholder matchups, however zero-filled, are not a
-  completed week. After an established boundary, a recorded zero stays a
-  recorded zero with participation unknown.
+- `season_start_date`, when present, must be a `YYYY-MM-DD` date that is
+  a real calendar date — its components must survive a UTC round-trip,
+  because `Date.UTC` silently normalizes impossible dates
+  (`"2026-02-31"` would otherwise be read as March 3, `"2026-00-01"` as
+  December 2025) — in the season's year, and not in the future (checked
+  against the adapter's injectable clock). When the date is **absent**
+  the pre-start check is not waived: the only certifiable bound is
+  October 1 of the season's year (seasons tip in October of their
+  labelled year — the state receipt carries `2026-10-20` for season
+  `"2026"`), and a clock before that bound is certainly pre-start, so
+  the context is `state-invalid`. `regular` and
+  `season_has_scores: true` already occur before tipoff (see the state
+  receipt), so a leg-2 state whose season has not started is a
+  contradictory/pre-start context and is rejected — its placeholder
+  matchups, however zero-filled, are not a completed week. After an
+  established boundary, a recorded zero stays a recorded zero with
+  participation unknown.
 - The league payload must carry a valid `league_id`. Source identity is
   required: a missing or non-string `league_id` is `league-invalid`, and
   the evidence's `leagueId` is therefore always a real string, never
@@ -88,6 +97,40 @@ Completion is established from state advancement only, never from points
 presence (see the preseason trap under Receipts). League `status` is never
 consulted: a `complete` league cannot certify arbitrary historical or
 future placeholder weeks the state does not bound.
+
+### Completion-source evidence — what is and is not established
+
+Stated precisely, because the certification rule rests on it:
+
+- **The leg → fantasy-week mapping is supported.** This league's own
+  transactions carry the week in `leg` (`transform.ts` maps `t.leg` to
+  `week`); `RawNbaState` documents "Sleeper NBA uses leg; preseason is
+  zero"; every sampled live state payload carried `leg`. Sleeper's
+  published references point the same way: the
+  [state API documentation](https://docs.sleeper.com/#get-nfl-state)
+  labels `leg` the regular-season week and states the endpoint supports
+  NBA, and the
+  [league formats article](https://support.sleeper.com/en/articles/4644860-league-formats-game-modes)
+  defines Monday–Sunday matchup weeks.
+- **What the live receipt does NOT show is an NBA completion
+  transition.** The supplied state receipt (Receipts, below) was
+  captured at leg 1, before tipoff: `season_type: "regular"`,
+  `season_has_scores: true`, a future `season_start_date`, and an
+  all-zero placeholder week 1. It demonstrates the pre-start shape and
+  why points presence proves nothing — but no recorded receipt captures
+  `leg` advancing past a played week, and the transactions payload and
+  `RawNbaState` comments do not demonstrate NBA completion advancement
+  either. The published references above support the mapping
+  interpretation; they are not a completion-transition receipt.
+- **Consequence for this adapter:** the completion claim is exactly and
+  only "the state has advanced past week W (`leg ≥ W + 1`) under a
+  validated, certifiably started, regular-season context." Every
+  context short of that — pre-start, future-season, malformed-calendar,
+  leg-less, or otherwise uncertifiable — returns an explicit
+  `unavailable`, never an inference from points. No collector or
+  recorder is added by this PR; if a recorded NBA completion transition
+  is ever captured, it belongs in Receipts as stronger primary evidence
+  for the same rule, not as a new rule.
 
 Rejections (all explicit unavailables):
 
@@ -99,10 +142,12 @@ Rejections (all explicit unavailables):
   (e.g. `post`): this narrowed adapter bounds regular-season weeks only.
 - `state-invalid` — state missing/not an object; season missing or not a
   four-digit year; `league_season` disagreeing with `season`;
-  `season_start_date` malformed, in a different year than the season, or
-  in the future; `leg` missing, non-integer, zero outside preseason, or
-  beyond the sane bound (54); `week` present but non-integer or
-  disagreeing with `leg`.
+  `season_start_date` malformed, not a real calendar date, in a
+  different year than the season, or in the future; `season_start_date`
+  absent with a clock before October 1 of the season year (season
+  uncertifiable as started); `leg` missing, non-integer, zero outside
+  preseason, or beyond the sane bound (54); `week` present but
+  non-integer or disagreeing with `leg`.
 - `season-mismatch` — league season differs from state season (e.g. after
   rollover, before the league object is the new season's).
 - `league-invalid` — league payload malformed, seasonless, or carrying
