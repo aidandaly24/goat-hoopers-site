@@ -1212,8 +1212,11 @@ is a pure state machine in the same module (`PricedInGameState`): every
 result is tied to one complete deal identity (each round's player, price
 and line), Play again locks input while the re-deal refresh is in
 flight, and the delivery that answers the re-deal replaces the game
-atomically — the state records the exact delivery it consumed, so a
-refresh that redealt identical content still completes the request
+atomically — the state records every delivery it consumes (a delivery
+that leaves the game standing still advances the record, so the
+pending baseline is always the delivery on screen when Play again
+was pressed), and a refresh that redealt identical content still
+completes the request
 (the page keys the surface by deal identity, which an identical
 redeal leaves unchanged). The
 surface prints the scoring rule, labels the market's `pricingBasis`

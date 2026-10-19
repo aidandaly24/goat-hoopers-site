@@ -238,7 +238,18 @@ describe("game state", () => {
   it("delivering the same deal again leaves a running game untouched", () => {
     const start = startPricedInGame(deal(20, 18));
     const called = callPricedIn(start, "over");
-    expect(receivePricedInDeal(called, deal(20, 18))).toBe(called);
+    const redelivered = deal(20, 18);
+    const after = receivePricedInDeal(called, redelivered);
+    // The game itself — identity, rounds, progress, results — stands…
+    expect(after.dealIdentity).toBe(called.dealIdentity);
+    expect(after.rounds).toBe(called.rounds);
+    expect(after.results).toBe(called.results);
+    expect(after.roundIndex).toBe(called.roundIndex);
+    expect(after.finished).toBe(false);
+    expect(after.redealing).toBe(false);
+    // …but the delivery is consumed: the ledger records the array now
+    // on screen, not the older one it supersedes.
+    expect(after.deliveredRounds).toBe(redelivered);
   });
 
   it("an identical re-deal completes the request and replays the deal fresh", () => {
@@ -293,11 +304,65 @@ describe("game state", () => {
   it("an unsolicited identical refresh during a running game does not reset it", () => {
     // A refresh nobody asked for delivers the same deal content in a
     // new array. With no re-deal outstanding there is nothing to
-    // complete, so the running game — call and all — stands.
+    // complete, so the running game — call and all — stands; only the
+    // delivery ledger advances to the array now on screen.
     const rounds = deal(20, 18);
     const called = callPricedIn(startPricedInGame(rounds), "over");
-    expect(receivePricedInDeal(called, structuredClone(rounds))).toBe(called);
-    expect(called.results).toHaveLength(1);
+    const refreshed = structuredClone(rounds);
+    const after = receivePricedInDeal(called, refreshed);
+    expect(after.results).toBe(called.results);
+    expect(after.results).toHaveLength(1);
+    expect(after.roundIndex).toBe(0);
+    expect(after.finished).toBe(false);
+    expect(after.redealing).toBe(false);
+    expect(after.deliveredRounds).toBe(refreshed);
+  });
+
+  it("the delivery visible when Play again is pressed is the pending baseline", () => {
+    // The delta re-review sequence: the game starts on array A; an
+    // unsolicited refresh delivers clone B with identical content
+    // mid-game; the game is finished on the B props; Play again is
+    // requested; the surface re-renders with the same already-visible
+    // B while the new refresh is still pending. B is the delivery the
+    // request was made against, so re-delivering B is the pending
+    // state — not an answer — and the lock must stand.
+    const a = deal(20, 18);
+    const b = structuredClone(a);
+
+    const called = callPricedIn(startPricedInGame(a), "over");
+    const running = receivePricedInDeal(called, b);
+    expect(running.results).toHaveLength(1);
+
+    const finished = playOut(running);
+    expect(finished.finished).toBe(true);
+    expect(total(finished)).toBe(PRICED_IN_MAX_SCORE);
+
+    const waiting = requestPricedInRedeal(finished);
+    expect(waiting.redealing).toBe(true);
+
+    expect(receivePricedInDeal(waiting, b)).toBe(waiting);
+    expect(waiting.finished).toBe(true);
+    expect(waiting.results).toHaveLength(PRICED_IN_ROUND_COUNT);
+    expect(callPricedIn(waiting, "over")).toBe(waiting);
+    expect(advancePricedIn(waiting)).toBe(waiting);
+  });
+
+  it("an identical delivery after the finish also sets the pending baseline", () => {
+    // Same lag, one step later: the refresh lands after the game is
+    // finished but before Play again is pressed. The finished game
+    // stands, the delivery is still consumed, and re-delivering it
+    // after the request cannot complete the request early.
+    const a = deal(20, 18);
+    const b = structuredClone(a);
+
+    const finished = playOut(startPricedInGame(a));
+    const stillFinished = receivePricedInDeal(finished, b);
+    expect(stillFinished.finished).toBe(true);
+    expect(stillFinished.results).toHaveLength(PRICED_IN_ROUND_COUNT);
+    expect(stillFinished.deliveredRounds).toBe(b);
+
+    const waiting = requestPricedInRedeal(stillFinished);
+    expect(receivePricedInDeal(waiting, b)).toBe(waiting);
   });
 
   it("play again is only armed from the finished state", () => {

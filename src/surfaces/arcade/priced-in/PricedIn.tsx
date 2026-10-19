@@ -64,8 +64,9 @@ export function PricedIn({
   // game; the same identity leaves a running game untouched — and
   // while a re-deal is outstanding, the new delivery completes it
   // even when the redealt content is identical (the state machine
-  // tracks which delivery it has already consumed, so the render
-  // still holding the old props never completes it early).
+  // records every delivery it consumes, so the pending baseline is
+  // the delivery visible when Play again was pressed, and the render
+  // still holding those props never completes the request early).
   const active = receivePricedInDeal(game, rounds);
   if (active !== game) setGame(active);
 

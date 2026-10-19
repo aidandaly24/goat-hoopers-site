@@ -201,7 +201,10 @@ export type PricedInResult = {
  *   answer and completes it: a different deal starts fresh, and an
  *   identical one replays the same deal as a fresh game. The
  *   recorded delivery itself (the render that still has the old
- *   props) leaves the lock standing.
+ *   props) leaves the lock standing. Every delivery advances the
+ *   record, even one that leaves the game standing, so the recorded
+ *   delivery is always the latest one on screen — the baseline a
+ *   re-deal request is measured against.
  */
 export type PricedInGameState = {
   /** Identity of the deal this state belongs to. */
@@ -214,6 +217,8 @@ export type PricedInGameState = {
    * `redealing`, a `receivePricedInDeal` carrying any other array is
    * the outstanding request's answer, even when its content — and so
    * its deal identity — is identical to the deal already on screen.
+   * Updated by every delivery, including ones that leave the game
+   * standing, so it never lags behind the props on screen.
    */
   deliveredRounds: readonly PricedInRound[];
   roundIndex: number;
@@ -240,14 +245,22 @@ export function startPricedInGame(rounds: readonly PricedInRound[]): PricedInGam
  * Deliver a (possibly refreshed) deal to an in-progress game:
  *
  * - a different identity starts a fresh game on the new rounds;
- * - the same identity leaves a running game standing — except while
- *   a re-deal is outstanding. Then the delivery that is not the one
+ * - the same identity leaves the game standing — except while a
+ *   re-deal is outstanding. Then the delivery that is not the one
  *   this state already consumed is the request's answer: identical
  *   content is a valid successful refresh, so it completes the
  *   request and replays that deal as a fresh game instead of
  *   deadlocking the lock. Re-delivering the recorded array itself
  *   (the render that still has the old props) is the pending state
  *   and changes nothing.
+ *
+ * Every delivery is consumed, reset or not: when the game stands,
+ * the delivery ledger still advances to the array just delivered.
+ * Retaining a running (or finished) game's results never requires
+ * retaining an obsolete delivery reference — and if it did, the
+ * ledger would lag behind the props on screen, so a later re-deal
+ * request would mistake the already-visible delivery for its
+ * answer and unlock the old deal before the refresh arrives.
  */
 export function receivePricedInDeal(
   state: PricedInGameState,
@@ -256,10 +269,12 @@ export function receivePricedInDeal(
   if (pricedInDealIdentity(rounds) !== state.dealIdentity) {
     return startPricedInGame(rounds);
   }
-  if (state.redealing && rounds !== state.deliveredRounds) {
+  if (state.redealing) {
+    if (rounds === state.deliveredRounds) return state;
     return startPricedInGame(rounds);
   }
-  return state;
+  if (rounds === state.deliveredRounds) return state;
+  return { ...state, deliveredRounds: rounds };
 }
 
 /**
