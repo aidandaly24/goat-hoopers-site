@@ -1097,3 +1097,29 @@ radius is 0.2286 m. The 50% shot is calibrated to this practice setup.
 Run `npm run test:free-throw` for deterministic physics, charge and shipped
 asset map/bounds/anchor checks. See `docs/free-throw-practice-qa.md` for the
 browser evidence and local server handoff.
+
+## Priced In practice
+
+`/arcade/priced-in` is a registered practice game (registry status stays
+coming-soon for league competition). The `[gameId]` page composes
+`surfaces/arcade/priced-in/PricedIn` before any arcade store lookup, like
+free-throw. Five rounds deal server-side in the page request from
+`getStockMarketData` — the same React `cache()` entry the root-layout
+ticker already computed for that request; there is no route-handler or
+client market fetch, and no new polling.
+
+`domain/arcade/priced-in.ts` owns the pure game: an arcade-owned candidate
+shape (the page adapts slim `StockQuote`s into it — the arcade context
+never imports league types), sampling with injected randomness (headshot
+players deal first, no repeats, a $5 price floor), line-setting 4–15% off
+the real modeled FAAB value, and scoring (correct side 100 plus a
+closeness bonus of up to 50; best game 750). The surface prints the
+scoring rule, labels the market's `pricingBasis` while prices are
+preseason-modeled, and renders an explicit unavailable state when the
+market cannot deal a full game — it never invents prices.
+
+Practice only: scores live in session memory and never touch server
+actions, the GameStore or rewards, so no client-computed score is
+recorded as a leaderboard truth. The reveal shows the quote's change vs
+the last snapshot; the slim quote carries no factor breakdown, so none
+is shown (per-player detail loads stay on the stocks surface, rule 14).

@@ -40,11 +40,37 @@ export const GAMES: Game[] = [
     status: "coming-soon",
     play: {
       mode: "preview",
-      preview: { label: "82–0", caption: "Week 2 · The roster draft" },
+      preview: { label: "82–0", caption: "Week 2 · The roster draft", note: "A team. A choice. Your five." },
       touchInstructions: "Reveal a team, choose a player and lock your pick. Repeat to build a five-player lineup.",
     },
     howToPlay: "Try the five-pick roster draft preview. Ranked play, scoring and competition rules remain under review.",
     launchNote: "Playable, unranked preview. Week 2 competition remains closed.",
+  },
+  {
+    id: "priced-in",
+    name: "Priced In",
+    description:
+      "Five players, five lines. Call over or under each player's real " +
+      "modeled value — the closest calls score the most.",
+    icon: "$",
+    status: "coming-soon",
+    play: {
+      mode: "practice",
+      preview: { label: "Priced In", caption: "The price game", note: "Over or under the line?" },
+      touchInstructions:
+        "Read the line for each player, then tap Over or Under. The real value lands after your call.",
+    },
+    howToPlay:
+      "You get five players, each with a price line set just off their " +
+      "real modeled FAAB value. Call over or under. A correct call " +
+      "scores 100 points, plus a closeness bonus of up to 50 — the " +
+      "nearer the line lands to the real value, the bigger the bonus. " +
+      "Best possible score is 750. Practice scores stay in your " +
+      "session; league competition and rewards stay closed while the " +
+      "game is validated.",
+    launchNote:
+      "Local practice available now. League competition and rewards " +
+      "stay closed while the game is validated.",
   },
   {
     id: "82-0-predictions",

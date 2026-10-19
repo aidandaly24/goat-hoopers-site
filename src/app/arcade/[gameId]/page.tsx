@@ -6,6 +6,10 @@
  * leaderboard and the user's rewards through the GameStore contract,
  * and hands domain objects to the GameDetail surface. Unknown game ids
  * 404. Unprovisioned database shows the notice.
+ *
+ * Implemented practice games render their play surface directly,
+ * before any store lookup: free-throw is fully local, and Priced In
+ * deals its rounds from the shared market loader in this request.
  */
 import { FreeThrowPractice } from "@/surfaces/arcade/free-throw/FreeThrowPractice";
 import { PRACTICE_ASSETS, PRACTICE_COURT } from "@/domain/arcade/free-throw";
@@ -13,13 +17,17 @@ import { notFound } from "next/navigation";
 import {
   currentWeekLabel,
   getGame,
+  samplePricedInRounds,
   type LeaderboardEntry,
+  type PricedInRound,
   type Reward,
   type SiteUser,
 } from "@/domain/arcade";
 import { getCurrentUser } from "@/app/actions";
 import { getGameStore } from "@/data/arcade";
+import { getStockMarketData } from "@/data/league";
 import { GameDetail } from "@/surfaces/arcade/GameDetail";
+import { PricedIn } from "@/surfaces/arcade/priced-in/PricedIn";
 import { ProvisionNotice } from "@/surfaces/arcade/ProvisionNotice";
 
 export const dynamic = "force-dynamic";
@@ -35,6 +43,41 @@ export default async function GamePage({
 
   // Practice is independent of accounts and league persistence.
   if (game.id === "free-throw") return <FreeThrowPractice court={PRACTICE_COURT} assets={PRACTICE_ASSETS} />;
+
+  // Priced In practice: rounds deal server-side in this page request
+  // from getStockMarketData — the React cache() entry the root layout
+  // ticker already computed for this same request, never a route
+  // handler or a client fetch. A failed or thin market deals no
+  // rounds and the surface renders its honest unavailable state.
+  if (game.id === "priced-in") {
+    let rounds: PricedInRound[] = [];
+    let pricingBasis: "preseason" | "in-season" = "preseason";
+    try {
+      const market = await getStockMarketData();
+      pricingBasis = market.pricingBasis;
+      rounds = samplePricedInRounds(
+        market.stocks.map((quote) => ({
+          playerId: quote.playerId,
+          playerName: quote.playerName,
+          position: quote.position,
+          nbaTeam: quote.nbaTeam,
+          espnId: quote.espnId ?? null,
+          price: quote.price,
+          changePct: quote.changePct,
+          trend: quote.trend,
+        })),
+      );
+    } catch {
+      rounds = [];
+    }
+    return (
+      <PricedIn
+        key={rounds.map((round) => round.playerId).join("|")}
+        rounds={rounds}
+        pricingBasis={pricingBasis}
+      />
+    );
+  }
 
   const week = currentWeekLabel();
   let user: SiteUser | null = null;
