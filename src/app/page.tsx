@@ -7,6 +7,7 @@ import {
   getStockMarketData,
   getLeagueNewsEdition,
   getHomePlayerGuideSources,
+  getRosterSnapshotHistory,
 } from "@/data/league";
 import { headers } from "next/headers";
 import { getCurrentUser } from "@/app/actions";
@@ -35,10 +36,16 @@ export default async function Home() {
   // deep player fetch or snapshot operation. The personalized summary — and
   // the news/guide loads that feed it — stay member-only, as before.
   const market = await getStockMarketData().catch(() => null);
-  const [news, guideSources] = viewer.kind === "member" ? await Promise.all([
+  // The recorded snapshot history is member-only too: one batched read of
+  // the viewer's own roster's retained snapshots, feeding the roster-value
+  // trend. Signed-out and unlinked visitors never trigger it.
+  const viewerRosterIds = viewer.kind === "member"
+    ? data.directory.find(entry => entry.identity.id === viewer.teamId)?.players.map(player => player.id) ?? [] : [];
+  const [news, guideSources, snapshotHistory] = viewer.kind === "member" ? await Promise.all([
     getLeagueNewsEdition().catch(() => null), getHomePlayerGuideSources().catch(() => null),
-  ]) : [null, null];
-  const personal = buildPersonalizedHome(viewer, data, aiData.weekly, market, news, guideSources);
+    getRosterSnapshotHistory(viewerRosterIds).catch(() => null),
+  ]) : [null, null, null];
+  const personal = buildPersonalizedHome(viewer, data, aiData.weekly, market, news, guideSources, snapshotHistory);
   const faces = buildHomeFaces(data, market);
   // One surface: the edition itself is personalized in place.
   return (

@@ -6,12 +6,14 @@ import type { CourtsideHomeData } from "./league";
 import { LEAGUE_ID } from "./sleeper";
 import type { LeagueNewsEdition } from "@/domain/news";
 import { buildTeamPlayerGuide, type PlayerGuideSources } from "@/domain/team-player-guide";
-import { rosterValueRank, summarizeRosterValue } from "@/domain/roster-value";
+import { rosterValueRank, rosterValueTrend, summarizeRosterValue } from "@/domain/roster-value";
+import type { PriceHistory } from "./stocks";
 
 /** Pure projection of public data after private membership resolution. No I/O/cache. */
 export function buildPersonalizedHome(viewer: HomeViewer, home: CourtsideHomeData,
   weekly: AiWeeklySlate | undefined, market: StockMarket | null, news: LeagueNewsEdition | null = null,
-  guideSources: PlayerGuideSources | null = null): PersonalizedHomeData {
+  guideSources: PlayerGuideSources | null = null,
+  snapshotHistory: PriceHistory | null = null): PersonalizedHomeData {
   if (viewer.kind !== "member") return viewer;
   const hub = home.hub;
   const team = hub?.teams.find(team => team.id === viewer.teamId);
@@ -64,7 +66,12 @@ export function buildPersonalizedHome(viewer: HomeViewer, home: CourtsideHomeDat
   return { kind: "member", summary: { team, season: hub.season,
     standing: hub.standings.find(standing => standing.team.id === team.id) ?? null,
     matchup, checkedAt: home.checkedAt, standingsAvailable: !!home.edition, players, coverage: { priced: priced.length, roster: rosterIds.size },
-    valuation: { ...valuation, rank: rosterValueRank(valuation, leagueValues) }, rosterValues,
+    valuation: { ...valuation, rank: rosterValueRank(valuation, leagueValues) },
+    // Recorded snapshots only; the builder returns null under two recorded
+    // instants, and the panel renders no line in that case.
+    valueTrend: market && Number.isFinite(market.updatedAt)
+      ? rosterValueTrend(entry ? [...rosterIds] : null, market.stocks, snapshotHistory, new Date(market.updatedAt).toISOString())
+      : null, rosterValues,
     newsAvailable: !!news && news.builtAt > 0 && news.coverage.directory === "ok" && news.coverage.rosters === "ok" && home.rosterNamesAvailable,
     news: news && news.builtAt > 0 && news.coverage.directory === "ok" && news.coverage.rosters === "ok" && home.rosterNamesAvailable
       ? news.articles.filter(article => article.players.some(player => rosterIds.has(player.playerId)))

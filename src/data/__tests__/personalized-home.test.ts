@@ -117,6 +117,28 @@ it('values every roster player, exposes unknown rows and suppresses rank when le
   expect(summary('1', fixture).valuation).toMatchObject({ total: 70, priced: 3, unpriced: 1, complete: false, rank: null });
   expect(summary('1', fixture).rosterValues.find(player => player.id === '1-player-1')?.value).toBeNull();
 });
+it('builds the value trend from recorded snapshots only, and null without two recorded instants', () => {
+  const fixture = personalizedFixture();
+  const history = {
+    '1-player-0': [{ date: '2026-11-05T12:00:00.000Z', price: 10, source: 'live' as const }],
+    '1-player-1': [{ date: '2026-11-05T12:00:00.000Z', price: 30, source: 'live' as const },
+      { date: '2026-11-09T12:00:00.000Z', price: 35, source: 'live' as const }],
+  };
+  const withHistory = buildPersonalizedHome({ kind: 'member', teamId: '1' }, fixture.home, fixture.weekly, fixture.market, null, null, history);
+  if (withHistory.kind !== 'member' || !withHistory.summary) throw Error('Expected member summary');
+  // Nov 5: the two recorded players sum to 40 (the other two have no
+  // recorded point yet and are never backfilled). Nov 9: 10 carried + 35.
+  // At the market's own stamp the series lands on the full current total.
+  expect(withHistory.summary?.valueTrend).toEqual({ points: [
+    { date: '2026-11-05T12:00:00.000Z', value: 40 },
+    { date: '2026-11-09T12:00:00.000Z', value: 45 },
+    { date: '2026-11-12T12:00:00.000Z', value: 110 },
+  ], delta: 70 });
+  expect(summary('1', fixture).valueTrend).toBeNull();
+  const noMarket = buildPersonalizedHome({ kind: 'member', teamId: '1' }, fixture.home, fixture.weekly, null, null, null, history);
+  expect(noMarket.kind === 'member' ? noMarket.summary?.valueTrend : undefined).toBeNull();
+});
+
 it('does not treat a foreign pairing or an absent roster as the viewer\'s evidence', () => {
   const fixture = personalizedFixture(); fixture.home.directory[0].currentMatchup = fixture.home.directory[3].currentMatchup;
   expect(summary('1', fixture).matchup).toBeNull();

@@ -41,6 +41,45 @@ describe('integrated personalized edition', () => {
     expect(renderHome(fixture, { kind: 'member', summary: null })).toContain('Check my team');
   });
 
+  it('renders the personal panel: display-size value, recorded trend, rank, own pairing, top mover', () => {
+    const fixture = personalizedFixture();
+    const personal = buildPersonalizedHome({ kind: 'member', teamId: '1' }, fixture.home, fixture.weekly, fixture.market, null, playerGuideFixture('1'), {
+      '1-player-0': [{ date: '2026-11-05T12:00:00.000Z', price: 10, source: 'live' as const }],
+      '1-player-1': [{ date: '2026-11-05T12:00:00.000Z', price: 30, source: 'live' as const },
+        { date: '2026-11-09T12:00:00.000Z', price: 35, source: 'live' as const }],
+    });
+    const html = renderHome(fixture, personal, '1');
+    expect(html).toContain('data-personal-panel');
+    expect(html).toContain('Your roster value');
+    // The value headline still appears exactly once page-wide.
+    expect(html.match(/\$110\.00 FAAB/g)).toHaveLength(1);
+    // Recorded trend: real points only, honest range label and delta.
+    expect(html).toContain('data-value-trend');
+    expect(html).toContain('+$70.00');
+    expect(html).toContain('since Nov 5');
+    expect(html).toContain('Value rank');
+    expect(html).toContain('No. 1 of 10');
+    expect(html).toContain('Next matchup · Week 3');
+    // The member's own pairing's model bar lives in the panel.
+    expect(html).toContain('data-hero-ai');
+    // Top mover from the same guide evidence as the players lead.
+    expect(html).toContain('data-panel-mover');
+    expect(html).toContain('Top mover · your roster');
+    expect(html).toContain('Synthetic 1 Player 1');
+    expect(html).toContain('30.0 FPPG · 5 GP');
+    // The league-wide odds render once, in the week desk below the layout.
+    expect(html).toContain('week-desk-row');
+    expect(html.match(/data-probability-for/g)).toHaveLength(10);
+    expect(html.indexOf('data-personal-panel')).toBeLessThan(html.indexOf('week-desk-row'));
+  });
+
+  it('shows the panel without a trend line when no recorded history exists', () => {
+    const fixture = personalizedFixture();
+    const html = renderHome(fixture, member(fixture, '1'), '1');
+    expect(html).toContain('data-personal-panel');
+    expect(html).not.toContain('data-value-trend');
+  });
+
   it.each(['1', '4'])('weaves team %s into the edition: hero matchup, one roster-value headline, valued lead', id => {
     const fixture = personalizedFixture(), fetch = vi.spyOn(globalThis, 'fetch');
     try {

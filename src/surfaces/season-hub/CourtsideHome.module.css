@@ -1919,6 +1919,47 @@
 .hero-ai-legend { display: flex; justify-content: space-between; gap: var(--gh-cs-s4); margin: var(--gh-cs-s2) 0 0; font-size: var(--gh-cs-secondary); }
 .hero-ai-legend span { overflow-wrap: anywhere; }
 
+/* Personal panel: the hero's right side for a member — their roster value
+ * at display size, its recorded trend line, rank, their own pairing and
+ * their roster's top mover. League-wide model odds live in the week desk. */
+.hero:has(.personal-panel) { display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: var(--gh-cs-s6); align-items: start; }
+.hero-main { min-width: 0; }
+.personal-panel { padding: var(--gh-cs-s4); border: var(--gh-cs-rule) solid var(--gh-cs-line-light); }
+.panel-label { margin: 0; font-size: var(--gh-cs-caption); color: var(--gh-cs-muted-light); letter-spacing: .1em; text-transform: uppercase; }
+.panel-big { margin: var(--gh-cs-s2) 0 0; font-family: var(--gh-font-display); font-size: var(--gh-cs-title); font-weight: 800; line-height: 1; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.personal-panel .hero-subtotal { margin: var(--gh-cs-s2) 0 0; font-size: var(--gh-cs-caption); font-weight: 400; color: var(--gh-cs-muted-light); }
+.panel-rank { margin: var(--gh-cs-s3) 0 0; font-size: var(--gh-cs-secondary); font-weight: 600; }
+.personal-panel .hero-valuation-rows { grid-template-columns: minmax(0, 1fr); }
+.panel-matchup { margin-top: var(--gh-cs-s5); padding-top: var(--gh-cs-s4); border-top: var(--gh-cs-rule) solid var(--gh-cs-line-light); }
+.panel-opponent { display: flex; align-items: center; gap: var(--gh-cs-s3); margin: var(--gh-cs-s3) 0 0; font-weight: 650; }
+.panel-opponent a { color: inherit; text-decoration: none; overflow-wrap: anywhere; }
+.panel-opponent a:hover { text-decoration: underline; text-underline-offset: var(--gh-cs-s1); }
+.panel-mover { margin-top: var(--gh-cs-s5); padding-top: var(--gh-cs-s4); border-top: var(--gh-cs-rule) solid var(--gh-cs-line-light); }
+.panel-mover-row { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: var(--gh-cs-s3); margin: var(--gh-cs-s3) 0 0; }
+.panel-mover-row > :first-child { grid-row: 1 / 3; }
+.panel-mover-row strong { grid-column: 2; justify-self: end; }
+.panel-mover-row a { color: inherit; font-weight: 600; text-decoration: none; overflow-wrap: break-word; }
+.panel-mover-row a:hover { text-decoration: underline; text-underline-offset: var(--gh-cs-s1); }
+/* With the personal panel up, the week desk leaves the clubhouse rail, so
+ * the court column takes the full width instead of a 2fr track beside an
+ * empty rail. */
+.clubhouse-layout-solo { display: block; }
+.week-desk-row { margin-top: var(--gh-cs-s6); }
+.week-desk-row .week-games { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); column-gap: var(--gh-cs-s6); }
+@media (max-width: 64rem) {
+  .hero:has(.personal-panel) { grid-template-columns: minmax(0, 1fr); }
+}
+.trend { margin-top: var(--gh-cs-s4); }
+.trend-svg { display: block; width: 100%; height: 4rem; }
+.trend-line { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; stroke-dasharray: 1; transition: stroke-dashoffset 300ms cubic-bezier(.23, 1, .32, 1); }
+.trend-line.trend-up { stroke: var(--gh-term-up); }
+.trend-line.trend-down { stroke: var(--gh-term-down); }
+.trend-line.trend-flat { stroke: var(--gh-cs-muted-light); }
+.trend-meta { display: flex; align-items: baseline; gap: var(--gh-cs-s3); margin: var(--gh-cs-s2) 0 0; font-size: var(--gh-cs-caption); color: var(--gh-cs-muted-light); }
+.trend-delta { font-size: var(--gh-cs-secondary); font-weight: 700; }
+.trend-delta.trend-up { color: var(--gh-term-up); }
+.trend-delta.trend-down { color: var(--gh-term-down); }
+
 .your-lead { margin-top: var(--gh-cs-s5); }
 .lead-title { margin: 0; font-size: var(--gh-cs-subhead); }
 .lead-title span { color: var(--gh-cs-muted-dark); font-weight: 400; }
@@ -1981,6 +2022,7 @@
   .hero-enter { animation: none; }
   .hero-ai-own, .hero-ai-opp { transition: none; }
   .hero-star { transition: none; }
+  .trend-line { transition: none; }
 }
 
 .hero-valuation { margin-top: var(--gh-cs-s4); }

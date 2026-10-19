@@ -77,22 +77,41 @@ the personalized DTO and a faces projection (`buildHomeFaces` in
 `data/personalized-home.ts`: each clubhouse team's top player by current
 modeled value, or null). To build the faces, the page reads the same
 React-cached `getStockMarketData` result the root ticker already executed
-for this request — no additional market execution, snapshot or deep fetch is
-introduced for any visitor; the news/guide loads and the personalized summary
-itself remain member-only.
+for this request — no additional market execution or deep fetch is
+introduced for any visitor. One member-only read is added: the viewer's own
+roster's recorded snapshot history (`getRosterSnapshotHistory` in
+`data/league.ts`, delegating to the stock store's batched
+`getSnapshotHistory` — a single query over the retained `stock_snapshots`
+rows), which feeds the roster-value trend described below; signed-out and
+unlinked visitors never trigger it. The news/guide loads and the
+personalized summary itself remain member-only.
 
 Inside the edition: `CourtsideFeature` takes an optional `hero` (the member's
 summary + faces). A member's own pairing becomes the featured matchup — a
 face-off of both teams' star players at editorial size (each team name on
 its own full-width line under the avatar row, never squeezed into it),
-a dateline whose roster value is the page's only value headline (a partial
-total stays a labelled subtotal in one small line beneath it, with the
-modeled-pricing basis disclosed beside it; the headline
-opens an in-hero disclosure holding the full priced roster with per-player
-prices and the coverage disclosure — unpriced players read "Unpriced", never
-$0), and the saved
-AI pick for the pairing as an animated probability bar with the probability
-label and stale state as chips. No joined pick renders no AI element. The
+a dateline carrying the record, and — as the hero's right side — a personal
+panel. The panel's headline is the viewer's roster value at display size,
+the page's only value headline (a partial total stays a labelled subtotal in
+one small line beneath it, with the modeled-pricing basis disclosed beside
+it, and the in-panel disclosure behind the headline holds the full priced
+roster with per-player prices and the coverage disclosure — unpriced
+players read "Unpriced", never $0). Beneath it, a trend line plots the
+roster's value over time from recorded data only: `rosterValueTrend`
+(`domain/roster-value.ts`) sums the current roster's priced players at each
+recorded instant — the retained `stock_snapshots` points plus the current
+modeled quote — carrying each player's last recorded price forward and
+never backfilling before a player's first recorded point; fewer than two
+recorded instants renders no line at all, and the line is labelled with its
+actual start date and signed delta. The panel continues with the value rank
+(the league standing is the fallback only once games exist), the viewer's
+next or latest matchup, the top mover on their own roster (the same guide
+watch evidence the players lead renders), and the saved AI pick for their
+own pairing as an animated probability bar with the probability label and
+stale state as chips. No joined pick renders no AI element. The league-wide
+model probabilities for every pairing live only in the week desk: beside
+the court for signed-out visitors, and — when the personal panel renders —
+relocated to a full-width row below the clubhouse layout, never duplicated. The
 opening clock is universal and single-presentation: a `TipCountdown`
 overlay rides the court figure for every visitor — members included, the
 hero carries no inline variant — exactly once per page,

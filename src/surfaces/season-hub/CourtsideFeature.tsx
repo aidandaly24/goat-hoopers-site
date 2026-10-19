@@ -14,6 +14,7 @@ import { CourtsideDialog } from "./CourtsideDialog";
 import { cs } from "./CourtsideStyles";
 import { isHomePreseasonPreview, type HomeTeamFace, type HomeTeamSummary } from "@/domain/personalized-home";
 import { TipCountdown, WEEK_ONE_TIP_OFF_ISO, openingPhase } from "./TipCountdown";
+import { ValueTrendLine } from "./ValueTrendLine";
 import { formatHomeStamp } from "./homeFormat";
 
 type DisplayPair = Pick<Matchup, "week" | "homePoints" | "awayPoints"> & {
@@ -184,11 +185,6 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
   const isHeroShown = !!heroPair && !!shown && shown.week === heroPair.week
     && shown.home.id === heroPair.home.id && shown.away.id === heroPair.away.id;
   const championTeamId = entries.find((entry) => entry.previousSeason?.finish === 1)?.identity.id;
-  useEffect(() => {
-    if (!isHeroShown) return;
-    const frame = requestAnimationFrame(() => setBarIn(true));
-    return () => cancelAnimationFrame(frame);
-  }, [isHeroShown]);
   const ids = shown ? [shown.home.id, shown.away.id] : game.teamIds ?? [];
   const teams = ids.map((id) => entries.find((entry) => entry.identity.id === id)).filter((entry) => !!entry);
   const state = shown ? isFinal(shown) ? "final" : "upcoming" : game.state;
@@ -216,6 +212,28 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
   const heroOpponentProbability = heroResult && heroAi ? heroResult.probabilities.find((row) => row.choice === heroAi.opponent.id)?.probability ?? null : null;
   const heroSavedStamp = heroAi ? formatHomeStamp(heroAi.generatedAt) : null;
   const heroChoiceName = heroResult && heroSummary && heroAi ? (heroResult.choice === heroSummary.team.id ? heroSummary.team.name : heroAi.opponent.name) : null;
+  // The AI bar lives in the personal panel now; it animates whenever the
+  // member's joined pick exists, on the same rAF gate as before.
+  useEffect(() => {
+    if (!heroAi) return;
+    const frame = requestAnimationFrame(() => setBarIn(true));
+    return () => cancelAnimationFrame(frame);
+  }, [heroAi]);
+  // The hero's right side is personal for a member: roster value at display
+  // size, its recorded trend, rank, their own pairing and their roster's top
+  // mover. The panel renders only with something true to show; the
+  // league-wide odds stay in the week desk below for every viewer.
+  const watch = heroSummary?.playerGuide.watch ?? null;
+  const topMover = watch && watch.basis !== "unavailable" ? watch.rows[0] ?? null : null;
+  const topMoverValue = topMover && watch ? watch.basis === "market"
+    ? `Up ${topMover.value.toFixed(1)}%`
+    : `${topMover.value.toFixed(1)} FPPG${topMover.games !== null ? ` · ${topMover.games} GP` : ""}` : null;
+  const topMoverChip = watch ? watch.basis === "market" ? "Rising value · preseason market movement" : watch.label : null;
+  const heroOpponent = heroPair && heroSummary
+    ? (heroPair.home.id === heroSummary.team.id ? heroPair.away : heroPair.home) : null;
+  // In-hero the panel always has the member's own pairing to carry, so it
+  // renders with the hero; its value/trend/mover blocks gate individually.
+  const showPanel = isHeroShown && !!heroSummary;
   const viewerEntry = heroSummary ? entries.find((entry) => entry.identity.id === heroSummary.team.id) : undefined;
   const viewerPrior = preseason ? viewerEntry?.previousSeason : null;
   const viewerRecord = viewerPrior ?? viewerEntry?.currentRecord ?? null;
@@ -231,6 +249,37 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
     return { label: prior ? `${prior.season} record` : "Record", text: record ? `${record.wins}–${record.losses}` : null };
   };
 
+  const weekDesk = (
+      <aside className={cs("week-desk")} aria-labelledby="this-week-title">
+        <div className={cs("week-heading")}><h2 id="this-week-title">{aiWeekly ? <Link href="/ai-decides">AI Decides</Link> : "This week"}</h2><span>{preseasonPreview ? "Preseason preview · target Week 1" : <>{aiWeekly && "This week · "}{week ? `Week ${week}` : "Pairings pending"}{preseason && <><br />Upcoming</>}</>}</span></div>
+        {aiWeekly && <p className={cs("week-provenance")}>Model estimates{aiWeekly.status === "stale" ? " · saved picks" : ""}{aiWeekly.status === "stale" && " · past week"}</p>}
+        <div className={cs("week-games")}>
+          {pairs.map((pair) => {
+            const active = shown ? shown.week === pair.week && [shown.home.id, shown.away.id].every(id => [pair.home.id, pair.away.id].includes(id)) : game.state === "upcoming" && game.leagueWeek === pair.week && game.teamIds?.every((id) => [pair.home.id, pair.away.id].includes(id));
+            const pick = savedPick(pair);
+            const result = pick?.status === "ready" ? pick.result : null;
+            const pickLabel = aiWeekly ? result
+              ? ` ${aiWeekly.status === "stale" ? "Past-week" : "Saved"} model probabilities: ${result.probabilities.map((p) => `${[pair.home, pair.away].find(team => team.id === p.choice)?.name ?? 'Team name unavailable'} ${Number((p.probability * 100).toFixed(1))}%`).join(", ")}.`
+              : " Prediction unavailable." : "";
+            return <button type="button" key={`${pair.week}:${pair.home.id}:${pair.away.id}`} className={cs("week-game")} aria-pressed={!!active} aria-controls="game-title matchup-context" aria-label={`${pair.home.name} versus ${pair.away.name}, ${preseasonPreview ? "preseason lineup preview for target Week 1" : isFinal(pair) ? "final" : "upcoming"}.${pickLabel}`} onClick={() => { setSelected(pair); setSide(0); }}>
+              {[pair.home, pair.away].map((team, index) => {
+                const probability = result?.probabilities.find((p) => p.choice === team.id);
+                return <span className={`${cs("week-team")} ${team.id === viewerTeamId ? cs("ownTeam") : ""}`} key={team.id} data-own-team={team.id === viewerTeamId || undefined}>
+                <TeamAvatar name={team.name} avatar={team.avatar} isChampion={team.id === championTeamId} /><strong>{team.name}{team.id === viewerTeamId && <span className={cs("you")}>Your team</span>}</strong>
+                <span className={cs("week-score", "gh-num")} aria-label={probability ? `${Number((probability.probability * 100).toFixed(1))}% model estimate` : isFinal(pair) ? `${index === 0 ? pair.homePoints : pair.awayPoints} fantasy points` : preseasonPreview ? "Preview · score not forecast" : "Score pending"}>{probability ? `${Number((probability.probability * 100).toFixed(1))}%` : isFinal(pair) ? (index === 0 ? pair.homePoints : pair.awayPoints)!.toFixed(1) : "—"}</span>
+                {probability && <span className={cs("week-probability", "week-bar")} data-probability-for={team.id} aria-hidden="true"><i style={{ width: `${probability.probability * 100}%` }} /></span>}
+                {probability && isFinal(pair) && <span className={cs("week-final-score")}>{(index === 0 ? pair.homePoints : pair.awayPoints)!.toFixed(1)} fantasy points · Final</span>}
+              </span>;
+              })}
+              {aiWeekly && !result && <span className={cs("week-pick-status")}>Prediction unavailable</span>}
+            </button>;
+          })}
+          {!pairs.length && <p className={cs("empty")}>{preseasonPreview ? "Saved preview team identities are temporarily unavailable." : "Current pairings are temporarily unavailable."} Team profiles remain available below.</p>}
+        </div>
+        {aiWeekly && <Link className={cs("week-playground", "text-link")} href="/ai-decides">Open AI playground</Link>}
+      </aside>
+  );
+
   return <>
     <div className={cs("feature-heading")}>
       <div>
@@ -240,6 +289,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
     </div>
     {isHeroShown && heroSummary && shown && (
       <div className={cs("hero")} data-hero>
+       <div className={cs("hero-main")}>
         <div className={cs("hero-faceoff", "hero-enter")}>
           <HeroSide team={shown.home} star={hero?.faces.find((face) => face.team.id === shown.home.id)?.player ?? null}
             portraits={portraits} champion={shown.home.id === championTeamId} own={shown.home.id === heroSummary.team.id}
@@ -264,32 +314,50 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
             <dt>{viewerPrior ? `${viewerPrior.season} record` : "Record"}</dt>
             <dd className="gh-num">{viewerRecord ? `${viewerRecord.wins}–${viewerRecord.losses}` : "—"}</dd>
           </div>
-          <div>
-            <dt>Roster value</dt>
-            <dd className="gh-num">{heroSummary.valuation.total === null ? "Unavailable" : `$${heroSummary.valuation.total.toFixed(2)} FAAB`}</dd>
-            {heroSummary.valuation.knownRoster && !heroSummary.valuation.complete && (
-              <dd className={cs("hero-subtotal")}>Known-value subtotal · {heroSummary.coverage.priced} of {heroSummary.coverage.roster} priced</dd>
-            )}
-            {heroSummary.market && (
-              <dd className={cs("hero-subtotal")}>Modeled prices · {heroSummary.market.pricingBasis === "preseason" ? "Preseason" : "In-season"} pricing{heroMarketStamp ? ` · computed ${heroMarketStamp}` : ""}</dd>
-            )}
-          </div>
-          {heroSummary.valuation.rank ? (
-            <div>
-              <dt>Value rank</dt>
-              <dd className="gh-num">No. {heroSummary.valuation.rank.rank} of {heroSummary.valuation.rank.teams}</dd>
-            </div>
-          ) : heroSummary.standing && heroSummary.standing.wins + heroSummary.standing.losses + heroSummary.standing.ties > 0 ? (
-            <div>
-              <dt>Standing</dt>
-              <dd className="gh-num">No. {heroSummary.standing.rank} of {heroSummary.season.totalTeams}</dd>
-            </div>
-          ) : null}
         </dl>
-        <RosterValuationDetails summary={heroSummary} className={cs("hero-enter")} style={{ animationDelay: "140ms" }} />
         <MemberTeamActions summary={heroSummary} className={cs("hero-enter")} style={{ animationDelay: "140ms" }} />
+       </div>
+       {showPanel && (
+        <aside className={cs("personal-panel", "hero-enter")} style={{ animationDelay: "210ms" }} data-personal-panel aria-label="Your team at a glance">
+          <p className={cs("panel-label")}>Your roster value</p>
+          <p className={`${cs("panel-big")} gh-num`}>{heroSummary.valuation.total === null ? "Unavailable" : `$${heroSummary.valuation.total.toFixed(2)} FAAB`}</p>
+          {heroSummary.valuation.knownRoster && !heroSummary.valuation.complete && (
+            <p className={cs("hero-subtotal")}>Known-value subtotal · {heroSummary.coverage.priced} of {heroSummary.coverage.roster} priced</p>
+          )}
+          {heroSummary.market && (
+            <p className={cs("hero-subtotal")}>Modeled prices · {heroSummary.market.pricingBasis === "preseason" ? "Preseason" : "In-season"} pricing{heroMarketStamp ? ` · computed ${heroMarketStamp}` : ""}</p>
+          )}
+          {heroSummary.valueTrend && <ValueTrendLine trend={heroSummary.valueTrend} />}
+          {heroSummary.valuation.rank ? (
+            <p className={cs("panel-rank")}>Value rank · <span className="gh-num">No. {heroSummary.valuation.rank.rank} of {heroSummary.valuation.rank.teams}</span></p>
+          ) : heroSummary.standing && heroSummary.standing.wins + heroSummary.standing.losses + heroSummary.standing.ties > 0 ? (
+            <p className={cs("panel-rank")}>League standing · <span className="gh-num">No. {heroSummary.standing.rank} of {heroSummary.season.totalTeams}</span></p>
+          ) : null}
+          <RosterValuationDetails summary={heroSummary} />
+          {heroPair && heroOpponent && (
+            <div className={cs("panel-matchup")}>
+              <p className={cs("panel-label")}>{isFinal(heroPair) ? "Latest matchup" : "Next matchup"} · Week {heroPair.week}</p>
+              <p className={cs("panel-opponent")}>
+                <TeamAvatar name={heroOpponent.name} avatar={heroOpponent.avatar} isChampion={heroOpponent.id === championTeamId} />
+                <Link href={`/teams/${heroOpponent.id}`} prefetch={false}>{heroOpponent.name}</Link>
+              </p>
+            </div>
+          )}
+          {topMover && topMoverValue && (
+            <div className={cs("panel-mover")} data-panel-mover>
+              <p className={cs("risers-head")}>
+                <span className={cs("chip")}>{topMoverChip}</span>
+                <span className={cs("risers-title")}>Top mover · your roster</span>
+              </p>
+              <p className={cs("panel-mover-row")}>
+                <PlayerHeadshot portraitSrc={portraits?.[topMover.id]} espnId={topMover.espnId} name={topMover.name} teamId={heroSummary.team.id} size={40} />
+                <Link href={`/player/${topMover.id}`} prefetch={false}>{topMover.name}</Link>
+                <strong className="gh-num">{topMoverValue}</strong>
+              </p>
+            </div>
+          )}
         {heroAi && heroResult && heroOwnProbability !== null && heroOpponentProbability !== null && (
-          <div className={cs("hero-ai", "hero-enter")} style={{ animationDelay: "210ms" }} data-hero-ai>
+          <div className={cs("hero-ai")} data-hero-ai>
             <div className={cs("hero-ai-chips")}>
               <span className={cs("chip")}>{AI_PROBABILITY_LABEL}</span>
               <span className={cs("chip")}>{heroAi.label}</span>
@@ -306,9 +374,11 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
             <p className={cs("caption")}>{heroSavedStamp ? `Saved ${heroSavedStamp} · ` : ""}Model choice: {heroChoiceName}</p>
           </div>
         )}
+        </aside>
+       )}
       </div>
     )}
-    <div className={cs("clubhouse-layout")}>
+    <div className={cs(showPanel ? "clubhouse-layout-solo" : "clubhouse-layout")}>
       <div className={cs("court-column")}>
         <figure className={cs("clubhouse-court")} id="clubhouse-court">
           <img src="/courtside/arena.jpg" alt="The GOAT Hoopers basketball court, with players on the floor and fans in the stands" width="1440" height="810" fetchPriority="high" />
@@ -362,35 +432,9 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
           <p className={cs("feature-check")}>League check · {checkedAt.slice(0, 10)}</p>
         </div>
       </div>
-      <aside className={cs("week-desk")} aria-labelledby="this-week-title">
-        <div className={cs("week-heading")}><h2 id="this-week-title">{aiWeekly ? <Link href="/ai-decides">AI Decides</Link> : "This week"}</h2><span>{preseasonPreview ? "Preseason preview · target Week 1" : <>{aiWeekly && "This week · "}{week ? `Week ${week}` : "Pairings pending"}{preseason && <><br />Upcoming</>}</>}</span></div>
-        {aiWeekly && <p className={cs("week-provenance")}>Model estimates{aiWeekly.status === "stale" ? " · saved picks" : ""}{aiWeekly.status === "stale" && " · past week"}</p>}
-        <div className={cs("week-games")}>
-          {pairs.map((pair) => {
-            const active = shown ? shown.week === pair.week && [shown.home.id, shown.away.id].every(id => [pair.home.id, pair.away.id].includes(id)) : game.state === "upcoming" && game.leagueWeek === pair.week && game.teamIds?.every((id) => [pair.home.id, pair.away.id].includes(id));
-            const pick = savedPick(pair);
-            const result = pick?.status === "ready" ? pick.result : null;
-            const pickLabel = aiWeekly ? result
-              ? ` ${aiWeekly.status === "stale" ? "Past-week" : "Saved"} model probabilities: ${result.probabilities.map((p) => `${[pair.home, pair.away].find(team => team.id === p.choice)?.name ?? 'Team name unavailable'} ${Number((p.probability * 100).toFixed(1))}%`).join(", ")}.`
-              : " Prediction unavailable." : "";
-            return <button type="button" key={`${pair.week}:${pair.home.id}:${pair.away.id}`} className={cs("week-game")} aria-pressed={!!active} aria-controls="game-title matchup-context" aria-label={`${pair.home.name} versus ${pair.away.name}, ${preseasonPreview ? "preseason lineup preview for target Week 1" : isFinal(pair) ? "final" : "upcoming"}.${pickLabel}`} onClick={() => { setSelected(pair); setSide(0); }}>
-              {[pair.home, pair.away].map((team, index) => {
-                const probability = result?.probabilities.find((p) => p.choice === team.id);
-                return <span className={`${cs("week-team")} ${team.id === viewerTeamId ? cs("ownTeam") : ""}`} key={team.id} data-own-team={team.id === viewerTeamId || undefined}>
-                <TeamAvatar name={team.name} avatar={team.avatar} isChampion={team.id === championTeamId} /><strong>{team.name}{team.id === viewerTeamId && <span className={cs("you")}>Your team</span>}</strong>
-                <span className={cs("week-score", "gh-num")} aria-label={probability ? `${Number((probability.probability * 100).toFixed(1))}% model estimate` : isFinal(pair) ? `${index === 0 ? pair.homePoints : pair.awayPoints} fantasy points` : preseasonPreview ? "Preview · score not forecast" : "Score pending"}>{probability ? `${Number((probability.probability * 100).toFixed(1))}%` : isFinal(pair) ? (index === 0 ? pair.homePoints : pair.awayPoints)!.toFixed(1) : "—"}</span>
-                {probability && <span className={cs("week-probability", "week-bar")} data-probability-for={team.id} aria-hidden="true"><i style={{ width: `${probability.probability * 100}%` }} /></span>}
-                {probability && isFinal(pair) && <span className={cs("week-final-score")}>{(index === 0 ? pair.homePoints : pair.awayPoints)!.toFixed(1)} fantasy points · Final</span>}
-              </span>;
-              })}
-              {aiWeekly && !result && <span className={cs("week-pick-status")}>Prediction unavailable</span>}
-            </button>;
-          })}
-          {!pairs.length && <p className={cs("empty")}>{preseasonPreview ? "Saved preview team identities are temporarily unavailable." : "Current pairings are temporarily unavailable."} Team profiles remain available below.</p>}
-        </div>
-        {aiWeekly && <Link className={cs("week-playground", "text-link")} href="/ai-decides">Open AI playground</Link>}
-      </aside>
+{!showPanel && weekDesk}
     </div>
+    {showPanel && <div className={cs("week-desk-row")}>{weekDesk}</div>}
     <p className={cs("sr-only")} role="status" aria-live="polite">{selected ? `Selected ${title}. ${status}.` : ""}</p>
   </>;
 }

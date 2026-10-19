@@ -180,7 +180,47 @@ describe("selected-player dated/source-labelled chart history", () => {
     expect(reserved[0]).toEqual(points[0]);
     expect(reserved.at(-1)).toEqual(points.at(-1));
   });
+});
 
+describe("batched recorded snapshot history", () => {
+  it("returns every retained recorded point per requested player, oldest first, in one query", async () => {
+    const { db, calls } = fixtureDb({
+      reconstructed: [],
+      snapshots: [
+        snapshot("a", "2026-10-03 00:00:00", 3000),
+        snapshot("a", "2026-10-01 00:00:00", 1000),
+        snapshot("b", "2026-10-02 00:00:00", 2500),
+        snapshot("unrequested", "2026-10-01 00:00:00", 9999),
+      ],
+    });
+    const history = await getStockStore(db).getSnapshotHistory(["a", "b", "missing"]);
+    expect(history).toEqual({
+      a: [
+        { date: "2026-10-01T00:00:00.000Z", price: 10, source: "live" },
+        { date: "2026-10-03T00:00:00.000Z", price: 30, source: "live" },
+      ],
+      b: [{ date: "2026-10-02T00:00:00.000Z", price: 25, source: "live" }],
+    });
+    expect(calls).toHaveLength(1);
+    expect(calls[0].sql).toContain('from "stock_snapshots"');
+    expect(calls[0].sql).not.toContain("price_history");
+  });
+
+  it("caps each player at the newest 40 recorded points and resolves empty on a missing table", async () => {
+    const many = Array.from({ length: 45 }, (_, day) =>
+      snapshot("a", new Date(Date.UTC(2026, 8, 1 + day)).toISOString().replace("T", " ").replace("Z", ""), 1000 + day));
+    const { db } = fixtureDb({ reconstructed: [], snapshots: many });
+    const history = await getStockStore(db).getSnapshotHistory(["a"]);
+    expect(history.a).toHaveLength(40);
+    expect(history.a[0].price).toBe(10.05);
+    expect(history.a.at(-1)?.price).toBe(10.44);
+    const missing = fixtureDb({ reconstructed: [], snapshots: [], missing: new Set(["stock_snapshots"]) });
+    await expect(getStockStore(missing.db).getSnapshotHistory(["a"])).resolves.toEqual({});
+    await expect(getStockStore(db).getSnapshotHistory([])).resolves.toEqual({});
+  });
+});
+
+describe("selected-player missing-source fallbacks", () => {
   it.each(["price_history", "stock_snapshots", "both"])("keeps the available source when %s is missing", async (missing) => {
     const { db } = fixtureDb({ reconstructed: [reconstructed("p", "2025-06-30T00:00:00Z", 100, "backtest")],
       snapshots: [snapshot("p", "2026-10-01 00:00:00", 200)],

@@ -86,7 +86,7 @@ import {
 /* Separate import: championRosterId is this feature's seam, kept out of
  * the shared transform import block above. */
 import { championRosterId } from "./transform";
-import { getStockStore } from "./stocks";
+import { getStockStore, type PriceHistory } from "./stocks";
 import { getDb, type Db } from "./db";
 import { getStatProfiles, getSeasonHistory } from "./nba-stats";
 import {
@@ -653,6 +653,21 @@ export async function getRecordBook(): Promise<RecordBook | null> {
     return computeRecordBook({ matchupsByWeek: input.matchupsByWeek });
   } catch {
     return null;
+  }
+}
+
+/**
+ * Recorded stock snapshots for the given players — the raw material of a
+ * roster's recorded value trend. Member-only call sites pass the viewer's
+ * own roster; the read is one batched store query and never throws (an
+ * unavailable store resolves empty, which the trend builder reads as "no
+ * recorded history", never as a reconstructed series).
+ */
+export async function getRosterSnapshotHistory(playerIds: readonly string[]): Promise<PriceHistory> {
+  try {
+    return await getStockStore().getSnapshotHistory([...playerIds]);
+  } catch {
+    return {};
   }
 }
 
