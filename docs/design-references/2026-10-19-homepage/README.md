@@ -5,6 +5,11 @@ For Muse's canonical [PR207](https://github.com/aidandaly24/goat-hoopers-site/pu
 This branch contains reference artifacts only. Do not merge it as an application
 implementation or ship its fixture values.
 
+**Screenshot correction:** the standalone black crown tile in the reigning-
+champion section is superseded and must be omitted from implementation. Keep
+champion identity/history and the crown on the profile picture. Remove the tile
+and its reserved space; the screenshots remain preserved as the original reference.
+
 | Mode | Desktop | Phone |
 | --- | --- | --- |
 | Signed in | [Full screenshot](member-desktop.png) | [Full screenshot](member-phone.png) |

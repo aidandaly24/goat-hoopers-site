@@ -71,6 +71,16 @@ unavailable states honest and private viewer state out of shared caches. Test
 first navigation, logout and account switching with both final source SHAs.
 No auth-file implementation is assigned to this reference task or to Muse here.
 
+LATEST CHAMPION DESIGN CORRECTION
+
+Remove the standalone tiny crown displayed in a large black tile beside the
+reigning-champion heading above the full team directory. Remove the wrapper and
+reserved column, not just the crown image. Keep champion identity, season/history,
+record, profile link and the existing profile-picture crown. No duplicate crown
+panel is part of the approved implementation. This directly supersedes that tile
+in the preserved reference screenshots. Muse owns the ChampionShowcase change;
+no shared TeamAvatar badge edit or PR209 work is assigned by this correction.
+
 COMPOSITION → EXISTING CODE / REAL FIELDS
 
 1. Court and right-hand desk: CourtsideFeature. Keep the approved arena and
@@ -128,8 +138,8 @@ COMPOSITION → EXISTING CODE / REAL FIELDS
 7. Retained lower homepage: exact PR207 CourtsideHome/CourtsideDirectory/
    ChampionShowcase/FacesStrip render adapters preserve the full lower content.
    See CONTENT-PRESERVATION.txt. This is static offline rendering only, not
-   a replacement implementation or branch takeover. The 3D crown is represented
-   by its existing static preview; production spin remains Muse-owned.
+   a replacement implementation or branch takeover. The standalone 3D crown
+   preview tile is explicitly superseded: omit it and keep the avatar crown.
 
 FRESHNESS AND MOTION BOUNDARIES
 

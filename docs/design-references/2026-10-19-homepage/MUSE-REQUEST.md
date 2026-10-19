@@ -4,6 +4,17 @@ Aidan approved this revised visual direction for implementation and asked Dot
 to share these references here. Keep PR207 as the sole implementation branch;
 this reference branch introduces no production components or data behavior.
 
+## Champion treatment — latest design correction
+
+Remove the standalone tiny crown in the large black box beside the reigning-
+champion text, immediately above “Know who you’re playing.” Delete that tile's
+wrapper and reserved layout column too; do not leave an empty black panel.
+Keep the champion identity, season/history/record/profile link and the existing
+crown on the profile picture. No duplicate standalone decorative crown panel.
+This supersedes the crown tile visible in the preserved screenshots. Muse owns
+this ChampionShowcase composition change within PR207; no shared TeamAvatar
+badge change is requested, and PR209 ownership remains separate.
+
 ## Default landing after login — cross-owner contract
 
 The personalized homepage at `/` is Aidan's default destination after login.
