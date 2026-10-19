@@ -1,5 +1,5 @@
 /**
- * /login — team + password. If already logged in, skip to the arcade.
+ * /login — team or email login. Ordinary sign-in returns to home.
  * The team list comes from the league loader; if Sleeper is unreachable
  * the page still renders (login needs the team id, which the manager
  * can also get from their invite).
@@ -10,15 +10,17 @@ import { getSeasonHubData } from "@/data/league";
 import { LoginForm } from "./LoginForm";
 import { friendsAuthEnabled, friendsEnrollmentEnabled } from "@/data/friends-auth/config";
 import { AccountForm } from "@/surfaces/accounts/AccountForm";
+import { safeLoginDestination } from "@/domain/login-navigation";
 
 export const dynamic = "force-dynamic";
 
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ notice?: string; legacy?: string }>;
+  searchParams: Promise<{ notice?: string; legacy?: string; next?: string | string[] }>;
 }) {
-  const { notice, legacy } = await searchParams;
+  const { notice, legacy, next } = await searchParams;
+  const returnTo = safeLoginDestination(next ?? (notice === "team" ? "/team" : "/"));
   const enrollment = legacy === "1" && friendsEnrollmentEnabled();
   let user = null;
   try {
@@ -26,8 +28,8 @@ export default async function LoginPage({
   } catch {
     // Not provisioned yet — render anyway; the action explains.
   }
-  if (user && !enrollment && notice !== "reverify" && !friendsEnrollmentEnabled()) redirect("/arcade");
-  if (friendsAuthEnabled() && !enrollment) return <AccountForm mode="login" notice={notice === "verified" ? "Email verified. You can log in now." : notice === "team" ? "Log in to see your team." : notice === "reverify" ? "Sign in again to confirm account changes." : null} />;
+  if (user && !enrollment && notice !== "reverify") redirect(returnTo);
+  if (friendsAuthEnabled() && !enrollment) return <AccountForm mode="login" returnTo={returnTo} notice={notice === "verified" ? "Email verified. You can log in now." : notice === "team" ? "Log in to see your team." : notice === "reverify" ? "Sign in again to confirm account changes." : null} />;
 
   let teams: { id: string; name: string }[] = [];
   try {
@@ -42,6 +44,7 @@ export default async function LoginPage({
       teams={teams}
       enrollment={enrollment}
       accountsAvailable={friendsEnrollmentEnabled()}
+      returnTo={returnTo}
       initialTeamId={enrollment ? user?.teamId : undefined}
       notice={notice === "team" ? "Log in to see your team." : null}
     />

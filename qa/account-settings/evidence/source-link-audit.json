@@ -1,0 +1,37 @@
+{
+  "method": "Production TSX Link/anchor source inventory; not a rendered-state or computed-color audit.",
+  "productionDeclarations": 141,
+  "candidates": [
+    {
+      "file": "src/ui/SiteHeader.tsx",
+      "line": 108,
+      "ownClass": false,
+      "ancestorClass": false
+    },
+    {
+      "file": "src/app/account/page.tsx",
+      "line": 20,
+      "ownClass": false,
+      "ancestorClass": false
+    },
+    {
+      "file": "src/app/account/page.tsx",
+      "line": 21,
+      "ownClass": false,
+      "ancestorClass": false
+    },
+    {
+      "file": "src/app/account/page.tsx",
+      "line": 25,
+      "ownClass": false,
+      "ancestorClass": false
+    },
+    {
+      "file": "src/app/team/page.tsx",
+      "line": 59,
+      "ownClass": false,
+      "ancestorClass": false
+    }
+  ],
+  "manualSourceCheck": "SiteHeader callback links receive nav/panel descendant CSS when rendered. The remaining four candidates are the account/team page links; visual repairs are pending screenshot inspection."
+}
