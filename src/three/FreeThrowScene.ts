@@ -170,16 +170,17 @@ export async function createFreeThrowScene(
       stopReaction();
       reaction = lastBall?.finished ? result : null;
       reactionProgress = 0; reactionStill = reduced || document.hidden || !inView;
+      // First paint belongs to the same finite budget, including a slow GPU.
+      const started = performance.now();
       renderer.domElement.dataset.crowdReaction = !reaction ? "none" : reaction.outcome === "made" && reaction.streak >= 3 ? "streak" : reaction.outcome;
       renderer.domElement.dataset.crowdMotion = !reaction ? "idle" : reactionStill ? "still" : "animated";
       scenery.pose(reaction, 0, reactionStill);
       if (!document.hidden && inView) redraw();
       if (!reaction || reactionStill) return;
-      const started = performance.now();
-      const frame = (now: number) => {
+      const frame = () => {
         reactionRaf = 0;
         if (disposed || lost || !reaction || document.hidden || !inView) return;
-        reactionProgress = Math.min(1, (now - started) / CROWD_REACTION_MS);
+        reactionProgress = Math.min(1, (performance.now() - started) / CROWD_REACTION_MS);
         scenery.pose(reaction, reactionProgress);
         redraw();
         if (reactionProgress < 1) reactionRaf = requestAnimationFrame(frame);
