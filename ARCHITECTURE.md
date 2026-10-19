@@ -176,6 +176,10 @@ src/
                  # use TeamAvatar; rejected hooper loaders/assets are removed.
                  # Prop assets in public/3d/,
                  # built by the Blender pipeline in 3d/ (see 3d/README.md).
+                 # FreeThrowEnvironment is private practice-only scenery:
+                 # static sky/depth, instanced spectators and bounded result
+                 # poses. FreeThrowScene owns finite reaction frames; existing
+                 # React completed-result/streak state is its sole cue source.
   public/3d/     # Approved props (basketball, trophy, crown, hoop)
                  # and independently owned free-throw assets with named animation
                  # clips. Do not hand-edit; regenerate via 3d/build_all.sh.
