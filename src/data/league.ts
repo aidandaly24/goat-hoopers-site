@@ -38,6 +38,8 @@ import type {
 } from "@/domain";
 import type { PlayerStatProfile } from "@/domain";
 import type { PriceHistoryPoint } from "@/domain";
+import type { TeamRosterValue } from "@/domain/team-roster-value";
+import { buildTeamRosterValue } from "@/domain/team-roster-value";
 import { stockDetailHistory, STOCK_CHART_POINTS } from "./stock-history-sampling";
 import { computeTeamValues, isFinal, signedStreak } from "@/domain";
 import {
@@ -351,6 +353,55 @@ export async function getTeamDetail(teamId: string): Promise<TeamDetail | null> 
     toPlayer(pid, directory?.[pid], resolveEspnId(pid, SEED_ESPN_ID_MAP)),
   );
   return { team, players };
+}
+
+/**
+ * Injectable seams for getTeamRosterValue (rule 11): tests drive the loader
+ * with fake detail/market sources; production uses the module defaults.
+ */
+export type TeamRosterValueDeps = {
+  /** Team detail loader. Defaults to getTeamDetail. */
+  fetchDetail?: (teamId: string) => Promise<TeamDetail | null>;
+  /**
+   * Market loader. Defaults to getStockMarketData — which is React
+   * cache()-shared with the root-layout ticker, so calling it here from
+   * the /team server render adds no provider calls and no snapshot
+   * writes. Never inject a loader that would hit the market from a route
+   * handler or client refetch path.
+   */
+  fetchMarket?: () => Promise<StockMarket>;
+};
+
+/**
+ * One team's roster priced in modeled FAAB dollars, for the My Team page.
+ *
+ * Joins getStockMarketData() quotes to the viewer's actual current roster
+ * player ids from Sleeper rosters — never by quote.ownership (that's
+ * league-wide share, not membership). Returns null when the team doesn't
+ * exist. A market outage degrades to all-unknown prices (never $0), so the
+ * page still renders; it never throws.
+ *
+ * Does NOT change getTeamDetail's contract — it only reads from it.
+ */
+export async function getTeamRosterValue(
+  teamId: string,
+  deps: TeamRosterValueDeps = {},
+): Promise<TeamRosterValue | null> {
+  const { fetchDetail = getTeamDetail, fetchMarket = getStockMarketData } =
+    deps;
+  const detail = await fetchDetail(teamId);
+  if (!detail) return null;
+  // Best-effort: a market outage means unknown prices, not a failed page.
+  let market: StockMarket | null = null;
+  try {
+    market = await fetchMarket();
+  } catch {
+    market = null;
+  }
+  return buildTeamRosterValue(
+    detail.players.map((p) => p.id),
+    market,
+  );
 }
 
 /**
@@ -1340,4 +1391,22 @@ export async function getLeagueNewsEdition(): Promise<LeagueNewsEdition> {
       builtAt: 0,
     };
   }
+}
+
+/** Slim public evidence already present in the root ticker's same-request inputs.
+ * No fetch, refresh or snapshot save is added. The existing cache has no EMA
+ * season key or weekly participation source: leave those provenance gates closed.
+ */
+export async function getHomePlayerGuideSources(
+  loadInputs: () => Promise<Pick<StockMarketInput, "players" | "statProfiles" | "now">> = getMarketInputs,
+): Promise<import("@/domain/team-player-guide").PlayerGuideSources> {
+  const input = await loadInputs();
+  return {
+    checkedAt: new Date(input.now).toISOString(),
+    formSeason: null,
+    form: Object.fromEntries(Object.entries(input.statProfiles ?? {}).map(([id, profile]) => [id, { fppg: profile.emaFppg, games: profile.emaGames }])),
+    injuries: Object.fromEntries(Object.entries(input.players).filter(([, player]) => player.injury_status !== undefined).map(([id, player]) => [id, player.injury_status ?? null])),
+    scheduledGames: null,
+    completedWeek: null,
+  };
 }

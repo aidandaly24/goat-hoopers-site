@@ -54,7 +54,7 @@ export function HallOfFamePage({
       </header>
       <HallOfFameList entries={sorted} />
       <p className={styles.back}>
-        <Link href="/history">← Back to the trophy room</Link>
+        <Link href="/history"> Back to the trophy room</Link>
       </p>
     </div>
   );

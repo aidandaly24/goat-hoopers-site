@@ -1,5 +1,7 @@
 "use client";
 
+import { ControlIcon } from "@/ui/ControlIcon";
+
 /* eslint-disable @next/next/no-img-element -- Approved, pre-sized local assets are served directly without image-optimizer quota. */
 
 import { useRef, useState, type ReactNode } from "react";
@@ -58,7 +60,7 @@ export function CourtsideDirectory({
       aria-label={`${label}, by ${sortLabels[key]}: sort ${nextSort(order, key, directoryInitialDirection(key)).direction === "asc" ? "ascending" : "descending"}`}
       onClick={() => activateSort(key)}
     >
-      {label} <span aria-hidden="true">{order.key === key ? order.direction === "asc" ? "↑" : "↓" : "↕"}</span>
+      {label} <ControlIcon name={order.key === key ? order.direction === "asc" ? "sort-up" : "sort-down" : "sort"} />
     </button>
   );
   const total = entries.reduce((sum, entry) => sum + entry.players.length, 0);
@@ -133,7 +135,7 @@ export function CourtsideDirectory({
               aria-label={`Reverse ${sortLabels[order.key]} order to ${order.direction === "asc" ? "descending" : "ascending"}`}
               onClick={() => activateSort(order.key)}
             >
-              {order.direction === "asc" ? "Ascending ↑" : "Descending ↓"}
+              {order.direction === "asc" ? "Ascending" : "Descending"}
             </button>
           )}
           <button
@@ -229,7 +231,7 @@ export function CourtsideDirectory({
                     </div>
                     <span className={cs("roster-toggle")}>
                       {entry.players.length} players{" "}
-                      <span aria-hidden="true">⌄</span>
+                      <span aria-hidden="true"><ControlIcon name="sort-down" /></span>
                     </span>
                   </summary>
                   {hits.length > 0 && (
@@ -241,7 +243,7 @@ export function CourtsideDirectory({
                     <div className={cs("roster-detail-heading")}>
                       <p>Current roster · {seasonLabel}</p>
                       <a className={cs("text-link")} href={`/teams/${team.id}`}>
-                        Full team profile ↗
+                        Full team profile
                       </a>
                     </div>
                     {!!anchors.length && (
@@ -303,7 +305,7 @@ export function CourtsideDirectory({
                         href={`/teams/${opponent.id}`}
                       >
                         {preseason ? "Opening opponent" : "Current opponent"}:{" "}
-                        {opponent.name} ↗
+                        {opponent.name}
                       </a>
                     )}
                     {entry.latestMove && (

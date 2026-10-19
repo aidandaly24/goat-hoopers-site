@@ -1,5 +1,7 @@
 "use client";
 
+import { ControlIcon } from "@/ui/ControlIcon";
+
 import { useState } from "react";
 import Link from "next/link";
 import type { Standing } from "@/domain";
@@ -7,6 +9,7 @@ import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import styles from "./StandingsTable.module.css";
+import personal from "./PersonalizedHome.module.css";
 import { nextSort, sortStandings, standingInitialDirection, type StandingSortKey, type SortOrder } from "./homepageSorting";
 
 function fmtPoints(p: number): string {
@@ -23,7 +26,7 @@ const columns: { key: StandingSortKey; label: string; short: string }[] = [
 ];
 
 /** Sort only supplied standings. Displayed ranks always remain the league's ranks. */
-export function StandingsTable({ standings }: { standings: Standing[] }) {
+export function StandingsTable({ standings, viewerTeamId }: { standings: Standing[]; viewerTeamId?: string }) {
   const [order, setOrder] = useState<SortOrder<StandingSortKey>>({ key: "rank", direction: "asc" });
   const sorted = sortStandings(standings, order);
   return (
@@ -41,7 +44,7 @@ export function StandingsTable({ standings }: { standings: Standing[] }) {
               >
                 <span className={styles.short}>{short}</span>
                 <span className={styles.full}>{label}</span>
-                <span aria-hidden="true">{order.key === key ? order.direction === "asc" ? "↑" : "↓" : "↕"}</span>
+                <ControlIcon name={order.key === key ? order.direction === "asc" ? "sort-up" : "sort-down" : "sort"} />
               </button>
             </span>
           ))}
@@ -50,9 +53,10 @@ export function StandingsTable({ standings }: { standings: Standing[] }) {
           <Link
             key={s.team.id}
             href={`/teams/${s.team.id}`}
-            className={styles.row}
+            className={`${styles.row} ${s.team.id === viewerTeamId ? personal.ownTeam : ""}`}
+            data-own-team={s.team.id === viewerTeamId || undefined}
             role="row"
-            aria-label={`View ${s.team.name}`}
+            aria-label={`View ${s.team.name}${s.team.id === viewerTeamId ? ", your team" : ""}`}
           >
             <span
               role="cell"
@@ -72,6 +76,7 @@ export function StandingsTable({ standings }: { standings: Standing[] }) {
               <TeamAvatar name={s.team.name} avatar={s.team.avatar} />
               <span>
                 <span className={styles.name}>{s.team.name}</span>
+                {s.team.id === viewerTeamId && <span className={personal.you}>Your team</span>}
                 <span className={styles.manager}>{s.team.managerName}</span>
               </span>
             </span>

@@ -1,5 +1,7 @@
 "use client";
 
+import { ControlIcon } from "@/ui/ControlIcon";
+
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -129,9 +131,7 @@ function SidePicker({
               className={styles.remove}
               onClick={() => onRemove(p.playerId)}
               aria-label={`Remove ${p.playerName} from ${label}`}
-            >
-              ×
-            </button>
+            ><ControlIcon name="close" /></button>
           </li>
         ))}
         {picks.length === 0 && (
@@ -239,7 +239,7 @@ export function TradeAnalyzer({ stocks }: { stocks: StockQuote[] }) {
   return (
     <div className={styles.terminal}>
       <header className={styles.head}>
-        <Link href="/stocks" className={styles.returnLink}>← Back to Stocks</Link>
+        <Link href="/stocks" className={styles.returnLink}> Back to Stocks</Link>
         <p className={styles.prompt}>~/goat-hoopers $ trade-analyzer</p>
         <h1 className={styles.title}>Trade Analyzer</h1>
         <p className={styles.lede}>

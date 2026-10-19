@@ -187,7 +187,7 @@ export function StockRow({ quote: s }: { quote: StockQuote }) {
 
   const moveClass =
     s.trend === "up" ? styles.up : s.trend === "down" ? styles.down : styles.flat;
-  const arrow = s.trend === "up" ? "▲" : s.trend === "down" ? "▼" : "▪";
+  const trendLabel = s.trend === "up" ? "Up" : s.trend === "down" ? "Down" : "Flat";
 
   function onToggle(e: React.SyntheticEvent<HTMLDetailsElement>) {
     // Only fire on open. The loader's own guards (idle/error only,
@@ -219,7 +219,7 @@ export function StockRow({ quote: s }: { quote: StockQuote }) {
               <span className={styles.newTag}>NEW</span>
             ) : (
               <span className={moveClass}>
-                {arrow} {formatChange(s.change ?? 0)} ({formatPct(s.changePct)})
+                {trendLabel} {formatChange(s.change ?? 0)} ({formatPct(s.changePct)})
               </span>
             )}
           </span>

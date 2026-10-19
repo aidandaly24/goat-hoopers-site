@@ -32,6 +32,8 @@
  * the data layer how to build it. Never invent a parallel shape in a surface.
  */
 export type { Team } from "./team";
+export type { RosterPlayerValue, TeamRosterValue } from "./team-roster-value";
+export { buildTeamRosterValue } from "./team-roster-value";
 export type { ReconstructionInput, ReconstructedPoint, PriceHistoryArtifact } from "./price-history-import";
 export type { Standing } from "./standing";
 export type {

@@ -7,9 +7,7 @@
 .input:focus-visible, .submit:focus-visible, .switch a:focus-visible { outline: 2px solid var(--gh-gold); outline-offset: 3px; }
 .error { color: var(--gh-loss); margin: 0; }
 .notice { color: var(--gh-text); padding: var(--gh-s3); border: 1px solid var(--gh-border); border-radius: var(--gh-radius); overflow-wrap: anywhere; }
-.submit { background: var(--gh-gold); color: var(--gh-ink-on-accent); border: 0; border-radius: var(--gh-s2);
-  padding: var(--gh-s3); font: inherit; font-weight: 800; cursor: pointer; }
-.submit:disabled { opacity: .6; cursor: wait; }
+.submit { composes: primary from "../../ui/controls.module.css"; width: 100%; }
 .switch { margin-top: var(--gh-s4); overflow-wrap: anywhere; }
 .switch a { color: var(--gh-gold); font-weight: 700; }
 .switch button { color: var(--gh-gold); font: inherit; font-weight: 700; background: transparent; border: 0; padding: 0; cursor: pointer; }

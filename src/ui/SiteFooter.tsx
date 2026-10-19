@@ -37,7 +37,7 @@ export function SiteFooter({ season, destinations = footerDestinations }: { seas
         <nav className={styles.nav} aria-label="Footer">
           {destinations.map(d => <Link key={d.href} href={d.href}>{d.label}</Link>)}
         </nav>
-        <p className={styles.copy}>© {year} GOAT Hoopers. Built for the league, by the league.</p>
+        <p className={styles.copy}>Copyright {year} GOAT Hoopers. Built for the league, by the league.</p>
       </div>
     </footer>
   );

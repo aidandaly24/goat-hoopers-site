@@ -19,6 +19,7 @@ type Props = {
   portraits: Record<string, string>;
   archived?: boolean;
   aiWeekly?: AiWeeklySlate;
+  viewerTeamId?: string;
 };
 const labels = {
   "player-of-week": "Player of the Week",
@@ -100,7 +101,7 @@ function PlayerStory({
               href={`/teams/${owner.id}`}
               prefetch={false}
             >
-              {owner.name} ↗
+              {owner.name}
             </Link>
           ) : (
             <p className={cs("player-owner")}>Ownership check unavailable</p>
@@ -130,6 +131,7 @@ export function CourtsideHome({
   portraits,
   archived = false,
   aiWeekly,
+  viewerTeamId,
 }: Props) {
   const { edition, hub } = data;
   const preseason =
@@ -147,11 +149,11 @@ export function CourtsideHome({
               Browse the league while the next editorial edition is prepared.
             </p>
             <Link className={cs("text-link")} href="/weekly">
-              Weekly archive →
+              Weekly archive
             </Link>
             <SectionLinks />
-            <Link className={cs("text-link")} href="/arcade">Arcade ↗</Link>
-            <Link className={cs("text-link")} href="/ai-decides">AI Decides playground ↗</Link>
+            <Link className={cs("text-link")} href="/arcade">Arcade</Link>
+            <Link className={cs("text-link")} href="/ai-decides">AI Decides playground</Link>
           </div>
         </section>
         <CourtsideDirectory entries={data.directory} seasonLabel={seasonLabel} checkedAt={data.checkedAt} preseason={preseason} rosterNamesAvailable={data.rosterNamesAvailable} portraits={portraits} />
@@ -191,13 +193,14 @@ export function CourtsideHome({
             checkedAt={data.checkedAt}
             season={hub?.season.seasonYear ?? null}
             aiWeekly={aiWeekly}
+            viewerTeamId={viewerTeamId}
             sources={<Sources edition={edition} />}
           />
           <div className={cs("edition-links")}>
             {previous && <Link href={`/weekly/${previous.id}`}>Previous edition</Link>}
             {newer && <Link href={`/weekly/${newer.id}`}>Newer edition</Link>}
             <Link href="/weekly">Weekly archive</Link>
-            <Link href="/intel">League intel ↗</Link>
+            <Link href="/intel">League intel</Link>
           </div>
         </div>
       </section>
@@ -258,7 +261,7 @@ export function CourtsideHome({
             <div className={cs("section-head")}>
               <h2 id="wire-title">Around the league</h2>
               <Link className={cs("text-link")} href="/transactions">
-                The full wire ↗
+                The full wire
               </Link>
             </div>
             <div className={cs("wire-items")}>
@@ -266,7 +269,7 @@ export function CourtsideHome({
                 <article className={cs("wire-item")} key={item.title}>
                   <time>{item.dateLabel}</time>
                   <a href={item.href.replace("https://goathoopers.com", "")}>
-                    <h3>{item.title} ↗</h3>
+                    <h3>{item.title}</h3>
                     <p>{item.text}</p>
                   </a>
                 </article>
@@ -284,12 +287,12 @@ export function CourtsideHome({
         rosterNamesAvailable={data.rosterNamesAvailable}
         portraits={portraits}
       >
-        <details className={cs("league-details")}>
+        <details className={cs("league-details")} id="your-standings">
           <summary>Live standings, stats & recent moves</summary>
           {hub ? (
             <div className={cs("live-grid")}>
               <div>
-                <StandingsTable standings={hub.standings} />
+                <StandingsTable standings={hub.standings} viewerTeamId={viewerTeamId} />
               </div>
               <div>
                 <StatsStrip stats={hub.stats} />
@@ -310,14 +313,14 @@ export function CourtsideHome({
       <section className={cs("home-tools")} aria-label="League tools">
         <div className={cs("wrap", "home-tools-layout")}>
           <div>
-            <h2><Link href="/stocks">Stocks ↗</Link></h2>
+            <h2><Link href="/stocks">Stocks</Link></h2>
             <p>Player prices, trends and the next move. Inspect the market.</p>
-            <Link className={cs("text-link")} href="/trade-analyzer">Price a trade ↗</Link>
+            <Link className={cs("text-link")} href="/trade-analyzer">Price a trade</Link>
           </div>
           <div>
-            <h2><Link href="/arcade">Arcade ↗</Link></h2>
+            <h2><Link href="/arcade">Arcade</Link></h2>
             <p>Step onto the practice court. Play free throw.</p>
-            <Link className={cs("text-link")} href="/arcade/free-throw">Play free throw ↗</Link>
+            <Link className={cs("text-link")} href="/arcade/free-throw">Play free throw</Link>
           </div>
         </div>
       </section>
@@ -332,7 +335,7 @@ export function CourtsideHome({
           </div>
           <div>
             <Link className={cs("text-link")} href="/weekly">
-              Weekly archive →
+              Weekly archive
             </Link>
             <div className={cs("archive-links")}>
               {archive.map((entry) => (

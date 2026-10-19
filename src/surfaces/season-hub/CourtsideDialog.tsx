@@ -1,5 +1,7 @@
 "use client";
 
+import { ControlIcon } from "@/ui/ControlIcon";
+
 import { useEffect, useId, useRef, type ReactNode } from "react";
 import { cs } from "./CourtsideStyles";
 
@@ -39,7 +41,7 @@ export function CourtsideDialog({
           node.showModal();
         }}
       >
-        {label} <span aria-hidden="true">→</span>
+        {label}
       </button>
       <dialog ref={dialog} className={cs("notes-dialog")} aria-labelledby={titleId}>
         <button
@@ -47,9 +49,7 @@ export function CourtsideDialog({
           className={cs("dialog-close")}
           aria-label="Close matchup notes"
           onClick={() => dialog.current?.close()}
-        >
-          ✕
-        </button>
+        ><ControlIcon name="close" /></button>
         <h2 id={titleId}>{title}</h2>
         {children}
       </dialog>

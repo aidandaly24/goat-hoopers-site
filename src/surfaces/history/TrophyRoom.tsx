@@ -26,7 +26,7 @@ export function TrophyRoom({ history }: { history: LeagueHistory }) {
         <div className={styles.sectionHead}>
           <h2 className={styles.sectionTitle}>Champions&apos; Wall</h2>
           <Link href="/history/champions" className={styles.more}>
-            View the wall →
+            View the wall
           </Link>
         </div>
         <div className={styles.banners}>
@@ -47,7 +47,7 @@ export function TrophyRoom({ history }: { history: LeagueHistory }) {
         <div className={styles.sectionHead}>
           <h2 className={styles.sectionTitle}>Hall of Fame</h2>
           <Link href="/history/hall-of-fame" className={styles.more}>
-            All inductees →
+            All inductees
           </Link>
         </div>
         <HallOfFameList entries={history.hallOfFame.slice(0, 3)} />

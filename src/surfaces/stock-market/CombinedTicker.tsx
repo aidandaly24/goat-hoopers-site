@@ -87,7 +87,7 @@ function StockItems({ stocks }: { stocks: TickerStock[] }) {
               "NEW"
             ) : (
               <>
-                {s.trend === "up" ? "▲" : s.trend === "down" ? "▼" : "▪"}{" "}
+                {s.trend === "up" ? "Up" : s.trend === "down" ? "Down" : "Flat"}{" "}
                 {formatPct(s.changePct)}
               </>
             )}
@@ -199,7 +199,7 @@ export function CombinedTicker({
       aria-label={meta.aria}
       title={meta.title}
     >
-      {meta.label}&nbsp;→
+      {meta.label}&nbsp;
     </a>
   ) : (
     <Link
@@ -208,7 +208,7 @@ export function CombinedTicker({
       aria-label={meta.aria}
       title={meta.title}
     >
-      {meta.label}&nbsp;→
+      {meta.label}&nbsp;
     </Link>
   );
 

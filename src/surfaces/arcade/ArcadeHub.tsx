@@ -6,6 +6,7 @@
  */
 import type { PlayableGame } from "@/domain/arcade";
 import Link from "next/link";
+import controls from "@/ui/controls.module.css";
 import { GameCard } from "./GameCard";
 import styles from "./ArcadeHub.module.css";
 
@@ -18,8 +19,8 @@ export function ArcadeHub({ games }: { games: readonly PlayableGame[] }) {
           <h1 className={styles.title}>The Arcade</h1>
           <p className={styles.sub}>Find your touch. Build your five. Make your next play.</p>
           <nav className={styles.shortcuts} aria-label="Jump into a game">
-            {games.map(game => <Link key={game.id} href={`/arcade/${game.id}`} prefetch={false}>{game.name} <span aria-hidden="true">↗</span></Link>)}
-            <Link href="/arcade/leaderboard" prefetch={false}>Weekly leaderboard <span aria-hidden="true">↗</span></Link>
+            {games.map(game => <Link key={game.id} href={`/arcade/${game.id}`} prefetch={false} className={controls.secondary}>{game.name}</Link>)}
+            <Link href="/arcade/leaderboard" prefetch={false} className={controls.secondary}>Weekly leaderboard</Link>
           </nav>
         </header>
         <section className={styles.games} aria-label="Available games">

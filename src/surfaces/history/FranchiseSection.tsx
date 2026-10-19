@@ -26,7 +26,7 @@ export function FranchiseSection({
               "—"
             ) : (
               <>
-                <span className={styles.star}>★</span>{" "}
+
                 {h.titleSeasons.join(", ")}
               </>
             )}

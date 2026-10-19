@@ -1,3 +1,31 @@
+# Practice environment visual correction — 2026-10-19
+
+Issue #199; isolated branch `frontend/free-throw-environment`, based on
+`2e2e1c3e54bfca13dc047dc8b0d7449f51ce8fb8`. This section records the bounded
+visual scope; older release receipts below remain bound to their original heads.
+
+- Static dusk sky, distant trees/buildings, low bleachers and 72 instanced
+  spectator silhouettes. No new downloads, lights, shadow maps or dependencies.
+- React's existing `phase === "result"`, outcome and consecutive-make streak
+  drive the scene. No duplicate scoring logic; no reaction during aim, charge
+  or flight. A 420ms reaction ends without an idle loop. Reduced motion uses a
+  still pose; hidden/offscreen, reset, context loss and unmount cancel frames.
+- Camera/lighting, all four protected mechanics/type files, manifest and three
+  runtime GLBs remain unchanged from the base. Practice stays public/local-only;
+  no timer, Weekly Challenge, ranked protocol, accounts, prizes or data changes.
+- `FreeThrowEnvironment.test.ts` checks distinct bounded cues, stable reduced
+  motion, outside-court crowd placement, no added lights/shadows, and the
+  5,000-triangle / ten-call ceilings. Existing game tests remain unchanged.
+- Final checks and desktop/mobile animation/interaction receipts accompany the
+  exact final head in the handoff; no release or production verification is
+  claimed by this document.
+- Reference `libfile_3a32394d846481919ee3478093d5d323` resolved as a PNG, but
+  the supported transfer failed with `library file transfer failed: download
+  failed`. Image read returned an asset pointer rather than pixels. The source
+  screenshot was not visually reviewed; local rendered captures were inspected.
+
+---
+
 # Final current-main integration — 2026-10-08
 
 Publication base: `a327e9c960259025ffc736da7004408942736106`, including the

@@ -58,7 +58,7 @@ export function Leaderboard({
                 }`}
                 aria-label={`View ${e.displayName}`}
               >
-                <span className={styles.rank}>{medal(e.rank)}</span>
+                <span className={styles.rank}>{e.rank}</span>
                 <span className={styles.name}>{e.displayName}</span>
                 <span className={styles.num}>{e.score}</span>
               </Link>
@@ -85,7 +85,7 @@ function Row({
       className={`${styles.row} ${you ? styles.you : ""}`}
       aria-label={`View ${entry.displayName}`}
     >
-      <span className={styles.rank}>{medal(entry.rank)}</span>
+      <span className={styles.rank}>{entry.rank}</span>
       <span className={styles.name}>
         {entry.displayName}
         {you && <span className={styles.youTag}>you</span>}
@@ -93,11 +93,4 @@ function Row({
       <span className={styles.num}>{entry.score}</span>
     </Link>
   );
-}
-
-function medal(rank: number): string {
-  if (rank === 1) return "🥇";
-  if (rank === 2) return "🥈";
-  if (rank === 3) return "🥉";
-  return String(rank);
 }

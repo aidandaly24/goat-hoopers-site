@@ -29,8 +29,7 @@ export function ChampionsWall({
         ))}
       </div>
       <p className={styles.back}>
-        <Link href="/history" className={styles.more}>
-          ← Back to the trophy room
+        <Link href="/history" className={styles.more}> Back to the trophy room
         </Link>
       </p>
     </div>
