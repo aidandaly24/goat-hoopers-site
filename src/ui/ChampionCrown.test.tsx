@@ -65,6 +65,50 @@ describe("ChampionCrown presentations", () => {
   });
 });
 
+describe("TeamAvatar accessible champion status", () => {
+  it("exposes Reigning champion text for a champion with an image avatar", () => {
+    const html = renderToStaticMarkup(
+      createElement(TeamAvatar, {
+        name: "Champs",
+        avatar: "abc123",
+        isChampion: true,
+      }),
+    );
+    expect(html).toContain('class="visually-hidden"');
+    expect(html).toContain("Reigning champion");
+    // Badge stays non-interactive and aria-hidden; the text carries meaning.
+    expect(html).toContain('data-champion-crown="badge"');
+    expect(html).toContain('aria-hidden="true"');
+    expect(html).not.toContain("<button");
+    expect(html).toContain('alt="Champs avatar"');
+  });
+
+  it("exposes Reigning champion text for a champion with initials", () => {
+    const html = renderToStaticMarkup(
+      createElement(TeamAvatar, {
+        name: "Champs",
+        avatar: null,
+        isChampion: true,
+      }),
+    );
+    expect(html).toContain('class="visually-hidden"');
+    expect(html).toContain("Reigning champion");
+    expect(html).toContain('data-champion-crown="badge"');
+    expect(html).not.toContain("<button");
+  });
+
+  it("renders no champion status text for non-champions", () => {
+    for (const avatar of ["abc123", null]) {
+      const html = renderToStaticMarkup(
+        createElement(TeamAvatar, { name: "Also-rans", avatar }),
+      );
+      expect(html).not.toContain("Reigning champion");
+      expect(html).not.toContain("visually-hidden");
+      expect(html).not.toContain("data-champion-crown");
+    }
+  });
+});
+
 describe("reigning champion derivation", () => {
   it("derives the champion from the verified 2025 placements, never a hardcoded id", () => {
     const derived = Object.entries(SEASON_2025_PLACEMENTS).find(

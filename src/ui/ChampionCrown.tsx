@@ -47,7 +47,8 @@ function CrownArtwork() {
  * - non-interactive badge: a plain aria-hidden span for avatars that live
  *   inside links/buttons (matchup buttons, team rows) — nested interactive
  *   content is invalid HTML and breaks hydration. The champion status is
- *   conveyed by text near those avatars ("2025 champion"), never by the
+ *   conveyed by TeamAvatar's visually-hidden status text (plus any visible
+ *   text the surface prints nearby, e.g. "2025 champion"), never by the
  *   badge itself.
  */
 export function ChampionCrown({
