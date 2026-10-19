@@ -23,6 +23,7 @@
 .dragging { cursor: grabbing; }
 .canvas { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
 .canvas canvas { display: block; width: 100%; height: 100%; }
+.canvas::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, color-mix(in srgb, var(--gh-bg) 82%, transparent), transparent 35%, transparent 78%, color-mix(in srgb, var(--gh-bg) 28%, transparent)); }
 .topHud { position: absolute; z-index: 4; top: var(--gh-s4); left: var(--gh-s4); right: var(--gh-s4); display: flex; align-items: flex-start; justify-content: space-between; gap: var(--gh-s3); pointer-events: none; }
 .identity { display: flex; align-items: center; gap: var(--gh-s2); min-width: 0; }
 .identity h1 { font-size: 1.3rem; margin: 0; line-height: 1.1; }

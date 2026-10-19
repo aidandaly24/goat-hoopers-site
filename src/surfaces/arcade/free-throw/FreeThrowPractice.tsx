@@ -28,6 +28,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
   const mount = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const controller = useRef<Controller | null>(null);
+  const crowdView = useRef<import("@/three/FreeThrowScene").PracticeView | null>(null);
   const aimRef = useRef<PracticeAim>({ ...DEFAULT_AIM });
   const spotRef = useRef<PracticeVector>({ ...court.release });
   const [spot, setSpot] = useState<PracticeVector>({ ...court.release });
@@ -43,6 +44,12 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
   const [reduced, setReduced] = useState(false);
   const [help, setHelp] = useState(false);
   const [outcome, setOutcome] = useState<"made" | "miss" | null>(null);
+
+  // Consume the existing completed result; never infer a basket or streak
+  // in the scene, and keep scenery still throughout aim/charge/flight.
+  useEffect(() => {
+    crowdView.current?.react(phase === "result" && outcome ? { outcome, streak: stats.streak } : null, reduced);
+  }, [phase, outcome, stats.streak, reduced]);
 
   useEffect(() => {
     const element = mount.current;
@@ -83,6 +90,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
       const created = await createFreeThrowScene(element, court, assets, failed);
       if (disposed) { created.dispose(); return; }
       view = created;
+      crowdView.current = created;
       setReduced(reduceMotion);
       const draw = () => view?.draw(ball,
         !flying && !resolved && guideRef.current
@@ -257,6 +265,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
       if (retryTimer !== null) clearTimeout(retryTimer);
       charge.cancel();
       controller.current = null;
+      if (crowdView.current === view) crowdView.current = null;
       view?.dispose();
     };
   }, [court, assets]);

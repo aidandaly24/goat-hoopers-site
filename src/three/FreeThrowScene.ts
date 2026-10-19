@@ -2,9 +2,11 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import type { PracticeAim, PracticeAssetPack, PracticeBall, PracticeCourt } from "@/domain/arcade/free-throw";
+import { createFreeThrowEnvironment, CROWD_REACTION_MS, type CrowdResult } from "./FreeThrowEnvironment";
 
 export type PracticeView = {
   draw: (ball: PracticeBall, guide: { aim: PracticeAim; points: THREE.Vector3[] } | null, reduced: boolean) => void;
+  react: (result: CrowdResult | null, reduced: boolean) => void;
   dispose: () => void;
 };
 
@@ -24,7 +26,13 @@ export async function createFreeThrowScene(
   renderer.domElement.setAttribute("aria-hidden", "true");
   mount.appendChild(renderer.domElement);
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(color("--gh-bg"), 13, 23);
+  const scenery = createFreeThrowEnvironment(scene, {
+    skyTop: color("--gh-border-strong").offsetHSL(0.01, 0.16, 0.12),
+    horizon: color("--gh-text-dim").lerp(color("--gh-gold-soft"), 0.28),
+    ground: color("--gh-bg-raised").lerp(color("--gh-text-dim"), 0.2),
+    structure: color("--gh-border-strong"), distant: color("--gh-bg-raised"),
+    crowd: color("--gh-text-dim"), accent: color("--gh-gold-deep"),
+  });
   const camera = new THREE.PerspectiveCamera(53, 1, 0.05, 40);
   camera.position.set(0, 2.5, 6.8);
   camera.lookAt(0, 2.5, 0);
@@ -36,15 +44,27 @@ export async function createFreeThrowScene(
   let disposed = false;
   let lost = false;
   let observer: ResizeObserver | null = null;
+  let intersection: IntersectionObserver | null = null;
   let environment: THREE.WebGLRenderTarget | null = null;
-  const contextLost = (event: Event) => { event.preventDefault(); lost = true; onContextLost(); };
+  let reactionRaf = 0;
+  let reaction: CrowdResult | null = null;
+  let reactionProgress = 0;
+  let reactionStill = false;
+  let inView = true;
+  let visibilityChanged = () => {};
+  const stopReaction = () => { cancelAnimationFrame(reactionRaf); reactionRaf = 0; };
+  const contextLost = (event: Event) => { event.preventDefault(); lost = true; stopReaction(); onContextLost(); };
   renderer.domElement.addEventListener("webglcontextlost", contextLost);
   const dispose = () => {
     if (disposed) return;
     disposed = true;
+    stopReaction();
     observer?.disconnect();
+    intersection?.disconnect();
+    document.removeEventListener("visibilitychange", visibilityChanged);
     renderer.domElement.removeEventListener("webglcontextlost", contextLost);
     disposeResources(scene);
+    scenery.dispose();
     environment?.dispose();
     renderer.dispose();
     renderer.domElement.remove();
@@ -97,12 +117,24 @@ export async function createFreeThrowScene(
     const draw: PracticeView["draw"] = (state, guide, reduced) => {
       if (disposed || lost) return;
       lastBall = state; lastGuide = guide; lastReduced = reduced;
+      if (!state.finished && reaction) {
+        stopReaction(); reaction = null; reactionProgress = 0; reactionStill = false;
+        scenery.pose(null, 0);
+        renderer.domElement.dataset.crowdReaction = "none";
+        renderer.domElement.dataset.crowdMotion = "idle";
+      } else if (reduced && reaction && !reactionStill) {
+        stopReaction(); reactionStill = true;
+        scenery.pose(reaction, reactionProgress, true);
+        renderer.domElement.dataset.crowdMotion = "still";
+      }
       const newOrigin = [state.origin.x, state.origin.y, state.origin.z].join(",");
       if (newOrigin !== originKey) {
         originKey = newOrigin;
         const away = new THREE.Vector3(state.origin.x - court.rim.center.x, 0, state.origin.z - court.rim.center.z).normalize();
         camera.position.set(state.origin.x + away.x * 2.609, state.origin.y + 0.6, state.origin.z + away.z * 2.609);
         camera.lookAt(court.rim.center.x, state.origin.y + 0.6, court.rim.center.z);
+        scenery.face(camera.position);
+        scenery.pose(reaction, reactionProgress, reactionStill);
         renderer.domElement.dataset.shotOrigin = newOrigin;
       }
       ball.position.set(state.position.x, state.position.y, state.position.z);
@@ -125,6 +157,36 @@ export async function createFreeThrowScene(
       }
       renderer.render(scene, camera);
     };
+    const redraw = () => { if (lastBall) draw(lastBall, lastGuide, lastReduced); };
+    const settleReaction = () => {
+      stopReaction(); reactionStill = true;
+      scenery.pose(reaction, reactionProgress, true);
+      renderer.domElement.dataset.crowdMotion = reaction ? "still" : "idle";
+    };
+    // The React score owner calls this only for a completed result. The
+    // renderer cannot alter score, shot timing, retry or the simulation.
+    const react: PracticeView["react"] = (result, reduced) => {
+      if (disposed || lost) return;
+      stopReaction();
+      reaction = lastBall?.finished ? result : null;
+      reactionProgress = 0; reactionStill = reduced || document.hidden || !inView;
+      renderer.domElement.dataset.crowdReaction = !reaction ? "none" : reaction.outcome === "made" && reaction.streak >= 3 ? "streak" : reaction.outcome;
+      renderer.domElement.dataset.crowdMotion = !reaction ? "idle" : reactionStill ? "still" : "animated";
+      scenery.pose(reaction, 0, reactionStill);
+      if (!document.hidden && inView) redraw();
+      if (!reaction || reactionStill) return;
+      const started = performance.now();
+      const frame = (now: number) => {
+        reactionRaf = 0;
+        if (disposed || lost || !reaction || document.hidden || !inView) return;
+        reactionProgress = Math.min(1, (now - started) / CROWD_REACTION_MS);
+        scenery.pose(reaction, reactionProgress);
+        redraw();
+        if (reactionProgress < 1) reactionRaf = requestAnimationFrame(frame);
+        else renderer.domElement.dataset.crowdMotion = "idle";
+      };
+      reactionRaf = requestAnimationFrame(frame);
+    };
     const resize = () => {
       if (disposed || lost) return;
       const width = Math.max(mount.clientWidth, 1), height = Math.max(mount.clientHeight, 1);
@@ -136,8 +198,21 @@ export async function createFreeThrowScene(
     };
     observer = new ResizeObserver(resize);
     observer.observe(mount);
+    visibilityChanged = () => {
+      if (document.hidden) settleReaction();
+      else if (inView) redraw();
+    };
+    document.addEventListener("visibilitychange", visibilityChanged);
+    intersection = new IntersectionObserver(entries => {
+      inView = entries[0]?.isIntersecting ?? false;
+      if (!inView) settleReaction();
+      else if (!document.hidden) redraw();
+    });
+    intersection.observe(mount);
+    renderer.domElement.dataset.environment = "sky bleachers crowd";
+    renderer.domElement.dataset.crowdMotion = "idle";
     resize();
-    return { draw, dispose };
+    return { draw, react, dispose };
   } catch (error) {
     dispose();
     throw error;
@@ -149,6 +224,7 @@ function disposeResources(root: THREE.Object3D) {
   const materials = new Set<THREE.Material>();
   const textures = new Set<THREE.Texture>();
   root.traverse(object => {
+    if (object instanceof THREE.InstancedMesh) object.dispose();
     const mesh = object as THREE.Mesh;
     if (mesh.geometry) geometries.add(mesh.geometry);
     if (mesh.material) (Array.isArray(mesh.material) ? mesh.material : [mesh.material]).forEach(material => {
