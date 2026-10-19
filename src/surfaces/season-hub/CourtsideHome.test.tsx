@@ -49,6 +49,9 @@ describe('integrated personalized edition', () => {
       expect(html).toContain('data-hero');
       expect(html).toContain('Your featured matchup');
       expect(html).toContain(title);
+      // Both face-off sides carry their layout classes (the away side's
+      // modifier must resolve through cs() as its own class, not a space).
+      expect(html).toContain('hero-side-away');
       expect(html).toContain('href="/team"');
       expect(html).toContain(`href="/teams/${id}#team-roster"`);
       // Roster value is a headline exactly once on the whole page.

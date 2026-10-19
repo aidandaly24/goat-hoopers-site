@@ -59,7 +59,7 @@ function HeroSide({ team, star, portraits, champion, own, recordLabel, recordTex
   away?: boolean;
 }) {
   return (
-    <div className={cs(away ? "hero-side hero-side-away" : "hero-side")} style={{ "--hero-glow": teamColorVar(team.id) } as CSSProperties}>
+    <div className={away ? cs("hero-side", "hero-side-away") : cs("hero-side")} style={{ "--hero-glow": teamColorVar(team.id) } as CSSProperties}>
       <span className={cs("hero-star")}>
         {star
           ? <PlayerHeadshot portraitSrc={portraits?.[star.id]} espnId={star.espnId} name={star.name} teamId={team.id} size={112} />

@@ -1967,6 +1967,10 @@
 
 @media (max-width: 40rem) {
   .your-top3 { grid-template-columns: minmax(0, 1fr); }
+  /* Phone face-off: the countdown/VS band spans the top, the two stars
+   * face off beneath it at half width each — no squeezed columns. */
+  .hero-faceoff { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .hero-center { grid-column: 1 / -1; order: -1; padding-top: 0; }
   .countdown-cell { min-width: 2rem; }
   .countdown-value { font-size: var(--gh-cs-small-stat); }
   .countdown-caption { display: none; }
