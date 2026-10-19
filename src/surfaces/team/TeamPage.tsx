@@ -23,6 +23,8 @@ type Props = {
   rewards: Reward[];
   /** The site display name chosen at claim. */
   displayName: string;
+  /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
+  championTeamId?: string | null;
 };
 
 /** $12.34 — per-player prices show cents (stocks-page convention). */
@@ -49,7 +51,7 @@ function formatFaabTotal(total: number): string {
  * players with quotes"); the market's pricing basis (preseason vs
  * in-season) is labeled while it applies.
  */
-export function TeamPage({ team, players, rosterValue, rewards }: Props) {
+export function TeamPage({ team, players, rosterValue, rewards, championTeamId }: Props) {
   const pending = rewards.filter((r) => !r.settled);
   const pendingTotal = pending.reduce((sum, r) => sum + r.amountFaab, 0);
   const priceById = new Map(
@@ -59,7 +61,7 @@ export function TeamPage({ team, players, rosterValue, rewards }: Props) {
   return (
     <div className={styles.page}>
       <Card className={styles.identity}>
-        <TeamAvatar name={team.name} avatar={team.avatar} />
+        <TeamAvatar name={team.name} avatar={team.avatar} isChampion={team.id === championTeamId} />
         <div className={styles.identityText}>
           <p className={styles.eyebrow}>My team</p>
           <h1 className={styles.teamName}>{team.name}</h1>

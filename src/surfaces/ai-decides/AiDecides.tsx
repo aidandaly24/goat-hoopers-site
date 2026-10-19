@@ -18,7 +18,7 @@ type Ready = Extract<State, { status: "ready" }>;
 type Picker = { mode: "wins" | "edge"; opener: HTMLElement; ids: [string, string]; path: string };
 
 /** Public surface. The optional transport is an offline fixture seam, never a provider client. */
-export function AiDecides({ data, teams, signedIn, authUnavailable = false, decide = postDecision, publishWeekly = postWeeklyPreviews, loadContext = postContextPreview, refreshWeek1 }: { data: AiDecidesData; teams: AiTeam[]; signedIn: boolean; authUnavailable?: boolean; decide?: DecisionTransport; publishWeekly?: WeeklyTransport; loadContext?: ContextTransport; refreshWeek1?: WeeklyTransport }) {
+export function AiDecides({ data, teams, signedIn, authUnavailable = false, decide = postDecision, publishWeekly = postWeeklyPreviews, loadContext = postContextPreview, refreshWeek1, championTeamId }: { data: AiDecidesData; teams: AiTeam[]; signedIn: boolean; authUnavailable?: boolean; decide?: DecisionTransport; publishWeekly?: WeeklyTransport; loadContext?: ContextTransport; refreshWeek1?: WeeklyTransport; /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */ championTeamId?: string | null }) {
   const router = useRouter();
   const [prompt, setPrompt] = useState("");
   const [choices, setChoices] = useState(["", ""]);
@@ -205,7 +205,7 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
 
   return <div className={styles.page} data-paused={paused || reduced} data-visible={visible}>
     <div className={styles.pageHeading}><div><h1>AI Decides</h1><p>Saved weekly picks up top. Your question and choices below.</p></div><span className={styles.experimental}>Experimental</span></div>
-    <AiWeekly data={{ ...data, weekly }} teams={teams} onPair={(ids, opener) => openPicker("wins", opener, ids)} />
+    <AiWeekly data={{ ...data, weekly }} teams={teams} onPair={(ids, opener) => openPicker("wins", opener, ids)} championTeamId={championTeamId} />
     {canRun && weekly.status !== "ready" && <div className={styles.publication}>
       <button type="button" aria-disabled={publication !== "idle"} onClick={publish}>{publication === "pending" ? "Publishing previews…" : publication === "failed" ? "Publication needs review" : "Publish weekly previews"}</button>
       <p className={styles.helper}>Generates one shared batch of five previews within the existing model budget. Incomplete attempts need review before retrying.</p>

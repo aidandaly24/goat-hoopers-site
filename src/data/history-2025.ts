@@ -57,6 +57,23 @@ export const SEASON_2025_PLACEMENTS: Record<string, number> = {
   "8": 10,
 };
 
+/**
+ * The reigning champion's roster id — derived, never hardcoded.
+ *
+ * This placements record is the single canonical source: the clubhouse
+ * directory's `previousSeason.finish` is built from it (see
+ * src/data/courtside-home.ts), so the "2025 champion" label and every
+ * TeamAvatar crown agree by construction. Null when no entry carries a
+ * 1st-place finish (unknown) — never a guess, never the current league's
+ * (still empty) winners bracket.
+ */
+export function reigningChampionRosterId(): string | null {
+  for (const [rosterId, finish] of Object.entries(SEASON_2025_PLACEMENTS)) {
+    if (finish === 1) return rosterId;
+  }
+  return null;
+}
+
 export const LEAGUE_RECORDS_2025: LeagueRecord[] = [
   {
     id: "most-points-season",

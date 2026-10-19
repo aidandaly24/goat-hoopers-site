@@ -187,12 +187,12 @@ export function CourtsideDirectory({
                     aria-label={`${team.name}, ${entry.players.length} players; expand roster${preseason && prior?.ownerNote ? "; 2025 record under previous manager" : ""}`}
                   >
                     <div className={cs("team-identity")}>
-                      <TeamAvatar name={team.name} avatar={team.avatar} />
+                      <TeamAvatar name={team.name} avatar={team.avatar} isChampion={prior?.finish === 1} />
                       <div>
                         <h3>{team.name}</h3>
                         <p>
                           {team.managerName}
-                          {team.id === "5" ? " · 2025 champion" : ""}
+                          {prior?.finish === 1 ? ` · ${prior.season} champion` : ""}
                         </p>
                       </div>
                     </div>

@@ -15,9 +15,12 @@ import styles from "./PlayoffOdds.module.css";
  */
 export function PlayoffOdds({
   odds,
+  championTeamId,
 }: {
   /** From getPlayoffOdds(). Null before the season tips off. */
   odds: PlayoffOdds[] | null;
+  /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
+  championTeamId?: string | null;
 }) {
   return (
     <Card>
@@ -32,7 +35,7 @@ export function PlayoffOdds({
           <ol className={styles.list}>
             {odds.map((o) => (
               <li key={o.team.id} className={styles.row}>
-                <TeamAvatar name={o.team.name} avatar={o.team.avatar} />
+                <TeamAvatar name={o.team.name} avatar={o.team.avatar} isChampion={o.team.id === championTeamId} />
                 <Link href={`/teams/${o.team.id}`} className={styles.name}>
                   {o.team.name}
                 </Link>

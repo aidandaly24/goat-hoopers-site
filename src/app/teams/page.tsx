@@ -5,6 +5,7 @@
  * to the teams surface.
  */
 import { getTeams } from "@/data/league";
+import { reigningChampionRosterId } from "@/data/history-2025";
 import { TeamDirectory } from "@/surfaces/teams/TeamDirectory";
 import { SectionNav } from "@/ui/SectionNav";
 import type { Metadata } from "next";
@@ -24,7 +25,7 @@ export default async function TeamsPage() {
     <>
       <h1 className="visually-hidden">Teams</h1>
       <SectionNav current="teams" />
-      <TeamDirectory teams={teams} />
+      <TeamDirectory teams={teams} championTeamId={reigningChampionRosterId()} />
     </>
   );
 }

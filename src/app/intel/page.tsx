@@ -12,6 +12,7 @@ import {
   getRecordBook,
 } from "@/data/league";
 import { IntelHub } from "@/surfaces/intel/IntelHub";
+import { reigningChampionRosterId } from "@/data/history-2025";
 import { SectionNav } from "@/ui/SectionNav";
 import type { Metadata } from "next";
 
@@ -34,7 +35,7 @@ export default async function IntelPage() {
   return (
     <>
       <SectionNav current="intel" />
-      <IntelHub previews={previews} rankings={rankings} odds={odds} book={book} />
+      <IntelHub previews={previews} rankings={rankings} odds={odds} book={book} championTeamId={reigningChampionRosterId()} />
     </>
   );
 }

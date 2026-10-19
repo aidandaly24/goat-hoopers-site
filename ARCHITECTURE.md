@@ -160,7 +160,10 @@ src/
                  # getRecordBook, getMatchupPreviews (data tools),
                  # getDefendingChampion (champion roster id from the
                  # playoff winners bracket; null until someone wins —
-                 # feeds TeamAvatar's isChampion).
+                 # NOT the source for TeamAvatar's isChampion: the
+                 # current bracket is empty until this season crowns
+                 # someone, so surfaces use reigningChampionRosterId()
+                 # from history-2025.ts instead).
     manager-archetypes.ts # GM IQ loaders: getManagerArchetypes /
                  # getManagerArchetype — pure reads of the baked 2025
                  # metrics (gm-archetypes-2025.ts) through the domain's
@@ -322,12 +325,23 @@ src/
                  # Every surface uses these.
                  # ChampionCrown is the defending champion's crown: a crisp
                  # inline SVG in site gold, tilted a few degrees and nudged
-                 # off-center so it reads hand-placed. It's a real button —
-                 # click/Enter/Space fires a 360° overshoot-and-settle spin
-                 # (off under prefers-reduced-motion). TeamAvatar takes
-                 # isChampion and perches the crown; surfaces opt in with
-                 # the id from getDefendingChampion(). No crown renders
-                 # until the league has a champion.
+                 # off-center so it reads hand-placed. Two presentations:
+                 # the interactive button (click/Enter/Space fires a 360°
+                 # overshoot-and-settle spin, off under
+                 # prefers-reduced-motion) is for standalone placements
+                 # only; the aria-hidden badge (interactive={false}) is for
+                 # avatars inside links/buttons, where nested interactive
+                 # content is invalid. TeamAvatar always renders the badge
+                 # when isChampion is true. Surfaces opt in with the
+                 # reigning champion's roster id from
+                 # reigningChampionRosterId() (src/data/history-2025.ts) —
+                 # derived from the verified 2025 placements, the same
+                 # canonical record the clubhouse directory's
+                 # previousSeason.finish is built from. Do NOT use
+                 # getDefendingChampion(): it reads the current league's
+                 # winners bracket, which is empty until this season crowns
+                 # someone. No crown renders while the derivation is
+                 # unknown.
                  # PlayerRow is the linked player identity (headshot +
                  # name -> /player/[sleeperId] + position pill + NBA team);
                  # every player name site-wide renders through it.

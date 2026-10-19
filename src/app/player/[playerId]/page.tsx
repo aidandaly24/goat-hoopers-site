@@ -7,6 +7,7 @@
  */
 import { notFound } from "next/navigation";
 import { getPlayerDetail, getTeams } from "@/data/league";
+import { reigningChampionRosterId } from "@/data/history-2025";
 import { PlayerPage } from "@/surfaces/player/PlayerPage";
 
 export const revalidate = 300; // refresh league data every 5 minutes
@@ -22,5 +23,5 @@ export default async function PlayerDetailPage({
     getTeams(),
   ]);
   if (!detail) notFound();
-  return <PlayerPage detail={detail} teams={teams} />;
+  return <PlayerPage detail={detail} teams={teams} championTeamId={reigningChampionRosterId()} />;
 }
