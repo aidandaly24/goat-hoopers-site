@@ -1189,8 +1189,11 @@ offset so the best game of 750 is reachable from real deals). Game state
 is a pure state machine in the same module (`PricedInGameState`): every
 result is tied to one complete deal identity (each round's player, price
 and line), Play again locks input while the re-deal refresh is in
-flight, and a refreshed deal with a different identity replaces the
-game atomically — the page keys the surface by that identity. The
+flight, and the delivery that answers the re-deal replaces the game
+atomically — the state records the exact delivery it consumed, so a
+refresh that redealt identical content still completes the request
+(the page keys the surface by deal identity, which an identical
+redeal leaves unchanged). The
 surface prints the scoring rule, labels the market's `pricingBasis`
 while prices are preseason-modeled, and renders an explicit unavailable
 state when the market cannot deal a full game — it never invents prices.

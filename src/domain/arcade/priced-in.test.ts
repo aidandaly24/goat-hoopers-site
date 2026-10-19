@@ -241,6 +241,65 @@ describe("game state", () => {
     expect(receivePricedInDeal(called, deal(20, 18))).toBe(called);
   });
 
+  it("an identical re-deal completes the request and replays the deal fresh", () => {
+    // The re-review counterexample: the refresh legitimately redealt
+    // the exact same content — five $20 players, $18 lines. Content
+    // identity cannot tell a completed identical replay from a
+    // pending one, so the delivery itself has to: the refreshed array
+    // is a new delivery, and it answers the outstanding request.
+    const rounds = deal(20, 18);
+    const finished = playOut(startPricedInGame(rounds));
+    expect(total(finished)).toBe(PRICED_IN_MAX_SCORE);
+
+    const waiting = requestPricedInRedeal(finished);
+    expect(waiting.redealing).toBe(true);
+
+    const replayed = receivePricedInDeal(waiting, structuredClone(rounds));
+    expect(replayed).not.toBe(waiting);
+    expect(replayed.redealing).toBe(false);
+    expect(replayed.finished).toBe(false);
+    expect(replayed.roundIndex).toBe(0);
+    expect(replayed.results).toEqual([]);
+    expect(replayed.dealIdentity).toBe(waiting.dealIdentity);
+    expect(replayed.rounds).toEqual(rounds);
+    expect(total(replayed)).toBe(0);
+
+    // The replayed game is live: its first call scores against the
+    // deal, and playing it out finishes and re-arms Play again.
+    const called = callPricedIn(replayed, "over");
+    expect(called.results[0]?.points).toBe(150);
+    const refinished = playOut(replayed);
+    expect(refinished.finished).toBe(true);
+    expect(total(refinished)).toBe(PRICED_IN_MAX_SCORE);
+    expect(requestPricedInRedeal(refinished).redealing).toBe(true);
+  });
+
+  it("a render still holding the old props does not complete the re-deal", () => {
+    // While the refresh is in flight the surface re-renders with the
+    // very delivery the finished game already consumed. That is the
+    // pending state, not an answer: the lock stands, the old results
+    // are retained and stale input stays refused.
+    const rounds = deal(20, 18);
+    const finished = playOut(startPricedInGame(rounds));
+    const waiting = requestPricedInRedeal(finished);
+
+    expect(receivePricedInDeal(waiting, rounds)).toBe(waiting);
+    expect(waiting.finished).toBe(true);
+    expect(waiting.results).toHaveLength(PRICED_IN_ROUND_COUNT);
+    expect(callPricedIn(waiting, "over")).toBe(waiting);
+    expect(advancePricedIn(waiting)).toBe(waiting);
+  });
+
+  it("an unsolicited identical refresh during a running game does not reset it", () => {
+    // A refresh nobody asked for delivers the same deal content in a
+    // new array. With no re-deal outstanding there is nothing to
+    // complete, so the running game — call and all — stands.
+    const rounds = deal(20, 18);
+    const called = callPricedIn(startPricedInGame(rounds), "over");
+    expect(receivePricedInDeal(called, structuredClone(rounds))).toBe(called);
+    expect(called.results).toHaveLength(1);
+  });
+
   it("play again is only armed from the finished state", () => {
     const start = startPricedInGame(deal(20, 18));
     expect(requestPricedInRedeal(start)).toBe(start);

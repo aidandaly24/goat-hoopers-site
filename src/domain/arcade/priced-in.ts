@@ -191,13 +191,31 @@ export type PricedInResult = {
  *   and advances are ignored — the old deal's rounds can sit on
  *   screen but cannot be played;
  * - delivering a deal whose identity differs starts a fresh game
- *   atomically; delivering the same deal leaves the state standing.
+ *   atomically; delivering the same deal leaves a running game
+ *   standing;
+ * - the state records the exact delivery it last consumed
+ *   (`deliveredRounds`). Content alone cannot distinguish a pending
+ *   refresh from a completed one — the refresh may legitimately
+ *   redeal identical content — so while a re-deal is outstanding,
+ *   any delivery other than the recorded one is that request's
+ *   answer and completes it: a different deal starts fresh, and an
+ *   identical one replays the same deal as a fresh game. The
+ *   recorded delivery itself (the render that still has the old
+ *   props) leaves the lock standing.
  */
 export type PricedInGameState = {
   /** Identity of the deal this state belongs to. */
   dealIdentity: string;
   /** The rounds of that deal. */
   rounds: PricedInRound[];
+  /**
+   * The exact rounds array last consumed as a delivery. Deliveries
+   * are told apart by this reference, never by content alone: while
+   * `redealing`, a `receivePricedInDeal` carrying any other array is
+   * the outstanding request's answer, even when its content — and so
+   * its deal identity — is identical to the deal already on screen.
+   */
+  deliveredRounds: readonly PricedInRound[];
   roundIndex: number;
   results: PricedInResult[];
   finished: boolean;
@@ -210,6 +228,7 @@ export function startPricedInGame(rounds: readonly PricedInRound[]): PricedInGam
   return {
     dealIdentity: pricedInDealIdentity(rounds),
     rounds: [...rounds],
+    deliveredRounds: rounds,
     roundIndex: 0,
     results: [],
     finished: false,
@@ -218,17 +237,29 @@ export function startPricedInGame(rounds: readonly PricedInRound[]): PricedInGam
 }
 
 /**
- * Deliver a (possibly refreshed) deal to an in-progress game: a
- * different identity starts a fresh game on the new rounds; the same
- * identity is the same deal and the state stands untouched.
+ * Deliver a (possibly refreshed) deal to an in-progress game:
+ *
+ * - a different identity starts a fresh game on the new rounds;
+ * - the same identity leaves a running game standing — except while
+ *   a re-deal is outstanding. Then the delivery that is not the one
+ *   this state already consumed is the request's answer: identical
+ *   content is a valid successful refresh, so it completes the
+ *   request and replays that deal as a fresh game instead of
+ *   deadlocking the lock. Re-delivering the recorded array itself
+ *   (the render that still has the old props) is the pending state
+ *   and changes nothing.
  */
 export function receivePricedInDeal(
   state: PricedInGameState,
   rounds: readonly PricedInRound[],
 ): PricedInGameState {
-  return pricedInDealIdentity(rounds) === state.dealIdentity
-    ? state
-    : startPricedInGame(rounds);
+  if (pricedInDealIdentity(rounds) !== state.dealIdentity) {
+    return startPricedInGame(rounds);
+  }
+  if (state.redealing && rounds !== state.deliveredRounds) {
+    return startPricedInGame(rounds);
+  }
+  return state;
 }
 
 /**
@@ -260,8 +291,9 @@ export function advancePricedIn(state: PricedInGameState): PricedInGameState {
 
 /**
  * Play again: lock input and wait for the refreshed deal. The final
- * score stays on screen behind the lock; the fresh game starts only
- * when `receivePricedInDeal` delivers a different deal.
+ * score stays on screen behind the lock; the fresh game starts when
+ * `receivePricedInDeal` consumes the delivery that answers this
+ * request — a different deal, or the same deal redealt identically.
  */
 export function requestPricedInRedeal(state: PricedInGameState): PricedInGameState {
   if (!state.finished || state.redealing) return state;

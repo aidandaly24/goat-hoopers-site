@@ -13,9 +13,10 @@
  * All game state lives in the domain's pure state machine
  * (`PricedInGameState`), which ties every result to one complete deal
  * identity: pressing Play again locks input while the refresh is in
- * flight, and a refreshed deal with different prices or lines — even
- * for the same players — replaces the game wholesale instead of
- * pairing the old deal's calls with fresh rounds.
+ * flight, and the delivery that answers it starts the fresh game
+ * wholesale — different prices or lines for the same players, or the
+ * same deal redealt identically — instead of ever pairing the old
+ * deal's calls with another deal's rounds.
  *
  * Practice only, like free-throw: scores live in this session's
  * memory. Nothing here calls a server action or the GameStore, so no
@@ -58,9 +59,13 @@ export function PricedIn({
   const [game, setGame] = useState(() => startPricedInGame(rounds));
 
   // A refresh delivers a new deal through props. Reconcile before
-  // deriving anything: a different deal identity starts a fresh game
-  // (the render-phase adjustment React prescribes for prop-driven
-  // resets); the same identity leaves the running game untouched.
+  // deriving anything: the render-phase adjustment React prescribes
+  // for prop-driven resets. A different deal identity starts a fresh
+  // game; the same identity leaves a running game untouched — and
+  // while a re-deal is outstanding, the new delivery completes it
+  // even when the redealt content is identical (the state machine
+  // tracks which delivery it has already consumed, so the render
+  // still holding the old props never completes it early).
   const active = receivePricedInDeal(game, rounds);
   if (active !== game) setGame(active);
 
@@ -101,8 +106,9 @@ export function PricedIn({
   const advance = () => setGame(advancePricedIn(active));
 
   const playAgain = () => {
-    // Lock input on the old deal first; the fresh game starts only
-    // when the refresh delivers a deal with a different identity.
+    // Lock input on the old deal first; the fresh game starts when
+    // the refresh's delivery arrives — a different deal, or the same
+    // one redealt identically.
     setGame(requestPricedInRedeal(active));
     // Re-deals server-side: a refresh samples a fresh set of rounds.
     router.refresh();
