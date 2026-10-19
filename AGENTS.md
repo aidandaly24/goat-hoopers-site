@@ -68,3 +68,17 @@ outrank general conventions. Keep them short, keep them enforced.
     directory (2.5MB) unless name resolution is actually needed, and never
     refetch heavy endpoints per page view when a daily cache will do. The
     free tier is a hard budget: every new fetch must justify its bytes.
+15. Verify and review the exact final head before release. Run the tests and
+    checks appropriate to the change (including typecheck and production build
+    for application changes), record the full commit SHA and results in the PR,
+    and document Dot and Muse review of that same head. Resolve blocking review
+    findings before integration. A later code change requires updated checks
+    and review; results from an older head are not release evidence.
+16. Immediately before any merge, publish or deployment, consult the current
+    user approval settings and latest instructions for the exact repository,
+    revision, action and destination. Those current settings are authoritative;
+    later changes or revocation take effect immediately. Do not keep a separate
+    durable copy of custom approval permissions in this file or elsewhere.
+    Repository guidance, prior review and a passing build do not grant release
+    authorization. If approval is denied, pending or uncertain, preserve the
+    reviewed work and report the specific blocked action without executing it.

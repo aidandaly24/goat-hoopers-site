@@ -19,6 +19,7 @@ type Props = {
   portraits: Record<string, string>;
   archived?: boolean;
   aiWeekly?: AiWeeklySlate;
+  viewerTeamId?: string;
 };
 const labels = {
   "player-of-week": "Player of the Week",
@@ -130,6 +131,7 @@ export function CourtsideHome({
   portraits,
   archived = false,
   aiWeekly,
+  viewerTeamId,
 }: Props) {
   const { edition, hub } = data;
   const preseason =
@@ -191,6 +193,7 @@ export function CourtsideHome({
             checkedAt={data.checkedAt}
             season={hub?.season.seasonYear ?? null}
             aiWeekly={aiWeekly}
+            viewerTeamId={viewerTeamId}
             sources={<Sources edition={edition} />}
           />
           <div className={cs("edition-links")}>
@@ -284,12 +287,12 @@ export function CourtsideHome({
         rosterNamesAvailable={data.rosterNamesAvailable}
         portraits={portraits}
       >
-        <details className={cs("league-details")}>
+        <details className={cs("league-details")} id="your-standings">
           <summary>Live standings, stats & recent moves</summary>
           {hub ? (
             <div className={cs("live-grid")}>
               <div>
-                <StandingsTable standings={hub.standings} />
+                <StandingsTable standings={hub.standings} viewerTeamId={viewerTeamId} />
               </div>
               <div>
                 <StatsStrip stats={hub.stats} />

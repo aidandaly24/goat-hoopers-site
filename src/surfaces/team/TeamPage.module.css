@@ -79,6 +79,40 @@
   color: var(--gh-loss);
 }
 
+/* Roster value — the team total in modeled FAAB dollars (issue #189).
+ * Sits in the identity card's header row; wraps to its own line on phones. */
+.rosterValue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--gh-s1);
+  margin-left: auto;
+  text-align: right;
+}
+
+.rosterValueLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+}
+
+.rosterValueTotal {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--gh-gold);
+}
+
+.rosterValueTotal.unknown {
+  color: var(--gh-text-faint);
+}
+
+.rosterValueNote {
+  font-size: 0.8rem;
+  color: var(--gh-text-dim);
+}
+
 .empty {
   margin: 0;
   color: var(--gh-text-dim);
@@ -94,11 +128,32 @@
 }
 
 .player {
+  display: flex;
+  align-items: center;
   border-bottom: 1px solid var(--gh-border);
+}
+
+.player > a {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .player:last-child {
   border-bottom: none;
+}
+
+/* Per-player modeled FAAB price (issue #189). Unknown quotes render the
+ * unavailable glyph in faint type — never $0. */
+.playerPrice {
+  margin-left: var(--gh-s3);
+  padding-right: var(--gh-s3);
+  font-size: 0.95rem;
+  color: var(--gh-text);
+  white-space: nowrap;
+}
+
+.playerPrice.unknown {
+  color: var(--gh-text-faint);
 }
 
 .rewards {
@@ -142,5 +197,16 @@
 
   .teamName {
     font-size: 2rem;
+  }
+}
+
+/* Phones: the roster value block takes its own line under identity +
+ * record so the total and its coverage note never squeeze the W/L/PF row. */
+@media (max-width: 40rem) {
+  .rosterValue {
+    flex: 1 1 100%;
+    align-items: flex-start;
+    margin-left: 0;
+    text-align: left;
   }
 }

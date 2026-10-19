@@ -414,6 +414,23 @@ reading league content, navigating to teams or discovering the game. Provide
 a real poster, explanation and working navigation rather than an empty canvas.
 Do not invent a successful score or claim rewards that are inactive.
 
+Aidan's October 19 practice-scene request retains the approved court, hoop,
+ball, camera, lights, shooting mechanics and nine-position movement. Its
+background adds a static dusk sky, distant park/city depth and low bleachers.
+Seventy-two small instanced spectator silhouettes react only after the existing
+completed-result phase: one brief make cheer, a softer miss settle and a
+stronger visual variation for three consecutive makes. These reactions add no
+score, reward, timer or ranked-mode meaning. Aim, charge and flight stay still.
+The finite reaction is 420ms, with static reduced-motion feedback, hidden/
+offscreen cancellation and zero idle frames. Added scenery stays within 5,000
+triangles and ten draw calls, with no downloaded assets, shadow maps, lights or
+new animation package. The existing pixel-ratio cap remains 1.75. HUD contrast
+uses a static scene-token scrim; no UI or aim controls are covered by scenery.
+Issue #199 owns this bounded visual change; future Weekly Challenge rules and
+activation remain separate. The supplied Library screenshot was identified but
+could not be materialized as readable pixels in the implementation environment;
+rendered local scene captures provide implementation evidence instead.
+
 The 82–0 preview uses a deliberate, finite team draw before each of its five
 local picks. A short animated sequence makes the random selection legible;
 Skip and live reduced-motion/hidden-tab handling reveal the same selected team
@@ -614,3 +631,36 @@ this design work.
 | Upcoming/null scores, 2025 record and “Previous manager” | Fabricated live zero score or inherited poor record blamed on today's manager |
 | Play free-throw practice using a real preview | A catalog of fake games whose links merely return successful HTTP responses |
 | Clear sort labels, units and keyboard focus | Pretty headers that cannot sort, color-only verdicts or unreadable small labels |
+
+## Personalized team edition
+
+Aidan's October 19 request and Muse's #182 design review add a compact personal
+front page above the unchanged league edition. It answers “what matters for my
+team?”; My team is the primary action, with full roster and player links.
+The nameplate carries the source team/manager identity and record; Your Week
+pairs the real matchup with its saved AI context, alongside Highest modeled
+FAAB value and a small team wire. Typographic hierarchy and open columns replace
+nested dashboard cards. No emoji or decorative arrows; historical price changes
+use Up/Down/Flat text. Streaks, draft capital and FAAB balances are not invented
+from homepage inputs that do not carry those facts.
+
+Signed-out, verified unclaimed, unavailable identity/public data, preseason,
+offseason, unknown/zero score, partial pricing, and missing/stale AI have explicit
+states. Mobile stacks the same content and retains 44px My team/roster actions;
+all source/provenance details remain available. One existing-duration opacity/
+4px transform entrance respects reduced motion. No generated-on-render AI,
+competitive game state or reward claim is introduced. The active viewer is
+visibly marked in the existing matchup rows and standings without reordering.
+
+The October 19 follow-up adds Your Roster Value: a prominent current modeled
+team total, priced/unpriced coverage, model-computation time, and an expandable
+complete player-value list. Partial pricing is a labelled subtotal; league value
+rank is shown only when all compared current rosters are fully priced. The top
+three remain the quick summary. Player values/history link to the existing
+market; no historical team-value series is invented from today's roster.
+
+The form guide sits before the team wire: Players to Watch, Your Best and The
+Rough Week each print their distinct basis and source period. Played-game counts,
+small samples and supplied injury context remain visible; DNP/unknown records
+are never classified as poor performance. Production data gaps have explicit
+states and a tracked adapter issue (#190); populated QA examples are synthetic.

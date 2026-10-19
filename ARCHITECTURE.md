@@ -47,6 +47,41 @@ The server owns the edition, player stories, wire and archive. The private `Cour
 
 `public/courtside/` preserves the exact supplied SVG variants, approved two pennants, existing arena and thirty bounded local portraits. Plain images serve pre-sized assets directly without image-optimizer quota. Fonts reuse root `next/font` assets. The homepage does not import a hooper viewer or request rejected models. Budgets, provenance and measured verification live in `courtside-preview/review/INTEGRATION.md`.
 
+### Personalized team front page
+
+The homepage explicitly remains force-dynamic. `data/home-viewer.ts` receives
+existing verified membership/account readers, returns only the active roster ID,
+and never caches private state. A verified account without a resolved member
+gets one indexed `account_identities.subject` existence check before offering a
+claim path; inactive/orphaned existing links do not become new claim permission.
+No auth mutation or new grant is involved. Session failures never infer a team
+from URL input, display name, email or client storage.
+
+`domain/personalized-home.ts` defines one team-edition projection for every team.
+Its shared Week 1 preview predicate preserves the existing Courtside sidebar
+rule verbatim. `data/personalized-home.ts` purely joins the viewer's current
+roster to existing public home, market and news/AI data. The server page reuses
+`getStockMarketData` in the root ticker's same React request cache and the
+existing public news TTL; no endpoint, refresh, polling or extra snapshot write
+path is added. These source caches never receive the viewer or a personalized
+result. The existing market execution still has its pre-existing best-effort
+snapshot save, once per request. Do not reuse it from an independent personalized
+API route. The bounded DTO includes top-three modeled FAAB values with known
+historical changes, roster-matched news and existing recent moves, not deep
+player details or a new performance metric.
+
+`surfaces/season-hub/PersonalizedHome` renders the team edition before league
+content with My team/full-roster links. Existing standings and matchup rows can
+receive the server-resolved roster ID for a visible Your team marker. Signed-out
+home content is retained; no current matchup is inferred during offseason, no
+zero is substituted for unknown scores/quotes, and saved AI requires matching
+league/season/week/pair or the shared explicit Week 1 preview exception. Stale
+results are labelled out of date, and model choice, probabilities, confidence
+and input/publication provenance stay distinct. All ten teams use this same
+code. Offline tests/QA live under the new focused tests and `qa/personalized-home`.
+No auth, AI generation, pricing, migration, infrastructure or competition gate
+is changed by this composition.
+
 ### Isolated courtside homepage review
 
 `courtside-preview/` is a local, static design review artifact. It does not
@@ -89,7 +124,10 @@ src/
                  # TradeVerdict/analyzeTrade, ManagerArchetype (GM IQ:
                  # per-season manager archetypes — MetricId, ARCHETYPES,
                  # percentileRank, assignArchetype's documented decision
-                 # table, buildArchetypeProfiles, currentArchetype).
+                 # table, buildArchetypeProfiles, currentArchetype),
+                 # TeamRosterValue + buildTeamRosterValue (market quotes
+                 # joined to a roster by Sleeper player id — the /team
+                 # roster-value view).
                  # Types + tiny helpers only. formatSeasonStatus(Season.status)
                  # renders the human status ("pre_season" -> "Preseason").
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
@@ -141,6 +179,10 @@ src/
                  # use TeamAvatar; rejected hooper loaders/assets are removed.
                  # Prop assets in public/3d/,
                  # built by the Blender pipeline in 3d/ (see 3d/README.md).
+                 # FreeThrowEnvironment is private practice-only scenery:
+                 # static sky/depth, instanced spectators and bounded result
+                 # poses. FreeThrowScene owns finite reaction frames; existing
+                 # React completed-result/streak state is its sole cue source.
   public/3d/     # Approved props (basketball, trophy, crown, hoop)
                  # and independently owned free-throw assets with named animation
                  # clips. Do not hand-edit; regenerate via 3d/build_all.sh.
@@ -258,8 +300,20 @@ src/
                  # Receives domain objects, never touches the store.
                  # GameCard receives PlayableGame: actual preview, direct
                  # Play link and phone controls; no account/store gate.
-    team/        # "My Team": identity + record, full roster, FAAB
-                 # winnings. Rendered by /team for the logged-in manager.
+    team/        # "My Team": identity + record, full roster (each player
+                 # shows their modeled FAAB price), the team total roster
+                 # value (issue #189: per-player prices + total joined from
+                 # getStockMarketData() in the same server request — React
+                 # cache-shared with the root-layout ticker, so no extra
+                 # provider calls or snapshot writes), and FAAB winnings.
+                 # Rendered by /team for the logged-in manager. Unknown
+                 # quotes render "—" (never $0); the total footnotes its
+                 # coverage ("over N of M players with quotes") and carries
+                 # the market's pricing-basis label. getTeamDetail's
+                 # contract is untouched; the join lives in
+                 # getTeamRosterValue (src/data/league.ts) over the pure
+                 # domain projection buildTeamRosterValue. League rank of
+                 # the total is issue #184's, not this surface's.
   ui/            # Design tokens (tokens.css) + primitives (Card, Badge,
                  # SectionHeading, TeamAvatar, PositionPill,
                  # PlayerHeadshot, PlayerRow, TransactionSummary,
@@ -328,7 +382,8 @@ src/
     claim/       # /claim — invite code -> account. Co-located form.
     login/       # /login — team + password. Co-located form.
     team/        # /team — the logged-in manager's page (identity, roster,
-                 # FAAB winnings). Redirects to /login when logged out.
+                 # roster value, FAAB winnings). Redirects to /login when
+                 # logged out.
     transactions/ # /transactions — full wire history (type + team filters).
     draft/       # /draft — the completed rookie draft board.
     teams/       # /teams — the team directory.
@@ -1098,6 +1153,22 @@ Run `npm run test:free-throw` for deterministic physics, charge and shipped
 asset map/bounds/anchor checks. See `docs/free-throw-practice-qa.md` for the
 browser evidence and local server handoff.
 
+The personal edition's full valuation uses the shared pure
+`domain/roster-value.ts` helper: unique roster IDs, integer-cent totals, unknown
+quote rows and explicit partial coverage. Value ranks compare only completely
+priced current rosters, with shared ranks for equal totals. No historical team
+valuation is synthesized. The same helper is available to the separately owned
+My Team value follow-up without changing its source files here.
+
+`domain/team-player-guide.ts` separates weekly observed results, verified
+current-season EMA form and preseason market movement. `getHomePlayerGuideSources`
+is an additive public projection of the existing same-request market inputs;
+it performs no new fetch/query/save. Unsupported weekly participation, schedule
+and EMA-season provenance remain null. `season-hub/TeamPlayerGuide` renders the
+honest source states and accepts no client-selected owner or invented result.
+The recorded-week adapter is separately scoped to Muse in #190; see
+`docs/weekly-player-guide.md` for the exact data and integration boundary.
+
 ## Priced In practice
 
 `/arcade/priced-in` is a registered practice game (registry status stays
@@ -1113,10 +1184,16 @@ shape (the page adapts slim `StockQuote`s into it — the arcade context
 never imports league types), sampling with injected randomness (headshot
 players deal first, no repeats, a $5 price floor), line-setting 4–15% off
 the real modeled FAAB value, and scoring (correct side 100 plus a
-closeness bonus of up to 50; best game 750). The surface prints the
-scoring rule, labels the market's `pricingBasis` while prices are
-preseason-modeled, and renders an explicit unavailable state when the
-market cannot deal a full game — it never invents prices.
+closeness bonus of up to 50, anchored at the dealer's minimum $2 line
+offset so the best game of 750 is reachable from real deals). Game state
+is a pure state machine in the same module (`PricedInGameState`): every
+result is tied to one complete deal identity (each round's player, price
+and line), Play again locks input while the re-deal refresh is in
+flight, and a refreshed deal with a different identity replaces the
+game atomically — the page keys the surface by that identity. The
+surface prints the scoring rule, labels the market's `pricingBasis`
+while prices are preseason-modeled, and renders an explicit unavailable
+state when the market cannot deal a full game — it never invents prices.
 
 Practice only: scores live in session memory and never touch server
 actions, the GameStore or rewards, so no client-computed score is
