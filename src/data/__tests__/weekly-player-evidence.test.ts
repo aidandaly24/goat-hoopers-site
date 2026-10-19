@@ -91,12 +91,20 @@ function makeSources(
   };
 }
 
+/** Fixed clock for deterministic context validation: after the 2026
+ *  season start (2026-10-20) in the STATE fixture. */
+const FIXED_NOW = Date.UTC(2026, 10, 2, 12, 0, 0);
+
 function makeAdapter(
   overrides: Partial<WeeklyEvidenceSources> = {},
   options: { now?: () => number; matchupCacheTtlMs?: number } = {},
 ) {
   const sources = makeSources(overrides);
-  const adapter = createWeeklyPlayerEvidence({ sources, ...options });
+  const adapter = createWeeklyPlayerEvidence({
+    sources,
+    now: options.now ?? (() => FIXED_NOW),
+    matchupCacheTtlMs: options.matchupCacheTtlMs,
+  });
   return { adapter, sources };
 }
 
@@ -275,6 +283,7 @@ describe("resolveObservedWeekContext — completion gates", () => {
     const result = resolveObservedWeekContext(
       { ...STATE, week: 2, leg: 2 },
       LEAGUE,
+      FIXED_NOW,
     );
     expect(result.ok).toBe(true);
     if (result.ok) {
@@ -283,19 +292,51 @@ describe("resolveObservedWeekContext — completion gates", () => {
     }
   });
 
-  it("falls back to week when leg is absent, as league.ts does", () => {
+  it("rejects state with week but no leg: week alone does not certify a completed score window", () => {
     const result = resolveObservedWeekContext(
       withoutKeys(STATE, ["leg"]),
       LEAGUE,
+      FIXED_NOW,
     );
-    expect(result.ok).toBe(true);
-    if (result.ok) expect(result.context.targetWeek).toBe(5);
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.reason).toBe("state-invalid");
+  });
+
+  it("rejects a malformed season even when state and league agree on it", () => {
+    const result = resolveObservedWeekContext(
+      { ...STATE, season: "bad", league_season: "bad" },
+      { ...LEAGUE, season: "bad" },
+      FIXED_NOW,
+    );
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.reason).toBe("state-invalid");
+  });
+
+  it("rejects a regular leg-2 state whose season_start_date is still in the future", () => {
+    const result = resolveObservedWeekContext(
+      { ...STATE, week: 2, leg: 2, season_start_date: "2026-11-03" },
+      LEAGUE,
+      FIXED_NOW, // 2026-11-02: the start date is tomorrow
+    );
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.reason).toBe("state-invalid");
+  });
+
+  it("rejects a season_start_date that contradicts the season year", () => {
+    const result = resolveObservedWeekContext(
+      { ...STATE, season_start_date: "2025-10-21" },
+      LEAGUE,
+      FIXED_NOW,
+    );
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.reason).toBe("state-invalid");
   });
 
   it("rejects preseason state (season_type pre, leg 0) even when the payload is all zeros", () => {
     const result = resolveObservedWeekContext(
       { ...STATE, week: 1, leg: 0, season_type: "pre", season_has_scores: false },
       LEAGUE,
+      FIXED_NOW,
     );
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.reason).toBe("preseason");
@@ -305,6 +346,7 @@ describe("resolveObservedWeekContext — completion gates", () => {
     const result = resolveObservedWeekContext(
       { ...STATE, week: 1, leg: 1 },
       LEAGUE,
+      FIXED_NOW,
     );
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.reason).toBe("no-completed-week");
@@ -314,12 +356,14 @@ describe("resolveObservedWeekContext — completion gates", () => {
     const mismatch = resolveObservedWeekContext(
       { ...STATE, week: 5, leg: 6 },
       LEAGUE,
+      FIXED_NOW,
     );
     expect(mismatch.ok).toBe(false);
     if (!mismatch.ok) expect(mismatch.reason).toBe("state-invalid");
     const missing = resolveObservedWeekContext(
       withoutKeys(STATE, ["leg", "week"]),
       LEAGUE,
+      FIXED_NOW,
     );
     expect(missing.ok).toBe(false);
     if (!missing.ok) expect(missing.reason).toBe("state-invalid");
@@ -327,17 +371,41 @@ describe("resolveObservedWeekContext — completion gates", () => {
 
   it("rejects a rolled-over season: state season must equal league season", () => {
     const result = resolveObservedWeekContext(
-      { ...STATE, season: "2027", league_season: "2027" },
+      {
+        ...STATE,
+        season: "2027",
+        league_season: "2027",
+        season_start_date: "2027-10-19",
+      },
       LEAGUE,
+      Date.UTC(2027, 10, 2),
     );
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.reason).toBe("season-mismatch");
+  });
+
+  it("rejects a league payload with no valid league_id instead of certifying a nullable identity", () => {
+    const missing = resolveObservedWeekContext(
+      STATE,
+      withoutKeys(LEAGUE, ["league_id"]),
+      FIXED_NOW,
+    );
+    expect(missing.ok).toBe(false);
+    if (!missing.ok) expect(missing.reason).toBe("league-invalid");
+    const wrongType = resolveObservedWeekContext(
+      STATE,
+      { ...LEAGUE, league_id: 1387473752807190528 },
+      FIXED_NOW,
+    );
+    expect(wrongType.ok).toBe(false);
+    if (!wrongType.ok) expect(wrongType.reason).toBe("league-invalid");
   });
 
   it("never lets league status certify a week: a complete league with preseason state is still preseason", () => {
     const result = resolveObservedWeekContext(
       { ...STATE, week: 1, leg: 0, season_type: "pre" },
       { ...LEAGUE, status: "complete" },
+      FIXED_NOW,
     );
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.reason).toBe("preseason");
@@ -347,6 +415,7 @@ describe("resolveObservedWeekContext — completion gates", () => {
     const result = resolveObservedWeekContext(
       { ...STATE, season_type: "post" },
       LEAGUE,
+      FIXED_NOW,
     );
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.reason).toBe("unsupported-season-type");
@@ -386,7 +455,7 @@ describe("getObservedPreviousWeek — source failures are explicit unavailables,
 
 describe("matchup payload cache", () => {
   it("re-reads after the TTL and when the target week advances", async () => {
-    let t = 1_000_000;
+    let t = Date.UTC(2026, 10, 2, 12, 0, 0);
     const now = () => t;
     const { adapter, sources } = makeAdapter({}, { now, matchupCacheTtlMs: 60_000 });
     await adapter.getObservedPreviousWeek(3);
@@ -400,5 +469,163 @@ describe("matchup payload cache", () => {
     await adapter.getObservedPreviousWeek(3);
     expect(sources.loadMatchups).toHaveBeenCalledTimes(3);
     expect(sources.loadMatchups).toHaveBeenLastCalledWith(6);
+  });
+});
+
+/* ---------- review regressions (PR #197, dot's counterexamples) ---------- */
+
+/** One-team-3 payload whose only player "a" carries the given points. */
+function singlePlayerMatchups(points: number) {
+  return Array.from({ length: 10 }, (_, i) =>
+    i + 1 === 3
+      ? {
+          roster_id: 3,
+          matchup_id: 2,
+          points,
+          custom_points: null,
+          players: ["a"],
+          players_points: { a: points },
+          starters: ["a"],
+          starters_points: [points],
+        }
+      : matchupEntry(i + 1),
+  );
+}
+
+describe("review regressions — cache identity (PR #197 finding 1)", () => {
+  it("never serves league A's points under league B: a league change inside the TTL re-reads", async () => {
+    const leg2State = { ...STATE, week: 2, leg: 2 };
+    const { adapter, sources } = makeAdapter({
+      loadState: vi.fn(async () => leg2State),
+      loadLeague: vi.fn(async () => ({ ...LEAGUE, league_id: "league-a" })),
+      loadMatchups: vi
+        .fn()
+        .mockResolvedValueOnce(singlePlayerMatchups(12.5))
+        .mockResolvedValue(singlePlayerMatchups(99)),
+    });
+    sources.loadRosters = vi.fn(async () =>
+      rosters().map((r) => (r.roster_id === 3 ? { ...r, players: ["a"] } : r)),
+    );
+    const first = await adapter.getObservedPreviousWeek(3);
+    if (first.status !== "available") throw new Error("expected available");
+    expect(first.evidence.leagueId).toBe("league-a");
+    expect(first.evidence.week).toBe(1);
+    expect(first.evidence.players[0]?.fantasyPoints).toBe(12.5);
+    // Same factory, same TTL window: only the league identity changes.
+    sources.loadLeague = vi.fn(async () => ({ ...LEAGUE, league_id: "league-b" }));
+    const second = await adapter.getObservedPreviousWeek(3);
+    if (second.status !== "available") throw new Error("expected available");
+    expect(second.evidence.leagueId).toBe("league-b");
+    expect(second.evidence.players[0]?.fantasyPoints).toBe(99); // fresh read, not A's cached 12.5
+    expect(sources.loadMatchups).toHaveBeenCalledTimes(2);
+  });
+
+  it("never serves one season's points under another: a season change inside the TTL re-reads", async () => {
+    const leg2State2026 = { ...STATE, week: 2, leg: 2 };
+    // No season_start_date: the field is optional; absence must not block.
+    const leg2State2027 = withoutKeys(
+      { ...STATE, week: 2, leg: 2, season: "2027", league_season: "2027" },
+      ["season_start_date"],
+    );
+    const { adapter, sources } = makeAdapter({
+      loadState: vi.fn(async () => leg2State2026),
+      loadLeague: vi.fn(async () => LEAGUE),
+      loadMatchups: vi
+        .fn()
+        .mockResolvedValueOnce(singlePlayerMatchups(12.5))
+        .mockResolvedValue(singlePlayerMatchups(99)),
+    });
+    sources.loadRosters = vi.fn(async () =>
+      rosters().map((r) => (r.roster_id === 3 ? { ...r, players: ["a"] } : r)),
+    );
+    const first = await adapter.getObservedPreviousWeek(3);
+    if (first.status !== "available") throw new Error("expected available");
+    expect(first.evidence.season).toBe("2026");
+    expect(first.evidence.players[0]?.fantasyPoints).toBe(12.5);
+    sources.loadState = vi.fn(async () => leg2State2027);
+    sources.loadLeague = vi.fn(async () => ({ ...LEAGUE, season: "2027" }));
+    const second = await adapter.getObservedPreviousWeek(3);
+    if (second.status !== "available") throw new Error("expected available");
+    expect(second.evidence.season).toBe("2027");
+    expect(second.evidence.week).toBe(1);
+    expect(second.evidence.players[0]?.fantasyPoints).toBe(99);
+    expect(sources.loadMatchups).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe("review regressions — single-flight (PR #197 finding 2)", () => {
+  it("shares one in-flight matchup load across ten concurrent team calls", async () => {
+    let calls = 0;
+    const { adapter } = makeAdapter({
+      loadMatchups: vi.fn(async () => {
+        calls += 1;
+        await new Promise((resolve) => setTimeout(resolve, 10));
+        return tenTeamMatchups();
+      }),
+    });
+    const results = await Promise.all(
+      Array.from({ length: 10 }, (_, i) => adapter.getObservedPreviousWeek(i + 1)),
+    );
+    expect(results.every((r) => r.status === "available")).toBe(true);
+    expect(calls).toBe(1);
+  });
+
+  it("shares one failing load across concurrent callers, then retries cleanly on the next call", async () => {
+    let calls = 0;
+    const { adapter } = makeAdapter({
+      loadMatchups: vi.fn(async () => {
+        calls += 1;
+        await new Promise((resolve) => setTimeout(resolve, 5));
+        if (calls === 1) throw new Error("boom");
+        return tenTeamMatchups();
+      }),
+    });
+    const results = await Promise.all(
+      [1, 2, 3].map((teamId) => adapter.getObservedPreviousWeek(teamId)),
+    );
+    for (const result of results) expectUnavailable(result, "matchups-unavailable");
+    expect(calls).toBe(1); // the failure was shared, not fanned out
+    // The failed load did not poison the slot: a later call retries.
+    const retry = await adapter.getObservedPreviousWeek(3);
+    expect(retry.status).toBe("available");
+    expect(calls).toBe(2);
+  });
+});
+
+describe("review regressions — duplicate current roster (PR #197 finding 3)", () => {
+  it("rejects two different current-roster entries for the same roster as ambiguous", async () => {
+    const { adapter } = makeAdapter({
+      loadRosters: vi.fn(async () => [
+        { roster_id: 1, players: ["x"] },
+        { roster_id: 1, players: ["y"] },
+        ...rosters().slice(1),
+      ]),
+    });
+    expectUnavailable(await adapter.getObservedPreviousWeek(1), "rosters-invalid");
+  });
+});
+
+describe("review regressions — pre-start context (PR #197 finding 4)", () => {
+  it("returns unavailable, not a week of zeros, for a regular leg-2 state whose season starts tomorrow", async () => {
+    const zeroMatchups = Array.from({ length: 10 }, (_, i) => ({
+      roster_id: i + 1,
+      matchup_id: Math.ceil((i + 1) / 2),
+      points: 0,
+      custom_points: null,
+      players: [`p${i + 1}`],
+      players_points: { [`p${i + 1}`]: 0 },
+      starters: [`p${i + 1}`],
+      starters_points: [0],
+    }));
+    const { adapter } = makeAdapter({
+      loadState: vi.fn(async () => ({
+        ...STATE,
+        week: 2,
+        leg: 2,
+        season_start_date: "2026-11-03", // tomorrow at FIXED_NOW (2026-11-02)
+      })),
+      loadMatchups: vi.fn(async () => zeroMatchups),
+    });
+    expectUnavailable(await adapter.getObservedPreviousWeek(3), "state-invalid");
   });
 });

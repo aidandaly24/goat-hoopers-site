@@ -30,12 +30,16 @@
  * in the app calls this module.
  *
  * Bounds: one matchup read for the target week covers all ten teams; the
- * payload is retained in a single-slot cache (one week, 24h TTL —
- * completed-week payloads are effectively immutable; revisions are re-read
- * after the TTL, and a failed re-read yields an explicit unavailable, never
- * last-good evidence presented as fresh). State, league and rosters are
- * loaded through the injected sources on every call and are never cached
- * here, so week determination cannot go stale inside this module.
+ * payload is retained in a single-slot cache (24h TTL — completed-week
+ * payloads are effectively immutable; revisions are re-read after the TTL,
+ * and a failed re-read yields an explicit unavailable, never last-good
+ * evidence presented as fresh). The slot and any in-flight load are keyed
+ * by validated league id + season + target week, so a payload can never be
+ * served under a different league/season context than the one it was read
+ * for, and concurrent callers share exactly one in-flight load per key.
+ * State, league and rosters are loaded through the injected sources on
+ * every call and are never cached here, so week determination cannot go
+ * stale inside this module.
  *
  * Failure contract: getObservedPreviousWeek never throws. Every source
  * failure, malformed payload or uncertifiable week is an explicit
@@ -96,8 +100,8 @@ export type ObservedWeekCoverage = {
 export type ObservedPlayerWeek = {
   /** Discriminator: visibly distinct from CompletedPlayerWeek. */
   kind: "observed-player-week";
-  /** Canonical league id from the league payload, when it carries one. */
-  leagueId: string | null;
+  /** Canonical league id, validated from the league payload (required). */
+  leagueId: string;
   season: string;
   /** The completed week the points were recorded in. */
   week: number;
@@ -138,7 +142,7 @@ export type ObservedPlayerWeekResult =
 /* ---------- week determination (pure) ---------- */
 
 export type ObservedWeekContext = {
-  leagueId: string | null;
+  leagueId: string;
   season: string;
   /** The in-progress week per the source state (its leg). */
   currentWeek: number;
@@ -160,23 +164,40 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const isWeekNumber = (value: unknown): value is number =>
   typeof value === "number" && Number.isSafeInteger(value) && value >= 0;
 
+const SEASON_FORMAT = /^\d{4}$/;
+const START_DATE_FORMAT = /^(\d{4})-(\d{2})-(\d{2})$/;
+
 /**
  * Decide the one certifiable week from the raw state + league payloads.
  *
  * Source-leg semantics (verified against the live payload and this repo):
- * Sleeper calls the NBA fantasy week number "leg" — transactions carry the
- * week in `leg` (transform.ts maps t.leg to week), RawNbaState documents
- * "Sleeper NBA uses leg; preseason is zero", and league.ts derives the
- * current week as `state.leg ?? state.week`. The adapter therefore reads
- * the current week from leg (falling back to week), requires the two to
- * agree when both are present, and certifies only leg - 1: the current and
- * any future week are incomplete by construction. League status is never
- * consulted — a "complete" league cannot certify a week the state does not
- * bound (e.g. arbitrary historical or placeholder weeks).
+ * Sleeper calls the NBA fantasy week number "leg" — this league's own
+ * transactions carry the week in `leg` (transform.ts maps t.leg to week),
+ * RawNbaState documents "Sleeper NBA uses leg; preseason is zero", and
+ * every sampled live state payload carried `leg`. Certification therefore
+ * requires `leg` itself. The state's `week` field is NOT used as a
+ * fallback: league.ts's `state.leg ?? state.week` is a display derivation,
+ * and nothing in the source establishes that `week` alone bounds a
+ * completed score window for the NBA — so a state without `leg` is
+ * explicitly unavailable rather than certified on weaker evidence. When
+ * both are present they must agree. The adapter certifies only leg - 1:
+ * the current and any future week are incomplete by construction.
+ *
+ * Context is validated, not merely present: the season must be a
+ * four-digit year on both payloads (a matching but malformed season such
+ * as "bad" certifies nothing), and `season_start_date`, when present,
+ * must agree with the season and must not lie in the future — `regular`
+ * and `season_has_scores: true` already occur before tipoff, so a leg-2
+ * state whose season has not started yet is a contradictory/pre-start
+ * context, not a completed week, however its placeholder matchups look.
+ * League status is never consulted — a "complete" league cannot certify
+ * a week the state does not bound (e.g. arbitrary historical or
+ * placeholder weeks).
  */
 export function resolveObservedWeekContext(
   stateRaw: unknown,
   leagueRaw: unknown,
+  nowMs: number = Date.now(),
 ): ObservedWeekContextResult {
   if (!isRecord(stateRaw))
     return {
@@ -185,11 +206,11 @@ export function resolveObservedWeekContext(
       detail: "NBA state payload is not an object.",
     };
   const season = stateRaw.season;
-  if (typeof season !== "string" || season.length === 0)
+  if (typeof season !== "string" || !SEASON_FORMAT.test(season))
     return {
       ok: false,
       reason: "state-invalid",
-      detail: "NBA state payload carries no season.",
+      detail: "NBA state season is not a four-digit year.",
     };
   const leagueSeason = stateRaw.league_season;
   if (
@@ -220,33 +241,62 @@ export function resolveObservedWeekContext(
       reason: "unsupported-season-type",
       detail: `NBA state season_type "${seasonType}" does not bound a regular-season previous week.`,
     };
+  const startDate = stateRaw.season_start_date;
+  if (startDate !== undefined) {
+    const match =
+      typeof startDate === "string" ? START_DATE_FORMAT.exec(startDate) : null;
+    if (!match)
+      return {
+        ok: false,
+        reason: "state-invalid",
+        detail: "NBA state season_start_date is not a YYYY-MM-DD date.",
+      };
+    const startMs = Date.UTC(
+      Number(match[1]),
+      Number(match[2]) - 1,
+      Number(match[3]),
+    );
+    if (match[1] !== season)
+      return {
+        ok: false,
+        reason: "state-invalid",
+        detail: `NBA state season_start_date (${startDate}) disagrees with its season (${season}).`,
+      };
+    if (startMs > nowMs)
+      return {
+        ok: false,
+        reason: "state-invalid",
+        detail: `NBA state season_start_date (${startDate}) is in the future; the season has not started, so no week is complete.`,
+      };
+  }
   const leg = stateRaw.leg;
-  const week = stateRaw.week;
-  if (leg !== undefined && !isWeekNumber(leg))
+  if (leg === undefined)
+    return {
+      ok: false,
+      reason: "state-invalid",
+      detail:
+        "NBA state carries no leg; week alone does not certify a completed score window.",
+    };
+  if (!isWeekNumber(leg))
     return {
       ok: false,
       reason: "state-invalid",
       detail: "NBA state leg is not a non-negative integer.",
     };
+  const week = stateRaw.week;
   if (week !== undefined && !isWeekNumber(week))
     return {
       ok: false,
       reason: "state-invalid",
       detail: "NBA state week is not a non-negative integer.",
     };
-  if (leg !== undefined && week !== undefined && leg !== week)
+  if (week !== undefined && leg !== week)
     return {
       ok: false,
       reason: "state-invalid",
       detail: `NBA state leg (${leg}) and week (${week}) disagree.`,
     };
-  const currentWeek = leg ?? week;
-  if (currentWeek === undefined)
-    return {
-      ok: false,
-      reason: "state-invalid",
-      detail: "NBA state carries neither leg nor week.",
-    };
+  const currentWeek = leg;
   if (currentWeek === 0)
     return {
       ok: false,
@@ -284,11 +334,18 @@ export function resolveObservedWeekContext(
       reason: "season-mismatch",
       detail: `League season ${leagueSeasonValue} does not match state season ${season}.`,
     };
+  const leagueId = leagueRaw.league_id;
+  if (typeof leagueId !== "string" || leagueId.length === 0)
+    return {
+      ok: false,
+      reason: "league-invalid",
+      detail:
+        "League payload carries no valid league_id; source identity is required, never certified as nullable.",
+    };
   return {
     ok: true,
     context: {
-      leagueId:
-        typeof leagueRaw.league_id === "string" ? leagueRaw.league_id : null,
+      leagueId,
       season,
       currentWeek,
       targetWeek: currentWeek - 1,
@@ -344,14 +401,20 @@ export function shapeObservedPlayerWeek(input: {
 
   if (!Array.isArray(rostersRaw))
     return unavailable("rosters-invalid", "Rosters payload is not an array.");
-  const roster = rostersRaw.find(
+  const rosterMatches = rostersRaw.filter(
     (entry) => isRecord(entry) && entry.roster_id === teamId,
   );
-  if (!roster)
+  if (rosterMatches.length === 0)
     return unavailable(
       "team-not-found",
       `No current roster with id ${teamId}.`,
     );
+  if (rosterMatches.length > 1)
+    return unavailable(
+      "rosters-invalid",
+      `Duplicate current roster entries for roster ${teamId}; current roster identity is ambiguous.`,
+    );
+  const roster = rosterMatches[0];
   const current = readStringList((roster as Record<string, unknown>).players);
   if (!current.ok)
     return unavailable(
@@ -482,9 +545,16 @@ export type WeeklyPlayerEvidence = {
 
 /**
  * Build the adapter around injected payload sources. The matchup payload
- * is cached in a single slot keyed by week (at most one week's payload is
- * ever retained); state, league and rosters are loaded fresh on every call
- * through the sources, whose own upstream caching bounds their cost.
+ * is cached in a single slot (at most one payload is ever retained) keyed
+ * by validated league id + season + target week: a payload is served only
+ * to a context whose key matches the key it was read under, so one
+ * league/season's points can never be attributed to another. Loads are
+ * single-flight per key — concurrent callers share one in-flight promise,
+ * so the one-read bound holds under parallel renders — and a failed load
+ * clears its in-flight entry without touching the slot, so the next call
+ * retries rather than serving anything stale. State, league and rosters
+ * are loaded fresh on every call through the sources, whose own upstream
+ * caching bounds their cost.
  */
 export function createWeeklyPlayerEvidence(
   options: WeeklyPlayerEvidenceOptions,
@@ -492,15 +562,32 @@ export function createWeeklyPlayerEvidence(
   const { sources } = options;
   const now = options.now ?? (() => Date.now());
   const ttlMs = options.matchupCacheTtlMs ?? OBSERVED_WEEK_MATCHUP_CACHE_TTL_MS;
-  let slot: { week: number; fetchedAt: number; payload: unknown } | null =
+  let slot: { key: string; fetchedAt: number; payload: unknown } | null =
     null;
+  const inflight = new Map<string, Promise<unknown>>();
 
-  async function loadMatchupsPayload(week: number): Promise<unknown> {
-    if (slot && slot.week === week && now() - slot.fetchedAt < ttlMs)
+  const cacheKey = (context: ObservedWeekContext): string =>
+    `${context.leagueId}|${context.season}|${context.targetWeek}`;
+
+  async function loadMatchupsPayload(
+    context: ObservedWeekContext,
+  ): Promise<unknown> {
+    const key = cacheKey(context);
+    if (slot && slot.key === key && now() - slot.fetchedAt < ttlMs)
       return slot.payload;
-    const payload = await sources.loadMatchups(week);
-    slot = { week, fetchedAt: now(), payload };
-    return payload;
+    const existing = inflight.get(key);
+    if (existing) return existing;
+    const promise = (async () => {
+      const payload = await sources.loadMatchups(context.targetWeek);
+      slot = { key, fetchedAt: now(), payload };
+      return payload;
+    })();
+    inflight.set(key, promise);
+    try {
+      return await promise;
+    } finally {
+      if (inflight.get(key) === promise) inflight.delete(key);
+    }
   }
 
   return {
@@ -523,7 +610,7 @@ export function createWeeklyPlayerEvidence(
           "League payload could not be loaded.",
         );
       }
-      const resolved = resolveObservedWeekContext(stateRaw, leagueRaw);
+      const resolved = resolveObservedWeekContext(stateRaw, leagueRaw, now());
       if (!resolved.ok) return unavailable(resolved.reason, resolved.detail);
       const { context } = resolved;
 
@@ -538,7 +625,7 @@ export function createWeeklyPlayerEvidence(
       }
       let matchupsRaw: unknown;
       try {
-        matchupsRaw = await loadMatchupsPayload(context.targetWeek);
+        matchupsRaw = await loadMatchupsPayload(context);
       } catch {
         return unavailable(
           "matchups-unavailable",

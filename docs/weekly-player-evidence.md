@@ -51,15 +51,38 @@ must not replace the deployed strict guide gates.
 
 ## Week determination and completion rules
 
-Sleeper calls the NBA fantasy week number **leg**: transactions carry the
-week in `leg` (`transform.ts` maps `t.leg` to `week`), `RawNbaState`
-documents "Sleeper NBA uses leg; preseason is zero", and `league.ts`
-derives the current week as `state.leg ?? state.week`. The adapter reads
-the current week the same way, additionally requiring leg and week to
-agree when both are present, and certifies exactly one week:
-`targetWeek = currentWeek - 1`. Current and future weeks are therefore
-incomplete by construction, and the read is narrowed to the same
-league/state season — no other week, season, or league is reachable.
+Sleeper calls the NBA fantasy week number **leg**: this league's own
+transactions carry the week in `leg` (`transform.ts` maps `t.leg` to
+`week`), `RawNbaState` documents "Sleeper NBA uses leg; preseason is
+zero", and every sampled live state payload carried `leg` (see Receipts).
+Certification therefore requires `leg` itself, and certifies exactly one
+week: `targetWeek = leg - 1`. Current and future weeks are incomplete by
+construction, and the read is narrowed to the same league/state season —
+no other week, season, or league is reachable.
+
+The state `week` field is **not** a fallback. `league.ts` derives a
+display week as `state.leg ?? state.week`, but nothing in the source
+establishes that `week` alone bounds a completed NBA score window, so a
+state without `leg` is `state-invalid`, never certified on weaker
+evidence. When both fields are present they must agree.
+
+Context is validated, not merely present:
+
+- The season must be a four-digit year on the state payload and match the
+  league payload (and the state's own `league_season`, when present). A
+  matching but malformed season such as `"bad"` certifies nothing.
+- `season_start_date`, when present, must be a `YYYY-MM-DD` date in the
+  season's year and must not lie in the future (checked against the
+  adapter's injectable clock). `regular` and `season_has_scores: true`
+  already occur before tipoff (see the state receipt), so a leg-2 state
+  whose season has not started is a contradictory/pre-start context and
+  is rejected — its placeholder matchups, however zero-filled, are not a
+  completed week. After an established boundary, a recorded zero stays a
+  recorded zero with participation unknown.
+- The league payload must carry a valid `league_id`. Source identity is
+  required: a missing or non-string `league_id` is `league-invalid`, and
+  the evidence's `leagueId` is therefore always a real string, never
+  null.
 
 Completion is established from state advancement only, never from points
 presence (see the preseason trap under Receipts). League `status` is never
@@ -74,14 +97,20 @@ Rejections (all explicit unavailables):
   progress.
 - `unsupported-season-type` — `season_type` other than `regular`/`pre`
   (e.g. `post`): this narrowed adapter bounds regular-season weeks only.
-- `state-invalid` — state missing/not an object, no season, `league_season`
-  disagreeing with `season`, leg/week missing, non-integer, disagreeing
-  with each other, zero outside preseason, or beyond the sane bound (54).
+- `state-invalid` — state missing/not an object; season missing or not a
+  four-digit year; `league_season` disagreeing with `season`;
+  `season_start_date` malformed, in a different year than the season, or
+  in the future; `leg` missing, non-integer, zero outside preseason, or
+  beyond the sane bound (54); `week` present but non-integer or
+  disagreeing with `leg`.
 - `season-mismatch` — league season differs from state season (e.g. after
   rollover, before the league object is the new season's).
-- `league-invalid` / `rosters-invalid` / `matchups-invalid` — malformed
-  payloads, including a matchup entry with no `players` list, no
-  `players_points` map, or duplicate entries for one roster.
+- `league-invalid` — league payload malformed, seasonless, or carrying
+  no valid `league_id`.
+- `rosters-invalid` / `matchups-invalid` — malformed payloads, including
+  duplicate current-roster entries for one roster (ambiguous identity),
+  a matchup entry with no `players` list, no `players_points` map, or
+  duplicate matchup entries for one roster.
 - `state-unavailable` / `league-unavailable` / `rosters-unavailable` /
   `matchups-unavailable` — a source load failed, or no entries were served
   for the target week.
@@ -116,10 +145,17 @@ evidence this contract may use.
 
 - One matchup read for the target week covers all ten teams (the payload
   is the full league week). No per-player fanout, no new endpoint family,
-  no DB/SQL, no credentials, no recorder.
-- The adapter retains at most one week's matchup payload in a single-slot
-  cache (24h TTL, injectable for tests). Completed-week payloads are
-  effectively immutable; revisions are re-read after the TTL. A failed
+  no DB/SQL, no credentials, no recorder. The bound holds under
+  concurrency: loads are single-flight per cache key, so ten parallel
+  team calls on a cold adapter share exactly one in-flight read.
+- The adapter retains at most one matchup payload in a single-slot cache
+  (24h TTL, injectable for tests). The slot and any in-flight load are
+  keyed by **validated league id + season + target week**: a payload is
+  served only to a context whose key matches the key it was read under,
+  so one league/season's points can never be attributed to another.
+  Completed-week payloads are effectively immutable; revisions are
+  re-read after the TTL. A failed load clears its in-flight entry and
+  never writes the slot, so the next call retries the read; a failed
   re-read returns `matchups-unavailable` — last-good payloads are never
   presented as fresh evidence.
 - State, league, and rosters are loaded through the injected sources on
