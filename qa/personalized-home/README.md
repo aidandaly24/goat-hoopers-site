@@ -20,7 +20,9 @@ with its full-roster disclosure; the recorded value chart in the pre-tip
 captioned, verified 2025 desk lines); all five AI Decides rows down-page, each
 with its provenance disclosure; standings/leaders/moves as a VISIBLE league
 section (no collapsed details); and NO homepage champion showcase anywhere —
-the avatar crown badge and the directory's champion label remain and are
+nor any other dedicated champion content: the public faces section's champion
+record panel is asserted absent in every state, while the avatar crown badge
+and the directory's champion label remain and are
 asserted in the `champion` state. Two different identities, signed-out/
 unclaimed, outages, offseason, preseason, missing matchup/market/editorial,
 stale/missing AI, long names, real keyboard focus and 44px desk actions are

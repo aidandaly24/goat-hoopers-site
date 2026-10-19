@@ -1377,9 +1377,13 @@
 .desk-actions a:hover { text-decoration: underline; text-underline-offset: var(--gh-cs-s1); }
 .desk-actions span { color: var(--gh-cs-muted-light); font-size: var(--gh-cs-secondary); }
 
-/* Roster value (member) / bar is set (public) */
+/* Roster value (member) / featured faces (public) */
 .value-section { margin-top: var(--gh-cs-s7); }
 .value-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--gh-cs-s6); margin-top: var(--gh-cs-s5); align-items: start; }
+/* The signed-out faces section has no side panel: a single column, with
+ * the faces held to the measure the two-column layout gave them. */
+.bar-layout { grid-template-columns: minmax(0, 1fr); }
+.bar-layout .value-faces { max-width: 40.5rem; }
 .value-faces { position: relative; min-width: 0; }
 .value-outline { margin: 0 0 -.32em; font-family: var(--gh-font-display); font-size: clamp(2.6rem, 6.5vw, 5.25rem); font-weight: 800; line-height: .92; letter-spacing: -.02em; text-transform: uppercase; overflow-wrap: anywhere; color: transparent; -webkit-text-stroke: 1.5px color-mix(in srgb, var(--gh-cs-tan) 55%, transparent); }
 .value-face-list { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gh-cs-s4); margin: 0; padding: 0; list-style: none; }
@@ -1400,8 +1404,6 @@
 .value-meta { margin: var(--gh-cs-s3) 0 0; color: var(--gh-cs-muted-light); font-size: var(--gh-cs-secondary); line-height: 1.55; }
 .value-rank { margin: var(--gh-cs-s2) 0 0; font-size: var(--gh-cs-secondary); }
 .value-unavailable, .trend-unavailable { margin: var(--gh-cs-s3) 0 0; padding: var(--gh-cs-s4); border: var(--gh-cs-rule) dashed var(--gh-cs-line-light); color: var(--gh-cs-muted-light); font-size: var(--gh-cs-secondary); line-height: 1.55; }
-.bar-team { display: flex; align-items: center; gap: var(--gh-cs-s3); margin: 0 0 var(--gh-cs-s3); font-size: var(--gh-cs-subhead); font-weight: 700; }
-.bar-panel .text-link { display: inline-flex; margin-top: var(--gh-cs-s4); }
 
 /* Recorded repricing chart */
 .trend { margin-top: var(--gh-cs-s5); }

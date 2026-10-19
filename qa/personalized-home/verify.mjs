@@ -57,6 +57,11 @@ try {
       // Aidan's exclusion: the homepage champion showcase is never built.
       assert(await page.locator('[data-champion-showcase]').count() === 0, `${state} renders a champion showcase`);
       assert(await page.getByText('Open the champions').count() === 0, `${state} renders the champions showcase link`);
+      // Aidan's clarification: no dedicated champion content on the homepage
+      // at all — the public faces section's champion record panel (and its
+      // champion-framed heading) never renders; champions live in history.
+      assert(await page.getByText('The reigning champion').count() === 0, `${state} renders the champion record panel`);
+      assert(await page.getByText('The bar is set.').count() === 0, `${state} keeps the champion-framed faces heading`);
       // Standings/leaders/moves are a visible section, not collapsed details.
       const league = page.locator('[data-league-section]');
       assert(await league.count() === 1, `${state} missing the visible league section`);
@@ -76,8 +81,10 @@ try {
         await page.getByText('Your team is temporarily unavailable.', { exact: true }).waitFor();
       } else if (state === 'showcase-public') {
         assert(await page.locator('[data-league-desk]').count() === 1, 'Public showcase lacks the league desk');
-        assert(await page.locator('[data-bar-set]').count() === 1, 'Public showcase lacks the faces/record section');
-        assert(await page.getByText('17–4').count() >= 1, 'Public showcase lacks the champion record');
+        assert(await page.locator('[data-bar-set]').count() === 1, 'Public showcase lacks the featured-faces section');
+        assert(await page.locator('[data-bar-set]').getByText('Opening-week roster anchors').count() === 1, 'Public faces section lost its featured faces');
+        assert(await page.locator('[data-bar-set]').getByText('The reigning champion').count() === 0, 'Public faces section still renders the champion record panel');
+        assert(await page.locator('[data-bar-set]').getByText('THE CHAMP').count() === 0, 'Public faces section still renders the champion outline type');
         assert(await page.locator('[data-court-clock="countdown"]').count() === 1, 'Public showcase must show exactly one countdown');
       } else {
         // Member states: the team desk is the personal surface — except

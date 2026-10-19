@@ -62,8 +62,8 @@ function Sources({ edition }: { edition: WeeklyEdition }) {
 
 /**
  * The homepage in the approved composition: headline + court with the
- * team desk beside it; roster value (member) or the featured faces and the
- * champion's record (signed out) below the court; the scouting notebook;
+ * team desk beside it; roster value (member) or the featured pairing's
+ * faces (signed out) below the court; the scouting notebook;
  * the member's form guide + team wire; the STUD/CHUD retrospective; AI
  * Decides with all five pairings down-page; faces of the league; the
  * around-the-league wire; the teams directory; standings/stats/moves as a
@@ -335,7 +335,7 @@ export function CourtsideHome({
             </Reveal>
           ) : (
             <Reveal>
-              <BarSetSection faces={facesList} pairTeamIds={pairTeamIds} entries={entrySlice} portraits={portraits} preseason={preseason} />
+              <BarSetSection faces={facesList} pairTeamIds={pairTeamIds} portraits={portraits} />
             </Reveal>
           )}
           <Reveal>

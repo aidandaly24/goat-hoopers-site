@@ -278,19 +278,27 @@ describe('integrated personalized edition', () => {
     expect(html).not.toContain('Live standings, stats & recent moves');
   });
 
-  it('keeps the champion\u2019s crown badge and directory label, with NO homepage champion showcase section', () => {
+  it('keeps the champion\u2019s crown badge and directory label, with NO homepage champion showcase or record panel', () => {
     const fixture = personalizedFixture();
     fixture.home.directory[4].previousSeason = { season: '2025', wins: 17, losses: 4, finish: 1, ownerNote: null };
     const html = renderHome(fixture, { kind: 'signed_out' });
     // Aidan's exclusion: the dedicated champion showcase block is not built.
     expect(html).not.toContain('data-champion-showcase');
     expect(html).not.toContain('Open the champions');
-    // The avatar crown badge and the directory's champion label stay: the
-    // bar-set record panel, one AI row, the faces strip, the directory row
-    // and the standings row each carry the non-interactive badge.
+    // Aidan's clarification: no dedicated champion content on the homepage
+    // at all — the public faces section's champion record panel (heading,
+    // outline type and record panel) is gone too; champions live in history.
+    expect(html).not.toContain('The reigning champion');
+    expect(html).not.toContain('The bar is set.');
+    expect(html).not.toContain('THE CHAMP');
+    // The public faces section itself stays, featured faces and all.
+    expect(html).toContain('data-bar-set');
+    expect(html).toContain('Opening-week roster anchors');
+    // The avatar crown badge and the directory's champion label stay: one
+    // AI row, the faces strip, the directory row and the standings row each
+    // carry the non-interactive badge.
     expect(html).toContain(' · 2025 champion');
-    expect(html).toContain('The reigning champion');
-    expect(html.match(/data-champion-crown="badge"/g)).toHaveLength(5);
+    expect(html.match(/data-champion-crown="badge"/g)).toHaveLength(4);
     expect(html).not.toContain('data-champion-crown="interactive"');
     expect(html).not.toContain('<button type="button" aria-label="Defending champion');
     const noChamp = renderHome(personalizedFixture(), { kind: 'signed_out' });

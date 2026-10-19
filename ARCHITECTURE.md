@@ -117,7 +117,7 @@ per-point priced coverage via the recorded endpoints, and shows a change
 figure only between the first and last recorded points with identical
 coverage — never as historical performance. Signed-out visitors get the
 analogous faces section (`BarSetSection`): the featured pairing's roster
-anchors large beside the reigning champion's verified record panel. The
+anchors large, with no side panel. The
 scouting notebook (`ScoutingNotebook`) features one watch on a named basis
 (the guide's top watch row for members, the featured face's anchor for
 signed-out readers) with around-the-league watches beside it (the other
@@ -174,9 +174,10 @@ The reigning champion is derived from the clubhouse directory's
 previous-season data — the team whose `previousSeason.finish` is 1, the same
 source that prints its "2025 champion" label — never a hardcoded team.
 Homepage surfaces pass it to `TeamAvatar`'s `isChampion` prop (desks, AI
-rows, faces strip, the public record panel, clubhouse directory, standings). The homepage carries NO
-champion showcase section: the champion appears through the avatar crown
-badge, the directory's champion label and the signed-out record panel only.
+rows, faces strip, clubhouse directory, standings). The homepage carries NO
+champion showcase section and no other dedicated champion content: the
+champion appears through the avatar crown badge and the directory's
+champion label only — champions live on the history page.
 On avatars the crown is ChampionCrown's
 non-interactive badge presentation — avatars sit inside links and matchup
 rows, where a nested button would be invalid; the spinnable button
