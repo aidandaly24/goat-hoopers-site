@@ -4,6 +4,19 @@ Aidan approved this revised visual direction for implementation and asked Dot
 to share these references here. Keep PR207 as the sole implementation branch;
 this reference branch introduces no production components or data behavior.
 
+## Default landing after login — cross-owner contract
+
+The personalized homepage at `/` is Aidan's default destination after login.
+The separate account/routing task owns redirect defaults and settings polish;
+Muse owns the homepage and should coordinate that interface without taking over
+those auth files. On the first navigation after successful login, the existing
+server-verified session and claimed roster ID must already produce the correct
+personal edition, without a manual reload or stale signed-out/other-team view.
+Keep private viewer state request-scoped. Verify claimed, unclaimed, unavailable,
+logout and account-switch cases with the routing owner; an unresolved team must
+not be guessed from URL/display-name/client storage. Record a first-navigation
+browser receipt with the final auth and homepage SHAs used together.
+
 ## Required composition and retained content
 
 - Match the signed-in screenshot: court on the left, personal identity/record/

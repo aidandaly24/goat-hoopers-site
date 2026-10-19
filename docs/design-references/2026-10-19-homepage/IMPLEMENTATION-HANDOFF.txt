@@ -59,6 +59,18 @@ is not freshness proof. APK retains this audit; TeamAvatar is shared by PR207/
 PR209 and must not receive overlapping edits from this mock task. No new avatar
 source/fallback/cache audit or production inspection was performed here.
 
+DEFAULT POST-LOGIN LANDING — NEW DIRECT CLARIFICATION
+
+The default authenticated destination is the personalized homepage at `/`.
+The separate account/routing owner handles return defaults/session navigation
+and settings polish; Muse handles PR207's rendering of that verified session.
+Coordinate the boundary so the first post-login navigation resolves the claimed
+roster server-side and renders its personal edition immediately, without manual
+reload, stale signed-out HTML or another user's cached edition. Keep unclaimed/
+unavailable states honest and private viewer state out of shared caches. Test
+first navigation, logout and account switching with both final source SHAs.
+No auth-file implementation is assigned to this reference task or to Muse here.
+
 COMPOSITION → EXISTING CODE / REAL FIELDS
 
 1. Court and right-hand desk: CourtsideFeature. Keep the approved arena and

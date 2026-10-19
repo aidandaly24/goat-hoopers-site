@@ -23,6 +23,11 @@ repo's Paper + Slate palette, Inter/Geist typography and approved assets.
 - [STUD / CHUD close-up](stud-chud.png)
 - [AI rows with actual team avatar assets](ai-team-avatars.png)
 
+The default destination after login is the personalized homepage at `/`. The
+separate account/routing task owns that redirect/session interface; Muse must
+render the correct claimed team on the first navigation. See the handoff for
+the cross-owner acceptance checks.
+
 The complete lower homepage is retained: all ten teams, 228 roster references,
 own/league watches, personal guide/news/move states, STUD/CHUD retrospective
 examples, all five AI pairings, league faces, wire, champion, standings/stats/
