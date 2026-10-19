@@ -130,10 +130,10 @@ it('builds the value trend from recorded snapshots only, and null without two re
   // recorded point yet and are never backfilled). Nov 9: 10 carried + 35.
   // At the market's own stamp the series lands on the full current total.
   expect(withHistory.summary?.valueTrend).toEqual({ points: [
-    { date: '2026-11-05T12:00:00.000Z', value: 40 },
-    { date: '2026-11-09T12:00:00.000Z', value: 45 },
-    { date: '2026-11-12T12:00:00.000Z', value: 110 },
-  ], delta: 70 });
+    { date: '2026-11-05T12:00:00.000Z', value: 40, priced: 2, current: false },
+    { date: '2026-11-09T12:00:00.000Z', value: 45, priced: 2, current: false },
+    { date: '2026-11-12T12:00:00.000Z', value: 110, priced: 4, current: true },
+  ], delta: 70, participants: 4 });
   expect(summary('1', fixture).valueTrend).toBeNull();
   const noMarket = buildPersonalizedHome({ kind: 'member', teamId: '1' }, fixture.home, fixture.weekly, null, null, null, history);
   expect(noMarket.kind === 'member' ? noMarket.summary?.valueTrend : undefined).toBeNull();

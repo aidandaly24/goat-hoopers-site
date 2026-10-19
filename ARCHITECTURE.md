@@ -43,7 +43,7 @@ gates; chart rendering and the bounded sampling fix remain separately owned.
 
 Editorial entries carry explicit draft/publication and date bounds. The latest started entry stays visible with a stale notice after its period ends, never invented weekly results. Source dates, selection reasons, NBA/college period qualifiers and verified historical finals are retained. NeuralNets’ 2025 record visibly names the previous manager in the collapsed summary and explains QBs Gremlins in the full roster.
 
-The server owns the edition, player stories, wire and archive. The private `CourtsideFeature` client island composes the existing court left / selectable current matchups right, using existing domain projections and no new fetches. The court is a still image with no inspection/pause controls or observer work. The brief team context rail follows deliberate selection and respects reduced motion. The featured heading uses the source-controlled editorial selection reason; a selected sidebar pairing is labelled separately. The redundant player-specific skip link is removed; the shared shell retains its focus-only Skip to content. Homepage roster inspection retains search/sort and native matchup dialogs. The dependency cleanup removes the rejected hooper family and its inspection dialogs/loaders; team avatars, names, roster disclosures and direct profile links provide identity without model requests. The page hands the cached `getAiDecidesData().weekly` domain slate to this same client island: AI Decides and current pairings share the existing right-hand sidebar, with team avatars, compact percentage rows, selection, a linked AI Decides heading and a playground link. The editorial reason, real team context and notes sit below the natural-ratio court in the left column. Detailed saved-pick provenance remains in the native notes dialog and full AI page, separate from the compact list. Full probability bars require a saved ready result matching the live season, week and roster IDs; expired matching picks are labelled past-week, and missing/mismatched picks remain unavailable. There is no duplicate lower preview, sibling-surface import or generation on render. Explicit Stocks and Arcade entries remain visible. Shared shell/theme/navigation is retained and no arcade internals are imported or changed.
+The server owns the edition, player stories, wire and archive. `CourtsideFeature` composes the approved hero — the edition headline and the court on the left, a team desk (members) or league desk (signed out) beside it — from existing domain projections with no new fetches and no client state; the only client island in the hero is the countdown. The court is a still image with no inspection/pause controls or observer work. The redundant player-specific skip link is removed; the shared shell retains its focus-only Skip to content. Homepage roster inspection retains search/sort in the directory below. The dependency cleanup removes the rejected hooper family and its inspection dialogs/loaders; team avatars, names, roster disclosures and direct profile links provide identity without model requests. The page hands the cached `getAiDecidesData().weekly` domain slate to the down-page AI Decides section: all five pairings render as rows with team avatars, saved split bars and a per-pairing provenance disclosure (model choice, probabilities under current team names, saved timestamp, preview-period closure, model/prompt/input snapshot, evidence, confidence kept separate). Full probability bars require a saved ready result matching the live season, week and roster IDs; expired matching picks are labelled past-week, and missing/mismatched picks remain unavailable. There is no generation on render. Explicit Stocks and Arcade entries remain visible. Shared shell/theme/navigation is retained and no arcade internals are imported or changed.
 
 `public/courtside/` preserves the exact supplied SVG variants, approved two pennants, existing arena and thirty bounded local portraits. Plain images serve pre-sized assets directly without image-optimizer quota. Fonts reuse root `next/font` assets. The homepage does not import a hooper viewer or request rejected models. Budgets, provenance and measured verification live in `courtside-preview/review/INTEGRATION.md`.
 
@@ -87,34 +87,55 @@ unlinked visitors never trigger it. The news/guide loads and the
 personalized summary itself remain member-only.
 
 Inside the edition: `CourtsideFeature` takes an optional `hero` (the member's
-summary + faces). A member's own pairing becomes the featured matchup — a
-face-off of both teams' star players at editorial size (each team name on
-its own full-width line under the avatar row, never squeezed into it),
-a dateline carrying the record, and — as the hero's right side — a personal
-panel. The panel's headline is the viewer's roster value at display size,
-the page's only value headline (a partial total stays a labelled subtotal in
-one small line beneath it, with the modeled-pricing basis disclosed beside
-it, and the in-panel disclosure behind the headline holds the full priced
-roster with per-player prices and the coverage disclosure — unpriced
-players read "Unpriced", never $0). Beneath it, a trend line plots the
+summary + faces). The hero is the edition headline over a two-column layout:
+the court on the left — the `TipCountdown` overlay riding the court figure,
+with the matchup caption beneath it — and a desk on the right. A member's
+desk carries their team identity (avatar, name, manager), the previous
+season's record/finish in preseason or the current record/standing in
+season, the roster count, their Week pairing with the opponent's season
+line, their own saved AI win probability with its provenance line, and the
+My team / View roster action bar. A signed-out visitor gets the analogous
+league desk: the featured game of the week, both teams' season lines, and
+the saved AI preview for that pairing with provenance. Below the court, a
+member's roster-value section (`RosterValueSection`) shows their top three
+faces LARGE over the team's outlined name and the team value at display
+size — the page's only value headline (a partial total stays a labelled
+subtotal in one small line beneath it, with the modeled-pricing basis
+disclosed beside it, and the full-roster disclosure under it holds every
+player's price and the coverage disclosure — unpriced players read
+"Unpriced", never $0). Beneath the total, the value chart plots the
 roster's value over time from recorded data only: `rosterValueTrend`
-(`domain/roster-value.ts`) sums the current roster's priced players at each
-recorded instant — the retained `stock_snapshots` points plus the current
-modeled quote — carrying each player's last recorded price forward and
-never backfilling before a player's first recorded point; fewer than two
-recorded instants renders no line at all, and the line is labelled with its
-actual start date and signed delta. The panel continues with the value rank
-(the league standing is the fallback only once games exist), the viewer's
-next or latest matchup, the top mover on their own roster (the same guide
-watch evidence the players lead renders), and the saved AI pick for their
-own pairing as an animated probability bar with the probability label and
-stale state as chips. No joined pick renders no AI element. The league-wide
-model probabilities for every pairing live only in the week desk: beside
-the court for signed-out visitors, and — when the personal panel renders —
-relocated to a full-width row below the clubhouse layout, never duplicated. The
-opening clock is universal and single-presentation: a `TipCountdown`
-overlay rides the court figure for every visitor — members included, the
-hero carries no inline variant — exactly once per page,
+(`domain/roster-value.ts`) reprices TODAY'S roster from recorded points —
+the retained `stock_snapshots` points plus the current modeled quote —
+carrying each player's last recorded price forward and never backfilling
+before a player's first recorded point; the domain returns null below two
+genuinely recorded points (one snapshot plus the appended current quote is
+not a series) and the section then shows the recorded-history unavailable
+state. The chart labels itself as that repricing, marks the appended
+current point as a modeled quote rather than a recorded snapshot, prints
+per-point priced coverage via the recorded endpoints, and shows a change
+figure only between the first and last recorded points with identical
+coverage — never as historical performance. Signed-out visitors get the
+analogous faces section (`BarSetSection`): the featured pairing's roster
+anchors large beside the reigning champion's verified record panel. The
+scouting notebook (`ScoutingNotebook`) features one watch on a named basis
+(the guide's top watch row for members, the featured face's anchor for
+signed-out readers) with around-the-league watches beside it (the other
+featured team's anchor, the edition's sourced one-to-watch). The member's
+form guide + team wire (`FormGuideWire`) prints Best & rough week only
+from the guide's verified completed-week rows (players who actually
+played; a note prints only for an actual injury designation — the guide's
+no-designation and unknown defaults never render), the honest recap status
+line and watchlist-basis disclosure before any completed week, and the
+team's real news headlines with its own recent moves. The edition's
+player-of-week and underperformer spotlights render as the STUD/CHUD
+retrospective (`StudChud`) — oversized outline type for those two words
+only, each panel carrying its stats, period, source and selection reason;
+they are editorial picks grounded in cited sources, never computed award
+winners. AI Decides renders all five pairings down-page (`AiDecidesSection`,
+see above). The opening clock is universal and single-presentation: a `TipCountdown`
+overlay rides the court figure for every visitor — members included —
+exactly once per page,
 gated by the clock itself — never by the provider
 phase — and it renders even when the weekly edition is missing. Its time is
 anchored to the server's league check and advanced only by the monotonic
@@ -124,22 +145,16 @@ suspension or skew, and on return the display reconciles with one
 re-projection from the untouched anchor (`resumeClock`) — the started
 state is terminal through
 Week 1, and the copy keeps the source distinction: the target is the first
-NBA tip (ESPN schedule), while Sleeper publishes only the Oct 20 date. The
-players module leads with the viewer's top three by value and their
-watch/risers rows (form rows carry their observed games; a note prints
-only for an actual injury designation — the guide's no-designation and
-unknown defaults never render) with the watch's basis message
-(`HomePlayersLead`), plus — once a completed week is verified — a compact
-best/rough recap with games played, the guide's period and recap message
-and its coverage line; when no week is verified, the guide's own recap
-status line discloses why. In the missing-edition state the member's full
-roster valuation disclosure and team actions (`RosterValuationDetails` /
-`MemberTeamActions`, shared with the hero) render alongside the players
-lead, team news and faces strip; the
-member's team headlines render beside the league wire (`TeamNews`), the
+NBA tip (ESPN schedule), while Sleeper publishes only the Oct 20 date. In
+the missing-edition state the member's roster-value section and team
+actions (`RosterValuationDetails` / `MemberTeamActions`, shared with the
+value section) render alongside the notebook, form guide + wire, AI
+section and faces strip; the
 faces strip (`FacesStrip`) shows
 every team's top player linked to their page, and the viewer's recent moves
-fold into the existing wire (`TransactionFeed`) marked as their team. The
+fold into the league section's moves feed (`TransactionFeed`) marked as their team. Standings,
+league leaders and recent moves render as a visible league section under
+the directory — never inside a collapsed details element. The
 only separate personal element left is a one-line notice for unclaimed or
 unavailable accounts. Signed-out rendering keeps the edition's structure and
 content unchanged; no current matchup is inferred during offseason, no zero
@@ -158,12 +173,13 @@ is changed by this composition.
 The reigning champion is derived from the clubhouse directory's
 previous-season data — the team whose `previousSeason.finish` is 1, the same
 source that prints its "2025 champion" label — never a hardcoded team.
-Homepage surfaces pass it to `TeamAvatar`'s `isChampion` prop (week rail,
-hero face-off, faces strip, clubhouse directory, standings), and a single
-showcase band presents the champion with the 3D crown (`PropViewer`
-prop="crown", mounted once). On avatars the crown is ChampionCrown's
+Homepage surfaces pass it to `TeamAvatar`'s `isChampion` prop (desks, AI
+rows, faces strip, the public record panel, clubhouse directory, standings). The homepage carries NO
+champion showcase section: the champion appears through the avatar crown
+badge, the directory's champion label and the signed-out record panel only.
+On avatars the crown is ChampionCrown's
 non-interactive badge presentation — avatars sit inside links and matchup
-buttons, where a nested button would be invalid; the spinnable button
+rows, where a nested button would be invalid; the spinnable button
 presentation is reserved for standalone placements. `getDefendingChampion()` is deliberately not
 used here: it reads the current league's winners bracket, which has no
 champion until the running season crowns one.
