@@ -1200,3 +1200,41 @@ and EMA-season provenance remain null. `season-hub/TeamPlayerGuide` renders the
 honest source states and accepts no client-selected owner or invented result.
 The recorded-week adapter is separately scoped to Muse in #190; see
 `docs/weekly-player-guide.md` for the exact data and integration boundary.
+
+## Priced In practice
+
+`/arcade/priced-in` is a registered practice game (registry status stays
+coming-soon for league competition). The `[gameId]` page composes
+`surfaces/arcade/priced-in/PricedIn` before any arcade store lookup, like
+free-throw. Five rounds deal server-side in the page request from
+`getStockMarketData` — the same React `cache()` entry the root-layout
+ticker already computed for that request; there is no route-handler or
+client market fetch, and no new polling.
+
+`domain/arcade/priced-in.ts` owns the pure game: an arcade-owned candidate
+shape (the page adapts slim `StockQuote`s into it — the arcade context
+never imports league types), sampling with injected randomness (headshot
+players deal first, no repeats, a $5 price floor), line-setting 4–15% off
+the real modeled FAAB value, and scoring (correct side 100 plus a
+closeness bonus of up to 50, anchored at the dealer's minimum $2 line
+offset so the best game of 750 is reachable from real deals). Game state
+is a pure state machine in the same module (`PricedInGameState`): every
+result is tied to one complete deal identity (each round's player, price
+and line), Play again locks input while the re-deal refresh is in
+flight, and the delivery that answers the re-deal replaces the game
+atomically — the state records every delivery it consumes (a delivery
+that leaves the game standing still advances the record, so the
+pending baseline is always the delivery on screen when Play again
+was pressed), and a refresh that redealt identical content still
+completes the request
+(the page keys the surface by deal identity, which an identical
+redeal leaves unchanged). The
+surface prints the scoring rule, labels the market's `pricingBasis`
+while prices are preseason-modeled, and renders an explicit unavailable
+state when the market cannot deal a full game — it never invents prices.
+
+Practice only: scores live in session memory and never touch server
+actions, the GameStore or rewards, so no client-computed score is
+recorded as a leaderboard truth. The reveal shows the quote's change vs
+the last snapshot; the slim quote carries no factor breakdown, so none
+is shown (per-player detail loads stay on the stocks surface, rule 14).

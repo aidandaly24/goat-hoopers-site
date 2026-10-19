@@ -7,9 +7,11 @@ import ArcadePage from "./page";
 describe("public Arcade discovery", () => {
   it("advertises implemented practice while league competition stays closed", () => {
     expect(getGame("free-throw")?.status).toBe("coming-soon");
-    expect(getPlayableGames().map(game => game.id)).toEqual(["free-throw", "week-2-preview"]);
+    expect(getPlayableGames().map(game => game.id)).toEqual(["free-throw", "week-2-preview", "priced-in"]);
     expect(getGame("week-2-preview")?.play?.mode).toBe("preview");
     expect(getGame("week-2-preview")?.status).toBe("coming-soon");
+    expect(getGame("priced-in")?.play?.mode).toBe("practice");
+    expect(getGame("priced-in")?.status).toBe("coming-soon");
     expect(getGame("82-0-predictions")).not.toBeNull();
   });
 
@@ -26,6 +28,10 @@ describe("public Arcade discovery", () => {
     expect(html).toContain('href="/arcade/week-2-preview"');
     expect(html).toContain("Week 2 · Unranked preview");
     expect(html).toContain("Week 2 competition stays closed");
+    expect(html).toContain('href="/arcade/priced-in"');
+    expect(html).toContain('aria-label="Play Priced In"');
+    expect(html).toContain("The price game");
+    expect(html).toContain("Over or under the line?");
     expect(html).toContain('href="/arcade/leaderboard"');
     for (const misleading of ["82-0 Predictions", "Not yet live", "Claim your team", "FAAB", "Details →"]) {
       expect(html).not.toContain(misleading);
