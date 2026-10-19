@@ -1863,3 +1863,32 @@
       opacity: 1;
     }
   }
+
+/* One editorial page: shared player/wire sections host the team edition. */
+.integrated-players,.integrated-wire { display:grid; grid-template-columns:minmax(0,1.8fr) minmax(0,1fr); gap:var(--gh-cs-s6); }
+.surface.editorial-home .integrated-players .player-layout { grid-template-columns:minmax(0,1fr); gap:var(--gh-cs-s5); margin-top:var(--gh-cs-s4); }
+.surface.editorial-home .integrated-players .player-lead,.surface.editorial-home .integrated-players .player-support { grid-template-columns:calc(var(--gh-cs-s8) + var(--gh-cs-s6)) minmax(0,1fr); }
+.surface.editorial-home .integrated-players .player-lead .player-take { margin-top:var(--gh-cs-s3); }
+.surface.editorial-home .integrated-players .player-stats { margin-top:var(--gh-cs-s3); }
+.surface.editorial-home .surface.editorial-home .integrated-wire .wire-items { grid-template-columns:minmax(0,1fr); gap:var(--gh-cs-s4); }
+.surface.editorial-home .integrated-wire .wire-item { padding-top:0; }
+.clubhouse-court { position:relative; }
+@media (max-width:48rem) { .integrated-players,.integrated-wire { grid-template-columns:minmax(0,1fr); gap:var(--gh-cs-s5); } }
+
+/* Finite, authored reveals leave numbers readable and the court still. */
+.surface.editorial-home .feature-heading { animation:home-arrive 220ms var(--gh-ease-out) both; }
+.surface.editorial-home .week-bar i { transform-origin:left center; animation:home-probability 280ms var(--gh-ease-out) both; }
+.surface.editorial-home .player-copy { animation:home-arrive 220ms var(--gh-ease-out) both; }
+.surface.editorial-home .personal-only { grid-template-columns:minmax(0,1fr); }
+.surface.editorial-home .personal-only .player-layout { display:none; }
+@keyframes home-arrive { from { opacity:.65; transform:translateY(4px); } to { opacity:1; transform:none; } }
+@keyframes home-probability { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@media (prefers-reduced-motion:reduce) {
+  .surface.editorial-home .feature-heading,.surface.editorial-home .week-bar i,.surface.editorial-home .player-copy { animation:none; }
+}
+
+.surface.editorial-home .rail-controls { min-width:0; flex-wrap:wrap; }
+.surface.editorial-home .rail-controls button { min-width:0; max-width:100%; overflow-wrap:anywhere; }
+
+.surface.editorial-home .week-heading { flex-wrap:wrap; }
+.surface.editorial-home .week-heading > span { min-width:0; max-width:100%; overflow-wrap:anywhere; }

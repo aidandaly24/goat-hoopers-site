@@ -10,6 +10,7 @@
 import { cache } from "react";
 import { unstable_cache } from "next/cache";
 import { buildLiveClubhouseDirectory } from "./courtside-home";
+import { loadLeagueOpening } from "./league-opening";
 import { selectWeeklyEdition, weeklyEditions, getWeeklyEdition } from "./weekly-spotlight";
 import type { LiveClubhouseDirectoryEntry } from "@/domain/clubhouse-directory";
 import type { WeeklyEdition } from "@/domain/weekly-spotlight";
@@ -118,6 +119,7 @@ export type SeasonHubData = {
 
 export { getWeeklyArchive, getWeeklyEdition } from "./weekly-spotlight";
 export { getCourtsidePortraits } from "./courtside-home";
+export const getLeagueOpening = cache(() => loadLeagueOpening({ league: fetchLeague, state: fetchNbaState }));
 
 export type CourtsideHomeData = {
   hub: SeasonHubData | null;

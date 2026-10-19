@@ -7,6 +7,7 @@ import {
   getStockMarketData,
   getLeagueNewsEdition,
   getHomePlayerGuideSources,
+  getLeagueOpening,
 } from "@/data/league";
 import { headers } from "next/headers";
 import { getCurrentUser } from "@/app/actions";
@@ -14,7 +15,6 @@ import { friendsAuthEnabled } from "@/data/friends-auth/config";
 import { getVerifiedAccount } from "@/data/friends-auth/runtime";
 import { hasHomeMembership, loadHomeViewer } from "@/data/home-viewer";
 import { buildPersonalizedHome } from "@/data/personalized-home";
-import { PersonalizedHome } from "@/surfaces/season-hub/PersonalizedHome";
 import { CourtsideHome } from "@/surfaces/season-hub/CourtsideHome";
 import type { Metadata } from "next";
 
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [data, aiData, viewer] = await Promise.all([getCourtsideHomeData(), getAiDecidesData(),
+  const [data, aiData, viewer, opening] = await Promise.all([getCourtsideHomeData(), getAiDecidesData(),
     loadHomeViewer({ member: getCurrentUser, account: async () => friendsAuthEnabled()
-      ? getVerifiedAccount(await headers()) : null, hasMembership: hasHomeMembership }),
+      ? getVerifiedAccount(await headers()) : null, hasMembership: hasHomeMembership }), getLeagueOpening(),
   ]);
   // React.cache reuses the root ticker's existing request-local market result.
   // No additional refresh, deep player fetch or snapshot operation is introduced.
@@ -39,15 +39,14 @@ export default async function Home() {
   const personal = buildPersonalizedHome(viewer, data, aiData.weekly, market, news, guideSources);
   const portraits = getCourtsidePortraits();
   return (
-    <>
-      <PersonalizedHome data={personal} portraits={portraits} />
       <CourtsideHome
         data={data}
         archive={getWeeklyArchive()}
         portraits={portraits}
         aiWeekly={aiData.weekly}
         viewerTeamId={viewer.kind === "member" ? viewer.teamId : undefined}
+        personal={personal}
+        opening={opening}
       />
-    </>
   );
 }

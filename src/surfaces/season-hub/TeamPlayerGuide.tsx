@@ -14,7 +14,7 @@ function Rows({ rows, basis, teamId, portraits }: { rows: GuideRow[]; basis: "ma
 }
 
 /** The viewer's form guide: actual period/basis only, no guessed participation. */
-export function TeamPlayerGuide({ guide, teamId, portraits = {} }: { guide: Guide; teamId: string; portraits?: Record<string, string> }) {
+export function TeamPlayerGuide({ guide, teamId, portraits = {}, embedded = false }: { guide: Guide; teamId: string; portraits?: Record<string, string>; embedded?: boolean }) {
   const populated = guide.watch.rows.length > 0 || guide.best.length > 0 || guide.rough.length > 0;
   const content = <div className={styles.guideColumns}>
       <section aria-labelledby="watch-team-players"><h4 id="watch-team-players">Players to Watch · {guide.currentWeek ? `Week ${guide.currentWeek}` : "period unavailable"}</h4>
@@ -33,9 +33,12 @@ export function TeamPlayerGuide({ guide, teamId, portraits = {} }: { guide: Guid
         <p className={styles.caption}>{guide.coverage}</p>
       </section>
     </div>;
-  return <section className={styles.formGuide} aria-labelledby="your-form-guide" data-team-form-guide>
-    <h3 id="your-form-guide">Your form guide</h3>
-    {populated ? content : <>
+  return <section className={styles.formGuide} aria-labelledby={embedded ? undefined : "your-form-guide"} aria-label={embedded ? "Your form guide" : undefined} data-team-form-guide>
+    {!embedded && <h3 id="your-form-guide">Your form guide</h3>}
+    {embedded ? <>
+      {!!guide.watch.rows.length && <section aria-label="Your players to watch"><h4>Players to Watch · {guide.currentWeek ? `Week ${guide.currentWeek}` : "period unavailable"}</h4><p className={styles.caption}>{guide.watch.label}</p><Rows rows={guide.watch.rows} basis={guide.watch.basis === "form" ? "form" : "market"} teamId={teamId} portraits={portraits} /></section>}
+      <details className={styles.notes}><summary>{populated ? "Weekly recap & source coverage" : "Watch & weekly recap status"}</summary>{content}</details>
+    </> : populated ? content : <>
       <p className={styles.caption}>Weekly player rankings are not available from verified participation and period data yet. No-game or missing records are not poor performances.</p>
       <details className={styles.notes}><summary>Watch & weekly recap status</summary>{content}</details>
     </>}

@@ -29,6 +29,9 @@ type Props = {
   aiWeekly?: AiWeeklySlate;
   sources: ReactNode;
   viewerTeamId?: string;
+  viewerContext?: ReactNode;
+  preferViewerMatchup?: boolean;
+  opening?: ReactNode;
 };
 
 const savedComparison = (snapshot: AiSnapshotMetadata | null | undefined) => snapshot?.comparison === "preseason_lineup_preview" ? "Preseason lineup preview" : snapshot?.comparison === "weekly_lineup_preview" ? "Weekly lineup preview" : null;
@@ -46,8 +49,8 @@ function previewPeriod(snapshot: AiSnapshotMetadata | null): string | null {
  * The court is a still image; only deliberate team selection moves the context rail.
  * No projected scores, scroll hijacking, ornamental frames or standalone hoopers.
  */
-export function CourtsideFeature({ edition, entries, rosterCounts, preseason, checkedAt, season, aiWeekly, sources, viewerTeamId }: Props) {
-  const [selected, setSelected] = useState<DisplayPair | null>(null);
+export function CourtsideFeature({ edition, entries, rosterCounts, preseason, checkedAt, season, aiWeekly, sources, viewerTeamId, viewerContext, preferViewerMatchup, opening }: Props) {
+  const [selectedOverride, setSelected] = useState<DisplayPair | null | undefined>();
   const [side, setSide] = useState(0);
   const livePairs = entries.flatMap((entry, index) => {
     const matchup = entry.currentMatchup;
@@ -62,6 +65,8 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
     const away = entries.find(entry => entry.identity.id === pick.teamIds[1])?.identity;
     return home && away ? [{ week: aiWeekly.week, home, away, homePoints: null, awayPoints: null }] : [];
   }) : livePairs;
+  const viewerPair = preferViewerMatchup ? pairs.find(pair => pair.home.id === viewerTeamId || pair.away.id === viewerTeamId) : undefined;
+  const selected = selectedOverride === undefined ? viewerPair ?? null : selectedOverride;
   const game = edition.game;
   const ids = selected ? [selected.home.id, selected.away.id] : game.teamIds ?? [];
   const teams = ids.map((id) => entries.find((entry) => entry.identity.id === id)).filter((entry) => !!entry);
@@ -88,7 +93,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
   return <>
     <div className={cs("feature-heading")}>
       <div>
-        <p className={cs("feature-label")}>{selected ? preseasonPreview ? "Selected preseason pairing" : "Selected matchup" : "Featured matchup"} · {status}</p>
+        <p className={cs("feature-label")}>{selected ? selectedOverride === undefined && viewerPair ? "Your matchup" : preseasonPreview ? "Selected preseason pairing" : "Selected matchup" : "Featured matchup"} · {status}</p>
         <h1 id="game-title">{title}</h1>
       </div>
     </div>
@@ -96,8 +101,10 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
       <div className={cs("court-column")}>
         <figure className={cs("clubhouse-court")} id="clubhouse-court">
           <img src="/courtside/arena.jpg" alt="The GOAT Hoopers basketball court, with players on the floor and fans in the stands" width="1440" height="810" fetchPriority="high" />
+          {opening}
         </figure>
         <p className={cs("feature-context")}>{context}</p>
+        {((selected && [selected.home.id, selected.away.id].includes(viewerTeamId ?? "")) || (!selected && !preferViewerMatchup)) && viewerContext}
         {!!teams.length && <div className={cs("team-context-rail")} id="matchup-context">
           <div className={cs("rail-controls")} role="group" aria-label="Select matchup team">
             {teams.map((team, index) => <button type="button" key={team.identity.id} aria-pressed={side === index} aria-controls="team-context-window" onClick={() => setSide(index)}>{team.identity.name}{state === "final" && scores?.[index] !== null && <span className={cs("gh-num")}> · {scores?.[index]?.toFixed(1)}</span>}</button>)}
@@ -137,7 +144,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
               <ul>{detailPick?.evidence.map((e, index) => <li key={index}>{e}</li>)}</ul>
             </>}
           </CourtsideDialog>
-          {selected && <button type="button" className={cs("text-link")} onClick={() => { setSelected(null); setSide(0); }}>Back to featured matchup</button>}
+          {selected && <button type="button" className={cs("text-link")} onClick={() => { setSelected(null); setSide(0); }}>League featured matchup</button>}
           <p className={cs("feature-check")}>League check · {checkedAt.slice(0, 10)}</p>
         </div>
       </div>

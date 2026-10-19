@@ -1,0 +1,7 @@
+.clock { min-width: 0; color: var(--gh-text); }
+.clock p { margin: 0 0 var(--gh-s3); line-height: var(--gh-lh-md); font-size: var(--gh-text-sm); overflow-wrap: anywhere; }
+.clock > span { display: block; color: var(--gh-text-dim); font-size: var(--gh-text-sm); }
+.clock > strong { display: block; margin-block: var(--gh-s2); font: 650 clamp(1.5rem, 5vw, 2.5rem)/1.2 var(--gh-font-mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.refresh { min-height: 44px; border: 1px solid var(--gh-control); border-radius: var(--gh-radius); padding: var(--gh-s2) var(--gh-s4); background: var(--gh-bg-raised); color: var(--gh-text); font: inherit; cursor: pointer; }
+.refresh:focus-visible { outline: 2px solid var(--gh-focus); outline-offset: 3px; }
+.refresh:hover { background: var(--gh-bg-hover); }

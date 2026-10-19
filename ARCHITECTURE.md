@@ -70,8 +70,14 @@ API route. The bounded DTO includes top-three modeled FAAB values with known
 historical changes, roster-matched news and existing recent moves, not deep
 player details or a new performance metric.
 
-`surfaces/season-hub/PersonalizedHome` renders the team edition before league
-content with My team/full-roster links. Existing standings and matchup rows can
+`surfaces/season-hub/CourtsideHome` composes the personal context within the
+existing edition. `PersonalizedHome` is a compact identity/record bar with one
+modeled total opening the retained full valuation. The viewer’s current pairing
+is the default court feature; selecting other league pairings keeps their
+context distinct from the viewer’s saved AI. `PersonalizedPlayers` sits beside
+league player editorial, and `PersonalizedWire` beside league happenings. Empty
+editorial never removes the team modules. All prior details remain available
+through native disclosures, My team and full-roster links. Existing standings and matchup rows can
 receive the server-resolved roster ID for a visible Your team marker. Signed-out
 home content is retained; no current matchup is inferred during offseason, no
 zero is substituted for unknown scores/quotes, and saved AI requires matching
@@ -88,6 +94,24 @@ supplied portrait first, then its existing resolved ESPN headshot, then labelled
 initials after absent/failed sources. Changing the supplied source can recover
 from a previous image failure. No player IDs are guessed and no image or
 directory fetch is added to the data layer; unknown portraits remain explicit.
+
+`domain/league-opening.ts` distinguishes unavailable, date-only and verified
+opening evidence. `data/league-opening.ts` validates the configured league’s
+season/start-week and the public state date through injected readers;
+`getLeagueOpening` reuses existing cached Sleeper reads. A date or early
+regular/has-scores flag never certifies a scoring-start instant. The public
+court overlay currently shows date/pending for every viewer, including signed
+out. It is omitted from historical archive editions. No exact league start
+instant/timezone has been verified; the AI publication cutoff is unrelated.
+
+The generic `domain/server-clock.ts` + `ui/ServerCountdown` display consumes an
+explicit request/response server sample and monotonic elapsed time, discounts
+round-trip delay, clamps at zero and withholds time after suspension or clock
+drift until a new sample. It owns no endpoint, scheduling or gameplay. The
+opening overlay supports verified upcoming/started states through that shared
+primitive, but production has neither a certified deadline nor a clock exchange
+wired here. Offline opening-state fixtures use explicitly synthetic clocks.
+Ranked challenge protocol, policy and activation remain a separate workstream.
 
 ### Isolated courtside homepage review
 

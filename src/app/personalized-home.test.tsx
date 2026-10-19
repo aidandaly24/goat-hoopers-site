@@ -7,7 +7,7 @@ vi.mock('next/headers', () => ({ headers: async () => new Headers() }));
 vi.mock('@/data/friends-auth/config', () => ({ friendsAuthEnabled: () => true }));
 vi.mock('@/data/friends-auth/runtime', () => ({ getVerifiedAccount: mocks.account }));
 vi.mock('@/data/home-viewer', async importOriginal => ({ ...await importOriginal<typeof import('@/data/home-viewer')>(), hasHomeMembership: mocks.linked }));
-vi.mock('@/data/league', () => ({ getCourtsideHomeData: mocks.home, getAiDecidesData: mocks.ai, getStockMarketData: mocks.market, getLeagueNewsEdition: mocks.news, getHomePlayerGuideSources: mocks.guide, getWeeklyArchive: () => [], getCourtsidePortraits: () => ({ '1-player-1': '/courtside/portraits/player-1362.png' }) }));
+vi.mock('@/data/league', () => ({ getLeagueOpening: async () => ({ status: 'unavailable', date: null, startsAtMs: null, message: 'No confirmed schedule' }), getCourtsideHomeData: mocks.home, getAiDecidesData: mocks.ai, getStockMarketData: mocks.market, getLeagueNewsEdition: mocks.news, getHomePlayerGuideSources: mocks.guide, getWeeklyArchive: () => [], getCourtsidePortraits: () => ({ '1-player-1': '/courtside/portraits/player-1362.png' }) }));
 import Home, { dynamic } from './page';
 beforeEach(() => {
   vi.resetAllMocks(); const fixture = personalizedFixture();

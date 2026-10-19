@@ -11,6 +11,10 @@ import { StandingsTable } from "./StandingsTable";
 import { TransactionFeed } from "./TransactionFeed";
 import { SectionLinks } from "./SectionLinks";
 import { cs } from "./CourtsideStyles";
+import type { PersonalizedHomeData } from "@/domain/personalized-home";
+import type { LeagueOpening } from "@/domain/league-opening";
+import { PersonalizedHome, PersonalizedMatchup, PersonalizedPlayers, PersonalizedWire } from "./PersonalizedHome";
+import { LeagueOpeningOverlay } from "./LeagueOpeningOverlay";
 import "@/ui/courtside-tokens.css";
 
 type Props = {
@@ -20,6 +24,8 @@ type Props = {
   archived?: boolean;
   aiWeekly?: AiWeeklySlate;
   viewerTeamId?: string;
+  personal?: PersonalizedHomeData;
+  opening?: LeagueOpening;
 };
 const labels = {
   "player-of-week": "Player of the Week",
@@ -132,8 +138,11 @@ export function CourtsideHome({
   archived = false,
   aiWeekly,
   viewerTeamId,
+  personal = { kind: "signed_out" },
+  opening,
 }: Props) {
   const { edition, hub } = data;
+  const summary = personal.kind === "member" ? personal.summary : null;
   const preseason =
     hub?.season.status === "pre_season" || hub?.season.status === "pre_draft";
   const seasonLabel = hub
@@ -144,6 +153,7 @@ export function CourtsideHome({
       <div className={cs("surface")} data-courtside-home>
         <section className={cs("archive-page")}>
           <div className={cs("wrap")}>
+            <PersonalizedHome data={personal} />
             <h1>The next weekly story is on its way.</h1>
             <p className={cs("archive-intro")}>
               Browse the league while the next editorial edition is prepared.
@@ -154,6 +164,8 @@ export function CourtsideHome({
             <SectionLinks />
             <Link className={cs("text-link")} href="/arcade">Arcade</Link>
             <Link className={cs("text-link")} href="/ai-decides">AI Decides playground</Link>
+            <figure className={cs("clubhouse-court")}><img src="/courtside/arena.jpg" alt="The GOAT Hoopers basketball court" width="1440" height="810" /><LeagueOpeningOverlay opening={opening} /></figure>
+            {summary && <><PersonalizedMatchup summary={summary} /><PersonalizedPlayers summary={summary} portraits={portraits} /><PersonalizedWire summary={summary} /></>}
           </div>
         </section>
         <CourtsideDirectory entries={data.directory} seasonLabel={seasonLabel} checkedAt={data.checkedAt} preseason={preseason} rosterNamesAvailable={data.rosterNamesAvailable} portraits={portraits} />
@@ -185,7 +197,9 @@ export function CourtsideHome({
               next weekly spotlight is pending.
             </p>
           )}
+          <PersonalizedHome data={personal} />
           <CourtsideFeature
+            key={`${edition.id}:${viewerTeamId ?? "league"}`}
             edition={edition}
             entries={data.directory.map(({ identity, previousSeason, currentRecord, currentMatchup }) => ({ identity, previousSeason, currentRecord, currentMatchup }))}
             rosterCounts={Object.fromEntries(data.directory.map((entry) => [entry.identity.id, entry.players.length]))}
@@ -195,6 +209,9 @@ export function CourtsideHome({
             aiWeekly={aiWeekly}
             viewerTeamId={viewerTeamId}
             sources={<Sources edition={edition} />}
+            viewerContext={summary ? <PersonalizedMatchup summary={summary} /> : undefined}
+            preferViewerMatchup={!!summary?.matchup || !!summary?.ai}
+            opening={!archived ? <LeagueOpeningOverlay opening={opening} /> : undefined}
           />
           <div className={cs("edition-links")}>
             {previous && <Link href={`/weekly/${previous.id}`}>Previous edition</Link>}
@@ -206,14 +223,15 @@ export function CourtsideHome({
       </section>
       <div className={cs("weekly-zone")}>
         <div className={cs("wrap")}>
-          {!!edition.playerSpotlights.length && (
+          {(!!edition.playerSpotlights.length || !!summary) && (
             <section id="watch" aria-labelledby="watch-title">
               <h2 id="watch-title">This week’s players</h2>
-              <p className={cs("weekly-context")}>
+              {!!edition.playerSpotlights.length && <p className={cs("weekly-context")}>
                 {edition.status === "draft"
                   ? "Opening edition: two 2025–26 lookbacks and one preseason watch. Sample editorial; no 2026 scoring week has been played."
                   : `Editorial picks · ${edition.dateLabel}`}
-              </p>
+              </p>}
+              <div className={cs(summary ? "integrated-players" : "league-players", !edition.playerSpotlights.length ? "personal-only" : "")}>
               <div className={cs("player-layout")}>
                 {lead && (
                   <PlayerStory
@@ -235,7 +253,9 @@ export function CourtsideHome({
                   ))}
                 </div>
               </div>
-              <details className={cs("shared-sources")}>
+              {summary && <PersonalizedPlayers summary={summary} portraits={portraits} />}
+              </div>
+              {!!edition.playerSpotlights.length && <details className={cs("shared-sources")}>
                 <summary>Sources & why these picks</summary>
                 <p>
                   Roster links reflect the current live roster check. These
@@ -254,7 +274,7 @@ export function CourtsideHome({
                     </li>
                   ))}
                 </ul>
-              </details>
+              </details>}
             </section>
           )}
           <section className={cs("happenings")} aria-labelledby="wire-title">
@@ -264,6 +284,7 @@ export function CourtsideHome({
                 The full wire
               </Link>
             </div>
+            <div className={cs(summary ? "integrated-wire" : "league-wire")}>
             <div className={cs("wire-items")}>
               {edition.happenings.map((item) => (
                 <article className={cs("wire-item")} key={item.title}>
@@ -274,6 +295,8 @@ export function CourtsideHome({
                   </a>
                 </article>
               ))}
+            </div>
+            {summary && <PersonalizedWire summary={summary} />}
             </div>
             <Sources edition={edition} />
           </section>
