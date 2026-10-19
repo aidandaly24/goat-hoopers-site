@@ -57,6 +57,9 @@ try {
           await page.mouse.move(0, 0); await page.mouse.up();
         }
         await preview.focus();
+        await page.keyboard.press("Shift+Tab");
+        await page.keyboard.press("Tab");
+        assert(await preview.evaluate(node => document.activeElement === node), "Keyboard navigation missed launch control");
         const focus = await preview.evaluate(node => ({ outline: getComputedStyle(node).outlineStyle, width: getComputedStyle(node).outlineWidth }));
         assert(focus.outline !== "none" && parseFloat(focus.width) >= 2, "Missing visible keyboard focus");
         await page.screenshot({ path: `${output}/arcade-focus-${settings.name}.png` });
