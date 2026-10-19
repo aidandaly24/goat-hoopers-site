@@ -11,6 +11,7 @@ const ROUTES: { path: string; changeFrequency: "hourly" | "daily" | "weekly"; pr
   { path: "/transactions", changeFrequency: "hourly", priority: 0.7 },
   { path: "/draft", changeFrequency: "weekly", priority: 0.6 },
   { path: "/intel", changeFrequency: "daily", priority: 0.6 },
+  { path: "/table", changeFrequency: "daily", priority: 0.6 },
   { path: "/history", changeFrequency: "weekly", priority: 0.6 },
   { path: "/history/champions", changeFrequency: "weekly", priority: 0.5 },
   { path: "/history/hall-of-fame", changeFrequency: "weekly", priority: 0.5 },
