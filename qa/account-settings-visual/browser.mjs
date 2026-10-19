@@ -1,10 +1,12 @@
 import { chromium } from "/opt/codex/cua_node/lib/node_modules/playwright/index.mjs";
 import assert from "node:assert/strict";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 const base = "http://127.0.0.1:4181";
 const output = "qa/account-settings-visual/evidence";
 const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", headless: true, args: ["--no-sandbox"] });
 const evidence = { kind: "Checked-out production page functions/components with synthetic injected sources and real shared shell/fonts; native fixture navigation, not hosted Next/live auth or original-photo comparison.", cases: [], interactions: [], pageErrors: [], externalRequests: [], unexpectedPosts: [] };
+evidence.applicationSourceTree = execFileSync("git", ["rev-parse", "HEAD:src"], { encoding: "utf8" }).trim();
 const signupOnly = process.argv.includes("--signup-only");
 const interactionsOnly = process.argv.includes("--interactions-only") || signupOnly;
 if (interactionsOnly) {
@@ -122,6 +124,17 @@ try {
   assert.deepEqual(evidence.pageErrors, []); assert.deepEqual(evidence.externalRequests, []); assert.deepEqual(evidence.unexpectedPosts, []);
   assert.equal(evidence.cases.filter(c => c.failures.length).length, 0, JSON.stringify(evidence.cases.filter(c => c.failures.length).map(c => ({ route: c.route, width: c.width, state: c.state, failures: c.failures }))));
 } finally {
+  for (const entry of evidence.cases) {
+    const measured = entry.measured;
+    if (measured.linkCount === undefined) {
+      measured.linkCount = measured.links.length;
+      measured.minimumLinkContrast = measured.links.length ? Math.min(...measured.links.map(link => link.contrast)) : null;
+      measured.minimumLinkHeight = measured.links.length ? Math.min(...measured.links.map(link => link.height)) : null;
+    }
+    // Keep full details for changed actions; roster presence/count/minima
+    // retain the checks without repeating all 24 player rows per state.
+    measured.links = measured.links.filter(link => !link.href?.startsWith("/player/"));
+  }
   await writeFile(`${output}/browser.json`, JSON.stringify(evidence, null, 2)); await browser.close();
 }
 console.log(`PASS: ${evidence.cases.length} rendered states and ${evidence.interactions.length} interaction flows.`);

@@ -21,6 +21,9 @@ at x=0, plus the team settings link outside the centered content. Those link
 targets measured 20px high. Claim/password inspection also found underlined
 20px account-help links. The `before-*-help` images capture that help navigation
 before its styling correction, with the new account frame already present.
+The final patch integrates main `6c95e4d9ead993c342740d0058aa9d01477aaf93`,
+including its independently owned Table heading/navigation update. That shared
+code is preserved; it is not part of this account/team patch.
 
 The patch uses the existing Paper + Slate tokens, Card, SectionHeading and
 neutral shared controls. Settings get a bounded page, account identity and
@@ -71,15 +74,15 @@ captures because the fixture reads fonts from generated build output.
   contrast against composited backgrounds is at least **5.15:1**. No horizontal
   overflow, underlined/default-blue main anchors, page errors or external
   requests occurred. This is not a site-wide contrast or all-state guarantee.
-- Source inventory covers **143** production Link/anchor declarations. Only
+- Source inventory covers **146** production Link/anchor declarations. Only
   the shared header's callback links lack direct/ancestor classes at their
   declaration site; those receive the existing nav/panel descendant styles.
   The four original account/team bare declarations are removed. Other routes
   received source inspection only; this matrix does not claim to render them.
 
-The matrix completed before QA-only interaction selector corrections. Its
-unchanged-source results were reused, and interaction checks resumed without
-rerunning the matrix. The successful report records this explicitly.
+The final 68-state matrix and five interaction flows ran on the integrated
+main base above. `browser.json` records the exact application `src` tree.
+The earlier routing-only tests were not rerun for this presentation work.
 
 Representative captures (all synthetic local application output):
 
