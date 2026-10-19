@@ -5,7 +5,7 @@ import { StandingsTable } from './StandingsTable';
 import { CourtsideHome } from './CourtsideHome';
 import { buildHomeFaces, buildPersonalizedHome } from '@/data/personalized-home';
 import type { PersonalizedHomeData } from '@/domain/personalized-home';
-import { personalizedFixture } from '@/test/personalized-home-fixture';
+import { personalizedFixture, playerGuideFixture } from '@/test/personalized-home-fixture';
 
 const renderHome = (fixture: ReturnType<typeof personalizedFixture>, personal?: PersonalizedHomeData, viewerTeamId?: string) =>
   renderToStaticMarkup(createElement(CourtsideHome, {
@@ -142,6 +142,54 @@ describe('integrated personalized edition', () => {
     expect(html).not.toContain('hero-score');
   });
 
+  it('shows the court opening clock to signed-out and unclaimed visitors before the tip', () => {
+    for (const kind of ['signed_out', 'unclaimed'] as const) {
+      const fixture = personalizedFixture();
+      fixture.home.checkedAt = '2026-10-19T12:00:00Z';
+      const html = renderHome(fixture, { kind });
+      // The clock rides the court overlay for everyone — no hero required,
+      // and the provider phase does not gate it.
+      expect(html).toContain('data-court-clock="countdown"');
+      expect(html).toContain('Week 1 tip-off');
+      expect(html).toContain('Sleeper confirms the Oct 20 date; its scoring-start time is unpublished');
+      expect(html).not.toContain('data-hero');
+    }
+  });
+
+  it('retains team news and the verified best/rough recap for members', () => {
+    const fixture = personalizedFixture();
+    const personal = buildPersonalizedHome(
+      { kind: 'member', teamId: '1' }, fixture.home, fixture.weekly, fixture.market,
+      fixture.news, playerGuideFixture('1'),
+    );
+    const html = renderHome(fixture, personal, '1');
+    expect(html).toContain('data-team-news');
+    expect(html).toContain('Your team in the news');
+    expect(html).toContain('Synthetic roster 1 player update');
+    expect(html).toContain('Synthetic Wire');
+    expect(html).toContain('data-guide-recap');
+    expect(html).toContain('Your best');
+    expect(html).toContain('The rough week');
+    expect(html).toContain('GP');
+    expect(html).toContain('verified games');
+  });
+
+  it('keeps the court clock and member modules when the edition is missing', () => {
+    const fixture = personalizedFixture();
+    fixture.home.edition = null;
+    fixture.home.checkedAt = '2026-10-19T12:00:00Z';
+    const personal = buildPersonalizedHome(
+      { kind: 'member', teamId: '1' }, fixture.home, fixture.weekly, fixture.market,
+      fixture.news, playerGuideFixture('1'),
+    );
+    const html = renderHome(fixture, personal, '1');
+    expect(html).toContain('The next weekly story is on its way.');
+    expect(html).toContain('data-court-clock="countdown"');
+    expect(html).toContain('data-your-lead');
+    expect(html).toContain('data-team-news');
+    expect(html).toContain('data-faces-strip');
+  });
+
   it('renders the faces strip with every team\u2019s top player by value', () => {
     const fixture = personalizedFixture();
     const html = renderHome(fixture, { kind: 'signed_out' });
@@ -158,9 +206,15 @@ describe('integrated personalized edition', () => {
     expect(html).toContain('data-champion-showcase');
     expect(html).toContain('Reigning champion · 2025');
     expect(html).toContain(' · 2025 champion');
-    expect(html.match(/Defending champion/g)).toHaveLength(5); // week rail, faces strip, showcase, directory row, standings row
+    // Five avatar crowns (week rail, faces strip, showcase, directory row,
+    // standings row) — all non-interactive badges: avatars sit inside
+    // matchup buttons and links, where a crown button would be invalid
+    // nested interactive content. The spinnable variant never renders here.
+    expect(html.match(/data-champion-crown="badge"/g)).toHaveLength(5);
+    expect(html).not.toContain('data-champion-crown="interactive"');
+    expect(html).not.toContain('<button type="button" aria-label="Defending champion');
     const noChamp = renderHome(personalizedFixture(), { kind: 'signed_out' });
     expect(noChamp).not.toContain('data-champion-showcase');
-    expect(noChamp).not.toContain('Defending champion');
+    expect(noChamp).not.toContain('data-champion-crown');
   });
 });

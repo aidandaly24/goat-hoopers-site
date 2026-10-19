@@ -35,6 +35,18 @@
   border-radius: var(--gh-s2);
 }
 
+/* Non-interactive badge presentation (avatars inside links/buttons):
+ * same perch and tilt, no pointer affordances of its own. */
+.badge {
+  cursor: inherit;
+  pointer-events: none;
+}
+
+.badge:hover,
+.badge:active {
+  transform: rotate(-9deg);
+}
+
 .svg {
   width: 100%;
   height: 100%;

@@ -30,12 +30,12 @@ export function ChampionShowcase({ entry }: { entry: LiveClubhouseDirectoryEntry
             {team.managerName} took the {prior.season} title at {prior.wins}–{prior.losses}. The crown
             sits on their avatar all season — until someone takes it.
           </p>
-          <p className={cs("champion-teamline")}>
+          <div className={cs("champion-teamline")}>
             <TeamAvatar name={team.name} avatar={team.avatar} isChampion />
             <Link className={cs("text-link")} href={`/teams/${team.id}`} prefetch={false}>
               Open the champions
             </Link>
-          </p>
+          </div>
         </div>
       </div>
     </section>

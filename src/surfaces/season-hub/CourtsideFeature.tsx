@@ -13,7 +13,7 @@ import { teamColorVar } from "@/ui/teamColors";
 import { CourtsideDialog } from "./CourtsideDialog";
 import { cs } from "./CourtsideStyles";
 import { isHomePreseasonPreview, type HomeTeamFace, type HomeTeamSummary } from "@/domain/personalized-home";
-import { TipCountdown, WEEK_ONE_TIP_OFF_ISO } from "./TipCountdown";
+import { TipCountdown, WEEK_ONE_TIP_OFF_ISO, openingPhase } from "./TipCountdown";
 import { formatHomeStamp } from "./homeFormat";
 
 type DisplayPair = Pick<Matchup, "week" | "homePoints" | "awayPoints"> & {
@@ -160,7 +160,11 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
   const viewerEntry = heroSummary ? entries.find((entry) => entry.identity.id === heroSummary.team.id) : undefined;
   const viewerPrior = preseason ? viewerEntry?.previousSeason : null;
   const viewerRecord = viewerPrior ?? viewerEntry?.currentRecord ?? null;
-  const tipPassed = Date.parse(checkedAt) >= Date.parse(WEEK_ONE_TIP_OFF_ISO);
+  // The opening clock is gated by the clock itself (anchored to this server
+  // check), never by the provider's phase flag: an early-regular phase still
+  // counts down to the first tip, and the started state follows the tip.
+  const opening = openingPhase(Date.parse(checkedAt), Date.parse(WEEK_ONE_TIP_OFF_ISO), week ?? null);
+  const heroMarketStamp = heroSummary ? formatHomeStamp(heroSummary.market?.updatedAt) : null;
   const sideRecord = (teamId: string) => {
     const entry = entries.find((candidate) => candidate.identity.id === teamId);
     const prior = preseason ? entry?.previousSeason : null;
@@ -182,8 +186,8 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
             portraits={portraits} champion={shown.home.id === championTeamId} own={shown.home.id === heroSummary.team.id}
             recordLabel={sideRecord(shown.home.id).label} recordText={sideRecord(shown.home.id).text} />
           <div className={cs("hero-center")}>
-            {preseason && !tipPassed
-              ? <TipCountdown serverNowIso={checkedAt} />
+            {opening === "before"
+              ? <TipCountdown serverNowIso={checkedAt} week={week ?? null} />
               : isFinal(shown)
                 ? <><span className={cs("hero-vs")}>Final</span><span className={cs("hero-score", "gh-num")}>{shown.homePoints?.toFixed(1)} – {shown.awayPoints?.toFixed(1)}</span></>
                 : shown.homePoints !== null && shown.awayPoints !== null
@@ -237,6 +241,9 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
               {heroSummary.valuation.complete
                 ? `All ${heroSummary.rosterValues.length} roster players priced.`
                 : `Subtotal counts priced players only · ${heroSummary.coverage.priced} of ${heroSummary.coverage.roster} priced · ${heroSummary.valuation.unpriced} unpriced — unknown is never $0.`}
+              {heroSummary.market && (
+                <> Modeled prices · {heroSummary.market.pricingBasis === "preseason" ? "Preseason" : "In-season"} pricing{heroMarketStamp ? ` · computed ${heroMarketStamp}` : ""}.</>
+              )}
             </p>
           </details>
         )}
@@ -269,6 +276,11 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
       <div className={cs("court-column")}>
         <figure className={cs("clubhouse-court")} id="clubhouse-court">
           <img src="/courtside/arena.jpg" alt="The GOAT Hoopers basketball court, with players on the floor and fans in the stands" width="1440" height="810" fetchPriority="high" />
+          {opening !== "past" && !(isHeroShown && opening === "before") && (
+            <div className={cs("court-clock")}>
+              <TipCountdown serverNowIso={checkedAt} week={week ?? null} variant="overlay" />
+            </div>
+          )}
         </figure>
         <p className={cs("feature-context")}>{context}</p>
         {!!teams.length && <div className={cs("team-context-rail")} id="matchup-context">

@@ -84,7 +84,7 @@ itself remain member-only.
 Inside the edition: `CourtsideFeature` takes an optional `hero` (the member's
 summary + faces). A member's own pairing becomes the featured matchup — a
 face-off of both teams' star players at editorial size, a live countdown to
-the first Week 1 tip in the preseason hero state (`TipCountdown`; target is
+the first Week 1 tip in the hero state (`TipCountdown`; target is
 the first scheduled 2026–27 regular-season tip, sourced in the component),
 a dateline whose roster value is the page's only value headline (a partial
 total stays a labelled subtotal in one small line beneath it; the headline
@@ -93,8 +93,21 @@ prices and the coverage disclosure — unpriced players read "Unpriced", never
 $0), and the saved
 AI pick for the pairing as an animated probability bar with the probability
 label and stale state as chips. No joined pick renders no AI element. The
+opening clock is universal: a `TipCountdown` overlay rides the court figure
+for every visitor (the member hero carries the large countdown instead, so
+it never renders twice), gated by the clock itself — never by the provider
+phase — and it renders even when the weekly edition is missing. Its time is
+anchored to the server's league check and advanced only by the monotonic
+clock (wall time is a skew detector, never a source); the interval stops at
+the tip and while the tab is hidden, the started state is terminal through
+Week 1, and the copy keeps the source distinction: the target is the first
+NBA tip (ESPN schedule), while Sleeper publishes only the Oct 20 date. The
 players module leads with the viewer's top three by value and their
-watch/risers rows (`HomePlayersLead`), the faces strip (`FacesStrip`) shows
+watch/risers rows with availability notes and the watch's basis message
+(`HomePlayersLead`), plus — once a completed week is verified — a compact
+best/rough recap with games played and the guide's coverage line; the
+member's team headlines render beside the league wire (`TeamNews`), the
+faces strip (`FacesStrip`) shows
 every team's top player linked to their page, and the viewer's recent moves
 fold into the existing wire (`TransactionFeed`) marked as their team. The
 only separate personal element left is a one-line notice for unclaimed or
@@ -118,7 +131,10 @@ source that prints its "2025 champion" label — never a hardcoded team.
 Homepage surfaces pass it to `TeamAvatar`'s `isChampion` prop (week rail,
 hero face-off, faces strip, clubhouse directory, standings), and a single
 showcase band presents the champion with the 3D crown (`PropViewer`
-prop="crown", mounted once). `getDefendingChampion()` is deliberately not
+prop="crown", mounted once). On avatars the crown is ChampionCrown's
+non-interactive badge presentation — avatars sit inside links and matchup
+buttons, where a nested button would be invalid; the spinnable button
+presentation is reserved for standalone placements. `getDefendingChampion()` is deliberately not
 used here: it reads the current league's winners bracket, which has no
 champion until the running season crowns one.
 

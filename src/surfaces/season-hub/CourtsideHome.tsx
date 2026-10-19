@@ -14,7 +14,9 @@ import { HomePlayersLead } from "./HomePlayersLead";
 import { FacesStrip } from "./FacesStrip";
 import { ChampionShowcase } from "./ChampionShowcase";
 import { Reveal } from "./Reveal";
-import type { HomeTeamFace, PersonalizedHomeData } from "@/domain/personalized-home";
+import { TipCountdown, WEEK_ONE_TIP_OFF_ISO, openingPhase } from "./TipCountdown";
+import { formatHomeStamp } from "./homeFormat";
+import type { HomeTeamFace, HomeTeamSummary, PersonalizedHomeData } from "@/domain/personalized-home";
 import controls from "@/ui/controls.module.css";
 import { cs } from "./CourtsideStyles";
 import "@/ui/courtside-tokens.css";
@@ -56,6 +58,37 @@ function Sources({ edition }: { edition: WeeklyEdition }) {
         ))}
       </ul>
     </details>
+  );
+}
+
+/** The member's team wire: real headlines involving their team (the moves
+ * themselves live in the recent-moves feed, marked with their team).
+ * Renders items when they exist, a one-line status when the feed itself is
+ * unavailable, and nothing for an available-but-empty feed. */
+function TeamNews({ summary }: { summary: HomeTeamSummary }) {
+  if (!summary.news.length) {
+    return summary.newsAvailable ? null : (
+      <p className={cs("caption", "team-news-status")} data-team-news="unavailable">
+        Team news is temporarily unavailable.
+      </p>
+    );
+  }
+  return (
+    <section className={cs("team-news")} aria-labelledby="team-news-title" data-team-news>
+      <h3 id="team-news-title">Your team in the news</h3>
+      <ul className={cs("team-news-list")}>
+        {summary.news.slice(0, 3).map((item) => (
+          <li key={item.id}>
+            <a href={item.url} target="_blank" rel="noreferrer">
+              {item.headline}
+            </a>
+            <span className={cs("caption")}>
+              {item.outlet.name} · {formatHomeStamp(item.publishedAt)}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -157,6 +190,7 @@ export function CourtsideHome({
   const leadVisible =
     !!memberSummary &&
     (memberSummary.players.length > 0 ||
+      memberSummary.playerGuide.best.length > 0 ||
       (memberSummary.playerGuide.watch.basis !== "unavailable" &&
         memberSummary.playerGuide.watch.rows.length > 0));
   const championEntry = data.directory.find((entry) => entry.previousSeason?.finish === 1);
@@ -194,11 +228,27 @@ export function CourtsideHome({
             <Link className={cs("text-link")} href="/weekly">
               Weekly archive
             </Link>
+            {openingPhase(Date.parse(data.checkedAt), Date.parse(WEEK_ONE_TIP_OFF_ISO), null) !== "past" && (
+              <figure className={cs("clubhouse-court")}>
+                <img src="/courtside/arena.jpg" alt="The GOAT Hoopers basketball court, with players on the floor and fans in the stands" width="1440" height="810" />
+                <div className={cs("court-clock")}>
+                  <TipCountdown serverNowIso={data.checkedAt} variant="overlay" />
+                </div>
+              </figure>
+            )}
+            {leadVisible && memberSummary && (
+              <HomePlayersLead summary={memberSummary} portraits={portraits} />
+            )}
+            {memberSummary && <TeamNews summary={memberSummary} />}
+            {facesList.some((face) => face.player) && (
+              <FacesStrip faces={facesList} portraits={portraits} />
+            )}
             <SectionLinks />
             <Link className={cs("text-link")} href="/arcade">Arcade</Link>
             <Link className={cs("text-link")} href="/ai-decides">AI Decides playground</Link>
           </div>
         </section>
+        {championEntry && <ChampionShowcase entry={championEntry} />}
         <CourtsideDirectory entries={data.directory} seasonLabel={seasonLabel} checkedAt={data.checkedAt} preseason={preseason} rosterNamesAvailable={data.rosterNamesAvailable} portraits={portraits} />
       </div>
     );
@@ -317,6 +367,11 @@ export function CourtsideHome({
           {facesList.some((face) => face.player) && (
             <Reveal>
               <FacesStrip faces={facesList} portraits={portraits} />
+            </Reveal>
+          )}
+          {memberSummary && (
+            <Reveal>
+              <TeamNews summary={memberSummary} />
             </Reveal>
           )}
           <section className={cs("happenings")} aria-labelledby="wire-title">

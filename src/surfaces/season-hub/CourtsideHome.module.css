@@ -10,8 +10,8 @@
   .clubhouse-court { margin: 0; aspect-ratio: 16 / 9; overflow: hidden; position: relative; background: var(--gh-cs-paint); }
   .clubhouse-court img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; transform: scale(1.65); transform-origin: 55% 100%; }
   .week-heading { display: flex; justify-content: space-between; align-items: start; gap: var(--gh-cs-s4); margin-bottom: var(--gh-cs-s3); }
-  .week-heading h2 { font-size: var(--gh-cs-small-title); }
-  .week-heading > span { font-size: var(--gh-cs-caption); text-align: right; color: var(--gh-cs-muted-light); }
+  .week-heading h2 { font-size: var(--gh-cs-small-title); min-width: 0; overflow-wrap: anywhere; }
+  .week-heading > span { font-size: var(--gh-cs-caption); text-align: right; color: var(--gh-cs-muted-light); min-width: 0; overflow-wrap: anywhere; }
   .week-game { display: block; width: 100%; padding: var(--gh-cs-s3) 0; background: transparent; text-align: left; }
   .week-game + .week-game { border-top: var(--gh-cs-rule) solid var(--gh-cs-line-light); }
   .week-team { display: grid; grid-template-columns: var(--gh-cs-s5) minmax(0, 1fr) auto; gap: var(--gh-cs-s1) var(--gh-cs-s3); align-items: center; min-height: var(--gh-cs-s5); }
@@ -44,8 +44,8 @@
   .dialog-close:active:not(:focus-visible) { transform: scale(.97); }
   .feature-check { font-size: var(--gh-cs-caption); color: var(--gh-cs-muted-light); }
   .team-context-rail { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--gh-cs-s2) var(--gh-cs-s5); align-items: center; border-top: var(--gh-cs-rule) solid var(--gh-cs-line-light); border-bottom: var(--gh-cs-rule) solid var(--gh-cs-line-light); padding-block: var(--gh-cs-s4); }
-  .rail-controls { display: flex; align-items: center; gap: var(--gh-cs-s5); }
-  .rail-controls button { min-height: var(--gh-cs-control); padding: 0; background: transparent; font-size: var(--gh-cs-secondary); text-align: left; }
+  .rail-controls { display: flex; align-items: center; gap: var(--gh-cs-s5); min-width: 0; }
+  .rail-controls button { min-height: var(--gh-cs-control); min-width: 0; padding: 0; background: transparent; font-size: var(--gh-cs-secondary); text-align: left; overflow-wrap: anywhere; }
   .rail-controls button[aria-pressed="true"] { font-weight: 650; }
   .rail-controls button:active { color: var(--gh-cs-tan); }
   .team-context-window { overflow: hidden; min-width: 0; }
@@ -1887,10 +1887,10 @@
 @media (hover: hover) and (pointer: fine) {
   .hero-side:hover .hero-star { transform: translateY(-2px); filter: drop-shadow(0 8px 20px color-mix(in srgb, var(--hero-glow) 45%, transparent)); }
 }
-.hero-teamline { display: inline-flex; align-items: center; gap: var(--gh-cs-s2); font-size: var(--gh-cs-subhead); font-weight: 650; }
-.hero-teamline a { color: inherit; text-decoration: none; }
+.hero-teamline { display: flex; align-items: center; gap: var(--gh-cs-s2); max-width: 100%; min-width: 0; font-size: var(--gh-cs-subhead); font-weight: 650; }
+.hero-teamline a { min-width: 0; overflow-wrap: anywhere; color: inherit; text-decoration: none; }
 .hero-teamline a:hover { text-decoration: underline; text-underline-offset: var(--gh-cs-s1); }
-.hero-teamline .you { display: inline; font-size: var(--gh-cs-caption); letter-spacing: .08em; text-transform: uppercase; }
+.hero-teamline .you { flex: none; font-size: var(--gh-cs-caption); letter-spacing: .08em; text-transform: uppercase; }
 .hero-starname { font-weight: 600; overflow-wrap: anywhere; }
 .hero-record { color: var(--gh-cs-muted-light); font-size: var(--gh-cs-secondary); }
 .hero-center { display: flex; flex-direction: column; align-items: center; gap: var(--gh-cs-s2); padding-top: var(--gh-cs-s4); text-align: center; }
@@ -1994,3 +1994,31 @@
 .hero-valuation-rows a:hover { text-decoration: underline; text-underline-offset: var(--gh-cs-s1); }
 .hero-valuation-rows small { display: block; color: var(--gh-cs-muted-light); font-size: var(--gh-cs-caption); font-weight: 400; }
 @media (max-width: 40rem) { .hero-valuation-rows { grid-template-columns: minmax(0, 1fr); } }
+
+/* Court opening clock: a universal overlay band on the court figure —
+ * every visitor, gated by the clock itself, never by provider phase. */
+.court-clock { position: absolute; left: var(--gh-cs-s4); bottom: var(--gh-cs-s4); max-width: min(34rem, calc(100% - 2 * var(--gh-cs-s4))); padding: var(--gh-cs-s3) var(--gh-cs-s4); background: color-mix(in srgb, var(--gh-cs-paint) 88%, transparent); color: var(--gh-cs-paper); border-radius: var(--gh-cs-s2); }
+.court-clock .countdown-caption { color: var(--gh-cs-muted-light); }
+.court-clock-line { display: flex; align-items: baseline; gap: var(--gh-cs-s3); flex-wrap: wrap; margin: 0; }
+.court-clock-label { font-size: var(--gh-cs-caption); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.court-clock-value { font-size: 1.6rem; font-weight: 700; }
+.countdown-started { margin: 0; font-size: 1.3rem; font-weight: 700; }
+
+/* Team news (member wire headlines) */
+.team-news { margin-top: var(--gh-cs-s6); }
+.team-news h3 { margin-bottom: var(--gh-cs-s2); }
+.team-news-list { display: grid; gap: var(--gh-cs-s2); margin: 0; padding: 0; list-style: none; }
+.team-news-list li { display: grid; gap: var(--gh-cs-s1); padding-block: var(--gh-cs-s2); border-bottom: var(--gh-cs-rule) solid var(--gh-cs-line); }
+.team-news-list a { color: inherit; font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+.team-news-list a:hover { text-decoration: underline; text-underline-offset: var(--gh-cs-s1); }
+.team-news-status { margin-top: var(--gh-cs-s6); }
+
+/* Guide rows: name + availability note, value at the edge */
+.riser-main { display: grid; gap: 0; min-width: 0; }
+.riser-note { color: var(--gh-cs-muted); font-size: var(--gh-cs-caption); overflow-wrap: anywhere; }
+
+/* Best / rough week recap */
+.recap { margin-top: var(--gh-cs-s6); }
+.recap-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gh-cs-s4) var(--gh-cs-s6); }
+.recap-label { margin: 0 0 var(--gh-cs-s2); font-weight: 700; }
+@media (max-width: 40rem) { .recap-groups { grid-template-columns: minmax(0, 1fr); } }

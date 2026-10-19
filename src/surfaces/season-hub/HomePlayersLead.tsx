@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import type { HomeTeamSummary } from "@/domain/personalized-home";
+import type { GuideRow } from "@/domain/team-player-guide";
 import { PlayerHeadshot } from "@/ui/PlayerHeadshot";
 import { teamColorVar } from "@/ui/teamColors";
 import { cs } from "./CourtsideStyles";
@@ -8,10 +9,12 @@ import { formatHomeStamp } from "./homeFormat";
 
 /**
  * The players module's personal lead: the viewer's top three by modeled
- * value at editorial size, then their watch/risers rows when real data
- * exists — folded into the edition's players module, never a separate
- * roster-value section. Renders nothing when neither has real data.
- * Faces resolve local portrait → directory ESPN identity → initials.
+ * value at editorial size, their watch/risers rows (with availability
+ * notes), and — once a completed week exists — the compact best/rough
+ * recap from verified participation. Folded into the edition's players
+ * module, never a separate section. Renders nothing when none of it has
+ * real data. Faces resolve local portrait → directory ESPN identity →
+ * initials.
  */
 export function HomePlayersLead({
   summary,
@@ -23,10 +26,28 @@ export function HomePlayersLead({
   const { players, playerGuide, team, market } = summary;
   const watch = playerGuide.watch;
   const risers = watch.basis === "unavailable" ? [] : watch.rows;
-  if (!players.length && !risers.length) return null;
+  const best = playerGuide.best;
+  const rough = playerGuide.rough;
+  if (!players.length && !risers.length && !best.length) return null;
   const riserChip =
     watch.basis === "market" ? "Rising value · preseason market movement" : watch.label;
   const stamp = formatHomeStamp(market?.updatedAt);
+  const guideRow = (row: GuideRow, value: string) => (
+    <li key={row.id} className={cs("riser-row")}>
+      <PlayerHeadshot
+        portraitSrc={portraits[row.id]}
+        espnId={row.espnId}
+        name={row.name}
+        teamId={team.id}
+        size={44}
+      />
+      <span className={cs("riser-main")}>
+        <Link href={`/player/${row.id}`} prefetch={false}>{row.name}</Link>
+        <span className={cs("riser-note")}>{row.note}</span>
+      </span>
+      <strong className="gh-num">{value}</strong>
+    </li>
+  );
   return (
     <div className={cs("your-lead")} data-your-lead>
       {!!players.length && (
@@ -71,22 +92,37 @@ export function HomePlayersLead({
             <span className={cs("risers-title")}>On your roster</span>
           </p>
           <ol className={cs("riser-rows")}>
-            {risers.map((row) => (
-              <li key={row.id} className={cs("riser-row")}>
-                <PlayerHeadshot
-                  portraitSrc={portraits[row.id]}
-                  espnId={row.espnId}
-                  name={row.name}
-                  teamId={team.id}
-                  size={44}
-                />
-                <Link href={`/player/${row.id}`} prefetch={false}>{row.name}</Link>
-                <strong className="gh-num">
-                  {watch.basis === "market" ? `Up ${row.value.toFixed(1)}%` : `${row.value.toFixed(1)} FPPG`}
-                </strong>
-              </li>
-            ))}
+            {risers.map((row) =>
+              guideRow(row, watch.basis === "market" ? `Up ${row.value.toFixed(1)}%` : `${row.value.toFixed(1)} FPPG`),
+            )}
           </ol>
+          <p className={cs("caption")}>{watch.message}</p>
+        </div>
+      )}
+      {!!best.length && (
+        <div className={cs("recap")} data-guide-recap>
+          <h3 className={cs("lead-title")}>
+            Week {playerGuide.previousWeek} recap <span>· your roster</span>
+          </h3>
+          <div className={cs("recap-groups")}>
+            <div>
+              <p className={cs("recap-label")}>Your best</p>
+              <ol className={cs("riser-rows")}>
+                {best.map((row) =>
+                  guideRow(row, `${row.value.toFixed(1)} pts${row.games !== null ? ` · ${row.games} GP` : ""}`),
+                )}
+              </ol>
+            </div>
+            <div>
+              <p className={cs("recap-label")}>The rough week</p>
+              <ol className={cs("riser-rows")}>
+                {rough.map((row) =>
+                  guideRow(row, `${row.value.toFixed(1)} pts${row.games !== null ? ` · ${row.games} GP` : ""}`),
+                )}
+              </ol>
+            </div>
+          </div>
+          <p className={cs("caption")}>{playerGuide.coverage}</p>
         </div>
       )}
       {market && stamp && (

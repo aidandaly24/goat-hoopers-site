@@ -21,6 +21,7 @@ if (state === 'ai-stale') weekly.status = 'stale';
 if (state === 'ai-missing') weekly.matchups = [];
 if (state === 'missing-edition') home.edition = null;
 if (state === 'long-name') teams[0].name = 'The Very Long Synthetic Basketball Club Name With ALongUnbrokenSyntheticWordForReflow';
+if (state === 'champion') { const entry = home.directory[0]; if (entry) entry.previousSeason = { season: '2025', wins: 17, losses: 4, finish: 1, ownerNote: null }; }
 const guideSources = state === 'guide-unavailable' ? null : playerGuideFixture(id);
 if (state === 'preseason') { guideSources!.completedWeek = null; guideSources!.formSeason = null; market.stocks[0].changePct = 5; market.stocks[0].price = 42; home.directory.forEach(entry => { if (entry.currentMatchup) entry.currentMatchup.week = 1; }); }
 const personal = buildPersonalizedHome(viewer, home, weekly, state === 'missing-market' ? null : market, news, guideSources);
