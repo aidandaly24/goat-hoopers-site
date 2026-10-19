@@ -105,6 +105,14 @@
   min-width: 0;
 }
 
+/* The identity text wrapper is a flex item: without min-width: 0 it is
+ * sized by its longest content and a long team name spills out of the
+ * row (the row box stays put; the text does not). Allowed to shrink, the
+ * name ellipsizes and the manager line truncates inside the row. */
+.identity {
+  min-width: 0;
+}
+
 .name {
   display: block;
   font-weight: 700;
@@ -119,6 +127,9 @@
   display: block;
   font-size: 0.78rem;
   color: var(--gh-text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .num {

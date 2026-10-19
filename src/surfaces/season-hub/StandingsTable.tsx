@@ -73,7 +73,7 @@ export function StandingsTable({ standings, viewerTeamId, championTeamId }: { st
             </span>
             <span role="cell" className={styles.team}>
               <TeamAvatar name={s.team.name} avatar={s.team.avatar} isChampion={s.team.id === championTeamId} />
-              <span>
+              <span className={styles.identity}>
                 <span className={styles.name}>{s.team.name}</span>
                 {s.team.id === viewerTeamId && <span className={styles.you}>Your team</span>}
                 <span className={styles.manager}>{s.team.managerName}</span>

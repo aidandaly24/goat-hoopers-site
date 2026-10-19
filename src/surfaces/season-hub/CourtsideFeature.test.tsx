@@ -67,6 +67,26 @@ describe("court + league desk hero", () => {
   });
 });
 
+describe("archive gate", () => {
+  it("shows the live opening clock on the current edition", () => {
+    expect(renderFeature(weekly())).toContain('data-court-clock="countdown"');
+  });
+
+  it("shows NO current countdown or started UI on an archived edition, even pre-tip", () => {
+    // The Sep 28–Oct 4 sample edition rendered with archived=true: its
+    // league check predates the Oct 20 tip, so the ungated clock happily
+    // counted down to a current opener on a historical page.
+    const html = renderToStaticMarkup(createElement(CourtsideFeature,
+      { edition, entries, rosterCounts: {}, preseason: true, checkedAt: "2026-10-09T00:00:00Z", season: "2026", aiWeekly: weekly(), archived: true }));
+    expect(html).not.toContain("data-court-clock");
+    expect(html).not.toContain("Week 1 tip-off");
+    expect(html).not.toContain("Week 1 is underway");
+    // The rest of the feature — headline, court, desk — still renders.
+    expect(html).toContain('<h1 id="game-title">Synthetic featured game</h1>');
+    expect(html).toContain("data-league-desk");
+  });
+});
+
 describe("AI Decides section: saved picks with provenance", () => {
   it("joins by roster ID, preserves the actual choice independently of probability/order, and never fetches", () => {
     const data = weekly(), before = JSON.stringify(data), fetch = vi.spyOn(globalThis, "fetch");

@@ -21,6 +21,11 @@
 }
 
 .summary {
+  /* A flex item: it must be allowed to shrink below its content's
+   * min-content width, or a long team name in the sentence pushes the
+   * row — and the own-team tag pinned after it — out of the card. */
+  flex: 1 1 auto;
+  min-width: 0;
   color: var(--gh-text-dim);
   font-size: 0.92rem;
   line-height: 1.5;

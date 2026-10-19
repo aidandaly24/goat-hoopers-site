@@ -37,9 +37,11 @@ export function BarSetSection({ faces, pairTeamIds, portraits }: {
             {featured.map((face) => (
               <li key={face.team.id}>
                 <Link href={face.player ? `/player/${face.player.id}` : `/teams/${face.team.id}`} prefetch={false} className={cs("value-face")}>
-                  {face.player
-                    ? <PlayerHeadshot portraitSrc={portraits[face.player.id]} espnId={face.player.espnId} name={face.player.name} teamId={face.team.id} size={188} />
-                    : <TeamAvatar name={face.team.name} avatar={face.team.avatar} isChampion={face.champion} />}
+                  <span className={cs("value-face-media")}>
+                    {face.player
+                      ? <PlayerHeadshot portraitSrc={portraits[face.player.id]} espnId={face.player.espnId} name={face.player.name} teamId={face.team.id} size={188} />
+                      : <TeamAvatar name={face.team.name} avatar={face.team.avatar} isChampion={face.champion} />}
+                  </span>
                   <span className={cs("value-face-pos")}>{face.player?.position ?? "Team"}</span>
                   <span className={cs("value-face-name")}>{face.player?.name ?? face.team.name}</span>
                   <span className={cs("value-face-team")}>

@@ -8,6 +8,10 @@ const redesignDir = process.env.REDESIGN_DIR ?? '/home/hatch/workspace/goat-hoop
 mkdirSync(output, { recursive: true });
 mkdirSync(redesignDir, { recursive: true });
 const assert = (ok, message) => { if (!ok) throw Error(message); };
+// A 1×1 PNG served locally for Sleeper CDN avatar requests, so states
+// with real team-avatar images exercise the <img> avatar paths (layout
+// sizes come from CSS, not the image bytes) without any network access.
+const AVATAR_PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64');
 const files = [...new Set([...execFileSync('git', ['diff', '--name-only', 'e09399c'], { encoding: 'utf8' }).trim().split('\n'), ...execFileSync('git', ['ls-files', '--others', '--exclude-standard'], { encoding: 'utf8' }).trim().split('\n')])].filter(Boolean);
 const hash = file => createHash('sha256').update(readFileSync(file)).digest('hex');
 const report = { revision: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), sourceHashes: Object.fromEntries(files.map(file => [file, hash(file)])),
@@ -24,12 +28,13 @@ try {
     await context.route('**/*', route => {
       const request = route.request(), url = new URL(request.url());
       if (request.method() !== 'GET') { report.writes.push(url.pathname); return route.abort(); }
+      if (url.hostname === 'sleepercdn.com') return route.fulfill({ contentType: 'image/png', body: AVATAR_PNG });
       if (url.hostname !== '127.0.0.1') { report.external.push(url.hostname); return route.abort(); }
       return route.continue();
     });
     const page = await context.newPage(); page.setDefaultTimeout(10000);
     page.on('pageerror', error => report.pageErrors.push(error.message));
-    for (const [state, id] of [['member', '1'], ['member', '4'], ['signed_out', '1'], ['unclaimed', '1'], ['unavailable', '1'], ['preseason', '1'], ['offseason', '1'], ['no-matchup', '1'], ['ai-stale', '4'], ['ai-missing', '4'], ['missing-market', '1'], ['missing-edition', '1'], ['long-name', '1'], ['guide-unavailable', '1'], ['champion', '1'], ['showcase', '1'], ['showcase-public', '1']]) {
+    for (const [state, id] of [['member', '1'], ['member', '4'], ['signed_out', '1'], ['unclaimed', '1'], ['unavailable', '1'], ['preseason', '1'], ['offseason', '1'], ['no-matchup', '1'], ['ai-stale', '4'], ['ai-missing', '4'], ['missing-market', '1'], ['missing-edition', '1'], ['long-name', '1'], ['guide-unavailable', '1'], ['champion', '1'], ['showcase', '1'], ['showcase-public', '1'], ['team-avatars', '1'], ['team-avatars-public', '1'], ['archived-edition', '1']]) {
       await page.goto(`http://127.0.0.1:4201/?state=${state}&fixture-team=${id}`);
       await page.getByRole('heading').first().waitFor();
       await page.evaluate(theme => document.documentElement.dataset.theme = theme, settings.theme);
@@ -79,6 +84,26 @@ try {
         assert(await page.locator('[data-team-desk]').count() === 0, 'Unclaimed shows a team desk');
       } else if (state === 'unavailable') {
         await page.getByText('Your team is temporarily unavailable.', { exact: true }).waitFor();
+      } else if (state === 'team-avatars-public') {
+        // Signed-out with REAL team-avatar images: the featured faces'
+        // compact avatar/name row must keep the avatar at its compact
+        // size — portrait sizing is scoped to the portrait slot only.
+        assert(await page.locator('[data-league-desk]').count() === 1, 'Public avatar view lacks the league desk');
+        assert(await page.locator('[data-bar-set]').count() === 1, 'Public avatar view lacks the featured-faces section');
+        if (!settings.zoom) {
+          const faceMetrics = await page.locator('[data-bar-set] li > a').evaluateAll(links => links.map(link => {
+            const portrait = link.children[0].getBoundingClientRect();
+            const teamRow = [...link.querySelectorAll(':scope > span')].find(s => s.querySelector('img'));
+            const avatar = teamRow ? teamRow.querySelector('img').getBoundingClientRect() : null;
+            return { portraitW: portrait.width, avatarW: avatar ? avatar.width : null, rowH: teamRow ? teamRow.getBoundingClientRect().height : null };
+          }));
+          assert(faceMetrics.length >= 1, 'Public avatar view has no featured faces');
+          for (const m of faceMetrics) {
+            assert(m.portraitW >= 90, `Featured portrait collapsed (${m.portraitW}px)`);
+            assert(m.avatarW !== null && m.avatarW <= 48, `Compact face-row avatar ballooned (${m.avatarW}px)`);
+            assert(m.rowH !== null && m.rowH <= 72, `Face-row team name letter-wraps (row height ${m.rowH}px)`);
+          }
+        }
       } else if (state === 'showcase-public') {
         assert(await page.locator('[data-league-desk]').count() === 1, 'Public showcase lacks the league desk');
         assert(await page.locator('[data-bar-set]').count() === 1, 'Public showcase lacks the featured-faces section');
@@ -123,6 +148,9 @@ try {
           // Pre-tip: exactly one clock, honestly captioned, on the court.
           assert(await page.locator('[data-court-clock="countdown"]').count() === 1, 'Showcase must show exactly one countdown');
           await page.getByText(/Sleeper confirms the Oct 20 date/).waitFor();
+          // The caption is formatted from the target in Eastern time —
+          // October daylight time reads EDT, never a hardcoded "ET".
+          await page.getByText(/Tue, Oct 20 · 3:00 PM EDT/).waitFor();
           // Desk carries the verified 2025 lines.
           await desk.getByText('16–5').waitFor();
           await desk.getByText('4th').waitFor();
@@ -136,6 +164,29 @@ try {
         // The crown badge + directory label stay; only the section is gone.
         assert((await page.locator('[data-champion-crown="badge"]').count()) >= 3, 'Champion crown badges missing');
         await page.getByText('· 2025 champion').first().waitFor();
+      }
+      if (state === 'team-avatars' && !settings.zoom) {
+        // Member view with real team-avatar images: every avatar on the
+        // page keeps its compact size — none inherits portrait sizing.
+        const oversized = await page.locator('img[src*="sleepercdn.com"]').evaluateAll(imgs => imgs.filter(img => img.getBoundingClientRect().width > 48).length);
+        assert(oversized === 0, `${oversized} team avatars ballooned past compact size`);
+      }
+      if (state === 'archived-edition') {
+        // A historical edition shows NO current countdown/started UI,
+        // even though its own league check predates the tip.
+        assert(await page.locator('[data-court-clock]').count() === 0, 'Archived edition renders the current opening clock');
+        assert(await page.getByText(/Archived (Sample|Weekly) edition/).count() >= 1, 'Archived edition lost its archive label');
+      }
+      if (state === 'long-name' && !settings.zoom) {
+        // Long names must not overflow the phone viewport: standings
+        // identity truncates inside its row and the Recent Activity
+        // own-team tag stays inside the card.
+        assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Long-name fixture overflows the viewport');
+        const tagRight = await page.locator('[data-league-section]').evaluate(node => {
+          const tags = [...node.querySelectorAll('li span')].filter(s => s.textContent === 'Your team');
+          return tags.length ? tags[0].getBoundingClientRect().right : 0;
+        });
+        assert(tagRight > 0 && tagRight <= settings.width + 1, `Recent Activity own-team tag escapes the viewport (${tagRight}px)`);
       }
       report.checks.push({ state, teamId: id, viewport: settings.name, surfaceOverflow, pageOverflow: bodyOverflow });
       if (!settings.zoom && ['member', 'unclaimed', 'signed_out', 'ai-stale', 'offseason', 'showcase', 'showcase-public'].includes(state)) {

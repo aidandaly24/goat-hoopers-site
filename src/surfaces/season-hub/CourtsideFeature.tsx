@@ -22,6 +22,9 @@ type Props = {
   season: string | null;
   aiWeekly?: AiWeeklySlate;
   viewerTeamId?: string;
+  /** True when this feature renders a historical (archived) edition: the
+   * opening clock is a *current* clock and never appears there. */
+  archived?: boolean;
   /** The signed-in member's projection: their pairing and team desk take
    * the hero. Absent for signed-out visitors — the league desk renders. */
   hero?: { summary: HomeTeamSummary; faces: HomeTeamFace[] } | null;
@@ -264,7 +267,7 @@ function LeagueDesk({ edition, pair, entries, preseason, aiWeekly, season, champ
  * the league desk (signed out) beside it. No face-off, no panel, no pair
  * selection: personalization is the desk, and the week's AI board lives
  * down-page in the AI Decides section. */
-export function CourtsideFeature({ edition, entries, rosterCounts, preseason, checkedAt, season, aiWeekly, hero }: Props) {
+export function CourtsideFeature({ edition, entries, rosterCounts, preseason, checkedAt, season, aiWeekly, hero, archived = false }: Props) {
   const { pairs, preseasonPreview } = deriveWeekPairs(entries, aiWeekly, season);
   const game = edition.game;
   const week = pairs[0]?.week ?? game.leagueWeek ?? null;
@@ -289,7 +292,10 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
   // The opening clock is gated by the clock itself (anchored to this server
   // check), never by the provider's phase flag: an early-regular phase still
   // counts down to the first tip, and the started state follows the tip.
-  const opening = openingPhase(Date.parse(checkedAt), Date.parse(WEEK_ONE_TIP_OFF_ISO), week);
+  // An archived edition is historical: the archive flag closes the gate
+  // outright — no current countdown or started UI on a past edition, even
+  // when its own league check predates the tip.
+  const opening = archived ? "past" : openingPhase(Date.parse(checkedAt), Date.parse(WEEK_ONE_TIP_OFF_ISO), week);
   return (
     <>
       <div className={cs("feature-heading")}>

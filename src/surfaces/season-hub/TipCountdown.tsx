@@ -73,37 +73,112 @@ export function clockSampleSkewed(
 export type ClockSample = { monoMs: number; wallMs: number };
 
 /**
- * Reconcile the clock when the tab becomes visible again. A hidden interval
- * is never skew evidence: timers stop while hidden, so the sample pair that
- * would span the gap (a >5s mono gap, or wall/mono divergence caused by the
- * device sleeping) must never reach the detector — otherwise every tab
- * switch reads as suspension. The server anchor is NOT reset and no fresh
- * server sample is invented: the display takes exactly one re-projection
- * from the untouched anchor, and the detector baseline restarts at the
- * resume sample so only consecutive *visible* samples are ever compared.
- * A wall-clock jump during the hidden interval cannot move the result —
- * the projection reads the anchor and the monotonic clock only.
+ * Anchor a server time sample at hydration. The sample was stamped when
+ * the server ran its league check (`checkedAt`); by the time the client
+ * hydrates, that instant is already in the past. Anchoring the raw stamp
+ * to hydration time would re-live the sample/response age on every load,
+ * so the anchor advances by the sample's age — measured once, here, as
+ * the gap between the client's wall clock at hydration and the stamp.
+ * After this single correction the wall clock never sets the displayed
+ * time again: advancement is monotonic-only and divergence-checked. A
+ * wall clock behind the stamp never rewinds the anchor.
+ */
+export function anchorFromSample(serverMs: number, wallMs: number, monoMs: number): ClockAnchor {
+  const ageMs = Number.isFinite(wallMs) ? Math.max(0, wallMs - serverMs) : 0;
+  return { serverMs: serverMs + ageMs, monoMs };
+}
+
+/**
+ * Whether a hidden interval's elapsed time can be trusted. While a tab is
+ * hidden its timers stop, so no visible-sample pair spans the gap — but
+ * the two clocks' totals across the gap are still evidence: when wall and
+ * monotonic time advance together, the interval is an ordinary tab switch
+ * however long it lasted. When they diverge — the device slept
+ * (performance.now() stalls while wall time runs), the wall clock was
+ * adjusted, either clock ran backwards — how much time actually passed
+ * is unknowable from inside the page, and no projection from the anchor
+ * may be presented as live.
+ */
+export function hiddenIntervalDiverged(hide: ClockSample, resume: ClockSample): boolean {
+  const monoDelta = resume.monoMs - hide.monoMs;
+  const wallDelta = resume.wallMs - hide.wallMs;
+  return (
+    ![hide.monoMs, hide.wallMs, resume.monoMs, resume.wallMs].every(Number.isFinite) ||
+    monoDelta < 0 ||
+    wallDelta < 0 ||
+    Math.abs(wallDelta - monoDelta) > 2000
+  );
+}
+
+/**
+ * Reconcile the clock when the tab becomes visible again. A trusted
+ * hidden interval reconciles with exactly one re-projection from the
+ * untouched anchor, and the detector baseline restarts at the resume
+ * sample so only consecutive *visible* samples are ever compared. A
+ * diverged interval is NOT trusted: elapsed time across it is uncertain,
+ * so no projection is offered as live (the caller falls back to the
+ * unconfirmed static target) — resuming on the monotonic projection
+ * alone after device sleep would keep counting down confidently stale.
+ * Either way the projection itself reads the anchor and the monotonic
+ * clock only; the wall clock never sets it.
  */
 export function resumeClock(
   anchor: ClockAnchor,
+  hide: ClockSample,
   resume: ClockSample,
-): { projectedMs: number; baseline: ClockSample } {
-  return { projectedMs: projectServerNow(anchor, resume.monoMs), baseline: resume };
+): { projectedMs: number; baseline: ClockSample; trusted: boolean } {
+  return {
+    projectedMs: projectServerNow(anchor, resume.monoMs),
+    baseline: resume,
+    trusted: !hiddenIntervalDiverged(hide, resume),
+  };
 }
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
+const tipFormat = new Intl.DateTimeFormat("en-US", {
+  timeZone: "America/New_York",
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+  hour: "numeric",
+  minute: "2-digit",
+  timeZoneName: "short",
+});
+
+function tipParts(targetMs: number): Record<string, string> {
+  return Object.fromEntries(tipFormat.formatToParts(new Date(targetMs)).map((part) => [part.type, part.value]));
+}
+
+/** The target's caption in Eastern time with the zone named as it stands
+ * on that date — "Tue, Oct 20 · 3:00 PM EDT", "Tue, Dec 1 · 2:00 PM EST".
+ * Formatted from targetIso, never hardcoded: a later target must not wear
+ * the opener's caption. */
+export function formatTipCaption(targetMs: number): string {
+  const p = tipParts(targetMs);
+  return `${p.weekday}, ${p.month} ${p.day} · ${p.hour}:${p.minute} ${p.dayPeriod} ${p.timeZoneName}`;
+}
+
+/** The target's month/day in Eastern time, e.g. "Oct 20" — for copy that
+ * names the date Sleeper confirms. */
+export function formatTipDate(targetMs: number): string {
+  const p = tipParts(targetMs);
+  return `${p.month} ${p.day}`;
+}
+
 /**
  * The Week 1 opening clock, shown on the court for every visitor. Time is
- * anchored to the server's own league check (`serverNowIso`) and advanced
- * only by the monotonic clock, so a skewed client clock cannot move it.
- * The interval stops at the tip (terminal started state) and while the tab
- * is hidden; hidden intervals never count as suspension or skew — on
- * return the display reconciles with one re-projection from the anchor
- * (see resumeClock). If a sample taken while visible shows suspension or
- * skew, ticking stops and the display falls back to an unconfirmed static
- * date. SSR renders from the same server instant, so the first client
- * render matches the markup.
+ * anchored to the server's own league check (`serverNowIso`), advanced by
+ * the sample's age at hydration (see anchorFromSample) and thereafter only
+ * by the monotonic clock, so a skewed client clock cannot move it. The
+ * interval stops at the tip (terminal started state) and while the tab is
+ * hidden. On return, the hidden interval must reconcile — wall and
+ * monotonic clocks advancing together — or elapsed time is uncertain and
+ * the display falls back to the unconfirmed static target; device sleep
+ * while hidden is exactly that case, and no confidently stale count is
+ * ever shown. A sample taken while visible that shows suspension or skew
+ * takes the same fallback. SSR renders from the same server instant, so
+ * the first client render matches the markup.
  */
 export function TipCountdown({
   targetIso = WEEK_ONE_TIP_OFF_ISO,
@@ -125,12 +200,17 @@ export function TipCountdown({
     if (openingPhase(serverMs, targetMs, week) !== "before") return;
     // The anchor is created once per server sample and never reset: hidden
     // intervals, resumes and detector baselines all work around it, never
-    // replace it.
-    const anchor: ClockAnchor = { serverMs, monoMs: performance.now() };
+    // replace it. Its server instant is advanced by the sample's age at
+    // hydration, so an older league check is not re-lived from its stamp.
+    const anchor: ClockAnchor = anchorFromSample(serverMs, Date.now(), performance.now());
     // Detector baseline: only consecutive samples taken while the tab is
     // visible are ever compared. Nothing sampled across a hidden interval
     // reaches clockSampleSkewed.
     let baseline: ClockSample = { monoMs: anchor.monoMs, wallMs: Date.now() };
+    // The last sample before the tab hid (the anchor sample until the
+    // first hide): the resume path compares the hidden interval's two
+    // clock totals against it.
+    let hiddenAt: ClockSample = baseline;
     let id: number | undefined;
     let dead = false;
     const stop = () => {
@@ -153,18 +233,30 @@ export function TipCountdown({
     const tick = () => {
       if (id === undefined && !document.hidden) id = window.setInterval(sample, 1000);
     };
+    // Show the age-corrected projection immediately, not one tick late:
+    // the SSR value is the raw sample instant.
+    setNowMs(projectServerNow(anchor, performance.now()));
     const resume = () => {
       if (dead) return;
-      // One re-projection from the existing anchor reconciles the whole
-      // hidden interval at once — no sample reset, no unconfirmed flash.
-      const reconciled = resumeClock(anchor, { monoMs: performance.now(), wallMs: Date.now() });
+      const reconciled = resumeClock(anchor, hiddenAt, { monoMs: performance.now(), wallMs: Date.now() });
+      if (!reconciled.trusted) {
+        // Elapsed time across the hidden interval is uncertain (device
+        // sleep, clock adjustment): never resume a confidently stale
+        // count — fall back to the unconfirmed static target.
+        dead = true;
+        stop();
+        setUncertain(true);
+        return;
+      }
       baseline = reconciled.baseline;
       setNowMs(reconciled.projectedMs);
       if (reconciled.projectedMs < targetMs) tick();
     };
     const onVisibility = () => {
-      if (document.hidden) stop();
-      else resume();
+      if (document.hidden) {
+        hiddenAt = { monoMs: performance.now(), wallMs: Date.now() };
+        stop();
+      } else resume();
     };
     tick();
     document.addEventListener("visibilitychange", onVisibility);
@@ -176,11 +268,12 @@ export function TipCountdown({
 
   const phase = openingPhase(nowMs, targetMs, week);
   if (phase === "past") return null;
+  const caption = formatTipCaption(targetMs);
   if (phase === "started") {
     return (
       <div className={cs("countdown-wrap")} data-court-clock="started">
         <p className={cs("countdown-started")}>Week 1 is underway</p>
-        <p className={cs("countdown-caption")}>First tip · Tue, Oct 20 · 3:00 PM ET</p>
+        <p className={cs("countdown-caption")}>First tip · {caption}</p>
       </div>
     );
   }
@@ -188,7 +281,7 @@ export function TipCountdown({
     return (
       <div className={cs("countdown-wrap")} data-court-clock="uncertain">
         <p className={cs("countdown-started")}>Tip time unconfirmed</p>
-        <p className={cs("countdown-caption")}>Week 1 tip-off · Tue, Oct 20 · 3:00 PM ET · reload for a fresh league check</p>
+        <p className={cs("countdown-caption")}>Week 1 tip-off · {caption} · reload for a fresh league check</p>
       </div>
     );
   }
@@ -206,7 +299,7 @@ export function TipCountdown({
         </strong>
       </p>
       <p className={cs("countdown-caption")}>
-        First NBA game · Tue, Oct 20 · 3:00 PM ET · Sleeper confirms the Oct 20 date; its scoring-start time is unpublished
+        First NBA game · {caption} · Sleeper confirms the {formatTipDate(targetMs)} date; its scoring-start time is unpublished
       </p>
     </div>
   );

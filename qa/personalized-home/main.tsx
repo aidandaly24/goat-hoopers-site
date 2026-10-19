@@ -13,7 +13,7 @@ const { home, weekly, market, teams, news } = personalizedFixture();
 const params = new URLSearchParams(location.search);
 const state = params.get('state') ?? 'member';
 const id = params.get('fixture-team') ?? '1';
-const viewer: HomeViewer = state === 'signed_out' || state === 'showcase-public' ? { kind: 'signed_out' } : state === 'unclaimed' ? { kind: 'unclaimed' } : state === 'unavailable' ? { kind: 'unavailable' } : { kind: 'member', teamId: id };
+const viewer: HomeViewer = state === 'signed_out' || state === 'showcase-public' || state === 'team-avatars-public' ? { kind: 'signed_out' } : state === 'unclaimed' ? { kind: 'unclaimed' } : state === 'unavailable' ? { kind: 'unavailable' } : { kind: 'member', teamId: id };
 if (state === 'preseason') { home.hub!.season.status = 'pre_season'; home.hub!.standings.forEach(row => { row.wins = 0; row.losses = 0; row.team.wins = 0; row.team.losses = 0; }); weekly.matchups = []; }
 if (state === 'offseason') home.hub!.season.status = 'off_season';
 if (state === 'no-matchup') home.directory.forEach(entry => entry.currentMatchup = null);
@@ -22,6 +22,20 @@ if (state === 'ai-missing') weekly.matchups = [];
 if (state === 'missing-edition') home.edition = null;
 if (state === 'long-name') teams[0].name = 'The Very Long Synthetic Basketball Club Name With ALongUnbrokenSyntheticWordForReflow';
 if (state === 'champion') { const entry = home.directory[0]; if (entry) entry.previousSeason = { season: '2025', wins: 17, losses: 4, finish: 1, ownerNote: null }; }
+if (state === 'team-avatars' || state === 'team-avatars-public') {
+  // Real team-avatar images on every team (the default fixture renders
+  // initials discs): the first featured club is the reigning champion, so
+  // the faces section exercises the champion and non-champion avatar
+  // paths with <img> avatars, not just initials.
+  teams.forEach(team => { team.avatar = 'fixture-avatar'; });
+  const entry = home.directory[0]; if (entry) entry.previousSeason = { season: '2025', wins: 17, losses: 4, finish: 1, ownerNote: null };
+}
+if (state === 'archived-edition') {
+  // A historical edition (the Sep 28–Oct 4 sample window) rendered the
+  // way /weekly/[editionId] renders it: archived, with a league check
+  // from inside its own week — before the current opener's tip.
+  home.checkedAt = '2026-10-02T12:00:00.000Z';
+}
 const guideSources = state === 'guide-unavailable' ? null : playerGuideFixture(id);
 if (state === 'showcase' || state === 'showcase-public') {
   // The approved-design capture state: pre-tip (live countdown), preseason,
@@ -64,6 +78,6 @@ const personal = buildPersonalizedHome(viewer, home, weekly, state === 'missing-
 createRoot(document.getElementById('root')!).render(<>
   <aside className="fixture-note">Offline personalized home review · all teams, values, scores and AI results are synthetic · no account actions</aside>
   <SiteHeader user={viewer.kind === 'member' ? { displayName: `Fixture manager ${id}`, teamId: id } : null} logoutAction={async () => { throw Error('No account action in fixture'); }} />
-  <main id="main-content"><CourtsideHome data={home} archive={[]} portraits={{}} aiWeekly={weekly} viewerTeamId={viewer.kind === 'member' ? viewer.teamId : undefined} personal={personal} faces={buildHomeFaces(home, state === 'missing-market' ? null : market)} /></main>
+  <main id="main-content"><CourtsideHome data={home} archive={[]} portraits={{}} aiWeekly={weekly} viewerTeamId={viewer.kind === 'member' ? viewer.teamId : undefined} personal={personal} faces={buildHomeFaces(home, state === 'missing-market' ? null : market)} archived={state === 'archived-edition'} /></main>
   <SiteFooter season={home.hub?.season ?? null} />
 </>);

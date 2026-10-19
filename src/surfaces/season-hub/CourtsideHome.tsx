@@ -246,7 +246,7 @@ export function CourtsideHome({
             <Link className={cs("text-link")} href="/weekly">
               Weekly archive
             </Link>
-            {openingPhase(Date.parse(data.checkedAt), Date.parse(WEEK_ONE_TIP_OFF_ISO), null) !== "past" && (
+            {!archived && openingPhase(Date.parse(data.checkedAt), Date.parse(WEEK_ONE_TIP_OFF_ISO), null) !== "past" && (
               <figure className={cs("clubhouse-court")}>
                 <img src="/courtside/arena.jpg" alt="The GOAT Hoopers basketball court, with players on the floor and fans in the stands" width="1440" height="810" />
                 <div className={cs("court-clock")}>
@@ -316,6 +316,7 @@ export function CourtsideHome({
             season={hub?.season.seasonYear ?? null}
             aiWeekly={aiWeekly}
             viewerTeamId={viewerTeamId}
+            archived={archived}
             hero={memberSummary ? { summary: memberSummary, faces: facesList } : null}
             portraits={portraits}
           />

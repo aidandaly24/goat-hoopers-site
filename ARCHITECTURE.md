@@ -137,15 +137,23 @@ see above). The opening clock is universal and single-presentation: a `TipCountd
 overlay rides the court figure for every visitor — members included —
 exactly once per page,
 gated by the clock itself — never by the provider
-phase — and it renders even when the weekly edition is missing. Its time is
-anchored to the server's league check and advanced only by the monotonic
+phase — and it renders even when the weekly edition is missing. It never
+renders on an archived edition: the archive flag closes the feature's
+clock gate outright. Its time is
+anchored to the server's league check — advanced once by the sample's age
+at hydration (`anchorFromSample`), thereafter only by the monotonic
 clock (wall time is a skew detector, never a source); the interval stops at
-the tip and while the tab is hidden — hidden intervals never count as
-suspension or skew, and on return the display reconciles with one
-re-projection from the untouched anchor (`resumeClock`) — the started
+the tip and while the tab is hidden. On return, the hidden interval must
+reconcile — wall and monotonic clocks advancing together across it
+(`resumeClock` reports the resume trusted) — or elapsed time is uncertain
+and the display falls back to the unconfirmed static target: device sleep
+while hidden is exactly that case, and no confidently stale count is ever
+shown. The started
 state is terminal through
 Week 1, and the copy keeps the source distinction: the target is the first
-NBA tip (ESPN schedule), while Sleeper publishes only the Oct 20 date. In
+NBA tip (ESPN schedule), while Sleeper publishes only the Oct 20 date. Its
+caption is formatted from the target in America/New_York, naming the zone
+as it stands on that date (EDT in October, EST in December). In
 the missing-edition state the member's roster-value section and team
 actions (`RosterValuationDetails` / `MemberTeamActions`, shared with the
 value section) render alongside the notebook, form guide + wire, AI

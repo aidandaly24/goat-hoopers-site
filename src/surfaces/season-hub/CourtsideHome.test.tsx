@@ -182,7 +182,7 @@ describe('integrated personalized edition', () => {
     // Member parity: the opening clock rides the court figure as the same
     // overlay anonymous visitors get — exactly one instance.
     expect(html.match(/data-court-clock="countdown"/g)).toHaveLength(1);
-    expect(html).toContain('First NBA game · Tue, Oct 20 · 3:00 PM ET');
+    expect(html).toContain('First NBA game · Tue, Oct 20 · 3:00 PM EDT');
     expect(html).toContain('Sleeper confirms the Oct 20 date; its scoring-start time is unpublished');
     expect(html).toContain('role="timer"');
     expect(html).not.toContain('No. 1 of 10');
@@ -201,6 +201,19 @@ describe('integrated personalized edition', () => {
       expect(html).toContain('Sleeper confirms the Oct 20 date; its scoring-start time is unpublished');
       expect(html).not.toContain('data-team-desk');
     }
+  });
+
+  it('shows NO court clock at all on an archived edition, even when its check predates the tip', () => {
+    const fixture = personalizedFixture();
+    fixture.home.checkedAt = '2026-10-19T12:00:00Z';
+    const html = renderToStaticMarkup(createElement(CourtsideHome, {
+      data: fixture.home, archive: [], portraits: {}, aiWeekly: fixture.weekly,
+      personal: { kind: 'signed_out' }, faces: buildHomeFaces(fixture.home, fixture.market), archived: true,
+    }));
+    expect(html).toContain('Archived');
+    expect(html).not.toContain('data-court-clock');
+    expect(html).not.toContain('Week 1 tip-off');
+    expect(html).not.toContain('Week 1 is underway');
   });
 
   it('retains team news and the verified best/rough recap for members', () => {
