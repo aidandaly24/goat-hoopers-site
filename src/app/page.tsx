@@ -37,13 +37,14 @@ export default async function Home() {
     getStockMarketData().catch(() => null), getLeagueNewsEdition().catch(() => null), getHomePlayerGuideSources().catch(() => null),
   ]) : [null, null, null];
   const personal = buildPersonalizedHome(viewer, data, aiData.weekly, market, news, guideSources);
+  const portraits = getCourtsidePortraits();
   return (
     <>
-      <PersonalizedHome data={personal} />
+      <PersonalizedHome data={personal} portraits={portraits} />
       <CourtsideHome
         data={data}
         archive={getWeeklyArchive()}
-        portraits={getCourtsidePortraits()}
+        portraits={portraits}
         aiWeekly={aiData.weekly}
         viewerTeamId={viewer.kind === "member" ? viewer.teamId : undefined}
       />

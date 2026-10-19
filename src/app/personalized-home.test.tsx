@@ -7,7 +7,7 @@ vi.mock('next/headers', () => ({ headers: async () => new Headers() }));
 vi.mock('@/data/friends-auth/config', () => ({ friendsAuthEnabled: () => true }));
 vi.mock('@/data/friends-auth/runtime', () => ({ getVerifiedAccount: mocks.account }));
 vi.mock('@/data/home-viewer', async importOriginal => ({ ...await importOriginal<typeof import('@/data/home-viewer')>(), hasHomeMembership: mocks.linked }));
-vi.mock('@/data/league', () => ({ getCourtsideHomeData: mocks.home, getAiDecidesData: mocks.ai, getStockMarketData: mocks.market, getLeagueNewsEdition: mocks.news, getHomePlayerGuideSources: mocks.guide, getWeeklyArchive: () => [], getCourtsidePortraits: () => ({}) }));
+vi.mock('@/data/league', () => ({ getCourtsideHomeData: mocks.home, getAiDecidesData: mocks.ai, getStockMarketData: mocks.market, getLeagueNewsEdition: mocks.news, getHomePlayerGuideSources: mocks.guide, getWeeklyArchive: () => [], getCourtsidePortraits: () => ({ '1-player-1': '/courtside/portraits/player-1362.png' }) }));
 import Home, { dynamic } from './page';
 beforeEach(() => {
   vi.resetAllMocks(); const fixture = personalizedFixture();
@@ -21,6 +21,8 @@ it('renders two concurrent server identities independently and ignores client te
   const html = outputs.map(output => renderToStaticMarkup(output));
   expect(html[0]).toContain('data-personal-home="member" data-team-id="1"'); expect(html[0]).not.toContain('data-personal-home="member" data-team-id="4"');
   expect(html[1]).toContain('data-personal-home="member" data-team-id="4"'); expect(html[1]).not.toContain('data-personal-home="member" data-team-id="9"');
+  expect(html[0]).toContain('src="/courtside/portraits/player-1362.png"');
+  expect(html[1]).not.toContain('src="/courtside/portraits/player-1362.png"');
   expect(mocks.account).not.toHaveBeenCalled(); expect(mocks.linked).not.toHaveBeenCalled();
   const signedOut = renderToStaticMarkup(await Home()); expect(signedOut).not.toContain('data-personal-home');
 });

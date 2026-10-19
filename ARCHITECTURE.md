@@ -82,6 +82,13 @@ code. Offline tests/QA live under the new focused tests and `qa/personalized-hom
 No auth, AI generation, pricing, migration, infrastructure or competition gate
 is changed by this composition.
 
+Personalized valued-player and guide rows receive the same approved local
+portrait map as the league edition. The shared `PlayerHeadshot` tries that
+supplied portrait first, then its existing resolved ESPN headshot, then labelled
+initials after absent/failed sources. Changing the supplied source can recover
+from a previous image failure. No player IDs are guessed and no image or
+directory fetch is added to the data layer; unknown portraits remain explicit.
+
 ### Isolated courtside homepage review
 
 `courtside-preview/` is a local, static design review artifact. It does not

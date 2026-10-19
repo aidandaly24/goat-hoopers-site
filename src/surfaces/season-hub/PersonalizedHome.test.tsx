@@ -5,10 +5,22 @@ import { PersonalizedHome } from './PersonalizedHome';
 import { StandingsTable } from './StandingsTable';
 import { CourtsideHome } from './CourtsideHome';
 import { buildPersonalizedHome } from '@/data/personalized-home';
-import { personalizedFixture } from '@/test/personalized-home-fixture';
+import { personalizedFixture, playerGuideFixture } from '@/test/personalized-home-fixture';
 const markup = (data: Parameters<typeof PersonalizedHome>[0]['data']) => renderToStaticMarkup(createElement(PersonalizedHome, { data }));
 
 describe('personal clubhouse presentation', () => {
+  it('uses the approved portrait map in both valued-player and guide rows without requiring an ESPN ID', () => {
+    const fixture = personalizedFixture();
+    const data = buildPersonalizedHome({ kind: 'member', teamId: '1' }, fixture.home, fixture.weekly, fixture.market, fixture.news, playerGuideFixture('1'));
+    const html = renderToStaticMarkup(createElement(PersonalizedHome, { data, portraits: {
+      '1-player-1': '/courtside/portraits/player-1362.png',
+      // This lower-value player is absent from the top three but present in the guide.
+      '1-player-3': '/courtside/portraits/player-2455.png',
+    } }));
+    expect(html).toContain('src="/courtside/portraits/player-1362.png"');
+    expect(html).toContain('src="/courtside/portraits/player-2455.png"');
+    expect(html).not.toContain('a.espncdn.com');
+  });
   it('leaves signed-out home intact and gives verified unclaimed accounts a team-claim path', () => {
     expect(markup({ kind: 'signed_out' })).toBe('');
     const html = markup({ kind: 'unclaimed' });

@@ -45,7 +45,7 @@ function SavedTeamAnalysis({ summary }: { summary: HomeTeamSummary }) {
  * pricing, saved/stale AI and source outages each retain honest labels.
  * Phone stacks Your Week, roster values and wire. No invented streaks/results.
  */
-export function PersonalizedHome({ data }: { data: PersonalizedHomeData }) {
+export function PersonalizedHome({ data, portraits = {} }: { data: PersonalizedHomeData; portraits?: Record<string, string> }) {
   if (data.kind === "signed_out") return null;
   if (data.kind !== "member" || !data.summary) return <section className={styles.surface} aria-labelledby="your-home-title" data-personal-home={data.kind}>
     <div className={styles.notice}>
@@ -96,7 +96,7 @@ export function PersonalizedHome({ data }: { data: PersonalizedHomeData }) {
       <section aria-labelledby="your-players"><h3 id="your-players">Your Roster, Valued</h3>
         <p className={styles.caption}>Highest modeled FAAB value{market ? ` · ${market.pricingBasis === "preseason" ? "preseason" : "in-season"} pricing` : ""}</p>
         {players.length ? <ol className={styles.players}>{players.map(player => <li key={player.id}>
-          <PlayerHeadshot espnId={player.espnId} name={player.name} teamId={team.id} size={40} />
+          <PlayerHeadshot portraitSrc={portraits[player.id]} espnId={player.espnId} name={player.name} teamId={team.id} size={40} />
           <Link href={`/player/${player.id}`} prefetch={false}>{player.name}<small>{player.position ?? "Position unavailable"}</small></Link>
           <div className={styles.value}><strong className="gh-num">${player.value.toFixed(1)}</strong>
             <small>{player.changePct === null ? "Change unavailable" : `${player.changePct > 0 ? "Up" : player.changePct < 0 ? "Down" : "Flat"} ${Math.abs(player.changePct).toFixed(1)}%`}</small>
@@ -119,7 +119,7 @@ export function PersonalizedHome({ data }: { data: PersonalizedHomeData }) {
       <p className={styles.caption}>Sum of current roster player quotes in league FAAB units. This is a current-roster snapshot; team valuation history is not available.</p>
       <Link href="/stocks" prefetch={false} className={controls.secondary}>Player values & price history</Link>
     </section>
-    <TeamPlayerGuide guide={summary.playerGuide} teamId={team.id} />
+    <TeamPlayerGuide guide={summary.playerGuide} teamId={team.id} portraits={portraits} />
     {news.length || moves.length ? <section className={styles.wire} aria-labelledby="your-wire"><h3 id="your-wire">Around Your Team</h3>
       <ul>{news.map(article => <li key={`news-${article.id}`}><p className={styles.caption}>{article.outlet.name} · {timestamp(article.publishedAt)}</p><a href={article.url}>{article.headline}</a></li>)}
         {moves.map(move => <li key={`move-${move.id}`}><p className={styles.caption}>League move · {timestamp(move.createdAt)}</p><p>{move.summary}</p></li>)}</ul>
