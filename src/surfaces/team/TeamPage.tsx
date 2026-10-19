@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Player, Team, TeamRosterValue } from "@/domain";
 import { UNAVAILABLE_TOTAL } from "@/domain";
 import type { Reward } from "@/domain/arcade";
@@ -6,6 +7,7 @@ import { Card } from "@/ui/Card";
 import { PlayerRow } from "@/ui/PlayerRow";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
+import controls from "@/ui/controls.module.css";
 import styles from "./TeamPage.module.css";
 
 type Props = {
@@ -23,6 +25,8 @@ type Props = {
   rewards: Reward[];
   /** The site display name chosen at claim. */
   displayName: string;
+  /** The existing server flag controls whether account settings are available. */
+  settingsAvailable?: boolean;
 };
 
 /** $12.34 — per-player prices show cents (stocks-page convention). */
@@ -49,7 +53,7 @@ function formatFaabTotal(total: number): string {
  * players with quotes"); the market's pricing basis (preseason vs
  * in-season) is labeled while it applies.
  */
-export function TeamPage({ team, players, rosterValue, rewards }: Props) {
+export function TeamPage({ team, players, rosterValue, rewards, settingsAvailable = false }: Props) {
   const pending = rewards.filter((r) => !r.settled);
   const pendingTotal = pending.reduce((sum, r) => sum + r.amountFaab, 0);
   const priceById = new Map(
@@ -104,6 +108,9 @@ export function TeamPage({ team, players, rosterValue, rewards }: Props) {
             )}
           </div>
         )}
+        {settingsAvailable && <div className={styles.settings}>
+          <Link href="/account" className={controls.secondary}>Account settings</Link>
+        </div>}
       </Card>
 
       <Card>

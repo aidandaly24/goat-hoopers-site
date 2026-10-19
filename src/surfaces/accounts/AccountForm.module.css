@@ -8,8 +8,6 @@
 .error { color: var(--gh-loss); margin: 0; }
 .notice { color: var(--gh-text); padding: var(--gh-s3); border: 1px solid var(--gh-border); border-radius: var(--gh-radius); overflow-wrap: anywhere; }
 .submit { composes: primary from "../../ui/controls.module.css"; width: 100%; }
-.switch { margin-top: var(--gh-s4); overflow-wrap: anywhere; }
-.switch a { color: var(--gh-gold); font-weight: 700; }
-.switch button { color: var(--gh-gold); font: inherit; font-weight: 700; background: transparent; border: 0; padding: 0; cursor: pointer; }
-.switch button:focus-visible { outline: 2px solid var(--gh-gold); outline-offset: 3px; }
+.switch { display: flex; flex-wrap: wrap; gap: var(--gh-s2); margin-top: var(--gh-s4); overflow-wrap: anywhere; }
+.noticeAction { composes: secondary from "../../ui/controls.module.css"; display: flex; margin-top: var(--gh-s3); }
 @media (max-width: 40rem) { .card { margin: var(--gh-s8) var(--gh-s3); } }

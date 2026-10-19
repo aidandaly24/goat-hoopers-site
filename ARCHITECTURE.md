@@ -986,6 +986,13 @@ Working provider source: [friends auth runtime and operator setup](docs/friends-
 adapter, email delivery, verified account reads and team linking. Domain parsers
 validate exact request fields; `AccountForm` uses shared account primitives.
 
+`surfaces/accounts/AccountSettings` presents the verified account name,
+existing membership state and optional claim-form slot. Its bounded settings
+rows and account-help navigation use shared controls; password changes remain
+on their protected route. The My Team surface contains its existing flag-gated
+settings action inside the identity card. No account lookup, new data load,
+theme state or mutation is introduced by this presentation.
+
 An individual email account exists independently of a league team. `/signup`
 creates provider credentials with a normalized personal username, without a code,
 `site_users` row or membership link. `auth_user.id` is the individual account

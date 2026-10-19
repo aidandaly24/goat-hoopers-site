@@ -59,22 +59,17 @@ live auth, hosted Next routing, physical devices or screen-reader acceptance.
 
 ## Separate visual follow-up
 
-The account settings redesign, My Team settings-link placement and rendered
-link audit are tracked separately in [issue #212](https://github.com/aidandaly24/goat-hoopers-site/issues/212).
-They are not part of this routing patch. Both supplied Library images resolve
-to their expected identifiers and filenames, but the current Library transfer
-helper returns `library file transfer failed: download failed`. Neither original
-file exists in the selected executor. A subsequent Library image read returns
-descriptions/asset references rather than accessible pixels. The screenshot-first
-instruction therefore remains unsatisfied; descriptions are not pixel inspection.
+Account settings, My Team settings placement and the rendered link audit are
+tracked separately in [issue #212](https://github.com/aidandaly24/goat-hoopers-site/issues/212).
+They are independent of the routing change. The original Library images could
+not be materialized; those exhausted transfers remain closed.
 
-The source-only link inventory covers 141 production Link/anchor declarations.
-Reproduce it with `node qa/account-settings/audit-links.cjs`.
-Four clear uncontained links remain in `/account` and `/team`. The header's
-mapped links receive descendant styles from their rendered navigation containers.
-The inventory is not a site-wide rendering pass. No blanket global anchor rule
-or shared token/style change has been made. Actual visual, hover/focus, contrast,
-mobile/desktop and enlarged-text verification remains pending.
+The routing revision's 141-declaration source inventory identified four bare
+account/team links. The separate visual correction uses directly observed local
+application rendering with controlled sources, without claiming comparison to
+the inaccessible originals. Its [fixture and evidence](../qa/account-settings-visual/README.md)
+document the actual states, layouts and interactions verified. No blanket anchor
+rule, shared token or homepage change is introduced.
 
 The existing homepage's viewer contract remains unchanged. Owner coordination
 is recorded on PR208. Routing review and readiness are independent of the
