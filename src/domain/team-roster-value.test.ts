@@ -104,3 +104,57 @@ test("an empty roster yields an empty, honest value", () => {
   assert.equal(value.quotedCount, 0);
   assert.equal(value.playerCount, 0);
 });
+
+// Issue #214, delta (a): the shared policy de-duplicates player ids.
+// Sleeper never lists a player twice on a roster, so real rosters see
+// parity; this test pins the dedup behavior for the impossible case.
+test("duplicate roster ids are de-duplicated, first-seen order kept", () => {
+  const value = buildTeamRosterValue(
+    ["p1", "p1", "p2"],
+    market([quote("p1", 10), quote("p2", 20)]),
+  );
+  assert.deepEqual(
+    value.players.map((p) => [p.playerId, p.price]),
+    [
+      ["p1", 10],
+      ["p2", 20],
+    ],
+  );
+  assert.equal(value.playerCount, 2);
+  assert.equal(value.quotedCount, 2);
+  assert.equal(value.total, 30);
+});
+
+// Issue #214, delta (b): the shared filter drops negative and
+// non-safe-integer-cent quotes — they render "—", never counted or summed.
+test("negative or absurd quotes are unquoted — never $0, never summed", () => {
+  const value = buildTeamRosterValue(
+    ["p1", "p2", "p3"],
+    market([quote("p1", -5), quote("p2", 1e16), quote("p3", 10)]),
+  );
+  assert.deepEqual(
+    value.players.map((p) => p.price),
+    [null, null, 10],
+  );
+  assert.equal(value.quotedCount, 1);
+  assert.equal(value.playerCount, 3);
+  assert.equal(value.total, 10);
+});
+
+// Issue #214, delta (c): totals are cent-exact via the integer path —
+// 0.1 + 0.2 is 0.3, not 0.30000000000000004.
+test("totals are cent-exact, not float sums", () => {
+  const value = buildTeamRosterValue(
+    ["p1", "p2"],
+    market([quote("p1", 0.1), quote("p2", 0.2)]),
+  );
+  assert.equal(value.total, 0.3);
+  assert.equal(value.total === 0.1 + 0.2, false);
+});
+
+// Fractional-cent quotes round to whole cents on the shared path.
+test("fractional-cent quotes round to whole cents", () => {
+  const value = buildTeamRosterValue(["p1"], market([quote("p1", 12.345)]));
+  assert.equal(value.players[0].price, 12.35);
+  assert.equal(value.total, 12.35);
+});

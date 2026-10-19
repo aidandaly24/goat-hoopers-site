@@ -102,7 +102,9 @@ export type Game = {
   play?: {
     mode: "practice" | "preview" | "competition";
     /** Actual gameplay screenshot, or explicitly labelled typographic preview art. */
-    preview: { src: string; alt: string } | { label: string; caption: string };
+    preview:
+      | { src: string; alt: string }
+      | { label: string; caption: string; note?: string };
     touchInstructions: string;
   };
   /**

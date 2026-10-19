@@ -20,7 +20,7 @@ export function GameCard({ game }: { game: PlayableGame }) {
         </> : <div className={styles.draftArt} aria-label={`${art.label} roster draft preview artwork`}>
           <span className={styles.artEdition}>{art.caption}</span>
           <strong>{art.label}</strong>
-          <span className={styles.artNote}>A team. A choice. Your five.</span>
+          {art.note && <span className={styles.artNote}>{art.note}</span>}
         </div>}
       </div>
       <div className={styles.details}>
