@@ -614,3 +614,23 @@ this design work.
 | Upcoming/null scores, 2025 record and “Previous manager” | Fabricated live zero score or inherited poor record blamed on today's manager |
 | Play free-throw practice using a real preview | A catalog of fake games whose links merely return successful HTTP responses |
 | Clear sort labels, units and keyboard focus | Pretty headers that cannot sort, color-only verdicts or unreadable small labels |
+
+## Personalized team edition
+
+Aidan's October 19 request and Muse's #182 design review add a compact personal
+front page above the unchanged league edition. It answers “what matters for my
+team?”; My team is the primary action, with full roster and player links.
+The nameplate carries the source team/manager identity and record; Your Week
+pairs the real matchup with its saved AI context, alongside Highest modeled
+FAAB value and a small team wire. Typographic hierarchy and open columns replace
+nested dashboard cards. No emoji or decorative arrows; historical price changes
+use Up/Down/Flat text. Streaks, draft capital and FAAB balances are not invented
+from homepage inputs that do not carry those facts.
+
+Signed-out, verified unclaimed, unavailable identity/public data, preseason,
+offseason, unknown/zero score, partial pricing, and missing/stale AI have explicit
+states. Mobile stacks the same content and retains 44px My team/roster actions;
+all source/provenance details remain available. One existing-duration opacity/
+4px transform entrance respects reduced motion. No generated-on-render AI,
+competitive game state or reward claim is introduced. The active viewer is
+visibly marked in the existing matchup rows and standings without reordering.

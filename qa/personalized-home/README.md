@@ -1,0 +1,27 @@
+# Personalized front-page review
+
+Run the installed Vite with `--config qa/personalized-home/vite.config.mts`, then
+run `NODE_PATH=/path/to/existing/playwright/dependencies node qa/personalized-home/verify.mjs`.
+Numeric loopback port 4201 only; stop the owned server afterward.
+`HOME_EVIDENCE` chooses the screenshot/JSON directory (default `/tmp/goat-personal-home-review`).
+No install, production account, database, provider call or account action is required.
+
+The fixture composes the real home surfaces and shell with wholly synthetic
+teams, values, scores, transactions and saved AI. The `fixture-team` query is an
+explicit local fixture selector, not a production ownership mechanism. Browser
+requests are restricted to GETs on numeric loopback. The production page resolves
+ownership from the existing server session and active link, never URL input.
+
+Coverage: 13 states at desktop light, phone light/dark and 320px with 200% text.
+Checks include two different identities, signed-out/unclaimed, outages, offseason,
+preseason, missing matchup/market/editorial, stale/missing AI, long names, real
+keyboard focus and 44px launch navigation. Normal desktop/phone pages and the
+new edition at every size must not overflow. The unchanged league edition has
+pre-existing 320px/200% overflow (also reproduced signed-out); its page overflow
+is recorded separately rather than hidden or counted as a pass. No claim of
+physical-iPhone, screen-reader, live-account or deployed behavior is made.
+
+Review PNGs show synthetic inputs and are not real league results. A separate
+local production-Next smoke check validates the built signed-out homepage; page
+composition tests inject verified server identities for concurrent requests and
+unclaimed/expired/inactive states, without modifying real accounts.

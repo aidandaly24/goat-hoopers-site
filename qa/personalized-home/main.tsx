@@ -1,0 +1,31 @@
+import { createRoot } from 'react-dom/client';
+import { PersonalizedHome } from '@/surfaces/season-hub/PersonalizedHome';
+import { CourtsideHome } from '@/surfaces/season-hub/CourtsideHome';
+import { SiteHeader } from '@/ui/SiteHeader';
+import { SiteFooter } from '@/ui/SiteFooter';
+import { personalizedFixture } from '@/test/personalized-home-fixture';
+import { buildPersonalizedHome } from '@/data/personalized-home';
+import type { HomeViewer } from '@/domain/personalized-home';
+import '@/ui/tokens.css';
+import '@/app/globals.css';
+import '../controls/fixture.css';
+
+const { home, weekly, market, teams, news } = personalizedFixture();
+const params = new URLSearchParams(location.search);
+const state = params.get('state') ?? 'member';
+const id = params.get('fixture-team') ?? '1';
+const viewer: HomeViewer = state === 'signed_out' ? { kind: 'signed_out' } : state === 'unclaimed' ? { kind: 'unclaimed' } : state === 'unavailable' ? { kind: 'unavailable' } : { kind: 'member', teamId: id };
+if (state === 'preseason') { home.hub!.season.status = 'pre_season'; home.hub!.standings.forEach(row => { row.wins = 0; row.losses = 0; row.team.wins = 0; row.team.losses = 0; }); weekly.matchups = []; }
+if (state === 'offseason') home.hub!.season.status = 'off_season';
+if (state === 'no-matchup') home.directory.forEach(entry => entry.currentMatchup = null);
+if (state === 'ai-stale') weekly.status = 'stale';
+if (state === 'ai-missing') weekly.matchups = [];
+if (state === 'missing-edition') home.edition = null;
+if (state === 'long-name') teams[0].name = 'The Very Long Synthetic Basketball Club Name With ALongUnbrokenSyntheticWordForReflow';
+const personal = buildPersonalizedHome(viewer, home, weekly, state === 'missing-market' ? null : market, news);
+createRoot(document.getElementById('root')!).render(<>
+  <aside className="fixture-note">Offline personalized home review · all teams, values, scores and AI results are synthetic · no account actions</aside>
+  <SiteHeader user={viewer.kind === 'member' ? { displayName: `Fixture manager ${id}`, teamId: id } : null} logoutAction={async () => { throw Error('No account action in fixture'); }} />
+  <main id="main-content"><PersonalizedHome data={personal} /><CourtsideHome data={home} archive={[]} portraits={{}} aiWeekly={weekly} viewerTeamId={viewer.kind === 'member' ? viewer.teamId : undefined} /></main>
+  <SiteFooter season={home.hub?.season ?? null} />
+</>);
