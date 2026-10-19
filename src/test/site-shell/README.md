@@ -62,3 +62,18 @@ enlarged text and Chrome-emulated 34px bottom safe area. It verifies that HUD
 groups do not overlap, and that interactive controls are visible and hit-testable
 with keyboard focus. These source-fixture checks do not validate Next navigation
 or production font metrics. No game rules change.
+
+For focused Stocks scroll usability, run `node src/test/site-shell/stocks-scroll.mjs`
+with the same `SHELL_TEST_PLAYWRIGHT` and `SHELL_TEST_CHROME` settings. It starts
+its own loopback fixture; `STOCKS_SCROLL_EVIDENCE` selects a private evidence
+directory. The receipt includes the commit and dirty-worktree status.
+
+At 1440, 1024, 390, 320 and 720px it checks deep player selection, visible focus
+on open/Close/Escape, search/filter/reset, and chart range/keyboard/pointer input.
+Desktop wheel gestures begin over both gutters, the board, column gap, inspector
+and chart: both the document and selected detail must move together. Phone
+profiles use Chromium touch events to pan vertically starting on the graph.
+Anonymous cases use reduced motion; synthetic signed-in chrome uses normal
+motion. These are production-component fixture checks, not live account/data,
+physical Safari or App Router history evidence. The existing navigation runner
+separately verifies actual Next Back/Forward restoration.

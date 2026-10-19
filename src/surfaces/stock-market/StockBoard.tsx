@@ -34,12 +34,12 @@ export function StockBoard({ stocks, loadDetail = fetchStockDetail, loadHistory 
   useLayoutEffect(() => {
     if (selected !== null || !restoreFocusRef.current) return;
     restoreFocusRef.current = false;
-    // Mobile hides the inspector above the board. Restore against the new
-    // row positions after that DOM change, before the browser paints.
+    // The selected inspector follows page flow. Restore against the current
+    // row positions after closing it, before the browser paints.
     const trigger = triggerRef.current;
     if (trigger?.isConnected) {
       trigger.focus({ preventScroll: true });
-      if (window.matchMedia("(max-width:64rem)").matches) trigger.scrollIntoView({ block: "center" });
+      trigger.scrollIntoView({ block: "center" });
     } else boardHeadingRef.current?.focus();
   }, [selected]);
 
@@ -65,8 +65,7 @@ export function StockBoard({ stocks, loadDetail = fetchStockDetail, loadHistory 
     requestAnimationFrame(() => {
       if (request.current !== currentRequest) return;
       headingRef.current?.focus({ preventScroll: true });
-      if (window.matchMedia("(max-width:64rem)").matches)
-        headingRef.current?.closest("aside")?.scrollIntoView({ block: "start" });
+      headingRef.current?.closest("aside")?.scrollIntoView({ block: "start" });
     });
     try {
       const loaded = await getDetail(quote.playerId);
