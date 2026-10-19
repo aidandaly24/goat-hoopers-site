@@ -57,10 +57,11 @@ from the new HTTP-only fixture cookie. No settings document is visited in the
 ordinary linked login flow. This is a component/handler fixture, not proof of
 live auth, hosted Next routing, physical devices or screen-reader acceptance.
 
-## Visual follow-up is blocked
+## Separate visual follow-up
 
-The requested account settings redesign and My Team settings-link placement
-are not implemented by this routing patch. Both supplied Library images resolve
+The account settings redesign, My Team settings-link placement and rendered
+link audit are tracked separately in [issue #212](https://github.com/aidandaly24/goat-hoopers-site/issues/212).
+They are not part of this routing patch. Both supplied Library images resolve
 to their expected identifiers and filenames, but the current Library transfer
 helper returns `library file transfer failed: download failed`. Neither original
 file exists in the selected executor. A subsequent Library image read returns
@@ -75,7 +76,7 @@ The inventory is not a site-wide rendering pass. No blanket global anchor rule
 or shared token/style change has been made. Actual visual, hover/focus, contrast,
 mobile/desktop and enlarged-text verification remains pending.
 
-Muse was notified of the bounded scope and personalized-home contract on PR208.
-No overlap was found among open account/auth PRs at the initial check; owner
-acknowledgment and exact-change readiness remain pending. The draft must not merge
-until the outstanding work and Dot/Muse final-head review are complete.
+The existing homepage's viewer contract remains unchanged. Owner coordination
+is recorded on PR208. Routing review and readiness are independent of the
+separate visual issue; unavailable reference images do not prevent reviewing
+or integrating the routing-only fix.
