@@ -1,5 +1,6 @@
 .wrap {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   gap: var(--gh-s4);
@@ -25,5 +26,11 @@
 }
 
 .action {
+  /* The action may keep its natural size on wide screens, but it must
+   * never force the heading wider than its container: when the row runs
+   * out of room the action wraps onto its own line and its content can
+   * wrap within the full width. */
   flex-shrink: 0;
+  min-width: 0;
+  max-width: 100%;
 }

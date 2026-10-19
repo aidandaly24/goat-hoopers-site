@@ -114,9 +114,9 @@
 }
 
 .row {
+  position: relative;
   border-bottom: 1px solid var(--gh-border);
   border-radius: var(--gh-s2);
-  text-decoration: none;
   color: inherit;
   transition: background-color var(--gh-dur-base) var(--gh-ease-out);
 }
@@ -133,9 +133,34 @@
   color: var(--gh-gold-soft);
 }
 
-.row:focus-visible {
+.row:focus-within {
   outline: 2px solid var(--gh-focus);
   outline-offset: 2px;
+}
+
+/*
+ * The team link lives inside the team cell so the row keeps its table
+ * semantics (role="row" on the row, the link discoverable as a link).
+ * Its ::after stretches over the whole row, preserving the full-row
+ * click target the old row-anchor had.
+ */
+.teamLink {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s3);
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.teamLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.teamLink:focus-visible {
+  outline: none;
 }
 
 /* The viewer's own row: highlighted in place, accent edge on the left. */
@@ -163,9 +188,6 @@
 }
 
 .team {
-  display: flex;
-  align-items: center;
-  gap: var(--gh-s3);
   min-width: 0;
 }
 

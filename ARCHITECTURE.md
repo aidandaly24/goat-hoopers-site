@@ -319,13 +319,20 @@ src/
                  # the total is issue #184's, not this surface's.
     the-table/   # "Where does everyone stand": The Table leaderboard
                  # (issue #184) — one board, four lenses. League =
-                 # standings + signed streak; Value = roster FAAB totals
-                 # summed from the shared market quotes (domain helper
-                 # computeTeamValues in domain/the-table.ts); Power and
-                 # Arcade render honest unavailable states until weekly
-                 # table snapshots / arcade scoring exist. The signed-in
-                 # viewer's row is pinned in a strip and highlighted.
-                 # Lens switching is local state; never fetches.
+                 # standings + signed streak, projected over verified
+                 # final results only (domain helper projectTableLeague
+                 # in domain/the-table.ts: completed weeks exclusively —
+                 # the in-progress week's live scores and points-for
+                 # never count as results); Value = roster FAAB totals
+                 # from the shared market quotes (computeTeamValues over
+                 # summarizeRosterValue, ranks from the shared
+                 # rosterValueRank in domain/roster-value.ts: a rank
+                 # exists only when every roster is fully priced, equal
+                 # complete totals tie); Power and Arcade render honest
+                 # unavailable states until weekly table snapshots /
+                 # arcade scoring exist. The signed-in viewer's row is
+                 # pinned in a strip and highlighted. Lens switching is
+                 # local state; never fetches.
   ui/            # Design tokens (tokens.css) + primitives (Card, Badge,
                  # SectionHeading, TeamAvatar, PositionPill,
                  # PlayerHeadshot, PlayerRow, TransactionSummary,

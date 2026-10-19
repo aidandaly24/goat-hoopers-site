@@ -42,7 +42,7 @@ export type {
   TableValueData,
   TheTableData,
 } from "./the-table";
-export { computeTeamValues } from "./the-table";
+export { computeTeamValues, projectTableLeague } from "./the-table";
 export type { Matchup, } from "./matchup";
 export { isFinal, signedStreak, winner } from "./matchup";
 export type { Player } from "./player";

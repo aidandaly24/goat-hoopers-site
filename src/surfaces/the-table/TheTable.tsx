@@ -34,6 +34,18 @@ const fmtStreak = (streak: number | null): string => {
   return streak > 0 ? `W${streak}` : `L${Math.abs(streak)}`;
 };
 
+/**
+ * Pin copy for the viewer's value row. A rank prints only when the shared
+ * roster-value policy assigned one (every roster fully priced); otherwise
+ * the priced subtotal carries its coverage and reads as unranked, so a
+ * partial total never poses as a ranked complete one.
+ */
+const fmtValuePin = (row: TableValueRow): string => {
+  if (row.totalValue === null) return "not priced yet";
+  if (row.rank !== null) return `#${row.rank} · ${fmtMoney(row.totalValue)}`;
+  return `${fmtMoney(row.totalValue)} · ${row.pricedPlayers} of ${row.rosterPlayers} priced · unranked`;
+};
+
 /** Deterministic UTC stamp (no locale-dependent rendering). */
 const fmtComputedAt = (iso: string): string =>
   new Intl.DateTimeFormat("en-GB", {
@@ -128,7 +140,8 @@ function LeaguePanel({
       <p className={styles.footnote}>
         Source: Sleeper league standings — wins, losses, points for and games
         back, refreshed on the site&rsquo;s five-minute league cache. Streak
-        counts consecutive wins or losses ending with the latest final week.
+        counts consecutive wins or losses ending with the latest final week;
+        the in-progress week&rsquo;s live scores never count as results.
       </p>
     </Card>
   );
@@ -148,31 +161,35 @@ function LeagueRow({
   const isViewer = viewerTeamId !== null && team.id === viewerTeamId;
   const isLeader = ranked && standing.rank === 1;
   return (
-    <Link
-      href={`/teams/${team.id}`}
+    <div
       role="row"
-      aria-label={`View ${team.name}`}
       className={`${styles.row} ${styles.leagueGrid} ${isViewer ? styles.viewer : ""} ${isLeader ? styles.leader : ""}`}
     >
       <span role="cell" className={styles.rank}>
         {ranked ? standing.rank : "–"}
       </span>
       <span role="cell" className={styles.team}>
-        <TeamAvatar name={team.name} avatar={team.avatar} />
-        <span className={styles.teamText}>
-          <span
-            className={`${styles.name} ${isLeader ? styles.leaderName : ""}`}
-            style={
-              isLeader
-                ? { boxShadow: `inset 0 -0.22em 0 ${teamColorVar(team.id)}` }
-                : undefined
-            }
-          >
-            {team.name}
-            {isViewer && <span className={styles.you}>You</span>}
+        <Link
+          href={`/teams/${team.id}`}
+          aria-label={`View ${team.name}`}
+          className={styles.teamLink}
+        >
+          <TeamAvatar name={team.name} avatar={team.avatar} />
+          <span className={styles.teamText}>
+            <span
+              className={`${styles.name} ${isLeader ? styles.leaderName : ""}`}
+              style={
+                isLeader
+                  ? { boxShadow: `inset 0 -0.22em 0 ${teamColorVar(team.id)}` }
+                  : undefined
+              }
+            >
+              {team.name}
+              {isViewer && <span className={styles.you}>You</span>}
+            </span>
+            <span className={styles.manager}>{team.managerName}</span>
           </span>
-          <span className={styles.manager}>{team.managerName}</span>
-        </span>
+        </Link>
       </span>
       <span role="cell" className={`${styles.num} gh-num`} data-label="W">{standing.wins}</span>
       <span role="cell" className={`${styles.num} gh-num`} data-label="L">{standing.losses}</span>
@@ -185,7 +202,7 @@ function LeagueRow({
       >
         {fmtStreak(row.streak)}
       </span>
-    </Link>
+    </div>
   );
 }
 
@@ -214,7 +231,7 @@ function ValuePanel({
                 teamId={mine.team.id}
                 teamName={mine.team.name}
                 avatar={mine.team.avatar}
-                detail={`#${mine.rank} · ${mine.totalValue !== null ? fmtMoney(mine.totalValue) : "not priced yet"}`}
+                detail={fmtValuePin(mine)}
               />
             ) : null;
           })()}
@@ -232,7 +249,10 @@ function ValuePanel({
           <p className={styles.footnote}>
             Source: modeled FAAB prices from the Player Stock Market — the
             same StockQuote prices as the stocks board — summed across each
-            team&rsquo;s current Sleeper roster. Pricing basis:{" "}
+            team&rsquo;s current Sleeper roster. Ranks are assigned only
+            when every roster is fully priced: a partial subtotal can&rsquo;t
+            be ordered against complete totals, so unranked rows show their
+            priced subtotal with its coverage instead. Pricing basis:{" "}
             {value.pricingBasis === "preseason"
               ? "preseason — trailing production and draft pedigree, before in-season games accumulate"
               : "in-season"}
@@ -256,29 +276,33 @@ function ValueRow({
   const isViewer = viewerTeamId !== null && row.team.id === viewerTeamId;
   const isLeader = row.rank === 1 && row.totalValue !== null;
   return (
-    <Link
-      href={`/teams/${row.team.id}`}
+    <div
       role="row"
-      aria-label={`View ${row.team.name}`}
       className={`${styles.row} ${styles.valueGrid} ${isViewer ? styles.viewer : ""} ${isLeader ? styles.leader : ""}`}
     >
-      <span role="cell" className={styles.rank}>{row.rank}</span>
+      <span role="cell" className={styles.rank}>{row.rank ?? "–"}</span>
       <span role="cell" className={styles.team}>
-        <TeamAvatar name={row.team.name} avatar={row.team.avatar} />
-        <span className={styles.teamText}>
-          <span
-            className={`${styles.name} ${isLeader ? styles.leaderName : ""}`}
-            style={
-              isLeader
-                ? { boxShadow: `inset 0 -0.22em 0 ${teamColorVar(row.team.id)}` }
-                : undefined
-            }
-          >
-            {row.team.name}
-            {isViewer && <span className={styles.you}>You</span>}
+        <Link
+          href={`/teams/${row.team.id}`}
+          aria-label={`View ${row.team.name}`}
+          className={styles.teamLink}
+        >
+          <TeamAvatar name={row.team.name} avatar={row.team.avatar} />
+          <span className={styles.teamText}>
+            <span
+              className={`${styles.name} ${isLeader ? styles.leaderName : ""}`}
+              style={
+                isLeader
+                  ? { boxShadow: `inset 0 -0.22em 0 ${teamColorVar(row.team.id)}` }
+                  : undefined
+              }
+            >
+              {row.team.name}
+              {isViewer && <span className={styles.you}>You</span>}
+            </span>
+            <span className={styles.manager}>{row.team.managerName}</span>
           </span>
-          <span className={styles.manager}>{row.team.managerName}</span>
-        </span>
+        </Link>
       </span>
       <span role="cell" className={`${styles.num} gh-num`} data-label="Total">
         {row.totalValue !== null ? fmtMoney(row.totalValue) : "—"}
@@ -286,7 +310,7 @@ function ValueRow({
       <span role="cell" className={`${styles.num} gh-num`} data-label="Priced">
         {row.pricedPlayers} of {row.rosterPlayers}
       </span>
-    </Link>
+    </div>
   );
 }
 
