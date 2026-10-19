@@ -16,6 +16,7 @@
  *   preseason vs in-season pricing while it applies.
  */
 import type { StockMarket } from "./stock";
+import { summarizeRosterValue } from "./roster-value";
 
 export type RosterPlayerValue = {
   /** Sleeper player_id — the join key into the roster. */
@@ -47,36 +48,42 @@ export type TeamRosterValue = {
 };
 
 /**
- * buildTeamRosterValue — pure join of market quotes onto a roster.
+ * buildTeamRosterValue — the /team roster-value view over the shared
+ * roster-value policy (issue #214).
  *
- * Membership comes only from the roster's player ids intersected with
- * market.stocks; quote.ownership is league-wide share and is never used
- * for membership. Players keep roster order; equal prices need no
- * tie-break here because nothing is sorted.
+ * Delegates to `summarizeRosterValue` in `./roster-value` (the same policy
+ * the homepage valuation and The Table use), so there is exactly one
+ * implementation of per-player quoting, quote filtering, and cent-exact
+ * totals. Membership comes only from the roster's player ids; the
+ * exported types, honesty rules, and /team surface behavior are unchanged.
+ *
+ * Adopted shared-policy semantics (called out, not silent):
+ * - Duplicate roster ids are de-duplicated (first-seen order). Sleeper
+ *   never lists a player twice on a roster; see the parity test.
+ * - Quotes that are negative or not whole-cent (non-safe-integer cents)
+ *   are treated as unquoted — never counted, never summed.
+ * - Per-player prices and the total round-trip through integer cents, so
+ *   totals are cent-exact instead of float sums.
+ * - An empty roster keeps the #189 total of null (nothing quotable
+ *   renders "—"); the shared policy's vacuous sum would be 0.
  */
 export function buildTeamRosterValue(
   rosterPlayerIds: string[],
   market: StockMarket | null,
 ): TeamRosterValue {
-  const priceById = new Map<string, number>();
-  if (market) {
-    for (const quote of market.stocks) {
-      priceById.set(quote.playerId, quote.price);
-    }
-  }
-  const players: RosterPlayerValue[] = rosterPlayerIds.map((playerId) => ({
-    playerId,
-    price: priceById.has(playerId) ? (priceById.get(playerId) as number) : null,
+  const quotes = (market?.stocks ?? []).map((stock) => ({
+    playerId: stock.playerId,
+    price: stock.price,
   }));
-  const quoted = players.filter((p) => p.price !== null);
+  const summary = summarizeRosterValue(rosterPlayerIds, quotes);
   return {
-    players,
-    total:
-      quoted.length > 0
-        ? quoted.reduce((sum, p) => sum + (p.price as number), 0)
-        : null,
-    quotedCount: quoted.length,
-    playerCount: players.length,
+    players: summary.players.map((player) => ({
+      playerId: player.id,
+      price: player.value,
+    })),
+    total: rosterPlayerIds.length === 0 ? null : summary.total,
+    quotedCount: summary.priced,
+    playerCount: summary.players.length,
     pricingBasis: market ? market.pricingBasis : null,
   };
 }

@@ -127,7 +127,10 @@ src/
                  # table, buildArchetypeProfiles, currentArchetype),
                  # TeamRosterValue + buildTeamRosterValue (market quotes
                  # joined to a roster by Sleeper player id — the /team
-                 # roster-value view).
+                 # roster-value view; implemented on the shared
+                 # summarizeRosterValue policy in roster-value.ts, issue
+                 # #214 — one implementation of quote filtering and
+                 # cent-exact totals).
                  # Types + tiny helpers only. formatSeasonStatus(Season.status)
                  # renders the human status ("pre_season" -> "Preseason").
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
