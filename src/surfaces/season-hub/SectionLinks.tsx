@@ -45,9 +45,7 @@ export function SectionLinks() {
             <Link href={s.href} className={styles.link}>
               <span className={styles.title}>{s.title}</span>
               <span className={styles.blurb}>{s.blurb}</span>
-              <span className={styles.arrow} aria-hidden="true">
-                →
-              </span>
+
             </Link>
           </li>
         ))}

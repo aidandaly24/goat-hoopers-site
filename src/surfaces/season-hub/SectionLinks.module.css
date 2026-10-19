@@ -9,10 +9,10 @@
 
 .link {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "title arrow"
-    "blurb arrow";
+    "title"
+    "blurb";
   gap: var(--gh-s1) var(--gh-s3);
   align-items: center;
   padding: var(--gh-s3);
@@ -20,13 +20,12 @@
   border-radius: var(--gh-radius);
   text-decoration: none;
   min-height: 44px;
-  transition: border-color var(--gh-dur-base) var(--gh-ease-out), background-color var(--gh-dur-base) var(--gh-ease-out), transform var(--gh-dur-base) var(--gh-ease-out);
+  transition: border-color var(--gh-dur-base) var(--gh-ease-out), background-color var(--gh-dur-base) var(--gh-ease-out);
 }
 
 .link:hover {
   border-color: var(--gh-border-strong);
   background: var(--gh-bg-hover);
-  transform: translateY(-2px);
 }
 
 .link:hover .title {
@@ -62,11 +61,6 @@
   line-height: 1.4;
 }
 
-.arrow {
-  grid-area: arrow;
-  color: var(--gh-gold);
-  font-size: 1.2rem;
-}
 
 /* Desktop: three cards side by side. */
 @media (min-width: 64rem) {

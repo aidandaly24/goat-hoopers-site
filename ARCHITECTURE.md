@@ -347,6 +347,14 @@ AGENTS.md        # House rules (below the Next.js-managed block).
 
 ## Data flow
 
+`ui/controls.module.css` owns shared primary, secondary and quiet action styling;
+surfaces compose these CSS roles without changing navigation or event handlers.
+`ui/ControlIcon.tsx` provides small monochrome SVGs only for sort, close and
+selection state. App-authored text omits emoji and decorative arrows. The source
+policy test parses interface literals rather than filtering runtime content, so
+user-created names and provider text retain their original values. This visual
+cleanup does not change auth, claims, game rules, data access or competition gates.
+
 ```
 Sleeper API  →  sleeper.ts (raw fetch + cache)
              →  transform.ts (raw → domain)

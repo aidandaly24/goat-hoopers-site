@@ -13,7 +13,7 @@ export const GAMES: Game[] = [
     name: "Free Throw Shootout",
     description:
       "Aim, release and find your touch on the practice court.",
-    icon: "🎯",
+    icon: "FT",
     status: "coming-soon",
     play: {
       mode: "practice",
@@ -36,7 +36,7 @@ export const GAMES: Game[] = [
     id: "week-2-preview",
     name: "82–0",
     description: "A team drawn at random. A player chosen by you. Build your perfect five.",
-    icon: "🏀",
+    icon: "82–0",
     status: "coming-soon",
     play: {
       mode: "preview",
@@ -51,7 +51,7 @@ export const GAMES: Game[] = [
     name: "82-0 Predictions",
     description:
       "Call the season before it happens. Champion, win totals, and more.",
-    icon: "🔮",
+    icon: "Season",
     status: "coming-soon",
     howToPlay:
       "Lock in your season predictions before opening night: champion, " +

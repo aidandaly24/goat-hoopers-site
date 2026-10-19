@@ -130,9 +130,9 @@ export function TeamProfile({
   return (
     <div className={styles.page}>
       <div className={styles.breadcrumbs}>
-        <Link href="/teams">← All teams</Link>
+        <Link href="/teams"> All teams</Link>
         <span>Public team profile</span>
-        <Link href="/trade-analyzer" className={styles.tradeLink}>Analyze a trade with this team →</Link>
+        <Link href="/trade-analyzer" className={styles.tradeLink}>Analyze a trade with this team</Link>
       </div>
       <header className={styles.identity}>
         <TeamAvatar name={team.name} avatar={team.avatar} />

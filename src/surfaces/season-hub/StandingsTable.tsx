@@ -1,5 +1,7 @@
 "use client";
 
+import { ControlIcon } from "@/ui/ControlIcon";
+
 import { useState } from "react";
 import Link from "next/link";
 import type { Standing } from "@/domain";
@@ -41,7 +43,7 @@ export function StandingsTable({ standings }: { standings: Standing[] }) {
               >
                 <span className={styles.short}>{short}</span>
                 <span className={styles.full}>{label}</span>
-                <span aria-hidden="true">{order.key === key ? order.direction === "asc" ? "↑" : "↓" : "↕"}</span>
+                <ControlIcon name={order.key === key ? order.direction === "asc" ? "sort-up" : "sort-down" : "sort"} />
               </button>
             </span>
           ))}

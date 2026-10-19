@@ -32,12 +32,11 @@ export function CourtsideArchive({ editions }: { editions: WeeklyEdition[] }) {
                     {edition.status === "draft" ? "Sample draft" : "Published"}
                   </p>
                 </div>
-                <span aria-hidden="true">↗</span>
+
               </Link>
             ))}
           </div>
-          <Link className={cs("text-link")} href="/">
-            ← Back to this week
+          <Link className={cs("text-link")} href="/"> Back to this week
           </Link>
         </div>
       </section>

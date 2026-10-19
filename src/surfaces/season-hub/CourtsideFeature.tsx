@@ -36,7 +36,7 @@ function previewPeriod(snapshot: AiSnapshotMetadata | null): string | null {
   return snapshot?.startsAt && snapshot.endsAt ? null : "Period dates unavailable.";
 }
 
-/** Featured matchup → read the editorial reason / select a pairing / inspect notes.
+/** Featured matchup read the editorial reason / select a pairing / inspect notes.
  * States: dated draft, historical final, live pairing, saved ready/stale pick and unavailable.
  * Saved probabilities require the same season, week and roster IDs; reads never generate.
  * Phones retain court → featured team context → five compact pairings in reading order.
@@ -107,18 +107,18 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
                 return <dl key={team.identity.id} className={cs("team-context")} aria-hidden={side !== index}>
                   <div><dt>{prior ? `2025 record${prior.ownerNote ? " · previous manager" : ""}` : "Current record"}</dt><dd>{record ? `${record.wins}–${record.losses}` : "—"}</dd></div>
                   <div><dt>Roster players</dt><dd>{rosterCounts[team.identity.id] ?? "—"}</dd></div>
-                  <div><dt>{prior ? "2025 finish" : "Team profile"}</dt><dd>{prior ? `${prior.finish}${prior.finish === 1 ? "st" : prior.finish === 2 ? "nd" : prior.finish === 3 ? "rd" : "th"}` : <Link href={`/teams/${team.identity.id}`} tabIndex={side === index ? 0 : -1}>Open ↗</Link>}</dd></div>
+                  <div><dt>{prior ? "2025 finish" : "Team profile"}</dt><dd>{prior ? `${prior.finish}${prior.finish === 1 ? "st" : prior.finish === 2 ? "nd" : prior.finish === 3 ? "rd" : "th"}` : <Link href={`/teams/${team.identity.id}`} tabIndex={side === index ? 0 : -1}>Open</Link>}</dd></div>
                 </dl>;
               })}
             </div>
           </div>
-          <Link className={cs("text-link")} href={`/teams/${teams[side]?.identity.id ?? teams[0].identity.id}`} prefetch={false}>Full team profile ↗</Link>
+          <Link className={cs("text-link")} href={`/teams/${teams[side]?.identity.id ?? teams[0].identity.id}`} prefetch={false}>Full team profile</Link>
         </div>}
         <div className={cs("feature-actions")}>
           <CourtsideDialog label={selected ? "Matchup notes" : "Featured matchup notes"} title={title}>
             <p>{context}</p><p>{selected ? preseasonPreview ? "Pairing comes from saved preview inputs; no weekly score forecast is implied." : "Pairing and scores come from the current league check; no projected result is implied." : game.context}</p>
             <p className={cs("caption")}>{selected ? preseasonPreview ? `Preview inputs captured ${aiWeekly.snapshot?.capturedAt ?? "unavailable"}` : `League check ${checkedAt.slice(0, 10)}` : game.note}</p>
-            <div className={cs("notes-teams")}>{teams.map((team) => <Link key={team.identity.id} href={`/teams/${team.identity.id}`}>{team.identity.name} ↗</Link>)}</div>
+            <div className={cs("notes-teams")}>{teams.map((team) => <Link key={team.identity.id} href={`/teams/${team.identity.id}`}>{team.identity.name}</Link>)}</div>
             {!selected && sources}
             {detailPick && aiWeekly && <>
               <p>{aiWeekly.generatedAt ? <>Saved <time dateTime={aiWeekly.generatedAt}>{savedTimestamp(aiWeekly.generatedAt)}</time>.</> : "No saved prediction time available."}</p>
@@ -164,7 +164,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
           })}
           {!pairs.length && <p className={cs("empty")}>{preseasonPreview ? "Saved preview team identities are temporarily unavailable." : "Current pairings are temporarily unavailable."} Team profiles remain available below.</p>}
         </div>
-        {aiWeekly && <Link className={cs("week-playground", "text-link")} href="/ai-decides">Open AI playground ↗</Link>}
+        {aiWeekly && <Link className={cs("week-playground", "text-link")} href="/ai-decides">Open AI playground</Link>}
       </aside>
     </div>
     <p className={cs("sr-only")} role="status" aria-live="polite">{selected ? `Selected ${title}. ${status}.` : ""}</p>
