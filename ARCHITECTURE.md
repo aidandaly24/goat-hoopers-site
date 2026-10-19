@@ -144,6 +144,13 @@ src/
     nba-stats.ts # Player fundamentals: Sleeper's stats feed → cached
                  # PlayerStatProfiles (impure shell; math in transform.ts).
     transform.ts # Raw JSON -> domain objects. The membrane.
+    weekly-player-evidence.ts
+                 # Read-only, points-only observed fantasy-week facts for one
+                 # previous completed week (issue #190): recorded per-player
+                 # points from Sleeper's players_points, participation always
+                 # "unknown", gamesPlayed always null. No GP claims, no
+                 # verdicts, no recorder. All I/O injected (rule 11); never
+                 # imports sleeper.ts. See docs/weekly-player-evidence.md.
     analytics.ts # Pure data tools: computePowerRankings, computePlayoffOdds,
                  # computeRecordBook, computeMatchupPreviews. No fetching —
                  # same pure-inputs pattern as computeLeagueStats. All
