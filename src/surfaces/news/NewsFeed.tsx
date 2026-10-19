@@ -93,10 +93,7 @@ function ArticleLink({
       className={className}
     >
       {children}
-      <span className={styles.arrow} aria-hidden="true">
-        {" "}
-        ↗
-      </span>
+
     </a>
   );
 }

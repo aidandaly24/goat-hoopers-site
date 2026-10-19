@@ -320,6 +320,16 @@ production imports. No new palette framework, assets or fetching is needed.
 
 ## Tables, controls and accessible behavior
 
+App-authored controls and navigation use no emoji or decorative arrow glyphs.
+Destinations use clear text and a consistent primary/secondary/quiet hierarchy,
+with 44px control targets, visible focus and restrained hover/pressed feedback.
+`ui/controls.module.css` shares those action roles. Functional sort, close and
+selection controls may use the monochrome `ControlIcon` SVG; never replace every
+removed arrow with another decorative icon. User-created team names and incoming
+provider/editorial content remain unchanged. The Arcade uses compact bordered
+navigation above its cards and slate primary launch actions. Draft controls and
+account forms share that hierarchy; the draft/poster omit ornamental asterisks.
+
 - Preserve useful density. A roster or exchange is a working list, not a
   sequence of oversized player cards. A row shows identity, relevant numeric
   value/unit, status and a clear next action. Deep detail loads on selection;
@@ -604,4 +614,3 @@ this design work.
 | Upcoming/null scores, 2025 record and “Previous manager” | Fabricated live zero score or inherited poor record blamed on today's manager |
 | Play free-throw practice using a real preview | A catalog of fake games whose links merely return successful HTTP responses |
 | Clear sort labels, units and keyboard focus | Pretty headers that cannot sort, color-only verdicts or unreadable small labels |
-

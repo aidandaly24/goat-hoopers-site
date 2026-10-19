@@ -47,7 +47,7 @@ describe("integrated saved-pick matchup sidebar", () => {
       expect(html).toContain(AI_PROBABILITY_LABEL);
       expect(html).toContain("Featured matchup · Week 1 · Upcoming");
       expect(html).toContain("Synthetic selection");
-      expect(html).toMatch(/<figure[^]*?<\/figure>[^]*?Synthetic selection[^]*?id="matchup-context"[^]*?Full team profile ↗[^]*?<aside/);
+      expect(html).toMatch(/<figure[^]*?<\/figure>[^]*?Synthetic selection[^]*?id="matchup-context"[^]*?Full team profile[^]*?<aside/);
       expect(html).not.toContain("Pause motion");
       expect(html).not.toContain("Inspect the floor");
       expect(html).not.toContain("data-inspecting");
@@ -132,7 +132,7 @@ describe("integrated saved-pick matchup sidebar", () => {
     const data = { hub: null, directory: entries, edition, checkedAt: "2026-10-09T00:00:00Z", rosterNamesAvailable: true };
     const html = renderToStaticMarkup(createElement(CourtsideHome, { data, archive: [], portraits: {}, aiWeekly: weekly() }));
     expect(html.match(/>AI Decides<\/a><\/h2>/g)).toHaveLength(1);
-    expect(html).toMatch(/<aside[^]*?<h2 id="this-week-title"><a href="\/ai-decides">AI Decides<\/a><\/h2>[^]*?Open AI playground ↗[^]*?<\/aside>/);
+    expect(html).toMatch(/<aside[^]*?<h2 id="this-week-title"><a href="\/ai-decides">AI Decides<\/a><\/h2>[^]*?Open AI playground[^]*?<\/aside>/);
     expect(html.match(/href="\/ai-decides"/g)).toHaveLength(2);
     expect(html).not.toContain('href="#watch"');
     expect(html).not.toContain("Skip to this week’s players");

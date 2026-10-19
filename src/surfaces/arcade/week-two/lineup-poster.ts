@@ -40,11 +40,7 @@ export async function downloadLineup(demo: DraftDemo, picks: readonly DraftPick[
   };
   text("GOAT HOOPERS / THE ROSTER DRAFT", 64, 65, 19, white, false, true);
   text("82–0", 813, 69, 39, gold, true);
-  ctx.strokeStyle = gold; ctx.lineWidth = 2.5;
-  for (let ray = 0; ray < 8; ray++) {
-    const angle = Math.PI * ray / 4;
-    ctx.beginPath(); ctx.moveTo(993, 55); ctx.lineTo(993 + Math.cos(angle) * 17, 55 + Math.sin(angle) * 17); ctx.stroke();
-  }
+
   text("BUILT", 59, 158, 104, white, true);
   text("DIFFERENT.", 59, 251, 104, gold, true);
   text("YOUR DEMO LINEUP / FIVE PICKS", 64, 296, 18, white, false, true);

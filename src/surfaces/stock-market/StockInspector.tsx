@@ -1,3 +1,4 @@
+import { ControlIcon } from "@/ui/ControlIcon";
 import type { CSSProperties, Ref } from "react";
 import type { StockDetail, StockQuote } from "@/domain";
 import { PlayerName } from "@/ui/PlayerRow";
@@ -72,7 +73,7 @@ export function StockInspector({ quote, detail, headingRef, onClose, onRetry, ex
     }}>
     <div className={styles["inspector-head"]}><p className={styles.eyebrow}>A CLOSER LOOK</p>
       <h2 id="inspector-title" tabIndex={-1} ref={headingRef} aria-label={quote ? `Inside the price: ${quote.playerName}` : undefined}>Inside the price</h2>
-      {quote ? <button type="button" className={styles["close-detail"]} onClick={onClose} aria-label="Close player detail">×</button> : null}
+      {quote ? <button type="button" className={styles["close-detail"]} onClick={onClose} aria-label="Close player detail"><ControlIcon name="close" /></button> : null}
     </div>
     <div className={styles["detail-content"]}>
       {quote ? <>

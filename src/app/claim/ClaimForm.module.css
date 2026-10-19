@@ -68,22 +68,7 @@
   font-weight: 600;
 }
 
-.submit {
-  background: var(--gh-gold);
-  color: var(--gh-ink-on-accent);
-  border: none;
-  border-radius: var(--gh-s2);
-  padding: var(--gh-s3) var(--gh-s4);
-  font-weight: 800;
-  font-size: 1rem;
-  cursor: pointer;
-  font-family: var(--gh-font-display);
-}
-
-.submit:disabled {
-  opacity: 0.6;
-  cursor: wait;
-}
+.submit { composes: primary from "../../ui/controls.module.css"; width: 100%; }
 
 .switch {
   color: var(--gh-text-faint);

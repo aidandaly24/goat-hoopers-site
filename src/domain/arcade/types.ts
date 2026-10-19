@@ -94,7 +94,7 @@ export type Game = {
   name: string;
   /** One-line pitch shown on the game card. */
   description: string;
-  /** Emoji icon for the game card. */
+  /** Short text mark for the game card. */
   icon: string;
   /** League competition status. Public practice can be available separately. */
   status: "live" | "coming-soon";

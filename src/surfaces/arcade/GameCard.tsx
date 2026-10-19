@@ -19,7 +19,7 @@ export function GameCard({ game }: { game: PlayableGame }) {
           <span className={styles.caption}>Actual gameplay</span>
         </> : <div className={styles.draftArt} aria-label={`${art.label} roster draft preview artwork`}>
           <span className={styles.artEdition}>{art.caption}</span>
-          <strong>{art.label}<span aria-hidden="true">✳</span></strong>
+          <strong>{art.label}</strong>
           <span className={styles.artNote}>A team. A choice. Your five.</span>
         </div>}
       </div>
@@ -30,7 +30,7 @@ export function GameCard({ game }: { game: PlayableGame }) {
         {practice && <p className={styles.access}>No sign-in needed. Scores stay in this session.</p>}
         {preview && <p className={styles.access}>Try the draft. Week 2 competition stays closed.</p>}
         <Link href={`/arcade/${game.id}`} className={styles.play} aria-label={`${preview ? "Preview" : "Play"} ${game.name}`}>
-          {preview ? "Enter 82–0 preview" : "Play now"} <span aria-hidden="true">↗</span>
+          {preview ? "Enter 82–0 preview" : "Play now"}
         </Link>
         <details className={styles.controls}>
           <summary>How to play</summary>

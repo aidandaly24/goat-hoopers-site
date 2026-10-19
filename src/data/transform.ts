@@ -883,8 +883,8 @@ export function computePlayerStocks(input: StockMarketInput): PlayerStock[] {
           w < 0.02
             ? "Fully proven — pedigree weight ~0%"
             : (prof?.leaguePick ?? pick) != null
-              ? `Rookie pick #${prof?.leaguePick ?? pick} → ${pedigree} fppg historical comps × ${(100 * w).toFixed(0)}% weight`
-              : `Undrafted → ${pedigree} fppg replacement-level prior`,
+              ? `Rookie pick #${prof?.leaguePick ?? pick}: ${pedigree} fppg historical comps × ${(100 * w).toFixed(0)}% weight`
+              : `Undrafted: ${pedigree} fppg replacement-level prior`,
       },
       {
         kind: "dynasty",

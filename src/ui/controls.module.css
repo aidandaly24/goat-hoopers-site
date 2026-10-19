@@ -1,0 +1,29 @@
+/* Shared action hierarchy: primary commits/launches, secondary navigates, quiet supports. */
+.base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gh-s2);
+  min-height: var(--gh-target-touch);
+  max-width: 100%;
+  padding: var(--gh-s3) var(--gh-s4);
+  border: 1px solid transparent;
+  border-radius: var(--gh-s2);
+  font: 600 var(--gh-text-sm)/1.35 var(--gh-font-body);
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transition: background-color var(--gh-dur-base) var(--gh-ease-out), border-color var(--gh-dur-base) var(--gh-ease-out), box-shadow var(--gh-dur-press) var(--gh-ease-out);
+}
+.primary { composes: base; background: var(--gh-accent); border-color: var(--gh-accent); color: var(--gh-on-accent); }
+.secondary { composes: base; background: var(--gh-bg-raised); border-color: var(--gh-control); color: var(--gh-text); }
+.quiet { composes: base; background: transparent; color: var(--gh-text-dim); }
+.base:focus-visible { outline: 2px solid var(--gh-focus); outline-offset: 3px; }
+.base:active:not(:disabled) { box-shadow: inset 0 0 0 2px currentColor; }
+.base:disabled { opacity: .55; cursor: default; }
+@media (hover: hover) {
+  .primary:hover:not(:disabled) { background: color-mix(in srgb, var(--gh-accent) 88%, var(--gh-text)); border-color: color-mix(in srgb, var(--gh-accent) 88%, var(--gh-text)); color: var(--gh-on-accent); }
+  .secondary:hover:not(:disabled), .quiet:hover:not(:disabled) { background: var(--gh-bg-hover); color: var(--gh-text); border-color: var(--gh-control); }
+}
+@media (prefers-reduced-motion: reduce) { .base { transition: none; } }

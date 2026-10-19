@@ -1,5 +1,5 @@
 .root { max-width: 82rem; margin: auto; padding: 0 var(--gh-s8) var(--gh-s8); color: var(--gh-draft-ink); }
-.root button { font: inherit; cursor: pointer; }
+.root button { cursor: pointer; }
 .root button:disabled { cursor: default; opacity: .5; }
 .root h1:focus { outline: none; }
 .root h1, .root h2, .root p { margin: 0; overflow-wrap: anywhere; }
@@ -15,9 +15,7 @@
 .teaserTitle { font-family: var(--gh-draft-display); font-size: clamp(4.5rem, 7.6vw, 7rem); font-weight: 850; letter-spacing: -.075em; line-height: .97; margin: var(--gh-s6) 0 !important; }
 .teaserTitle em { font-style: normal; color: var(--gh-accent); }
 .lede { color: var(--gh-draft-muted); font-size: var(--gh-text-lg); line-height: 1.6; }
-.primary { display: flex; align-items: center; justify-content: space-between; gap: var(--gh-s6); padding: var(--gh-s4) var(--gh-s6); min-height: 3.5rem; border: 1px solid var(--gh-draft-ink); background: var(--gh-draft-ink); color: var(--gh-draft-paper); font-size: var(--gh-text-sm) !important; font-weight: 650 !important; transition: transform var(--gh-dur-press), opacity var(--gh-dur-press); }
-.primary:hover:not(:disabled) { transform: translateY(-2px); }
-.primary:active:not(:disabled) { transform: translateY(1px); }
+.primary { composes: primary from "../../../ui/controls.module.css"; min-height: 3rem; }
 .teaserCopy > .primary { width: 18rem; margin-top: var(--gh-s8); }
 .ctaNote { font-size: .6rem; color: var(--gh-draft-muted); line-height: 1.6; margin-top: var(--gh-s3) !important; }
 .teaserPoster { background: var(--gh-draft-night); color: var(--gh-draft-white); aspect-ratio: 1 / 1.08; position: relative; overflow: hidden; isolation: isolate; }
@@ -67,7 +65,7 @@
 .sealedArt span:last-child { transform: rotate(14deg) translateY(9%); color: var(--gh-draft-silver); }
 .sealedContent h2 { font-size: 2.3rem; font-weight: 750; line-height: 1; letter-spacing: -.05em; }
 .sealedContent p { font-size: var(--gh-text-sm); color: var(--gh-draft-silver); margin-top: var(--gh-s3); }
-.revealButton { display: inline-flex; justify-content: space-between; align-items: center; gap: var(--gh-s8); background: var(--gh-draft-gold); color: var(--gh-draft-on-gold); border: none; font-size: var(--gh-text-xs) !important; padding: var(--gh-s4) var(--gh-s6); min-height: var(--gh-target-touch); margin-top: var(--gh-s6); font-weight: 650 !important; }
+.revealButton { composes: secondary from "../../../ui/controls.module.css"; margin: var(--gh-s4) auto 0; }
 .revealStage :focus-visible { outline-color: var(--gh-draft-white); }
 .decision { display: flex; flex-direction: column; justify-content: center; padding: var(--gh-s8) var(--gh-s12); border-block: 1px solid var(--gh-draft-line); }
 .decisionIntro h2, .lockedCopy h2 { font-size: 2rem; font-weight: 750; letter-spacing: -.04em; line-height: 1.1; }
@@ -115,7 +113,7 @@
 .rosterRail li > span:last-child { font-size: .45rem; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.7; }
 .emptySlot { display: block; color: var(--gh-draft-muted); opacity: .6; font-size: 1.6rem; font-weight: 300; margin-bottom: var(--gh-s2); }
 .filledSlot { border-bottom: 2px solid var(--gh-draft-team) !important; }
-.textButton { display: inline-flex; align-items: center; justify-content: space-between; gap: var(--gh-s3); background: none; border: none; color: var(--gh-draft-muted); font-size: .65rem !important; min-height: var(--gh-target-touch); padding: var(--gh-s2) 0; }
+.textButton { composes: quiet from "../../../ui/controls.module.css"; justify-content: flex-start; }
 .textButton:hover { text-decoration: underline; }
 .resultHeader { display: flex; align-items: end; justify-content: space-between; gap: var(--gh-s8); padding-block: var(--gh-s8); }
 .resultHeader h1 > span { color: var(--gh-accent); }

@@ -1,5 +1,7 @@
 "use client";
 
+import { ControlIcon } from "@/ui/ControlIcon";
+
 /* eslint-disable @next/next/no-img-element -- Small source portraits load only inside the selected roster; no optimizer quota. */
 import Link from "next/link";
 import { useEffect, useReducer, useRef, useState, useSyncExternalStore } from "react";
@@ -12,16 +14,6 @@ import { isNbaSourceStale, type DraftRosterClient, type NbaRoster, type NbaTeam,
 import "@/ui/week-two-draft-tokens.css";
 import styles from "./WeekTwoDraft.module.css";
 
-function Arrow({ back = false }: { back?: boolean }) {
-  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={back ? { transform: "rotate(180deg)" } : undefined}>
-    <path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="1.6" />
-  </svg>;
-}
-function Burst() {
-  return <svg width="1em" height="1em" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-    <path d="M20 2v36M2 20h36M7 7l26 26M7 33 33 7" stroke="currentColor" strokeWidth="2.5" />
-  </svg>;
-}
 function CourtLines() {
   return <svg className={styles.courtLines} viewBox="0 0 600 440" fill="none" aria-hidden="true">
     <path d="M30 25h540v390H30zM30 220h540M300 25v390M222 25v100h156V25M222 415V315h156v100" />
@@ -162,7 +154,7 @@ export function WeekTwoDraft({ client }: { client: DraftRosterClient }) {
 
   return <div className={`gh-week-two-draft ${styles.root}`} data-draft-phase={state.phase}>
     <div className={styles.topline}>
-      <Link href="/arcade" className={styles.back}><Arrow back /> Arcade</Link>
+      <Link href="/arcade" className={styles.back}>Back to Arcade</Link>
       <span className={styles.edition}>THE GAME ROOM <span>/</span> VOL. 02</span>
       <Badge>Unranked preview</Badge>
     </div>
@@ -172,24 +164,24 @@ export function WeekTwoDraft({ client }: { client: DraftRosterClient }) {
           <div className={styles.kicker}><span className={styles.dot} /> WEEK 02 / 82–0</div>
           <h1 id="draft-title" ref={heading} tabIndex={-1} className={styles.teaserTitle}>Chase<br /><em>perfect.</em></h1>
           <p className={styles.lede}>30 NBA teams. Five random draws.<br />{" "}Choose a player from each team’s full roster.<br />{" "}Build a five worth arguing about.</p>
-          <button className={styles.primary} onClick={() => void start()} disabled={directoryStatus === "loading"}>{directoryStatus === "loading" ? "Opening the draft room…" : directoryStatus === "error" ? "Retry opening draft" : "Enter the demo"}<Arrow /></button>
+          <button className={styles.primary} onClick={() => void start()} disabled={directoryStatus === "loading"}>{directoryStatus === "loading" ? "Opening the draft room…" : directoryStatus === "error" ? "Retry opening draft" : "Enter the demo"}</button>
           <p className={styles.ctaNote} role="status">{directoryStatus === "error" ? "The NBA team directory is unavailable. Retry to start; no draw has been made." : "A playable preview. Week 2 competition stays locked."}</p>
         </div>
         <div className={styles.teaserPoster} aria-label="82–0 roster draft artwork">
           <CourtLines /><div className={styles.posterMast}><span>GOAT HOOPERS</span><span>THE ROSTER DRAFT</span></div>
-          <div className={styles.bigRecord}>82<span>–</span>0<span className={styles.recordStar}><Burst /></span></div>
+          <div className={styles.bigRecord}>82<span>–</span>0</div>
           <div className={styles.posterRule}><span>BUILD YOUR</span><span>PERFECT FIVE</span></div>
-          <div className={styles.teaserSlots} aria-hidden="true">{[1, 2, 3, 4, 5].map(number => <span key={number}><small>PICK</small><strong>0{number}</strong><Burst /></span>)}</div>
+          <div className={styles.teaserSlots} aria-hidden="true">{[1, 2, 3, 4, 5].map(number => <span key={number}><small>PICK</small><strong>0{number}</strong></span>)}</div>
           <div className={styles.posterFooter}><span>TRUST THE DRAW.<br />MAKE YOUR CALL.</span><span className={styles.posterNumber}>02</span></div>
           <div className={styles.artLabel}>FIVE PICKS · FULL TEAM ROSTERS · YOUR DECISIONS</div>
         </div>
       </section>
-      <div className={styles.editorialFooter}><span className={styles.footerIndex}>THE IDEA <Arrow /></span><p><strong>Reveal. Choose. Lock it in.</strong> Each round draws a different NBA team. Search its source roster, choose one player, and add them to your five.</p><span className={styles.noForecast}>82–0 is the challenge.<br />No season forecast is generated.</span></div>
+      <div className={styles.editorialFooter}><span className={styles.footerIndex}>THE IDEA </span><p><strong>Reveal. Choose. Lock it in.</strong> Each round draws a different NBA team. Search its source roster, choose one player, and add them to your five.</p><span className={styles.noForecast}>82–0 is the challenge.<br />No season forecast is generated.</span></div>
     </> : state.phase === "complete" ? <>
       <header className={styles.resultHeader}><div><p className={styles.kicker}>THE FINAL SELECTION</p><h1 ref={heading} tabIndex={-1}>Meet your five<span>.</span></h1></div><p>You made the calls.<br />Now let the group chat decide.</p></header>
       <div className={styles.resultGrid}>
         <section className={styles.lineupPoster} aria-label="Your completed demo lineup">
-          <div className={styles.lineupMast}><span>GOAT HOOPERS / THE ROSTER DRAFT</span><strong>82–0<span><Burst /></span></strong></div>
+          <div className={styles.lineupMast}><span>GOAT HOOPERS / THE ROSTER DRAFT</span><strong>82–0</strong></div>
           <div className={styles.lineupHeadline}>BUILT<br /><em>DIFFERENT.</em></div>
           <ol className={styles.finalPicks}>{state.picks.map((pick, index) => {
             const { team, player } = getPick(demo, pick);
@@ -198,11 +190,11 @@ export function WeekTwoDraft({ client }: { client: DraftRosterClient }) {
           <div className={styles.lineupFooter}><span>WEEK 02 / UNRANKED PREVIEW</span><span>YOUR FIVE · NO SEASON PREDICTION</span></div>
         </section>
         <aside className={styles.resultActions}>
-          <span className={styles.resultMark}><Burst /></span><h2>Put your<br />name on it.</h2><p>Your lineup, ready for the chat. Save a portrait-format poster with all five picks.</p>
-          <button className={styles.primary} onClick={saveLineup} disabled={exportState === "saving"}>{exportState === "saving" ? "Making your poster…" : "Save lineup poster"}<Arrow /></button>
+          <h2>Put your<br />name on it.</h2><p>Your lineup, ready for the chat. Save a portrait-format poster with all five picks.</p>
+          <button className={styles.primary} onClick={saveLineup} disabled={exportState === "saving"}>{exportState === "saving" ? "Making your poster…" : "Save lineup poster"}</button>
           <p className={styles.exportStatus} role="status">{exportState === "saved" ? "Poster downloaded. Ready when you are." : exportState === "error" ? "Couldn’t save the poster. Try again." : "PNG · 1080 × 1350 · saved on your device"}</p>
-          <button className={styles.textButton} onClick={() => void start()}>Draft another five <Arrow /></button>
-          <Link href="/arcade" className={styles.textButton}>Back to the Arcade <Arrow back /></Link>
+          <button className={styles.textButton} onClick={() => void start()}>Draft another five</button>
+          <Link href="/arcade" className={styles.textButton}>Back to the Arcade</Link>
           <p className={styles.resultDisclaimer}>Unranked preview. Your choices stay in this browser session. No ratings, season forecast, score submission or prize entry.</p>
         </aside>
       </div>
@@ -212,39 +204,39 @@ export function WeekTwoDraft({ client }: { client: DraftRosterClient }) {
         <section className={`${styles.revealStage} ${state.phase === "locked" ? styles.lockedStage : ""}`} aria-label={state.phase === "sealed" || isDrawing ? "NBA team draw" : `${shownTeam?.city} ${shownTeam?.name}`}>
           <CourtLines /><div className={styles.stageRail}><span>GOAT HOOPERS DRAFT ROOM</span><span>WEEK 02</span></div>
           {state.phase === "sealed" ? <div className={styles.sealedContent}>
-            <div className={styles.sealedArt} aria-hidden="true"><span>?</span><span>?</span><span>?</span></div><h2>Who’s on<br />the board?</h2><p>One of 30 teams. The call after that is yours.</p><button className={styles.revealButton} onClick={reveal}>Reveal NBA team <Arrow /></button>
+            <div className={styles.sealedArt} aria-hidden="true"><span>?</span><span>?</span><span>?</span></div><h2>Who’s on<br />the board?</h2><p>One of 30 teams. The call after that is yours.</p><button className={styles.revealButton} onClick={reveal}>Reveal NBA team</button>
           </div> : isDrawing ? <div className={styles.drawContent}>
             <div className={styles.drawWindow} aria-hidden="true"><small>DRAWING FROM {directory?.teams.length} NBA TEAMS</small><strong key={drawFrame}>{spinningTeam?.abbreviation}</strong><span>{spinningTeam?.city} {spinningTeam?.name}</span></div>
             <div className={styles.drawTrack} aria-hidden="true">{directory?.teams.slice(0, 15).map(team => <span key={team.id}>{team.abbreviation}</span>)}</div>
-            <button className={styles.revealButton} onClick={() => dispatch({ type: "finish-reveal" })}>Skip animation <Arrow /></button>
+            <button className={styles.revealButton} onClick={() => dispatch({ type: "finish-reveal" })}>Skip animation</button>
           </div> : <>
             <div className={styles.teamTypography}><span>{shownTeam?.city}</span><h2>{shownTeam?.name}</h2></div><div className={styles.teamAbbreviation} aria-hidden="true">{shownTeam?.abbreviation}</div>
             {shownPlayer ? <Portrait key={shownPlayer.id} player={shownPlayer} className={styles.stagePortrait} /> : shownTeam ? <div className={styles.stageLogo}><TeamLogo key={shownTeam.id} team={shownTeam} /></div> : null}
-            <div className={styles.stageBottom}><div><span>{state.phase === "locked" ? "THE PICK IS IN" : shownPlayer ? "YOUR SELECTION" : "TEAM REVEALED"}</span><strong>{shownPlayer ? `${shownPlayer.firstName} ${shownPlayer.lastName}` : "Make your move."}</strong></div><span className={styles.seal} aria-hidden="true">{state.phase === "locked" ? "✓" : <Burst />}</span></div>
+            <div className={styles.stageBottom}><div><span>{state.phase === "locked" ? "THE PICK IS IN" : shownPlayer ? "YOUR SELECTION" : "TEAM REVEALED"}</span><strong>{shownPlayer ? `${shownPlayer.firstName} ${shownPlayer.lastName}` : "Make your move."}</strong></div></div>
             {state.phase === "locked" && <span className={styles.lockStamp}>LOCKED IN</span>}
           </>}
         </section>
         <div className={styles.decision}>
           {state.phase === "sealed" || isDrawing ? <div className={styles.decisionIntro}><span className={styles.bigStep}>0{state.picks.length + 1}<span>—</span></span><h2>First, the team.<br />Then, the talent.</h2><p>The draw picks a team. You get its full source roster, including listed reserve and two-way players. Choose anyone you want for your five.</p><p>Your team is fixed once you reveal it. A roster retry keeps the same draw.</p></div>
-            : state.phase === "locked" ? <div className={styles.lockedCopy}><span className={styles.bigStep}>✓</span><h2>{shownPlayer?.lastName}.<br />On your side.</h2><p>{demo.pickCount - state.picks.length} more {demo.pickCount - state.picks.length === 1 ? "call" : "calls"} to make. A different team is waiting behind the next reveal.</p><button className={styles.primary} onClick={() => { setSearch(""); dispatch({ type: "next" }); }}>Next team <Arrow /></button></div>
+            : state.phase === "locked" ? <div className={styles.lockedCopy}><span className={styles.bigStep}>IN</span><h2>{shownPlayer?.lastName}.<br />On your side.</h2><p>{demo.pickCount - state.picks.length} more {demo.pickCount - state.picks.length === 1 ? "call" : "calls"} to make. A different team is waiting behind the next reveal.</p><button className={styles.primary} onClick={() => { setSearch(""); dispatch({ type: "next" }); }}>Next team</button></div>
               : currentRoster ? <>
                 <div className={styles.choiceHeading}><h2>Who are you taking?</h2><span>{currentRoster.players.length} PLAYERS</span></div>
                 <label className={styles.rosterSearch}>Search this roster<input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="Player name or position" /></label>
                 <div className={styles.playerChoices} role="group" aria-label={`Choose one ${currentTeam?.name} player`}>
                   {visiblePlayers.map(player => { const alreadyPicked = state.picks.some(pick => pick.playerId === player.id); return <button key={player.id} aria-pressed={state.selectedId === player.id} disabled={alreadyPicked} className={styles.playerChoice} onClick={() => dispatch({ type: "select", playerId: player.id })}>
-                    <Portrait player={player} lazy /><span className={styles.choiceName}><span>{player.firstName}</span><strong>{player.lastName}</strong><small>{player.position}{player.jersey ? ` · #${player.jersey}` : ""}{alreadyPicked ? " · Already drafted" : player.status ? ` · ${player.status}` : ""}</small></span><span className={styles.choiceIndicator} aria-hidden="true">{state.selectedId === player.id ? "✓" : "+"}</span>
+                    <Portrait player={player} lazy /><span className={styles.choiceName}><span>{player.firstName}</span><strong>{player.lastName}</strong><small>{player.position}{player.jersey ? ` · #${player.jersey}` : ""}{alreadyPicked ? " · Already drafted" : player.status ? ` · ${player.status}` : ""}</small></span><span className={styles.choiceIndicator} aria-hidden="true">{state.selectedId === player.id ? <ControlIcon name="check" /> : "+"}</span>
                   </button>; })}
                   {visiblePlayers.length === 0 && <p className={styles.emptySearch}>No players match. <button className={styles.textButton} onClick={() => setSearch("")}>Clear search</button></p>}
                 </div>
-                <div className={styles.lockAction}><p>{selected ? `${selected.firstName} ${selected.lastName}. Your call?` : "Pick a player to continue."}</p><button className={styles.primary} disabled={!selected} onClick={() => dispatch({ type: "lock" })}>Lock in pick <span aria-hidden="true">✓</span></button></div>
-              </> : <div className={styles.rosterLoading} role="status"><span className={styles.bigStep}>{rosterRequest?.status === "error" ? "!" : "…"}</span><h2>{rosterRequest?.status === "error" ? "Roster on hold." : "Opening the roster…"}</h2><p>{rosterRequest?.status === "error" ? `We couldn’t load ${currentTeam?.city}’s roster. Your team and picks are kept. Retry this same team.` : `Getting every listed ${currentTeam?.name} player from the roster source.`}</p>{rosterRequest?.status === "error" && currentTeam && <button className={styles.primary} onClick={() => void loadRoster(currentTeam.id)}>Retry roster <Arrow /></button>}</div>}
+                <div className={styles.lockAction}><p>{selected ? `${selected.firstName} ${selected.lastName}. Your call?` : "Pick a player to continue."}</p><button className={styles.primary} disabled={!selected} onClick={() => dispatch({ type: "lock" })}>Lock in pick</button></div>
+              </> : <div className={styles.rosterLoading} role="status"><span className={styles.bigStep}>{rosterRequest?.status === "error" ? "!" : "…"}</span><h2>{rosterRequest?.status === "error" ? "Roster on hold." : "Opening the roster…"}</h2><p>{rosterRequest?.status === "error" ? `We couldn’t load ${currentTeam?.city}’s roster. Your team and picks are kept. Retry this same team.` : `Getting every listed ${currentTeam?.name} player from the roster source.`}</p>{rosterRequest?.status === "error" && currentTeam && <button className={styles.primary} onClick={() => void loadRoster(currentTeam.id)}>Retry roster</button>}</div>}
           <div className={styles.poolNote}>UNRANKED PREVIEW <span>{shownRoster ? <><a href={shownRoster.source.sourceUrl} target="_blank" rel="noreferrer">ESPN roster</a>{shownRoster.source.seasonLabel ? ` · ${shownRoster.source.seasonLabel}` : ""} · Retrieved {sourceDate(shownRoster.source.observedAt)}{shownRoster.source.sourceUpdatedAt ? ` · Source updated ${sourceDate(shownRoster.source.sourceUpdatedAt)}` : " · Source update time unavailable"}. All {shownRoster.players.length} listed players.{isNbaSourceStale(shownRoster.source, inspectionTime ?? Date.parse(shownRoster.source.observedAt)) ? " Cached roster may be out of date." : " Team rosters can change."}</> : "Source rosters load only after your draw. No ratings, scoring or account submission."}</span></div>
         </div>
       </div>
       <section className={styles.rosterRail} aria-label="Your demo lineup progress"><div className={styles.rosterRailTitle}><span>YOUR LINEUP</span><strong>{state.picks.length} / {demo.pickCount}<small> PICKS</small></strong></div><ol>{Array.from({ length: demo.pickCount }, (_, index) => {
         const pick = state.picks[index] ? getPick(demo, state.picks[index]) : null;
         return <li key={index} className={pick ? styles.filledSlot : ""}>{pick ? <><Portrait player={pick.player} lazy /><span title={`${pick.player.firstName} ${pick.player.lastName}`}>{pick.player.lastName}</span></> : <><span className={styles.emptySlot}>0{index + 1}</span><span>OPEN</span></>}</li>;
-      })}</ol><button className={styles.textButton} onClick={() => void start()}>Restart demo ↻</button></section>
+      })}</ol><button className={styles.textButton} onClick={() => void start()}>Restart demo</button></section>
     </>}
     <div className={styles.previewFootnote}>PLAYABLE LOCAL PREVIEW <span>Five picks is this demo’s format. Ranked play, competition rules and prizes are inactive. Nothing is saved to an account.</span></div>
     <span className="visually-hidden" role="status">{state.phase === "drawing" ? "Drawing your NBA team. You can skip the animation." : state.phase === "revealed" && currentTeam ? `${currentTeam.city} ${currentTeam.name} drawn. Choose one player from their roster.` : state.phase === "locked" && shownPlayer ? `${shownPlayer.firstName} ${shownPlayer.lastName} locked in. ${state.picks.length} of ${demo.pickCount} picks complete.` : state.phase === "complete" ? "Demo lineup complete. Your poster is ready to save." : ""}</span>
