@@ -1,0 +1,387 @@
+.wrap {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: var(--gh-s6) var(--gh-s4) var(--gh-s12);
+}
+
+.seasonLine {
+  font-size: 0.85rem;
+  color: var(--gh-text-dim);
+}
+
+.intro {
+  max-width: 44rem;
+  margin: 0 0 var(--gh-s6);
+  color: var(--gh-text-dim);
+  line-height: 1.55;
+}
+
+/* --- Lens tabs ------------------------------------------------------- */
+
+.tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--gh-s1);
+  padding: var(--gh-s1);
+  margin-bottom: var(--gh-s4);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius-pill);
+  background: var(--gh-bg-raised);
+}
+
+.tab {
+  min-height: 44px;
+  padding: var(--gh-s2) var(--gh-s4);
+  border: 0;
+  border-radius: var(--gh-radius-pill);
+  background: transparent;
+  color: var(--gh-text-dim);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color var(--gh-dur-press) var(--gh-ease-out),
+    color var(--gh-dur-press) var(--gh-ease-out);
+}
+
+.tab:hover {
+  color: var(--gh-text);
+  background: var(--gh-bg-hover);
+}
+
+.tabActive,
+.tabActive:hover {
+  background: var(--gh-accent);
+  color: var(--gh-on-accent);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--gh-focus);
+  outline-offset: 2px;
+}
+
+/* --- Panel entrance --------------------------------------------------- */
+
+.panel {
+  animation: panel-in var(--gh-dur-base) var(--gh-ease-out);
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Board ------------------------------------------------------------ */
+
+.board {
+  display: flex;
+  flex-direction: column;
+}
+
+.head,
+.row {
+  display: grid;
+  align-items: center;
+  gap: var(--gh-s2);
+  padding: var(--gh-s3) var(--gh-s2);
+}
+
+.leagueGrid {
+  grid-template-columns: 2.5rem minmax(0, 1fr) 2.75rem 2.75rem 4.75rem 3.25rem 4.25rem;
+}
+
+.valueGrid {
+  grid-template-columns: 2.5rem minmax(0, 1fr) 8rem 6.5rem;
+}
+
+.head {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+  border-bottom: 1px solid var(--gh-border);
+}
+
+.numHead {
+  text-align: right;
+}
+
+.row {
+  position: relative;
+  border-bottom: 1px solid var(--gh-border);
+  border-radius: var(--gh-s2);
+  color: inherit;
+  transition: background-color var(--gh-dur-base) var(--gh-ease-out);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row:hover {
+  background: var(--gh-bg-hover);
+}
+
+.row:hover .name {
+  color: var(--gh-gold-soft);
+}
+
+.row:focus-within {
+  outline: 2px solid var(--gh-focus);
+  outline-offset: 2px;
+}
+
+/*
+ * The team link lives inside the team cell so the row keeps its table
+ * semantics (role="row" on the row, the link discoverable as a link).
+ * Its ::after stretches over the whole row, preserving the full-row
+ * click target the old row-anchor had.
+ */
+.teamLink {
+  display: flex;
+  align-items: center;
+  gap: var(--gh-s3);
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.teamLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.teamLink:focus-visible {
+  outline: none;
+}
+
+/* The viewer's own row: highlighted in place, accent edge on the left. */
+.viewer {
+  background: var(--gh-bg-hover);
+  box-shadow: inset 3px 0 0 var(--gh-accent);
+}
+
+/* No. 1: a nameplate, not a badge — heavier name, team-color underline,
+ * strong border. Set in the component with the team's own color. */
+.leader {
+  border: 1px solid var(--gh-border-strong);
+  background: var(--gh-bg-raised);
+}
+
+.leaderName {
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.rank {
+  font-family: var(--gh-font-display);
+  font-weight: 800;
+  color: var(--gh-text-faint);
+}
+
+.team {
+  min-width: 0;
+}
+
+.teamText {
+  min-width: 0;
+}
+
+.name {
+  display: block;
+  font-weight: 700;
+  color: var(--gh-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color var(--gh-dur-base) var(--gh-ease-out);
+}
+
+.manager {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--gh-text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.you {
+  margin-left: var(--gh-s2);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gh-accent);
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--gh-text-dim);
+}
+
+.win {
+  color: var(--gh-win);
+  font-weight: 700;
+}
+
+.loss {
+  color: var(--gh-loss);
+  font-weight: 700;
+}
+
+/* --- Pinned viewer strip ---------------------------------------------- */
+
+.pinned {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--gh-s3);
+  padding: var(--gh-s3) var(--gh-s4);
+  margin-bottom: var(--gh-s4);
+  border: 1px solid var(--gh-border-strong);
+  border-left: 3px solid var(--gh-accent);
+  border-radius: var(--gh-radius);
+  background: var(--gh-bg-raised);
+}
+
+.pinnedLabel {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+}
+
+.pinnedName {
+  font-weight: 700;
+  color: var(--gh-text);
+}
+
+.pinnedDetail {
+  color: var(--gh-text-dim);
+}
+
+.pinnedLink {
+  margin-left: auto;
+  font-weight: 700;
+  color: var(--gh-accent);
+  text-decoration: none;
+}
+
+.pinnedLink:hover {
+  text-decoration: underline;
+}
+
+/* --- States & provenance ------------------------------------------------ */
+
+.note {
+  margin: 0 0 var(--gh-s4);
+  padding: var(--gh-s3) var(--gh-s4);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius);
+  background: var(--gh-bg-raised);
+  color: var(--gh-text-dim);
+  line-height: 1.55;
+}
+
+.empty {
+  margin: 0;
+  padding: var(--gh-s4) 0;
+  color: var(--gh-text-dim);
+  line-height: 1.6;
+  max-width: 42rem;
+}
+
+.footnote {
+  margin: var(--gh-s4) 0 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--gh-text-faint);
+}
+
+/*
+ * Mobile: the board becomes a ranked list. Same DOM — the header row
+ * hides, each row re-flows into a card with the team on top and the
+ * numbers as a labeled stat line underneath. Touch targets stay >= 44px.
+ */
+@media (max-width: 40rem) {
+  .wrap {
+    padding: var(--gh-s4) var(--gh-s3) var(--gh-s10);
+  }
+
+  .head {
+    display: none;
+  }
+
+  .board {
+    gap: var(--gh-s2);
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: var(--gh-s3);
+    row-gap: var(--gh-s2);
+    border: 1px solid var(--gh-border);
+    border-radius: var(--gh-radius);
+    background: var(--gh-bg-raised);
+    padding: var(--gh-s3) var(--gh-s4);
+    min-height: 44px;
+  }
+
+  .row:hover {
+    background: var(--gh-bg-hover);
+  }
+
+  .rank {
+    order: 0;
+  }
+
+  .team {
+    order: 1;
+    flex: 1 1 55%;
+  }
+
+  .num {
+    order: 2;
+    text-align: left;
+    font-size: 0.85rem;
+  }
+
+  .num::before {
+    content: attr(data-label);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gh-text-faint);
+    margin-right: var(--gh-s1);
+  }
+
+  .pinnedLink {
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+
+  .tab,
+  .row,
+  .name {
+    transition: none;
+  }
+}
