@@ -1,0 +1,170 @@
+GOAT HOOPERS — DESIGN HANDOFF FOR MUSE
+
+Status: Aidan accepted the original upper composition (“This is sick”). The
+revised full-content public/member preview incorporates his later requests.
+Design acceptance does not authorize fixture values, production writes or release.
+Canonical implementation remains Muse’s PR207. Reference inspected:
+0c54dd62ba208bb6ecf3f21583bbde28ec1751cf. PR194/APK work remains untouched.
+
+LATEST IMPLEMENTATION NOTE — READ ONLY, NO MOCK RERENDER
+
+PR207 now points to 74f6d7136b7ec55f7d03571e30401cd5e60b22ff and remains
+Muse-owned/draft. The mock and its render receipts remain based on 0c54dd62;
+the accepted mock placement has not changed. Muse reports 1,432 passing tests,
+build/typecheck/contracts at the new head; these were not independently rerun
+for this design handoff and are not approval or correct-metric proof.
+Source: https://github.com/aidandaly24/goat-hoopers-site/pull/207#issuecomment-6274255206
+
+What 74f6d71 adds: HomeTeamSummary.valueTrend, rosterValueTrend, batched recorded
+player-snapshot reads, ValueTrendLine and a personal value/rank/matchup/mover/AI
+panel. League odds now move below the member clubhouse layout. These are useful
+building blocks, not a completed match to the accepted mock.
+
+Outstanding design/meaning gaps:
+- Keep the personal desk BESIDE THE COURT. Keep the prominent value, large
+  player faces and meaningful chart together BELOW THE COURT as accepted.
+  In 74f6d71 the panel/chart live in the earlier face-off hero and the court
+  subsequently takes full width. Do not silently adopt that placement instead.
+- rosterValueTrend uses TODAY'S roster IDs and currently priced population.
+  It carries each player's prior snapshot forward and appends the current
+  modeled quote. It does not establish who belonged to the team at each date.
+  If this alternative metric is retained, label it exactly as an alternative:
+  “Current roster repriced from recorded player quotes”, with the date range,
+  per-point coverage and the appended current modeled endpoint distinguished.
+  Do NOT label its delta historical portfolio/team performance or return.
+- Early sums can have fewer contributing players than later sums. A rise can
+  reflect new quote coverage rather than price movement. A raw delta needs
+  comparable coverage or an explicit non-comparable state. The function can
+  return two instants from one prior snapshot plus the appended current quote;
+  that is not two genuine recorded historical team-value observations.
+- The requested historical team-value chart still requires historical roster
+  composition, genuine recorded valuations/quotes, comparable coverage and at
+  least two valid observations. Otherwise show an honest unavailable state.
+- Apply the accepted visual language to the public view too, retaining the
+  complete default content; 74f6d71 explicitly leaves public composition as-is.
+  Keep the newer STUD/CHUD, AI-avatar, reveal and automatic EDT/EST requirements
+  from this handoff. A chart's New York date formatter is not the countdown's
+  required America/New_York target-time formatter.
+
+Avatar audit update (APK, source main c333c5d; static inspection + provider read):
+https://github.com/aidandaly24/goat-hoopers-site/issues/201#issuecomment-6274255757
+The provider already returns a new avatar ID. The trace maps it directly through
+Team.avatar into TeamAvatar, with configured 300-second users-fetch revalidation.
+An open tab can retain its old image until navigation/refresh. This is a diagnosis
+with a plausible cache/tab explanation, NOT verification that Aidan's production
+image refreshed: no production render/img URL was inspected. Request-triggered
+cache revalidation is not proof of a strict end-to-end freshness deadline.
+The mock deliberately keeps its labeled Oct 8 avatars. Its rename binding check
+is not freshness proof. APK retains this audit; TeamAvatar is shared by PR207/
+PR209 and must not receive overlapping edits from this mock task. No new avatar
+source/fallback/cache audit or production inspection was performed here.
+
+COMPOSITION → EXISTING CODE / REAL FIELDS
+
+1. Court and right-hand desk: CourtsideFeature. Keep the approved arena and
+   single TipCountdown. Member identity comes from verified HomeViewer.teamId
+   joined to HomeTeamSummary.team; Team.id, name, managerName and avatar.
+   Record/opponent come from the matching directory entry, previousSeason
+   (explicit year in preseason), currentRecord and summary.matchup. Public
+   variant features the editorial matchup in the same space. No fake team
+   claim, duplicate hero dashboard or alternate identity/cache is introduced.
+
+2. Large below-court faces/value: HomePlayersLead + existing PlayerHeadshot,
+   portraits and HomeTeamFace. Use summary.players / current roster IDs;
+   retain local portrait → provider identity → initials recovery. The total
+   is summary.valuation.total, with complete/partial coverage, market pricing
+   basis and computation time. Keep RosterValuationDetails and every player’s
+   price/unpriced state accessible in-page. Rank only when comparable complete
+   league rosters exist. Public variant uses matchup/league portraits and
+   retrospective source facts rather than pretending the visitor owns a team.
+
+3. Own-team guide/news/moves and league editorial: retain HomePlayersLead’s
+   playerGuide, TeamNews, summary.moves, PlayerStory and FacesStrip. Preserve
+   basis, period, participation/injury/small-sample context. Missing data may
+   collapse to an honest state, never invented picks. The preview includes
+   unavailable personal form/news/moves states rather than fabricated feeds.
+
+4. League AI rows: move existing weekly slate presentation down into league
+   content within season-hub; preserve all five pairings and actual team/manager
+   avatars through TeamAvatar. NBA portraits belong to player content. The
+   member’s own probability comes from summary.ai.pick.result.probabilities,
+   matched by stable roster ID. Confidence is separate; a probability is not
+   a projected fantasy score. Retain league/season/week/pair/snapshot matching,
+   ready/stale/unavailable states, timestamp, model, pairing selection and
+   provenance/notes access. The mock uses native per-pair notes disclosures.
+   No generation on render. Every percentage in this mock is a fixture.
+
+5. Historical value: HomeTeamSummary has no historical team-value series at
+   this reference head. The dashed mock is explicitly SAMPLE HISTORY. Muse
+   must introduce a bounded domain/data projection only when at least two
+   genuine recorded observations can be established, with historical roster
+   membership, quote basis, timestamps and coverage for each point. Do not
+   sum today’s roster at older prices and call it historical team value.
+   Reconstructed/backtest/seeded player prices are not recorded observations.
+   Missing or insufficient data: “Recorded team-value history unavailable.”
+   Reuse read-only sources; do not create snapshots or generate prices on view.
+
+6. STUD/CHUD: only STUD and CHUD are oversized behind the portraits. Periods
+   remain small. This preview reuses the existing 2025–26 NBA Jokić/Embiid
+   sample editorial and its existing stats/source links. It explicitly does
+   not establish genuine season-award winners or adopted award rules. Use
+   genuine last-season award evidence if available; otherwise keep that sample
+   distinction. Once weeks finish, use the PREVIOUS COMPLETED fantasy week,
+   with week number/date range and verified participation, never an incomplete
+   current week. Keep One to Watch and league editorial present too.
+
+7. Retained lower homepage: exact PR207 CourtsideHome/CourtsideDirectory/
+   ChampionShowcase/FacesStrip render adapters preserve the full lower content.
+   See CONTENT-PRESERVATION.txt. This is static offline rendering only, not
+   a replacement implementation or branch takeover. The 3D crown is represented
+   by its existing static preview; production spin remains Muse-owned.
+
+FRESHNESS AND MOTION BOUNDARIES
+
+Mock identities/avatars/records/rosters are explicitly the Oct 8 source snapshot.
+Stable-ID label binding is only an offline rendering check, not proof of live
+rename or avatar freshness. Existing teamNameOf reads metadata.team_name with
+display_name fallback; toTeam uses roster_id; fetchUsers has 300s revalidation.
+Names and profile pictures must refresh from current provider data without a
+redeploy. APK owns the assigned name/avatar/cache/source/fallback audit and the
+reported stale-avatar bug. Do not duplicate it or claim this mock fixes it.
+
+The interactive preview has public/member toggles, transform/opacity scroll
+reveals with short stagger, optional pointer-driven court depth on desktop,
+theme toggle, and a visible-only 1-second first-tip countdown. The countdown
+uses LOCAL DEVICE TIME, explicitly labelled, for accepted NBA target
+2026-10-20T19:00:00Z; it does not certify Sleeper’s unpublished scoring-start
+time. This is not production trusted-clock or sleep-recovery proof. Reduced
+motion removes reveals/depth; no-JS baseline content remains visible. Screenshots
+show settled layouts, not animation. No polling, AI calls or fake live scores.
+
+REQUIRED INTEGRATION CHECKS ON MUSE’S FINAL HEAD
+
+- Public/member/unclaimed/auth-unavailable/no-edition cases preserve the same
+  league content. Portrait failures/unknown prices stay honest. Full valuation,
+  all player disclosures, both watchlists, news, moves and archive survive.
+- Desktop + 390px + 320px + zoom/long-name cases; no overflow/overlap, readable
+  labels, 44px phone targets, complete AI rows and keyboard-accessible details.
+- Rename/profile-image changes by stable ID before/after provider cache refresh;
+  existing open-tab behavior explicit; no name-keyed ownership or stale asset
+  fallback masking new provider images. Coordinate these tests with APK.
+- Correct first-tip target once per visitor state; zero/started terminal state;
+  no-edition parity; visibility pause/resume; actual device sleep with both
+  advancing and suspended performance clocks; wall-clock jumps; fresh trusted
+  time or an honest uncertain state. Existing PR207 sleep issue remains open.
+- Weekly archive remains visible/navigable for public and member, before/after
+  tip, when editorial data is stale or missing, and on every archived edition.
+- History: <2 points, partial/missing quotes, trades/roster changes, source basis,
+  and historical membership gaps never become a synthetic continuous history.
+- Awards: last-season/source label now; previous completed week/date after
+  weekly results exist. No DNP/unknown/imputed-zero award or current-week leak.
+- Live reduced-motion changes clear pending reveals and disable depth; no-JS
+  content visible; scroll motion does not affect values, layouts or controls.
+
+GITHUB REFERENCE DELIVERY
+
+This document accompanies the approved reference files on an isolated design-
+reference branch in aidandaly24/goat-hoopers-site, linked from issue #201.
+Muse remains the sole PR207 implementer. This reference is not application
+code to merge, a release candidate, or an instruction to ship fixture data.
+All implementation tests/reviews must refer to Muse's exact final head.

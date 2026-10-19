@@ -1,0 +1,56 @@
+DEFAULT HOMEPAGE PRESERVATION — PR207 0c54dd62
+
+[x] Root navigation, News/Stocks/History/Arcade/league access, account entry and
+    reading-theme switch. Ticker represented by an explicitly dated source
+    wire strip; no fake live market quotes or automatic refresh claimed.
+[x] Edition/featured matchup context, exact retained arena, one first-NBA-tip
+    countdown and source context. Public/member share the same visual system.
+[x] Member team identity, dated record, opponent, roster, own AI context.
+[x] Prominent member valuation, coverage and all 24 fixture player values in a
+    native disclosure. Fixtures are labelled and total exactly $1,284.60.
+[x] Own-team and league player watches, player/profile links and source periods.
+[x] Personal form/best/rough recap basis and personal news/moves retained as
+    truthful unavailable states in this offline preseason preview.
+[x] STUD and CHUD portrait-led lookbacks: oversized words only, small 2025–26
+    subtitles. Existing sample editorial/stat facts, not invented award winners.
+[x] One to Watch retained through the existing AJ Dybantsa editorial watch.
+[x] All five league AI pairings moved down; actual team avatar asset for each
+    of the ten sides. Native pairing-note disclosures retain access to provenance
+    states; every AI percentage is visibly a fixture.
+[x] Faces of the league: all ten real source roster anchors. Price/ranking
+    claims removed because no current market result was loaded.
+[x] Around the league: all three dated source happenings, full-wire link and
+    editorial notes/source checks. Historical snapshot, not current live news.
+[x] Reigning champion showcase, source-correct year/record/team/profile and
+    existing crown artwork. 3D interaction represented by a static preview.
+[x] Full CourtsideDirectory: all ten team rows, real source avatars/managers,
+    2025 record/finish, previous-manager qualifier, opening opponents, all
+    228 roster references, anchor portraits, player links and team profiles.
+    Search, sort, clear and native roster disclosures work in this mock.
+[x] “What these summaries show” source disclosure preserved.
+[x] Live standings/stats/recent moves disclosure preserved with honest empty
+    source states rather than fabricated standings, score or transaction rows.
+[x] Stocks + trade analyzer and Arcade + actual free-throw practice links.
+[x] Full archive section with both existing dated sample editions and titles,
+    not merely a replacement link. Bottom arena/footer retained.
+
+The actual retained lower component order follows PR207: league faces → wire
+and sources → champion → full directory with standings/stats/moves → tools →
+archive → arena. The restored portrait-led STUD/CHUD examples and moved league
+AI rows precede that retained flow, after the accepted upper personal region.
+
+All lower component markup and styles are rendered offline from exact PR207
+source with documented preview adapters. No application loaders run; no market
+snapshot, paid AI, database write or production API mutation is triggered.
+
+Preview-only limits: current private team wire and real current market/AI
+inputs are not loaded; authenticated state variants beyond public/member are
+integration test requirements, not demonstrated here. The interactive mock is
+not a substitute for production freshness, clock, award or history verification.
+
+Eastern time display: Intl.DateTimeFormat en-US, America/New_York, short
+timezone name selects EDT/EST from the TARGET DATE. The accepted epoch target
+2026-10-20T19:00:00Z displays Oct 20 · 3:00pm EDT. Winter targets display EST.
+The preview checks both sides of the spring/fall DST transitions plus hidden-tab
+pause/resume across tip. Production device-sleep/server-time resync remains a
+separate final-head requirement; mock checks do not prove that issue fixed.
