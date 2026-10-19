@@ -26,6 +26,7 @@ import { createHash, randomBytes, randomInt, timingSafeEqual } from "node:crypto
 import { compare, hash } from "bcryptjs";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { safeLoginDestination } from "@/domain/login-navigation";
 import {
   MAX_CLAIM_ATTEMPTS,
   getGameStore,
@@ -220,6 +221,7 @@ export async function claimAccount(
 export async function login(
   teamId: string,
   password: string,
+  returnTo = "/",
 ): Promise<ActionResult> {
   if (friendsAuthEnabled()) return { ok: false, error: "Use your email to log in, or set up your existing account." };
   const store = getStore();
@@ -236,7 +238,7 @@ export async function login(
   const valid = await compare(password, passwordHash);
   if (!valid) return { ok: false, error: "Wrong password." };
   await startSession(user.id);
-  redirect("/arcade");
+  redirect(safeLoginDestination(returnTo));
 }
 
 /** A fresh legacy sign-in proves the existing app UUID; it never signs into the provider runtime. */

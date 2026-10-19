@@ -32,11 +32,16 @@ import type {
   StockQuote,
   StockDetail,
   RealNewsArticle,
+  TheTableData,
+  TableLeagueRow,
+  TableValueData,
 } from "@/domain";
 import type { PlayerStatProfile } from "@/domain";
 import type { PriceHistoryPoint } from "@/domain";
+import type { TeamRosterValue } from "@/domain/team-roster-value";
+import { buildTeamRosterValue } from "@/domain/team-roster-value";
 import { stockDetailHistory, STOCK_CHART_POINTS } from "./stock-history-sampling";
-import { signedStreak } from "@/domain";
+import { computeTeamValues, projectTableLeague, signedStreak } from "@/domain";
 import {
   fetchLeague,
   LEAGUE_ID,
@@ -348,6 +353,55 @@ export async function getTeamDetail(teamId: string): Promise<TeamDetail | null> 
     toPlayer(pid, directory?.[pid], resolveEspnId(pid, ESPN_ID_MAP)),
   );
   return { team, players };
+}
+
+/**
+ * Injectable seams for getTeamRosterValue (rule 11): tests drive the loader
+ * with fake detail/market sources; production uses the module defaults.
+ */
+export type TeamRosterValueDeps = {
+  /** Team detail loader. Defaults to getTeamDetail. */
+  fetchDetail?: (teamId: string) => Promise<TeamDetail | null>;
+  /**
+   * Market loader. Defaults to getStockMarketData — which is React
+   * cache()-shared with the root-layout ticker, so calling it here from
+   * the /team server render adds no provider calls and no snapshot
+   * writes. Never inject a loader that would hit the market from a route
+   * handler or client refetch path.
+   */
+  fetchMarket?: () => Promise<StockMarket>;
+};
+
+/**
+ * One team's roster priced in modeled FAAB dollars, for the My Team page.
+ *
+ * Joins getStockMarketData() quotes to the viewer's actual current roster
+ * player ids from Sleeper rosters — never by quote.ownership (that's
+ * league-wide share, not membership). Returns null when the team doesn't
+ * exist. A market outage degrades to all-unknown prices (never $0), so the
+ * page still renders; it never throws.
+ *
+ * Does NOT change getTeamDetail's contract — it only reads from it.
+ */
+export async function getTeamRosterValue(
+  teamId: string,
+  deps: TeamRosterValueDeps = {},
+): Promise<TeamRosterValue | null> {
+  const { fetchDetail = getTeamDetail, fetchMarket = getStockMarketData } =
+    deps;
+  const detail = await fetchDetail(teamId);
+  if (!detail) return null;
+  // Best-effort: a market outage means unknown prices, not a failed page.
+  let market: StockMarket | null = null;
+  try {
+    market = await fetchMarket();
+  } catch {
+    market = null;
+  }
+  return buildTeamRosterValue(
+    detail.players.map((p) => p.id),
+    market,
+  );
 }
 
 /**
@@ -804,6 +858,62 @@ export async function getDefendingChampion(): Promise<string | null> {
   } catch {
     return null;
   }
+}
+
+/**
+ * Everything The Table leaderboard (issue #184) renders, in one call.
+ *
+ * League lens: standings from the shared analytics assembly
+ * (fetchAnalyticsInputs), projected by projectTableLeague over verified
+ * final results only — streaks count completed weeks exclusively, so the
+ * current week's live scores never pose as finals, and a team with no
+ * final game keeps a null streak. Value lens: current rosters priced by
+ * the shared market loader. getStockMarketData is React cache()-wrapped
+ * and the root-layout ticker already calls it in the same request, so
+ * this adds no provider work and no extra snapshot write. Sections fail
+ * independently: a null section renders that lens's honest unavailable
+ * state, never zeros.
+ */
+export async function getTableData(): Promise<TheTableData> {
+  const input = await fetchAnalyticsInputs();
+  const season: Season | null = input?.season ?? null;
+  let league: TableLeagueRow[] | null = null;
+  let hasResults = false;
+  if (input) {
+    // Verified finals only: the projection counts completed weeks, never
+    // the in-progress week's live scores (see projectTableLeague).
+    const projection = projectTableLeague(
+      toStandings(input.teams),
+      input.matchupsByWeek,
+      input.currentWeek
+    );
+    league = projection.rows;
+    hasResults = projection.hasResults;
+  }
+
+  let value: TableValueData | null = null;
+  try {
+    const [rosters, users, market] = await Promise.all([
+      fetchRosters(),
+      fetchUsers(),
+      getStockMarketData(),
+    ]);
+    const teams = input?.teams ?? toTeams(rosters, users);
+    const byId = new Map(teams.map((t) => [t.id, t]));
+    const rosterInputs = rosters.flatMap((r) => {
+      const team = byId.get(String(r.roster_id));
+      return team ? [{ team, playerIds: r.players ?? [] }] : [];
+    });
+    value = {
+      rows: computeTeamValues(rosterInputs, market.stocks),
+      pricingBasis: market.pricingBasis,
+      computedAt: new Date(market.updatedAt).toISOString(),
+    };
+  } catch {
+    value = null;
+  }
+
+  return { season, hasResults, league, value };
 }
 
 /* ---------------- player stock market ---------------- */

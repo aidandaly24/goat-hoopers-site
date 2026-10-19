@@ -414,6 +414,23 @@ reading league content, navigating to teams or discovering the game. Provide
 a real poster, explanation and working navigation rather than an empty canvas.
 Do not invent a successful score or claim rewards that are inactive.
 
+Aidan's October 19 practice-scene request retains the approved court, hoop,
+ball, camera, lights, shooting mechanics and nine-position movement. Its
+background adds a static dusk sky, distant park/city depth and low bleachers.
+Seventy-two small instanced spectator silhouettes react only after the existing
+completed-result phase: one brief make cheer, a softer miss settle and a
+stronger visual variation for three consecutive makes. These reactions add no
+score, reward, timer or ranked-mode meaning. Aim, charge and flight stay still.
+The finite reaction is 420ms, with static reduced-motion feedback, hidden/
+offscreen cancellation and zero idle frames. Added scenery stays within 5,000
+triangles and ten draw calls, with no downloaded assets, shadow maps, lights or
+new animation package. The existing pixel-ratio cap remains 1.75. HUD contrast
+uses a static scene-token scrim; no UI or aim controls are covered by scenery.
+Issue #199 owns this bounded visual change; future Weekly Challenge rules and
+activation remain separate. The supplied Library screenshot was identified but
+could not be materialized as readable pixels in the implementation environment;
+rendered local scene captures provide implementation evidence instead.
+
 The 82–0 preview uses a deliberate, finite team draw before each of its five
 local picks. A short animated sequence makes the random selection legible;
 Skip and live reduced-motion/hidden-tab handling reveal the same selected team

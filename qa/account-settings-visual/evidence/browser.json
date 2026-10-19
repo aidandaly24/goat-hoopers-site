@@ -1,0 +1,2938 @@
+{
+  "kind": "Checked-out production page functions/components with synthetic injected sources and real shared shell/fonts; native fixture navigation, not hosted Next/live auth or original-photo comparison.",
+  "cases": [
+    {
+      "route": "/account",
+      "width": 320,
+      "theme": "light",
+      "state": "linked",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 16,
+            "right": 141.765625,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "My Team",
+            "href": "/team",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 320,
+      "theme": "light",
+      "state": "linked",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 320,
+      "theme": "dark",
+      "state": "linked",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 16,
+            "right": 141.765625,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(188, 197, 205)",
+            "underline": false,
+            "contrast": 9.73665038276419
+          },
+          {
+            "text": "My Team",
+            "href": "/team",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 9.73665038276419,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 320,
+      "theme": "dark",
+      "state": "linked",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.443789382449816,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 390,
+      "theme": "light",
+      "state": "linked",
+      "measured": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "mainWidth": 390,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 16,
+            "right": 141.765625,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "My Team",
+            "href": "/team",
+            "x": 41,
+            "right": 349,
+            "width": 308,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 41,
+            "right": 349,
+            "width": 308,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 390,
+      "theme": "light",
+      "state": "linked",
+      "measured": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "mainWidth": 390,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 41,
+            "right": 349,
+            "width": 308,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 390,
+      "theme": "dark",
+      "state": "linked",
+      "measured": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "mainWidth": 390,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 16,
+            "right": 141.765625,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(188, 197, 205)",
+            "underline": false,
+            "contrast": 9.73665038276419
+          },
+          {
+            "text": "My Team",
+            "href": "/team",
+            "x": 41,
+            "right": 349,
+            "width": 308,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 41,
+            "right": 349,
+            "width": 308,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 9.73665038276419,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 390,
+      "theme": "dark",
+      "state": "linked",
+      "measured": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "mainWidth": 390,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 41,
+            "right": 349,
+            "width": 308,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.443789382449816,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 768,
+      "theme": "light",
+      "state": "linked",
+      "measured": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "mainWidth": 768,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 626.234375,
+            "right": 752,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "My Team",
+            "href": "/team",
+            "x": 630.984375,
+            "right": 727,
+            "width": 96.015625,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 512.109375,
+            "right": 727,
+            "width": 214.890625,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 768,
+      "theme": "light",
+      "state": "linked",
+      "measured": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "mainWidth": 768,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 578.140625,
+            "right": 727,
+            "width": 148.859375,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 768,
+      "theme": "dark",
+      "state": "linked",
+      "measured": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "mainWidth": 768,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 626.234375,
+            "right": 752,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(188, 197, 205)",
+            "underline": false,
+            "contrast": 9.73665038276419
+          },
+          {
+            "text": "My Team",
+            "href": "/team",
+            "x": 630.984375,
+            "right": 727,
+            "width": 96.015625,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 512.109375,
+            "right": 727,
+            "width": 214.890625,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 9.73665038276419,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 768,
+      "theme": "dark",
+      "state": "linked",
+      "measured": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "mainWidth": 768,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 578.140625,
+            "right": 727,
+            "width": 148.859375,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.443789382449816,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 1440,
+      "theme": "light",
+      "state": "linked",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 1026.234375,
+            "right": 1152,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "My Team",
+            "href": "/team",
+            "x": 1030.984375,
+            "right": 1127,
+            "width": 96.015625,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 912.109375,
+            "right": 1127,
+            "width": 214.890625,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 1440,
+      "theme": "light",
+      "state": "linked",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 978.140625,
+            "right": 1127,
+            "width": 148.859375,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 1440,
+      "theme": "dark",
+      "state": "linked",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 1026.234375,
+            "right": 1152,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(188, 197, 205)",
+            "underline": false,
+            "contrast": 9.73665038276419
+          },
+          {
+            "text": "My Team",
+            "href": "/team",
+            "x": 1030.984375,
+            "right": 1127,
+            "width": 96.015625,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 912.109375,
+            "right": 1127,
+            "width": 214.890625,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 9.73665038276419,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 1440,
+      "theme": "dark",
+      "state": "linked",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 978.140625,
+            "right": 1127,
+            "width": 148.859375,
+            "height": 44.890625,
+            "color": "rgb(245, 244, 239)",
+            "underline": false,
+            "contrast": 13.443789382449816
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.443789382449816,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 320,
+      "state": "unlinked",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 41,
+            "right": 188.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 41,
+            "right": 183.015625,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 16,
+            "right": 304,
+            "width": 288,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 16,
+            "right": 304,
+            "width": 288,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 4,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 320,
+      "state": "enrollment",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 16,
+            "right": 141.765625,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 2,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 320,
+      "state": "signed-out",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 0,
+        "redirect": "/account/login?next=%2Faccount",
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 320,
+      "state": "disabled",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 0,
+        "redirect": "/login",
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 320,
+      "state": "error",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 85.21875,
+            "right": 234.765625,
+            "width": 149.546875,
+            "height": 45,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 1,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 45
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 320,
+      "state": "loading",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 0,
+        "redirect": null,
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 320,
+      "state": "partial",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 320,
+      "state": "outage",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 320,
+      "state": "empty",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": true,
+        "linkCount": 1,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 320,
+      "state": "missing-team",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 0,
+        "redirect": "/teams",
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 320,
+      "state": "signed-out",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 0,
+        "redirect": "/login?notice=team&next=%2Fteam",
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 320,
+      "state": "enrollment",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 0,
+        "redirect": "/login?notice=team&next=%2Fteam",
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "signup",
+      "width": 320,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 37,
+            "right": 184.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 37,
+            "right": 179.015625,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 2,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "login",
+      "width": 320,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 37,
+            "right": 184.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 37,
+            "right": 179.015625,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Create account",
+            "href": "/signup",
+            "x": 37,
+            "right": 174.59375,
+            "width": 137.59375,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "setup",
+      "width": 320,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 37,
+            "right": 184.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 37,
+            "right": 179.015625,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Confirm existing team password",
+            "href": "/login?legacy=1",
+            "x": 37,
+            "right": 283,
+            "width": 246,
+            "height": 63.78125,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "forgot",
+      "width": 320,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 37,
+            "right": 184.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 37,
+            "right": 179.015625,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 2,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "team-recovery",
+      "width": 320,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 37,
+            "right": 184.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 37,
+            "right": 179.015625,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Create account",
+            "href": "/signup",
+            "x": 37,
+            "right": 174.59375,
+            "width": 137.59375,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "reset",
+      "width": 320,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 37,
+            "right": 184.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 37,
+            "right": 179.015625,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 2,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "password",
+      "width": 320,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 37,
+            "right": 184.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 37,
+            "right": 179.015625,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Confirm your login again",
+            "href": "/login?notice=reverify&next=%2Faccount%2Fpassword",
+            "x": 37,
+            "right": 237.359375,
+            "width": 200.359375,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "claim",
+      "width": 320,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 37,
+            "right": 184.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 37,
+            "right": 179.015625,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 2,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "link",
+      "width": 320,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 37,
+            "right": 184.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 37,
+            "right": 179.015625,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Confirm existing team password",
+            "href": "/login?legacy=1",
+            "x": 37,
+            "right": 283,
+            "width": 246,
+            "height": 63.78125,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 1440,
+      "state": "unlinked",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 521,
+            "right": 668.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 676.21875,
+            "right": 818.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 496,
+            "right": 621.765625,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 729.109375,
+            "right": 944,
+            "width": 214.890625,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 4,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 1440,
+      "state": "enrollment",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 1026.234375,
+            "right": 1152,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 912.109375,
+            "right": 1127,
+            "width": 214.890625,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 2,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 1440,
+      "state": "signed-out",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 0,
+        "redirect": "/account/login?next=%2Faccount",
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 1440,
+      "state": "disabled",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 0,
+        "redirect": "/login",
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 1440,
+      "state": "error",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 709.84375,
+            "right": 859.390625,
+            "width": 149.546875,
+            "height": 45,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 1,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 45
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 1440,
+      "state": "loading",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 0,
+        "redirect": null,
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 1440,
+      "state": "partial",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 978.140625,
+            "right": 1127,
+            "width": 148.859375,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 1440,
+      "state": "outage",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 978.140625,
+            "right": 1127,
+            "width": 148.859375,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 1440,
+      "state": "empty",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 978.140625,
+            "right": 1127,
+            "width": 148.859375,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": true,
+        "linkCount": 1,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 1440,
+      "state": "missing-team",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 0,
+        "redirect": "/teams",
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 1440,
+      "state": "signed-out",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 0,
+        "redirect": "/login?notice=team&next=%2Fteam",
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 1440,
+      "state": "enrollment",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 0,
+        "redirect": "/login?notice=team&next=%2Fteam",
+        "links": [],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 0,
+        "minimumLinkContrast": null,
+        "minimumLinkHeight": null
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "signup",
+      "width": 1440,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 521,
+            "right": 668.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 676.21875,
+            "right": 818.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 2,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "login",
+      "width": 1440,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 521,
+            "right": 668.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 676.21875,
+            "right": 818.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Create account",
+            "href": "/signup",
+            "x": 521,
+            "right": 658.59375,
+            "width": 137.59375,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "setup",
+      "width": 1440,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 521,
+            "right": 668.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 676.21875,
+            "right": 818.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Confirm existing team password",
+            "href": "/login?legacy=1",
+            "x": 521,
+            "right": 773.921875,
+            "width": 252.921875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "forgot",
+      "width": 1440,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 521,
+            "right": 668.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 676.21875,
+            "right": 818.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 2,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "team-recovery",
+      "width": 1440,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 521,
+            "right": 668.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 676.21875,
+            "right": 818.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Create account",
+            "href": "/signup",
+            "x": 521,
+            "right": 658.59375,
+            "width": 137.59375,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "reset",
+      "width": 1440,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 521,
+            "right": 668.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 676.21875,
+            "right": 818.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 2,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "password",
+      "width": 1440,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 521,
+            "right": 668.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 676.21875,
+            "right": 818.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Confirm your login again",
+            "href": "/login?notice=reverify&next=%2Faccount%2Fpassword",
+            "x": 521,
+            "right": 721.359375,
+            "width": 200.359375,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "claim",
+      "width": 1440,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 521,
+            "right": 668.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 676.21875,
+            "right": 818.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 2,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/fixture/form",
+      "mode": "link",
+      "width": 1440,
+      "state": "linked",
+      "theme": "light",
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 521,
+            "right": 668.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 676.21875,
+            "right": 818.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Confirm existing team password",
+            "href": "/login?legacy=1",
+            "x": 521,
+            "right": 773.921875,
+            "width": 252.921875,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 320,
+      "theme": "light",
+      "state": "linked",
+      "long": true,
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 16,
+            "right": 141.765625,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "My Team",
+            "href": "/team",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 1440,
+      "theme": "light",
+      "state": "linked",
+      "long": true,
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 1026.234375,
+            "right": 1152,
+            "width": 125.765625,
+            "height": 44.890625,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "My Team",
+            "href": "/team",
+            "x": 1030.984375,
+            "right": 1127,
+            "width": 96.015625,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 912.109375,
+            "right": 1127,
+            "width": 214.890625,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 320,
+      "theme": "light",
+      "state": "linked",
+      "long": true,
+      "measured": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "mainWidth": 320,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 41,
+            "right": 279,
+            "width": 238,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 1440,
+      "theme": "light",
+      "state": "linked",
+      "long": true,
+      "measured": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "mainWidth": 1440,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 978.140625,
+            "right": 1127,
+            "width": 148.859375,
+            "height": 44.890625,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account",
+      "width": 1280,
+      "theme": "light",
+      "state": "linked",
+      "text200": true,
+      "measured": {
+        "viewport": 1280,
+        "documentWidth": 1280,
+        "mainWidth": 1280,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 998.46875,
+            "right": 1248,
+            "width": 249.53125,
+            "height": 88,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "My Team",
+            "href": "/team",
+            "x": 1008.984375,
+            "right": 1199,
+            "width": 190.015625,
+            "height": 88,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 771.234375,
+            "right": 1199,
+            "width": 427.765625,
+            "height": 88,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 88
+      },
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "width": 1280,
+      "theme": "light",
+      "state": "linked",
+      "text200": true,
+      "measured": {
+        "viewport": 1280,
+        "documentWidth": 1280,
+        "mainWidth": 1280,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Account settings",
+            "href": "/account",
+            "x": 903.296875,
+            "right": 1199,
+            "width": 295.703125,
+            "height": 88,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 0,
+        "rosterLinks": 24,
+        "settingsInsideIdentity": true,
+        "linkCount": 25,
+        "minimumLinkContrast": 13.983440556610567,
+        "minimumLinkHeight": 88
+      },
+      "failures": []
+    },
+    {
+      "route": "/account/password",
+      "width": 1280,
+      "theme": "light",
+      "state": "linked",
+      "text200": true,
+      "measured": {
+        "viewport": 1280,
+        "documentWidth": 1280,
+        "mainWidth": 1280,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 241,
+            "right": 533.4375,
+            "width": 292.4375,
+            "height": 88,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 549.4375,
+            "right": 831.46875,
+            "width": 282.03125,
+            "height": 88,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Confirm your login again",
+            "href": "/login?notice=reverify&next=%2Faccount%2Fpassword",
+            "x": 241,
+            "right": 639.703125,
+            "width": 398.703125,
+            "height": 88,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 5.674639748166893,
+        "minimumLinkHeight": 88
+      },
+      "failures": []
+    },
+    {
+      "route": "/account?state=unlinked",
+      "width": 1280,
+      "theme": "light",
+      "state": "linked",
+      "text200": true,
+      "measured": {
+        "viewport": 1280,
+        "documentWidth": 1280,
+        "mainWidth": 1280,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 241,
+            "right": 533.4375,
+            "width": 292.4375,
+            "height": 88,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 549.4375,
+            "right": 831.46875,
+            "width": 282.03125,
+            "height": 88,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.674639748166893
+          },
+          {
+            "text": "Back to home",
+            "href": "/",
+            "x": 192,
+            "right": 441.53125,
+            "width": 249.53125,
+            "height": 88,
+            "color": "rgb(95, 104, 112)",
+            "underline": false,
+            "contrast": 5.152888488355685
+          },
+          {
+            "text": "Change account password",
+            "href": "/account/password",
+            "x": 660.234375,
+            "right": 1088,
+            "width": 427.765625,
+            "height": 88,
+            "color": "rgb(36, 45, 53)",
+            "underline": false,
+            "contrast": 13.983440556610567
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 4,
+        "minimumLinkContrast": 5.152888488355685,
+        "minimumLinkHeight": 88
+      },
+      "failures": []
+    },
+    {
+      "route": "/account/password",
+      "width": 390,
+      "state": "linked",
+      "theme": "dark",
+      "measured": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "mainWidth": 390,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 37,
+            "right": 184.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(188, 197, 205)",
+            "underline": false,
+            "contrast": 8.464478847220699
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 192.21875,
+            "right": 334.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(188, 197, 205)",
+            "underline": false,
+            "contrast": 8.464478847220699
+          },
+          {
+            "text": "Confirm your login again",
+            "href": "/login?notice=reverify&next=%2Faccount%2Fpassword",
+            "x": 37,
+            "right": 237.359375,
+            "width": 200.359375,
+            "height": 44.890625,
+            "color": "rgb(188, 197, 205)",
+            "underline": false,
+            "contrast": 8.464478847220699
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 8.464478847220699,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    },
+    {
+      "route": "/account/login?state=signed-out",
+      "width": 390,
+      "state": "linked",
+      "theme": "dark",
+      "measured": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "mainWidth": 390,
+        "h1s": 1,
+        "redirect": null,
+        "links": [
+          {
+            "text": "Log in with email",
+            "href": "/account/login",
+            "x": 37,
+            "right": 184.21875,
+            "width": 147.21875,
+            "height": 44.890625,
+            "color": "rgb(188, 197, 205)",
+            "underline": false,
+            "contrast": 8.464478847220699
+          },
+          {
+            "text": "Reset password",
+            "href": "/forgot-password?account=1",
+            "x": 192.21875,
+            "right": 334.234375,
+            "width": 142.015625,
+            "height": 44.890625,
+            "color": "rgb(188, 197, 205)",
+            "underline": false,
+            "contrast": 8.464478847220699
+          },
+          {
+            "text": "Create account",
+            "href": "/signup",
+            "x": 37,
+            "right": 174.59375,
+            "width": 137.59375,
+            "height": 44.890625,
+            "color": "rgb(188, 197, 205)",
+            "underline": false,
+            "contrast": 8.464478847220699
+          }
+        ],
+        "formCount": 1,
+        "rosterLinks": 0,
+        "settingsInsideIdentity": null,
+        "linkCount": 3,
+        "minimumLinkContrast": 8.464478847220699,
+        "minimumLinkHeight": 44.890625
+      },
+      "failures": []
+    }
+  ],
+  "interactions": [
+    {
+      "theme": "light",
+      "keyboard": {
+        "text": "Back to home",
+        "width": "2px",
+        "style": "solid"
+      },
+      "hoverChanged": true,
+      "accountTeamSettingsAndHistory": true
+    },
+    {
+      "theme": "dark",
+      "keyboard": {
+        "text": "Back to home",
+        "width": "2px",
+        "style": "solid"
+      },
+      "hoverChanged": true,
+      "accountTeamSettingsAndHistory": true
+    },
+    {
+      "kind": "claim",
+      "pendingObserved": true,
+      "errorOrDoneObserved": true,
+      "posts": [
+        {
+          "path": "/api/accounts/claim",
+          "fields": [
+            "inviteCode"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "password",
+      "pendingObserved": true,
+      "errorOrDoneObserved": true,
+      "posts": [
+        {
+          "path": "/api/auth/change-password",
+          "fields": [
+            "currentPassword",
+            "newPassword",
+            "revokeOtherSessions"
+          ],
+          "revokeOtherSessions": true
+        }
+      ]
+    },
+    {
+      "kind": "signup-done",
+      "pendingObserved": true,
+      "errorOrDoneObserved": true,
+      "posts": [
+        {
+          "path": "/api/accounts/register",
+          "fields": [
+            "email",
+            "password",
+            "username"
+          ]
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "unexpectedPosts": [],
+  "applicationSourceTree": "a76d079875669cd09504652e56fc4a593de894dd"
+}

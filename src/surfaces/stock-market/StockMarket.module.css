@@ -226,6 +226,10 @@
 /* Existing sticky chrome stays in the root layout. */
 .inspector { top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4)); scroll-margin-top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4)); }
 
+/* Detail can be taller than the viewport. Let the whole page scroll it from
+ * either column or gutter, while the compact empty prompt may stay sticky. */
+.inspector.has-selection { position: relative; top: auto; }
+
 .exchange input, .exchange select, .chip, .inspect-button { min-height: calc(var(--gh-s8) + var(--gh-s3)); }
 
 .detail-identity a:hover { color: var(--gh-gold); }

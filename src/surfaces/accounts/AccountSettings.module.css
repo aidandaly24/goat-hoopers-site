@@ -1,0 +1,25 @@
+.page {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: var(--gh-s8) var(--gh-s4) var(--gh-s4);
+}
+.heading { margin-bottom: var(--gh-s6); }
+.identity { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--gh-s3); }
+.identity p { margin: 0; color: var(--gh-text-dim); line-height: 1.6; min-width: 0; overflow-wrap: anywhere; }
+.identity strong { color: var(--gh-text); font-weight: 600; }
+.page .panel { padding-top: 0; padding-bottom: 0; }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--gh-s6); padding: var(--gh-s6) 0; }
+.row + .row { border-top: 1px solid var(--gh-border); }
+.description { min-width: 0; }
+.description h2 { margin: 0 0 var(--gh-s2); font-size: var(--gh-text-lg); color: var(--gh-text); }
+.description p { margin: 0; color: var(--gh-text-dim); line-height: 1.6; overflow-wrap: anywhere; }
+.row > a { justify-self: end; }
+.claimPage { max-width: 30rem; margin: 0 auto; padding: var(--gh-s8) var(--gh-s4) var(--gh-s4); }
+/* AccountForm is the same-folder composite's supplied form root. */
+.claimForm > div { max-width: none; margin: 0; }
+.claimActions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--gh-s3); margin-top: var(--gh-s4); }
+@media (max-width: 40rem) {
+  .row { grid-template-columns: minmax(0, 1fr); gap: var(--gh-s4); }
+  .row > a { justify-self: stretch; }
+  .claimActions { flex-direction: column; align-items: stretch; }
+}

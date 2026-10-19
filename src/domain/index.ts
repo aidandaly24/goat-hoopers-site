@@ -25,13 +25,24 @@
  * - RecordBook: all-time biggest blowouts, closest games, top scores
  * - LeagueStats: home-page numbers — points leaders, streaks, activity,
  *   weekly matchup highlights (all nullable; null = nothing to show yet)
+ * - TheTableData: The Table leaderboard (issue #184) — League lens rows
+ *   (Standing + signed streak) and Value lens rows (roster FAAB totals)
  *
  * Rule: if a new league concept is needed, add the type here first, then teach
  * the data layer how to build it. Never invent a parallel shape in a surface.
  */
 export type { Team } from "./team";
+export type { RosterPlayerValue, TeamRosterValue } from "./team-roster-value";
+export { buildTeamRosterValue } from "./team-roster-value";
 export type { ReconstructionInput, ReconstructedPoint, PriceHistoryArtifact } from "./price-history-import";
 export type { Standing } from "./standing";
+export type {
+  TableLeagueRow,
+  TableValueRow,
+  TableValueData,
+  TheTableData,
+} from "./the-table";
+export { computeTeamValues, projectTableLeague } from "./the-table";
 export type { Matchup, } from "./matchup";
 export { isFinal, signedStreak, winner } from "./matchup";
 export type { Player } from "./player";

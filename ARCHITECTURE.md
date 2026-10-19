@@ -227,7 +227,10 @@ src/
                  # TradeVerdict/analyzeTrade, ManagerArchetype (GM IQ:
                  # per-season manager archetypes — MetricId, ARCHETYPES,
                  # percentileRank, assignArchetype's documented decision
-                 # table, buildArchetypeProfiles, currentArchetype).
+                 # table, buildArchetypeProfiles, currentArchetype),
+                 # TeamRosterValue + buildTeamRosterValue (market quotes
+                 # joined to a roster by Sleeper player id — the /team
+                 # roster-value view).
                  # Types + tiny helpers only. formatSeasonStatus(Season.status)
                  # renders the human status ("pre_season" -> "Preseason").
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
@@ -260,6 +263,9 @@ src/
                  # getPlayerDetail (/player/[playerId]), getTeamProfile
                  # (/teams/[rosterId]), getPowerRankings, getPlayoffOdds,
                  # getRecordBook, getMatchupPreviews (data tools),
+                 # getTableData (/table: standings + streaks via the
+                 # shared analytics assembly, roster values via
+                 # getStockMarketData in the same request),
                  # getDefendingChampion (champion roster id from the
                  # playoff winners bracket; null until someone wins —
                  # feeds TeamAvatar's isChampion).
@@ -281,6 +287,10 @@ src/
                  # use TeamAvatar; rejected hooper loaders/assets are removed.
                  # Prop assets in public/3d/,
                  # built by the Blender pipeline in 3d/ (see 3d/README.md).
+                 # FreeThrowEnvironment is private practice-only scenery:
+                 # static sky/depth, instanced spectators and bounded result
+                 # poses. FreeThrowScene owns finite reaction frames; existing
+                 # React completed-result/streak state is its sole cue source.
   public/3d/     # Approved props (basketball, trophy, crown, hoop)
                  # and independently owned free-throw assets with named animation
                  # clips. Do not hand-edit; regenerate via 3d/build_all.sh.
@@ -398,8 +408,36 @@ src/
                  # Receives domain objects, never touches the store.
                  # GameCard receives PlayableGame: actual preview, direct
                  # Play link and phone controls; no account/store gate.
-    team/        # "My Team": identity + record, full roster, FAAB
-                 # winnings. Rendered by /team for the logged-in manager.
+    team/        # "My Team": identity + record, full roster (each player
+                 # shows their modeled FAAB price), the team total roster
+                 # value (issue #189: per-player prices + total joined from
+                 # getStockMarketData() in the same server request — React
+                 # cache-shared with the root-layout ticker, so no extra
+                 # provider calls or snapshot writes), and FAAB winnings.
+                 # Rendered by /team for the logged-in manager. Unknown
+                 # quotes render "—" (never $0); the total footnotes its
+                 # coverage ("over N of M players with quotes") and carries
+                 # the market's pricing-basis label. getTeamDetail's
+                 # contract is untouched; the join lives in
+                 # getTeamRosterValue (src/data/league.ts) over the pure
+                 # domain projection buildTeamRosterValue. League rank of
+                 # the total is issue #184's, not this surface's.
+    the-table/   # "Where does everyone stand": The Table leaderboard
+                 # (issue #184) — one board, four lenses. League =
+                 # standings + signed streak, projected over verified
+                 # final results only (domain helper projectTableLeague
+                 # in domain/the-table.ts: completed weeks exclusively —
+                 # the in-progress week's live scores and points-for
+                 # never count as results); Value = roster FAAB totals
+                 # from the shared market quotes (computeTeamValues over
+                 # summarizeRosterValue, ranks from the shared
+                 # rosterValueRank in domain/roster-value.ts: a rank
+                 # exists only when every roster is fully priced, equal
+                 # complete totals tie); Power and Arcade render honest
+                 # unavailable states until weekly table snapshots /
+                 # arcade scoring exist. The signed-in viewer's row is
+                 # pinned in a strip and highlighted. Lens switching is
+                 # local state; never fetches.
   ui/            # Design tokens (tokens.css) + primitives (Card, Badge,
                  # SectionHeading, TeamAvatar, PositionPill,
                  # PlayerHeadshot, PlayerRow, TransactionSummary,
@@ -471,7 +509,11 @@ src/
     claim/       # /claim — invite code -> account. Co-located form.
     login/       # /login — team + password. Co-located form.
     team/        # /team — the logged-in manager's page (identity, roster,
-                 # FAAB winnings). Redirects to /login when logged out.
+                 # roster value, FAAB winnings). Redirects to /login when
+                 # logged out.
+    table/       # /table — The Table leaderboard (issue #184). Loads
+                 # getTableData + the viewer's team id (same session
+                 # lookup as the root layout; null when signed out).
     transactions/ # /transactions — full wire history (type + team filters).
     draft/       # /draft — the completed rookie draft board.
     teams/       # /teams — the team directory.
@@ -1051,6 +1093,13 @@ Working provider source: [friends auth runtime and operator setup](docs/friends-
 `src/data/friends-auth/` owns pinned Better Auth, its transactional PostgreSQL
 adapter, email delivery, verified account reads and team linking. Domain parsers
 validate exact request fields; `AccountForm` uses shared account primitives.
+
+`surfaces/accounts/AccountSettings` presents the verified account name,
+existing membership state and optional claim-form slot. Its bounded settings
+rows and account-help navigation use shared controls; password changes remain
+on their protected route. The My Team surface contains its existing flag-gated
+settings action inside the identity card. No account lookup, new data load,
+theme state or mutation is introduced by this presentation.
 
 An individual email account exists independently of a league team. `/signup`
 creates provider credentials with a normalized personal username, without a code,
