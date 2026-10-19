@@ -47,6 +47,41 @@ The server owns the edition, player stories, wire and archive. The private `Cour
 
 `public/courtside/` preserves the exact supplied SVG variants, approved two pennants, existing arena and thirty bounded local portraits. Plain images serve pre-sized assets directly without image-optimizer quota. Fonts reuse root `next/font` assets. The homepage does not import a hooper viewer or request rejected models. Budgets, provenance and measured verification live in `courtside-preview/review/INTEGRATION.md`.
 
+### Personalized team front page
+
+The homepage explicitly remains force-dynamic. `data/home-viewer.ts` receives
+existing verified membership/account readers, returns only the active roster ID,
+and never caches private state. A verified account without a resolved member
+gets one indexed `account_identities.subject` existence check before offering a
+claim path; inactive/orphaned existing links do not become new claim permission.
+No auth mutation or new grant is involved. Session failures never infer a team
+from URL input, display name, email or client storage.
+
+`domain/personalized-home.ts` defines one team-edition projection for every team.
+Its shared Week 1 preview predicate preserves the existing Courtside sidebar
+rule verbatim. `data/personalized-home.ts` purely joins the viewer's current
+roster to existing public home, market and news/AI data. The server page reuses
+`getStockMarketData` in the root ticker's same React request cache and the
+existing public news TTL; no endpoint, refresh, polling or extra snapshot write
+path is added. These source caches never receive the viewer or a personalized
+result. The existing market execution still has its pre-existing best-effort
+snapshot save, once per request. Do not reuse it from an independent personalized
+API route. The bounded DTO includes top-three modeled FAAB values with known
+historical changes, roster-matched news and existing recent moves, not deep
+player details or a new performance metric.
+
+`surfaces/season-hub/PersonalizedHome` renders the team edition before league
+content with My team/full-roster links. Existing standings and matchup rows can
+receive the server-resolved roster ID for a visible Your team marker. Signed-out
+home content is retained; no current matchup is inferred during offseason, no
+zero is substituted for unknown scores/quotes, and saved AI requires matching
+league/season/week/pair or the shared explicit Week 1 preview exception. Stale
+results are labelled out of date, and model choice, probabilities, confidence
+and input/publication provenance stay distinct. All ten teams use this same
+code. Offline tests/QA live under the new focused tests and `qa/personalized-home`.
+No auth, AI generation, pricing, migration, infrastructure or competition gate
+is changed by this composition.
+
 ### Isolated courtside homepage review
 
 `courtside-preview/` is a local, static design review artifact. It does not
@@ -1097,3 +1132,19 @@ radius is 0.2286 m. The 50% shot is calibrated to this practice setup.
 Run `npm run test:free-throw` for deterministic physics, charge and shipped
 asset map/bounds/anchor checks. See `docs/free-throw-practice-qa.md` for the
 browser evidence and local server handoff.
+
+The personal edition's full valuation uses the shared pure
+`domain/roster-value.ts` helper: unique roster IDs, integer-cent totals, unknown
+quote rows and explicit partial coverage. Value ranks compare only completely
+priced current rosters, with shared ranks for equal totals. No historical team
+valuation is synthesized. The same helper is available to the separately owned
+My Team value follow-up without changing its source files here.
+
+`domain/team-player-guide.ts` separates weekly observed results, verified
+current-season EMA form and preseason market movement. `getHomePlayerGuideSources`
+is an additive public projection of the existing same-request market inputs;
+it performs no new fetch/query/save. Unsupported weekly participation, schedule
+and EMA-season provenance remain null. `season-hub/TeamPlayerGuide` renders the
+honest source states and accepts no client-selected owner or invented result.
+The recorded-week adapter is separately scoped to Muse in #190; see
+`docs/weekly-player-guide.md` for the exact data and integration boundary.

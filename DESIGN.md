@@ -614,3 +614,36 @@ this design work.
 | Upcoming/null scores, 2025 record and “Previous manager” | Fabricated live zero score or inherited poor record blamed on today's manager |
 | Play free-throw practice using a real preview | A catalog of fake games whose links merely return successful HTTP responses |
 | Clear sort labels, units and keyboard focus | Pretty headers that cannot sort, color-only verdicts or unreadable small labels |
+
+## Personalized team edition
+
+Aidan's October 19 request and Muse's #182 design review add a compact personal
+front page above the unchanged league edition. It answers “what matters for my
+team?”; My team is the primary action, with full roster and player links.
+The nameplate carries the source team/manager identity and record; Your Week
+pairs the real matchup with its saved AI context, alongside Highest modeled
+FAAB value and a small team wire. Typographic hierarchy and open columns replace
+nested dashboard cards. No emoji or decorative arrows; historical price changes
+use Up/Down/Flat text. Streaks, draft capital and FAAB balances are not invented
+from homepage inputs that do not carry those facts.
+
+Signed-out, verified unclaimed, unavailable identity/public data, preseason,
+offseason, unknown/zero score, partial pricing, and missing/stale AI have explicit
+states. Mobile stacks the same content and retains 44px My team/roster actions;
+all source/provenance details remain available. One existing-duration opacity/
+4px transform entrance respects reduced motion. No generated-on-render AI,
+competitive game state or reward claim is introduced. The active viewer is
+visibly marked in the existing matchup rows and standings without reordering.
+
+The October 19 follow-up adds Your Roster Value: a prominent current modeled
+team total, priced/unpriced coverage, model-computation time, and an expandable
+complete player-value list. Partial pricing is a labelled subtotal; league value
+rank is shown only when all compared current rosters are fully priced. The top
+three remain the quick summary. Player values/history link to the existing
+market; no historical team-value series is invented from today's roster.
+
+The form guide sits before the team wire: Players to Watch, Your Best and The
+Rough Week each print their distinct basis and source period. Played-game counts,
+small samples and supplied injury context remain visible; DNP/unknown records
+are never classified as poor performance. Production data gaps have explicit
+states and a tracked adapter issue (#190); populated QA examples are synthetic.
