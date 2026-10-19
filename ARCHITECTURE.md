@@ -120,6 +120,9 @@ src/
                  # getPlayerDetail (/player/[playerId]), getTeamProfile
                  # (/teams/[rosterId]), getPowerRankings, getPlayoffOdds,
                  # getRecordBook, getMatchupPreviews (data tools),
+                 # getTableData (/table: standings + streaks via the
+                 # shared analytics assembly, roster values via
+                 # getStockMarketData in the same request),
                  # getDefendingChampion (champion roster id from the
                  # playoff winners bracket; null until someone wins —
                  # feeds TeamAvatar's isChampion).
@@ -260,6 +263,15 @@ src/
                  # Play link and phone controls; no account/store gate.
     team/        # "My Team": identity + record, full roster, FAAB
                  # winnings. Rendered by /team for the logged-in manager.
+    the-table/   # "Where does everyone stand": The Table leaderboard
+                 # (issue #184) — one board, four lenses. League =
+                 # standings + signed streak; Value = roster FAAB totals
+                 # summed from the shared market quotes (domain helper
+                 # computeTeamValues in domain/the-table.ts); Power and
+                 # Arcade render honest unavailable states until weekly
+                 # table snapshots / arcade scoring exist. The signed-in
+                 # viewer's row is pinned in a strip and highlighted.
+                 # Lens switching is local state; never fetches.
   ui/            # Design tokens (tokens.css) + primitives (Card, Badge,
                  # SectionHeading, TeamAvatar, PositionPill,
                  # PlayerHeadshot, PlayerRow, TransactionSummary,
@@ -329,6 +341,9 @@ src/
     login/       # /login — team + password. Co-located form.
     team/        # /team — the logged-in manager's page (identity, roster,
                  # FAAB winnings). Redirects to /login when logged out.
+    table/       # /table — The Table leaderboard (issue #184). Loads
+                 # getTableData + the viewer's team id (same session
+                 # lookup as the root layout; null when signed out).
     transactions/ # /transactions — full wire history (type + team filters).
     draft/       # /draft — the completed rookie draft board.
     teams/       # /teams — the team directory.

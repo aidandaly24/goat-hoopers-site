@@ -32,11 +32,14 @@ import type {
   StockQuote,
   StockDetail,
   RealNewsArticle,
+  TheTableData,
+  TableLeagueRow,
+  TableValueData,
 } from "@/domain";
 import type { PlayerStatProfile } from "@/domain";
 import type { PriceHistoryPoint } from "@/domain";
 import { stockDetailHistory, STOCK_CHART_POINTS } from "./stock-history-sampling";
-import { signedStreak } from "@/domain";
+import { computeTeamValues, isFinal, signedStreak } from "@/domain";
 import {
   fetchLeague,
   LEAGUE_ID,
@@ -789,6 +792,71 @@ export async function getDefendingChampion(): Promise<string | null> {
   } catch {
     return null;
   }
+}
+
+/**
+ * Everything The Table leaderboard (issue #184) renders, in one call.
+ *
+ * League lens: standings from the shared analytics assembly
+ * (fetchAnalyticsInputs) plus each team's signed active streak from the
+ * domain rule — null until the team has a final game, so an unplayed
+ * schedule never shows as a streak. Value lens: current rosters priced by
+ * the shared market loader. getStockMarketData is React cache()-wrapped
+ * and the root-layout ticker already calls it in the same request, so
+ * this adds no provider work and no extra snapshot write. Sections fail
+ * independently: a null section renders that lens's honest unavailable
+ * state, never zeros.
+ */
+export async function getTableData(): Promise<TheTableData> {
+  const input = await fetchAnalyticsInputs();
+  const season: Season | null = input?.season ?? null;
+  let league: TableLeagueRow[] | null = null;
+  let hasResults = false;
+  if (input) {
+    const standings = toStandings(input.teams);
+    hasResults = standings.some(
+      (s) => s.wins + s.losses + s.ties > 0 || s.pointsFor > 0
+    );
+    league = standings.map((standing) => {
+      const played = input.matchupsByWeek.some((week) =>
+        week.some(
+          (m) =>
+            isFinal(m) &&
+            (m.home.id === standing.team.id || m.away.id === standing.team.id)
+        )
+      );
+      return {
+        standing,
+        streak: played
+          ? signedStreak(standing.team.id, input.matchupsByWeek)
+          : null,
+      };
+    });
+  }
+
+  let value: TableValueData | null = null;
+  try {
+    const [rosters, users, market] = await Promise.all([
+      fetchRosters(),
+      fetchUsers(),
+      getStockMarketData(),
+    ]);
+    const teams = input?.teams ?? toTeams(rosters, users);
+    const byId = new Map(teams.map((t) => [t.id, t]));
+    const rosterInputs = rosters.flatMap((r) => {
+      const team = byId.get(String(r.roster_id));
+      return team ? [{ team, playerIds: r.players ?? [] }] : [];
+    });
+    value = {
+      rows: computeTeamValues(rosterInputs, market.stocks),
+      pricingBasis: market.pricingBasis,
+      computedAt: new Date(market.updatedAt).toISOString(),
+    };
+  } catch {
+    value = null;
+  }
+
+  return { season, hasResults, league, value };
 }
 
 /* ---------------- player stock market ---------------- */
