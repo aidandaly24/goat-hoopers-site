@@ -1,0 +1,178 @@
+{
+  "kind": "production AccountForm + actual continuation handler + injected private sources over local HTTP; not live auth or a hosted Next route",
+  "cases": [
+    {
+      "name": "new session default",
+      "width": 320,
+      "email": "member@example.test",
+      "next": "",
+      "destination": "/",
+      "documents": [
+        "/fixture/start",
+        "/login",
+        "/account/continue",
+        "/fixture/start",
+        "/",
+        "/login"
+      ],
+      "posts": [
+        {
+          "path": "/api/auth/sign-in/email",
+          "fields": [
+            "email",
+            "password",
+            "rememberMe"
+          ],
+          "rememberMe": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "new session default",
+      "width": 1280,
+      "email": "member@example.test",
+      "next": "",
+      "destination": "/",
+      "documents": [
+        "/fixture/start",
+        "/login",
+        "/account/continue",
+        "/fixture/start",
+        "/",
+        "/login"
+      ],
+      "posts": [
+        {
+          "path": "/api/auth/sign-in/email",
+          "fields": [
+            "email",
+            "password",
+            "rememberMe"
+          ],
+          "rememberMe": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "intentional team return",
+      "width": 390,
+      "email": "member@example.test",
+      "next": "/team",
+      "destination": "/team",
+      "documents": [
+        "/fixture/start",
+        "/login",
+        "/account/continue",
+        "/fixture/start",
+        "/team",
+        "/login"
+      ],
+      "posts": [
+        {
+          "path": "/api/auth/sign-in/email",
+          "fields": [
+            "email",
+            "password",
+            "rememberMe"
+          ],
+          "rememberMe": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "intentional password return",
+      "width": 1280,
+      "email": "member@example.test",
+      "next": "/account/password",
+      "destination": "/account/password",
+      "documents": [
+        "/fixture/start",
+        "/login",
+        "/account/continue",
+        "/fixture/start",
+        "/account/password",
+        "/login"
+      ],
+      "posts": [
+        {
+          "path": "/api/auth/sign-in/email",
+          "fields": [
+            "email",
+            "password",
+            "rememberMe"
+          ],
+          "rememberMe": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "unsafe return rejected",
+      "width": 390,
+      "email": "member@example.test",
+      "next": "https://attacker.example",
+      "destination": "/",
+      "documents": [
+        "/fixture/start",
+        "/login",
+        "/account/continue",
+        "/fixture/start",
+        "/",
+        "/login"
+      ],
+      "posts": [
+        {
+          "path": "/api/auth/sign-in/email",
+          "fields": [
+            "email",
+            "password",
+            "rememberMe"
+          ],
+          "rememberMe": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "claim required then protected return",
+      "width": 390,
+      "email": "unclaimed@example.test",
+      "next": "/team",
+      "destination": "/account?next=%2Fteam",
+      "documents": [
+        "/fixture/start",
+        "/login",
+        "/account/continue",
+        "/account/continue"
+      ],
+      "posts": [
+        {
+          "path": "/api/auth/sign-in/email",
+          "fields": [
+            "email",
+            "password",
+            "rememberMe"
+          ],
+          "rememberMe": true
+        },
+        {
+          "path": "/api/accounts/claim",
+          "fields": [
+            "inviteCode"
+          ]
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "failed login preserves input and allows keyboard retry",
+      "width": 390,
+      "passed": true
+    }
+  ],
+  "externalRequests": [],
+  "errors": []
+}

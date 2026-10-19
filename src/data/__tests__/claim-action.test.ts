@@ -7,6 +7,7 @@ const harness = vi.hoisted(() => ({
   store: null as GameStore | null,
   events: [] as string[],
   failCookie: false,
+  redirects: [] as string[],
 }));
 
 vi.mock('@/data/arcade', async importOriginal => ({
@@ -23,7 +24,7 @@ vi.mock('next/headers', () => ({
   }),
 }));
 vi.mock('next/navigation', () => ({
-  redirect: () => { harness.events.push('redirect'); throw new Error('fixture-redirect'); },
+  redirect: (path: string) => { harness.events.push('redirect'); harness.redirects.push(path); throw new Error('fixture-redirect'); },
 }));
 vi.mock('bcryptjs', () => ({
   hash: async (password: string) => `fixture:${password}`,
@@ -41,9 +42,18 @@ beforeEach(() => {
   harness.store = new FakeGameStore();
   harness.events = [];
   harness.failCookie = false;
+  harness.redirects = [];
 });
 
 describe('claim action recovery with fake store and offline auth mocks', () => {
+  it.each([[undefined, '/'], ['/team', '/team'], ['https://attacker.example', '/']])('legacy login %s sets its remembered session before safe destination %s', async (destination, expected) => {
+    const store = harness.store!;
+    await store.createInviteCode('1', '111111');
+    await store.claimTeam({ code: '111111', displayName: 'Owner', passwordHash: `fixture:${password}` });
+    expect(await capture(login('1', password, destination))).toEqual({ thrown: 'fixture-redirect' });
+    expect(harness.redirects).toEqual([expected]);
+    expect(harness.events).toEqual(['cookie', 'redirect']);
+  });
   it('claims before starting session, sets cookie only after session row', async () => {
     const store = harness.store!;
     await store.createInviteCode('1', '111111');

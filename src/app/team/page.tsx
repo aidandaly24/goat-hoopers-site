@@ -13,7 +13,6 @@
  * extra provider calls and no extra snapshot writes.
  */
 import { redirect } from "next/navigation";
-import Link from "next/link";
 import type { Reward } from "@/domain/arcade";
 import { getCurrentUser } from "@/app/actions";
 import { getTeamDetail, getTeamRosterValue } from "@/data/league";
@@ -34,7 +33,7 @@ export const dynamic = "force-dynamic";
 
 export default async function TeamRoute() {
   const user = await getCurrentUser();
-  if (!user) redirect("/login?notice=team");
+  if (!user) redirect("/login?notice=team&next=%2Fteam");
 
   const [detail, rosterValue] = await Promise.all([
     getTeamDetail(user.teamId),
@@ -55,15 +54,13 @@ export default async function TeamRoute() {
   );
 
   return (
-    <>
-    {friendsAuthEnabled() && <p><Link href="/account">Account settings</Link></p>}
     <TeamPage
       team={detail.team}
       players={detail.players}
       rosterValue={rosterValue}
       rewards={sorted}
       displayName={user.displayName}
+      settingsAvailable={friendsAuthEnabled()}
     />
-    </>
   );
 }

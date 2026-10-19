@@ -44,7 +44,10 @@
   margin: var(--gh-s1) 0 0;
   color: var(--gh-text-dim);
   font-size: 0.9rem;
+  overflow-wrap: anywhere;
 }
+
+.settings { display: flex; flex-basis: 100%; justify-content: flex-end; }
 
 .record {
   display: flex;
@@ -203,6 +206,8 @@
 /* Phones: the roster value block takes its own line under identity +
  * record so the total and its coverage note never squeeze the W/L/PF row. */
 @media (max-width: 40rem) {
+  .settings { justify-content: flex-start; }
+  .settings > a { width: 100%; }
   .rosterValue {
     flex: 1 1 100%;
     align-items: flex-start;
