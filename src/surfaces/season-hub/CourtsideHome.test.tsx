@@ -130,13 +130,18 @@ describe('integrated personalized edition', () => {
     expect(html).toContain('Fixture 🏀 Club ↗');
   });
 
-  it('shows the countdown in the preseason hero and never promotes a scoreless standing', () => {
+  it('shows the countdown on the court in preseason — members get the same single overlay', () => {
     const fixture = personalizedFixture();
     fixture.home.hub!.season.status = 'pre_season';
     fixture.home.checkedAt = '2026-10-19T12:00:00Z';
     fixture.home.hub!.standings.forEach(row => { row.wins = 0; row.losses = 0; });
     const html = renderHome(fixture, buildPersonalizedHome({ kind: 'member', teamId: '1' }, fixture.home, fixture.weekly, null), '1');
-    expect(html).toContain('Until the first Week 1 tip');
+    // Member parity: the opening clock rides the court figure as the same
+    // overlay anonymous visitors get — exactly one instance, no lesser
+    // inline hero variant for members.
+    expect(html.match(/data-court-clock="countdown"/g)).toHaveLength(1);
+    expect(html).toContain('First NBA game · Tue, Oct 20 · 3:00 PM ET');
+    expect(html).toContain('Sleeper confirms the Oct 20 date; its scoring-start time is unpublished');
     expect(html).toContain('role="timer"');
     expect(html).not.toContain('No. 1 of 10');
     expect(html).not.toContain('hero-score');
@@ -172,6 +177,28 @@ describe('integrated personalized edition', () => {
     expect(html).toContain('The rough week');
     expect(html).toContain('GP');
     expect(html).toContain('verified games');
+    // The recap carries the guide's own period and recap message, not just
+    // the coverage line.
+    expect(html).toContain('2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)');
+    expect(html).toContain('Actual recorded fantasy points for current roster players with verified participation');
+    // Watch rows carry the observed games their basis cites ("EMA across
+    // the shown number of games")...
+    expect(html).toContain('30.0 FPPG · 5 GP');
+    expect(html).toContain('24.0 FPPG · 7 GP');
+    // ...and a note prints only for an actual injury designation: the
+    // no-designation and unknown defaults never render as content.
+    expect(html).toContain('Status: Questionable');
+    expect(html).not.toContain('No injury designation in the supplied source');
+    expect(html).not.toContain('Availability status unknown');
+  });
+
+  it('discloses the guide recap status when no completed week is verified', () => {
+    const fixture = personalizedFixture();
+    const html = renderHome(fixture, member(fixture, '1'), '1');
+    expect(html).toContain('data-your-lead');
+    expect(html).not.toContain('data-guide-recap="true"');
+    expect(html).toContain('data-guide-recap-status');
+    expect(html).toContain('No best or rough-week ranking is inferred');
   });
 
   it('keeps the court clock and member modules when the edition is missing', () => {
@@ -188,6 +215,13 @@ describe('integrated personalized edition', () => {
     expect(html).toContain('data-your-lead');
     expect(html).toContain('data-team-news');
     expect(html).toContain('data-faces-strip');
+    // The member's team context survives without the edition too: the full
+    // roster valuation disclosure and the team actions the hero carries.
+    expect(html).toContain('data-member-team');
+    expect(html).toContain('data-hero-valuation');
+    expect(html).toContain('Full roster valuation');
+    expect(html).toContain('href="/team"');
+    expect(html).toContain('href="/teams/1#team-roster"');
   });
 
   it('renders the faces strip with every team\u2019s top player by value', () => {

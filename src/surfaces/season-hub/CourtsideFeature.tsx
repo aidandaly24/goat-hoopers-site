@@ -67,12 +67,71 @@ function HeroSide({ team, star, portraits, champion, own, recordLabel, recordTex
       </span>
       <span className={cs("hero-teamline")}>
         <TeamAvatar name={team.name} avatar={team.avatar} isChampion={champion} />
-        <Link href={`/teams/${team.id}`} prefetch={false}>{team.name}</Link>
         {own && <span className={cs("you")}>Your team</span>}
       </span>
+      {/* The team name gets its own full-width line: inside the avatar's
+       * flex row it was squeezed to a sliver on phones (33.9px wide ×
+       * 1,085px tall for the own team) once the "Your team" badge took its
+       * flex-none share. Adornments stay in the row; the name never does. */}
+      <Link className={cs("hero-teamname")} href={`/teams/${team.id}`} prefetch={false}>{team.name}</Link>
       {star && <span className={cs("hero-starname")}>{star.name} · <span className="gh-num">${star.value.toFixed(1)}</span></span>}
       {recordText && <span className={cs("hero-record")}>{recordLabel} {recordText}</span>}
     </div>
+  );
+}
+
+/** The member's full roster valuation disclosure: every roster player with
+ * their modeled value (unpriced stays "Unpriced" — unknown is never $0),
+ * the coverage line and the model basis. Shared by the hero and the
+ * missing-edition member block so the disclosure exists wherever the
+ * member's team context renders. Renders nothing until a valuation with
+ * roster rows is actually known. */
+export function RosterValuationDetails({ summary, className, style }: {
+  summary: HomeTeamSummary;
+  className?: string;
+  style?: CSSProperties;
+}) {
+  if (!summary.valuation.knownRoster || summary.rosterValues.length === 0) return null;
+  const marketStamp = formatHomeStamp(summary.market?.updatedAt);
+  return (
+    <details className={`${cs("hero-valuation")}${className ? ` ${className}` : ""}`} style={style} data-hero-valuation>
+      <summary>Full roster valuation</summary>
+      <ul className={cs("hero-valuation-rows")}>
+        {summary.rosterValues.map((player) => (
+          <li key={player.id}>
+            <Link href={`/player/${player.id}`} prefetch={false}>
+              {player.name}
+              <small>{player.position ?? "Position unavailable"}</small>
+            </Link>
+            <span className="gh-num">{player.value === null ? "Unpriced" : `$${player.value.toFixed(2)}`}</span>
+          </li>
+        ))}
+      </ul>
+      <p className={cs("caption")}>
+        {summary.valuation.complete
+          ? `All ${summary.rosterValues.length} roster players priced.`
+          : `Subtotal counts priced players only · ${summary.coverage.priced} of ${summary.coverage.roster} priced · ${summary.valuation.unpriced} unpriced — unknown is never $0.`}
+        {summary.market && (
+          <> Modeled prices · {summary.market.pricingBasis === "preseason" ? "Preseason" : "In-season"} pricing{marketStamp ? ` · computed ${marketStamp}` : ""}.</>
+        )}
+      </p>
+    </details>
+  );
+}
+
+/** The member's team actions, shared by the hero and the missing-edition
+ * member block. */
+export function MemberTeamActions({ summary, className, style }: {
+  summary: HomeTeamSummary;
+  className?: string;
+  style?: CSSProperties;
+}) {
+  return (
+    <nav className={`${cs("hero-actions")}${className ? ` ${className}` : ""}`} style={style} aria-label="Your team">
+      <Link className={cs("text-link")} href="/team" prefetch={false}>My team</Link>
+      <Link className={cs("text-link")} href={`/teams/${summary.team.id}#team-roster`} prefetch={false}>Full roster</Link>
+      <Link className={cs("text-link")} href={summary.standingsAvailable ? "#your-standings" : "/teams"} prefetch={false}>{summary.standingsAvailable ? "League standings" : "League teams"}</Link>
+    </nav>
   );
 }
 
@@ -186,13 +245,14 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
             portraits={portraits} champion={shown.home.id === championTeamId} own={shown.home.id === heroSummary.team.id}
             recordLabel={sideRecord(shown.home.id).label} recordText={sideRecord(shown.home.id).text} />
           <div className={cs("hero-center")}>
-            {opening === "before"
-              ? <TipCountdown serverNowIso={checkedAt} week={week ?? null} />
-              : isFinal(shown)
-                ? <><span className={cs("hero-vs")}>Final</span><span className={cs("hero-score", "gh-num")}>{shown.homePoints?.toFixed(1)} – {shown.awayPoints?.toFixed(1)}</span></>
-                : shown.homePoints !== null && shown.awayPoints !== null
-                  ? <span className={cs("hero-score", "gh-num")}>{shown.homePoints.toFixed(1)} – {shown.awayPoints.toFixed(1)}</span>
-                  : <span className={cs("hero-vs")}>VS</span>}
+            {/* No countdown here: the opening clock rides the court figure
+             * as the same overlay for every viewer class (member parity) —
+             * the face-off frames it, it is never rendered twice. */}
+            {isFinal(shown)
+              ? <><span className={cs("hero-vs")}>Final</span><span className={cs("hero-score", "gh-num")}>{shown.homePoints?.toFixed(1)} – {shown.awayPoints?.toFixed(1)}</span></>
+              : shown.homePoints !== null && shown.awayPoints !== null
+                ? <span className={cs("hero-score", "gh-num")}>{shown.homePoints.toFixed(1)} – {shown.awayPoints.toFixed(1)}</span>
+                : <span className={cs("hero-vs")}>VS</span>}
             <span className={cs("hero-week")}>Week {shown.week}</span>
           </div>
           <HeroSide team={shown.away} star={hero?.faces.find((face) => face.team.id === shown.away.id)?.player ?? null}
@@ -210,6 +270,9 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
             {heroSummary.valuation.knownRoster && !heroSummary.valuation.complete && (
               <dd className={cs("hero-subtotal")}>Known-value subtotal · {heroSummary.coverage.priced} of {heroSummary.coverage.roster} priced</dd>
             )}
+            {heroSummary.market && (
+              <dd className={cs("hero-subtotal")}>Modeled prices · {heroSummary.market.pricingBasis === "preseason" ? "Preseason" : "In-season"} pricing{heroMarketStamp ? ` · computed ${heroMarketStamp}` : ""}</dd>
+            )}
           </div>
           {heroSummary.valuation.rank ? (
             <div>
@@ -223,35 +286,8 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
             </div>
           ) : null}
         </dl>
-        {heroSummary.valuation.knownRoster && heroSummary.rosterValues.length > 0 && (
-          <details className={cs("hero-valuation", "hero-enter")} style={{ animationDelay: "140ms" }} data-hero-valuation>
-            <summary>Full roster valuation</summary>
-            <ul className={cs("hero-valuation-rows")}>
-              {heroSummary.rosterValues.map((player) => (
-                <li key={player.id}>
-                  <Link href={`/player/${player.id}`} prefetch={false}>
-                    {player.name}
-                    <small>{player.position ?? "Position unavailable"}</small>
-                  </Link>
-                  <span className="gh-num">{player.value === null ? "Unpriced" : `$${player.value.toFixed(2)}`}</span>
-                </li>
-              ))}
-            </ul>
-            <p className={cs("caption")}>
-              {heroSummary.valuation.complete
-                ? `All ${heroSummary.rosterValues.length} roster players priced.`
-                : `Subtotal counts priced players only · ${heroSummary.coverage.priced} of ${heroSummary.coverage.roster} priced · ${heroSummary.valuation.unpriced} unpriced — unknown is never $0.`}
-              {heroSummary.market && (
-                <> Modeled prices · {heroSummary.market.pricingBasis === "preseason" ? "Preseason" : "In-season"} pricing{heroMarketStamp ? ` · computed ${heroMarketStamp}` : ""}.</>
-              )}
-            </p>
-          </details>
-        )}
-        <nav className={cs("hero-actions", "hero-enter")} style={{ animationDelay: "140ms" }} aria-label="Your team">
-          <Link className={cs("text-link")} href="/team" prefetch={false}>My team</Link>
-          <Link className={cs("text-link")} href={`/teams/${heroSummary.team.id}#team-roster`} prefetch={false}>Full roster</Link>
-          <Link className={cs("text-link")} href={heroSummary.standingsAvailable ? "#your-standings" : "/teams"} prefetch={false}>{heroSummary.standingsAvailable ? "League standings" : "League teams"}</Link>
-        </nav>
+        <RosterValuationDetails summary={heroSummary} className={cs("hero-enter")} style={{ animationDelay: "140ms" }} />
+        <MemberTeamActions summary={heroSummary} className={cs("hero-enter")} style={{ animationDelay: "140ms" }} />
         {heroAi && heroResult && heroOwnProbability !== null && heroOpponentProbability !== null && (
           <div className={cs("hero-ai", "hero-enter")} style={{ animationDelay: "210ms" }} data-hero-ai>
             <div className={cs("hero-ai-chips")}>
@@ -276,9 +312,9 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
       <div className={cs("court-column")}>
         <figure className={cs("clubhouse-court")} id="clubhouse-court">
           <img src="/courtside/arena.jpg" alt="The GOAT Hoopers basketball court, with players on the floor and fans in the stands" width="1440" height="810" fetchPriority="high" />
-          {opening !== "past" && !(isHeroShown && opening === "before") && (
+          {opening !== "past" && (
             <div className={cs("court-clock")}>
-              <TipCountdown serverNowIso={checkedAt} week={week ?? null} variant="overlay" />
+              <TipCountdown serverNowIso={checkedAt} week={week ?? null} />
             </div>
           )}
         </figure>

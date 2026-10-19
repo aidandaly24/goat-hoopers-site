@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { cs } from "./CourtsideStyles";
 
 /**
@@ -70,6 +70,27 @@ export function clockSampleSkewed(
   );
 }
 
+export type ClockSample = { monoMs: number; wallMs: number };
+
+/**
+ * Reconcile the clock when the tab becomes visible again. A hidden interval
+ * is never skew evidence: timers stop while hidden, so the sample pair that
+ * would span the gap (a >5s mono gap, or wall/mono divergence caused by the
+ * device sleeping) must never reach the detector — otherwise every tab
+ * switch reads as suspension. The server anchor is NOT reset and no fresh
+ * server sample is invented: the display takes exactly one re-projection
+ * from the untouched anchor, and the detector baseline restarts at the
+ * resume sample so only consecutive *visible* samples are ever compared.
+ * A wall-clock jump during the hidden interval cannot move the result —
+ * the projection reads the anchor and the monotonic clock only.
+ */
+export function resumeClock(
+  anchor: ClockAnchor,
+  resume: ClockSample,
+): { projectedMs: number; baseline: ClockSample } {
+  return { projectedMs: projectServerNow(anchor, resume.monoMs), baseline: resume };
+}
+
 const pad = (value: number) => String(value).padStart(2, "0");
 
 /**
@@ -77,62 +98,75 @@ const pad = (value: number) => String(value).padStart(2, "0");
  * anchored to the server's own league check (`serverNowIso`) and advanced
  * only by the monotonic clock, so a skewed client clock cannot move it.
  * The interval stops at the tip (terminal started state) and while the tab
- * is hidden; if a sample shows suspension/skew, ticking stops and the
- * display falls back to an unconfirmed static date. SSR renders from the
- * same server instant, so the first client render matches the markup.
+ * is hidden; hidden intervals never count as suspension or skew — on
+ * return the display reconciles with one re-projection from the anchor
+ * (see resumeClock). If a sample taken while visible shows suspension or
+ * skew, ticking stops and the display falls back to an unconfirmed static
+ * date. SSR renders from the same server instant, so the first client
+ * render matches the markup.
  */
 export function TipCountdown({
   targetIso = WEEK_ONE_TIP_OFF_ISO,
   serverNowIso,
   week = null,
-  variant = "hero",
 }: {
   targetIso?: string;
   serverNowIso: string;
   week?: number | null;
-  variant?: "hero" | "overlay";
 }) {
   const targetMs = Date.parse(targetIso);
   const serverMs = Date.parse(serverNowIso);
   const [nowMs, setNowMs] = useState(serverMs);
   const [uncertain, setUncertain] = useState(false);
-  const lastSample = useRef<{ monoMs: number; wallMs: number } | null>(null);
 
   useEffect(() => {
     // Only the countdown ticks; the started state is terminal and the past
     // state renders nothing — neither starts an interval.
     if (openingPhase(serverMs, targetMs, week) !== "before") return;
+    // The anchor is created once per server sample and never reset: hidden
+    // intervals, resumes and detector baselines all work around it, never
+    // replace it.
     const anchor: ClockAnchor = { serverMs, monoMs: performance.now() };
-    lastSample.current = { monoMs: anchor.monoMs, wallMs: Date.now() };
+    // Detector baseline: only consecutive samples taken while the tab is
+    // visible are ever compared. Nothing sampled across a hidden interval
+    // reaches clockSampleSkewed.
+    let baseline: ClockSample = { monoMs: anchor.monoMs, wallMs: Date.now() };
     let id: number | undefined;
+    let dead = false;
     const stop = () => {
       if (id !== undefined) window.clearInterval(id);
       id = undefined;
     };
     const sample = () => {
-      const next = { monoMs: performance.now(), wallMs: Date.now() };
-      if (lastSample.current && clockSampleSkewed(lastSample.current, next)) {
+      const next: ClockSample = { monoMs: performance.now(), wallMs: Date.now() };
+      if (clockSampleSkewed(baseline, next)) {
+        dead = true;
         stop();
         setUncertain(true);
         return;
       }
-      lastSample.current = next;
+      baseline = next;
       const projected = projectServerNow(anchor, next.monoMs);
       setNowMs(projected);
       if (projected >= targetMs) stop();
     };
-    const start = () => {
-      if (id !== undefined || document.hidden) return;
-      // Resuming re-bases the skew sample so a clean hidden interval (where
-      // monotonic and wall time advance together) is not read as skew.
-      lastSample.current = { monoMs: performance.now(), wallMs: Date.now() };
-      id = window.setInterval(sample, 1000);
+    const tick = () => {
+      if (id === undefined && !document.hidden) id = window.setInterval(sample, 1000);
+    };
+    const resume = () => {
+      if (dead) return;
+      // One re-projection from the existing anchor reconciles the whole
+      // hidden interval at once — no sample reset, no unconfirmed flash.
+      const reconciled = resumeClock(anchor, { monoMs: performance.now(), wallMs: Date.now() });
+      baseline = reconciled.baseline;
+      setNowMs(reconciled.projectedMs);
+      if (reconciled.projectedMs < targetMs) tick();
     };
     const onVisibility = () => {
       if (document.hidden) stop();
-      else start();
+      else resume();
     };
-    start();
+    tick();
     document.addEventListener("visibilitychange", onVisibility);
     return () => {
       stop();
@@ -160,40 +194,20 @@ export function TipCountdown({
   }
   const parts = countdownParts(targetMs, nowMs);
   if (!parts) return null;
-  if (variant === "overlay") {
-    return (
-      <div className={cs("countdown-wrap")} data-court-clock="countdown">
-        <p className={cs("court-clock-line")}>
-          <span className={cs("court-clock-label")}>Week 1 tip-off</span>
-          <strong className={cs("court-clock-value", "gh-num")} role="timer" aria-label={`Opening tip in ${parts.days} days, ${parts.hours} hours, ${parts.minutes} minutes`}>
-            {parts.days > 0 ? `${parts.days}d ` : ""}{pad(parts.hours)}:{pad(parts.minutes)}:{pad(parts.seconds)}
-          </strong>
-        </p>
-        <p className={cs("countdown-caption")}>
-          First NBA game · Tue, Oct 20 · 3:00 PM ET · Sleeper confirms the Oct 20 date; its scoring-start time is unpublished
-        </p>
-      </div>
-    );
-  }
-  const cells: { value: string; label: string }[] = [
-    ...(parts.days > 0 ? [{ value: String(parts.days), label: "days" }] : []),
-    { value: pad(parts.hours), label: "hrs" },
-    { value: pad(parts.minutes), label: "min" },
-    { value: pad(parts.seconds), label: "sec" },
-  ];
+  // One presentation only: the court overlay. There is no inline hero
+  // variant — members and anonymous visitors get the identical treatment,
+  // exactly once per page.
   return (
     <div className={cs("countdown-wrap")} data-court-clock="countdown">
-      <div className={cs("countdown")} role="timer" aria-label={`Opening tip in ${parts.days} days, ${parts.hours} hours, ${parts.minutes} minutes`}>
-        {cells.map((cell) => (
-          <span className={cs("countdown-cell")} key={cell.label}>
-            <span className={cs("countdown-value", "gh-num")} key={cell.value}>
-              {cell.value}
-            </span>
-            <span className={cs("countdown-label")}>{cell.label}</span>
-          </span>
-        ))}
-      </div>
-      <p className={cs("countdown-caption")}>Until the first Week 1 tip · Tue, Oct 20 · 3:00 PM ET</p>
+      <p className={cs("court-clock-line")}>
+        <span className={cs("court-clock-label")}>Week 1 tip-off</span>
+        <strong className={cs("court-clock-value", "gh-num")} role="timer" aria-label={`Opening tip in ${parts.days} days, ${parts.hours} hours, ${parts.minutes} minutes`}>
+          {parts.days > 0 ? `${parts.days}d ` : ""}{pad(parts.hours)}:{pad(parts.minutes)}:{pad(parts.seconds)}
+        </strong>
+      </p>
+      <p className={cs("countdown-caption")}>
+        First NBA game · Tue, Oct 20 · 3:00 PM ET · Sleeper confirms the Oct 20 date; its scoring-start time is unpublished
+      </p>
     </div>
   );
 }

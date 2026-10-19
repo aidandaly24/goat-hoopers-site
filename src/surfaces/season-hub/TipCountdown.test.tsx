@@ -8,6 +8,7 @@ import {
   countdownParts,
   openingPhase,
   projectServerNow,
+  resumeClock,
 } from './TipCountdown';
 
 const TARGET = Date.parse(WEEK_ONE_TIP_OFF_ISO);
@@ -55,21 +56,61 @@ describe('trusted clock helpers', () => {
   });
 });
 
+describe('resume after a hidden interval', () => {
+  it('reconciles with one re-projection from the untouched anchor — no skew, no reset', () => {
+    // Anchor: one hour before the tip, monotonic clock at 5s.
+    const anchor = { serverMs: TARGET - 3_600_000, monoMs: 5000 };
+    // A visible tick 1s later is clean and projects from the anchor.
+    const visible = { monoMs: 6000, wallMs: 200_000 };
+    expect(clockSampleSkewed({ monoMs: anchor.monoMs, wallMs: 199_000 }, visible)).toBe(false);
+    expect(projectServerNow(anchor, visible.monoMs)).toBe(TARGET - 3_599_000);
+    // The tab hides for ten minutes: no samples are taken while hidden.
+    // Feeding the pre-hidden baseline across that gap WOULD flag skew (the
+    // old failure mode — a hidden tab read as suspension)...
+    const afterHidden = { monoMs: visible.monoMs + 600_000, wallMs: visible.wallMs + 600_000 };
+    expect(clockSampleSkewed(visible, afterHidden)).toBe(true);
+    // ...so resume never makes that comparison. It re-projects once from
+    // the same anchor: the displayed time advances by the full hidden
+    // interval in a single step, and the anchor itself is unchanged.
+    const { projectedMs, baseline } = resumeClock(anchor, afterHidden);
+    expect(projectedMs).toBe(TARGET - 2_999_000);
+    expect(anchor).toEqual({ serverMs: TARGET - 3_600_000, monoMs: 5000 });
+    expect(countdownParts(TARGET, projectedMs)).toEqual({ days: 0, hours: 0, minutes: 49, seconds: 59 });
+    // Ticking resumes cleanly from the resume baseline: the next visible
+    // sample is not skewed, so there is no unconfirmed flash.
+    const next = { monoMs: baseline.monoMs + 1000, wallMs: baseline.wallMs + 1000 };
+    expect(clockSampleSkewed(baseline, next)).toBe(false);
+  });
+
+  it('a wall-clock jump during the hidden interval cannot move the projection', () => {
+    const anchor = { serverMs: TARGET - 3_600_000, monoMs: 5000 };
+    const clean = resumeClock(anchor, { monoMs: 605_000, wallMs: 800_000 });
+    const wallJumped = resumeClock(anchor, { monoMs: 605_000, wallMs: 800_000 + 600_000 });
+    expect(wallJumped.projectedMs).toBe(clean.projectedMs);
+  });
+
+  it('a hidden interval that spans the tip reconciles straight to the started phase', () => {
+    const anchor = { serverMs: TARGET - 60_000, monoMs: 0 };
+    const { projectedMs } = resumeClock(anchor, { monoMs: 120_000, wallMs: 120_000 });
+    expect(openingPhase(projectedMs, TARGET, 1)).toBe('started');
+  });
+});
+
 describe('TipCountdown server render', () => {
   it('renders the remaining time as of the server league check, with no hydration gap', () => {
     const html = renderToStaticMarkup(createElement(TipCountdown, { serverNowIso: '2026-10-19T12:00:00Z' }));
     expect(html).toContain('role="timer"');
-    expect(html).toContain('Until the first Week 1 tip · Tue, Oct 20 · 3:00 PM ET');
-    expect(html).toContain('>1<'); // 1 day
-    expect(html).toContain('>07<'); // 7 hours
     expect(html).toContain('data-court-clock="countdown"');
+    // The single (court overlay) presentation: 1 day, 7 hours to the tip.
+    expect(html).toContain('Week 1 tip-off');
+    expect(html).toContain('1d 07:00:00');
   });
 
-  it('renders the overlay variant with the league-scoring source distinction', () => {
+  it('keeps the league-scoring source distinction in the caption', () => {
     const html = renderToStaticMarkup(
-      createElement(TipCountdown, { serverNowIso: '2026-10-19T12:00:00Z', variant: 'overlay' }),
+      createElement(TipCountdown, { serverNowIso: '2026-10-19T12:00:00Z' }),
     );
-    expect(html).toContain('Week 1 tip-off');
+    expect(html).toContain('First NBA game · Tue, Oct 20 · 3:00 PM ET');
     expect(html).toContain('Sleeper confirms the Oct 20 date; its scoring-start time is unpublished');
   });
 

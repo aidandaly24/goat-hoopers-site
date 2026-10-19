@@ -1887,10 +1887,12 @@
 @media (hover: hover) and (pointer: fine) {
   .hero-side:hover .hero-star { transform: translateY(-2px); filter: drop-shadow(0 8px 20px color-mix(in srgb, var(--hero-glow) 45%, transparent)); }
 }
-.hero-teamline { display: flex; align-items: center; gap: var(--gh-cs-s2); max-width: 100%; min-width: 0; font-size: var(--gh-cs-subhead); font-weight: 650; }
-.hero-teamline a { min-width: 0; overflow-wrap: anywhere; color: inherit; text-decoration: none; }
-.hero-teamline a:hover { text-decoration: underline; text-underline-offset: var(--gh-cs-s1); }
+.hero-teamline { display: flex; align-items: center; gap: var(--gh-cs-s2); max-width: 100%; min-width: 0; }
 .hero-teamline .you { flex: none; font-size: var(--gh-cs-caption); letter-spacing: .08em; text-transform: uppercase; }
+/* The team name's own line, full column width at every size — never a
+ * flex item competing with the avatar and badge. */
+.hero-teamname { display: block; max-width: 100%; font-size: var(--gh-cs-subhead); font-weight: 650; overflow-wrap: anywhere; color: inherit; text-decoration: none; }
+.hero-teamname:hover { text-decoration: underline; text-underline-offset: var(--gh-cs-s1); }
 .hero-starname { font-weight: 600; overflow-wrap: anywhere; }
 .hero-record { color: var(--gh-cs-muted-light); font-size: var(--gh-cs-secondary); }
 .hero-center { display: flex; flex-direction: column; align-items: center; gap: var(--gh-cs-s2); padding-top: var(--gh-cs-s4); text-align: center; }
@@ -1899,11 +1901,6 @@
 .hero-week { font-size: var(--gh-cs-caption); color: var(--gh-cs-muted-light); letter-spacing: .12em; text-transform: uppercase; }
 
 .countdown-wrap { display: flex; flex-direction: column; align-items: center; gap: var(--gh-cs-s2); }
-.countdown { display: flex; gap: var(--gh-cs-s3); }
-.countdown-cell { display: flex; flex-direction: column; align-items: center; min-width: 2.6rem; }
-.countdown-value { font-family: var(--gh-cs-num); font-size: var(--gh-cs-heading); font-weight: 700; font-variant-numeric: tabular-nums; animation: countdown-tick 240ms cubic-bezier(.23, 1, .32, 1) both; }
-@keyframes countdown-tick { from { opacity: .35; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
-.countdown-label { font-size: var(--gh-cs-caption); color: var(--gh-cs-muted-light); letter-spacing: .1em; text-transform: uppercase; }
 .countdown-caption { margin: 0; font-size: var(--gh-cs-caption); color: var(--gh-cs-muted-light); }
 
 .hero-dateline { display: flex; flex-wrap: wrap; gap: var(--gh-cs-s4) var(--gh-cs-s7); margin: var(--gh-cs-s5) 0 0; padding-top: var(--gh-cs-s4); border-top: var(--gh-cs-rule) solid var(--gh-cs-line-light); }
@@ -1971,9 +1968,10 @@
    * face off beneath it at half width each — no squeezed columns. */
   .hero-faceoff { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .hero-center { grid-column: 1 / -1; order: -1; padding-top: 0; }
-  .countdown-cell { min-width: 2rem; }
-  .countdown-value { font-size: var(--gh-cs-small-stat); }
-  .countdown-caption { display: none; }
+  /* The court overlay's source caption stays visible on phones — the
+   * Sleeper/ESPN distinction is part of the clock's honesty, not chrome. */
+  .court-clock { left: var(--gh-cs-s3); bottom: var(--gh-cs-s3); max-width: calc(100% - 2 * var(--gh-cs-s3)); padding: var(--gh-cs-s2) var(--gh-cs-s3); }
+  .court-clock-value { font-size: 1.3rem; }
   .hero-dateline { gap: var(--gh-cs-s3) var(--gh-cs-s5); }
   .champion-layout { flex-direction: column; align-items: flex-start; gap: var(--gh-cs-s4); }
   .champion-crown { width: 7.5rem; height: 7.5rem; }
@@ -1981,7 +1979,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-enter { animation: none; }
-  .countdown-value { animation: none; }
   .hero-ai-own, .hero-ai-opp { transition: none; }
   .hero-star { transition: none; }
 }

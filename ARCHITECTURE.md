@@ -83,29 +83,40 @@ itself remain member-only.
 
 Inside the edition: `CourtsideFeature` takes an optional `hero` (the member's
 summary + faces). A member's own pairing becomes the featured matchup — a
-face-off of both teams' star players at editorial size, a live countdown to
-the first Week 1 tip in the hero state (`TipCountdown`; target is
-the first scheduled 2026–27 regular-season tip, sourced in the component),
+face-off of both teams' star players at editorial size (each team name on
+its own full-width line under the avatar row, never squeezed into it),
 a dateline whose roster value is the page's only value headline (a partial
-total stays a labelled subtotal in one small line beneath it; the headline
+total stays a labelled subtotal in one small line beneath it, with the
+modeled-pricing basis disclosed beside it; the headline
 opens an in-hero disclosure holding the full priced roster with per-player
 prices and the coverage disclosure — unpriced players read "Unpriced", never
 $0), and the saved
 AI pick for the pairing as an animated probability bar with the probability
 label and stale state as chips. No joined pick renders no AI element. The
-opening clock is universal: a `TipCountdown` overlay rides the court figure
-for every visitor (the member hero carries the large countdown instead, so
-it never renders twice), gated by the clock itself — never by the provider
+opening clock is universal and single-presentation: a `TipCountdown`
+overlay rides the court figure for every visitor — members included, the
+hero carries no inline variant — exactly once per page,
+gated by the clock itself — never by the provider
 phase — and it renders even when the weekly edition is missing. Its time is
 anchored to the server's league check and advanced only by the monotonic
 clock (wall time is a skew detector, never a source); the interval stops at
-the tip and while the tab is hidden, the started state is terminal through
+the tip and while the tab is hidden — hidden intervals never count as
+suspension or skew, and on return the display reconciles with one
+re-projection from the untouched anchor (`resumeClock`) — the started
+state is terminal through
 Week 1, and the copy keeps the source distinction: the target is the first
 NBA tip (ESPN schedule), while Sleeper publishes only the Oct 20 date. The
 players module leads with the viewer's top three by value and their
-watch/risers rows with availability notes and the watch's basis message
+watch/risers rows (form rows carry their observed games; a note prints
+only for an actual injury designation — the guide's no-designation and
+unknown defaults never render) with the watch's basis message
 (`HomePlayersLead`), plus — once a completed week is verified — a compact
-best/rough recap with games played and the guide's coverage line; the
+best/rough recap with games played, the guide's period and recap message
+and its coverage line; when no week is verified, the guide's own recap
+status line discloses why. In the missing-edition state the member's full
+roster valuation disclosure and team actions (`RosterValuationDetails` /
+`MemberTeamActions`, shared with the hero) render alongside the players
+lead, team news and faces strip; the
 member's team headlines render beside the league wire (`TeamNews`), the
 faces strip (`FacesStrip`) shows
 every team's top player linked to their page, and the viewer's recent moves

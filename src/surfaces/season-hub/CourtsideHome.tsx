@@ -4,7 +4,7 @@ import type { CourtsideHomeData } from "@/data/league";
 import type { WeeklyEdition } from "@/domain/weekly-spotlight";
 import { formatSeasonStatus } from "@/domain";
 import type { AiWeeklySlate } from "@/domain/ai-decider";
-import { CourtsideFeature } from "./CourtsideFeature";
+import { CourtsideFeature, MemberTeamActions, RosterValuationDetails } from "./CourtsideFeature";
 import { CourtsideDirectory } from "./CourtsideDirectory";
 import { StatsStrip } from "./StatsStrip";
 import { StandingsTable } from "./StandingsTable";
@@ -232,13 +232,34 @@ export function CourtsideHome({
               <figure className={cs("clubhouse-court")}>
                 <img src="/courtside/arena.jpg" alt="The GOAT Hoopers basketball court, with players on the floor and fans in the stands" width="1440" height="810" />
                 <div className={cs("court-clock")}>
-                  <TipCountdown serverNowIso={data.checkedAt} variant="overlay" />
+                  <TipCountdown serverNowIso={data.checkedAt} />
                 </div>
               </figure>
             )}
             {leadVisible && memberSummary && (
               <HomePlayersLead summary={memberSummary} portraits={portraits} />
             )}
+            {memberSummary && (() => {
+              // The hero carries the member's team context in the edition
+              // state; with no edition, the same context survives here —
+              // full roster valuation + team actions, never the old slab.
+              const entry = data.directory.find((candidate) => candidate.identity.id === memberSummary.team.id);
+              const prior = preseason ? entry?.previousSeason : null;
+              const record = prior ?? entry?.currentRecord ?? null;
+              return (
+                <section aria-label="Your team" data-member-team>
+                  <h2>{memberSummary.team.name}</h2>
+                  {record && (
+                    <p className={cs("caption")}>
+                      {prior ? `${prior.season} record` : "Record"} · {record.wins}–{record.losses}
+                      {memberSummary.valuation.rank ? ` · Roster value No. ${memberSummary.valuation.rank.rank} of ${memberSummary.valuation.rank.teams}` : ""}
+                    </p>
+                  )}
+                  <RosterValuationDetails summary={memberSummary} />
+                  <MemberTeamActions summary={memberSummary} />
+                </section>
+              );
+            })()}
             {memberSummary && <TeamNews summary={memberSummary} />}
             {facesList.some((face) => face.player) && (
               <FacesStrip faces={facesList} portraits={portraits} />

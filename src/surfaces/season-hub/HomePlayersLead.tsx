@@ -9,9 +9,12 @@ import { formatHomeStamp } from "./homeFormat";
 
 /**
  * The players module's personal lead: the viewer's top three by modeled
- * value at editorial size, their watch/risers rows (with availability
- * notes), and — once a completed week exists — the compact best/rough
- * recap from verified participation. Folded into the edition's players
+ * value at editorial size, their watch/risers rows (form rows carry their
+ * observed games; a note prints only for an actual injury designation),
+ * and — once a completed week exists — the compact best/rough recap from
+ * verified participation, with the guide's period and recap message. When
+ * no week is verified yet, the guide's own recap status line discloses
+ * why. Folded into the edition's players
  * module, never a separate section. Renders nothing when none of it has
  * real data. Faces resolve local portrait → directory ESPN identity →
  * initials.
@@ -32,7 +35,12 @@ export function HomePlayersLead({
   const riserChip =
     watch.basis === "market" ? "Rising value · preseason market movement" : watch.label;
   const stamp = formatHomeStamp(market?.updatedAt);
-  const guideRow = (row: GuideRow, value: string) => (
+  // A watch row's note renders only when it carries an actual injury
+  // designation ("Status: …"). The guide's absence defaults — "No injury
+  // designation in the supplied source", "Availability status unknown" —
+  // are the absence of news, not content, and never print under a player.
+  const designationNote = (row: GuideRow) => row.note.startsWith("Status: ") ? row.note : null;
+  const guideRow = (row: GuideRow, value: string, note: string | null) => (
     <li key={row.id} className={cs("riser-row")}>
       <PlayerHeadshot
         portraitSrc={portraits[row.id]}
@@ -43,7 +51,7 @@ export function HomePlayersLead({
       />
       <span className={cs("riser-main")}>
         <Link href={`/player/${row.id}`} prefetch={false}>{row.name}</Link>
-        <span className={cs("riser-note")}>{row.note}</span>
+        {note && <span className={cs("riser-note")}>{note}</span>}
       </span>
       <strong className="gh-num">{value}</strong>
     </li>
@@ -93,7 +101,13 @@ export function HomePlayersLead({
           </p>
           <ol className={cs("riser-rows")}>
             {risers.map((row) =>
-              guideRow(row, watch.basis === "market" ? `Up ${row.value.toFixed(1)}%` : `${row.value.toFixed(1)} FPPG`),
+              guideRow(
+                row,
+                watch.basis === "market"
+                  ? `Up ${row.value.toFixed(1)}%`
+                  : `${row.value.toFixed(1)} FPPG${row.games !== null ? ` · ${row.games} GP` : ""}`,
+                designationNote(row),
+              ),
             )}
           </ol>
           <p className={cs("caption")}>{watch.message}</p>
@@ -109,7 +123,7 @@ export function HomePlayersLead({
               <p className={cs("recap-label")}>Your best</p>
               <ol className={cs("riser-rows")}>
                 {best.map((row) =>
-                  guideRow(row, `${row.value.toFixed(1)} pts${row.games !== null ? ` · ${row.games} GP` : ""}`),
+                  guideRow(row, `${row.value.toFixed(1)} pts${row.games !== null ? ` · ${row.games} GP` : ""}`, row.note),
                 )}
               </ol>
             </div>
@@ -117,13 +131,19 @@ export function HomePlayersLead({
               <p className={cs("recap-label")}>The rough week</p>
               <ol className={cs("riser-rows")}>
                 {rough.map((row) =>
-                  guideRow(row, `${row.value.toFixed(1)} pts${row.games !== null ? ` · ${row.games} GP` : ""}`),
+                  guideRow(row, `${row.value.toFixed(1)} pts${row.games !== null ? ` · ${row.games} GP` : ""}`, row.note),
                 )}
               </ol>
             </div>
           </div>
+          <p className={cs("caption")}>{playerGuide.period} — {playerGuide.recapMessage}</p>
           <p className={cs("caption")}>{playerGuide.coverage}</p>
         </div>
+      )}
+      {!best.length && (
+        <p className={cs("caption")} data-guide-recap-status>
+          {playerGuide.period} · {playerGuide.recapMessage}
+        </p>
       )}
       {market && stamp && (
         <p className={cs("caption", "lead-footnote")}>
