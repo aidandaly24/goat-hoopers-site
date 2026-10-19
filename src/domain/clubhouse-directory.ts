@@ -7,8 +7,10 @@ import type { Transaction } from "./transaction";
 export type ClubhouseDirectoryEntry = {
   identity: Pick<Team, "id" | "name" | "managerName" | "avatar">;
   currentRecord: Pick<Team, "wins" | "losses" | "ties"> | null;
-  /** Current roster references retain only fields this homepage actually uses. */
-  players: Pick<Player, "id" | "fullName" | "position" | "nbaTeam">[];
+  /** Current roster references retain only fields this homepage actually uses.
+   * espnId rides along so homepage faces resolve headshots from the same
+   * directory identity every other surface renders (never a market quote). */
+  players: Pick<Player, "id" | "fullName" | "position" | "nbaTeam" | "espnId">[];
   /** Editorial anchors, checked against players; not computed power rankings. */
   featuredPlayerIds: string[];
   previousSeason: {

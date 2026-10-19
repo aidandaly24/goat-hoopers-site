@@ -39,3 +39,17 @@
     align-items: center;
   }
 }
+
+/* The viewer's own moves ride inside the league wire, marked. */
+.ownItem {
+  background: color-mix(in srgb, var(--gh-accent) 7%, transparent);
+}
+
+.youTag {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--gh-accent);
+  font: 700 var(--gh-text-xs)/1.4 var(--gh-font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

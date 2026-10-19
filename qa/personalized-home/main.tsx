@@ -1,10 +1,9 @@
 import { createRoot } from 'react-dom/client';
-import { PersonalizedHome } from '@/surfaces/season-hub/PersonalizedHome';
 import { CourtsideHome } from '@/surfaces/season-hub/CourtsideHome';
 import { SiteHeader } from '@/ui/SiteHeader';
 import { SiteFooter } from '@/ui/SiteFooter';
 import { personalizedFixture, playerGuideFixture } from '@/test/personalized-home-fixture';
-import { buildPersonalizedHome } from '@/data/personalized-home';
+import { buildHomeFaces, buildPersonalizedHome } from '@/data/personalized-home';
 import type { HomeViewer } from '@/domain/personalized-home';
 import '@/ui/tokens.css';
 import '@/app/globals.css';
@@ -28,6 +27,6 @@ const personal = buildPersonalizedHome(viewer, home, weekly, state === 'missing-
 createRoot(document.getElementById('root')!).render(<>
   <aside className="fixture-note">Offline personalized home review · all teams, values, scores and AI results are synthetic · no account actions</aside>
   <SiteHeader user={viewer.kind === 'member' ? { displayName: `Fixture manager ${id}`, teamId: id } : null} logoutAction={async () => { throw Error('No account action in fixture'); }} />
-  <main id="main-content"><PersonalizedHome data={personal} /><CourtsideHome data={home} archive={[]} portraits={{}} aiWeekly={weekly} viewerTeamId={viewer.kind === 'member' ? viewer.teamId : undefined} /></main>
+  <main id="main-content"><CourtsideHome data={home} archive={[]} portraits={{}} aiWeekly={weekly} viewerTeamId={viewer.kind === 'member' ? viewer.teamId : undefined} personal={personal} faces={buildHomeFaces(home, state === 'missing-market' ? null : market)} /></main>
   <SiteFooter season={home.hub?.season ?? null} />
 </>);

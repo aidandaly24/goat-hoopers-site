@@ -86,7 +86,7 @@ describe("homepage column orders", () => {
   });
 
   it("sorts roster sizes and manager names, preserving full references and search subsets", () => {
-    const player = (id: string) => ({ id, fullName: `Search Player ${id}`, position: "C", nbaTeam: "DEN" });
+    const player = (id: string) => ({ id, fullName: `Search Player ${id}`, position: "C", nbaTeam: "DEN", espnId: null });
     const rows = [entry("a", { identity: { ...team("a"), managerName: "Zed" }, players: [player("1")] }),
       entry("b", { identity: { ...team("b"), managerName: "Amy" }, players: Array.from({ length: 10 }, (_, index) => player(String(index))) }), entry("c")];
     expect(ids(sortDirectory(rows, { key: "players", direction: "desc" }, true))).toEqual(["b", "a", "c"]);

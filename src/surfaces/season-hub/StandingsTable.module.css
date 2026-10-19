@@ -212,3 +212,15 @@
     transition: none;
   }
 }
+
+/* The viewer's own row highlight + label (moved from the retired
+ * PersonalizedHome module when the slab was absorbed into the edition). */
+.ownTeam {
+  background: color-mix(in srgb, var(--gh-accent) 7%, transparent);
+}
+
+.you {
+  display: block;
+  color: var(--gh-accent);
+  font: 700 var(--gh-text-xs)/1.4 var(--gh-font-body);
+}

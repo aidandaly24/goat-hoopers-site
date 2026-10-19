@@ -1,5 +1,5 @@
 import type { AiWeeklySlate } from "@/domain/ai-decider";
-import type { HomeViewer, HomeTeamSummary, PersonalizedHomeData } from "@/domain/personalized-home";
+import type { HomeViewer, HomeTeamSummary, HomeTeamFace, PersonalizedHomeData } from "@/domain/personalized-home";
 import { isHomePreseasonPreview } from "@/domain/personalized-home";
 import type { StockMarket } from "@/domain/stock";
 import type { CourtsideHomeData } from "./league";
@@ -29,8 +29,10 @@ export function buildPersonalizedHome(viewer: HomeViewer, home: CourtsideHomeDat
   const priced = roster.filter(player => quotes.has(player.id));
   const players = priced.map(player => {
     const quote = quotes.get(player.id)!;
+    // Faces resolve from the directory identity — the same Player.espnId every
+    // other surface renders — never from the market quote's own id field.
     return { id: player.id, name: player.fullName, position: player.position, value: quote.price,
-      espnId: quote.espnId ?? null, changePct: quote.prevPrice !== null && quote.changePct !== null && Number.isFinite(quote.changePct) ? quote.changePct : null };
+      espnId: player.espnId ?? quote.espnId ?? null, changePct: quote.prevPrice !== null && quote.changePct !== null && Number.isFinite(quote.changePct) ? quote.changePct : null };
   })
     .sort((a, b) => b.value - a.value || a.id.localeCompare(b.id)).slice(0, 3);
   // Offseason/completed seasons must not relabel a retained old pairing as this week.
@@ -71,7 +73,34 @@ export function buildPersonalizedHome(viewer: HomeViewer, home: CourtsideHomeDat
     moves: hub.transactions.filter(move => move.teamIds.includes(team.id)).sort((a, b) => b.createdAt - a.createdAt || a.id.localeCompare(b.id)).slice(0, 2),
     playerGuide: buildTeamPlayerGuide({ teamId: team.id, season: hub.season.seasonYear, phase: hub.season.status,
       currentWeek: matchup?.week ?? null, now: home.checkedAt, sources: guideSources,
-      roster: roster.map(player => ({ id: player.id, name: player.fullName, espnId: quotes.get(player.id)?.espnId ?? null })),
+      roster: roster.map(player => ({ id: player.id, name: player.fullName, espnId: player.espnId ?? quotes.get(player.id)?.espnId ?? null })),
       market: market?.stocks ?? [] }),
     market: market && Number.isFinite(market.updatedAt) ? { updatedAt: market.updatedAt, pricingBasis: market.pricingBasis } : null, ai } };
+}
+
+/**
+ * Pure projection: each clubhouse team's top player by current modeled value,
+ * for the homepage faces strip and the hero face-off. No I/O — the caller is
+ * the force-dynamic home page, so faces never enter a shared cache. A team
+ * with no priced roster player gets `player: null` and is omitted by the UI
+ * rather than given an invented face.
+ */
+export function buildHomeFaces(home: CourtsideHomeData, market: StockMarket | null): HomeTeamFace[] {
+  const quotes = new Map((market?.stocks ?? [])
+    .filter(quote => Number.isFinite(quote.price) && quote.price >= 0)
+    .map(quote => [quote.playerId, quote]));
+  return home.directory.map(entry => {
+    let best: HomeTeamFace["player"] = null;
+    for (const player of entry.players) {
+      const quote = quotes.get(player.id);
+      if (!quote) continue;
+      if (!best || quote.price > best.value || (quote.price === best.value && player.id < best.id)) {
+        best = {
+          id: player.id, name: player.fullName, position: player.position, value: quote.price,
+          espnId: player.espnId ?? quote.espnId ?? null,
+        };
+      }
+    }
+    return { team: entry.identity, champion: entry.previousSeason?.finish === 1, player: best };
+  });
 }

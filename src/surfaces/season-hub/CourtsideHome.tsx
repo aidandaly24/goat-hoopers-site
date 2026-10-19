@@ -10,6 +10,12 @@ import { StatsStrip } from "./StatsStrip";
 import { StandingsTable } from "./StandingsTable";
 import { TransactionFeed } from "./TransactionFeed";
 import { SectionLinks } from "./SectionLinks";
+import { HomePlayersLead } from "./HomePlayersLead";
+import { FacesStrip } from "./FacesStrip";
+import { ChampionShowcase } from "./ChampionShowcase";
+import { Reveal } from "./Reveal";
+import type { HomeTeamFace, PersonalizedHomeData } from "@/domain/personalized-home";
+import controls from "@/ui/controls.module.css";
 import { cs } from "./CourtsideStyles";
 import "@/ui/courtside-tokens.css";
 
@@ -20,6 +26,11 @@ type Props = {
   archived?: boolean;
   aiWeekly?: AiWeeklySlate;
   viewerTeamId?: string;
+  /** The signed-in viewer's personalized projection, woven into the edition
+   * (hero, players lead, wire marks) — never a separate slab. */
+  personal?: PersonalizedHomeData;
+  /** Each team's top player by modeled value, for the faces strip + hero. */
+  faces?: HomeTeamFace[];
 };
 const labels = {
   "player-of-week": "Player of the Week",
@@ -132,6 +143,8 @@ export function CourtsideHome({
   archived = false,
   aiWeekly,
   viewerTeamId,
+  personal,
+  faces,
 }: Props) {
   const { edition, hub } = data;
   const preseason =
@@ -139,11 +152,41 @@ export function CourtsideHome({
   const seasonLabel = hub
     ? `${hub.season.seasonYear} ${formatSeasonStatus(hub.season.status).toLowerCase()}`
     : "Season status unavailable";
+  const memberSummary = personal?.kind === "member" ? personal.summary : null;
+  const facesList = faces ?? [];
+  const leadVisible =
+    !!memberSummary &&
+    (memberSummary.players.length > 0 ||
+      (memberSummary.playerGuide.watch.basis !== "unavailable" &&
+        memberSummary.playerGuide.watch.rows.length > 0));
+  const championEntry = data.directory.find((entry) => entry.previousSeason?.finish === 1);
+  // The only separate personal surface left: a one-line notice for accounts
+  // whose edition cannot be built (unclaimed / unavailable). Members with a
+  // summary are woven into the edition itself; signed-out sees nothing.
+  const notice =
+    personal && personal.kind !== "signed_out" && !memberSummary ? (
+      <div className={cs("viewer-notice")} data-home-notice={personal.kind}>
+        <div>
+          <p className={cs("viewer-notice-title")}>
+            {personal.kind === "unclaimed" ? "Claim your team. Get your edition." : "Your team is temporarily unavailable."}
+          </p>
+          <p className={cs("viewer-notice-copy")}>
+            {personal.kind === "unclaimed"
+              ? "Your account is ready. Bring your matchup, players and league position to the front page."
+              : "Check your account or browse the league below."}
+          </p>
+        </div>
+        <Link href={personal.kind === "unclaimed" ? "/account" : "/team"} prefetch={false} className={controls.primary}>
+          {personal.kind === "unclaimed" ? "Claim my team" : "Check my team"}
+        </Link>
+      </div>
+    ) : null;
   if (!edition)
     return (
       <div className={cs("surface")} data-courtside-home>
         <section className={cs("archive-page")}>
           <div className={cs("wrap")}>
+            {notice}
             <h1>The next weekly story is on its way.</h1>
             <p className={cs("archive-intro")}>
               Browse the league while the next editorial edition is prepared.
@@ -179,6 +222,7 @@ export function CourtsideHome({
               {edition.status === "draft" ? "Sample edition" : "Weekly edition"}
             </span>
           </div>
+          {notice}
           {stale && (
             <p className={cs("stale-note")}>
               You’re reading the last edition, from {edition.dateLabel}. The
@@ -194,6 +238,8 @@ export function CourtsideHome({
             season={hub?.season.seasonYear ?? null}
             aiWeekly={aiWeekly}
             viewerTeamId={viewerTeamId}
+            hero={memberSummary ? { summary: memberSummary, faces: facesList } : null}
+            portraits={portraits}
             sources={<Sources edition={edition} />}
           />
           <div className={cs("edition-links")}>
@@ -206,14 +252,23 @@ export function CourtsideHome({
       </section>
       <div className={cs("weekly-zone")}>
         <div className={cs("wrap")}>
-          {!!edition.playerSpotlights.length && (
+          {(!!edition.playerSpotlights.length || leadVisible) && (
             <section id="watch" aria-labelledby="watch-title">
               <h2 id="watch-title">This week’s players</h2>
               <p className={cs("weekly-context")}>
-                {edition.status === "draft"
-                  ? "Opening edition: two 2025–26 lookbacks and one preseason watch. Sample editorial; no 2026 scoring week has been played."
-                  : `Editorial picks · ${edition.dateLabel}`}
+                {edition.playerSpotlights.length
+                  ? edition.status === "draft"
+                    ? "Opening edition: two 2025–26 lookbacks and one preseason watch. Sample editorial; no 2026 scoring week has been played."
+                    : `Editorial picks · ${edition.dateLabel}`
+                  : "Your highest-valued players and the league’s risers, from current modeled prices."}
               </p>
+              {leadVisible && memberSummary && (
+                <Reveal>
+                  <HomePlayersLead summary={memberSummary} portraits={portraits} />
+                </Reveal>
+              )}
+              {!!edition.playerSpotlights.length && (
+                <>
               <div className={cs("player-layout")}>
                 {lead && (
                   <PlayerStory
@@ -255,7 +310,14 @@ export function CourtsideHome({
                   ))}
                 </ul>
               </details>
+                </>
+              )}
             </section>
+          )}
+          {facesList.some((face) => face.player) && (
+            <Reveal>
+              <FacesStrip faces={facesList} portraits={portraits} />
+            </Reveal>
           )}
           <section className={cs("happenings")} aria-labelledby="wire-title">
             <div className={cs("section-head")}>
@@ -279,6 +341,11 @@ export function CourtsideHome({
           </section>
         </div>
       </div>
+      {championEntry && (
+        <Reveal>
+          <ChampionShowcase entry={championEntry} />
+        </Reveal>
+      )}
       <CourtsideDirectory
         entries={data.directory}
         seasonLabel={seasonLabel}
@@ -292,13 +359,15 @@ export function CourtsideHome({
           {hub ? (
             <div className={cs("live-grid")}>
               <div>
-                <StandingsTable standings={hub.standings} viewerTeamId={viewerTeamId} />
+                <StandingsTable standings={hub.standings} viewerTeamId={viewerTeamId} championTeamId={championEntry?.identity.id} />
               </div>
               <div>
                 <StatsStrip stats={hub.stats} />
                 <TransactionFeed
                   transactions={hub.transactions}
                   teams={hub.teams}
+                  viewerTeamId={viewerTeamId}
+                  extraTransactions={memberSummary?.moves}
                 />
               </div>
             </div>

@@ -70,17 +70,57 @@ API route. The bounded DTO includes top-three modeled FAAB values with known
 historical changes, roster-matched news and existing recent moves, not deep
 player details or a new performance metric.
 
-`surfaces/season-hub/PersonalizedHome` renders the team edition before league
-content with My team/full-roster links. Existing standings and matchup rows can
-receive the server-resolved roster ID for a visible Your team marker. Signed-out
-home content is retained; no current matchup is inferred during offseason, no
-zero is substituted for unknown scores/quotes, and saved AI requires matching
-league/season/week/pair or the shared explicit Week 1 preview exception. Stale
-results are labelled out of date, and model choice, probabilities, confidence
-and input/publication provenance stay distinct. All ten teams use this same
-code. Offline tests/QA live under the new focused tests and `qa/personalized-home`.
+The personalized projection is woven into the edition itself — there is no
+separate slab component (the former `PersonalizedHome` surface and its CSS
+module are deleted). `src/app/page.tsx` renders only `CourtsideHome`, passing
+the personalized DTO and a faces projection (`buildHomeFaces` in
+`data/personalized-home.ts`: each clubhouse team's top player by current
+modeled value, or null). To build the faces, the page reads the same
+React-cached `getStockMarketData` result the root ticker already executed
+for this request — no additional market execution, snapshot or deep fetch is
+introduced for any visitor; the news/guide loads and the personalized summary
+itself remain member-only.
+
+Inside the edition: `CourtsideFeature` takes an optional `hero` (the member's
+summary + faces). A member's own pairing becomes the featured matchup — a
+face-off of both teams' star players at editorial size, a live countdown to
+the first Week 1 tip in the preseason hero state (`TipCountdown`; target is
+the first scheduled 2026–27 regular-season tip, sourced in the component),
+a dateline whose roster value is the page's only value headline (a partial
+total stays a labelled subtotal in one small line beneath it; the headline
+opens an in-hero disclosure holding the full priced roster with per-player
+prices and the coverage disclosure — unpriced players read "Unpriced", never
+$0), and the saved
+AI pick for the pairing as an animated probability bar with the probability
+label and stale state as chips. No joined pick renders no AI element. The
+players module leads with the viewer's top three by value and their
+watch/risers rows (`HomePlayersLead`), the faces strip (`FacesStrip`) shows
+every team's top player linked to their page, and the viewer's recent moves
+fold into the existing wire (`TransactionFeed`) marked as their team. The
+only separate personal element left is a one-line notice for unclaimed or
+unavailable accounts. Signed-out rendering keeps the edition's structure and
+content unchanged; no current matchup is inferred during offseason, no zero
+is substituted for unknown scores/quotes, and saved AI requires matching
+league/season/week/pair or the shared explicit Week 1 preview exception.
+Stale results are labelled, and model choice, probabilities, confidence and
+input/publication provenance stay distinct. Homepage faces resolve exactly
+like the rest of the site: approved local portrait map first, then the
+directory `Player.espnId` (the clubhouse directory reference now carries
+`espnId`; personalized players take identity from the roster reference, not
+from a market quote), then labelled initials. All ten teams use this same
+code. Offline tests/QA live under the focused tests and `qa/personalized-home`.
 No auth, AI generation, pricing, migration, infrastructure or competition gate
 is changed by this composition.
+
+The reigning champion is derived from the clubhouse directory's
+previous-season data — the team whose `previousSeason.finish` is 1, the same
+source that prints its "2025 champion" label — never a hardcoded team.
+Homepage surfaces pass it to `TeamAvatar`'s `isChampion` prop (week rail,
+hero face-off, faces strip, clubhouse directory, standings), and a single
+showcase band presents the champion with the 3D crown (`PropViewer`
+prop="crown", mounted once). `getDefendingChampion()` is deliberately not
+used here: it reads the current league's winners bracket, which has no
+champion until the running season crowns one.
 
 ### Isolated courtside homepage review
 
@@ -137,10 +177,12 @@ src/
   data/          # The ONLY place the outside world is touched.
     sleeper.ts   # Raw API client. Returns raw JSON, nothing else.
     espn.ts      # Sleeper -> ESPN athlete id mapping for headshots
-                 # (resolveEspnId + a checked-in SEED_ESPN_ID_MAP of
-                 # verified ids; injectable seam per rule 11 — swap the
-                 # seed map for the full mapping table with zero
-                 # component edits). Also the headshotUrl formatter.
+                 # (resolveEspnId + the checked-in full ESPN_ID_MAP of
+                 # 607 players, built 2026-10-08 from Sleeper joined to
+                 # ESPN rosters; SEED_ESPN_ID_MAP remains the hand-verified
+                 # spot-check subset. league.ts wires ESPN_ID_MAP at every
+                 # resolution point — zero component edits). Also the
+                 # headshotUrl formatter.
     nba-stats.ts # Player fundamentals: Sleeper's stats feed → cached
                  # PlayerStatProfiles (impure shell; math in transform.ts).
     transform.ts # Raw JSON -> domain objects. The membrane.
@@ -343,11 +385,14 @@ src/
                  # destinations derive from the root list. Ticker/poller, auth and
                  # league/data ownership remain unchanged.
                  # PositionPill colors PG/SG/SF/PF/C via --gh-pos-* tokens.
-                 # PlayerHeadshot renders the ESPN CDN headshot by ESPN athlete
-                 # id (Player.espnId; plain <img>, never next/image — Hobby
-                 # quota) with an initials-in-team-colored-disc fallback
-                 # (client component for the onError switch). Unmapped or
-                 # broken images fall back to initials.
+                 # PlayerHeadshot renders a supplied approved local portrait
+                 # first (portraitSrc), then the ESPN CDN headshot by ESPN
+                 # athlete id (Player.espnId; plain <img>, never next/image —
+                 # Hobby quota), then an initials-in-team-colored-disc
+                 # fallback (client component; failures are tracked per
+                 # source so a failed portrait falls through to ESPN and a
+                 # changed source can recover). Unmapped or broken images
+                 # fall back to initials.
                  # Reading the session cookie in the layout forces dynamic
                  # rendering (see layout.tsx) — deliberate: correct account
                  # state everywhere beats static caching for a ten-manager

@@ -50,7 +50,7 @@ const home: CourtsideHomeData = {
   edition, checkedAt: "2026-10-11T00:00:00Z", rosterNamesAvailable: true,
   directory: teams.map((identity, i) => ({ identity, previousSeason: { season: "2025", wins: 10 + i, losses: 10 - i, finish: i + 1, ownerNote: null },
     currentRecord: null, currentMatchup: pairs[Math.floor(i / 2)], featuredPlayerIds: [], opener: null, recentMove: null, latestMove: null,
-    players: Array.from({ length: 4 }, (_, p) => ({ id: `fixture-player-${i}-${p}`, fullName: `Fixture Player ${i + 1}.${p + 1}`, position: "C", nbaTeam: null })) })),
+    players: Array.from({ length: 4 }, (_, p) => ({ id: `fixture-player-${i}-${p}`, fullName: `Fixture Player ${i + 1}.${p + 1}`, position: "C", nbaTeam: null, espnId: null })) })),
 };
 const weekly: AiWeeklySlate = { leagueId: "synthetic", season: "2026", week: 1, status: "ready", message: "Synthetic saved picks",
   generatedAt: "2026-10-09T00:00:00Z", snapshot: null,

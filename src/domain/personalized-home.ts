@@ -51,3 +51,22 @@ export type HomeTeamSummary = {
 export type PersonalizedHomeData =
   | { kind: "signed_out" | "unclaimed" | "unavailable" }
   | { kind: "member"; summary: HomeTeamSummary | null };
+
+/**
+ * One team's face for the homepage: its top player by current modeled value.
+ * `player` is null when no roster player has a usable quote — the strip omits
+ * the team rather than inventing a face. `champion` derives from the clubhouse
+ * directory's previous-season finish (finish === 1), the same source that
+ * prints the "2025 champion" label — never a hardcoded team.
+ */
+export type HomeTeamFace = {
+  team: Pick<Team, "id" | "name" | "managerName" | "avatar">;
+  champion: boolean;
+  player: {
+    id: string;
+    name: string;
+    position: string | null;
+    value: number;
+    espnId: string | null;
+  } | null;
+};

@@ -131,7 +131,7 @@ export type CourtsideHomeData = {
  * Next's data cache; a changed roster-id set creates a new cache key. */
 const getRosterReferences = unstable_cache(async (ids: string[]): Promise<Player[]> => {
   const directory = await fetchPlayerDirectory();
-  return ids.map((id) => toPlayer(id, directory[id], resolveEspnId(id, SEED_ESPN_ID_MAP)));
+  return ids.map((id) => toPlayer(id, directory[id], resolveEspnId(id, ESPN_ID_MAP)));
 }, ["courtside-roster-references-v1"], { revalidate: 86400 });
 
 type CourtsideHomeDependencies = {
@@ -161,7 +161,7 @@ export async function getCourtsideHomeData(editionId?: string, dependencies = co
   let rosterNamesAvailable = true;
   let references: Player[];
   try { references = await dependencies.references(ids); }
-  catch { rosterNamesAvailable = false; references = ids.map((id) => toPlayer(id, undefined, resolveEspnId(id, SEED_ESPN_ID_MAP))); }
+  catch { rosterNamesAvailable = false; references = ids.map((id) => toPlayer(id, undefined, resolveEspnId(id, ESPN_ID_MAP))); }
   const byId = new Map(references.map((player) => [player.id, player]));
   const playersByTeam = Object.fromEntries(rosters.map((roster) => [String(roster.roster_id), (roster.players ?? []).map((id) => byId.get(id)!).filter(Boolean)]));
   const weeks = validSeasonWeeks(state);

@@ -18,7 +18,7 @@ const entries: LiveClubhouseDirectoryEntry[] = teams.map((identity, index) => ({
     finish: index === 0 ? 10 : 2, ownerNote: index === 2 ? "Synthetic previous manager context." : null },
   currentMatchup: index < 2 ? { week: 1, home: teams[0], away: teams[1], homePoints: null, awayPoints: null } : null,
   players: Array.from({ length: [9, 2, 1, 0][index] }, (_, n) => ({ id: `${identity.id}-${n}`,
-    fullName: index === 0 && n === 8 ? "Only In Ten" : `Fixture Player ${identity.id} ${n}`, position: "C", nbaTeam: null })),
+    fullName: index === 0 && n === 8 ? "Only In Ten" : `Fixture Player ${identity.id} ${n}`, position: "C", nbaTeam: null, espnId: null })),
 }));
 const standings: Standing[] = teams.map((team, index) => ({ team, rank: [3, 1, 2, 4][index],
   wins: [2, 10, 2, 0][index], losses: [10, 2, 2, 0][index], ties: 0, gamesBack: 0,

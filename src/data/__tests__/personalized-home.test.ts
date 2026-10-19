@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { buildPersonalizedHome } from '../personalized-home';
+import { buildHomeFaces, buildPersonalizedHome } from '../personalized-home';
 import { loadHomeViewer } from '../home-viewer';
 import { personalizedFixture } from '@/test/personalized-home-fixture';
 
@@ -122,4 +122,34 @@ it('does not treat a foreign pairing or an absent roster as the viewer\'s eviden
   expect(summary('1', fixture).matchup).toBeNull();
   fixture.home.directory = fixture.home.directory.filter(entry => entry.identity.id !== '1');
   expect(summary('1', fixture).valuation).toMatchObject({ total: null, knownRoster: false, complete: false, rank: null });
+});
+
+describe('homepage faces and portrait identity', () => {
+  it('picks each team\'s top player by value, breaking ties by player id', () => {
+    const fixture = personalizedFixture();
+    const faces = buildHomeFaces(fixture.home, fixture.market);
+    expect(faces).toHaveLength(10);
+    expect(faces[0].player).toMatchObject({ id: '1-player-1', value: 40 });
+    expect(faces[0].champion).toBe(false);
+  });
+  it('derives champion only from a previous-season first-place finish', () => {
+    const fixture = personalizedFixture();
+    fixture.home.directory[4].previousSeason = { season: '2025', wins: 17, losses: 4, finish: 1, ownerNote: null };
+    const faces = buildHomeFaces(fixture.home, fixture.market);
+    expect(faces.filter(face => face.champion).map(face => face.team.id)).toEqual(['5']);
+  });
+  it('gives every team a null face when the market is unavailable, never an invented one', () => {
+    const fixture = personalizedFixture();
+    expect(buildHomeFaces(fixture.home, null).every(face => face.player === null)).toBe(true);
+  });
+  it('resolves personalized player faces from the directory identity, not the quote', () => {
+    const fixture = personalizedFixture();
+    fixture.home.directory[0].players[1].espnId = 'directory-espn-1';
+    const quote = fixture.market.stocks.find(stock => stock.playerId === '1-player-1')!;
+    quote.espnId = 'quote-espn-1';
+    const result = summary('1', fixture);
+    expect(result.players.find(player => player.id === '1-player-1')?.espnId).toBe('directory-espn-1');
+    const faces = buildHomeFaces(fixture.home, fixture.market);
+    expect(faces[0].player?.espnId).toBe('directory-espn-1');
+  });
 });
