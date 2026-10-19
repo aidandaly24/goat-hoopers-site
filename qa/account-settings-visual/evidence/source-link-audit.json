@@ -1,0 +1,13 @@
+{
+  "method": "Production TSX inventory; only missing direct/ancestor classes are flagged. This is source evidence, not proof of every rendered route/state.",
+  "count": 143,
+  "candidates": [
+    {
+      "file": "src/ui/SiteHeader.tsx",
+      "line": 108,
+      "ownClass": false,
+      "ancestorClass": false
+    }
+  ],
+  "manualCheck": "The remaining SiteHeader callback links receive .nav/.panelLinks descendant styles. The former four account/team bare declarations are removed; account help links now use explicit shared control classes. Rendered coverage and contrast are recorded separately in browser.json."
+}
