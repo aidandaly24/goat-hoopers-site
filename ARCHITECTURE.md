@@ -124,7 +124,10 @@ src/
                  # TradeVerdict/analyzeTrade, ManagerArchetype (GM IQ:
                  # per-season manager archetypes — MetricId, ARCHETYPES,
                  # percentileRank, assignArchetype's documented decision
-                 # table, buildArchetypeProfiles, currentArchetype).
+                 # table, buildArchetypeProfiles, currentArchetype),
+                 # TeamRosterValue + buildTeamRosterValue (market quotes
+                 # joined to a roster by Sleeper player id — the /team
+                 # roster-value view).
                  # Types + tiny helpers only. formatSeasonStatus(Season.status)
                  # renders the human status ("pre_season" -> "Preseason").
     arcade/      # The SECOND bounded context: SiteUser, InviteCode,
@@ -297,8 +300,20 @@ src/
                  # Receives domain objects, never touches the store.
                  # GameCard receives PlayableGame: actual preview, direct
                  # Play link and phone controls; no account/store gate.
-    team/        # "My Team": identity + record, full roster, FAAB
-                 # winnings. Rendered by /team for the logged-in manager.
+    team/        # "My Team": identity + record, full roster (each player
+                 # shows their modeled FAAB price), the team total roster
+                 # value (issue #189: per-player prices + total joined from
+                 # getStockMarketData() in the same server request — React
+                 # cache-shared with the root-layout ticker, so no extra
+                 # provider calls or snapshot writes), and FAAB winnings.
+                 # Rendered by /team for the logged-in manager. Unknown
+                 # quotes render "—" (never $0); the total footnotes its
+                 # coverage ("over N of M players with quotes") and carries
+                 # the market's pricing-basis label. getTeamDetail's
+                 # contract is untouched; the join lives in
+                 # getTeamRosterValue (src/data/league.ts) over the pure
+                 # domain projection buildTeamRosterValue. League rank of
+                 # the total is issue #184's, not this surface's.
   ui/            # Design tokens (tokens.css) + primitives (Card, Badge,
                  # SectionHeading, TeamAvatar, PositionPill,
                  # PlayerHeadshot, PlayerRow, TransactionSummary,
@@ -367,7 +382,8 @@ src/
     claim/       # /claim — invite code -> account. Co-located form.
     login/       # /login — team + password. Co-located form.
     team/        # /team — the logged-in manager's page (identity, roster,
-                 # FAAB winnings). Redirects to /login when logged out.
+                 # roster value, FAAB winnings). Redirects to /login when
+                 # logged out.
     transactions/ # /transactions — full wire history (type + team filters).
     draft/       # /draft — the completed rookie draft board.
     teams/       # /teams — the team directory.
