@@ -1273,3 +1273,21 @@ export async function getLeagueNewsEdition(): Promise<LeagueNewsEdition> {
     };
   }
 }
+
+/** Slim public evidence already present in the root ticker's same-request inputs.
+ * No fetch, refresh or snapshot save is added. The existing cache has no EMA
+ * season key or weekly participation source: leave those provenance gates closed.
+ */
+export async function getHomePlayerGuideSources(
+  loadInputs: () => Promise<Pick<StockMarketInput, "players" | "statProfiles" | "now">> = getMarketInputs,
+): Promise<import("@/domain/team-player-guide").PlayerGuideSources> {
+  const input = await loadInputs();
+  return {
+    checkedAt: new Date(input.now).toISOString(),
+    formSeason: null,
+    form: Object.fromEntries(Object.entries(input.statProfiles ?? {}).map(([id, profile]) => [id, { fppg: profile.emaFppg, games: profile.emaGames }])),
+    injuries: Object.fromEntries(Object.entries(input.players).filter(([, player]) => player.injury_status !== undefined).map(([id, player]) => [id, player.injury_status ?? null])),
+    scheduledGames: null,
+    completedWeek: null,
+  };
+}

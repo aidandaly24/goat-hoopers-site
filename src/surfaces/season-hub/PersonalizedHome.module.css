@@ -51,6 +51,25 @@
 .wire { border-top: 1px solid var(--gh-border); padding-top: var(--gh-s4); }
 .wire ul { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gh-s4); }
 .wire li { min-width: 0; overflow-wrap: anywhere; }
+.formGuide { padding-block: var(--gh-s6); border-top: 1px solid var(--gh-border); }
+.guideColumns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gh-s6); }
+.guideColumns > section { min-width: 0; }
+.formGuide h5 { font-size: var(--gh-text-sm); margin: var(--gh-s4) 0 var(--gh-s2); }
+.guideRows { list-style: none; padding: 0; margin: var(--gh-s3) 0; }
+.guideRows li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--gh-s3); margin-block: var(--gh-s3); }
+.guideRows a { display: inline-block; min-height: var(--gh-target-touch); align-content: center; }
+.guideRows p { overflow-wrap: anywhere; }
+.record a { gap: var(--gh-s2); flex-wrap: wrap; }
+.valuation { padding-block: var(--gh-s6); border-top: 1px solid var(--gh-border); }
+.valueHeading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--gh-s4); }
+.teamValue { font-size: var(--gh-text-lg); overflow-wrap: anywhere; }
+.rosterPrices summary { min-height: var(--gh-target-touch); align-content: center; cursor: pointer; }
+.rosterPrices ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gh-s2) var(--gh-s6); }
+.rosterPrices li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--gh-s3); padding-block: var(--gh-s2); border-bottom: 1px solid var(--gh-border); }
+.rosterPrices a { display: block; min-height: var(--gh-target-touch); font-weight: 600; }
+.rosterPrices small { display: block; font-size: var(--gh-text-xs); color: var(--gh-text-dim); }
+@media (max-width: 40rem) { .rosterPrices ul { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 40rem) { .guideColumns { grid-template-columns: minmax(0, 1fr); } }
 @keyframes personal-enter { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 @media (max-width: 40rem) { .wire ul { grid-template-columns: minmax(0, 1fr); } .players li { grid-template-columns: auto minmax(0, 1fr); padding-block: var(--gh-s2); } .value { grid-column: 2; text-align: left; } }
 @media (prefers-reduced-motion: reduce) { .surface { animation: none; } }

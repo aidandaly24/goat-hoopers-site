@@ -1132,3 +1132,19 @@ radius is 0.2286 m. The 50% shot is calibrated to this practice setup.
 Run `npm run test:free-throw` for deterministic physics, charge and shipped
 asset map/bounds/anchor checks. See `docs/free-throw-practice-qa.md` for the
 browser evidence and local server handoff.
+
+The personal edition's full valuation uses the shared pure
+`domain/roster-value.ts` helper: unique roster IDs, integer-cent totals, unknown
+quote rows and explicit partial coverage. Value ranks compare only completely
+priced current rosters, with shared ranks for equal totals. No historical team
+valuation is synthesized. The same helper is available to the separately owned
+My Team value follow-up without changing its source files here.
+
+`domain/team-player-guide.ts` separates weekly observed results, verified
+current-season EMA form and preseason market movement. `getHomePlayerGuideSources`
+is an additive public projection of the existing same-request market inputs;
+it performs no new fetch/query/save. Unsupported weekly participation, schedule
+and EMA-season provenance remain null. `season-hub/TeamPlayerGuide` renders the
+honest source states and accepts no client-selected owner or invented result.
+The recorded-week adapter is separately scoped to Muse in #190; see
+`docs/weekly-player-guide.md` for the exact data and integration boundary.

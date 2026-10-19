@@ -6,6 +6,7 @@ import { TeamAvatar } from "@/ui/TeamAvatar";
 import { PlayerHeadshot } from "@/ui/PlayerHeadshot";
 import controls from "@/ui/controls.module.css";
 import styles from "./PersonalizedHome.module.css";
+import { TeamPlayerGuide } from "./TeamPlayerGuide";
 
 const points = (value: number | null) => value !== null && Number.isFinite(value) ? value.toFixed(1) : "Pending";
 const timestamp = (value: string | number | null) => value !== null && Number.isFinite(new Date(value).getTime())
@@ -75,6 +76,7 @@ export function PersonalizedHome({ data }: { data: PersonalizedHomeData }) {
     <div className={styles.record}>
       <span>{hasRecord && Number.isFinite(standing.rank) ? <><strong className="gh-num">{standing.rank}</strong> of {season.totalTeams} in standings</> : "Standings begin when scoring starts"}</span>
       <span>Season record <strong className="gh-num">{record(team)}</strong></span>
+      <a href="#your-roster-value">{summary.valuation.complete ? "Modeled roster value" : "Known-value subtotal"} <strong className="gh-num">{summary.valuation.total === null ? "Unavailable" : `$${summary.valuation.total.toFixed(2)} FAAB`}</strong></a>
       <a href={standingsAvailable ? "#your-standings" : "/teams"}>{standingsAvailable ? "League standings" : "League teams"}</a>
     </div>
     <div className={styles.columns}>
@@ -105,6 +107,19 @@ export function PersonalizedHome({ data }: { data: PersonalizedHomeData }) {
         {["off_season", "complete"].includes(season.status) && <p><Link href="/arcade" prefetch={false} className={controls.secondary}>Visit the Arcade</Link></p>}
       </section>
     </div>
+    <section className={styles.valuation} aria-labelledby="your-roster-value">
+      <div className={styles.valueHeading}><div><p className={styles.eyebrow}>Current modeled player quotes</p><h3 id="your-roster-value">Your Roster Value</h3></div>
+        <strong className={`${styles.teamValue} gh-num`}>{summary.valuation.total === null ? "Unavailable" : `$${summary.valuation.total.toFixed(2)} FAAB`}</strong>
+      </div>
+      <p>{summary.valuation.knownRoster ? <>{summary.valuation.complete ? "Full roster total" : "Known-value subtotal"} · {summary.valuation.priced} of {summary.rosterValues.length} roster players priced · {summary.valuation.unpriced} unpriced</> : "Roster membership is temporarily unavailable; no roster total is inferred."}</p>
+      <p className={styles.caption}>{summary.valuation.rank ? `${summary.valuation.rank.tied ? "Joint value rank" : "Value rank"} ${summary.valuation.rank.rank} of ${summary.valuation.rank.teams}, using complete current roster quotes.` : "League value rank is unavailable until all compared rosters have complete pricing."}{market ? ` ${market.pricingBasis === "preseason" ? "Preseason" : "In-season"} pricing; model computed ${timestamp(market.updatedAt)}.` : " Pricing is temporarily unavailable."}</p>
+      {summary.valuation.knownRoster && <details className={styles.rosterPrices}><summary>All {summary.rosterValues.length} roster player values</summary>
+        <ul>{summary.rosterValues.map(player => <li key={player.id}><Link href={`/player/${player.id}`} prefetch={false}>{player.name}<small>{player.position ?? "Position unavailable"}</small></Link><span className="gh-num">{player.value === null ? "Unknown" : `$${player.value.toFixed(2)}`}</span></li>)}</ul>
+      </details>}
+      <p className={styles.caption}>Sum of current roster player quotes in league FAAB units. This is a current-roster snapshot; team valuation history is not available.</p>
+      <Link href="/stocks" prefetch={false} className={controls.secondary}>Player values & price history</Link>
+    </section>
+    <TeamPlayerGuide guide={summary.playerGuide} teamId={team.id} />
     {news.length || moves.length ? <section className={styles.wire} aria-labelledby="your-wire"><h3 id="your-wire">Around Your Team</h3>
       <ul>{news.map(article => <li key={`news-${article.id}`}><p className={styles.caption}>{article.outlet.name} · {timestamp(article.publishedAt)}</p><a href={article.url}>{article.headline}</a></li>)}
         {moves.map(move => <li key={`move-${move.id}`}><p className={styles.caption}>League move · {timestamp(move.createdAt)}</p><p>{move.summary}</p></li>)}</ul>

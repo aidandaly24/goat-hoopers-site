@@ -105,3 +105,21 @@ it('keeps absent historical changes unknown and real flat/down values distinct',
   const view = summary('1', fixture);
   expect(view.players[0].changePct).toBeNull(); expect(view.players[1].changePct).toBe(0); expect(view.players[2].changePct).toBe(-50);
 });
+
+it('values every roster player, exposes unknown rows and suppresses rank when league pricing is incomplete', () => {
+  const fixture = personalizedFixture();
+  const view = summary('1', fixture);
+  expect(view.valuation).toMatchObject({ total: 110, priced: 4, unpriced: 0, complete: true, rank: { rank: 1, teams: 10, tied: true } });
+  expect(view.rosterValues).toHaveLength(4);
+  fixture.market.stocks = fixture.market.stocks.filter(quote => quote.playerId !== '9-player-1');
+  expect(summary('1', fixture).valuation.rank).toBeNull();
+  fixture.market.stocks = fixture.market.stocks.filter(quote => quote.playerId !== '1-player-1');
+  expect(summary('1', fixture).valuation).toMatchObject({ total: 70, priced: 3, unpriced: 1, complete: false, rank: null });
+  expect(summary('1', fixture).rosterValues.find(player => player.id === '1-player-1')?.value).toBeNull();
+});
+it('does not treat a foreign pairing or an absent roster as the viewer\'s evidence', () => {
+  const fixture = personalizedFixture(); fixture.home.directory[0].currentMatchup = fixture.home.directory[3].currentMatchup;
+  expect(summary('1', fixture).matchup).toBeNull();
+  fixture.home.directory = fixture.home.directory.filter(entry => entry.identity.id !== '1');
+  expect(summary('1', fixture).valuation).toMatchObject({ total: null, knownRoster: false, complete: false, rank: null });
+});

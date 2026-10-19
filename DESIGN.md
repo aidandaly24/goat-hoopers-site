@@ -634,3 +634,16 @@ all source/provenance details remain available. One existing-duration opacity/
 4px transform entrance respects reduced motion. No generated-on-render AI,
 competitive game state or reward claim is introduced. The active viewer is
 visibly marked in the existing matchup rows and standings without reordering.
+
+The October 19 follow-up adds Your Roster Value: a prominent current modeled
+team total, priced/unpriced coverage, model-computation time, and an expandable
+complete player-value list. Partial pricing is a labelled subtotal; league value
+rank is shown only when all compared current rosters are fully priced. The top
+three remain the quick summary. Player values/history link to the existing
+market; no historical team-value series is invented from today's roster.
+
+The form guide sits before the team wire: Players to Watch, Your Best and The
+Rough Week each print their distinct basis and source period. Played-game counts,
+small samples and supplied injury context remain visible; DNP/unknown records
+are never classified as poor performance. Production data gaps have explicit
+states and a tracked adapter issue (#190); populated QA examples are synthetic.

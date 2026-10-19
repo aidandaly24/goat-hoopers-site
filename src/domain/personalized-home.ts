@@ -5,6 +5,8 @@ import type { Matchup } from "./matchup";
 import type { AiWeeklyPick, AiWeeklySlate } from "./ai-decider";
 import type { RealNewsArticle } from "./news";
 import type { Transaction } from "./transaction";
+import type { TeamPlayerGuide } from "./team-player-guide";
+import type { RosterValuation } from "./roster-value";
 
 /** Shared with the existing matchup sidebar so its Week 1 exception cannot drift. */
 export function isHomePreseasonPreview(weekly: AiWeeklySlate | undefined, season: string | null): boolean {
@@ -33,6 +35,9 @@ export type HomeTeamSummary = {
   news: Pick<RealNewsArticle, "id" | "headline" | "url" | "outlet" | "publishedAt">[];
   newsAvailable: boolean;
   moves: Transaction[];
+  playerGuide: TeamPlayerGuide;
+  valuation: RosterValuation & { rank: { rank: number; teams: number; tied: boolean } | null };
+  rosterValues: { id: string; name: string; position: string | null; value: number | null }[];
   ai: {
     status: "ready" | "stale";
     label: string;

@@ -5,10 +5,13 @@ import type { StockMarket } from "@/domain/stock";
 import type { CourtsideHomeData } from "./league";
 import { LEAGUE_ID } from "./sleeper";
 import type { LeagueNewsEdition } from "@/domain/news";
+import { buildTeamPlayerGuide, type PlayerGuideSources } from "@/domain/team-player-guide";
+import { rosterValueRank, summarizeRosterValue } from "@/domain/roster-value";
 
 /** Pure projection of public data after private membership resolution. No I/O/cache. */
 export function buildPersonalizedHome(viewer: HomeViewer, home: CourtsideHomeData,
-  weekly: AiWeeklySlate | undefined, market: StockMarket | null, news: LeagueNewsEdition | null = null): PersonalizedHomeData {
+  weekly: AiWeeklySlate | undefined, market: StockMarket | null, news: LeagueNewsEdition | null = null,
+  guideSources: PlayerGuideSources | null = null): PersonalizedHomeData {
   if (viewer.kind !== "member") return viewer;
   const hub = home.hub;
   const team = hub?.teams.find(team => team.id === viewer.teamId);
@@ -16,6 +19,11 @@ export function buildPersonalizedHome(viewer: HomeViewer, home: CourtsideHomeDat
   const entry = home.directory.find(entry => entry.identity.id === team.id);
   const roster = entry?.players ?? [];
   const rosterIds = new Set(roster.map(player => player.id));
+  const valuation = summarizeRosterValue(entry ? [...rosterIds] : null, market?.stocks ?? []);
+  const leagueValues = home.directory.length === hub.teams.length
+    ? hub.teams.map(club => summarizeRosterValue(home.directory.find(entry => entry.identity.id === club.id)?.players.map(player => player.id) ?? null, market?.stocks ?? [])) : [];
+  const valued = new Map(valuation.players.map(player => [player.id, player.value]));
+  const rosterValues = roster.map(player => ({ id: player.id, name: player.fullName, position: player.position, value: valued.get(player.id) ?? null }));
   const quotes = new Map((market?.stocks ?? []).filter(quote => Number.isFinite(quote.price) && quote.price >= 0)
     .map(quote => [quote.playerId, quote]));
   const priced = roster.filter(player => quotes.has(player.id));
@@ -27,7 +35,8 @@ export function buildPersonalizedHome(viewer: HomeViewer, home: CourtsideHomeDat
     .sort((a, b) => b.value - a.value || a.id.localeCompare(b.id)).slice(0, 3);
   // Offseason/completed seasons must not relabel a retained old pairing as this week.
   const activeSeason = ["pre_season", "pre_draft", "in_season"].includes(hub.season.status);
-  const matchup = activeSeason ? entry?.currentMatchup ?? null : null;
+  const candidate = entry?.currentMatchup;
+  const matchup = activeSeason && candidate && [candidate.home.id, candidate.away.id].includes(team.id) ? candidate : null;
   let ai: HomeTeamSummary["ai"] = null;
   const preview = isHomePreseasonPreview(weekly, hub.season.seasonYear);
   if (activeSeason && weekly && weekly.status !== "unavailable" && weekly.leagueId === LEAGUE_ID && weekly.season === hub.season.seasonYear) {
@@ -53,11 +62,16 @@ export function buildPersonalizedHome(viewer: HomeViewer, home: CourtsideHomeDat
   return { kind: "member", summary: { team, season: hub.season,
     standing: hub.standings.find(standing => standing.team.id === team.id) ?? null,
     matchup, checkedAt: home.checkedAt, standingsAvailable: !!home.edition, players, coverage: { priced: priced.length, roster: rosterIds.size },
+    valuation: { ...valuation, rank: rosterValueRank(valuation, leagueValues) }, rosterValues,
     newsAvailable: !!news && news.builtAt > 0 && news.coverage.directory === "ok" && news.coverage.rosters === "ok" && home.rosterNamesAvailable,
     news: news && news.builtAt > 0 && news.coverage.directory === "ok" && news.coverage.rosters === "ok" && home.rosterNamesAvailable
       ? news.articles.filter(article => article.players.some(player => rosterIds.has(player.playerId)))
         .sort((a, b) => b.publishedAt - a.publishedAt || a.id.localeCompare(b.id)).slice(0, 2)
         .map(({ id, headline, url, outlet, publishedAt }) => ({ id, headline, url, outlet, publishedAt })) : [],
     moves: hub.transactions.filter(move => move.teamIds.includes(team.id)).sort((a, b) => b.createdAt - a.createdAt || a.id.localeCompare(b.id)).slice(0, 2),
+    playerGuide: buildTeamPlayerGuide({ teamId: team.id, season: hub.season.seasonYear, phase: hub.season.status,
+      currentWeek: matchup?.week ?? null, now: home.checkedAt, sources: guideSources,
+      roster: roster.map(player => ({ id: player.id, name: player.fullName, espnId: quotes.get(player.id)?.espnId ?? null })),
+      market: market?.stocks ?? [] }),
     market: market && Number.isFinite(market.updatedAt) ? { updatedAt: market.updatedAt, pricingBasis: market.pricingBasis } : null, ai } };
 }

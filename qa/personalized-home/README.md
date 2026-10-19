@@ -12,7 +12,7 @@ explicit local fixture selector, not a production ownership mechanism. Browser
 requests are restricted to GETs on numeric loopback. The production page resolves
 ownership from the existing server session and active link, never URL input.
 
-Coverage: 13 states at desktop light, phone light/dark and 320px with 200% text.
+Coverage: 14 states at desktop light, phone light/dark and 320px with 200% text. Full valuation disclosures and populated synthetic form-guide records are included.
 Checks include two different identities, signed-out/unclaimed, outages, offseason,
 preseason, missing matchup/market/editorial, stale/missing AI, long names, real
 keyboard focus and 44px launch navigation. Normal desktop/phone pages and the
@@ -25,3 +25,7 @@ Review PNGs show synthetic inputs and are not real league results. A separate
 local production-Next smoke check validates the built signed-out homepage; page
 composition tests inject verified server identities for concurrent requests and
 unclaimed/expired/inactive states, without modifying real accounts.
+
+Live guide limitations and the separately owned weekly evidence adapter are
+documented in `docs/weekly-player-guide.md`; no synthetic performance inputs
+enter the production route.

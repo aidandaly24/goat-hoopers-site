@@ -6,6 +6,7 @@ import {
   getAiDecidesData,
   getStockMarketData,
   getLeagueNewsEdition,
+  getHomePlayerGuideSources,
 } from "@/data/league";
 import { headers } from "next/headers";
 import { getCurrentUser } from "@/app/actions";
@@ -32,10 +33,10 @@ export default async function Home() {
   ]);
   // React.cache reuses the root ticker's existing request-local market result.
   // No additional refresh, deep player fetch or snapshot operation is introduced.
-  const [market, news] = viewer.kind === "member" ? await Promise.all([
-    getStockMarketData().catch(() => null), getLeagueNewsEdition().catch(() => null),
-  ]) : [null, null];
-  const personal = buildPersonalizedHome(viewer, data, aiData.weekly, market, news);
+  const [market, news, guideSources] = viewer.kind === "member" ? await Promise.all([
+    getStockMarketData().catch(() => null), getLeagueNewsEdition().catch(() => null), getHomePlayerGuideSources().catch(() => null),
+  ]) : [null, null, null];
+  const personal = buildPersonalizedHome(viewer, data, aiData.weekly, market, news, guideSources);
   return (
     <>
       <PersonalizedHome data={personal} />

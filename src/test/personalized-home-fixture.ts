@@ -29,3 +29,11 @@ export function personalizedFixture() {
   for (const quote of market.stocks) { quote.prevPrice = 40; quote.changePct = (quote.price - 40) / 40 * 100; }
   return { home, weekly, market, teams, news };
 }
+
+export function playerGuideFixture(teamId: string): import('@/domain/team-player-guide').PlayerGuideSources {
+  const ids = Array.from({ length: 4 }, (_, index) => `${teamId}-player-${index}`);
+  return { checkedAt: '2026-11-12T12:00:00Z', formSeason: '2026', form: Object.fromEntries(ids.map((id, index) => [id, { fppg: 30 - index * 3, games: 5 + index }])),
+    injuries: { [ids[0]]: null, [ids[1]]: 'Out', [ids[2]]: 'Questionable' }, scheduledGames: null,
+    completedWeek: { teamId, season: '2026', week: 2, complete: true, startsAt: '2026-11-02T00:00:00Z', endsAt: '2026-11-09T00:00:00Z',
+      players: ids.map((playerId, index) => ({ playerId, fantasyPoints: index * 12, gamesPlayed: index === 0 ? 0 : index, injuryNote: index === 1 ? 'Synthetic injury-shortened week' : null })) } };
+}

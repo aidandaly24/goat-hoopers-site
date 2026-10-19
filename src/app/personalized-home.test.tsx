@@ -1,18 +1,18 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { beforeEach, expect, it, vi } from 'vitest';
 import { personalizedFixture } from '@/test/personalized-home-fixture';
-const mocks = vi.hoisted(() => ({ member: vi.fn(), account: vi.fn(), linked: vi.fn(), home: vi.fn(), ai: vi.fn(), market: vi.fn(), news: vi.fn() }));
+const mocks = vi.hoisted(() => ({ member: vi.fn(), account: vi.fn(), linked: vi.fn(), home: vi.fn(), ai: vi.fn(), market: vi.fn(), news: vi.fn(), guide: vi.fn() }));
 vi.mock('@/app/actions', () => ({ getCurrentUser: mocks.member }));
 vi.mock('next/headers', () => ({ headers: async () => new Headers() }));
 vi.mock('@/data/friends-auth/config', () => ({ friendsAuthEnabled: () => true }));
 vi.mock('@/data/friends-auth/runtime', () => ({ getVerifiedAccount: mocks.account }));
 vi.mock('@/data/home-viewer', async importOriginal => ({ ...await importOriginal<typeof import('@/data/home-viewer')>(), hasHomeMembership: mocks.linked }));
-vi.mock('@/data/league', () => ({ getCourtsideHomeData: mocks.home, getAiDecidesData: mocks.ai, getStockMarketData: mocks.market, getLeagueNewsEdition: mocks.news, getWeeklyArchive: () => [], getCourtsidePortraits: () => ({}) }));
+vi.mock('@/data/league', () => ({ getCourtsideHomeData: mocks.home, getAiDecidesData: mocks.ai, getStockMarketData: mocks.market, getLeagueNewsEdition: mocks.news, getHomePlayerGuideSources: mocks.guide, getWeeklyArchive: () => [], getCourtsidePortraits: () => ({}) }));
 import Home, { dynamic } from './page';
 beforeEach(() => {
   vi.resetAllMocks(); const fixture = personalizedFixture();
   mocks.member.mockResolvedValue(null); mocks.account.mockResolvedValue(null); mocks.linked.mockResolvedValue(false);
-  mocks.home.mockResolvedValue(fixture.home); mocks.ai.mockResolvedValue({ weekly: fixture.weekly }); mocks.market.mockResolvedValue(fixture.market); mocks.news.mockResolvedValue(null);
+  mocks.home.mockResolvedValue(fixture.home); mocks.ai.mockResolvedValue({ weekly: fixture.weekly }); mocks.market.mockResolvedValue(fixture.market); mocks.news.mockResolvedValue(null); mocks.guide.mockResolvedValue(null);
 });
 it('renders two concurrent server identities independently and ignores client team selectors', async () => {
   expect(dynamic).toBe('force-dynamic');

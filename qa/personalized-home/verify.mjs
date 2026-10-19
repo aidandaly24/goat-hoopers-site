@@ -27,7 +27,7 @@ try {
     });
     const page = await context.newPage(); page.setDefaultTimeout(10000);
     page.on('pageerror', error => report.pageErrors.push(error.message));
-    for (const [state, id] of [['member', '1'], ['member', '4'], ['signed_out', '1'], ['unclaimed', '1'], ['unavailable', '1'], ['preseason', '1'], ['offseason', '1'], ['no-matchup', '1'], ['ai-stale', '4'], ['ai-missing', '4'], ['missing-market', '1'], ['missing-edition', '1'], ['long-name', '1']]) {
+    for (const [state, id] of [['member', '1'], ['member', '4'], ['signed_out', '1'], ['unclaimed', '1'], ['unavailable', '1'], ['preseason', '1'], ['offseason', '1'], ['no-matchup', '1'], ['ai-stale', '4'], ['ai-missing', '4'], ['missing-market', '1'], ['missing-edition', '1'], ['long-name', '1'], ['guide-unavailable', '1']]) {
       await page.goto(`http://127.0.0.1:4201/?state=${state}&fixture-team=${id}`);
       await page.getByRole('heading').first().waitFor();
       await page.evaluate(theme => document.documentElement.dataset.theme = theme, settings.theme);
@@ -46,6 +46,9 @@ try {
         assert(await panel.getByRole('link', { name: 'Full roster', exact: true }).getAttribute('href') === `/teams/${id}#team-roster`, 'Wrong roster destination');
         if (state === 'member') {
           assert(await page.locator('[data-own-team="true"]').count() === 2, 'Expected own team in matchup and standings');
+          await panel.getByText('All 4 roster player values', { exact: true }).click();
+          assert(await panel.locator('[class*=rosterPrices] li').count() === 4, 'Full roster valuation omitted a player');
+          await panel.getByText('Your form guide', { exact: true }).waitFor();
           await panel.getByText('Saved analysis & source', { exact: true }).click();
           await panel.getByText(/fixture-model/).waitFor();
           const action = panel.getByRole('link', { name: 'My team', exact: true });

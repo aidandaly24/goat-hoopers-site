@@ -3,7 +3,7 @@ import { PersonalizedHome } from '@/surfaces/season-hub/PersonalizedHome';
 import { CourtsideHome } from '@/surfaces/season-hub/CourtsideHome';
 import { SiteHeader } from '@/ui/SiteHeader';
 import { SiteFooter } from '@/ui/SiteFooter';
-import { personalizedFixture } from '@/test/personalized-home-fixture';
+import { personalizedFixture, playerGuideFixture } from '@/test/personalized-home-fixture';
 import { buildPersonalizedHome } from '@/data/personalized-home';
 import type { HomeViewer } from '@/domain/personalized-home';
 import '@/ui/tokens.css';
@@ -22,7 +22,9 @@ if (state === 'ai-stale') weekly.status = 'stale';
 if (state === 'ai-missing') weekly.matchups = [];
 if (state === 'missing-edition') home.edition = null;
 if (state === 'long-name') teams[0].name = 'The Very Long Synthetic Basketball Club Name With ALongUnbrokenSyntheticWordForReflow';
-const personal = buildPersonalizedHome(viewer, home, weekly, state === 'missing-market' ? null : market, news);
+const guideSources = state === 'guide-unavailable' ? null : playerGuideFixture(id);
+if (state === 'preseason') { guideSources!.completedWeek = null; guideSources!.formSeason = null; market.stocks[0].changePct = 5; market.stocks[0].price = 42; home.directory.forEach(entry => { if (entry.currentMatchup) entry.currentMatchup.week = 1; }); }
+const personal = buildPersonalizedHome(viewer, home, weekly, state === 'missing-market' ? null : market, news, guideSources);
 createRoot(document.getElementById('root')!).render(<>
   <aside className="fixture-note">Offline personalized home review · all teams, values, scores and AI results are synthetic · no account actions</aside>
   <SiteHeader user={viewer.kind === 'member' ? { displayName: `Fixture manager ${id}`, teamId: id } : null} logoutAction={async () => { throw Error('No account action in fixture'); }} />
