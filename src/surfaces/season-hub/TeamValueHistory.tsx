@@ -183,7 +183,7 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
         {!currentDetail.changed && detailEndpoint && <button type="button" className={controls.secondary} onClick={retryDetail}>Retry roster details</button>}
       </div> : <p className={styles.notice} role="status">Loading roster and nearby moves…</p>)}
     </details>
-    {envelope.currentQuote && <p className={styles.current}>Current modeled quote: {envelope.currentQuote.subtotalCents === null ? "unavailable" : money(envelope.currentQuote.subtotalCents)} · {envelope.currentQuote.priced}/{envelope.currentQuote.rosterCount} priced · {envelope.currentQuote.at}. Separate from recorded history.</p>}
+    {envelope.currentQuote && <p className={styles.current}>{envelope.currentQuote.priced < envelope.currentQuote.rosterCount ? "Current modeled subtotal" : "Current modeled quote"}: {envelope.currentQuote.subtotalCents === null ? "unavailable" : money(envelope.currentQuote.subtotalCents)} · {envelope.currentQuote.priced}/{envelope.currentQuote.rosterCount} priced · {envelope.currentQuote.at}. Separate from recorded history.</p>}
     <details className={styles.evidence}><summary>About this history</summary>
       <p>Recorded points are captured modeled FAAB quotes. Reconstructed estimates were calculated later from dated inputs. Neither is a sale price or team performance.</p>
       <p>Recorded source timestamps use the existing UTC convention. Historical ownership and price coverage are separate.</p>
