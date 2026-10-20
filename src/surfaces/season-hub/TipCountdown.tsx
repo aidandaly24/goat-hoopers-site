@@ -1,18 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { WEEK_ONE_TIP_OFF_ISO, openingPhase } from "@/domain/season-opening";
 import { cs } from "./CourtsideStyles";
-
-/**
- * First tip of the 2026–27 NBA regular season: Boston Celtics at Detroit
- * Pistons, Tuesday Oct 20, 2026, 19:00 UTC (3:00 PM ET) — the earliest game
- * on ESPN's scoreboard for 2026-10-20 (season type: regular season; no games
- * on Oct 19). Verified against the ESPN scoreboard API on 2026-10-19.
- * This is the first NBA tip, NOT Sleeper's scoring-start instant: Sleeper
- * publishes season_start_date (2026-10-20) — a date, no time — and the UI
- * copy keeps that distinction.
- */
-export const WEEK_ONE_TIP_OFF_ISO = "2026-10-20T19:00:00.000Z";
 
 export type CountdownParts = { days: number; hours: number; minutes: number; seconds: number };
 
@@ -27,23 +17,6 @@ export function countdownParts(targetMs: number, nowMs: number): CountdownParts 
     minutes: Math.floor((remaining % 3600) / 60),
     seconds: remaining % 60,
   };
-}
-
-export type OpeningPhase = "before" | "started" | "past";
-
-/**
- * The court's opening state at a given instant: countdown before the first
- * tip; the started state through the rest of Week 1; nothing once the season
- * has moved on. `week` is the current displayed week — null when no pairing
- * establishes it, in which case the started state lasts seven days past the
- * tip. The provider's phase flag never gates this: the clock does.
- */
-export function openingPhase(nowMs: number, targetMs: number, week: number | null): OpeningPhase {
-  if (!Number.isFinite(nowMs) || !Number.isFinite(targetMs)) return "past";
-  if (nowMs < targetMs) return "before";
-  if (week === 1) return "started";
-  if (week === null && nowMs < targetMs + 7 * 86_400_000) return "started";
-  return "past";
 }
 
 export type ClockAnchor = { serverMs: number; monoMs: number };
