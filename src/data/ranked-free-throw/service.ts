@@ -5,6 +5,7 @@ import { rankedId, rankedPeriod, rankedReplayContext, record, replayRankedRound,
 import { freeThrowRulesVersion, type RankedConfiguration } from "./config";
 import { parseFreeThrowPolicy } from "@/domain/arcade/ranked-free-throw";
 import type { RankedPersistence } from "./store";
+import { parseRankedRecordFeedback } from "@/domain/arcade/ranked-record-feedback";
 
 export type RankedRuntime = {
   configuration: RankedConfiguration;
@@ -53,8 +54,10 @@ export async function submitRankedScore(runtime: RankedRuntime, account: RankedA
     shots => { round = replayRankedRound(shots, nowMs - run.startedAtMs, policy, replayContext); return round.statistics.score; });
   if (!validation.ok) return { status: validation.reason };
   if (!round) return { status: "invalid_replay" as const };
-  const score = await store.consume(account, run, round);
-  return score ? { status: "saved" as const, score } : { status: "invalid_run" as const };
+  const accepted = await store.consume(account, run, round);
+  if (!accepted) return { status: "invalid_run" as const };
+  const { recordFeedback, ...score } = accepted;
+  return { status: "saved" as const, score, recordFeedback: parseRankedRecordFeedback(recordFeedback, score) };
 }
 
 export async function loadRankedResult(runtime: RankedRuntime, account: RankedAccount, runId: string) {
@@ -62,7 +65,7 @@ export async function loadRankedResult(runtime: RankedRuntime, account: RankedAc
   if (!validRankedAccount(account)) return { status: "unauthenticated" as const };
   if (!rankedId(runId)) return { status: "invalid_submission" as const };
   const score = await runtime.store().result(account, runId);
-  return score ? { status: "saved" as const, score } : { status: "not_found" as const };
+  return score ? { status: "saved" as const, score, recordFeedback: null } : { status: "not_found" as const };
 }
 
 export async function loadRankedLeaderboard(runtime: RankedRuntime, viewer: RankedAccount | null, scope: RankedScope, limit: number) {
