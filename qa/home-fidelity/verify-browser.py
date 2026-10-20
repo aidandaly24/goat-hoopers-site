@@ -50,6 +50,10 @@ with sync_playwright() as p:
      overflow=card.evaluate('''card=>{const panel=card.getBoundingClientRect();return [...card.querySelectorAll('*')].filter(node=>{const r=node.getBoundingClientRect();return r.width>0&&(r.left<panel.left-1||r.right>panel.right+1)}).map(node=>node.textContent)}''')
      assert not overflow, f'stats panel clipping {width}/{theme}: {overflow}'
      page.screenshot(path=str(out/f'stats-{width}-{theme}.png'),full_page=True)
+     from PIL import Image
+     rect=card.evaluate('node=>{const r=node.getBoundingClientRect();return {x:r.x+scrollX,y:r.y+scrollY,w:r.width,h:r.height}}')
+     full=Image.open(out/f'stats-{width}-{theme}.png')
+     full.crop((int(rect['x']),int(rect['y']),int(rect['x']+rect['w']),int(rect['y']+rect['h']))).save(out/f'stats-panel-{width}-{theme}.png')
     elif state!='image-failure':
      assert page.get_by_text('No completed-game stats yet.',exact=False).count()==1
      assert page.get_by_text('Biggest blowout',exact=True).count()==0
