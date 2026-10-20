@@ -23,6 +23,12 @@ describe("public Arcade discovery", () => {
     expect(html).toContain('aria-label="Play ranked free throws"');
     expect(html).toContain('href="/arcade/ranked-free-throw"');
     expect(html).toContain("Local practice court");
+    const shortcuts = html.match(/<nav[^>]*aria-label="Jump into a game"[\s\S]*?<\/nav>/)?.[0];
+    expect(shortcuts).toContain('href="/arcade/ranked-free-throw"');
+    expect(shortcuts).toContain(">Ranked free throws</a>");
+    expect(shortcuts).toContain('href="/arcade/free-throw"');
+    expect(shortcuts).toContain(">Local free-throw practice</a>");
+    expect(shortcuts).not.toContain(">Free Throw Shootout</a>");
     expect(html).toContain("free-throw-preview.jpg");
     expect(html).toContain("Actual gameplay");
     expect(html).toContain("No sign-in needed");

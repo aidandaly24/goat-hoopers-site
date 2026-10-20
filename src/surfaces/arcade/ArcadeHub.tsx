@@ -1,8 +1,8 @@
 /**
  * Public game hub. Receives implemented registry entries and renders real
  * previews plus direct play links. Question: what can I play? Primary action:
- * launch practice or preview. Narrow screens retain both direct launch links;
- * competition stays closed. No account/store gate or invented competition data.
+ * launch ranked Free Throw, local practice or a preview. No account/store gate
+ * or invented competition data; the ranked route owns admission availability.
  */
 import type { PlayableGame } from "@/domain/arcade";
 import Link from "next/link";
@@ -20,7 +20,8 @@ export function ArcadeHub({ games }: { games: readonly PlayableGame[] }) {
           <h1 className={styles.title}>The Arcade</h1>
           <p className={styles.sub}>Find your touch. Build your five. Make your next play.</p>
           <nav className={styles.shortcuts} aria-label="Jump into a game">
-            {games.map(game => <Link key={game.id} href={`/arcade/${game.id}`} prefetch={false} className={controls.secondary}>{game.name}</Link>)}
+            {games.map(game => <Link key={game.id} href={game.id === "free-throw" ? "/arcade/ranked-free-throw" : `/arcade/${game.id}`} prefetch={false} className={controls.secondary}>{game.id === "free-throw" ? "Ranked free throws" : `${game.play.mode === "preview" ? "Preview" : "Practice"} ${game.name}`}</Link>)}
+            {games.some(game => game.id === "free-throw") && <Link href="/arcade/free-throw" prefetch={false} className={controls.secondary}>Local free-throw practice</Link>}
             <Link href="/arcade/leaderboard" prefetch={false} className={controls.secondary}>Weekly leaderboard</Link>
           </nav>
         </header>

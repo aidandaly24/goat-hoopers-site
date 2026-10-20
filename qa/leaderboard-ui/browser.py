@@ -30,26 +30,27 @@ with sync_playwright() as p:
         page.evaluate('(n)=>document.documentElement.style.fontSize=n+"%"',text)
         return page
     try:
-        # Same component, different request identity: no old rows under a new heading.
-        page=openpage('race','/qa/leaderboard','race')
-        page.get_by_text('weekly_hooper',exact=True).wait_for()
-        page.get_by_role('button',name='Switch board kind').click()
-        oldVisible=page.get_by_text('weekly_hooper',exact=True).count()
-        if baseline:
-            assert oldVisible==1
-            report['cases'].append({'case':'baseline-prop-race','oldWeeklyRowsUnderAllTimeHeading':oldVisible})
-            page.get_by_text('alltime_hooper',exact=True).wait_for()
-        else:
-            assert oldVisible==0
-            page.get_by_text('Loading rankings…',exact=True).wait_for()
-            page.get_by_text('alltime_hooper',exact=True).wait_for()
-            page.get_by_role('button',name='League',exact=True).click()
-            page.wait_for_timeout(100)
-            page.get_by_role('button',name='Everyone',exact=True).click()
-            page.get_by_text('alltime_hooper',exact=True).wait_for();page.wait_for_timeout(850)
-            assert not page.get_by_text('No validated league scores',exact=False).count()
-            report['cases'].append({'case':'prop-and-scope-races','oldRowsHidden':True,'lastScopeWins':True})
-        page.close()
+        if baseline or not selected or 'race' in selected:
+            # Same component, different request identity: no old rows under a new heading.
+            page=openpage('race','/qa/leaderboard','race')
+            page.get_by_text('weekly_hooper',exact=True).wait_for()
+            page.get_by_role('button',name='Switch board kind').click()
+            oldVisible=page.get_by_text('weekly_hooper',exact=True).count()
+            if baseline:
+                assert oldVisible==1
+                report['cases'].append({'case':'baseline-prop-race','oldWeeklyRowsUnderAllTimeHeading':oldVisible})
+                page.get_by_text('alltime_hooper',exact=True).wait_for()
+            else:
+                assert oldVisible==0
+                page.get_by_text('Loading rankings…',exact=True).wait_for()
+                page.get_by_text('alltime_hooper',exact=True).wait_for()
+                page.get_by_role('button',name='League',exact=True).click()
+                page.wait_for_timeout(100)
+                page.get_by_role('button',name='Everyone',exact=True).click()
+                page.get_by_text('alltime_hooper',exact=True).wait_for();page.wait_for_timeout(850)
+                assert not page.get_by_text('No validated league scores',exact=False).count()
+                report['cases'].append({'case':'prop-and-scope-races','oldRowsHidden':True,'lastScopeWins':True})
+            page.close()
         if baseline:
             page=openpage('baseline-links','/arcade')
             games=page.get_by_role('region',name='Available games',exact=True)
@@ -58,6 +59,22 @@ with sync_playwright() as p:
             report['cases'].append({'case':'baseline-entry','primaryFreeThrow':'local practice','unsupportedPricedInBoardAdvertised':True})
             page.close()
         else:
+            if not selected or 'header-shortcuts' in selected:
+                for width,text in [(1440,100),(320,200)]:
+                    page=openpage('header-'+str(width),'/arcade',width=width,text=text)
+                    shortcuts=page.get_by_role('navigation',name='Jump into a game',exact=True)
+                    assert shortcuts.get_by_role('link',name='Ranked free throws',exact=True).get_attribute('href')=='/arcade/ranked-free-throw'
+                    assert not shortcuts.get_by_role('link',name='Free Throw Shootout',exact=True).count()
+                    assert geometry(page)['scroll']==width
+                    shortcuts.get_by_role('link',name='Ranked free throws',exact=True).click()
+                    page.wait_for_url('**/arcade/ranked-free-throw')
+                    page.get_by_role('button',name='Start ranked round',exact=True).wait_for()
+                    page.go_back(wait_until='domcontentloaded')
+                    page.get_by_role('navigation',name='Jump into a game').get_by_role('link',name='Local free-throw practice',exact=True).click()
+                    page.wait_for_url('**/arcade/free-throw')
+                    page.get_by_text('Local practice. No ranked result is saved.',exact=True).wait_for()
+                    report['cases'].append({'case':'header-shortcuts-'+str(width),'rankedDestination':True,'explicitPracticeDestination':True,'noOverflow':True})
+                    page.close()
             for width,text,motion in [(1440,100,'no-preference'),(390,100,'reduce'),(320,200,'reduce')]:
                 run=f'journey-{width}-{text}'
                 if selected and run not in selected:continue
@@ -136,9 +153,9 @@ with sync_playwright() as p:
         try:page.screenshot(path=str(out/'failure.png'),full_page=True)
         except:pass
     finally:browser.close()
-files=['src/surfaces/arcade/'+n for n in ['CompetitionLeaderboard.tsx','CompetitionLeaderboard.module.css','GameCard.tsx','RankedFreeThrow.tsx','RankedFreeThrow.module.css']]
+files=['src/surfaces/arcade/'+n for n in ['ArcadeHub.tsx','CompetitionLeaderboard.tsx','CompetitionLeaderboard.module.css','GameCard.tsx','RankedFreeThrow.tsx','RankedFreeThrow.module.css']]
 root=Path(json.loads((out/'app/tsconfig.json').read_text())['compilerOptions']['paths']['@/*'][0]).parents[1]
 report['consumerBlobs']={f:subprocess.check_output(['git','hash-object',f],cwd=root,text=True).strip() for f in files}
 (out/('browser'+('-'+','.join(sorted(selected)) if selected else '')+'.json')).write_text(json.dumps(report,indent=2))
-assert not report['failures'] and not report['errors'] and not report['external'] and not report['unexpectedWrites'],json.dumps(report['failures'] or report['errors'])
+assert report['cases'] and not report['failures'] and not report['errors'] and not report['external'] and not report['unexpectedWrites'],json.dumps(report['failures'] or report['errors'])
 print('PASS',len(report['cases']),'bounded synthetic production Next cases')

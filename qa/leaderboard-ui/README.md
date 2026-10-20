@@ -22,3 +22,8 @@ rejected/recovered-result feedback. 200% means root text size, not page zoom.
 The current score response confirms saved statistics, not a new personal or
 global record. Saved-round feedback makes that distinction. Record-specific
 celebrations require the backend owner's separate authoritative contract.
+
+Target only the header navigation with `header-shortcuts` as the browser command’s
+third argument. Its receipt covers hydrated ranked navigation, Back, explicit local
+practice and 1440px / 320px at 200% root text. Other unchanged checks retain their
+prior source identities in `review/receipt.json`.
