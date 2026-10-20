@@ -1,0 +1,4 @@
+.clock { min-width: 0; color: var(--gh-text); }
+.clock p { margin: 0 0 var(--gh-s3); line-height: var(--gh-lh-md); font-size: var(--gh-text-sm); overflow-wrap: anywhere; }
+.clock > span { display: block; color: var(--gh-text-dim); font-size: var(--gh-text-sm); }
+.clock > strong { display: block; margin-block: var(--gh-s2); font: 650 clamp(1.5rem, 5vw, 2.5rem)/1.2 var(--gh-font-mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }

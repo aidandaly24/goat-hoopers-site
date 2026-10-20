@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import type { WeeklyLeaderboardEntry, WeeklyLeaderboardScope, WeeklyLeaderboardState } from "@/domain/arcade/weekly-leaderboard";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
@@ -27,13 +28,14 @@ function Player({ entry }: { entry: WeeklyLeaderboardEntry }) {
 }
 
 /** Pure presentation: accepts an injected, validated board and never loads data. */
-export function WeeklyLeaderboard({ state, scope = "everyone", onScopeChange, onRetry, headingLevel = 2, limit }: {
+export function WeeklyLeaderboard({ state, scope = "everyone", onScopeChange, onRetry, headingLevel = 2, limit, closedTiming }: {
   state: WeeklyLeaderboardState;
   scope?: WeeklyLeaderboardScope;
   onScopeChange?: (scope: WeeklyLeaderboardScope) => void;
   onRetry?: () => void;
   headingLevel?: 1 | 2;
   limit?: number;
+  closedTiming?: ReactNode;
 }) {
   const board = state.status === "ready" ? state.board : null;
   const selectedScope = board?.scope ?? scope;
@@ -56,6 +58,7 @@ export function WeeklyLeaderboard({ state, scope = "everyone", onScopeChange, on
       {closed ? <div className={styles.notice}>
         <p className={styles.noticeTitle}>The weekly board is not open yet.</p>
         <p>{state.message ?? "Ranked play is closed while the competition rules are finalized. Practice is available; practice scores do not appear here."}</p>
+        {closedTiming}
       </div> : state.status === "loading" ? <div className={styles.notice} role="status"><p className={styles.noticeTitle}>Loading rankings…</p><p>Checking validated scores for this scope.</p></div>
         : state.status === "error" ? <div className={styles.notice} role="status">
           <p className={styles.noticeTitle}>Rankings are unavailable.</p><p>The board could not be loaded. No scores are being shown.</p>

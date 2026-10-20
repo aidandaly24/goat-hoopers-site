@@ -12,6 +12,19 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ## Directory map
 
+### Held Arcade opening countdown
+
+The closed `/arcade/leaderboard` page passes the public `WeeklyChallengeCountdown`
+into `WeeklyLeaderboard`'s optional presentation slot. A versioned opening intent
+and bounded held-only DTO live in `domain/arcade/challenge-opening.ts` and
+`held-opening-clock.ts`; `data/arcade-clock.ts` samples the no-store public
+`/api/arcade/free-throw/clock` response with no auth/database/upstream access.
+The injected browser reader reconciles the generic `domain/server-clock.ts` /
+`ui/ServerCountdown` primitive using page-local monotonic samples. Zero never
+opens admission or invents an end. Practice, gameplay and the homepage clock
+remain separate. See `docs/ranked-opening-clock.md` for the unmerged owned-run
+dependency and remaining policy/integration gates.
+
 ### Modeled valuation timeline contract
 
 The selected-player read-only `/api/stocks/[playerId]/history` route delegates
