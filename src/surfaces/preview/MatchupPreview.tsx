@@ -10,7 +10,7 @@ function fmtPts(p: number): string {
   return (p / 100).toFixed(1);
 }
 
-function PreviewCard({ preview }: { preview: MatchupPreview }) {
+function PreviewCard({ preview, championTeamId }: { preview: MatchupPreview; championTeamId?: string | null }) {
   const { matchup, projectedHome, projectedAway, homeWinPct, pick } =
     preview;
   const homePct = Math.round(homeWinPct * 100);
@@ -28,7 +28,7 @@ function PreviewCard({ preview }: { preview: MatchupPreview }) {
       href={`/teams/${teamId}`}
       className={`${styles.side} ${align === "right" ? styles.right : ""}`}
     >
-      <TeamAvatar name={name} avatar={avatar} />
+      <TeamAvatar name={name} avatar={avatar} isChampion={teamId === championTeamId} />
       <span className={styles.sideText}>
         <span className={styles.sideName}>{name}</span>
         <span className={styles.sideRecord}>{record}</span>
@@ -85,9 +85,12 @@ function PreviewCard({ preview }: { preview: MatchupPreview }) {
  */
 export function MatchupPreview({
   previews,
+  championTeamId,
 }: {
   /** From getMatchupPreviews(). Null before the season tips off. */
   previews: MatchupPreview[] | null;
+  /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
+  championTeamId?: string | null;
 }) {
   const week = previews?.[0]?.matchup.week;
   return (
@@ -107,6 +110,7 @@ export function MatchupPreview({
             <PreviewCard
               key={`${p.matchup.week}-${p.matchup.home.id}`}
               preview={p}
+              championTeamId={championTeamId}
             />
           ))}
         </ul>

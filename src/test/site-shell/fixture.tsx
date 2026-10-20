@@ -25,7 +25,7 @@ window.fetch = async (input, init) => {
   throw new Error("Shell fixture forbids application fetch");
 };
 const params = new URLSearchParams(window.location.search);
-const user = params.has("user") ? { displayName: "Synthetic manager with a very long display name", teamId: "1" } : null;
+const user = params.has("user") ? { displayName: "Synthetic manager with a very long display name", teamId: "1", avatar: null } : null;
 const ticker = params.has("ticker") ? <CombinedTicker stocks={[]} headlines={[{ text: "Synthetic shell layout fixture · no live data", publication: "Fixture" }]} /> : null;
 const logout = async () => { throw new Error("Synthetic logout must never be submitted"); };
 const content = window.location.pathname.startsWith("/stocks") ? <>

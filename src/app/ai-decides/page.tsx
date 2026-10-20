@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getCurrentUser } from "@/app/actions";
 import { getAiDecidesData, getTeams } from "@/data/league";
+import { reigningChampionRosterId } from "@/data/history-2025";
 import { AiDecides } from "@/surfaces/ai-decides/AiDecides";
 
 export const metadata: Metadata = { title: "AI Decides | GOAT Hoopers", description: "Published weekly model picks and a decision playground for your own questions." };
@@ -9,5 +10,5 @@ export const metadata: Metadata = { title: "AI Decides | GOAT Hoopers", descript
 export default async function AiDecidesPage() {
   const session = getCurrentUser().then(user => ({ signedIn: user !== null, authUnavailable: false })).catch(() => ({ signedIn: false, authUnavailable: true }));
   const [data, teams, auth] = await Promise.all([getAiDecidesData(), getTeams(), session]);
-  return <AiDecides data={data} teams={teams.map(({ id, name, avatar }) => ({ id, name, avatar }))} {...auth} />;
+  return <AiDecides data={data} teams={teams.map(({ id, name, avatar }) => ({ id, name, avatar }))} {...auth} championTeamId={reigningChampionRosterId()} />;
 }

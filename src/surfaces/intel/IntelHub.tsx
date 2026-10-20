@@ -31,11 +31,14 @@ export function IntelHub({
   rankings,
   odds,
   book,
+  championTeamId,
 }: {
   previews: MatchupPreviewT[] | null;
   rankings: PowerRanking[] | null;
   odds: PlayoffOddsT[] | null;
   book: RecordBookT | null;
+  /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
+  championTeamId?: string | null;
 }) {
   return (
     <div className={styles.surface}>
@@ -49,12 +52,12 @@ export function IntelHub({
       </header>
       <div className={styles.grid}>
         <div className={styles.span}>
-          <MatchupPreview previews={previews} />
+          <MatchupPreview previews={previews} championTeamId={championTeamId} />
         </div>
-        <PowerRankings rankings={rankings} />
-        <PlayoffOdds odds={odds} />
+        <PowerRankings rankings={rankings} championTeamId={championTeamId} />
+        <PlayoffOdds odds={odds} championTeamId={championTeamId} />
         <div className={styles.span}>
-          <RecordBook book={book} />
+          <RecordBook book={book} championTeamId={championTeamId} />
         </div>
       </div>
     </div>

@@ -24,9 +24,12 @@ import styles from "./PlayerPage.module.css";
 export function PlayerPage({
   detail,
   teams,
+  championTeamId,
 }: {
   detail: PlayerDetail;
   teams: Team[];
+  /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
+  championTeamId?: string | null;
 }) {
   const { player, team, transactions, draftPick } = detail;
 
@@ -46,7 +49,7 @@ export function PlayerPage({
             {player.nbaTeam && <Badge tone="neutral">{player.nbaTeam}</Badge>}
             {team ? (
               <Link href={`/teams/${team.id}`} className={styles.teamLink}>
-                <TeamAvatar name={team.name} avatar={team.avatar} />
+                <TeamAvatar name={team.name} avatar={team.avatar} isChampion={team.id === championTeamId} />
                 <span>{team.name}</span>
               </Link>
             ) : (

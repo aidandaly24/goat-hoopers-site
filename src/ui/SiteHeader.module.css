@@ -201,6 +201,16 @@
   flex-shrink: 0;
 }
 
+/* The member's Sleeper avatar fills the ring; the ring's border and
+ * card background stay behind it, so a slow load still reads as the disc. */
+.avatarImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .name {
   max-width: 10rem;
   overflow-wrap: anywhere;

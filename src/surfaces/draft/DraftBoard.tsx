@@ -13,6 +13,8 @@ export type DraftBoardProps = {
   picks: DraftPick[];
   /** All league teams, for avatar/name lookup by pick.teamId. */
   teams: Team[];
+  /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
+  championTeamId?: string | null;
 };
 
 /**
@@ -27,7 +29,7 @@ export type DraftBoardProps = {
  * - Never fetches. Never touches Sleeper. Domain objects in, JSX out.
  * - Empty picks renders the honest empty state (draft hasn't happened).
  */
-export function DraftBoard({ picks, teams }: DraftBoardProps) {
+export function DraftBoard({ picks, teams, championTeamId }: DraftBoardProps) {
   const teamById = new Map(teams.map((t) => [t.id, t]));
 
   // Group picks by round for readable sections (single pass, no hooks).
@@ -64,6 +66,7 @@ export function DraftBoard({ picks, teams }: DraftBoardProps) {
                         <TeamAvatar
                           name={team?.name ?? "Unknown team"}
                           avatar={team?.avatar ?? null}
+                          isChampion={team?.id === championTeamId}
                         />
                         <span className={styles.teamName}>
                           {team?.name ?? "Unknown team"}

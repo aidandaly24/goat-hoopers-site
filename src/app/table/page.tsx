@@ -4,11 +4,13 @@
  * Thin page: loads the board via the data layer and the signed-in
  * viewer's team id via the same session lookup the root layout uses
  * (null when signed out or the account store is unavailable — the board
- * renders plainly either way), then hands both to the surface.
+ * renders plainly either way), then hands both plus the canonical
+ * reigning-champion roster id to the surface.
  */
 import type { Metadata } from "next";
 import { getCurrentUser } from "@/app/actions";
 import { getTableData } from "@/data/league";
+import { reigningChampionRosterId } from "@/data/history-2025";
 import { TheTable } from "@/surfaces/the-table/TheTable";
 
 export const metadata: Metadata = {
@@ -29,5 +31,11 @@ export default async function TablePage() {
     viewerTeamId = null;
   }
   const data = await getTableData();
-  return <TheTable data={data} viewerTeamId={viewerTeamId} />;
+  return (
+    <TheTable
+      data={data}
+      viewerTeamId={viewerTeamId}
+      championTeamId={reigningChampionRosterId()}
+    />
+  );
 }

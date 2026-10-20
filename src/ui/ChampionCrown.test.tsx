@@ -3,6 +3,11 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { ChampionCrown } from "./ChampionCrown";
 import { TeamAvatar } from "./TeamAvatar";
+import {
+  SEASON_2025_PLACEMENTS,
+  reigningChampionRosterId,
+} from "@/data/history-2025";
+import { clubhouseDirectory } from "@/data/clubhouse-directory";
 
 describe("ChampionCrown presentations", () => {
   it("renders the spinnable button only in its interactive presentation", () => {
@@ -13,7 +18,9 @@ describe("ChampionCrown presentations", () => {
   });
 
   it("renders an aria-hidden badge with the same artwork when non-interactive", () => {
-    const html = renderToStaticMarkup(createElement(ChampionCrown, { interactive: false }));
+    const html = renderToStaticMarkup(
+      createElement(ChampionCrown, { interactive: false }),
+    );
     expect(html).not.toContain("<button");
     expect(html).toContain('data-champion-crown="badge"');
     expect(html).toContain('aria-hidden="true"');
@@ -23,9 +30,99 @@ describe("ChampionCrown presentations", () => {
 
   it("TeamAvatar crowns are always the badge, so avatars stay valid inside links and buttons", () => {
     const html = renderToStaticMarkup(
-      createElement(TeamAvatar, { name: "Champs", avatar: null, isChampion: true }),
+      createElement(TeamAvatar, {
+        name: "Champs",
+        avatar: null,
+        isChampion: true,
+      }),
     );
     expect(html).toContain('data-champion-crown="badge"');
     expect(html).not.toContain("<button");
+  });
+
+  it("a champion avatar inside a link renders no nested interactive content", () => {
+    const html = renderToStaticMarkup(
+      createElement(
+        "a",
+        { href: "/teams/5" },
+        createElement(TeamAvatar, {
+          name: "Champs",
+          avatar: null,
+          isChampion: true,
+        }),
+      ),
+    );
+    expect(html).toContain('data-champion-crown="badge"');
+    expect(html).not.toContain("<button");
+  });
+
+  it("non-champions get no crown markup at all", () => {
+    const html = renderToStaticMarkup(
+      createElement(TeamAvatar, { name: "Also-rans", avatar: null }),
+    );
+    expect(html).not.toContain("data-champion-crown");
+    expect(html).not.toContain("<svg");
+  });
+});
+
+describe("TeamAvatar accessible champion status", () => {
+  it("exposes Reigning champion text for a champion with an image avatar", () => {
+    const html = renderToStaticMarkup(
+      createElement(TeamAvatar, {
+        name: "Champs",
+        avatar: "abc123",
+        isChampion: true,
+      }),
+    );
+    expect(html).toContain('class="visually-hidden"');
+    expect(html).toContain("Reigning champion");
+    // Badge stays non-interactive and aria-hidden; the text carries meaning.
+    expect(html).toContain('data-champion-crown="badge"');
+    expect(html).toContain('aria-hidden="true"');
+    expect(html).not.toContain("<button");
+    expect(html).toContain('alt="Champs avatar"');
+  });
+
+  it("exposes Reigning champion text for a champion with initials", () => {
+    const html = renderToStaticMarkup(
+      createElement(TeamAvatar, {
+        name: "Champs",
+        avatar: null,
+        isChampion: true,
+      }),
+    );
+    expect(html).toContain('class="visually-hidden"');
+    expect(html).toContain("Reigning champion");
+    expect(html).toContain('data-champion-crown="badge"');
+    expect(html).not.toContain("<button");
+  });
+
+  it("renders no champion status text for non-champions", () => {
+    for (const avatar of ["abc123", null]) {
+      const html = renderToStaticMarkup(
+        createElement(TeamAvatar, { name: "Also-rans", avatar }),
+      );
+      expect(html).not.toContain("Reigning champion");
+      expect(html).not.toContain("visually-hidden");
+      expect(html).not.toContain("data-champion-crown");
+    }
+  });
+});
+
+describe("reigning champion derivation", () => {
+  it("derives the champion from the verified 2025 placements, never a hardcoded id", () => {
+    const derived = Object.entries(SEASON_2025_PLACEMENTS).find(
+      ([, finish]) => finish === 1,
+    )?.[0];
+    expect(reigningChampionRosterId()).toBe(derived);
+    expect(reigningChampionRosterId()).toBe("5");
+  });
+
+  it("agrees with the clubhouse directory's previous-season finish source", () => {
+    const championEntry = clubhouseDirectory.find(
+      (entry) => entry.previousSeason?.finish === 1,
+    );
+    expect(championEntry?.identity.id).toBe(reigningChampionRosterId());
+    expect(championEntry?.identity.name).toBe("Josh Diddy’s Roster");
   });
 });

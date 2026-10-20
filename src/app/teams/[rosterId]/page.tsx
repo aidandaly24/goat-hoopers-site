@@ -6,6 +6,7 @@
  */
 import { notFound } from "next/navigation";
 import { getTeamProfile, getTeams } from "@/data/league";
+import { reigningChampionRosterId } from "@/data/history-2025";
 import { getFranchiseHistory } from "@/data/history";
 import { getManagerArchetype } from "@/data/manager-archetypes";
 import { TeamProfile } from "@/surfaces/teams/TeamProfile";
@@ -34,6 +35,7 @@ export default async function TeamProfilePage({
         teams={teams}
         franchise={franchise}
         archetype={archetype}
+        championTeamId={reigningChampionRosterId()}
       />
     </>
   );

@@ -16,6 +16,7 @@ import { redirect } from "next/navigation";
 import type { Reward } from "@/domain/arcade";
 import { getCurrentUser } from "@/app/actions";
 import { getTeamDetail, getTeamRosterValue } from "@/data/league";
+import { reigningChampionRosterId } from "@/data/history-2025";
 import { getGameStore } from "@/data/arcade";
 import { TeamPage } from "@/surfaces/team/TeamPage";
 import { friendsAuthEnabled } from "@/data/friends-auth/config";
@@ -60,6 +61,7 @@ export default async function TeamRoute() {
       rosterValue={rosterValue}
       rewards={sorted}
       displayName={user.displayName}
+      championTeamId={reigningChampionRosterId()}
       settingsAvailable={friendsAuthEnabled()}
     />
   );

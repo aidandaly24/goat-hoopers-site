@@ -7,10 +7,14 @@ import styles from "./TeamAvatar.module.css";
  *
  * `isChampion` perches the champion's crown on the avatar as a
  * NON-interactive badge — avatars routinely sit inside links and matchup
- * buttons, where a nested button would be invalid. Surfaces derive the
- * champion from previous-season data (the directory's finish === 1), the
- * same source that prints the "2025 champion" label nearby. The spinnable
- * button variant of the crown is for standalone placements only.
+ * buttons, where a nested button would be invalid. The badge itself is
+ * aria-hidden; the reigning-champion meaning is exposed through a
+ * visually-hidden "Reigning champion" text inside the wrap (existing
+ * visible text nearby is retained where surfaces supply it). Surfaces
+ * derive the champion from previous-season data (the directory's
+ * finish === 1), the same source that prints the "2025 champion" label
+ * nearby. The spinnable button variant of the crown is for standalone
+ * placements only.
  */
 export function TeamAvatar({
   name,
@@ -47,6 +51,7 @@ export function TeamAvatar({
   return (
     <span className={styles.champWrap}>
       {face}
+      <span className="visually-hidden">Reigning champion</span>
       <ChampionCrown interactive={false} />
     </span>
   );
