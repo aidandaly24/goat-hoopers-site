@@ -1,8 +1,11 @@
 import type { RankedPeriod, RankedLeaderboardEntry } from "./ranked-free-throw";
+import { choiceGameId, type ChoiceBoardEntry, type ChoiceGameId } from "./ranked-game-contract";
 
 export type CompetitionFixture = { id: string; date: string; startsAtMs: number };
 export type CompetitionPeriod = {
-  id: string; gameId: "free-throw"; week: string; label: string; order: number;
+  id: string; gameId: "free-throw" | ChoiceGameId; week: string; label: string; order: number;
+  /** Mandatory for choice games. Reviewed scoring compatibility, not a source snapshot hash. */
+  formatVersion?: string;
   opensAtMs: number; predecessorId: string | null;
   calendarSource: string; calendarVersion: string; fixtures: readonly CompetitionFixture[];
 };
@@ -32,7 +35,7 @@ export const runPeriod = (p: PeriodRecord): RankedPeriod => ({ id: p.id, week: p
 
 export type CompetitionBoard = {
   gameId: string; kind: "weekly" | "all-time" | "archive"; label: string; phase: PeriodPhase | "held";
-  asOfMs: number; periodId: string | null; scoreVersion: string; entries: RankedLeaderboardEntry[];
+  asOfMs: number; periodId: string | null; scoreVersion: string; entries: (RankedLeaderboardEntry | ChoiceBoardEntry)[];
 };
 export type CompetitionArchive = { id: string; gameId: string; label: string; closedAtMs: number; finalizedAtMs: number };
 
@@ -43,7 +46,9 @@ export function parseCompetitionCalendar(value: unknown): CompetitionPeriod[] | 
   const ids = new Set<string>(), fixtureIds = new Set<string>(), result: CompetitionPeriod[] = [];
   const midnight = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hourCycle: "h23", hour: "2-digit", minute: "2-digit", second: "2-digit" });
   for (const p of value) {
-    if (!record(p) || typeof p.id !== "string" || !/^[a-z0-9-]{3,80}$/.test(p.id) || ids.has(p.id) || p.gameId !== "free-throw" ||
+    if (!record(p) || typeof p.id !== "string" || !/^[a-z0-9-]{3,80}$/.test(p.id) || ids.has(p.id) || p.gameId !== "free-throw" && !choiceGameId(p.gameId) ||
+      (p.gameId !== "free-throw" && (typeof p.formatVersion !== "string" || !/^[a-f0-9]{64}$/.test(p.formatVersion))) ||
+      (p.gameId === "free-throw" && p.formatVersion !== undefined) ||
       typeof p.week !== "string" || !/^\d{4}-W(?:0[1-9]|[1-4]\d|5[0-3])$/.test(p.week) ||
       typeof p.label !== "string" || !p.label || p.label.length > 100 || typeof p.order !== "number" || !Number.isSafeInteger(p.order) || p.order < 1 ||
       typeof p.opensAtMs !== "number" || !Number.isSafeInteger(p.opensAtMs) || p.opensAtMs < 0 || p.opensAtMs > 8640000000000000 ||
@@ -59,7 +64,7 @@ export function parseCompetitionCalendar(value: unknown): CompetitionPeriod[] | 
       if (!Number.isFinite(Date.parse(date)) || new Date(date).toISOString().slice(0, 10) !== date) return null;
       fixtureIds.add(f.id); fixtures.push({ id: f.id, date: f.date, startsAtMs: f.startsAtMs });
     }
-    ids.add(p.id); result.push({ id: p.id, gameId: "free-throw", week: p.week, label: p.label, order: p.order, opensAtMs: p.opensAtMs,
+    ids.add(p.id); result.push({ id: p.id, gameId: p.gameId as CompetitionPeriod["gameId"], ...(p.gameId === "free-throw" ? {} : { formatVersion: p.formatVersion as string }), week: p.week, label: p.label, order: p.order, opensAtMs: p.opensAtMs,
       predecessorId: p.predecessorId, calendarSource: p.calendarSource, calendarVersion: p.calendarVersion, fixtures });
   }
   result.sort((a, b) => a.order - b.order);

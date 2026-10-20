@@ -47,3 +47,11 @@ it("accepts the sourced Week 1 proposal without installing it or inventing a clo
   const record = { ...proposal![0], receipt: null, closedAtMs: null, finalizedAtMs: null };
   expect(periodPhase(record, starts, true)).toBe("blocked");
 });
+it("requires explicit choice-game scoring formats and retains actual game assignments across rollover", () => {
+  const next = { ...p, id: "draft-week-two", gameId: "week-2-preview", formatVersion: "a".repeat(64), order: 2, predecessorId: p.id,
+    opensAtMs: Date.parse("2026-10-26T04:00:00Z"), fixtures: [{ ...p.fixtures[0], id: "123456790" }] };
+  expect(parseCompetitionCalendar([p, next])?.[1]).toMatchObject({ gameId: "week-2-preview", formatVersion: next.formatVersion });
+  expect(parseCompetitionCalendar([p, { ...next, formatVersion: undefined }])).toBeNull();
+  expect(parseCompetitionCalendar([p, { ...next, gameId: "unknown" }])).toBeNull();
+  expect(parseCompetitionCalendar([{ ...p, formatVersion: "a".repeat(64) }])).toBeNull();
+});

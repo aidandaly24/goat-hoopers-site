@@ -1,7 +1,8 @@
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
-const mocks = vi.hoisted(() => ({ factory: vi.fn(), finality: vi.fn() }));
+const mocks = vi.hoisted(() => ({ factory: vi.fn(), finality: vi.fn(), choices: vi.fn() }));
 vi.mock("../ranked-free-throw/runtime", () => ({ createRankedRuntime: mocks.factory }));
 vi.mock("./finality", () => ({ readFinality: mocks.finality }));
+vi.mock("../ranked-choice/runtime", () => ({ createChoiceRuntime: mocks.choices }));
 vi.mock("next/headers", () => ({ headers: async () => new Headers() }));
 import { ArcadeCompetitionStore } from "./store";
 import { DEFAULT_COMPETITION_POLICY } from "./config";
@@ -19,7 +20,24 @@ beforeEach(() => {
   vi.restoreAllMocks(); vi.clearAllMocks();
   vi.stubEnv("GOAT_ARCADE_RECONCILE_ENABLED", ""); vi.stubEnv("COMMISSIONER_KEY", ""); vi.stubEnv("GOAT_ARCADE_CALENDAR", "");
   store = new ArcadeCompetitionStore({ execute: async () => { throw new Error("unexpected database access"); }, transaction: async () => { throw new Error("unexpected write"); } });
+  vi.spyOn(store, "currentPeriod").mockResolvedValue(null);
+  mocks.choices.mockReturnValue({ enabled: false, adapters: [], store: vi.fn() });
   mocks.factory.mockReturnValue({ configuration: { status: "disabled" }, store: vi.fn(() => store), account: vi.fn(async () => null) });
+});
+it("dispatches the canonical weekly game and immutable archive without mixing Free Throw fields", async () => {
+  const draft = { ...period, gameId: "week-2-preview", formatVersion: "b".repeat(64), scoreVersion: "b".repeat(64), finalizedAtMs: null, closedAtMs: null, receipt: null };
+  vi.spyOn(store, "currentPeriod").mockResolvedValue(draft as never);
+  vi.spyOn(store, "period").mockResolvedValue({ ...draft, finalizedAtMs: 2000, closedAtMs: 2000 } as never);
+  mocks.factory.mockReturnValue({ configuration: config, store: () => store, account: async () => null });
+  const read = vi.fn(async () => ({ ...board, gameId: "week-2-preview", scoreVersion: draft.scoreVersion }));
+  mocks.choices.mockReturnValue({ enabled: true, adapters: [{ gameId: draft.gameId, formatVersion: draft.scoreVersion }], store: () => ({ board: read }) });
+  const weekly = await (await GET(new Request("https://goat.test/api/arcade/competition"))).json();
+  expect(weekly.board.gameId).toBe("week-2-preview");
+  expect(read).toHaveBeenLastCalledWith("weekly", draft, "week-2-preview", draft.scoreVersion, null, "everyone");
+  mocks.choices.mockReturnValue({ enabled: true, adapters: [], store: () => ({ board: read }) });
+  expect((await (await GET(new Request("https://goat.test/api/arcade/competition"))).json()).status).toBe("held");
+  await GET(new Request(`https://goat.test/api/arcade/competition?kind=archive&periodId=${period.id}`));
+  expect(read).toHaveBeenLastCalledWith("archive", expect.objectContaining({ finalizedAtMs: 2000 }), "week-2-preview", draft.scoreVersion, null, "everyone");
 });
 afterEach(() => vi.unstubAllEnvs());
 it("keeps mounted public reads held and reconciler disabled before any storage/provider call", async () => {
