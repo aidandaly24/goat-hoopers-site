@@ -15,6 +15,7 @@ import { friendsAuthEnabled } from "@/data/friends-auth/config";
 import { getVerifiedAccount } from "@/data/friends-auth/runtime";
 import { hasHomeMembership, loadHomeViewer } from "@/data/home-viewer";
 import { buildHomeFaces, buildPersonalizedHome } from "@/data/personalized-home";
+import { getTeamValueHistory } from "@/data/team-value-history";
 import { CourtsideHome } from "@/surfaces/season-hub/CourtsideHome";
 import type { Metadata } from "next";
 
@@ -41,10 +42,14 @@ export default async function Home() {
   // trend. Signed-out and unlinked visitors never trigger it.
   const viewerRosterIds = viewer.kind === "member"
     ? data.directory.find(entry => entry.identity.id === viewer.teamId)?.players.map(player => player.id) ?? [] : [];
-  const [news, guideSources, snapshotHistory] = viewer.kind === "member" ? await Promise.all([
+  // The recorded team-value history (issue #217) is member-only too: the
+  // replayed series for the viewer's own team, read-only from recorded
+  // quotes + the Sleeper feed. Null keeps the section's prior fallback.
+  const [news, guideSources, snapshotHistory, teamHistory] = viewer.kind === "member" ? await Promise.all([
     getLeagueNewsEdition().catch(() => null), getHomePlayerGuideSources().catch(() => null),
     getRosterSnapshotHistory(viewerRosterIds).catch(() => null),
-  ]) : [null, null, null];
+    getTeamValueHistory(viewer.teamId).catch(() => null),
+  ]) : [null, null, null, null];
   const personal = buildPersonalizedHome(viewer, data, aiData.weekly, market, news, guideSources, snapshotHistory);
   const faces = buildHomeFaces(data, market);
   // One surface: the edition itself is personalized in place.
@@ -57,6 +62,7 @@ export default async function Home() {
       viewerTeamId={viewer.kind === "member" ? viewer.teamId : undefined}
       personal={personal}
       faces={faces}
+      teamHistory={teamHistory}
     />
   );
 }
