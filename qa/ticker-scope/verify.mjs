@@ -20,6 +20,9 @@ let server;
 const utilityRoots = ['account', 'admin', 'login', 'signup', 'claim', 'forgot-password', 'reset-password'];
 const utilityRoutes = utilityRoots.flatMap(root => [`/${root}`, `/${root}/fixture/deep`]);
 const contentRoutes = ['/', '/news', '/stocks', '/history', '/teams', '/teams/1', '/team', '/player/fixture-athlete', '/table', '/intel', '/transactions', '/draft', '/weekly/synthetic', '/arcade/free-throw', '/ai-decides', '/accounting', '/login-history'];
+const primaryRoutes = [...new Set([...utilityRoutes, ...contentRoutes])].filter(route => route !== '/player/fixture-athlete');
+const unmatchedRoute = '/fixture-unmatched-missing/nested';
+const matchedNotFoundRoute = '/fixture-matched-missing';
 const ids = (body, prefix) => [...new Set([...body.matchAll(new RegExp(`${prefix}_(\\d{2})`, 'g'))].map(match => Number(match[1])))].sort((a, b) => a - b);
 const range = count => Array.from({ length: count }, (_, index) => index);
 async function callsFor(id) {
@@ -39,7 +42,7 @@ async function clientAssets(origin, body) {
 }
 try {
   assert.equal(Number(process.versions.node.split('.')[0]), 22, 'Run this production Next fixture on the repository Node22 CI runtime; do not install a runtime for this probe.');
-  await mkdir(path.join(temporary, 'app', '[[...segments]]'), { recursive: true });
+  await mkdir(path.join(temporary, 'app'), { recursive: true });
   await writeFile(probeLog, '');
   const rootLayout = await readFile(path.join(source, 'src/app/layout.tsx'), 'utf8');
   const fontImport = 'import { Anton, Geist_Mono, Inter } from "next/font/google";';
@@ -47,16 +50,29 @@ try {
   await writeFile(path.join(temporary, 'app/layout.tsx'), rootLayout.replace(fontImport, 'import { Anton, Geist_Mono, Inter } from "./fixture-fonts";'));
   await copyFile(path.join(source, 'src/app/globals.css'), path.join(temporary, 'app/globals.css'));
   await copyFile(path.join(here, 'fonts.ts'), path.join(temporary, 'app/fixture-fonts.ts'));
-  await copyFile(path.join(here, 'page.tsx'), path.join(temporary, 'app/[[...segments]]/page.tsx'));
+  const primaryContent = path.join(temporary, 'app/fixture-content.tsx');
+  await copyFile(path.join(here, 'content.tsx'), primaryContent);
+  for (const route of primaryRoutes) {
+    const directory = path.join(temporary, 'app', ...route.split('/').filter(Boolean));
+    await mkdir(directory, { recursive: true });
+    const relativeImport = path.relative(directory, primaryContent).split(path.sep).join('/').replace(/\.tsx$/, '');
+    const contentImport = relativeImport.startsWith('.') ? relativeImport : `./${relativeImport}`;
+    await writeFile(path.join(directory, 'page.tsx'), `import FixtureContent from ${JSON.stringify(contentImport)};\nexport const dynamic = 'force-dynamic';\nexport default function Page() { return <FixtureContent route=${JSON.stringify(route)} />; }\n`);
+  }
   await mkdir(path.join(temporary, 'app/player/[playerId]'), { recursive: true });
+  await mkdir(path.join(temporary, 'app', matchedNotFoundRoute.slice(1)), { recursive: true });
   await mkdir(path.join(temporary, 'app/api/ticker-probe'), { recursive: true });
   await copyFile(path.join(here, 'dynamic-page.tsx'), path.join(temporary, 'app/player/[playerId]/page.tsx'));
+  await copyFile(path.join(here, 'matched-not-found-page.tsx'), path.join(temporary, 'app', matchedNotFoundRoute.slice(1), 'page.tsx'));
   await copyFile(path.join(here, 'not-found.tsx'), path.join(temporary, 'app/not-found.tsx'));
   await copyFile(path.join(here, 'route.ts'), path.join(temporary, 'app/api/ticker-probe/route.ts'));
   await copyFile(path.join(here, 'robots.ts'), path.join(temporary, 'app/robots.ts'));
   await cp(path.join(source, 'src/app/@ticker'), path.join(temporary, 'app/@ticker'), { recursive: true, filter: filename => !filename.includes('.test.') });
   const slotFiles = await readdir(path.join(temporary, 'app/@ticker'));
-  assert.ok(slotFiles.includes('default.tsx') && slotFiles.includes('[[...segments]]'), 'Actual production slot/default must be copied');
+  assert.ok(['default.tsx', 'page.tsx', 'Ticker.tsx', '[...segments]'].every(filename => slotFiles.includes(filename)), 'Actual production root page, required catch-all, implementation and default must be copied');
+  assert.ok(!slotFiles.includes('[[...segments]]'), 'Ticker root and required catch-all must avoid the optional-catch-all specificity collision');
+  const primaryFiles = await readdir(path.join(temporary, 'app'));
+  assert.ok(!primaryFiles.includes('[...segments]') && !primaryFiles.includes('[[...segments]]') && !primaryFiles.includes('fixture-unmatched-missing'), 'Unknown-path check must have no primary catch-all or matching page');
   await symlink(path.join(repo, 'node_modules'), path.join(temporary, 'node_modules'));
   await symlink(path.join(repo, 'public'), path.join(temporary, 'public'));
   await writeFile(path.join(temporary, 'package.json'), JSON.stringify({ name: 'goat-ticker-scope-regression', private: true }));
@@ -100,7 +116,7 @@ try {
     if (flight) assert.match(response.headers.get('content-type') ?? '', /text\/x-component/);
     assert.ok(body.includes('GOAT Hoopers — Fantasy Basketball League'), `${context}: inherited root metadata missing`);
     if (item.route === '/player/fixture-athlete') {
-      assert.ok(body.includes('Synthetic dynamic player route'), `${context}: specific dynamic route lost to catch-all`);
+      assert.ok(body.includes('Synthetic dynamic player route'), `${context}: specific dynamic primary route missing`);
       assert.ok(body.includes('Synthetic ticker player fixture-athlete'), `${context}: dynamic metadata missing`);
     } else if (!flight) assert.match(body, /<title>GOAT Hoopers — Fantasy Basketball League<\/title>/);
     const calls = await callsFor(id);
@@ -118,9 +134,9 @@ try {
       marketCalls: calls.filter(row => row.loader === 'market').length, newsCalls: calls.filter(row => row.loader === 'news').length,
       stockDtoCount: item.stockCount, newsDtoCount: item.newsCount, bytes: Buffer.byteLength(body) });
   }
-  for (const flight of [false, true]) {
-    const id = `not-found-${flight ? 'flight' : 'html'}`;
-    const response = await fetch(`${origin}/__fixture_missing/nested`, { headers: {
+  for (const route of [unmatchedRoute, matchedNotFoundRoute]) for (const flight of [false, true]) {
+    const id = `not-found-${checks.length}-${flight ? 'flight' : 'html'}`;
+    const response = await fetch(`${origin}${route}`, { headers: {
       'x-ticker-probe': id, 'x-ticker-fixture-case': 'full', 'User-Agent': 'Googlebot', ...(flight ? { RSC: '1' } : {}),
     }, signal: AbortSignal.timeout(15000) });
     const body = await response.text();
@@ -134,9 +150,10 @@ try {
     }
     assert.ok(!body.includes('Synthetic ticker scope primary page'), 'Unknown path became a successful primary page');
     const calls = await callsFor(id);
-    checks.push({ route: '/__fixture_missing/nested', transport: flight ? 'Flight' : 'HTML', status: response.status,
+    checks.push({ route, transport: flight ? 'Flight' : 'HTML', status: response.status,
       notFound: true, marketCalls: calls.filter(row => row.loader === 'market').length, newsCalls: calls.filter(row => row.loader === 'news').length,
-      note: 'A matching ticker slot does not turn the primary notFound into success; streamed Flight may retain HTTP200 with the404controlsignal.' });
+      primaryMatch: route === unmatchedRoute ? 'none' : 'explicit page invoking notFound()',
+      note: 'A matching ticker slot must preserve the primary 404 boundary; streamed Flight may retain HTTP200 with the 404 control signal.' });
   }
   for (const route of ['/api/ticker-probe', '/robots.txt']) for (const flight of [false, true]) {
     const id = `precedence-${checks.length}`;
@@ -155,7 +172,8 @@ try {
     checks.push({ route, transport: flight ? 'RSC-header handler request' : 'HTTP', status: response.status, marketCalls: 0, newsCalls: 0, handlerPrecedence: true });
   }
   assert.ok(!logs.join('').includes('Attempted to call'), logs.join(''));
-  console.log(JSON.stringify({ source, fixture: 'actual production root layout + optional catch-all ticker slot + default + policy', checks,
+  console.log(JSON.stringify({ source, fixture: 'actual production root layout + root/required-catch-all ticker slot + default + policy', checks,
+    explicitPrimaryRoutes: primaryRoutes, dynamicPrimaryRoute: '/player/[playerId]', unmatchedPrimaryRoute: unmatchedRoute,
     utilityClientAssets: assets, fontImportReplacements: 1, credentials: 'absent', externalFetchesAndSockets: 'blocked',
     productionWrites: 'none', fixtureWrites: 'temporary build and request probe log only',
     browserSoftNavigation: 'not exercised; HTML + Flight verify server route matching only' }, null, 2));

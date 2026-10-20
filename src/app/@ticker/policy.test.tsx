@@ -10,7 +10,7 @@ vi.mock("@/data/league", () => ({
 vi.mock("@/surfaces/stock-market/CombinedTicker", () => ({
   CombinedTicker: () => null,
 }));
-import TickerSlot from "./[[...segments]]/page";
+import Ticker from "./Ticker";
 import DefaultTicker from "./default";
 
 const stock = (index: number) => ({
@@ -22,7 +22,7 @@ const article = (index: number) => ({
   headline: `Headline ${index}`, outlet: { name: "Fixture", secret: true },
   body: "Must not ship",
 });
-const render = (segments?: string[]) => TickerSlot({ params: Promise.resolve({ segments }) });
+const render = (segments?: string[]) => Ticker({ segments });
 
 beforeEach(() => {
   vi.resetAllMocks();

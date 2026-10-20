@@ -4,19 +4,18 @@ import {
   type TickerHeadline,
   type TickerStock,
 } from "@/surfaces/stock-market/CombinedTicker";
-import { shouldRenderTicker } from "../policy";
+import { shouldRenderTicker } from "./policy";
 
 /**
  * A matched slot returns null for utility flows, so soft navigation clears
  * the previous ticker too. Gate here: hiding a slot in its parent would
  * still execute its server loaders.
  */
-export default async function TickerSlot({
-  params,
+export default async function Ticker({
+  segments,
 }: {
-  params: Promise<{ segments?: string[] }>;
+  segments?: readonly string[];
 }) {
-  const { segments } = await params;
   if (!shouldRenderTicker(segments)) return null;
 
   let stocks: TickerStock[] = [];

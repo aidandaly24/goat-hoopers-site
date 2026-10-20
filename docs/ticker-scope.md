@@ -1,7 +1,8 @@
 # Ticker route scope — issue #224 / audit A7
 
 The root header receives a named `@ticker` parallel slot. Its matched
-`[[...segments]]/page.tsx` returns `null` before loading market or news for
+home page and `[...segments]/page.tsx` share a private server `Ticker`
+component that returns `null` before loading market or news for
 `account`, `admin`, `login`, `signup`, `claim`, `forgot-password`, and
 `reset-password`, including their nested routes. League and content pages
 retain the existing ticker. Whole-segment matching keeps `/accounting`

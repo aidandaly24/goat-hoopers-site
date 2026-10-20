@@ -7,11 +7,16 @@ on an OS-selected `127.0.0.1` port, prints JSON evidence, then stops the process
 and removes only its own temporary directory. It does not run against the site.
 
 The fixture copies the actual production root layout, global CSS, entire
-`@ticker` route subtree (excluding tests), optional catch-all page, null default
-and route policy. Actual SiteHeader, SiteChrome, ThemeBootstrap, theme controls,
+`@ticker` route subtree (excluding tests), root page, required catch-all page,
+shared Ticker implementation, null default and route policy. The separate root
+page and required catch-all avoid Next's root/optional-catch-all specificity
+collision. Actual SiteHeader, SiteChrome, ThemeBootstrap, theme controls,
 footer and CombinedTicker remain in the render tree. Synthetic primary content
-matches the route matrix; an explicit unknown-path branch calls notFound().
-A specific synthetic player route tests dynamic params/metadata, and synthetic
+is generated as explicit pages only for the route matrix, using a shared plain
+component. There is no primary catch-all. `/fixture-unmatched-missing/nested` therefore
+matches only the ticker slot and must still produce the real 404 boundary.
+A separate matched primary page invokes notFound(), a specific synthetic player
+route tests dynamic params/metadata, and synthetic
 API/robots routes test handler precedence. No actual account/content page loader
 is executed.
 The installed Next parallel-routes documentation warns that unmatched slots can
@@ -50,8 +55,9 @@ exactly once and send only25 stock/12 headline identities from larger inputs.
 Deep source-field sentinels must never reach either transport. Empty results,
 each independent outage, market-only and news-only fallbacks retain the current
 Promise.all fail-soft semantics. The actual header/main/footer and inherited root metadata must remain. The
-specific dynamic route must override the generic catch-all and emit its own
-metadata. Unknown paths must retain a 404 boundary/noindex (bot HTML404; streamed
+specific dynamic primary route must receive its params and emit its own
+metadata. Both a truly unmatched primary path and a matched page invoking
+notFound() must retain a 404 boundary/noindex (bot HTML404; streamed
 Flight may use HTTP200 only with Next's explicit404 control signal). API and
 metadata-route requests, including an RSC header, must retain handler precedence
 and execute no ticker loaders.
