@@ -9,7 +9,6 @@ import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import styles from "./StandingsTable.module.css";
-import personal from "./PersonalizedHome.module.css";
 import { nextSort, sortStandings, standingInitialDirection, type StandingSortKey, type SortOrder } from "./homepageSorting";
 
 function fmtPoints(p: number): string {
@@ -53,7 +52,7 @@ export function StandingsTable({ standings, viewerTeamId, championTeamId }: { st
           <Link
             key={s.team.id}
             href={`/teams/${s.team.id}`}
-            className={`${styles.row} ${s.team.id === viewerTeamId ? personal.ownTeam : ""}`}
+            className={`${styles.row} ${s.team.id === viewerTeamId ? styles.ownTeam : ""}`}
             data-own-team={s.team.id === viewerTeamId || undefined}
             role="row"
             aria-label={`View ${s.team.name}${s.team.id === viewerTeamId ? ", your team" : ""}`}
@@ -74,9 +73,9 @@ export function StandingsTable({ standings, viewerTeamId, championTeamId }: { st
             </span>
             <span role="cell" className={styles.team}>
               <TeamAvatar name={s.team.name} avatar={s.team.avatar} isChampion={s.team.id === championTeamId} />
-              <span>
+              <span className={styles.identity}>
                 <span className={styles.name}>{s.team.name}</span>
-                {s.team.id === viewerTeamId && <span className={personal.you}>Your team</span>}
+                {s.team.id === viewerTeamId && <span className={styles.you}>Your team</span>}
                 <span className={styles.manager}>{s.team.managerName}</span>
               </span>
             </span>

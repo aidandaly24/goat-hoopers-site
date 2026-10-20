@@ -11,15 +11,16 @@
  *   - Components never import this module (let alone the seed map); they
  *     receive the resolved `espnId` as a plain domain value.
  *
- * Today the only checked-in source is SEED_ESPN_ID_MAP: a tiny set of ESPN ids
- * verified by hand (ESPN athlete pages + the headshot PNGs themselves returning
- * 200 at 600x436). When Aidan's agent delivers the full Sleeper -> ESPN table
- * (committed on #48), swap SEED_ESPN_ID_MAP at the wiring points in league.ts
+ * The checked-in source is ESPN_ID_MAP (607 players, built 2026-10-08 — see
+ * the export below). SEED_ESPN_ID_MAP remains as the hand-verified subset
+ * (acceptance-criterion spot checks). Wiring in league.ts passes ESPN_ID_MAP
  * — zero component edits (acceptance criterion 4).
  *
  * Plain <img> only for headshots, never next/image (Hobby's 1,000
  * image-optimizations/month budget); next.config remotePatterns untouched.
  */
+
+import fullMapJson from "./espn-id-map.json";
 
 /** Sleeper player_id -> ESPN athlete id. */
 export type EspnIdMap = Record<string, string>;
@@ -61,6 +62,24 @@ export const SEED_ESPN_ID_MAP: EspnIdMap = {
   "2275": "4432194",
   "1362": "1966",
 };
+
+/**
+ * The full Sleeper -> ESPN mapping table (607 players), built 2026-10-08 by
+ * Aidan's Muse (the build the dot committed to on #47/#48).
+ *
+ * Sources: Sleeper /players/nba (619 active, team+position set) joined to the
+ * ESPN public roster API (30 teams, 609 athletes) on normalized fullName
+ * (NFKD accent-strip, lowercase, suffix-drop, punctuation-strip).
+ * - 607 matched, 0 ambiguous, 12 unmatched (absent from ESPN's published
+ *   rosters — camp cuts / two-ways; listed in espn-id-map.manifest.json).
+ * - All 7 hand-verified SEED_ESPN_ID_MAP entries reproduce exactly.
+ * - 13/13 sampled headshot PNGs return 200 on a.espncdn.com.
+ *
+ * Players missing here (or whose PNG 404s) render the initials fallback —
+ * see PlayerHeadshot. Regenerate with the script that produced it if ESPN
+ * reassigns athlete ids.
+ */
+export const ESPN_ID_MAP: EspnIdMap = fullMapJson;
 
 /**
  * The ESPN CDN headshot URL for an athlete id. Pure formatter — no fetch —

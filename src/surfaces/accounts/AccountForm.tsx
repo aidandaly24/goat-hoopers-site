@@ -1,9 +1,11 @@
 "use client";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
+import { loginContinuationHref } from "@/domain/login-navigation";
+import controls from "@/ui/controls.module.css";
 import styles from "./AccountForm.module.css";
 
 type Mode = "signup" | "login" | "setup" | "forgot" | "team-recovery" | "reset" | "password" | "claim" | "link";
@@ -27,17 +29,21 @@ const descriptions: Record<Mode, string> = {
 /** Account access: create/recover an email account, then claim/link a team separately.
  * Pending/error/verification states stay in one narrow form; codes never serve as passwords.
  * Passwords go straight to same-origin endpoints, never React state or browser storage. */
-export function AccountForm({ mode, token, notice, teams = [], initialTeamId = "" }: {
-  mode: Mode; token?: string; notice?: string | null; teams?: { id: string; name: string }[]; initialTeamId?: string;
+export function AccountForm({ mode, token, notice, teams = [], initialTeamId = "", returnTo = "/" }: {
+  mode: Mode; token?: string; notice?: string | null; teams?: { id: string; name: string }[]; initialTeamId?: string; returnTo?: string;
 }) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+  const submitting = useRef(false);
   const email = ["signup", "login", "setup", "forgot"].includes(mode);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting.current) return;
+    submitting.current = true;
+    let navigating = false;
     const form = event.currentTarget;
     const data = new FormData(form);
     const value = (name: string) => String(data.get(name) ?? "");
@@ -77,11 +83,17 @@ export function AccountForm({ mode, token, notice, teams = [], initialTeamId = "
           "Could not complete this request. Check your details or try again later.");
       } else {
         form.reset();
-        if (mode === "login" || mode === "claim" || mode === "link") { router.replace("/account"); router.refresh(); return; }
+        if (mode === "login" || mode === "claim" || mode === "link") {
+          // A document navigation drops pre-login Router Cache entries. The
+          // server rechecks the new cookie, membership and safe destination.
+          window.location.replace(loginContinuationHref(returnTo));
+          navigating = true;
+          return;
+        }
         setDone(true);
       }
     } catch { setError("Account service is unavailable. Try again shortly."); }
-    finally { setPending(false); }
+    finally { if (!navigating) { submitting.current = false; setPending(false); } }
   }
 
   return <Card className={styles.card}>
@@ -93,7 +105,7 @@ export function AccountForm({ mode, token, notice, teams = [], initialTeamId = "
         mode === "team-recovery" ? "If your team has a verified recovery email, a reset link will arrive there. Check spam too." :
         mode === "forgot" ? "If this email matches a verified account, a reset link will arrive there. Check spam too." :
         "Check your email to verify your account, then log in with email. Check spam too."}
-      {(mode === "signup" || mode === "setup") && <> <Link href="/account/login">Log in with email</Link></>}
+      {(mode === "signup" || mode === "setup") && <Link href="/account/login" className={styles.noticeAction}>Log in with email</Link>}
     </p> : <form onSubmit={submit} className={styles.form} aria-busy={pending}>
       {(mode === "signup" || mode === "setup") && <>
         <label className={styles.field}><span>Username</span><input name="username" required minLength={3} maxLength={20} pattern="[A-Za-z0-9_]{3,20}" autoComplete="nickname" autoCapitalize="none" className={styles.input} /><small>3–20 letters, numbers or underscores. Separate from your team name.</small></label>
@@ -115,12 +127,14 @@ export function AccountForm({ mode, token, notice, teams = [], initialTeamId = "
         {pending ? "Working…" : mode === "login" ? "Log in" : mode === "forgot" || mode === "team-recovery" ? "Send reset email" : mode === "signup" ? "Create account" : mode === "claim" ? "Claim team" : mode === "link" ? "Link my existing team" : "Continue"}
       </button>
     </form>}
-    <p className={styles.switch}><Link href="/account/login">Log in with email</Link> · <Link href="/forgot-password?account=1">Reset password</Link>
-      {mode === "team-recovery" && <> · <Link href="/signup">Create account</Link></>}
-      {(mode === "setup" || mode === "link") && <> · <Link href="/login?legacy=1">Confirm existing team password</Link></>}
-      {mode === "password" && <> · <Link href="/login?notice=reverify">Confirm your login again</Link></>}
-      {mode === "login" && <> · <Link href="/signup">Create account</Link></>}
-      {["claim", "link", "password"].includes(mode) && <> · <button type="button" disabled={pending} onClick={async () => {
+    <nav className={styles.switch} aria-label="Account help">
+      <Link href="/account/login" className={controls.quiet}>Log in with email</Link>
+      <Link href="/forgot-password?account=1" className={controls.quiet}>Reset password</Link>
+      {mode === "team-recovery" && <Link href="/signup" className={controls.quiet}>Create account</Link>}
+      {(mode === "setup" || mode === "link") && <Link href="/login?legacy=1" className={controls.quiet}>Confirm existing team password</Link>}
+      {mode === "password" && <Link href="/login?notice=reverify&next=%2Faccount%2Fpassword" className={controls.quiet}>Confirm your login again</Link>}
+      {mode === "login" && <Link href="/signup" className={controls.quiet}>Create account</Link>}
+      {["claim", "link", "password"].includes(mode) && <button type="button" className={controls.quiet} disabled={pending} onClick={async () => {
         setPending(true);
         try {
           const response = await fetch("/api/auth/sign-out", { method: "POST", credentials: "same-origin",
@@ -129,7 +143,7 @@ export function AccountForm({ mode, token, notice, teams = [], initialTeamId = "
           router.replace("/account/login"); router.refresh();
         } catch { setError("Could not sign out. Try again shortly."); }
         finally { setPending(false); }
-      }}>Log out of email account</button></>}
-    </p>
+      }}>Log out of email account</button>}
+    </nav>
   </Card>;
 }

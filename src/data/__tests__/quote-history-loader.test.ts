@@ -19,7 +19,7 @@ const fakeFetch = vi.fn<typeof fetch>();
 
 beforeEach(() => {
   vi.useFakeTimers(); vi.setSystemTime(new Date("2026-10-08T12:00:00Z"));
-  vi.mocked(getStockStore).mockReturnValue({ getQuoteHistory, getPricePath, saveSnapshot });
+  vi.mocked(getStockStore).mockReturnValue({ getQuoteHistory, getPricePath, saveSnapshot, getSnapshotHistory: vi.fn(async () => ({})) });
   getQuoteHistory.mockReset().mockImplementation(async (ids: string[]) => Object.fromEntries(
     ids.filter(id => id !== "draft").map(id => [id, [{ date: "2026-10-07T00:00:00.000Z", price: 10, source: "live" }]])));
   getPricePath.mockReset().mockResolvedValue([

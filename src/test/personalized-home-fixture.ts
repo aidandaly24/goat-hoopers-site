@@ -11,7 +11,7 @@ export function personalizedFixture() {
     managerName: `Fixture Manager ${index + 1}`, avatar: null, wins: 3, losses: index % 3, ties: 0, pointsFor: 123456, pointsAgainst: 100000 }));
   const pairs: Matchup[] = Array.from({ length: 5 }, (_, index) => ({ week: 3, home: teams[index * 2], away: teams[index * 2 + 1], homePoints: index === 0 ? 0 : 105.5, awayPoints: null }));
   const directory = teams.map(identity => ({ identity, currentRecord: identity, previousSeason: null, currentMatchup: pairs.find(pair => [pair.home.id, pair.away.id].includes(identity.id))!, latestMove: null,
-    players: Array.from({ length: 4 }, (_, index) => ({ id: `${identity.id}-player-${index}`, fullName: `Synthetic ${identity.id} Player ${index + 1}`, position: 'PG', nbaTeam: 'SYN' })),
+    players: Array.from({ length: 4 }, (_, index) => ({ id: `${identity.id}-player-${index}`, fullName: `Synthetic ${identity.id} Player ${index + 1}`, position: 'PG', nbaTeam: 'SYN', espnId: null })),
     featuredPlayerIds: [], opener: null, recentMove: null }));
   const home: CourtsideHomeData = { ...syntheticHome, directory, rosterNamesAvailable: true, checkedAt: '2026-11-12T12:00:00Z',
     hub: { season: { leagueName: 'Fixture League', seasonYear: '2026', status: 'in_season', totalTeams: 10, playoffTeams: 6, playoffWeekStart: 20 }, teams,

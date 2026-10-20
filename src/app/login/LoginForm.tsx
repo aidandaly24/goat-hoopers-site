@@ -16,20 +16,21 @@ export function LoginForm({
   enrollment = false,
   accountsAvailable = false,
   initialTeamId = "",
+  returnTo = "/",
 }: {
   teams: { id: string; name: string }[];
   notice?: string | null;
   enrollment?: boolean;
   accountsAvailable?: boolean;
   initialTeamId?: string;
+  returnTo?: string;
 }) {
   const [selectedTeam, setSelectedTeam] = useState(initialTeamId);
   const [state, formAction, pending] = useActionState(
     async (_prev: ActionResult, formData: FormData): Promise<ActionResult> => {
-      return (enrollment ? loginForEnrollment : login)(
-        String(formData.get("teamId") ?? ""),
-        String(formData.get("password") ?? ""),
-      );
+      const teamId = String(formData.get("teamId") ?? "");
+      const password = String(formData.get("password") ?? "");
+      return enrollment ? loginForEnrollment(teamId, password) : login(teamId, password, returnTo);
     },
     initial,
   );
@@ -72,7 +73,7 @@ export function LoginForm({
         </button>
       </form>
       {accountsAvailable && <p className={styles.switch}>
-        <Link href={selectedTeam ? `/forgot-password?team=${encodeURIComponent(selectedTeam)}` : "/forgot-password"}>Reset password</Link> · <Link href="/signup">Create account</Link> · <Link href="/account/login">Log in with email</Link>
+        <Link href={selectedTeam ? `/forgot-password?team=${encodeURIComponent(selectedTeam)}` : "/forgot-password"}>Reset password</Link> · <Link href="/signup">Create account</Link> · <Link href={returnTo === "/" ? "/account/login" : `/account/login?next=${encodeURIComponent(returnTo)}`}>Log in with email</Link>
       </p>}
       {!enrollment && <p className={styles.switch}>
         Have a team code? <Link href="/claim">Claim your team</Link>

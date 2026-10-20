@@ -28,6 +28,10 @@ export type PriceHistory = Record<string, PriceHistoryPoint[]>;
 const HISTORY_POINTS = STOCK_CHART_POINTS;
 /** Live snapshots kept in a selected-player chart. */
 const LIVE_POINTS = 10;
+/** Recorded snapshots kept per player in a batched roster-history read.
+ * Snapshots land at most daily (see SNAPSHOT_MIN_INTERVAL_MS) inside a
+ * 30-day retention, so 40 covers the whole retained window. */
+const SNAPSHOT_HISTORY_POINTS = 40;
 const RETENTION_DAYS = 30;
 /**
  * Minimum gap between snapshots. Fundamentals refresh daily (see
@@ -43,6 +47,11 @@ const asSource = (s: string): PriceSource =>
 export type StockStore = {
   /** At most one latest observed/live baseline per requested player; no reconstruction. */
   getQuoteHistory(playerIds: string[]): Promise<PriceHistory>;
+  /** Every retained recorded snapshot for the requested players in one
+   * query, oldest → newest per player (capped at SNAPSHOT_HISTORY_POINTS).
+   * Recorded points only — never reconstruction. Powers aggregate
+   * recorded-history views such as a roster's value trend. */
+  getSnapshotHistory(playerIds: string[]): Promise<PriceHistory>;
   saveSnapshot(prices: Record<string, number>): Promise<void>;
   /** Selected-player chart: reconstruction + latest 10 live points; caller reserves its current-quote slot. */
   getPricePath(playerId: string, maxPoints?: number): Promise<PriceHistoryPoint[]>;
@@ -71,6 +80,31 @@ class DrizzleStockStore implements StockStore {
       }]]));
     } catch {
       // Missing live table/read failure: no baseline, never reconstructed fallback.
+      return {};
+    }
+  }
+
+  async getSnapshotHistory(playerIds: string[]): Promise<PriceHistory> {
+    const ids = [...new Set(playerIds)];
+    if (ids.length === 0) return {};
+    try {
+      const rows = await this.db
+        .select({ playerId: stockSnapshots.playerId, priceCents: stockSnapshots.priceCents, snapshotAt: stockSnapshots.snapshotAt })
+        .from(stockSnapshots)
+        .where(inArray(stockSnapshots.playerId, ids))
+        .orderBy(stockSnapshots.playerId, stockSnapshots.snapshotAt, stockSnapshots.id);
+      const grouped = new Map<string, PriceHistoryPoint[]>();
+      for (const row of rows) {
+        const points = grouped.get(row.playerId) ?? [];
+        points.push({ date: row.snapshotAt.toISOString(), price: row.priceCents / 100, source: "live" });
+        grouped.set(row.playerId, points);
+      }
+      return Object.fromEntries([...grouped].map(([id, points]) => [
+        id, points.length > SNAPSHOT_HISTORY_POINTS ? points.slice(-SNAPSHOT_HISTORY_POINTS) : points,
+      ]));
+    } catch {
+      // Missing live table/read failure: no recorded history, never a
+      // reconstructed fallback.
       return {};
     }
   }
@@ -132,6 +166,9 @@ class DrizzleStockStore implements StockStore {
 
 class NoopStockStore implements StockStore {
   async getQuoteHistory(): Promise<PriceHistory> {
+    return {};
+  }
+  async getSnapshotHistory(): Promise<PriceHistory> {
     return {};
   }
   async getPricePath(): Promise<PriceHistoryPoint[]> {

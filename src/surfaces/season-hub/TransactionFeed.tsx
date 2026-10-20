@@ -19,32 +19,46 @@ const TYPE_LABEL: Record<Transaction["type"], string> = {
 
 /**
  * Latest league activity. Empty state covers the quiet offseason.
- * Player and team names link out via TransactionSummary.
+ * Player and team names link out via TransactionSummary. The viewer's own
+ * moves (extraTransactions) fold into this same wire — merged by recency
+ * and marked "Your team" — never a separate around-your-team section.
  */
 export function TransactionFeed({
   transactions,
   teams,
+  viewerTeamId,
+  extraTransactions = [],
 }: {
   transactions: Transaction[];
   teams: Team[];
+  viewerTeamId?: string;
+  extraTransactions?: Transaction[];
 }) {
+  const seen = new Set(transactions.map((t) => t.id));
+  const merged = [...extraTransactions.filter((t) => !seen.has(t.id)), ...transactions]
+    .sort((a, b) => b.createdAt - a.createdAt)
+    .slice(0, 12);
   return (
     <Card>
       <SectionHeading eyebrow="Around the league" title="Recent Activity" />
-      {transactions.length === 0 ? (
+      {merged.length === 0 ? (
         <p className={styles.empty}>
           Quiet on the wire. The league office is waiting for someone to make a move.
         </p>
       ) : (
         <ul className={styles.feed}>
-          {transactions.map((t) => (
-            <li key={t.id} className={styles.item}>
-              <Badge tone={TONE[t.type]}>{TYPE_LABEL[t.type]}</Badge>
-              <span className={styles.summary}>
-                <TransactionSummary transaction={t} teams={teams} />
-              </span>
-            </li>
-          ))}
+          {merged.map((t) => {
+            const own = !!viewerTeamId && t.teamIds.includes(viewerTeamId);
+            return (
+              <li key={t.id} className={own ? `${styles.item} ${styles.ownItem}` : styles.item} data-own-move={own || undefined}>
+                <Badge tone={TONE[t.type]}>{TYPE_LABEL[t.type]}</Badge>
+                <span className={styles.summary}>
+                  <TransactionSummary transaction={t} teams={teams} />
+                </span>
+                {own && <span className={styles.youTag}>Your team</span>}
+              </li>
+            );
+          })}
         </ul>
       )}
     </Card>

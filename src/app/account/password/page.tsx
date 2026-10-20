@@ -6,6 +6,6 @@ import { AccountForm } from "@/surfaces/accounts/AccountForm";
 export const dynamic = "force-dynamic";
 export default async function AccountPasswordPage() {
   if (!friendsEnrollmentEnabled()) redirect("/login");
-  if (!await getVerifiedAccount(await headers())) redirect("/account/login");
+  if (!await getVerifiedAccount(await headers())) redirect("/account/login?next=%2Faccount%2Fpassword");
   return <AccountForm mode="password" />;
 }
