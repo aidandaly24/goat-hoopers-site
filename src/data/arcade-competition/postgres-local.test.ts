@@ -1,4 +1,8 @@
-import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+const worker = vi.hoisted(() => ({ factory: vi.fn(), finality: vi.fn() }));
+vi.mock("../ranked-free-throw/runtime", () => ({ createRankedRuntime: worker.factory }));
+vi.mock("./finality", () => ({ readFinality: worker.finality }));
+vi.mock("next/headers", () => ({ headers: async () => new Headers() }));
 import { randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { Pool } from "pg";
@@ -8,6 +12,7 @@ import { freeThrowRulesVersion } from "../ranked-free-throw/config";
 import { parseFreeThrowPolicy, rankedReplayContext, type RankedAccount } from "@/domain/arcade/ranked-free-throw";
 import { submitRankedScore } from "../ranked-free-throw/service";
 import type { CompetitionPeriod, FinalityReceipt } from "@/domain/arcade/competition-period";
+import { POST } from "@/app/api/arcade/competition/reconcile/route";
 
 describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("canonical competition against the existing disposable PostgreSQL fixture", () => {
   const schema = `arcade_period_${randomUUID().replaceAll("-", "")}`;
@@ -45,6 +50,7 @@ describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("canonical compet
     }
   }, 30000);
   beforeEach(async () => {
+    vi.clearAllMocks();
     await pool.query("TRUNCATE arcade_weekly_results,ranked_free_throw_scores,ranked_free_throw_runs,arcade_competition_periods CASCADE");
     await pool.query("DELETE FROM account_identities; DELETE FROM site_users");
     await pool.query("UPDATE auth_user SET name=CASE WHEN id=$1 THEN 'alpha' ELSE 'beta' END", [a.subject]);
@@ -54,6 +60,7 @@ describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("canonical compet
     next = { ...p, id: "test-week-2", week: "2026-W02", label: "Synthetic week two", order: 2, predecessorId: p.id, opensAtMs: now - 1800000,
       fixtures: [{ id: "123456790", date: "20261021", startsAtMs: now - 1000000 }] };
   });
+  afterEach(() => vi.unstubAllEnvs());
   afterAll(async () => { if (owns) await pool.query(`DROP SCHEMA ${schema} CASCADE`); await pool.end(); });
 
   it("enforces before-open, missing/stale authority, verified ownership and unlimited admissions with one active run", async () => {
@@ -275,5 +282,61 @@ describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("canonical compet
     await store.reconcile([p, next], config, new Map([[p.id, receipt(p, "final")], [next.id, { ...receipt(next), checkedAtMs: at }]]));
     expect((await store.board("weekly", null, config, null))).toMatchObject({ periodId: next.id, phase: "blocked" });
     expect((await store.start(a, config)).status).toBe("week_closing");
+  });
+  it("passes a dedicated-token mounted POST through the actual period transaction", async () => {
+    const token = "a".repeat(64), at = Date.now();
+    const utc = (ms: number) => new Date(ms).toISOString().replace(/\.\d{3}Z$/, "Z");
+    vi.stubEnv("GOAT_ARCADE_RECONCILE_ENABLED", "1"); vi.stubEnv("GOAT_ARCADE_RECONCILE_TOKEN", token);
+    vi.stubEnv("GOAT_ARCADE_RECONCILE_NOT_BEFORE", utc(at - 2000)); vi.stubEnv("GOAT_ARCADE_RECONCILE_EXPIRES_AT", utc(at + 60000));
+    vi.stubEnv("GOAT_ARCADE_CALENDAR", JSON.stringify([p]));
+    worker.factory.mockReturnValue({ configuration: config, store: () => store });
+    worker.finality.mockImplementation(async (period: CompetitionPeriod) => receipt(period));
+    const response = await POST(new Request("https://test.invalid/api/arcade/competition/reconcile", { method: "POST", headers: { authorization: `Bearer ${token}` } }));
+    expect(response.status).toBe(200); expect(await response.json()).toEqual({ status: "ready", finalized: [] });
+    expect((await store.board("weekly", null, config, null)).phase).toBe("open");
+    expect(Number((await pool.query("SELECT count(*) FROM ranked_free_throw_scores")).rows[0].count)).toBe(0);
+  });
+  it("rejects expiry after a queued advisory lock before publishing any period", async () => {
+    const blocker = await pool.connect();
+    const window = { notBeforeMs: Date.now() - 1000, expiresAtMs: Date.now() + 1000 };
+    let pending: Promise<string[]> | undefined;
+    try {
+      await blocker.query("BEGIN"); await blocker.query("SELECT pg_advisory_xact_lock(7042026)");
+      pending = store.reconcile([p], config, new Map([[p.id, receipt(p)]]), window);
+      const rejection = expect(pending).rejects.toThrow("reconcile_window_closed");
+      const deadline = Date.now() + 3000; let waited = false;
+      while (Date.now() < deadline) {
+        const rows = await pool.query("SELECT pid FROM pg_stat_activity WHERE application_name=$1 AND wait_event_type='Lock' AND query LIKE '%pg_advisory_xact_lock(7042026)%'", [schema]);
+        if (rows.rows.length) { waited = true; break; } await new Promise(resolve => setTimeout(resolve, 20));
+      }
+      expect(waited).toBe(true);
+      await new Promise(resolve => setTimeout(resolve, Math.max(0, window.expiresAtMs - Date.now() + 20)));
+      await blocker.query("COMMIT"); await rejection;
+      expect(Number((await pool.query("SELECT count(*) FROM arcade_competition_periods")).rows[0].count)).toBe(0);
+    } finally { await blocker.query("ROLLBACK"); blocker.release(); if (pending) await Promise.allSettled([pending]); }
+  });
+  it("rolls all publication/finalization writes back if the window expires inside the transaction", async () => {
+    const blocker = await pool.connect();
+    await pool.query("CREATE FUNCTION wait_for_window() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN PERFORM pg_advisory_xact_lock(7042027); RETURN NEW; END; $$; CREATE TRIGGER wait_for_window BEFORE INSERT ON arcade_competition_periods FOR EACH ROW EXECUTE FUNCTION wait_for_window()");
+    const window = { notBeforeMs: Date.now() - 1000, expiresAtMs: Date.now() + 1000 };
+    let pending: Promise<string[]> | undefined;
+    try {
+      await blocker.query("BEGIN"); await blocker.query("SELECT pg_advisory_xact_lock(7042027)");
+      pending = store.reconcile([p], config, new Map([[p.id, receipt(p, "final")]]), window);
+      const rejection = expect(pending).rejects.toThrow("reconcile_window_closed");
+      const deadline = Date.now() + 3000; let waited = false;
+      while (Date.now() < deadline) {
+        const rows = await pool.query("SELECT pid FROM pg_stat_activity WHERE application_name=$1 AND wait_event_type='Lock' AND query LIKE '%INSERT INTO arcade_competition_periods%'", [schema]);
+        if (rows.rows.length) { waited = true; break; } await new Promise(resolve => setTimeout(resolve, 20));
+      }
+      expect(waited).toBe(true);
+      await new Promise(resolve => setTimeout(resolve, Math.max(0, window.expiresAtMs - Date.now() + 20)));
+      await blocker.query("COMMIT"); await rejection;
+      expect(Number((await pool.query("SELECT count(*) FROM arcade_competition_periods")).rows[0].count)).toBe(0);
+      expect(await store.archives()).toHaveLength(0);
+    } finally {
+      await blocker.query("ROLLBACK"); blocker.release(); if (pending) await Promise.allSettled([pending]);
+      await pool.query("DROP TRIGGER wait_for_window ON arcade_competition_periods; DROP FUNCTION wait_for_window()");
+    }
   });
 });

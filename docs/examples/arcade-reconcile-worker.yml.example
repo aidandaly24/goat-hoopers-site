@@ -1,0 +1,38 @@
+# NON-EXECUTING EXAMPLE ONLY. Outside .github/workflows; requires source/security
+# review and explicit configuration/installation approval. No credentials exist.
+name: Ranked Week 1 finality
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '2-57/5 * * * *'
+permissions: {}
+concurrency:
+  group: ranked-week-1-finality
+  cancel-in-progress: false
+jobs:
+  reconcile:
+    if: github.ref == 'refs/heads/main' && vars.GOAT_ARCADE_WORKER_ENABLED == '1'
+    environment: arcade-production # proposed dedicated environment; main-only policy required
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Reconcile only within the reviewed server and client window
+        env:
+          ARCADE_RECONCILE_TOKEN: ${{ secrets.GOAT_ARCADE_RECONCILE_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          arcade_now=$(date -u +%s)
+          arcade_start=$(date -u -d '2026-10-20 18:50:00 UTC' +%s)
+          arcade_stop=$(date -u -d '2026-10-27 04:00:00 UTC' +%s)
+          if [ "$arcade_now" -lt "$arcade_start" ] || [ "$arcade_now" -ge "$arcade_stop" ]; then
+            exit 0
+          fi
+          test -n "$ARCADE_RECONCILE_TOKEN"
+          arcade_status=$(curl --fail --silent --show-error --max-time 30 \
+            --output /dev/null --write-out '%{http_code}' \
+            --request POST \
+            --header "Authorization: Bearer $ARCADE_RECONCILE_TOKEN" \
+            --header 'Content-Length: 0' \
+            'https://goathoopers.com/api/arcade/competition/reconcile')
+          test "$arcade_status" = '200'
