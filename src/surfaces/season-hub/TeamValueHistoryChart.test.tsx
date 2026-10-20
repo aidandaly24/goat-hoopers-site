@@ -47,3 +47,25 @@ test("quiet markers retain every line vertex and the selected day without adding
   const selected = renderToStaticMarkup(<TeamValueHistoryChart points={points} range={source.requestedRange} selectedDay="2026-10-15" />);
   expect(selected.match(/data-history-point=/g)).toHaveLength(3);
 });
+
+
+test("the timeline exposes the full day range and visible missing-price bands without creating priced points", () => {
+  const source = teamValueHistoryFixture("one");
+  const html = renderToStaticMarkup(<TeamValueHistoryChart points={source.points} range={source.requestedRange} selectedDay="2025-10-20" onSelectDay={() => {}} />);
+  expect(html).toContain('role="slider"');
+  expect(html).toContain('aria-valuemin="0"');
+  expect(html).toContain('aria-valuenow="1"');
+  expect(html).toContain("valuation unavailable");
+  expect(html.match(/data-history-gap/g)).toHaveLength(2);
+  expect(html.match(/data-history-point=/g)).toHaveLength(1);
+  expect(html).not.toContain("<polyline");
+  expect(html).toContain("1 priced dates of 367 calendar days");
+});
+
+test("large supported changes retain explicit markers on the existing complete continuity", () => {
+  const source = teamValueHistoryFixture();
+  const html = renderToStaticMarkup(<TeamValueHistoryChart points={source.points} range={source.requestedRange} selectedDay="2026-10-20" />);
+  expect(html).toContain('data-history-change="2026-10-09"');
+  expect(html).toContain('data-history-change="2026-10-12"');
+  expect(html).not.toContain('data-history-change="2026-10-14"');
+});
