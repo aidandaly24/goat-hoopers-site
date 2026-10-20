@@ -1,18 +1,18 @@
 import "server-only";
 import { timingSafeEqual } from "node:crypto";
-import { parseReconcileWindow, reconcileWindowOpen, type ReconcileWindow } from "@/domain/arcade/reconcile-window";
+import { parseReconcileAuthorizationWindow, reconcileAuthorizedAt, type ReconcileAuthorizationWindow } from "@/domain/arcade/reconcile-window";
 
-export type ReconcileAccess = { status: "allowed"; window: ReconcileWindow } | { status: "disabled" | "held" | "unauthorized" };
+export type ReconcileAccess = { status: "allowed"; window: ReconcileAuthorizationWindow } | { status: "disabled" | "held" | "unauthorized" };
 /** Only this endpoint's dedicated setting is read. No legacy key fallback and
  * no credential is retained in the returned/public authorization result. */
 export function authorizeReconcile(headers: Headers, env: Readonly<Record<string, string | undefined>>, nowMs: number): ReconcileAccess {
   if (env.GOAT_ARCADE_RECONCILE_ENABLED !== "1") return { status: "disabled" };
-  const window = parseReconcileWindow(env.GOAT_ARCADE_RECONCILE_NOT_BEFORE, env.GOAT_ARCADE_RECONCILE_EXPIRES_AT);
+  const window = parseReconcileAuthorizationWindow(env.GOAT_ARCADE_RECONCILE_NOT_BEFORE, env.GOAT_ARCADE_RECONCILE_EXPIRES_AT);
   const token = env.GOAT_ARCADE_RECONCILE_TOKEN;
   if (!window || typeof token !== "string" || token.length !== 64 || !/^[a-f0-9]{64}$/.test(token)) return { status: "held" };
   const actual = headers.get("authorization");
   if (!actual || actual.length !== 71 || !/^Bearer [a-f0-9]{64}$/.test(actual) || !timingSafeEqual(Buffer.from(actual), Buffer.from(`Bearer ${token}`)) ||
-    !reconcileWindowOpen(window, nowMs)) return { status: "unauthorized" };
+    !reconcileAuthorizedAt(window, nowMs)) return { status: "unauthorized" };
   return { status: "allowed", window };
 }
 

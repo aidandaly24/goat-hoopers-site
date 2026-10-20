@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - name: Reconcile only within the reviewed server and client window
+      - name: Submit before authorization cutoff; admitted COMMIT may finish later
         env:
           ARCADE_RECONCILE_TOKEN: ${{ secrets.GOAT_ARCADE_RECONCILE_TOKEN }}
         shell: bash
@@ -25,10 +25,13 @@ jobs:
           arcade_now=$(date -u +%s)
           arcade_start=$(date -u -d '2026-10-20 18:50:00 UTC' +%s)
           arcade_stop=$(date -u -d '2026-10-27 04:00:00 UTC' +%s)
+          # Dispatch cutoff only. Server final SQL authorization precedes COMMIT;
+          # a transaction passing that check may COMMIT/respond after expiry.
           if [ "$arcade_now" -lt "$arcade_start" ] || [ "$arcade_now" -ge "$arcade_stop" ]; then
             exit 0
           fi
           test -n "$ARCADE_RECONCILE_TOKEN"
+          # Client/job timeouts cannot roll back committed server writes.
           arcade_status=$(curl --fail --silent --show-error --max-time 30 \
             --output /dev/null --write-out '%{http_code}' \
             --request POST \

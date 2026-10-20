@@ -107,7 +107,11 @@ No five-minute schedule has been configured or enabled by this PR.
    Use only the dedicated bearer; commissioner/cron values are not fallback
    credentials. The interval must be ordered, no longer than seven days, start
    inclusive/expiry exclusive. Missing/invalid settings hold. Rechecks after
-   source reads and DB lock waits roll back expired work. A first successful
+   source reads, DB lock waits and at the final SQL authorization checkpoint
+   reject observed expiry and roll back the transaction. This is an authorization
+   cutoff: a transaction passing its final SQL check may COMMIT/respond after
+   expiry. Any future approval scope must explicitly accept that limitation;
+   no activation package has been approved. A first successful
    invocation publishes periods and receipts; public GETs never do so.
    Creation/private storage in Vercel Production and a main-restricted Actions
    environment still requires action-time approval; never print/read/copy an
