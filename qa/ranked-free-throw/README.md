@@ -14,7 +14,10 @@ RUN_CLAIM_TEAM_LOCAL_TEST=1 node qa/ranked-free-throw/full-app.mjs
 
 The browser script requires Playwright and Chromium. Use `NODE_PATH` if Playwright
 is installed outside this repository, and `CHROMIUM_PATH` for a different binary.
-Optional `QA_REPORT_PATH` and `QA_SCREENSHOT_PATH` write review artifacts. It owns
+Optional `QA_REPORT_PATH` and `QA_SCREENSHOT_PATH` write review artifacts.
+`GOAT_QA_DEVICE_SCALE=0.5` bounds software-renderer pixel cost while retaining
+normal-motion desktop gameplay; the report records the scale. The default is 1.
+This is functional coverage, not phone/GPU performance evidence. It owns
 only its private Next process, temporary authority file and random database
 schema. Production mode verifies default-off behavior; development mode verifies
 actual login, moving shots, replay, saved results, scope filters, public boards
@@ -34,3 +37,7 @@ npm run check:contracts
 Scope and activation limits: [competition contract](../../docs/arcade-ranked-competition.md).
 Historical prototype reports from the saved foundation are intentionally not
 included as evidence for this revision; reproduce checks on the final PR head.
+
+The merged Blender scene caused normal-motion full-density SwiftShader rounds
+to time out in this environment. Keep that result distinct from reduced-pixel
+functional checks. No scene performance or art changes are part of this PR.

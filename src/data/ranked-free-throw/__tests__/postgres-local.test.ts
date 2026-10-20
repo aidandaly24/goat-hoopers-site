@@ -115,7 +115,7 @@ describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("ranked Free Thro
     await pool.end();
   });
 
-  it("executes actual exported route → verified provider → PostgreSQL store boundaries", async () => {
+  it("executes legacy HTTP handler → verified provider → PostgreSQL replay-kernel boundaries", async () => {
     await cleanupRuns();
     expect((await startRoute(post("runs", new Headers({ origin: config.origin }), {}))).status).toBe(401);
     const started = await startRoute(post("runs", first.headers, {}));

@@ -32,9 +32,11 @@ const pool = new Pool({ host: "127.0.0.1", port: 55441, database: "claim_team_te
 // Fixture values only; never copied into an application environment file.
 const rules = { ruleSetId: "full-app-fixture-only", engine: "moving-court-makes-v2", shots: 3, durationMs: 60000,
   minShotIntervalMs: 1000, maxRunsPerWeek: 3, calendar: { timeZone: "America/New_York", startsOn: 1, hour: 0, minute: 0 } };
+const deviceScaleFactor = Number(process.env.GOAT_QA_DEVICE_SCALE ?? 1);
+if (![0.25, 0.5, 1, 2].includes(deviceScaleFactor)) throw new Error("Unsupported browser fixture pixel density");
 const evidence = { mode: "Full unmodified application, production default-off then development ranked mode with actual PostgreSQL/auth",
   buildId: (await readFile(path.join(repo, ".next/BUILD_ID"), "utf8")).trim(), rulesAreSynthetic: true,
-  rules, checks: [], movementScenarios: [], pageErrors: [], limitations: "Only the finality publisher response is a synthetic local fixture; real mounted routes, auth, replay, database and UI run unchanged. External league/news services fail closed. Ranked login uses development localhost HTTP cookies. Production HTTPS secure cookies, email delivery, hosting finality fetch, deployment and physical devices are not verified.", sourceHashes: {} };
+  rules, deviceScaleFactor, checks: [], movementScenarios: [], pageErrors: [], limitations: "Only the finality publisher response is a synthetic local fixture; real mounted routes, auth, replay, database and UI run unchanged. External league/news services fail closed. Ranked login uses development localhost HTTP cookies. Software-rendered browser pixel density is recorded explicitly; this is functional proof, not physical-device/FPS evidence. Production HTTPS secure cookies, email delivery, hosting finality fetch and deployment are not verified.", sourceHashes: {} };
 for (const file of ["src/app/layout.tsx", "src/app/arcade/ranked-free-throw/page.tsx", "src/surfaces/arcade/RankedFreeThrow.tsx",
   "src/surfaces/arcade/free-throw/FreeThrowPractice.tsx", "src/surfaces/accounts/AccountForm.tsx", "src/data/ranked-free-throw/runtime.ts", "src/data/ranked-free-throw/store.ts",
   "src/domain/arcade/ranked-free-throw.ts", "src/domain/arcade/free-throw-physics.ts", "src/domain/arcade/free-throw-positions.ts"]) {
@@ -55,7 +57,7 @@ async function start(mode, env) {
 }
 function record(check) { evidence.checks.push(check); console.log(check); }
 async function context(options) {
-  const context = await browser.newContext(options);
+  const context = await browser.newContext({ deviceScaleFactor, ...options });
   await context.route("**/*", route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
   const page = await context.newPage(); page.setDefaultTimeout(30000);
   page.on("pageerror", error => evidence.pageErrors.push(String(error)));
