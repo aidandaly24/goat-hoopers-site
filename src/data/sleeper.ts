@@ -101,6 +101,12 @@ export type RawTransaction = {
   /** Sleeper calls the week number "leg". */
   leg: number;
   created: number;
+  /**
+   * Unix ms when the transaction reached its final status. The frozen
+   * replay ordering for team-value history keys on this (then
+   * transaction_id); `created` is only a fallback when it is absent.
+   */
+  status_updated?: number;
   adds: Record<string, number> | null;
   drops: Record<string, number> | null;
   draft_picks: unknown[];

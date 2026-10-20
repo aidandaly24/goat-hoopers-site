@@ -1,11 +1,13 @@
 import Link from "next/link";
 import type { HomeTeamSummary } from "@/domain/personalized-home";
+import type { TeamValueHistoryEnvelope } from "@/domain/team-value-history";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { cs } from "./CourtsideStyles";
 import { formatHomeStamp } from "./homeFormat";
 import { RosterValuationDetails } from "./CourtsideFeature";
 import { ValueTrendLine } from "./ValueTrendLine";
 import { RosterPortraitStage } from "./RosterPortraitStage";
+import { TeamValueHistory } from "./TeamValueHistory";
 import styles from "./RosterValueSection.module.css";
 
 /**
@@ -16,10 +18,16 @@ import styles from "./RosterValueSection.module.css";
  * all-player valuation disclosure. Portraits resolve through the same
  * fixed Sleeper→ESPN map as everywhere else; a face never falls back to
  * an initials disc at this size unless no portrait exists at all.
+ *
+ * When the recorded team-value history envelope is available (issue
+ * #217), it supersedes the repricing trend line: the chart below the
+ * panel is the true replayed series with explicit gaps, and detail
+ * loads on inspection through the v1 routes.
  */
-export function RosterValueSection({ summary, portraits }: {
+export function RosterValueSection({ summary, portraits, teamHistory }: {
   summary: HomeTeamSummary;
   portraits: Record<string, string>;
+  teamHistory?: TeamValueHistoryEnvelope | null;
 }) {
   const { team, valuation, coverage, market } = summary;
   const total = valuation.total;
@@ -57,18 +65,25 @@ export function RosterValueSection({ summary, portraits }: {
                   {valuation.rank.tied ? "Joint value rank" : "Value rank"} <span className="gh-num">No. {valuation.rank.rank} of {valuation.rank.teams}</span>
                 </p>
               )}
-              {summary.valueTrend
+              {!teamHistory && (summary.valueTrend
                 ? <ValueTrendLine trend={summary.valueTrend} />
                 : (
                   <p className={cs("trend-unavailable")} data-trend-unavailable>
                     Recorded team-value history unavailable — fewer than two recorded price snapshots exist for this roster, so no line is drawn.
                   </p>
-                )}
+                ))}
             </>
           )}
           <RosterValuationDetails summary={summary} />
         </div>
       </div>
+      {teamHistory && (
+        <TeamValueHistory
+          history={teamHistory}
+          detailEndpoint="/api/team-value-history/detail"
+          pageEndpoint="/api/team-value-history/summary"
+        />
+      )}
     </section>
   );
 }

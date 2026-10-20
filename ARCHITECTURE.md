@@ -12,6 +12,29 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ## Directory map
 
+### Team value history — recorded-only producer (issue #217)
+
+`data/team-value-history.ts` produces the v1 `TeamValueHistory` envelope and
+detail from read-only sources only: recorded modeled quotes via the batched
+`data/recorded-quotes.ts` adapter over `stock_snapshots` (original quote ids,
+integer cents, native UTC-convention timestamps — the stock store itself is
+untouched and its snapshot-saving path is never called), a pinned dated
+roster anchor (current Sleeper rosters), and completed-move generation over
+the public Sleeper transaction feed in the frozen replay ordering
+(`status_updated`, tie-break `transaction_id`, complete-only, trades atomic).
+Supported days are labelled `replayed`; anything the anchor or ordering
+cannot prove stays ambiguous/unavailable with no point. The generation
+fingerprints the anchor roster, the move set, the admitted quote set and the
+roster/source bounds, so any added/revised/pruned quote yields a new
+generation and stale detail/summary requests get 409. GET routes live at
+`/api/team-value-history/{summary,detail}`; the member homepage passes the
+envelope as serializable props into the `TeamValueHistory` consumer in
+`season-hub`, replacing the current-roster repricing line. This producer
+performs zero Neon writes: the #219 tables stay unapplied/unpopulated here,
+nothing is backfilled or reconstructed, and the envelope states the
+retained-source (30-day prune) limitation in its source notes until a
+separate persistence PR lands.
+
 ### Modeled valuation timeline contract
 
 The selected-player read-only `/api/stocks/[playerId]/history` route delegates
