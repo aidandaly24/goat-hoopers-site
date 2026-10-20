@@ -406,6 +406,24 @@ Proposed ceilings for the non-game shell:
   reuse root fonts. These are proposed ceilings anchored to the existing
   Courtside integration measurements, not new measured results.
 
+### Free Throw movement and difficulty — October 18 correction
+
+Aidan confirmed that changing shooting positions is part of the intended game
+and requested a modest difficulty increase. Preserve the existing nine-position
+practice zone, controls, physical ball/hoop, camera follow between attempts and
+trajectory guide. Ranked play uses the same authored zone in an equal ordered
+cycle for everyone; it must not silently pin players to the free-throw line.
+The camera stays still while a shot is flying. No arbitrary miss probability,
+different timing game or hidden distance-based power assist is introduced.
+
+The versioned `moving-court-makes-v2` launch profile increases power response from
+0.035 to 0.042 m/s per power point (20%) in current practice and ranked play.
+This narrows the useful input window while preserving real collision scoring.
+The displayed trajectory uses the identical profile. Legacy v1 saved evidence
+retains its original physics. The default-off ranked implementation uses nine
+shots / 120 seconds, unlimited attempts and best completed round per account.
+Activation remains held; see `docs/arcade-ranked-competition.md`.
+
 The playable free-throw game is a bounded exception: active gameplay can run
 frames, with its owner maintaining pause/visibility/context-loss behavior,
 usable controls and reset/exit. It does not grant permission for background
@@ -675,3 +693,13 @@ Rough Week each print their distinct basis and source period. Played-game counts
 small samples and supplied injury context remain visible; DNP/unknown records
 are never classified as poor performance. Production data gaps have explicit
 states and a tracked adapter issue (#190); populated QA examples are synthetic.
+
+### Connected Arcade rankings
+
+Place the weekly mini-game board above the game cards. Give each implemented
+game a separate all-time link and preserve completed weeks under stable history
+URLs. Everyone/League controls filter mini-game scores only; never borrow fantasy
+standings or combine incompatible game formats. Show missing authority, blocked,
+held and empty states explicitly. Preserve real usernames and round streak stats;
+rewards remain off. Use shared Card, heading, controls and theme tokens, wrapping
+names/actions at phone sizes.

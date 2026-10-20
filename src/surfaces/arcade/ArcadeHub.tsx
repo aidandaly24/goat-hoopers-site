@@ -7,6 +7,7 @@
 import type { PlayableGame } from "@/domain/arcade";
 import Link from "next/link";
 import controls from "@/ui/controls.module.css";
+import { CompetitionLeaderboard } from "./CompetitionLeaderboard";
 import { GameCard } from "./GameCard";
 import styles from "./ArcadeHub.module.css";
 
@@ -23,6 +24,7 @@ export function ArcadeHub({ games }: { games: readonly PlayableGame[] }) {
             <Link href="/arcade/leaderboard" prefetch={false} className={controls.secondary}>Weekly leaderboard</Link>
           </nav>
         </header>
+        <CompetitionLeaderboard />
         <section className={styles.games} aria-label="Available games">
           {games.map(game => <GameCard key={game.id} game={game} />)}
           {games.length === 0 && <p>No games are available right now.</p>}

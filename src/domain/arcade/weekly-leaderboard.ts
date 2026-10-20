@@ -12,7 +12,7 @@ export type WeeklyLeaderboardEntry = {
 };
 export type WeeklyLeaderboardBoard = {
   scope: WeeklyLeaderboardScope;
-  period: { week: string; startsAtMs: number; endsAtMs: number };
+  period: { week: string; startsAtMs: number; endsAtMs: number | null };
   calendar: { timeZone: string };
   entries: readonly WeeklyLeaderboardEntry[];
 };

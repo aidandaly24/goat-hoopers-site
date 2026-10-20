@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
-import type { PracticeAim, PracticeAssetPack, PracticeCourt, PracticeVector } from "@/domain/arcade/free-throw";
+import type { FreeThrowRoundControls, PracticeAim, PracticeAssetPack, PracticeCourt, PracticeVector } from "@/domain/arcade/free-throw";
 import { Badge } from "@/ui/Badge";
-import { boundAim, DEFAULT_AIM, FIXED_STEP, launchBall, readyBall, stepBall, trajectory } from "./physics";
+import { boundAim, DEFAULT_AIM, FIXED_STEP, MOVING_COURT_PHYSICS, launchBall, readyBall, stepBall, trajectory } from "./physics";
 import { createCharge } from "./charge";
 import { nextShootingPosition } from "./positions";
 import styles from "./FreeThrowPractice.module.css";
@@ -21,10 +21,12 @@ type Controller = {
 };
 const EMPTY_STATS: Stats = { makes: 0, attempts: 0, streak: 0, bestStreak: 0 };
 
-/** Local-only free-throw practice. Receives a court/collider adapter;
- * owns transient controls and scores. No actions, accounts or GameStore.
+/** Public court entrypoint. Practice is local; an optional injected controller
+ * binds versioned court positions/physics without importing transport, auth or storage.
  */
-export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; assets: PracticeAssetPack }) {
+export function FreeThrowPractice({ court, assets, round }: { court: PracticeCourt; assets: PracticeAssetPack; round?: FreeThrowRoundControls }) {
+  const roundRef = useRef(round);
+  useEffect(() => { roundRef.current = round; }, [round]);
   const mount = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const controller = useRef<Controller | null>(null);
@@ -57,7 +59,10 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
     setCharging(false);
     setDragging(false);
     drag.current = null;
-    spotRef.current = { ...court.release };
+    const positions = roundRef.current?.positions;
+    const physics = roundRef.current?.physics ?? MOVING_COURT_PHYSICS;
+    let shotIndex = 0;
+    spotRef.current = { ...(positions?.[0] ?? court.release) };
     setSpot(spotRef.current);
     let disposed = false;
     const creation = new AbortController();
@@ -66,7 +71,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
     const charge = createCharge();
     let priorPower = DEFAULT_AIM.power;
-    let ball = readyBall(court);
+    let ball = readyBall(court, spotRef.current);
     let flying = false;
     let resolved = false;
     let previousFrame = 0;
@@ -95,7 +100,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
       setReduced(reduceMotion);
       const draw = () => view?.draw(ball,
         !flying && !resolved && guideRef.current
-          ? { aim: aimRef.current, points: guideVectors(trajectory(court, aimRef.current, ball.origin)) }
+          ? { aim: aimRef.current, points: guideVectors(trajectory(court, aimRef.current, ball.origin, physics)) }
           : null, reduceMotion);
       const simulate = () => {
         const events = stepBall(ball, court);
@@ -120,6 +125,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
         }
         if (ball.finished) {
           flying = false;
+          roundRef.current?.onSettled();
           if (!resolved) {
             resolved = true;
             setOutcome("miss");
@@ -198,7 +204,9 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
       controller.current = {
         shoot: () => {
           if (flying || resolved || disposed || charge.active()) return;
-          ball = launchBall(court, aimRef.current, spotRef.current);
+          if (roundRef.current && !roundRef.current.beforeShot({ ...aimRef.current })) return;
+          ball = launchBall(court, aimRef.current, spotRef.current, physics);
+          shotIndex++;
           flying = true;
           resolved = false;
           accumulator = 0;
@@ -211,13 +219,14 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
         },
         aim: () => draw(),
         next: (resetStats = false) => {
+          if (roundRef.current && (resetStats || flying)) return;
           cancelCharge();
           cancelAnimationFrame(raf);
           if (retryTimer !== null) { clearTimeout(retryTimer); retryTimer = null; }
           if (flying && !resolved) setStats(old => ({ ...old, streak: 0 }));
           flying = false;
           resolved = false;
-          spotRef.current = nextShootingPosition(court, spotRef.current);
+          spotRef.current = positions ? { ...positions[shotIndex % positions.length] } : nextShootingPosition(court, spotRef.current);
           setSpot(spotRef.current);
           aimRef.current = { ...DEFAULT_AIM };
           setAim(aimRef.current);
@@ -230,7 +239,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
           draw();
         },
         beginCharge: () => {
-          if (flying || resolved || disposed || !charge.begin(performance.now())) return;
+          if (flying || resolved || disposed || roundRef.current?.blocked || !charge.begin(performance.now())) return;
           priorPower = aimRef.current.power;
           setCharging(true);
           setChargePower(0);
@@ -287,7 +296,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
   };
   const pointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (!(event.target instanceof Element) || event.target.closest("button, a, input, summary, details, [data-practice-ui]")) return;
-    if (phase !== "ready" || charging || drag.current || !event.isPrimary || event.button !== 0) return;
+    if (phase !== "ready" || round?.blocked || charging || drag.current || !event.isPrimary || event.button !== 0) return;
     event.preventDefault();
     event.currentTarget.focus({ preventScroll: true });
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -320,7 +329,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
     if (event.key === "Escape") { cancelDrag(); controller.current?.cancelCharge(); return; }
     if (event.key.toLowerCase() === "r") { event.preventDefault(); nextShot(); return; }
     if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", " ", "Enter"].includes(event.key) || ["a", "d"].includes(event.key.toLowerCase())) event.preventDefault();
-    if (phase !== "ready" || drag.current) return;
+    if (phase !== "ready" || round?.blocked || drag.current) return;
     const current = aimRef.current;
     if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") updateAim({ ...current, direction: current.direction - 0.5 });
     if (event.key === "ArrowRight" || event.key.toLowerCase() === "d") updateAim({ ...current, direction: current.direction + 0.5 });
@@ -335,14 +344,14 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
     event.preventDefault();
     controller.current?.releaseCharge();
   };
-  const ready = phase === "ready";
+  const ready = phase === "ready" && !round?.blocked;
   const available = phase !== "loading" && phase !== "unavailable";
   const quiet = ready && !charging && !dragging && (status === "Find your touch" || status.startsWith("Next ball ready") || status.startsWith("Fresh session"));
 
   return (
     <div className={styles.surface} data-arcade-page>
       <section ref={stage} className={`${styles.stage} ${dragging ? styles.dragging : ""}`}
-        data-shot-state={phase} data-charging={charging} tabIndex={available ? 0 : -1}
+        data-shot-state={phase} data-shot-origin={`${spot.x},${spot.y},${spot.z}`} data-charging={charging} tabIndex={available ? 0 : -1}
         role="group" aria-label="Court controls" aria-describedby="court-instructions"
         onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerUp}
         onContextMenu={event => event.preventDefault()}
@@ -354,16 +363,16 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
         <div className={styles.topHud} data-practice-ui>
           <div className={styles.identity}>
             <Link className={styles.back} href="/arcade" aria-label="Back to the arcade"><HudIcon name="back" /></Link>
-            <div><h1>Free throws</h1><span className={styles.sceneLabel}>Local practice · {phase === "loading" ? "Loading court" : phase === "unavailable" ? "Court unavailable" : "Practice court"}</span></div>
+            <div><h1>Free throws</h1><span className={styles.sceneLabel}>{round ? "Ranked round · awaiting validation" : `Local practice · ${phase === "loading" ? "Loading court" : phase === "unavailable" ? "Court unavailable" : "Practice court"}`}</span></div>
           </div>
           <div className={styles.hudActions}>
-            <button className={styles.iconButton} disabled={!available} aria-label="Reset session" title="Reset session"
+            <button className={styles.iconButton} disabled={!available || !!round} aria-label="Reset session" title={round ? "Ranked rounds cannot be reset" : "Reset session"}
               onClick={() => { nextShot(true); updateAim(DEFAULT_AIM); }}><HudIcon name="reset" /></button>
             <button className={styles.iconButton} aria-label="Controls and help" title="Controls and help" aria-expanded={help}
               onClick={() => setHelp(!help)}><HudIcon name="help" /></button>
           </div>
         </div>
-        <div className={styles.scoreHud} aria-label="Practice score">
+        <div className={styles.scoreHud} aria-label={round ? "Unvalidated round score" : "Practice score"}>
           <div><span>Made / shots</span><strong className="gh-num" aria-label="Makes and shots">{stats.makes}<span> / </span>{stats.attempts}</strong></div>
           <div><span>Streak</span><strong className="gh-num">{stats.streak}</strong></div>
           <div><span>Best</span><strong className="gh-num">{stats.bestStreak}</strong></div>
@@ -393,13 +402,13 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
           <p className={styles.keyboardHint}><kbd>A</kbd><kbd>D</kbd> aim <span>·</span> Hold <kbd>Space</kbd> and release</p>
           <p className={styles.touchHint}>Drag &amp; release to shoot · Hold for power</p>
         </div>
-        <p id="court-instructions" className={styles.srOnly}>Focus the court. Left/Right arrows or A/D aim. Hold Space for power; release to shoot. Up/Down adjust selected power. Enter fires selected power. R retries; Escape cancels. On touch, drag on the court and release, or hold the shoot button. Each settled shot or reset moves to a new shooting spot. Adjust power for the distance. Scores stay on this page only.</p>
+        <p id="court-instructions" className={styles.srOnly}>Focus the court. Left/Right arrows or A/D aim. Hold Space for power; release to shoot. Up/Down adjust selected power. Enter fires selected power. Escape cancels charging. On touch, drag on the court and release, or hold the shoot button. {round ? "Each finished shot moves to the next court spot. Adjust power for the distance. Finish all shots, then save the round for server validation. Reset is disabled." : "R retries. Each settled shot or reset moves to a new shooting spot. Adjust power for the distance. Scores stay on this page only."}</p>
         {help && <section className={styles.help} aria-label="Practice controls" data-practice-ui>
           <header><h2>Find your touch</h2><button className={styles.iconButton} aria-label="Close help" onClick={() => { setHelp(false); stage.current?.focus({ preventScroll: true }); }}><HudIcon name="close" /></button></header>
           <p>Focus the court. <kbd>A</kbd> / <kbd>D</kbd> or the arrow keys aim. Hold <kbd>Space</kbd> to build power, then release. Start near 50% at the free-throw line.</p>
-          <p>Each finished shot or reset moves you to a new spot. Center points toward the basket; adjust power for the distance shown by the ball.</p>
+          <p>{round ? "Each finished shot moves you to the next court spot. Everyone gets the same positions. Center points toward the basket; adjust power for the distance. Finish all shots and save before time expires." : "Each finished shot or reset moves you to a new spot. Center points toward the basket; adjust power for the distance shown by the ball."}</p>
           <p>On touch, drag left or right to aim, down for more power or up for less, then lift your finger to shoot. Or hold the shoot button, then release. The next ball returns automatically.</p>
-          <p><kbd>R</kbd> retries. <kbd>Esc</kbd> cancels. Practice scores stay on this page; league rewards are inactive.</p>
+          <p>{round ? "Ranked rounds cannot be reset. The score above is provisional until saved." : <><kbd>R</kbd> retries. <kbd>Esc</kbd> cancels. Practice scores stay on this page; league rewards are inactive. <Link href="/arcade/ranked-free-throw">Competition status</Link></>}</p>
           {reduced && <p>Reduced motion: shots resolve to a still result.</p>}
           <details className={styles.fineControls}>
             <summary>Fine controls</summary>

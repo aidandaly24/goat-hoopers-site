@@ -21,6 +21,11 @@ export type PracticeAssetPack = {
 /** Horizontal aim in degrees; power is a bounded percentage. */
 export type PracticeAim = { direction: number; power: number };
 
+/** Optional ranked controller. It records inputs only; server replay owns saved results. */
+export type PracticePhysicsProfile = Readonly<{ powerPerPercent: number }>;
+export type FreeThrowRoundControls = { blocked: boolean; positions: readonly PracticeVector[]; physics: PracticePhysicsProfile;
+  beforeShot(aim: PracticeAim): boolean; onSettled(): void };
+
 /** One transient ball. scored is latched for the lifetime of this shot. */
 export type PracticeBall = {
   /** Fixed for a whole attempt, so the camera never follows a flying ball. */

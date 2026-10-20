@@ -25,9 +25,8 @@ export const GAMES: Game[] = [
         "Drag the court left or right to aim, down for more power or up for less. Lift your finger to shoot. Or hold the shoot button, then release.",
     },
     howToPlay:
-      "You get 10 free throws against the clock. Each make is 1 point, " +
-      "streaks earn bonus multipliers. Your best score each week counts — " +
-      "the weekly winner takes home 10 FAAB.",
+      "Practice locally, or play a ranked nine-shot, two-minute round when competition is open. " +
+      "Each server-validated make scores one point. Best completed round counts; attempts are unlimited while open. Rewards are off.",
     launchNote:
       "Local practice prototype available. League competition and rewards " +
       "stay closed while the shooting engine is validated.",
