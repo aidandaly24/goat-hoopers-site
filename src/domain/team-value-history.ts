@@ -206,7 +206,9 @@ export function isTeamValueHistoryDetail(value: unknown): value is TeamValueHist
 export function historyDetailMatchesPoint(detail: TeamValueHistoryDetail, point: TeamHistoryPoint): boolean {
   const kinds = new Set(detail.players.flatMap(player => player.price ? [player.price.kind] : []));
   const kind = kinds.size > 1 ? "mixed" : kinds.size === 1 ? [...kinds][0] : "unavailable";
-  return detail.pointId === point.id && detail.rosterRef === point.rosterRef && detail.day === point.day
+  const annual = detail.players.some(player => player.price?.kind === "reconstructed" && player.price.source === "annual");
+  return (!annual || point.standalone && point.continuityId === null)
+    && detail.pointId === point.id && detail.rosterRef === point.rosterRef && detail.day === point.day
     && historyInstantKey(detail.valuationAt) === historyInstantKey(point.valuationAt)
     && detail.rosterStatus === point.rosterStatus && detail.rosterCount === point.rosterCount
     && detail.priced === point.priced && detail.subtotalCents === point.subtotalCents && kind === point.priceKind;

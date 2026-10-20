@@ -605,11 +605,12 @@
       "completed": true,
       "source": {
         "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401809244",
-        "status": 200,
+        "status": null,
         "archiveWrittenAt": "2026-10-20T01:47:49.658423+00:00",
         "retrievalTimePrecision": "Local archive write time; supplemental probe subsequently failed on a different host before saving its in-memory receipts.",
         "sha256": "eff6cdd7a905e046ac09bd2f4a86229d8d0d35149d7a75515532e76aae38f184",
-        "bytes": 383876
+        "bytes": 383876,
+        "statusEvidence": "The supplemental probe did not retain its in-memory HTTP status receipt before the next-host CONNECT failure; no HTTP status is inferred from the valid archived body."
       },
       "teams": [
         {

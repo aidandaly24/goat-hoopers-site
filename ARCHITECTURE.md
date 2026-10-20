@@ -12,6 +12,29 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ## Directory map
 
+### Historical team valuation presentation — issue #217
+
+`domain/team-value-history.ts` is the shared v1 serializable producer/consumer
+contract for historical ownership, daily UTC bounds, separate roster/price
+coverage, nullable cent subtotals, explicit continuity and selected-date source
+proofs. Muse owns replay/ingest/stores/series and existing homepage integration;
+Dot owns this contract and the new `season-hub/TeamValueHistory*` presentation.
+`TeamValueHistory` accepts the envelope and optional same-origin app endpoint
+paths; it does not touch upstream APIs or DBs. Details load on inspection only,
+with bounded transfer/cache, cancellation and generation/point consistency checks.
+All time preserves the requested window; missing values, source switches, annual
+points, season changes and different partial subsets never acquire invented
+connections. Current modeled quotes remain separate. No production route or
+homepage wiring is added by this presentation slice. Read
+`docs/team-value-history-integration.md` for the exact handoff and eligibility rules.
+
+`data/team-history-boxscore-audit.ts`, its offline runner and frozen public
+`data/team-history-audit/` projections evaluate four historical games without
+network/DB/quote/publication work. They are not a full-season acquisition or a
+price pipeline. `qa/team-value-history/` builds the real component through a
+temporary production Next.js app with synthetic data/routes and Chromium checks.
+Live historical ownership and valuation coverage require the separate producer.
+
 ### Modeled valuation timeline contract
 
 The selected-player read-only `/api/stocks/[playerId]/history` route delegates
