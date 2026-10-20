@@ -51,6 +51,7 @@ import {
   fetchNbaState,
   fetchAiPublicationState,
   fetchTransactions,
+  fetchTransactionsForLeague,
   fetchDrafts,
   fetchDraftPicks,
   fetchPlayerDirectory,
@@ -246,18 +247,38 @@ export async function fetchTransactionsByWeek(
  * a replay producer must never mistake a silent week for evidence that
  * no moves happened.
  */
-export async function fetchTransactionsByWeekComplete(
+async function fetchWeeksComplete(
+  fetchWeek: (week: number) => Promise<RawTransaction[]>,
   weeks: number[]
 ): Promise<RawTransaction[][]> {
   return Promise.all(
     weeks.map(async (w): Promise<RawTransaction[]> => {
-      const rows = await fetchTransactions(w);
+      const rows = await fetchWeek(w);
       if (!Array.isArray(rows)) {
         throw new Error(`Sleeper transactions week ${w} returned a malformed payload`);
       }
       return rows;
     })
   );
+}
+
+export async function fetchTransactionsByWeekComplete(
+  weeks: number[]
+): Promise<RawTransaction[][]> {
+  return fetchWeeksComplete(w => fetchTransactions(w), weeks);
+}
+
+/**
+ * League-scoped form of the strict fetcher above, for producers that
+ * read a second league's feed (the team-value-history producer reads
+ * the inaugural 2025 league alongside the current one). Same contract:
+ * any failed or malformed week rejects the whole read.
+ */
+export async function fetchTransactionsByWeekCompleteForLeague(
+  leagueId: string,
+  weeks: number[]
+): Promise<RawTransaction[][]> {
+  return fetchWeeksComplete(w => fetchTransactionsForLeague(leagueId, w), weeks);
 }
 
 /**

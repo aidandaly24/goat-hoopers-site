@@ -580,3 +580,158 @@ describe("conflicting same-instant quotes (dot P2 regression)", () => {
     expect(changed.points.find(entry => entry.day === "2026-10-08")!.subtotalCents).toBe(50000);
   });
 });
+
+/**
+ * 2025 sourced events (issue #224 amendment). Synthetic miniature of
+ * the audited 2025 feed: one two-sided trade with a pick, one paid
+ * waiver claim, one free-agent add — the shapes the real feed carries,
+ * with invented ids/players. The honesty contract under test: events
+ * assert only their own legs; 2025 rosters stay ambiguous and 2025
+ * prices stay unavailable, and no recorded point moves.
+ */
+const TRADE_AT = Date.parse("2025-11-15T18:30:00Z");
+const WAIVER_AT = Date.parse("2025-12-02T15:00:00Z");
+const RAW_2025: RawTransaction[] = [
+  tx({
+    transaction_id: "1425000000000000001", type: "trade", leg: 5, roster_ids: [3, 7],
+    created: TRADE_AT, status_updated: TRADE_AT,
+    adds: { "701": 3, "302": 7 }, drops: { "302": 3, "701": 7 },
+    draft_picks: [{ season: "2026", round: 1, roster_id: 3, previous_owner_id: 3, owner_id: 7 }],
+  }),
+  tx({
+    transaction_id: "1425000000000000002", type: "waiver", leg: 7, roster_ids: [3],
+    created: WAIVER_AT, status_updated: WAIVER_AT,
+    adds: { "303": 3 }, drops: { "304": 3 }, settings: { waiver_bid: 12 },
+  }),
+  tx({
+    transaction_id: "1425000000000000003", type: "free_agent", leg: 2, roster_ids: [1],
+    created: Date.parse("2025-10-28T12:00:00Z"), status_updated: Date.parse("2025-10-28T12:00:00Z"),
+    adds: { "104": 1 },
+  }),
+];
+
+const ANCHOR_WITH_2025_TEAMS = {
+  ...ANCHOR,
+  teams: [...ANCHOR.teams,
+    { id: "3", name: "Fixture Club 3", players: ["301", "303"] },
+    { id: "7", name: "Fixture Club 7", players: ["701", "702"] }],
+};
+const NAMES_2025: Record<string, RawPlayerEntry> = {
+  ...NAMES,
+  "104": { full_name: "Fixture Prospect" }, "302": { full_name: "Fixture Sent Three" },
+  "303": { full_name: "Fixture Claim" }, "304": { full_name: "Fixture Waived" },
+  "701": { full_name: "Fixture Sent Seven" },
+};
+
+function deps2025(overrides: Partial<TeamHistoryDeps> = {}): TeamHistoryDeps {
+  return deps({
+    fetchAnchor: async () => ANCHOR_WITH_2025_TEAMS,
+    fetchMoves: async () => toHistoryMoves([...RAW_TX, ...RAW_2025]),
+    fetchNames: async () => NAMES_2025,
+    ...overrides,
+  });
+}
+
+describe("2025 sourced events (#224 amendment)", () => {
+  it("emits a two-sided trade with team-scoped legs, participants and picks — for both teams", async () => {
+    const state3 = await loadTeamHistoryState("3", deps2025());
+    const detail3 = state3.detail("2025-11-15", NAMES_2025);
+    expect(isTeamValueHistoryDetail(detail3)).toBe(true);
+    // Honesty labels: the event never asserts the day's roster or a price.
+    expect(detail3.rosterStatus).toBe("ambiguous");
+    expect(detail3.rosterCount).toBeNull();
+    expect(detail3.priced).toBe(0);
+    expect(detail3.subtotalCents).toBeNull();
+    expect(detail3.players).toEqual([]);
+
+    const move = detail3.moves.find(entry => entry.sourceId === "1425000000000000001")!;
+    expect(move).toMatchObject({ origin: "transaction", type: "trade", status: "complete", leg: 5, waiverBid: null });
+    expect(move.effectiveAt).toBe("2025-11-15T18:30:00.000Z");
+    expect(move.rosterIds).toEqual([3, 7]);
+    expect(move.draftPicks).toEqual([{ season: "2026", round: 1, rosterId: 3, ownerId: 7, previousOwnerId: 3 }]);
+    // Every leg carries its roster id, so each side scopes exactly:
+    // roster 3 received 701 and sent 302.
+    expect(move.adds).toEqual([
+      { id: "302", name: "Fixture Sent Three", rosterId: 7 },
+      { id: "701", name: "Fixture Sent Seven", rosterId: 3 },
+    ]);
+    expect(move.adds.filter(entry => entry.rosterId === 3).map(entry => entry.id)).toEqual(["701"]);
+    expect(move.drops.filter(entry => entry.rosterId === 3).map(entry => entry.id)).toEqual(["302"]);
+
+    const state7 = await loadTeamHistoryState("7", deps2025());
+    const move7 = state7.detail("2025-11-15", NAMES_2025).moves.find(entry => entry.sourceId === move.sourceId)!;
+    expect(move7.rosterIds).toEqual([3, 7]);
+    expect(move7.adds.filter(entry => entry.rosterId === 7).map(entry => entry.id)).toEqual(["302"]);
+    expect(move7.drops.filter(entry => entry.rosterId === 7).map(entry => entry.id)).toEqual(["701"]);
+    expect(move7.draftPicks).toEqual(move.draftPicks);
+  });
+
+  it("carries waiver FAAB from the record; a trade's FAAB stays null by source", async () => {
+    const state = await loadTeamHistoryState("3", deps2025());
+    const detail = state.detail("2025-12-02", NAMES_2025);
+    expect(isTeamValueHistoryDetail(detail)).toBe(true);
+    const claim = detail.moves.find(entry => entry.sourceId === "1425000000000000002")!;
+    expect(claim).toMatchObject({ type: "waiver", leg: 7, waiverBid: 12, draftPicks: [] });
+    expect(claim.adds).toEqual([{ id: "303", name: "Fixture Claim", rosterId: 3 }]);
+    expect(claim.drops).toEqual([{ id: "304", name: "Fixture Waived", rosterId: 3 }]);
+    expect(detail.rosterStatus).toBe("ambiguous");
+    expect(detail.players).toEqual([]);
+  });
+
+  it("fabricates no events for the offseason gap or for event-free days", async () => {
+    const state = await loadTeamHistoryState("3", deps2025());
+    // The gap has no rows in either feed; an event-free 2025 day has none nearby.
+    for (const day of ["2026-06-01", "2026-08-12", "2025-11-20"]) {
+      const detail = state.detail(day, NAMES_2025);
+      expect(isTeamValueHistoryDetail(detail), day).toBe(true);
+      expect(detail.moves, day).toEqual([]);
+      expect(detail.rosterStatus, day).toBe("ambiguous");
+    }
+  });
+
+  it("2025 events never move a recorded point, but they do rebind the generation", async () => {
+    const baseline = await loadTeamHistoryState("1", deps());
+    const withEvents = await loadTeamHistoryState("1", deps2025());
+    expect(withEvents.points).toEqual(baseline.points);
+    expect(withEvents.currentQuote).toEqual(baseline.currentQuote);
+    expect(withEvents.generation).not.toBe(baseline.generation);
+    const detail = withEvents.detail("2025-10-28", NAMES_2025);
+    expect(detail.moves.map(entry => entry.sourceId)).toEqual(["1425000000000000003"]);
+    expect(detail.moves[0].adds).toEqual([{ id: "104", name: "Fixture Prospect", rosterId: 1 }]);
+    expect(detail.rosterStatus).toBe("ambiguous");
+    expect(detail.subtotalCents).toBeNull();
+  });
+});
+
+describe("toHistoryMoves — event shaping", () => {
+  it("distinguishes carried-none picks from a record that does not carry the field", () => {
+    const carriedNone = toHistoryMoves([tx({ transaction_id: "picks-none", draft_picks: [] })]);
+    expect(carriedNone[0].draftPicks).toEqual([]);
+    // A record that omits draft_picks entirely (legacy shape): not read.
+    const notRead = {
+      transaction_id: "picks-unread", type: "trade", status: "complete", roster_ids: [3, 7], leg: 5,
+      created: 100, status_updated: 100, adds: null, drops: null,
+    } as unknown as RawTransaction;
+    expect(toHistoryMoves([notRead])[0].draftPicks).toBeNull();
+  });
+
+  it("shapes pick identifiers and keeps unreadable entries in place as all-null", () => {
+    const [move] = toHistoryMoves([tx({
+      transaction_id: "picks-shape",
+      draft_picks: ["junk", { season: 2027, round: 2, roster_id: 4, owner_id: 5, previous_owner_id: 4 }],
+    })]);
+    expect(move.draftPicks).toEqual([
+      { season: null, round: null, rosterId: null, ownerId: null, previousOwnerId: null },
+      { season: "2027", round: 2, rosterId: 4, ownerId: 5, previousOwnerId: 4 },
+    ]);
+  });
+
+  it("keeps a $0 waiver bid as a real bid and absent settings as null", () => {
+    const [free] = toHistoryMoves([tx({ transaction_id: "bid-zero", type: "waiver", settings: { waiver_bid: 0 } })]);
+    expect(free.waiverBid).toBe(0);
+    const [none] = toHistoryMoves([tx({ transaction_id: "bid-none", settings: null })]);
+    expect(none.waiverBid).toBeNull();
+    expect(none.leg).toBe(1);
+    expect(none.rosterIds).toEqual([]);
+  });
+});

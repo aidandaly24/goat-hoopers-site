@@ -208,14 +208,25 @@ export function fetchMatchups(week: number): Promise<RawMatchupEntry[]> {
 }
 
 /**
- * Transactions for a league week. Week 0 doesn't exist on the API —
+ * Transactions for one league's week. Week 0 doesn't exist on the API —
  * callers should guard. Cache 5 min.
  */
-export function fetchTransactions(week: number): Promise<RawTransaction[]> {
+export function fetchTransactionsForLeague(
+  leagueId: string,
+  week: number
+): Promise<RawTransaction[]> {
   return sleeperFetch<RawTransaction[]>(
-    `/league/${LEAGUE_ID}/transactions/${week}`,
+    `/league/${leagueId}/transactions/${week}`,
     300
   );
+}
+
+/**
+ * Transactions for a league week in the current league. Week 0 doesn't
+ * exist on the API — callers should guard. Cache 5 min.
+ */
+export function fetchTransactions(week: number): Promise<RawTransaction[]> {
+  return fetchTransactionsForLeague(LEAGUE_ID, week);
 }
 
 /**

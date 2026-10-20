@@ -12,11 +12,25 @@
  * - A pinned, dated roster anchor: the current Sleeper rosters, observed
  *   at load time.
  * - The completed-move generation over the public Sleeper transaction
- *   feed, in the frozen replay ordering (status_updated asc, tie-break
- *   transaction_id, complete-only, trades atomic). A team's roster at a
- *   quote instant is its anchor roster with every later completed move
- *   inverted; days whose membership cannot be proven that way stay
- *   unpriced and are reported ambiguous/unavailable, never stretched.
+ *   feeds of BOTH leagues in the chain — the current league, over the
+ *   week range the live season state proves, and the inaugural 2025
+ *   league, over its fixed, final week range 1–24 — in the frozen
+ *   replay ordering (status_updated asc, tie-break transaction_id,
+ *   complete-only, trades atomic). A team's roster at a quote instant
+ *   is its anchor roster with every later completed move inverted;
+ *   days whose membership cannot be proven that way stay unpriced and
+ *   are reported ambiguous/unavailable, never stretched.
+ *
+ * 2025 EVENTS (#224 amendment to the #217 recorded-only contract,
+ * agreed on-thread): the 2025 league's completed moves are emitted in
+ * day detail as dated, sourced EVENTS — team-scoped legs (every add /
+ * drop carries its roster id), declared participants, shaped draft
+ * picks and waiver FAAB. Events assert only their own legs: the 2025
+ * roster band stays `ambiguous`, 2025 valuation stays `unavailable`,
+ * no 2025 point is emitted, and detail keeps returning `players: []`
+ * for 2025 days. The offseason gap (2026-04-02 → 2026-08-12) has no
+ * rows in either feed and gets no events. Flipping the 2025 band to
+ * `replayed` is a separate, larger contract change — not this one.
  *
  * NO-WRITE BOUNDARY (amendment 1 on #217): this module performs zero
  * Neon writes — no migration apply, no population of the #219 tables
@@ -59,7 +73,7 @@ import { createHash } from "node:crypto";
 import {
   historyInstantKey, isTeamValueHistoryDetail, isTeamValueHistoryEnvelope, shiftHistoryDay,
   TEAM_HISTORY_MAX_MOVES, TEAM_HISTORY_MAX_POINTS, validHistoryDay, validHistoryRange,
-  type TeamHistoryMove, type TeamHistoryPoint, type TeamHistoryRange,
+  type TeamHistoryDraftPick, type TeamHistoryMove, type TeamHistoryPoint, type TeamHistoryRange,
   type TeamValueHistoryDetail, type TeamValueHistoryEnvelope,
 } from "@/domain/team-value-history";
 import { getRecordedQuoteStore, type RecordedQuote, type RecordedQuoteStore } from "./recorded-quotes";
@@ -67,7 +81,7 @@ import {
   fetchNbaState, fetchPlayerDirectory, fetchRosters, fetchUsers, LEAGUE_ID,
   type RawPlayerEntry, type RawTransaction,
 } from "./sleeper";
-import { fetchTransactionsByWeekComplete, validSeasonWeeks } from "./league";
+import { fetchTransactionsByWeekComplete, fetchTransactionsByWeekCompleteForLeague, validSeasonWeeks } from "./league";
 import { teamNameOf } from "./transform";
 
 export class TeamHistoryError extends Error {
@@ -88,8 +102,20 @@ export type HistoryMove = {
   type: TeamHistoryMove["type"];
   /** Effective instant: `status_updated`, falling back to `created`. */
   effectiveMs: number;
+  /** Sleeper week ("leg"); null when the record carries no valid one. */
+  leg: number | null;
+  /** Declared participant roster ids (`roster_ids`). */
+  rosterIds: number[];
   adds: { playerId: string; rosterId: number }[];
   drops: { playerId: string; rosterId: number }[];
+  /** FAAB paid on a waiver claim (`settings.waiver_bid`); null when absent. */
+  waiverBid: number | null;
+  /**
+   * Draft picks carried by the record, shaped; null when the record
+   * does not carry the `draft_picks` field at all (not read), [] when
+   * it carries none.
+   */
+  draftPicks: TeamHistoryDraftPick[] | null;
 };
 
 export type TeamHistoryDeps = {
@@ -105,6 +131,13 @@ export const HISTORY_LEAGUE_FROM = "2025-10-20";
 /** First day of the 2026 league's transaction feed (season boundary). */
 export const HISTORY_SEASON_TWO_FROM = "2026-08-13";
 const SEASON_ONE_LEAGUE_ID = "1282883196567977984";
+/**
+ * The 2025 league's week range is fixed and final: its feed is
+ * complete (weeks 1–24, audited on #217) and can never grow, so the
+ * strict loader reads exactly that range rather than deriving weeks
+ * from live season state that describes the current season only.
+ */
+const SEASON_ONE_WEEKS = Array.from({ length: 24 }, (_, i) => i + 1);
 const DAY_MS = 86_400_000;
 const MAX_RESPONSE_BYTES = 256 * 1024;
 
@@ -140,6 +173,35 @@ function moveType(raw: string): TeamHistoryMove["type"] {
   return raw === "waiver" || raw === "free_agent" || raw === "trade" || raw === "commissioner" ? raw : "other";
 }
 
+const positiveInt = (value: unknown): number | null =>
+  typeof value === "number" && Number.isSafeInteger(value) && value >= 1 ? value : null;
+
+/**
+ * Shape a record's `draft_picks` from its own identifiers. Sleeper
+ * omits the field entirely on records that predate pick trading, so
+ * absence is preserved as null — "not read" — instead of being
+ * flattened into the [] that means "read, and the record carried no
+ * picks". Entries that are not objects keep their place with every
+ * field null: the pick was carried, its identifiers were not.
+ */
+function shapeDraftPicks(raw: unknown): TeamHistoryDraftPick[] | null {
+  if (!Array.isArray(raw)) return null;
+  return raw.map(entry => {
+    if (!entry || typeof entry !== "object") {
+      return { season: null, round: null, rosterId: null, ownerId: null, previousOwnerId: null };
+    }
+    const pick = entry as Record<string, unknown>;
+    return {
+      season: typeof pick.season === "string" && pick.season.length > 0 ? pick.season
+        : typeof pick.season === "number" && Number.isSafeInteger(pick.season) ? String(pick.season) : null,
+      round: positiveInt(pick.round),
+      rosterId: positiveInt(pick.roster_id),
+      ownerId: positiveInt(pick.owner_id),
+      previousOwnerId: positiveInt(pick.previous_owner_id),
+    };
+  });
+}
+
 /** Raw Sleeper transactions → completed moves in the frozen replay order. */
 export function toHistoryMoves(raw: RawTransaction[]): HistoryMove[] {
   const entries = (record: Record<string, number> | null | undefined) =>
@@ -149,7 +211,12 @@ export function toHistoryMoves(raw: RawTransaction[]): HistoryMove[] {
     .map(tx => ({
       id: tx.transaction_id, type: moveType(tx.type),
       effectiveMs: tx.status_updated ?? tx.created,
+      leg: Number.isSafeInteger(tx.leg) && tx.leg >= 0 ? tx.leg : null,
+      rosterIds: Array.isArray(tx.roster_ids) ? tx.roster_ids.filter(id => positiveInt(id) !== null) : [],
       adds: entries(tx.adds), drops: entries(tx.drops),
+      waiverBid: typeof tx.settings?.waiver_bid === "number"
+        && Number.isSafeInteger(tx.settings.waiver_bid) && tx.settings.waiver_bid >= 0 ? tx.settings.waiver_bid : null,
+      draftPicks: shapeDraftPicks(tx.draft_picks),
     }))
     .filter(move => typeof move.id === "string" && move.id.length > 0 && Number.isFinite(move.effectiveMs))
     .sort((a, b) => a.effectiveMs - b.effectiveMs || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
@@ -180,8 +247,17 @@ async function defaultMoves(): Promise<HistoryMove[]> {
   if (weeks.length === 0) {
     throw new Error("Sleeper season state does not establish a provable transaction week range");
   }
-  const byWeek = await fetchTransactionsByWeekComplete(weeks);
-  return toHistoryMoves(byWeek.flat());
+  // Both league feeds load through the strict fetcher, in parallel:
+  // the current league over its state-proven week range, the 2025
+  // league over its fixed final range. Either lane failing rejects
+  // the whole load — a silent 2025 week would understate the sourced
+  // events day detail asserts, exactly as a silent 2026 week would
+  // invent roster membership.
+  const [current, seasonOne] = await Promise.all([
+    fetchTransactionsByWeekComplete(weeks),
+    fetchTransactionsByWeekCompleteForLeague(SEASON_ONE_LEAGUE_ID, SEASON_ONE_WEEKS),
+  ]);
+  return toHistoryMoves([...seasonOne.flat(), ...current.flat()]);
 }
 
 /* --------------------------- producer state --------------------------- */
@@ -363,7 +439,7 @@ function buildState(args: {
   const admittedDays = quotes.map(quote => dayOf(quote.nativeTimestamp)).sort();
   const generation = `th1-${sha(JSON.stringify({
     v: 1, teamId: team.id, anchor: anchorRoster,
-    moves: moves.map(move => [move.id, move.effectiveMs, move.type,
+    moves: moves.map(move => [move.id, move.effectiveMs, move.type, move.leg, move.rosterIds, move.waiverBid, move.draftPicks,
       move.adds.map(entry => [entry.playerId, entry.rosterId]), move.drops.map(entry => [entry.playerId, entry.rosterId])]),
     bounds: {
       players: [...new Set([...anchorRoster, ...moves.flatMap(move => [...move.adds, ...move.drops]
@@ -386,7 +462,7 @@ function buildState(args: {
   const coverage: TeamValueHistoryEnvelope["coverage"] = { roster: [], valuation: [] };
   coverage.roster.push({
     from: HISTORY_LEAGUE_FROM, toExclusive: HISTORY_SEASON_TWO_FROM, status: "ambiguous",
-    reason: "Offseason keeper cuts between the 2025 and 2026 seasons appear in neither league's transaction feed, and this release carries no dated 2025 roster anchor; 2025 membership is not asserted.",
+    reason: "Offseason keeper cuts between the 2025 and 2026 seasons appear in neither league's transaction feed, and this release carries no dated 2025 roster anchor; 2025 membership is not asserted. Day detail does list the 2025 league's completed moves as sourced events — each event asserts only its own legs, never the day's roster.",
   });
   if (firstPointDay) {
     if (firstPointDay > HISTORY_SEASON_TWO_FROM) coverage.roster.push({
@@ -429,6 +505,7 @@ function buildState(args: {
     "Every point is a recorded modeled FAAB quote captured at the instant shown. Modeled quotes are not sale prices or team performance.",
     "Rosters are replayed from today's dated roster anchor through completed Sleeper moves; days outside the proven recorded window show no value rather than an assumed roster.",
     "Unknown prices are shown as unavailable, never as $0, and no line is drawn across days without a recorded point.",
+    "Moves shown for 2025 days are that season's completed Sleeper transactions, listed as sourced events with team-scoped legs, picks and waiver FAAB; 2025 rosters are not asserted and 2025 prices do not exist in any retained source.",
   ];
 
   const base = {
@@ -453,8 +530,12 @@ function buildState(args: {
       id: `move-${move.id}`, sourceId: move.id, sourceRef: `Sleeper transaction ${move.id}`,
       origin: "transaction", type: move.type, status: "complete",
       effectiveAt: instantIso(move.effectiveMs), day: null, precision: "instant",
-      adds: move.adds.map(entry => ({ id: entry.playerId, name: playerName(names, entry.playerId) })),
-      drops: move.drops.map(entry => ({ id: entry.playerId, name: playerName(names, entry.playerId) })),
+      leg: move.leg, rosterIds: move.rosterIds, waiverBid: move.waiverBid, draftPicks: move.draftPicks,
+      // Every leg carries its roster id: for a two-sided trade these
+      // arrays hold both teams' assets, and the roster id on each
+      // entry is what scopes a leg to the team that received/sent it.
+      adds: move.adds.map(entry => ({ id: entry.playerId, name: playerName(names, entry.playerId), rosterId: entry.rosterId })),
+      drops: move.drops.map(entry => ({ id: entry.playerId, name: playerName(names, entry.playerId), rosterId: entry.rosterId })),
       note: null,
     };
   }
@@ -531,9 +612,10 @@ function buildState(args: {
       rosterStatus: "ambiguous", rosterCount: null, priced: 0, subtotalCents: null,
       rosterEvidence: [day < HISTORY_SEASON_TWO_FROM
         ? "The 2025 season is separated from the 2026 anchor by undated offseason keeper cuts; membership for this day cannot be established in this release."
+          + (nearby.length > 0 ? " The moves below are the 2025 league's completed transactions, shown as sourced events — they assert only their own legs, not this day's roster." : "")
         : "Membership for this day is outside the proven recorded window in this release."],
       players: [],
-      moves: day >= HISTORY_SEASON_TWO_FROM ? nearby.map(move => toMove(move, names)) : [],
+      moves: nearby.map(move => toMove(move, names)),
     };
   }
 

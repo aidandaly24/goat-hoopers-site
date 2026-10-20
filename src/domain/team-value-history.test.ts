@@ -59,3 +59,17 @@ test("detail rejects future/expired/unbounded prices, wrong sums and forged reco
     expect(isTeamValueHistoryDetail(detail), mode).toBe(false);
   }
 });
+test("detail rejects unscoped move legs, negative FAAB and fractional legs (#224 move shape)", () => {
+  for (const mode of ["unscoped-leg", "negative-faab", "fractional-leg", "forged-pick"]) {
+    const detail = teamValueHistoryDetailFixture("2026-10-19");
+    if (mode === "unscoped-leg") (detail.moves[0].adds[0] as { rosterId?: number }).rosterId = undefined;
+    if (mode === "negative-faab") detail.moves[0].waiverBid = -1;
+    if (mode === "fractional-leg") detail.moves[0].leg = 1.5;
+    if (mode === "forged-pick") detail.moves[0].draftPicks = [{ season: "2026", round: 0, rosterId: 1, ownerId: 2, previousOwnerId: 1 }];
+    expect(isTeamValueHistoryDetail(detail), mode).toBe(false);
+  }
+  // The honest nulls stay valid: not-read picks and no-FAAB are data, not errors.
+  const detail = teamValueHistoryDetailFixture("2026-10-19");
+  detail.moves[0].draftPicks = null; detail.moves[0].waiverBid = null;
+  expect(isTeamValueHistoryDetail(detail)).toBe(true);
+});
