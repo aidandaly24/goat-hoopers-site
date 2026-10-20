@@ -187,7 +187,7 @@ try {
     await new Promise(resolve => { process.once('SIGINT', resolve); process.once('SIGTERM', resolve); });
   }
 } finally {
-  if (server && server.exitCode === null) {
+  if (server && server.exitCode === null && server.signalCode === null) {
     server.kill('SIGTERM');
     const timeout = setTimeout(() => server.kill('SIGKILL'), 5000);
     await new Promise(resolve => server.once('exit', resolve));
