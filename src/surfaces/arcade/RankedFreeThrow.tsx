@@ -36,12 +36,13 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
   const [roundStatus, setRoundStatus] = useState<ReturnType<RankedRoundRecorder["status"]> | null>(null);
   const [saved, setSaved] = useState<RankedScore | null>(null);
   const [message, setMessage] = useState("");
-  const [checking, setChecking] = useState(availability.status === "available" && !!initialRunId);
+  const [checking, setChecking] = useState((availability.status === "available" || availability.status === "recovery") && !!initialRunId);
   const [scope, setScope] = useState<RankedScope>("everyone");
   const [board, setBoard] = useState<RankedBoard | null>(null);
   const [boardState, setBoardState] = useState<"loading" | "ready" | "error">("loading");
   const [refresh, setRefresh] = useState(0);
   const enabled = availability.status === "available";
+  const recoverable = enabled || availability.status === "recovery";
 
   useEffect(() => () => { request.current?.abort(); }, []);
   useEffect(() => {
@@ -60,7 +61,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
     return () => controller.abort();
   }, [client, enabled, scope, refresh]);
   useEffect(() => {
-    if (!enabled || !initialRunId) return;
+    if (!recoverable || !initialRunId) return;
     const controller = new AbortController();
     request.current = controller;
     client.result(initialRunId, controller.signal).then(result => {
@@ -70,7 +71,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
       else setMessage(result.status === "not_found" ? "No saved result was found for this account and round." : failure(result.status));
     });
     return () => { controller.abort(); if (request.current === controller) request.current = null; };
-  }, [client, enabled, initialRunId]);
+  }, [client, recoverable, initialRunId]);
 
   function rememberResult(score: RankedScore) {
     setSaved(score); setPhase("saved"); setMessage("Round saved and validated."); setBoardState("loading"); setRefresh(value => value + 1);
@@ -103,7 +104,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
   }
   async function checkSaved() {
     const id = admission?.run.id ?? initialRunId;
-    if (!enabled || !id || request.current) return;
+    if (!recoverable || !id || request.current) return;
     const controller = new AbortController(); request.current = controller; setChecking(true);
     const result = await client.result(id, controller.signal);
     request.current = null;
@@ -122,7 +123,8 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
       <SectionHeading eyebrow="The Arcade" title="Ranked free throws" level={1} />
       <p><Link href="/arcade/free-throw">Play local practice</Link></p>
       {!enabled ? <>
-        <p>{availability.status === "sign_in" ? "Sign in to a verified personal account to play ranked rounds." : availability.status === "unavailable" ? "Ranked play is temporarily unavailable." : "Ranked play is closed until the competition schedule and storage are enabled."}</p>
+        <p>{availability.status === "recovery" ? availability.reason === "closed" ? "New rounds are closed. Your saved results remain available." : "New rounds are temporarily unavailable. You can still check your saved result."
+          : availability.status === "sign_in" ? "Sign in to a verified personal account to play ranked rounds or view your saved result." : availability.status === "unavailable" ? "Ranked play is temporarily unavailable." : "Ranked play is closed until the competition schedule and storage are enabled."}</p>
         {availability.status === "sign_in" && <Link className={styles.button} href="/account/login">Sign in</Link>}
       </> : <>
         <p>Around the court · one point per make. Everyone gets the same positions. Your best valid completed round counts. Rewards are off.</p>
@@ -132,6 +134,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
         </button>
       </>}
       <p role="status" aria-live="polite">{message}</p>
+      {recoverable && initialRunId && !saved && <button className={styles.button} disabled={checking} onClick={checkSaved}>{checking ? "Checking saved result…" : "Check saved result"}</button>}
     </Card>
     {enabled && active && status && <section aria-label="Active ranked round">
       <Card>
@@ -152,7 +155,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
         onSettled: () => { recorder.current?.settle(); setRoundStatus(recorder.current?.status(performance.now()) ?? null); },
       }} />
     </section>}
-    {enabled && saved && <Card>
+    {recoverable && saved && <Card>
       <SectionHeading eyebrow={`Saved · ${saved.week}`} title={`Final score: ${saved.score}`} />
       <dl className={styles.stats}>
         <div><dt>Makes / attempts</dt><dd>{saved.makes} / {saved.attempts}</dd></div>

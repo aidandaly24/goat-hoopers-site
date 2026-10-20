@@ -1,5 +1,6 @@
 import { expect, it } from "vitest";
 import { canFinalize, parseCompetitionCalendar, periodPhase, type PeriodRecord } from "./competition-period";
+import weekOneCandidate from "../../../docs/arcade-week-1-calendar.json";
 const starts = Date.parse("2026-10-20T19:00:00Z");
 const p: PeriodRecord = { id: "free-throw-2026-week-1", gameId: "free-throw", week: "2026-W01", label: "Week 1 · Free throws", order: 1,
   opensAtMs: starts, predecessorId: null, calendarSource: "https://example.test/verified-calendar", calendarVersion: "synthetic-test-only",
@@ -37,4 +38,12 @@ it("rejects duplicate assignments, invalid dates, broken chains and later openin
   expect(parseCompetitionCalendar([p, valid])).toHaveLength(2);
   expect(parseCompetitionCalendar([p, { ...valid, opensAtMs: valid.opensAtMs + 3600000 }])).toBeNull();
   expect(parseCompetitionCalendar([p, { ...valid, predecessorId: null }])).toBeNull();
+});
+it("accepts the sourced Week 1 proposal without installing it or inventing a closing time", () => {
+  const proposal = parseCompetitionCalendar(weekOneCandidate);
+  expect(proposal).toHaveLength(1);
+  expect(proposal![0]).toMatchObject({ id: "free-throw-2026-week-1", opensAtMs: starts });
+  expect(proposal![0].fixtures).toHaveLength(43);
+  const record = { ...proposal![0], receipt: null, closedAtMs: null, finalizedAtMs: null };
+  expect(periodPhase(record, starts, true)).toBe("blocked");
 });

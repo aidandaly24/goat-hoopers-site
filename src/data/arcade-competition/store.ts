@@ -108,12 +108,14 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
   async board(kind: "weekly" | "all-time" | "archive", periodId: string | null, config: ReadyRankedConfiguration, viewer: string | null, scope: RankedScope = "everyone", limit = 50): Promise<CompetitionBoard> {
     if (!Number.isSafeInteger(limit) || limit < 1 || limit > 100 || !["everyone", "league"].includes(scope)) throw new Error("invalid_board_query");
     const records = await this.records(this.database), now = await clock(this.database), p = kind === "archive" ? records.find(p => p.id === periodId && p.finalizedAtMs !== null) : selected(records);
-    const version = kind === "archive" && p?.scoreVersion ? p.scoreVersion : scoreFormatVersion(config.policy);
+    const sealed = !!p && p.finalizedAtMs !== null;
+    const readKind = kind === "weekly" && sealed ? "archive" : kind;
+    const version = readKind === "archive" && p?.scoreVersion ? p.scoreVersion : scoreFormatVersion(config.policy);
     if (!p && kind !== "all-time") return { gameId: "free-throw", kind, label: "Competition not configured", phase: "held", asOfMs: now, periodId: null, scoreVersion: version, entries: [] };
     return { gameId: "free-throw", kind, label: kind === "all-time" ? `All-time · ${config.policy.shots} shots / ${config.policy.durationMs / 1000}s format` : p!.label,
       phase: p ? periodPhase(p, now, p.predecessorId === null || records.some(old => old.id === p.predecessorId && old.finalizedAtMs !== null)) : "held",
       asOfMs: now, periodId: p?.id ?? null, scoreVersion: version,
-      entries: await this.entries(this.database, kind, p?.id ?? null, version, viewer, scope, limit) };
+      entries: await this.entries(this.database, readKind, p?.id ?? null, version, viewer, scope, limit) };
   }
   async archives(): Promise<CompetitionArchive[]> {
     return (await this.records(this.database)).filter(p => p.finalizedAtMs !== null).map(p => ({ id: p.id, gameId: p.gameId, label: p.label,
@@ -134,7 +136,10 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
           p.opensAtMs !== spec.opensAtMs || p.calendarVersion !== spec.calendarVersion || p.calendarSource !== spec.calendarSource ||
           p.predecessorId !== spec.predecessorId || p.order !== spec.order || p.week !== spec.week || p.label !== spec.label ||
           p.gameId !== spec.gameId || row.rules_version !== config.rulesVersion) throw new Error("published_calendar_policy_changed");
-        if (!receipt || receipt.checkedAtMs > now || now - receipt.checkedAtMs > 600000) continue;
+        // Fetches occur before this lock. A slower older worker must not reopen
+        // a period after a newer missing/postponed observation has blocked it.
+        if (!receipt || receipt.checkedAtMs > now || now - receipt.checkedAtMs > 600000 ||
+          p.receipt && receipt.checkedAtMs <= p.receipt.checkedAtMs) continue;
         const prior = p.predecessorId === null || rows.some(old => old.id === p.predecessorId && old.finalized_at_ms != null) || finalized.includes(p.predecessorId);
         if (!prior) continue;
         await tx.execute(sql`UPDATE arcade_competition_periods SET receipt=${JSON.stringify(receipt)}::jsonb WHERE id=${p.id} AND finalized_at_ms IS NULL`);

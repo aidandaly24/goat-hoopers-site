@@ -37,7 +37,9 @@ export type RankedLeaderboardEntry = RunStatistics & {
 };
 export type RankedAdmission = { run: Omit<RankedRun, "userId" | "state">; rules: FreeThrowPolicy; replayContext: RankedReplayContext };
 export type RankedBoard = { gameId: "free-throw"; rulesVersion: string; ruleSetId: string; calendar: RankedCalendar; scope: RankedScope; period: RankedPeriod; entries: RankedLeaderboardEntry[] };
-export type RankedAvailability = { status: "disabled" | "sign_in" | "unavailable" } | { status: "available"; ruleSetId: string; rules: FreeThrowPolicy };
+export type RankedAvailability = { status: "disabled" | "sign_in" | "unavailable" }
+  | { status: "available"; ruleSetId: string; rules: FreeThrowPolicy }
+  | { status: "recovery"; reason: "closed" | "unavailable" };
 export type RankedScope = "everyone" | "league";
 
 export const record = (value: unknown): value is Record<string, unknown> => typeof value === "object" && value !== null && !Array.isArray(value);

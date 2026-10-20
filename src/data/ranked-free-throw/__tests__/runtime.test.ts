@@ -62,6 +62,19 @@ it("refuses absent/invalid rules or inactive personal auth despite the activatio
   expect(mocks.getDb).not.toHaveBeenCalled(); expect(mocks.verify).not.toHaveBeenCalled();
 });
 
+it("keeps verified result recovery separate from final, blocked and unavailable admission", async () => {
+  enableSynthetic();
+  const headers = async () => new Headers(), board = vi.spyOn(ArcadeCompetitionStore.prototype, "board");
+  for (const phase of ["final", "blocked", "upcoming"]) {
+    board.mockResolvedValue({ phase } as never);
+    expect(await loadRankedAvailability(headers)).toEqual({ status: "recovery", reason: "closed" });
+  }
+  board.mockRejectedValue(new Error("board source unavailable"));
+  expect(await loadRankedAvailability(headers)).toEqual({ status: "recovery", reason: "unavailable" });
+  mocks.verify.mockResolvedValue(null);
+  expect(await loadRankedAvailability(headers)).toEqual({ status: "sign_in" });
+});
+
 it.each(["FRIENDS_AUTH_ENROLLMENT", "FRIENDS_AUTH_ENABLED"])("uses the verified personal subject with %s, without requiring a team", async flag => {
   enableSynthetic(); vi.stubEnv("FRIENDS_AUTH_ENROLLMENT", ""); vi.stubEnv(flag, "1");
   const runtime = createRankedRuntime(); const headers = new Headers({ cookie: "synthetic-private-cookie" });

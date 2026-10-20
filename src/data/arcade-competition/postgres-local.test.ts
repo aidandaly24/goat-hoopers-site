@@ -184,4 +184,45 @@ describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("canonical compet
     expect((await store.board("archive", p.id, config, null)).entries.map(e => e.username)).toEqual(["beta", "alpha"]);
     expect((await pool.query("SELECT score_id FROM arcade_weekly_results WHERE account_id=$1", [a.subject])).rows[0].score_id).toBe("00000000-0000-4000-8000-000000000002");
   });
+  it.each(["live", "final"] as const)("ignores queued older %s authority after a newer missing observation commits", async olderState => {
+    const at = Date.now();
+    await store.reconcile([p], config, new Map([[p.id, { ...receipt(p), checkedAtMs: at - 4000 }]]));
+    const runId = await seed(), blocker = await pool.connect(), pending: Promise<string[]>[] = [];
+    const waitForWorkers = async (count: number) => {
+      const deadline = Date.now() + 3000;
+      while (Date.now() < deadline) {
+        const rows = await pool.query("SELECT pid FROM pg_stat_activity WHERE application_name=$1 AND wait_event_type='Lock' AND query LIKE '%pg_advisory_xact_lock%'", [schema]);
+        if (rows.rowCount === count) return;
+        await new Promise(resolve => setTimeout(resolve, 20));
+      }
+      throw new Error("worker did not queue on advisory lock");
+    };
+    try {
+      await blocker.query("BEGIN"); await blocker.query("SELECT pg_advisory_xact_lock(7042026)");
+      pending.push(store.reconcile([p], config, new Map([[p.id, { ...receipt(p, "missing"), checkedAtMs: at - 1000 }]])));
+      await waitForWorkers(1);
+      pending.push(store.reconcile([p], config, new Map([[p.id, { ...receipt(p, olderState), checkedAtMs: at - 2000 }]])));
+      await waitForWorkers(2); await blocker.query("COMMIT");
+      expect(await Promise.all(pending)).toEqual([[], []]);
+      expect((await store.board("weekly", null, config, null)).phase).toBe("blocked");
+      expect((await store.start(b, config)).status).toBe("week_closing");
+      expect((await submitRankedScore(runtime(), a, { runId, shots })).status).toBe("invalid_run");
+      expect(await store.archives()).toHaveLength(0);
+      expect((await pool.query("SELECT receipt->>'checkedAtMs' AS observed FROM arcade_competition_periods WHERE id=$1", [p.id])).rows[0].observed).toBe(String(at - 1000));
+    } finally { await blocker.query("ROLLBACK"); blocker.release(); await Promise.allSettled(pending); }
+  });
+  it("uses sealed eligibility and scoring format when the weekly fallback selects the last final", async () => {
+    await store.reconcile([p], config, new Map([[p.id, receipt(p)]]));
+    const runId = await seed(); await submitRankedScore(runtime(), a, { runId, shots });
+    await store.reconcile([p], config, new Map([[p.id, receipt(p, "final")]]));
+    const original = await store.board("weekly", null, config, a.subject);
+    const team = randomUUID(); await pool.query("INSERT INTO site_users(id,team_id,display_name,password_hash) VALUES($1,'1','Team','unused')", [team]);
+    await pool.query("INSERT INTO account_identities(subject,user_id,active) VALUES($1,$2,true)", [a.subject, team]);
+    expect((await store.board("weekly", null, config, null, "league")).entries).toEqual((await store.board("archive", p.id, config, null, "league")).entries);
+    expect((await store.board("weekly", null, config, null, "league")).entries).toHaveLength(0);
+    expect((await store.board("all-time", null, config, null, "league")).entries).toHaveLength(1);
+    const changedPolicy = { ...policy, shots: 3 }, changed = { ...config, policy: changedPolicy, rulesVersion: freeThrowRulesVersion(changedPolicy) };
+    const final = await store.board("weekly", null, changed, a.subject);
+    expect(final).toMatchObject({ kind: "weekly", phase: "final", scoreVersion: original.scoreVersion, entries: original.entries });
+  });
 });

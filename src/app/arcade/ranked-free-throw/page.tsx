@@ -9,6 +9,6 @@ export const metadata: Metadata = { title: "Ranked free throws | GOAT Hoopers", 
 
 export default async function RankedFreeThrowPage({ searchParams }: { searchParams: Promise<{ run?: string | string[] }> }) {
   const availability = await loadRankedAvailability(headers);
-  const run = availability.status === "available" ? (await searchParams).run : undefined;
+  const run = (await searchParams).run;
   return <RankedFreeThrow availability={availability} initialRunId={rankedId(run) ? run : undefined} />;
 }

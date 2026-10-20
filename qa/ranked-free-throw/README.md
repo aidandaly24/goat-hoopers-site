@@ -44,3 +44,7 @@ included as evidence for this revision; reproduce checks on the final PR head.
 The merged Blender scene caused normal-motion SwiftShader rounds at both 1 and 0.5 density
 to time out in this environment. Keep that result distinct from reduced-pixel
 functional checks. No scene performance or art changes are part of this PR.
+
+The final recovery regression seals both synthetic periods, restores an owned
+bookmarked result with no write requests, then verifies another signed-in account
+cannot read it. Closed admission and result recovery are separate checks.

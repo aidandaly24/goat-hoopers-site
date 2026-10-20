@@ -26,6 +26,8 @@ calendar.push({ ...calendar[0], id: "browser-week-2", week: "2026-W02", label: "
 const localDate = new Intl.DateTimeFormat("sv-SE", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
 const midnight = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hourCycle: "h23", hour: "2-digit", minute: "2-digit" });
 calendar[1].opensAtMs = [4, 5].map(hour => Date.parse(`${localDate}T0${hour}:00:00Z`)).find(at => midnight.format(at) === "00:00");
+fixture.next = { id: "123456790", date: localDate.replaceAll("-", ""), final: false };
+calendar[1].fixtures = [{ id: fixture.next.id, date: fixture.next.date, startsAtMs: calendar[1].opensAtMs }];
 const commissionerKey = randomBytes(32).toString("hex");
 const pool = new Pool({ host: "127.0.0.1", port: 55441, database: "claim_team_test", user: "postgres", ssl: false,
   max: 4, connectionTimeoutMillis: 1500, options: `-c search_path=${schema}` });
@@ -108,6 +110,7 @@ try {
     assert.equal(response.status, 200); return response.json();
   };
   assert.deepEqual((await reconcile()).finalized, []);
+  const savedRuns = [];
   for (const [name, options] of [["desktop_hooper", { viewport: { width: 1280, height: 900 }, reducedMotion: desktopMotion }],
     ["mobile_hooper", { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: "reduce" }]]) {
     const value = await context(options), { page } = value, submissions = [];
@@ -154,6 +157,7 @@ try {
     await page.reload(); await page.getByRole("heading", { name: `Final score: ${score}`, exact: true }).waitFor(); assert.equal(submissions.length, 1);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
     evidence.movementScenarios.push({ name, origins, powers, outcomes: expected, score, postCount: submissions.length });
+    savedRuns.push({ cookies, runId: submissions[0].runId, score });
     record(`${name}: same moving positions → ${expected.join("")} / score ${score} → one input-only POST, real persistence, scope switch and private reload`);
     await value.context.close();
   }
@@ -184,6 +188,26 @@ try {
   if (process.env.QA_SCREENSHOT_PATH) await view.page.screenshot({ path: process.env.QA_SCREENSHOT_PATH, fullPage: true });
   record("Finality endpoint archives once, opens next due period, preserves prior scores and stable archive URL; 320/390/1440px reflow passes");
   await view.context.close();
+  await writeFile(fixturePath, JSON.stringify({ ...fixture, final: true, next: { ...fixture.next, final: true } }));
+  assert.deepEqual((await reconcile()).finalized, [calendar[1].id]);
+  const recovered = await context({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
+  await recovered.context.addCookies(savedRuns[0].cookies);
+  let recoveryPosts = 0;
+  recovered.page.on("request", request => { if (request.method() === "POST" && /\/(?:runs|scores)$/.test(request.url())) recoveryPosts++; });
+  await recovered.page.goto(`${origin}/arcade/ranked-free-throw?run=${savedRuns[0].runId}`);
+  await recovered.page.getByText("New rounds are closed. Your saved results remain available.", { exact: true }).waitFor();
+  await recovered.page.getByRole("heading", { name: `Final score: ${savedRuns[0].score}`, exact: true }).waitFor();
+  assert.equal(await recovered.page.getByRole("button", { name: "Start ranked round", exact: true }).count(), 0);
+  await recovered.page.reload();
+  await recovered.page.getByRole("heading", { name: `Final score: ${savedRuns[0].score}`, exact: true }).waitFor();
+  assert.equal(recoveryPosts, 0);
+  await recovered.context.clearCookies(); await recovered.context.addCookies(savedRuns[1].cookies);
+  await recovered.page.reload();
+  await recovered.page.getByText("No saved result was found for this account and round.", { exact: true }).waitFor();
+  assert.equal(await recovered.page.getByRole("heading", { name: `Final score: ${savedRuns[0].score}`, exact: true }).count(), 0);
+  assert.equal(Number((await pool.query("SELECT count(*) FROM ranked_free_throw_scores")).rows[0].count), 2);
+  record("After both periods seal, the owner recovers a bookmarked result/reload with zero write requests; another verified account cannot read it");
+  await recovered.context.close();
   assert.deepEqual(evidence.pageErrors, []);
   if (process.env.QA_REPORT_PATH) await writeFile(process.env.QA_REPORT_PATH, JSON.stringify(evidence, null, 2) + "\n");
   console.log(JSON.stringify(evidence, null, 2));

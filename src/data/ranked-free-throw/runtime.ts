@@ -47,8 +47,11 @@ export async function loadRankedAvailability(requestHeaders: () => Promise<Heade
   if (runtime.configuration.status !== "ready") return { status: "disabled" };
   try {
     const config = runtime.configuration;
-    const store = runtime.store();
-    if (store instanceof ArcadeCompetitionStore && (await store.board("weekly", null, config, null)).phase !== "open") return { status: "disabled" };
-    return await runtime.account(await requestHeaders()) ? { status: "available", ruleSetId: runtime.configuration.policy.ruleSetId, rules: runtime.configuration.policy } : { status: "sign_in" };
+    if (!await runtime.account(await requestHeaders())) return { status: "sign_in" };
+    try {
+      const store = runtime.store();
+      if (store instanceof ArcadeCompetitionStore && (await store.board("weekly", null, config, null)).phase !== "open") return { status: "recovery", reason: "closed" };
+    } catch { return { status: "recovery", reason: "unavailable" }; }
+    return { status: "available", ruleSetId: config.policy.ruleSetId, rules: config.policy };
   } catch { return { status: "unavailable" }; }
 }

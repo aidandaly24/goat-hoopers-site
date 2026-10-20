@@ -1251,10 +1251,14 @@ Other games remain unranked until they have their own validated adapter.
 
 `data/ranked-free-throw/runtime.ts` composes the canonical competition store only
 when the exact enable flag, personal auth and a valid reviewed calendar exist.
-Default-off requests stop before account/DB work. Admissions/saves take period
+Default-off requests stop before account/DB work. Verified owners have a separate
+read-only result-recovery state when new-round admission is closed/unavailable;
+bookmarked run IDs survive that state and never grant admission. Admissions/saves take period
 locks before account/session/run locks; finalization takes the period write lock
 before its atomic immutable best-score snapshot and close. A lost or stale
-publisher receipt blocks safely. Public reads never advance periods or write
+publisher receipt blocks safely. Stored observations advance strictly under the
+period lock, so delayed older workers cannot regress status. Final weekly views
+read sealed results and their frozen format just like the archive. Public reads never advance periods or write
 scores. The old calendar store remains a separately tested legacy replay kernel;
 the production composition uses the canonical period adapter.
 

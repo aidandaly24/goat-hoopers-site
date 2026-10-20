@@ -19,7 +19,8 @@ The existing fantasy standings and Power rankings are independent.
 - Everyone includes verified personal accounts without a claimed team. League
   requires a current verified active team link. Score ownership never follows
   a display name, email, legacy cookie or team claim.
-- Final scores/order and team eligibility are sealed transactionally. A later
+- Final scores/order and team eligibility are sealed transactionally. The weekly
+  view also uses that sealed result whenever it displays a finalized period. A later
   username change is displayed using the current profile; it cannot alter the
   archived score/order. A later team claim does not rewrite archive eligibility.
 - All-time chooses each account's best round across compatible periods of the
@@ -28,36 +29,28 @@ The existing fantasy standings and Power rankings are independent.
   Old finals remain reachable at their original IDs.
 - Public GETs read only. Visible current boards refresh once per minute;
   archives do not poll. Public rows omit account/session IDs, email, raw inputs
-  and private result IDs. The dedicated result endpoint requires its owner.
+  and private result IDs. The dedicated result endpoint requires its owner. Verified
+  owners retain bookmarked-result recovery when new admission is closed or its
+  board is unavailable; recovery never grants a run or automatically reposts.
 
 ## Calendar and finality contract
 
 `GOAT_ARCADE_CALENDAR` is a reviewed JSON array of explicit period definitions:
 
-```json
-[{
-  "id": "free-throw-2026-week-1",
-  "gameId": "free-throw",
-  "week": "2026-W01",
-  "label": "Week 1 · Free throws",
-  "order": 1,
-  "opensAtMs": 1792522800000,
-  "predecessorId": null,
-  "calendarSource": "https://REPLACE-WITH-VERIFIED-FANTASY-WEEK-SOURCE",
-  "calendarVersion": "REPLACE-WITH-REVIEWED-SOURCE-VERSION",
-  "fixtures": [{"id": "REPLACE-WITH-ASSIGNED-ESPN-EVENT-ID", "date": "YYYYMMDD", "startsAtMs": 0}]
-}]
-```
+A concrete, parser-validated 43-event Week 1 candidate is checked in at
+[`arcade-week-1-calendar.json`](arcade-week-1-calendar.json). It is a proposal,
+not automatically loaded or installed. Its original-day event assignments,
+source/date derivation and missing-data limits are documented in
+[the calendar provenance](arcade-week-1-calendar.md).
 
-The example is deliberately invalid until real assigned fixture IDs/source dates
-are supplied. Week 1 opening is **October 20, 2026 at 15:00 America/New_York
+Week 1 opening is **October 20, 2026 at 15:00 America/New_York
 (19:00 UTC)**. Subsequent periods use New York midnight on the sourced first
 fantasy-week day, delayed until the preceding period actually finalizes. Store
 explicit UTC instants converted from those local calendar dates; never add a
 fixed 168 hours across DST. The parser verifies a unique ordered predecessor
 chain, unique fixture assignments and New York midnight for later openings. Publishing freezes IDs, calendar, fixture assignments and rule/format
-hashes. Definitions cannot be silently rewritten. The runtime has no built-in
-or guessed complete fantasy-week fixture list.
+hashes. Definitions cannot be silently rewritten. The runtime does not install that candidate automatically; activation still
+requires explicitly setting its reviewed JSON in the production environment.
 
 The protected worker fetches ESPN's publisher scoreboard only for due dates
 and accepts only configured event IDs. Final means both `completed === true`
@@ -66,6 +59,9 @@ postponed, failed or more-than-ten-minute-old receipts block admission/saving
 and cannot close a week. Scheduled duration and elapsed wall time never imply
 finality. A future configured fixture remains scheduled, so an early final in
 another game does not end the week.
+
+Only strictly newer worker observations can replace stored receipts under the
+period lock; an older queued worker cannot reopen or seal a newly blocked week.
 
 Finalization takes the period write lock, waits for in-flight score transactions,
 then snapshots one best score per account and closes/seals once in the same
@@ -90,8 +86,10 @@ No five-minute schedule has been configured or enabled by this PR.
    retain the tables/results rather than deleting competition history.
 2. Establish the actual fantasy-week boundaries and complete assigned NBA event
    list, including postponement handling and calendar provenance. Publish that
-   reviewed JSON, with the Week 1 opening above. No real full-week assignment
-   has been validated in this work. A calendar only for Free Throw cannot
+   reviewed JSON, with the Week 1 opening above. The checked-in Week 1 candidate
+   has 43 observed regular-season event IDs and passes the parser; provenance
+   distinguishes source facts from the
+   user-approved New York opening convention. A calendar only for Free Throw cannot
    activate ranked 82–0; that game needs its own scoring adapter/rules first.
 3. After exact-head CI, Dot/Muse review and production HTTPS auth/provider
    verification, approve deployment and `GOAT_RANKED_FREE_THROW_ENABLED=1`.

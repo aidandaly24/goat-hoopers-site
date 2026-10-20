@@ -15,3 +15,10 @@ it("provides a personal sign-in entry only when ranked configuration is availabl
   const html = renderToStaticMarkup(createElement(RankedFreeThrow, { availability: { status: "sign_in" } }));
   expect(html).toContain('href="/account/login"'); expect(html).not.toContain("Start ranked round");
 });
+it("offers owned-result recovery without any new-round or score-submit controls after closure", () => {
+  const html = renderToStaticMarkup(createElement(RankedFreeThrow, { availability: { status: "recovery", reason: "closed" }, initialRunId: "11111111-1111-4111-8111-111111111111" }));
+  expect(html).toContain("Your saved results remain available");
+  expect(html).toContain("Checking saved result");
+  expect(html).not.toContain("Start ranked round");
+  expect(html).not.toContain("Save completed round");
+});
