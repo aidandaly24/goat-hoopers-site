@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "method": "Actual Chromium compositor frames with original timestamps; fixture-triggered results run the native 420ms scheduler. No manual pose stepping.",
+  "viewport": [
+    320,
+    360
+  ],
+  "dpr": 1,
+  "hardware": "ANGLE SwiftShader software GPU; capture overhead affects displayed cadence, not a physical-device performance test",
+  "frames": 15,
+  "durationSeconds": 10.805049180984497,
+  "cues": [
+    {
+      "outcome": "miss",
+      "streak": 0,
+      "reduced": false,
+      "startedBrowserMs": 3972.100000000559
+    },
+    {
+      "outcome": "made",
+      "streak": 1,
+      "reduced": false,
+      "startedBrowserMs": 6986
+    },
+    {
+      "outcome": "made",
+      "streak": 3,
+      "reduced": false,
+      "startedBrowserMs": 9996.299999999814
+    },
+    {
+      "outcome": "made",
+      "streak": 3,
+      "reduced": true,
+      "startedBrowserMs": 13013.600000000559
+    }
+  ],
+  "sourceSha256": {
+    "src/three/FreeThrowScene.ts": "217acfc9867895aa26a3c1f80c3cde7b92aadcbf2351763630d1ca02f8277fa9",
+    "src/three/FreeThrowEnvironment.ts": "11be093acd1b4ac51ef386e911436fc28193d4819eb231e91f5caec2c020ce6d",
+    "public/3d/free-throw/environment/outdoor.glb": "4d136653d7c03a143e3595e245e713ec84c0b8761fb5b91ad553f9eede203dcd"
+  }
+}

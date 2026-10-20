@@ -347,8 +347,8 @@ src/
                  # Prop assets in public/3d/,
                  # built by the Blender pipeline in 3d/ (see 3d/README.md).
                  # FreeThrowEnvironment is private practice-only scenery:
-                 # static sky/depth, instanced spectators and bounded result
-                 # poses. FreeThrowScene owns finite reaction frames; existing
+                 # approved Blender scenery, camera-selected crowd LODs and
+                 # instanced reaction cohorts. FreeThrowScene owns finite cues;
                  # React completed-result/streak state is its sole cue source.
   public/3d/     # Approved props (basketball, trophy, crown, hoop)
                  # and independently owned free-throw assets with named animation
@@ -1348,7 +1348,19 @@ The near hoop stays at local origin; the court moves +12.7248 m on Z,
 putting the release on its near free-throw line. No collisions are inferred
 from render triangles. Asset loading failure and WebGL/context loss offer
 a readable retry fallback; textures, geometry, environment and observers
-are disposed. Character animation and league competition are later work.
+are disposed. Player-character animation and league competition are later work.
+
+The private environment now consumes the derived, approved outdoor Blender art
+under `public/3d/free-throw/environment/`: all 416 placements, shared near/far
+crowd geometry, batched architecture, vertex AO/source surfaces and a baked sky.
+Only completed-result cues blend the source poses per cohort; ordinary GPU
+instancing renders them. Sky/reflection resolution, culling and resource cleanup
+are independent of physics and scoring. The optional scenery can fail while the
+original court becomes playable without awaiting it. Optional loading has a
+deadline; effect cancellation frees the renderer during creation and disposes
+late results. Native visibility gates frame/reflection submissions while the
+existing simulation/reset bookkeeping continues. See `docs/free-throw-blender-integration.md` for
+provenance, export commands, measured browser limits and exact-head review gates.
 
 The presentation is one viewport with an overlaid score HUD, world-space
 aim reticle/trajectory and bottom aim/power meter. Reset and help are small
