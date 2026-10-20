@@ -8,7 +8,9 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, '../..');
-const source = path.resolve(process.argv[2] ?? repo);
+const args = process.argv.slice(2);
+const serve = args.includes('--serve');
+const source = path.resolve(args.find(arg => !arg.startsWith('--')) ?? repo);
 const next = path.join(repo, 'node_modules/next/dist/bin/next');
 const temporary = await mkdtemp(path.join(os.tmpdir(), 'goat-ticker-scope-'));
 const probeLog = path.join(temporary, 'probe.jsonl');
@@ -52,6 +54,7 @@ try {
   await copyFile(path.join(here, 'fonts.ts'), path.join(temporary, 'app/fixture-fonts.ts'));
   const primaryContent = path.join(temporary, 'app/fixture-content.tsx');
   await copyFile(path.join(here, 'content.tsx'), primaryContent);
+  await copyFile(path.join(here, 'hydration-probe.tsx'), path.join(temporary, 'app/hydration-probe.tsx'));
   for (const route of primaryRoutes) {
     const directory = path.join(temporary, 'app', ...route.split('/').filter(Boolean));
     await mkdir(directory, { recursive: true });
@@ -67,12 +70,14 @@ try {
   await copyFile(path.join(here, 'not-found.tsx'), path.join(temporary, 'app/not-found.tsx'));
   await copyFile(path.join(here, 'route.ts'), path.join(temporary, 'app/api/ticker-probe/route.ts'));
   await copyFile(path.join(here, 'robots.ts'), path.join(temporary, 'app/robots.ts'));
+  await mkdir(path.join(temporary, 'app/[...segments]'), { recursive: true });
+  await copyFile(path.join(source, 'src/app/[...segments]/page.tsx'), path.join(temporary, 'app/[...segments]/page.tsx'));
   await cp(path.join(source, 'src/app/@ticker'), path.join(temporary, 'app/@ticker'), { recursive: true, filter: filename => !filename.includes('.test.') });
   const slotFiles = await readdir(path.join(temporary, 'app/@ticker'));
   assert.ok(['default.tsx', 'page.tsx', 'Ticker.tsx', '[...segments]'].every(filename => slotFiles.includes(filename)), 'Actual production root page, required catch-all, implementation and default must be copied');
   assert.ok(!slotFiles.includes('[[...segments]]'), 'Ticker root and required catch-all must avoid the optional-catch-all specificity collision');
   const primaryFiles = await readdir(path.join(temporary, 'app'));
-  assert.ok(!primaryFiles.includes('[...segments]') && !primaryFiles.includes('[[...segments]]') && !primaryFiles.includes('fixture-unmatched-missing'), 'Unknown-path check must have no primary catch-all or matching page');
+  assert.ok(primaryFiles.includes('[...segments]') && !primaryFiles.includes('[[...segments]]') && !primaryFiles.includes('fixture-unmatched-missing'), 'Unknown URL must use the copied production not-found catch-all, not a fixture-specific page');
   await symlink(path.join(repo, 'node_modules'), path.join(temporary, 'node_modules'));
   await symlink(path.join(repo, 'public'), path.join(temporary, 'public'));
   await writeFile(path.join(temporary, 'package.json'), JSON.stringify({ name: 'goat-ticker-scope-regression', private: true }));
@@ -152,7 +157,7 @@ try {
     const calls = await callsFor(id);
     checks.push({ route, transport: flight ? 'Flight' : 'HTML', status: response.status,
       notFound: true, marketCalls: calls.filter(row => row.loader === 'market').length, newsCalls: calls.filter(row => row.loader === 'news').length,
-      primaryMatch: route === unmatchedRoute ? 'none' : 'explicit page invoking notFound()',
+      primaryMatch: route === unmatchedRoute ? 'production catch-all invoking notFound()' : 'explicit page invoking notFound()',
       note: 'A matching ticker slot must preserve the primary 404 boundary; streamed Flight may retain HTTP200 with the 404 control signal.' });
   }
   for (const route of ['/api/ticker-probe', '/robots.txt']) for (const flight of [false, true]) {
@@ -177,6 +182,10 @@ try {
     utilityClientAssets: assets, fontImportReplacements: 1, credentials: 'absent', externalFetchesAndSockets: 'blocked',
     productionWrites: 'none', fixtureWrites: 'temporary build and request probe log only',
     browserSoftNavigation: 'not exercised; HTML + Flight verify server route matching only' }, null, 2));
+  if (serve) {
+    console.log(`TICKER_FIXTURE_READY ${JSON.stringify({ origin, source, browserDriver: path.join(here, 'browser-regression.mjs') })}`);
+    await new Promise(resolve => { process.once('SIGINT', resolve); process.once('SIGTERM', resolve); });
+  }
 } finally {
   if (server && server.exitCode === null) {
     server.kill('SIGTERM');

@@ -652,6 +652,17 @@ all source/provenance details remain available. One existing-duration opacity/
 competitive game state or reward claim is introduced. The active viewer is
 visibly marked in the existing matchup rows and standings without reordering.
 
+The October 20 player-context follow-up (#224) keeps the notebook in compact
+44px-portrait rows, with an explicit reason, metric and available sample/period.
+Modeled price movement and asset value never masquerade as form. Verified weekly
+totals retain points, GP and the exact completed source period; DNP/unknown
+participation stays excluded. Shared high/low selections appear once, including
+ties, with the displayed/eligible count when the source selections are incomplete.
+Missing completed-week evidence uses one quiet status line. The existing Reveal
+wrapper keeps content visible while waiting and applies one finite entrance;
+reduced motion, hidden pages and unmount cancel observation/animation. Row focus
+feedback is immediate, and pointer lift respects reduced motion.
+
 The October 19 follow-up adds Your Roster Value: a prominent current modeled
 team total, priced/unpriced coverage, model-computation time, and an expandable
 complete player-value list. Partial pricing is a labelled subtotal; league value

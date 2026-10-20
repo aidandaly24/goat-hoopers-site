@@ -278,7 +278,7 @@ describe('integrated personalized edition', () => {
     expect(html).not.toContain('Week 1 is underway');
   });
 
-  it('retains team news and the verified best/rough recap for members', () => {
+  it('retains team news and presents a small verified weekly cohort once', () => {
     const fixture = personalizedFixture();
     const personal = buildPersonalizedHome(
       { kind: 'member', teamId: '1' }, fixture.home, fixture.weekly, fixture.market,
@@ -290,8 +290,9 @@ describe('integrated personalized edition', () => {
     expect(html).toContain('Synthetic roster 1 player update');
     expect(html).toContain('Synthetic Wire');
     expect(html).toContain('data-guide-recap="true"');
-    expect(html).toContain('Your best');
-    expect(html).toContain('The rough week');
+    expect(html).toContain('Recorded performers · Week 2');
+    expect(html).toContain('data-guide-cohort="true"');
+    expect(html).not.toContain('The rough week');
     expect(html).toContain('GP');
     expect(html).toContain('verified games');
     // The recap carries the guide's own period and recap message, not just

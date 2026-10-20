@@ -16,6 +16,10 @@ The gate belongs inside the slot because hiding its output in the parent
 does not prevent server execution. Matching utility routes explicitly also
 clears a previous ticker on client navigation; Next retains unmatched
 parallel slots. `default.tsx` supplies a safe null hard-navigation fallback.
+The implicit primary slot also has a required `[...segments]/page.tsx` fallback
+that invokes Next `notFound()` for otherwise-unhandled URLs. Without a matching
+primary fallback, the ticker catch-all could change the URL while soft navigation
+retained the previous primary page. Specific pages and handlers keep precedence.
 No pathname middleware, request-header mutation, client data endpoint, or
 route-group migration is introduced.
 
@@ -36,7 +40,10 @@ Verification combines offline loader/DTO/outage contracts with
 repository's Node 22 / Next runtime in normal CI. Its synthetic adapters
 keep credentials absent and external I/O blocked. HTML and Flight probes
 verify server route matching; they do not establish browser soft-navigation
-mount/unmount behavior or a production deployment. Actual browser route
+mount/unmount behavior or a production deployment. The reusable
+`qa/ticker-scope/browser-regression.mjs` checks a hydrated real Link to an
+unknown URL, Back, Forward and reload, including same-document assertions so a
+hard navigation cannot mask retained content. Actual browser route
 transitions and joint exact-head review remain acceptance gates before
 release. `ARCHITECTURE.md` is reserved by Muse's #225; the routing-note
 handoff is recorded in #224 instead of editing that file concurrently.

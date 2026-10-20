@@ -1,0 +1,12 @@
+.layout { display: grid; gap: var(--gh-s6); margin-top: var(--gh-s8); align-items: start; }
+.guide, .wire { min-width: 0; }
+.status { margin: 0; font-size: var(--gh-text-sm); line-height: var(--gh-lh-sm); color: var(--gh-text-dim); overflow-wrap: anywhere; }
+.status strong { color: var(--gh-text); }
+.groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gh-s6); }
+.performer { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: var(--gh-s3); padding-block: var(--gh-s2); border-bottom: 1px solid var(--gh-border); }
+.player { display: grid; min-width: 0; font-size: var(--gh-text-sm); line-height: var(--gh-lh-sm); overflow-wrap: anywhere; }
+.player a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; font-weight: 600; }
+.performer:focus-within { border-color: var(--gh-accent); }
+.player a:focus-visible { color: var(--gh-accent); }
+@media (min-width: 64rem) { .withWire { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 40rem) { .groups { grid-template-columns: minmax(0, 1fr); } }

@@ -6,15 +6,18 @@ The script builds one temporary production Next.js app with webpack, starts it
 on an OS-selected `127.0.0.1` port, prints JSON evidence, then stops the process
 and removes only its own temporary directory. It does not run against the site.
 
-The fixture copies the actual production root layout, global CSS, entire
+The fixture copies the actual production root layout, global CSS, primary
+`[...segments]/page.tsx` not-found fallback, entire
 `@ticker` route subtree (excluding tests), root page, required catch-all page,
 shared Ticker implementation, null default and route policy. The separate root
 page and required catch-all avoid Next's root/optional-catch-all specificity
 collision. Actual SiteHeader, SiteChrome, ThemeBootstrap, theme controls,
 footer and CombinedTicker remain in the render tree. Synthetic primary content
 is generated as explicit pages only for the route matrix, using a shared plain
-component. There is no primary catch-all. `/fixture-unmatched-missing/nested` therefore
-matches only the ticker slot and must still produce the real 404 boundary.
+component. `/fixture-unmatched-missing/nested` uses the copied production primary
+catch-all that invokes `notFound()`, without a fixture-specific page for that URL.
+The matching primary route prevents Next from retaining a previous page during
+soft navigation when the ticker slot matches an unknown URL.
 A separate matched primary page invokes notFound(), a specific synthetic player
 route tests dynamic params/metadata, and synthetic
 API/robots routes test handler precedence. No actual account/content page loader
@@ -56,7 +59,7 @@ Deep source-field sentinels must never reach either transport. Empty results,
 each independent outage, market-only and news-only fallbacks retain the current
 Promise.all fail-soft semantics. The actual header/main/footer and inherited root metadata must remain. The
 specific dynamic primary route must receive its params and emit its own
-metadata. Both a truly unmatched primary path and a matched page invoking
+metadata. Both an otherwise-unhandled URL caught by the production fallback and a specific page invoking
 notFound() must retain a 404 boundary/noindex (bot HTML404; streamed
 Flight may use HTTP200 only with Next's explicit404 control signal). API and
 metadata-route requests, including an RSC header, must retain handler precedence
@@ -80,3 +83,22 @@ Next build is attempted. Only a successful exact-head Node22 CI run establishes
 that this production Next boundary passed. This probe does not establish real
 browser transitions, auth behavior, provider freshness, pricing, database
 behavior or production deployment.
+
+## Hydrated unmatched-navigation regression
+
+In an existing review runtime with the locked dependencies and a browser already
+available, run `node qa/ticker-scope/verify.mjs --serve`. After the HTTP matrix,
+the script prints `TICKER_FIXTURE_READY` with its private origin and remains
+available until SIGINT/SIGTERM, then performs the normal owned cleanup.
+Do not install a browser or dependencies for this probe on the constrained Mac.
+
+Import `verifyUnmatchedNavigation` from `browser-regression.mjs` and pass a
+dedicated existing Playwright-compatible page plus that origin. The driver uses
+only the numeric loopback fixture and synthetic request headers. It waits for
+the fixture hydration marker, clicks a real Next Link to the unknown URL, then
+checks Back, Forward and reload. A window marker proves Link/history navigation
+stayed in the same document; a hard navigation cannot mask the retained-page bug.
+The not-found heading must replace the old primary page on both Link and Forward.
+Reload must retain the not-found/noindex boundary in a new document. It returns
+four result records; these are browser evidence only when actually executed.
+This targeted driver does not replace the independent utility/poller checks.
