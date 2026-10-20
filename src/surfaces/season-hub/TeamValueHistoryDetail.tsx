@@ -54,7 +54,7 @@ export function TeamValueHistoryDetail({ detail, previous, comparisonLoading, co
       return <li key={player.id} data-history-player={player.id}>
         <div><Link prefetch={false} href={`/player/${encodeURIComponent(player.id)}`}>{player.name}</Link>
           {entered.has(player.id) && <small>Joined this roster between the two observations</small>}
-          {change && <small data-player-change>{change.beforeCents === null ? "Unpriced" : money(change.beforeCents)} → {change.afterCents === null ? "Unpriced" : money(change.afterCents)} · {change.deltaCents === null ? "Change unavailable" : signed(change.deltaCents)}</small>}
+          {change && <small data-player-change>{change.beforeCents === null ? "Unpriced" : money(change.beforeCents)} to {change.afterCents === null ? "Unpriced" : money(change.afterCents)} · {change.deltaCents === null ? "Change unavailable" : signed(change.deltaCents)}</small>}
         </div>
         <div className={styles.playerPrice}><strong>{player.priceCents === null ? "Unpriced" : money(player.priceCents)}</strong>
           <small>{player.price?.kind === "recorded" ? "Recorded model" : player.price ? `Reconstructed · ${player.price.modelVersion}` : player.missingReason}</small>

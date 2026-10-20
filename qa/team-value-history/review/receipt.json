@@ -5,7 +5,7 @@
   "sourceBlobs": {
     "src/surfaces/season-hub/TeamValueHistory.tsx": "6bd16226c409ed47df42c00a90c208e8968cd4c5",
     "src/surfaces/season-hub/TeamValueHistoryChart.tsx": "d35bc9d9ef4f7069bc6aaf136115c5769d290826",
-    "src/surfaces/season-hub/TeamValueHistoryDetail.tsx": "71f5093dd414c750ff4325e6346b38e0f3e21bac",
+    "src/surfaces/season-hub/TeamValueHistoryDetail.tsx": "622ac70cda91538728eb788b43daa8acb06e255a",
     "src/surfaces/season-hub/TeamValueHistory.module.css": "bef205a457887b9050e6f8702de74d5ccd3bfc07",
     "src/surfaces/season-hub/team-value-history-view.ts": "842747f8cfd678d6b4aaf8044ff7205984232a75"
   },
@@ -62,7 +62,8 @@
         "style": "solid",
         "w": 58,
         "h": 58
-      }
+      },
+      "textRuleRechecked": true
     },
     {
       "case": "graph-320-200-dark",
@@ -142,7 +143,8 @@
         "w": 47.59375,
         "h": 44
       },
-      "unknownRouteTickerCount": 1
+      "unknownRouteTickerCount": 1,
+      "textRuleRechecked": true
     },
     {
       "case": "comparison-unavailable",
@@ -189,5 +191,17 @@
     "No full all-time price coverage is claimed. Every calendar day is selectable; missing quotes stay missing.",
     "V1 trade arrays are unscoped. Team received/sent assets, counterparties, other terms and supported trade net require Muse producer extension.",
     "2025 move coverage, historical reconstruction and durable recorded archive remain separate data work. No production database/provider operations were performed."
-  ]
+  ],
+  "textRuleRevalidation": {
+    "priorHead": "65ab6cbe080d3ef053c7192919e5b3e63ea6e9ee",
+    "priorDetailBlob": "71f5093dd414c750ff4325e6346b38e0f3e21bac",
+    "finalDetailBlob": "622ac70cda91538728eb788b43daa8acb06e255a",
+    "delta": "Replace authored arrow glyph with the word to; other consumer blobs unchanged.",
+    "focusedTests": "36 passed, including existing src/test/authored-controls.test.tsx; unchanged full suite left to PR CI.",
+    "newBrowserCases": [
+      "graph-320-200-light",
+      "graph-1440-100-light"
+    ],
+    "reuse": "Other layout/failure cases retain prior-head evidence; CSS, chart, calendar and transport logic are byte-identical."
+  }
 }
