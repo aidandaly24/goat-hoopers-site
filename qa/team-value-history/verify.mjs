@@ -133,6 +133,13 @@ try {
     await context.close();
   }
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } }); page.setDefaultTimeout(10000);
+  await page.route('**/*', route => {
+    const request = route.request(), url = new URL(request.url());
+    if (request.method() !== 'GET') { report.writes.push(url.pathname); return route.abort(); }
+    if (url.origin !== origin) { report.external.push(url.hostname); return route.abort(); }
+    return route.continue();
+  });
+  page.on('pageerror', error => report.pageErrors.push(error.message));
   for (const state of ['retry', 'changed', 'malformed', 'race', 'paged']) {
     await page.goto(`${origin}/?state=${state}`);
     if (state === 'paged') {
@@ -156,6 +163,31 @@ try {
     report.browser.push({ state, asynchronousBehavior: 'passed' });
   }
   await page.close();
+  for (const touch of [false, true]) {
+    const context = await browser.newContext({ viewport: { width: touch ? 390 : 1440, height: 900 }, hasTouch: touch, reducedMotion: 'reduce' });
+    await context.route('**/*', route => {
+      const request = route.request(), url = new URL(request.url());
+      if (request.method() !== 'GET') { report.writes.push(url.pathname); return route.abort(); }
+      if (url.origin !== origin) { report.external.push(url.hostname); return route.abort(); }
+      return route.continue();
+    });
+    const page = await context.newPage(); page.setDefaultTimeout(10000);
+    page.on('pageerror', error => report.pageErrors.push(error.message));
+    await page.goto(`${origin}/?state=mixed`);
+    const activate = async locator => { if (touch) await locator.tap(); else { await locator.focus(); await page.keyboard.press('Enter'); } };
+    await activate(page.getByRole('button', { name: 'Last 30 days', exact: true }));
+    await page.waitForFunction(() => document.querySelector('input[type=date]')?.value === '2026-09-21');
+    const slider = page.getByRole('slider');
+    const before = await page.getByLabel('Inspect day · UTC', { exact: true }).inputValue();
+    if (touch) { await slider.scrollIntoViewIfNeeded(); const box = await slider.boundingBox(); await page.touchscreen.tap(box.x + box.width * .4, box.y + box.height / 2); }
+    else { await slider.focus(); await page.keyboard.press('ArrowLeft'); }
+    assert.notEqual(await page.getByLabel('Inspect day · UTC', { exact: true }).inputValue(), before, 'day scrubber did not respond');
+    await activate(page.locator('summary').filter({ hasText: /^Roster & moves/ }));
+    await page.locator('[data-history-detail]').waitFor();
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+    report.browser.push({ input: touch ? 'touchscreen tap + native slider' : 'keyboard Enter + ArrowLeft', rangeSelection: 'passed', dateInspection: 'passed' });
+    await context.close();
+  }
   assert.deepEqual(report.pageErrors, []); assert.deepEqual(report.external, []); assert.deepEqual(report.writes, []);
   await writeFile(path.join(output, 'verification.json'), JSON.stringify(report, null, 2) + '\n');
   console.log(JSON.stringify({ evidence: output, revision: report.revision, boundary: report.boundary.length, browser: report.browser.length,
