@@ -32,6 +32,7 @@ export function GameCard({ game }: { game: PlayableGame }) {
         <Link href={`/arcade/${game.id}`} className={styles.play} aria-label={`${preview ? "Preview" : "Play"} ${game.name}`}>
           {preview ? "Enter 82–0 preview" : "Play now"}
         </Link>
+        <Link href={`/arcade/${game.id}/leaderboard`}>All-time leaderboard</Link>
         <details className={styles.controls}>
           <summary>How to play</summary>
           <p>{game.play.touchInstructions}</p>

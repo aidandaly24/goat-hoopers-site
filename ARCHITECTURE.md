@@ -1232,6 +1232,50 @@ preserved. The account repair does not issue rewards or FAAB. See the focused
 [account access repair contract](docs/account-access-repair.md) for its migration
 and validation boundaries.
 
+## Ranked mini-game competition (default off)
+
+`domain/arcade/ranked-free-throw.ts` defines account-owned runs and deterministic
+moving-court replay. Shared domain physics/positions retain the current practice
+mechanics. The optional injected `FreeThrowRoundControls` binds replay inputs,
+shot positions and completion to the existing court; no renderer or art asset
+changes are part of this feature. `RankedFreeThrow` composes the public court,
+validated private results and the controlled `WeeklyLeaderboard` surface.
+
+`domain/arcade/competition-period.ts` defines explicit sourced fixture calendars,
+server opening gates and genuine-final closure. `data/arcade-competition/` owns
+period publication, finality parsing, immutable weekly snapshots and per-format
+all-time reads. The first validated ranked adapter is Free Throw: nine shots,
+120 seconds, unlimited attempts, best completed round per verified personal
+account, score descending then server acceptance ascending then stable score ID.
+Other games remain unranked until they have their own validated adapter.
+
+`data/ranked-free-throw/runtime.ts` composes the canonical competition store only
+when the exact enable flag, personal auth and a valid reviewed calendar exist.
+Default-off requests stop before account/DB work. Admissions/saves take period
+locks before account/session/run locks; finalization takes the period write lock
+before its atomic immutable best-score snapshot and close. A lost or stale
+publisher receipt blocks safely. Public reads never advance periods or write
+scores. The old calendar store remains a separately tested legacy replay kernel;
+the production composition uses the canonical period adapter.
+
+The slim `/api/arcade/competition` read serves `CompetitionLeaderboard` at the top
+of Arcade, `/arcade/leaderboard`, each game's `/arcade/[gameId]/leaderboard` and
+stable `/arcade/history/[periodId]` finals. `domain/arcade/competition-board.ts`
+projects only public DTO fields. Current league filters use verified active
+membership; finals retain membership eligibility at sealing and resolve current
+profile names. The archive index lists only real finalized records. Live boards
+refresh at most once per visible minute; immutable finals do not poll. No fantasy
+standings, Power rankings or mixed game scores are reused.
+
+`/api/arcade/competition/reconcile` is a separately default-off protected empty
+POST. It accepts only configured fixture IDs and publisher completion receipts,
+never user-supplied finality or dates. No worker/scheduler is installed or enabled.
+`migrations/ranked-free-throw.sql` is an additive reviewed proposal, tested only
+in disposable local schemas. It creates canonical periods, runs, scores and
+immutable weekly results; it never changes legacy scores or rewards.
+See `docs/arcade-ranked-competition.md` for the calendar contract, closure lag,
+verification boundaries and exact production operations still requiring approval.
+
 ## Rewards (the FAAB ledger)
 
 The site is the source of truth for *who earned what*: each game's weekly
@@ -1309,15 +1353,9 @@ synthetic full rosters and omits root data/auth loaders; it does not establish
 live data, Next routing, deployment or physical-phone behavior. Source verification
 is recorded separately in `qa/week-two/roster-source-verification.json`.
 
-`domain/arcade/weekly-leaderboard.ts` defines a display-only weekly board
-projection. `surfaces/arcade/WeeklyLeaderboard` receives validated rows, weekly
-period/timezone and controlled scope/retry callbacks; it performs no I/O. The top
-three, current-user marker, makes/attempts, accuracy and best streak come only
-from returned rows. Closed/loading/error/empty states never substitute scores
-or dates. The public `/arcade/leaderboard` route uses only its closed state and
-imports no ranked runtime/client or database. The Arcade links to this status
-page. Live ranked integration remains on the separate, unpublished foundation
-branch; the public frontend does not activate ranking or claim live entrants.
+`surfaces/arcade/WeeklyLeaderboard` remains the controlled result-page display.
+The public hub and dedicated leaderboard/history routes use the canonical
+`CompetitionLeaderboard` described above, with a held fallback while disabled.
 
 ## Free-throw practice prototype
 

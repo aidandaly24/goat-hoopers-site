@@ -51,7 +51,7 @@ export function WeeklyLeaderboard({ state, scope = "everyone", onScopeChange, on
             {value === "everyone" ? "Everyone" : "League"}
           </button>)}
         </div>
-        {board && <p className={styles.period}>{date(board.period.startsAtMs, board.calendar.timeZone)} – {date(board.period.endsAtMs - 1, board.calendar.timeZone)}</p>}
+        {board && <p className={styles.period}>{date(board.period.startsAtMs, board.calendar.timeZone)} – {board.period.endsAtMs === null ? "Last NBA game final" : date(board.period.endsAtMs - 1, board.calendar.timeZone)}</p>}
       </div>
       {closed ? <div className={styles.notice}>
         <p className={styles.noticeTitle}>The weekly board is not open yet.</p>
@@ -68,7 +68,7 @@ export function WeeklyLeaderboard({ state, scope = "everyone", onScopeChange, on
           </ol>}
           <div className={styles.rules}>
             <p>Best final score per person. Equal scores use earliest server acceptance, then a stable score ID. League includes currently linked teams.</p>
-            <p>Weekly cutoff: <time dateTime={new Date(board.period.endsAtMs).toISOString()}>{date(board.period.endsAtMs, board.calendar.timeZone, true)}</time> · {board.calendar.timeZone}.</p>
+            <p>Weekly cutoff: {board.period.endsAtMs === null ? "after the final assigned NBA game is confirmed final" : <time dateTime={new Date(board.period.endsAtMs).toISOString()}>{date(board.period.endsAtMs, board.calendar.timeZone, true)}</time>} · {board.calendar.timeZone}.</p>
             {limit !== undefined && <p>Showing up to {limit} players.</p>}
           </div>
         </>}

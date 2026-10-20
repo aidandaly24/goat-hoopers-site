@@ -63,7 +63,7 @@ jobs:
       - name: Smoke invite enrollment against disposable PostgreSQL
         env:
           RUN_CLAIM_TEAM_LOCAL_TEST: "1"
-        run: npm test -- src/data/__tests__/friends-auth-local.test.ts --maxWorkers=1
+        run: npm test -- src/data/__tests__/friends-auth-local.test.ts src/data/ranked-free-throw/__tests__/postgres-local.test.ts src/data/arcade-competition/postgres-local.test.ts --maxWorkers=1
       - name: Typecheck
         run: npm run typecheck
       # This compiles/prerenders the whole app. next/font may download public
