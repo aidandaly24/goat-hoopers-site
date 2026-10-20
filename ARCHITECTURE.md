@@ -1087,6 +1087,19 @@ and unknown mode without inferring selection mechanics. BN slots are excluded;
 complete eligible starters plus at least8/10 observed stats per team are required.
 The separate observed-starter mean is not a full score forecast. Both versions
 retain their frozen decoders; no PPG-by-games multiplier is used.
+
+The immutable declaration in `src/domain/ai-lineup-policy.ts` supplies
+schema3's eleven active slots and minimum 9/11 observed prior-production
+coverage. New public lineup previews carry that policy tag and its
+prompt/baseline version; schemas 1/2 keep frozen ten-slot decoding and
+hashes. `loadAiWeekContext` exposes `AiSourceConfiguration` from its
+existing league read, and `withSourceCompatibility` derives an
+`AiSourceCompatibility` notice without persisting it or changing saved
+evidence/results. Its `currentWindow` retains pre-annotation readiness,
+so changed/unverified settings cannot reopen expired windows or revoke
+separately authorized refresh controls. Saved AI/home surfaces show that
+provenance; the complete interactive roster path is unchanged. Named
+game mode and positional assignment remain unverified.
 `migrations/ai-decider.sql` starts disabled and was separately provisioned under
 root authorization before this source change; no new migration is introduced. Existing auth/valuation/repair tables are reused
 or read without schema/behavior changes. UI/page integration has a separate owner.
