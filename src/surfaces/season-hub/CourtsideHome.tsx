@@ -21,6 +21,7 @@ import { Reveal } from "./Reveal";
 import { WEEK_ONE_TIP_OFF_ISO, openingPhase } from "@/domain/season-opening";
 import { TipCountdown } from "./TipCountdown";
 import type { HomeTeamFace, HomeTeamSummary, PersonalizedHomeData } from "@/domain/personalized-home";
+import type { TeamValueHistoryEnvelope } from "@/domain/team-value-history";
 import controls from "@/ui/controls.module.css";
 import { cs } from "./CourtsideStyles";
 import fidelity from "./HomeFidelity.module.css";
@@ -39,6 +40,9 @@ type Props = {
   personal?: PersonalizedHomeData;
   /** Each team's top player by modeled value, for the faces strip + hero. */
   faces?: HomeTeamFace[];
+  /** The viewer's recorded team-value history (issue #217), produced
+   * server-side; when present it replaces the repricing trend line. */
+  teamHistory?: TeamValueHistoryEnvelope | null;
 };
 
 function Sources({ edition }: { edition: WeeklyEdition }) {
@@ -82,6 +86,7 @@ export function CourtsideHome({
   viewerTeamId,
   personal,
   faces,
+  teamHistory,
 }: Props) {
   const { edition, hub } = data;
   const preseason =
@@ -257,7 +262,7 @@ export function CourtsideHome({
               </figure>
             )}
             {memberSummary && (
-              <RosterValueSection summary={memberSummary} portraits={portraits} />
+              <RosterValueSection summary={memberSummary} portraits={portraits} teamHistory={teamHistory} />
             )}
             {memberSummary && (
               <MemberTeamActions summary={memberSummary} />
@@ -334,7 +339,7 @@ export function CourtsideHome({
         <div className={cs("wrap")}>
           {memberSummary ? (
             <Reveal>
-              <RosterValueSection summary={memberSummary} portraits={portraits} />
+              <RosterValueSection summary={memberSummary} portraits={portraits} teamHistory={teamHistory} />
             </Reveal>
           ) : (
             <Reveal>
