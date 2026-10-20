@@ -47,7 +47,8 @@ Week 1 opening is **October 20, 2026 at 15:00 America/New_York
 (19:00 UTC)**. Subsequent periods use New York midnight on the sourced first
 fantasy-week day, delayed until the preceding period actually finalizes. Store
 explicit UTC instants converted from those local calendar dates; never add a
-fixed 168 hours across DST. The parser verifies a unique ordered predecessor
+fixed 168 hours across DST. New York midnight is our implementation convention
+selected under delegated judgment, not an explicit hour chosen by the user. The parser verifies a unique ordered predecessor
 chain, unique fixture assignments and New York midnight for later openings. Publishing freezes IDs, calendar, fixture assignments and rule/format
 hashes. Definitions cannot be silently rewritten. The runtime does not install that candidate automatically; activation still
 requires explicitly setting its reviewed JSON in the production environment.
@@ -60,8 +61,10 @@ and cannot close a week. Scheduled duration and elapsed wall time never imply
 finality. A future configured fixture remains scheduled, so an early final in
 another game does not end the week.
 
-Only strictly newer worker observations can replace stored receipts under the
-period lock; an older queued worker cannot reopen or seal a newly blocked week.
+Older worker observations cannot replace stored receipts under the period lock.
+Exact same-time repeats are no-ops; contradictory same-time observations create
+a sticky blocked receipt until genuinely newer evidence arrives. An older or
+tied-friendly worker cannot reopen or seal a newly blocked week.
 
 Finalization takes the period write lock, waits for in-flight score transactions,
 then snapshots one best score per account and closes/seals once in the same

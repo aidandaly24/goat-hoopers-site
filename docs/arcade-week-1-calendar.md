@@ -19,11 +19,12 @@ to a database. Explicit production review/activation remains necessary.
   also describe completion early Monday morning.
 
 Thus Week1 assigns the opening Tuesday October20 through Sunday October25.
-The competition opening is the user-approved October20 15:00 America/New_York
-=19:00UTC, also the first published NBA tip. The later approved opening convention
+The competition opening is the scheduled October20 15:00 America/New_York
+=19:00UTC, also the first published NBA tip. The later implementation convention
 is New York midnight: October26 04:00UTC, then November2 05:00UTC across DST
-(169 hours). These exact midnight instants are a competition convention, not a
-claim that Sleeper publishes a precise midnight instant through its API.
+(169 hours). These exact midnight instants are our documented implementation convention
+selected under delegated judgment, not an explicit hour chosen by the user or
+a claim that Sleeper publishes that precise instant through its API.
 
 ## Assigned NBA fixtures
 

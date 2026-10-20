@@ -19,6 +19,9 @@ const allowed = (p: PeriodRecord, periods: PeriodRecord[], now: number) => perio
   p.predecessorId === null || periods.some(old => old.id === p.predecessorId && old.finalizedAtMs !== null)) === "open";
 const authorize = (a: RankedAccount) => sql`SELECT u.id FROM auth_user u JOIN auth_session s ON s.user_id=u.id
   WHERE u.id=${a.subject} AND s.id=${a.sessionId} AND u.email_verified=true AND s.expires_at>clock_timestamp() FOR UPDATE OF u,s`;
+const CONFLICTING_OBSERVATIONS = "Conflicting publisher observations at the same timestamp";
+const sameObservation = (a: FinalityReceipt, b: FinalityReceipt) => a.source === b.source &&
+  Object.keys(a.states).length === Object.keys(b.states).length && Object.keys(a.states).every(id => a.states[id] === b.states[id]);
 
 /** Canonical period locks are acquired before account/run locks, including finalization. */
 export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
@@ -139,10 +142,17 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
         // Fetches occur before this lock. A slower older worker must not reopen
         // a period after a newer missing/postponed observation has blocked it.
         if (!receipt || receipt.checkedAtMs > now || now - receipt.checkedAtMs > 600000 ||
-          p.receipt && receipt.checkedAtMs <= p.receipt.checkedAtMs) continue;
+          p.receipt && receipt.checkedAtMs < p.receipt.checkedAtMs) continue;
+        if (p.receipt && receipt.checkedAtMs === p.receipt.checkedAtMs) {
+          if (sameObservation(p.receipt, receipt) || p.receipt.source === CONFLICTING_OBSERVATIONS) continue;
+          const conflict: FinalityReceipt = { checkedAtMs: receipt.checkedAtMs, source: CONFLICTING_OBSERVATIONS,
+            states: Object.fromEntries(p.fixtures.map(f => [f.id, "missing" as const])) };
+          await tx.execute(sql`UPDATE arcade_competition_periods SET receipt=${JSON.stringify(conflict)}::jsonb WHERE id=${p.id} AND finalized_at_ms IS NULL`);
+          continue; // A tie cannot choose the friendlier observation or seal a result.
+        }
+        await tx.execute(sql`UPDATE arcade_competition_periods SET receipt=${JSON.stringify(receipt)}::jsonb WHERE id=${p.id} AND finalized_at_ms IS NULL`);
         const prior = p.predecessorId === null || rows.some(old => old.id === p.predecessorId && old.finalized_at_ms != null) || finalized.includes(p.predecessorId);
         if (!prior) continue;
-        await tx.execute(sql`UPDATE arcade_competition_periods SET receipt=${JSON.stringify(receipt)}::jsonb WHERE id=${p.id} AND finalized_at_ms IS NULL`);
         if (!canFinalize(p, receipt, now)) continue;
         // Period FOR UPDATE waits for all save/admission FOR SHARE locks before the immutable snapshot.
         await tx.execute(sql`INSERT INTO arcade_weekly_results(period_id,account_id,rank,score_id,score,outcomes,achieved_at_ms,username_at_final,team_id)

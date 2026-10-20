@@ -225,4 +225,55 @@ describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("canonical compet
     const final = await store.board("weekly", null, changed, a.subject);
     expect(final).toMatchObject({ kind: "weekly", phase: "final", scoreVersion: original.scoreVersion, entries: original.entries });
   });
+  it.each([["live", "missing"], ["missing", "live"], ["live", "postponed"], ["postponed", "live"]] as const)(
+    "blocks equal-time %s then %s conflicts regardless of worker order", async (first, second) => {
+      const at = Date.now() - 1000;
+      await store.reconcile([p], config, new Map([[p.id, { ...receipt(p), checkedAtMs: at - 1000 }]]));
+      const runId = await seed(), blocker = await pool.connect(), pending: Promise<string[]>[] = [];
+      const waitForWorkers = async (count: number) => {
+        const deadline = Date.now() + 3000;
+        while (Date.now() < deadline) {
+          const rows = await pool.query("SELECT pid FROM pg_stat_activity WHERE application_name=$1 AND wait_event_type='Lock' AND query LIKE '%pg_advisory_xact_lock%'", [schema]);
+          if (rows.rowCount === count) return;
+          await new Promise(resolve => setTimeout(resolve, 20));
+        }
+        throw new Error("equal-time worker did not queue");
+      };
+      try {
+        await blocker.query("BEGIN"); await blocker.query("SELECT pg_advisory_xact_lock(7042026)");
+        pending.push(store.reconcile([p], config, new Map([[p.id, { ...receipt(p, first), checkedAtMs: at }]])));
+        await waitForWorkers(1);
+        pending.push(store.reconcile([p], config, new Map([[p.id, { ...receipt(p, second), checkedAtMs: at }]])));
+        await waitForWorkers(2); await blocker.query("COMMIT");
+        expect(await Promise.all(pending)).toEqual([[], []]);
+        expect((await store.board("weekly", null, config, null)).phase).toBe("blocked");
+        expect((await store.start(b, config)).status).toBe("week_closing");
+        expect((await submitRankedScore(runtime(), a, { runId, shots })).status).toBe("invalid_run");
+        expect(await store.archives()).toHaveLength(0);
+        // Another equal-time live replay cannot clear the stored conflict.
+        await store.reconcile([p], config, new Map([[p.id, { ...receipt(p), checkedAtMs: at }]]));
+        expect((await store.board("weekly", null, config, null)).phase).toBe("blocked");
+        // A genuinely later fresh observation can recover without a manual override.
+        await store.reconcile([p], config, new Map([[p.id, receipt(p)]]));
+        expect((await store.board("weekly", null, config, null)).phase).toBe("open");
+      } finally { await blocker.query("ROLLBACK"); blocker.release(); await Promise.allSettled(pending); }
+    });
+  it("treats an exact equal-time repeat as an idempotent no-op", async () => {
+    const observation = { ...receipt(p), checkedAtMs: Date.now() - 1000 };
+    await store.reconcile([p], config, new Map([[p.id, observation]]));
+    const before = (await pool.query("SELECT xmin::text AS version,receipt FROM arcade_competition_periods WHERE id=$1", [p.id])).rows[0];
+    expect(await store.reconcile([p], config, new Map([[p.id, { ...observation, states: { ...observation.states } }]]))).toEqual([]);
+    const after = (await pool.query("SELECT xmin::text AS version,receipt FROM arcade_competition_periods WHERE id=$1", [p.id])).rows[0];
+    expect(after).toEqual(before);
+    expect((await store.board("weekly", null, config, null)).phase).toBe("open");
+    expect((await store.start(a, config)).status).toBe("created");
+  });
+  it("retains a lookahead conflict while its predecessor is unfinished", async () => {
+    const at = Date.now() - 1000;
+    await store.reconcile([p, next], config, new Map([[p.id, receipt(p)], [next.id, { ...receipt(next), checkedAtMs: at }]]));
+    await store.reconcile([p, next], config, new Map([[next.id, { ...receipt(next, "missing"), checkedAtMs: at }]]));
+    await store.reconcile([p, next], config, new Map([[p.id, receipt(p, "final")], [next.id, { ...receipt(next), checkedAtMs: at }]]));
+    expect((await store.board("weekly", null, config, null))).toMatchObject({ periodId: next.id, phase: "blocked" });
+    expect((await store.start(a, config)).status).toBe("week_closing");
+  });
 });
