@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { WeeklyEdition } from "@/domain/weekly-spotlight";
 import type { HomeTeamFace, HomeTeamSummary } from "@/domain/personalized-home";
 import type { LiveClubhouseDirectoryEntry } from "@/domain/clubhouse-directory";
-import { EditorialPortrait } from "./EditorialPortrait";
+import { PlayerHeadshot } from "@/ui/PlayerHeadshot";
 import styles from "./ScoutingNotebook.module.css";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
@@ -15,17 +15,18 @@ type NotebookEntry = {
   player: NotebookPlayer;
   teamId: string;
   teamName: string;
+  basis: string;
   copy: string;
+  note?: string;
   source?: { label: string; url: string };
 };
 
 /**
- * The scouting notebook: one featured watch LARGE and the around-the-league
- * watches beside it. Every entry is named on a stated basis — the guide's
- * named watch basis for the member's own player, top modeled value for the
- * league faces, the edition's sourced editorial watch for the spotlight.
- * Nothing renders without a basis; when no entry has one, the section is
- * omitted rather than filled.
+ * What deserves a closer look? Compact player rows link to profiles and
+ * distinguish market movement, observed form, current value and editorial
+ * selections. Preseason and missing form reuse only supplied facts. Narrow
+ * layouts retain the same rows, reasons, periods and sources; no large
+ * fallback portrait or unsupported performance ranking fills missing data.
  */
 export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portraits, directory }: {
   summary: HomeTeamSummary | null;
@@ -36,58 +37,44 @@ export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portrai
   directory: readonly LiveClubhouseDirectoryEntry[];
 }) {
   const entries: NotebookEntry[] = [];
-  let featured: NotebookEntry | null = null;
 
   if (summary) {
     const watch = summary.playerGuide.watch;
-    const topWatch = watch.basis !== "unavailable" ? watch.rows[0] : undefined;
-    if (topWatch) {
-      featured = {
-        key: `own-${topWatch.id}`,
+    if (watch.basis !== "unavailable" && watch.rows.length) {
+      for (const row of watch.rows) entries.push({
+        key: `own-${row.id}`,
         eyebrow: "On your team",
-        player: topWatch,
+        player: row,
         teamId: summary.team.id,
         teamName: summary.team.name,
+        basis: watch.basis === "market" ? "Rising modeled value" : `${summary.playerGuide.season} observed form`,
         copy: watch.basis === "market"
-          ? `Up ${topWatch.value.toFixed(1)}% from the previous price snapshot.`
-          : `${topWatch.value.toFixed(1)} FPPG (EMA)${topWatch.games !== null ? ` across ${topWatch.games} observed games` : ""}.`,
-      };
-    } else if (summary.players[0]) {
-      const top = summary.players[0];
-      featured = {
-        key: `own-${top.id}`,
+          ? `Up ${row.value.toFixed(1)}% from the previous price snapshot.`
+          : `${row.value.toFixed(1)} FPPG (EMA)${row.games !== null ? ` across ${row.games} observed games` : ""}.`,
+        note: row.note.startsWith("Status: ") ? row.note : undefined,
+      });
+    } else {
+      for (const player of summary.players) entries.push({
+        key: `own-${player.id}`,
         eyebrow: "On your team",
-        player: top,
+        player,
         teamId: summary.team.id,
         teamName: summary.team.name,
-        copy: `Current modeled value: $${top.value.toFixed(2)} FAAB.`,
-      };
+        basis: "Highest modeled value",
+        copy: `$${player.value.toFixed(2)} FAAB · current player quote.`,
+      });
     }
   } else if (pairTeamIds) {
     const homeFace = faces.find((face) => face.team.id === pairTeamIds[0]);
     if (homeFace?.player) {
-      featured = {
+      entries.push({
         key: `face-${homeFace.player.id}`,
-        eyebrow: "Opening-week watch",
+        eyebrow: "Featured matchup",
         player: homeFace.player,
         teamId: homeFace.team.id,
         teamName: homeFace.team.name,
-        copy: `Highest modeled value on ${homeFace.team.name}: $${homeFace.player.value.toFixed(2)} FAAB.`,
-      };
-    }
-  }
-
-  // Additional watch rows already carry the guide's verified basis and
-  // observed-game counts. Never turn missing form into invented picks.
-  if (summary && summary.playerGuide.watch.basis !== "unavailable") {
-    const watch = summary.playerGuide.watch;
-    for (const row of watch.rows) {
-      if (row.id === featured?.player.id) continue;
-      entries.push({ key: `own-${row.id}`, eyebrow: "On your team", player: row,
-        teamId: summary.team.id, teamName: summary.team.name,
-        copy: watch.basis === "market"
-          ? `Up ${row.value.toFixed(1)}% from the previous price snapshot.`
-          : `${row.value.toFixed(1)} EMA FPPG${row.games !== null ? ` · ${row.games} observed games` : ""}.`,
+        basis: "Highest modeled value",
+        copy: `$${homeFace.player.value.toFixed(2)} FAAB · current player quote.`,
       });
     }
   }
@@ -96,7 +83,7 @@ export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portrai
   // edition's one-to-watch. The member's opponent is whichever featured
   // side is not theirs; signed-out readers already feature one side.
   const aroundIds = pairTeamIds
-    ? pairTeamIds.filter((id) => id !== summary?.team.id && id !== featured?.teamId)
+    ? pairTeamIds.filter((id) => id !== summary?.team.id && !entries.some(entry => entry.teamId === id))
     : [];
   for (const id of aroundIds) {
     const face = faces.find((candidate) => candidate.team.id === id);
@@ -107,12 +94,13 @@ export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portrai
         player: face.player,
         teamId: face.team.id,
         teamName: face.team.name,
-        copy: `Current modeled value: $${face.player.value.toFixed(2)} FAAB.`,
+        basis: "Highest modeled value",
+        copy: `$${face.player.value.toFixed(2)} FAAB · current player quote.`,
       });
     }
   }
   const watchSpotlight = edition?.playerSpotlights.find((player) => player.role === "one-to-watch");
-  if (watchSpotlight && watchSpotlight.playerId !== featured?.player.id && !entries.some((entry) => entry.player.id === watchSpotlight.playerId)) {
+  if (watchSpotlight && !entries.some((entry) => entry.player.id === watchSpotlight.playerId)) {
     // The editorial source retains its original period, but a current watch
     // must not assign the player to the source snapshot's former roster.
     const owners = directory.filter(entry => entry.players.some(player => player.id === watchSpotlight.playerId));
@@ -124,59 +112,40 @@ export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portrai
       player: { id: watchSpotlight.playerId, name: identity?.fullName ?? watchSpotlight.name, espnId: identity?.espnId ?? null },
       teamId: owner?.identity.id ?? "",
       teamName: owner?.identity.name ?? "",
+      basis: "Editorial watch",
       copy: `${watchSpotlight.periodLabel}. ${watchSpotlight.headline} ${watchSpotlight.opinion}`,
       source: watchSpotlight.source,
     });
   }
 
-  if (!featured && !entries.length) return null;
+  if (!entries.length) return null;
   return (
     <section className={cs("notebook")} data-scouting-notebook aria-label="The scouting notebook">
       <SectionHeading eyebrow="Scouting notebook" title="Players to watch." />
-      <div className={styles.layout}>
-        {featured && (
-          <article className={styles.featured}>
-            <Link href={`/player/${featured.player.id}`} prefetch={false} className={styles.featuredMedia}>
-              <EditorialPortrait portraitSrc={portraits[featured.player.id]} espnId={featured.player.espnId} name={featured.player.name} teamId={featured.teamId} size={180} panel />
-            </Link>
-            <div className={styles.featuredBody}>
-            <p className={cs("notebook-eyebrow")}>{featured.eyebrow}</p>
-            <h3>
-              <Link href={`/player/${featured.player.id}`} prefetch={false}>{featured.player.name}</Link>
-            </h3>
-            <div className={cs("notebook-team")}>
-              <TeamAvatar name={featured.teamName} avatar={faces.find((face) => face.team.id === featured.teamId)?.team.avatar ?? null} isChampion={faces.find((face) => face.team.id === featured.teamId)?.champion ?? false} />
-              {featured.teamName}
+      <ul className={styles.rows}>
+        {entries.slice(0, 6).map((entry) => (
+          <li key={entry.key} className={styles.row} data-watch-player={entry.player.id}>
+            <div className={styles.portrait}>
+              <PlayerHeadshot portraitSrc={portraits[entry.player.id]} espnId={entry.player.espnId} name={entry.player.name} teamId={entry.teamId} size={44} />
             </div>
-            <p>{featured.copy}</p>
-            <Link className={cs("text-link")} href={`/player/${featured.player.id}`} prefetch={false}>Player profile</Link>
+            <div className={styles.body}>
+              <p className={styles.context}>{entry.eyebrow} · <strong>{entry.basis}</strong></p>
+              <h3><Link href={`/player/${entry.player.id}`} prefetch={false}>{entry.player.name}</Link></h3>
+              {entry.teamName && <div className={styles.team}>
+                <TeamAvatar name={entry.teamName} avatar={faces.find(face => face.team.id === entry.teamId)?.team.avatar ?? null} isChampion={faces.find(face => face.team.id === entry.teamId)?.champion ?? false} />
+                <span>{entry.teamName}</span>
+              </div>}
+              <p className={entry.source ? undefined : "gh-num"}>{entry.copy}</p>
+              {entry.note && <p>{entry.note}</p>}
+              {entry.source && <a className={styles.source} href={entry.source.url} target="_blank" rel="noreferrer">Source: {entry.source.label}</a>}
             </div>
-          </article>
-        )}
-        {!!entries.length && (
-          <ul className={styles.rows}>
-            {entries.slice(0, 5).map((entry) => (
-              <li key={entry.key} className={styles.row}>
-                <span className={styles.rowMedia}><EditorialPortrait portraitSrc={portraits[entry.player.id]} espnId={entry.player.espnId} name={entry.player.name} teamId={entry.teamId} size={72} /></span>
-                <div>
-                  <p className={cs("notebook-eyebrow")}>{entry.eyebrow}</p>
-                  <h3>
-                    <Link href={`/player/${entry.player.id}`} prefetch={false}>{entry.player.name}</Link>
-                  </h3>
-                  <p>{entry.copy}</p>
-                  <p className={cs("notebook-row-links")}>
-                    <Link className={cs("text-link")} href={`/player/${entry.player.id}`} prefetch={false}>Profile</Link>
-                    {entry.source && <a href={entry.source.url} target="_blank" rel="noreferrer">Source: {entry.source.label}</a>}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+          </li>
+        ))}
+      </ul>
       <details className={cs("watchlist-basis")}>
         <summary>How these players were selected</summary>
         <p className={cs("caption")}>{summary?.playerGuide.watch.message ?? "Featured matchup players use current modeled values; editorial watches retain their cited source."}</p>
+        <p className={cs("caption")}>Current modeled value is an asset price, not observed form or a weekly points forecast. Editorial selections keep their original source period.</p>
       </details>
     </section>
   );
