@@ -11,7 +11,12 @@ import styles from "./SiteHeader.module.css";
 import { ThemeToggle } from "./ThemeToggle";
 import { ThemedLogo } from "./ThemedLogo";
 
-export type SiteHeaderUser = { displayName: string; teamId: string } | null;
+export type SiteHeaderUser = {
+  displayName: string;
+  teamId: string;
+  /** Sleeper avatar id of the member's team owner; null when Sleeper has none. */
+  avatar: string | null;
+} | null;
 type Disclosure = { kind: "menu" | "league"; pathname: string };
 type Props = {
   user: SiteHeaderUser;
@@ -111,7 +116,7 @@ export function SiteHeader({ user, logoutAction, destinations = SITE_DESTINATION
     {user ? <>
       <Link href="/team" className={styles.displayName} aria-current={current("/team")} onClick={activated}
         style={{ "--gh-ring": teamColorVar(user.teamId) } as CSSProperties}>
-        <span className={styles.ring} aria-hidden="true">{initials(user.displayName)}</span>
+        <AccountAvatar displayName={user.displayName} avatar={user.avatar} />
         <span className={styles.name}>{user.displayName}</span>
       </Link>
       <form action={logoutAction} className={styles.logoutForm}><button type="submit" className={styles.logout}>Log out</button></form>
@@ -158,6 +163,62 @@ export function SiteHeader({ user, logoutAction, destinations = SITE_DESTINATION
       </div>}
     </div>
   </>;
+}
+
+/** The load state of an <img>, reduced to what the fallback decision needs. */
+export type ImageLoadState = { complete: boolean; naturalWidth: number };
+
+/**
+ * True when an image has already finished loading — and failed. An
+ * avatar served in the SSR HTML can 404 before hydration attaches the
+ * error handler; that error event fires exactly once and React never
+ * sees it, but the settled state stays readable on the element
+ * (complete with zero natural width). A still-loading image
+ * (complete === false) is NOT failed: it may yet succeed, and a later
+ * failure is caught by onError.
+ */
+export function imageAlreadyFailed(img: ImageLoadState): boolean {
+  return img.complete && img.naturalWidth === 0;
+}
+
+/**
+ * The account chip's face: the member's Sleeper avatar inside the
+ * team-colored ring when their Sleeper identity has one, the initial
+ * disc otherwise. A failed image load falls back to the initials — a
+ * broken-image icon must never sit in the header. The failed id (not a
+ * bare boolean) is remembered, so if the signed-in identity changes
+ * without a remount, the new member's avatar still gets its chance.
+ */
+function AccountAvatar({ displayName, avatar }: { displayName: string; avatar: string | null }) {
+  const [failedAvatar, setFailedAvatar] = useState<string | null>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const showImage = avatar !== null && failedAvatar !== avatar;
+
+  // onError alone misses an avatar that failed before hydration (see
+  // imageAlreadyFailed). When the client attaches — on mount and
+  // whenever the avatar id changes — inspect the rendered image and
+  // route an already-failed one through the same failed-id fallback.
+  useEffect(() => {
+    if (!showImage || avatar === null) return;
+    const img = imgRef.current;
+    if (img && imageAlreadyFailed(img)) setFailedAvatar(avatar);
+  }, [avatar, showImage]);
+
+  return (
+    <span className={styles.ring} aria-hidden="true">
+      {showImage ? (
+        <img
+          ref={imgRef}
+          className={styles.avatarImg}
+          src={`https://sleepercdn.com/avatars/thumbs/${avatar}`}
+          alt=""
+          onError={() => setFailedAvatar(avatar)}
+        />
+      ) : (
+        initials(displayName)
+      )}
+    </span>
+  );
 }
 
 function initials(name: string): string {
