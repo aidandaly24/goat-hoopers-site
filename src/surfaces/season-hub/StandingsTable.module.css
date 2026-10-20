@@ -155,7 +155,11 @@
   }
 
   .head > span {
-    flex: 1 0 auto;
+    /* Shrinkable: at 200% text an unshrinkable "Points for" control is
+     * wider than the table itself and pokes out of the card. Allowed to
+     * shrink, its label wraps inside the button like the other controls. */
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .sort {
@@ -172,15 +176,22 @@
   }
 
   .row {
-    grid-template-columns: 1fr auto auto auto;
-    grid-template-areas:
-      "team team team rank"
-      "w l pf pf";
+    /* Flex, not grid: a grid `auto` track cannot shrink below its cell's
+     * min-content, and at 200% text the stat cells (label + tabular value)
+     * total ~243px inside a ~158px table — the unclipped cells spilled
+     * past the card and widened the whole page (a 320px viewport measured
+     * a 357px scroll width). As wrapping flex items the stats drop to
+     * their own line(s) instead, each cell intact and readable, while the
+     * team keeps line 1 with the rank. */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: var(--gh-s2);
     row-gap: var(--gh-s2);
     border: 1px solid var(--gh-border);
     border-radius: var(--gh-radius);
     background: var(--gh-bg-raised);
-    padding: var(--gh-s3) var(--gh-s4);
+    padding: var(--gh-s3) var(--gh-s2);
     min-height: 44px;
   }
 
@@ -188,19 +199,35 @@
     background: var(--gh-bg-hover);
   }
 
-  .team { grid-area: team; }
-  .rank {
-    grid-area: rank;
-    justify-self: end;
-    align-self: start;
+  .team {
+    order: 1;
+    /* The basis reserves room for the rank on line 1 and keeps the stats
+     * from joining it; the team still grows/shrinks to fit what's left. */
+    flex: 1 1 calc(100% - 2.5rem);
+    min-width: 0;
+    gap: var(--gh-s2);
+    flex-wrap: wrap;
   }
-  .w { grid-area: w; }
-  .l { grid-area: l; }
-  .pf { grid-area: pf; }
+
+  .identity {
+    /* Keep a readable slice of the name: at 200% text in the narrowest
+     * card the identity would otherwise be squeezed to zero width next
+     * to the (also enlarged) avatar. With a floor it wraps under the
+     * avatar at the cell's full width instead; min() keeps the floor
+     * from ever exceeding the cell itself. Resting widths are wide
+     * enough that nothing wraps. */
+    min-width: min(3rem, 100%);
+  }
+
+  .rank {
+    order: 2;
+    align-self: flex-start;
+  }
 
   .w,
   .l,
   .pf {
+    order: 3;
     text-align: left;
     font-size: 0.85rem;
   }
