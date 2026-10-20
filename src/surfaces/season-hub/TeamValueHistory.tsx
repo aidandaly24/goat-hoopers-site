@@ -11,45 +11,17 @@ import { ControlIcon } from "@/ui/ControlIcon";
 import controls from "@/ui/controls.module.css";
 import { createTeamHistoryClient, TeamHistoryReadError } from "./TeamValueHistoryClient";
 import { TeamValueHistoryChart } from "./TeamValueHistoryChart";
+import { TeamValueHistoryDetail as DayDetail } from "./TeamValueHistoryDetail";
+import { historyCalendarMonths, historyLargestChanges, historyPreviousPoint, historyValueChanges } from "./team-value-history-view";
 import styles from "./TeamValueHistory.module.css";
 
 const money = (cents: number) => `$${(cents / 100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+const signedMoney = (cents: number) => (cents < 0 ? "−" : "+") + money(Math.abs(cents));
 const fullDay = (day: string) => new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${day}T00:00:00Z`));
-const status = (value: string) => value === "verified" ? "Independently verified roster" : value === "replayed" ? "Replayed roster · not independently verified at every date" : "Roster cannot be verified for this date";
 const shortStatus = (value: string) => value === "verified" ? "Verified roster" : value === "replayed" ? "Replayed roster · unverified" : value === "ambiguous" ? "Ambiguous roster" : "Roster unavailable";
 const priceLabel = (point: TeamHistoryPoint) => point.rosterCount === 0 ? "Empty roster" : point.priceKind === "recorded" ? "Recorded model quote"
   : point.priceKind === "reconstructed" ? "Reconstructed estimate" : point.priceKind === "mixed" ? "Recorded + reconstructed sources" : "Historical valuation unavailable";
 type DetailState = { key: string } & ({ kind: "loading" } | { kind: "ready"; value: TeamValueHistoryDetail } | { kind: "error"; changed: boolean });
-
-function SelectedRoster({ detail }: { detail: TeamValueHistoryDetail }) {
-  return <div className={styles.inspection} data-history-detail>
-    <p className={styles.caption}>{status(detail.rosterStatus)}. {detail.priced} of {detail.rosterCount ?? "unknown"} players priced.</p>
-    {detail.players.length ? <ul className={styles.players}>{detail.players.map(player => <li key={player.id}>
-      <div><a href={`/player/${encodeURIComponent(player.id)}`}>{player.name}</a><small>{player.id}</small></div>
-      <div className={styles.playerPrice}><strong>{player.priceCents === null ? "Unpriced" : money(player.priceCents)}</strong>
-        <small>{player.price?.kind === "recorded" ? "Recorded model" : player.price ? `Reconstructed · ${player.price.modelVersion}` : player.missingReason}</small>
-        {player.price && <details className={styles.proof}><summary>Price source</summary><p>{player.price.kind === "recorded"
-          ? <>Quote {player.price.quoteId} · {player.price.nativeTimestamp} UTC (source timezone convention).</>
-          : <>{player.price.source} · model {player.price.modelVersion} · dataset {player.price.datasetId} · inputs through {player.price.inputCutoff}.</>}</p>
-          <p>Eligible from {player.price.availableFrom}{player.price.validUntil ? ` until ${player.price.validUntil} (exclusive)` : "; no open-ended carry inferred"}.</p></details>}
-      </div>
-    </li>)}</ul> : <p>{detail.rosterCount === 0 ? "No players on this roster at the selected date." : "The historical roster is unavailable for this date."}</p>}
-    <div className={styles.moves}><h4>Moves around this date</h4>
-      <p className={styles.caption}>{fullDay(detail.movesRange.from)} – {fullDay(shiftHistoryDay(detail.movesRange.toExclusive, -1))} · UTC</p>
-      {detail.moves.length ? <ol>{detail.moves.map(move => <li key={move.id}>
-        <strong>{move.origin === "boundary-reconciliation" ? "Boundary reconciliation" : move.type.replaceAll("_", " ")}</strong>
-        <span>{move.precision === "instant" ? `${move.effectiveAt} UTC` : move.precision === "day" ? fullDay(move.day!) : "Effective date unknown"}</span>
-        {move.adds.length > 0 && <p>Added: {move.adds.map(player => player.name).join(", ")}</p>}
-        {move.drops.length > 0 && <p>Dropped: {move.drops.map(player => player.name).join(", ")}</p>}
-        {move.note && <p>{move.note}</p>}
-        <small>{move.origin === "transaction" ? "Completed source transaction" : "Derived source event"} · {move.sourceId} · {move.sourceRef}</small>
-      </li>)}</ol> : <p>No sourced moves returned in this window.</p>}
-      {detail.movesTruncated && <p className={styles.caption}>More moves exist in this window; this is a bounded selection.</p>}
-      <a href="/transactions">Full transaction history</a>
-    </div>
-    {detail.rosterEvidence.length > 0 && <details className={styles.evidence}><summary>Roster evidence</summary><ul>{detail.rosterEvidence.map((note, index) => <li key={index}>{note}</li>)}</ul></details>}
-  </div>;
-}
 
 /**
  * Serializable server entrypoint; existing homepage wiring is owned by Muse.
@@ -67,21 +39,33 @@ export function TeamValueHistory(props: { history: TeamValueHistoryEnvelope; det
 
 function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamValueHistoryEnvelope; detailEndpoint?: string; pageEndpoint?: string }) {
   const id = useId();
-  const [envelope, setEnvelope] = useState(history), [range, setRange] = useState(history.requestedRange);
-  const [preset, setPreset] = useState(history.requestedRange.from === history.leagueRange.from && history.requestedRange.toExclusive === history.leagueRange.toExclusive ? "all" : "custom");
+  const [envelope, setEnvelope] = useState(history), [range, setRange] = useState(history.leagueRange);
+  const [preset, setPreset] = useState("all");
   const [customOpen, setCustomOpen] = useState(false);
   const [draft, setDraft] = useState({ from: range.from, through: shiftHistoryDay(range.toExclusive, -1) });
-  const lastPoint = history.points.filter(point => point.day >= range.from && point.day < range.toExclusive).sort((a, b) => a.day.localeCompare(b.day)).at(-1);
-  const [selectedDay, setSelectedDay] = useState(lastPoint?.day ?? shiftHistoryDay(range.toExclusive, -1));
+  const [selectedDay, setSelectedDay] = useState(shiftHistoryDay(range.toExclusive, -1));
+  const [calendarMonth, setCalendarMonth] = useState(shiftHistoryDay(range.toExclusive, -1).slice(0, 7));
   const [dateError, setDateError] = useState(""), [inspecting, setInspecting] = useState(false), [attempt, setAttempt] = useState(0);
   const [detail, setDetail] = useState<DetailState>({ key: "", kind: "loading" });
+  const [comparison, setComparison] = useState<DetailState>({ key: "", kind: "loading" });
   const [pageState, setPageState] = useState<"idle" | "loading" | "error" | "changed">("idle");
   const cache = useRef(new Map<string, TeamValueHistoryDetail>()), pageRequest = useRef<AbortController | null>(null), pageSequence = useRef(0);
   const customSummary = useRef<HTMLElement | null>(null);
+  const inspector = useRef<HTMLElement | null>(null);
   const client = useMemo(() => createTeamHistoryClient(globalThis.fetch.bind(globalThis), { detail: detailEndpoint, page: pageEndpoint }), [detailEndpoint, pageEndpoint]);
-  const points = envelope.points.filter(point => point.day >= range.from && point.day < range.toExclusive);
+  const points = useMemo(() => envelope.points.filter(point => point.day >= range.from && point.day < range.toExclusive).sort((a, b) => a.day.localeCompare(b.day)), [envelope.points, range.from, range.toExclusive]);
+  const months = useMemo(() => historyCalendarMonths(range), [range]);
+  const month = months.find(item => item.id === calendarMonth) ?? months.at(-1)!;
+  const changes = useMemo(() => historyValueChanges(points), [points]);
+  const largestChanges = historyLargestChanges(changes);
+  const selectedChange = changes.find(change => change.day === selectedDay);
+  const pricedDays = points.filter(point => point.subtotalCents !== null);
+  const missingReason = envelope.coverage.valuation.find(item => item.from <= selectedDay && item.toExclusive > selectedDay)?.reason;
   const point = points.find(point => point.day === selectedDay);
+  const previousPoint = useMemo(() => point?.subtotalCents != null ? historyPreviousPoint(envelope.points, selectedDay) : undefined, [envelope.points, point, selectedDay]);
   const detailKey = `${envelope.team.id}/${envelope.generation}/${selectedDay}`;
+  const previousKey = previousPoint ? `${envelope.team.id}/${envelope.generation}/${previousPoint.day}` : "";
+  const selectedLoaded = selectedDay >= envelope.loadedRange.from && selectedDay < envelope.loadedRange.toExclusive;
   const rangeLoaded = historyRangeContains(envelope.loadedRange, range);
   const sameRequestedRange = envelope.requestedRange.from === range.from && envelope.requestedRange.toExclusive === range.toExclusive;
   const days = (Date.parse(`${range.toExclusive}T00:00:00Z`) - Date.parse(`${range.from}T00:00:00Z`)) / 86400000;
@@ -90,26 +74,34 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
   useEffect(() => {
     if (!inspecting) return;
     const controller = new AbortController();
-    const timer = setTimeout(async () => {
-      try {
-        const cached = cache.current.get(detailKey);
-        const value = cached ?? await client.detail({ teamId: envelope.team.id, generation: envelope.generation, day: selectedDay }, controller.signal);
-        if (controller.signal.aborted) return;
-        if (point && !historyDetailMatchesPoint(value, point)) throw new TeamHistoryReadError("changed", "History details changed");
-        cache.current.set(detailKey, value);
+    async function read(day: string, expected?: TeamHistoryPoint) {
+        const key = `${envelope.team.id}/${envelope.generation}/${day}`;
+        const value = cache.current.get(key) ?? await client.detail({ teamId: envelope.team.id, generation: envelope.generation, day }, controller.signal);
+        if (controller.signal.aborted) throw new DOMException("Aborted", "AbortError");
+        if (expected && !historyDetailMatchesPoint(value, expected)) throw new TeamHistoryReadError("changed", "History details changed");
+        cache.current.set(key, value);
         if (cache.current.size > 16) cache.current.delete(cache.current.keys().next().value!);
-        setDetail({ key: detailKey, kind: "ready", value });
-      } catch (error) {
-        if (!controller.signal.aborted) setDetail({ key: detailKey, kind: "error", changed: error instanceof TeamHistoryReadError && error.kind === "changed" });
-      }
+        return value;
+    }
+    const failed = (key: string, set: typeof setDetail) => (error: unknown) => {
+      if (!controller.signal.aborted) set({ key, kind: "error", changed: error instanceof TeamHistoryReadError && error.kind === "changed" });
+    };
+    const timer = setTimeout(() => {
+      // At most two lazy detail reads. They start together; selected evidence
+      // displays independently of comparison failure or latency.
+      void read(selectedDay, point).then(value => { if (!controller.signal.aborted) setDetail({ key: detailKey, kind: "ready", value }); }, failed(detailKey, setDetail));
+      if (previousPoint) void read(previousPoint.day, previousPoint).then(value => {
+        if (!controller.signal.aborted) setComparison({ key: previousKey, kind: "ready", value });
+      }, failed(previousKey, setComparison));
     }, 200);
     return () => { clearTimeout(timer); controller.abort(); };
-  }, [attempt, client, detailKey, envelope.generation, envelope.team.id, inspecting, point, selectedDay]);
+  }, [attempt, client, detailKey, envelope.generation, envelope.team.id, inspecting, point, previousPoint, previousKey, selectedDay]);
   useEffect(() => () => { pageRequest.current?.abort(); }, []);
 
   function selectDay(day: string) {
-    if (!validHistoryDay(day) || day < range.from || day >= range.toExclusive || day === selectedDay) return;
-    setSelectedDay(day); setDetail({ key: "", kind: "loading" });
+    if (!validHistoryDay(day) || day < range.from || day >= range.toExclusive) return;
+    if (day !== selectedDay || !inspecting) { setDetail({ key: "", kind: "loading" }); setComparison({ key: "", kind: "loading" }); }
+    setSelectedDay(day); setCalendarMonth(day.slice(0, 7)); setInspecting(true);
   }
   async function loadRange(next: TeamHistoryRange, append: boolean) {
     pageRequest.current?.abort();
@@ -143,22 +135,26 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
   }
   function applyRange(next: TeamHistoryRange, label: string) {
     pageRequest.current?.abort(); ++pageSequence.current;
-    if (!validHistoryRange(next) || !historyRangeContains(envelope.leagueRange, next)) { setDateError("Choose a valid range within the league's recorded bounds."); setCustomOpen(true); return; }
+    if (!validHistoryRange(next) || !historyRangeContains(envelope.leagueRange, next)) { setDateError("Choose a valid range within the league calendar."); setCustomOpen(true); return; }
     setDateError(""); setRange(next); setPreset(label); setDraft({ from: next.from, through: shiftHistoryDay(next.toExclusive, -1) });
     setCustomOpen(false); if (label === "custom") customSummary.current?.focus();
     const day = selectedDay < next.from ? next.from : selectedDay >= next.toExclusive ? shiftHistoryDay(next.toExclusive, -1) : selectedDay;
-    setSelectedDay(day); if (day !== selectedDay) setDetail({ key: "", kind: "loading" }); setPageState("idle");
+    setSelectedDay(day); setCalendarMonth(day.slice(0, 7)); if (day !== selectedDay) setDetail({ key: "", kind: "loading" }); setPageState("idle");
     if (!historyRangeContains(envelope.loadedRange, next) && pageEndpoint) void loadRange(next, false);
   }
   const currentDetail = detail.key === detailKey ? detail : null;
+  const currentComparison = previousPoint && comparison.key === previousKey ? comparison : null;
   const retryDetail = () => { cache.current.delete(detailKey); setDetail({ key: detailKey, kind: "loading" }); setAttempt(value => value + 1); };
+  const retryComparison = () => { cache.current.delete(previousKey); setComparison({ key: previousKey, kind: "loading" }); setAttempt(value => value + 1); };
   return <section className={styles.root} data-team-value-history aria-label={`${envelope.team.name} historical roster valuation`}>
     <div className={styles.heading}><SectionHeading eyebrow={envelope.team.name} title="Team value over time" /></div>
     <div className={styles.readout} role="status" aria-live="polite" aria-atomic="true" data-history-readout>
       <span>{fullDay(selectedDay)} · UTC</span>
-      <strong>{point?.subtotalCents !== null && point?.subtotalCents !== undefined ? money(point.subtotalCents) : "Valuation unavailable"}</strong>
-      <span>{point ? `${!historyPointComplete(point) && point.subtotalCents !== null ? "Known-value subtotal · " : ""}${priceLabel(point)}` : "No historical quote for this day"}</span>
-      <small>{point ? `${point.priced} of ${point.rosterCount ?? "unknown"} priced · ${shortStatus(point.rosterStatus)}` : "Unknown is not $0. Roster and moves remain inspectable."}</small>
+      <strong>{point?.subtotalCents != null ? money(point.subtotalCents) : selectedLoaded ? "Valuation unavailable" : "Summary not loaded"}</strong>
+      <span>{point ? `${!historyPointComplete(point) && point.subtotalCents !== null ? "Known-value subtotal · " : ""}${priceLabel(point)}` : selectedLoaded ? "No supported historical quote for this day" : "Select this day to inspect its evidence, or load the range below."}</span>
+      <small>{point ? `${point.priced} of ${point.rosterCount ?? "unknown"} priced · ${shortStatus(point.rosterStatus)}` : "Roster and move evidence can still be inspected."}</small>
+      {selectedChange && <p className={styles.dayChange}>{signedMoney(selectedChange.cents)} from {fullDay(selectedChange.previousDay)} · {selectedChange.priceKind === "recorded" ? "recorded" : selectedChange.priceKind} total difference. Quote and roster changes may both contribute.</p>}
+      {!point && selectedLoaded && missingReason && <p className={styles.caption}>{missingReason}</p>}
     </div>
     <div className={styles.presets} role="group" aria-label="History range presets">
       {[{ id: "all", label: "All time" }, ...envelope.seasons.map(season => ({ id: `season:${season.id}`, label: season.label })), { id: "recent", label: "Last 30 days" }].map(item =>
@@ -175,7 +171,25 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
       <p className={styles.caption}>UTC calendar days. Through includes the selected day.</p>
     </details>
     {dateError && <p className={styles.notice} role="alert">{dateError}</p>}
-    <TeamValueHistoryChart points={points} range={range} selectedDay={selectedDay} />
+    <div className={styles.coverageSummary} data-history-coverage>
+      <strong>{pricedDays.length} supported {pricedDays.length === 1 ? "day" : "days"} in this {days}-day window</strong>
+      <p>League calendar: {fullDay(envelope.leagueRange.from)} – {fullDay(shiftHistoryDay(envelope.leagueRange.toExclusive, -1))}. Missing dates remain selectable.</p>
+      {pricedDays.length < days && <p>{days - pricedDays.length} days have no loaded supported valuation. The full calendar stays visible; recent coverage does not reset the start.</p>}
+      {pricedDays.length > 0 && <button type="button" className={controls.quiet} onClick={() => selectDay(pricedDays.at(-1)!.day)}>Inspect latest supported day · {fullDay(pricedDays.at(-1)!.day)}</button>}
+      {pricedDays.length > 0 && <button type="button" className={controls.quiet} onClick={() => applyRange({ from: pricedDays[0].day, toExclusive: shiftHistoryDay(pricedDays.at(-1)!.day, 1) }, "supported")}>Zoom to dates with values</button>}
+    </div>
+    <TeamValueHistoryChart points={points} range={range} selectedDay={selectedDay} onSelectDay={selectDay} />
+    {largestChanges.length > 0 && <div className={styles.changeList} data-history-changes>
+      <h3>Largest observed changes</h3>
+      <p className={styles.caption}>Differences between complete observations, not daily estimates or trade profit. Select a date for player and roster context.</p>
+      <ul>{largestChanges.map(change => <li key={change.day}><button type="button" className={controls.secondary} aria-pressed={selectedDay === change.day} onClick={() => selectDay(change.day)}>
+        <span>{fullDay(change.day)}</span><strong>{signedMoney(change.cents)}</strong><small>Since {fullDay(change.previousDay)} · {change.priceKind} total</small>
+      </button></li>)}</ul>
+    </div>}
+    {pricedDays.length === 0 && <p className={styles.notice}>No supported price series in this window. Choose any day below to inspect available roster and move evidence.</p>}
+    {inspecting && <button type="button" className={`${controls.quiet} ${styles.explainAction}`} onClick={() => {
+      inspector.current?.focus(); inspector.current?.scrollIntoView({ block: "start" });
+    }}>View explanation for {fullDay(selectedDay)}</button>}
     <div className={styles.selection}>
       <label htmlFor={`${id}-day`}>Inspect day · UTC</label>
       <div className={styles.dayControls}>
@@ -183,20 +197,43 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
         <input id={`${id}-day`} type="date" value={selectedDay} min={range.from} max={shiftHistoryDay(range.toExclusive, -1)} onChange={event => selectDay(event.target.value)} />
         <button type="button" className={controls.secondary} aria-label="Next day" disabled={dayIndex >= days - 1} onClick={() => selectDay(shiftHistoryDay(selectedDay, 1))}><span className={styles.nextIcon}><ControlIcon name="sort-down" /></span></button>
       </div>
-      <input className={styles.scrubber} type="range" aria-label="Inspect history day" aria-valuetext={`${fullDay(selectedDay)} UTC`} min="0" max={days - 1} step="1" value={dayIndex} disabled={days === 1} onChange={event => selectDay(shiftHistoryDay(range.from, Number(event.target.value)))} />
+      <div className={styles.calendar}>
+        <label htmlFor={id + "-month"}><span id={id + "-month-label"}>Calendar month</span><select aria-labelledby={id + "-month-label"} id={id + "-month"} value={month.id} onChange={event => setCalendarMonth(event.target.value)}>
+          {months.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
+        </select></label>
+        <div className={styles.calendarDays} role="group" aria-label={month.label + " history days"}>
+          {month.days.map(day => {
+            const item = points.find(point => point.day === day);
+            const loaded = day >= envelope.loadedRange.from && day < envelope.loadedRange.toExclusive;
+            const coverage = !loaded ? "not-loaded" : item?.subtotalCents == null ? "unpriced" : !historyPointComplete(item) ? "partial" : item.priceKind;
+            const weekday = new Intl.DateTimeFormat("en-US", { weekday: "short", timeZone: "UTC" }).format(new Date(day + "T00:00:00Z"));
+            return <button key={day} type="button" data-history-day={day} data-coverage={coverage}
+              className={styles.calendarDay} aria-pressed={selectedDay === day}
+              aria-label={weekday + ", " + fullDay(day) + ", " + (coverage === "not-loaded" ? "history not loaded" : coverage === "unpriced" ? "valuation unavailable" : coverage + " valuation")}
+              onClick={() => selectDay(day)}><strong>{Number(day.slice(-2))}</strong><i aria-hidden="true" /></button>;
+          })}
+        </div>
+        <p className={styles.caption}>Every day is selectable. Filled dots: priced · outlined: partial · no dot: unpriced or not loaded.</p>
+      </div>
     </div>
     {(!rangeLoaded || envelope.page.nextCursor !== null && sameRequestedRange) && <div className={styles.pageNotice}>
       <p>{pageState === "loading" ? "Loading this history range…" : "Some dates in this range have not loaded. The full requested time window stays visible."}</p>
       {pageEndpoint && pageState !== "loading" && <button type="button" className={controls.secondary} onClick={() => void loadRange(range, envelope.page.nextCursor !== null && sameRequestedRange)}>Load more history</button>}
     </div>}
     {(pageState === "error" || pageState === "changed") && <p className={styles.notice} role="status">{pageState === "changed" ? "History changed. Refresh the page for the new history." : "More history could not be loaded. Existing points remain available."}</p>}
-    <details className={styles.details} open={inspecting} onToggle={event => { const open = event.currentTarget.open; if (open !== inspecting) { setInspecting(open); if (open) setDetail({ key: "", kind: "loading" }); } }}>
-      <summary>Roster &amp; moves · {fullDay(selectedDay)}</summary>
-      {inspecting && (currentDetail?.kind === "ready" ? <SelectedRoster detail={currentDetail.value} /> : currentDetail?.kind === "error" ? <div className={styles.notice} role="status">
-        <p>{currentDetail.changed ? "History changed. Refresh the page to inspect the new roster evidence." : "Roster details could not be loaded for this date. The chart remains available."}</p>
-        {!currentDetail.changed && detailEndpoint && <button type="button" className={controls.secondary} onClick={retryDetail}>Retry roster details</button>}
-      </div> : <p className={styles.notice} role="status">Loading roster and nearby moves…</p>)}
-    </details>
+    <section id={`${id}-explanation`} ref={inspector} tabIndex={-1} className={styles.details} data-history-inspector aria-label={"Day explanation for " + fullDay(selectedDay)}>
+      <h3>What happened on {fullDay(selectedDay)}?</h3>
+      {!inspecting ? <div><p>Select a calendar day, a change marker or the timeline to load its dated roster and source moves.</p>
+        <button type="button" className={controls.secondary} onClick={() => selectDay(selectedDay)}>Explain this day</button></div>
+        : currentDetail?.kind === "ready" ? <DayDetail detail={currentDetail.value}
+          previous={currentComparison?.kind === "ready" ? currentComparison.value : undefined}
+          comparisonLoading={!!previousPoint && (!currentComparison || currentComparison.kind === "loading")}
+          comparisonError={currentComparison?.kind === "error" ? currentComparison.changed ? "changed" : "unavailable" : undefined}
+          retryComparison={retryComparison} /> : currentDetail?.kind === "error" ? <div className={styles.notice} role="status">
+          <p>{currentDetail.changed ? "History changed. Refresh the page to inspect the new roster evidence." : "Day details could not be loaded. The full calendar remains available."}</p>
+          {!currentDetail.changed && detailEndpoint && <button type="button" className={controls.secondary} onClick={retryDetail}>Retry day details</button>}
+        </div> : <p className={styles.notice} role="status">Loading the selected day’s roster and moves…</p>}
+    </section>
     {envelope.currentQuote && <p className={styles.current}>{envelope.currentQuote.priced < envelope.currentQuote.rosterCount ? "Current modeled subtotal" : "Current modeled quote"}: {envelope.currentQuote.subtotalCents === null ? "unavailable" : money(envelope.currentQuote.subtotalCents)} · {envelope.currentQuote.priced}/{envelope.currentQuote.rosterCount} priced · {envelope.currentQuote.at}. Separate from recorded history.</p>}
     <details className={styles.evidence}><summary>About this history</summary>
       <p>Recorded points are captured modeled FAAB quotes. Reconstructed estimates were calculated later from dated inputs. Neither is a sale price or team performance.</p>
