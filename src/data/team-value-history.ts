@@ -31,6 +31,25 @@
  * the roster/source bounds. Adding, revising or pruning any admitted
  * quote changes the generation; detail/summary requests carrying an
  * obsolete generation get HTTP 409 instead of a silently different day.
+ *
+ * FAIL-CLOSED FEED: the move generation loads through a strict fetcher
+ * — every season week must succeed. A failed or malformed week rejects
+ * the load (503) instead of reading as an empty move set.
+ *
+ * VALIDATED AS-OF CUTOFF: evidence is admitted only at or before the
+ * load instant (`now`). A quote or move timestamped after the cutoff is
+ * not admitted, never advances `asOf`, and an unpriced detail for today
+ * claims replay only through the cutoff — not through end-of-day.
+ *
+ * CONFLICTING QUOTES: two different prices for one player at one native
+ * instant are a contradiction the schema permits but quote-id ordering
+ * cannot adjudicate; the observation is quarantined (that player is
+ * unpriced at that instant) rather than silently selecting a price.
+ *
+ * CURRENT QUOTE: valued from the anchor roster — the independently
+ * observed current membership — at the latest admitted instant that
+ * prices at least one current player. Historical replay membership is
+ * never relabeled as current.
  */
 import { createHash } from "node:crypto";
 import {
@@ -44,7 +63,7 @@ import {
   fetchNbaState, fetchPlayerDirectory, fetchRosters, fetchUsers, LEAGUE_ID,
   type RawPlayerEntry, type RawTransaction,
 } from "./sleeper";
-import { fetchTransactionsByWeek, validSeasonWeeks } from "./league";
+import { fetchTransactionsByWeekComplete, validSeasonWeeks } from "./league";
 import { teamNameOf } from "./transform";
 
 export class TeamHistoryError extends Error {
@@ -120,10 +139,21 @@ async function defaultAnchor(): Promise<HistoryAnchor> {
   };
 }
 
+/**
+ * The completed-move generation, loaded fail-closed: the season state
+ * must establish a provable week range and EVERY week's fetch must
+ * succeed. The shared tolerant fetcher converts a failed week into an
+ * empty array — fine for stats, fatal here: silence would be replayed
+ * as "no moves happened" and invent historical membership. Any failure
+ * rejects, and `loadTeamHistoryState` surfaces that as 503.
+ */
 async function defaultMoves(): Promise<HistoryMove[]> {
-  const state = await fetchNbaState().catch(() => null);
+  const state = await fetchNbaState();
   const weeks = validSeasonWeeks(state);
-  const byWeek = await fetchTransactionsByWeek(weeks.length > 0 ? weeks : [1]);
+  if (weeks.length === 0) {
+    throw new Error("Sleeper season state does not establish a provable transaction week range");
+  }
+  const byWeek = await fetchTransactionsByWeekComplete(weeks);
   return toHistoryMoves(byWeek.flat());
 }
 
@@ -171,11 +201,17 @@ function buildState(args: {
   quotes: RecordedQuote[];
   now: Date;
 }): TeamHistoryState {
-  const { anchor, team, quotes } = args;
+  const { anchor, team } = args;
   const rosterId = Number(team.id);
   const anchorRoster = [...team.players].sort();
-  const moves = args.moves.filter(move =>
-    move.adds.some(entry => entry.rosterId === rosterId) || move.drops.some(entry => entry.rosterId === rosterId));
+  // Validated as-of cutoff: nothing timestamped after the load instant
+  // is admitted as evidence — not quotes, not moves. Future-dated rows
+  // from a faulty source can neither move a historical day nor advance
+  // asOf past the moment the envelope claims to speak for.
+  const cutoffMs = args.now.getTime();
+  const quotes = args.quotes.filter(quote => instantMs(quote.nativeTimestamp) <= cutoffMs);
+  const moves = args.moves.filter(move => move.effectiveMs <= cutoffMs
+    && (move.adds.some(entry => entry.rosterId === rosterId) || move.drops.some(entry => entry.rosterId === rosterId)));
 
   /**
    * Roster at an instant: the anchor with every completed move effective
@@ -204,17 +240,34 @@ function buildState(args: {
 
   // Genuine common observation instants: quotes grouped by their exact
   // native timestamp. No carry, no backdating, no appended current quote.
+  // Two rows for one player at one instant with the SAME price are one
+  // observation (the smaller quote id stays as provenance, deterministi-
+  // cally). Two rows with DIFFERENT prices contradict each other and no
+  // quote-id ordering is evidence for either — the observation is
+  // quarantined: the player is unpriced at that instant.
   const byInstant = new Map<string, Map<string, RecordedQuote>>();
+  const conflicted = new Set<string>();
   for (const quote of quotes) {
-    const at = byInstant.get(quote.nativeTimestamp) ?? new Map<string, RecordedQuote>();
+    const key = `${quote.nativeTimestamp}|${quote.playerId}`;
+    if (conflicted.has(key)) continue;
+    let at = byInstant.get(quote.nativeTimestamp);
+    if (!at) { at = new Map<string, RecordedQuote>(); byInstant.set(quote.nativeTimestamp, at); }
     const prior = at.get(quote.playerId);
-    if (!prior || quote.quoteId > prior.quoteId) at.set(quote.playerId, quote);
-    byInstant.set(quote.nativeTimestamp, at);
+    if (!prior) { at.set(quote.playerId, quote); continue; }
+    if (prior.priceCents === quote.priceCents) {
+      if (quote.quoteId < prior.quoteId) at.set(quote.playerId, quote);
+      continue;
+    }
+    at.delete(quote.playerId);
+    conflicted.add(key);
   }
+  const instantList = [...byInstant.entries()]
+    .filter(([, at]) => at.size > 0)
+    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
   const evals: InstantEval[] = [];
-  for (const nativeTimestamp of [...byInstant.keys()].sort()) {
+  for (const [nativeTimestamp, at] of instantList) {
     const roster = rosterAt(instantMs(nativeTimestamp));
-    if (roster) evals.push({ nativeTimestamp, ms: instantMs(nativeTimestamp), roster, quotes: byInstant.get(nativeTimestamp)! });
+    if (roster) evals.push({ nativeTimestamp, ms: instantMs(nativeTimestamp), roster, quotes: at });
   }
 
   const rosterRef = (roster: readonly string[]) => `roster-${team.id}-${sha([...roster].sort().join(",")).slice(0, 12)}`;
@@ -250,15 +303,24 @@ function buildState(args: {
   const firstPointDay = points[0]?.day ?? null;
   const lastPointDay = points.at(-1)?.day ?? null;
 
-  const latest = evals.at(-1);
-  const currentQuote: TeamValueHistoryEnvelope["currentQuote"] = latest ? (() => {
-    const pricedIds = latest.roster.filter(id => latest.quotes.has(id));
-    return {
-      at: `${latest.nativeTimestamp}Z`,
-      subtotalCents: pricedIds.length > 0 ? pricedIds.reduce((sum, id) => sum + latest.quotes.get(id)!.priceCents, 0) : null,
-      priced: pricedIds.length, rosterCount: latest.roster.length,
+  // The current quote values the CURRENT membership — the anchor
+  // roster, observed independently of the replay — at the latest
+  // admitted instant that prices at least one current player. The last
+  // historical observation is never relabeled as current: when a move
+  // lands after the last quote instant, the replayed roster at that
+  // instant is a historical roster, not today's.
+  let currentQuote: TeamValueHistoryEnvelope["currentQuote"] = null;
+  for (let i = instantList.length - 1; i >= 0; i--) {
+    const [nativeTimestamp, at] = instantList[i];
+    const pricedIds = anchorRoster.filter(id => at.has(id));
+    if (pricedIds.length === 0) continue;
+    currentQuote = {
+      at: `${nativeTimestamp}Z`,
+      subtotalCents: pricedIds.reduce((sum, id) => sum + at.get(id)!.priceCents, 0),
+      priced: pricedIds.length, rosterCount: anchorRoster.length,
     };
-  })() : null;
+    break;
+  }
 
   // Generation fingerprint: binds the anchor roster, this team's
   // completed-move set, the admitted quote set (ids, exact native
@@ -278,8 +340,9 @@ function buildState(args: {
       .sort((a, b) => String(a[2]).localeCompare(String(b[2])) || String(a[0]).localeCompare(String(b[0]))),
   })).slice(0, 24)}`;
 
-  const asOfDate = new Date(Math.max(args.now.getTime(), latest?.ms ?? 0));
-  const asOf = asOfDate.toISOString();
+  // asOf is exactly the validated cutoff. Admitted evidence is bounded
+  // by it, so no quote or move can pull asOf into the future.
+  const asOf = args.now.toISOString();
   const leagueRange: TeamHistoryRange = { from: HISTORY_LEAGUE_FROM, toExclusive: shiftHistoryDay(asOf.slice(0, 10), 1) };
   const seasons: TeamValueHistoryEnvelope["seasons"] = [
     { id: "2025", label: "2025 season", leagueId: SEASON_ONE_LEAGUE_ID, range: { from: HISTORY_LEAGUE_FROM, toExclusive: HISTORY_SEASON_TWO_FROM } },
@@ -404,16 +467,22 @@ function buildState(args: {
       };
     }
 
-    if (firstPointDay && day >= firstPointDay) {
+    if (firstPointDay && day >= firstPointDay && day <= asOf.slice(0, 10)) {
       // Proven band, no retained snapshot this day: roster stays
-      // inspectable at the end-of-day cutoff; no price is invented.
-      const cutoff = Date.parse(`${day}T23:59:59.999999Z`);
-      const roster = rosterAt(cutoff);
+      // inspectable at the day's cutoff; no price is invented. The
+      // cutoff is the earlier of end-of-day and the validated as-of
+      // instant — for today, replay is claimed only through the cutoff,
+      // never through an end-of-day that has not happened yet.
+      const endOfDayMs = Date.parse(`${day}T23:59:59.999999Z`);
+      const capped = cutoffMs < endOfDayMs;
+      const roster = rosterAt(Math.min(endOfDayMs, cutoffMs));
       if (roster) {
         return {
-          ...shared, valuationAt: `${day}T23:59:59.999999Z`, pointId: null, rosterRef: rosterRef(roster),
+          ...shared, valuationAt: capped ? instantIso(cutoffMs) : `${day}T23:59:59.999999Z`, pointId: null, rosterRef: rosterRef(roster),
           rosterStatus: "replayed", rosterCount: roster.length, priced: 0, subtotalCents: null,
-          rosterEvidence: ["Roster replayed as of the end of this UTC day. No retained recorded snapshot exists for this day, so no player is priced."],
+          rosterEvidence: [capped
+            ? "Roster replayed as of the validated as-of cutoff on this UTC day; the rest of the day has not been observed. No retained recorded snapshot exists for this day, so no player is priced."
+            : "Roster replayed as of the end of this UTC day. No retained recorded snapshot exists for this day, so no player is priced."],
           players: roster.map(id => ({
             id, name: playerName(names, id), priceCents: null, price: null,
             missingReason: "No retained recorded snapshot on this day.",

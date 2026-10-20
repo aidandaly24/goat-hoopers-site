@@ -341,3 +341,128 @@ describe("recorded-quote adapter", () => {
     expect(outcome).toBeNull();
   });
 });
+
+describe("fail-closed move feed (dot P1 regression)", () => {
+  it("a failed move feed yields no history at all, never an invented roster", async () => {
+    // The pre-fix producer treated a failed week as an empty move set
+    // and still served priced `replayed` days from the bare anchor.
+    const failing = deps({ fetchMoves: async () => { throw new Error("week fetch failed"); } });
+    await expect(loadTeamHistoryState("1", failing)).rejects.toMatchObject({ status: 503 });
+    expect(await getTeamValueHistory("1", failing)).toBeNull();
+    const healthy = await loadTeamHistoryState("1", deps());
+    const res = await teamHistorySummaryResponse(
+      url("/api/team-value-history/summary", { teamId: "1", generation: healthy.generation, from: "2026-10-01", toExclusive: "2026-10-21" }),
+      failing);
+    expect(res.status).toBe(503);
+  });
+});
+
+describe("validated as-of cutoff (dot P2 regression)", () => {
+  it("never admits a future quote and never advances asOf past now", async () => {
+    const future = quote("q-future-101", "101", 99000, "2026-10-20T18:00:00.000000");
+    const state = await loadTeamHistoryState("1", deps({}, [...QUOTES, future]));
+    expect(state.asOf).toBe(NOW.toISOString());
+    expect(state.points.map(point => point.day)).toEqual(["2026-10-08", "2026-10-09", "2026-10-11"]);
+    expect(state.currentQuote?.at).toBe(`${T3}Z`);
+    const healthy = await loadTeamHistoryState("1", deps());
+    expect(state.generation).toBe(healthy.generation); // inadmissible evidence binds nothing
+  });
+
+  it("claims today's unpriced replay only through the cutoff, not end-of-day", async () => {
+    const state = await loadTeamHistoryState("1", deps());
+    const detail = state.detail("2026-10-20", NAMES);
+    expect(isTeamValueHistoryDetail(detail)).toBe(true);
+    expect(detail.rosterStatus).toBe("replayed");
+    expect(detail.valuationAt).toBe("2026-10-20T12:00:00.000Z");
+    expect(detail.rosterEvidence.join(" ")).toContain("as-of cutoff");
+    expect(detail.rosterCount).toBe(3);
+    expect(detail.subtotalCents).toBeNull();
+  });
+
+  it("ignores a future-dated move instead of inverting it into history", async () => {
+    const futureTx = tx({
+      transaction_id: "future-drop-101", created: Date.parse("2026-10-20T18:00:00Z"),
+      status_updated: Date.parse("2026-10-20T18:00:00Z"), drops: { "101": 1 },
+    });
+    const state = await loadTeamHistoryState("1", deps({
+      fetchMoves: async () => toHistoryMoves([...RAW_TX, futureTx]),
+    }));
+    // Had the move been admitted, inverting it against the anchor would
+    // have contradicted every roster and erased the Oct 8 point.
+    expect(state.receipt().points.find(point => point.day === "2026-10-08")!.roster).toEqual(["101", "102", "103"]);
+    expect(JSON.stringify(state.receipt())).not.toContain("future-drop-101");
+    expect(state.detail("2026-10-20", NAMES).moves.map(move => move.sourceId)).not.toContain("future-drop-101");
+  });
+});
+
+describe("current quote membership (dot P2 regression)", () => {
+  it("values the anchor roster when a cut lands after the last quote instant", async () => {
+    // Only T1 quotes for team 2: the replayed Oct 8 roster still holds
+    // the since-cut 2711 (three players, 24,000 in the dot's synthetic
+    // repro terms — 21,000 here). Today's anchor holds two players.
+    const t1Only = QUOTES.filter(entry => entry.nativeTimestamp === T1 && ["201", "202", "2711"].includes(entry.playerId));
+    const state = await loadTeamHistoryState("2", deps({}, t1Only));
+    expect(state.points).toEqual([
+      expect.objectContaining({ day: "2026-10-08", rosterCount: 3, subtotalCents: 21000 }),
+    ]);
+    const envelope = await getTeamValueHistory("2", deps({}, t1Only));
+    expect(envelope).not.toBeNull();
+    expect(envelope!.currentQuote).toEqual({ at: `${T1}Z`, subtotalCents: 12000, priced: 2, rosterCount: 2 });
+  });
+
+  it("is null when no admitted instant prices any current player", async () => {
+    const cutOnly = [quote("q-t1-2711", "2711", 9000, T1)];
+    const envelope = await getTeamValueHistory("2", deps({}, cutOnly));
+    expect(envelope).not.toBeNull();
+    expect(envelope!.currentQuote).toBeNull();
+  });
+});
+
+describe("conflicting same-instant quotes (dot P2 regression)", () => {
+  it("quarantines the player at that instant instead of selecting by quote id", async () => {
+    const conflicting = [
+      quote("q-aaa", "101", 10000, T1),
+      quote("q-zzz", "101", 10500, T1), // larger id: the old code silently priced this one
+      quote("q-t1-102", "102", 20000, T1), quote("q-t1-103", "103", 30000, T1),
+    ];
+    const state = await loadTeamHistoryState("1", deps({}, conflicting));
+    const point = state.points.find(entry => entry.day === "2026-10-08")!;
+    expect(point.priced).toBe(2);
+    expect(point.subtotalCents).toBe(50000);
+    const detail = state.detail("2026-10-08", NAMES);
+    expect(isTeamValueHistoryDetail(detail)).toBe(true);
+    const player = detail.players.find(entry => entry.id === "101")!;
+    expect(player.priceCents).toBeNull();
+    expect(player.price).toBeNull();
+    expect(player.missingReason).not.toBeNull();
+  });
+
+  it("treats same-price duplicates as one observation with stable provenance", async () => {
+    const duplicated = [
+      quote("q-bbb", "101", 10000, T1), quote("q-aaa", "101", 10000, T1),
+      quote("q-t1-102", "102", 20000, T1), quote("q-t1-103", "103", 30000, T1),
+    ];
+    const state = await loadTeamHistoryState("1", deps({}, duplicated));
+    const detail = state.detail("2026-10-08", NAMES);
+    expect(detail.subtotalCents).toBe(60000);
+    expect(detail.players.find(entry => entry.id === "101")!.price)
+      .toMatchObject({ kind: "recorded", quoteId: "q-aaa" });
+  });
+
+  it("a third row cannot resurrect a quarantined observation", async () => {
+    const triple = [
+      quote("q-1", "101", 10000, T1), quote("q-2", "101", 10500, T1), quote("q-3", "101", 10000, T1),
+      quote("q-t1-102", "102", 20000, T1), quote("q-t1-103", "103", 30000, T1),
+    ];
+    const state = await loadTeamHistoryState("1", deps({}, triple));
+    expect(state.points.find(entry => entry.day === "2026-10-08")!.priced).toBe(2);
+  });
+
+  it("a conflicting twin changes the generation and the returned day, via 409 rules", async () => {
+    const base = await loadTeamHistoryState("1", deps());
+    const withConflict = [...QUOTES, quote("q-conflict-101", "101", 10001, T1)];
+    const changed = await loadTeamHistoryState("1", deps({}, withConflict));
+    expect(changed.generation).not.toBe(base.generation);
+    expect(changed.points.find(entry => entry.day === "2026-10-08")!.subtotalCents).toBe(50000);
+  });
+});

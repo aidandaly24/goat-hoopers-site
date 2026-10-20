@@ -26,7 +26,16 @@ Supported days are labelled `replayed`; anything the anchor or ordering
 cannot prove stays ambiguous/unavailable with no point. The generation
 fingerprints the anchor roster, the move set, the admitted quote set and the
 roster/source bounds, so any added/revised/pruned quote yields a new
-generation and stale detail/summary requests get 409. GET routes live at
+generation and stale detail/summary requests get 409. The producer fails
+closed throughout: the move feed loads through the strict
+`fetchTransactionsByWeekComplete` (any failed or malformed week rejects the
+load — a silent week is never replayed as an empty move set), evidence is
+admitted only at or before the load instant (a future-dated quote or move
+never advances `asOf`, and today's unpriced detail claims replay only
+through that cutoff), two different prices for one player at one instant
+quarantine the observation instead of selecting by quote id, and the
+separate current quote values the anchor roster — never the last
+historical replay roster. GET routes live at
 `/api/team-value-history/{summary,detail}`; the member homepage passes the
 envelope as serializable props into the `TeamValueHistory` consumer in
 `season-hub`, replacing the current-roster repricing line. This producer
