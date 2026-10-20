@@ -10,3 +10,13 @@ it("projects only public fields and refuses inconsistent scores or malformed boa
   expect(decodeCompetitionBoard({ ...board, entries: Array(101).fill(entry) })).toBeNull();
   expect(decodeCompetitionBoard({ ...board, scoreVersion: "unversioned" })).toBeNull();
 });
+it("keeps modeled records and price points distinct and projects no private fields", () => {
+  const base = { rank: 1, username: "player_one", teamId: null, achievedAtMs: 1000, isCurrentUser: false };
+  const draft = { ...base, score: 50, metric: { kind: "modeled-record", wins: 50, losses: 32 } };
+  expect(decodeCompetitionBoard({ ...board, gameId: "week-2-preview", entries: [{ ...draft, choices: ["private"], source: "private" }] })?.entries).toEqual([draft]);
+  expect(decodeCompetitionBoard({ ...board, gameId: "priced-in", entries: [draft] })).toBeNull();
+  const price = { ...base, score: 750, metric: { kind: "price-points", correct: 5, rounds: 5 } };
+  expect(decodeCompetitionBoard({ ...board, gameId: "priced-in", entries: [price] })?.entries).toEqual([price]);
+  for (const change of [{ score: 751 }, { metric: { kind: "price-points", correct: 1, rounds: 5 } }, { metric: { kind: "modeled-record", wins: 83, losses: -1 } }])
+    expect(decodeCompetitionBoard({ ...board, gameId: "priced-in", entries: [{ ...price, ...change }] })).toBeNull();
+});

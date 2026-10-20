@@ -22,17 +22,26 @@ const authorize = (a: RankedAccount) => sql`SELECT u.id FROM auth_user u JOIN au
 const CONFLICTING_OBSERVATIONS = "Conflicting publisher observations at the same timestamp";
 const sameObservation = (a: FinalityReceipt, b: FinalityReceipt) => a.source === b.source &&
   Object.keys(a.states).length === Object.keys(b.states).length && Object.keys(a.states).every(id => a.states[id] === b.states[id]);
+/** Additional game storage joins the SAME period transaction/lock; no public
+ * read or game submission can declare a period final. */
+export type PeriodGamePersistence = {
+  gameId: string;
+  versions(period: CompetitionPeriod): { rulesVersion: string; scoreVersion: string } | null;
+  seal(tx: RankedSqlClient, period: PeriodRecord): Promise<void>;
+};
 
 /** Canonical period locks are acquired before account/run locks, including finalization. */
 export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
-  constructor(private readonly database: RankedSqlDatabase) { super(database); }
+  constructor(private readonly database: RankedSqlDatabase, private readonly games: readonly PeriodGamePersistence[] = []) { super(database); }
   private async records(db: RankedSqlClient, lock = false) {
     return (await db.execute(sql`SELECT * FROM arcade_competition_periods ORDER BY ordinal ${lock ? sql`FOR SHARE` : sql``}`)).rows.map(decode);
   }
+  async currentPeriod(): Promise<PeriodRecord | null> { return selected(await this.records(this.database)); }
+  async period(id: string): Promise<PeriodRecord | null> { return (await this.records(this.database)).find(p => p.id === id) ?? null; }
   async start(account: RankedAccount, config: ReadyRankedConfiguration): Promise<StartRunResult> {
     return this.database.transaction(async tx => {
       const periods = await this.records(tx, true), p = selected(periods);
-      if (!p || !allowed(p, periods, await clock(tx))) return { status: "week_closing" };
+      if (!p || p.gameId !== "free-throw" || !allowed(p, periods, await clock(tx))) return { status: "week_closing" };
       const frozen = (await tx.execute(sql`SELECT rules_version FROM arcade_competition_periods WHERE id=${p.id}`)).rows[0];
       if (frozen?.rules_version !== config.rulesVersion) throw new Error("period_policy_mismatch");
       if ((await tx.execute(authorize(account))).rows.length !== 1) return { status: "unauthenticated" };
@@ -59,7 +68,7 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
   async consume(account: RankedAccount, run: RankedRun, round: ValidatedRound): Promise<RankedScore | null> {
     return this.database.transaction(async tx => {
       const periods = await this.records(tx, true), p = periods.find(p => p.id === run.period.id), now = await clock(tx);
-      if (!p || !allowed(p, periods, now) || now >= run.expiresAtMs) return null;
+      if (!p || p.gameId !== "free-throw" || !allowed(p, periods, now) || now >= run.expiresAtMs) return null;
       if ((await tx.execute(authorize(account))).rows.length !== 1) return null;
       if (!(await tx.execute(sql`SELECT id FROM ranked_free_throw_runs WHERE id=${run.id}::uuid AND account_id=${account.subject} FOR UPDATE`)).rows.length) return null;
       // Clock is checked again after every lock wait; failure rolls back consumption and insertion together.
@@ -106,7 +115,7 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
     const board = await this.board("weekly", null, config, viewer, scope, limit);
     const records = await this.records(this.database), p = records.find(p => p.id === board.periodId);
     if (!p) throw new Error("calendar_unavailable");
-    return { period: runPeriod(p), entries: board.entries };
+    return { period: runPeriod(p), entries: board.entries as RankedLeaderboardEntry[] };
   }
   async board(kind: "weekly" | "all-time" | "archive", periodId: string | null, config: ReadyRankedConfiguration, viewer: string | null, scope: RankedScope = "everyone", limit = 50): Promise<CompetitionBoard> {
     if (!Number.isSafeInteger(limit) || limit < 1 || limit > 100 || !["everyone", "league"].includes(scope)) throw new Error("invalid_board_query");
@@ -114,6 +123,7 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
     const sealed = !!p && p.finalizedAtMs !== null;
     const readKind = kind === "weekly" && sealed ? "archive" : kind;
     const version = readKind === "archive" && p?.scoreVersion ? p.scoreVersion : scoreFormatVersion(config.policy);
+    if (p && p.gameId !== "free-throw" && kind !== "all-time") return { gameId: "free-throw", kind, label: "Free Throw is not this period's ranked game", phase: "held", asOfMs: now, periodId: p.id, scoreVersion: version, entries: [] };
     if (!p && kind !== "all-time") return { gameId: "free-throw", kind, label: "Competition not configured", phase: "held", asOfMs: now, periodId: null, scoreVersion: version, entries: [] };
     return { gameId: "free-throw", kind, label: kind === "all-time" ? `All-time · ${config.policy.shots} shots / ${config.policy.durationMs / 1000}s format` : p!.label,
       phase: p ? periodPhase(p, now, p.predecessorId === null || records.some(old => old.id === p.predecessorId && old.finalizedAtMs !== null)) : "held",
@@ -128,17 +138,32 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
     return this.database.transaction(async tx => {
       // A transaction-level advisory lock serializes retries and first publication across worker instances.
       await tx.execute(sql`SELECT pg_advisory_xact_lock(7042026)`);
-      for (const p of calendar) await tx.execute(sql`INSERT INTO arcade_competition_periods(id,ordinal,game_id,definition,rules_version,score_version)
-        VALUES(${p.id},${p.order},${p.gameId},${JSON.stringify(p)}::jsonb,${config.rulesVersion},${scoreFormatVersion(config.policy)}) ON CONFLICT(id) DO NOTHING`);
+      const versions = (p: CompetitionPeriod) => p.gameId === "free-throw" ? { rulesVersion: config.rulesVersion, scoreVersion: scoreFormatVersion(config.policy) }
+        : this.games.find(g => g.gameId === p.gameId)?.versions(p) ?? null;
+      for (const p of calendar) {
+        const version = versions(p);
+        // Preserve unsupported predecessors explicitly. Never skip ahead to a
+        // supported game and pretend the missing week's adapter is complete.
+        if (!version) {
+          const old = (await tx.execute(sql`SELECT finalized_at_ms FROM arcade_competition_periods WHERE id=${p.id}`)).rows[0];
+          if (old && old.finalized_at_ms != null) continue;
+          break;
+        }
+        await tx.execute(sql`INSERT INTO arcade_competition_periods(id,ordinal,game_id,definition,rules_version,score_version)
+          VALUES(${p.id},${p.order},${p.gameId},${JSON.stringify(p)}::jsonb,${version.rulesVersion},${version.scoreVersion}) ON CONFLICT(id) DO NOTHING`);
+      }
       const rows = (await tx.execute(sql`SELECT * FROM arcade_competition_periods ORDER BY ordinal FOR UPDATE`)).rows;
       const now = await clock(tx), finalized: string[] = [];
       for (const row of rows) {
         const p = decode(row), spec = calendar.find(s => s.id === p.id), receipt = receipts.get(p.id);
         if (p.finalizedAtMs !== null) continue;
-        if (!spec || p.fixtures.length !== spec.fixtures.length || p.fixtures.some(f => !spec.fixtures.some(s => s.id === f.id && s.date === f.date && s.startsAtMs === f.startsAtMs)) ||
+        if (!spec) throw new Error("published_calendar_policy_changed");
+        const version = versions(spec);
+        if (!version) continue;
+        if (p.fixtures.length !== spec.fixtures.length || p.fixtures.some(f => !spec.fixtures.some(s => s.id === f.id && s.date === f.date && s.startsAtMs === f.startsAtMs)) ||
           p.opensAtMs !== spec.opensAtMs || p.calendarVersion !== spec.calendarVersion || p.calendarSource !== spec.calendarSource ||
           p.predecessorId !== spec.predecessorId || p.order !== spec.order || p.week !== spec.week || p.label !== spec.label ||
-          p.gameId !== spec.gameId || row.rules_version !== config.rulesVersion) throw new Error("published_calendar_policy_changed");
+          p.gameId !== spec.gameId || p.formatVersion !== spec.formatVersion || row.rules_version !== version.rulesVersion || row.score_version !== version.scoreVersion) throw new Error("published_calendar_policy_changed");
         // Fetches occur before this lock. A slower older worker must not reopen
         // a period after a newer missing/postponed observation has blocked it.
         if (!receipt || receipt.checkedAtMs > now || now - receipt.checkedAtMs > 600000 ||
@@ -155,7 +180,8 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
         if (!prior) continue;
         if (!canFinalize(p, receipt, now)) continue;
         // Period FOR UPDATE waits for all save/admission FOR SHARE locks before the immutable snapshot.
-        await tx.execute(sql`INSERT INTO arcade_weekly_results(period_id,account_id,rank,score_id,score,outcomes,achieved_at_ms,username_at_final,team_id)
+        if (p.gameId === "free-throw") {
+          await tx.execute(sql`INSERT INTO arcade_weekly_results(period_id,account_id,rank,score_id,score,outcomes,achieved_at_ms,username_at_final,team_id)
           SELECT ${p.id},account_id,row_number() OVER(ORDER BY score DESC,achieved_at_ms,id),id,score,outcomes,achieved_at_ms,username,team_id FROM (
             SELECT DISTINCT ON(r.account_id) r.account_id,s.*,u.name AS username,t.team_id FROM ranked_free_throw_scores s
             JOIN ranked_free_throw_runs r ON r.id=s.run_id JOIN auth_user u ON u.id=r.account_id
@@ -164,7 +190,8 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
           ) best ON CONFLICT(period_id,account_id) DO NOTHING`);
         // Unfinished rounds from the sealed period cannot hold the account's
         // one-open-run slot when the next period becomes eligible.
-        await tx.execute(sql`UPDATE ranked_free_throw_runs SET state='expired' WHERE period_id=${p.id} AND state='open'`);
+          await tx.execute(sql`UPDATE ranked_free_throw_runs SET state='expired' WHERE period_id=${p.id} AND state='open'`);
+        } else await this.games.find(g => g.gameId === p.gameId)!.seal(tx, p);
         await tx.execute(sql`UPDATE arcade_competition_periods SET closed_at_ms=${now},finalized_at_ms=${now} WHERE id=${p.id} AND finalized_at_ms IS NULL`);
         finalized.push(p.id);
       }

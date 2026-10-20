@@ -7,10 +7,12 @@ import { readCompetitionCalendar } from "./config";
 import { readFinality } from "./finality";
 import type { CompetitionArchive, CompetitionBoard } from "@/domain/arcade/competition-period";
 import type { RankedScope } from "@/domain/arcade/ranked-free-throw";
+import { choiceGameId } from "@/domain/arcade/ranked-game-contract";
+import { createChoiceRuntime } from "../ranked-choice/runtime";
 
 export type CompetitionView = { status: "held" | "unavailable" } | { status: "ready"; board: CompetitionBoard };
 export async function loadCompetitionView(kind: "weekly" | "all-time" | "archive", periodId: string | null = null, gameId = "free-throw", scope: RankedScope = "everyone"): Promise<CompetitionView> {
-  if (gameId !== "free-throw") return { status: "held" }; // Other games remain unranked until they have a validated server adapter.
+  if (gameId !== "free-throw" && !choiceGameId(gameId)) return { status: "held" };
   const runtime = createRankedRuntime(), config = runtime.configuration;
   if (config.status !== "ready") return { status: "held" };
   try {
@@ -18,6 +20,19 @@ export async function loadCompetitionView(kind: "weekly" | "all-time" | "archive
     if (!(store instanceof ArcadeCompetitionStore)) return { status: "unavailable" };
     let viewer: string | null = null;
     try { viewer = (await runtime.account(await headers()))?.subject ?? null; } catch { /* public board remains public */ }
+    const period = kind === "weekly" ? await store.currentPeriod() : kind === "archive" && periodId ? await store.period(periodId) : null;
+    // Weekly follows the canonical game; archives follow their immutable ID.
+    // An all-time request always stays scoped to its explicitly selected game.
+    const target = kind === "all-time" ? gameId : period?.gameId ?? gameId;
+    if (choiceGameId(target)) {
+      const choices = createChoiceRuntime(), adapter = choices.adapters.find(a => a.gameId === target);
+      const sealed = !!period && period.finalizedAtMs !== null && kind !== "all-time";
+      if (!choices.enabled || !sealed && !adapter || kind === "archive" && !sealed) return { status: "held" };
+      // Active weeks, like finals, retain the published scoring format even
+      // when a later adapter is installed. Only all-time selects that adapter.
+      const format = kind !== "all-time" && period ? period.scoreVersion! : adapter!.formatVersion;
+      return { status: "ready", board: await choices.store().board(kind, period, target, format, viewer, scope) };
+    }
     const board = await store.board(kind, periodId, config, viewer, scope);
     return kind === "archive" && board.periodId !== periodId ? { status: "unavailable" } : { status: "ready", board };
   } catch { return { status: "unavailable" }; }

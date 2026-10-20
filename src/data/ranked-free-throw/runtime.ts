@@ -4,6 +4,8 @@ import { getFriendsDb } from "../friends-auth/db";
 import { readRankedConfiguration, freeThrowRulesVersion } from "./config";
 import { ArcadeCompetitionStore } from "../arcade-competition/store";
 import { DEFAULT_COMPETITION_POLICY, readCompetitionCalendar } from "../arcade-competition/config";
+import { registeredChoiceAdapters } from "../ranked-choice/adapter";
+import { PostgresChoiceStore } from "../ranked-choice/store";
 
 import type { RankedRuntime } from "./service";
 import type { RankedAvailability } from "@/domain/arcade/ranked-free-throw";
@@ -30,13 +32,15 @@ export function createRankedRuntime(): RankedRuntime {
     store: () => {
       if (!store) {
         const db = getFriendsDb();
-        store = new ArcadeCompetitionStore({
+        const database = {
           execute: async statement => db.execute(statement),
           // Admission's post-lock count must use a fresh snapshot, regardless
           // of the database/role's default transaction isolation setting.
           transaction: async work => db.transaction(tx => work({ execute: async statement => tx.execute(statement) }),
             { isolationLevel: "read committed" }),
-        });
+        } satisfies import("./store").RankedSqlDatabase;
+        const choices = new PostgresChoiceStore(database);
+        store = new ArcadeCompetitionStore(database, process.env.GOAT_RANKED_CHOICE_GAMES_ENABLED === "1" ? registeredChoiceAdapters().map(a => choices.handler(a)) : []);
       }
       return store;
     },

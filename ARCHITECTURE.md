@@ -1281,6 +1281,42 @@ immutable weekly results; it never changes legacy scores or rewards.
 See `docs/arcade-ranked-competition.md` for the calendar contract, closure lag,
 verification boundaries and exact production operations still requiring approval.
 
+### Ranked choice-game persistence (separate default-off follow-up)
+
+`domain/arcade/ranked-game-contract.ts` defines private five-step manifests,
+membership/sequence validation, per-game results and explicit policy. It does not
+define player strength, load quotes or authorize production sources. The injected
+`data/ranked-choice/adapter.ts` seam belongs to the game/source owners: a bounded
+read of already-produced real snapshots and a pure deterministic grader, with
+explicit scoring compatibility and attempt/duration/source-age rules. The actual
+registry is empty; neither game is activated by this implementation or a flag.
+
+`PostgresChoiceStore` persists personal-account-owned runs, frozen/hash-checked
+manifests, append-only choices and atomic completed results. Missing grading
+coverage becomes an explicit unscored completion excluded from all rankings.
+Period -> account/session -> run locks match the canonical finalizer; clocks and
+session eligibility are rechecked after waits. Identical retries recover the
+stored state, including after closure; changed history cannot replace a choice.
+Owner recovery needs no current grader or public admission. DTOs hide future
+draws/answers and expose only already-locked quote answers and the current step.
+
+Thin `/api/arcade/ranked/runs` (POST/GET) and `/choices` (POST) routes delegate to
+the data layer. Exact `GOAT_RANKED_CHOICE_GAMES_ENABLED=1`, existing personal auth,
+registered reviewed adapters and compatible published periods are separate gates.
+Default-off requests perform no provider/DB/source work. Practice surfaces do not
+call these routes; Muse retains quote/production adapters, model and game UI.
+
+The calendar accepts explicit choice-game format versions, and the canonical
+reconciler injects per-game seal handlers into its existing atomic transaction.
+Unsupported predecessors stop new publication; they are never skipped or
+relabelled. Weekly reads dispatch by canonical game, all-time reads stay scoped
+to one game/format, and archives use frozen results/version/eligibility even if
+the current adapter changes or is removed. Board DTOs/rendering keep makes,
+modeled W–L and price points separate. `migrations/ranked-choice.sql` adds only
+three new tables and guards, depending on the reviewed ranked foundation; no
+legacy data changes, production application, scheduler or rewards are included.
+See `docs/arcade-choice-persistence.md` for API and unfinished later-week seams.
+
 ## Rewards (the FAAB ledger)
 
 The site is the source of truth for *who earned what*: each game's weekly
