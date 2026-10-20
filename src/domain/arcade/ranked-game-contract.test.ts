@@ -30,6 +30,20 @@ it("rejects injected identities, prices and scores and exposes only the current 
   expect(publicChoiceStep(draft, 0)).toEqual({ gameId: "week-2-preview", index: 0, teamId: "1", playerIds: ["100", "999"] });
   expect(publicChoiceStep(draft, 5)).toBeNull();
 });
+it.each(["over", "under"] as const)("stores a literal %s call and retries it idempotently", call => {
+  const first = validateChoiceInput(price, [], 0, { call });
+  expect(first).toEqual({ status: "accepted", choice: { index: 0, input: { call } } });
+  if (first.status !== "accepted") throw Error("literal call rejected");
+  expect(validateChoiceInput(price, [first.choice], 0, { call })).toEqual({ status: "duplicate", choice: first.choice });
+  expect(validateChoiceInput(price, [first.choice], 0, { call: call === "over" ? "under" : "over" }).status).toBe("conflict");
+});
+it("rejects coercible and malformed price calls without accepting them as stored history", () => {
+  for (const call of [["over"], [["under"]], [], null, true, 1, { toString: () => "over" }, "OVER", "over "]) {
+    expect(validateChoiceInput(price, [], 0, { call }).status).toBe("invalid");
+    const invalidHistory = [{ index: 0, input: { call } }] as unknown as LockedChoice[];
+    expect(validateChoiceInput(price, invalidHistory, 1, { call: "under" }).status).toBe("invalid");
+  }
+});
 it("never invents a draft score without complete choices and a matching agreed server assessment", () => {
   const picks = draft.pools.map((p, index) => ({ index, input: { teamId: p.teamId, playerId: p.playerIds[0] } }));
   expect(validateDraftAssessment(draft, picks, { status: "unavailable", reason: "missing_coverage" })).toBeNull();

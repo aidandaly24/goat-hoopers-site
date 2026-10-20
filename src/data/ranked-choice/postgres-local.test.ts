@@ -1,4 +1,8 @@
-import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+const factories = vi.hoisted(() => ({ ranked: vi.fn(), choice: vi.fn() }));
+vi.mock("../ranked-free-throw/runtime", () => ({ createRankedRuntime: factories.ranked }));
+vi.mock("./runtime", () => ({ createChoiceRuntime: factories.choice }));
+vi.mock("next/headers", () => ({ headers: async () => new Headers() }));
 import { randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { Pool } from "pg";
@@ -14,6 +18,7 @@ import { choiceRulesVersion, manifestHash, type ChoiceAdapter } from "./adapter"
 import { PostgresChoiceStore } from "./store";
 import { choiceRequest } from "./http";
 import type { ChoiceRuntime } from "./runtime";
+import { GET as competitionRead } from "@/app/api/arcade/competition/route";
 
 describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("choice-game HTTP -> real disposable SQL -> sealed boards", () => {
   const schema = `arcade_choice_${randomUUID().replaceAll("-", "")}`;
@@ -67,6 +72,8 @@ describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("choice-game HTTP
       opensAtMs: now - 7200000, predecessorId: null, calendarSource: "https://example.test/calendar", calendarVersion: "test-only", fixtures: [{ id: "123456789", date: "20261020", startsAtMs: now - 3600000 }] };
     next = { ...p, id: "synthetic-draft-week", gameId: "week-2-preview", formatVersion: "c".repeat(64), order: 2, predecessorId: p.id, fixtures: [{ id: "987654321", date: "20261021", startsAtMs: now - 100000 }], opensAtMs: now - 200000 };
     await canonical.reconcile([p, next], ft, new Map([[p.id, receipt(p)], [next.id, receipt(next)]]));
+    factories.ranked.mockImplementation(() => ({ configuration: { status: "ready", ...ft }, store: () => canonical, account: async () => a }));
+    factories.choice.mockImplementation(() => runtime());
   });
   afterAll(async () => { try { if (owns) await pool.query(`DROP SCHEMA ${schema} CASCADE`); } finally { await pool.end(); } });
   it("mounts owned HTTP commands, hides future answers, atomically completes and recovers without regrading", async () => {
@@ -95,6 +102,42 @@ describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("choice-game HTTP
     const stored = (await command("read", {}, runs[0])).value.run;
     expect(stored.choices).toHaveLength(1);
     expect((await command("choose", { index: 0, input: stored.choices[0].input }, runs[0])).code).toBe(200);
+  });
+  it("rejects malformed literal calls through HTTP without SQL writes and preserves valid retry semantics", async () => {
+    const run = await start();
+    for (const call of [["over"], [["under"]], [], null, true, 1, { value: "over" }, "OVER", "over "]) {
+      for (let retry = 0; retry < 2; retry++) expect((await command("choose", { index: 0, input: { call } }, run)).code).toBe(400);
+    }
+    expect((await command("read", {}, run)).value.run.choices).toEqual([]);
+    expect((await pool.query("SELECT choices FROM arcade_choice_runs WHERE id=$1", [run.id])).rows[0].choices).toEqual([]);
+    for (const [index, call] of [[0, "over"], [1, "under"]] as const) {
+      expect((await command("choose", { index, input: { call } }, run)).code).toBe(201);
+      const retry = await command("choose", { index, input: { call } }, run);
+      expect(retry.code).toBe(200); expect(retry.value.status).toBe("duplicate");
+      expect(retry.value.run.choices[index]).toEqual({ index, input: { call } });
+    }
+    expect((await command("choose", { index: 0, input: { call: "under" } }, run)).code).toBe(409);
+  });
+  it.each(["priced-in", "week-2-preview"] as const)("keeps active %s weekly HTTP results on the frozen format after adapter replacement", async gameId => {
+    if (gameId === "week-2-preview") {
+      await canonical.reconcile([p, next], ft, new Map([[p.id, receipt(p, "final")], [next.id, receipt(next)]]));
+      adapter = testAdapter(gameId, next.formatVersion!);
+    }
+    const frozen = adapter.formatVersion, done = await complete(await start());
+    const read = async (kind = "weekly") => {
+      const response = await competitionRead(new Request(`https://test.invalid/api/arcade/competition?kind=${kind}&gameId=${gameId}`));
+      expect(response.status).toBe(200); return response.json();
+    };
+    const before = await read();
+    expect(before).toMatchObject({ status: "ready", board: { gameId, phase: "open", scoreVersion: frozen, entries: [expect.objectContaining({ username: "alpha", score: gameId === "priced-in" ? 750 : 50 })] } });
+    adapter = testAdapter(gameId, "d".repeat(64));
+    const after = await read();
+    expect(after).toMatchObject({ status: "ready", board: { gameId, phase: "open", scoreVersion: frozen, entries: before.board.entries } });
+    const active = (await canonical.currentPeriod())!;
+    expect(await store.board("weekly", active, gameId, adapter.formatVersion, a.subject, "everyone")).toMatchObject({ scoreVersion: frozen, entries: before.board.entries });
+    expect(await read("all-time")).toMatchObject({ status: "ready", board: { scoreVersion: adapter.formatVersion, entries: [] } });
+    expect((await command("start")).value.status).toBe("held");
+    expect((await command("read", {}, done)).value.run.completion).toEqual(done.completion);
   });
   it("rejects injected totals/source/identity and out-of-order inputs", async () => {
     const run = await start();

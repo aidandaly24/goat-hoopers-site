@@ -91,8 +91,8 @@ export function parseChoiceChallenge(v: unknown): ChoiceChallenge | null {
 }
 function normalized(challenge: ChoiceChallenge, index: number, value: unknown): ChoiceInput | null {
   if (!record(value)) return null;
-  if (challenge.gameId === "priced-in") return keys(value, ["call"]) && ["over", "under"].includes(String(value.call))
-    ? { call: value.call as "over" | "under" } : null;
+  if (challenge.gameId === "priced-in") return keys(value, ["call"]) && (value.call === "over" || value.call === "under")
+    ? { call: value.call } : null;
   const pool = challenge.pools[index];
   return keys(value, ["teamId", "playerId"]) && pool && value.teamId === pool.teamId && id(value.playerId) && pool.playerIds.includes(value.playerId)
     ? { teamId: pool.teamId, playerId: value.playerId } : null;

@@ -28,7 +28,9 @@ export async function loadCompetitionView(kind: "weekly" | "all-time" | "archive
       const choices = createChoiceRuntime(), adapter = choices.adapters.find(a => a.gameId === target);
       const sealed = !!period && period.finalizedAtMs !== null && kind !== "all-time";
       if (!choices.enabled || !sealed && !adapter || kind === "archive" && !sealed) return { status: "held" };
-      const format = sealed ? period!.scoreVersion! : adapter!.formatVersion;
+      // Active weeks, like finals, retain the published scoring format even
+      // when a later adapter is installed. Only all-time selects that adapter.
+      const format = kind !== "all-time" && period ? period.scoreVersion! : adapter!.formatVersion;
       return { status: "ready", board: await choices.store().board(kind, period, target, format, viewer, scope) };
     }
     const board = await store.board(kind, periodId, config, viewer, scope);

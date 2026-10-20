@@ -62,6 +62,8 @@ transaction. Failure rolls all three back. Unscored completion is terminal and
 absent from rankings; a later model version cannot silently rewrite it. Expired
 and unfinished sealed-period runs release admission. Attempts count admissions,
 including expired/unscored ones, across rule changes within the same period.
+Price calls must be literal strings `over` or `under`; arrays/objects are never
+coerced into a call or retained as accepted input.
 
 ## Periods, boards and automation boundaries
 
@@ -79,6 +81,10 @@ frozen eligibility/version, even after current policy/adapter changes. Public
 metrics are distinct: Free Throw makes, modeled entertainment W–L, price points.
 Global board reads expose only usernames, scores/metrics and eligibility-derived
 team IDs. No account subjects, private manifests, inputs or future prices leak.
+An active weekly board also uses its published frozen score version. Installing
+a later adapter cannot hide that week's valid results behind a different format;
+all-time selects the current compatible format separately. Incompatible adapters
+still cannot admit new runs or grade new choices for the frozen period.
 
 The new additive proposal `migrations/ranked-choice.sql` creates
 `arcade_choice_runs`, `arcade_choice_results`, `arcade_choice_weekly_results` and

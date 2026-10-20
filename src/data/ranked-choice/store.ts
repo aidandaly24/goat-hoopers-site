@@ -144,7 +144,8 @@ export class PostgresChoiceStore {
   }
   async board(kind: CompetitionBoard["kind"], p: PeriodRecord | null, gameId: ChoiceGameId, format: string, viewer: string | null, scope: RankedScope, limit = 50): Promise<CompetitionBoard> {
     if (!["everyone", "league"].includes(scope) || !Number.isSafeInteger(limit) || limit < 1 || limit > 100 || !/^[a-f0-9]{64}$/.test(format) || !choiceGameId(gameId)) throw new Error("invalid_board_query");
-    const sealed = p?.finalizedAtMs != null, version = sealed && kind !== "all-time" ? p.scoreVersion! : format;
+    const sealed = p?.finalizedAtMs != null, version = p && kind !== "all-time" ? p.scoreVersion : format;
+    if (!version || !/^[a-f0-9]{64}$/.test(version)) throw new Error("invalid_board_query");
     const final = kind === "archive" || kind === "weekly" && sealed;
     const selected = final ? sql`SELECT f.result_id AS id,f.account_id,f.score,f.assessment,f.achieved_at_ms,COALESCE(u.name,f.username_at_final) AS username,f.team_id
       FROM arcade_choice_weekly_results f LEFT JOIN auth_user u ON u.id=f.account_id WHERE f.period_id=${p?.id ?? null}

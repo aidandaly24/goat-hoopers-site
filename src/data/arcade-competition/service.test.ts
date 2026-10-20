@@ -34,6 +34,11 @@ it("dispatches the canonical weekly game and immutable archive without mixing Fr
   const weekly = await (await GET(new Request("https://goat.test/api/arcade/competition"))).json();
   expect(weekly.board.gameId).toBe("week-2-preview");
   expect(read).toHaveBeenLastCalledWith("weekly", draft, "week-2-preview", draft.scoreVersion, null, "everyone");
+  mocks.choices.mockReturnValue({ enabled: true, adapters: [{ gameId: draft.gameId, formatVersion: "d".repeat(64) }], store: () => ({ board: read }) });
+  await GET(new Request("https://goat.test/api/arcade/competition"));
+  expect(read).toHaveBeenLastCalledWith("weekly", draft, "week-2-preview", draft.scoreVersion, null, "everyone");
+  await GET(new Request("https://goat.test/api/arcade/competition?kind=all-time&gameId=week-2-preview"));
+  expect(read).toHaveBeenLastCalledWith("all-time", null, "week-2-preview", "d".repeat(64), null, "everyone");
   mocks.choices.mockReturnValue({ enabled: true, adapters: [], store: () => ({ board: read }) });
   expect((await (await GET(new Request("https://goat.test/api/arcade/competition"))).json()).status).toBe("held");
   await GET(new Request(`https://goat.test/api/arcade/competition?kind=archive&periodId=${period.id}`));
