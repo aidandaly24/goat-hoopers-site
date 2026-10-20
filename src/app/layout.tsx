@@ -1,19 +1,13 @@
 import { ThemeBootstrap } from "@/ui/ThemeBootstrap";
 import type { Metadata } from "next";
 import { Anton, Geist_Mono, Inter } from "next/font/google";
-import type { PlayerStock } from "@/domain";
 import "@/ui/tokens.css";
 import "./globals.css";
 import { getCurrentUser, logout } from "@/app/actions";
-import { getSeasonMeta, getStockMarketData, getLeagueNews, getTeams } from "@/data/league";
+import { getSeasonMeta, getTeams } from "@/data/league";
 import { SiteHeader } from "@/ui/SiteHeader";
 import { SiteFooter } from "@/ui/SiteFooter";
 import { SITE_DESTINATIONS } from "@/ui/siteDestinations";
-import {
-  CombinedTicker,
-  type TickerHeadline,
-  type TickerStock,
-} from "@/surfaces/stock-market/CombinedTicker";
 
 /* Display: condensed arena-signage energy for headlines and scores. */
 const display = Anton({
@@ -75,44 +69,12 @@ export const metadata: Metadata = {
  */
 export const dynamic = "force-dynamic";
 
-/**
- * Site-wide ticker, ESPN style: alternates league news headlines with
- * stock quotes. Fails silent: a market/news outage renders nothing rather
- * than breaking the page.
- */
-async function Ticker() {
-  let stocks: TickerStock[] = [];
-  let headlines: TickerHeadline[] = [];
-  try {
-    const [market, news] = await Promise.all([
-      getStockMarketData(),
-      getLeagueNews(),
-    ]);
-    // Slim DTO: the ticker renders 25 names/prices — never ship the full
-    // 1.2 KB PlayerStock (factors/history) to every page. See issue #16.
-    stocks = market.stocks.slice(0, 25).map((s) => ({
-      playerId: s.playerId,
-      playerName: s.playerName,
-      price: s.price,
-      trend: s.trend,
-      changePct: s.changePct,
-    }));
-    headlines = news.slice(0, 12).map((a) => ({
-      text: a.headline,
-      publication: a.outlet.name,
-    }));
-  } catch {
-    stocks = [];
-    headlines = [];
-  }
-  if (stocks.length === 0 && headlines.length === 0) return null;
-  return <CombinedTicker stocks={stocks} headlines={headlines} />;
-}
-
 export default async function RootLayout({
   children,
+  ticker,
 }: {
   children: React.ReactNode;
+  ticker: React.ReactNode;
 }) {
   // Session lookup for the site-wide header. Null when logged out or when
   // the database isn't provisioned yet — the header renders the
@@ -151,7 +113,7 @@ export default async function RootLayout({
     >
       <head><ThemeBootstrap /></head>
       <body>
-        <SiteHeader user={headerUser} logoutAction={logout} destinations={SITE_DESTINATIONS} ticker={<Ticker />} />
+        <SiteHeader user={headerUser} logoutAction={logout} destinations={SITE_DESTINATIONS} ticker={ticker} />
         <main id="main-content" tabIndex={-1}>{children}</main>
         <SiteFooter season={season} destinations={SITE_DESTINATIONS.filter(d => d.footer)} />
       </body>
