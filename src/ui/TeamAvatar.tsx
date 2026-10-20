@@ -5,9 +5,12 @@ import styles from "./TeamAvatar.module.css";
  * Team avatar: Sleeper avatar image when available, otherwise initials.
  * Keeps every surface's team rows visually consistent.
  *
- * `isChampion` perches the (spinnable) champion's crown on the avatar —
- * surfaces opt in by passing the id from getDefendingChampion().
- * No crown renders until the league has actually crowned someone.
+ * `isChampion` perches the champion's crown on the avatar as a
+ * NON-interactive badge — avatars routinely sit inside links and matchup
+ * buttons, where a nested button would be invalid. Surfaces derive the
+ * champion from previous-season data (the directory's finish === 1), the
+ * same source that prints the "2025 champion" label nearby. The spinnable
+ * button variant of the crown is for standalone placements only.
  */
 export function TeamAvatar({
   name,
@@ -44,7 +47,7 @@ export function TeamAvatar({
   return (
     <span className={styles.champWrap}>
       {face}
-      <ChampionCrown />
+      <ChampionCrown interactive={false} />
     </span>
   );
 }

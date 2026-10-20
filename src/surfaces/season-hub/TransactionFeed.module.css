@@ -21,6 +21,11 @@
 }
 
 .summary {
+  /* A flex item: it must be allowed to shrink below its content's
+   * min-content width, or a long team name in the sentence pushes the
+   * row — and the own-team tag pinned after it — out of the card. */
+  flex: 1 1 auto;
+  min-width: 0;
   color: var(--gh-text-dim);
   font-size: 0.92rem;
   line-height: 1.5;
@@ -38,4 +43,18 @@
     min-height: 44px;
     align-items: center;
   }
+}
+
+/* The viewer's own moves ride inside the league wire, marked. */
+.ownItem {
+  background: color-mix(in srgb, var(--gh-accent) 7%, transparent);
+}
+
+.youTag {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--gh-accent);
+  font: 700 var(--gh-text-xs)/1.4 var(--gh-font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }

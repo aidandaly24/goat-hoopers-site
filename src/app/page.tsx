@@ -7,14 +7,14 @@ import {
   getStockMarketData,
   getLeagueNewsEdition,
   getHomePlayerGuideSources,
+  getRosterSnapshotHistory,
 } from "@/data/league";
 import { headers } from "next/headers";
 import { getCurrentUser } from "@/app/actions";
 import { friendsAuthEnabled } from "@/data/friends-auth/config";
 import { getVerifiedAccount } from "@/data/friends-auth/runtime";
 import { hasHomeMembership, loadHomeViewer } from "@/data/home-viewer";
-import { buildPersonalizedHome } from "@/data/personalized-home";
-import { PersonalizedHome } from "@/surfaces/season-hub/PersonalizedHome";
+import { buildHomeFaces, buildPersonalizedHome } from "@/data/personalized-home";
 import { CourtsideHome } from "@/surfaces/season-hub/CourtsideHome";
 import type { Metadata } from "next";
 
@@ -31,22 +31,32 @@ export default async function Home() {
     loadHomeViewer({ member: getCurrentUser, account: async () => friendsAuthEnabled()
       ? getVerifiedAccount(await headers()) : null, hasMembership: hasHomeMembership }),
   ]);
-  // React.cache reuses the root ticker's existing request-local market result.
-  // No additional refresh, deep player fetch or snapshot operation is introduced.
-  const [market, news, guideSources] = viewer.kind === "member" ? await Promise.all([
-    getStockMarketData().catch(() => null), getLeagueNewsEdition().catch(() => null), getHomePlayerGuideSources().catch(() => null),
+  // React.cache reuses the root ticker's existing request-local market result
+  // for every visitor, so the league faces strip costs no additional refresh,
+  // deep player fetch or snapshot operation. The personalized summary — and
+  // the news/guide loads that feed it — stay member-only, as before.
+  const market = await getStockMarketData().catch(() => null);
+  // The recorded snapshot history is member-only too: one batched read of
+  // the viewer's own roster's retained snapshots, feeding the roster-value
+  // trend. Signed-out and unlinked visitors never trigger it.
+  const viewerRosterIds = viewer.kind === "member"
+    ? data.directory.find(entry => entry.identity.id === viewer.teamId)?.players.map(player => player.id) ?? [] : [];
+  const [news, guideSources, snapshotHistory] = viewer.kind === "member" ? await Promise.all([
+    getLeagueNewsEdition().catch(() => null), getHomePlayerGuideSources().catch(() => null),
+    getRosterSnapshotHistory(viewerRosterIds).catch(() => null),
   ]) : [null, null, null];
-  const personal = buildPersonalizedHome(viewer, data, aiData.weekly, market, news, guideSources);
+  const personal = buildPersonalizedHome(viewer, data, aiData.weekly, market, news, guideSources, snapshotHistory);
+  const faces = buildHomeFaces(data, market);
+  // One surface: the edition itself is personalized in place.
   return (
-    <>
-      <PersonalizedHome data={personal} />
-      <CourtsideHome
-        data={data}
-        archive={getWeeklyArchive()}
-        portraits={getCourtsidePortraits()}
-        aiWeekly={aiData.weekly}
-        viewerTeamId={viewer.kind === "member" ? viewer.teamId : undefined}
-      />
-    </>
+    <CourtsideHome
+      data={data}
+      archive={getWeeklyArchive()}
+      portraits={getCourtsidePortraits()}
+      aiWeekly={aiData.weekly}
+      viewerTeamId={viewer.kind === "member" ? viewer.teamId : undefined}
+      personal={personal}
+      faces={faces}
+    />
   );
 }

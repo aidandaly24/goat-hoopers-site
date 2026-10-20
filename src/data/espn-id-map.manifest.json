@@ -1,0 +1,35 @@
+{
+  "generated": "2026-10-08T18:45:00Z",
+  "generated_by": "Aidan's Muse (proactive build; committed by the dot on #47/#48)",
+  "sources": [
+    "https://api.sleeper.app/v1/players/nba (619 active, team+position set)",
+    "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{id}/roster (30 teams, 609 athletes)"
+  ],
+  "join": "normalized fullName match (NFKD accent-strip, lowercase, suffix-drop, punctuation-strip); zero ambiguous matches",
+  "stats": {
+    "sleeper_players": 619,
+    "espn_athletes": 609,
+    "matched": 607,
+    "ambiguous": 0,
+    "unmatched": 12
+  },
+  "seed_check": {
+    "ok": 7,
+    "bad": []
+  },
+  "headshot_spotcheck": "13/13 sampled a.espncdn.com PNGs returned 200 (incl. rookies Dybantsa, Stirtz, Quaintance)",
+  "unmatched_absent_from_espn_rosters": [
+    "Ezra Ausar",
+    "Michael Ajayi",
+    "Dennis Smith",
+    "Rienk Mast",
+    "Richie Saunders",
+    "Mike Sharavjamts",
+    "Skal Labissi\u00e8re",
+    "Isaac McKneely",
+    "KJ Simpson",
+    "Ben Humrichous",
+    "John Ukomadu",
+    "Keba Keita"
+  ]
+}

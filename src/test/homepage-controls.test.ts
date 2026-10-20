@@ -33,7 +33,7 @@ describe("homepage initial HTML contracts", () => {
     try {
       const entries: LiveClubhouseDirectoryEntry[] = [{ identity: team, currentRecord: null,
         previousSeason: { season: "2025", wins: 1, losses: 20, finish: 10, ownerNote: "Previous synthetic manager." },
-        players: [{ id: "hidden-player", fullName: "Nonfeatured Player", position: "C", nbaTeam: null }],
+        players: [{ id: "hidden-player", fullName: "Nonfeatured Player", position: "C", nbaTeam: null, espnId: null }],
         featuredPlayerIds: [], opener: null, recentMove: null, currentMatchup: null, latestMove: null }];
       const html = renderToStaticMarkup(createElement(CourtsideDirectory, { entries, seasonLabel: "Fixture 2026",
         checkedAt: "2026-10-08T00:00:00Z", preseason: true, rosterNamesAvailable: true, portraits: {} }));

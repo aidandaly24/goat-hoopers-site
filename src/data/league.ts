@@ -91,7 +91,7 @@ import {
 /* Separate import: championRosterId is this feature's seam, kept out of
  * the shared transform import block above. */
 import { championRosterId } from "./transform";
-import { getStockStore } from "./stocks";
+import { getStockStore, type PriceHistory } from "./stocks";
 import { getDb, type Db } from "./db";
 import { getStatProfiles, getSeasonHistory } from "./nba-stats";
 import {
@@ -109,9 +109,9 @@ import { aiMatchupPairs, buildAiWeeklyInput, type AiWeekPreparation } from "./ai
 import type { AiDecidesData, AiLeagueRosterInput, AiPublicationContext, AiWeeklyInput } from "@/domain/ai-decider";
 import { buildAiLeagueRosterInput } from "./ai-decider/roster-context";
 /* Headshot seam: the Sleeper -> ESPN id map is injected into the toPlayer /
- * toDraftPicks transforms here (rule 11). Swap SEED_ESPN_ID_MAP for Aidan's
- * full mapping table when it lands — no component changes. */
-import { SEED_ESPN_ID_MAP, resolveEspnId } from "./espn";
+ * toDraftPicks transforms here (rule 11). ESPN_ID_MAP is the full table
+ * (607 players, built 2026-10-08) — no component changes. */
+import { ESPN_ID_MAP, resolveEspnId } from "./espn";
 
 export type SeasonHubData = {
   season: Season;
@@ -136,7 +136,7 @@ export type CourtsideHomeData = {
  * Next's data cache; a changed roster-id set creates a new cache key. */
 const getRosterReferences = unstable_cache(async (ids: string[]): Promise<Player[]> => {
   const directory = await fetchPlayerDirectory();
-  return ids.map((id) => toPlayer(id, directory[id], resolveEspnId(id, SEED_ESPN_ID_MAP)));
+  return ids.map((id) => toPlayer(id, directory[id], resolveEspnId(id, ESPN_ID_MAP)));
 }, ["courtside-roster-references-v1"], { revalidate: 86400 });
 
 type CourtsideHomeDependencies = {
@@ -166,7 +166,7 @@ export async function getCourtsideHomeData(editionId?: string, dependencies = co
   let rosterNamesAvailable = true;
   let references: Player[];
   try { references = await dependencies.references(ids); }
-  catch { rosterNamesAvailable = false; references = ids.map((id) => toPlayer(id, undefined, resolveEspnId(id, SEED_ESPN_ID_MAP))); }
+  catch { rosterNamesAvailable = false; references = ids.map((id) => toPlayer(id, undefined, resolveEspnId(id, ESPN_ID_MAP))); }
   const byId = new Map(references.map((player) => [player.id, player]));
   const playersByTeam = Object.fromEntries(rosters.map((roster) => [String(roster.roster_id), (roster.players ?? []).map((id) => byId.get(id)!).filter(Boolean)]));
   const weeks = validSeasonWeeks(state);
@@ -350,7 +350,7 @@ export async function getTeamDetail(teamId: string): Promise<TeamDetail | null> 
   if (ids.length === 0) return { team, players: [] };
   const directory = await safePlayerDirectory();
   const players = ids.map((pid) =>
-    toPlayer(pid, directory?.[pid], resolveEspnId(pid, SEED_ESPN_ID_MAP)),
+    toPlayer(pid, directory?.[pid], resolveEspnId(pid, ESPN_ID_MAP)),
   );
   return { team, players };
 }
@@ -554,7 +554,7 @@ export async function getDraftBoard(): Promise<DraftBoardData> {
     if (!draft) return { picks: [], teams };
     const picks = toDraftPicks(
       await fetchDraftPicks(draft.draft_id),
-      SEED_ESPN_ID_MAP,
+      ESPN_ID_MAP,
     );
     return { picks, teams };
   } catch {
@@ -606,7 +606,7 @@ async function fetchDraftPicksSafe(): Promise<DraftPick[]> {
       drafts.find((d) => d.season === "2026" && d.status === "complete") ??
       drafts[0];
     if (!draft) return [];
-    return toDraftPicks(await fetchDraftPicks(draft.draft_id), SEED_ESPN_ID_MAP);
+    return toDraftPicks(await fetchDraftPicks(draft.draft_id), ESPN_ID_MAP);
   } catch {
     return [];
   }
@@ -711,6 +711,21 @@ export async function getRecordBook(): Promise<RecordBook | null> {
 }
 
 /**
+ * Recorded stock snapshots for the given players — the raw material of a
+ * roster's recorded value trend. Member-only call sites pass the viewer's
+ * own roster; the read is one batched store query and never throws (an
+ * unavailable store resolves empty, which the trend builder reads as "no
+ * recorded history", never as a reconstructed series).
+ */
+export async function getRosterSnapshotHistory(playerIds: readonly string[]): Promise<PriceHistory> {
+  try {
+    return await getStockStore().getSnapshotHistory([...playerIds]);
+  } catch {
+    return {};
+  }
+}
+
+/**
  * Projections + picks for the current week's matchups. Null in the
  * preseason or on failure. Never throws.
  */
@@ -749,7 +764,7 @@ export async function getPlayerDetail(
     const player = toPlayer(
       playerId,
       directory?.[playerId],
-      resolveEspnId(playerId, SEED_ESPN_ID_MAP),
+      resolveEspnId(playerId, ESPN_ID_MAP),
     );
 
     let team: Team | null = null;
@@ -796,7 +811,7 @@ export async function getTeamProfile(
     const team = toTeam(raw, byId.get(raw.owner_id));
 
     const players = (raw.players ?? []).map((pid) =>
-      toPlayer(pid, directory?.[pid], resolveEspnId(pid, SEED_ESPN_ID_MAP)),
+      toPlayer(pid, directory?.[pid], resolveEspnId(pid, ESPN_ID_MAP)),
     );
 
     const matchupsByWeek = input?.matchupsByWeek ?? [];
@@ -1086,7 +1101,7 @@ export const getStockMarketData = cache(
     const withHeadshots = (quotes: StockQuote[]): StockQuote[] =>
       quotes.map((q) => ({
         ...q,
-        espnId: resolveEspnId(q.playerId, SEED_ESPN_ID_MAP),
+        espnId: resolveEspnId(q.playerId, ESPN_ID_MAP),
       }));
     market.stocks = withHeadshots(market.stocks);
     market.trending = withHeadshots(market.trending);

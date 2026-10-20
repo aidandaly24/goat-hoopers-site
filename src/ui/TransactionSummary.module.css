@@ -2,6 +2,12 @@
   color: var(--gh-gold-soft);
   font-weight: 600;
   text-decoration: none;
+  /* A team name can be a single unbroken token to the layout engine.
+   * Inside a constrained row (the homepage activity feed at 320px) such
+   * a name must wrap mid-token rather than push the row — and the page —
+   * sideways. `anywhere` only ever breaks a word that cannot otherwise
+   * fit, so rows with room lay out exactly as before. */
+  overflow-wrap: anywhere;
   transition: color var(--gh-dur-base) var(--gh-ease-out), text-decoration-color var(--gh-dur-base) var(--gh-ease-out);
 }
 

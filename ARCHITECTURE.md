@@ -43,7 +43,7 @@ gates; chart rendering and the bounded sampling fix remain separately owned.
 
 Editorial entries carry explicit draft/publication and date bounds. The latest started entry stays visible with a stale notice after its period ends, never invented weekly results. Source dates, selection reasons, NBA/college period qualifiers and verified historical finals are retained. NeuralNets’ 2025 record visibly names the previous manager in the collapsed summary and explains QBs Gremlins in the full roster.
 
-The server owns the edition, player stories, wire and archive. The private `CourtsideFeature` client island composes the existing court left / selectable current matchups right, using existing domain projections and no new fetches. The court is a still image with no inspection/pause controls or observer work. The brief team context rail follows deliberate selection and respects reduced motion. The featured heading uses the source-controlled editorial selection reason; a selected sidebar pairing is labelled separately. The redundant player-specific skip link is removed; the shared shell retains its focus-only Skip to content. Homepage roster inspection retains search/sort and native matchup dialogs. The dependency cleanup removes the rejected hooper family and its inspection dialogs/loaders; team avatars, names, roster disclosures and direct profile links provide identity without model requests. The page hands the cached `getAiDecidesData().weekly` domain slate to this same client island: AI Decides and current pairings share the existing right-hand sidebar, with team avatars, compact percentage rows, selection, a linked AI Decides heading and a playground link. The editorial reason, real team context and notes sit below the natural-ratio court in the left column. Detailed saved-pick provenance remains in the native notes dialog and full AI page, separate from the compact list. Full probability bars require a saved ready result matching the live season, week and roster IDs; expired matching picks are labelled past-week, and missing/mismatched picks remain unavailable. There is no duplicate lower preview, sibling-surface import or generation on render. Explicit Stocks and Arcade entries remain visible. Shared shell/theme/navigation is retained and no arcade internals are imported or changed.
+The server owns the edition, player stories, wire and archive. `CourtsideFeature` composes the approved hero — the edition headline and the court on the left, a team desk (members) or league desk (signed out) beside it — from existing domain projections with no new fetches and no client state; the only client island in the hero is the countdown. The court is a still image with no inspection/pause controls or observer work. The redundant player-specific skip link is removed; the shared shell retains its focus-only Skip to content. Homepage roster inspection retains search/sort in the directory below. The dependency cleanup removes the rejected hooper family and its inspection dialogs/loaders; team avatars, names, roster disclosures and direct profile links provide identity without model requests. The page hands the cached `getAiDecidesData().weekly` domain slate to the down-page AI Decides section: all five pairings render as rows with team avatars, saved split bars and a per-pairing provenance disclosure (model choice, probabilities under current team names, saved timestamp, preview-period closure, model/prompt/input snapshot, evidence, confidence kept separate). Full probability bars require a saved ready result matching the live season, week and roster IDs; expired matching picks are labelled past-week, and missing/mismatched picks remain unavailable. There is no generation on render. Explicit Stocks and Arcade entries remain visible. Shared shell/theme/navigation is retained and no arcade internals are imported or changed.
 
 `public/courtside/` preserves the exact supplied SVG variants, approved two pennants, existing arena and thirty bounded local portraits. Plain images serve pre-sized assets directly without image-optimizer quota. Fonts reuse root `next/font` assets. The homepage does not import a hooper viewer or request rejected models. Budgets, provenance and measured verification live in `courtside-preview/review/INTEGRATION.md`.
 
@@ -70,17 +70,136 @@ API route. The bounded DTO includes top-three modeled FAAB values with known
 historical changes, roster-matched news and existing recent moves, not deep
 player details or a new performance metric.
 
-`surfaces/season-hub/PersonalizedHome` renders the team edition before league
-content with My team/full-roster links. Existing standings and matchup rows can
-receive the server-resolved roster ID for a visible Your team marker. Signed-out
-home content is retained; no current matchup is inferred during offseason, no
-zero is substituted for unknown scores/quotes, and saved AI requires matching
-league/season/week/pair or the shared explicit Week 1 preview exception. Stale
-results are labelled out of date, and model choice, probabilities, confidence
-and input/publication provenance stay distinct. All ten teams use this same
-code. Offline tests/QA live under the new focused tests and `qa/personalized-home`.
+The personalized projection is woven into the edition itself — there is no
+separate slab component (the former `PersonalizedHome` surface and its CSS
+module are deleted). `src/app/page.tsx` renders only `CourtsideHome`, passing
+the personalized DTO and a faces projection (`buildHomeFaces` in
+`data/personalized-home.ts`: each clubhouse team's top player by current
+modeled value, or null). To build the faces, the page reads the same
+React-cached `getStockMarketData` result the root ticker already executed
+for this request — no additional market execution or deep fetch is
+introduced for any visitor. One member-only read is added: the viewer's own
+roster's recorded snapshot history (`getRosterSnapshotHistory` in
+`data/league.ts`, delegating to the stock store's batched
+`getSnapshotHistory` — a single query over the retained `stock_snapshots`
+rows), which feeds the roster-value trend described below; signed-out and
+unlinked visitors never trigger it. The news/guide loads and the
+personalized summary itself remain member-only.
+
+Inside the edition: `CourtsideFeature` takes an optional `hero` (the member's
+summary + faces). The hero is the edition headline over a two-column layout:
+the court on the left — the `TipCountdown` overlay riding the court figure,
+with the matchup caption beneath it — and a desk on the right. A member's
+desk carries their team identity (avatar, name, manager), the previous
+season's record/finish in preseason or the current record/standing in
+season, the roster count, their Week pairing with the opponent's season
+line, their own saved AI win probability with its provenance line, and the
+My team / View roster action bar. A signed-out visitor gets the analogous
+league desk: the featured game of the week, both teams' season lines, and
+the saved AI preview for that pairing with provenance. Below the court, a
+member's roster-value section (`RosterValueSection`) shows their top three
+faces LARGE over the team's outlined name and the team value at display
+size — the page's only value headline (a partial total stays a labelled
+subtotal in one small line beneath it, with the modeled-pricing basis
+disclosed beside it, and the full-roster disclosure under it holds every
+player's price and the coverage disclosure — unpriced players read
+"Unpriced", never $0). Beneath the total, the value chart plots the
+roster's value over time from recorded data only: `rosterValueTrend`
+(`domain/roster-value.ts`) reprices TODAY'S roster from recorded points —
+the retained `stock_snapshots` points plus the current modeled quote —
+carrying each player's last recorded price forward and never backfilling
+before a player's first recorded point; the domain returns null below two
+genuinely recorded points (one snapshot plus the appended current quote is
+not a series) and the section then shows the recorded-history unavailable
+state. The chart labels itself as that repricing, marks the appended
+current point as a modeled quote rather than a recorded snapshot, prints
+per-point priced coverage via the recorded endpoints, and shows a change
+figure only between the first and last recorded points with identical
+coverage — never as historical performance. Signed-out visitors get the
+analogous faces section (`BarSetSection`): the featured pairing's roster
+anchors large, with no side panel. The
+scouting notebook (`ScoutingNotebook`) features one watch on a named basis
+(the guide's top watch row for members, the featured face's anchor for
+signed-out readers) with around-the-league watches beside it (the other
+featured team's anchor, the edition's sourced one-to-watch). The member's
+form guide + team wire (`FormGuideWire`) prints Best & rough week only
+from the guide's verified completed-week rows (players who actually
+played; a note prints only for an actual injury designation — the guide's
+no-designation and unknown defaults never render), the honest recap status
+line and watchlist-basis disclosure before any completed week, and the
+team's real news headlines with its own recent moves. The edition's
+player-of-week and underperformer spotlights render as the STUD/CHUD
+retrospective (`StudChud`) — oversized outline type for those two words
+only, each panel carrying its stats, period, source and selection reason;
+they are editorial picks grounded in cited sources, never computed award
+winners. AI Decides renders all five pairings down-page (`AiDecidesSection`,
+see above). The opening clock is universal and single-presentation: a `TipCountdown`
+overlay rides the court figure for every visitor — members included —
+exactly once per page,
+gated by the clock itself — never by the provider
+phase — and it renders even when the weekly edition is missing. It never
+renders on an archived edition: the archive flag closes the feature's
+clock gate outright. Its time is
+anchored to the server's league check — advanced once at hydration, by
+the sample's receipt lag only (`anchorFromSample`): the monotonic gap
+between the freshest response completion the browser's own timing
+records logged and hydration. That lag is a lower bound on the sample's
+age — advancing by it can lag the true server instant but can never pass
+it — so no client wall-clock offset ever becomes elapsed server time;
+wall time is a skew detector, never a source. When the lag cannot be
+established (no timing record, or the freshest is too old to be the
+carrying response) there is no anchor and the clock shows the unconfirmed
+static target instead of a live count. Thereafter the anchor advances
+only on the monotonic clock; the interval stops at
+the tip and while the tab is hidden. On return, the hidden interval must
+reconcile — wall and monotonic clocks advancing together across it
+(`resumeClock` reports the resume trusted) — or elapsed time is uncertain
+and the display falls back to the unconfirmed static target: device sleep
+while hidden is exactly that case, and no confidently stale count is ever
+shown. The started
+state is terminal through
+Week 1, and the copy keeps the source distinction: the target is the first
+NBA tip (ESPN schedule), while Sleeper publishes only the Oct 20 date. Its
+caption is formatted from the target in America/New_York, naming the zone
+as it stands on that date (EDT in October, EST in December). In
+the missing-edition state the member's roster-value section and team
+actions (`RosterValuationDetails` / `MemberTeamActions`, shared with the
+value section) render alongside the notebook, form guide + wire, AI
+section and faces strip; the
+faces strip (`FacesStrip`) shows
+every team's top player linked to their page, and the viewer's recent moves
+fold into the league section's moves feed (`TransactionFeed`) marked as their team. Standings,
+league leaders and recent moves render as a visible league section under
+the directory — never inside a collapsed details element. The
+only separate personal element left is a one-line notice for unclaimed or
+unavailable accounts. Signed-out rendering keeps the edition's structure and
+content unchanged; no current matchup is inferred during offseason, no zero
+is substituted for unknown scores/quotes, and saved AI requires matching
+league/season/week/pair or the shared explicit Week 1 preview exception.
+Stale results are labelled, and model choice, probabilities, confidence and
+input/publication provenance stay distinct. Homepage faces resolve exactly
+like the rest of the site: approved local portrait map first, then the
+directory `Player.espnId` (the clubhouse directory reference now carries
+`espnId`; personalized players take identity from the roster reference, not
+from a market quote), then labelled initials. All ten teams use this same
+code. Offline tests/QA live under the focused tests and `qa/personalized-home`.
 No auth, AI generation, pricing, migration, infrastructure or competition gate
 is changed by this composition.
+
+The reigning champion is derived from the clubhouse directory's
+previous-season data — the team whose `previousSeason.finish` is 1, the same
+source that prints its "2025 champion" label — never a hardcoded team.
+Homepage surfaces pass it to `TeamAvatar`'s `isChampion` prop (desks, AI
+rows, faces strip, clubhouse directory, standings). The homepage carries NO
+champion showcase section and no other dedicated champion content: the
+champion appears through the avatar crown badge and the directory's
+champion label only — champions live on the history page.
+On avatars the crown is ChampionCrown's
+non-interactive badge presentation — avatars sit inside links and matchup
+rows, where a nested button would be invalid; the spinnable button
+presentation is reserved for standalone placements. `getDefendingChampion()` is deliberately not
+used here: it reads the current league's winners bracket, which has no
+champion until the running season crowns one.
 
 ### Isolated courtside homepage review
 
@@ -143,10 +262,12 @@ src/
   data/          # The ONLY place the outside world is touched.
     sleeper.ts   # Raw API client. Returns raw JSON, nothing else.
     espn.ts      # Sleeper -> ESPN athlete id mapping for headshots
-                 # (resolveEspnId + a checked-in SEED_ESPN_ID_MAP of
-                 # verified ids; injectable seam per rule 11 — swap the
-                 # seed map for the full mapping table with zero
-                 # component edits). Also the headshotUrl formatter.
+                 # (resolveEspnId + the checked-in full ESPN_ID_MAP of
+                 # 607 players, built 2026-10-08 from Sleeper joined to
+                 # ESPN rosters; SEED_ESPN_ID_MAP remains the hand-verified
+                 # spot-check subset. league.ts wires ESPN_ID_MAP at every
+                 # resolution point — zero component edits). Also the
+                 # headshotUrl formatter.
     nba-stats.ts # Player fundamentals: Sleeper's stats feed → cached
                  # PlayerStatProfiles (impure shell; math in transform.ts).
     transform.ts # Raw JSON -> domain objects. The membrane.
@@ -384,11 +505,14 @@ src/
                  # destinations derive from the root list. Ticker/poller, auth and
                  # league/data ownership remain unchanged.
                  # PositionPill colors PG/SG/SF/PF/C via --gh-pos-* tokens.
-                 # PlayerHeadshot renders the ESPN CDN headshot by ESPN athlete
-                 # id (Player.espnId; plain <img>, never next/image — Hobby
-                 # quota) with an initials-in-team-colored-disc fallback
-                 # (client component for the onError switch). Unmapped or
-                 # broken images fall back to initials.
+                 # PlayerHeadshot renders a supplied approved local portrait
+                 # first (portraitSrc), then the ESPN CDN headshot by ESPN
+                 # athlete id (Player.espnId; plain <img>, never next/image —
+                 # Hobby quota), then an initials-in-team-colored-disc
+                 # fallback (client component; failures are tracked per
+                 # source so a failed portrait falls through to ESPN and a
+                 # changed source can recover). Unmapped or broken images
+                 # fall back to initials.
                  # Reading the session cookie in the layout forces dynamic
                  # rendering (see layout.tsx) — deliberate: correct account
                  # state everywhere beats static caching for a ten-manager
