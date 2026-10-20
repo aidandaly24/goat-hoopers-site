@@ -165,6 +165,22 @@ export function SiteHeader({ user, logoutAction, destinations = SITE_DESTINATION
   </>;
 }
 
+/** The load state of an <img>, reduced to what the fallback decision needs. */
+export type ImageLoadState = { complete: boolean; naturalWidth: number };
+
+/**
+ * True when an image has already finished loading — and failed. An
+ * avatar served in the SSR HTML can 404 before hydration attaches the
+ * error handler; that error event fires exactly once and React never
+ * sees it, but the settled state stays readable on the element
+ * (complete with zero natural width). A still-loading image
+ * (complete === false) is NOT failed: it may yet succeed, and a later
+ * failure is caught by onError.
+ */
+export function imageAlreadyFailed(img: ImageLoadState): boolean {
+  return img.complete && img.naturalWidth === 0;
+}
+
 /**
  * The account chip's face: the member's Sleeper avatar inside the
  * team-colored ring when their Sleeper identity has one, the initial
@@ -175,11 +191,24 @@ export function SiteHeader({ user, logoutAction, destinations = SITE_DESTINATION
  */
 function AccountAvatar({ displayName, avatar }: { displayName: string; avatar: string | null }) {
   const [failedAvatar, setFailedAvatar] = useState<string | null>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
   const showImage = avatar !== null && failedAvatar !== avatar;
+
+  // onError alone misses an avatar that failed before hydration (see
+  // imageAlreadyFailed). When the client attaches — on mount and
+  // whenever the avatar id changes — inspect the rendered image and
+  // route an already-failed one through the same failed-id fallback.
+  useEffect(() => {
+    if (!showImage || avatar === null) return;
+    const img = imgRef.current;
+    if (img && imageAlreadyFailed(img)) setFailedAvatar(avatar);
+  }, [avatar, showImage]);
+
   return (
     <span className={styles.ring} aria-hidden="true">
       {showImage ? (
         <img
+          ref={imgRef}
           className={styles.avatarImg}
           src={`https://sleepercdn.com/avatars/thumbs/${avatar}`}
           alt=""
