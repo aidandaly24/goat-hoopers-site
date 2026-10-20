@@ -7,6 +7,15 @@
   margin-bottom: var(--gh-s6);
 }
 
+.wrap > div {
+  /* The text column must be allowed to shrink below its longest word:
+   * at 200% text a one-word title ("Standings") is ~259px wide and
+   * otherwise forces the heading — and with it the page — wider than a
+   * narrow card (a 320px viewport measured a 340px scroll width from
+   * this alone, inside the standings card). */
+  min-width: 0;
+}
+
 .eyebrow {
   font-size: 0.7rem;
   font-weight: 700;
@@ -23,6 +32,10 @@
   letter-spacing: -0.02em;
   color: var(--gh-text);
   margin: 0;
+  /* Only ever engages when a single word is wider than the line —
+   * i.e. the 200%-text narrow-card case above — where breaking the
+   * word beats widening the page. Resting layouts are unaffected. */
+  overflow-wrap: break-word;
 }
 
 .action {

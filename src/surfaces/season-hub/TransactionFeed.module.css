@@ -17,8 +17,16 @@
 
 .item {
   display: flex;
+  /* Wrapping is the pressure valve: at 200% text the badge plus the
+   * unshrinkable own-team tag alone are wider than the item, and on a
+   * single line the tag was pushed past the card's edge (and the page).
+   * Allowed to wrap, the tag drops to its own line inside the item,
+   * still right-aligned by its auto margin. Nothing wraps when the
+   * content fits, so the resting layout is unchanged. */
+  flex-wrap: wrap;
   align-items: flex-start;
-  gap: var(--gh-s3);
+  column-gap: var(--gh-s3);
+  row-gap: var(--gh-s1);
   padding: var(--gh-s3) 0;
   border-bottom: 1px solid var(--gh-border);
 }

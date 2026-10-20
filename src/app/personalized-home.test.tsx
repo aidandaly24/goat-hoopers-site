@@ -9,6 +9,7 @@ vi.mock('@/data/friends-auth/config', () => ({ friendsAuthEnabled: () => true })
 vi.mock('@/data/friends-auth/runtime', () => ({ getVerifiedAccount: mocks.account }));
 vi.mock('@/data/home-viewer', async importOriginal => ({ ...await importOriginal<typeof import('@/data/home-viewer')>(), hasHomeMembership: mocks.linked }));
 vi.mock('@/data/league', () => ({ getCourtsideHomeData: mocks.home, getAiDecidesData: mocks.ai, getStockMarketData: mocks.market, getLeagueNewsEdition: mocks.news, getHomePlayerGuideSources: mocks.guide, getRosterSnapshotHistory: mocks.snapshotHistory, getWeeklyArchive: () => [], getCourtsidePortraits: () => ({}) }));
+vi.mock('@/data/team-value-history', () => ({ getTeamValueHistory: async () => null }));
 import Home, { dynamic } from './page';
 beforeEach(() => {
   vi.resetAllMocks(); const fixture = personalizedFixture();

@@ -239,6 +239,28 @@ export async function fetchTransactionsByWeek(
 }
 
 /**
+ * Strict variant for consumers that must prove feed completeness (the
+ * team-value-history replay producer): any failed or malformed week
+ * rejects the whole read. The tolerant default above converts a failed
+ * week into "no moves that week" — acceptable for stats and feeds, but
+ * a replay producer must never mistake a silent week for evidence that
+ * no moves happened.
+ */
+export async function fetchTransactionsByWeekComplete(
+  weeks: number[]
+): Promise<RawTransaction[][]> {
+  return Promise.all(
+    weeks.map(async (w): Promise<RawTransaction[]> => {
+      const rows = await fetchTransactions(w);
+      if (!Array.isArray(rows)) {
+        throw new Error(`Sleeper transactions week ${w} returned a malformed payload`);
+      }
+      return rows;
+    })
+  );
+}
+
+/**
  * Assemble the plain-data input for computeLeagueStats.
  *
  * Fetching lives here; the math lives in `computeLeagueStats` (pure, takes
