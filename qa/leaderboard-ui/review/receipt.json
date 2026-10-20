@@ -1,0 +1,118 @@
+{
+  "synthetic": true,
+  "baseline": false,
+  "cases": [
+    {
+      "case": "prop-and-scope-races",
+      "oldRowsHidden": true,
+      "lastScopeWins": true
+    },
+    {
+      "case": "journey-1440-100",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "syntheticScorePosts": 1,
+      "acceptedThenRefreshed": true,
+      "recoveredWithoutCelebrating": true,
+      "allTimeAndWeeklyPersisted": true,
+      "reducedMotion": "no-preference"
+    },
+    {
+      "case": "journey-390-100",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      },
+      "syntheticScorePosts": 1,
+      "acceptedThenRefreshed": true,
+      "recoveredWithoutCelebrating": true,
+      "allTimeAndWeeklyPersisted": true,
+      "reducedMotion": "reduce"
+    },
+    {
+      "case": "journey-320-200",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "syntheticScorePosts": 1,
+      "acceptedThenRefreshed": true,
+      "recoveredWithoutCelebrating": true,
+      "allTimeAndWeeklyPersisted": true,
+      "reducedMotion": "reduce"
+    },
+    {
+      "case": "held",
+      "distinctState": true
+    },
+    {
+      "case": "error",
+      "distinctState": true
+    },
+    {
+      "case": "empty",
+      "distinctState": true
+    },
+    {
+      "case": "invalid",
+      "distinctState": true
+    },
+    {
+      "case": "blocked",
+      "distinctState": true
+    },
+    {
+      "case": "unsupported-priced-in",
+      "honestUnranked": true
+    },
+    {
+      "case": "unsupported-week-2-preview",
+      "honestUnranked": true
+    },
+    {
+      "case": "rejected-save",
+      "noCelebration": true
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "unexpectedWrites": [],
+  "failures": [],
+  "consumerBlobs": {
+    "src/surfaces/arcade/CompetitionLeaderboard.tsx": "8f7c4b91534ce2df96405553c39133275e1ceed5",
+    "src/surfaces/arcade/CompetitionLeaderboard.module.css": "6f739462f3355ef1f59e5dd40bf6d5328d87add4",
+    "src/surfaces/arcade/GameCard.tsx": "d0c436972fd1aa41fe82c1fc09549cf8535c6ecf",
+    "src/surfaces/arcade/RankedFreeThrow.tsx": "2f348e529252fd62ce93390ea404210aadc84b3e",
+    "src/surfaces/arcade/RankedFreeThrow.module.css": "137c34e1c6e4d11dd0aef07774a17611b993313e"
+  },
+  "sourceCommit": "46ae125db146b8b7d663cff4c549f485d5e38495",
+  "base": "33e353e31c5b96364a8ce680e47d58143981ac5c",
+  "baselineCases": [
+    {
+      "case": "baseline-prop-race",
+      "oldWeeklyRowsUnderAllTimeHeading": 1
+    },
+    {
+      "case": "baseline-entry",
+      "primaryFreeThrow": "local practice",
+      "unsupportedPricedInBoardAdvertised": true
+    }
+  ],
+  "runtime": "Next 16.3.8 production webpack; real root/Arcade routes/consumers/transport/recorder; synthetic source and availability responders; real domain replay; renderer input bridge substituted",
+  "textScale": "200% root font size, restored after hard reload; not browser page zoom",
+  "localChecks": {
+    "focusedTests": 9,
+    "surfaceContracts": 104,
+    "typecheck": "pass",
+    "scopedLint": "pass, zero warnings",
+    "productionNextFixtureBuild": "pass",
+    "defaultAppBuild": "blocked by unavailable Google Fonts fetch; no source/config remedy applied; PR CI must run the default build"
+  },
+  "limits": [
+    "No live app/provider/database requests, sign-in setup or production score writes.",
+    "The renderer is unchanged and omitted from this UI fixture; no art/physics/device performance claim.",
+    "No authoritative new-record decision exists in the score response; feedback confirms accepted saves only."
+  ]
+}
