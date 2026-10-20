@@ -1,0 +1,193 @@
+{
+  "synthetic": true,
+  "base": "40fccc4eab6846f741ac4eff21b599ed37081f2b",
+  "baseTree": "f29a1f6ca692cba388062d4216e71572a6b541c2",
+  "sourceBlobs": {
+    "src/surfaces/season-hub/TeamValueHistory.tsx": "6bd16226c409ed47df42c00a90c208e8968cd4c5",
+    "src/surfaces/season-hub/TeamValueHistoryChart.tsx": "d35bc9d9ef4f7069bc6aaf136115c5769d290826",
+    "src/surfaces/season-hub/TeamValueHistoryDetail.tsx": "71f5093dd414c750ff4325e6346b38e0f3e21bac",
+    "src/surfaces/season-hub/TeamValueHistory.module.css": "bef205a457887b9050e6f8702de74d5ccd3bfc07",
+    "src/surfaces/season-hub/team-value-history-view.ts": "842747f8cfd678d6b4aaf8044ff7205984232a75"
+  },
+  "runtime": "Next 16.3.8 production webpack build; Chromium /usr/bin/chromium; copied real root/home/ticker/API entrypoints; synthetic data/session/transport/font adapters",
+  "scale": "200% means root font size, not page zoom",
+  "cases": [
+    {
+      "case": "graph-320-100-light",
+      "checks": [
+        "inception/default all-time; missing day pointer/keyboard Home/End/day/week selection; no invented quote",
+        "visible selected-day explanation; compatible dated player changes; entry/exit; unscoped trade participants; source proof; contained at text scale",
+        "all months/calendar days reachable; explicit supported zoom/presets/custom range restore; change button opens evidence; focus retained"
+      ],
+      "viewport": 320,
+      "scrollWidth": 320,
+      "historyWidth": 288,
+      "calendarWidth": 288,
+      "dateWidth": 288,
+      "dateHeight": 44,
+      "plotHeight": 64,
+      "minimumControlHeight": 44,
+      "contained": true,
+      "selectedContained": true,
+      "detailRequests": 6,
+      "focus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "w": 44.65625,
+        "h": 44
+      }
+    },
+    {
+      "case": "graph-320-200-light",
+      "checks": [
+        "inception/default all-time; missing day pointer/keyboard Home/End/day/week selection; no invented quote",
+        "visible selected-day explanation; compatible dated player changes; entry/exit; unscoped trade participants; source proof; contained at text scale",
+        "all months/calendar days reachable; explicit supported zoom/presets/custom range restore; change button opens evidence; focus retained"
+      ],
+      "viewport": 320,
+      "scrollWidth": 320,
+      "historyWidth": 256,
+      "calendarWidth": 256,
+      "dateWidth": 256,
+      "dateHeight": 56,
+      "plotHeight": 128,
+      "minimumControlHeight": 44,
+      "contained": true,
+      "selectedContained": true,
+      "detailRequests": 6,
+      "focus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "w": 58,
+        "h": 58
+      }
+    },
+    {
+      "case": "graph-320-200-dark",
+      "checks": [
+        "inception/default all-time; missing day pointer/keyboard Home/End/day/week selection; no invented quote",
+        "visible selected-day explanation; compatible dated player changes; entry/exit; unscoped trade participants; source proof; contained at text scale",
+        "all months/calendar days reachable; explicit supported zoom/presets/custom range restore; change button opens evidence; focus retained"
+      ],
+      "viewport": 320,
+      "scrollWidth": 320,
+      "historyWidth": 256,
+      "calendarWidth": 256,
+      "dateWidth": 256,
+      "dateHeight": 56,
+      "plotHeight": 128,
+      "minimumControlHeight": 44,
+      "contained": true,
+      "selectedContained": true,
+      "detailRequests": 6,
+      "focus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "w": 58,
+        "h": 58
+      }
+    },
+    {
+      "case": "graph-390-100-light",
+      "checks": [
+        "inception/default all-time; missing day pointer/keyboard Home/End/day/week selection; no invented quote",
+        "visible selected-day explanation; compatible dated player changes; entry/exit; unscoped trade participants; source proof; contained at text scale",
+        "all months/calendar days reachable; explicit supported zoom/presets/custom range restore; change button opens evidence; focus retained"
+      ],
+      "viewport": 390,
+      "scrollWidth": 390,
+      "historyWidth": 358,
+      "calendarWidth": 358,
+      "dateWidth": 358,
+      "dateHeight": 44,
+      "plotHeight": 64.4375,
+      "minimumControlHeight": 44,
+      "contained": true,
+      "selectedContained": true,
+      "detailRequests": 6,
+      "focus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "w": 47.71875,
+        "h": 44
+      }
+    },
+    {
+      "case": "graph-1440-100-light",
+      "checks": [
+        "inception/default all-time; missing day pointer/keyboard Home/End/day/week selection; no invented quote",
+        "visible selected-day explanation; compatible dated player changes; entry/exit; unscoped trade participants; source proof; contained at text scale",
+        "all months/calendar days reachable; explicit supported zoom/presets/custom range restore; change button opens evidence; focus retained",
+        "desktop ticker control and utility/Back restoration; unknown 404 rendered, ticker retention recorded separately"
+      ],
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "historyWidth": 1088,
+      "calendarWidth": 512,
+      "dateWidth": 280,
+      "dateHeight": 44,
+      "plotHeight": 128,
+      "minimumControlHeight": 44,
+      "contained": true,
+      "selectedContained": true,
+      "detailRequests": 6,
+      "focus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "w": 47.59375,
+        "h": 44
+      },
+      "unknownRouteTickerCount": 1
+    },
+    {
+      "case": "comparison-unavailable",
+      "checks": [
+        "comparison failure keeps selected evidence; no stale delta; bounded retry where valid"
+      ]
+    },
+    {
+      "case": "comparison-changed",
+      "checks": [
+        "comparison failure keeps selected evidence; no stale delta; bounded retry where valid"
+      ]
+    },
+    {
+      "case": "unavailable",
+      "checks": [
+        "selected-detail 503 offers retry and recovers"
+      ]
+    },
+    {
+      "case": "changed",
+      "checks": [
+        "selected-detail 409 fails closed without another-generation detail"
+      ]
+    },
+    {
+      "case": "slow",
+      "checks": [
+        "rapid selection cancels stale response; last selected date wins"
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "browserWrites": [],
+  "knownLimitation": {
+    "repro": "Home -> account -> browser Back -> unknown nested route. 404 renders; ticker remains.",
+    "base": "40fccc4eab6846f741ac4eff21b599ed37081f2b",
+    "baselineTickerCount": 1,
+    "headTickerCount": 1,
+    "sourceScope": "No src/app, src/ui, src/domain, src/data or existing src/test changes. Routing owner retains this separate limitation."
+  },
+  "dataLimits": [
+    "No full all-time price coverage is claimed. Every calendar day is selectable; missing quotes stay missing.",
+    "V1 trade arrays are unscoped. Team received/sent assets, counterparties, other terms and supported trade net require Muse producer extension.",
+    "2025 move coverage, historical reconstruction and durable recorded archive remain separate data work. No production database/provider operations were performed."
+  ]
+}
