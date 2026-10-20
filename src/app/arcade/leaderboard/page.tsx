@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import controls from "@/ui/controls.module.css";
 import { WeeklyLeaderboard } from "@/surfaces/arcade/WeeklyLeaderboard";
+import { WeeklyChallengeCountdown } from "@/surfaces/arcade/WeeklyChallengeCountdown";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 export default function ArcadeLeaderboardPage() {
   return <div className={styles.page}>
     <Link href="/arcade" className={`${styles.back} ${controls.quiet}`}>Back to the Arcade</Link>
-    <WeeklyLeaderboard state={{ status: "closed" }} headingLevel={1} />
+    <WeeklyLeaderboard state={{ status: "closed" }} headingLevel={1} closedTiming={<WeeklyChallengeCountdown />} />
     <p className={styles.practice}><Link href="/arcade/free-throw" className={controls.secondary}>Play Free Throw practice</Link></p>
   </div>;
 }
