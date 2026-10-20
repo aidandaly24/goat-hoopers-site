@@ -1,11 +1,12 @@
 import { decodeOutcomes, parseFreeThrowPolicy, parseRankedCalendar, parseRankedReplayContext, rankedId, record, safeInteger, summarizeOutcomes,
   type RankedAdmission, type RankedBoard, type RankedScore, type RankedScope, type RunStatistics } from "@/domain/arcade/ranked-free-throw";
 import type { ShotInput } from "@/domain/arcade/competition";
+import { parseRankedRecordFeedback, type RankedAcceptedScore } from "@/domain/arcade/ranked-record-feedback";
 
 type Reply<T> = { ok: true; value: T } | { ok: false; status: string };
 export type RankedClient = {
   start(signal?: AbortSignal): Promise<Reply<RankedAdmission>>;
-  submit(body: { runId: string; shots: readonly ShotInput[] }, signal?: AbortSignal): Promise<Reply<RankedScore>>;
+  submit(body: { runId: string; shots: readonly ShotInput[] }, signal?: AbortSignal): Promise<Reply<RankedAcceptedScore>>;
   result(runId: string, signal?: AbortSignal): Promise<Reply<RankedScore>>;
   leaderboard(scope: RankedScope, signal?: AbortSignal): Promise<Reply<RankedBoard>>;
 };
@@ -72,7 +73,11 @@ export function createRankedClient(fetcher: (input: string, init?: RequestInit) 
     } catch { return { ok: false, status: signal?.aborted ? "aborted" : "network" }; }
   }
   return { start: signal => send("runs", admission, signal, {}),
-    submit: (body, signal) => send("scores", value => record(value) ? score(value.score) : null, signal, { runId: body.runId, shots: body.shots.map(input => ({ atMs: input.atMs, direction: input.direction, power: input.power })) }),
+    submit: (body, signal) => send("scores", value => {
+      if (!record(value) || value.status !== "saved") return null;
+      const saved = score(value.score);
+      return saved ? { ...saved, recordFeedback: parseRankedRecordFeedback(value.recordFeedback, saved) } : null;
+    }, signal, { runId: body.runId, shots: body.shots.map(input => ({ atMs: input.atMs, direction: input.direction, power: input.power })) }),
     result: (id, signal) => send(`results?runId=${encodeURIComponent(id)}`, value => record(value) ? score(value.score) : null, signal),
     leaderboard: (scope, signal) => send(`leaderboard?scope=${scope}&limit=50`, board, signal) };
 }

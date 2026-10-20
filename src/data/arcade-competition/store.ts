@@ -6,6 +6,7 @@ import { rankedReplayContext, summarizeOutcomes, decodeOutcomes, type RankedAcco
 import { canFinalize, periodPhase, runPeriod, type CompetitionPeriod, type PeriodRecord, type FinalityReceipt, type CompetitionBoard, type CompetitionArchive } from "@/domain/arcade/competition-period";
 import { scoreFormatVersion } from "./config";
 import { reconcileAuthorizedAt, type ReconcileAuthorizationWindow } from "@/domain/arcade/reconcile-window";
+import { compareRecord, type RankedAcceptedScore } from "@/domain/arcade/ranked-record-feedback";
 
 const time = (v: unknown) => { if (v === null || v === undefined || v === "") throw new Error("invalid_database_clock"); const n = Number(v); if (!Number.isSafeInteger(n) || n < 0) throw new Error("invalid_database_clock"); return n; };
 const clock = async (db: RankedSqlClient) => time((await db.execute(sql`SELECT floor(extract(epoch FROM clock_timestamp())*1000)::bigint AS now_ms`)).rows[0]?.now_ms);
@@ -60,12 +61,32 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
       return result.rows.length ? { status: "created", run } : { status: "unauthenticated" };
     });
   }
-  async consume(account: RankedAccount, run: RankedRun, round: ValidatedRound): Promise<RankedScore | null> {
+  async consume(account: RankedAccount, run: RankedRun, round: ValidatedRound): Promise<RankedAcceptedScore | null> {
     return this.database.transaction(async tx => {
       const periods = await this.records(tx, true), p = periods.find(p => p.id === run.period.id), now = await clock(tx);
       if (!p || !allowed(p, periods, now) || now >= run.expiresAtMs) return null;
+      if (!p.scoreVersion || !/^[a-f0-9]{64}$/.test(p.scoreVersion)) throw new Error("invalid_record_state");
+      // All canonical Free Throw acceptances share this lock. READ COMMITTED
+      // comparisons after it see the preceding committed save across accounts.
+      // Keep lock order: periods -> acceptance -> account/session -> run.
+      await tx.execute(sql`SELECT pg_advisory_xact_lock(7042030)`);
       if ((await tx.execute(authorize(account))).rows.length !== 1) return null;
       if (!(await tx.execute(sql`SELECT id FROM ranked_free_throw_runs WHERE id=${run.id}::uuid AND account_id=${account.subject} FOR UPDATE`)).rows.length) return null;
+      const prior = (await tx.execute(sql`SELECT
+        max(s.score) FILTER(WHERE r.account_id=${account.subject}) AS personal_best,
+        max(s.score) FILTER(WHERE r.period_id=${p.id}) AS weekly_record,
+        max(s.score) AS all_time_record
+        FROM ranked_free_throw_scores s JOIN ranked_free_throw_runs r ON r.id=s.run_id
+        JOIN arcade_competition_periods cp ON cp.id=r.period_id JOIN auth_user u ON u.id=r.account_id
+        WHERE cp.game_id='free-throw' AND cp.score_version=${p.scoreVersion} AND r.state='consumed'`)).rows[0];
+      const previous = (key: string) => {
+        const value = prior?.[key];
+        if (value === null) return null;
+        if (typeof value !== "number" || !Number.isSafeInteger(value) || value < 0 || value > round.outcomes.length) throw new Error("invalid_record_state");
+        return value;
+      };
+      const personalBest = compareRecord(round.statistics.score, previous("personal_best")), weeklyRecord = compareRecord(round.statistics.score, previous("weekly_record")),
+        allTimeRecord = compareRecord(round.statistics.score, previous("all_time_record"));
       // Clock is checked again after every lock wait; failure rolls back consumption and insertion together.
       const result = await tx.execute(sql`WITH moment AS MATERIALIZED (SELECT floor(extract(epoch FROM clock_timestamp())*1000)::bigint AS now_ms), consumed AS (
         UPDATE ranked_free_throw_runs r SET state='consumed',consumed_at_ms=moment.now_ms FROM moment
@@ -83,9 +104,12 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
         SELECT id,${round.statistics.score},${round.outcomes.join("")},${JSON.stringify(round.inputs)}::jsonb,consumed_at_ms FROM consumed
         RETURNING id,achieved_at_ms`);
       const row = result.rows[0];
-      return row ? { ...summarizeOutcomes(round.outcomes), id: String(row.id), runId: run.id, gameId: "free-throw" as const,
+      if (!row) return null;
+      const score: RankedScore = { ...summarizeOutcomes(round.outcomes), id: String(row.id), runId: run.id, gameId: "free-throw",
         week: run.week, rulesVersion: run.rulesVersion, startedAtMs: run.startedAtMs, achievedAtMs: time(row.achieved_at_ms),
-        outcomes: [...round.outcomes], inputs: [...round.inputs], replayContext: round.replayContext } : null;
+        outcomes: [...round.outcomes], inputs: [...round.inputs], replayContext: round.replayContext };
+      return { ...score, recordFeedback: { version: 1, scoreId: score.id, acceptedAtMs: score.achievedAtMs, periodId: p.id,
+        scoreVersion: p.scoreVersion, scope: "everyone", personalBest, weeklyRecord, allTimeRecord } };
     });
   }
   private async entries(db: RankedSqlClient, kind: "weekly" | "all-time" | "archive", periodId: string | null, scoreVersion: string, viewer: string | null, scope: RankedScope, limit: number) {

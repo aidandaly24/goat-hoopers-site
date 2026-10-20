@@ -1,6 +1,7 @@
 import { expect, it, vi } from "vitest";
 import { handleRankedRequest } from "../http";
-import { fixture, run, submission } from "./fixtures";
+import { fixture, run, sampleScore, submission } from "./fixtures";
+import { compareRecord } from "@/domain/arcade/ranked-record-feedback";
 
 const request = (body: unknown = {}, origin = "https://goat.test", type = "application/json") =>
   new Request("https://goat.test/api/arcade/free-throw/runs", { method: "POST", headers: { origin, "content-type": type }, body: JSON.stringify(body) });
@@ -64,6 +65,21 @@ it("serves a verified start and server-derived score without accepting browser i
   expect(saved.status).toBe(201);
   expect(await saved.json()).toMatchObject({ status: "saved", score: { score: 2 } });
   expect((await handleRankedRequest(request(submission), "submit", runtime)).status).toBe(409);
+});
+
+it("delivers acceptance feedback privately once and returns null feedback from GET recovery", async () => {
+  const { runtime, store } = fixture();
+  const feedback = { version: 1 as const, scoreId: sampleScore.id, acceptedAtMs: sampleScore.achievedAtMs, periodId: "test-week-1",
+    scoreVersion: "a".repeat(64), scope: "everyone" as const, personalBest: compareRecord(2, null), weeklyRecord: compareRecord(2, null), allTimeRecord: compareRecord(2, null) };
+  store.consume = vi.fn<import("../store").RankedPersistence["consume"]>().mockResolvedValueOnce({ ...sampleScore, recordFeedback: feedback }).mockResolvedValue(null);
+  store.result = vi.fn(async () => sampleScore);
+  const saved = await handleRankedRequest(request(submission), "submit", runtime);
+  expect(saved.status).toBe(201); expect(saved.headers.get("cache-control")).toBe("no-store");
+  expect(await saved.json()).toEqual({ status: "saved", score: sampleScore, recordFeedback: feedback });
+  const recovered = await handleRankedRequest(new Request(`https://goat.test/api/arcade/free-throw/results?runId=${run.id}`), "result", runtime);
+  expect(await recovered.json()).toEqual({ status: "saved", score: sampleScore, recordFeedback: null });
+  const retry = await handleRankedRequest(request(submission), "submit", runtime);
+  expect(retry.status).toBe(409); expect(await retry.json()).toEqual({ status: "invalid_run" });
 });
 
 it("bounds current-week leaderboard reads and passes League/Everyone scope without exposing account IDs", async () => {
