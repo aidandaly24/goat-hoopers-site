@@ -7,6 +7,7 @@ import {
   type TeamHistoryPoint, type TeamHistoryRange, type TeamValueHistoryDetail, type TeamValueHistoryEnvelope,
 } from "@/domain/team-value-history";
 import { SectionHeading } from "@/ui/SectionHeading";
+import { ControlIcon } from "@/ui/ControlIcon";
 import controls from "@/ui/controls.module.css";
 import { createTeamHistoryClient, TeamHistoryReadError } from "./TeamValueHistoryClient";
 import { TeamValueHistoryChart } from "./TeamValueHistoryChart";
@@ -158,9 +159,9 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
     <div className={styles.selection}>
       <label htmlFor={`${id}-day`}>Inspect day · UTC</label>
       <div className={styles.dayControls}>
-        <button type="button" className={controls.secondary} aria-label="Previous day" disabled={dayIndex <= 0} onClick={() => selectDay(shiftHistoryDay(selectedDay, -1))}>←</button>
+        <button type="button" className={controls.secondary} aria-label="Previous day" disabled={dayIndex <= 0} onClick={() => selectDay(shiftHistoryDay(selectedDay, -1))}><span className={styles.previousIcon}><ControlIcon name="sort-down" /></span></button>
         <input id={`${id}-day`} type="date" value={selectedDay} min={range.from} max={shiftHistoryDay(range.toExclusive, -1)} onChange={event => selectDay(event.target.value)} />
-        <button type="button" className={controls.secondary} aria-label="Next day" disabled={dayIndex >= days - 1} onClick={() => selectDay(shiftHistoryDay(selectedDay, 1))}>→</button>
+        <button type="button" className={controls.secondary} aria-label="Next day" disabled={dayIndex >= days - 1} onClick={() => selectDay(shiftHistoryDay(selectedDay, 1))}><span className={styles.nextIcon}><ControlIcon name="sort-down" /></span></button>
       </div>
       <input className={styles.scrubber} type="range" aria-label="Inspect history day" aria-valuetext={`${fullDay(selectedDay)} UTC`} min="0" max={days - 1} step="1" value={dayIndex} disabled={days === 1} onChange={event => selectDay(shiftHistoryDay(range.from, Number(event.target.value)))} />
     </div>

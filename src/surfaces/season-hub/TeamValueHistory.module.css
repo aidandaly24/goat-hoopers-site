@@ -33,6 +33,9 @@
 .selection { display: grid; gap: var(--gh-s2); margin-top: var(--gh-s4); }
 .dayControls { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--gh-s2); }
 .dayControls button { min-width: var(--gh-target-touch); }
+.previousIcon, .nextIcon { display: inline-flex; }
+.previousIcon { transform: rotate(90deg); }
+.nextIcon { transform: rotate(-90deg); }
 .scrubber { width: 100%; min-height: var(--gh-target-touch); margin: 0; accent-color: var(--gh-accent); touch-action: pan-y; }
 .readout { display: grid; gap: var(--gh-s1); padding: var(--gh-s4) 0; border-top: 1px solid var(--gh-border); overflow-wrap: anywhere; }
 .readout > strong { font: 600 clamp(1.25rem, 5vw, 2rem)/1.2 var(--gh-font-mono); }
