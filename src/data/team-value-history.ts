@@ -39,7 +39,11 @@
  * VALIDATED AS-OF CUTOFF: evidence is admitted only at or before the
  * load instant (`now`). A quote or move timestamped after the cutoff is
  * not admitted, never advances `asOf`, and an unpriced detail for today
- * claims replay only through the cutoff — not through end-of-day.
+ * claims replay only through the cutoff — not through end-of-day. The
+ * comparison is made at native microsecond precision (`instantMicros`),
+ * never through `Date.parse`: a quote one microsecond past the cutoff
+ * is future evidence and is excluded at admission, not admitted and
+ * then rejected by envelope validation.
  *
  * CONFLICTING QUOTES: two different prices for one player at one native
  * instant are a contradiction the schema permits but quote-id ordering
@@ -109,6 +113,29 @@ const instantIso = (ms: number) => new Date(ms).toISOString();
 const dayOf = (nativeTimestamp: string) => nativeTimestamp.slice(0, 10);
 const instantMs = (nativeTimestamp: string) => Date.parse(`${nativeTimestamp}Z`);
 
+/**
+ * Native timestamps at full microsecond fidelity, as epoch microseconds.
+ * `Date.parse` is millisecond-precision: it would read a quote at
+ * 12:00:00.000001 as equal to a 12:00:00.000 cutoff and admit evidence
+ * from after the validated as-of instant (which the envelope contract
+ * then rejects, failing the whole load). The adapter emits exactly six
+ * fractional digits (`to_char … .US`), so parse them as integers and
+ * never let a JS Date near the fraction. Epoch µs ≈ 1.8e15 stays exact
+ * in a double (< 2^53). Non-canonical shapes fall back to ms fidelity.
+ */
+const NATIVE_INSTANT = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,6}))?$/;
+function instantMicros(nativeTimestamp: string): number {
+  const match = NATIVE_INSTANT.exec(nativeTimestamp);
+  if (!match) return instantMs(nativeTimestamp) * 1000;
+  const [, year, month, day, hour, minute, second, fraction = ""] = match;
+  const secondMicros = Date.UTC(Number(year), Number(month) - 1, Number(day),
+    Number(hour), Number(minute), Number(second)) * 1000;
+  return secondMicros + Number((fraction + "000000").slice(0, 6));
+}
+
+/** A move's effective instant in epoch µs (Sleeper reports epoch ms). */
+const moveMicros = (move: HistoryMove) => move.effectiveMs * 1000;
+
 function moveType(raw: string): TeamHistoryMove["type"] {
   return raw === "waiver" || raw === "free_agent" || raw === "trade" || raw === "commissioner" ? raw : "other";
 }
@@ -161,7 +188,8 @@ async function defaultMoves(): Promise<HistoryMove[]> {
 
 type InstantEval = {
   nativeTimestamp: string;
-  ms: number;
+  /** The instant at native microsecond precision (epoch µs). */
+  micros: number;
   roster: string[];
   quotes: Map<string, RecordedQuote>;
 };
@@ -207,23 +235,28 @@ function buildState(args: {
   // Validated as-of cutoff: nothing timestamped after the load instant
   // is admitted as evidence — not quotes, not moves. Future-dated rows
   // from a faulty source can neither move a historical day nor advance
-  // asOf past the moment the envelope claims to speak for.
+  // asOf past the moment the envelope claims to speak for. The
+  // comparison runs at native microsecond precision: a quote one
+  // microsecond past the cutoff is future evidence and is excluded
+  // here, never admitted and then rejected by envelope validation.
   const cutoffMs = args.now.getTime();
-  const quotes = args.quotes.filter(quote => instantMs(quote.nativeTimestamp) <= cutoffMs);
-  const moves = args.moves.filter(move => move.effectiveMs <= cutoffMs
+  const cutoffMicros = cutoffMs * 1000;
+  const quotes = args.quotes.filter(quote => instantMicros(quote.nativeTimestamp) <= cutoffMicros);
+  const moves = args.moves.filter(move => moveMicros(move) <= cutoffMicros
     && (move.adds.some(entry => entry.rosterId === rosterId) || move.drops.some(entry => entry.rosterId === rosterId)));
 
   /**
-   * Roster at an instant: the anchor with every completed move effective
-   * after the instant inverted, in exact reverse frozen order. Returns
-   * null when inversion contradicts the anchor (an add to invert that is
-   * absent, a drop to restore that is present) — membership unproven.
+   * Roster at an instant (epoch µs): the anchor with every completed
+   * move effective after the instant inverted, in exact reverse frozen
+   * order. Returns null when inversion contradicts the anchor (an add
+   * to invert that is absent, a drop to restore that is present) —
+   * membership unproven.
    */
-  function rosterAt(ms: number): string[] | null {
+  function rosterAt(micros: number): string[] | null {
     const roster = new Set(anchorRoster);
     for (let i = moves.length - 1; i >= 0; i--) {
       const move = moves[i];
-      if (move.effectiveMs <= ms) break;
+      if (moveMicros(move) <= micros) break;
       for (const drop of move.drops) {
         if (drop.rosterId !== rosterId) continue;
         if (roster.has(drop.playerId)) return null;
@@ -266,8 +299,9 @@ function buildState(args: {
     .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
   const evals: InstantEval[] = [];
   for (const [nativeTimestamp, at] of instantList) {
-    const roster = rosterAt(instantMs(nativeTimestamp));
-    if (roster) evals.push({ nativeTimestamp, ms: instantMs(nativeTimestamp), roster, quotes: at });
+    const micros = instantMicros(nativeTimestamp);
+    const roster = rosterAt(micros);
+    if (roster) evals.push({ nativeTimestamp, micros, roster, quotes: at });
   }
 
   const rosterRef = (roster: readonly string[]) => `roster-${team.id}-${sha([...roster].sort().join(",")).slice(0, 12)}`;
@@ -446,7 +480,7 @@ function buildState(args: {
         rosterStatus: "replayed", rosterCount: build.rosterCount, priced: build.priced, subtotalCents: build.subtotalCents,
         rosterEvidence: [
           `Roster replayed from the dated anchor (current rosters observed ${anchor.observedAt}) through completed moves in frozen order (status_updated, then transaction_id).`,
-          `${moves.filter(move => move.effectiveMs > ev.ms).length} completed move(s) involving this team are effective after this valuation instant and were inverted to derive this roster.`,
+          `${moves.filter(move => moveMicros(move) > ev.micros).length} completed move(s) involving this team are effective after this valuation instant and were inverted to derive this roster.`,
         ],
         players: ev.roster.map(id => {
           const quote = ev.quotes.get(id);
@@ -473,9 +507,9 @@ function buildState(args: {
       // cutoff is the earlier of end-of-day and the validated as-of
       // instant — for today, replay is claimed only through the cutoff,
       // never through an end-of-day that has not happened yet.
-      const endOfDayMs = Date.parse(`${day}T23:59:59.999999Z`);
-      const capped = cutoffMs < endOfDayMs;
-      const roster = rosterAt(Math.min(endOfDayMs, cutoffMs));
+      const endOfDayMicros = instantMicros(`${day}T23:59:59.999999`);
+      const capped = cutoffMicros < endOfDayMicros;
+      const roster = rosterAt(Math.min(endOfDayMicros, cutoffMicros));
       if (roster) {
         return {
           ...shared, valuationAt: capped ? instantIso(cutoffMs) : `${day}T23:59:59.999999Z`, pointId: null, rosterRef: rosterRef(roster),
@@ -509,7 +543,7 @@ function buildState(args: {
       points: builds.map(({ build, ev, pricedIds }) => ({
         pointId: build.id, day: build.day, valuationAt: build.valuationAt, roster: ev.roster,
         pricedPlayerIds: pricedIds, subtotalCents: build.subtotalCents,
-        generationMoves: moves.filter(move => move.effectiveMs > ev.ms)
+        generationMoves: moves.filter(move => moveMicros(move) > ev.micros)
           .map(move => ({ id: move.id, type: move.type, effectiveAt: instantIso(move.effectiveMs) })),
       })),
     };

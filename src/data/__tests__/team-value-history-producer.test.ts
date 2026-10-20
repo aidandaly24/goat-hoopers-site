@@ -379,6 +379,61 @@ describe("validated as-of cutoff (dot P2 regression)", () => {
     expect(detail.subtotalCents).toBeNull();
   });
 
+  it("excludes a quote one microsecond past the cutoff at admission (dot re-review regression)", async () => {
+    // The dot's exact boundary: cutoff 2026-10-20T12:00:00.000Z, quote at
+    // 12:00:00.000001. Date.parse reads both as 1792497600000, so the old
+    // admission let the row in and envelope validation then rejected the
+    // future point — the whole load failed. Native-precision admission
+    // excludes the row; the healthy history stands untouched.
+    const oneMicroLate = quote("q-plus-1us-101", "101", 99000, "2026-10-20T12:00:00.000001");
+    const envelope = await getTeamValueHistory("1", deps({}, [...QUOTES, oneMicroLate]));
+    expect(envelope).not.toBeNull();
+    expect(isTeamValueHistoryEnvelope(envelope!)).toBe(true);
+    expect(envelope!.points.map(point => point.day)).toEqual(["2026-10-08", "2026-10-09", "2026-10-11"]);
+    const healthy = await loadTeamHistoryState("1", deps());
+    expect(envelope!.generation).toBe(healthy.generation); // the inadmissible row binds nothing
+    expect(envelope!.currentQuote).toEqual(healthy.currentQuote);
+  });
+
+  it("admits evidence exactly at the cutoff and one microsecond before it", async () => {
+    const atCutoff = [
+      quote("q-at-101", "101", 13000, "2026-10-20T12:00:00.000000"),
+      quote("q-at-102", "102", 23000, "2026-10-20T12:00:00.000000"),
+      quote("q-at-103", "103", 33000, "2026-10-20T12:00:00.000000"),
+    ];
+    const state = await loadTeamHistoryState("1", deps({}, [...QUOTES, ...atCutoff]));
+    const point = state.points.find(entry => entry.day === "2026-10-20")!;
+    expect(point.valuationAt).toBe("2026-10-20T12:00:00.000000Z");
+    expect(point.subtotalCents).toBe(69000);
+    expect(state.currentQuote?.at).toBe("2026-10-20T12:00:00.000000Z");
+    expect(isTeamValueHistoryEnvelope(state.envelope(state.leagueRange))).toBe(true);
+
+    const justBefore = quote("q-minus-1us-101", "101", 14000, "2026-10-20T11:59:59.999999");
+    const before = await loadTeamHistoryState("1", deps({}, [...QUOTES, justBefore]));
+    const beforePoint = before.points.find(entry => entry.day === "2026-10-20")!;
+    expect(beforePoint.valuationAt).toBe("2026-10-20T11:59:59.999999Z");
+    expect(beforePoint.subtotalCents).toBe(14000);
+  });
+
+  it("keeps a same-millisecond pair on opposite sides of the cutoff consistent", async () => {
+    // Same millisecond, different microseconds: the at-cutoff row is the
+    // day's observation; the +1µs row does not exist as far as points,
+    // detail, current quote and generation are concerned.
+    const atCutoff = [quote("q-at-101", "101", 13000, "2026-10-20T12:00:00.000000")];
+    const oneMicroLate = quote("q-plus-1us-101", "101", 99000, "2026-10-20T12:00:00.000001");
+    const pair = await loadTeamHistoryState("1", deps({}, [...QUOTES, ...atCutoff, oneMicroLate]));
+    const solo = await loadTeamHistoryState("1", deps({}, [...QUOTES, ...atCutoff]));
+    expect(pair.generation).toBe(solo.generation);
+    expect(pair.points).toEqual(solo.points);
+    expect(pair.currentQuote).toEqual(solo.currentQuote);
+    const point = pair.points.find(entry => entry.day === "2026-10-20")!;
+    expect(point.subtotalCents).toBe(13000); // never the 99,000 from past the cutoff
+    const detail = pair.detail("2026-10-20", NAMES);
+    expect(isTeamValueHistoryDetail(detail)).toBe(true);
+    expect(historyDetailMatchesPoint(detail, point)).toBe(true);
+    expect(detail.players.find(entry => entry.id === "101")!.priceCents).toBe(13000);
+  });
+
   it("ignores a future-dated move instead of inverting it into history", async () => {
     const futureTx = tx({
       transaction_id: "future-drop-101", created: Date.parse("2026-10-20T18:00:00Z"),
