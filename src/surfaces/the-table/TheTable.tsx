@@ -62,11 +62,14 @@ function PinnedStrip({
   teamName,
   avatar,
   detail,
+  isChampion,
 }: {
   teamId: string;
   teamName: string;
   avatar: string | null;
   detail: string;
+  /** True when this pinned team is the reigning champion. */
+  isChampion: boolean;
 }) {
   return (
     <div
@@ -74,7 +77,7 @@ function PinnedStrip({
       style={{ borderLeftColor: teamColorVar(teamId) }}
     >
       <span className={styles.pinnedLabel}>Your team</span>
-      <TeamAvatar name={teamName} avatar={avatar} />
+      <TeamAvatar name={teamName} avatar={avatar} isChampion={isChampion} />
       <span className={styles.pinnedName}>{teamName}</span>
       <span className={`${styles.pinnedDetail} gh-num`}>{detail}</span>
       <Link href={`/teams/${teamId}`} className={styles.pinnedLink}>
@@ -84,12 +87,16 @@ function PinnedStrip({
   );
 }
 
-function LeaguePanel({
+/** League lens panel. Exported for regression tests on champion wiring. */
+export function LeaguePanel({
   data,
   viewerTeamId,
+  championTeamId,
 }: {
   data: TheTableData;
   viewerTeamId: string | null;
+  /** Reigning champion's roster id — callers derive it from previous-season finish (see reigningChampionRosterId). */
+  championTeamId?: string | null;
 }) {
   const rows = data.league;
   return (
@@ -117,6 +124,7 @@ function LeaguePanel({
                   teamId={mine.standing.team.id}
                   teamName={mine.standing.team.name}
                   avatar={mine.standing.team.avatar}
+                  isChampion={mine.standing.team.id === championTeamId}
                   detail={`#${mine.standing.rank} · ${fmtRecord(mine.standing.wins, mine.standing.losses, mine.standing.ties)} · ${fmtStreak(mine.streak)}`}
                 />
               ) : null;
@@ -132,7 +140,7 @@ function LeaguePanel({
               <span role="columnheader" className={styles.numHead}>Streak</span>
             </div>
             {rows.map((row) => (
-              <LeagueRow key={row.standing.team.id} row={row} ranked={data.hasResults} viewerTeamId={viewerTeamId} />
+              <LeagueRow key={row.standing.team.id} row={row} ranked={data.hasResults} viewerTeamId={viewerTeamId} championTeamId={championTeamId} />
             ))}
           </div>
         </>
@@ -151,10 +159,12 @@ function LeagueRow({
   row,
   ranked,
   viewerTeamId,
+  championTeamId,
 }: {
   row: TableLeagueRow;
   ranked: boolean;
   viewerTeamId: string | null;
+  championTeamId?: string | null;
 }) {
   const { standing } = row;
   const team = standing.team;
@@ -174,7 +184,7 @@ function LeagueRow({
           aria-label={`View ${team.name}`}
           className={styles.teamLink}
         >
-          <TeamAvatar name={team.name} avatar={team.avatar} />
+          <TeamAvatar name={team.name} avatar={team.avatar} isChampion={team.id === championTeamId} />
           <span className={styles.teamText}>
             <span
               className={`${styles.name} ${isLeader ? styles.leaderName : ""}`}
@@ -206,12 +216,16 @@ function LeagueRow({
   );
 }
 
-function ValuePanel({
+/** Value lens panel. Exported for regression tests on champion wiring. */
+export function ValuePanel({
   data,
   viewerTeamId,
+  championTeamId,
 }: {
   data: TheTableData;
   viewerTeamId: string | null;
+  /** Reigning champion's roster id — callers derive it from previous-season finish (see reigningChampionRosterId). */
+  championTeamId?: string | null;
 }) {
   const value = data.value;
   return (
@@ -231,6 +245,7 @@ function ValuePanel({
                 teamId={mine.team.id}
                 teamName={mine.team.name}
                 avatar={mine.team.avatar}
+                isChampion={mine.team.id === championTeamId}
                 detail={fmtValuePin(mine)}
               />
             ) : null;
@@ -243,7 +258,7 @@ function ValuePanel({
               <span role="columnheader" className={styles.numHead}>Priced</span>
             </div>
             {value.rows.map((row) => (
-              <ValueRow key={row.team.id} row={row} viewerTeamId={viewerTeamId} />
+              <ValueRow key={row.team.id} row={row} viewerTeamId={viewerTeamId} championTeamId={championTeamId} />
             ))}
           </div>
           <p className={styles.footnote}>
@@ -269,9 +284,11 @@ function ValuePanel({
 function ValueRow({
   row,
   viewerTeamId,
+  championTeamId,
 }: {
   row: TableValueRow;
   viewerTeamId: string | null;
+  championTeamId?: string | null;
 }) {
   const isViewer = viewerTeamId !== null && row.team.id === viewerTeamId;
   const isLeader = row.rank === 1 && row.totalValue !== null;
@@ -287,7 +304,7 @@ function ValueRow({
           aria-label={`View ${row.team.name}`}
           className={styles.teamLink}
         >
-          <TeamAvatar name={row.team.name} avatar={row.team.avatar} />
+          <TeamAvatar name={row.team.name} avatar={row.team.avatar} isChampion={row.team.id === championTeamId} />
           <span className={styles.teamText}>
             <span
               className={`${styles.name} ${isLeader ? styles.leaderName : ""}`}
@@ -352,21 +369,25 @@ function ArcadePanel() {
  * the-table — "Where does everyone stand?" (issue #184)
  *
  * One leaderboard with four lenses over the same ten teams. Receives
- * TheTableData (League + Value lenses) and the signed-in viewer's team id
- * as props from the /table page; never fetches. Power and Arcade render
- * honest unavailable states until weekly table snapshots and arcade
- * scoring exist. The viewer's row is highlighted in place and pinned in a
- * strip above the board; signed-out visitors get the plain table.
+ * TheTableData (League + Value lenses), the signed-in viewer's team id,
+ * and the reigning champion's roster id as props from the /table page;
+ * never fetches. Power and Arcade render honest unavailable states until
+ * weekly table snapshots and arcade scoring exist. The viewer's row is
+ * highlighted in place and pinned in a strip above the board; signed-out
+ * visitors get the plain table.
  * Lens switching is local state with a short ease-out panel transition,
  * disabled under prefers-reduced-motion.
  */
 export function TheTable({
   data,
   viewerTeamId,
+  championTeamId,
 }: {
   data: TheTableData;
   /** The signed-in manager's roster id, or null when signed out. */
   viewerTeamId: string | null;
+  /** Reigning champion's roster id — callers derive it from previous-season finish (see reigningChampionRosterId). */
+  championTeamId?: string | null;
 }) {
   const [lens, setLens] = useState<Lens>("league");
 
@@ -433,8 +454,8 @@ export function TheTable({
         aria-labelledby={`table-tab-${lens}`}
         className={styles.panel}
       >
-        {lens === "league" && <LeaguePanel data={data} viewerTeamId={viewerTeamId} />}
-        {lens === "value" && <ValuePanel data={data} viewerTeamId={viewerTeamId} />}
+        {lens === "league" && <LeaguePanel data={data} viewerTeamId={viewerTeamId} championTeamId={championTeamId} />}
+        {lens === "value" && <ValuePanel data={data} viewerTeamId={viewerTeamId} championTeamId={championTeamId} />}
         {lens === "power" && <PowerPanel />}
         {lens === "arcade" && <ArcadePanel />}
       </div>

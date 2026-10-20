@@ -35,9 +35,12 @@ function Movement({ movement }: { movement: number }) {
  */
 export function PowerRankings({
   rankings,
+  championTeamId,
 }: {
   /** From getPowerRankings(). Null before the season tips off. */
   rankings: PowerRanking[] | null;
+  /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
+  championTeamId?: string | null;
 }) {
   return (
     <Card>
@@ -52,7 +55,7 @@ export function PowerRankings({
             <li key={r.team.id} className={styles.row}>
               <span className={styles.rank}>{r.rank}</span>
               <Movement movement={r.movement} />
-              <TeamAvatar name={r.team.name} avatar={r.team.avatar} />
+              <TeamAvatar name={r.team.name} avatar={r.team.avatar} isChampion={r.team.id === championTeamId} />
               <Link href={`/teams/${r.team.id}`} className={styles.name}>
                 {r.team.name}
               </Link>

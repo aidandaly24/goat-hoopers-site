@@ -5,6 +5,7 @@
  * surface.
  */
 import { getDraftBoard } from "@/data/league";
+import { reigningChampionRosterId } from "@/data/history-2025";
 import { DraftBoard } from "@/surfaces/draft/DraftBoard";
 import type { Metadata } from "next";
 
@@ -17,5 +18,5 @@ export const metadata: Metadata = {
 
 export default async function DraftPage() {
   const board = await getDraftBoard();
-  return <DraftBoard picks={board.picks} teams={board.teams} />;
+  return <DraftBoard picks={board.picks} teams={board.teams} championTeamId={reigningChampionRosterId()} />;
 }

@@ -41,7 +41,7 @@ function fmtPts(p: number | null): string {
   return p.toFixed(1);
 }
 
-function MatchupRow({ matchup }: { matchup: Matchup }) {
+function MatchupRow({ matchup, championTeamId }: { matchup: Matchup; championTeamId?: string | null }) {
   const final = isFinal(matchup);
   const homeWon =
     final && (matchup.homePoints as number) > (matchup.awayPoints as number);
@@ -56,7 +56,7 @@ function MatchupRow({ matchup }: { matchup: Matchup }) {
         <span>{final ? (homeWon || awayWon ? "Final" : "Tie") : "Pending"}</span>
       </div>
       <Link href={`/teams/${matchup.home.id}`} className={styles.gameTeam}>
-        <TeamAvatar name={matchup.home.name} avatar={matchup.home.avatar} />
+        <TeamAvatar name={matchup.home.name} avatar={matchup.home.avatar} isChampion={matchup.home.id === championTeamId} />
         <span className={styles.gameTeamName}>{matchup.home.name}</span>
         {homeWon && <Badge tone="win">W</Badge>}
         {awayWon && <Badge tone="loss">L</Badge>}
@@ -68,7 +68,7 @@ function MatchupRow({ matchup }: { matchup: Matchup }) {
         {fmtPts(matchup.homePoints)}
       </span>
       <Link href={`/teams/${matchup.away.id}`} className={styles.gameTeam}>
-        <TeamAvatar name={matchup.away.name} avatar={matchup.away.avatar} />
+        <TeamAvatar name={matchup.away.name} avatar={matchup.away.avatar} isChampion={matchup.away.id === championTeamId} />
         <span className={styles.gameTeamName}>{matchup.away.name}</span>
         {awayWon && <Badge tone="win">W</Badge>}
         {homeWon && <Badge tone="loss">L</Badge>}
@@ -108,11 +108,14 @@ export function TeamProfile({
   teams,
   franchise,
   archetype,
+  championTeamId,
 }: {
   profile: TeamProfile;
   teams: Team[];
   franchise?: FranchiseHistory | null;
   archetype?: ManagerArchetype | null;
+  /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
+  championTeamId?: string | null;
 }) {
   const { team, players, matchups, streak, draftPicks, transactions } =
     profile;
@@ -135,7 +138,7 @@ export function TeamProfile({
         <Link href="/trade-analyzer" className={styles.tradeLink}>Analyze a trade with this team</Link>
       </div>
       <header className={styles.identity}>
-        <TeamAvatar name={team.name} avatar={team.avatar} />
+        <TeamAvatar name={team.name} avatar={team.avatar} isChampion={team.id === championTeamId} />
         <div className={styles.identityText}>
           <h1 className={styles.teamName}>{team.name}</h1>
           <p className={styles.manager}>managed by {team.managerName}</p>
@@ -194,7 +197,7 @@ export function TeamProfile({
           </div>
           {opponent ? (
             <Link className={styles.opponent} href={`/teams/${opponent.id}`}>
-              <TeamAvatar name={opponent.name} avatar={opponent.avatar} />
+              <TeamAvatar name={opponent.name} avatar={opponent.avatar} isChampion={opponent.id === championTeamId} />
               <span className={styles.opponentIdentity}>
                 <strong>{opponent.name}</strong>
                 <span>managed by {opponent.managerName}</span>
@@ -233,7 +236,7 @@ export function TeamProfile({
             ) : (
               <ul className={styles.games}>
                 {matchups.map((m) => (
-                  <MatchupRow key={`${m.week}-${m.home.id}`} matchup={m} />
+                  <MatchupRow key={`${m.week}-${m.home.id}`} matchup={m} championTeamId={championTeamId} />
                 ))}
               </ul>
             )}

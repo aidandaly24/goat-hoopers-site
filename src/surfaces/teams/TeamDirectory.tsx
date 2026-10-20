@@ -17,7 +17,7 @@ import styles from "./TeamDirectory.module.css";
  * - Receives `teams` as domain objects.
  * - Never fetches. Never touches Sleeper. Domain objects in, JSX out.
  */
-export function TeamDirectory({ teams }: { teams: Team[] }) {
+export function TeamDirectory({ teams, championTeamId }: { teams: Team[]; /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */ championTeamId?: string | null }) {
   return (
     <div className={styles.directory}>
       <SectionHeading eyebrow="The league" title="Teams" />
@@ -34,7 +34,7 @@ export function TeamDirectory({ teams }: { teams: Team[] }) {
                 className={styles.teamRow}
                 aria-label={`View ${t.name}`}
               >
-                <TeamAvatar name={t.name} avatar={t.avatar} />
+                <TeamAvatar name={t.name} avatar={t.avatar} isChampion={t.id === championTeamId} />
                 <div className={styles.info}>
                   <span className={styles.name}>
                     <span

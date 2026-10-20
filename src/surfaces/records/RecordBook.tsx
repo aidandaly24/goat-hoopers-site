@@ -11,13 +11,13 @@ function fmtPts(p: number): string {
   return p.toFixed(1);
 }
 
-function GameLine({ h }: { h: MatchupHighlight }) {
+function GameLine({ h, championTeamId }: { h: MatchupHighlight; championTeamId?: string | null }) {
   const w = winner(h.matchup);
   const loser =
     w?.id === h.matchup.home.id ? h.matchup.away : h.matchup.home;
   return (
     <li className={styles.game}>
-      <TeamAvatar name={w?.name ?? "?"} avatar={w?.avatar ?? null} />
+      <TeamAvatar name={w?.name ?? "?"} avatar={w?.avatar ?? null} isChampion={w?.id === championTeamId} />
       <span className={styles.teams}>
         {w && (
           <Link href={`/teams/${w.id}`} className={styles.teamLink}>
@@ -37,10 +37,10 @@ function GameLine({ h }: { h: MatchupHighlight }) {
   );
 }
 
-function ScoreLine({ s }: { s: TeamWeekScore }) {
+function ScoreLine({ s, championTeamId }: { s: TeamWeekScore; championTeamId?: string | null }) {
   return (
     <li className={styles.game}>
-      <TeamAvatar name={s.team.name} avatar={s.team.avatar} />
+      <TeamAvatar name={s.team.name} avatar={s.team.avatar} isChampion={s.team.id === championTeamId} />
       <Link href={`/teams/${s.team.id}`} className={styles.teamLink}>
         {s.team.name}
       </Link>
@@ -57,7 +57,7 @@ function ScoreLine({ s }: { s: TeamWeekScore }) {
  * (RecordBook | null) and renders. Computed from every final in
  * src/data/analytics.ts. Null = no games yet, honest empty state.
  */
-export function RecordBook({ book }: { book: RecordBook | null }) {
+export function RecordBook({ book, championTeamId }: { book: RecordBook | null; /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */ championTeamId?: string | null }) {
   return (
     <Card>
       <SectionHeading eyebrow="Immortality" title="This Season's Record Book" />
@@ -75,7 +75,7 @@ export function RecordBook({ book }: { book: RecordBook | null }) {
             </h3>
             <ul className={styles.list}>
               {book.biggestBlowouts.map((h) => (
-                <GameLine key={`${h.matchup.week}-${h.matchup.home.id}`} h={h} />
+                <GameLine key={`${h.matchup.week}-${h.matchup.home.id}`} h={h} championTeamId={championTeamId} />
               ))}
             </ul>
           </section>
@@ -85,7 +85,7 @@ export function RecordBook({ book }: { book: RecordBook | null }) {
             </h3>
             <ul className={styles.list}>
               {book.closestGames.map((h) => (
-                <GameLine key={`${h.matchup.week}-${h.matchup.home.id}`} h={h} />
+                <GameLine key={`${h.matchup.week}-${h.matchup.home.id}`} h={h} championTeamId={championTeamId} />
               ))}
             </ul>
           </section>
@@ -95,7 +95,7 @@ export function RecordBook({ book }: { book: RecordBook | null }) {
             </h3>
             <ul className={styles.list}>
               {book.highestScores.map((s) => (
-                <ScoreLine key={`${s.week}-${s.team.id}`} s={s} />
+                <ScoreLine key={`${s.week}-${s.team.id}`} s={s} championTeamId={championTeamId} />
               ))}
             </ul>
           </section>

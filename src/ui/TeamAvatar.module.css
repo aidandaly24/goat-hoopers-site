@@ -25,3 +25,19 @@
   display: inline-flex;
   flex-shrink: 0;
 }
+
+/* Default footprint matches a plain avatar (2.5rem). Zero specificity via
+ * :where so any parent-imposed size on the direct child — compact rules
+ * like `.teamPicture > *` or `.gameTeam > :first-child` — always wins;
+ * the face and badge then scale with the wrap instead of overflowing it. */
+span:where(.champWrap) {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* The face always fills the wrap, so crowned and plain avatars share one
+ * footprint and parent-imposed compact sizes apply to both together. */
+.champWrap > .avatar {
+  width: 100%;
+  height: 100%;
+}

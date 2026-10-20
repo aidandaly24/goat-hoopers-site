@@ -25,7 +25,7 @@ const columns: { key: StandingSortKey; label: string; short: string }[] = [
 ];
 
 /** Sort only supplied standings. Displayed ranks always remain the league's ranks. */
-export function StandingsTable({ standings, viewerTeamId, championTeamId }: { standings: Standing[]; viewerTeamId?: string; championTeamId?: string }) {
+export function StandingsTable({ standings, viewerTeamId, championTeamId }: { standings: Standing[]; viewerTeamId?: string; /** Reigning champion's roster id — callers derive it from previous-season finish (see reigningChampionRosterId). */ championTeamId?: string | null }) {
   const [order, setOrder] = useState<SortOrder<StandingSortKey>>({ key: "rank", direction: "asc" });
   const sorted = sortStandings(standings, order);
   return (
