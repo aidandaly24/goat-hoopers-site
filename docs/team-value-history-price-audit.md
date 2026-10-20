@@ -1,8 +1,13 @@
 # Team value history: pricing decision and presentation boundary
 
 Issue [#217](https://github.com/aidandaly24/goat-hoopers-site/issues/217).
-Public-code audit based on main `7dcdf0a`; no application changes.
-This is a proposal awaiting Muse's explicit contract and file-ownership agreement.
+Public-code audit based on main `7dcdf0a`; no application runtime changes.
+Muse explicitly accepted the contract and file ownership in issue comment
+[6281337112](https://github.com/aidandaly24/goat-hoopers-site/issues/217#issuecomment-6281337112)
+and PR comment [6281503580](https://github.com/aidandaly24/goat-hoopers-site/pull/218#issuecomment-6281503580).
+The presentation contract and picker are implemented in isolation; existing
+homepage/replay/storage integration remains Muse-owned. The price-source/model
+decision remains joint. See [the producer handoff](team-value-history-integration.md).
 Private persisted-data receipts are retained outside this repository and are not
 part of this document or the PR.
 
@@ -37,7 +42,7 @@ automatic permission to carry an old quote throughout a team-history interval.
 The team contract needs its own explicit validity/availability rule and must not
 make hundreds of selected-player requests on a homepage render.
 
-## Recommended first semantics, pending joint agreement
+## Agreed presentation semantics
 
 The user question is: **What was my team worth, who did I own, and what changed
 over the full league history?** The primary action is select a range and day,
@@ -108,6 +113,48 @@ season totals or today's roster/injury/demand inputs to fill an earlier date.
 This source review belongs in the joint pricing decision before Muse's ingest
 work proceeds. The public source receipt summary is in the adjacent JSON file.
 
+### Reproducible follow-up: frozen scoring and identity feasibility
+
+The offline [bounded sample audit](../data/team-history-audit/README.md) now
+retains four completed games, including event `401809244` from the first sampled
+date. It contains 109 athlete rows: 78 played and 31 DNP. The auditor derives
+68 complete fantasy-point results; ten Philadelphia rows remain incomplete
+because a team technical has no structured athlete offender. Existing mapping
+plus complete scoring/minutes/event-time evidence admits 65 rows. These are
+fantasy-point **inputs**, not modeled FAAB prices or historical team values.
+
+The additional game supplies structured technical offenders Draymond Green and
+Jarred Vanderbilt and a Type 1 flagrant offender Marcus Smart. The auditor
+reconciles these event counts against team totals, retains their source play IDs,
+and excludes technical/flagrant free-throw shooters. It never attributes the
+sampled coach technical by parsing a name or zeroes an unknown player penalty.
+Type 2 flagrants and unreconciled/unsupported foul events remain unsupported.
+
+All four retained End Game play records have UTC wallclocks: `2025-10-22T02:59:51Z`,
+`2025-10-22T04:46:00Z`, `2026-01-21T02:30:54Z`, `2026-04-13T00:45:07Z`.
+These improve the event-input lower bounds beyond the initial scoreboard-only
+audit, but do not prove contemporaneous source publication or absence of later
+stat corrections. No after-game input is eligible at an earlier midnight.
+
+The live map resolves 75 of 78 played rows. Three separate audit candidates have
+unique exact names and birth dates in the frozen directory: Max Shulga `4785` ↔
+ESPN `4701992` ([biography](https://www.espn.com/nba/player/bio/_/id/4701992/max-shulga)),
+Dalano Banton `2290` ↔ `4397885` ([biography](https://www.espn.com/nba/player/bio/_/id/4397885/dalano-banton)),
+and Gabe Vincent `2084` ↔ `3137259` ([NBA biography](https://www.nba.com/lakers/team/player-pages/gabe-vincent-1629216)).
+The existing map remains unchanged; candidates do not become production input
+eligibility. Name matching alone cannot establish the remaining historical map.
+Core-athlete API access failed at proxy CONNECT HTTP403; no profile JSON was
+obtained. Vincent's ESPN biography returned a bot-check page, so the official
+NBA club biography supplies his independent birth-date evidence.
+
+The source helper and runner perform no network, DB or quote/publication work.
+The sample schemas retain raw keys/values and source hashes, not current injury,
+ownership or aggregate season inputs. Focused regressions cover the actual
+penalties, derived stacked bonuses, DNP/active disagreement, missing fields,
+mapping ambiguity and post-game cutoff/UTC look-ahead failures. Full-season
+event coverage, source correction policy and a reviewed reconstructed model
+remain prerequisites for building an honest daily historical value series.
+
 Full-season bounds follow verified source anchors and rollover evidence; a year
 label alone does not establish January 1 as league inception. Returned current
 rosters from an old league are useful reconciliation targets, not independent
@@ -116,9 +163,9 @@ age remain separate from roster/transaction effective time.
 
 ## Proposed serializable contract
 
-These are proposed field requirements, not a second implemented domain model.
-Muse owns source/replay/series derivation. Dot will add the presentation type in
-`src/domain/` only after agreement, and both lanes will use that single type.
+These requirements are implemented by the single versioned contract in
+`src/domain/team-value-history.ts`. Muse owns source/replay/series derivation;
+both lanes use that same type. Future contract changes remain joint.
 
 | Level | Required information |
 | --- | --- |
@@ -175,13 +222,15 @@ Dot proposed ownership in [comment 6281228237](https://github.com/aidandaly24/go
 this audit, a new presentation domain module, range helpers and new
 `src/surfaces/season-hub/TeamValueHistory*` components/tests/QA. Muse retains replay,
 source ingestion, storage, series derivation and existing homepage/data wiring.
-The exact domain/file handoff is still pending; no UI implementation has started.
+Muse confirmed that handoff. Dot's new domain, audit and `TeamValueHistory*`
+files do not alter Muse's replay, stores or existing homepage wiring.
 
-Before implementation, agree the DTO and ownership above, source receipts and
-complete historical player-ID union, baseline/rollover anchors, quote validity,
-availability and segment rules. Global price counts alone cannot establish
-historical per-team coverage. Missing/incomplete source evidence must survive
-the data projection into the UI.
+The presentation DTO/ownership is agreed; source replay anchors, eligibility and
+joint price publication still require their independent evidence. Muse reported
+a 373-ID historical union and a boundary-derived anchor rather than recorded
+keeper-cut transactions. Dates with unknown cut timing cannot gain an invented
+effective timestamp; carry that ambiguity through coverage and move precision.
+Global price counts alone cannot establish historical per-team coverage.
 
 Before calling the implementation ready: focused range/provenance/coverage and
 race tests; applicable replay/price integration contracts; typecheck; surface
