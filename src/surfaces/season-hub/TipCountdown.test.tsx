@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   TipCountdown,
   WEEK_ONE_TIP_OFF_ISO,
@@ -8,6 +8,7 @@ import {
   clockSampleSkewed,
   countdownParts,
   formatTipCaption,
+  freshestResponseEndMonoMs,
   hiddenIntervalDiverged,
   openingPhase,
   projectServerNow,
@@ -131,18 +132,91 @@ describe('resume after a hidden interval', () => {
 });
 
 describe('sample age at hydration', () => {
-  it('advances the anchor by the age of the server sample, so an older checkedAt is not re-lived', () => {
+  it('advances the anchor only by the trusted receipt lag, so an older checkedAt is not re-lived', () => {
     const serverMs = Date.parse('2026-10-19T12:00:00Z');
-    // The league check was stamped 90 seconds before the client hydrated:
-    // the anchor starts 90 seconds ahead of the raw sample, not at it.
-    expect(anchorFromSample(serverMs, serverMs + 90_000, 5000)).toEqual({
-      serverMs: serverMs + 90_000,
+    // The response carrying the sample completed 250ms before hydration
+    // on the browser's monotonic timing record: the sample is at least
+    // that old, so the anchor starts 250ms ahead of the raw stamp — and
+    // not one millisecond further.
+    expect(anchorFromSample(serverMs, 4750, 5000)).toEqual({
+      serverMs: serverMs + 250,
       monoMs: 5000,
     });
-    // A fresh sample anchors at its own instant.
-    expect(anchorFromSample(serverMs, serverMs, 5000)).toEqual({ serverMs, monoMs: 5000 });
-    // A client wall clock behind the server sample never rewinds the anchor.
-    expect(anchorFromSample(serverMs, serverMs - 30_000, 5000)).toEqual({ serverMs, monoMs: 5000 });
+    // A response that completed exactly at hydration anchors at the stamp.
+    expect(anchorFromSample(serverMs, 5000, 5000)).toEqual({ serverMs, monoMs: 5000 });
+  });
+
+  it('offers no anchor when the receipt lag cannot be established from trusted evidence', () => {
+    const serverMs = Date.parse('2026-10-19T12:00:00Z');
+    // No timing record at all.
+    expect(anchorFromSample(serverMs, null, 5000)).toBeNull();
+    // The freshest recorded completion is two minutes old: it cannot be
+    // identified as the response that carried THIS sample (a stale entry
+    // from an earlier document, e.g. after a soft navigation), so its lag
+    // must not become elapsed server time — the display is unconfirmed.
+    expect(anchorFromSample(serverMs, 5000, 5000 + 120_000)).toBeNull();
+    // A receipt stamped after hydration is not evidence either.
+    expect(anchorFromSample(serverMs, 6000, 5000)).toBeNull();
+    expect(anchorFromSample(serverMs, Number.NaN, 5000)).toBeNull();
+    expect(anchorFromSample(Number.NaN, 4750, 5000)).toBeNull();
+  });
+
+  it('reads the receipt from the freshest recorded response completion at or before hydration', () => {
+    const entry = (responseEnd: number) => ({ responseEnd }) as unknown as PerformanceEntry;
+    vi.stubGlobal('performance', {
+      getEntriesByType: (type: string) =>
+        type === 'navigation' ? [entry(1200)] : [entry(3400), entry(900), entry(0), entry(99_999)],
+    });
+    try {
+      // The entry completing after "now" (99_999) and the never-completed
+      // one (0) are ignored; the receipt is the freshest genuine
+      // completion, 3400.
+      expect(freshestResponseEndMonoMs(5000)).toBe(3400);
+      // Nothing completed at or before an earlier hydration: no evidence.
+      expect(freshestResponseEndMonoMs(500)).toBeNull();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+});
+
+describe('skewed client clock at hydration', () => {
+  // The dot's reproduction: a fresh server check 30 seconds before the
+  // accepted tip (2026-10-20T19:00:00Z) on a client whose wall clock is
+  // two hours fast. The old anchor aged the sample by (client wall −
+  // stamp), which IS the wall clock whenever it runs ahead, so after
+  // mounting the court falsely showed "Week 1 is underway". The wall
+  // clock is no longer an input to the anchor at all — hydration ages
+  // the sample only by the monotonic receipt lag — so both skew
+  // directions produce the identical, server-bound anchor.
+  const serverMs = Date.parse('2026-10-20T18:59:30Z'); // 30s before the tip
+  const receiptMonoMs = 10_000;
+  const hydrationMonoMs = 10_250; // trusted receipt lag: 250ms
+
+  it('a client clock two hours ahead never turns the fresh pre-tip sample into the started state', () => {
+    const anchor = anchorFromSample(serverMs, receiptMonoMs, hydrationMonoMs);
+    expect(anchor).toEqual({ serverMs: serverMs + 250, monoMs: hydrationMonoMs });
+    const projected = projectServerNow(anchor!, hydrationMonoMs);
+    expect(openingPhase(projected, TARGET, 1)).toBe('before');
+    expect(countdownParts(TARGET, projected)).toEqual({ days: 0, hours: 0, minutes: 0, seconds: 29 });
+    // The projection reaches the tip only after the remaining real time
+    // has elapsed on the monotonic clock — a constant client offset is
+    // not elapsed time and can never carry it across early.
+    expect(openingPhase(projectServerNow(anchor!, hydrationMonoMs + 29_000), TARGET, 1)).toBe('before');
+  });
+
+  it('a client clock two hours behind yields the same anchor — the count is the server sample’s, not a skewed one', () => {
+    // Identical monotonic evidence, identical anchor: the display counts
+    // down the server sample's own remaining ~30 seconds rather than a
+    // confidently wrong figure derived from the skewed wall clock.
+    const anchor = anchorFromSample(serverMs, receiptMonoMs, hydrationMonoMs);
+    expect(anchor).toEqual({ serverMs: serverMs + 250, monoMs: hydrationMonoMs });
+    expect(countdownParts(TARGET, projectServerNow(anchor!, hydrationMonoMs))).toEqual({
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 29,
+    });
   });
 });
 

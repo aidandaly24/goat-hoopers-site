@@ -22,6 +22,8 @@ try {
     { name: 'desktop-light', width: 1440, height: 1000, theme: 'light' },
     { name: 'phone-light', width: 390, height: 844, theme: 'light' },
     { name: 'phone-dark', width: 390, height: 844, theme: 'dark' },
+    { name: 'narrow-light', width: 320, height: 740, theme: 'light' },
+    { name: 'narrow-dark', width: 320, height: 740, theme: 'dark' },
     { name: 'narrow-200', width: 320, height: 740, theme: 'light', zoom: true },
   ]) {
     const context = await browser.newContext({ viewport: { width: settings.width, height: settings.height }, reducedMotion: 'reduce', isMobile: settings.width === 390, hasTouch: settings.width === 390 });
@@ -99,9 +101,18 @@ try {
           }));
           assert(faceMetrics.length >= 1, 'Public avatar view has no featured faces');
           for (const m of faceMetrics) {
-            assert(m.portraitW >= 90, `Featured portrait collapsed (${m.portraitW}px)`);
+            // The portrait slot is fluid: ~205px at 1440, ~111px at 390,
+            // ~88px at 320. The floor scales with the viewport so the
+            // assertion keeps its meaning (the portrait did not collapse
+            // to compact-avatar size) at every width.
+            assert(m.portraitW >= (settings.width <= 320 ? 80 : 90), `Featured portrait collapsed (${m.portraitW}px)`);
             assert(m.avatarW !== null && m.avatarW <= 48, `Compact face-row avatar ballooned (${m.avatarW}px)`);
-            assert(m.rowH !== null && m.rowH <= 72, `Face-row team name letter-wraps (row height ${m.rowH}px)`);
+            // The pathology this guards is the pre-fix letter-wrap tower
+            // (row height 260px when the avatar took the column). At
+            // 320px the three-across grid leaves ~88px columns, so the
+            // team name wraps as words beside the 40px avatar and the
+            // row is legitimately taller (~87px); the bound scales.
+            assert(m.rowH !== null && m.rowH <= (settings.width <= 320 ? 120 : 72), `Face-row team name letter-wraps (row height ${m.rowH}px)`);
           }
         }
       } else if (state === 'showcase-public') {
@@ -182,6 +193,17 @@ try {
         // identity truncates inside its row and the Recent Activity
         // own-team tag stays inside the card.
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Long-name fixture overflows the viewport');
+        if (settings.width === 320) {
+          // The unbroken activity team link once reached x378.7 here
+          // (scrollWidth 379): at 320px with normal text the page must
+          // be exactly viewport-wide — the link wraps inside its row.
+          assert(await page.evaluate(() => document.documentElement.scrollWidth === 320), 'Long-name fixture is not exactly 320px wide at 320px');
+          const linkRight = await page.locator('[data-league-section]').evaluate(node => {
+            const links = [...node.querySelectorAll('a')];
+            return links.length ? Math.max(...links.map(a => a.getBoundingClientRect().right)) : 0;
+          });
+          assert(linkRight > 0 && linkRight <= 320, `Activity link escapes the 320px viewport (${linkRight}px)`);
+        }
         const tagRight = await page.locator('[data-league-section]').evaluate(node => {
           const tags = [...node.querySelectorAll('li span')].filter(s => s.textContent === 'Your team');
           return tags.length ? tags[0].getBoundingClientRect().right : 0;

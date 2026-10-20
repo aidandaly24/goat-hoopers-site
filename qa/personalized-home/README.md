@@ -12,7 +12,8 @@ explicit local fixture selector, not a production ownership mechanism. Browser
 requests are restricted to GETs on numeric loopback. The production page resolves
 ownership from the existing server session and active link, never URL input.
 
-Coverage: 20 states at desktop light, phone light/dark and 320px with 200% text. Full valuation disclosures and populated synthetic form-guide records are included.
+Coverage: 20 states at desktop light, phone light/dark, 320px at normal text in
+both themes and 320px with 200% text. Full valuation disclosures and populated synthetic form-guide records are included.
 Sleeper CDN avatar requests are fulfilled locally with a 1×1 PNG so the
 `team-avatars` / `team-avatars-public` states exercise the real <img>
 avatar paths offline: the featured faces' compact avatar/name row is
@@ -21,7 +22,10 @@ non-champion alike) and every member-view avatar is asserted unballooned.
 The `archived-edition` state renders a historical edition the way
 /weekly/[editionId] does and asserts no current countdown/started UI.
 The `long-name` state asserts zero phone-viewport overflow in both
-themes, including the Recent Activity own-team tag staying in its card.
+themes, including the Recent Activity own-team tag staying in its card, and at
+320px with normal text it asserts the page is exactly viewport-wide: the
+activity feed's unbroken team link wraps inside its row instead of reaching
+past the right edge.
 The showcase caption is asserted in its formatted Eastern form
 ("Tue, Oct 20 · 3:00 PM EDT").
 Checks assert the approved homepage composition: the team desk (member) and league

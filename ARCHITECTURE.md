@@ -140,9 +140,17 @@ gated by the clock itself — never by the provider
 phase — and it renders even when the weekly edition is missing. It never
 renders on an archived edition: the archive flag closes the feature's
 clock gate outright. Its time is
-anchored to the server's league check — advanced once by the sample's age
-at hydration (`anchorFromSample`), thereafter only by the monotonic
-clock (wall time is a skew detector, never a source); the interval stops at
+anchored to the server's league check — advanced once at hydration, by
+the sample's receipt lag only (`anchorFromSample`): the monotonic gap
+between the freshest response completion the browser's own timing
+records logged and hydration. That lag is a lower bound on the sample's
+age — advancing by it can lag the true server instant but can never pass
+it — so no client wall-clock offset ever becomes elapsed server time;
+wall time is a skew detector, never a source. When the lag cannot be
+established (no timing record, or the freshest is too old to be the
+carrying response) there is no anchor and the clock shows the unconfirmed
+static target instead of a live count. Thereafter the anchor advances
+only on the monotonic clock; the interval stops at
 the tip and while the tab is hidden. On return, the hidden interval must
 reconcile — wall and monotonic clocks advancing together across it
 (`resumeClock` reports the resume trusted) — or elapsed time is uncertain

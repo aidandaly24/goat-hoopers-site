@@ -73,19 +73,73 @@ export function clockSampleSkewed(
 export type ClockSample = { monoMs: number; wallMs: number };
 
 /**
- * Anchor a server time sample at hydration. The sample was stamped when
- * the server ran its league check (`checkedAt`); by the time the client
- * hydrates, that instant is already in the past. Anchoring the raw stamp
- * to hydration time would re-live the sample/response age on every load,
- * so the anchor advances by the sample's age — measured once, here, as
- * the gap between the client's wall clock at hydration and the stamp.
- * After this single correction the wall clock never sets the displayed
- * time again: advancement is monotonic-only and divergence-checked. A
- * wall clock behind the stamp never rewinds the anchor.
+ * The longest receipt-to-hydration lag under which the freshest recorded
+ * response completion can still be identified as belonging to the
+ * response that carried this server sample. Beyond it the sample's age
+ * cannot be established from trusted evidence (the record may be a stale
+ * entry from an earlier document, e.g. after a soft navigation) and the
+ * clock must show the unconfirmed static target instead of a live count.
  */
-export function anchorFromSample(serverMs: number, wallMs: number, monoMs: number): ClockAnchor {
-  const ageMs = Number.isFinite(wallMs) ? Math.max(0, wallMs - serverMs) : 0;
-  return { serverMs: serverMs + ageMs, monoMs };
+export const MAX_TRUSTED_RECEIPT_LAG_MS = 30_000;
+
+/**
+ * The freshest response completion the browser's own timing
+ * infrastructure (Navigation + Resource Timing) recorded at or before
+ * `nowMonoMs`, in performance.now() terms — or null when it recorded
+ * none. These are monotonic timestamps captured by the browser around
+ * the sample's receipt; the client wall clock is never consulted, so no
+ * client clock offset can enter through here.
+ */
+export function freshestResponseEndMonoMs(nowMonoMs: number): number | null {
+  if (typeof performance === "undefined" || typeof performance.getEntriesByType !== "function") return null;
+  let latest: number | null = null;
+  try {
+    for (const type of ["navigation", "resource"]) {
+      for (const entry of performance.getEntriesByType(type)) {
+        const end = (entry as PerformanceResourceTiming).responseEnd;
+        if (Number.isFinite(end) && end > 0 && end <= nowMonoMs && (latest === null || end > latest)) {
+          latest = end;
+        }
+      }
+    }
+  } catch {
+    return null;
+  }
+  return latest;
+}
+
+/**
+ * Anchor a server time sample at hydration, aging it ONLY by trusted
+ * timing evidence. The sample was stamped when the server ran its league
+ * check, during the very request whose response carried the sample to
+ * this page — so its generation precedes that response's completion, and
+ * by hydration the sample is at least (hydration − response completion)
+ * old, measured entirely on the monotonic clock from the browser's own
+ * timing records. Advancing the anchor by exactly that receipt lag can
+ * lag the true server instant (by the sample's pre-receipt age: server
+ * processing and transit) but can never pass it: no client clock offset,
+ * however large, is converted into elapsed server time. The earlier
+ * version of this function measured the age as (client wall clock −
+ * sample stamp), which IS the wall clock whenever the client's clock
+ * runs ahead — a client two hours fast turned a fresh check 30 seconds
+ * before the tip into a false "Week 1 is underway" on mount.
+ *
+ * When the lag cannot be established — no timing record, or the
+ * freshest recorded completion is older than
+ * MAX_TRUSTED_RECEIPT_LAG_MS and so cannot be identified as the carrying
+ * response — there is no anchor (null), and the caller renders the
+ * unconfirmed static target rather than a live or started state.
+ */
+export function anchorFromSample(
+  serverMs: number,
+  receiptMonoMs: number | null,
+  hydrationMonoMs: number,
+): ClockAnchor | null {
+  if (receiptMonoMs === null) return null;
+  if (![serverMs, receiptMonoMs, hydrationMonoMs].every(Number.isFinite)) return null;
+  const ageMs = hydrationMonoMs - receiptMonoMs;
+  if (ageMs < 0 || ageMs > MAX_TRUSTED_RECEIPT_LAG_MS) return null;
+  return { serverMs: serverMs + ageMs, monoMs: hydrationMonoMs };
 }
 
 /**
@@ -168,9 +222,14 @@ export function formatTipDate(targetMs: number): string {
 
 /**
  * The Week 1 opening clock, shown on the court for every visitor. Time is
- * anchored to the server's own league check (`serverNowIso`), advanced by
- * the sample's age at hydration (see anchorFromSample) and thereafter only
- * by the monotonic clock, so a skewed client clock cannot move it. The
+ * anchored to the server's own league check (`serverNowIso`), advanced at
+ * hydration only by the sample's receipt lag measured from the browser's
+ * monotonic timing records (see anchorFromSample) and thereafter only by
+ * the monotonic clock, so a skewed client clock cannot move it. When the
+ * receipt lag cannot be established from that trusted evidence, elapsed
+ * server time is unknowable and the display is the unconfirmed static
+ * target from the start — never a live count, never a started state the
+ * server sample itself did not reach. The
  * interval stops at the tip (terminal started state) and while the tab is
  * hidden. On return, the hidden interval must reconcile — wall and
  * monotonic clocks advancing together — or elapsed time is uncertain and
@@ -200,9 +259,19 @@ export function TipCountdown({
     if (openingPhase(serverMs, targetMs, week) !== "before") return;
     // The anchor is created once per server sample and never reset: hidden
     // intervals, resumes and detector baselines all work around it, never
-    // replace it. Its server instant is advanced by the sample's age at
-    // hydration, so an older league check is not re-lived from its stamp.
-    const anchor: ClockAnchor = anchorFromSample(serverMs, Date.now(), performance.now());
+    // replace it. Its server instant is advanced only by the sample's
+    // receipt lag — the monotonic gap between the freshest response
+    // completion the browser recorded and hydration (see anchorFromSample)
+    // — so an older league check is not re-lived from its stamp, and no
+    // client wall-clock offset can become elapsed server time. When that
+    // lag cannot be established, there is no anchor: fall back to the
+    // unconfirmed static target instead of projecting a live count.
+    const hydrationMonoMs = performance.now();
+    const anchor = anchorFromSample(serverMs, freshestResponseEndMonoMs(hydrationMonoMs), hydrationMonoMs);
+    if (!anchor) {
+      setUncertain(true);
+      return;
+    }
     // Detector baseline: only consecutive samples taken while the tab is
     // visible are ever compared. Nothing sampled across a hidden interval
     // reaches clockSampleSkewed.
