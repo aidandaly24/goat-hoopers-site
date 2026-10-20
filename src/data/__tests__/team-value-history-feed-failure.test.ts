@@ -15,10 +15,10 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("../sleeper", async importOriginal => {
   const original = await importOriginal<typeof import("../sleeper")>();
-  return { ...original, fetchNbaState: vi.fn(), fetchTransactions: vi.fn() };
+  return { ...original, fetchNbaState: vi.fn(), fetchTransactions: vi.fn(), fetchTransactionsForLeague: vi.fn() };
 });
 
-import { fetchNbaState, fetchTransactions, type RawTransaction } from "../sleeper";
+import { fetchNbaState, fetchTransactions, fetchTransactionsForLeague, type RawTransaction } from "../sleeper";
 import { fetchTransactionsByWeekComplete } from "../league";
 import type { RecordedQuote } from "../recorded-quotes";
 import {
@@ -73,6 +73,9 @@ const stateOk = { week: 3, season_type: "regular", season: "2026" };
 beforeEach(() => {
   vi.mocked(fetchNbaState).mockReset();
   vi.mocked(fetchTransactions).mockReset();
+  vi.mocked(fetchTransactionsForLeague).mockReset();
+  // The 2025 lane is healthy and empty unless a test says otherwise.
+  vi.mocked(fetchTransactionsForLeague).mockResolvedValue([]);
 });
 
 describe("fetchTransactionsByWeekComplete", () => {
@@ -86,6 +89,11 @@ describe("fetchTransactionsByWeekComplete", () => {
 
   it("rejects a malformed (non-array) week payload", async () => {
     vi.mocked(fetchTransactions).mockResolvedValue({} as unknown as RawTransaction[]);
+    await expect(fetchTransactionsByWeekComplete([1])).rejects.toThrow("malformed payload");
+  });
+
+  it("rejects a week payload whose rows are not objects", async () => {
+    vi.mocked(fetchTransactions).mockResolvedValue([null] as unknown as RawTransaction[]);
     await expect(fetchTransactionsByWeekComplete([1])).rejects.toThrow("malformed payload");
   });
 
@@ -119,5 +127,55 @@ describe("default move loader (no injection)", () => {
     const oct8 = state.receipt().points.find(point => point.day === "2026-10-08")!;
     expect(oct8.roster).toEqual(["201", "202", "2711"]);
     expect(oct8.subtotalCents).toBe(21000);
+  });
+
+  it("a malformed completed row in a healthy week fails the whole load closed (dot P2 on #236)", async () => {
+    // The pre-fix normalization silently dropped a completed row with
+    // no timestamps and served HTTP 200 with only the healthy events.
+    const timeless = {
+      transaction_id: "timeless-completed", type: "free_agent", status: "complete", roster_ids: [2], leg: 1,
+      adds: null, drops: { "2711": 2 }, draft_picks: [],
+    } as unknown as RawTransaction;
+    vi.mocked(fetchNbaState).mockResolvedValue(stateOk);
+    vi.mocked(fetchTransactions).mockImplementation(async week => (week === 1 ? [CUT, timeless] : []));
+    await expect(loadTeamHistoryState("2", deps())).rejects.toMatchObject({ status: 503 });
+    expect(await getTeamValueHistory("2", deps())).toBeNull();
+  });
+
+  it("one failed 2025 week fails the whole load closed (#224 lane)", async () => {
+    vi.mocked(fetchNbaState).mockResolvedValue(stateOk);
+    vi.mocked(fetchTransactions).mockImplementation(async week => (week === 1 ? [CUT] : []));
+    vi.mocked(fetchTransactionsForLeague).mockImplementation(async (_leagueId, week) => {
+      if (week === 7) throw new Error("Sleeper API 500");
+      return [];
+    });
+    await expect(loadTeamHistoryState("2", deps())).rejects.toMatchObject({ status: 503 });
+    expect(await getTeamValueHistory("2", deps())).toBeNull();
+  });
+
+  it("reads exactly the 2025 league's fixed 24 weeks and surfaces its moves as events", async () => {
+    const trade2025 = tx({
+      transaction_id: "1425000000000000099", type: "trade", leg: 5, roster_ids: [2, 4],
+      created: Date.parse("2025-11-15T10:00:00Z"), status_updated: Date.parse("2025-11-15T10:00:00Z"),
+      adds: { "209": 2, "401": 4 }, drops: { "208": 2, "402": 4 }, draft_picks: [],
+    });
+    vi.mocked(fetchNbaState).mockResolvedValue(stateOk);
+    vi.mocked(fetchTransactions).mockImplementation(async week => (week === 1 ? [CUT] : []));
+    vi.mocked(fetchTransactionsForLeague).mockImplementation(async (_leagueId, week) => (week === 5 ? [trade2025] : []));
+    const state = await loadTeamHistoryState("2", deps());
+    const calls = vi.mocked(fetchTransactionsForLeague).mock.calls;
+    expect(calls).toHaveLength(24);
+    expect(calls.every(([leagueId]) => leagueId === "1282883196567977984")).toBe(true);
+    // The recorded endpoint is untouched by the 2025 lane.
+    const oct8 = state.receipt().points.find(point => point.day === "2026-10-08")!;
+    expect(oct8.roster).toEqual(["201", "202", "2711"]);
+    // And the 2025 trade is a sourced event in its day's detail.
+    const detail = state.detail("2025-11-15", {});
+    expect(detail.rosterStatus).toBe("ambiguous");
+    expect(detail.players).toEqual([]);
+    expect(detail.moves).toHaveLength(1);
+    expect(detail.moves[0]).toMatchObject({ sourceId: "1425000000000000099", type: "trade", leg: 5, rosterIds: [2, 4] });
+    expect(detail.moves[0].adds.filter(entry => entry.rosterId === 2).map(entry => entry.id)).toEqual(["209"]);
+    expect(detail.moves[0].drops.filter(entry => entry.rosterId === 2).map(entry => entry.id)).toEqual(["208"]);
   });
 });

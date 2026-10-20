@@ -51,6 +51,7 @@ import {
   fetchNbaState,
   fetchAiPublicationState,
   fetchTransactions,
+  fetchTransactionsForLeague,
   fetchDrafts,
   fetchDraftPicks,
   fetchPlayerDirectory,
@@ -244,20 +245,43 @@ export async function fetchTransactionsByWeek(
  * rejects the whole read. The tolerant default above converts a failed
  * week into "no moves that week" — acceptable for stats and feeds, but
  * a replay producer must never mistake a silent week for evidence that
- * no moves happened.
+ * no moves happened. Malformed here means a non-array payload or a row
+ * that is not an object; deep validation of completed records (usable
+ * timestamps, readable legs, carried fields) happens at normalization
+ * in the history producer, which fails the load closed on any of it.
  */
-export async function fetchTransactionsByWeekComplete(
+async function fetchWeeksComplete(
+  fetchWeek: (week: number) => Promise<RawTransaction[]>,
   weeks: number[]
 ): Promise<RawTransaction[][]> {
   return Promise.all(
     weeks.map(async (w): Promise<RawTransaction[]> => {
-      const rows = await fetchTransactions(w);
-      if (!Array.isArray(rows)) {
+      const rows = await fetchWeek(w);
+      if (!Array.isArray(rows) || !rows.every(row => !!row && typeof row === "object" && !Array.isArray(row))) {
         throw new Error(`Sleeper transactions week ${w} returned a malformed payload`);
       }
       return rows;
     })
   );
+}
+
+export async function fetchTransactionsByWeekComplete(
+  weeks: number[]
+): Promise<RawTransaction[][]> {
+  return fetchWeeksComplete(w => fetchTransactions(w), weeks);
+}
+
+/**
+ * League-scoped form of the strict fetcher above, for producers that
+ * read a second league's feed (the team-value-history producer reads
+ * the inaugural 2025 league alongside the current one). Same contract:
+ * any failed or malformed week rejects the whole read.
+ */
+export async function fetchTransactionsByWeekCompleteForLeague(
+  leagueId: string,
+  weeks: number[]
+): Promise<RawTransaction[][]> {
+  return fetchWeeksComplete(w => fetchTransactionsForLeague(leagueId, w), weeks);
 }
 
 /**

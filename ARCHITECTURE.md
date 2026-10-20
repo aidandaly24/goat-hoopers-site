@@ -20,16 +20,35 @@ detail from read-only sources only: recorded modeled quotes via the batched
 integer cents, native UTC-convention timestamps — the stock store itself is
 untouched and its snapshot-saving path is never called), a pinned dated
 roster anchor (current Sleeper rosters), and completed-move generation over
-the public Sleeper transaction feed in the frozen replay ordering
+the public Sleeper transaction feeds of both leagues in the chain — the
+current league over its state-proven week range and the inaugural 2025
+league over its fixed, final weeks 1–24 — in the frozen replay ordering
 (`status_updated`, tie-break `transaction_id`, complete-only, trades atomic).
 Supported days are labelled `replayed`; anything the anchor or ordering
-cannot prove stays ambiguous/unavailable with no point. The generation
-fingerprints the anchor roster, the move set, the admitted quote set and the
+cannot prove stays ambiguous/unavailable with no point. Under the #224
+amendment, day detail also lists the 2025 league's completed moves as
+sourced events (team-scoped legs — every add/drop carries its roster id —
+plus declared participants, shaped draft picks and waiver FAAB, with
+carried-none picks distinguished from a record that does not carry the
+field); the events assert only their own legs, so the 2025 roster band
+stays `ambiguous` and 2025 valuation stays `unavailable`. League provenance
+is load-bearing: each feed is normalized separately and every move (and its
+DTO) carries its source `leagueId`; only the current league's moves enter
+roster inversion, point derivation and the receipt, since the anchor is the
+current league's roster — a prior league's move is a display event only,
+whatever its timestamps. Team relevance includes declared participants and
+draft picks, so a pick-only trade still emits as an event and binds the
+generation. The generation
+fingerprints the anchor roster, the move set (provenance included), the
+admitted quote set and the
 roster/source bounds, so any added/revised/pruned quote yields a new
 generation and stale detail/summary requests get 409. The producer fails
 closed throughout: the move feed loads through the strict
 `fetchTransactionsByWeekComplete` (any failed or malformed week rejects the
-load — a silent week is never replayed as an empty move set), evidence is
+load — a silent week is never replayed as an empty move set), normalization
+validates every completed record (usable timestamps, readable legs,
+well-formed participants/bids/carried fields) and rejects the load on a
+malformed one rather than dropping it silently, evidence is
 admitted only at or before the load instant, compared at native
 microsecond precision rather than through `Date.parse` (a future-dated
 quote or move never advances `asOf`, and today's unpriced detail claims

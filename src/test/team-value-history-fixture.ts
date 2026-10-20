@@ -50,8 +50,10 @@ export function teamValueHistoryDetailFixture(day: string): TeamValueHistoryDeta
     pointId: point?.id ?? null, rosterRef: point?.rosterRef ?? `synthetic-roster-${day}`, rosterStatus: "replayed", rosterCount: 3, priced, subtotalCents,
     rosterEvidence: ["Synthetic roster proof; not independently verified league data."], players,
     movesRange: { from: day === envelope.leagueRange.from ? day : shiftHistoryDay(day, -1), toExclusive: shiftHistoryDay(day, 1) },
-    moves: [{ id: `synthetic-move-${day}`, sourceId: `synthetic-source-${day}`, sourceRef: "Synthetic source receipt", origin: "transaction", type: "waiver", status: "complete",
-      effectiveAt: `${day}T07:00:00Z`, precision: "instant", day: null, adds: [{ id: "synthetic-player-0", name: "Synthetic guard" }], drops: [{ id: "synthetic-former-player", name: "Synthetic former player" }], note: "Synthetic move for interaction testing." },
-    { id: "synthetic-boundary", sourceId: "synthetic-boundary-evidence", sourceRef: "Synthetic reconciliation receipt", origin: "boundary-reconciliation", type: "boundary-reconciliation", status: "derived",
-      effectiveAt: null, day: null, precision: "unknown", adds: [], drops: [], note: "Effective time unknown; this derived boundary is not a source transaction." }], movesTruncated: false };
+    moves: [{ id: `synthetic-move-${day}`, sourceId: `synthetic-source-${day}`, sourceRef: "Synthetic source receipt", leagueId: "synthetic-2026", origin: "transaction", type: "waiver", status: "complete",
+      effectiveAt: `${day}T07:00:00Z`, precision: "instant", day: null, leg: 9, rosterIds: [1], waiverBid: 7, draftPicks: [],
+      adds: [{ id: "synthetic-player-0", name: "Synthetic guard", rosterId: 1 }], drops: [{ id: "synthetic-former-player", name: "Synthetic former player", rosterId: 1 }], note: "Synthetic move for interaction testing." },
+    { id: "synthetic-boundary", sourceId: "synthetic-boundary-evidence", sourceRef: "Synthetic reconciliation receipt", leagueId: "synthetic-2026", origin: "boundary-reconciliation", type: "boundary-reconciliation", status: "derived",
+      effectiveAt: null, day: null, precision: "unknown", leg: null, rosterIds: [], waiverBid: null, draftPicks: null,
+      adds: [], drops: [], note: "Effective time unknown; this derived boundary is not a source transaction." }], movesTruncated: false };
 }

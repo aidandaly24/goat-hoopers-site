@@ -37,13 +37,54 @@ export type TeamHistoryPriceProof = {
   | { kind: "recorded"; quoteId: string; recordedAt: string; nativeTimestamp: string }
   | { kind: "reconstructed"; source: "gamelog" | "annual" | "event-log"; datasetId: string; modelVersion: string; inputCutoff: string }
 );
+/**
+ * One leg of a move: the player and the roster that received them
+ * (`adds`) or sent them (`drops`). Legs are never global arrays — the
+ * roster id rides on every entry, so a two-sided trade's assets can be
+ * scoped to either team exactly.
+ */
+export type TeamHistoryMovePlayer = { id: string; name: string; rosterId: number };
+/**
+ * A draft pick carried by a move record, shaped from the record's own
+ * identifiers: the roster the pick belongs to (`rosterId`), the roster
+ * giving it up (`previousOwnerId`) and the roster receiving it
+ * (`ownerId`). Fields the record does not carry stay null.
+ */
+export type TeamHistoryDraftPick = {
+  season: string | null; round: number | null;
+  rosterId: number | null; ownerId: number | null; previousOwnerId: number | null;
+};
 export type TeamHistoryMove = {
   id: string; sourceId: string; sourceRef: string;
+  /**
+   * Source-league provenance: the Sleeper league whose transaction
+   * feed carried this record. Day detail lists events from every
+   * league in the chain, but only the current league's moves may enter
+   * that league's roster inversion — a prior league's event is display
+   * evidence about its own legs, never membership evidence for the
+   * current anchor's history.
+   */
+  leagueId: string;
   origin: "transaction" | "draft" | "boundary-reconciliation";
   type: "waiver" | "free_agent" | "trade" | "commissioner" | "draft" | "boundary-reconciliation" | "other";
   status: "complete" | "derived";
   effectiveAt: string | null; day: string | null; precision: "instant" | "day" | "unknown";
-  adds: { id: string; name: string }[]; drops: { id: string; name: string }[];
+  /** Sleeper week ("leg") the record belongs to; null when not carried. */
+  leg: number | null;
+  /** Declared participant rosters (`roster_ids`), including any with no player movement. */
+  rosterIds: number[];
+  /**
+   * FAAB paid to win a waiver claim (`settings.waiver_bid`); null when
+   * the record carries none. Sleeper trades carry no FAAB, so a trade's
+   * null is by source, not by omission.
+   */
+  waiverBid: number | null;
+  /**
+   * Picks carried by the record: null when the record does not carry
+   * the field at all (not read), [] when it carries none.
+   */
+  draftPicks: TeamHistoryDraftPick[] | null;
+  adds: TeamHistoryMovePlayer[]; drops: TeamHistoryMovePlayer[];
   note: string | null;
 };
 export type TeamValueHistoryDetail = {
@@ -113,6 +154,12 @@ const instant = (value: unknown): value is string => typeof value === "string" &
 const day = (value: unknown): value is string => typeof value === "string" && validHistoryDay(value);
 const range = (value: unknown): value is TeamHistoryRange => object(value) && day(value.from) && day(value.toExclusive) && value.from < value.toExclusive;
 const rosterStatus = (value: unknown) => ["verified", "replayed", "ambiguous", "unavailable"].includes(String(value));
+const rosterIdValue = (value: unknown): value is number => typeof value === "number" && Number.isSafeInteger(value) && value >= 1;
+const pickField = (value: unknown): boolean => value === null || rosterIdValue(value);
+function draftPickShape(value: unknown): boolean {
+  return object(value) && (value.season === null || text(value.season, 32))
+    && pickField(value.round) && pickField(value.rosterId) && pickField(value.ownerId) && pickField(value.previousOwnerId);
+}
 function valuation(value: Record<string, unknown>): value is Record<string, unknown> & Pick<TeamHistoryPoint, "rosterStatus" | "rosterCount" | "priced" | "subtotalCents"> {
   if (!rosterStatus(value.rosterStatus) || !(value.rosterCount === null || (cents(value.rosterCount) && value.rosterCount <= TEAM_HISTORY_MAX_PLAYERS))
     || !cents(value.priced) || !(value.subtotalCents === null || cents(value.subtotalCents))) return false;
@@ -190,15 +237,22 @@ export function isTeamValueHistoryDetail(value: unknown): value is TeamValueHist
   const moveIds = new Set<string>();
   return value.moves.every(move => {
     if (!object(move) || !text(move.id) || moveIds.has(move.id) || !text(move.sourceId) || !text(move.sourceRef, 1000)
+      || !text(move.leagueId)
       || !["transaction", "draft", "boundary-reconciliation"].includes(String(move.origin))
       || !["waiver", "free_agent", "trade", "commissioner", "draft", "boundary-reconciliation", "other"].includes(String(move.type))
       || (move.origin === "transaction" ? move.status !== "complete" : move.status !== "derived")
       || !["instant", "day", "unknown"].includes(String(move.precision))
       || (move.precision === "instant" ? !instant(move.effectiveAt) : move.effectiveAt !== null)
       || (move.precision === "day" ? !day(move.day) : move.day !== null)
+      || !(move.leg === null || (Number.isSafeInteger(move.leg) && Number(move.leg) >= 0))
+      || !Array.isArray(move.rosterIds) || move.rosterIds.length > TEAM_HISTORY_MAX_PLAYERS
+      || !move.rosterIds.every(entry => rosterIdValue(entry))
+      || !(move.waiverBid === null || cents(move.waiverBid))
+      || !(move.draftPicks === null || (Array.isArray(move.draftPicks) && move.draftPicks.length <= TEAM_HISTORY_MAX_PLAYERS
+        && move.draftPicks.every(entry => draftPickShape(entry))))
       || !(move.note === null || text(move.note, 1000))) return false;
     for (const key of ["adds", "drops"]) if (!Array.isArray(move[key]) || move[key].length > TEAM_HISTORY_MAX_PLAYERS
-      || !move[key].every(player => object(player) && text(player.id) && text(player.name))) return false;
+      || !move[key].every(player => object(player) && text(player.id) && text(player.name) && rosterIdValue(player.rosterId))) return false;
     moveIds.add(move.id); return true;
   });
 }
