@@ -642,6 +642,20 @@ When the database isn't
 provisioned the store is a no-op: prices still compute live, movers show
 their honest "no history yet" states, and nothing crashes.
 
+Team value history (#217) gets its own three-table store in `db.ts`,
+landed schema-first (`migrations/team-value-history.sql`, reviewed and
+applied separately; no ingest or reader exists yet). `sleeper_transactions`
+is the normalized archive of both league seasons' Sleeper transactions —
+failed rows are stored verbatim and filtered only at replay read time —
+`roster_snapshots_daily` is the replay output (one roster per slot per UTC
+day, with a verified / replayed / boundary-reconciliation provenance
+status), and `team_value_points` is the derived daily series whose
+`subtotal_cents` is nullable because unknown means NULL, never zero.
+Recorded points persist there with their original quote references
+because `stock_snapshots` prunes after 30 days. The dot owns the
+presentation contract (`src/domain/team-value-history.ts`) and picker;
+the producer that fills these tables is a later, separately reviewed lane.
+
 The `CombinedTicker` marquee renders in the root layout above every page
 (ESPN style: news headlines, stock quotes, and — on NBA game days — live
 scores alternate on a timer; pure CSS animation, pauses on hover, no
