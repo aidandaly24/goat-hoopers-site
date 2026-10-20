@@ -77,7 +77,7 @@ const snapshotHistory = viewer.kind === 'member' ? Object.fromEntries(
 const personal = buildPersonalizedHome(viewer, home, weekly, state === 'missing-market' ? null : market, news, guideSources, snapshotHistory);
 createRoot(document.getElementById('root')!).render(<>
   <aside className="fixture-note">Offline personalized home review · all teams, values, scores and AI results are synthetic · no account actions</aside>
-  <SiteHeader user={viewer.kind === 'member' ? { displayName: `Fixture manager ${id}`, teamId: id } : null} logoutAction={async () => { throw Error('No account action in fixture'); }} />
+  <SiteHeader user={viewer.kind === 'member' ? { displayName: `Fixture manager ${id}`, teamId: id, avatar: null } : null} logoutAction={async () => { throw Error('No account action in fixture'); }} />
   <main id="main-content"><CourtsideHome data={home} archive={[]} portraits={{}} aiWeekly={weekly} viewerTeamId={viewer.kind === 'member' ? viewer.teamId : undefined} personal={personal} faces={buildHomeFaces(home, state === 'missing-market' ? null : market)} archived={state === 'archived-edition'} /></main>
   <SiteFooter season={home.hub?.season ?? null} />
 </>);

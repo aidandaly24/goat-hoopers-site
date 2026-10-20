@@ -5,7 +5,7 @@ import type { PlayerStock } from "@/domain";
 import "@/ui/tokens.css";
 import "./globals.css";
 import { getCurrentUser, logout } from "@/app/actions";
-import { getSeasonMeta, getStockMarketData, getLeagueNews } from "@/data/league";
+import { getSeasonMeta, getStockMarketData, getLeagueNews, getTeams } from "@/data/league";
 import { SiteHeader } from "@/ui/SiteHeader";
 import { SiteFooter } from "@/ui/SiteFooter";
 import { SITE_DESTINATIONS } from "@/ui/siteDestinations";
@@ -126,8 +126,22 @@ export default async function RootLayout({
   // Season metadata for the footer. Best-effort: a failed fetch renders
   // the footer without the season line rather than failing the page.
   const season = await getSeasonMeta();
+  // The header chip shows the member's Sleeper avatar: the avatar id of
+  // their team's owner, resolved through the league loader (rosters and
+  // users ride the cached Sleeper fetches). Best-effort — a failed lookup,
+  // an unmapped team, or a manager with no Sleeper avatar leaves it null
+  // and the chip falls back to the initial disc.
+  let headerAvatar: string | null = null;
+  if (user) {
+    try {
+      const teams = await getTeams();
+      headerAvatar = teams.find((t) => t.id === user.teamId)?.avatar ?? null;
+    } catch {
+      headerAvatar = null;
+    }
+  }
   const headerUser = user
-    ? { displayName: user.displayName, teamId: user.teamId }
+    ? { displayName: user.displayName, teamId: user.teamId, avatar: headerAvatar }
     : null;
   return (
     <html

@@ -30,7 +30,7 @@ async function mount() {
   }
   const member = fixtureState() === "error" ? null : await getProviderUser();
   createRoot(document.getElementById("root")!).render(<>
-    <SiteHeader user={member ? { displayName: member.displayName, teamId: member.teamId } : null} logoutAction={async () => {}} />
+    <SiteHeader user={member ? { displayName: member.displayName, teamId: member.teamId, avatar: null } : null} logoutAction={async () => {}} />
     <main id="main-content" tabIndex={-1}>{content}</main>
     <SiteFooter season={null} />
   </>);
