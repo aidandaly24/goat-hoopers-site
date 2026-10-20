@@ -74,6 +74,10 @@
     {
       "case": "rejected-save",
       "noCelebration": true
+    },
+    {
+      "case": "unsupported-82-0-predictions",
+      "honestUnranked": true
     }
   ],
   "errors": [],
@@ -81,7 +85,7 @@
   "unexpectedWrites": [],
   "failures": [],
   "consumerBlobs": {
-    "src/surfaces/arcade/CompetitionLeaderboard.tsx": "8f7c4b91534ce2df96405553c39133275e1ceed5",
+    "src/surfaces/arcade/CompetitionLeaderboard.tsx": "094d70b2bb616de2d664defd36a60c15a33d6e71",
     "src/surfaces/arcade/CompetitionLeaderboard.module.css": "6f739462f3355ef1f59e5dd40bf6d5328d87add4",
     "src/surfaces/arcade/GameCard.tsx": "d0c436972fd1aa41fe82c1fc09549cf8535c6ecf",
     "src/surfaces/arcade/RankedFreeThrow.tsx": "2f348e529252fd62ce93390ea404210aadc84b3e",
@@ -103,7 +107,7 @@
   "runtime": "Next 16.3.8 production webpack; real root/Arcade routes/consumers/transport/recorder; synthetic source and availability responders; real domain replay; renderer input bridge substituted",
   "textScale": "200% root font size, restored after hard reload; not browser page zoom",
   "localChecks": {
-    "focusedTests": 9,
+    "focusedTests": 11,
     "surfaceContracts": 104,
     "typecheck": "pass",
     "scopedLint": "pass, zero warnings",
@@ -114,5 +118,36 @@
     "No live app/provider/database requests, sign-in setup or production score writes.",
     "The renderer is unchanged and omitted from this UI fixture; no art/physics/device performance claim.",
     "No authoritative new-record decision exists in the score response; feedback confirms accepted saves only."
-  ]
+  ],
+  "followUp": {
+    "priorHead": "2eb2ba5c9d44912277b404052f8ddd840b847901",
+    "delta": "Unsupported direct leaderboard routes distinguish not-yet-playable games from local practice; discovery test asserts explicit ranked/practice labels and destinations. No change to the supported Free Throw save or board branches.",
+    "newBrowserCases": [
+      {
+        "case": "prop-and-scope-races",
+        "oldRowsHidden": true,
+        "lastScopeWins": true
+      },
+      {
+        "case": "unsupported-priced-in",
+        "honestUnranked": true
+      },
+      {
+        "case": "unsupported-week-2-preview",
+        "honestUnranked": true
+      },
+      {
+        "case": "unsupported-82-0-predictions",
+        "honestUnranked": true
+      }
+    ],
+    "previousConsumerBlobs": {
+      "src/surfaces/arcade/CompetitionLeaderboard.tsx": "8f7c4b91534ce2df96405553c39133275e1ceed5",
+      "src/surfaces/arcade/CompetitionLeaderboard.module.css": "6f739462f3355ef1f59e5dd40bf6d5328d87add4",
+      "src/surfaces/arcade/GameCard.tsx": "d0c436972fd1aa41fe82c1fc09549cf8535c6ecf",
+      "src/surfaces/arcade/RankedFreeThrow.tsx": "2f348e529252fd62ce93390ea404210aadc84b3e",
+      "src/surfaces/arcade/RankedFreeThrow.module.css": "137c34e1c6e4d11dd0aef07774a17611b993313e"
+    },
+    "reuse": "Original supported-game save, recovery, state and layout cases are reused; the only runtime-file delta is the unsupported-game branch, rechecked here with all three unsupported categories plus the prop/scope race."
+  }
 }

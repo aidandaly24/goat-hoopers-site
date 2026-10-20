@@ -115,11 +115,12 @@ with sync_playwright() as p:
                     page.get_by_text('weekly_hooper',exact=True).wait_for()
                 assert geometry(page)['scroll']==320
                 report['cases'].append({'case':mode,'distinctState':True});page.close()
-            for game in ['priced-in','week-2-preview']:
+            for game in ['priced-in','week-2-preview','82-0-predictions']:
                 if selected and 'unsupported-'+game not in selected:continue
                 page=openpage('unsupported-'+game,'/arcade/'+game+'/leaderboard')
                 page.get_by_role('heading',name='has no ranked leaderboard',exact=False).wait_for()
                 assert not page.get_by_role('group',name='Rankings scope').count()
+                if game=='82-0-predictions':page.get_by_text('not playable yet',exact=False).wait_for()
                 report['cases'].append({'case':'unsupported-'+game,'honestUnranked':True});page.close()
             if not selected or 'rejected' in selected:
                 page=openpage('rejected','/arcade/ranked-free-throw','reject')

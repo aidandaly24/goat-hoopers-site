@@ -19,12 +19,16 @@ it("does not advertise ranked boards for practice-only games or previews", () =>
 });
 
 it("explains unsupported game routes before trying a ranking read", () => {
-  for (const gameId of ["priced-in", "week-2-preview"]) {
+  for (const gameId of ["priced-in", "week-2-preview", "82-0-predictions"]) {
     const html = renderToStaticMarkup(createElement(CompetitionLeaderboard, { gameId, kind: "all-time" }));
     expect(html).toContain("has no ranked leaderboard");
     expect(html).not.toContain("Loading rankings");
     expect(html).not.toContain('aria-label="Rankings scope"');
     expect(html).toContain("Free Throw weekly leaderboard");
+    if (gameId === "82-0-predictions") {
+      expect(html).toContain("not playable yet");
+      expect(html).not.toContain("Play local practice");
+    }
   }
 });
 

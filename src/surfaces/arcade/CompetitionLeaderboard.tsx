@@ -54,8 +54,9 @@ export function CompetitionLeaderboard({ kind = "weekly", periodId, gameId = "fr
   const game = getGame(gameId), heading = kind === "weekly" ? "This week’s leaderboard" : kind === "all-time" ? `${game?.name ?? gameId} · all-time` : "Weekly final";
   if (!supported) return <section className={styles.wrap} aria-label={`${game?.name ?? gameId} rankings`}>
     <Card><SectionHeading eyebrow="Unranked game" title={`${game?.name ?? gameId} has no ranked leaderboard`} level={titleLevel} />
-      <p>This game is {game?.play?.mode === "preview" ? "an unranked preview" : "local practice"}. Its scores do not enter weekly or all-time rankings.</p>
-      <nav className={styles.links} aria-label="Game options"><Link href={`/arcade/${gameId}`}>{game?.play?.mode === "preview" ? "Open preview" : "Play local practice"}</Link>
+      <p>{game?.play ? <>This game is {game.play.mode === "preview" ? "an unranked preview" : "local practice"}. Its scores do not enter weekly or all-time rankings.</>
+        : "This game is not playable yet and has no ranked scores."}</p>
+      <nav className={styles.links} aria-label="Game options"><Link href={`/arcade/${gameId}`}>{!game?.play ? "View game details" : game.play.mode === "preview" ? "Open preview" : "Play local practice"}</Link>
         <Link href="/arcade/leaderboard">Free Throw weekly leaderboard</Link><Link href="/arcade">All games</Link></nav>
     </Card>
   </section>;

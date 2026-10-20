@@ -5,7 +5,7 @@ import { getGame, getPlayableGames } from "@/domain/arcade";
 import ArcadePage from "./page";
 
 describe("public Arcade discovery", () => {
-  it("advertises implemented practice while league competition stays closed", () => {
+  it("keeps implemented practice independent of ranked availability", () => {
     expect(getGame("free-throw")?.status).toBe("coming-soon");
     expect(getPlayableGames().map(game => game.id)).toEqual(["free-throw", "week-2-preview", "priced-in"]);
     expect(getGame("week-2-preview")?.play?.mode).toBe("preview");
@@ -20,7 +20,9 @@ describe("public Arcade discovery", () => {
     // page must not call the former account/store gate.
     const html = renderToStaticMarkup(createElement(ArcadePage));
     expect(html).toContain('href="/arcade/free-throw"');
-    expect(html).toContain('aria-label="Play Free Throw Shootout"');
+    expect(html).toContain('aria-label="Play ranked free throws"');
+    expect(html).toContain('href="/arcade/ranked-free-throw"');
+    expect(html).toContain("Local practice court");
     expect(html).toContain("free-throw-preview.jpg");
     expect(html).toContain("Actual gameplay");
     expect(html).toContain("No sign-in needed");
@@ -29,7 +31,7 @@ describe("public Arcade discovery", () => {
     expect(html).toContain("Week 2 · Unranked preview");
     expect(html).toContain("Week 2 competition stays closed");
     expect(html).toContain('href="/arcade/priced-in"');
-    expect(html).toContain('aria-label="Play Priced In"');
+    expect(html).toContain('aria-label="Practice Priced In"');
     expect(html).toContain("The price game");
     expect(html).toContain("Over or under the line?");
     expect(html).toContain('href="/arcade/leaderboard"');
