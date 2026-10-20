@@ -1,11 +1,11 @@
 import "server-only";
-import type { AiDecidesData, AiWeeklySlate } from "@/domain/ai-decider";
+import type { AiDecidesData, AiSourceConfiguration, AiWeeklyInput, AiWeeklySlate } from "@/domain/ai-decider";
 import { getGameStore } from "../arcade";
 import { loadAiLeagueRosterContext, loadAiPublicationState, loadAiWeekContext } from "../league";
 import { createOpenAiDecisionsClient } from "./provider";
 import { availability, type AiRuntime } from "./service";
 import { getAiDeciderStore } from "./store";
-import { cachedWeek, weekKey } from "./weekly";
+import { cachedWeek, weekKey, withSourceCompatibility } from "./weekly";
 import { aiDataDeadline } from "./deadline";
 import { friendsAuthEnabled } from "../friends-auth/config";
 import { uuidValid } from "./validation";
@@ -27,7 +27,7 @@ export function createAiRuntime(headers?: Headers): AiRuntime {
   return { enabled, client: key ? createOpenAiDecisionsClient(key) : null, store, sessions, providerSession, weeklyOperator, week1Refresh, now: Date.now, getLeagueContext: loadAiLeagueRosterContext, getSourceState: loadAiPublicationState, getWeekKey: async () => weekKey(await aiDataDeadline(loadAiWeekContext(), 3000)) };
 }
 
-export async function loadAiDecidesData(runtime = createAiRuntime(), context = loadAiWeekContext): Promise<AiDecidesData> {
+export async function loadAiDecidesData(runtime = createAiRuntime(), context: () => Promise<Pick<AiWeeklyInput, "leagueId" | "season" | "week" | "matchups" | "phase"> & { configuration?: AiSourceConfiguration }> = loadAiWeekContext): Promise<AiDecidesData> {
   const state = await availability(runtime);
   let week1Refresh: AiDecidesData["week1Refresh"];
   let weekly: AiWeeklySlate = { leagueId: "1387473752807190528", season: "unknown", week: 0, status: "unavailable", message: "The current weekly matchups are unavailable.", generatedAt: null, matchups: [], snapshot: null };
@@ -43,6 +43,9 @@ export async function loadAiDecidesData(runtime = createAiRuntime(), context = l
         : await runtime.store.persistence.hasWeekRefresh() ? { status: "sealed", message: "The one-time attempt is sealed. Original picks remain public; no automatic retry is allowed." }
         : { status: "available", message: "One explicit manager refresh is available. Original picks remain public until all five replacements are saved." };
     }
+    // Label current-source compatibility only after validating the frozen record
+    // and the independent refresh control. Neither archived fact is rewritten.
+    if (record) weekly = withSourceCompatibility(weekly, record.input, current.configuration);
   } catch { /* Leave an honest unavailable slate; no generation fallback. */ }
   return { availability: state, weekly, ...(week1Refresh ? { week1Refresh } : {}) };
 }

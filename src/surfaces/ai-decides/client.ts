@@ -91,13 +91,23 @@ export const postContextPreview: ContextTransport = async (request, signal) => {
 };
 
 const weeklyUnavailable = (): AiWeeklyPublishResponse => ({ status: "unavailable", code: "invalid_response", message: "No verified saved slate was returned. Review the publication attempt before retrying." });
+/** Display provenance cannot turn a partial/malformed result into a saved slate. */
+function sourceCompatibilityValid(value: unknown): boolean {
+  if (!object(value) || !["compatible", "changed", "unverified"].includes(value.status as string) || typeof value.currentWindow !== "boolean" || !count(value.savedStarterCount, 1, 20) || (value.currentStarterCount !== null && !count(value.currentStarterCount, 1, 20)) || typeof value.message !== "string" || !value.message.trim() || value.message.length > 1000 || /[\u0000-\u001f\u007f]/.test(value.message)) return false;
+  if (!((value.savedPolicy === "legacy-ten-starters" && value.savedStarterCount === 10) || (value.savedPolicy === "goat-eleven-starters-v1" && value.savedStarterCount === 11))) return false;
+  return value.status !== "compatible" || value.currentStarterCount === value.savedStarterCount;
+}
+
 export function readWeeklyPublishResponse(value: unknown): AiWeeklyPublishResponse {
   if (!object(value) || value.status !== "ready") {
     const failure = readDecisionResponse(value);
     return failure.status === "ready" ? weeklyUnavailable() : failure;
   }
   const weekly = value.weekly;
-  if (!object(weekly) || typeof weekly.leagueId !== "string" || typeof weekly.season !== "string" || typeof weekly.week !== "number" || !Number.isSafeInteger(weekly.week) || weekly.week < 1 || weekly.status !== "ready" || typeof weekly.message !== "string" || !iso(weekly.generatedAt) || !object(weekly.snapshot) || !snapshotValid(weekly.snapshot) || !Array.isArray(weekly.matchups) || weekly.matchups.length !== 5) return weeklyUnavailable();
+  if (!object(weekly)) return weeklyUnavailable();
+  if (weekly.sourceCompatibility !== undefined && !sourceCompatibilityValid(weekly.sourceCompatibility)) return weeklyUnavailable();
+  const compatibilityStale = weekly.status === "stale" && object(weekly.sourceCompatibility) && weekly.sourceCompatibility.currentWindow === true && ["changed", "unverified"].includes(weekly.sourceCompatibility.status as string);
+  if (typeof weekly.leagueId !== "string" || typeof weekly.season !== "string" || typeof weekly.week !== "number" || !Number.isSafeInteger(weekly.week) || weekly.week < 1 || (weekly.status !== "ready" && !compatibilityStale) || typeof weekly.message !== "string" || !iso(weekly.generatedAt) || !object(weekly.snapshot) || !snapshotValid(weekly.snapshot) || !Array.isArray(weekly.matchups) || weekly.matchups.length !== 5) return weeklyUnavailable();
   if (!weekly.matchups.every(p => {
     if (!object(p) || typeof p.matchupId !== "string" || !Array.isArray(p.teamIds) || p.teamIds.length !== 2 || !p.teamIds.every(id => typeof id === "string" && id.length > 0) || p.teamIds[0] === p.teamIds[1] || typeof p.message !== "string" || !Array.isArray(p.evidence) || !p.evidence.every(e => typeof e === "string")) return false;
     if (p.status !== "ready" || readDecisionResponse({ status: "ready", result: p.result }, p.teamIds, { kind: "matchup", teamIds: [p.teamIds[0], p.teamIds[1]] }).status !== "ready") return false;
@@ -122,7 +132,7 @@ export function readWeek1RefreshResponse(value: unknown, expected: AiWeeklySlate
   const response = readWeeklyPublishResponse(value);
   if (response.status !== "ready") return response;
   const weekly = response.weekly;
-  if (expected.status !== "ready" || expected.week !== 1 || weekly.week !== 1 || weekly.leagueId !== expected.leagueId || weekly.season !== expected.season || expected.matchups.length !== 5 || new Set(expected.matchups.map(p => p.matchupId)).size !== 5 || new Set(expected.matchups.flatMap(p => p.teamIds)).size !== 10) return refreshUnavailable();
+  if (readWeeklyPublishResponse({ status: "ready", weekly: expected }).status !== "ready" || expected.week !== 1 || weekly.week !== 1 || weekly.leagueId !== expected.leagueId || weekly.season !== expected.season) return refreshUnavailable();
   if (!weekly.matchups.every(row => {
     const pair = expected.matchups.find(p => p.matchupId === row.matchupId);
     return pair && pair.teamIds[0] === row.teamIds[0] && pair.teamIds[1] === row.teamIds[1];

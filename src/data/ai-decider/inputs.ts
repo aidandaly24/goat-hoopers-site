@@ -1,4 +1,5 @@
 import type { AiWeeklyInput } from "@/domain/ai-decider";
+import { GOAT_LINEUP_POLICY } from "@/domain/ai-lineup-policy";
 import type { SeasonStatLines } from "../nba-stats";
 import type { RawLeague, RawMatchupEntry, RawRoster } from "../sleeper";
 import { fppgUnderScoring } from "../transform";
@@ -22,6 +23,9 @@ export function buildAiWeeklyInput(preparation: AiWeekPreparation, league: RawLe
   return {
     leagueId: GOAT_LEAGUE_ID,
     ...preparation,
+    // Fresh previews use a versioned declaration. Frozen untagged snapshots
+    // retain their historical ten-starter decoder; no history is upgraded.
+    ...(preparation.preview ? { lineupPolicy: GOAT_LINEUP_POLICY.version } : {}),
     scoring: { ...league.scoring_settings },
     // BN denotes bench slots, not starters. Unknown positions remain unsupported.
     starterSlots: (league.roster_positions ?? []).filter(slot => slot !== "BN"),

@@ -138,7 +138,7 @@ describe("weekly facts, immutability and cached reads", () => {
     const h = harness(), input = weeklyInput(); await generateWeeklyPicks(input, TOKEN, h.runtime);
     const calls = h.create.mock.calls.length;
     const context = async () => ({ leagueId: input.leagueId, season: input.season, week: input.week, matchups: input.matchups, phase: input.phase });
-    expect((await loadAiDecidesData(h.runtime, context)).weekly.status).toBe("ready");
+    expect((await loadAiDecidesData(h.runtime, context)).weekly).toMatchObject({ status: "stale", sourceCompatibility: { status: "unverified" } });
     expect(h.create).toHaveBeenCalledTimes(calls);
     h.setTime(Date.parse(input.endsAt)); expect((await loadAiDecidesData(h.runtime, context)).weekly.status).toBe("stale");
     const record = h.persistence.weeks.get(weekKey(input))!;
@@ -154,16 +154,12 @@ describe("weekly facts, immutability and cached reads", () => {
     expect(await generateWeeklyPicks(input, TOKEN, h.runtime)).toMatchObject({ status: "unavailable", code: "weekly_closed" });
     expect(h.create).toHaveBeenCalledTimes(count);
   });
-  it("compares any two selected teams using only those frozen lineups", async () => {
+  it("keeps a legacy ten-starter snapshot readable without a new matchup experiment", async () => {
     const h = harness(), input = weeklyInput(); await generateWeeklyPicks(input, TOKEN, h.runtime);
-    const result = await runAiDecision({ kind: "matchup", teamIds: ["1", "2"] }, TOKEN, h.runtime);
-    expect(result.status).toBe("ready");
-    if (result.status !== "ready") throw new Error("fixture");
-    expect(result.result.probabilities.map(p => p.choice)).toEqual(["1", "2"]);
-    expect(result.result.evidence.at(-1)).toContain("Hypothetical");
-    const payload = h.create.mock.calls[1][0];
-    expect(JSON.parse(payload.input).snapshot.teams.map((t: { teamId: string }) => t.teamId)).toEqual(["1", "2"]);
-    expect(result.result.snapshot?.hash).toBe(weekHash(input));
+    const calls = h.create.mock.calls.length;
+    expect(await runAiDecision({ kind: "matchup", teamIds: ["1", "2"] }, TOKEN, h.runtime)).toMatchObject({ status: "unavailable", code: "weekly_policy" });
+    expect(h.create).toHaveBeenCalledTimes(calls);
+    expect(cachedWeek((await h.persistence.getWeek(weekKey(input)))!, NOW).status).toBe("ready");
   });
   it("rejects altered prompt versions, baseline facts or cached probabilities", async () => {
     const h = harness(), input = weeklyInput(); await generateWeeklyPicks(input, TOKEN, h.runtime);

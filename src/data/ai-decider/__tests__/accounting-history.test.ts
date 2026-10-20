@@ -143,7 +143,7 @@ describe("immutable weekly history and publication readiness", () => {
     h.persistence.weeks.set(record.key, structuredClone(record)); // Test-only historical fixture.
     const before = structuredClone(record), context = async () => ({ leagueId: input.leagueId, season: input.season, week: input.week, matchups: input.matchups, phase: input.phase });
     const read = await loadAiDecidesData(h.runtime, context);
-    expect(read.weekly.status).toBe("ready"); expect(read.weekly.snapshot?.model).toBe(record.manifest.model);
+    expect(read.weekly).toMatchObject({ status: "stale", sourceCompatibility: { status: "unverified" } }); expect(read.weekly.snapshot?.model).toBe(record.manifest.model);
     expect(read.weekly.matchups[0].result?.promptVersion).toBe(record.manifest.promptVersion);
     expect(await runAiDecision({ kind: "matchup", teamIds: ["6", "10"] }, TOKEN, h.runtime)).toMatchObject({ status: "unavailable", code: "weekly_policy" });
     expect(await generateWeeklyPicks(input, TOKEN, h.runtime)).toMatchObject({ code: "snapshot_conflict" });
