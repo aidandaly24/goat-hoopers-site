@@ -34,15 +34,16 @@ const rules = { ruleSetId: "full-app-fixture-only", engine: "moving-court-makes-
   minShotIntervalMs: 1000, maxRunsPerWeek: 3, calendar: { timeZone: "America/New_York", startsOn: 1, hour: 0, minute: 0 } };
 const deviceScaleFactor = Number(process.env.GOAT_QA_DEVICE_SCALE ?? 1);
 if (![0.25, 0.5, 1, 2].includes(deviceScaleFactor)) throw new Error("Unsupported browser fixture pixel density");
+const desktopMotion = process.env.GOAT_QA_DESKTOP_MOTION === "reduce" ? "reduce" : "no-preference";
 const evidence = { mode: "Full unmodified application, production default-off then development ranked mode with actual PostgreSQL/auth",
   buildId: (await readFile(path.join(repo, ".next/BUILD_ID"), "utf8")).trim(), rulesAreSynthetic: true,
-  rules, deviceScaleFactor, checks: [], movementScenarios: [], pageErrors: [], limitations: "Only the finality publisher response is a synthetic local fixture; real mounted routes, auth, replay, database and UI run unchanged. External league/news services fail closed. Ranked login uses development localhost HTTP cookies. Software-rendered browser pixel density is recorded explicitly; this is functional proof, not physical-device/FPS evidence. Production HTTPS secure cookies, email delivery, hosting finality fetch and deployment are not verified.", sourceHashes: {} };
+  rules, deviceScaleFactor, desktopMotion, checks: [], movementScenarios: [], pageErrors: [], limitations: "Only the finality publisher response is a synthetic local fixture; real mounted routes, auth, replay, database and UI run unchanged. External league/news services fail closed. Ranked login uses development localhost HTTP cookies. Software-rendered browser pixel density and desktop motion preference are recorded explicitly; this is functional proof, not normal-motion physical-device/FPS evidence. Production HTTPS secure cookies, email delivery, hosting finality fetch and deployment are not verified.", sourceHashes: {} };
 for (const file of ["src/app/layout.tsx", "src/app/arcade/ranked-free-throw/page.tsx", "src/surfaces/arcade/RankedFreeThrow.tsx",
   "src/surfaces/arcade/free-throw/FreeThrowPractice.tsx", "src/surfaces/accounts/AccountForm.tsx", "src/data/ranked-free-throw/runtime.ts", "src/data/ranked-free-throw/store.ts",
   "src/domain/arcade/ranked-free-throw.ts", "src/domain/arcade/free-throw-physics.ts", "src/domain/arcade/free-throw-positions.ts"]) {
   evidence.sourceHashes[file] = createHash("sha256").update(await readFile(path.join(repo, file))).digest("hex");
 }
-let server, browser, ownsSchema = false, logs = "";
+let server, browser, lastPage, ownsSchema = false, logs = "";
 async function stop() { if (server?.exitCode === null) { server.kill("SIGTERM"); await once(server, "exit"); } }
 async function start(mode, env) {
   logs = "";
@@ -59,7 +60,7 @@ function record(check) { evidence.checks.push(check); console.log(check); }
 async function context(options) {
   const context = await browser.newContext({ deviceScaleFactor, ...options });
   await context.route("**/*", route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
-  const page = await context.newPage(); page.setDefaultTimeout(30000);
+  const page = await context.newPage(); lastPage = page; page.setDefaultTimeout(30000);
   page.on("pageerror", error => evidence.pageErrors.push(String(error)));
   return { context, page };
 }
@@ -107,7 +108,7 @@ try {
     assert.equal(response.status, 200); return response.json();
   };
   assert.deepEqual((await reconcile()).finalized, []);
-  for (const [name, options] of [["desktop_hooper", { viewport: { width: 1280, height: 900 }, reducedMotion: "no-preference" }],
+  for (const [name, options] of [["desktop_hooper", { viewport: { width: 1280, height: 900 }, reducedMotion: desktopMotion }],
     ["mobile_hooper", { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: "reduce" }]]) {
     const value = await context(options), { page } = value, submissions = [];
     page.on("request", request => { if (request.method() === "POST" && request.url().endsWith("/scores")) submissions.push(request.postDataJSON()); });
@@ -134,6 +135,7 @@ try {
       await court.focus(); await page.keyboard.press("r");
       assert.equal(await court.getAttribute("data-shot-origin"), origin.join(",")); // R cannot reroll a ranked spot.
       for (let step = 50; step < powers[index]; step++) await page.keyboard.press("ArrowUp");
+      console.log(`${name}: firing shot ${index + 1}`);
       await page.keyboard.press("Enter");
     }
     assert.notDeepEqual(origins[0], origins[1]); assert.notDeepEqual(origins[1], origins[2]);
@@ -185,7 +187,13 @@ try {
   assert.deepEqual(evidence.pageErrors, []);
   if (process.env.QA_REPORT_PATH) await writeFile(process.env.QA_REPORT_PATH, JSON.stringify(evidence, null, 2) + "\n");
   console.log(JSON.stringify(evidence, null, 2));
-} catch (error) { console.error(logs.slice(-12000)); throw error; }
+} catch (error) {
+  if (lastPage && !lastPage.isClosed()) console.error("Browser failure state", await lastPage.evaluate(() => ({
+    url: location.href, hidden: document.hidden, state: document.querySelector("[data-shot-state]")?.getAttribute("data-shot-state"),
+    text: document.querySelector("main")?.innerText.slice(0, 2000), page: document.body.innerText.slice(-500),
+  })).catch(() => null));
+  console.error("Browser page errors", evidence.pageErrors); console.error(logs.slice(-12000)); throw error;
+}
 finally {
   await browser?.close(); await stop();
   if (ownsSchema) await pool.query(`DROP SCHEMA ${schema} CASCADE`);

@@ -127,9 +127,11 @@ not production defaults. Development fonts may use Next's local fallback when
 external font requests are blocked. Production default-off build is checked
 separately. No shared database, live hosting fetch, production secure-cookie/email
 flow, physical phone or deployment is established by these checks. A normal-motion
-full-density SwiftShader round timed out after the separate Blender merge. The
-fixture can bound pixel density for functional checks and records that choice;
-physical-device animation pacing remains unverified, with art unchanged here.
+SwiftShader round timed out after the separate Blender merge at both full and
+half density, remaining in flight with no script errors. The fixture records
+pixel density and can select the supported reduced-motion resolution path for
+functional checks. Normal-motion physical-device pacing remains unverified,
+with art unchanged here.
 
 Server replay rejects malformed/incomplete/timed-out/inconsistent rounds; it
 cannot prove that a human chose each submitted input. It is not bot-proof
