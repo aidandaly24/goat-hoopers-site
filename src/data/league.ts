@@ -245,7 +245,10 @@ export async function fetchTransactionsByWeek(
  * rejects the whole read. The tolerant default above converts a failed
  * week into "no moves that week" — acceptable for stats and feeds, but
  * a replay producer must never mistake a silent week for evidence that
- * no moves happened.
+ * no moves happened. Malformed here means a non-array payload or a row
+ * that is not an object; deep validation of completed records (usable
+ * timestamps, readable legs, carried fields) happens at normalization
+ * in the history producer, which fails the load closed on any of it.
  */
 async function fetchWeeksComplete(
   fetchWeek: (week: number) => Promise<RawTransaction[]>,
@@ -254,7 +257,7 @@ async function fetchWeeksComplete(
   return Promise.all(
     weeks.map(async (w): Promise<RawTransaction[]> => {
       const rows = await fetchWeek(w);
-      if (!Array.isArray(rows)) {
+      if (!Array.isArray(rows) || !rows.every(row => !!row && typeof row === "object" && !Array.isArray(row))) {
         throw new Error(`Sleeper transactions week ${w} returned a malformed payload`);
       }
       return rows;

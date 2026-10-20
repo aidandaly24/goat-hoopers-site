@@ -92,6 +92,11 @@ describe("fetchTransactionsByWeekComplete", () => {
     await expect(fetchTransactionsByWeekComplete([1])).rejects.toThrow("malformed payload");
   });
 
+  it("rejects a week payload whose rows are not objects", async () => {
+    vi.mocked(fetchTransactions).mockResolvedValue([null] as unknown as RawTransaction[]);
+    await expect(fetchTransactionsByWeekComplete([1])).rejects.toThrow("malformed payload");
+  });
+
   it("resolves the full per-week payload when every week succeeds", async () => {
     vi.mocked(fetchTransactions).mockImplementation(async week => (week === 1 ? [CUT] : []));
     await expect(fetchTransactionsByWeekComplete([1, 2])).resolves.toEqual([[CUT], []]);
@@ -122,6 +127,19 @@ describe("default move loader (no injection)", () => {
     const oct8 = state.receipt().points.find(point => point.day === "2026-10-08")!;
     expect(oct8.roster).toEqual(["201", "202", "2711"]);
     expect(oct8.subtotalCents).toBe(21000);
+  });
+
+  it("a malformed completed row in a healthy week fails the whole load closed (dot P2 on #236)", async () => {
+    // The pre-fix normalization silently dropped a completed row with
+    // no timestamps and served HTTP 200 with only the healthy events.
+    const timeless = {
+      transaction_id: "timeless-completed", type: "free_agent", status: "complete", roster_ids: [2], leg: 1,
+      adds: null, drops: { "2711": 2 }, draft_picks: [],
+    } as unknown as RawTransaction;
+    vi.mocked(fetchNbaState).mockResolvedValue(stateOk);
+    vi.mocked(fetchTransactions).mockImplementation(async week => (week === 1 ? [CUT, timeless] : []));
+    await expect(loadTeamHistoryState("2", deps())).rejects.toMatchObject({ status: 503 });
+    expect(await getTeamValueHistory("2", deps())).toBeNull();
   });
 
   it("one failed 2025 week fails the whole load closed (#224 lane)", async () => {

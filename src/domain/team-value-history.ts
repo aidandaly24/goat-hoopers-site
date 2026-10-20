@@ -56,6 +56,15 @@ export type TeamHistoryDraftPick = {
 };
 export type TeamHistoryMove = {
   id: string; sourceId: string; sourceRef: string;
+  /**
+   * Source-league provenance: the Sleeper league whose transaction
+   * feed carried this record. Day detail lists events from every
+   * league in the chain, but only the current league's moves may enter
+   * that league's roster inversion — a prior league's event is display
+   * evidence about its own legs, never membership evidence for the
+   * current anchor's history.
+   */
+  leagueId: string;
   origin: "transaction" | "draft" | "boundary-reconciliation";
   type: "waiver" | "free_agent" | "trade" | "commissioner" | "draft" | "boundary-reconciliation" | "other";
   status: "complete" | "derived";
@@ -228,6 +237,7 @@ export function isTeamValueHistoryDetail(value: unknown): value is TeamValueHist
   const moveIds = new Set<string>();
   return value.moves.every(move => {
     if (!object(move) || !text(move.id) || moveIds.has(move.id) || !text(move.sourceId) || !text(move.sourceRef, 1000)
+      || !text(move.leagueId)
       || !["transaction", "draft", "boundary-reconciliation"].includes(String(move.origin))
       || !["waiver", "free_agent", "trade", "commissioner", "draft", "boundary-reconciliation", "other"].includes(String(move.type))
       || (move.origin === "transaction" ? move.status !== "complete" : move.status !== "derived")

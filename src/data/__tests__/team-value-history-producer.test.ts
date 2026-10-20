@@ -14,11 +14,12 @@ import { PgDialect } from "drizzle-orm/pg-core";
 import {
   historyDetailMatchesPoint, historySegments, isTeamValueHistoryDetail, isTeamValueHistoryEnvelope,
 } from "@/domain/team-value-history";
-import type { RawPlayerEntry, RawTransaction } from "../sleeper";
+import { LEAGUE_ID, type RawPlayerEntry, type RawTransaction } from "../sleeper";
 import type { Db } from "../db";
 import { getRecordedQuoteStore, recordedQuoteQuery, type RecordedQuote } from "../recorded-quotes";
 import {
-  getTeamValueHistory, loadTeamHistoryState, teamHistoryDetailResponse, teamHistorySummaryResponse,
+  getTeamValueHistory, loadTeamHistoryState, mergeHistoryMoveSets, SEASON_ONE_LEAGUE_ID,
+  teamHistoryDetailResponse, teamHistorySummaryResponse,
   toHistoryMoves, type TeamHistoryDeps,
 } from "../team-value-history";
 
@@ -75,7 +76,7 @@ function deps(overrides: Partial<TeamHistoryDeps> = {}, quotes: RecordedQuote[] 
       }),
     },
     fetchAnchor: async () => ANCHOR,
-    fetchMoves: async () => toHistoryMoves(RAW_TX),
+    fetchMoves: async () => toHistoryMoves(RAW_TX, LEAGUE_ID),
     fetchNames: async () => NAMES,
     now: () => NOW,
     ...overrides,
@@ -92,7 +93,7 @@ describe("toHistoryMoves — frozen replay order", () => {
       tx({ transaction_id: "100", created: 900, status_updated: 500 }),
       tx({ transaction_id: "300", status: "failed", created: 100, status_updated: 100 }),
       tx({ transaction_id: "400", created: 700, status_updated: undefined }),
-    ]);
+    ], LEAGUE_ID);
     expect(moves.map(move => move.id)).toEqual(["100", "200", "400"]);
     expect(moves.at(-1)?.effectiveMs).toBe(700); // created fallback
   });
@@ -189,7 +190,7 @@ describe("detail", () => {
     expect(detail.players.map(player => player.id)).toEqual(["201", "202"]);
     expect(detail.moves).toHaveLength(1);
     expect(detail.moves[0]).toMatchObject({
-      sourceId: "1414110209072234496", origin: "transaction", status: "complete",
+      sourceId: "1414110209072234496", origin: "transaction", status: "complete", leagueId: LEAGUE_ID,
       effectiveAt: "2026-10-09T02:24:16.042Z", drops: [{ id: "2711", name: "Fixture Cut" }],
     });
   });
@@ -469,7 +470,7 @@ describe("validated as-of cutoff (dot P2 regression)", () => {
       status_updated: Date.parse("2026-10-20T18:00:00Z"), drops: { "101": 1 },
     });
     const state = await loadTeamHistoryState("1", deps({
-      fetchMoves: async () => toHistoryMoves([...RAW_TX, futureTx]),
+      fetchMoves: async () => toHistoryMoves([...RAW_TX, futureTx], LEAGUE_ID),
     }));
     // Had the move been admitted, inverting it against the anchor would
     // have contradicted every roster and erased the Oct 8 point.
@@ -491,7 +492,7 @@ describe("validated as-of cutoff (dot P2 regression)", () => {
     const strayQuote = quote("q-stray-999", "999", 5000, "2026-10-10T04:00:00.000000");
     let requestedScope: readonly string[] | null = null;
     const capturing = deps({
-      fetchMoves: async () => toHistoryMoves([...RAW_TX, futureAdd]),
+      fetchMoves: async () => toHistoryMoves([...RAW_TX, futureAdd], LEAGUE_ID),
       quotes: {
         readWindow: async request => {
           requestedScope = request.playerIds;
@@ -626,7 +627,8 @@ const NAMES_2025: Record<string, RawPlayerEntry> = {
 function deps2025(overrides: Partial<TeamHistoryDeps> = {}): TeamHistoryDeps {
   return deps({
     fetchAnchor: async () => ANCHOR_WITH_2025_TEAMS,
-    fetchMoves: async () => toHistoryMoves([...RAW_TX, ...RAW_2025]),
+    fetchMoves: async () => mergeHistoryMoveSets(
+      toHistoryMoves(RAW_2025, SEASON_ONE_LEAGUE_ID), toHistoryMoves(RAW_TX, LEAGUE_ID)),
     fetchNames: async () => NAMES_2025,
     ...overrides,
   });
@@ -645,7 +647,7 @@ describe("2025 sourced events (#224 amendment)", () => {
     expect(detail3.players).toEqual([]);
 
     const move = detail3.moves.find(entry => entry.sourceId === "1425000000000000001")!;
-    expect(move).toMatchObject({ origin: "transaction", type: "trade", status: "complete", leg: 5, waiverBid: null });
+    expect(move).toMatchObject({ origin: "transaction", type: "trade", status: "complete", leg: 5, waiverBid: null, leagueId: SEASON_ONE_LEAGUE_ID });
     expect(move.effectiveAt).toBe("2025-11-15T18:30:00.000Z");
     expect(move.rosterIds).toEqual([3, 7]);
     expect(move.draftPicks).toEqual([{ season: "2026", round: 1, rosterId: 3, ownerId: 7, previousOwnerId: 3 }]);
@@ -705,21 +707,21 @@ describe("2025 sourced events (#224 amendment)", () => {
 
 describe("toHistoryMoves — event shaping", () => {
   it("distinguishes carried-none picks from a record that does not carry the field", () => {
-    const carriedNone = toHistoryMoves([tx({ transaction_id: "picks-none", draft_picks: [] })]);
+    const carriedNone = toHistoryMoves([tx({ transaction_id: "picks-none", draft_picks: [] })], LEAGUE_ID);
     expect(carriedNone[0].draftPicks).toEqual([]);
     // A record that omits draft_picks entirely (legacy shape): not read.
     const notRead = {
       transaction_id: "picks-unread", type: "trade", status: "complete", roster_ids: [3, 7], leg: 5,
       created: 100, status_updated: 100, adds: null, drops: null,
     } as unknown as RawTransaction;
-    expect(toHistoryMoves([notRead])[0].draftPicks).toBeNull();
+    expect(toHistoryMoves([notRead], LEAGUE_ID)[0].draftPicks).toBeNull();
   });
 
   it("shapes pick identifiers and keeps unreadable entries in place as all-null", () => {
     const [move] = toHistoryMoves([tx({
       transaction_id: "picks-shape",
       draft_picks: ["junk", { season: 2027, round: 2, roster_id: 4, owner_id: 5, previous_owner_id: 4 }],
-    })]);
+    })], LEAGUE_ID);
     expect(move.draftPicks).toEqual([
       { season: null, round: null, rosterId: null, ownerId: null, previousOwnerId: null },
       { season: "2027", round: 2, rosterId: 4, ownerId: 5, previousOwnerId: 4 },
@@ -727,11 +729,132 @@ describe("toHistoryMoves — event shaping", () => {
   });
 
   it("keeps a $0 waiver bid as a real bid and absent settings as null", () => {
-    const [free] = toHistoryMoves([tx({ transaction_id: "bid-zero", type: "waiver", settings: { waiver_bid: 0 } })]);
+    const [free] = toHistoryMoves([tx({ transaction_id: "bid-zero", type: "waiver", settings: { waiver_bid: 0 } })], LEAGUE_ID);
     expect(free.waiverBid).toBe(0);
-    const [none] = toHistoryMoves([tx({ transaction_id: "bid-none", settings: null })]);
+    const [none] = toHistoryMoves([tx({ transaction_id: "bid-none", settings: null })], LEAGUE_ID);
     expect(none.waiverBid).toBeNull();
     expect(none.leg).toBe(1);
     expect(none.rosterIds).toEqual([]);
+  });
+});
+
+/**
+ * Dot PR #236 review regressions: league provenance (P1), pick-only
+ * trades (P2), malformed completed rows (P2). Each test pins the exact
+ * counterexample the review reproduced.
+ */
+describe("dot PR #236 review regressions", () => {
+  // A 2025-feed trade created in 2025 whose status_updated lands AFTER
+  // the Oct 2026 quote instants. Its legs swap two anchored players
+  // (102 ↔ 201); replayed against the 2026 anchor it would rewrite
+  // every recorded roster — the P1 corruption.
+  const LATE_2025_TRADE = tx({
+    transaction_id: "1425000000000000099", type: "trade", leg: 20, roster_ids: [1, 2],
+    created: Date.parse("2025-11-01T10:00:00Z"), status_updated: Date.parse("2026-10-19T15:00:00Z"),
+    adds: { "201": 1, "102": 2 }, drops: { "102": 1, "201": 2 }, draft_picks: [],
+  });
+  const depsLateTrade = (leagueId: string): TeamHistoryDeps => deps({
+    fetchMoves: async () => mergeHistoryMoveSets(
+      toHistoryMoves(RAW_TX, LEAGUE_ID), toHistoryMoves([LATE_2025_TRADE], leagueId)),
+  });
+
+  it("P1: a prior-league trade never enters current-league inversion, whatever its timestamps", async () => {
+    const baseline1 = await loadTeamHistoryState("1", deps());
+    const baseline2 = await loadTeamHistoryState("2", deps());
+    const state1 = await loadTeamHistoryState("1", depsLateTrade(SEASON_ONE_LEAGUE_ID));
+    const state2 = await loadTeamHistoryState("2", depsLateTrade(SEASON_ONE_LEAGUE_ID));
+    // Points, receipt rosters and the current quote are the recorded
+    // history: byte-identical to the no-2025-feed baseline.
+    expect(state1.points).toEqual(baseline1.points);
+    expect(state2.points).toEqual(baseline2.points);
+    expect(state1.receipt().points).toEqual(baseline1.receipt().points);
+    expect(state2.receipt().points).toEqual(baseline2.receipt().points);
+    expect(state1.currentQuote).toEqual(baseline1.currentQuote);
+    // The event still displays on its effective day — with provenance —
+    // alongside the untouched replayed roster proof for that day.
+    const detail = state1.detail("2026-10-19", NAMES);
+    expect(isTeamValueHistoryDetail(detail)).toBe(true);
+    expect(detail.rosterStatus).toBe("replayed");
+    const shown = detail.moves.find(entry => entry.sourceId === "1425000000000000099")!;
+    expect(shown.leagueId).toBe(SEASON_ONE_LEAGUE_ID);
+    expect(shown.rosterIds).toEqual([1, 2]);
+    expect(shown.adds.filter(entry => entry.rosterId === 1).map(entry => entry.id)).toEqual(["201"]);
+  });
+
+  it("P1 sensitivity: the same record normalized as a current-league move DOES rewrite the replay", async () => {
+    // Guards the regression above against vacuity: provenance, not the
+    // record's shape, is what keeps it out of the inversion.
+    const baseline = await loadTeamHistoryState("1", deps());
+    const corrupted = await loadTeamHistoryState("1", depsLateTrade(LEAGUE_ID));
+    expect(corrupted.points).not.toEqual(baseline.points);
+  });
+
+  const PICK_ONLY_TRADE = tx({
+    transaction_id: "pick-only-trade", type: "trade", leg: 2, roster_ids: [1, 2],
+    created: Date.parse("2026-10-15T10:00:00Z"), status_updated: Date.parse("2026-10-15T10:00:00Z"),
+    adds: null, drops: null,
+    draft_picks: [{ season: "2027", round: 1, roster_id: 1, owner_id: 2, previous_owner_id: 1 }],
+  });
+
+  it("P2: a pick-only trade emits as an event for both participants and rebinds their generations", async () => {
+    const withPick = deps({
+      fetchMoves: async () => toHistoryMoves([...RAW_TX, PICK_ONLY_TRADE], LEAGUE_ID),
+    });
+    const baseline1 = await loadTeamHistoryState("1", deps());
+    const state1 = await loadTeamHistoryState("1", withPick);
+    const state2 = await loadTeamHistoryState("2", withPick);
+    const detail1 = state1.detail("2026-10-15", NAMES);
+    expect(isTeamValueHistoryDetail(detail1)).toBe(true);
+    const shown = detail1.moves.find(entry => entry.sourceId === "pick-only-trade")!;
+    expect(shown).toMatchObject({ type: "trade", leagueId: LEAGUE_ID, rosterIds: [1, 2], adds: [], drops: [] });
+    expect(shown.draftPicks).toEqual([{ season: "2027", round: 1, rosterId: 1, ownerId: 2, previousOwnerId: 1 }]);
+    expect(state2.detail("2026-10-15", NAMES).moves.map(entry => entry.sourceId)).toContain("pick-only-trade");
+    // No player legs: the recorded points are untouched, and the trade
+    // sits in the inversion stream as a no-op (named in the receipt).
+    expect(state1.points).toEqual(baseline1.points);
+    expect(state1.receipt().points.map(point => [point.day, point.roster, point.subtotalCents]))
+      .toEqual(baseline1.receipt().points.map(point => [point.day, point.roster, point.subtotalCents]));
+    expect(state1.receipt().points.at(-1)!.generationMoves.map(move => move.id)).toEqual(["pick-only-trade"]);
+    // But the event is part of the served history, so it binds the generation.
+    expect(state1.generation).not.toBe(baseline1.generation);
+  });
+
+  // A completed record with neither timestamp: the pre-fix
+  // normalization dropped it silently and served the healthy rest.
+  const TIMELESS_COMPLETED = {
+    transaction_id: "timeless-completed", type: "free_agent", status: "complete", roster_ids: [1], leg: 1,
+    adds: { "101": 1 }, drops: null, draft_picks: [],
+  } as unknown as RawTransaction;
+
+  it("P3: a completed row missing both timestamps rejects normalization instead of vanishing", () => {
+    expect(() => toHistoryMoves([TIMELESS_COMPLETED], LEAGUE_ID)).toThrow("malformed completed record");
+    // One malformed completed row poisons an otherwise healthy feed.
+    expect(() => toHistoryMoves([...RAW_TX, TIMELESS_COMPLETED], LEAGUE_ID)).toThrow("malformed completed record");
+  });
+
+  it("P3: present-but-malformed carried fields reject instead of flattening to absent", () => {
+    const badPicks = tx({ transaction_id: "bad-picks", draft_picks: "not-an-array" as unknown as unknown[] });
+    expect(() => toHistoryMoves([badPicks], LEAGUE_ID)).toThrow("draft_picks");
+    const nullPicks = tx({ transaction_id: "null-picks", draft_picks: null as unknown as unknown[] });
+    expect(() => toHistoryMoves([nullPicks], LEAGUE_ID)).toThrow("draft_picks");
+    const badLeg = tx({ transaction_id: "bad-leg", adds: { "101": "1" as unknown as number } });
+    expect(() => toHistoryMoves([badLeg], LEAGUE_ID)).toThrow("unreadable adds leg");
+    const badRosters = tx({ transaction_id: "bad-rosters", roster_ids: "1,2" as unknown as number[] });
+    expect(() => toHistoryMoves([badRosters], LEAGUE_ID)).toThrow("roster_ids");
+    const badBid = tx({ transaction_id: "bad-bid", type: "waiver", settings: { waiver_bid: "12" as unknown as number } });
+    expect(() => toHistoryMoves([badBid], LEAGUE_ID)).toThrow("waiver_bid");
+  });
+
+  it("P3: a malformed completed row fails the whole load closed (503), never a partial history", async () => {
+    const poisoned = deps({
+      fetchMoves: async () => toHistoryMoves([...RAW_TX, TIMELESS_COMPLETED], LEAGUE_ID),
+    });
+    await expect(loadTeamHistoryState("1", poisoned)).rejects.toMatchObject({ status: 503 });
+    expect(await getTeamValueHistory("1", poisoned)).toBeNull();
+  });
+
+  it("P3: non-complete rows stay unvalidated non-evidence", () => {
+    const failedTimeless = { ...TIMELESS_COMPLETED, transaction_id: "failed-timeless", status: "failed" } as RawTransaction;
+    expect(toHistoryMoves([failedTimeless], LEAGUE_ID)).toEqual([]);
   });
 });
