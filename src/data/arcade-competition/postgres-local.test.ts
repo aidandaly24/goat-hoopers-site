@@ -106,8 +106,10 @@ describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("canonical compet
     await store.reconcile([p, next], config, new Map([[p.id, receipt(p)]]));
     const runId = await seed();
     await store.reconcile([p, next], config, new Map([[p.id, receipt(p, "final")], [next.id, receipt(next)]]));
+    expect((await pool.query("SELECT state FROM ranked_free_throw_runs WHERE id=$1", [runId])).rows[0].state).toBe("expired");
     expect((await submitRankedScore(runtime(), a, { runId, shots })).status).toBe("invalid_run");
     expect(Number((await pool.query("SELECT count(*) FROM ranked_free_throw_scores")).rows[0].count)).toBe(0);
+    expect((await store.start(a, config)).status).toBe("created");
   });
   it("rolls back a late finalization failure and retries without a duplicate archive", async () => {
     await store.reconcile([p], config, new Map([[p.id, receipt(p)]]));

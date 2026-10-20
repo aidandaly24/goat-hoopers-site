@@ -147,6 +147,9 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
             LEFT JOIN account_identities i ON i.subject=r.account_id AND i.active=true LEFT JOIN site_users t ON t.id=i.user_id AND t.team_id~'^(?:[1-9]|10)$'
             WHERE r.period_id=${p.id} AND r.state='consumed' ORDER BY r.account_id,s.score DESC,s.achieved_at_ms,s.id
           ) best ON CONFLICT(period_id,account_id) DO NOTHING`);
+        // Unfinished rounds from the sealed period cannot hold the account's
+        // one-open-run slot when the next period becomes eligible.
+        await tx.execute(sql`UPDATE ranked_free_throw_runs SET state='expired' WHERE period_id=${p.id} AND state='open'`);
         await tx.execute(sql`UPDATE arcade_competition_periods SET closed_at_ms=${now},finalized_at_ms=${now} WHERE id=${p.id} AND finalized_at_ms IS NULL`);
         finalized.push(p.id);
       }
