@@ -1,0 +1,1018 @@
+{
+  "browser": "154.0.8037.57",
+  "hardware": "Headless Chromium ANGLE SwiftShader; phone viewport/touch/DPR/CPU/network emulation, not a physical phone GPU",
+  "profiles": [
+    {
+      "label": "baseline-desktop",
+      "readyMs": 4170,
+      "memory": {
+        "Documents": 1,
+        "Nodes": 21,
+        "JSHeapUsedSize": 4260792,
+        "JSHeapTotalSize": 4513792
+      },
+      "resources": [
+        {
+          "path": "/assets/index-K5tKFnvr.js",
+          "encoded": 68420,
+          "decoded": 215177,
+          "durationMs": 38
+        },
+        {
+          "path": "/assets/FreeThrowScene-i68sjwao.js",
+          "encoded": 163213,
+          "decoded": 648237,
+          "durationMs": 76.6000000005588
+        },
+        {
+          "path": "/assets/index-DAhdVB7o.css",
+          "encoded": 4208,
+          "decoded": 17141,
+          "durationMs": 43.200000000186265
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Basketball.glb",
+          "encoded": 1773888,
+          "decoded": 1773888,
+          "durationMs": 24.199999999254942
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Court.glb",
+          "encoded": 939972,
+          "decoded": 939972,
+          "durationMs": 25.5
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Hoop.glb",
+          "encoded": 403968,
+          "decoded": 403968,
+          "durationMs": 22
+        },
+        {
+          "path": "/favicon.ico",
+          "encoded": 0,
+          "decoded": 0,
+          "durationMs": 8.899999999441206
+        }
+      ],
+      "assetBytes": 3117828,
+      "samples": 29,
+      "method": "Completed draw plus one-pixel readback; GPU/CPU readback cost included, not an FPS measurement",
+      "medianMs": 174.90000000037253,
+      "p95Ms": 201.70000000018626,
+      "cpuSubmissionMedianMs": 0.8999999994412065,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "drawingBuffer": [
+        1440,
+        960
+      ],
+      "sample": {
+        "calls": 13,
+        "triangles": 11188
+      }
+    },
+    {
+      "label": "blender-desktop",
+      "readyMs": 11103.400000000373,
+      "memory": {
+        "Documents": 1,
+        "Nodes": 22,
+        "JSHeapUsedSize": 4709424,
+        "JSHeapTotalSize": 5300224
+      },
+      "resources": [
+        {
+          "path": "/assets/index-BorfwIM2.js",
+          "encoded": 68422,
+          "decoded": 215177,
+          "durationMs": 39.299999999813735
+        },
+        {
+          "path": "/assets/FreeThrowScene-CcQWNz9R.js",
+          "encoded": 157942,
+          "decoded": 628802,
+          "durationMs": 69.70000000018626
+        },
+        {
+          "path": "/assets/index-DAhdVB7o.css",
+          "encoded": 4208,
+          "decoded": 17141,
+          "durationMs": 46.09999999962747
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Basketball.glb",
+          "encoded": 1773888,
+          "decoded": 1773888,
+          "durationMs": 18.299999999813735
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Court.glb",
+          "encoded": 939972,
+          "decoded": 939972,
+          "durationMs": 14.5
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Hoop.glb",
+          "encoded": 403968,
+          "decoded": 403968,
+          "durationMs": 13.600000000558794
+        },
+        {
+          "path": "/3d/free-throw/environment/outdoor.glb.gz",
+          "encoded": 4019050,
+          "decoded": 4019050,
+          "durationMs": 71.1000000005588
+        },
+        {
+          "path": "/3d/free-throw/environment/manifest.json",
+          "encoded": 10014,
+          "decoded": 53498,
+          "durationMs": 24.299999999813735
+        },
+        {
+          "path": "/3d/free-throw/environment/sky.jpg",
+          "encoded": 297070,
+          "decoded": 297070,
+          "durationMs": 24.40000000037253
+        },
+        {
+          "path": "/favicon.ico",
+          "encoded": 0,
+          "decoded": 0,
+          "durationMs": 5.1000000005587935
+        }
+      ],
+      "assetBytes": 7443962,
+      "samples": 3,
+      "method": "Completed draw plus one-pixel readback; GPU/CPU readback cost included, not an FPS measurement",
+      "medianMs": 2707.699999999255,
+      "p95Ms": 2866,
+      "cpuSubmissionMedianMs": 1.7999999998137355,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "drawingBuffer": [
+        1440,
+        960
+      ],
+      "sample": {
+        "calls": 44,
+        "triangles": 435282
+      },
+      "stats": {
+        "calls": 44,
+        "triangles": 435282,
+        "frame": 27,
+        "geometries": 43,
+        "textures": 11,
+        "programs": 7,
+        "inView": true,
+        "contextLost": false,
+        "reflectionBytes": 6291456,
+        "crowd": {
+          "sourceSpectators": 416,
+          "lighting": "pbr",
+          "geometryBytes": 19212552,
+          "visibleSpectators": 259,
+          "near": 38,
+          "far": 221
+        }
+      }
+    },
+    {
+      "label": "baseline-phone-emulation",
+      "readyMs": 11137.700000000186,
+      "memory": {
+        "Documents": 1,
+        "Nodes": 21,
+        "JSHeapUsedSize": 4300512,
+        "JSHeapTotalSize": 4513792
+      },
+      "resources": [
+        {
+          "path": "/assets/index-K5tKFnvr.js",
+          "encoded": 68420,
+          "decoded": 215177,
+          "durationMs": 359.20000000018626
+        },
+        {
+          "path": "/assets/FreeThrowScene-i68sjwao.js",
+          "encoded": 163213,
+          "decoded": 648237,
+          "durationMs": 540.4000000003725
+        },
+        {
+          "path": "/assets/index-DAhdVB7o.css",
+          "encoded": 4208,
+          "decoded": 17141,
+          "durationMs": 113.1000000005588
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Basketball.glb",
+          "encoded": 1773888,
+          "decoded": 1773888,
+          "durationMs": 6044.399999999441
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Court.glb",
+          "encoded": 939972,
+          "decoded": 939972,
+          "durationMs": 4451.199999999255
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Hoop.glb",
+          "encoded": 403968,
+          "decoded": 403968,
+          "durationMs": 2410.399999999441
+        },
+        {
+          "path": "/favicon.ico",
+          "encoded": 0,
+          "decoded": 0,
+          "durationMs": 2
+        }
+      ],
+      "assetBytes": 3117828,
+      "samples": 27,
+      "method": "Completed draw plus one-pixel readback; GPU/CPU readback cost included, not an FPS measurement",
+      "medianMs": 186.70000000018626,
+      "p95Ms": 205,
+      "cpuSubmissionMedianMs": 4.099999999627471,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "drawingBuffer": [
+        682,
+        1477
+      ],
+      "sample": {
+        "calls": 13,
+        "triangles": 11188
+      }
+    },
+    {
+      "label": "blender-phone-emulation",
+      "readyMs": 19989.200000000186,
+      "memory": {
+        "Documents": 1,
+        "Nodes": 22,
+        "JSHeapUsedSize": 4630120,
+        "JSHeapTotalSize": 5038080
+      },
+      "resources": [
+        {
+          "path": "/assets/index-BorfwIM2.js",
+          "encoded": 68422,
+          "decoded": 215177,
+          "durationMs": 359.3999999994412
+        },
+        {
+          "path": "/assets/FreeThrowScene-CcQWNz9R.js",
+          "encoded": 157942,
+          "decoded": 628802,
+          "durationMs": 541.0999999996275
+        },
+        {
+          "path": "/assets/index-DAhdVB7o.css",
+          "encoded": 4208,
+          "decoded": 17141,
+          "durationMs": 120.40000000037253
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Basketball.glb",
+          "encoded": 1773888,
+          "decoded": 1773888,
+          "durationMs": 10013.5
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Court.glb",
+          "encoded": 939972,
+          "decoded": 939972,
+          "durationMs": 6841
+        },
+        {
+          "path": "/3d/free-throw/GOAT_HOOPERS_Hoop.glb",
+          "encoded": 403968,
+          "decoded": 403968,
+          "durationMs": 3773
+        },
+        {
+          "path": "/3d/free-throw/environment/outdoor.glb.gz",
+          "encoded": 4019050,
+          "decoded": 4019050,
+          "durationMs": 14297.600000000559
+        },
+        {
+          "path": "/3d/free-throw/environment/manifest.json",
+          "encoded": 10014,
+          "decoded": 53498,
+          "durationMs": 203.1000000005588
+        },
+        {
+          "path": "/3d/free-throw/environment/sky.jpg",
+          "encoded": 297070,
+          "decoded": 297070,
+          "durationMs": 2951.800000000745
+        },
+        {
+          "path": "/favicon.ico",
+          "encoded": 0,
+          "decoded": 0,
+          "durationMs": 1.400000000372529
+        }
+      ],
+      "assetBytes": 7443962,
+      "samples": 6,
+      "method": "Completed draw plus one-pixel readback; GPU/CPU readback cost included, not an FPS measurement",
+      "medianMs": 936.7000000001863,
+      "p95Ms": 1030.5,
+      "cpuSubmissionMedianMs": 7.1000000005587935,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "drawingBuffer": [
+        682,
+        1477
+      ],
+      "sample": {
+        "calls": 27,
+        "triangles": 234925
+      },
+      "stats": {
+        "calls": 27,
+        "triangles": 234925,
+        "frame": 28,
+        "geometries": 26,
+        "textures": 11,
+        "programs": 7,
+        "inView": true,
+        "contextLost": false,
+        "reflectionBytes": 1572864,
+        "crowd": {
+          "sourceSpectators": 416,
+          "lighting": "vertex-lit",
+          "geometryBytes": 18595392,
+          "visibleSpectators": 91,
+          "near": 0,
+          "far": 91
+        }
+      }
+    }
+  ],
+  "checks": [
+    {
+      "check": "baseline-desktop",
+      "value": {
+        "readyMs": 4170,
+        "memory": {
+          "Documents": 1,
+          "Nodes": 21,
+          "JSHeapUsedSize": 4260792,
+          "JSHeapTotalSize": 4513792
+        },
+        "medianMs": 174.90000000037253,
+        "p95Ms": 201.70000000018626,
+        "sample": {
+          "calls": 13,
+          "triangles": 11188
+        }
+      }
+    },
+    {
+      "check": "blender-desktop",
+      "value": {
+        "readyMs": 11103.400000000373,
+        "memory": {
+          "Documents": 1,
+          "Nodes": 22,
+          "JSHeapUsedSize": 4709424,
+          "JSHeapTotalSize": 5300224
+        },
+        "medianMs": 2707.699999999255,
+        "p95Ms": 2866,
+        "sample": {
+          "calls": 44,
+          "triangles": 435282
+        },
+        "stats": {
+          "calls": 44,
+          "triangles": 435282,
+          "frame": 27,
+          "geometries": 43,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 6291456,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "pbr",
+            "geometryBytes": 19212552,
+            "visibleSpectators": 259,
+            "near": 38,
+            "far": 221
+          }
+        }
+      }
+    },
+    {
+      "check": "blender-desktop zero idle drawing",
+      "value": true
+    },
+    {
+      "check": "blender-desktop all nine existing shot origins",
+      "value": [
+        {
+          "calls": 44,
+          "triangles": 435282,
+          "frame": 29,
+          "geometries": 43,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 6291456,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "pbr",
+            "geometryBytes": 19212552,
+            "visibleSpectators": 259,
+            "near": 38,
+            "far": 221
+          }
+        },
+        {
+          "calls": 49,
+          "triangles": 430595,
+          "frame": 30,
+          "geometries": 48,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 6291456,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "pbr",
+            "geometryBytes": 19212552,
+            "visibleSpectators": 242,
+            "near": 56,
+            "far": 186
+          }
+        },
+        {
+          "calls": 48,
+          "triangles": 433926,
+          "frame": 31,
+          "geometries": 49,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 6291456,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "pbr",
+            "geometryBytes": 19212552,
+            "visibleSpectators": 254,
+            "near": 43,
+            "far": 211
+          }
+        },
+        {
+          "calls": 47,
+          "triangles": 431851,
+          "frame": 32,
+          "geometries": 49,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 6291456,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "pbr",
+            "geometryBytes": 19212552,
+            "visibleSpectators": 254,
+            "near": 41,
+            "far": 213
+          }
+        },
+        {
+          "calls": 44,
+          "triangles": 436551,
+          "frame": 33,
+          "geometries": 49,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 6291456,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "pbr",
+            "geometryBytes": 19212552,
+            "visibleSpectators": 268,
+            "near": 27,
+            "far": 241
+          }
+        },
+        {
+          "calls": 42,
+          "triangles": 433380,
+          "frame": 34,
+          "geometries": 49,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 6291456,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "pbr",
+            "geometryBytes": 19212552,
+            "visibleSpectators": 267,
+            "near": 24,
+            "far": 243
+          }
+        },
+        {
+          "calls": 41,
+          "triangles": 450487,
+          "frame": 35,
+          "geometries": 49,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 6291456,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "pbr",
+            "geometryBytes": 19212552,
+            "visibleSpectators": 289,
+            "near": 16,
+            "far": 273
+          }
+        },
+        {
+          "calls": 39,
+          "triangles": 443530,
+          "frame": 36,
+          "geometries": 49,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 6291456,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "pbr",
+            "geometryBytes": 19212552,
+            "visibleSpectators": 284,
+            "near": 14,
+            "far": 270
+          }
+        },
+        {
+          "calls": 41,
+          "triangles": 455679,
+          "frame": 37,
+          "geometries": 49,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 6291456,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "pbr",
+            "geometryBytes": 19212552,
+            "visibleSpectators": 299,
+            "near": 9,
+            "far": 290
+          }
+        }
+      ]
+    },
+    {
+      "check": "blender-desktop bounded streak and reduced-motion miss",
+      "value": true
+    },
+    {
+      "check": "blender-desktop offscreen reaction stops",
+      "value": true
+    },
+    {
+      "check": "blender-desktop disposal counters",
+      "value": {
+        "calls": 44,
+        "triangles": 435282,
+        "frame": 46,
+        "geometries": 0,
+        "textures": 1,
+        "programs": 0,
+        "inView": false,
+        "contextLost": true,
+        "reflectionBytes": 0,
+        "crowd": null
+      }
+    },
+    {
+      "check": "blender-desktop complete scene disposal and context release",
+      "value": {
+        "calls": 44,
+        "triangles": 435282,
+        "frame": 46,
+        "geometries": 0,
+        "textures": 1,
+        "programs": 0,
+        "inView": false,
+        "contextLost": true,
+        "reflectionBytes": 0,
+        "crowd": null
+      }
+    },
+    {
+      "check": "baseline-phone-emulation",
+      "value": {
+        "readyMs": 11137.700000000186,
+        "memory": {
+          "Documents": 1,
+          "Nodes": 21,
+          "JSHeapUsedSize": 4300512,
+          "JSHeapTotalSize": 4513792
+        },
+        "medianMs": 186.70000000018626,
+        "p95Ms": 205,
+        "sample": {
+          "calls": 13,
+          "triangles": 11188
+        }
+      }
+    },
+    {
+      "check": "blender-phone-emulation",
+      "value": {
+        "readyMs": 19989.200000000186,
+        "memory": {
+          "Documents": 1,
+          "Nodes": 22,
+          "JSHeapUsedSize": 4630120,
+          "JSHeapTotalSize": 5038080
+        },
+        "medianMs": 936.7000000001863,
+        "p95Ms": 1030.5,
+        "sample": {
+          "calls": 27,
+          "triangles": 234925
+        },
+        "stats": {
+          "calls": 27,
+          "triangles": 234925,
+          "frame": 28,
+          "geometries": 26,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 1572864,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "vertex-lit",
+            "geometryBytes": 18595392,
+            "visibleSpectators": 91,
+            "near": 0,
+            "far": 91
+          }
+        }
+      }
+    },
+    {
+      "check": "blender-phone-emulation zero idle drawing",
+      "value": true
+    },
+    {
+      "check": "blender-phone-emulation all nine existing shot origins",
+      "value": [
+        {
+          "calls": 27,
+          "triangles": 234925,
+          "frame": 30,
+          "geometries": 26,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 1572864,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "vertex-lit",
+            "geometryBytes": 18595392,
+            "visibleSpectators": 91,
+            "near": 0,
+            "far": 91
+          }
+        },
+        {
+          "calls": 27,
+          "triangles": 229937,
+          "frame": 31,
+          "geometries": 26,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 1572864,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "vertex-lit",
+            "geometryBytes": 18595392,
+            "visibleSpectators": 86,
+            "near": 0,
+            "far": 86
+          }
+        },
+        {
+          "calls": 29,
+          "triangles": 256633,
+          "frame": 32,
+          "geometries": 28,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 1572864,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "vertex-lit",
+            "geometryBytes": 18595392,
+            "visibleSpectators": 112,
+            "near": 0,
+            "far": 112
+          }
+        },
+        {
+          "calls": 29,
+          "triangles": 256473,
+          "frame": 33,
+          "geometries": 30,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 1572864,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "vertex-lit",
+            "geometryBytes": 18595392,
+            "visibleSpectators": 112,
+            "near": 0,
+            "far": 112
+          }
+        },
+        {
+          "calls": 29,
+          "triangles": 261810,
+          "frame": 34,
+          "geometries": 30,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 1572864,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "vertex-lit",
+            "geometryBytes": 18595392,
+            "visibleSpectators": 117,
+            "near": 0,
+            "far": 117
+          }
+        },
+        {
+          "calls": 29,
+          "triangles": 262787,
+          "frame": 35,
+          "geometries": 30,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 1572864,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "vertex-lit",
+            "geometryBytes": 18595392,
+            "visibleSpectators": 118,
+            "near": 0,
+            "far": 118
+          }
+        },
+        {
+          "calls": 28,
+          "triangles": 250462,
+          "frame": 36,
+          "geometries": 30,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 1572864,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "vertex-lit",
+            "geometryBytes": 18595392,
+            "visibleSpectators": 106,
+            "near": 0,
+            "far": 106
+          }
+        },
+        {
+          "calls": 28,
+          "triangles": 253511,
+          "frame": 37,
+          "geometries": 30,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 1572864,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "vertex-lit",
+            "geometryBytes": 18595392,
+            "visibleSpectators": 109,
+            "near": 0,
+            "far": 109
+          }
+        },
+        {
+          "calls": 27,
+          "triangles": 248457,
+          "frame": 38,
+          "geometries": 30,
+          "textures": 11,
+          "programs": 7,
+          "inView": true,
+          "contextLost": false,
+          "reflectionBytes": 1572864,
+          "crowd": {
+            "sourceSpectators": 416,
+            "lighting": "vertex-lit",
+            "geometryBytes": 18595392,
+            "visibleSpectators": 104,
+            "near": 0,
+            "far": 104
+          }
+        }
+      ]
+    },
+    {
+      "check": "blender-phone-emulation bounded streak and reduced-motion miss",
+      "value": true
+    },
+    {
+      "check": "blender-phone-emulation offscreen reaction stops",
+      "value": true
+    },
+    {
+      "check": "blender-phone-emulation disposal counters",
+      "value": {
+        "calls": 27,
+        "triangles": 234925,
+        "frame": 47,
+        "geometries": 0,
+        "textures": 1,
+        "programs": 0,
+        "inView": false,
+        "contextLost": true,
+        "reflectionBytes": 0,
+        "crowd": null
+      }
+    },
+    {
+      "check": "blender-phone-emulation complete scene disposal and context release",
+      "value": {
+        "calls": 27,
+        "triangles": 234925,
+        "frame": 47,
+        "geometries": 0,
+        "textures": 1,
+        "programs": 0,
+        "inView": false,
+        "contextLost": true,
+        "reflectionBytes": 0,
+        "crowd": null
+      }
+    },
+    {
+      "check": "uninterrupted native normal-motion shot completes at 320x360 DPR1",
+      "value": {
+        "drawingBuffer": [
+          302,
+          352
+        ],
+        "reducedMotion": false
+      }
+    },
+    {
+      "check": "desktop keyboard normal shot start, native mid-flight reduced-motion completion, retry/reset",
+      "value": [
+        {
+          "at": 8290.699999999255,
+          "state": "ready",
+          "motion": "idle"
+        },
+        {
+          "at": 8312.299999999814,
+          "state": "flight",
+          "motion": "idle"
+        },
+        {
+          "at": 13608.199999999255,
+          "state": "result",
+          "motion": "still"
+        },
+        {
+          "at": 15005.599999999627,
+          "state": "result",
+          "motion": "idle"
+        },
+        {
+          "at": 15007.199999999255,
+          "state": "ready",
+          "motion": "idle"
+        },
+        {
+          "at": 15008.399999999441,
+          "state": "ready",
+          "motion": "idle"
+        },
+        {
+          "at": 19245.5,
+          "state": "ready",
+          "motion": "idle"
+        }
+      ]
+    },
+    {
+      "check": "desktop reduced-motion shot retains result cue and controls",
+      "value": true
+    },
+    {
+      "check": "phone touch normal shot start, native mid-flight reduced-motion completion, retry/reset",
+      "value": [
+        {
+          "at": 5918.399999999441,
+          "state": "ready",
+          "motion": "idle"
+        },
+        {
+          "at": 6866.0999999996275,
+          "state": "flight",
+          "motion": "idle"
+        },
+        {
+          "at": 11393.599999999627,
+          "state": "result",
+          "motion": "still"
+        },
+        {
+          "at": 12769.599999999627,
+          "state": "result",
+          "motion": "idle"
+        },
+        {
+          "at": 12770.399999999441,
+          "state": "ready",
+          "motion": "idle"
+        },
+        {
+          "at": 12771.399999999441,
+          "state": "ready",
+          "motion": "idle"
+        }
+      ]
+    },
+    {
+      "check": "phone reduced-motion shot retains result cue and controls",
+      "value": true
+    },
+    {
+      "check": "optional scenery failure retains the actual playable court",
+      "value": true
+    },
+    {
+      "check": "actual WebGL context loss stops drawing",
+      "value": true
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "writes": [],
+  "assetSha256": "4d136653d7c03a143e3595e245e713ec84c0b8761fb5b91ad553f9eede203dcd",
+  "sourceSha256": {
+    "src/three/FreeThrowScene.ts": "15e12c3c787088280cdb712847b58c1db2a2fdf1abcd60c4f610a9636a15b848",
+    "src/three/FreeThrowEnvironment.ts": "57c83a0997f58c8751b7a2ea6f647dee58ce050e22e3bdfdcc35249fd4fe9b7e",
+    "src/surfaces/arcade/free-throw/FreeThrowPractice.tsx": "3714d3d28f78ef271171f7c798bee35e5ddaf7a81a44f3a8e7987d35e8bc4997",
+    "blender/export_free_throw_environment.py": "a787caa7a6e9652dfd094843e0eea14f2cba6b6839dae8625b7cf559b6f044de",
+    "public/3d/free-throw/environment/manifest.json": "e554ad45df9162422f3c46203e2c6a8f650cec1a691c6b7413505463ebd587a7",
+    "public/3d/free-throw/environment/sky.jpg": "99a23aa6dab438a77b2b4437fdc31326eef4cfbb0f329b16f345aa34754c9224"
+  },
+  "status": "passed"
+}

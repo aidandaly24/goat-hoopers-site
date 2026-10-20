@@ -1,11 +1,12 @@
 import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-/** A completed practice result, supplied by the existing score owner. */
 export type CrowdResult = { outcome: "made" | "miss"; streak: number };
 export const CROWD_REACTION_MS = 420;
-export const SPECTATOR_COUNT = 72;
+export const SPECTATOR_COUNT = 416;
+const ROOT = "/3d/free-throw/environment/";
 
-/** One bounded settle, never a loop or a source of gameplay state. */
+/** One bounded settle, never an idle loop or a source of gameplay state. */
 export function crowdPose(result: CrowdResult | null, progress: number, still = false) {
   if (!result) return { lift: 0, arms: 0, lean: 0 };
   const made = result.outcome === "made";
@@ -16,111 +17,224 @@ export function crowdPose(result: CrowdResult | null, progress: number, still = 
     lean: made ? 0 : -beat * 0.09 };
 }
 
-type Spectator = { x: number; y: number; z: number; scale: number };
-type Palette = { skyTop: THREE.Color; horizon: THREE.Color; ground: THREE.Color;
-  structure: THREE.Color; distant: THREE.Color; crowd: THREE.Color; accent: THREE.Color };
+export type Spectator = { variant: string; position: number[]; rotation: number; scale: number[]; group: number };
+export type OutdoorManifest = { version: number; source_spectator_count: number; spectators: Spectator[] };
+type Batch = { mesh: THREE.InstancedMesh; source: THREE.Mesh; variant: string; group: number;
+  lod: "near" | "far"; people: Spectator[]; target: number; weight: number };
 
-/** Static outdoor context and tiny, instanced spectators. No lights, assets,
- * camera changes, frame scheduling or physics are owned by this helper. */
-export function createFreeThrowEnvironment(scene: THREE.Scene, palette: Palette) {
-  const group = new THREE.Group();
-  group.name = "practice-environment";
-  scene.add(group);
-  const sky = new Uint8Array(64 * 4);
-  const shade = new THREE.Color();
-  for (let y = 0; y < 64; y++) {
-    shade.copy(palette.horizon).lerp(palette.skyTop, Math.min(1, y / 42));
-    sky.set([Math.round(shade.r * 255), Math.round(shade.g * 255), Math.round(shade.b * 255), 255], y * 4);
+/** Kept pure for export-contract and every-shot-position coverage checks. */
+export function spectatorLod(person: Spectator, camera: THREE.Vector3, portrait = false) {
+  const [x, y, z] = person.position;
+  return Math.hypot(x - camera.x, y + 0.8 - camera.y, z - camera.z) < (portrait ? 11.5 : 14) ? "near" : "far";
+}
+
+async function loadGeometry(loader: GLTFLoader) {
+  // Explicit gzip asset: no reliance on the host compressing GLB binaries.
+  if (typeof DecompressionStream === "undefined") return loader.loadAsync(ROOT + "outdoor.glb");
+  const response = await fetch(ROOT + "outdoor.glb.gz");
+  if (!response.ok) throw new Error("Outdoor geometry unavailable");
+  const bytes = await response.arrayBuffer();
+  const header = new Uint8Array(bytes, 0, Math.min(2, bytes.byteLength));
+  const buffer = header[0] === 31 && header[1] === 139
+    ? await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer()
+    : bytes; // A host may already have applied Content-Encoding.
+  return loader.parseAsync(buffer, ROOT);
+}
+
+function release(root: THREE.Object3D) {
+  const geometries = new Set<THREE.BufferGeometry>(), materials = new Set<THREE.Material>();
+  root.traverse(object => {
+    if (!(object instanceof THREE.Mesh)) return;
+    geometries.add(object.geometry);
+    for (const material of Array.isArray(object.material) ? object.material : [object.material]) materials.add(material);
+  });
+  for (const geometry of geometries) geometry.dispose();
+  for (const material of materials) material.dispose();
+}
+
+/** Original Blender art, derived LODs, baked occlusion and instanced cohorts.
+ * No lights, camera movement, physics, scoring or frame scheduling is owned here.
+ */
+export async function createFreeThrowEnvironment(scene: THREE.Scene) {
+  const loaded = await Promise.allSettled([
+    loadGeometry(new GLTFLoader()),
+    new THREE.TextureLoader().loadAsync(ROOT + "sky.jpg"),
+    fetch(ROOT + "manifest.json").then(response => {
+      if (!response.ok) throw new Error("Outdoor placement manifest unavailable");
+      return response.json() as Promise<OutdoorManifest>;
+    }),
+  ]);
+  const [geometryResult, skyResult, manifestResult] = loaded;
+  if (geometryResult.status === "rejected" || skyResult.status === "rejected" || manifestResult.status === "rejected") {
+    if (geometryResult.status === "fulfilled") release(geometryResult.value.scene);
+    if (skyResult.status === "fulfilled") skyResult.value.dispose();
+    throw new Error("Outdoor scenery could not load");
   }
-  const background = new THREE.DataTexture(sky, 1, 64, THREE.RGBAFormat);
-  background.magFilter = THREE.LinearFilter;
-  background.needsUpdate = true;
-  scene.background = background;
-  scene.fog = new THREE.Fog(palette.horizon, 18, 37);
+  const source = geometryResult.value.scene, sky = skyResult.value, manifest = manifestResult.value;
+  const mobile = window.matchMedia("(max-width: 40rem), (pointer: coarse)").matches;
+  return mountFreeThrowEnvironment(scene, source, sky, manifest, mobile);
+}
 
-  const material = (color: THREE.Color) => new THREE.MeshBasicMaterial({ color });
-  const ground = new THREE.Mesh(new THREE.PlaneGeometry(70, 70), material(palette.ground));
-  ground.rotation.x = -Math.PI / 2;
-  ground.position.y = -0.025;
-  group.add(ground);
-
-  // All scenery stays outside the authored court (half-width 7.62m,
-  // near baseline z=-1.6m). The open center keeps the hoop silhouette clear.
-  const structures = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), material(palette.structure), 9);
-  const stamp = new THREE.Object3D();
-  let structure = 0;
-  const box = (x: number, y: number, z: number, width: number, height: number, depth: number) => {
-    stamp.position.set(x, y, z); stamp.rotation.set(0, 0, 0); stamp.scale.set(width, height, depth);
-    stamp.updateMatrix(); structures.setMatrixAt(structure++, stamp.matrix);
+/** The loading seam is separate so offline checks exercise the shipped GLB. */
+export function mountFreeThrowEnvironment(scene: THREE.Scene, source: THREE.Object3D, sky: THREE.Texture, manifest: OutdoorManifest, mobile = false) {
+  const group = new THREE.Group(); group.name = "practice-environment";
+  const skyGeometry = new THREE.SphereGeometry(200, 64, 32);
+  const skyMaterial = new THREE.MeshBasicMaterial({ map: sky, side: THREE.BackSide, depthWrite: false, depthTest: false, toneMapped: false });
+  const skyDome = new THREE.Mesh(skyGeometry, skyMaterial);
+  skyDome.name = "Outdoor_Sky"; skyDome.renderOrder = -1000; skyDome.frustumCulled = false;
+  skyDome.rotation.y = Math.PI / 2; // Center of the original Blender panorama faces the hoop.
+  const batches: Batch[] = [];
+  const arrays = new Set<object>(); let geometryBytes = 0;
+  const account = (attribute: THREE.BufferAttribute | THREE.InterleavedBufferAttribute) => {
+    const array = attribute instanceof THREE.InterleavedBufferAttribute ? attribute.data.array : attribute.array;
+    if (!arrays.has(array)) { arrays.add(array); geometryBytes += array.byteLength; }
   };
-  for (let row = 0; row < 3; row++) {
-    box(0, (row + 1) * 0.24, -4.4 - row * 0.85, 17, (row + 1) * 0.48, 1.1);
-    box(-9.2 - row * 0.85, (row + 1) * 0.24, 5, 1.1, (row + 1) * 0.48, 12);
-    box(9.2 + row * 0.85, (row + 1) * 0.24, 5, 1.1, (row + 1) * 0.48, 12);
-  }
-  group.add(structures);
-  const skyline = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), material(palette.distant), 18);
-  for (let i = 0; i < 18; i++) {
-    const height = 3.2 + ((i * 7) % 9) * 0.35;
-    stamp.position.set((i - 8.5) * 2.7, height / 2 - 0.05, -18 - (i % 3) * 2);
-    stamp.scale.set(2 + (i % 3) * 0.3, height, 1.7);
-    stamp.updateMatrix(); skyline.setMatrixAt(i, stamp.matrix);
-  }
-  group.add(skyline);
-
-  // Low, irregular tree crowns break up the skyline without a new model or
-  // transparent texture. Shared meshes keep the complete scene to 8 calls.
-  const trees = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 6, 4), material(palette.ground), 14);
-  for (let i = 0; i < 14; i++) {
-    stamp.position.set((i - 6.5) * 3.5, 0.9 + (i % 3) * 0.25, -11.5 - (i % 2) * 1.5);
-    stamp.scale.set(1.8 + (i % 3) * 0.2, 1.4 + (i % 2) * 0.2, 1.1);
-    stamp.updateMatrix(); trees.setMatrixAt(i, stamp.matrix);
-  }
-  group.add(trees);
-
-  const people: Spectator[] = [];
-  for (let row = 0; row < 2; row++) for (let i = 0; i < 24; i++) {
-    people.push({ x: (i - 11.5) * 0.65, y: 0.46 + row * 0.49, z: -4.2 - row * 1.1, scale: 0.88 + (i % 4) * 0.04 });
-  }
-  for (const side of [-1, 1]) for (let i = 0; i < 12; i++) {
-    people.push({ x: side * (9.1 + (i % 2) * 0.85), y: 0.46 + (i % 2) * 0.49, z: i * 0.8, scale: 0.88 + (i % 3) * 0.05 });
-  }
-  const bodyShape = new THREE.Shape();
-  bodyShape.moveTo(-0.12, 0.1); bodyShape.lineTo(-0.17, 0.43);
-  bodyShape.quadraticCurveTo(-0.18, 0.58, -0.08, 0.59);
-  bodyShape.lineTo(0.08, 0.59); bodyShape.quadraticCurveTo(0.18, 0.58, 0.17, 0.43);
-  bodyShape.lineTo(0.12, 0.1); bodyShape.lineTo(0.11, -0.17); bodyShape.lineTo(0.04, -0.17);
-  bodyShape.lineTo(0, 0.08); bodyShape.lineTo(-0.04, -0.17); bodyShape.lineTo(-0.11, -0.17); bodyShape.closePath();
-  const crowdMaterial = material(palette.crowd); crowdMaterial.side = THREE.DoubleSide;
-  const bodies = new THREE.InstancedMesh(new THREE.ShapeGeometry(bodyShape, 3), crowdMaterial, SPECTATOR_COUNT);
-  const heads = new THREE.InstancedMesh(new THREE.CircleGeometry(0.115, 10), crowdMaterial, SPECTATOR_COUNT);
-  const arms = new THREE.InstancedMesh(new THREE.PlaneGeometry(0.075, 0.36).translate(0, -0.14, 0), crowdMaterial, SPECTATOR_COUNT * 2);
-  for (let i = 0; i < people.length; i++) {
-    shade.copy(palette.crowd).lerp(palette.accent, (i % 5) * 0.18).offsetHSL((i % 3) * 0.04, 0.08, 0);
-    bodies.setColorAt(i, shade); arms.setColorAt(i * 2, shade); arms.setColorAt(i * 2 + 1, shade);
-    heads.setColorAt(i, shade.copy(palette.accent).lerp(palette.crowd, 0.25 + (i % 4) * 0.14));
-  }
-  for (const mesh of [bodies, heads, arms]) { mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); mesh.frustumCulled = false; group.add(mesh); }
-  let facing = 0;
-  const pose = (result: CrowdResult | null, progress: number, still = false) => {
-    const reaction = crowdPose(result, progress, still);
-    for (let i = 0; i < people.length; i++) {
-      const person = people[i];
-      const lift = reaction.lift * (0.8 + (i % 3) * 0.1);
-      stamp.position.set(person.x, person.y + lift, person.z + reaction.lean);
-      stamp.rotation.set(0, facing, 0); stamp.scale.setScalar(person.scale);
-      stamp.updateMatrix(); bodies.setMatrixAt(i, stamp.matrix);
-      stamp.translateY(0.76); stamp.updateMatrix(); heads.setMatrixAt(i, stamp.matrix);
-      for (const side of [-1, 1]) {
-        stamp.position.set(person.x, person.y + lift + person.scale * 0.53, person.z + reaction.lean);
-        stamp.rotation.set(0, facing, 0); stamp.translateX(side * person.scale * 0.18);
-        stamp.rotateZ(side * (0.2 + reaction.arms * 2.5));
-        stamp.updateMatrix(); arms.setMatrixAt(i * 2 + (side === -1 ? 0 : 1), stamp.matrix);
-      }
+  source.traverse(object => {
+    if (!(object instanceof THREE.Mesh)) return;
+    const geometry = object.geometry as THREE.BufferGeometry;
+    for (const attribute of Object.values(geometry.attributes)) account(attribute);
+    if (geometry.index) account(geometry.index);
+    for (const attributes of Object.values(geometry.morphAttributes)) for (const attribute of attributes) account(attribute);
+  });
+  try {
+    if (manifest.version !== 1 || manifest.source_spectator_count !== SPECTATOR_COUNT || manifest.spectators.length !== SPECTATOR_COUNT) throw new Error("Outdoor asset version mismatch");
+    source.updateMatrixWorld(true);
+    if (mobile) {
+      const lightweight = new Map<THREE.Material, THREE.MeshLambertMaterial>();
+      source.traverse(object => {
+        if (!(object instanceof THREE.Mesh)) return;
+        const simplify = (original: THREE.Material) => {
+          if (!(original instanceof THREE.MeshStandardMaterial)) return original;
+          let material = lightweight.get(original);
+          if (!material) {
+            material = new THREE.MeshLambertMaterial({ color: original.color, vertexColors: original.vertexColors,
+              side: original.side, opacity: original.opacity, transparent: original.transparent });
+            material.name = original.name + " · phone vertex lighting"; lightweight.set(original, material);
+          }
+          return material;
+        };
+        object.material = Array.isArray(object.material) ? object.material.map(simplify) : simplify(object.material);
+      });
+      for (const original of lightweight.keys()) original.dispose();
     }
-    for (const mesh of [bodies, heads, arms]) mesh.instanceMatrix.needsUpdate = true;
-  };
-  pose(null, 0);
-  return { pose, face: (position: THREE.Vector3) => { facing = Math.atan2(position.x, position.z + 5); },
-    dispose: () => { if (scene.background === background) scene.background = null; background.dispose(); } };
+    // Retain the source's window/metal/skin/cloth surfaces in one draw material.
+    const materials = new Set<THREE.MeshStandardMaterial | THREE.MeshLambertMaterial>();
+    source.traverse(object => {
+      if (!(object instanceof THREE.Mesh)) return;
+      for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
+        if (material instanceof THREE.MeshStandardMaterial || material instanceof THREE.MeshLambertMaterial) materials.add(material);
+      }
+    });
+    for (const material of materials) {
+      material.onBeforeCompile = shader => {
+        shader.vertexShader = "attribute vec3 _surface; varying vec3 vSurface;\n" + shader.vertexShader;
+        shader.vertexShader = shader.vertexShader.replace("#include <begin_vertex>", "#include <begin_vertex>\nvSurface = _surface;");
+        shader.fragmentShader = "varying vec3 vSurface;\n" + shader.fragmentShader;
+        shader.fragmentShader = shader.fragmentShader.replace("#include <roughnessmap_fragment>", "#include <roughnessmap_fragment>\nroughnessFactor = max(0.04, vSurface.x);");
+        shader.fragmentShader = shader.fragmentShader.replace("#include <metalnessmap_fragment>", "#include <metalnessmap_fragment>\nmetalnessFactor = vSurface.y;");
+        shader.fragmentShader = shader.fragmentShader.replace("#include <emissivemap_fragment>", "#include <emissivemap_fragment>\ntotalEmissiveRadiance += vSurface.z * diffuseColor.rgb;");
+      };
+      material.customProgramCacheKey = () => "goat-outdoor-source-surfaces-v1";
+    }
+    const staticModel = source.getObjectByName("Outdoor_Static");
+    if (!(staticModel instanceof THREE.Mesh)) throw new Error("Outdoor architecture missing");
+    group.add(staticModel.clone());
+    const cohorts = new Map(manifest.spectators.map(person => [person.variant + ":" + person.group, { variant: person.variant, group: person.group }]));
+    const lods: ("near" | "far")[] = mobile ? ["far"] : ["near", "far"];
+    for (const { variant, group: reactionGroup } of cohorts.values()) for (const lod of lods) {
+      const model = source.getObjectByName(variant + "_" + lod);
+      if (!(model instanceof THREE.Mesh) || !model.morphTargetInfluences || !model.morphTargetDictionary
+        || !["Applause", "Cheer", "Disappointment"].every(name => name in model.morphTargetDictionary!)) throw new Error("Outdoor crowd model missing");
+      const capacity = manifest.spectators.filter(person => person.variant === variant && person.group === reactionGroup).length;
+      // Blend once per shared cohort only during the finite result cue. The GPU
+      // then renders ordinary instancing, without per-instance morph textures.
+      const sourceGeometry = model.geometry as THREE.BufferGeometry;
+      const geometry = new THREE.BufferGeometry(); geometry.setIndex(sourceGeometry.index);
+      for (const [name, attribute] of Object.entries(sourceGeometry.attributes)) {
+        const value = name === "position" || name === "normal" ? attribute.clone() : attribute;
+        if (name === "position" || name === "normal") {
+          if (value instanceof THREE.InterleavedBufferAttribute) value.data.setUsage(THREE.DynamicDrawUsage);
+          else value.setUsage(THREE.DynamicDrawUsage);
+          account(value);
+        }
+        geometry.setAttribute(name, value);
+      }
+      const mesh = new THREE.InstancedMesh(geometry, model.material, capacity);
+      mesh.name = variant + "_" + lod + "_g" + reactionGroup;
+      mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      mesh.count = 0;
+      group.add(mesh); batches.push({ mesh, source: model, variant, group: reactionGroup, lod, people: [], target: -1, weight: 0 });
+    }
+    sky.mapping = THREE.UVMapping; sky.colorSpace = THREE.SRGBColorSpace;
+    // Direct sampling avoids a large automatic background cubemap allocation.
+    group.add(skyDome); scene.background = null; scene.fog = null;
+    scene.add(group);
+    let currentResult: CrowdResult | null = null, currentProgress = 0, currentStill = false;
+    const stamp = new THREE.Object3D();
+    const pose = (result: CrowdResult | null, progress: number, still = false) => {
+      currentResult = result; currentProgress = progress; currentStill = still;
+      const reaction = crowdPose(result, progress, still);
+      for (const batch of batches) {
+        if (!batch.people.length) continue;
+        const variation = 0.86 + batch.group * 0.025;
+        const weight = result?.outcome === "made" ? reaction.arms * variation : result ? Math.abs(reaction.lean) / .09 * variation : 0;
+        const name = result?.outcome === "made" ? batch.group % 3 ? "Cheer" : "Applause" : "Disappointment";
+        const target = weight > 1e-12 ? batch.source.morphTargetDictionary![name] : -1;
+        if (target !== batch.target || weight !== batch.weight) {
+          for (const attributeName of ["position", "normal"] as const) {
+            const base = batch.source.geometry.getAttribute(attributeName) as THREE.BufferAttribute;
+            const delta = target >= 0 ? batch.source.geometry.morphAttributes[attributeName]?.[target] as THREE.BufferAttribute | undefined : undefined;
+            const output = batch.mesh.geometry.getAttribute(attributeName) as THREE.BufferAttribute;
+            const values = output.array as Float32Array, original = base.array as Float32Array;
+            if (!delta || target < 0) values.set(original);
+            else for (let i = 0; i < values.length; i++) values[i] = original[i] + (batch.source.geometry.morphTargetsRelative ? delta.array[i] : delta.array[i] - original[i]) * weight;
+            output.needsUpdate = true;
+          }
+          batch.target = target; batch.weight = weight;
+        }
+        for (let i = 0; i < batch.people.length; i++) {
+          const person = batch.people[i];
+          stamp.position.fromArray(person.position); stamp.position.y += reaction.lift * variation;
+          stamp.rotation.set(0, person.rotation, 0); stamp.scale.fromArray(person.scale); stamp.updateMatrix();
+          batch.mesh.setMatrixAt(i, stamp.matrix);
+        }
+        batch.mesh.instanceMatrix.needsUpdate = true;
+      }
+    };
+    const face = (camera: THREE.PerspectiveCamera) => {
+      camera.updateMatrixWorld();
+      skyDome.position.copy(camera.position);
+      const frustum = new THREE.Frustum().setFromProjectionMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
+      const sphere = new THREE.Sphere(); sphere.radius = 1.4;
+      for (const batch of batches) batch.people = [];
+      for (const person of manifest.spectators) {
+        sphere.center.fromArray(person.position); sphere.center.y += 1;
+        if (!frustum.intersectsSphere(sphere)) continue;
+        const lod = mobile ? "far" : spectatorLod(person, camera.position, camera.aspect < 1);
+        const batch = batches.find(value => value.variant === person.variant && value.group === person.group && value.lod === lod)!;
+        batch.people.push(person);
+      }
+      for (const batch of batches) {
+        batch.mesh.count = batch.people.length; batch.mesh.visible = batch.people.length > 0;
+        batch.mesh.frustumCulled = false;
+      }
+      pose(currentResult, currentProgress, currentStill);
+    };
+    let disposed = false;
+    return { sky, pose, face,
+      inspect: () => ({ sourceSpectators: SPECTATOR_COUNT, lighting: mobile ? "vertex-lit" : "pbr", geometryBytes: disposed ? 0 : geometryBytes,
+        visibleSpectators: batches.reduce((sum, batch) => sum + batch.people.length, 0),
+        near: batches.filter(batch => batch.lod === "near").reduce((sum, batch) => sum + batch.people.length, 0),
+        far: batches.filter(batch => batch.lod === "far").reduce((sum, batch) => sum + batch.people.length, 0) }),
+      dispose: () => {
+        if (disposed) return; disposed = true;
+        scene.remove(group);
+        for (const batch of batches) { batch.mesh.dispose(); batch.mesh.geometry.dispose(); }
+        release(source); source.clear(); group.clear(); batches.length = 0;
+        skyGeometry.dispose(); skyMaterial.dispose(); sky.dispose();
+      } };
+  } catch (error) {
+    scene.remove(group); for (const batch of batches) { batch.mesh.dispose(); batch.mesh.geometry.dispose(); }
+    release(source); skyGeometry.dispose(); skyMaterial.dispose(); sky.dispose(); throw error;
+  }
 }

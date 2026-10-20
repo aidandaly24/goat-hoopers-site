@@ -1,0 +1,25 @@
+{
+  "route": "/arcade/free-throw",
+  "checks": [
+    {
+      "profile": "desktop",
+      "httpStatus": 200,
+      "environment": "blender-outdoor",
+      "actualControllerResult": true,
+      "reducedMotion": true
+    },
+    {
+      "profile": "phone",
+      "httpStatus": 200,
+      "environment": "blender-outdoor",
+      "actualControllerResult": true,
+      "reducedMotion": true
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "writes": [],
+  "credentials": "absent",
+  "serverExternalFetches": "blocked",
+  "status": "passed"
+}

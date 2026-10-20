@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "baseline_revision": "c333c5df8c6c1863d20f9cd962b29c0c1e34d333",
+  "integration_base": "0da599ea4d3c0ac551a14d876759b43184628a83",
+  "unchanged_sha256": {
+    "src/surfaces/arcade/free-throw/charge.ts": "8f4aed0e6acd1399921a9d01484b79d14239f294238e3b5f8428a8016339b0b8",
+    "src/surfaces/arcade/free-throw/physics.test.ts": "7325210f64c7ae40fd888a68827e9a680ef47b2c117ae990753a9ed3881ebf9c",
+    "src/surfaces/arcade/free-throw/positions.test.ts": "e203d1bcba369c9b0f3a18ade4658aa4a221324d18de10aca74ad2e4cb9b7730",
+    "src/surfaces/arcade/free-throw/FreeThrowPractice.tsx": "3714d3d28f78ef271171f7c798bee35e5ddaf7a81a44f3a8e7987d35e8bc4997",
+    "src/surfaces/arcade/free-throw/charge.test.ts": "1da22b59bca4479a9eed512f51cab6f13b41faccdf7bcf7aa42fd9925d9fb7ec",
+    "src/surfaces/arcade/free-throw/assets.test.ts": "5328828f649ce4d35b569acfd2d5eae92bb0bde135a04478b8e695cb37b53229",
+    "src/surfaces/arcade/free-throw/FreeThrowPractice.module.css": "def9d77b54efd43efeb2b83345902e151ca2171ffa98dc17e267a734f8e5403b",
+    "src/surfaces/arcade/free-throw/physics.ts": "7f2fb85b70902d97813390716dceed54bdce15ff7e2dab176912f8b8e3fadabd",
+    "src/surfaces/arcade/free-throw/positions.ts": "d0f765b661ba25922e88d4be5dbc706ed536fadc9412a9887f9fa03608477251",
+    "public/3d/free-throw/README.txt": "27708c6caa462a65707b8baa40e372d93e12e067e615c035d6eb101b384668c3",
+    "public/3d/free-throw/GOAT_HOOPERS_Hoop.glb": "20eb36446cc9789d52beeb1dd9b184cd9be77e2dcef0900d75d11289f66f93ca",
+    "public/3d/free-throw/GOAT_HOOPERS_Basketball.glb": "a926a34966001bc41cabeac35a3173380483803acd65e48bd8bb498835d3f3cb",
+    "public/3d/free-throw/ASSET_MANIFEST.json": "ea01e043e5c733e1ec031af0ed1d9102253ea410747f1315bde802703fd017e3",
+    "public/3d/free-throw/GOAT_HOOPERS_Court.glb": "de5cb7d6dbbd2a616799d1b74505655bce607ceab64ea89709ead80df3dc6613",
+    "src/domain/arcade/free-throw.ts": "b53a6fc82157bb2e54c74d079ca16fb6698601c5c2d6502d3836c447e5d61806"
+  },
+  "note": "Original controller, physics, input charge, positions, CSS, court/hoop/ball GLBs and collider/domain manifest are byte-identical."
+}
