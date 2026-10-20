@@ -591,7 +591,14 @@ export async function loadTeamHistoryState(teamId: string, deps: TeamHistoryDeps
   const team = anchor.teams.find(entry => entry.id === teamId);
   if (!team) throw new TeamHistoryError("Unknown team", 404);
   const now = (deps.now ?? (() => new Date()))();
-  const scope = [...new Set([...team.players, ...moves.flatMap(move => [...move.adds, ...move.drops]
+  // Admission order matters: the as-of cutoff applies to moves BEFORE
+  // the quote scope is derived from them. A future-dated move is not
+  // evidence, so its counterparties must not widen the scope — otherwise
+  // an earlier quote for a player only that future move names would be
+  // admitted, inventing an unpriced day and moving the generation for a
+  // move that is itself excluded.
+  const admissibleMoves = moves.filter(move => moveMicros(move) <= now.getTime() * 1000);
+  const scope = [...new Set([...team.players, ...admissibleMoves.flatMap(move => [...move.adds, ...move.drops]
     .filter(entry => entry.rosterId === Number(teamId)).map(entry => entry.playerId))])].sort();
   let rows;
   try {

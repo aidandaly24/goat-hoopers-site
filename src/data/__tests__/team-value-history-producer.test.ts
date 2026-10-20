@@ -261,6 +261,35 @@ describe("generation fingerprint invariant", () => {
 });
 
 describe("routes", () => {
+  it("detail never leaks a sub-millisecond future price (dot round-2 route repro)", async () => {
+    // Reproduced by the dot through the real routes at 6d14514: with the
+    // +1µs quote admitted, summary failed validation (503) while detail
+    // at the poisoned generation returned 200 containing the future
+    // price. Exclusion now happens before state/generation/detail
+    // construction, so every surface sees the healthy state only.
+    const oneMicroLate = quote("q-plus-1us-101", "101", 99000, "2026-10-20T12:00:00.000001");
+    const poisonedDeps = deps({}, [...QUOTES, oneMicroLate]);
+    const state = await loadTeamHistoryState("1", poisonedDeps);
+    const healthy = await loadTeamHistoryState("1", deps());
+    expect(state.generation).toBe(healthy.generation);
+
+    const summaryRes = await teamHistorySummaryResponse(
+      url("/api/team-value-history/summary", { teamId: "1", generation: state.generation, from: "2026-10-01", toExclusive: "2026-10-21" }),
+      poisonedDeps);
+    expect(summaryRes.status).toBe(200);
+
+    const detailRes = await teamHistoryDetailResponse(
+      url("/api/team-value-history/detail", { teamId: "1", generation: state.generation, day: "2026-10-20" }),
+      poisonedDeps);
+    expect(detailRes.status).toBe(200);
+    const body = await detailRes.json();
+    expect(isTeamValueHistoryDetail(body)).toBe(true);
+    expect(JSON.stringify(body)).not.toContain("99000");
+    expect(JSON.stringify(body)).not.toContain("q-plus-1us-101");
+    expect(body.valuationAt).toBe("2026-10-20T12:00:00.000Z");
+    expect(body.players.every((player: { priceCents: number | null }) => player.priceCents === null)).toBe(true);
+  });
+
   it("summary echoes the exact requested range with filtered points", async () => {
     const state = await loadTeamHistoryState("1", deps());
     const res = await teamHistorySummaryResponse(
@@ -447,6 +476,36 @@ describe("validated as-of cutoff (dot P2 regression)", () => {
     expect(state.receipt().points.find(point => point.day === "2026-10-08")!.roster).toEqual(["101", "102", "103"]);
     expect(JSON.stringify(state.receipt())).not.toContain("future-drop-101");
     expect(state.detail("2026-10-20", NAMES).moves.map(move => move.sourceId)).not.toContain("future-drop-101");
+  });
+
+  it("derives the quote scope from cutoff-admissible moves only (dot round-2 P2)", async () => {
+    // The dot's synthetic: a future ADD of player 999 (a player no
+    // admissible evidence names) must not widen the quote scope. Pre-fix
+    // the scope was built from unfiltered moves, so 999's earlier quote
+    // was admitted — inventing an unpriced replayed day on 2026-10-10
+    // and changing the generation for a move that is itself excluded.
+    const futureAdd = tx({
+      transaction_id: "future-add-999", created: Date.parse("2026-10-20T18:00:00Z"),
+      status_updated: Date.parse("2026-10-20T18:00:00Z"), adds: { "999": 1 },
+    });
+    const strayQuote = quote("q-stray-999", "999", 5000, "2026-10-10T04:00:00.000000");
+    let requestedScope: readonly string[] | null = null;
+    const capturing = deps({
+      fetchMoves: async () => toHistoryMoves([...RAW_TX, futureAdd]),
+      quotes: {
+        readWindow: async request => {
+          requestedScope = request.playerIds;
+          return { quotes: [...QUOTES, strayQuote].filter(entry => request.playerIds.includes(entry.playerId)), truncated: false };
+        },
+      },
+    });
+    const state = await loadTeamHistoryState("1", capturing);
+    const healthy = await loadTeamHistoryState("1", deps());
+    expect(requestedScope).not.toContain("999");
+    expect(state.generation).toBe(healthy.generation);
+    expect(state.points).toEqual(healthy.points);
+    expect(state.points.map(point => point.day)).not.toContain("2026-10-10");
+    expect(JSON.stringify(state.receipt())).not.toContain("999");
   });
 });
 
