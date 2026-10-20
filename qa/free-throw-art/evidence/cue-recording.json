@@ -7,37 +7,37 @@
   ],
   "dpr": 1,
   "hardware": "ANGLE SwiftShader software GPU; capture overhead affects displayed cadence, not a physical-device performance test",
-  "frames": 17,
-  "durationSeconds": 10.913661003112793,
+  "frames": 15,
+  "durationSeconds": 10.805049180984497,
   "cues": [
     {
       "outcome": "miss",
       "streak": 0,
       "reduced": false,
-      "startedBrowserMs": 4167.200000000186
+      "startedBrowserMs": 3972.100000000559
     },
     {
       "outcome": "made",
       "streak": 1,
       "reduced": false,
-      "startedBrowserMs": 7180.100000000559
+      "startedBrowserMs": 6986
     },
     {
       "outcome": "made",
       "streak": 3,
       "reduced": false,
-      "startedBrowserMs": 10190.700000000186
+      "startedBrowserMs": 9996.299999999814
     },
     {
       "outcome": "made",
       "streak": 3,
       "reduced": true,
-      "startedBrowserMs": 13201.400000000373
+      "startedBrowserMs": 13013.600000000559
     }
   ],
   "sourceSha256": {
-    "src/three/FreeThrowScene.ts": "15e12c3c787088280cdb712847b58c1db2a2fdf1abcd60c4f610a9636a15b848",
-    "src/three/FreeThrowEnvironment.ts": "57c83a0997f58c8751b7a2ea6f647dee58ce050e22e3bdfdcc35249fd4fe9b7e",
+    "src/three/FreeThrowScene.ts": "217acfc9867895aa26a3c1f80c3cde7b92aadcbf2351763630d1ca02f8277fa9",
+    "src/three/FreeThrowEnvironment.ts": "11be093acd1b4ac51ef386e911436fc28193d4819eb231e91f5caec2c020ce6d",
     "public/3d/free-throw/environment/outdoor.glb": "4d136653d7c03a143e3595e245e713ec84c0b8761fb5b91ad553f9eede203dcd"
   }
 }

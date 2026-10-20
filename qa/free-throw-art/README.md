@@ -40,6 +40,20 @@ software GPU. `FREE_THROW_QA_CONTROLS_ONLY=1` skips the four renderer profiles f
 targeted controller checks. Brief result screens are recorded with a DOM
 observer so a delayed DevTools query cannot miss the existing retry window.
 
+Run the focused creation/visibility regressions against that same candidate server:
+
+```sh
+node qa/free-throw-art/verify-lifecycle.mjs /path/to/playwright/index.mjs \
+  /path/to/chromium /tmp/goat-art-lifecycle-evidence
+```
+
+It holds real optional/required requests unresolved, plays the actual court,
+unmounts before response settlement, checks native context loss and the scenery
+deadline, delivers art while offscreen, and follows a native offscreen shot
+through result/retry/reset with zero WebGL draw calls. The fixture exposes only
+test-side unmount/context/submission/IntersectionObserver measurements; it uses
+the real component and simulation throughout.
+
 After a production application build, verify the actual `/arcade/free-throw`
 route, real site shell, asset URLs and controller on desktop and phone layouts:
 

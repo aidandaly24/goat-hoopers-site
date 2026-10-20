@@ -1335,7 +1335,10 @@ crowd geometry, batched architecture, vertex AO/source surfaces and a baked sky.
 Only completed-result cues blend the source poses per cohort; ordinary GPU
 instancing renders them. Sky/reflection resolution, culling and resource cleanup
 are independent of physics and scoring. The optional scenery can fail while the
-original court stays playable. See `docs/free-throw-blender-integration.md` for
+original court becomes playable without awaiting it. Optional loading has a
+deadline; effect cancellation frees the renderer during creation and disposes
+late results. Native visibility gates frame/reflection submissions while the
+existing simulation/reset bookkeeping continues. See `docs/free-throw-blender-integration.md` for
 provenance, export commands, measured browser limits and exact-head review gates.
 
 The presentation is one viewport with an overlaid score HUD, world-space

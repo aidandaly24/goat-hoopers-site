@@ -60,6 +60,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
     spotRef.current = { ...court.release };
     setSpot(spotRef.current);
     let disposed = false;
+    const creation = new AbortController();
     let raf = 0;
     let chargeRaf = 0;
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
@@ -87,7 +88,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
     };
     import("@/three/FreeThrowScene").then(async ({ createFreeThrowScene, guideVectors }) => {
       if (disposed) return;
-      const created = await createFreeThrowScene(element, court, assets, failed);
+      const created = await createFreeThrowScene(element, court, assets, failed, creation.signal);
       if (disposed) { created.dispose(); return; }
       view = created;
       crowdView.current = created;
@@ -260,6 +261,7 @@ export function FreeThrowPractice({ court, assets }: { court: PracticeCourt; ass
     }).catch(failed);
     return () => {
       disposed = true;
+      creation.abort();
       cancelAnimationFrame(raf);
       cancelAnimationFrame(chargeRaf);
       if (retryTimer !== null) clearTimeout(retryTimer);

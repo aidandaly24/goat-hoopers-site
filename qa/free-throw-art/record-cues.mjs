@@ -16,6 +16,7 @@ try {
   await context.route('**/*',route=>route.request().method()==='GET'&&new URL(route.request().url()).origin===origin?route.continue():route.abort());
   const page=await context.newPage();page.on('pageerror',error=>errors.push(error.message));
   await page.goto(origin+'/?mode=scene');await page.waitForFunction(()=>window.artQA,undefined,{timeout:60000});
+  await page.waitForSelector('canvas[data-environment="blender-outdoor"]',{timeout:30000});
   const cdp=await context.newCDPSession(page);
   cdp.on('Page.screencastFrame',({data,metadata,sessionId})=>{
     frames.push({data,timestamp:metadata.timestamp});void cdp.send('Page.screencastFrameAck',{sessionId}).catch(()=>{});

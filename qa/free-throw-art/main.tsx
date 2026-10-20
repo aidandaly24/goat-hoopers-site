@@ -9,6 +9,20 @@ import "./review.css";
 
 const params = new URLSearchParams(location.search);
 const gpu = { calls: 0, triangles: 0 };
+const contexts = new Set<WebGL2RenderingContext>();
+const nativeGetContext = HTMLCanvasElement.prototype.getContext;
+Object.defineProperty(HTMLCanvasElement.prototype, "getContext", { value: function(this: HTMLCanvasElement, ...args: unknown[]) {
+  const result = Reflect.apply(nativeGetContext, this, args);
+  if (args[0] === "webgl2" && result) contexts.add(result as WebGL2RenderingContext);
+  return result;
+} });
+const visibility = { inView: null as boolean | null };
+const NativeIntersectionObserver = window.IntersectionObserver;
+window.IntersectionObserver = class extends NativeIntersectionObserver {
+  constructor(callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
+    super((entries, observer) => { visibility.inView = entries[0]?.isIntersecting ?? false; callback(entries, observer); }, options);
+  }
+};
 // Fixture-only measurement, shared with the unchanged #206 baseline renderer.
 for (const method of ["drawElements", "drawArrays", "drawElementsInstanced", "drawArraysInstanced"] as const) {
   const original = WebGL2RenderingContext.prototype[method];
@@ -19,7 +33,7 @@ for (const method of ["drawElements", "drawArrays", "drawElementsInstanced", "dr
     return Reflect.apply(original, this, values);
   } });
 }
-Object.assign(window, { qaGpu: gpu });
+Object.assign(window, { qaGpu: gpu, qaContexts: contexts, qaVisibility: visibility });
 if (params.get("mode") === "scene") {
   const mount = document.getElementById("root")!;
   mount.className = "scene";
@@ -65,5 +79,7 @@ if (params.get("mode") === "scene") {
   } });
   mount.dataset.ready = "true";
 } else {
-  createRoot(document.getElementById("root")!).render(<FreeThrowPractice court={PRACTICE_COURT} assets={PRACTICE_ASSETS} />);
+  const root = createRoot(document.getElementById("root")!);
+  Object.assign(window, { artGameQA: { unmount: () => root.unmount() } });
+  root.render(<FreeThrowPractice court={PRACTICE_COURT} assets={PRACTICE_ASSETS} />);
 }

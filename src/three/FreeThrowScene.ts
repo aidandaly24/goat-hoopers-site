@@ -4,6 +4,8 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import type { PracticeAim, PracticeAssetPack, PracticeBall, PracticeCourt } from "@/domain/arcade/free-throw";
 import { createFreeThrowEnvironment, CROWD_REACTION_MS, type CrowdResult } from "./FreeThrowEnvironment";
 
+export const SCENERY_LOAD_TIMEOUT_MS = 20_000;
+
 export type PracticeView = {
   draw: (ball: PracticeBall, guide: { aim: PracticeAim; points: THREE.Vector3[] } | null, reduced: boolean) => void;
   react: (result: CrowdResult | null, reduced: boolean) => void;
@@ -17,8 +19,9 @@ export type PracticeView = {
  * colliders arrive separately from the manifest, never from mesh triangles.
  */
 export async function createFreeThrowScene(
-  mount: HTMLElement, court: PracticeCourt, assets: PracticeAssetPack, onContextLost: () => void,
+  mount: HTMLElement, court: PracticeCourt, assets: PracticeAssetPack, onContextLost: () => void, signal?: AbortSignal,
 ): Promise<PracticeView> {
+  signal?.throwIfAborted();
   const tokens = getComputedStyle(mount);
   const color = (name: string) => new THREE.Color(tokens.getPropertyValue(name).trim());
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
@@ -41,6 +44,12 @@ export async function createFreeThrowScene(
 
   let disposed = false;
   let lost = false;
+  const requiredManager = new THREE.LoadingManager();
+  const sceneryController = new AbortController();
+  let sceneryTimer: ReturnType<typeof setTimeout> | null = null;
+  let cancelCreation: ((reason: unknown) => void) | null = null;
+  let sceneryChanged = () => {};
+  let viewVisibilityChanged = () => {};
   let observer: ResizeObserver | null = null;
   let intersection: IntersectionObserver | null = null;
   let environment: THREE.WebGLRenderTarget | null = null;
@@ -49,18 +58,24 @@ export async function createFreeThrowScene(
   let reaction: CrowdResult | null = null;
   let reactionProgress = 0;
   let reactionStill = false;
-  let inView = true;
+  const bounds = mount.getBoundingClientRect();
+  let inView = bounds.bottom > 0 && bounds.right > 0 && bounds.top < window.innerHeight && bounds.left < window.innerWidth;
   let visibilityChanged = () => {};
   const stopReaction = () => {
     cancelAnimationFrame(reactionRaf); reactionRaf = 0;
     if (reactionDeadline !== null) clearTimeout(reactionDeadline);
     reactionDeadline = null;
   };
-  const contextLost = (event: Event) => { event.preventDefault(); lost = true; stopReaction(); onContextLost(); };
+  const contextLost = (event: Event) => { event.preventDefault(); lost = true; dispose(); onContextLost(); };
   renderer.domElement.addEventListener("webglcontextlost", contextLost);
   const dispose = () => {
     if (disposed) return;
     disposed = true;
+    cancelCreation?.(new DOMException("Practice scene cancelled", "AbortError")); cancelCreation = null;
+    requiredManager.abort(); sceneryController.abort();
+    if (sceneryTimer !== null) clearTimeout(sceneryTimer);
+    sceneryTimer = null;
+    signal?.removeEventListener("abort", dispose);
     stopReaction();
     observer?.disconnect();
     intersection?.disconnect();
@@ -75,45 +90,72 @@ export async function createFreeThrowScene(
     renderer.forceContextLoss();
     renderer.domElement.remove();
   };
+  signal?.addEventListener("abort", dispose, { once: true });
+  if (signal?.aborted) { dispose(); signal.throwIfAborted(); }
+  intersection = new IntersectionObserver(entries => {
+    inView = entries[0]?.isIntersecting ?? false;
+    viewVisibilityChanged();
+  });
+  intersection.observe(mount);
+  renderer.domElement.dataset.environment = "loading";
   try {
-    const loader = new GLTFLoader();
-    const [ballResult, courtResult, hoopResult, sceneryResult] = await Promise.allSettled([
-      loader.loadAsync(assets.ball), loader.loadAsync(assets.court), loader.loadAsync(assets.hoop),
-      createFreeThrowEnvironment(scene),
-    ]);
-    if (sceneryResult.status === "fulfilled") scenery = sceneryResult.value;
-    // Collect successful siblings even on failure so decoded textures are
-    // disposed rather than leaking when one of the three files cannot load.
-    for (const result of [ballResult, courtResult, hoopResult]) {
-      if (result.status === "fulfilled") scene.add(result.value.scene);
-    }
-    if (ballResult.status === "rejected") throw ballResult.reason;
-    if (courtResult.status === "rejected") throw courtResult.reason;
-    if (hoopResult.status === "rejected") throw hoopResult.reason;
-    if (lost || renderer.getContext().isContextLost()) throw new Error("WebGL context lost during asset loading");
+    // Optional artwork never participates in the court-readiness promise.
+    sceneryTimer = setTimeout(() => sceneryController.abort(new DOMException("Outdoor scenery timed out", "TimeoutError")), SCENERY_LOAD_TIMEOUT_MS);
+    void createFreeThrowEnvironment(scene, sceneryController.signal).then(value => {
+      if (sceneryTimer !== null) clearTimeout(sceneryTimer);
+      sceneryTimer = null;
+      if (disposed || lost || sceneryController.signal.aborted) { value.dispose(); return; }
+      scenery = value; renderer.domElement.dataset.environment = "blender-outdoor";
+      sceneryChanged();
+    }).catch(() => {
+      if (sceneryTimer !== null) clearTimeout(sceneryTimer);
+      sceneryTimer = null; sceneryController.abort();
+      if (!disposed && !lost) renderer.domElement.dataset.environment = "unavailable";
+    });
+    const loader = new GLTFLoader(requiredManager);
+    const cancelled = new Promise<never>((_, reject) => { cancelCreation = reject; });
+    const required = [assets.ball, assets.court, assets.hoop].map(url => loader.loadAsync(url).then(value => {
+      // Parsing/image decoding may finish after network cancellation.
+      if (disposed || lost) { disposeResources(value.scene); throw new DOMException("Practice scene cancelled", "AbortError"); }
+      scene.add(value.scene); return value;
+    }));
+    const [ballResult, courtResult] = await Promise.race([Promise.all(required), cancelled]);
+    cancelCreation = null;
+    if (disposed || lost || renderer.getContext().isContextLost()) throw new Error("WebGL context lost during asset loading");
 
-    const ball = ballResult.value.scene;
-    const courtModel = courtResult.value.scene;
+    const ball = ballResult.scene;
+    const courtModel = courtResult.scene;
     courtModel.position.set(assets.courtOffset.x, assets.courtOffset.y, assets.courtOffset.z);
     // The standalone hoop stays at local origin. Neither it nor the ball
     // is resized or re-centered; their exported units are already metres.
-    const room = new RoomEnvironment();
-    const pmrem = new THREE.PMREMGenerator(renderer);
-    try {
-      if (scenery) {
-        // Keep the original 2K sky background; reflections need less resolution.
-        const image = document.createElement("canvas");
-        image.width = mount.clientWidth < mount.clientHeight ? 512 : 1024; image.height = image.width / 2;
-        const context = image.getContext("2d");
-        if (context) {
-          context.drawImage(scenery.sky.image as CanvasImageSource, 0, 0, image.width, image.height);
-          const reflection = new THREE.CanvasTexture(image); reflection.colorSpace = THREE.SRGBColorSpace;
-          try { environment = pmrem.fromEquirectangular(reflection); } finally { reflection.dispose(); }
-        } else environment = pmrem.fromEquirectangular(scenery.sky);
-      } else environment = pmrem.fromScene(room, 0.04);
-      scene.environment = environment.texture;
-    }
-    finally { room.dispose(); pmrem.dispose(); }
+    let reflectionSky: THREE.Texture | null = null;
+    const ensureLighting = () => {
+      if (environment && reflectionSky === (scenery?.sky ?? null)) return;
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      let room: RoomEnvironment | null = null, next: THREE.WebGLRenderTarget;
+      try {
+        if (scenery) {
+          // Keep the original 2K sky background; reflections need less resolution.
+          const image = document.createElement("canvas");
+          image.width = mount.clientWidth < mount.clientHeight ? 512 : 1024; image.height = image.width / 2;
+          const context = image.getContext("2d");
+          if (context) {
+            context.drawImage(scenery.sky.image as CanvasImageSource, 0, 0, image.width, image.height);
+            const reflection = new THREE.CanvasTexture(image); reflection.colorSpace = THREE.SRGBColorSpace;
+            try { next = pmrem.fromEquirectangular(reflection); } finally { reflection.dispose(); }
+          } else next = pmrem.fromEquirectangular(scenery.sky);
+        } else { room = new RoomEnvironment(); next = pmrem.fromScene(room, 0.04); }
+      } catch (error) {
+        if (!scenery) throw error;
+        scenery.dispose(); scenery = null; scene.background = new THREE.Color("#b8ccd9");
+        renderer.domElement.dataset.environment = "unavailable";
+        if (environment) return;
+        room = new RoomEnvironment(); next = pmrem.fromScene(room, 0.04);
+      } finally { room?.dispose(); pmrem.dispose(); }
+      const previous = environment; environment = next;
+      reflectionSky = scenery?.sky ?? null; scene.environment = environment.texture;
+      previous?.dispose();
+    };
 
     const shadow = new THREE.Mesh(new THREE.CircleGeometry(court.ballRadius * 1.5, 24),
       new THREE.MeshBasicMaterial({ color: color("--gh-bg"), transparent: true, opacity: 0.3, depthWrite: false }));
@@ -176,9 +218,15 @@ export async function createFreeThrowScene(
           guideLine.computeLineDistances();
         }
       }
-      renderer.render(scene, camera);
+      // Keep current ball/guide/camera/reset bookkeeping while the controller
+      // continues its existing simulation. Only GPU submission is visibility-bound.
+      if (!document.hidden && inView) { ensureLighting(); renderer.render(scene, camera); }
     };
     const redraw = () => { if (lastBall) draw(lastBall, lastGuide, lastReduced); };
+    sceneryChanged = () => {
+      scenery?.face(camera); scenery?.pose(reaction, reactionProgress, reactionStill);
+      redraw();
+    };
     const completeReaction = () => {
       stopReaction();
       if (disposed || lost || !reaction) return;
@@ -237,13 +285,10 @@ export async function createFreeThrowScene(
       else if (inView) redraw();
     };
     document.addEventListener("visibilitychange", visibilityChanged);
-    intersection = new IntersectionObserver(entries => {
-      inView = entries[0]?.isIntersecting ?? false;
+    viewVisibilityChanged = () => {
       if (!inView) settleReaction();
       else if (!document.hidden) redraw();
-    });
-    intersection.observe(mount);
-    renderer.domElement.dataset.environment = scenery ? "blender-outdoor" : "unavailable";
+    };
     renderer.domElement.dataset.crowdMotion = "idle";
     resize();
     return { draw, react, dispose, inspect: () => ({ calls: renderer.info.render.calls,

@@ -49,6 +49,8 @@ try {
     if(mobile){await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});await cdp.send('Network.emulateNetworkConditions',{offline:false,latency:80,downloadThroughput:4*1024*1024/8,uploadThroughput:1024*1024/8});}
     await page.goto((old?baseline:origin)+'/?mode=scene',{waitUntil:'domcontentloaded'});
     await page.waitForFunction(()=>window.artQA,undefined,{timeout:90000,polling:50});
+    const courtReadyMs=await page.evaluate(()=>performance.now());
+    if(!old)await page.waitForSelector('canvas[data-environment="blender-outdoor"]',{timeout:30000});
     const readyMs=await bounded(page.evaluate(()=>{const gl=document.querySelector('canvas').getContext('webgl2');gl.readPixels(0,0,1,1,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array(4));return performance.now();}),'First completed frame',30000);
     await page.waitForTimeout(300);
     await cdp.send('HeapProfiler.collectGarbage');
@@ -56,7 +58,7 @@ try {
     const resources=await page.evaluate(()=>performance.getEntriesByType('resource').map(r=>({path:new URL(r.name).pathname,encoded:r.encodedBodySize,decoded:r.decodedBodySize,durationMs:r.duration})));
     const metrics=await bounded(page.evaluate(()=>window.artQA.bench(30)),'Render benchmark');
     const label=(old?'baseline':'blender')+'-'+(mobile?'phone-emulation':'desktop');
-    report.profiles.push({label,readyMs,memory,resources,assetBytes:resources.filter(r=>r.path.startsWith('/3d/')).reduce((s,r)=>s+r.encoded,0),...metrics});
+    report.profiles.push({label,courtReadyMs,readyMs,memory,resources,assetBytes:resources.filter(r=>r.path.startsWith('/3d/')).reduce((s,r)=>s+r.encoded,0),...metrics});
     record(label,{readyMs,memory,medianMs:metrics.medianMs,p95Ms:metrics.p95Ms,sample:metrics.sample,stats:metrics.stats});
     const pixels=await bounded(page.evaluate(()=>window.artQA.capture()),'Actual WebGL image capture');
     assert.ok(pixels.startsWith('data:image/png;base64,'));

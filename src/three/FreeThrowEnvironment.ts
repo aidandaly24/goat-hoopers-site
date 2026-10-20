@@ -28,17 +28,25 @@ export function spectatorLod(person: Spectator, camera: THREE.Vector3, portrait 
   return Math.hypot(x - camera.x, y + 0.8 - camera.y, z - camera.z) < (portrait ? 11.5 : 14) ? "near" : "far";
 }
 
-async function loadGeometry(loader: GLTFLoader) {
+async function loadGeometry(loader: GLTFLoader, signal: AbortSignal) {
   // Explicit gzip asset: no reliance on the host compressing GLB binaries.
-  if (typeof DecompressionStream === "undefined") return loader.loadAsync(ROOT + "outdoor.glb");
-  const response = await fetch(ROOT + "outdoor.glb.gz");
+  const compressed = typeof DecompressionStream !== "undefined";
+  const response = await fetch(ROOT + (compressed ? "outdoor.glb.gz" : "outdoor.glb"), { signal });
   if (!response.ok) throw new Error("Outdoor geometry unavailable");
   const bytes = await response.arrayBuffer();
   const header = new Uint8Array(bytes, 0, Math.min(2, bytes.byteLength));
-  const buffer = header[0] === 31 && header[1] === 139
+  const buffer = compressed && header[0] === 31 && header[1] === 139
     ? await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer()
     : bytes; // A host may already have applied Content-Encoding.
   return loader.parseAsync(buffer, ROOT);
+}
+
+async function loadSky(signal: AbortSignal) {
+  const response = await fetch(ROOT + "sky.jpg", { signal });
+  if (!response.ok) throw new Error("Outdoor sky unavailable");
+  const url = URL.createObjectURL(await response.blob());
+  try { return await new THREE.TextureLoader().loadAsync(url); }
+  finally { URL.revokeObjectURL(url); }
 }
 
 function release(root: THREE.Object3D) {
@@ -55,24 +63,53 @@ function release(root: THREE.Object3D) {
 /** Original Blender art, derived LODs, baked occlusion and instanced cohorts.
  * No lights, camera movement, physics, scoring or frame scheduling is owned here.
  */
-export async function createFreeThrowEnvironment(scene: THREE.Scene) {
-  const loaded = await Promise.allSettled([
-    loadGeometry(new GLTFLoader()),
-    new THREE.TextureLoader().loadAsync(ROOT + "sky.jpg"),
-    fetch(ROOT + "manifest.json").then(response => {
-      if (!response.ok) throw new Error("Outdoor placement manifest unavailable");
-      return response.json() as Promise<OutdoorManifest>;
-    }),
-  ]);
-  const [geometryResult, skyResult, manifestResult] = loaded;
-  if (geometryResult.status === "rejected" || skyResult.status === "rejected" || manifestResult.status === "rejected") {
-    if (geometryResult.status === "fulfilled") release(geometryResult.value.scene);
-    if (skyResult.status === "fulfilled") skyResult.value.dispose();
-    throw new Error("Outdoor scenery could not load");
+export async function createFreeThrowEnvironment(scene: THREE.Scene, signal = new AbortController().signal) {
+  let source: THREE.Object3D | null = null, sky: THREE.Texture | null = null;
+  let active = true;
+  const cancelled = () => signal.reason ?? new DOMException("Outdoor scenery cancelled", "AbortError");
+  const cleanup = () => {
+    active = false;
+    if (source) { release(source); source = null; }
+    if (sky) { sky.dispose(); sky = null; }
+  };
+  let onAbort = () => {};
+  const aborted = new Promise<never>((_, reject) => {
+    onAbort = () => { cleanup(); reject(cancelled()); };
+    signal.addEventListener("abort", onAbort, { once: true });
+  });
+  try {
+    signal.throwIfAborted();
+    const loaded = await Promise.race([Promise.all([
+      loadGeometry(new GLTFLoader(), signal).then(value => {
+        if (!active) { release(value.scene); throw cancelled(); }
+        source = value.scene; return source;
+      }),
+      loadSky(signal).then(value => {
+        if (!active) { value.dispose(); throw cancelled(); }
+        sky = value; return sky;
+      }),
+      fetch(ROOT + "manifest.json", { signal }).then(response => {
+        if (!response.ok) throw new Error("Outdoor placement manifest unavailable");
+        return response.json() as Promise<OutdoorManifest>;
+      }),
+    ]), aborted]);
+    signal.throwIfAborted();
+    // Mount takes ownership, including cleanup if construction itself throws.
+    source = null; sky = null;
+    const mobile = window.matchMedia("(max-width: 40rem), (pointer: coarse)").matches;
+    const environment = mountFreeThrowEnvironment(scene, loaded[0], loaded[1], loaded[2], mobile);
+    // Keep cancellation owning the mounted result through the promise handoff:
+    // a required-load failure can abort before its caller's .then runs.
+    const dispose = () => {
+      signal.removeEventListener("abort", dispose); environment.dispose();
+    };
+    signal.addEventListener("abort", dispose, { once: true });
+    return { ...environment, dispose };
+  } catch (error) {
+    cleanup(); throw error;
+  } finally {
+    active = false; signal.removeEventListener("abort", onAbort);
   }
-  const source = geometryResult.value.scene, sky = skyResult.value, manifest = manifestResult.value;
-  const mobile = window.matchMedia("(max-width: 40rem), (pointer: coarse)").matches;
-  return mountFreeThrowEnvironment(scene, source, sky, manifest, mobile);
 }
 
 /** The loading seam is separate so offline checks exercise the shipped GLB. */

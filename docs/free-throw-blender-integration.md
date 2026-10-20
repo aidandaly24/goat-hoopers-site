@@ -1,9 +1,12 @@
 # Approved Blender scenery in Free Throws
 
 On this branch, `/arcade/free-throw` loads the approved outdoor art study as
-actual 3D scenery. The court, hoop, ball, collider manifest,
-controller, input/charge timing, positions, physics, local scoring and competition
-activation remain byte-identical. This is separate from ranked rules and the
+actual 3D scenery. The original court, hoop, ball, collider/domain manifest,
+input/charge helpers, positions, physics and styles remain byte-identical.
+The controller has only three visual-effect cancellation edits: create an
+AbortController, pass its signal to scene creation and abort on cleanup. Removing
+those edits restores its exact original hash; simulation, input, scoring and
+reset logic are unchanged. This is separate from ranked rules and the
 leaderboard. Ownership continues from [issue199](https://github.com/aidandaly24/goat-hoopers-site/issues/199#issuecomment-6260363083),
 with the [updated scope checkpoint](https://github.com/aidandaly24/goat-hoopers-site/issues/199#issuecomment-6282108521).
 
@@ -76,12 +79,28 @@ programs and the WebGL context. Three 0.186.1 keeps a module-global 16×16 RG16F
 DFG lighting lookup (1KiB); its diagnostic texture counter can remain at one
 after disposal. The context-release check covers its GPU allocation too.
 
+Required ball/court/hoop loading alone controls practice readiness. Optional art
+loads concurrently, has a 20-second deadline and is cancelled on effect cleanup
+or required-load/context failure. Completed siblings are released immediately;
+late geometry/image decodes are disposed without mounting. Unmount can release
+the renderer/context before any pending request settles. A successful late
+arrival uses the latest camera/ball/result state and replaces fallback lighting.
+
+Every draw keeps simulation-facing ball/guide/camera/reset bookkeeping current,
+but GPU submissions and reflection generation require native visibility. An
+actual offscreen shot therefore continues the unchanged simulation, score and
+automatic retry without submitting frames, and redraws current state on return.
+The [P1/P2 regression receipt](../qa/free-throw-art/evidence/lifecycle-regressions.json)
+covers unresolved optional requests, early unmount, native timeout, late
+offscreen arrival and native offscreen flight/reset. Unit tests separately cover
+decoded siblings and late decoders after cancellation, including an abort-ignoring
+manifest transport and cancellation through a fully mounted promise handoff.
+
 ## Measured browser evidence
 
 The production-built Vite fixture imports the actual `FreeThrowPractice` and
 `FreeThrowScene`; it does not substitute a game controller or rendering mock.
-The baseline uses the unchanged #206 source, byte-identical to current main for
-the practice implementation and assets. The optional old-game screenshot did
+The baseline uses the unchanged #206 practice source and assets. The optional old-game screenshot did
 not materialize locally; the parent inspected it. Comparisons use actual
 baseline rendering and the original approved render, with no further transfer
 retry or user action required.
@@ -99,18 +118,20 @@ five-second budget with at least three samples. V8 heap excludes graphics-driver
 memory and some external buffers; geometry attribute bytes and reflection target
 bytes are reported separately rather than being called a measured GPU total.
 
-| Profile | Cold ready | Completed draw + readback median / p95 | Calls / triangles | 3D transfer | Samples |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| baseline-desktop | 4.17s | 174.9 / 201.7 ms | 13 / 11,188 | 3,117,828 B | 29 |
-| blender-desktop | 11.10s | 2707.7 / 2866.0 ms | 44 / 435,282 | 7,443,962 B | 3 |
-| baseline-phone-emulation | 11.14s | 186.7 / 205.0 ms | 13 / 11,188 | 3,117,828 B | 27 |
-| blender-phone-emulation | 19.99s | 936.7 / 1030.5 ms | 27 / 234,925 | 7,443,962 B | 6 |
+| Profile | Court ready | Full-art completed draw | Draw + readback median / p95 | Calls / triangles | 3D transfer | Samples |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| baseline-desktop | 4.79s | 5.00s | 193.1 / 218.5 ms | 13 / 11,188 | 3,117,828 B | 26 |
+| blender-desktop | 0.83s | 8.34s | 2659.6 / 2706.2 ms | 44 / 435,282 | 7,443,962 B | 3 |
+| baseline-phone-emulation | 8.14s | 10.74s | 185.4 / 212.6 ms | 13 / 11,188 | 3,117,828 B | 27 |
+| blender-phone-emulation | 11.91s | 18.81s | 1004.7 / 1054.7 ms | 27 / 234,925 | 7,443,962 B | 5 |
+
+Court readiness measures the required-asset view API; full-art timing additionally waits for scenery and one completed draw/readback. Neither value is a physical-device estimate.
 
 Candidate samples are few because software draws exhaust the time budget; p95 is only the observed sample quantile, not a statistically stable device percentile.
 
 Centered candidate views select 259 spectators (38 near / 221 far) on desktop and 91 far spectators on phone. Across all nine origins, desktop peaks at 49 calls / 455,679 triangles; phone peaks at 29 calls / 262,787 triangles. The automated 60-call / 650k-triangle bounds detect export regressions; they are not an approved device-performance budget.
 
-The candidate V8 heap after GC is 4,709,424 B / 4,630,120 B (desktop / phone). Geometry attribute payloads are 19,212,552 / 18,595,392 B; reflection targets are 6,291,456 / 1,572,864 B. These figures exclude other texture, browser and driver allocations. All owned geometry/program counters reach zero at teardown, followed by actual context loss.
+The candidate V8 heap after GC is 5,292,128 B / 5,371,540 B (desktop / phone). Geometry attribute payloads are 19,212,552 / 18,595,392 B; reflection targets are 6,291,456 / 1,572,864 B. These figures exclude other texture, browser and driver allocations. All owned geometry/program counters reach zero at teardown, followed by actual context loss.
 
 Added art transfer is 4,326,134 bytes (4.13 MiB) in this gzip-serving fixture. It slightly exceeds the art study's provisional 2–4 MiB target; desktop geometry also exceeds its provisional 150k–250k added-triangle target. Budget acceptance and any further reduction remain review decisions. The software GPU is substantially slower with the richer scene, so these results are not a real-time performance sign-off.
 
@@ -148,6 +169,11 @@ slow frame; it is unchanged. Physical GPU validation of that uninterrupted path
 is required before merge, along with native hidden-tab and displayed animation
 review. Compact-viewport and reduced-motion completion do not establish those
 full-resolution properties.
+
+Independent original-source/export reproduction also remains unverified: the
+independent reviewer's authorized Library transfer returned proxy403. No transfer
+bypass, credential change or release was attempted. Existing owner source identity
+and shipped-asset checks do not replace that independent reproduction.
 
 The production Next verifier additionally loads the actual route and shared site
 shell on desktop/phone, checks the exported asset URLs and completes a native
