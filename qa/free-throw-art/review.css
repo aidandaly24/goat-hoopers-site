@@ -1,0 +1,5 @@
+html, body, #root { margin: 0; width: 100%; min-height: 100%; }
+body { background: var(--gh-bg); color: var(--gh-text); font-family: system-ui, sans-serif; }
+body { --gh-chrome-h: 0px; --gh-mobile-nav-h: 0px; }
+.scene { height: 100dvh; background: var(--gh-scene-bg); }
+.scene canvas { display: block; }
