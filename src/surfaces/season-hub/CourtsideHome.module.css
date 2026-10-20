@@ -1510,6 +1510,7 @@
   .ai-row-team-away { flex-direction: row; text-align: left; }
   .ai-row-team-away .ai-row-pct { margin-left: auto; margin-right: 0; }
   .desk-stats { gap: var(--gh-cs-s4); }
+  .team-desk[data-league-desk] .desk-actions { flex-wrap: wrap; }
 }
 @media (prefers-reduced-motion: reduce) {
   .trend-in, .ai-row-bar { animation: none !important; }
