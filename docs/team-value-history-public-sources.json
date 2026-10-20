@@ -1,0 +1,1428 @@
+{
+  "scope": "Public HTTP source inventory only; no database metadata or persisted pricing results.",
+  "purpose": "Issue217 audit; not a replay implementation or a complete-history guarantee.",
+  "seasons": [
+    {
+      "leagueId": "1282883196567977984",
+      "season": "2025",
+      "status": "complete",
+      "previousLeagueId": null,
+      "rosterCount": 10,
+      "rosterIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "transactions": {
+        "queriedWeeks": [
+          0,
+          60
+        ],
+        "errors": [],
+        "nonempty": [
+          {
+            "week": 1,
+            "rows": 46
+          },
+          {
+            "week": 2,
+            "rows": 11
+          },
+          {
+            "week": 3,
+            "rows": 24
+          },
+          {
+            "week": 4,
+            "rows": 35
+          },
+          {
+            "week": 5,
+            "rows": 18
+          },
+          {
+            "week": 6,
+            "rows": 18
+          },
+          {
+            "week": 7,
+            "rows": 15
+          },
+          {
+            "week": 8,
+            "rows": 15
+          },
+          {
+            "week": 9,
+            "rows": 27
+          },
+          {
+            "week": 10,
+            "rows": 37
+          },
+          {
+            "week": 11,
+            "rows": 23
+          },
+          {
+            "week": 12,
+            "rows": 12
+          },
+          {
+            "week": 13,
+            "rows": 14
+          },
+          {
+            "week": 14,
+            "rows": 10
+          },
+          {
+            "week": 15,
+            "rows": 8
+          },
+          {
+            "week": 16,
+            "rows": 15
+          },
+          {
+            "week": 17,
+            "rows": 9
+          },
+          {
+            "week": 18,
+            "rows": 14
+          },
+          {
+            "week": 19,
+            "rows": 7
+          },
+          {
+            "week": 20,
+            "rows": 2
+          },
+          {
+            "week": 21,
+            "rows": 16
+          },
+          {
+            "week": 22,
+            "rows": 12
+          },
+          {
+            "week": 23,
+            "rows": 8
+          },
+          {
+            "week": 24,
+            "rows": 4
+          }
+        ],
+        "unique": 400,
+        "complete": 392,
+        "statuses": {
+          "complete": 392,
+          "failed": 8
+        },
+        "types": {
+          "free_agent": 340,
+          "waiver": 33,
+          "trade": 15,
+          "commissioner": 4
+        },
+        "createdFrom": 1760924179960,
+        "createdTo": 1775085901475,
+        "effectiveFrom": 1760924274062,
+        "effectiveTo": 1775085901475
+      }
+    },
+    {
+      "leagueId": "1387473752807190528",
+      "season": "2026",
+      "status": "in_season",
+      "previousLeagueId": "1282883196567977984",
+      "rosterCount": 10,
+      "rosterIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "transactions": {
+        "queriedWeeks": [
+          0,
+          60
+        ],
+        "errors": [],
+        "nonempty": [
+          {
+            "week": 1,
+            "rows": 39
+          }
+        ],
+        "unique": 39,
+        "complete": 39,
+        "statuses": {
+          "complete": 39
+        },
+        "types": {
+          "free_agent": 39
+        },
+        "createdFrom": 1786581651735,
+        "createdTo": 1791512656042,
+        "effectiveFrom": 1786581651735,
+        "effectiveTo": 1791512656042
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:17.848Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:17 GMT",
+      "providerAgeSeconds": "78773",
+      "sha256": "3bca7a5929bf5d492eeaf647720f7b6294da343c4a5c21c50288a809eb63b2cd"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/rosters",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:17.897Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:17 GMT",
+      "providerAgeSeconds": "64",
+      "sha256": "b2002b96cfc33f81a410bb53fb9678f3af4d3868faabfab9ac254c2bf279bb2d"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/0",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.073Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": "462",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/2",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.125Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "7be706a4d614d17bf27c5a4e7e9f81ec0c0e1237dcb3be9549ead2fd68fce17f"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/1",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.182Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "98212332b165d89403b9083a8308f78063c3666bfaf9cf50c3aed0621651ff7a"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/3",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.216Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "8dd00ac2d8d0caf4238c30a1346263c354cef72108bdb603270925ddbee376b1"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/7",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.283Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": "458",
+      "sha256": "3b5b727ad73f5eb3660abb7a0d914b75bee9ee00886d6ed66252f4802a508a9a"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/6",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.340Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "1e116aa326717da3d13793d143c0b5176fa74bc237b5812e569cf6f85099f462"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/4",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.361Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "f9ab33dd0f9cfc13fedcb89700b995067a0e3a6f972c2a2e12ad3057da402952"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/5",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.371Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "861240add022b140bb5a0644a0b0b4f41441701c2bd08185b9616d14220bf464"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/9",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.519Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "0bc8b9d7e0987ef69537d3683676c16b2733172047bd26fba8805554878aebc5"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/10",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.543Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "fb78fcc52e9481db679eb8c4b9018c1dacd160db7216bdf4264fcd764cd23f0b"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/11",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.552Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "c36cc075911fcd97f89515cfaa870deb13c7aa9c66ff8a6efb7116ea3355d9f8"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/8",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.564Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "08aeba3df1636d35a7e27c57b51ed6ed8e74d64c248b02f429af0dec849831b4"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/12",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.615Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": "456",
+      "sha256": "e4aa9a27474d445ec76949d6528be872c9777ffd731a65555950dcb2eb5b3b0f"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/15",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.705Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "bc53dd63e554edd79221e576440d93681b09657361ee92f113c84096e8b959df"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/14",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.709Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "06ef943d5d18bf03190a5fead10a9b6be8e791603ea27edfd4f1cab42a1f7a70"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/13",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.727Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "2b30d7418e7917b6f0e3da5ce416fc470d77c73935ba33e06b7778f371afd764"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/17",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.776Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": "454",
+      "sha256": "47195f852b7a0040bed0d50f7e1c15d21783c22e7002b247b17595dd891c8e3c"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/18",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.874Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4fcc445b92384be1e13124084b88e58899c0114038472892a16b2276f959a5f3"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/16",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:18.887Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:18 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "e2f29dabbfa5364c6b389170d436b2f8a79353f84ee2415c802392238bf3881b"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/19",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.095Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "f22638bda8b9bd5904a9ac137cb4b93116f7bc36659106eaceeffe169a780114"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/23",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.221Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "fdb76d7447236a61cf2d79d048c356c52326cc9c9e521a6aa207a636da22bbd3"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/21",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.228Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "ce697c896f4798f03ef092c714cf0b6bfe2ecc8a9bcd326ebefcb62f16242c10"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/20",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.228Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "ee9d6c6645e2314f2ef7467d8bf49f0860b984da204a3f86fa4bea91a12a5e7a"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/22",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.265Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "acb78f9cb602cb561bad48ccd4dab009de4b2ca5eb25d9aeecc1ff00a590b9e0"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/25",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.391Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/24",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.397Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "370b9db027afe861551d3741bac6df9b49afb80ede6e189274b18137eb02630a"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/27",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.400Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/26",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.415Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/29",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.540Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/30",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.558Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/28",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.558Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/31",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.579Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/34",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.706Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/35",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.711Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/32",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.712Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/33",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.741Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/36",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.880Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/39",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.886Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/38",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.887Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/37",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:19.907Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:19 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/42",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.049Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/40",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.063Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/43",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.096Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/41",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.119Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/44",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.244Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/45",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.268Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/47",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.269Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/46",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.274Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/51",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.401Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/50",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.412Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/49",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.422Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/48",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.447Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/54",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.585Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/53",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.593Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/52",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.609Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/55",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.612Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/57",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.745Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/56",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.748Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/59",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.749Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/58",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.771Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984/transactions/60",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.880Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.916Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": "171",
+      "sha256": "00f8f9aa9e176f3c12b64801d43a3344f553ad8bd12931c0a197f7eec50e620c"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/rosters",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:20.952Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:20 GMT",
+      "providerAgeSeconds": "171",
+      "sha256": "0ad8ace20ef98ae546bb656657b80c572947a83948d1cac06f33011477bd8c66"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/1",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.057Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "cd9c3f50337e25beb1d5f3c3441d5e29278af7bcda02a1f5c683919b7f9b2a55"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/0",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.083Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/2",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.095Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/3",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.147Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/4",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.190Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": "473",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/5",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.202Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": "473",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/6",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.202Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": "472",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/7",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.303Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/11",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.360Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": "469",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/8",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.427Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/10",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.432Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/9",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.481Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/14",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.535Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": "468",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/15",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.535Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": "467",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/12",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.623Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/13",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.624Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/17",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.704Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": "466",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/19",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.778Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/16",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.809Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/18",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.832Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/23",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.954Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/20",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.970Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/22",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.975Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/21",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:21.989Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:21 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/27",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.117Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/26",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.126Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/25",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.136Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/24",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.148Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/31",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.277Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/29",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.278Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/28",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.289Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/30",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.326Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/33",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.463Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/34",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.464Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/32",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.466Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/35",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.478Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/39",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.603Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/37",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.618Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/38",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.624Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/36",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.626Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/42",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.746Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/43",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.752Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/41",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.761Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/40",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.768Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/46",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.896Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/45",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.905Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/44",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.912Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/47",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:22.922Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:22 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/50",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.065Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/49",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.070Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/51",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.080Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/48",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.098Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/54",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.231Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/55",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.235Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/53",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.240Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/52",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.242Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/56",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.378Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/57",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.378Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/59",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.382Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/58",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:23.403Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:23 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528/transactions/60",
+      "status": 200,
+      "retrievedAt": "2026-10-20T01:36:24.367Z",
+      "providerDate": "Tue, 20 Oct 2026 01:36:24 GMT",
+      "providerAgeSeconds": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "candidate": {
+    "days": [
+      {
+        "day": "20251021",
+        "events": 2,
+        "completed": 2,
+        "sampledEvent": "401809243",
+        "date": "2025-10-21T23:30Z",
+        "athleteRows": 27,
+        "playedRows": 20,
+        "mappedPlayedRows": 20,
+        "statNames": [
+          "MIN",
+          "PTS",
+          "FG",
+          "3PT",
+          "FT",
+          "REB",
+          "AST",
+          "TO",
+          "STL",
+          "BLK",
+          "OREB",
+          "DREB",
+          "PF",
+          "+/-"
+        ],
+        "statLabels": [
+          "MIN",
+          "PTS",
+          "FG",
+          "3PT",
+          "FT",
+          "REB",
+          "AST",
+          "TO",
+          "STL",
+          "BLK",
+          "OREB",
+          "DREB",
+          "PF",
+          "+/-"
+        ],
+        "sampleStats": [
+          "47",
+          "23",
+          "9-16",
+          "0-4",
+          "5-6",
+          "9",
+          "3",
+          "4",
+          "0",
+          "0",
+          "0",
+          "9",
+          "6",
+          "0"
+        ]
+      },
+      {
+        "day": "20260120",
+        "events": 7,
+        "completed": 7,
+        "sampledEvent": "401810468",
+        "date": "2026-01-21T00:00Z",
+        "athleteRows": 29,
+        "playedRows": 20,
+        "mappedPlayedRows": 20,
+        "statNames": [
+          "MIN",
+          "PTS",
+          "FG",
+          "3PT",
+          "FT",
+          "REB",
+          "AST",
+          "TO",
+          "STL",
+          "BLK",
+          "OREB",
+          "DREB",
+          "PF",
+          "+/-"
+        ],
+        "statLabels": [
+          "MIN",
+          "PTS",
+          "FG",
+          "3PT",
+          "FT",
+          "REB",
+          "AST",
+          "TO",
+          "STL",
+          "BLK",
+          "OREB",
+          "DREB",
+          "PF",
+          "+/-"
+        ],
+        "sampleStats": [
+          "24",
+          "9",
+          "3-7",
+          "3-7",
+          "0-0",
+          "3",
+          "2",
+          "1",
+          "0",
+          "0",
+          "0",
+          "3",
+          "1",
+          "-5"
+        ]
+      },
+      {
+        "day": "20260412",
+        "events": 15,
+        "completed": 15,
+        "sampledEvent": "401811041",
+        "date": "2026-04-12T22:00Z",
+        "athleteRows": 28,
+        "playedRows": 18,
+        "mappedPlayedRows": 16,
+        "statNames": [
+          "MIN",
+          "PTS",
+          "FG",
+          "3PT",
+          "FT",
+          "REB",
+          "AST",
+          "TO",
+          "STL",
+          "BLK",
+          "OREB",
+          "DREB",
+          "PF",
+          "+/-"
+        ],
+        "statLabels": [
+          "MIN",
+          "PTS",
+          "FG",
+          "3PT",
+          "FT",
+          "REB",
+          "AST",
+          "TO",
+          "STL",
+          "BLK",
+          "OREB",
+          "DREB",
+          "PF",
+          "+/-"
+        ],
+        "sampleStats": [
+          "38",
+          "23",
+          "7-22",
+          "0-5",
+          "9-11",
+          "10",
+          "11",
+          "6",
+          "0",
+          "0",
+          "4",
+          "6",
+          "3",
+          "+2"
+        ]
+      }
+    ],
+    "receipts": [
+      {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20251021",
+        "status": 200,
+        "retrievedAt": "2026-10-20T01:38:41.734Z",
+        "bytes": 32789,
+        "sha256": "dcc829577e1fd1f967a9bf22fa11e10eb7166a603c08bbb8543e52a691ea1576",
+        "rawFile": "espn-20251021.json"
+      },
+      {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401809243",
+        "status": 200,
+        "retrievedAt": "2026-10-20T01:38:41.982Z",
+        "bytes": 447861,
+        "sha256": "7262f5e67b4625e92a469776b535d2cf448e76748d8c3b3a8c649bc37ee41a3e",
+        "rawFile": "espn-event-401809243.json"
+      },
+      {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20260120",
+        "status": 200,
+        "retrievedAt": "2026-10-20T01:38:42.272Z",
+        "bytes": 100311,
+        "sha256": "32b665e6e81e2e6293e25d51f4250867d513034d94dbb0f3f9032bd9fa4f3f88",
+        "rawFile": "espn-20260120.json"
+      },
+      {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401810468",
+        "status": 200,
+        "retrievedAt": "2026-10-20T01:38:42.410Z",
+        "bytes": 411327,
+        "sha256": "c596ba9780a67f6e7208670a1da44529f9cce26f5db6e1f940447db36fcdd3b1",
+        "rawFile": "espn-event-401810468.json"
+      },
+      {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20260412",
+        "status": 200,
+        "retrievedAt": "2026-10-20T01:38:42.529Z",
+        "bytes": 209939,
+        "sha256": "8d3c2459f267cd9d80342dd49719e58dcb2f770caa8ab719667e8713b7eb659d",
+        "rawFile": "espn-20260412.json"
+      },
+      {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401811041",
+        "status": 200,
+        "retrievedAt": "2026-10-20T01:38:42.659Z",
+        "bytes": 402198,
+        "sha256": "874a82dd05a26f826a3ed0f0c9eb48c3a346cf712e32bf515475f12191174c3d",
+        "rawFile": "espn-event-401811041.json"
+      }
+    ]
+  }
+}
