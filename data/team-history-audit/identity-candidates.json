@@ -1,0 +1,32 @@
+{
+  "directorySha256": "d5f22653887268cf65e9a6dc5fd9b0c3e083157e4121ff4b25362685fb4c72cf",
+  "existingMapSha256": "7164394e11514aeee1377d1cafbc33424bba240903c0e186e230951996340fd8",
+  "candidates": [
+    {
+      "sleeperId": "4785",
+      "espnId": "4701992",
+      "name": "Max Shulga",
+      "birthDate": "2002-06-25",
+      "source": "https://www.espn.com/nba/player/bio/_/id/4701992/max-shulga",
+      "verification": "Unique exact name and matching birth date in frozen Sleeper directory and ESPN biography read through web on 2026-10-20. Candidate for this offline audit only; production map is unchanged."
+    },
+    {
+      "sleeperId": "2290",
+      "espnId": "4397885",
+      "name": "Dalano Banton",
+      "birthDate": "1999-11-07",
+      "source": "https://www.espn.com/nba/player/bio/_/id/4397885/dalano-banton",
+      "verification": "Unique exact name and matching birth date in frozen Sleeper directory and ESPN biography read through web on 2026-10-20. Candidate for this offline audit only; production map is unchanged."
+    },
+    {
+      "sleeperId": "2084",
+      "espnId": "3137259",
+      "name": "Gabe Vincent",
+      "birthDate": "1996-06-14",
+      "source": "https://www.nba.com/lakers/team/player-pages/gabe-vincent-1629216",
+      "espnIdEvidence": "Athlete ID/name in frozen event401809244 box score.",
+      "verification": "Unique exact name and matching birth date in frozen Sleeper directory and official NBA club biography read through web on 2026-10-20. Candidate for this offline audit only; production map is unchanged."
+    }
+  ],
+  "profileApiProbe": "First core athlete endpoint failed at proxy CONNECT HTTP403; no profile JSON captured. Gabe Vincent ESPN biography returned a bot-check page; official NBA club biography was used for DOB evidence. These read-only source limitations do not affect retained raw box scores."
+}

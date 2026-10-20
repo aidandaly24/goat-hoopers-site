@@ -1,0 +1,30 @@
+{
+  "scoring": {
+    "ast": 1.0,
+    "blk": 2.0,
+    "bonus_ast_15p": 2.0,
+    "bonus_pt_40p": 2.0,
+    "bonus_pt_50p": 2.0,
+    "bonus_reb_20p": 2.0,
+    "dd": 1.0,
+    "ff": -2.0,
+    "pts": 0.5,
+    "reb": 1.0,
+    "stl": 2.0,
+    "td": 2.0,
+    "tf": -2.0,
+    "to": -1.0,
+    "tpm": 0.5
+  },
+  "basis": "Both league endpoints returned this identical scoring map on 2026-10-20. This is not a contemporaneous historical scoring-settings archive.",
+  "sources": [
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1282883196567977984",
+      "sha256": "3bca7a5929bf5d492eeaf647720f7b6294da343c4a5c21c50288a809eb63b2cd"
+    },
+    {
+      "endpoint": "https://api.sleeper.app/v1/league/1387473752807190528",
+      "sha256": "00f8f9aa9e176f3c12b64801d43a3344f553ad8bd12931c0a197f7eec50e620c"
+    }
+  ]
+}

@@ -11,3 +11,9 @@ Against PR207's merge commit this reproduces the production `openingPhase`
 server-to-client call failure; after the extraction it must render all eight
 responses successfully. This exercises the real framework boundary that Vite
 and ordinary React static rendering do not enforce.
+
+The synthetic member response also composes the separately owned
+`TeamValueHistory` island with its shared serializable fixture. This checks the
+new contract/client boundary in exact-head CI without adding production homepage
+wiring or making a detail request. Interactive history checks live separately in
+`qa/team-value-history/`.

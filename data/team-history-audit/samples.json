@@ -1,0 +1,2460 @@
+{
+  "version": 1,
+  "events": [
+    {
+      "id": "401809243",
+      "seasonStartYear": 2025,
+      "scheduledStart": "2025-10-21T23:30Z",
+      "completed": true,
+      "source": {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401809243",
+        "status": 200,
+        "retrievedAt": "2026-10-20T01:38:41.982Z",
+        "bytes": 447861,
+        "sha256": "7262f5e67b4625e92a469776b535d2cf448e76748d8c3b3a8c649bc37ee41a3e",
+        "rawFile": "espn-event-401809243.json"
+      },
+      "teams": [
+        {
+          "id": "10",
+          "name": "Houston Rockets",
+          "penaltyTotals": {
+            "technicalFouls": "0",
+            "totalTechnicalFouls": "0",
+            "flagrantFouls": "0"
+          },
+          "statKeys": [
+            "minutes",
+            "points",
+            "fieldGoalsMade-fieldGoalsAttempted",
+            "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+            "freeThrowsMade-freeThrowsAttempted",
+            "rebounds",
+            "assists",
+            "turnovers",
+            "steals",
+            "blocks",
+            "offensiveRebounds",
+            "defensiveRebounds",
+            "fouls",
+            "plusMinus"
+          ],
+          "athletes": [
+            {
+              "id": "3202",
+              "name": "Kevin Durant",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "47",
+                "23",
+                "9-16",
+                "0-4",
+                "5-6",
+                "9",
+                "3",
+                "4",
+                "0",
+                "0",
+                "0",
+                "9",
+                "6",
+                "0"
+              ]
+            },
+            {
+              "id": "4432639",
+              "name": "Jabari Smith Jr.",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "42",
+                "16",
+                "7-15",
+                "2-6",
+                "0-0",
+                "5",
+                "0",
+                "0",
+                "1",
+                "0",
+                "3",
+                "2",
+                "4",
+                "+2"
+              ]
+            },
+            {
+              "id": "2991235",
+              "name": "Steven Adams",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "37",
+                "4",
+                "1-4",
+                "0-0",
+                "2-2",
+                "13",
+                "3",
+                "3",
+                "0",
+                "0",
+                "5",
+                "8",
+                "4",
+                "+2"
+              ]
+            },
+            {
+              "id": "4871144",
+              "name": "Alperen Sengun",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "49",
+                "39",
+                "12-24",
+                "5-8",
+                "10-11",
+                "11",
+                "7",
+                "4",
+                "2",
+                "1",
+                "4",
+                "7",
+                "5",
+                "+9"
+              ]
+            },
+            {
+              "id": "4684740",
+              "name": "Amen Thompson",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "39",
+                "18",
+                "8-17",
+                "0-7",
+                "2-2",
+                "4",
+                "5",
+                "4",
+                "1",
+                "1",
+                "2",
+                "2",
+                "3",
+                "-11"
+              ]
+            },
+            {
+              "id": "4433192",
+              "name": "Tari Eason",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "22",
+                "3",
+                "1-6",
+                "1-4",
+                "0-0",
+                "6",
+                "0",
+                "4",
+                "0",
+                "1",
+                "0",
+                "6",
+                "1",
+                "-4"
+              ]
+            },
+            {
+              "id": "3102529",
+              "name": "Clint Capela",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "8",
+                "4",
+                "1-1",
+                "0-0",
+                "2-2",
+                "0",
+                "0",
+                "1",
+                "1",
+                "0",
+                "0",
+                "0",
+                "0",
+                "+5"
+              ]
+            },
+            {
+              "id": "4065663",
+              "name": "Josh Okogie",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "20",
+                "8",
+                "1-3",
+                "1-3",
+                "5-6",
+                "2",
+                "1",
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "2",
+                "-8"
+              ]
+            },
+            {
+              "id": "4711272",
+              "name": "Reed Sheppard",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "28",
+                "9",
+                "3-11",
+                "2-7",
+                "1-2",
+                "2",
+                "4",
+                "2",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1",
+                "0"
+              ]
+            },
+            {
+              "id": "3209",
+              "name": "Jeff Green",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "2578185",
+              "name": "Dorian Finney-Smith",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "LEFT ANKLE SURGERY",
+              "stats": []
+            },
+            {
+              "id": "3136777",
+              "name": "Jae'Sean Tate",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "RIGHT ANKLE SURGERY",
+              "stats": []
+            },
+            {
+              "id": "3922230",
+              "name": "Aaron Holiday",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "4067858",
+              "name": "Kevon Harris",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "4576085",
+              "name": "JD Davison",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            }
+          ]
+        },
+        {
+          "id": "25",
+          "name": "Oklahoma City Thunder",
+          "penaltyTotals": {
+            "technicalFouls": "0",
+            "totalTechnicalFouls": "0",
+            "flagrantFouls": "0"
+          },
+          "statKeys": [
+            "minutes",
+            "points",
+            "fieldGoalsMade-fieldGoalsAttempted",
+            "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+            "freeThrowsMade-freeThrowsAttempted",
+            "rebounds",
+            "assists",
+            "turnovers",
+            "steals",
+            "blocks",
+            "offensiveRebounds",
+            "defensiveRebounds",
+            "fouls",
+            "plusMinus"
+          ],
+          "athletes": [
+            {
+              "id": "4222252",
+              "name": "Isaiah Hartenstein",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "37",
+                "6",
+                "2-5",
+                "0-1",
+                "2-2",
+                "8",
+                "5",
+                "1",
+                "2",
+                "0",
+                "5",
+                "3",
+                "6",
+                "+9"
+              ]
+            },
+            {
+              "id": "4433255",
+              "name": "Chet Holmgren",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "39",
+                "28",
+                "11-17",
+                "2-5",
+                "4-4",
+                "7",
+                "2",
+                "3",
+                "0",
+                "0",
+                "2",
+                "5",
+                "6",
+                "-1"
+              ]
+            },
+            {
+              "id": "4278073",
+              "name": "Shai Gilgeous-Alexander",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "47",
+                "35",
+                "12-26",
+                "1-9",
+                "10-14",
+                "5",
+                "5",
+                "3",
+                "2",
+                "2",
+                "0",
+                "5",
+                "2",
+                "+3"
+              ]
+            },
+            {
+              "id": "4397020",
+              "name": "Luguentz Dort",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "45",
+                "6",
+                "2-12",
+                "0-8",
+                "2-2",
+                "6",
+                "5",
+                "1",
+                "1",
+                "0",
+                "2",
+                "4",
+                "4",
+                "+2"
+              ]
+            },
+            {
+              "id": "4683692",
+              "name": "Cason Wallace",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "42",
+                "14",
+                "5-10",
+                "3-8",
+                "1-2",
+                "7",
+                "5",
+                "2",
+                "4",
+                "0",
+                "1",
+                "6",
+                "3",
+                "+8"
+              ]
+            },
+            {
+              "id": "4432823",
+              "name": "Jaylin Williams",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "13",
+                "2",
+                "1-5",
+                "0-4",
+                "0-0",
+                "0",
+                "1",
+                "0",
+                "1",
+                "0",
+                "0",
+                "0",
+                "1",
+                "-3"
+              ]
+            },
+            {
+              "id": "4684208",
+              "name": "Brooks Barnhizer",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "2",
+                "0",
+                "0-0",
+                "0-0",
+                "0-0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "-2"
+              ]
+            },
+            {
+              "id": "2991350",
+              "name": "Alex Caruso",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "30",
+                "8",
+                "3-9",
+                "2-6",
+                "0-0",
+                "2",
+                "3",
+                "0",
+                "2",
+                "1",
+                "0",
+                "2",
+                "2",
+                "-15"
+              ]
+            },
+            {
+              "id": "4397183",
+              "name": "Aaron Wiggins",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "21",
+                "10",
+                "4-8",
+                "2-5",
+                "0-0",
+                "1",
+                "1",
+                "1",
+                "0",
+                "0",
+                "0",
+                "1",
+                "1",
+                "+2"
+              ]
+            },
+            {
+              "id": "4706557",
+              "name": "Chris Youngblood",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "0",
+                "0",
+                "0-0",
+                "0-0",
+                "0-0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            {
+              "id": "4900671",
+              "name": "Ajay Mitchell",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "15",
+                "16",
+                "6-12",
+                "3-6",
+                "1-1",
+                "2",
+                "2",
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "2",
+                "+2"
+              ]
+            },
+            {
+              "id": "4997526",
+              "name": "Ousmane Dieng",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            }
+          ]
+        }
+      ],
+      "selectedPlays": [
+        {
+          "id": "401809243872",
+          "typeId": "402",
+          "typeText": "End Game",
+          "teamId": null,
+          "athleteIds": [],
+          "wallclock": "2025-10-22T02:59:51Z"
+        }
+      ],
+      "selectionPolicy": "All source End Game, technical and flagrant play types; no article/news/odds/injury/current-season-stat fields retained."
+    },
+    {
+      "id": "401809244",
+      "seasonStartYear": 2025,
+      "scheduledStart": "2025-10-22T02:00Z",
+      "completed": true,
+      "source": {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401809244",
+        "status": null,
+        "archiveWrittenAt": "2026-10-20T01:47:49.658423+00:00",
+        "retrievalTimePrecision": "Local archive write time; supplemental probe subsequently failed on a different host before saving its in-memory receipts.",
+        "sha256": "eff6cdd7a905e046ac09bd2f4a86229d8d0d35149d7a75515532e76aae38f184",
+        "bytes": 383876,
+        "statusEvidence": "The supplemental probe did not retain its in-memory HTTP status receipt before the next-host CONNECT failure; no HTTP status is inferred from the valid archived body."
+      },
+      "teams": [
+        {
+          "id": "9",
+          "name": "Golden State Warriors",
+          "penaltyTotals": {
+            "technicalFouls": "1",
+            "totalTechnicalFouls": "1",
+            "flagrantFouls": "0"
+          },
+          "statKeys": [
+            "minutes",
+            "points",
+            "fieldGoalsMade-fieldGoalsAttempted",
+            "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+            "freeThrowsMade-freeThrowsAttempted",
+            "rebounds",
+            "assists",
+            "turnovers",
+            "steals",
+            "blocks",
+            "offensiveRebounds",
+            "defensiveRebounds",
+            "fouls",
+            "plusMinus"
+          ],
+          "athletes": [
+            {
+              "id": "6430",
+              "name": "Jimmy Butler III",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "35",
+                "31",
+                "7-14",
+                "1-2",
+                "16-16",
+                "5",
+                "4",
+                "1",
+                "1",
+                "0",
+                "2",
+                "3",
+                "4",
+                "+20"
+              ]
+            },
+            {
+              "id": "6589",
+              "name": "Draymond Green",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "28",
+                "8",
+                "3-6",
+                "1-3",
+                "1-3",
+                "7",
+                "9",
+                "4",
+                "1",
+                "2",
+                "1",
+                "6",
+                "5",
+                "+20"
+              ]
+            },
+            {
+              "id": "4433247",
+              "name": "Jonathan Kuminga",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "33",
+                "17",
+                "6-11",
+                "4-6",
+                "1-2",
+                "9",
+                "6",
+                "2",
+                "1",
+                "0",
+                "3",
+                "6",
+                "3",
+                "+4"
+              ]
+            },
+            {
+              "id": "3975",
+              "name": "Stephen Curry",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "32",
+                "23",
+                "6-14",
+                "3-9",
+                "8-8",
+                "1",
+                "4",
+                "2",
+                "3",
+                "1",
+                "0",
+                "1",
+                "3",
+                "+1"
+              ]
+            },
+            {
+              "id": "4709138",
+              "name": "Brandin Podziemski",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "33",
+                "7",
+                "3-7",
+                "1-4",
+                "0-0",
+                "7",
+                "2",
+                "1",
+                "1",
+                "0",
+                "1",
+                "6",
+                "2",
+                "+13"
+              ]
+            },
+            {
+              "id": "4997536",
+              "name": "Gui Santos",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "3",
+                "0",
+                "0-0",
+                "0-0",
+                "0-0",
+                "0",
+                "0",
+                "1",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            {
+              "id": "3213",
+              "name": "Al Horford",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "20",
+                "5",
+                "2-7",
+                "1-4",
+                "0-0",
+                "5",
+                "1",
+                "2",
+                "0",
+                "0",
+                "0",
+                "5",
+                "4",
+                "-10"
+              ]
+            },
+            {
+              "id": "4593016",
+              "name": "Quinten Post",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "9",
+                "0",
+                "0-0",
+                "0-0",
+                "0-0",
+                "2",
+                "1",
+                "0",
+                "0",
+                "0",
+                "0",
+                "2",
+                "1",
+                "+5"
+              ]
+            },
+            {
+              "id": "2990984",
+              "name": "Buddy Hield",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "22",
+                "17",
+                "6-11",
+                "5-10",
+                "0-0",
+                "1",
+                "0",
+                "2",
+                "1",
+                "0",
+                "0",
+                "1",
+                "0",
+                "+5"
+              ]
+            },
+            {
+              "id": "3134903",
+              "name": "Gary Payton II",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "12",
+                "6",
+                "3-6",
+                "0-1",
+                "0-0",
+                "2",
+                "1",
+                "3",
+                "1",
+                "1",
+                "1",
+                "1",
+                "3",
+                "+3"
+              ]
+            },
+            {
+              "id": "4897262",
+              "name": "Will Richard",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "14",
+                "5",
+                "2-2",
+                "1-1",
+                "0-0",
+                "1",
+                "1",
+                "0",
+                "1",
+                "0",
+                "1",
+                "0",
+                "2",
+                "-11"
+              ]
+            },
+            {
+              "id": "4431684",
+              "name": "Trayce Jackson-Davis",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "4592714",
+              "name": "Pat Spencer",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            }
+          ]
+        },
+        {
+          "id": "13",
+          "name": "Los Angeles Lakers",
+          "penaltyTotals": {
+            "technicalFouls": "1",
+            "totalTechnicalFouls": "1",
+            "flagrantFouls": "1"
+          },
+          "statKeys": [
+            "minutes",
+            "points",
+            "fieldGoalsMade-fieldGoalsAttempted",
+            "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+            "freeThrowsMade-freeThrowsAttempted",
+            "rebounds",
+            "assists",
+            "turnovers",
+            "steals",
+            "blocks",
+            "offensiveRebounds",
+            "defensiveRebounds",
+            "fouls",
+            "plusMinus"
+          ],
+          "athletes": [
+            {
+              "id": "4066648",
+              "name": "Rui Hachimura",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "35",
+                "9",
+                "3-6",
+                "3-6",
+                "0-0",
+                "4",
+                "3",
+                "1",
+                "0",
+                "0",
+                "0",
+                "4",
+                "2",
+                "-6"
+              ]
+            },
+            {
+              "id": "4278129",
+              "name": "Deandre Ayton",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "34",
+                "10",
+                "5-7",
+                "0-0",
+                "0-2",
+                "6",
+                "0",
+                "4",
+                "0",
+                "1",
+                "2",
+                "4",
+                "3",
+                "-4"
+              ]
+            },
+            {
+              "id": "3137259",
+              "name": "Gabe Vincent",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "29",
+                "3",
+                "1-4",
+                "1-4",
+                "0-0",
+                "0",
+                "1",
+                "0",
+                "1",
+                "0",
+                "0",
+                "0",
+                "3",
+                "-5"
+              ]
+            },
+            {
+              "id": "3945274",
+              "name": "Luka Doncic",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "41",
+                "43",
+                "17-27",
+                "2-10",
+                "7-10",
+                "12",
+                "9",
+                "3",
+                "2",
+                "1",
+                "0",
+                "12",
+                "1",
+                "-8"
+              ]
+            },
+            {
+              "id": "4066457",
+              "name": "Austin Reaves",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "36",
+                "26",
+                "9-16",
+                "1-5",
+                "7-10",
+                "5",
+                "9",
+                "5",
+                "2",
+                "0",
+                "1",
+                "4",
+                "5",
+                "-14"
+              ]
+            },
+            {
+              "id": "4278077",
+              "name": "Jarred Vanderbilt",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "12",
+                "0",
+                "0-4",
+                "0-2",
+                "0-0",
+                "3",
+                "0",
+                "2",
+                "1",
+                "0",
+                "0",
+                "3",
+                "0",
+                "-4"
+              ]
+            },
+            {
+              "id": "4592691",
+              "name": "Jake LaRavia",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "16",
+                "5",
+                "2-4",
+                "1-2",
+                "0-2",
+                "3",
+                "0",
+                "0",
+                "0",
+                "0",
+                "2",
+                "1",
+                "1",
+                "-5"
+              ]
+            },
+            {
+              "id": "4397077",
+              "name": "Jaxson Hayes",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "14",
+                "4",
+                "2-3",
+                "0-0",
+                "0-0",
+                "6",
+                "1",
+                "1",
+                "0",
+                "0",
+                "2",
+                "4",
+                "2",
+                "-6"
+              ]
+            },
+            {
+              "id": "2990992",
+              "name": "Marcus Smart",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "23",
+                "9",
+                "3-6",
+                "0-3",
+                "3-4",
+                "0",
+                "0",
+                "3",
+                "1",
+                "0",
+                "0",
+                "0",
+                "4",
+                "+2"
+              ]
+            },
+            {
+              "id": "4897943",
+              "name": "Dalton Knecht",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "4431778",
+              "name": "Christian Koloko",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "4683774",
+              "name": "Bronny James",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            }
+          ]
+        }
+      ],
+      "selectedPlays": [
+        {
+          "id": "40180924487",
+          "typeId": "35",
+          "typeText": "Technical Foul",
+          "teamId": "9",
+          "athleteIds": [
+            "6589"
+          ],
+          "wallclock": "2025-10-22T02:30:52Z"
+        },
+        {
+          "id": "40180924488",
+          "typeId": "103",
+          "typeText": "Free Throw - Technical",
+          "teamId": "13",
+          "athleteIds": [
+            "4066457"
+          ],
+          "wallclock": "2025-10-22T02:31:11Z"
+        },
+        {
+          "id": "401809244216",
+          "typeId": "35",
+          "typeText": "Technical Foul",
+          "teamId": "13",
+          "athleteIds": [
+            "4278077"
+          ],
+          "wallclock": "2025-10-22T02:55:04Z"
+        },
+        {
+          "id": "401809244217",
+          "typeId": "103",
+          "typeText": "Free Throw - Technical",
+          "teamId": "9",
+          "athleteIds": [
+            "6430"
+          ],
+          "wallclock": "2025-10-22T02:55:35Z"
+        },
+        {
+          "id": "401809244286",
+          "typeId": "32",
+          "typeText": "Flagrant Foul Type 1",
+          "teamId": "13",
+          "athleteIds": [
+            "2990992"
+          ],
+          "wallclock": "2025-10-22T03:08:33Z"
+        },
+        {
+          "id": "401809244292",
+          "typeId": "104",
+          "typeText": "Free Throw - Flagrant 1 of 2",
+          "teamId": "9",
+          "athleteIds": [
+            "3975"
+          ],
+          "wallclock": "2025-10-22T03:11:29Z"
+        },
+        {
+          "id": "401809244293",
+          "typeId": "105",
+          "typeText": "Free Throw - Flagrant 2 of 2",
+          "teamId": "9",
+          "athleteIds": [
+            "3975"
+          ],
+          "wallclock": "2025-10-22T03:11:29Z"
+        },
+        {
+          "id": "401809244690",
+          "typeId": "402",
+          "typeText": "End Game",
+          "teamId": null,
+          "athleteIds": [],
+          "wallclock": "2025-10-22T04:46:00Z"
+        }
+      ],
+      "selectionPolicy": "All source End Game, technical and flagrant play types; no article/news/odds/injury/current-season-stat fields retained."
+    },
+    {
+      "id": "401810468",
+      "seasonStartYear": 2025,
+      "scheduledStart": "2026-01-21T00:00Z",
+      "completed": true,
+      "source": {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401810468",
+        "status": 200,
+        "retrievedAt": "2026-10-20T01:38:42.410Z",
+        "bytes": 411327,
+        "sha256": "c596ba9780a67f6e7208670a1da44529f9cce26f5db6e1f940447db36fcdd3b1",
+        "rawFile": "espn-event-401810468.json"
+      },
+      "teams": [
+        {
+          "id": "21",
+          "name": "Phoenix Suns",
+          "penaltyTotals": {
+            "technicalFouls": "0",
+            "totalTechnicalFouls": "0",
+            "flagrantFouls": "0"
+          },
+          "statKeys": [
+            "minutes",
+            "points",
+            "fieldGoalsMade-fieldGoalsAttempted",
+            "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+            "freeThrowsMade-freeThrowsAttempted",
+            "rebounds",
+            "assists",
+            "turnovers",
+            "steals",
+            "blocks",
+            "offensiveRebounds",
+            "defensiveRebounds",
+            "fouls",
+            "plusMinus"
+          ],
+          "athletes": [
+            {
+              "id": "2583632",
+              "name": "Royce O'Neale",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "24",
+                "9",
+                "3-7",
+                "3-7",
+                "0-0",
+                "3",
+                "2",
+                "1",
+                "0",
+                "0",
+                "0",
+                "3",
+                "1",
+                "-5"
+              ]
+            },
+            {
+              "id": "3155526",
+              "name": "Dillon Brooks",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "30",
+                "6",
+                "2-13",
+                "0-3",
+                "2-2",
+                "5",
+                "1",
+                "2",
+                "1",
+                "1",
+                "0",
+                "5",
+                "1",
+                "-7"
+              ]
+            },
+            {
+              "id": "4701232",
+              "name": "Mark Williams",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "18",
+                "4",
+                "2-3",
+                "0-0",
+                "0-0",
+                "9",
+                "0",
+                "5",
+                "0",
+                "0",
+                "6",
+                "3",
+                "3",
+                "-3"
+              ]
+            },
+            {
+              "id": "3136193",
+              "name": "Devin Booker",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "34",
+                "27",
+                "9-23",
+                "2-5",
+                "7-7",
+                "3",
+                "4",
+                "6",
+                "1",
+                "0",
+                "2",
+                "1",
+                "4",
+                "-10"
+              ]
+            },
+            {
+              "id": "4278585",
+              "name": "Collin Gillespie",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "28",
+                "12",
+                "3-6",
+                "3-6",
+                "3-3",
+                "4",
+                "4",
+                "2",
+                "0",
+                "0",
+                "0",
+                "4",
+                "3",
+                "+7"
+              ]
+            },
+            {
+              "id": "4601023",
+              "name": "Oso Ighodaro",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "29",
+                "12",
+                "5-7",
+                "0-0",
+                "2-2",
+                "5",
+                "3",
+                "4",
+                "0",
+                "1",
+                "2",
+                "3",
+                "3",
+                "+10"
+              ]
+            },
+            {
+              "id": "4888725",
+              "name": "Ryan Dunn",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "9",
+                "2",
+                "1-2",
+                "0-1",
+                "0-0",
+                "1",
+                "0",
+                "0",
+                "0",
+                "0",
+                "1",
+                "0",
+                "3",
+                "+8"
+              ]
+            },
+            {
+              "id": "3135045",
+              "name": "Grayson Allen",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "29",
+                "16",
+                "5-11",
+                "4-9",
+                "2-2",
+                "5",
+                "6",
+                "0",
+                "1",
+                "0",
+                "2",
+                "3",
+                "1",
+                "+11"
+              ]
+            },
+            {
+              "id": "4278402",
+              "name": "Jordan Goodwin",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "20",
+                "16",
+                "6-9",
+                "2-4",
+                "2-2",
+                "5",
+                "2",
+                "0",
+                "2",
+                "0",
+                "2",
+                "3",
+                "1",
+                "+9"
+              ]
+            },
+            {
+              "id": "4437244",
+              "name": "Jalen Green",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "20",
+                "12",
+                "4-11",
+                "2-4",
+                "2-2",
+                "2",
+                "3",
+                "2",
+                "0",
+                "0",
+                "0",
+                "2",
+                "1",
+                "+10"
+              ]
+            },
+            {
+              "id": "3059409",
+              "name": "Nigel Hayes-Davis",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "5105977",
+              "name": "Rasheer Fleming",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "4278076",
+              "name": "Nick Richards",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "5203685",
+              "name": "Khaman Maluach",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            }
+          ]
+        },
+        {
+          "id": "20",
+          "name": "Philadelphia 76ers",
+          "penaltyTotals": {
+            "technicalFouls": "1",
+            "totalTechnicalFouls": "1",
+            "flagrantFouls": "0"
+          },
+          "statKeys": [
+            "minutes",
+            "points",
+            "fieldGoalsMade-fieldGoalsAttempted",
+            "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+            "freeThrowsMade-freeThrowsAttempted",
+            "rebounds",
+            "assists",
+            "turnovers",
+            "steals",
+            "blocks",
+            "offensiveRebounds",
+            "defensiveRebounds",
+            "fouls",
+            "plusMinus"
+          ],
+          "athletes": [
+            {
+              "id": "4870562",
+              "name": "Dominick Barlow",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "28",
+                "8",
+                "3-6",
+                "0-2",
+                "2-2",
+                "5",
+                "2",
+                "1",
+                "2",
+                "0",
+                "2",
+                "3",
+                "2",
+                "-4"
+              ]
+            },
+            {
+              "id": "6585",
+              "name": "Andre Drummond",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "22",
+                "8",
+                "4-10",
+                "0-2",
+                "0-0",
+                "15",
+                "1",
+                "2",
+                "0",
+                "1",
+                "6",
+                "9",
+                "2",
+                "-2"
+              ]
+            },
+            {
+              "id": "3133603",
+              "name": "Kelly Oubre Jr.",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "34",
+                "21",
+                "6-15",
+                "5-10",
+                "4-6",
+                "4",
+                "1",
+                "2",
+                "2",
+                "0",
+                "1",
+                "3",
+                "4",
+                "+13"
+              ]
+            },
+            {
+              "id": "4431678",
+              "name": "Tyrese Maxey",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "43",
+                "20",
+                "7-25",
+                "2-8",
+                "4-5",
+                "2",
+                "7",
+                "2",
+                "3",
+                "1",
+                "0",
+                "2",
+                "3",
+                "+3"
+              ]
+            },
+            {
+              "id": "5124612",
+              "name": "VJ Edgecombe",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "37",
+                "25",
+                "10-21",
+                "2-7",
+                "3-4",
+                "7",
+                "1",
+                "4",
+                "2",
+                "1",
+                "3",
+                "4",
+                "3",
+                "+5"
+              ]
+            },
+            {
+              "id": "4431675",
+              "name": "Trendon Watford",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "6",
+                "0",
+                "0-1",
+                "0-0",
+                "0-0",
+                "0",
+                "1",
+                "1",
+                "0",
+                "0",
+                "0",
+                "0",
+                "1",
+                "-10"
+              ]
+            },
+            {
+              "id": "4432446",
+              "name": "Jabari Walker",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "6",
+                "0",
+                "0-1",
+                "0-1",
+                "0-0",
+                "1",
+                "0",
+                "0",
+                "0",
+                "0",
+                "1",
+                "0",
+                "2",
+                "-3"
+              ]
+            },
+            {
+              "id": "4711297",
+              "name": "Justin Edwards",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "12",
+                "5",
+                "2-2",
+                "1-1",
+                "0-0",
+                "1",
+                "2",
+                "0",
+                "0",
+                "1",
+                "0",
+                "1",
+                "1",
+                "-17"
+              ]
+            },
+            {
+              "id": "5105637",
+              "name": "Adem Bona",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "26",
+                "11",
+                "4-5",
+                "0-0",
+                "3-4",
+                "10",
+                "0",
+                "4",
+                "0",
+                "2",
+                "5",
+                "5",
+                "2",
+                "-4"
+              ]
+            },
+            {
+              "id": "4397014",
+              "name": "Quentin Grimes",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "27",
+                "12",
+                "3-7",
+                "1-3",
+                "5-6",
+                "4",
+                "5",
+                "3",
+                "3",
+                "0",
+                "0",
+                "4",
+                "2",
+                "-11"
+              ]
+            },
+            {
+              "id": "4251",
+              "name": "Paul George",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "LEFT KNEE",
+              "stats": []
+            },
+            {
+              "id": "4433569",
+              "name": "Johni Broome",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "3012",
+              "name": "Kyle Lowry",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "3431",
+              "name": "Eric Gordon",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "4683778",
+              "name": "Jared McCain",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            }
+          ]
+        }
+      ],
+      "selectedPlays": [
+        {
+          "id": "401810468584",
+          "typeId": "35",
+          "typeText": "Technical Foul",
+          "teamId": "20",
+          "athleteIds": [],
+          "wallclock": "2026-01-21T02:02:41Z"
+        },
+        {
+          "id": "401810468585",
+          "typeId": "103",
+          "typeText": "Free Throw - Technical",
+          "teamId": "21",
+          "athleteIds": [
+            "4278585"
+          ],
+          "wallclock": "2026-01-21T02:04:50Z"
+        },
+        {
+          "id": "401810468748",
+          "typeId": "402",
+          "typeText": "End Game",
+          "teamId": null,
+          "athleteIds": [],
+          "wallclock": "2026-01-21T02:30:54Z"
+        }
+      ],
+      "selectionPolicy": "All source End Game, technical and flagrant play types; no article/news/odds/injury/current-season-stat fields retained."
+    },
+    {
+      "id": "401811041",
+      "seasonStartYear": 2025,
+      "scheduledStart": "2026-04-12T22:00Z",
+      "completed": true,
+      "source": {
+        "endpoint": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401811041",
+        "status": 200,
+        "retrievedAt": "2026-10-20T01:38:42.659Z",
+        "bytes": 402198,
+        "sha256": "874a82dd05a26f826a3ed0f0c9eb48c3a346cf712e32bf515475f12191174c3d",
+        "rawFile": "espn-event-401811041.json"
+      },
+      "teams": [
+        {
+          "id": "19",
+          "name": "Orlando Magic",
+          "penaltyTotals": {
+            "technicalFouls": "0",
+            "totalTechnicalFouls": "0",
+            "flagrantFouls": "0"
+          },
+          "statKeys": [
+            "minutes",
+            "points",
+            "fieldGoalsMade-fieldGoalsAttempted",
+            "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+            "freeThrowsMade-freeThrowsAttempted",
+            "rebounds",
+            "assists",
+            "turnovers",
+            "steals",
+            "blocks",
+            "offensiveRebounds",
+            "defensiveRebounds",
+            "fouls",
+            "plusMinus"
+          ],
+          "athletes": [
+            {
+              "id": "4432573",
+              "name": "Paolo Banchero",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "38",
+                "23",
+                "7-22",
+                "0-5",
+                "9-11",
+                "10",
+                "11",
+                "6",
+                "0",
+                "0",
+                "4",
+                "6",
+                "3",
+                "+2"
+              ]
+            },
+            {
+              "id": "4566434",
+              "name": "Franz Wagner",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "26",
+                "20",
+                "7-18",
+                "2-7",
+                "4-4",
+                "4",
+                "1",
+                "1",
+                "1",
+                "0",
+                "1",
+                "3",
+                "2",
+                "-4"
+              ]
+            },
+            {
+              "id": "4277847",
+              "name": "Wendell Carter Jr.",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "31",
+                "3",
+                "0-5",
+                "0-2",
+                "3-4",
+                "8",
+                "2",
+                "2",
+                "0",
+                "2",
+                "2",
+                "6",
+                "4",
+                "-4"
+              ]
+            },
+            {
+              "id": "4066320",
+              "name": "Desmond Bane",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "18",
+                "8",
+                "3-8",
+                "1-4",
+                "1-2",
+                "2",
+                "1",
+                "0",
+                "1",
+                "1",
+                "2",
+                "0",
+                "0",
+                "+9"
+              ]
+            },
+            {
+              "id": "4432165",
+              "name": "Jalen Suggs",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "38",
+                "23",
+                "8-17",
+                "7-15",
+                "0-0",
+                "6",
+                "3",
+                "4",
+                "1",
+                "1",
+                "0",
+                "6",
+                "1",
+                "+6"
+              ]
+            },
+            {
+              "id": "4278572",
+              "name": "Jamal Cain",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "16",
+                "2",
+                "0-1",
+                "0-1",
+                "2-2",
+                "2",
+                "0",
+                "0",
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "-9"
+              ]
+            },
+            {
+              "id": "4702382",
+              "name": "Tristan da Silva",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "24",
+                "8",
+                "3-6",
+                "0-2",
+                "2-2",
+                "6",
+                "2",
+                "2",
+                "1",
+                "0",
+                "0",
+                "6",
+                "0",
+                "+3"
+              ]
+            },
+            {
+              "id": "4348700",
+              "name": "Goga Bitadze",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "16",
+                "5",
+                "2-2",
+                "0-0",
+                "1-2",
+                "7",
+                "1",
+                "1",
+                "0",
+                "0",
+                "3",
+                "4",
+                "4",
+                "-1"
+              ]
+            },
+            {
+              "id": "3133635",
+              "name": "Jevon Carter",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "15",
+                "3",
+                "1-3",
+                "1-3",
+                "0-0",
+                "2",
+                "0",
+                "1",
+                "1",
+                "0",
+                "0",
+                "2",
+                "0",
+                "-14"
+              ]
+            },
+            {
+              "id": "4712849",
+              "name": "Anthony Black",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "19",
+                "13",
+                "5-9",
+                "1-4",
+                "2-3",
+                "3",
+                "1",
+                "2",
+                "1",
+                "1",
+                "1",
+                "2",
+                "4",
+                "-13"
+              ]
+            },
+            {
+              "id": "5214637",
+              "name": "Noah Penda",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "3150844",
+              "name": "Moritz Wagner",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "4397204",
+              "name": "Colin Castleton",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "4593034",
+              "name": "Alex Morales",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            },
+            {
+              "id": "5239561",
+              "name": "Jase Richardson",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": []
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Boston Celtics",
+          "penaltyTotals": {
+            "technicalFouls": "0",
+            "totalTechnicalFouls": "0",
+            "flagrantFouls": "0"
+          },
+          "statKeys": [
+            "minutes",
+            "points",
+            "fieldGoalsMade-fieldGoalsAttempted",
+            "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+            "freeThrowsMade-freeThrowsAttempted",
+            "rebounds",
+            "assists",
+            "turnovers",
+            "steals",
+            "blocks",
+            "offensiveRebounds",
+            "defensiveRebounds",
+            "fouls",
+            "plusMinus"
+          ],
+          "athletes": [
+            {
+              "id": "4277951",
+              "name": "Luka Garza",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "38",
+                "27",
+                "10-18",
+                "3-6",
+                "4-4",
+                "12",
+                "1",
+                "2",
+                "1",
+                "0",
+                "4",
+                "8",
+                "4",
+                "+13"
+              ]
+            },
+            {
+              "id": "4397251",
+              "name": "Ron Harper Jr.",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "37",
+                "27",
+                "10-20",
+                "5-12",
+                "2-2",
+                "7",
+                "4",
+                "3",
+                "3",
+                "0",
+                "1",
+                "6",
+                "0",
+                "+7"
+              ]
+            },
+            {
+              "id": "4593841",
+              "name": "Baylor Scheierman",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "39",
+                "30",
+                "8-20",
+                "6-14",
+                "8-8",
+                "7",
+                "7",
+                "3",
+                "2",
+                "1",
+                "0",
+                "7",
+                "3",
+                "+15"
+              ]
+            },
+            {
+              "id": "4683689",
+              "name": "Jordan Walsh",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "33",
+                "9",
+                "2-9",
+                "1-6",
+                "4-4",
+                "8",
+                "3",
+                "1",
+                "1",
+                "1",
+                "1",
+                "7",
+                "4",
+                "-14"
+              ]
+            },
+            {
+              "id": "4701992",
+              "name": "Max Shulga",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "18",
+                "3",
+                "1-4",
+                "1-3",
+                "0-0",
+                "3",
+                "0",
+                "1",
+                "1",
+                "0",
+                "1",
+                "2",
+                "4",
+                "+8"
+              ]
+            },
+            {
+              "id": "4397885",
+              "name": "Dalano Banton",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "37",
+                "2",
+                "0-3",
+                "0-1",
+                "2-2",
+                "4",
+                "7",
+                "6",
+                "1",
+                "4",
+                "1",
+                "3",
+                "2",
+                "+3"
+              ]
+            },
+            {
+              "id": "4593043",
+              "name": "John Tonje",
+              "didNotPlay": false,
+              "active": true,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "30",
+                "13",
+                "4-12",
+                "3-8",
+                "2-2",
+                "4",
+                "1",
+                "0",
+                "1",
+                "0",
+                "0",
+                "4",
+                "4",
+                "+1"
+              ]
+            },
+            {
+              "id": "4702745",
+              "name": "Amari Williams",
+              "didNotPlay": false,
+              "active": false,
+              "reason": "COACH'S DECISION",
+              "stats": [
+                "10",
+                "2",
+                "1-1",
+                "0-0",
+                "0-0",
+                "1",
+                "1",
+                "1",
+                "0",
+                "0",
+                "0",
+                "1",
+                "2",
+                "-8"
+              ]
+            },
+            {
+              "id": "4065804",
+              "name": "Sam Hauser",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "LOW BACK MUSCLE SPASMS",
+              "stats": []
+            },
+            {
+              "id": "6478",
+              "name": "Nikola Vucevic",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "RIGHT FINGER",
+              "stats": []
+            },
+            {
+              "id": "4397424",
+              "name": "Neemias Queta",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "SPRAINED RIGHT TOE",
+              "stats": []
+            },
+            {
+              "id": "4066354",
+              "name": "Payton Pritchard",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "PLANTAR FASCIITIS LEFT FOOT",
+              "stats": []
+            },
+            {
+              "id": "5175647",
+              "name": "Hugo Gonzalez",
+              "didNotPlay": true,
+              "active": false,
+              "reason": "BONE BRUISE, RIGHT FOOT",
+              "stats": []
+            }
+          ]
+        }
+      ],
+      "selectedPlays": [
+        {
+          "id": "401811041699",
+          "typeId": "402",
+          "typeText": "End Game",
+          "teamId": null,
+          "athleteIds": [],
+          "wallclock": "2026-04-13T00:45:07Z"
+        }
+      ],
+      "selectionPolicy": "All source End Game, technical and flagrant play types; no article/news/odds/injury/current-season-stat fields retained."
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 import { CourtsideHome } from '@/surfaces/season-hub/CourtsideHome';
 import { personalizedFixture, playerGuideFixture } from '@/test/personalized-home-fixture';
 import { buildHomeFaces, buildPersonalizedHome } from '@/data/personalized-home';
+import { TeamValueHistory } from '@/surfaces/season-hub/TeamValueHistory';
+import { teamValueHistoryFixture } from '@/test/team-value-history-fixture';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,6 +18,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ s
   return <>
     <p>Offline Next.js boundary fixture; all league data is synthetic.</p>
     <main><CourtsideHome data={home} archive={[]} portraits={{}} aiWeekly={weekly}
-      personal={personal} faces={buildHomeFaces(home, market)} archived={state === 'archived'} /></main>
+      personal={personal} faces={buildHomeFaces(home, market)} archived={state === 'archived'} />
+      {state === 'member' && <TeamValueHistory history={teamValueHistoryFixture()} />}</main>
   </>;
 }
