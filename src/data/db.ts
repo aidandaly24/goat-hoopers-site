@@ -271,13 +271,27 @@ export const sleeperTransactions = pgTable("sleeper_transactions", {
  * league (roster 8 changed owners between seasons; the series follows the
  * slot, per #217).
  *
- * roster_status is the provenance tier from the agreed contract:
- * 'verified' (independently dated source evidence), 'replayed'
- * (deterministic replay, not independently verified), or
- * 'boundary-reconciliation' (derived by reconciling the previous season's
- * final roster against this season's lineage — offseason keeper cuts are
- * not transactions in either league's feed, so the cut set is computed,
- * never dressed up as sourced moves, and its effective day is unproven).
+ * roster_status is CONFIDENCE ONLY — the presentation contract's
+ * TeamHistoryRosterStatus ('verified' | 'replayed' | 'ambiguous' |
+ * 'unavailable') — and never an origin: 'boundary-reconciliation' is a
+ * move/evidence origin (see roster_boundary_moves), not a roster status.
+ *
+ * - 'verified' / 'replayed': membership is established at this date;
+ *   player_ids holds the rostered player_ids, sorted for determinism.
+ *   Dated snapshots stay valid at their supported dates; nothing here
+ *   retroactively assigns an undated move a date.
+ * - 'ambiguous': membership over the surrounding interval cannot be
+ *   established (e.g. the offseason keeper boundary — the cut set is
+ *   derived by reconciling the previous season's final roster against
+ *   this season's lineage, but offseason cuts are not transactions in
+ *   either league's feed, so no effective day is proven). player_ids is
+ *   EMPTY and roster_count is NULL: no membership is promoted into a
+ *   valued roster. roster_evidence carries the reconciliation reasoning
+ *   (string refs: source transaction ids, boundary move ids,
+ *   human-readable notes). Only when a member COUNT is independently
+ *   supported despite unknown identities may roster_count carry it —
+ *   still with no player list and no priced value.
+ * - 'unavailable': no support exists at all; same empty shape.
  */
 export const rosterSnapshotsDaily = pgTable("roster_snapshots_daily", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -287,18 +301,83 @@ export const rosterSnapshotsDaily = pgTable("roster_snapshots_daily", {
   season: text("season").notNull(),
   /** Sleeper roster slot within the league (1–10). */
   rosterId: integer("roster_id").notNull(),
-  /** UTC calendar day this roster was in effect. */
+  /** UTC calendar day this coverage row describes. */
   date: date("date").notNull(),
-  /** Sleeper player_ids rostered that day, sorted for determinism. */
+  /**
+   * Sleeper player_ids rostered that day, sorted for determinism.
+   * Non-empty only for 'verified' / 'replayed'; MUST be [] when the day
+   * is 'ambiguous' or 'unavailable' (membership unestablished).
+   */
   playerIds: jsonb("player_ids").notNull(),
-  /** 'verified' | 'replayed' | 'boundary-reconciliation'. */
+  /**
+   * Independently supported member count when identities are unknown
+   * (ambiguous days); NULL when no count is supported. For
+   * verified/replayed days it mirrors player_ids length or stays NULL —
+   * the snapshot's own length is authoritative there.
+   */
+  rosterCount: integer("roster_count"),
+  /** 'verified' | 'replayed' | 'ambiguous' | 'unavailable' — confidence only. */
   rosterStatus: text("roster_status").notNull(),
+  /**
+   * Evidence/reasoning refs for this day's coverage: source transaction
+   * ids, roster_boundary_moves ids, coverage notes. The presentation
+   * contract's rosterEvidence; null when there is nothing to cite.
+   */
+  rosterEvidence: jsonb("roster_evidence"),
   /** Replay run that produced this row (the envelope generation). */
   generation: text("generation").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   uniqueIndex("roster_snapshots_daily_unique").on(table.leagueId, table.rosterId, table.date, table.generation),
   index("roster_snapshots_daily_range_idx").on(table.leagueId, table.rosterId, table.date),
+]);
+
+/**
+ * Team value history (#217): DERIVED boundary moves — the reconciliation
+ * evidence behind ambiguous roster coverage, kept separate from both the
+ * sourced transaction archive and roster confidence. Offseason keeper
+ * cuts exist in neither league's transaction feed, so the boundary
+ * between seasons is reconstructed by reconciling the previous season's
+ * final roster against the next season's opening lineage; each derived
+ * membership delta lands here as a move whose ORIGIN is
+ * 'boundary-reconciliation' — an origin, never a roster status, and never
+ * proof a cut happened on a chosen date.
+ *
+ * When the effective time is unknown the timing stays unknown:
+ * precision = 'unknown' with effective_at NULL and day NULL. Nothing in
+ * this table assigns the move a date the evidence does not support.
+ */
+export const rosterBoundaryMoves = pgTable("roster_boundary_moves", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  /** Sleeper league_id of the season the move is derived against. */
+  leagueId: text("league_id").notNull(),
+  /** Sleeper league season year the move is derived against. */
+  season: text("season").notNull(),
+  /** Sleeper roster slot within the league (1–10). */
+  rosterId: integer("roster_id").notNull(),
+  /** Move origin; for this table always 'boundary-reconciliation'. */
+  origin: text("origin").notNull(),
+  /** 'boundary-reconciliation' (the derived cut/keep reconciliation). */
+  type: text("type").notNull(),
+  /** 'derived' — computed by reconciliation, never a sourced record. */
+  status: text("status").notNull(),
+  /** 'instant' | 'day' | 'unknown' — how precisely timing is known. */
+  precision: text("precision").notNull(),
+  /** Effective time when precision = 'instant'; NULL otherwise. */
+  effectiveAt: timestamp("effective_at", { withTimezone: true }),
+  /** UTC calendar day when precision = 'day'; NULL otherwise. */
+  day: date("day"),
+  /** player_id -> roster_id for derived joins; null if none. */
+  adds: jsonb("adds"),
+  /** player_id -> roster_id for derived leaves; null if none. */
+  drops: jsonb("drops"),
+  /** Reconciliation reasoning / human-readable evidence note. */
+  note: text("note"),
+  /** Replay run that produced this row (the envelope generation). */
+  generation: text("generation").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index("roster_boundary_moves_roster_idx").on(table.leagueId, table.rosterId),
 ]);
 
 /**
@@ -310,7 +389,14 @@ export const rosterSnapshotsDaily = pgTable("roster_snapshots_daily", {
  * never zero. A point is 'complete' only when every rostered player was
  * priced; 'partial' points are labeled subtotals and carry priced_set_id
  * (deltas are only meaningful across an identical priced set);
- * 'unavailable' points have no eligible price at all. provenance_class
+ * 'unavailable' points have no eligible price at all. An explicit
+ * 'unavailable' point may exist for an ambiguous/unavailable roster day
+ * (priced_count 0, subtotal NULL, roster_count NULL — the count is
+ * unknown, not zero — provenance 'unavailable', continuity_id NULL): it
+ * records that no valuation exists; it creates no line and no inferred
+ * value. Days whose roster is merely ambiguous usually carry NO point at
+ * all. roster_count is NULL whenever the day's member count is not
+ * independently supported. provenance_class
  * separates 'recorded' (quotes captured contemporaneously, from
  * stock_snapshots) from 'reconstructed' (retrospective model estimates)
  * and 'mixed'; the two are never blended silently. continuity_id is the
@@ -340,8 +426,12 @@ export const teamValuePoints = pgTable("team_value_points", {
   subtotalCents: integer("subtotal_cents"),
   /** Players with an eligible price in this point. */
   pricedCount: integer("priced_count").notNull(),
-  /** Players on the day's roster snapshot. */
-  rosterCount: integer("roster_count").notNull(),
+  /**
+   * Players on the day's roster snapshot; NULL when the roster/count is
+   * not independently supported (ambiguous or unavailable days) — an
+   * unknown count is never recorded as zero.
+   */
+  rosterCount: integer("roster_count"),
   /** 'complete' | 'partial' | 'unavailable'. */
   status: text("status").notNull(),
   /** 'recorded' | 'reconstructed' | 'mixed' | 'unavailable'. */
@@ -379,6 +469,7 @@ export const schema = {
   priceHistoryImportState,
   sleeperTransactions,
   rosterSnapshotsDaily,
+  rosterBoundaryMoves,
   teamValuePoints,
 };
 

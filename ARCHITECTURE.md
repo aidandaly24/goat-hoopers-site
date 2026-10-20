@@ -642,15 +642,22 @@ When the database isn't
 provisioned the store is a no-op: prices still compute live, movers show
 their honest "no history yet" states, and nothing crashes.
 
-Team value history (#217) gets its own three-table store in `db.ts`,
+Team value history (#217) gets its own four-table store in `db.ts`,
 landed schema-first (`migrations/team-value-history.sql`, reviewed and
 applied separately; no ingest or reader exists yet). `sleeper_transactions`
 is the normalized archive of both league seasons' Sleeper transactions —
-failed rows are stored verbatim and filtered only at replay read time —
+failed rows are stored verbatim and filtered only at replay read time.
 `roster_snapshots_daily` is the replay output (one roster per slot per UTC
-day, with a verified / replayed / boundary-reconciliation provenance
-status), and `team_value_points` is the derived daily series whose
-`subtotal_cents` is nullable because unknown means NULL, never zero.
+day); its `roster_status` is confidence only (`verified` / `replayed` /
+`ambiguous` / `unavailable`), with `roster_evidence` carrying the
+reasoning — ambiguous days store an empty player list and a NULL
+`roster_count` unless a count is independently supported. Derived
+offseason-boundary reconciliation lives apart in `roster_boundary_moves`:
+`boundary-reconciliation` is a move origin, never a roster status, and a
+move whose effective time is unknown stores `precision = 'unknown'` with
+NULL `effective_at` / `day` rather than an invented cut date.
+`team_value_points` is the derived daily series whose `subtotal_cents`
+(and `roster_count`) is nullable because unknown means NULL, never zero.
 Recorded points persist there with their original quote references
 because `stock_snapshots` prunes after 30 days. The dot owns the
 presentation contract (`src/domain/team-value-history.ts`) and picker;
