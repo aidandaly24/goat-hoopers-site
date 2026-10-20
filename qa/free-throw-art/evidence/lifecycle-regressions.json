@@ -1,0 +1,134 @@
+{
+  "checks": [
+    {
+      "check": "never-resolving optional manifest does not block play or immediate unmount",
+      "evidence": {
+        "required": [
+          {
+            "url": "http://127.0.0.1:8799/3d/free-throw/GOAT_HOOPERS_Court.glb",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:8799/3d/free-throw/GOAT_HOOPERS_Hoop.glb",
+            "status": 200
+          },
+          {
+            "url": "http://127.0.0.1:8799/3d/free-throw/GOAT_HOOPERS_Basketball.glb",
+            "status": 200
+          }
+        ],
+        "contextsCreated": 1,
+        "liveContexts": 0,
+        "manifestResponseReleased": false
+      }
+    },
+    {
+      "check": "unmount during required-asset creation releases context before settlement",
+      "evidence": {
+        "contextsCreated": 1,
+        "liveContexts": 0,
+        "courtResponseReleased": false
+      }
+    },
+    {
+      "check": "native scenery deadline aborts a held request while the court stays ready",
+      "evidence": {
+        "contextsCreated": 1,
+        "liveContexts": 0,
+        "manifestResponseReleased": false
+      }
+    },
+    {
+      "check": "standard GLB fallback still loads after making transport cancellable",
+      "evidence": {
+        "raw": 1,
+        "gzip": 0,
+        "contextsCreated": 1,
+        "liveContexts": 0
+      }
+    },
+    {
+      "check": "late scenery mounts without offscreen GPU work and redraws on return",
+      "evidence": {
+        "before": 69,
+        "after": 119,
+        "contextsCreated": 1,
+        "liveContexts": 0
+      }
+    },
+    {
+      "check": "native offscreen shot simulates, scores, retries and resets with zero GPU draws",
+      "evidence": {
+        "before": 201,
+        "after700ms": 201,
+        "onReturn": 232,
+        "phases": [
+          "flight",
+          "result",
+          "ready"
+        ],
+        "contextsCreated": 1,
+        "liveContexts": 0
+      }
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "externalRequests": [],
+  "abortedRequests": [
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/GOAT_HOOPERS_Court.glb",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/GOAT_HOOPERS_Basketball.glb",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/environment/manifest.json",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/GOAT_HOOPERS_Basketball.glb",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/GOAT_HOOPERS_Court.glb",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/GOAT_HOOPERS_Hoop.glb",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/environment/outdoor.glb.gz",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/environment/sky.jpg",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/environment/manifest.json",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/GOAT_HOOPERS_Hoop.glb",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/environment/manifest.json",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:8799/3d/free-throw/GOAT_HOOPERS_Basketball.glb",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "sourceSha256": {
+    "src/three/FreeThrowScene.ts": "217acfc9867895aa26a3c1f80c3cde7b92aadcbf2351763630d1ca02f8277fa9",
+    "src/three/FreeThrowEnvironment.ts": "11be093acd1b4ac51ef386e911436fc28193d4819eb231e91f5caec2c020ce6d",
+    "src/surfaces/arcade/free-throw/FreeThrowPractice.tsx": "02248a9b01b57e98ec157ee5b9ef9aabf6a1b5f6299e6fedc041e8aca64dd709"
+  },
+  "status": "passed"
+}
