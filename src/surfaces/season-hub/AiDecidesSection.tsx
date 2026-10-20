@@ -5,7 +5,7 @@ import { TeamAvatar } from "@/ui/TeamAvatar";
 import { cs } from "./CourtsideStyles";
 import { formatHomeStamp } from "./homeFormat";
 import {
-  isFinalPair, previewPeriodLine, savedComparisonLabel, savedPickFor, savedTimestamp,
+  hasPairScores, previewPeriodLine, savedComparisonLabel, savedPickFor, savedTimestamp,
   type WeekPair,
 } from "./weekPairs";
 
@@ -58,7 +58,7 @@ export function AiDecidesSection({ pairs, aiWeekly, season, preseasonPreview, ch
             const result = pick?.status === "ready" ? pick.result : null;
             const homeProbability = result?.probabilities.find((row) => row.choice === pair.home.id)?.probability;
             const awayProbability = result?.probabilities.find((row) => row.choice === pair.away.id)?.probability;
-            const final = isFinalPair(pair);
+            const scored = hasPairScores(pair);
             const choiceName = result ? nameFor(pair, result.choice) : null;
             // The result's own snapshot is the provenance of record; the
             // slate's snapshot is the fallback when a pick predates
@@ -89,9 +89,9 @@ export function AiDecidesSection({ pairs, aiWeekly, season, preseasonPreview, ch
                 ) : (
                   <p className={cs("ai-row-status")}>Prediction unavailable for this pairing.</p>
                 )}
-                {final && (
+                {scored && (
                   <p className={cs("ai-row-final")}>
-                    <span className="gh-num">{pair.homePoints?.toFixed(1)} – {pair.awayPoints?.toFixed(1)}</span> fantasy points · Final
+                    <span className="gh-num">{pair.homePoints?.toFixed(1)} – {pair.awayPoints?.toFixed(1)}</span> fantasy points · Current score
                   </p>
                 )}
                 {result && pick && (

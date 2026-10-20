@@ -98,6 +98,14 @@ describe("signedStreak", () => {
 
 
 describe("unavailable trailing history", () => {
+  it("keeps an actual completed tie as the closest game, without inventing a blowout", () => {
+    const stats = computeLeagueStats({
+      teams: [teamA(), teamB()], matchupsByWeek: [[tiedMatchup(1)]],
+      transactionsByWeek: [], hasGames: true,
+    });
+    expect(stats.biggestBlowout).toBeNull();
+    expect(stats.closestGame).toMatchObject({ matchup: { week: 1 }, margin: 0 });
+  });
   const cases = [
     {
       name: "a missing latest week",

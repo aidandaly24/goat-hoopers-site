@@ -99,11 +99,11 @@ export function StatsStrip({ stats }: { stats: LeagueStats }) {
   }
 
   return (
-    <Card>
-      <SectionHeading eyebrow="By the numbers" title="League Stats" />
+    <Card className={styles.panel}>
+      <SectionHeading eyebrow="This season" title="League stats" />
       {cells.length === 0 ? (
         <p className={styles.empty}>
-          Team stats go live when the season tips off.
+          No completed-game stats yet. Records and streaks appear after a completed scoring week.
         </p>
       ) : (
         <div className={styles.grid}>

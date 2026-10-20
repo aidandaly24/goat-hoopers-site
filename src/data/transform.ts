@@ -354,7 +354,7 @@ export type LeagueStatsInput = {
   /** Index 0 = week 1. Only weeks with data are included. */
   matchupsByWeek: Matchup[][];
   transactionsByWeek: RawTransaction[][];
-  /** False in the preseason — every stat stays null, no fake zeros. */
+  /** False before a completed scoring week — no unplayed/live-score awards. */
   hasGames: boolean;
 };
 
@@ -445,7 +445,7 @@ export function computeLeagueStats(input: LeagueStatsInput): LeagueStats {
     if (finals.length === 0) continue;
     for (const m of finals) {
       const margin = Math.abs((m.homePoints as number) - (m.awayPoints as number));
-      if (!biggestBlowout || margin > biggestBlowout.margin) {
+      if (margin > 0 && (!biggestBlowout || margin > biggestBlowout.margin)) {
         biggestBlowout = { matchup: m, margin };
       }
       if (!closestGame || margin < closestGame.margin) {

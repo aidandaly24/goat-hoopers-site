@@ -45,17 +45,24 @@ export function PlayerHeadshot({
     height: size,
     "--ph-ring": ring,
   } as CSSProperties;
+  const rejectSource = (failed: string) => setFailedSources(previous =>
+    previous.includes(failed) ? previous : [...previous, failed]);
 
   if (source) {
     return (
       <img
         key={source}
+        ref={node => {
+          // A cached 404 can finish before hydration attaches onError.
+          // Read the mounted image as well as handling future errors.
+          if (node?.complete && node.naturalWidth === 0) rejectSource(source);
+        }}
         className={styles.headshot}
         style={frame}
         src={source}
         alt={`${name} headshot`}
         loading="lazy"
-        onError={() => setFailedSources(previous => [...previous, source])}
+        onError={() => rejectSource(source)}
       />
     );
   }

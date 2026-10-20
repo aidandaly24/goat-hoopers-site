@@ -1,7 +1,9 @@
 import Link from "next/link";
 import type { WeeklyEdition } from "@/domain/weekly-spotlight";
 import type { HomeTeamFace, HomeTeamSummary } from "@/domain/personalized-home";
-import { PlayerHeadshot } from "@/ui/PlayerHeadshot";
+import type { LiveClubhouseDirectoryEntry } from "@/domain/clubhouse-directory";
+import { EditorialPortrait } from "./EditorialPortrait";
+import styles from "./ScoutingNotebook.module.css";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { cs } from "./CourtsideStyles";
@@ -25,12 +27,13 @@ type NotebookEntry = {
  * Nothing renders without a basis; when no entry has one, the section is
  * omitted rather than filled.
  */
-export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portraits }: {
+export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portraits, directory }: {
   summary: HomeTeamSummary | null;
   faces: HomeTeamFace[];
   pairTeamIds: [string, string] | null;
   edition: WeeklyEdition | null;
   portraits: Record<string, string>;
+  directory: readonly LiveClubhouseDirectoryEntry[];
 }) {
   const entries: NotebookEntry[] = [];
   let featured: NotebookEntry | null = null;
@@ -46,8 +49,8 @@ export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portrai
         teamId: summary.team.id,
         teamName: summary.team.name,
         copy: watch.basis === "market"
-          ? `Up ${topWatch.value.toFixed(1)}% in the preseason market — the sharpest riser on your roster. ${watch.message}`
-          : `${topWatch.value.toFixed(1)} FPPG${topWatch.games !== null ? ` across ${topWatch.games} observed games` : ""} — the form watch on your roster. ${watch.message}`,
+          ? `Up ${topWatch.value.toFixed(1)}% from the previous price snapshot.`
+          : `${topWatch.value.toFixed(1)} FPPG (EMA)${topWatch.games !== null ? ` across ${topWatch.games} observed games` : ""}.`,
       };
     } else if (summary.players[0]) {
       const top = summary.players[0];
@@ -57,7 +60,7 @@ export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portrai
         player: top,
         teamId: summary.team.id,
         teamName: summary.team.name,
-        copy: `Highest modeled value on your roster at $${top.value.toFixed(2)} — the anchor the rest of the rotation prices against.`,
+        copy: `Current modeled value: $${top.value.toFixed(2)} FAAB.`,
       };
     }
   } else if (pairTeamIds) {
@@ -69,8 +72,23 @@ export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portrai
         player: homeFace.player,
         teamId: homeFace.team.id,
         teamName: homeFace.team.name,
-        copy: `Highest modeled value on ${homeFace.team.name} at $${homeFace.player.value.toFixed(2)} — the anchor for the featured matchup.`,
+        copy: `Highest modeled value on ${homeFace.team.name}: $${homeFace.player.value.toFixed(2)} FAAB.`,
       };
+    }
+  }
+
+  // Additional watch rows already carry the guide's verified basis and
+  // observed-game counts. Never turn missing form into invented picks.
+  if (summary && summary.playerGuide.watch.basis !== "unavailable") {
+    const watch = summary.playerGuide.watch;
+    for (const row of watch.rows) {
+      if (row.id === featured?.player.id) continue;
+      entries.push({ key: `own-${row.id}`, eyebrow: "On your team", player: row,
+        teamId: summary.team.id, teamName: summary.team.name,
+        copy: watch.basis === "market"
+          ? `Up ${row.value.toFixed(1)}% from the previous price snapshot.`
+          : `${row.value.toFixed(1)} EMA FPPG${row.games !== null ? ` · ${row.games} observed games` : ""}.`,
+      });
     }
   }
 
@@ -89,20 +107,24 @@ export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portrai
         player: face.player,
         teamId: face.team.id,
         teamName: face.team.name,
-        copy: `Highest modeled value on ${face.team.name} at $${face.player.value.toFixed(2)}.`,
+        copy: `Current modeled value: $${face.player.value.toFixed(2)} FAAB.`,
       });
     }
   }
   const watchSpotlight = edition?.playerSpotlights.find((player) => player.role === "one-to-watch");
   if (watchSpotlight && watchSpotlight.playerId !== featured?.player.id && !entries.some((entry) => entry.player.id === watchSpotlight.playerId)) {
-    const owner = faces.find((face) => face.team.id === watchSpotlight.teamId);
+    // The editorial source retains its original period, but a current watch
+    // must not assign the player to the source snapshot's former roster.
+    const owners = directory.filter(entry => entry.players.some(player => player.id === watchSpotlight.playerId));
+    const owner = owners.length === 1 ? owners[0] : null;
+    const identity = owner?.players.find(player => player.id === watchSpotlight.playerId);
     entries.push({
       key: `spotlight-${watchSpotlight.playerId}`,
-      eyebrow: `Around the league · ${owner?.team.name ?? "League watch"}`,
-      player: { id: watchSpotlight.playerId, name: watchSpotlight.name, espnId: null },
-      teamId: watchSpotlight.teamId,
-      teamName: owner?.team.name ?? "",
-      copy: `${watchSpotlight.headline} ${watchSpotlight.opinion}`,
+      eyebrow: owner ? `Around the league · ${owner.identity.name}` : "Editorial watch · current team unavailable",
+      player: { id: watchSpotlight.playerId, name: identity?.fullName ?? watchSpotlight.name, espnId: identity?.espnId ?? null },
+      teamId: owner?.identity.id ?? "",
+      teamName: owner?.identity.name ?? "",
+      copy: `${watchSpotlight.periodLabel}. ${watchSpotlight.headline} ${watchSpotlight.opinion}`,
       source: watchSpotlight.source,
     });
   }
@@ -110,30 +132,32 @@ export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portrai
   if (!featured && !entries.length) return null;
   return (
     <section className={cs("notebook")} data-scouting-notebook aria-label="The scouting notebook">
-      <SectionHeading eyebrow="The scouting notebook" title="Keep an eye on these." />
-      <div className={cs("notebook-layout")}>
+      <SectionHeading eyebrow="Scouting notebook" title="Players to watch." />
+      <div className={styles.layout}>
         {featured && (
-          <article className={cs("notebook-featured")}>
-            <Link href={`/player/${featured.player.id}`} prefetch={false} className={cs("notebook-featured-media")}>
-              <PlayerHeadshot portraitSrc={portraits[featured.player.id]} espnId={featured.player.espnId} name={featured.player.name} teamId={featured.teamId} size={220} />
+          <article className={styles.featured}>
+            <Link href={`/player/${featured.player.id}`} prefetch={false} className={styles.featuredMedia}>
+              <EditorialPortrait portraitSrc={portraits[featured.player.id]} espnId={featured.player.espnId} name={featured.player.name} teamId={featured.teamId} size={180} panel />
             </Link>
+            <div className={styles.featuredBody}>
             <p className={cs("notebook-eyebrow")}>{featured.eyebrow}</p>
             <h3>
               <Link href={`/player/${featured.player.id}`} prefetch={false}>{featured.player.name}</Link>
             </h3>
-            <p className={cs("notebook-team")}>
+            <div className={cs("notebook-team")}>
               <TeamAvatar name={featured.teamName} avatar={faces.find((face) => face.team.id === featured.teamId)?.team.avatar ?? null} isChampion={faces.find((face) => face.team.id === featured.teamId)?.champion ?? false} />
               {featured.teamName}
-            </p>
+            </div>
             <p>{featured.copy}</p>
             <Link className={cs("text-link")} href={`/player/${featured.player.id}`} prefetch={false}>Player profile</Link>
+            </div>
           </article>
         )}
         {!!entries.length && (
-          <ul className={cs("notebook-rows")}>
-            {entries.slice(0, 3).map((entry) => (
-              <li key={entry.key} className={cs("notebook-row")}>
-                <PlayerHeadshot portraitSrc={portraits[entry.player.id]} espnId={entry.player.espnId} name={entry.player.name} teamId={entry.teamId} size={72} />
+          <ul className={styles.rows}>
+            {entries.slice(0, 5).map((entry) => (
+              <li key={entry.key} className={styles.row}>
+                <span className={styles.rowMedia}><EditorialPortrait portraitSrc={portraits[entry.player.id]} espnId={entry.player.espnId} name={entry.player.name} teamId={entry.teamId} size={72} /></span>
                 <div>
                   <p className={cs("notebook-eyebrow")}>{entry.eyebrow}</p>
                   <h3>
@@ -150,9 +174,10 @@ export function ScoutingNotebook({ summary, faces, pairTeamIds, edition, portrai
           </ul>
         )}
       </div>
-      <p className={cs("caption", "notebook-foot")}>
-        Watches are named on a stated basis only — a guide basis, top modeled value, or the edition’s sourced editorial pick. Nothing here is a ranking or a promise about a player’s role.
-      </p>
+      <details className={cs("watchlist-basis")}>
+        <summary>How these players were selected</summary>
+        <p className={cs("caption")}>{summary?.playerGuide.watch.message ?? "Featured matchup players use current modeled values; editorial watches retain their cited source."}</p>
+      </details>
     </section>
   );
 }

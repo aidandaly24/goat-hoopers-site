@@ -95,14 +95,45 @@ describe("recent activity through the real loader path", () => {
     },
   );
 
-  it("fetches weeks 1–3 for stats and the homepage, including current-week moves", async () => {
+  it("uses only completed matchups while retaining current-week moves", async () => {
     for (const week of [1, 2, 3]) transactions.set(week, [tx(`week-${week}`, week)]);
     const hub = await getSeasonHubData();
-    expect(requestedWeeks("matchups")).toEqual([1, 2, 3]);
+    expect(requestedWeeks("matchups")).toEqual([1, 2]);
     // Stats and feed each call the real client; Next deduplicates outside this test.
     expect(requestedWeeks("transactions")).toEqual([1, 2, 3, 1, 2, 3]);
     expect(hub.transactions.map((move) => move.id)).toEqual(["week-3", "week-2", "week-1"]);
     expect(hub.stats.mostActiveManager?.transactionCount).toBe(3);
+  });
+
+  it.each([0, 137])("does not treat the first scoring week's %s–0 as a completed game", async (points) => {
+    state = { season: "2026", season_type: "regular", week: 1 };
+    matchups.set(1, [
+      { roster_id: 1, matchup_id: 1, points },
+      { roster_id: 2, matchup_id: 1, points: 0 },
+    ]);
+    transactions.set(1, [tx("current-week-move", 1)]);
+    const hub = await getSeasonHubData();
+    expect(requestedWeeks("matchups")).toEqual([]);
+    expect(hub.stats.biggestBlowout).toBeNull();
+    expect(hub.stats.closestGame).toBeNull();
+    expect(hub.stats.longestWinStreak).toBeNull();
+    expect(hub.transactions.map(move => move.id)).toEqual(["current-week-move"]);
+  });
+
+  it("keeps a completed result instead of ranking the current week's zero scores", async () => {
+    matchups.set(2, [
+      { roster_id: 1, matchup_id: 1, points: 101 },
+      { roster_id: 2, matchup_id: 1, points: 90 },
+    ]);
+    matchups.set(3, [
+      { roster_id: 1, matchup_id: 1, points: 0 },
+      { roster_id: 2, matchup_id: 1, points: 0 },
+    ]);
+    const hub = await getSeasonHubData();
+    expect(requestedWeeks("matchups")).toEqual([1, 2]);
+    expect(hub.stats.closestGame).toMatchObject({ matchup: { week: 2 }, margin: 11 });
+    expect(hub.stats.biggestBlowout).toMatchObject({ matchup: { week: 2 }, margin: 11 });
+    expect(hub.stats.longestWinStreak).toMatchObject({ team: { id: "1" }, wins: 1 });
   });
 
   it.each([0, 3, 100000])("keeps preseason week %s to a single week-1 transaction request", async (week) => {
@@ -142,7 +173,7 @@ describe("recent activity through the real loader path", () => {
     ]);
     matchups.set(3, new Error("matchup week 3 failed"));
     const hub = await getSeasonHubData();
-    expect(requestedWeeks("matchups")).toEqual([1, 2, 3]);
+    expect(requestedWeeks("matchups")).toEqual([1, 2]);
     expect(requestedWeeks("transactions")).toEqual([1, 2, 3, 1, 2, 3]);
     expect(hub.transactions.map((move) => move.id)).toEqual(["current", "earlier"]);
     expect(hub.stats.mostActiveManager?.transactionCount).toBe(2);

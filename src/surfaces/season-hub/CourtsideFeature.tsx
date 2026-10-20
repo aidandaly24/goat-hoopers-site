@@ -10,7 +10,7 @@ import { WEEK_ONE_TIP_OFF_ISO, openingPhase } from "@/domain/season-opening";
 import { TipCountdown } from "./TipCountdown";
 import { formatHomeStamp } from "./homeFormat";
 import {
-  championTeamIdOf, deriveWeekPairs, isFinalPair, memberPair, recordLine, savedPickFor,
+  championTeamIdOf, deriveWeekPairs, hasPairScores, memberPair, recordLine, savedPickFor,
   type PairEntry, type WeekPair,
 } from "./weekPairs";
 
@@ -157,14 +157,14 @@ function MemberDesk({ summary, entries, pair, preseason, rosterCount, championTe
         <p className={cs("desk-label")}>{weekLabel}</p>
         {opponent ? (
           <>
-            <p className={cs("desk-opponent")}>
+            <div className={cs("desk-opponent")}>
               <span className={cs("desk-vs")}>vs</span>
               <TeamAvatar name={opponent.name} avatar={opponent.avatar} isChampion={opponent.id === championTeamId} />
               <Link href={`/teams/${opponent.id}`} prefetch={false}>{opponent.name}</Link>
-            </p>
+            </div>
             {opponentLine && <p className={cs("desk-subline")}>{opponentLine}</p>}
-            {pair && isFinalPair(pair) && (
-              <p className={cs("desk-subline")}>Final · <span className="gh-num">{pair.homePoints?.toFixed(1)} – {pair.awayPoints?.toFixed(1)}</span></p>
+            {pair && hasPairScores(pair) && (
+              <p className={cs("desk-subline")}>Current score · <span className="gh-num">{pair.homePoints?.toFixed(1)} – {pair.awayPoints?.toFixed(1)}</span></p>
             )}
           </>
         ) : (
@@ -195,7 +195,7 @@ function MemberDesk({ summary, entries, pair, preseason, rosterCount, championTe
 /** The signed-out desk beside the court: the featured game of the week,
  * both teams' season lines, and the saved AI preview for that pairing with
  * its provenance — the league's story, no account required. */
-function LeagueDesk({ edition, pair, entries, preseason, aiWeekly, season, championTeamId }: {
+function LeagueDesk({ edition, pair, entries, preseason, aiWeekly, season, championTeamId, archived }: {
   edition: WeeklyEdition;
   pair: WeekPair | null;
   entries: PairEntry[];
@@ -203,13 +203,14 @@ function LeagueDesk({ edition, pair, entries, preseason, aiWeekly, season, champ
   aiWeekly?: AiWeeklySlate;
   season: string | null;
   championTeamId: string | undefined;
+  archived: boolean;
 }) {
   const game = edition.game;
   const pick = pair ? savedPickFor(aiWeekly, season, pair) : undefined;
   const result = pick?.status === "ready" ? pick.result : null;
   const isEditorialPair = !!pair && game.teamIds?.every((id) => [pair.home.id, pair.away.id].includes(id));
-  const headline = isEditorialPair ? game.context.split(". ")[0].replace(/\.$/, "") + "." : pair ? `${pair.home.name} vs ${pair.away.name}` : game.note;
-  const dek = isEditorialPair ? game.selectionReason : pair ? "The featured pairing from the current league check." : game.context;
+  const headline = pair && !archived ? `${pair.home.name} vs ${pair.away.name}` : isEditorialPair ? game.context.split(". ")[0].replace(/\.$/, "") + "." : game.note;
+  const dek = pair && !archived ? "The featured pairing from the current league check." : game.selectionReason;
   const savedStamp = aiWeekly?.generatedAt ? formatHomeStamp(aiWeekly.generatedAt) : null;
   return (
     <aside className={cs("team-desk")} data-league-desk aria-label="Game of the week">
@@ -277,18 +278,22 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
   const ownPair = heroSummary ? memberPair(heroSummary, entries) : null;
   const editorialPair = pairs.find((pair) => game.leagueWeek === pair.week && game.teamIds?.every((id) => [pair.home.id, pair.away.id].includes(id))) ?? null;
   const publicPair = editorialPair ?? pairs[0] ?? null;
-  // The headline is the edition's own; the eyebrow names whose matchup
-  // leads the page and the pairings' state, without inventing a result.
+  const currentPair = ownPair ?? publicPair;
+  // Current headings follow current roster identities. The dated editorial
+  // remains available separately, rather than posing as a live team label.
+  const headline = !archived && currentPair
+    ? `${currentPair.home.name} vs ${currentPair.away.name}`
+    : game.title;
   const status = preseasonPreview
     ? `Preseason lineup preview · target Week ${week ?? 1}`
     : ownPair || publicPair
-      ? `Week ${(ownPair ?? publicPair)!.week} · ${isFinalPair((ownPair ?? publicPair)!) ? "Final" : "Upcoming · scores pending"}`
+      ? `Week ${(ownPair ?? publicPair)!.week} · ${hasPairScores((ownPair ?? publicPair)!) ? "Current score" : "Upcoming · scores pending"}`
       : game.state === "final" ? `Historical final · ${edition.season}` : "Spotlight pending";
-  const captionBold = ownPair ? `Your Week ${ownPair.week} pairing.` : game.note;
-  const captionDek = ownPair
+  const captionBold = !archived && currentPair ? `${ownPair ? "Your " : ""}Week ${currentPair.week} pairing.` : game.note;
+  const captionDek = !archived && currentPair
     ? preseasonPreview
       ? "Saved preseason roster pairing — a lineup comparison, not a fantasy-week score forecast."
-      : isFinalPair(ownPair) ? "Completed fantasy matchup." : "Current league pairing. Scores are pending."
+      : hasPairScores(currentPair) ? "Current fantasy totals. This scoring week is not confirmed complete." : "Current league pairing. Scores are pending."
     : game.context;
   // The opening clock is gated by the clock itself (anchored to this server
   // check), never by the provider's phase flag: an early-regular phase still
@@ -304,7 +309,14 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
           <span>{heroSummary ? "Your featured matchup" : "Featured matchup"} · {status}</span>
           <span className={cs("feature-season")}>{season ? `${season} ${preseason ? "preseason" : "season"}` : ""}{edition.status === "draft" ? " · Sample edition" : ""}</span>
         </p>
-        <h1 id="game-title">{game.title}</h1>
+        <h1 id="game-title">{headline}</h1>
+        {!archived && currentPair && (
+          <details className={cs("watchlist-basis")} data-edition-story>
+            <summary>From the {edition.dateLabel} edition</summary>
+            <p><strong>{game.title}</strong></p>
+            <p>{game.context}</p>
+          </details>
+        )}
       </div>
       <div className={cs("feature-grid")}>
         <div className={cs("court-column")}>
@@ -345,6 +357,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
             aiWeekly={aiWeekly}
             season={season}
             championTeamId={championTeamId}
+            archived={archived}
           />
         )}
       </div>

@@ -34,11 +34,13 @@ const renderAiSection = (aiWeekly: AiWeeklySlate, season: string | null = "2026"
 };
 
 describe("court + league desk hero", () => {
-  it("renders the edition headline, the court, and the league desk with the saved preview — and never fetches", () => {
+  it("renders current pairing identities, keeps the dated story, and joins the saved preview without fetching", () => {
     const data = weekly(), before = JSON.stringify(data), fetch = vi.spyOn(globalThis, "fetch");
     try {
       const html = renderFeature(data);
-      expect(html).toContain('<h1 id="game-title">Synthetic featured game</h1>');
+      expect(html).toContain('<h1 id="game-title">Current 6 vs Current 10</h1>');
+      expect(html).toContain('data-edition-story');
+      expect(html).toContain('Synthetic featured game');
       expect(html).toContain("Featured matchup · Week 1 · Upcoming");
       expect(html).toContain('data-league-desk');
       expect(html).toContain("Game of the week · Week 1");

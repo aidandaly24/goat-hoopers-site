@@ -23,6 +23,7 @@ import { TipCountdown } from "./TipCountdown";
 import type { HomeTeamFace, HomeTeamSummary, PersonalizedHomeData } from "@/domain/personalized-home";
 import controls from "@/ui/controls.module.css";
 import { cs } from "./CourtsideStyles";
+import fidelity from "./HomeFidelity.module.css";
 import { championTeamIdOf, deriveWeekPairs } from "./weekPairs";
 import "@/ui/courtside-tokens.css";
 
@@ -236,7 +237,7 @@ export function CourtsideHome({
 
   if (!edition)
     return (
-      <div className={cs("surface")} data-courtside-home>
+      <div className={`${cs("surface")} ${archived ? "" : fidelity.home}`} data-courtside-home>
         <section className={cs("archive-page")}>
           <div className={cs("wrap")}>
             {notice}
@@ -261,7 +262,7 @@ export function CourtsideHome({
             {memberSummary && (
               <MemberTeamActions summary={memberSummary} />
             )}
-            <ScoutingNotebook summary={memberSummary} faces={facesList} pairTeamIds={pairTeamIds} edition={null} portraits={portraits} />
+            <ScoutingNotebook summary={memberSummary} faces={facesList} pairTeamIds={pairTeamIds} edition={null} portraits={portraits} directory={data.directory} />
             {memberSummary && (
               <FormGuideWire summary={memberSummary} portraits={portraits} />
             )}
@@ -291,7 +292,7 @@ export function CourtsideHome({
   const stale =
     !archived && Date.parse(data.checkedAt) >= Date.parse(edition.endsAt);
   return (
-    <div className={cs("surface", "editorial-home")} data-courtside-home id="content">
+    <div className={`${cs("surface", "editorial-home")} ${archived ? "" : fidelity.home}`} data-courtside-home id="content">
       <section className={cs("opening-zone")} aria-labelledby="game-title">
         <div className={cs("wrap")}>
           <div className={cs("header-edition")}>
@@ -341,7 +342,7 @@ export function CourtsideHome({
             </Reveal>
           )}
           <Reveal>
-            <ScoutingNotebook summary={memberSummary} faces={facesList} pairTeamIds={pairTeamIds} edition={edition} portraits={portraits} />
+            <ScoutingNotebook summary={memberSummary} faces={facesList} pairTeamIds={pairTeamIds} edition={edition} portraits={portraits} directory={data.directory} />
           </Reveal>
           {memberSummary && (
             <Reveal>

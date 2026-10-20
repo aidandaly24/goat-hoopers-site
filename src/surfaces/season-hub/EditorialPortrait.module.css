@@ -1,0 +1,39 @@
+.frame {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+}
+
+.frame > img {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+/* An unavailable image remains an honest, labelled initials fallback.
+ * Keep it contained within the same art direction without a giant disc. */
+.frame > div {
+  width: min(70%, 9rem) !important;
+  height: auto !important;
+  max-height: 75%;
+  aspect-ratio: 1;
+  margin-bottom: var(--gh-s3);
+  border-color: var(--gh-border);
+}
+
+.frame > div > span {
+  font-size: clamp(1.25rem, 5vw, 2.5rem) !important;
+}
+
+.panel {
+  background: var(--gh-bg-hover);
+  border-radius: var(--gh-radius);
+  overflow: hidden;
+}

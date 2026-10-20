@@ -1,7 +1,8 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import type { HomeTeamFace } from "@/domain/personalized-home";
-import { PlayerHeadshot } from "@/ui/PlayerHeadshot";
+import { EditorialPortrait } from "./EditorialPortrait";
+import styles from "./FacesStrip.module.css";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { teamColorVar } from "@/ui/teamColors";
 import { cs } from "./CourtsideStyles";
@@ -37,13 +38,13 @@ export function FacesStrip({
               style={{ "--card-glow": teamColorVar(face.team.id) } as CSSProperties}
             >
               <Link href={`/player/${player.id}`} prefetch={false} className={cs("face-link")}>
-                <PlayerHeadshot
+                <span className={styles.portrait}><EditorialPortrait
                   portraitSrc={portraits[player.id]}
                   espnId={player.espnId}
                   name={player.name}
                   teamId={face.team.id}
-                  size={80}
-                />
+                  size={120}
+                /></span>
                 <span className={cs("face-name")}>{player.name}</span>
                 <span className={cs("face-team")}>
                   <TeamAvatar name={face.team.name} avatar={face.team.avatar} isChampion={face.champion} />

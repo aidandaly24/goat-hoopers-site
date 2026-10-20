@@ -39,11 +39,11 @@ export function TransactionFeed({
     .sort((a, b) => b.createdAt - a.createdAt)
     .slice(0, 12);
   return (
-    <Card>
-      <SectionHeading eyebrow="Around the league" title="Recent Activity" />
+    <Card className={styles.panel}>
+      <SectionHeading eyebrow="Latest moves" title="Recent activity" />
       {merged.length === 0 ? (
         <p className={styles.empty}>
-          Quiet on the wire. The league office is waiting for someone to make a move.
+          No recent transactions.
         </p>
       ) : (
         <ul className={styles.feed}>
