@@ -1337,7 +1337,20 @@ standings, Power rankings or mixed game scores are reused.
 
 `/api/arcade/competition/reconcile` is a separately default-off protected empty
 POST. It accepts only configured fixture IDs and publisher completion receipts,
-never user-supplied finality or dates. No worker/scheduler is installed or enabled.
+never user-supplied finality or dates. `data/arcade-competition/reconcile-auth.ts`
+requires only the dedicated 64-character hex token and a canonical UTC not-before/expiry
+window, capped at seven days by `domain/arcade/reconcile-window.ts`. No
+commissioner/cron fallback exists. Missing/invalid settings hold before source/DB
+work. Body reads are bounded and reject any bytes, parameters or stalled stream.
+Authorization checks repeat after async work and inside the period transaction
+after lock waits and at a final SQL checkpoint before the driver's COMMIT.
+Observed expiry there rolls the transaction back. Passing that final check
+permits COMMIT/response after expiry; this is no hard completion deadline, and
+a response-time check cannot undo committed writes. Any future approval scope
+must expressly accept this limitation; no activation package is approved. Token authority
+does not extend to existing commissioner actions or the AI cron. No credential,
+setting or worker/scheduler is installed or enabled. The scheduler file under
+`docs/examples/` is a non-executing example, outside `.github/workflows`.
 `migrations/ranked-free-throw.sql` is an additive reviewed proposal, tested only
 in disposable local schemas. It creates canonical periods, runs, scores and
 immutable weekly results; it never changes legacy scores or rewards.

@@ -5,9 +5,13 @@ import { PostgresRankedFreeThrowStore, type RankedSqlClient, type RankedSqlDatab
 import { rankedReplayContext, summarizeOutcomes, decodeOutcomes, type RankedAccount, type RankedRun, type RankedScope, type ValidatedRound, type RankedLeaderboardEntry, type RankedScore } from "@/domain/arcade/ranked-free-throw";
 import { canFinalize, periodPhase, runPeriod, type CompetitionPeriod, type PeriodRecord, type FinalityReceipt, type CompetitionBoard, type CompetitionArchive } from "@/domain/arcade/competition-period";
 import { scoreFormatVersion } from "./config";
+import { reconcileAuthorizedAt, type ReconcileAuthorizationWindow } from "@/domain/arcade/reconcile-window";
 
 const time = (v: unknown) => { if (v === null || v === undefined || v === "") throw new Error("invalid_database_clock"); const n = Number(v); if (!Number.isSafeInteger(n) || n < 0) throw new Error("invalid_database_clock"); return n; };
 const clock = async (db: RankedSqlClient) => time((await db.execute(sql`SELECT floor(extract(epoch FROM clock_timestamp())*1000)::bigint AS now_ms`)).rows[0]?.now_ms);
+async function assertReconcileSqlAuthorization(tx: RankedSqlClient, authorizationWindow: ReconcileAuthorizationWindow | undefined) {
+  if (authorizationWindow && !reconcileAuthorizedAt(authorizationWindow, await clock(tx))) throw new Error("reconcile_window_closed");
+}
 function decode(row: Record<string, unknown>): PeriodRecord {
   const spec = row.definition as CompetitionPeriod;
   if (!spec || spec.id !== row.id) throw new Error("invalid_period");
@@ -124,10 +128,11 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
     return (await this.records(this.database)).filter(p => p.finalizedAtMs !== null).map(p => ({ id: p.id, gameId: p.gameId, label: p.label,
       closedAtMs: p.closedAtMs!, finalizedAtMs: p.finalizedAtMs! }));
   }
-  async reconcile(calendar: CompetitionPeriod[], config: ReadyRankedConfiguration, receipts: ReadonlyMap<string, FinalityReceipt>) {
+  async reconcile(calendar: CompetitionPeriod[], config: ReadyRankedConfiguration, receipts: ReadonlyMap<string, FinalityReceipt>, authorizationWindow?: ReconcileAuthorizationWindow) {
     return this.database.transaction(async tx => {
       // A transaction-level advisory lock serializes retries and first publication across worker instances.
       await tx.execute(sql`SELECT pg_advisory_xact_lock(7042026)`);
+      await assertReconcileSqlAuthorization(tx, authorizationWindow);
       for (const p of calendar) await tx.execute(sql`INSERT INTO arcade_competition_periods(id,ordinal,game_id,definition,rules_version,score_version)
         VALUES(${p.id},${p.order},${p.gameId},${JSON.stringify(p)}::jsonb,${config.rulesVersion},${scoreFormatVersion(config.policy)}) ON CONFLICT(id) DO NOTHING`);
       const rows = (await tx.execute(sql`SELECT * FROM arcade_competition_periods ORDER BY ordinal FOR UPDATE`)).rows;
@@ -168,6 +173,10 @@ export class ArcadeCompetitionStore extends PostgresRankedFreeThrowStore {
         await tx.execute(sql`UPDATE arcade_competition_periods SET closed_at_ms=${now},finalized_at_ms=${now} WHERE id=${p.id} AND finalized_at_ms IS NULL`);
         finalized.push(p.id);
       }
+      // Final SQL authorization checkpoint: failure rolls back this transaction.
+      // The driver COMMIT follows this callback; deferred constraints, durability
+      // and acknowledgement may finish after expiry. This is no completion deadline.
+      await assertReconcileSqlAuthorization(tx, authorizationWindow);
       return finalized;
     });
   }

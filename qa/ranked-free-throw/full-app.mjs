@@ -28,7 +28,7 @@ const midnight = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York"
 calendar[1].opensAtMs = [4, 5].map(hour => Date.parse(`${localDate}T0${hour}:00:00Z`)).find(at => midnight.format(at) === "00:00");
 fixture.next = { id: "123456790", date: localDate.replaceAll("-", ""), final: false };
 calendar[1].fixtures = [{ id: fixture.next.id, date: fixture.next.date, startsAtMs: calendar[1].opensAtMs }];
-const commissionerKey = randomBytes(32).toString("hex");
+const reconcileToken = "a".repeat(64); // fixed synthetic local fixture, never a production credential
 const pool = new Pool({ host: "127.0.0.1", port: 55441, database: "claim_team_test", user: "postgres", ssl: false,
   max: 4, connectionTimeoutMillis: 1500, options: `-c search_path=${schema}` });
 // Fixture values only; never copied into an application environment file.
@@ -103,10 +103,12 @@ try {
   await writeFile(fixturePath, JSON.stringify(fixture));
   await start("dev", { DATABASE_URL: database.toString(), FRIENDS_AUTH_ENROLLMENT: "1", BETTER_AUTH_URL: origin,
     BETTER_AUTH_SECRET: randomBytes(48).toString("hex"), GOAT_RANKED_FREE_THROW_ENABLED: "1", GOAT_RANKED_FREE_THROW_RULES: JSON.stringify(rules),
-    GOAT_ARCADE_CALENDAR: JSON.stringify(calendar), GOAT_ARCADE_RECONCILE_ENABLED: "1", COMMISSIONER_KEY: commissionerKey,
+    GOAT_ARCADE_CALENDAR: JSON.stringify(calendar), GOAT_ARCADE_RECONCILE_ENABLED: "1", GOAT_ARCADE_RECONCILE_TOKEN: reconcileToken,
+    GOAT_ARCADE_RECONCILE_NOT_BEFORE: new Date(now - 60000).toISOString().replace(/\.\d{3}Z$/, "Z"),
+    GOAT_ARCADE_RECONCILE_EXPIRES_AT: new Date(now + 1800000).toISOString().replace(/\.\d{3}Z$/, "Z"),
     GOAT_QA_FINALITY_FIXTURE: fixturePath });
   const reconcile = async () => {
-    const response = await fetch(`${origin}/api/arcade/competition/reconcile`, { method: "POST", headers: { authorization: `Bearer ${commissionerKey}` } });
+    const response = await fetch(`${origin}/api/arcade/competition/reconcile`, { method: "POST", headers: { authorization: `Bearer ${reconcileToken}` } });
     assert.equal(response.status, 200); return response.json();
   };
   assert.deepEqual((await reconcile()).finalized, []);

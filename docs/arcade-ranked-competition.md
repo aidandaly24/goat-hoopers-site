@@ -98,13 +98,27 @@ No five-minute schedule has been configured or enabled by this PR.
    verification, approve deployment and `GOAT_RANKED_FREE_THROW_ENABLED=1`.
    With no custom rules variable, the adopted 9/120/unlimited policy is used.
    A missing/invalid calendar or inactive personal auth still holds ranking.
-4. Separately approve `GOAT_ARCADE_RECONCILE_ENABLED=1`, the existing
-   `COMMISSIONER_KEY` protected empty POST to
+4. Separately approve `GOAT_ARCADE_RECONCILE_ENABLED=1`, one new independent
+   `GOAT_ARCADE_RECONCILE_TOKEN` (32 random bytes encoded as64 lowercase hex),
+   canonical UTC `GOAT_ARCADE_RECONCILE_NOT_BEFORE` and
+   `GOAT_ARCADE_RECONCILE_EXPIRES_AT` settings, and the protected empty POST to
    `/api/arcade/competition/reconcile`, its first period publication/write, and
    the worker's scheduled invocation. No calendar/status request body is accepted.
-   Use a scheduler able to send that exact bearer header; do not assume an
-   unrelated hosting cron secret is equivalent. A first successful invocation
-   publishes periods and receipts; public GETs never do so.
+   Use only the dedicated bearer; commissioner/cron values are not fallback
+   credentials. The interval must be ordered, no longer than seven days, start
+   inclusive/expiry exclusive. Missing/invalid settings hold. Rechecks after
+   source reads, DB lock waits and at the final SQL authorization checkpoint
+   reject observed expiry and roll back the transaction. This is an authorization
+   cutoff: a transaction passing its final SQL check may COMMIT/respond after
+   expiry. Any future approval scope must explicitly accept that limitation;
+   no activation package has been approved. A first successful
+   invocation publishes periods and receipts; public GETs never do so.
+   Creation/private storage in Vercel Production and a main-restricted Actions
+   environment still requires action-time approval; never print/read/copy an
+   existing secret. No token or settings were created here. Remove the dedicated
+   settings and deploy, disable the worker and delete both secret placements for
+   revocation; retain data. The disabled example at
+   `docs/examples/arcade-reconcile-worker.yml.example` is not an installed schedule.
 
 Rewards stay **off** throughout. No FAAB credit, ledger write, reward scheduler,
 prize decision or payment setup is implemented in this path.
