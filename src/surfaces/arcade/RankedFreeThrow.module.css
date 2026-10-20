@@ -16,7 +16,15 @@
 .confirmation { display: grid; gap: var(--gh-s2); margin-bottom: var(--gh-s4); padding: var(--gh-s4); border: 2px solid var(--gh-accent); border-radius: var(--gh-s2); background: var(--gh-bg-raised); }
 .confirmation strong { color: var(--gh-accent); font: 600 var(--gh-text-lg)/1.2 var(--gh-font-body); }
 .confirmation p { margin: 0; }
+.confirmation[data-record-beaten="true"] { border-width: var(--gh-s1); }
+.confirmation[data-record-beaten="true"] > strong { font-size: calc(var(--gh-text-lg) * 1.6); }
+.recordComparisons { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--gh-s3); padding: 0; margin: var(--gh-s2) 0; list-style: none; }
+.recordComparisons li { display: grid; align-content: start; gap: var(--gh-s2); padding: var(--gh-s3); border: 1px solid var(--gh-border); border-radius: var(--gh-radius); }
+.recordComparisons li[data-outcome="beaten"] { background: var(--gh-accent); color: var(--gh-on-accent); }
+.recordComparisons span { font-variant-numeric: tabular-nums; }
 .confirmation[data-just-accepted="true"] { animation: saved-round var(--gh-dur-base) var(--gh-ease-out) both; }
+.confirmation[data-record-beaten="true"] { animation: record-beaten calc(var(--gh-dur-base) * 3) var(--gh-ease-out) both; }
 @keyframes saved-round { from { opacity: .4; transform: translateY(var(--gh-s2)); } to { opacity: 1; transform: translateY(0); } }
+@keyframes record-beaten { from { opacity: .4; transform: translateY(var(--gh-s3)) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @media (prefers-reduced-motion: reduce) { .confirmation[data-just-accepted="true"] { animation: none; } }
 @media (max-width: 600px) { .wrap { padding: var(--gh-s2); } .card { padding: var(--gh-s3); } .confirmation { padding: var(--gh-s3); } .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

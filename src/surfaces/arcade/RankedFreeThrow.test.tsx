@@ -1,8 +1,9 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { expect, it, vi } from "vitest";
-import { RankedFreeThrow, SavedRoundFeedback } from "./RankedFreeThrow";
+import { claimAcceptedScore, RankedFreeThrow, SavedRoundFeedback } from "./RankedFreeThrow";
 import type { RankedClient } from "@/data/ranked-free-throw/client";
+import type { RankedRecordFeedback } from "@/domain/arcade/ranked-record-feedback";
 import { sampleScore } from "@/data/ranked-free-throw/__tests__/fixtures";
 
 it("keeps disabled ranked play closed with practice reachable and no account/API work", () => {
@@ -33,4 +34,45 @@ it("celebrates only accepted saves and never manufactures a record claim", () =>
     expect(html).toContain(justAccepted ? "Round saved" : "Saved result");
     expect(html).not.toMatch(/new record|personal best|you lead/i);
   }
+});
+
+const score = { ...sampleScore, score: 1, makes: 1, attempts: 2, accuracy: .5 };
+const feedback = (outcome: "first" | "beaten" | "tied" | "below"): RankedRecordFeedback => {
+  const comparison = { previousScore: outcome === "first" ? null : outcome === "beaten" ? 0 : outcome === "tied" ? 1 : 2, outcome };
+  return { version: 1, scoreId: score.id, acceptedAtMs: score.achievedAtMs, periodId: "synthetic-week", scoreVersion: "a".repeat(64), scope: "everyone",
+    personalBest: comparison, weeklyRecord: comparison, allTimeRecord: comparison };
+};
+it("labels first and tied records honestly and reserves the record effect for strictly beaten scores", () => {
+  for (const outcome of ["first", "beaten", "tied", "below"] as const) {
+    const html = renderToStaticMarkup(createElement(SavedRoundFeedback, { score, justAccepted: true, feedback: feedback(outcome) }));
+    expect(html.includes('data-record-beaten="true"')).toBe(outcome === "beaten");
+    expect(html.includes("Record beaten!")).toBe(outcome === "beaten");
+    expect(html).toContain("Confirmed at acceptance");
+    expect(html).toContain("compatible score formats");
+    expect(html).toContain("Everyone");
+    expect(html).toContain("not a current rank or a League award");
+    if (outcome === "first") expect(html).toContain("First personal score");
+    if (outcome === "beaten") { expect(html).toContain("New personal best"); expect(html).toContain("0 to 1 makes"); }
+    if (outcome === "tied") expect(html).toContain("Personal best tied");
+    if (outcome === "below") expect(html).not.toMatch(/First personal|New personal|record tied/);
+  }
+});
+it("suppresses all record notices on recovery, missing feedback and a different score ID", () => {
+  for (const props of [{ justAccepted: false, feedback: feedback("beaten") }, { justAccepted: true }, { justAccepted: true, feedback: { ...feedback("beaten"), scoreId: "different-score" } }]) {
+    const html = renderToStaticMarkup(createElement(SavedRoundFeedback, { score, ...props }));
+    expect(html).not.toContain("Server-confirmed score comparisons");
+    expect(html).not.toContain('data-record-beaten="true"');
+  }
+});
+it("dedupes by accepted score ID across rerenders and mounted sessions, with unavailable-storage fallback", () => {
+  const values = new Map<string, string>();
+  const storage = { getItem: (key: string) => values.get(key) ?? null, setItem: (key: string, value: string) => { values.set(key, value); } };
+  const seen = new Set<string>();
+  expect(claimAcceptedScore(score.id, seen, storage)).toBe(true);
+  expect(claimAcceptedScore(score.id, seen, storage)).toBe(false);
+  expect(claimAcceptedScore(score.id, new Set(), storage)).toBe(false);
+  expect(claimAcceptedScore("another-score", seen, storage)).toBe(true);
+  const unavailable = { getItem: () => { throw new Error("storage blocked"); }, setItem: () => {} };
+  expect(claimAcceptedScore("storage-blocked", seen, unavailable)).toBe(true);
+  expect(claimAcceptedScore("storage-blocked", seen, unavailable)).toBe(false);
 });

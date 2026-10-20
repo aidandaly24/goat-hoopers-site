@@ -120,6 +120,57 @@ with sync_playwright() as p:
                 page.get_by_role('region',name='This week’s leaderboard',exact=True).screenshot(path=str(out/(run+'-weekly.png')))
                 report['cases'].append({'case':run,'geometry':g,'syntheticScorePosts':1,'acceptedThenRefreshed':True,'recoveredWithoutCelebrating':True,'allTimeAndWeeklyPersisted':True,'reducedMotion':motion})
                 page.close()
+            if 'records' in selected:
+                for mode,width,text,motion in [('beaten',1440,100,'no-preference'),('beaten',390,100,'reduce'),('beaten',320,200,'reduce'),('first',390,100,'reduce'),('tied',390,100,'reduce'),('below',390,100,'reduce'),('mixed',390,100,'reduce'),('missing',390,100,'reduce'),('misbound',390,100,'reduce'),('malformed',390,100,'reduce'),('lost-response',390,100,'reduce'),('retry',390,100,'reduce'),('duplicate',390,100,'reduce')]:
+                    run=f'record-{mode}-{width}'
+                    page=openpage(run,'/arcade/ranked-free-throw','record-'+mode,width=width,text=text,motion=motion)
+                    posts=[];page.on('request',lambda r:posts.append(r.url) if r.method=='POST' else None)
+                    def complete_round():
+                        page.get_by_role('button',name='Start ranked round',exact=True).click()
+                        shoot=page.get_by_role('button',name='Take synthetic shot',exact=True)
+                        for _ in range(2):shoot.click();page.wait_for_timeout(100)
+                        page.get_by_role('button',name='Save completed round',exact=True).click()
+                    complete_round()
+                    if mode in ['lost-response','retry']:
+                        page.get_by_text('Check the saved result before retrying.',exact=False).wait_for()
+                        assert not page.locator('[data-record-beaten="true"]').count()
+                        page.get_by_role('button',name='Check saved result',exact=True).click()
+                        if mode=='retry':
+                            page.get_by_text('No saved result found.',exact=False).wait_for()
+                            page.get_by_role('button',name='Save completed round',exact=True).click()
+                    accepted=page.locator('[data-just-accepted="false"]' if mode=='lost-response' else '[data-just-accepted="true"]');accepted.wait_for()
+                    expected_beaten=mode in ['beaten','retry','duplicate']
+                    assert accepted.get_attribute('data-record-beaten')==str(expected_beaten).lower()
+                    comparisons=page.get_by_role('list',name='Server-confirmed score comparisons',exact=True)
+                    if mode in ['missing','misbound','malformed','lost-response']:
+                        assert not comparisons.count()
+                    else:
+                        comparisons.wait_for()
+                        assert 'Confirmed at acceptance' in accepted.inner_text()
+                        assert 'Everyone' in accepted.inner_text() and 'compatible score formats' in accepted.inner_text()
+                        if mode=='first':assert 'First personal score' in accepted.inner_text() and 'Record beaten!' not in accepted.inner_text()
+                        if mode=='tied':assert 'Personal best tied' in accepted.inner_text() and 'Record beaten!' not in accepted.inner_text()
+                        if mode=='mixed':assert 'First personal score' in accepted.inner_text() and 'Weekly record tied' in accepted.inner_text() and 'Record beaten!' not in accepted.inner_text()
+                        if expected_beaten:
+                            assert 'New personal best' in accepted.inner_text() and '0 to ' in accepted.inner_text()
+                            animation=accepted.evaluate('n=>getComputedStyle(n).animationName')
+                            assert animation=='none' if motion=='reduce' else 'record-beaten' in animation,animation
+                    assert geometry(page)['scroll']==width,geometry(page)
+                    if mode=='beaten':accepted.screenshot(path=str(out/(run+'.png')))
+                    if mode=='duplicate':
+                        complete_round()
+                        page.locator('[data-just-accepted="false"]').wait_for()
+                        assert not page.locator('[data-record-beaten="true"]').count()
+                        assert not comparisons.count()
+                    sent=len(posts)
+                    page.reload(wait_until='domcontentloaded')
+                    page.evaluate('(n)=>document.documentElement.style.fontSize=n+"%"',text)
+                    page.locator('[data-just-accepted="false"]').wait_for()
+                    assert not page.locator('[data-record-beaten="true"]').count()
+                    assert not page.get_by_role('list',name='Server-confirmed score comparisons',exact=True).count()
+                    assert len(posts)==sent
+                    report['cases'].append({'case':run,'beatenEffect':expected_beaten,'recoveryWithoutNotice':True,'noOverflow':True,'reducedMotion':motion,'duplicateSuppressed':mode=='duplicate'})
+                    page.close()
             for mode in ['held','error','empty','invalid','blocked']:
                 if selected and mode not in selected:continue
                 page=openpage('state-'+mode,mode=mode,width=320,text=200)
