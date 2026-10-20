@@ -705,7 +705,7 @@ because `stock_snapshots` prunes after 30 days. The dot owns the
 presentation contract (`src/domain/team-value-history.ts`) and picker;
 the producer that fills these tables is a later, separately reviewed lane.
 
-The `CombinedTicker` marquee renders in the root layout above every page
+The root header renders the `@ticker` server slot on league/content pages
 (ESPN style: news headlines, stock quotes, and — on NBA game days — live
 scores alternate on a timer; pure CSS animation, pauses on hover, no
 auto-switch under `prefers-reduced-motion`); the full market lives at
@@ -717,6 +717,22 @@ or scheduled, so Vercel/Neon stay at $0. `LiveGame` and `LiveSlate`
 day rollover independently of the browser clock) live in
 `src/domain/live-game.ts`. If ESPN is unreachable the mode silently never
 appears — the ticker parks on News/Stocks.
+
+The root header receives the `@ticker` server slot. Its explicit home
+page and `[...segments]/page.tsx` share the private server `Ticker.tsx`
+component. Account, admin, login, signup, claim, forgot-password and
+reset-password roots (including nested routes) return null before
+either market/news loader; `default.tsx` supplies a null
+hard-navigation fallback. League/content routes retain the existing
+ticker, bounded 25-quote/12-headline DTOs and outage behavior. Existing
+loader caches and the ticker client are unchanged. Public-to-public
+soft navigation may invoke the loaders more often than the former
+retained root layout; no unchanged navigation cost or universal
+bundle/cost savings is claimed. See `docs/ticker-scope.md`. The primary
+`src/app/[...segments]/page.tsx` fallback invokes Next `notFound()` for
+otherwise-unhandled URLs, so the ticker catch-all cannot retain an old
+primary page during soft navigation; specific pages and handlers retain
+precedence.
 
 ### Explicit price-history imports
 
