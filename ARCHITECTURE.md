@@ -12,6 +12,40 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ## Directory map
 
+### Team value history — recorded-only producer (issue #217)
+
+`data/team-value-history.ts` produces the v1 `TeamValueHistory` envelope and
+detail from read-only sources only: recorded modeled quotes via the batched
+`data/recorded-quotes.ts` adapter over `stock_snapshots` (original quote ids,
+integer cents, native UTC-convention timestamps — the stock store itself is
+untouched and its snapshot-saving path is never called), a pinned dated
+roster anchor (current Sleeper rosters), and completed-move generation over
+the public Sleeper transaction feed in the frozen replay ordering
+(`status_updated`, tie-break `transaction_id`, complete-only, trades atomic).
+Supported days are labelled `replayed`; anything the anchor or ordering
+cannot prove stays ambiguous/unavailable with no point. The generation
+fingerprints the anchor roster, the move set, the admitted quote set and the
+roster/source bounds, so any added/revised/pruned quote yields a new
+generation and stale detail/summary requests get 409. The producer fails
+closed throughout: the move feed loads through the strict
+`fetchTransactionsByWeekComplete` (any failed or malformed week rejects the
+load — a silent week is never replayed as an empty move set), evidence is
+admitted only at or before the load instant, compared at native
+microsecond precision rather than through `Date.parse` (a future-dated
+quote or move never advances `asOf`, and today's unpriced detail claims
+replay only through that cutoff), two different prices for one player at
+one instant
+quarantine the observation instead of selecting by quote id, and the
+separate current quote values the anchor roster — never the last
+historical replay roster. GET routes live at
+`/api/team-value-history/{summary,detail}`; the member homepage passes the
+envelope as serializable props into the `TeamValueHistory` consumer in
+`season-hub`, replacing the current-roster repricing line. This producer
+performs zero Neon writes: the #219 tables stay unapplied/unpopulated here,
+nothing is backfilled or reconstructed, and the envelope states the
+retained-source (30-day prune) limitation in its source notes until a
+separate persistence PR lands.
+
 ### Modeled valuation timeline contract
 
 The selected-player read-only `/api/stocks/[playerId]/history` route delegates
@@ -705,7 +739,7 @@ because `stock_snapshots` prunes after 30 days. The dot owns the
 presentation contract (`src/domain/team-value-history.ts`) and picker;
 the producer that fills these tables is a later, separately reviewed lane.
 
-The `CombinedTicker` marquee renders in the root layout above every page
+The root header renders the `@ticker` server slot on league/content pages
 (ESPN style: news headlines, stock quotes, and — on NBA game days — live
 scores alternate on a timer; pure CSS animation, pauses on hover, no
 auto-switch under `prefers-reduced-motion`); the full market lives at
@@ -717,6 +751,22 @@ or scheduled, so Vercel/Neon stay at $0. `LiveGame` and `LiveSlate`
 day rollover independently of the browser clock) live in
 `src/domain/live-game.ts`. If ESPN is unreachable the mode silently never
 appears — the ticker parks on News/Stocks.
+
+The root header receives the `@ticker` server slot. Its explicit home
+page and `[...segments]/page.tsx` share the private server `Ticker.tsx`
+component. Account, admin, login, signup, claim, forgot-password and
+reset-password roots (including nested routes) return null before
+either market/news loader; `default.tsx` supplies a null
+hard-navigation fallback. League/content routes retain the existing
+ticker, bounded 25-quote/12-headline DTOs and outage behavior. Existing
+loader caches and the ticker client are unchanged. Public-to-public
+soft navigation may invoke the loaders more often than the former
+retained root layout; no unchanged navigation cost or universal
+bundle/cost savings is claimed. See `docs/ticker-scope.md`. The primary
+`src/app/[...segments]/page.tsx` fallback invokes Next `notFound()` for
+otherwise-unhandled URLs, so the ticker catch-all cannot retain an old
+primary page during soft navigation; specific pages and handlers retain
+precedence.
 
 ### Explicit price-history imports
 
@@ -1087,6 +1137,19 @@ and unknown mode without inferring selection mechanics. BN slots are excluded;
 complete eligible starters plus at least8/10 observed stats per team are required.
 The separate observed-starter mean is not a full score forecast. Both versions
 retain their frozen decoders; no PPG-by-games multiplier is used.
+
+The immutable declaration in `src/domain/ai-lineup-policy.ts` supplies
+schema3's eleven active slots and minimum 9/11 observed prior-production
+coverage. New public lineup previews carry that policy tag and its
+prompt/baseline version; schemas 1/2 keep frozen ten-slot decoding and
+hashes. `loadAiWeekContext` exposes `AiSourceConfiguration` from its
+existing league read, and `withSourceCompatibility` derives an
+`AiSourceCompatibility` notice without persisting it or changing saved
+evidence/results. Its `currentWindow` retains pre-annotation readiness,
+so changed/unverified settings cannot reopen expired windows or revoke
+separately authorized refresh controls. Saved AI/home surfaces show that
+provenance; the complete interactive roster path is unchanged. Named
+game mode and positional assignment remain unverified.
 `migrations/ai-decider.sql` starts disabled and was separately provisioned under
 root authorization before this source change; no new migration is introduced. Existing auth/valuation/repair tables are reused
 or read without schema/behavior changes. UI/page integration has a separate owner.
