@@ -72,6 +72,8 @@ jobs:
         run: npm run build
       - name: Render homepage through the production Next.js boundary
         run: node qa/home-boundary-next/verify.mjs
+      - name: Verify server ticker route scope through production Next.js
+        run: node qa/ticker-scope/verify.mjs
 
   ai-postgres:
     name: AI Decides disposable PostgreSQL
