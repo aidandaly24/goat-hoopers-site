@@ -1,8 +1,9 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { expect, it, vi } from "vitest";
-import { RankedFreeThrow } from "./RankedFreeThrow";
+import { RankedFreeThrow, SavedRoundFeedback } from "./RankedFreeThrow";
 import type { RankedClient } from "@/data/ranked-free-throw/client";
+import { sampleScore } from "@/data/ranked-free-throw/__tests__/fixtures";
 
 it("keeps disabled ranked play closed with practice reachable and no account/API work", () => {
   const client = { start: vi.fn(), submit: vi.fn(), result: vi.fn(), leaderboard: vi.fn() } as RankedClient;
@@ -21,4 +22,15 @@ it("offers owned-result recovery without any new-round or score-submit controls 
   expect(html).toContain("Checking saved result");
   expect(html).not.toContain("Start ranked round");
   expect(html).not.toContain("Save completed round");
+});
+
+it("celebrates only accepted saves and never manufactures a record claim", () => {
+  for (const justAccepted of [true, false]) {
+    const html = renderToStaticMarkup(createElement(SavedRoundFeedback, { score: sampleScore, justAccepted }));
+    expect(html).toContain(`${sampleScore.makes} of ${sampleScore.attempts} makes`);
+    expect(html).toContain("server validated");
+    expect(html.includes('role="status"')).toBe(justAccepted);
+    expect(html).toContain(justAccepted ? "Round saved" : "Saved result");
+    expect(html).not.toMatch(/new record|personal best|you lead/i);
+  }
 });
