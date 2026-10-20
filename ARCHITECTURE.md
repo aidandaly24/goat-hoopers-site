@@ -37,6 +37,15 @@ gates; chart rendering and the bounded sampling fix remain separately owned.
 
 ### Courtside homepage and weekly archive
 
+The accepted opening tip constant and pure `openingPhase` gate live in
+`domain/season-opening.ts`, shared by the server homepage/feature and the
+client countdown. Server Components import only the rendered `TipCountdown`
+component from its `use client` module; calling a helper exported by that
+module is forbidden by the Next.js RSC boundary and crashes the homepage.
+`qa/home-boundary-next/verify.mjs` builds those actual components in an isolated,
+credential-free Next.js app and checks HTML/RSC rendering for public, synthetic
+member, missing-edition and archived states; the CI offline job runs this probe.
+
 `src/app/page.tsx` loads `getCourtsideHomeData`, archive references and approved portrait URLs, then composes `CourtsideHome` in the existing `season-hub` surface. `/weekly` and `/weekly/[editionId]` are source-controlled editorial routes. The old `SeasonHub`/`LeagueHero` components and static review stay available for comparison.
 
 `getCourtsideHomeData` accepts injectable clock/data dependencies. Live team identities, all roster references, current pairings and recent moves come through the existing Sleeper/transform membrane; `buildLiveClubhouseDirectory` is a pure projection. Only the slim roster player references are cached for a day, keyed by sorted current roster IDs. A changed roster ID set resolves immediately. The full player directory stays outside Next’s data cache. Existing 300-second league fetches deduplicate across layout and page. No DB/schema, environment, scheduler or publishing changes are involved.

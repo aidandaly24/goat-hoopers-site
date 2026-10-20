@@ -70,6 +70,8 @@ jobs:
       # Google fonts; no database, import, migration or deployment is invoked.
       - name: Compile the production app
         run: npm run build
+      - name: Render homepage through the production Next.js boundary
+        run: node qa/home-boundary-next/verify.mjs
 
   ai-postgres:
     name: AI Decides disposable PostgreSQL

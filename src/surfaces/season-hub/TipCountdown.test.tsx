@@ -1,16 +1,15 @@
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
+import { WEEK_ONE_TIP_OFF_ISO, openingPhase } from '@/domain/season-opening';
 import {
   TipCountdown,
-  WEEK_ONE_TIP_OFF_ISO,
   anchorFromSample,
   clockSampleSkewed,
   countdownParts,
   formatTipCaption,
   freshestResponseEndMonoMs,
   hiddenIntervalDiverged,
-  openingPhase,
   projectServerNow,
   resumeClock,
 } from './TipCountdown';

@@ -6,7 +6,8 @@ import { AI_PROBABILITY_LABEL, type AiWeeklySlate } from "@/domain/ai-decider";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { cs } from "./CourtsideStyles";
 import type { HomeTeamFace, HomeTeamSummary } from "@/domain/personalized-home";
-import { TipCountdown, WEEK_ONE_TIP_OFF_ISO, openingPhase } from "./TipCountdown";
+import { WEEK_ONE_TIP_OFF_ISO, openingPhase } from "@/domain/season-opening";
+import { TipCountdown } from "./TipCountdown";
 import { formatHomeStamp } from "./homeFormat";
 import {
   championTeamIdOf, deriveWeekPairs, isFinalPair, memberPair, recordLine, savedPickFor,
