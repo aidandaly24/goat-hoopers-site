@@ -7,7 +7,7 @@ import { TeamValueHistory } from "./TeamValueHistory";
 test("dated player changes and roster differences never become a trade-profit claim", () => {
   const before = teamValueHistoryDetailFixture("2026-10-08"), after = teamValueHistoryDetailFixture("2026-10-19");
   after.players[2] = { ...after.players[2], id: "new-player", name: "New roster member" };
-  after.moves[0] = { ...after.moves[0], type: "trade", adds: [{ id: "other-roster-add", name: "Other roster participant" }], drops: [{ id: "unknown-side", name: "Unknown side participant" }] };
+  after.moves[0] = { ...after.moves[0], type: "trade", adds: [{ id: "other-roster-add", name: "Other roster participant", rosterId: 99 }], drops: [{ id: "unknown-side", name: "Unknown side participant", rosterId: 99 }] };
   const html = renderToStaticMarkup(<TeamValueHistoryDetail detail={after} previous={before} />);
   expect(html).toContain("11 days between observations");
   expect(html).toContain("+$35.00");
