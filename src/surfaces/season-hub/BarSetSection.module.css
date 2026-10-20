@@ -1,0 +1,11 @@
+.portrait {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 10rem;
+  width: 100%;
+}
+
+@media (max-width: 40rem) {
+  .portrait { height: 8rem; }
+}

@@ -107,7 +107,7 @@ describe('integrated personalized edition', () => {
       expect(html).toContain('Saved Nov 10 · 7:00 AM');
       // Featured faces at editorial size with real modeled prices.
       expect(html).toContain('data-roster-value');
-      expect(html).toContain('Built around your players.');
+      expect(html).toContain('Your roster.');
       expect(html).toContain(`Synthetic ${id} Player 2`);
       expect(html).toContain('$40.00');
       expect(html).not.toContain('Your Roster Value');
@@ -167,10 +167,72 @@ describe('integrated personalized edition', () => {
     expect(html).toContain('unknown is never $0');
   });
 
+  it.each([0, 137])('labels current-week %s–0 totals without claiming a completed final', points => {
+    const fixture = personalizedFixture();
+    for (const entry of fixture.home.directory) {
+      if (entry.currentMatchup) {
+        entry.currentMatchup.homePoints = points;
+        entry.currentMatchup.awayPoints = 0;
+      }
+    }
+    const html = renderHome(fixture, member(fixture, '1'), '1');
+    expect(html).toContain('Current score');
+    expect(html).not.toContain('Final');
+    expect(html).not.toContain('Completed fantasy matchup');
+    expect(html).toContain('No completed-game stats yet.');
+  });
+
   it('preserves a user-created team name verbatim in the desk', () => {
     const fixture = personalizedFixture(); fixture.teams[0].name = 'Fixture 🏀 Club ↗';
     const html = renderHome(fixture, member(fixture, '1'), '1');
     expect(html).toContain('Fixture 🏀 Club ↗');
+  });
+
+  it('refreshes current identities and roster membership across the homepage while retaining dated editorial truth', () => {
+    const fixture = personalizedFixture();
+    fixture.home.edition = structuredClone(fixture.home.edition!);
+    fixture.home.edition.game.title = 'Former Club vs Former Opponent';
+    fixture.home.edition.game.context = 'Former Club was the editorial pick in this dated edition.';
+    fixture.teams[0].name = 'Renamed Current Club';
+    fixture.teams[0].avatar = 'updated-team-avatar';
+    fixture.teams[1].name = 'Renamed Current Opponent';
+    const outgoing = fixture.home.directory[0].players.shift()!;
+    fixture.home.directory[1].players.push(outgoing);
+    const incoming = { ...outgoing, id: 'incoming-current-player', fullName: 'Incoming Current Player' };
+    fixture.home.directory[0].players.push(incoming);
+    fixture.market.stocks.push({ ...fixture.market.stocks[0], playerId: incoming.id, playerName: incoming.fullName, price: 500 });
+    // The old editorial assignment is intentionally stale. A current watch
+    // resolves ownership by player ID, while preserving its dated source.
+    fixture.home.edition.playerSpotlights.push({
+      role: 'one-to-watch', playerId: outgoing.id, name: outgoing.fullName, position: 'PG', teamId: '1',
+      periodLabel: 'Dated preseason watch', headline: 'Original editorial headline.', opinion: 'Original sourced opinion.',
+      stats: [], statPeriod: 'Preseason', selectionReason: 'Sourced editorial selection',
+      source: { label: 'Dated source', url: 'https://example.com/dated-watch', checkedAt: '2026-10-08' },
+    });
+    const personal = member(fixture, '1');
+    expect(personal.kind === 'member' && personal.summary?.players.map(player => player.id)).not.toContain(outgoing.id);
+    const html = renderHome(fixture, personal, '1');
+    expect(html.match(/<h1[^>]*>([^]*?)<\/h1>/)?.[1]).toBe('Renamed Current Club vs Renamed Current Opponent');
+    expect(html).toContain('updated-team-avatar');
+    expect(html).toContain('Model choice: Renamed Current Opponent');
+    const roster = html.split('data-roster-value')[1].split('</section>')[0];
+    expect(roster).toContain(incoming.fullName);
+    expect(roster).not.toContain(outgoing.fullName);
+    expect(html).toContain('data-edition-story');
+    expect(html).toContain('Former Club vs Former Opponent');
+    expect(html).toContain('Former Club was the editorial pick in this dated edition.');
+    const notebook = html.split('data-scouting-notebook')[1].split('</section>')[0];
+    expect(notebook).toContain('Around the league · Renamed Current Opponent');
+    expect(notebook).toContain('Dated preseason watch. Original editorial headline. Original sourced opinion.');
+    expect(html).toContain('href="/teams/1#team-roster"');
+    expect(html).toContain('href="/player/incoming-current-player"');
+    expect(html).toContain('data-own-move="true"');
+    expect(html).not.toContain('>Fixture Club 1<');
+    const publicHtml = renderHome(fixture, { kind: 'signed_out' });
+    expect(publicHtml.match(/<h1[^>]*>([^]*?)<\/h1>/)?.[1]).toBe('Renamed Current Club vs Renamed Current Opponent');
+    expect(publicHtml).toContain('updated-team-avatar');
+    expect(publicHtml).toContain(incoming.fullName);
+    expect(publicHtml).not.toContain('>Fixture Club 1<');
   });
 
   it('shows the countdown on the court in preseason — members get the same single overlay', () => {
@@ -306,7 +368,7 @@ describe('integrated personalized edition', () => {
     expect(html).not.toContain('THE CHAMP');
     // The public faces section itself stays, featured faces and all.
     expect(html).toContain('data-bar-set');
-    expect(html).toContain('Opening-week roster anchors');
+    expect(html).toContain('Top modeled player value on each featured roster.');
     // The avatar crown badge and the directory's champion label stay: one
     // AI row, the faces strip, the directory row and the standings row each
     // carry the non-interactive badge.

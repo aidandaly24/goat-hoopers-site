@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 const { chromium } = createRequire(import.meta.url)('playwright');
 const output = process.env.HOME_EVIDENCE ?? '/tmp/goat-personal-home-review';
+const origin = process.env.HOME_REVIEW_ORIGIN ?? 'http://127.0.0.1:4201';
 const redesignDir = process.env.REDESIGN_DIR ?? '/home/hatch/workspace/goat-hoopers-site-qa';
 mkdirSync(output, { recursive: true });
 mkdirSync(redesignDir, { recursive: true });
@@ -15,7 +16,7 @@ const AVATAR_PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAA
 const files = [...new Set([...execFileSync('git', ['diff', '--name-only', 'e09399c'], { encoding: 'utf8' }).trim().split('\n'), ...execFileSync('git', ['ls-files', '--others', '--exclude-standard'], { encoding: 'utf8' }).trim().split('\n')])].filter(Boolean);
 const hash = file => createHash('sha256').update(readFileSync(file)).digest('hex');
 const report = { revision: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), sourceHashes: Object.fromEntries(files.map(file => [file, hash(file)])),
-  method: 'Actual components via numeric-loopback Vite fixture; synthetic identities, scores, prices and saved AI. Not a live account or deployed app.', checks: [], pageErrors: [], external: [], writes: [] };
+  method: `Actual components via numeric-loopback ${process.env.HOME_REVIEW_TRANSPORT ?? 'Vite'} fixture; synthetic identities, scores, prices and saved AI. Not a live account or deployed app.`, checks: [], pageErrors: [], external: [], writes: [] };
 const browser = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--no-sandbox'] });
 try {
   for (const settings of [
@@ -35,10 +36,11 @@ try {
       return route.continue();
     });
     const page = await context.newPage(); page.setDefaultTimeout(10000);
-    page.on('pageerror', error => report.pageErrors.push(error.message));
+    page.on('pageerror', error => report.pageErrors.push({ url: page.url(), message: error.message }));
     for (const [state, id] of [['member', '1'], ['member', '4'], ['signed_out', '1'], ['unclaimed', '1'], ['unavailable', '1'], ['preseason', '1'], ['offseason', '1'], ['no-matchup', '1'], ['ai-stale', '4'], ['ai-missing', '4'], ['missing-market', '1'], ['missing-edition', '1'], ['long-name', '1'], ['guide-unavailable', '1'], ['champion', '1'], ['showcase', '1'], ['showcase-public', '1'], ['team-avatars', '1'], ['team-avatars-public', '1'], ['archived-edition', '1']]) {
-      await page.goto(`http://127.0.0.1:4201/?state=${state}&fixture-team=${id}`);
+      await page.goto(`${origin}/?state=${state}&fixture-team=${id}`);
       await page.getByRole('heading').first().waitFor();
+      if (process.env.HOME_REVIEW_TRANSPORT === 'Next.js') await page.waitForFunction(() => document.documentElement.dataset.reviewHydrated === 'true');
       await page.evaluate(theme => document.documentElement.dataset.theme = theme, settings.theme);
       await page.evaluate(() => document.fonts.ready);
       if (settings.zoom) await page.addStyleTag({ content: 'html{font-size:200%}' });
@@ -95,7 +97,7 @@ try {
         if (!settings.zoom) {
           const faceMetrics = await page.locator('[data-bar-set] li > a').evaluateAll(links => links.map(link => {
             const portrait = link.children[0].getBoundingClientRect();
-            const teamRow = [...link.querySelectorAll(':scope > span')].find(s => s.querySelector('img'));
+            const teamRow = [...link.querySelectorAll(':scope > span')].find(s => s.querySelector('img[src*="sleepercdn.com"]'));
             const avatar = teamRow ? teamRow.querySelector('img').getBoundingClientRect() : null;
             return { portraitW: portrait.width, avatarW: avatar ? avatar.width : null, rowH: teamRow ? teamRow.getBoundingClientRect().height : null };
           }));
@@ -118,7 +120,7 @@ try {
       } else if (state === 'showcase-public') {
         assert(await page.locator('[data-league-desk]').count() === 1, 'Public showcase lacks the league desk');
         assert(await page.locator('[data-bar-set]').count() === 1, 'Public showcase lacks the featured-faces section');
-        assert(await page.locator('[data-bar-set]').getByText('Opening-week roster anchors').count() === 1, 'Public faces section lost its featured faces');
+        assert(await page.locator('[data-bar-set]').getByText('Top modeled player value on each featured roster.').count() === 1, 'Public faces section lost its featured faces');
         assert(await page.locator('[data-bar-set]').getByText('The reigning champion').count() === 0, 'Public faces section still renders the champion record panel');
         assert(await page.locator('[data-bar-set]').getByText('THE CHAMP').count() === 0, 'Public faces section still renders the champion outline type');
         assert(await page.locator('[data-court-clock="countdown"]').count() === 1, 'Public showcase must show exactly one countdown');
@@ -225,19 +227,19 @@ try {
     return route.continue();
   });
   const capture = await captureContext.newPage();
-  await capture.goto('http://127.0.0.1:4201/?state=showcase&fixture-team=1');
+  await capture.goto(`${origin}/?state=showcase&fixture-team=1`);
   await capture.getByRole('heading').first().waitFor();
   await capture.evaluate(() => document.fonts.ready);
   await capture.screenshot({ path: `${redesignDir}/redesign-desktop.png`, fullPage: true });
   await capture.setViewportSize({ width: 390, height: 844 });
   await capture.screenshot({ path: `${redesignDir}/redesign-mobile.png`, fullPage: true });
-  await capture.goto('http://127.0.0.1:4201/?state=showcase-public&fixture-team=1');
+  await capture.goto(`${origin}/?state=showcase-public&fixture-team=1`);
   await capture.getByRole('heading').first().waitFor();
   await capture.setViewportSize({ width: 1440, height: 1000 });
   await capture.evaluate(() => document.fonts.ready);
   await capture.screenshot({ path: `${redesignDir}/redesign-public.png`, fullPage: true });
   await captureContext.close();
-  assert(report.pageErrors.length === 0, `Page errors: ${report.pageErrors}`);
+  assert(report.pageErrors.length === 0, `Page errors: ${JSON.stringify(report.pageErrors)}`);
   assert(report.external.length === 0, `Unexpected external requests: ${report.external}`);
   assert(report.writes.length === 0, `Unexpected write requests: ${report.writes}`);
   report.sourceUnchanged = files.every(file => hash(file) === report.sourceHashes[file]);

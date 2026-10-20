@@ -195,6 +195,34 @@ code. Offline tests/QA live under the focused tests and `qa/personalized-home`.
 No auth, AI generation, pricing, migration, infrastructure or competition gate
 is changed by this composition.
 
+The current homepage's `HomeFidelity.module.css` keeps its centered frame
+and compact type/spacing local to this surface. `RosterPortraitStage` lays
+out the current summary's three priced players as overlapping cutouts,
+with a filled decorative team-name backdrop; the accessible player links,
+real values, partial coverage and full valuation disclosure remain visible.
+`EditorialPortrait` reuses the approved portrait/ESPN/initials chain without
+changing shared avatar styling. Faces cards keep their existing team-avatar
+links and content. Spotlights retain dated source facts in compact panels,
+and the scouting notebook uses only guide rows or current modeled values.
+Current hero/desk labels resolve live pairing identity; dated edition text
+is available as a separately labelled story. A sourced watch resolves its
+present owner by player ID, never the edition's frozen team assignment.
+Identity/roster changes appear on the next server render after the existing
+provider cache refresh; an already-open page does not receive pushed updates.
+
+Homepage matchup records and streaks load only scoring weeks before the
+provider's current week. Current-week transaction activity stays included;
+an unfinished 0–0 is never a completed record, and a genuine completed tie
+may be the closest game but is never a blowout. The stats grid sizes itself
+to its containing panel rather than the viewport. Non-null current pairing
+totals carry a "Current score" label, not a claim of verified completion.
+`PlayerHeadshot` also detects a failed image already complete at mount so a
+cached pre-hydration 404 enters the normal fallback chain.
+`qa/home-fidelity` adds
+isolated rename/avatar/trade and completed-record fixtures, production Next
+HTML/RSC and browser checks, and matched reference captures. It reads no
+account/database credentials and performs no application writes.
+
 The reigning champion is derived from the clubhouse directory's
 previous-season data — the team whose `previousSeason.finish` is 1, the same
 source that prints its "2025 champion" label — never a hardcoded team.

@@ -1,21 +1,16 @@
+.panel { min-width: 0; padding: var(--gh-s4); border-radius: var(--gh-cs-radius); box-shadow: none; }
+
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--gh-s4);
-}
-
-/* Desktop: three-up stat grid. */
-@media (min-width: 64rem) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: var(--gh-s3) var(--gh-s4);
+  min-width: 0;
 }
 
 .cell {
-  padding: var(--gh-s4);
-  border: 1px solid var(--gh-border);
-  border-radius: var(--gh-radius);
-  background: var(--gh-bg-raised);
+  min-width: 0;
+  padding: var(--gh-s3) 0;
+  border-bottom: 1px solid var(--gh-border);
   /* Comfortable touch target on mobile. */
   min-height: 44px;
 }
@@ -31,9 +26,9 @@
 
 .value {
   font-family: var(--gh-font-display);
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 800;
-  color: var(--gh-gold);
+  color: var(--gh-text);
   font-variant-numeric: tabular-nums;
   line-height: 1.1;
   margin-bottom: var(--gh-s1);
@@ -42,9 +37,9 @@
 .detail {
   font-size: 0.85rem;
   color: var(--gh-text-dim);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
 }
 
 /* Team names inside the detail line link to their team pages. */

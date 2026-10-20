@@ -12,7 +12,8 @@ export type WeekPair = Pick<Matchup, "week" | "homePoints" | "awayPoints"> & {
   away: PairEntry["identity"];
 };
 
-export const isFinalPair = (pair: Pick<Matchup, "homePoints" | "awayPoints">) =>
+/** Current pairing totals have no completion flag; non-null is not proof of a final. */
+export const hasPairScores = (pair: Pick<Matchup, "homePoints" | "awayPoints">) =>
   pair.homePoints !== null && pair.awayPoints !== null;
 
 /** The week's pairings, derived once and shared by the hero desk and the

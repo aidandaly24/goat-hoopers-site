@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { HomeTeamFace } from "@/domain/personalized-home";
-import { PlayerHeadshot } from "@/ui/PlayerHeadshot";
+import { EditorialPortrait } from "./EditorialPortrait";
+import styles from "./BarSetSection.module.css";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
 import { cs } from "./CourtsideStyles";
@@ -28,7 +29,7 @@ export function BarSetSection({ faces, pairTeamIds, portraits }: {
     <section className={cs("value-section")} data-bar-set aria-label="The people behind the matchup">
       <SectionHeading
         eyebrow="The people behind the matchup"
-        title="The featured faces."
+        title="Behind the matchup."
         action={<Link className={cs("text-link")} href="/teams" prefetch={false}>Meet all ten teams</Link>}
       />
       <div className={cs("value-layout", "bar-layout")}>
@@ -37,9 +38,9 @@ export function BarSetSection({ faces, pairTeamIds, portraits }: {
             {featured.map((face) => (
               <li key={face.team.id}>
                 <Link href={face.player ? `/player/${face.player.id}` : `/teams/${face.team.id}`} prefetch={false} className={cs("value-face")}>
-                  <span className={cs("value-face-media")}>
+                  <span className={styles.portrait}>
                     {face.player
-                      ? <PlayerHeadshot portraitSrc={portraits[face.player.id]} espnId={face.player.espnId} name={face.player.name} teamId={face.team.id} size={188} />
+                      ? <EditorialPortrait portraitSrc={portraits[face.player.id]} espnId={face.player.espnId} name={face.player.name} teamId={face.team.id} size={188} />
                       : <TeamAvatar name={face.team.name} avatar={face.team.avatar} isChampion={face.champion} />}
                   </span>
                   <span className={cs("value-face-pos")}>{face.player?.position ?? "Team"}</span>
@@ -52,7 +53,7 @@ export function BarSetSection({ faces, pairTeamIds, portraits }: {
               </li>
             ))}
           </ul>
-          <p className={cs("chip", "value-faces-chip")}>Opening-week roster anchors · Not a ranking</p>
+          <p className={cs("caption")}>Top modeled player value on each featured roster.</p>
         </div>
       </div>
     </section>

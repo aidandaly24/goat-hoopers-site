@@ -245,7 +245,7 @@ export async function fetchTransactionsByWeek(
  * the input as a parameter). That split is the dependency-inversion seam:
  * tests pass fake inputs straight to the pure function, no network.
  *
- * In the preseason (or when the state endpoint is unreachable) this returns
+ * Before a completed scoring week (or when state is unavailable) this returns
  * hasGames: false and every stat stays null — the strip renders an empty
  * state instead of fake leaders.
  */
@@ -260,14 +260,20 @@ async function fetchStatsInput(teams: Team[]): Promise<LeagueStatsInput> {
   if (state === null || !hasGames) {
     return { teams, matchupsByWeek: [], transactionsByWeek: [], hasGames: false };
   }
-  const weeks = validSeasonWeeks(state);
+  const seasonWeeks = validSeasonWeeks(state);
+  // Scores in the current week are live, including pre-tip zero placeholders.
+  // A later current week is the completion boundary, as in The Table.
+  const weeks = seasonWeeks.slice(0, -1);
+  if (weeks.length === 0) {
+    return { teams, matchupsByWeek: [], transactionsByWeek: [], hasGames: false };
+  }
   const [matchupWeeks, txWeeks] = await Promise.all([
     Promise.all(
       weeks.map((w): Promise<RawMatchupEntry[]> =>
         fetchMatchups(w).catch(() => [])
       )
     ),
-    fetchTransactionsByWeek(weeks),
+    fetchTransactionsByWeek(seasonWeeks),
   ]);
   return {
     teams,
