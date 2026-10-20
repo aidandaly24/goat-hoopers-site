@@ -60,7 +60,7 @@ try {
     report.boundary.push({ state, transport: flight ? 'RSC' : 'HTML', status: response.status });
   }
   browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? '/usr/bin/chromium', args: ['--no-sandbox'] });
-  for (const view of [{ width: 1440, height: 1000, theme: 'light' }, { width: 390, height: 844, theme: 'light' },
+  for (const view of [{ width: 1440, height: 1000, theme: 'light' }, { width: 1440, height: 1000, theme: 'light', column: 'narrow' }, { width: 390, height: 844, theme: 'light' },
     { width: 320, height: 740, theme: 'light' }, { width: 320, height: 740, theme: 'light', zoom: true },
     { width: 390, height: 844, theme: 'dark' }]) {
     const context = await browser.newContext({ viewport: { width: view.width, height: view.height }, hasTouch: view.width < 400, reducedMotion: 'reduce' });
@@ -76,12 +76,16 @@ try {
     for (const state of ['mixed', 'empty', 'one', 'long']) {
       let detailRequests = 0; const count = request => { if (request.url().includes('/api/history-detail')) detailRequests++; };
       page.on('request', count);
-      await page.goto(`${origin}/?state=${state}`);
+      await page.goto(`${origin}/?state=${state}${view.column ? `&column=${view.column}` : ''}`);
       await page.locator('[data-team-value-history]').waitFor();
       await page.evaluate(theme => document.documentElement.dataset.theme = theme, view.theme);
       if (view.zoom) await page.addStyleTag({ content: 'html{font-size:200%}' });
       await page.waitForTimeout(100); assert.equal(detailRequests, 0, 'detail fetched before inspection');
       await overflow(state);
+      const customSummary = page.locator('summary').filter({ hasText: /^Choose dates/ });
+      assert.equal(await page.getByLabel('From', { exact: true }).isVisible(), false, 'custom form initially dominates chart');
+      assert.ok(await page.locator('[data-history-readout]').evaluate(node => node.getBoundingClientRect().bottom < document.querySelector('[data-team-history-chart]').getBoundingClientRect().top), 'value must precede chart');
+      if (state === 'mixed') await page.locator('[data-team-value-history]').screenshot({ path: path.join(output, `${view.width}-${view.theme}-${view.zoom ? '200' : '100'}-${view.column ?? 'full'}-initial.png`) });
       assert.equal(await page.getByRole('button', { name: 'All time', exact: true }).getAttribute('aria-pressed'), 'true');
       if (state === 'mixed') {
         assert.deepEqual(await page.locator('[data-history-segment]').evaluateAll(nodes => nodes.map(node => Number(node.getAttribute('data-segment-points')))), [1, 2, 2, 1, 3, 2]);
@@ -91,9 +95,12 @@ try {
         assert.equal(await page.locator('[data-history-point]').count(), 1);
         assert.equal(await page.locator('[data-team-history-chart] polyline').count(), 0);
         await page.getByRole('button', { name: 'All time', exact: true }).click();
+        await customSummary.click();
         await page.getByLabel('From', { exact: true }).fill('2026-10-08');
         await page.getByLabel('Through', { exact: true }).fill('2026-10-09');
         await page.getByRole('button', { name: 'Apply dates', exact: true }).click();
+        assert.equal(await page.getByLabel('From', { exact: true }).isVisible(), false);
+        assert.equal(await customSummary.evaluate(node => node === document.activeElement), true, 'custom Apply focus lost');
         assert.equal(await page.locator('[data-history-point]').count(), 2);
         await page.getByLabel('Inspect day · UTC', { exact: true }).fill('2026-10-09');
         await page.getByRole('button', { name: 'Previous day', exact: true }).click();
@@ -118,15 +125,16 @@ try {
         await overflow('gap roster inspection');
       }
       if (state === 'one') {
+        await customSummary.click();
         await page.getByLabel('From', { exact: true }).fill('2026-06-30'); await page.getByLabel('Through', { exact: true }).fill('2026-06-30');
         await page.getByRole('button', { name: 'Apply dates', exact: true }).click();
         assert.equal(await page.getByRole('slider').isDisabled(), true);
         assert.equal(await page.getByRole('button', { name: 'Previous day' }).isDisabled(), true);
         assert.equal(await page.getByRole('button', { name: 'Next day' }).isDisabled(), true);
       }
-      const controls = await page.locator('[data-team-value-history] button, [data-team-value-history] input[type=date]').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().height));
+      const controls = await page.locator('[data-team-value-history] button, [data-team-value-history] input[type=date], [data-team-value-history] summary').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect()).filter(rect => rect.width > 0 && rect.height > 0).map(rect => rect.height));
       assert.ok(controls.every(height => height >= 43.9), `small control at ${view.width}`);
-      if (state === 'mixed' || view.width === 320 && state === 'one') await page.locator('[data-team-value-history]').screenshot({ path: path.join(output, `${view.width}-${view.theme}-${view.zoom ? '200' : '100'}-${state}.png`) });
+      if (state === 'mixed' || view.width === 320 && state === 'one') await page.locator('[data-team-value-history]').screenshot({ path: path.join(output, `${view.width}-${view.theme}-${view.zoom ? '200' : '100'}-${view.column ?? 'full'}-${state}.png`) });
       report.browser.push({ view, state, noInitialDetailFetch: true, rangeAndCoverage: 'passed', disclosure: 'passed', horizontalOverflow: false });
       page.off('request', count);
     }

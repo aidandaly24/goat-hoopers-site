@@ -26,6 +26,11 @@ inspection; roster inspection during a valuation gap; bounded pagination; retry,
 generation409, malformed data and delayed-response cancellation. Screenshots,
 revision and source hashes accompany the JSON report.
 
+The visual pass also exercises a 27rem column in a 1440px desktop viewport,
+checks the value appears above the plot, and verifies custom date disclosure
+and focus restoration. Initial screenshots retain the uncluttered opening state;
+inspection screenshots separately show missing-value and roster evidence.
+
 These fixtures test presentation and actual framework/browser boundaries. They
 do not establish live roster replay correctness, historical source completeness,
 real account authorization, physical-phone/screen-reader acceptance, a reviewed

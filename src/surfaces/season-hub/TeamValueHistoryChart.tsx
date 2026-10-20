@@ -31,13 +31,16 @@ export function TeamValueHistoryChart({ points, range, selectedDay }: {
         {[12, 90, 168].map(row => <line key={row} x1="0" x2="600" y1={row} y2={row} className={styles.gridLine} />)}
         <line x1={x(selectedDay)} x2={x(selectedDay)} y1="0" y2="184" className={styles.selectedLine} />
         {segments.map(segment => <g key={segment[0].id} className={kind(segment[0])} data-history-segment data-segment-points={segment.length}>
+          {segment.length > 1 && segment[0].priceKind === "recorded" && segment.every(historyPointComplete) && <polygon className={styles.area} aria-hidden="true" data-history-area
+            points={`${x(segment[0].day)},168 ${segment.map(point => `${x(point.day)},${y(point.subtotalCents!)}`).join(" ")} ${x(segment.at(-1)!.day)},168`} />}
           {segment.length > 1 && segment[0].priceKind !== "unavailable" && <polyline fill="none" vectorEffect="non-scaling-stroke"
             points={segment.map(point => `${x(point.day)},${y(point.subtotalCents!)}`).join(" ")} />}
-          {segment.map(point => {
+          {segment.map((point, index) => {
+            if (segment.length > 2 && index !== 0 && index !== segment.length - 1 && point.day !== selectedDay) return null;
             const title = `${date(point.day)}: ${money(point.subtotalCents!)} · ${point.priceKind} · ${point.priced}/${point.rosterCount} priced`;
-            return historyPointComplete(point) ? <circle key={point.id} cx={x(point.day)} cy={y(point.subtotalCents!)} r={point.day === selectedDay ? 5 : 3}
+            return historyPointComplete(point) ? <circle key={point.id} cx={x(point.day)} cy={y(point.subtotalCents!)} r={point.day === selectedDay ? 3.5 : segment.length === 1 ? 2.5 : 1.5}
               vectorEffect="non-scaling-stroke" data-history-point={point.id}><title>{title}</title></circle>
-              : <rect key={point.id} x={x(point.day) - 4} y={y(point.subtotalCents!) - 4} width="8" height="8"
+              : <rect key={point.id} x={x(point.day) - 2.5} y={y(point.subtotalCents!) - 2.5} width="5" height="5"
                 vectorEffect="non-scaling-stroke" data-history-point={point.id}><title>{title}</title></rect>;
           })}
         </g>)}
@@ -45,6 +48,6 @@ export function TeamValueHistoryChart({ points, range, selectedDay }: {
       {values.length === 0 && <p className={styles.plotEmpty}>No supported valuation in this range.<br />You can still inspect roster and move evidence.</p>}
     </div>
     <div className={styles.xAxis}><span>{date(range.from)}</span><span>{date(new Date(end - 86400000).toISOString().slice(0, 10))}</span></div>
-    <p className={styles.caption}>Daily samples · UTC. Gaps and source changes stay separate. Values between samples are not observed.</p>
+    <p className={styles.caption}>Daily modeled FAAB · UTC. Gaps stay unpriced.</p>
   </figure>;
 }

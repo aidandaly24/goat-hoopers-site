@@ -16,6 +16,7 @@ import styles from "./TeamValueHistory.module.css";
 const money = (cents: number) => `$${(cents / 100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 const fullDay = (day: string) => new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${day}T00:00:00Z`));
 const status = (value: string) => value === "verified" ? "Independently verified roster" : value === "replayed" ? "Replayed roster · not independently verified at every date" : "Roster cannot be verified for this date";
+const shortStatus = (value: string) => value === "verified" ? "Verified roster" : value === "replayed" ? "Replayed roster · unverified" : value === "ambiguous" ? "Ambiguous roster" : "Roster unavailable";
 const priceLabel = (point: TeamHistoryPoint) => point.rosterCount === 0 ? "Empty roster" : point.priceKind === "recorded" ? "Recorded model quote"
   : point.priceKind === "reconstructed" ? "Reconstructed estimate" : point.priceKind === "mixed" ? "Recorded + reconstructed sources" : "Historical valuation unavailable";
 type DetailState = { key: string } & ({ kind: "loading" } | { kind: "ready"; value: TeamValueHistoryDetail } | { kind: "error"; changed: boolean });
@@ -50,7 +51,15 @@ function SelectedRoster({ detail }: { detail: TeamValueHistoryDetail }) {
   </div>;
 }
 
-/** Serializable server entrypoint. Existing homepage wiring is owned by Muse. */
+/**
+ * Serializable server entrypoint; existing homepage wiring is owned by Muse.
+ * Question: what was this historical roster worth, and what evidence supports it?
+ * Action: choose a period/day, then inspect roster and sourced moves.
+ * States: complete/partial/unavailable prices, independent roster confidence,
+ * loading/error/changed generation. Narrow: fluid column, wrapping presets,
+ * disclosed custom dates and native day input. Never infer missing prices,
+ * trend, ownership timing or continuity from the presentation.
+ */
 export function TeamValueHistory(props: { history: TeamValueHistoryEnvelope; detailEndpoint?: string; pageEndpoint?: string }) {
   if (!isTeamValueHistoryEnvelope(props.history)) return <p className={styles.notice}>Team history is unavailable. No value has been substituted.</p>;
   return <HistoryView key={`${props.history.team.id}/${props.history.generation}/${props.history.asOf}/${props.history.requestedRange.from}/${props.history.requestedRange.toExclusive}`} {...props} />;
@@ -60,6 +69,7 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
   const id = useId();
   const [envelope, setEnvelope] = useState(history), [range, setRange] = useState(history.requestedRange);
   const [preset, setPreset] = useState(history.requestedRange.from === history.leagueRange.from && history.requestedRange.toExclusive === history.leagueRange.toExclusive ? "all" : "custom");
+  const [customOpen, setCustomOpen] = useState(false);
   const [draft, setDraft] = useState({ from: range.from, through: shiftHistoryDay(range.toExclusive, -1) });
   const lastPoint = history.points.filter(point => point.day >= range.from && point.day < range.toExclusive).sort((a, b) => a.day.localeCompare(b.day)).at(-1);
   const [selectedDay, setSelectedDay] = useState(lastPoint?.day ?? shiftHistoryDay(range.toExclusive, -1));
@@ -67,6 +77,7 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
   const [detail, setDetail] = useState<DetailState>({ key: "", kind: "loading" });
   const [pageState, setPageState] = useState<"idle" | "loading" | "error" | "changed">("idle");
   const cache = useRef(new Map<string, TeamValueHistoryDetail>()), pageRequest = useRef<AbortController | null>(null), pageSequence = useRef(0);
+  const customSummary = useRef<HTMLElement | null>(null);
   const client = useMemo(() => createTeamHistoryClient(globalThis.fetch.bind(globalThis), { detail: detailEndpoint, page: pageEndpoint }), [detailEndpoint, pageEndpoint]);
   const points = envelope.points.filter(point => point.day >= range.from && point.day < range.toExclusive);
   const point = points.find(point => point.day === selectedDay);
@@ -132,8 +143,9 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
   }
   function applyRange(next: TeamHistoryRange, label: string) {
     pageRequest.current?.abort(); ++pageSequence.current;
-    if (!validHistoryRange(next) || !historyRangeContains(envelope.leagueRange, next)) { setDateError("Choose a valid range within the league's recorded bounds."); return; }
+    if (!validHistoryRange(next) || !historyRangeContains(envelope.leagueRange, next)) { setDateError("Choose a valid range within the league's recorded bounds."); setCustomOpen(true); return; }
     setDateError(""); setRange(next); setPreset(label); setDraft({ from: next.from, through: shiftHistoryDay(next.toExclusive, -1) });
+    setCustomOpen(false); if (label === "custom") customSummary.current?.focus();
     const day = selectedDay < next.from ? next.from : selectedDay >= next.toExclusive ? shiftHistoryDay(next.toExclusive, -1) : selectedDay;
     setSelectedDay(day); if (day !== selectedDay) setDetail({ key: "", kind: "loading" }); setPageState("idle");
     if (!historyRangeContains(envelope.loadedRange, next) && pageEndpoint) void loadRange(next, false);
@@ -141,19 +153,27 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
   const currentDetail = detail.key === detailKey ? detail : null;
   const retryDetail = () => { cache.current.delete(detailKey); setDetail({ key: detailKey, kind: "loading" }); setAttempt(value => value + 1); };
   return <section className={styles.root} data-team-value-history aria-label={`${envelope.team.name} historical roster valuation`}>
-    <SectionHeading eyebrow={envelope.team.name} title="Team value over time" />
-    <p className={styles.intro}>The players you owned, with value shown only where the sources support it.</p>
+    <div className={styles.heading}><SectionHeading eyebrow={envelope.team.name} title="Team value over time" /></div>
+    <div className={styles.readout} role="status" aria-live="polite" aria-atomic="true" data-history-readout>
+      <span>{fullDay(selectedDay)} · UTC</span>
+      <strong>{point?.subtotalCents !== null && point?.subtotalCents !== undefined ? money(point.subtotalCents) : "Valuation unavailable"}</strong>
+      <span>{point ? `${!historyPointComplete(point) && point.subtotalCents !== null ? "Known-value subtotal · " : ""}${priceLabel(point)}` : "No historical quote for this day"}</span>
+      <small>{point ? `${point.priced} of ${point.rosterCount ?? "unknown"} priced · ${shortStatus(point.rosterStatus)}` : "Unknown is not $0. Roster and moves remain inspectable."}</small>
+    </div>
     <div className={styles.presets} role="group" aria-label="History range presets">
       {[{ id: "all", label: "All time" }, ...envelope.seasons.map(season => ({ id: `season:${season.id}`, label: season.label })), { id: "recent", label: "Last 30 days" }].map(item =>
         <button key={item.id} type="button" className={controls.secondary} aria-pressed={preset === item.id}
           onClick={() => applyRange(historyPresetRange(envelope, item.id), item.id)}>{item.label}</button>)}
     </div>
-    <form className={styles.rangeForm} onSubmit={event => { event.preventDefault(); if (!validHistoryDay(draft.from) || !validHistoryDay(draft.through)) { setDateError("Enter both calendar dates."); return; } applyRange({ from: draft.from, toExclusive: shiftHistoryDay(draft.through, 1) }, "custom"); }}>
+    <details className={styles.customRange} open={customOpen} onToggle={event => { if (event.currentTarget.open !== customOpen) setCustomOpen(event.currentTarget.open); }}>
+      <summary ref={customSummary}>Choose dates <span>{fullDay(range.from)} – {fullDay(shiftHistoryDay(range.toExclusive, -1))}</span></summary>
+      <form className={styles.rangeForm} onSubmit={event => { event.preventDefault(); if (!validHistoryDay(draft.from) || !validHistoryDay(draft.through)) { setDateError("Enter both calendar dates."); return; } applyRange({ from: draft.from, toExclusive: shiftHistoryDay(draft.through, 1) }, "custom"); }}>
       <label>From<input type="date" required value={draft.from} min={envelope.leagueRange.from} max={shiftHistoryDay(envelope.leagueRange.toExclusive, -1)} onChange={event => setDraft({ ...draft, from: event.target.value })} /></label>
       <label>Through<input type="date" required value={draft.through} min={envelope.leagueRange.from} max={shiftHistoryDay(envelope.leagueRange.toExclusive, -1)} onChange={event => setDraft({ ...draft, through: event.target.value })} /></label>
       <button className={controls.quiet} type="submit">Apply dates</button>
-    </form>
-    <p className={styles.caption}>Calendar days in UTC · Through includes the full selected day. Daily data does not establish intraday values.</p>
+      </form>
+      <p className={styles.caption}>UTC calendar days. Through includes the selected day.</p>
+    </details>
     {dateError && <p className={styles.notice} role="alert">{dateError}</p>}
     <TeamValueHistoryChart points={points} range={range} selectedDay={selectedDay} />
     <div className={styles.selection}>
@@ -164,12 +184,6 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
         <button type="button" className={controls.secondary} aria-label="Next day" disabled={dayIndex >= days - 1} onClick={() => selectDay(shiftHistoryDay(selectedDay, 1))}><span className={styles.nextIcon}><ControlIcon name="sort-down" /></span></button>
       </div>
       <input className={styles.scrubber} type="range" aria-label="Inspect history day" aria-valuetext={`${fullDay(selectedDay)} UTC`} min="0" max={days - 1} step="1" value={dayIndex} disabled={days === 1} onChange={event => selectDay(shiftHistoryDay(range.from, Number(event.target.value)))} />
-    </div>
-    <div className={styles.readout} role="status" aria-live="polite" aria-atomic="true" data-history-readout>
-      <span>{fullDay(selectedDay)} · UTC</span>
-      <strong>{point?.subtotalCents !== null && point?.subtotalCents !== undefined ? money(point.subtotalCents) : "Valuation unavailable"}</strong>
-      <span>{point ? `${!historyPointComplete(point) && point.subtotalCents !== null ? "Known-value subtotal · " : ""}${priceLabel(point)}` : "No historical quote shown for this day"}</span>
-      <small>{point ? `${point.priced} of ${point.rosterCount ?? "unknown"} roster players priced · ${status(point.rosterStatus)}` : "Unknown prices are not $0. Inspect any available roster and moves below."}</small>
     </div>
     {(!rangeLoaded || envelope.page.nextCursor !== null && sameRequestedRange) && <div className={styles.pageNotice}>
       <p>{pageState === "loading" ? "Loading this history range…" : "Some dates in this range have not loaded. The full requested time window stays visible."}</p>

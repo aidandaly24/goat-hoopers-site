@@ -45,6 +45,17 @@ requested x-axis and identifies unloaded dates separately from source gaps.
 Responses are streamed under a 256KiB client cap. Detail is bounded to 60 players,
 40 nearby moves and explicit `movesRange`/`movesTruncated` metadata.
 
+The island fits its containing column without a fixed width or height. Container
+queries adapt the date form and presets in a narrow desktop slot as well as on
+phones; the separate homepage owner controls page measure and composition. The
+selected value/source/coverage appear above the chart. Custom range inputs are
+behind Choose dates, and applying them restores focus to that disclosure.
+Recorded lines are thin/dashed with quiet tint only beneath complete connected
+recorded segments. Tint never spans missing days or reconstructed/partial
+sources. Endpoint/selected markers stay visible; every line vertex is retained.
+Detailed provenance is discoverable without allowing missing/partial/source
+distinctions to disappear from the primary readout.
+
 ## Time, coverage and quote eligibility
 
 `leagueRange`, season windows, `requestedRange` and `loadedRange` use half-open
