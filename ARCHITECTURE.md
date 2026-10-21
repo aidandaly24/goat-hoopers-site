@@ -1316,6 +1316,15 @@ and validation boundaries.
 
 ## Ranked mini-game competition (default off)
 
+`domain/arcade/ranked-record-feedback.ts` defines optional acceptance-time personal
+best, weekly Everyone and compatible all-time Everyone score comparisons. The
+canonical save serializes comparisons and insertion in one transaction; first
+scores, beaten records, ties and lower scores stay distinct. Only an accepted POST
+can deliver feedback, keyed by score ID for consumer dedupe; read-only recovery
+returns no record event. Score rules, rankings, eligibility and period boundaries
+are unchanged. See `docs/ranked-record-feedback.md` for the client seam, lock order,
+retry semantics and verification limits. UI consumption is separately owned.
+
 `domain/arcade/ranked-free-throw.ts` defines account-owned runs and deterministic
 moving-court replay. Shared domain physics/positions retain the current practice
 mechanics. The optional injected `FreeThrowRoundControls` binds replay inputs,

@@ -1,7 +1,8 @@
 import { expect, it, vi } from "vitest";
 import { issueRankedRun, loadRankedLeaderboard, loadRankedResult, submitRankedScore } from "../service";
-import { account, configuration, fixture, nowMs, policy, replayContext, round, run, submission } from "./fixtures";
+import { account, configuration, fixture, nowMs, policy, replayContext, round, run, sampleScore, submission } from "./fixtures";
 import { freeThrowRulesVersion, readRankedConfiguration } from "../config";
+import { compareRecord } from "@/domain/arcade/ranked-record-feedback";
 
 it.each([undefined, "", "0", "true"])("defaults closed for flag %s without auth/store work", async flag => {
   const { runtime } = fixture();
@@ -38,6 +39,17 @@ it("derives and saves a real score, then rejects replay", async () => {
   const { runtime, store } = fixture();
   expect(await submitRankedScore(runtime, account, submission)).toMatchObject({ status: "saved", score: { score: 2 } });
   expect(store.consume).toHaveBeenCalledWith(account, run, round);
+  expect(await submitRankedScore(runtime, account, submission)).toEqual({ status: "invalid_run" });
+});
+
+it("returns canonical acceptance feedback separately and never regenerates it on recovery or failed retry", async () => {
+  const { runtime, store } = fixture();
+  const feedback = { version: 1 as const, scoreId: sampleScore.id, acceptedAtMs: sampleScore.achievedAtMs, periodId: "test-week-1",
+    scoreVersion: "a".repeat(64), scope: "everyone" as const, personalBest: compareRecord(2, 0), weeklyRecord: compareRecord(2, 1), allTimeRecord: compareRecord(2, 1) };
+  store.consume = vi.fn<import("../store").RankedPersistence["consume"]>().mockResolvedValueOnce({ ...sampleScore, recordFeedback: feedback }).mockResolvedValue(null);
+  store.result = vi.fn(async () => sampleScore);
+  expect(await submitRankedScore(runtime, account, submission)).toEqual({ status: "saved", score: sampleScore, recordFeedback: feedback });
+  expect(await loadRankedResult(runtime, account, run.id)).toEqual({ status: "saved", score: sampleScore, recordFeedback: null });
   expect(await submitRankedScore(runtime, account, submission)).toEqual({ status: "invalid_run" });
 });
 

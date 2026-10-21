@@ -1,4 +1,5 @@
 import "server-only";
+import type { RankedAcceptedScore } from "@/domain/arcade/ranked-record-feedback";
 import { randomUUID } from "node:crypto";
 import { sql, type SQL } from "drizzle-orm";
 import { parseAccountUsername } from "@/domain/friends-accounts";
@@ -16,7 +17,7 @@ export type StoredRankedRun = { run: RankedRun; policy: unknown; replayContext: 
 export type RankedPersistence = {
   start(account: RankedAccount, config: ReadyRankedConfiguration): Promise<StartRunResult>;
   readRun(account: RankedAccount, id: string): Promise<StoredRankedRun | null>;
-  consume(account: RankedAccount, run: RankedRun, round: ValidatedRound): Promise<RankedScore | null>;
+  consume(account: RankedAccount, run: RankedRun, round: ValidatedRound): Promise<RankedAcceptedScore | null>;
   result(account: RankedAccount, runId: string): Promise<RankedScore | null>;
   leaderboard(config: ReadyRankedConfiguration, scope: RankedScope, viewer: string | null, limit: number): Promise<{ period: RankedPeriod; entries: RankedLeaderboardEntry[] }>;
 };

@@ -10,7 +10,9 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { ArcadeCompetitionStore } from "./store";
 import { freeThrowRulesVersion } from "../ranked-free-throw/config";
 import { parseFreeThrowPolicy, rankedReplayContext, type RankedAccount } from "@/domain/arcade/ranked-free-throw";
-import { submitRankedScore } from "../ranked-free-throw/service";
+import { loadRankedResult, submitRankedScore } from "../ranked-free-throw/service";
+import { compareRecord } from "@/domain/arcade/ranked-record-feedback";
+import { scoreFormatVersion } from "./config";
 import type { CompetitionPeriod, FinalityReceipt } from "@/domain/arcade/competition-period";
 import { POST } from "@/app/api/arcade/competition/reconcile/route";
 
@@ -34,6 +36,15 @@ describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("canonical compet
     await pool.query(`INSERT INTO ranked_free_throw_runs(id,account_id,period_id,rules_version,rules,replay_context,week,week_starts_at_ms,week_ends_at_ms,started_at_ms,expires_at_ms,state)
       VALUES($1,$2,$3,$4,$5,$6,$7,$8,NULL,$9,$10,'open')`, [runId, actor.subject, period.id, cfg.rulesVersion, JSON.stringify(cfg.policy), JSON.stringify(rankedReplayContext()), period.week, period.opensAtMs, at + expiresIn - cfg.policy.durationMs, at + expiresIn]);
     return runId;
+  }
+  async function waitForAcceptanceWaiters(count: number) {
+    const deadline = Date.now() + 3000;
+    while (Date.now() < deadline) {
+      const rows = await pool.query("SELECT pid FROM pg_stat_activity WHERE application_name=$1 AND wait_event_type='Lock' AND query LIKE '%pg_advisory_xact_lock(7042030)%'", [schema]);
+      if (rows.rows.length === count) return;
+      await new Promise(resolve => setTimeout(resolve, 20));
+    }
+    throw new Error("acceptance did not reach the expected SQL lock queue");
   }
   beforeAll(async () => {
     expect((await pool.query("SELECT current_database() AS name,version() AS version")).rows[0]).toMatchObject({ name: "claim_team_test", version: expect.stringContaining("PostgreSQL 16.") });
@@ -82,10 +93,93 @@ describe.skipIf(process.env.RUN_CLAIM_TEAM_LOCAL_TEST !== "1")("canonical compet
     const runId = await seed();
     const replies = await Promise.all(Array.from({ length: 4 }, () => submitRankedScore(runtime(), a, { runId, shots })));
     expect(replies.filter(r => r.status === "saved")).toHaveLength(1);
+    expect(replies.filter(r => "recordFeedback" in r && r.recordFeedback !== null)).toHaveLength(1);
     expect(Number((await pool.query("SELECT count(*) FROM ranked_free_throw_scores")).rows[0].count)).toBe(1);
     const late = await seed(b, p, -1);
     expect((await submitRankedScore(runtime(), b, { runId: late, shots })).status).toBe("invalid_run");
     expect(await store.result(b, runId)).toBeNull();
+  });
+  it("distinguishes first, beaten, tied and below including zero, personal ownership and period rollover", async () => {
+    await store.reconcile([p, next], config, new Map([[p.id, receipt(p)], [next.id, receipt(next)]]));
+    const zero = shots.map(shot => ({ ...shot, direction: 14 })), one = [shots[0], { ...shots[1], direction: 14 }];
+    const save = async (actor: RankedAccount, evidence: typeof shots, period = p) => {
+      const runId = await seed(actor, period);
+      const reply = await submitRankedScore(runtime(), actor, { runId, shots: evidence });
+      if (reply.status !== "saved") throw new Error(`unexpected ${reply.status}`);
+      return { runId, reply };
+    };
+    const first = await save(a, zero);
+    expect(first.reply).toMatchObject({ score: { score: 0 }, recordFeedback: { version: 1, scope: "everyone", periodId: p.id,
+      scoreId: first.reply.score.id, acceptedAtMs: first.reply.score.achievedAtMs, scoreVersion: scoreFormatVersion(policy),
+      personalBest: compareRecord(0, null), weeklyRecord: compareRecord(0, null), allTimeRecord: compareRecord(0, null) } });
+    const beaten = await save(a, one);
+    expect(beaten.reply.recordFeedback).toMatchObject({ personalBest: compareRecord(1, 0), weeklyRecord: compareRecord(1, 0), allTimeRecord: compareRecord(1, 0) });
+    const tied = await save(b, one);
+    expect(tied.reply.recordFeedback).toMatchObject({ personalBest: compareRecord(1, null), weeklyRecord: compareRecord(1, 1), allTimeRecord: compareRecord(1, 1) });
+    expect((await store.board("weekly", null, config, null)).entries.map(row => row.username)).toEqual(["alpha", "beta"]);
+    const below = await save(a, zero);
+    expect(below.reply.recordFeedback).toMatchObject({ personalBest: compareRecord(0, 1), weeklyRecord: compareRecord(0, 1), allTimeRecord: compareRecord(0, 1) });
+    expect(await loadRankedResult(runtime(), a, beaten.runId)).toEqual({ status: "saved", score: beaten.reply.score, recordFeedback: null });
+    expect(await submitRankedScore(runtime(), a, { runId: beaten.runId, shots: one })).toEqual({ status: "invalid_run" });
+    expect(await loadRankedResult(runtime(), b, beaten.runId)).toEqual({ status: "not_found" });
+    await store.reconcile([p, next], config, new Map([[p.id, receipt(p, "final")], [next.id, receipt(next)]]));
+    const rolled = await save(a, zero, next);
+    expect(rolled.reply.recordFeedback).toMatchObject({ periodId: next.id, personalBest: compareRecord(0, 1), weeklyRecord: compareRecord(0, null), allTimeRecord: compareRecord(0, 1) });
+  });
+  it("compares only compatible canonical formats, excluding legacy and other-format records", async () => {
+    await store.reconcile([p], config, new Map([[p.id, receipt(p)]]));
+    await submitRankedScore(runtime(), a, { runId: await seed(), shots });
+    await store.reconcile([p], config, new Map([[p.id, receipt(p, "final")]]));
+    const changed = { ...config, policy: { ...policy, durationMs: 31000 }, rulesVersion: freeThrowRulesVersion({ ...policy, durationMs: 31000 }) };
+    await store.reconcile([p, next], changed, new Map([[next.id, receipt(next)]]));
+    // A legacy run without canonical period identity is absent from canonical boards.
+    const legacy = randomUUID(), at = Date.now();
+    await pool.query(`INSERT INTO ranked_free_throw_runs(id,account_id,period_id,rules_version,rules,replay_context,week,week_starts_at_ms,week_ends_at_ms,started_at_ms,expires_at_ms,state,consumed_at_ms)
+      VALUES($1,$2,NULL,$3,$4,$5,$6,$7,$8,$9,$10,'consumed',$11)`, [legacy,b.subject,changed.rulesVersion,JSON.stringify(changed.policy),JSON.stringify(rankedReplayContext()),next.week,next.opensAtMs,at+3600000,at-15000,at+16000,at]);
+    await pool.query("INSERT INTO ranked_free_throw_scores(run_id,score,outcomes,shot_inputs,achieved_at_ms) SELECT id,2,'11',$2::jsonb,started_at_ms+14000 FROM ranked_free_throw_runs WHERE id=$1", [legacy, JSON.stringify(shots)]);
+    const reply = await submitRankedScore({ ...runtime(), configuration: changed }, a, { runId: await seed(a, next, 15000, changed), shots });
+    expect(reply).toMatchObject({ status: "saved", recordFeedback: { scoreVersion: scoreFormatVersion(changed.policy),
+      personalBest: compareRecord(2, null), weeklyRecord: compareRecord(2, null), allTimeRecord: compareRecord(2, null) } });
+  });
+  it.each([[0, 1], [1, 0], [1, 1]] as const)("serializes competing accounts with queued scores %s then %s", async (firstScore, secondScore) => {
+    await store.reconcile([p], config, new Map([[p.id, receipt(p)]]));
+    const evidence = (score: number) => shots.map((shot, i) => ({ ...shot, direction: i < score ? 0 : 14 }));
+    const firstRun = await seed(a), secondRun = await seed(b), blocker = await pool.connect();
+    try {
+      await blocker.query("BEGIN"); await blocker.query("SELECT pg_advisory_xact_lock(7042030)");
+      const firstSave = submitRankedScore(runtime(), a, { runId: firstRun, shots: evidence(firstScore) });
+      await waitForAcceptanceWaiters(1);
+      const secondSave = submitRankedScore(runtime(), b, { runId: secondRun, shots: evidence(secondScore) });
+      await waitForAcceptanceWaiters(2);
+      await blocker.query("COMMIT");
+      const [firstReply, secondReply] = await Promise.all([firstSave, secondSave]);
+      expect(firstReply).toMatchObject({ status: "saved", recordFeedback: { weeklyRecord: compareRecord(firstScore, null), allTimeRecord: compareRecord(firstScore, null) } });
+      expect(secondReply).toMatchObject({ status: "saved", recordFeedback: { personalBest: compareRecord(secondScore, null), weeklyRecord: compareRecord(secondScore, firstScore), allTimeRecord: compareRecord(secondScore, firstScore) } });
+      expect(Number((await pool.query("SELECT count(*) FROM ranked_free_throw_scores")).rows[0].count)).toBe(2);
+    } finally { await blocker.query("ROLLBACK"); blocker.release(); }
+  });
+  it("rechecks expiry after waiting for record serialization and emits no acceptance feedback", async () => {
+    await store.reconcile([p], config, new Map([[p.id, receipt(p)]]));
+    const runId = await seed(a, p, 1100), blocker = await pool.connect();
+    try {
+      await blocker.query("BEGIN"); await blocker.query("SELECT pg_advisory_xact_lock(7042030)");
+      const saving = submitRankedScore(runtime(), a, { runId, shots });
+      await waitForAcceptanceWaiters(1);
+      await new Promise(resolve => setTimeout(resolve, 1200));
+      await blocker.query("COMMIT");
+      expect(await saving).toEqual({ status: "invalid_run" });
+      expect(Number((await pool.query("SELECT count(*) FROM ranked_free_throw_scores")).rows[0].count)).toBe(0);
+    } finally { await blocker.query("ROLLBACK"); blocker.release(); }
+  });
+  it("rolls back a failed insert without advancing a record or consuming its retry", async () => {
+    await store.reconcile([p], config, new Map([[p.id, receipt(p)]]));
+    const runId = await seed();
+    await pool.query("CREATE FUNCTION fail_record_save() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN RAISE EXCEPTION 'synthetic save failure'; END; $$; CREATE TRIGGER fail_record_save BEFORE INSERT ON ranked_free_throw_scores FOR EACH ROW EXECUTE FUNCTION fail_record_save()");
+    try { await expect(submitRankedScore(runtime(), a, { runId, shots })).rejects.toThrow(); }
+    finally { await pool.query("DROP TRIGGER fail_record_save ON ranked_free_throw_scores; DROP FUNCTION fail_record_save()"); }
+    expect((await pool.query("SELECT state FROM ranked_free_throw_runs WHERE id=$1", [runId])).rows[0].state).toBe("open");
+    expect(await submitRankedScore(runtime(), a, { runId, shots })).toMatchObject({ status: "saved", recordFeedback: {
+      personalBest: compareRecord(2, null), weeklyRecord: compareRecord(2, null), allTimeRecord: compareRecord(2, null) } });
   });
   it("finalizes once, preserves archived rank/score across renames/team changes, and opens the next due period", async () => {
     await store.reconcile([p, next], config, new Map([[p.id, receipt(p)], [next.id, receipt(next)]]));
