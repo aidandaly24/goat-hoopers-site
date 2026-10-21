@@ -17,7 +17,7 @@ import type {
   Team,
   TeamWeekScore,
 } from "@/domain";
-import { isFinal } from "@/domain";
+import { completedMatchupsByWeek, isFinal } from "@/domain";
 
 /* ---------------- shared helpers ---------------- */
 
@@ -79,6 +79,12 @@ export type PowerRankingsInput = {
   teams: Team[];
   /** Index 0 = week 1. Same convention as LeagueStatsInput. */
   matchupsByWeek: Matchup[][];
+  /**
+   * Sleeper's current week (1-based). Weeks before it are completed;
+   * the current week's live scores are partials, never finals — the
+   * shared boundary in `completedMatchupsByWeek` (issue #224 P1).
+   */
+  currentWeek: number;
 };
 
 /**
@@ -127,14 +133,17 @@ function teamAsOfWeek(t: Team, finalsThrough: Matchup[]): Team {
 export function computePowerRankings(
   input: PowerRankingsInput
 ): PowerRanking[] | null {
-  const { teams, matchupsByWeek } = input;
-  const finals = matchupsByWeek.flat().filter(isFinal);
+  const { teams, matchupsByWeek, currentWeek } = input;
+  // Completed weeks only: the in-progress week's live scores are
+  // partials, and reconstructing records from them fabricates results.
+  const completed = completedMatchupsByWeek(matchupsByWeek, currentWeek);
+  const finals = completed.flat().filter(isFinal);
   if (teams.length === 0 || finals.length === 0) return null;
 
-  // Latest week with finals.
+  // Latest completed week with finals.
   let lastWeekIdx = -1;
-  for (let w = matchupsByWeek.length - 1; w >= 0; w--) {
-    if (matchupsByWeek[w].some(isFinal)) {
+  for (let w = completed.length - 1; w >= 0; w--) {
+    if (completed[w].some(isFinal)) {
       lastWeekIdx = w;
       break;
     }
@@ -142,7 +151,7 @@ export function computePowerRankings(
 
   /** The power order as it stood after week `throughIdx` (0-based). */
   const rankAsOf = (throughIdx: number): PowerRanking[] => {
-    const fs = matchupsByWeek
+    const fs = completed
       .slice(0, throughIdx + 1)
       .flat()
       .filter(isFinal);
@@ -210,7 +219,11 @@ export type PlayoffOddsInput = {
   playoffSpots: number;
   /** Sleeper settings: playoff_week_start (regular season ends the week before). */
   playoffWeekStart: number;
-  /** Current league week — seeds the RNG so odds are stable within a week. */
+  /**
+   * Current league week — seeds the RNG so odds are stable within a
+   * week, and marks the completion boundary: weeks before it are
+   * completed, its own live scores are partials.
+   */
   week: number;
 };
 
@@ -233,14 +246,14 @@ export function computePlayoffOdds(
   input: PlayoffOddsInput
 ): PlayoffOdds[] | null {
   const { teams, matchupsByWeek, playoffSpots, playoffWeekStart, week } = input;
-  const finals = matchupsByWeek.flat().filter(isFinal);
+  // Completed weeks only (`week` is the current week): Elo must never
+  // update on the in-progress week's live partials, and the partial
+  // week must not count as a completed week of the season.
+  const completed = completedMatchupsByWeek(matchupsByWeek, week);
+  const finals = completed.flat().filter(isFinal);
   if (teams.length === 0 || finals.length === 0) return null;
 
-  // Completed weeks = weeks with at least one final.
-  let completedWeeks = 0;
-  for (let w = 0; w < matchupsByWeek.length; w++) {
-    if (matchupsByWeek[w].some(isFinal)) completedWeeks = w + 1;
-  }
+  const completedWeeks = completed.length;
   const remainingWeeks = Math.max(
     0,
     playoffWeekStart - 1 - completedWeeks
@@ -323,16 +336,22 @@ export function computePlayoffOdds(
 export type RecordBookInput = {
   /** Index 0 = week 1. */
   matchupsByWeek: Matchup[][];
+  /** Sleeper's current week (1-based) — the completion boundary. */
+  currentWeek: number;
 };
 
 /**
  * Current-season top-5 lists from every final: biggest blowouts, closest games,
  * highest single-week team scores. Null when nothing's been played.
+ * Finals come from completed weeks only — a live partial in the
+ * in-progress week is not a record yet.
  */
 export function computeRecordBook(
   input: RecordBookInput
 ): RecordBook | null {
-  const finals = input.matchupsByWeek.flat().filter(isFinal);
+  const finals = completedMatchupsByWeek(input.matchupsByWeek, input.currentWeek)
+    .flat()
+    .filter(isFinal);
   if (finals.length === 0) return null;
 
   const withMargin = finals.map((m) => ({
@@ -372,6 +391,8 @@ export type MatchupPreviewInput = {
   /** Index 0 = week 1. */
   matchupsByWeek: Matchup[][];
   teams: Team[];
+  /** Sleeper's current week (1-based) — the completion boundary. */
+  currentWeek: number;
 };
 
 const MARGIN_SD = 35; // weekly head-to-head margin spread
@@ -391,22 +412,33 @@ function phi(x: number): number {
 /**
  * Preview the current (or most recent upcoming) week's matchups.
  *
- * The target week is the first week with any non-final matchup; when every
- * played week is final, it falls back to the latest week with matchups.
+ * The target week is the first week that is not yet completed (the
+ * in-progress week, by the shared boundary); when every supplied week
+ * is completed, it falls back to the latest week with matchups.
  * Expected score = 50/50 blend of the team's points-per-game with the
  * league scoring average (shrinks thin samples toward the mean). Win
  * probability = normal CDF on the projected differential. The "pick" is
  * the higher-probability team — a projection, never a lock.
+ *
+ * No-evidence rule (issue #224 P1): with no completed game anywhere,
+ * there is nothing to project from — every PPG is 0, the league average
+ * is 0, and a 0.0–0.0 / 50% "preview" with a named pick would be
+ * fabrication, so this returns null like its sibling tools. When the
+ * projections tie exactly, the pick is null instead of breaking the
+ * tie toward the home team by construction.
  */
 export function computeMatchupPreviews(
   input: MatchupPreviewInput
 ): MatchupPreview[] | null {
-  const { matchupsByWeek, teams } = input;
+  const { matchupsByWeek, teams, currentWeek } = input;
   if (matchupsByWeek.length === 0) return null;
 
+  const completed = completedMatchupsByWeek(matchupsByWeek, currentWeek);
+  if (!completed.flat().some(isFinal)) return null;
+
   let target = -1;
-  for (let w = 0; w < matchupsByWeek.length; w++) {
-    if (matchupsByWeek[w].length > 0 && matchupsByWeek[w].some((m) => !isFinal(m))) {
+  for (let w = completed.length; w < matchupsByWeek.length; w++) {
+    if (matchupsByWeek[w].length > 0) {
       target = w;
       break;
     }
@@ -447,7 +479,9 @@ export function computeMatchupPreviews(
       projectedHome: projH,
       projectedAway: projA,
       homeWinPct,
-      pick: homeWinPct >= 0.5 ? m.home : m.away,
+      // An exact projection tie is an even matchup: no pick. (Breaking
+      // it with `>=` would name the home team by construction.)
+      pick: projH === projA ? null : homeWinPct >= 0.5 ? m.home : m.away,
     };
   });
 }

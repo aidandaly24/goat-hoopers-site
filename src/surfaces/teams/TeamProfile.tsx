@@ -41,8 +41,13 @@ function fmtPts(p: number | null): string {
   return p.toFixed(1);
 }
 
-function MatchupRow({ matchup, championTeamId }: { matchup: Matchup; championTeamId?: string | null }) {
-  const final = isFinal(matchup);
+function MatchupRow({ matchup, championTeamId, inProgressWeek }: { matchup: Matchup; championTeamId?: string | null; inProgressWeek: number | null }) {
+  // A matchup is final only once its week is complete. Sleeper serves
+  // the in-progress week's scores live, so score presence in that week
+  // means "Live" — never "Final", and never a W/L badge (issue #224 P1).
+  const inProgress = inProgressWeek !== null && matchup.week >= inProgressWeek;
+  const final = isFinal(matchup) && !inProgress;
+  const live = inProgress && isFinal(matchup);
   const homeWon =
     final && (matchup.homePoints as number) > (matchup.awayPoints as number);
   const awayWon =
@@ -53,7 +58,7 @@ function MatchupRow({ matchup, championTeamId }: { matchup: Matchup; championTea
         <span>
           Week <span className="gh-num">{matchup.week}</span>
         </span>
-        <span>{final ? (homeWon || awayWon ? "Final" : "Tie") : "Pending"}</span>
+        <span>{final ? (homeWon || awayWon ? "Final" : "Tie") : live ? "Live" : "Pending"}</span>
       </div>
       <Link href={`/teams/${matchup.home.id}`} className={styles.gameTeam}>
         <TeamAvatar name={matchup.home.name} avatar={matchup.home.avatar} isChampion={matchup.home.id === championTeamId} />
@@ -117,7 +122,7 @@ export function TeamProfile({
   /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
   championTeamId?: string | null;
 }) {
-  const { team, players, matchups, streak, draftPicks, transactions } =
+  const { team, players, matchups, streak, inProgressWeek, draftPicks, transactions } =
     profile;
   // Supplied weeks are newest-first. Find the earliest unfinished pairing
   // without sorting/mutating the full game log or inventing a current week.
@@ -236,7 +241,7 @@ export function TeamProfile({
             ) : (
               <ul className={styles.games}>
                 {matchups.map((m) => (
-                  <MatchupRow key={`${m.week}-${m.home.id}`} matchup={m} championTeamId={championTeamId} />
+                  <MatchupRow key={`${m.week}-${m.home.id}`} matchup={m} championTeamId={championTeamId} inProgressWeek={inProgressWeek} />
                 ))}
               </ul>
             )}

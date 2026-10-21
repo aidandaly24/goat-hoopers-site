@@ -20,6 +20,10 @@ export type MatchupPreview = {
   projectedAway: number;
   /** Probability the home team wins, in [0, 1]. */
   homeWinPct: number;
-  /** The model's pick: the higher-probability team. */
-  pick: Team;
+  /**
+   * The model's pick: the higher-probability team. Null on an exact
+   * projection tie — an even matchup has no pick, and a coin-flip tie
+   * must never resolve to the home team by construction.
+   */
+  pick: Team | null;
 };
