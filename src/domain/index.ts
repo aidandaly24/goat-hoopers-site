@@ -44,7 +44,7 @@ export type {
 } from "./the-table";
 export { computeTeamValues, projectTableLeague } from "./the-table";
 export type { Matchup, } from "./matchup";
-export { isFinal, signedStreak, winner } from "./matchup";
+export { completedMatchupsByWeek, isFinal, signedStreak, winner } from "./matchup";
 export type { Player } from "./player";
 export type { PlayerDetail } from "./player-detail";
 export type { TeamProfile } from "./team-profile";

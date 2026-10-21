@@ -69,7 +69,7 @@ export function StandingsTable({ standings, viewerTeamId, championTeamId }: { st
                       : ""
               }`}
             >
-              {fmtCount(s.rank)}
+              {s.rank === null ? "—" : fmtCount(s.rank)}
             </span>
             <span role="cell" className={styles.team}>
               <TeamAvatar name={s.team.name} avatar={s.team.avatar} isChampion={s.team.id === championTeamId} />

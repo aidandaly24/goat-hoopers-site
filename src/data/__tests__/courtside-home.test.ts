@@ -215,3 +215,104 @@ describe("courtside production loader", () => {
     expect(result.edition?.id).toBe("2026-W41");
   });
 });
+
+describe("courtside archive mode (issue #224 P1)", () => {
+  // The 2026-W40 edition is the frozen 2025 final: teams "5" and "7",
+  // recorded score 326–251.5. The live league below is mid–Week 1 with
+  // team 5 playing team 2 — before the fix, the loader fed those live
+  // matchups into the archived edition's directory, so the archive
+  // narrated a live Week 1 game as its own.
+  function archiveDependencies(liveHomePoints: number, liveAwayPoints: number) {
+    const teams = [team("5"), team("7"), team("2")];
+    const hub: SeasonHubData = {
+      season: {
+        leagueName: "Test",
+        seasonYear: "2026",
+        status: "in_season",
+        totalTeams: 3,
+        playoffTeams: 1,
+        playoffWeekStart: 20,
+      },
+      teams,
+      standings: [],
+      transactions: [],
+      stats: emptyLeagueStats(),
+    };
+    const roster = (id: number): RawRoster => ({
+      roster_id: id,
+      owner_id: `owner-${id}`,
+      players: [],
+      settings: {
+        wins: 0,
+        losses: 0,
+        ties: 0,
+        fpts: 0,
+        fpts_decimal: 0,
+        fpts_against: 0,
+        fpts_against_decimal: 0,
+      },
+    });
+    return {
+      now: () => new Date("2026-10-21T00:00:00Z"),
+      hub: async () => hub,
+      rosters: async () => [roster(5), roster(7), roster(2)],
+      state: async () => ({ week: 1, season_type: "regular", season: "2026" }),
+      references: async (ids: string[]) => ids.map(player),
+      matchups: async () => [
+        { roster_id: 5, matchup_id: 1, points: liveHomePoints },
+        { roster_id: 2, matchup_id: 1, points: liveAwayPoints },
+        { roster_id: 7, matchup_id: 2, points: 12 },
+      ],
+    };
+  }
+
+  it("sources an explicitly archived edition from its own game record, not the live week", async () => {
+    const result = await getCourtsideHomeData("2026-W40", archiveDependencies(111, 99));
+    expect(result.edition?.id).toBe("2026-W40");
+    // The game record stays on the edition, where the archived feature
+    // reads it: teams 5 and 7, recorded 326–251.5 final.
+    expect(result.edition?.game.teamIds).toEqual(["5", "7"]);
+    expect(result.edition?.game.scores).toEqual([326, 251.5]);
+    // The directory is live data. The frozen game is nobody's current
+    // matchup, and the live week's points (111/99) appear nowhere in
+    // an archived render.
+    for (const entry of result.directory) {
+      expect(entry.currentMatchup).toBeNull();
+    }
+  });
+
+  it("keeps the archived game out of the live directory — no fabricated current opponent", async () => {
+    // Regression (PR #247 review): the loader used to pass the frozen
+    // matchup into buildLiveClubhouseDirectory as `currentMatchup`, so
+    // /weekly/2026-W40's directory labelled roster 7 roster 5's
+    // "Current opponent / Week 0" — W40 has no leagueWeek, so the week
+    // was fabricated as 0, and even a real historical week would still
+    // be a historical opponent presented as current.
+    const result = await getCourtsideHomeData("2026-W40", archiveDependencies(111, 99));
+    const five = result.directory.find((entry) => entry.identity.id === "5");
+    const seven = result.directory.find((entry) => entry.identity.id === "7");
+    expect(five?.currentMatchup).toBeNull();
+    expect(seven?.currentMatchup).toBeNull();
+    expect(five?.opener).toBeNull();
+    expect(seven?.opener).toBeNull();
+  });
+
+  it("leaves the archived directory identical when the live week advances", async () => {
+    const before = await getCourtsideHomeData("2026-W40", archiveDependencies(111, 99));
+    const after = await getCourtsideHomeData("2026-W40", archiveDependencies(240, 3));
+    expect(after.directory).toEqual(before.directory);
+  });
+
+  it("still serves the live week when no edition is requested", async () => {
+    const result = await getCourtsideHomeData(undefined, archiveDependencies(111, 99));
+    const five = result.directory.find((entry) => entry.identity.id === "5");
+    // toMatchups orders a pair by roster id: team 2 is home (99),
+    // team 5 away (111) — the live points, not the archive's 326.
+    expect(five?.currentMatchup).toMatchObject({
+      week: 1,
+      homePoints: 99,
+      awayPoints: 111,
+    });
+    expect(five?.currentMatchup?.away.id).toBe("5");
+  });
+});

@@ -14,9 +14,40 @@ export type Matchup = {
   awayPoints: number | null;
 };
 
-/** True when both teams have final scores. */
+/**
+ * True when both teams have scores.
+ *
+ * Score presence only — NOT completion evidence. Sleeper serves the
+ * current week's points live (0 pre-tip placeholders, partial totals
+ * mid-week), so an in-progress matchup can satisfy this while its week
+ * is still being played. Anything that needs genuinely finished games
+ * (streaks, records, Elo, the record book) must first restrict to
+ * completed weeks via `completedMatchupsByWeek`.
+ */
 export function isFinal(m: Matchup): boolean {
   return m.homePoints !== null && m.awayPoints !== null;
+}
+
+/**
+ * The completed weeks of a season: every week before the current one.
+ *
+ * The shared completion boundary (issue #224 P1). Sleeper serves the
+ * current week's scores live, so a week counts as complete only once a
+ * later week is current — its scores are locked. This is the rule The
+ * Table (`projectTableLeague`) and the stats loader (`fetchStatsInput`)
+ * already applied locally; consumers of the full analytics assembly use
+ * this helper so the boundary is expressed exactly once.
+ *
+ * `matchupsByWeek` is indexed from week 1 (index 0 = week 1) and
+ * `currentWeek` is Sleeper's current week number (1-based). A
+ * `currentWeek` of 0 or 1 completes nothing; weeks at or after the
+ * current week are excluded even when they carry live scores.
+ */
+export function completedMatchupsByWeek(
+  matchupsByWeek: Matchup[][],
+  currentWeek: number
+): Matchup[][] {
+  return matchupsByWeek.slice(0, Math.max(0, currentWeek - 1));
 }
 
 /** The winning team of a final matchup, null if not final or tied. */

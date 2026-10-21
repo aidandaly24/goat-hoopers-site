@@ -173,7 +173,7 @@ member, missing-edition and archived states; the CI offline job runs this probe.
 
 `src/app/page.tsx` loads `getCourtsideHomeData`, archive references and approved portrait URLs, then composes `CourtsideHome` in the existing `season-hub` surface. `/weekly` and `/weekly/[editionId]` are source-controlled editorial routes. The old `SeasonHub`/`LeagueHero` components and static review stay available for comparison.
 
-`getCourtsideHomeData` accepts injectable clock/data dependencies. Live team identities, all roster references, current pairings and recent moves come through the existing Sleeper/transform membrane; `buildLiveClubhouseDirectory` is a pure projection. Only the slim roster player references are cached for a day, keyed by sorted current roster IDs. A changed roster ID set resolves immediately. The full player directory stays outside Next’s data cache. Existing 300-second league fetches deduplicate across layout and page. No DB/schema, environment, scheduler or publishing changes are involved.
+`getCourtsideHomeData` accepts injectable clock/data dependencies. Live team identities, all roster references, current pairings and recent moves come through the existing Sleeper/transform membrane; `buildLiveClubhouseDirectory` is a pure projection. Archive mode (issue #224 P1): when an edition id is explicitly requested and resolves, the loader skips the live matchup fetch and builds the directory with no matchup at all — the frozen game record stays on the edition (`edition.game`: its teams and recorded scores) and is never fed into the live directory as a `currentMatchup`, so an archived edition can neither narrate the current week as its game nor label a historical opponent a current one; `CourtsideFeature` mirrors the rule on the surface — archived renders take their pair, status and score block from the edition record, never from live pairs. Only the slim roster player references are cached for a day, keyed by sorted current roster IDs. A changed roster ID set resolves immediately. The full player directory stays outside Next’s data cache. Existing 300-second league fetches deduplicate across layout and page. No DB/schema, environment, scheduler or publishing changes are involved.
 
 Editorial entries carry explicit draft/publication and date bounds. The latest started entry stays visible with a stale notice after its period ends, never invented weekly results. Source dates, selection reasons, NBA/college period qualifiers and verified historical finals are retained. NeuralNets’ 2025 record visibly names the previous manager in the collapsed summary and explains QBs Gremlins in the full roster.
 
@@ -1046,6 +1046,24 @@ from live Sleeper data. Every tool returns null in the preseason, and its
 surface renders an honest empty state. Formulas/models are documented on
 the domain types themselves (`power.ts`, `playoff-odds.ts`,
 `matchup-preview.ts`).
+
+Completion boundary (issue #224 P1): Sleeper serves the current week's
+points live (0 pre-tip, partials mid-week), so score presence is never
+completion evidence. The shared rule lives in the domain:
+`completedMatchupsByWeek(matchupsByWeek, currentWeek)` in
+`src/domain/matchup.ts` returns exactly the weeks before the current
+one. Every consumer of the analytics assembly applies it — power
+rankings, playoff odds and the record book ingest completed weeks
+only; team-profile streaks are composed over the completed slice and
+`TeamProfile.inProgressWeek` tells the surface which week is live (its
+scored matchups render "Live", never "Final"); matchup previews return
+null with no completed game anywhere, derive their PPG inputs (scoring
+sums and game counts) from the completed finals only — never from the
+live Team aggregates — and return null when no current/upcoming week's
+matchups were supplied (a past final is not a preview);
+`MatchupPreview.pick` is null on an exact projection tie. `Standing.rank` is likewise null until any
+team has a recorded result (live points-for alone never ranks tied
+0–0 teams).
 
 The arcade has its own one-way flow, through the second door:
 

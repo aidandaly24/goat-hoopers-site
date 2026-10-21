@@ -21,7 +21,7 @@ const teams: Team[] = Array.from({ length: 10 }, (_, index) => ({
 const profile = (team: Team): Profile => ({
   team, players: [{ id: `player-${team.id}`, fullName: `Roster Player ${team.id}`, position: "C", nbaTeam: null, espnId: null }],
   matchups: [{ home: team, away: teams[Number(team.id) % 10], week: 1, homePoints: null, awayPoints: null }],
-  streak: 0, draftPicks: [], transactions: [],
+  streak: 0, inProgressWeek: null, draftPicks: [], transactions: [],
 });
 
 describe("rejected hooper family removal", () => {

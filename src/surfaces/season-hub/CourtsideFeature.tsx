@@ -146,7 +146,7 @@ function MemberDesk({ summary, entries, pair, preseason, rosterCount, championTe
         </div>
         <div>
           <dt>{prior ? `${prior.season} finish` : "Standing"}</dt>
-          <dd>{prior?.finish ? ordinal(prior.finish) : summary.standing ? `No. ${summary.standing.rank}` : "—"}</dd>
+          <dd>{prior?.finish ? ordinal(prior.finish) : summary.standing?.rank ? `No. ${summary.standing.rank}` : "—"}</dd>
         </div>
         <div>
           <dt>Roster</dt>
@@ -214,7 +214,7 @@ function LeagueDesk({ edition, pair, entries, preseason, aiWeekly, season, champ
   const savedStamp = aiWeekly?.generatedAt ? formatHomeStamp(aiWeekly.generatedAt) : null;
   return (
     <aside className={cs("team-desk")} data-league-desk aria-label="Game of the week">
-      <p className={cs("desk-eyebrow")}>Game of the week{pair ? ` · Week ${pair.week}` : ""}</p>
+      <p className={cs("desk-eyebrow")}>Game of the week{pair && !archived ? ` · Week ${pair.week}` : ""}</p>
       <h2 className={cs("desk-headline")}>{headline}</h2>
       <p className={cs("desk-dek")}>{dek}</p>
       {pair && (
@@ -234,7 +234,17 @@ function LeagueDesk({ edition, pair, entries, preseason, aiWeekly, season, champ
           })}
         </ul>
       )}
-      {pair && (
+      {archived && pair && hasPairScores(pair) && (
+        <div className={cs("desk-ai")}>
+          <p className={cs("desk-label")}>Final score</p>
+          <p className={cs("desk-ai-split")}>
+            <span><strong className="gh-num">{pair.homePoints?.toFixed(1)}</strong> {pair.home.name}</span>
+            <span>{pair.away.name} <strong className="gh-num">{pair.awayPoints?.toFixed(1)}</strong></span>
+          </p>
+          <p className={cs("caption")}>{edition.season} · archived edition</p>
+        </div>
+      )}
+      {pair && !archived && (
         <div className={cs("desk-ai")} data-desk-ai>
           <p className={cs("desk-label")}>Saved AI matchup preview</p>
           {result ? (
@@ -277,18 +287,35 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
   const heroSummary = hero?.summary ?? null;
   const ownPair = heroSummary ? memberPair(heroSummary, entries) : null;
   const editorialPair = pairs.find((pair) => game.leagueWeek === pair.week && game.teamIds?.every((id) => [pair.home.id, pair.away.id].includes(id))) ?? null;
-  const publicPair = editorialPair ?? pairs[0] ?? null;
-  const currentPair = ownPair ?? publicPair;
+  // Archived editions are frozen editorial (issue #224 P1): the pair is
+  // the edition's own game record — its teams, its recorded scores —
+  // never a live pair. Falling back to pairs[0] here narrated the
+  // current Week 1 pairing and its live 0–0 as the archived edition's
+  // game. Live pairs are derived from the current league check and must
+  // have zero influence on an archived render.
+  const frozenPair: WeekPair | null = (() => {
+    if (!archived || !game.teamIds) return null;
+    const byIdentity = new Map(entries.map((entry) => [entry.identity.id, entry.identity]));
+    const home = byIdentity.get(game.teamIds[0]);
+    const away = byIdentity.get(game.teamIds[1]);
+    return home && away
+      ? { week: game.leagueWeek ?? 0, home, away, homePoints: game.scores?.[0] ?? null, awayPoints: game.scores?.[1] ?? null }
+      : null;
+  })();
+  const publicPair = archived ? frozenPair : editorialPair ?? pairs[0] ?? null;
+  const currentPair = archived ? publicPair : ownPair ?? publicPair;
   // Current headings follow current roster identities. The dated editorial
   // remains available separately, rather than posing as a live team label.
   const headline = !archived && currentPair
     ? `${currentPair.home.name} vs ${currentPair.away.name}`
     : game.title;
-  const status = preseasonPreview
-    ? `Preseason lineup preview · target Week ${week ?? 1}`
-    : ownPair || publicPair
-      ? `Week ${(ownPair ?? publicPair)!.week} · ${hasPairScores((ownPair ?? publicPair)!) ? "Current score" : "Upcoming · scores pending"}`
-      : game.state === "final" ? `Historical final · ${edition.season}` : "Spotlight pending";
+  const status = archived
+    ? game.state === "final" ? `Historical final · ${edition.season}` : `Archived edition · ${edition.season}`
+    : preseasonPreview
+      ? `Preseason lineup preview · target Week ${week ?? 1}`
+      : ownPair || publicPair
+        ? `Week ${(ownPair ?? publicPair)!.week} · ${hasPairScores((ownPair ?? publicPair)!) ? "Current score" : "Upcoming · scores pending"}`
+        : game.state === "final" ? `Historical final · ${edition.season}` : "Spotlight pending";
   const captionBold = !archived && currentPair ? `${ownPair ? "Your " : ""}Week ${currentPair.week} pairing.` : game.note;
   const captionDek = !archived && currentPair
     ? preseasonPreview
@@ -332,7 +359,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
             <p className={cs("feature-context")} id="matchup-context">
               <strong>{captionBold}</strong> {captionDek}
             </p>
-            {!!pairs.length && (
+            {!archived && !!pairs.length && (
               <Link className={cs("text-link")} href="#ai-decides" prefetch={false}>
                 Week {week} matchups
               </Link>

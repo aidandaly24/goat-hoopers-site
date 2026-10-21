@@ -22,6 +22,8 @@ export const profile: TeamProfile = {
     { week: 3, home: teams[1], away: teams[0], homePoints: 0, awayPoints: 0 },
   ],
   streak: -1,
+  // Week 5 is the in-progress week: its partial score is live, not final.
+  inProgressWeek: 5,
   draftPicks: [
     { pickNo: 3, round: 1, draftSlot: 3, playerId: "pick-player", playerName: "Complete Rookie Pick Name", position: "SF", nbaTeam: "DAL", espnId: null, teamId: "8" },
     { pickNo: 13, round: 2, draftSlot: 3, playerId: "unknown-pick", playerName: "Pick Without Position", position: null, nbaTeam: null, espnId: null, teamId: "8" },

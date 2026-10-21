@@ -41,7 +41,11 @@ function PreviewCard({ preview, championTeamId }: { preview: MatchupPreview; cha
     <li className={styles.card}>
       <div className={styles.head}>
         <span className={styles.week}>Week {week}</span>
-        <Badge tone="gold">Model pick: {pick.name}</Badge>
+        {pick ? (
+          <Badge tone="gold">Model pick: {pick.name}</Badge>
+        ) : (
+          <span className={styles.even}>Even matchup — no model pick</span>
+        )}
       </div>
       <div className={styles.vs}>
         {side(
@@ -67,10 +71,12 @@ function PreviewCard({ preview, championTeamId }: { preview: MatchupPreview; cha
       <div className={styles.bar} aria-hidden="true">
         <span className={styles.fill} style={{ width: `${homePct}%` }} />
       </div>
-      <p className={styles.projection}>
-        Projected {fmtPts(projectedHome)} — {fmtPts(projectedAway)} · a
-        projection, not a lock
-      </p>
+      {pick && (
+        <p className={styles.projection}>
+          Projected {fmtPts(projectedHome)} — {fmtPts(projectedAway)} · a
+          projection, not a lock
+        </p>
+      )}
     </li>
   );
 }

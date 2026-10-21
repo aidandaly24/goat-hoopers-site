@@ -91,15 +91,22 @@ export function toPlayer(
 /**
  * Standings, sorted by wins desc then pointsFor desc.
  * gamesBack is measured in wins behind first place.
+ *
+ * Ranks are gated on results (issue #224 P1): Sleeper posts records
+ * only for completed weeks, while pointsFor ticks up live during the
+ * in-progress week — so before any team has a recorded win, loss or
+ * tie, every rank is null and the sort is only a deterministic display
+ * order, never an ordinal claim about tied 0–0 teams.
  */
 export function toStandings(teams: Team[]): Standing[] {
   const sorted = [...teams].sort(
     (a, b) => b.wins - a.wins || b.pointsFor - a.pointsFor
   );
+  const hasResults = teams.some((t) => t.wins + t.losses + t.ties > 0);
   const leaderWins = sorted[0]?.wins ?? 0;
   return sorted.map((team, i) => ({
     team,
-    rank: i + 1,
+    rank: hasResults ? i + 1 : null,
     wins: team.wins,
     losses: team.losses,
     ties: team.ties,

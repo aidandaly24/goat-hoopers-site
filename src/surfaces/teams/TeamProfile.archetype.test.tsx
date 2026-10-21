@@ -35,6 +35,7 @@ function profile(): TeamProfileData {
     players: [],
     matchups: [],
     streak: 0,
+    inProgressWeek: null,
     draftPicks: [],
     transactions: [],
   };
