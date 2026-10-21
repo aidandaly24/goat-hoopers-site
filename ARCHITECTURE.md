@@ -33,7 +33,11 @@ complete-only, trades atomic). Days the replay proves are labelled
 exact quote instant, unpriced proven days at UTC day end (today at the
 fixed as-of cutoff), with null prices and a null subtotal unless the
 roster is proven empty; gap and pre-anchor days stay `ambiguous` with a
-null count, and no point is ever minted from membership alone. Under the
+null count, and no point is ever minted from membership alone. If the
+prior segment's last move lands on the season-boundary eve, the gap is
+the empty interval at the boundary: no day is ambiguous, the two
+segments touch, and coverage emits no gap band (a zero-length band is
+not a valid DTO range). Under the
 #224 amendment, day detail also lists the 2025 league's completed moves
 as sourced events (team-scoped legs — every add/drop carries its roster
 id — plus declared participants, shaped draft picks and waiver FAAB,

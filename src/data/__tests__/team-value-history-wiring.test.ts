@@ -603,6 +603,75 @@ describe("dot review 5598430768 on a643361 — remediation", () => {
   });
 });
 
+describe("§§1–3 — touching segments: an empty gap emits no band", () => {
+  // The dot's boundary variant (re-review 5599106778, inline
+  // 4336349467): a completed prior-league pick-only row effective on
+  // the boundary eve passes the non-overlap guard and both segment
+  // finals verify, but the day-rounded gap start lands exactly ON
+  // the season boundary — the gap is the empty interval
+  // [2026-08-13, 2026-08-13). Emitting it as an ambiguous coverage
+  // band produces a zero-length range the DTO rejects, nulling the
+  // whole envelope. An empty interval asserts nothing and is not a
+  // gap anyone can be ambiguous about: the segments touch, and
+  // coverage is replayed | replayed with no band between them.
+  const pickOnlyTrade = (transactionId: string, at: string) => tx({
+    transaction_id: transactionId, type: "trade", leg: 8, roster_ids: [3, 7],
+    created: Date.parse(at), status_updated: Date.parse(at),
+    draft_picks: [{ season: "2027", round: 1, roster_id: 3, previous_owner_id: 3, owner_id: 7 }],
+  });
+
+  for (const [label, at] of [
+    ["boundary minus one millisecond", "2026-08-12T23:59:59.999Z"],
+    ["Aug 12 at day start", "2026-08-12T00:00:00Z"],
+  ] as const) {
+    it(`serves the full history when the last 2025 row lands at the ${label}`, async () => {
+      const world = chainWorld();
+      world.tx[SEASON_ONE_LEAGUE_ID] = [
+        ...world.tx[SEASON_ONE_LEAGUE_ID], pickOnlyTrade("1425000000000000099", at),
+      ];
+      const chain = await loadChainRosterReplay(replayDepsFrom(world));
+      expect(chain.gapRange).toEqual({ from: "2026-08-13", toExclusive: "2026-08-13" });
+
+      const envelope = await getTeamValueHistory("1", deps({ fetchChain: fetchFixtureChain(world) }));
+      expect(envelope).not.toBeNull();
+      expect(isTeamValueHistoryEnvelope(envelope)).toBe(true);
+      // No degenerate interval anywhere in coverage, and no
+      // ambiguous band: the two replayed segments touch at the
+      // boundary.
+      for (const band of [...envelope!.coverage.roster, ...envelope!.coverage.valuation]) {
+        expect(band.from < band.toExclusive).toBe(true);
+      }
+      expect(envelope!.coverage.roster.map(band => band.status)).toEqual(["replayed", "replayed"]);
+      expect(envelope!.coverage.roster[0].toExclusive).toBe("2026-08-13");
+      expect(envelope!.coverage.roster[1].from).toBe("2026-08-13");
+      // The boundary eve itself is proven segment-one membership.
+      const state = await loadTeamHistoryState("1", deps({ fetchChain: fetchFixtureChain(world) }));
+      const eve = state.detail("2026-08-12", NAMES);
+      expect(isTeamValueHistoryDetail(eve)).toBe(true);
+      expect(eve.rosterStatus).toBe("replayed");
+      expect(eve.players.map(player => player.id)).toEqual(["101", "102", "103", "104"]);
+    });
+  }
+
+  it("still emits the ambiguous band when a real gap day remains", async () => {
+    const world = chainWorld();
+    world.tx[SEASON_ONE_LEAGUE_ID] = [
+      ...world.tx[SEASON_ONE_LEAGUE_ID], pickOnlyTrade("1425000000000000098", "2026-08-11T12:00:00Z"),
+    ];
+    const chain = await loadChainRosterReplay(replayDepsFrom(world));
+    expect(chain.gapRange).toEqual({ from: "2026-08-12", toExclusive: "2026-08-13" });
+    const envelope = await getTeamValueHistory("1", deps({ fetchChain: fetchFixtureChain(world) }));
+    expect(envelope).not.toBeNull();
+    expect(envelope!.coverage.roster.map(band => band.status)).toEqual(["replayed", "ambiguous", "replayed"]);
+    const ambiguous = envelope!.coverage.roster[1];
+    expect([ambiguous.from, ambiguous.toExclusive]).toEqual(["2026-08-12", "2026-08-13"]);
+    const state = await loadTeamHistoryState("1", deps({ fetchChain: fetchFixtureChain(world) }));
+    const gapDay = state.detail("2026-08-12", NAMES);
+    expect(gapDay.rosterStatus).toBe("ambiguous");
+    expect(gapDay.rosterCount).toBeNull();
+  });
+});
+
 describe("§§1–3 — proven-empty vs unknown", () => {
   it("serves a real zero for a proven-empty roster and nulls for the gap", async () => {
     const emptyDeps = emptyWorldDeps();

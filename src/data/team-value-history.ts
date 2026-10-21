@@ -781,7 +781,15 @@ function buildState(args: {
     from: HISTORY_LEAGUE_FROM, toExclusive: chain.gapRange.from, status: "replayed",
     reason: "Membership replayed forward from the 2025 startup draft's own assignments through the season's completed moves in frozen order (status_updated, then transaction_id); the segment's final rosters are verified against Sleeper's observed rosters at load. Replayed is not independently verified at intermediate instants.",
   });
-  coverage.roster.push({
+  // The gap band exists only when the gap is non-empty. When the
+  // 2025 segment's last move lands on the boundary eve, the
+  // day-rounded gap start equals the boundary itself and the gap is
+  // the empty interval [boundary, boundary): no day sits inside it,
+  // so there is nothing to be ambiguous about — the segments touch
+  // and coverage is replayed | replayed. Emitting the empty interval
+  // as a band would produce a zero-length range the DTO rejects,
+  // nulling the whole envelope over a nonexistent gap.
+  if (chain.gapRange.from < chain.gapRange.toExclusive) coverage.roster.push({
     from: chain.gapRange.from, toExclusive: chain.gapRange.toExclusive, status: "ambiguous",
     reason: "The offseason gap between the 2025 and 2026 seasons carries no rows in either league's transaction feed, so no day inside it asserts membership. The 2026 boundary roster is derived by an explicit reconciliation (see the day detail's roster evidence), never observed day by day.",
   });
