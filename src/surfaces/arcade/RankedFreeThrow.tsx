@@ -6,6 +6,7 @@ import { createRankedClient, type RankedClient } from "@/data/ranked-free-throw/
 import { PRACTICE_ASSETS } from "@/domain/arcade/free-throw";
 import { RankedRoundRecorder } from "@/domain/arcade/ranked-round";
 import type { RankedAdmission, RankedAvailability, RankedBoard, RankedScore, RankedScope } from "@/domain/arcade/ranked-free-throw";
+import type { RankedRecordFeedback } from "@/domain/arcade/ranked-record-feedback";
 import { rankedPhysics, rankedPositions } from "@/domain/arcade/ranked-free-throw";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
@@ -25,11 +26,37 @@ const failure = (status: string) => ({
 }[status] ?? "The request could not be completed. Your result has not been confirmed.");
 const accuracy = (value: number | null) => value === null ? "—" : `${Math.round(value * 100)}%`;
 
-/** Accepted score feedback only. The current response does not certify records. */
-export function SavedRoundFeedback({ score, justAccepted }: { score: RankedScore; justAccepted: boolean }) {
-  return <div className={styles.confirmation} data-just-accepted={justAccepted} role={justAccepted ? "status" : undefined}>
-    <strong>{justAccepted ? "Round saved" : "Saved result"}</strong>
+/** Mark before rendering, so repeated accepted responses cannot replay a notice. */
+export function claimAcceptedScore(id: string, seen: Set<string>, storage?: Pick<Storage, "getItem" | "setItem">): boolean {
+  if (seen.has(id)) return false;
+  seen.add(id);
+  try {
+    const key = `goat:ranked:accepted:${id}`;
+    if (storage?.getItem(key)) return false;
+    storage?.setItem(key, "shown");
+  } catch { /* Storage can be unavailable; this mounted session still dedupes. */ }
+  return true;
+}
+
+/** Comparisons come only from the validated first accepted POST, never a board. */
+export function SavedRoundFeedback({ score, justAccepted, feedback }: { score: RankedScore; justAccepted: boolean; feedback?: RankedRecordFeedback | null }) {
+  const records = justAccepted && feedback?.scoreId === score.id ? feedback : null;
+  const beaten = records && [records.personalBest, records.weeklyRecord, records.allTimeRecord].some(item => item.outcome === "beaten");
+  const labels = records ? [
+    { comparison: records.personalBest, first: "First personal score", beaten: "New personal best", tied: "Personal best tied", below: "Personal best" },
+    { comparison: records.weeklyRecord, first: "First weekly score · Everyone", beaten: "Weekly record beaten · Everyone", tied: "Weekly record tied · Everyone", below: "Weekly record · Everyone" },
+    { comparison: records.allTimeRecord, first: "First compatible all-time score · Everyone", beaten: "All-time record beaten · Everyone", tied: "All-time record tied · Everyone", below: "Compatible all-time record · Everyone" },
+  ] : [];
+  return <div className={styles.confirmation} data-just-accepted={justAccepted} data-record-beaten={!!beaten} role={justAccepted ? "status" : undefined}>
+    <strong>{beaten ? "Record beaten!" : justAccepted ? "Round saved" : "Saved result"}</strong>
     <span>{score.makes} of {score.attempts} makes · server validated</span>
+    {records && <>
+      <ul className={styles.recordComparisons} aria-label="Server-confirmed score comparisons">{labels.map(item => <li key={item.first} data-outcome={item.comparison.outcome}>
+        <b>{item[item.comparison.outcome]}</b>
+        <span>{item.comparison.outcome === "first" ? "No earlier score in this comparison" : item.comparison.outcome === "beaten" ? `${item.comparison.previousScore} to ${score.score} makes` : `${item.comparison.previousScore} makes`}</span>
+      </li>)}</ul>
+      <p>Confirmed at acceptance. Weekly means this competition period; all-time includes compatible score formats. Everyone records include verified personal accounts. This is not a current rank or a League award.</p>
+    </>}
     <p>Your best eligible round counts on the weekly and compatible all-time boards.</p>
   </div>;
 }
@@ -45,6 +72,8 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
   const [roundStatus, setRoundStatus] = useState<ReturnType<RankedRoundRecorder["status"]> | null>(null);
   const [saved, setSaved] = useState<RankedScore | null>(null);
   const [justAcceptedId, setJustAcceptedId] = useState<string | null>(null);
+  const seenAcceptedScores = useRef(new Set<string>());
+  const [recordFeedback, setRecordFeedback] = useState<RankedRecordFeedback | null>(null);
   const [message, setMessage] = useState("");
   const [checking, setChecking] = useState((availability.status === "available" || availability.status === "recovery") && !!initialRunId);
   const [scope, setScope] = useState<RankedScope>("everyone");
@@ -77,7 +106,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
     client.result(initialRunId, controller.signal).then(result => {
       if (controller.signal.aborted) return;
       request.current = null; setChecking(false);
-      if (result.ok) { setSaved(result.value); setPhase("saved"); }
+      if (result.ok) { setJustAcceptedId(null); setRecordFeedback(null); setSaved(result.value); setPhase("saved"); }
       else setMessage(result.status === "not_found" ? "No saved result was found for this account and round." : failure(result.status));
     });
     return () => { controller.abort(); if (request.current === controller) request.current = null; };
@@ -96,7 +125,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
     if (!result.ok) { setPhase(saved ? "saved" : "idle"); setMessage(failure(result.status)); return; }
     const received = performance.now();
     recorder.current = new RankedRoundRecorder(result.value, sent, received);
-    setAdmission(result.value); setSaved(null); setJustAcceptedId(null); setRoundStatus(recorder.current.status(received)); setPhase("playing");
+    setAdmission(result.value); setSaved(null); setJustAcceptedId(null); setRecordFeedback(null); setRoundStatus(recorder.current.status(received)); setPhase("playing");
     const url = new URL(window.location.href); url.searchParams.set("run", result.value.run.id);
     // Let Next synchronize its canonical URL and copy its own history metadata.
     // Passing the existing __NA state bypasses that integration and loses ?run.
@@ -109,7 +138,14 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
     const result = await client.submit(payload, controller.signal);
     request.current = null;
     if (controller.signal.aborted) return;
-    if (result.ok) { setJustAcceptedId(result.value.id); rememberResult(result.value); }
+    if (result.ok) {
+      let storage: Storage | undefined;
+      try { storage = window.sessionStorage; } catch { /* In-memory dedupe remains available. */ }
+      const first = claimAcceptedScore(result.value.id, seenAcceptedScores.current, storage);
+      setJustAcceptedId(first ? result.value.id : null);
+      setRecordFeedback(first ? result.value.recordFeedback ?? null : null);
+      rememberResult(result.value);
+    }
     else { setPhase("uncertain"); setMessage(`${failure(result.status)} Check the saved result before retrying.`); }
   }
   async function checkSaved() {
@@ -120,7 +156,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
     request.current = null;
     if (controller.signal.aborted) return;
     setChecking(false);
-    if (result.ok) rememberResult(result.value);
+    if (result.ok) { setJustAcceptedId(null); setRecordFeedback(null); rememberResult(result.value); }
     else if (result.status === "not_found") { setPhase(admission ? "playing" : "idle"); setMessage("No saved result found. You can retry saving this round while its timer is open."); }
     else setMessage(failure(result.status));
   }
@@ -166,7 +202,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
       }} />
     </section>}
     {recoverable && saved && <Card className={styles.card}>
-      <SavedRoundFeedback key={saved.id} score={saved} justAccepted={justAcceptedId === saved.id} />
+      <SavedRoundFeedback key={saved.id} score={saved} justAccepted={justAcceptedId === saved.id} feedback={recordFeedback} />
       <SectionHeading eyebrow={`Saved · ${saved.week}`} title={`Final score: ${saved.score}`} />
       <dl className={styles.stats}>
         <div><dt>Makes / attempts</dt><dd>{saved.makes} / {saved.attempts}</dd></div>

@@ -19,9 +19,12 @@ The checks cover weekly/all-time/League navigation, unsupported games, held,
 failed and genuinely empty boards, request races, accepted-save refresh and
 rejected/recovered-result feedback. 200% means root text size, not page zoom.
 
-The current score response confirms saved statistics, not a new personal or
-global record. Saved-round feedback makes that distinction. Record-specific
-celebrations require the backend owner's separate authoritative contract.
+The original functional receipts predate the authoritative PR238 record contract.
+The separate record consumer uses only its validated accepted submit feedback.
+Run the browser command with `records` to exercise first/beaten/tied/below,
+missing/malformed/misbound feedback, lost-response recovery, retry and duplicate
+response suppression. `review/records.json` records the separate source identities.
+Only `beaten` receives the record effect; recovery never recreates it.
 
 Target only the header navigation with `header-shortcuts` as the browser command’s
 third argument. Its receipt covers hydrated ranked navigation, Back, explicit local
