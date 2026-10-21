@@ -1,0 +1,171 @@
+{
+ "description": "Captured Sleeper receipts for the roster-replay ground-truth acceptance tests (#224/#217). Each fixture is a field projection of the raw response (only the fields the replay reads); raw responses are retained verbatim in the goal hidden_files (roster-replay-capture-2026-10-21) and hashed below. Amendment (2026-10-21, PR #243 re-review): the two draft fixtures were re-projected from the same retained raw responses (rawSha256 unchanged) to also carry the draft's declared dimensions — settings.rounds, settings.teams, draft_order — against which the replay now proves each pick receipt; every other fixture is byte-identical to the original capture.",
+ "capturedAt": "2026-10-21T05:47:13.482172+00:00",
+ "projection": {
+  "draft": [
+   "draft_id",
+   "league_id",
+   "season",
+   "status",
+   "type",
+   "start_time",
+   "last_picked",
+   "settings.rounds",
+   "settings.teams",
+   "draft_order"
+  ],
+  "draftPicks": [
+   "pick_no",
+   "round",
+   "draft_slot",
+   "roster_id",
+   "player_id"
+  ],
+  "transactions": [
+   "transaction_id",
+   "type",
+   "status",
+   "roster_ids",
+   "leg",
+   "created",
+   "status_updated",
+   "adds",
+   "drops",
+   "draft_picks",
+   "settings"
+  ],
+  "rosters": [
+   "roster_id",
+   "owner_id",
+   "players"
+  ]
+ },
+ "files": {
+  "season-2025-draft.json": {
+   "sha256": "dc7fe2c96ea5c5bf6a3a6af7576cb7069811793a9dceca7a9669d02b65cdd4ad",
+   "bytes": 546,
+   "sources": [
+    "https://api.sleeper.app/v1/league/1282883196567977984/drafts"
+   ],
+   "rawSha256": {
+    "drafts_2025": "e480ee90ed8052e598d9ea5fa6771133ed40c4be2622105418561ac4df3ac7d0"
+   }
+  },
+  "season-2025-draft-picks.json": {
+   "sha256": "15b1291ef8be0639d0ac0ec89ec2972b296df6f19353573218cbf1b84a31278d",
+   "bytes": 19644,
+   "sources": [
+    "https://api.sleeper.app/v1/draft/1282883197582987264/picks"
+   ],
+   "rawSha256": {
+    "draft_picks_1282883197582987264": "42392cb9100bdc942ef55b49225633edb5b5465a61bee832ff9bfef72e6263df"
+   }
+  },
+  "season-2025-transactions.json": {
+   "sha256": "a486804cd796d614fd4f5918365644ad27ff792a7d0d64cc905c6c06714ae632",
+   "bytes": 121807,
+   "sources": [
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/1",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/2",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/3",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/4",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/5",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/6",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/7",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/8",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/9",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/10",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/11",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/12",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/13",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/14",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/15",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/16",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/17",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/18",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/19",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/20",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/21",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/22",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/23",
+    "https://api.sleeper.app/v1/league/1282883196567977984/transactions/24"
+   ],
+   "rawSha256": {
+    "tx25_w1": "98212332b165d89403b9083a8308f78063c3666bfaf9cf50c3aed0621651ff7a",
+    "tx25_w2": "7be706a4d614d17bf27c5a4e7e9f81ec0c0e1237dcb3be9549ead2fd68fce17f",
+    "tx25_w3": "8dd00ac2d8d0caf4238c30a1346263c354cef72108bdb603270925ddbee376b1",
+    "tx25_w4": "348d92e23513352da7abc0853c40c5d43f104bde4d12a50fad0b99140643c518",
+    "tx25_w5": "acca32bb359c9c69d6b12ac0960bb8dc3be0df229bf3085081be9192b6022147",
+    "tx25_w6": "d6623d707a724ffb67c91d16279ce210ff44b688aa14929001dc3f2eccd59ec0",
+    "tx25_w7": "3b5b727ad73f5eb3660abb7a0d914b75bee9ee00886d6ed66252f4802a508a9a",
+    "tx25_w8": "08aeba3df1636d35a7e27c57b51ed6ed8e74d64c248b02f429af0dec849831b4",
+    "tx25_w9": "0bc8b9d7e0987ef69537d3683676c16b2733172047bd26fba8805554878aebc5",
+    "tx25_w10": "fb78fcc52e9481db679eb8c4b9018c1dacd160db7216bdf4264fcd764cd23f0b",
+    "tx25_w11": "c36cc075911fcd97f89515cfaa870deb13c7aa9c66ff8a6efb7116ea3355d9f8",
+    "tx25_w12": "1cdea3a87994d1c709164d8f4790036d45366a7107e3438e090de178c899012b",
+    "tx25_w13": "2b30d7418e7917b6f0e3da5ce416fc470d77c73935ba33e06b7778f371afd764",
+    "tx25_w14": "06ef943d5d18bf03190a5fead10a9b6be8e791603ea27edfd4f1cab42a1f7a70",
+    "tx25_w15": "bc53dd63e554edd79221e576440d93681b09657361ee92f113c84096e8b959df",
+    "tx25_w16": "b8eed7bddce6a5583e8cbb8fbfc677151dc9858d108c1a33989b27030eefa89f",
+    "tx25_w17": "7e8f828381dace9e899dad46e8f2da1a3aa086b465377618011801996c7766fe",
+    "tx25_w18": "4fcc445b92384be1e13124084b88e58899c0114038472892a16b2276f959a5f3",
+    "tx25_w19": "f22638bda8b9bd5904a9ac137cb4b93116f7bc36659106eaceeffe169a780114",
+    "tx25_w20": "ee9d6c6645e2314f2ef7467d8bf49f0860b984da204a3f86fa4bea91a12a5e7a",
+    "tx25_w21": "ce697c896f4798f03ef092c714cf0b6bfe2ecc8a9bcd326ebefcb62f16242c10",
+    "tx25_w22": "acb78f9cb602cb561bad48ccd4dab009de4b2ca5eb25d9aeecc1ff00a590b9e0",
+    "tx25_w23": "fdb76d7447236a61cf2d79d048c356c52326cc9c9e521a6aa207a636da22bbd3",
+    "tx25_w24": "14047b7a94f2608104aaa0916f3e6152450b487ffde637a178b95dc169d60df1"
+   }
+  },
+  "season-2025-rosters.json": {
+   "sha256": "548134924a785558ea722c8a6ad075c8a2ede5de2e884dc954429639d1233353",
+   "bytes": 3321,
+   "sources": [
+    "https://api.sleeper.app/v1/league/1282883196567977984/rosters"
+   ],
+   "rawSha256": {
+    "rosters_2025": "b2002b96cfc33f81a410bb53fb9678f3af4d3868faabfab9ac254c2bf279bb2d"
+   }
+  },
+  "season-2026-draft.json": {
+   "sha256": "8f81daa7c0b9da33f68bce8f2b6858206bd479a344f2c304bcb6461e861c478c",
+   "bytes": 546,
+   "sources": [
+    "https://api.sleeper.app/v1/league/1387473752807190528/drafts"
+   ],
+   "rawSha256": {
+    "drafts_2026": "c158e24ca6d8a8f0ce817b88cb728edddd3c543c8553f5590de78a19b98e7dcf"
+   }
+  },
+  "season-2026-draft-picks.json": {
+   "sha256": "b9e47eb8c1680bfd1c5560018d0a53ad31cdaa9c4c2a376213e6947e6ba435fc",
+   "bytes": 2909,
+   "sources": [
+    "https://api.sleeper.app/v1/draft/1387473752819785728/picks"
+   ],
+   "rawSha256": {
+    "draft_picks_1387473752819785728": "7d23577c27a3d59b1fabaac352e4f6ab686f48b8ccf13a2218fdcfe5e3804269"
+   }
+  },
+  "season-2026-transactions.json": {
+   "sha256": "b866ca37034d6775919f63450f0955ee87a308bbc635cfa927a579c72c44d4b2",
+   "bytes": 14511,
+   "sources": [
+    "https://api.sleeper.app/v1/league/1387473752807190528/transactions/1"
+   ],
+   "rawSha256": {
+    "tx26_w1": "1ecacf4e5ee13e84e8591475aaabcf6c828ff918ee11011357f217341c443763"
+   }
+  },
+  "season-2026-rosters.json": {
+   "sha256": "159bd17a6a73a64bafbf5fd6ab9cc4e6a9c3af169a127a7c93bb6fdd3359d558",
+   "bytes": 3321,
+   "sources": [
+    "https://api.sleeper.app/v1/league/1387473752807190528/rosters"
+   ],
+   "rawSha256": {
+    "rosters_2026": "c9fe12de970c7a8ee4f63b38ae9b058da8678014c5a9b23f944f423a9ab7838d"
+   }
+  }
+ }
+}

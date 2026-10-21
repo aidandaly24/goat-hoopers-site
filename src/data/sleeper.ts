@@ -136,11 +136,29 @@ export type RawPlayerEntry = {
 /** A draft (e.g. the league's rookie draft). */
 export type RawDraft = {
   draft_id: string;
+  /**
+   * The league the draft itself declares it belongs to. A consumer
+   * using a draft as evidence for a league segment must bind this
+   * identity to the league being loaded — never relabel a foreign
+   * draft's witness with the requested league.
+   */
+  league_id?: string;
   season: string;
   status: string;
   type: string;
   /** Unix ms the draft started. */
   start_time?: number;
+  /** Unix ms the final pick was made; the draft's completion instant. */
+  last_picked?: number;
+  /**
+   * The draft's own declared dimensions, independent of its pick
+   * receipt: how many rounds it ran and how many teams drafted.
+   * Consumers proving a receipt complete measure it against these,
+   * never against the picks themselves.
+   */
+  settings?: { rounds?: number; teams?: number };
+  /** user_id → draft slot, as declared on the draft itself. */
+  draft_order?: Record<string, number>;
 };
 
 export type RawDraftPick = {
@@ -176,9 +194,14 @@ export function fetchLeague(): Promise<RawLeague> {
   return sleeperFetch<RawLeague>(`/league/${LEAGUE_ID}`, 300);
 }
 
+/** Rosters with win/loss/points settings, for any league. Cache 5 min. */
+export function fetchRostersForLeague(leagueId: string): Promise<RawRoster[]> {
+  return sleeperFetch<RawRoster[]>(`/league/${leagueId}/rosters`, 300);
+}
+
 /** Rosters with win/loss/points settings. Cache 5 min. */
 export function fetchRosters(): Promise<RawRoster[]> {
-  return sleeperFetch<RawRoster[]>(`/league/${LEAGUE_ID}/rosters`, 300);
+  return fetchRostersForLeague(LEAGUE_ID);
 }
 
 /** League members (team names live here). Cache 5 min. */
@@ -229,11 +252,16 @@ export function fetchTransactions(week: number): Promise<RawTransaction[]> {
   return fetchTransactionsForLeague(LEAGUE_ID, week);
 }
 
+/** Drafts for any league. Usually one draft per season. Cache 5 min. */
+export function fetchDraftsForLeague(leagueId: string): Promise<RawDraft[]> {
+  return sleeperFetch<RawDraft[]>(`/league/${leagueId}/drafts`, 300);
+}
+
 /**
  * Drafts for the league. Usually one rookie draft per season. Cache 5 min.
  */
 export function fetchDrafts(): Promise<RawDraft[]> {
-  return sleeperFetch<RawDraft[]>(`/league/${LEAGUE_ID}/drafts`, 300);
+  return fetchDraftsForLeague(LEAGUE_ID);
 }
 
 /**
