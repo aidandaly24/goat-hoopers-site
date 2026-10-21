@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { PlayoffOdds } from "@/domain";
+import type { DataToolsState, PlayoffOdds } from "@/domain";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
@@ -16,25 +16,28 @@ import styles from "./PlayoffOdds.module.css";
 export function PlayoffOdds({
   odds,
   championTeamId,
-  seasonStarted,
+  dataState,
 }: {
-  /** From getPlayoffOdds(). Null when no completed week exists to
-   * simulate from — before tip-off, or Week 1 still live. */
+  /** From getPlayoffOdds(). Null when it has no data — before
+   * tip-off, before any week closes, or when its feed failed. */
   odds: PlayoffOdds[] | null;
   /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
   championTeamId?: string | null;
-  /** True once games are underway: the empty state then says no week
-   * has closed yet instead of claiming games have not started. */
-  seasonStarted?: boolean;
+  /** From getDataToolsState(): the PROVEN reason odds may be null.
+   * The empty state describes only that world; omitted =
+   * "unavailable", the claim-free default. */
+  dataState?: DataToolsState;
 }) {
   return (
     <Card>
       <SectionHeading eyebrow="The crystal ball" title="Playoff Odds" />
       {odds === null || odds.length === 0 ? (
         <p className={styles.empty}>
-          {seasonStarted
-            ? "No odds yet — the simulation runs on completed finals, and no week has closed yet. Anything sooner is just arithmetic wearing a costume."
-            : "Odds go live when games do — simulating a season with no data is just arithmetic wearing a costume."}
+          {dataState === "pre-tipoff"
+            ? "Odds go live when games do — simulating a season with no data is just arithmetic wearing a costume."
+            : dataState === "no-closed-week"
+              ? "No odds yet — the simulation runs on completed finals, and no week has closed yet. Anything sooner is just arithmetic wearing a costume."
+              : "Odds are unavailable right now — the data feed did not answer, and simulating missing data is just arithmetic wearing a costume."}
         </p>
       ) : (
         <>

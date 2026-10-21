@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { MatchupHighlight, RecordBook, TeamWeekScore } from "@/domain";
+import type { DataToolsState, MatchupHighlight, RecordBook, TeamWeekScore } from "@/domain";
 import { winner } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
@@ -57,22 +57,28 @@ function ScoreLine({ s, championTeamId }: { s: TeamWeekScore; championTeamId?: s
  * (RecordBook | null) and renders. Computed from every final in
  * src/data/analytics.ts. Null = no finals yet, honest empty state.
  */
-export function RecordBook({ book, championTeamId, seasonStarted }: { book: RecordBook | null; /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */ championTeamId?: string | null; /** True once games are underway: the empty state then says no week has closed yet instead of claiming the first whistle has not blown. */ seasonStarted?: boolean }) {
+export function RecordBook({ book, championTeamId, dataState }: { book: RecordBook | null; /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */ championTeamId?: string | null; /** From getDataToolsState(): the PROVEN reason the book may be null. The empty state describes only that world; omitted = "unavailable", the claim-free default. */ dataState?: DataToolsState }) {
   return (
     <Card>
       <SectionHeading eyebrow="Immortality" title="This Season's Record Book" />
       {book === null ? (
         <p className={styles.empty}>
-          {seasonStarted ? (
+          {dataState === "no-closed-week" ? (
             <>
               No records yet this season — records come from finals, and no
               week has closed yet. The 2025 archive lives in the{" "}
               <Link href="/history">Trophy Room</Link>.
             </>
-          ) : (
+          ) : dataState === "pre-tipoff" ? (
             <>
               No records yet this season — history starts when the first whistle
               blows. The 2025 archive lives in the{" "}
+              <Link href="/history">Trophy Room</Link>.
+            </>
+          ) : (
+            <>
+              The record book is unavailable right now — the data feed did
+              not answer. The 2025 archive lives in the{" "}
               <Link href="/history">Trophy Room</Link>.
             </>
           )}

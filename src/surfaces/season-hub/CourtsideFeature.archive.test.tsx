@@ -113,6 +113,25 @@ describe("archived CourtsideFeature (2026-W40, the 2025 final)", () => {
     expect(html).not.toContain("Record 0–0");
   });
 
+  it("omits previous-season lines whose season is not the archived game's", () => {
+    // A directory entry carrying ANOTHER season's record (here 2024)
+    // must not be quoted beside the 2025 final — the line is omitted,
+    // exactly as when no historical record is on file, and the current
+    // 0–0 record is not backfilled in its place.
+    const wrongSeason = (entries: PairEntry[]): PairEntry[] =>
+      entries.map((e) => e.identity.id === "5" ? { ...e, previousSeason: { season: "2024", wins: 17, losses: 4, finish: 1, ownerNote: null } }
+        : e.identity.id === "7" ? { ...e, previousSeason: { season: "2024", wins: 16, losses: 5, finish: 2, ownerNote: null } } : e);
+    const html = renderArchived(wrongSeason(liveEntries(0, 0)));
+    expect(html).toContain("Historical final · 2025");
+    expect(html).toContain("326.0");
+    // The desk-line format is "<season> · <record> · <finish>" — the
+    // edition's own prose mentions 17–4, but no 2024 desk line may
+    // render, and the current record may not backfill.
+    expect(html).not.toContain("2024 · 17–4");
+    expect(html).not.toContain("2024 · 16–5");
+    expect(html).not.toContain("Record 0–0");
+  });
+
   it("is byte-identical when the live week advances underneath it", () => {
     const before = renderArchived(liveEntries(0, 0));
     const after = renderArchived(advancedEntries());

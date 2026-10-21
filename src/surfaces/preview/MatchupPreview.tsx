@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { MatchupPreview } from "@/domain";
+import type { DataToolsState, MatchupPreview } from "@/domain";
 import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
@@ -87,22 +87,23 @@ function PreviewCard({ preview, championTeamId }: { preview: MatchupPreview; cha
  * Self-contained for homepage embedding: receives `previews`
  * (MatchupPreview[] | null) and renders. The projection model is
  * documented in src/domain/matchup-preview.ts; math in
- * src/data/analytics.ts. Null = no completed-week evidence yet,
- * honest empty state.
+ * src/data/analytics.ts. Null = no data; the honest empty state
+ * names the proven reason (`dataState`).
  */
 export function MatchupPreview({
   previews,
   championTeamId,
-  seasonStarted,
+  dataState,
 }: {
-  /** From getMatchupPreviews(). Null when no completed week exists to
-   * project from — before tip-off, or Week 1 still live. */
+  /** From getMatchupPreviews(). Null when it has no data — before
+   * tip-off, before any week closes, or when its feed failed. */
   previews: MatchupPreview[] | null;
   /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
   championTeamId?: string | null;
-  /** True once games are underway: the empty state then says no week
-   * has closed yet instead of claiming the season has not tipped off. */
-  seasonStarted?: boolean;
+  /** From getDataToolsState(): the PROVEN reason previews may be
+   * null. The empty state describes only that world; omitted =
+   * "unavailable", the claim-free default. */
+  dataState?: DataToolsState;
 }) {
   const week = previews?.[0]?.matchup.week;
   return (
@@ -113,9 +114,11 @@ export function MatchupPreview({
       />
       {previews === null || previews.length === 0 ? (
         <p className={styles.empty}>
-          {seasonStarted
-            ? "No previews yet — projections run on completed finals, and no week has closed yet. Live scores are not finals."
-            : "No matchups to preview yet — the schedule drops when the season tips off."}
+          {dataState === "pre-tipoff"
+            ? "No matchups to preview yet — the schedule drops when the season tips off."
+            : dataState === "no-closed-week"
+              ? "No previews yet — projections run on completed finals, and no week has closed yet. Live scores are not finals."
+              : "Previews are unavailable right now — the data feed did not answer, and this page does not guess. Check back shortly."}
         </p>
       ) : (
         <ul className={styles.list}>

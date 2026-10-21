@@ -4,16 +4,17 @@
  * Thin page: loads the four data tools in parallel via the data layer
  * (every loader is null-safe and never throws), hands them to the intel
  * surface. Each tool renders its honest empty state when it has no
- * completed-week evidence — the page also loads `seasonStarted` so the
- * empty states can tell "not tipped off yet" apart from "underway, no
- * week closed yet" (issue #224 follow-through).
+ * data — the page also loads `dataState`, the PROVEN reason a tool
+ * may be empty (pre-tipoff, no week closed yet, or simply
+ * unavailable), so the empty-state copy never confuses the three
+ * (issue #224 follow-through).
  */
 import {
+  getDataToolsState,
   getMatchupPreviews,
   getPlayoffOdds,
   getPowerRankings,
   getRecordBook,
-  getSeasonStarted,
 } from "@/data/league";
 import { IntelHub } from "@/surfaces/intel/IntelHub";
 import { reigningChampionRosterId } from "@/data/history-2025";
@@ -30,17 +31,17 @@ export const metadata: Metadata = {
 export const revalidate = 300; // refresh league data every 5 minutes
 
 export default async function IntelPage() {
-  const [previews, rankings, odds, book, seasonStarted] = await Promise.all([
+  const [previews, rankings, odds, book, dataState] = await Promise.all([
     getMatchupPreviews(),
     getPowerRankings(),
     getPlayoffOdds(),
     getRecordBook(),
-    getSeasonStarted(),
+    getDataToolsState(),
   ]);
   return (
     <>
       <SectionNav current="intel" />
-      <IntelHub previews={previews} rankings={rankings} odds={odds} book={book} championTeamId={reigningChampionRosterId()} seasonStarted={seasonStarted} />
+      <IntelHub previews={previews} rankings={rankings} odds={odds} book={book} championTeamId={reigningChampionRosterId()} dataState={dataState} />
     </>
   );
 }

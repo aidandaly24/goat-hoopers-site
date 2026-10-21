@@ -109,10 +109,13 @@ function seasonLine(entry: PairEntry | undefined, preseason: boolean): string | 
  * historical game belongs to, or nothing. An archived render never
  * quotes a current record beside a historical final — when no
  * historical record is on file the line is omitted, not backfilled
- * from the live standings. */
-function historicalLine(entry: PairEntry | undefined): string | null {
+ * from the live standings. The record must also belong to the
+ * archived game's own season: a directory entry carrying another
+ * season's record (a later archive built on a different directory)
+ * is omitted the same way, never silently quoted. */
+function historicalLine(entry: PairEntry | undefined, gameSeason: string): string | null {
   const prior = entry?.previousSeason ?? null;
-  return prior ? priorSeasonLine(prior) : null;
+  return prior && prior.season === gameSeason ? priorSeasonLine(prior) : null;
 }
 
 /** The member's desk beside the court: identity, last season's line, the
@@ -236,7 +239,7 @@ function LeagueDesk({ edition, pair, entries, preseason, aiWeekly, season, champ
         <ul className={cs("desk-teams")}>
           {[pair.home, pair.away].map((side) => {
             const entry = entries.find((candidate) => candidate.identity.id === side.id);
-            const line = archived ? historicalLine(entry) : seasonLine(entry, preseason);
+            const line = archived ? historicalLine(entry, game.season ?? edition.season) : seasonLine(entry, preseason);
             return (
               <li key={side.id}>
                 <TeamAvatar name={side.name} avatar={side.avatar} isChampion={side.id === championTeamId} />
