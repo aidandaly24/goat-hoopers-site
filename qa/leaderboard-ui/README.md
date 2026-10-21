@@ -62,3 +62,16 @@ ordinary/long-name Priced In active and reveal states. All synthetic auth writes
 stay on loopback. Its case-name arguments select narrow reruns. The receipt in
 `review/auth-layout.json` preserves the exact source identities and reused auth
 evidence separately from the final long-name wrapping checks.
+
+The preview scroll regression uses the same actual-Next fixture with only
+read-only synthetic NBA requests. It verifies sticky-header clearance, focus,
+keyboard Back, restart and all five draft picks across desktop/narrow layouts,
+normal/reduced motion and a live chrome resize:
+
+```sh
+python3 qa/leaderboard-ui/scroll-offset.py /tmp/goat-leaderboard-ui http://127.0.0.1:4365
+```
+
+Use `--baseline` only against the unchanged main fixture to reproduce covered
+Back/preview context after entry. `review/scroll-offset.json` records both
+baseline reproduction and the corrected source identities.

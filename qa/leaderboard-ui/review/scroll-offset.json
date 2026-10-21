@@ -1,0 +1,250 @@
+{
+  "synthetic": true,
+  "base": "3d13c9660e463affd34d2b4e727ffbf78728461c",
+  "baselineCases": [
+    {
+      "case": "1440-100-no-preference-pointer",
+      "entry": {
+        "chromeBottom": 140.90625,
+        "backTop": 37.40625,
+        "backBottom": 81.40625,
+        "labelTop": 51.40625,
+        "headingTop": 156.90625,
+        "headingBottom": 218.828125,
+        "viewportHeight": 900,
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "focused": true,
+        "backHit": false,
+        "scrollY": 152,
+        "phase": "sealed"
+      },
+      "transitionsChecked": 1,
+      "phases": [
+        "sealed"
+      ],
+      "minimumBackClearance": -103.5,
+      "minimumLabelClearance": -89.5,
+      "focusPreserved": true,
+      "keyboardBackNavigation": false,
+      "resizedChrome": false
+    },
+    {
+      "case": "390-100-reduce-pointer",
+      "entry": {
+        "chromeBottom": 101,
+        "backTop": 19.5,
+        "backBottom": 63.5,
+        "labelTop": 35.5,
+        "headingTop": 116.84375,
+        "headingBottom": 152.046875,
+        "viewportHeight": 844,
+        "scrollWidth": 390,
+        "viewportWidth": 390,
+        "focused": true,
+        "backHit": false,
+        "scrollY": 141,
+        "phase": "sealed"
+      },
+      "transitionsChecked": 1,
+      "phases": [
+        "sealed"
+      ],
+      "minimumBackClearance": -81.5,
+      "minimumLabelClearance": -65.5,
+      "focusPreserved": true,
+      "keyboardBackNavigation": false,
+      "resizedChrome": false
+    }
+  ],
+  "baselineSourceBlobs": {
+    "src/surfaces/arcade/week-two/WeekTwoDraft.tsx": "3321cc7d1ba4c722efcf3c3ce5d30971ef140b3e",
+    "src/surfaces/arcade/week-two/WeekTwoDraft.module.css": "5eb8b66ed1cf2dbd3d02487d258b6a78b6750f12",
+    "src/app/globals.css": "b4a234f3a6888d03818bcc5379075e5dd54a1bca",
+    "src/ui/SiteChrome.tsx": "3e90dd7a515dd90221e21a676566cc5e7bc39340",
+    "src/ui/SiteChrome.module.css": "31d17d9c50a4e7507db79382e8760762b5e3f5f0"
+  },
+  "cases": [
+    {
+      "case": "1440-100-no-preference-pointer",
+      "entry": {
+        "chromeBottom": 156.90625,
+        "backTop": 174.40625,
+        "backBottom": 218.40625,
+        "labelTop": 188.40625,
+        "headingTop": 293.90625,
+        "headingBottom": 355.828125,
+        "viewportHeight": 900,
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "focused": true,
+        "backHit": true,
+        "scrollY": 15,
+        "phase": "sealed"
+      },
+      "transitionsChecked": 16,
+      "phases": [
+        "complete",
+        "locked",
+        "revealed",
+        "sealed"
+      ],
+      "minimumBackClearance": 17.5,
+      "minimumLabelClearance": 31.5,
+      "focusPreserved": true,
+      "keyboardBackNavigation": true,
+      "restartReturnedToContext": true,
+      "resizedChrome": false
+    },
+    {
+      "case": "390-100-no-preference-keyboard",
+      "entry": {
+        "chromeBottom": 117,
+        "backTop": 122.5,
+        "backBottom": 166.5,
+        "labelTop": 138.5,
+        "headingTop": 219.84375,
+        "headingBottom": 255.046875,
+        "viewportHeight": 844,
+        "scrollWidth": 390,
+        "viewportWidth": 390,
+        "focused": true,
+        "backHit": true,
+        "scrollY": 38,
+        "phase": "sealed"
+      },
+      "transitionsChecked": 16,
+      "phases": [
+        "complete",
+        "locked",
+        "revealed",
+        "sealed"
+      ],
+      "minimumBackClearance": 5.5,
+      "minimumLabelClearance": 21.5,
+      "focusPreserved": true,
+      "keyboardBackNavigation": true,
+      "restartReturnedToContext": true,
+      "resizedChrome": false
+    },
+    {
+      "case": "390-100-reduce-pointer",
+      "entry": {
+        "chromeBottom": 117,
+        "backTop": 122.5,
+        "backBottom": 166.5,
+        "labelTop": 138.5,
+        "headingTop": 219.84375,
+        "headingBottom": 255.046875,
+        "viewportHeight": 844,
+        "scrollWidth": 390,
+        "viewportWidth": 390,
+        "focused": true,
+        "backHit": true,
+        "scrollY": 38,
+        "phase": "sealed"
+      },
+      "transitionsChecked": 16,
+      "phases": [
+        "complete",
+        "locked",
+        "revealed",
+        "sealed"
+      ],
+      "minimumBackClearance": 5.5,
+      "minimumLabelClearance": 21.5,
+      "focusPreserved": true,
+      "keyboardBackNavigation": true,
+      "restartReturnedToContext": true,
+      "resizedChrome": false
+    },
+    {
+      "case": "1440-100-reduce-keyboard-resize",
+      "entry": {
+        "chromeBottom": 156.90625,
+        "backTop": 174.40625,
+        "backBottom": 218.40625,
+        "labelTop": 188.40625,
+        "headingTop": 293.90625,
+        "headingBottom": 355.828125,
+        "viewportHeight": 900,
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "focused": true,
+        "backHit": true,
+        "scrollY": 15,
+        "phase": "sealed"
+      },
+      "transitionsChecked": 16,
+      "phases": [
+        "complete",
+        "locked",
+        "revealed",
+        "sealed"
+      ],
+      "minimumBackClearance": 0,
+      "minimumLabelClearance": 31.5,
+      "focusPreserved": true,
+      "keyboardBackNavigation": true,
+      "restartReturnedToContext": true,
+      "resizedChrome": true
+    },
+    {
+      "case": "320-200-reduce-keyboard",
+      "entry": {
+        "chromeBottom": 233,
+        "backTop": 233,
+        "backBottom": 321,
+        "labelTop": 373,
+        "headingTop": 548,
+        "headingBottom": 1111.25,
+        "viewportHeight": 900,
+        "scrollWidth": 320,
+        "viewportWidth": 320,
+        "focused": true,
+        "backHit": true,
+        "scrollY": 22,
+        "phase": "sealed"
+      },
+      "transitionsChecked": 16,
+      "phases": [
+        "complete",
+        "locked",
+        "revealed",
+        "sealed"
+      ],
+      "minimumBackClearance": 0,
+      "minimumLabelClearance": 140,
+      "focusPreserved": true,
+      "keyboardBackNavigation": true,
+      "restartReturnedToContext": true,
+      "resizedChrome": false
+    }
+  ],
+  "phaseTransitions": 80,
+  "failures": [],
+  "pageErrors": [],
+  "external": [],
+  "writes": [],
+  "sourceBlobs": {
+    "src/surfaces/arcade/week-two/WeekTwoDraft.tsx": "845e419716213eae95341f5130238c74adad18ce",
+    "src/surfaces/arcade/week-two/WeekTwoDraft.module.css": "9bacf0f839e6ee32f6794f647e1de28acad872d5",
+    "src/app/globals.css": "b4a234f3a6888d03818bcc5379075e5dd54a1bca",
+    "src/ui/SiteChrome.tsx": "3e90dd7a515dd90221e21a676566cc5e7bc39340",
+    "src/ui/SiteChrome.module.css": "31d17d9c50a4e7507db79382e8760762b5e3f5f0"
+  },
+  "reuse": "Three completed desktop/390px journeys are reused with identical product source. The two200% journeys were rerun after correcting a test-only requirement that an enlarged heading fit wholly in the viewport. Navigation/label clearance, heading focus and visible beginning, hit-testing and horizontal fit remain required. Vertical scrolling of enlarged text is allowed.",
+  "checks": {
+    "typecheck": "pass",
+    "scopedLint": "pass, zero warnings",
+    "surfaceContracts": 104,
+    "productionNextFixtureBuild": "pass"
+  },
+  "limits": [
+    "Synthetic actual-Next source responders; no live NBA provider, accounts, database, scores or activation.",
+    "200% is root text size, not browser page zoom.",
+    "No physical-phone or production behavior claim.",
+    "Shared shell, backend, auth, score/record logic, renderer and art are unchanged.",
+    "Exact-head CI and independent/Muse release review are separate gates."
+  ]
+}
