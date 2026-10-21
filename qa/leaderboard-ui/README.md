@@ -30,3 +30,19 @@ Target only the header navigation with `header-shortcuts` as the browser command
 third argument. Its receipt covers hydrated ranked navigation, Back, explicit local
 practice and 1440px / 320px at 200% root text. Other unchanged checks retain their
 prior source identities in `review/receipt.json`.
+
+The separate minigame bugbash copies the actual static preview route and uses
+synthetic, runtime-validated NBA directory/selected-roster reads. Run:
+
+```sh
+python3 qa/leaderboard-ui/bugbash.py /tmp/goat-leaderboard-ui http://127.0.0.1:4365
+python3 qa/leaderboard-ui/browser.py /tmp/goat-leaderboard-ui http://127.0.0.1:4365 expiry
+```
+
+`review/bugbash.json` covers header/card/direct navigation, keyboard entry, both
+local games, development status before legacy account/store loading, signed-out,
+disabled, unavailable and recovery states, archive/scope/period mismatches and
+source-failure retries. Desktop and320px/200% root text pass. The extra expiry
+probe confirms disabled save, available new-round control and zero score POSTs.
+An optional third bugbash argument is a separately retained prior-source fixture
+origin, used only to reproduce the old development-route instructions.

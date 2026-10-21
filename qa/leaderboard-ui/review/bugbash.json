@@ -1,0 +1,251 @@
+{
+  "synthetic": true,
+  "cases": [
+    {
+      "case": "unchanged-direct-route-reproduction"
+    },
+    {
+      "case": "hub-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "allHeaderDestinations": true,
+      "keyboardLaunch": true,
+      "truthfulModes": true
+    },
+    {
+      "case": "construction-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "noReleaseDateOrPrizePromise": true
+    },
+    {
+      "case": "priced-in-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "fiveLocalRoundsAndRedeal": true,
+      "serverScoreWrites": 0
+    },
+    {
+      "case": "preview-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "fiveLocalPicks": true,
+      "lazyRosterReads": 5,
+      "serverScoreWrites": 0
+    },
+    {
+      "case": "hub-320",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "allHeaderDestinations": true,
+      "keyboardLaunch": true,
+      "truthfulModes": true
+    },
+    {
+      "case": "construction-320",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "noReleaseDateOrPrizePromise": true
+    },
+    {
+      "case": "priced-in-320",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "fiveLocalRoundsAndRedeal": true,
+      "serverScoreWrites": 0
+    },
+    {
+      "case": "preview-320",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "fiveLocalPicks": true,
+      "lazyRosterReads": 5,
+      "serverScoreWrites": 0
+    },
+    {
+      "case": "priced-unavailable",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "noFabricatedRound": true
+    },
+    {
+      "case": "preview-directory-retry",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "noDrawUntilDirectoryRecovers": true
+    },
+    {
+      "case": "preview-roster-retry",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "sameDrawRetried": true,
+      "rosterReads": 2
+    },
+    {
+      "case": "ranked-disabled",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "noAdmissionOrSubmitControl": true
+    },
+    {
+      "case": "ranked-signed-out",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "noAdmissionOrSubmitControl": true
+    },
+    {
+      "case": "ranked-unavailable",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "noAdmissionOrSubmitControl": true
+    },
+    {
+      "case": "ranked-recovery-closed",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "noAdmissionOrSubmitControl": true
+    },
+    {
+      "case": "ranked-recovery-unavailable",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "noAdmissionOrSubmitControl": true
+    },
+    {
+      "case": "history-held",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "historyStateDistinct": true
+    },
+    {
+      "case": "history-error",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "historyStateDistinct": true
+    },
+    {
+      "case": "ready",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "historyStateDistinct": true
+    },
+    {
+      "case": "history-final",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "historyStateDistinct": true
+    },
+    {
+      "case": "period-upcoming",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "noOpenRoundPromise": true
+    },
+    {
+      "case": "period-final",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "noOpenRoundPromise": true
+    },
+    {
+      "case": "period-blocked",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "noOpenRoundPromise": true
+    },
+    {
+      "case": "archive-period-mismatch",
+      "wrongPeriodRowsSuppressed": true
+    },
+    {
+      "case": "unknown-/arcade/unknown-game",
+      "status": 404
+    },
+    {
+      "case": "unknown-/arcade/unknown-game/leaderboard",
+      "status": 404
+    }
+  ],
+  "failures": [],
+  "pageErrors": [],
+  "external": [],
+  "writes": [],
+  "findings": [
+    {
+      "path": "/arcade/82-0-predictions",
+      "before": "Unplayable concept enters legacy store path and exposes database setup instructions",
+      "after": "Development state before account/store loading"
+    }
+  ],
+  "consumerBlobs": {
+    "src/app/arcade/[gameId]/page.tsx": "bc139b07de24f80e00f947749c9ea8e1c8d0c559",
+    "src/surfaces/arcade/GameDetail.tsx": "44acda39e984807fd981207c6804f89c1a5babed",
+    "src/surfaces/arcade/GameDetail.module.css": "9d696fe908ad9edb009fba673cf9465cd7a6700a",
+    "src/surfaces/arcade/GameCard.tsx": "237748bf0f1370e5cd18b904bfe6bc3ca09917da",
+    "src/surfaces/arcade/ArcadeHub.tsx": "f0ba31897d50156f865f7a0ab58368f0c244a558",
+    "src/surfaces/arcade/RankedFreeThrow.tsx": "561d60ec3aa1384a4a580d3817153bc5960848c7"
+  },
+  "parent": "b35e331729eef8ce0ecfdc5a398a72ccdabcb9f4",
+  "checks": {
+    "focusedTests": 9,
+    "typecheck": "pass",
+    "scopedLint": "pass, zero warnings",
+    "surfaceContracts": 104,
+    "productionNextFixtureBuild": "pass",
+    "expiryProbe": "review/expiry.json, one case passed"
+  },
+  "postBuildLintChange": "Escaped an apostrophe in an untouched legacy prize paragraph; TypeScript compilation proved byte-identical runtime JS before/after this escape.",
+  "reuse": "Server-confirmed record presentation and its13 browser cases remain unchanged; only new game-route composition, construction presentation and card copy changed. Header fix288395c remains frozen with CI39517256716 green.",
+  "limits": [
+    "Synthetic sources and local input bridge; no live account/provider/database/score operations.",
+    "The free-throw renderer/controller/art are unchanged and omitted from the UI fixture.",
+    "200% means root text size, not browser page zoom.",
+    "No new follow-up PR CI, independent review or production behavior is claimed."
+  ]
+}

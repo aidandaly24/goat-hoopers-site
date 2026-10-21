@@ -27,7 +27,7 @@ import {
 import { getCurrentUser } from "@/app/actions";
 import { getGameStore } from "@/data/arcade";
 import { getStockMarketData } from "@/data/league";
-import { GameDetail } from "@/surfaces/arcade/GameDetail";
+import { GameDetail, UnavailableGame } from "@/surfaces/arcade/GameDetail";
 import { PricedIn } from "@/surfaces/arcade/priced-in/PricedIn";
 import { ProvisionNotice } from "@/surfaces/arcade/ProvisionNotice";
 
@@ -41,6 +41,9 @@ export default async function GamePage({
   const { gameId } = await params;
   const game = getGame(gameId);
   if (!game) notFound();
+  // A registered concept has no entries or persistence to load. Keep its
+  // development state independent of legacy account/database availability.
+  if (!game.play) return <UnavailableGame game={game} />;
 
   // Practice is independent of accounts and league persistence.
   if (game.id === "free-throw") return <FreeThrowPractice court={PRACTICE_COURT} assets={PRACTICE_ASSETS} />;

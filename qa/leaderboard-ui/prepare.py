@@ -7,10 +7,13 @@ out=Path(sys.argv[1]).resolve()
 sys.argv=[str(source/'qa/team-value-history/prepare.py'),str(out)]
 runpy.run_path(str(source/'qa/team-value-history/prepare.py'),run_name='__main__')
 app=out/'app'
-for route in ['arcade','arcade/leaderboard','arcade/[gameId]','arcade/[gameId]/leaderboard','arcade/ranked-free-throw','arcade/history','arcade/history/[periodId]']:
+league=app/'fixture-league.ts'
+league.write_text("import {headers} from 'next/headers';\n"+league.read_text().replace('return (await fixture()).raw.market;', "const market=(await fixture()).raw.market;return (await headers()).get('x-qa-state')==='priced-unavailable'?{...market,stocks:[]}:market;"))
+for route in ['arcade','arcade/leaderboard','arcade/[gameId]','arcade/[gameId]/leaderboard','arcade/ranked-free-throw','arcade/history','arcade/history/[periodId]','arcade/week-2-preview']:
     path=app/'app'/route;path.mkdir(parents=True,exist_ok=True)
     shutil.copyfile(source/'src/app'/route/'page.tsx',path/'page.tsx')
     for css in (source/'src/app'/route).glob('*.css'):shutil.copyfile(css,path/css.name)
+shutil.copyfile(source/'src/app/arcade/week-2-preview/DraftPreview.tsx',app/'app/arcade/week-2-preview/DraftPreview.tsx')
 shutil.copyfile(qa_source/'qa/leaderboard-ui/fixture.ts',app/'fixture-ranked.ts')
 (app/'fixture-history.ts').write_text('''export async function getTeamValueHistory(_id:string){return null;}
 export async function teamHistoryDetailResponse(_url:URL){return Response.json({error:'outside-leaderboard-fixture'},{status:503});}
@@ -19,13 +22,13 @@ export async function teamHistorySummaryResponse(_url:URL){return Response.json(
 (app/'fixture-ranked-runtime.ts').write_text('''import {headers} from 'next/headers';
 import {policy} from './fixture-ranked';
 import type {RankedAvailability} from '@/domain/arcade/ranked-free-throw';
-export async function loadRankedAvailability(_requestHeaders:()=>Promise<Headers>):Promise<RankedAvailability>{const h=await headers();return h.get('x-qa-state')==='disabled'?{status:'disabled'}:h.get('x-qa-state')==='signed-out'?{status:'sign_in'}:{status:'available',ruleSetId:policy.ruleSetId,rules:policy};}
+export async function loadRankedAvailability(_requestHeaders:()=>Promise<Headers>):Promise<RankedAvailability>{const h=await headers(),mode=h.get('x-qa-state');return mode==='disabled'?{status:'disabled'}:mode==='signed-out'?{status:'sign_in'}:mode==='unavailable'?{status:'unavailable'}:mode==='recovery-closed'||mode==='recovery-unavailable'?{status:'recovery',reason:mode==='recovery-closed'?'closed':'unavailable'}:{status:'available',ruleSetId:policy.ruleSetId,rules:policy};}
 ''')
 (app/'fixture-court.tsx').write_text('''"use client";
 import type {FreeThrowRoundControls} from '@/domain/arcade/free-throw';
 export function FreeThrowPractice({round}:{round?:FreeThrowRoundControls}){return <section aria-label="Synthetic input court"><p>UI fixture input bridge. Renderer unchanged and omitted here.</p>{round?<button disabled={round.blocked} onClick={()=>{if(round.beforeShot({direction:0,power:50})!==false)setTimeout(()=>round.onSettled?.(),20)}}>Take synthetic shot</button>:<p>Local practice. No ranked result is saved.</p>}</section>}
 ''')
-for route in ['competition','free-throw/runs','free-throw/scores','free-throw/results','free-throw/leaderboard']:
+for route in ['competition','free-throw/runs','free-throw/scores','free-throw/results','free-throw/leaderboard','nba/teams','nba/teams/[teamId]/roster']:
     path=app/'app/api/arcade'/route;path.mkdir(parents=True,exist_ok=True)
     method='POST' if route.endswith(('runs','scores')) else 'GET'
     (path/'route.ts').write_text("import {respond} from '"+str(app/'fixture-ranked')+"';\nexport async function "+method+"(request:Request){return respond(request);}\n")
