@@ -1,0 +1,83 @@
+{
+  "synthetic": true,
+  "cases": [
+    {
+      "width": 1440,
+      "rootText": 100,
+      "checks": [
+        "ready membership-only detail drives status/count; actual end-of-day microsecond instant and literal anchor prose visible",
+        "same-team RSC generation refresh preserves selected day/DOM focus; reloads under new opaque generation instead of old cache",
+        "generation refresh aborts old in-flight day request; delayed old detail cannot replace new detail",
+        "409 invalidates entire detail cache; cached-day reselection stays blocked; real Refresh action recovers same day and returns focus to timeline",
+        "known-empty roster zero/count0 remains distinct from gap unknown/null; no invented priced points",
+        "today inspection uses fixed envelope cutoff; reconciliation prose not treated as a transaction; expanded long evidence fits with focus/44px targets",
+        "detail one microsecond beyond envelope cutoff is rejected before display/cache"
+      ],
+      "geometry": {
+        "width": 1088,
+        "scroll": 1440,
+        "viewport": 1440,
+        "escapes": []
+      },
+      "focus": {
+        "active": true,
+        "outline": "3px",
+        "height": 128
+      },
+      "requests": 10,
+      "abortedRequests": 3
+    },
+    {
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "ready membership-only detail drives status/count; actual end-of-day microsecond instant and literal anchor prose visible",
+        "same-team RSC generation refresh preserves selected day/DOM focus; reloads under new opaque generation instead of old cache",
+        "generation refresh aborts old in-flight day request; delayed old detail cannot replace new detail",
+        "409 invalidates entire detail cache; cached-day reselection stays blocked; real Refresh action recovers same day and returns focus to timeline",
+        "known-empty roster zero/count0 remains distinct from gap unknown/null; no invented priced points",
+        "today inspection uses fixed envelope cutoff; reconciliation prose not treated as a transaction; expanded long evidence fits with focus/44px targets",
+        "detail one microsecond beyond envelope cutoff is rejected before display/cache"
+      ],
+      "geometry": {
+        "width": 256,
+        "scroll": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "focus": {
+        "active": true,
+        "outline": "3px",
+        "height": 128
+      },
+      "requests": 10,
+      "abortedRequests": 3
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "writes": [],
+  "failures": [],
+  "base": "61d67c4a4532a638bc2f75ba39bae6b5993ee0d8",
+  "sourceBlobs": {
+    "src/surfaces/season-hub/TeamValueHistory.tsx": "f6edb2909d958bc6d2f160731fc3bfe15b38086a",
+    "src/surfaces/season-hub/TeamValueHistoryDetail.tsx": "252f76f9a8b05bd31be9c405ef675cd66c743c85",
+    "src/surfaces/season-hub/TeamValueHistoryChart.tsx": "c0d73ee530eabc7e1e260365400cd89ae1959074",
+    "src/surfaces/season-hub/TeamValueHistoryClient.ts": "d330a8ddcf5c4bc2829d5bd3762dd2d903af8e90",
+    "src/surfaces/season-hub/TeamValueHistory.module.css": "6773314aef49d96dff6242903e553255aba0d9bf"
+  },
+  "agreement": "https://github.com/aidandaly24/goat-hoopers-site/issues/224#issuecomment-6312327589",
+  "heldOriginalTree": "0b82a50794a716ba0d76ecd1f5c57a80e57bb50c",
+  "heldPatchOnReleasedBaseTree": "03bbc9c6e9a1b1ac094916f3fdb812858a7c1ef1",
+  "checks": {
+    "focusedDetailTests": 10,
+    "typecheck": "PASS including generated production types",
+    "scopedLint": "PASS zero warnings",
+    "surfaceContracts": 104,
+    "fullApplicationBuild": "PASS default Next16.3.8 Turbopack, no application credentials/provider access",
+    "productionNextFixtureBuild": "PASS webpack"
+  },
+  "scope": "Synthetic agreed-contract DTOs and actual Next/RSC/client components. No actual Muse wiring/th2 parser, source acquisition, production or physical-device assertion.",
+  "reuse": "Unchanged chart, transport, stylesheet and prior broad layout/journey evidence retained. Only the new membership/refresh delta exercised. Focus check corrected from exactly2px to at least2px; actual3px.",
+  "captures": "Final captures retaken at scroll origin to keep sticky chrome out of full-page crops; product identities and functional result unchanged."
+}

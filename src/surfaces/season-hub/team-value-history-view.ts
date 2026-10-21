@@ -1,4 +1,20 @@
-import { historyPointComplete, shiftHistoryDay, type TeamHistoryPoint, type TeamHistoryRange, type TeamValueHistoryDetail } from "@/domain/team-value-history";
+import { historyPointComplete, shiftHistoryDay, type TeamHistoryDraftPick, type TeamHistoryPoint, type TeamHistoryRange, type TeamValueHistoryDetail } from "@/domain/team-value-history";
+
+/** The producer uses canonical Sleeper roster ids as team ids. Other valid
+ * presentation ids cannot establish selected-roster direction. */
+export function historyRosterId(teamId: string): number | null {
+  const id = Number(teamId);
+  return Number.isSafeInteger(id) && id > 0 && String(id) === teamId ? id : null;
+}
+
+/** Originating roster is provenance, never the current owner or a trade leg. */
+export function historyPickDirection(pick: TeamHistoryDraftPick, rosterId: number | null): "received" | "sent" | "unchanged" | "other" | "unresolved" {
+  if (rosterId === null) return "unresolved";
+  if (pick.ownerId === rosterId && pick.previousOwnerId === rosterId) return "unchanged";
+  if (pick.ownerId === rosterId) return "received";
+  if (pick.previousOwnerId === rosterId) return "sent";
+  return pick.ownerId !== null && pick.previousOwnerId !== null ? "other" : "unresolved";
+}
 
 export const historyDayCount = (range: TeamHistoryRange) =>
   Math.round((Date.parse(range.toExclusive + "T00:00:00Z") - Date.parse(range.from + "T00:00:00Z")) / 86400000);

@@ -1,54 +1,122 @@
-# Team history consumer browser fixture
+# Team history browser and coverage checks
 
-This is synthetic evidence for the consumer repair on #224. It is not a live
-league, provider, database, deployment or all-time-history completeness check.
+These are synthetic checks of the actual consumer and Next routes. They do not
+assert live league, account, provider, database or production behavior.
 
-The fixture copies the current homepage, root layout, ticker slots, catchall and
-history API route entrypoints. Source aliases compile the actual consumer and
-shared UI. Only data/session responders, the font loader and a small fixture
-navigation bar are substituted. Quote/move identities and amounts are synthetic.
-The fake trade intentionally contains a participant from another roster: v1's
-unscoped arrays must never be rendered as this team's received/sent assets.
+The current interaction is the chart: hover a value dot on desktop, tap the
+chart on mobile, or use its keyboard arrows, PageUp/PageDown and Home/End.
+Details are immediately beneath the graph. There is no calendar/date input.
+The default range begins at league inception. Timeline zoom controls retain
+that full range while allowing dense supported points to be inspected.
 
-Preparation writes to an output folder outside the checkout. Use the repository's
-Node version and installed dependencies, Python Playwright and Chromium; no
-package installation or application credentials are needed by these scripts.
+Prepare an isolated fixture with the locked dependencies and repository Node:
 
 ```sh
 python3 qa/team-value-history/prepare.py /tmp/goat-history-review
 python3 qa/team-value-history/serve.py /tmp/goat-history-review 4360
 # In a second terminal:
-python3 qa/team-value-history/browser.py /tmp/goat-history-review http://127.0.0.1:4360
+python3 qa/team-value-history/timeline-browser.py /tmp/goat-history-review http://127.0.0.1:4360
+npm test -- --config qa/team-value-history/coverage.config.mts
 ```
 
-The server starts production Next with a sanitized environment and the existing
-loopback-only network guard. The browser permits GET only, stubs avatar images,
-and blocks other external requests. Mutation handlers throw. The retained ESPN
-null adapter is used; no score provider is contacted. Local fonts use the existing
-QA font adapter. The real application's independent production build remains a
-separate check.
+The fixture compiles actual homepage, root layout, ticker, history routes,
+consumer and shared UI. Data/session responders, fonts and fixture navigation
+are substituted. Every history response passes the actual DTO validator. The
+server has no application credentials and uses the loopback-only network guard;
+the browser permits GET only, stubs avatar images and blocks other externals.
+It does not fetch a live provider or perform account/data mutations.
 
-The bounded matrix covers 320px/100%, 320px/200% (both themes), 390px/100%, and
-1440px/100%. It exercises default league bounds, every month, missing dates,
-pointer/day/week/Home/End controls, presets/custom dates, observation shortcuts,
-lazy selected/prior detail, source proof, roster membership changes, unknown
-trade-side pricing, retry/409/cancellation, geometry/44px targets/focus, and a
-minimal retained standings/ticker/navigation smoke. It does not duplicate the
-unchanged full route journey or regression suite. Pass a case name after the
-origin to rerun only a failed case; that produces a separate JSON receipt.
+The focused matrix covers 1440/100%, 390/100%, 320/100% and 320/200% root text.
+It checks no eager detail reads, graph/inspector adjacency, exact-dot hover/tap,
+keyboard inception/end/missing-day selection, supported player-value changes,
+scoped trade assets/picks and FAAB units, source disclosure/focus, 44px controls,
+containment, stale request cancellation, generation409 and retry. Text scaling
+means root font size, not page zoom. Captures and receipts identify synthetic
+evidence; exact source blobs are recorded with the review artifact.
 
-`review/` contains the final synthetic receipt and desktop/mobile captures. The
-receipt records source blob identities so the tested consumer can be compared
-with the PR head. Text scale means a 200% root font size, not browser page zoom.
+`coverage-proof.test.tsx` injects 14 and 40 quote days into the actual producer
+and renders the actual chart, proving no 14-day consumer/pagination limit. It
+uses the repository offline I/O guard and calculates no real historical prices.
 
-This PR is a partial repair. Full all-time prices, durable recorded retention,
-2025 move coverage, scoped trade assets/counterparties and supported attribution
-remain in Muse's producer/data lane. Missing dates are selectable, not fabricated
-quotes. Quote differences and entry/exit values are not prices paid in a trade.
+`move-terms-fixture.ts` is QA-local. It includes two-sided roster legs, pick
+owner/origin traps, missing/empty terms, long IDs, and whole/zero FAAB bids.
+`review/move-terms-*` and the older browser drivers retain evidence for the
+previous calendar-led interaction; use `timeline-browser.py` for this revision.
+Prior unchanged route/ticker journeys are reused, not a current full-site PASS.
 
-A separate baseline check on unchanged `40fccc4eab6846f741ac4eff21b599ed37081f2b`
-reproduced a routing limitation: home → account → browser Back → an unknown
-nested route renders the 404 while retaining the ticker. The repaired consumer
-has the same result. The browser driver records that observation separately;
-this PR makes no routing change or blanket route-scope PASS claim. The local
-explanation button focuses the inspector without adding a hash/history entry.
+For Muse's producer handoff, the offline source feasibility diagnostic reads
+saved public API responses without any network request:
+
+```sh
+python3 qa/team-value-history/replay-rosters.py /path/to/source-receipts
+```
+
+Its input names are listed in the script. It validates completed startup draft
+assignments and all 24 transaction weeks, applies each trade atomically, and
+compares exact final membership to the historical league roster response.
+This is a recovery proof, not a new application loader. It supplies neither
+historical quote prices nor permission to carry current values into the past.
+
+Full historical roster/price integration, supported dated model reconstruction,
+retention, and startup-draft presentation remain producer work. A selectable
+missing day alone does not complete the user's historical-data request.
+
+## Agreed membership / th2 consumer follow-through
+
+Use the synthetic membership fixture for the changed refresh/readout behavior:
+
+```sh
+python3 qa/team-value-history/prepare-membership.py /tmp/goat-membership-review
+python3 qa/team-value-history/serve.py /tmp/goat-membership-review 4386
+python3 qa/team-value-history/membership-browser.py /tmp/goat-membership-review http://127.0.0.1:4386
+```
+
+This uses actual Next RSC refresh and the actual consumer, with synthetic opaque
+th2 tokens and response DTOs validated by the existing domain validators. It
+implements no producer token parser, replay loader or live source wiring. The
+focused desktop and 320px/200% root-text cases cover retained selection/focus,
+new-view cache isolation, in-flight cancellation, 409 invalidation and the real
+Refresh control, known-unpriced/empty/unknown rosters, literal evidence prose,
+today's pinned inspection time and rejection of a detail one microsecond after
+that cutoff. Unchanged chart/transport/styles and their earlier layout matrix
+are reused, not claimed as a new full-site test. No physical-device/live-data
+claim follows from these fixtures. `review/membership-*` records the local check.
+
+## PR244 producer integration (local only)
+
+This fixture uses the actual merged history producer, summary/detail helpers,
+DTO validators and forward replay. Only its source dependencies are injected:
+the producer owner's miniature four-slot, two-season test world and explicitly
+synthetic quotes/names. It serves the actual signed-in homepage `/` and inspects
+the `Your roster.` history island; `/team` is not its entry point.
+
+```sh
+npm test -- --config qa/team-value-history/producer-integration.config.mts
+npm run typecheck
+npx eslint qa/team-value-history/integrated-producer-fixture.ts qa/team-value-history/producer-integration.test.tsx qa/team-value-history/producer-integration.config.mts
+python3 qa/team-value-history/prepare-integrated.py /tmp/goat-producer-integration
+python3 qa/team-value-history/serve.py /tmp/goat-producer-integration 4388
+# In a second terminal:
+python3 qa/team-value-history/integrated-browser.py /tmp/goat-producer-integration http://127.0.0.1:4388
+```
+
+The focused cases cover actual th2 generation/409 behavior and RSC refresh at
+the same cutoff, retained selected day/zoom/focus, hover/tap/keyboard selection,
+four known unpriced historical members versus a gap with unknown membership,
+today's pinned inspection time, and desktop/320px at 200% root text. Recorded
+quote microseconds are preserved; membership-only day-end instants use the
+producer's millisecond precision (`23:59:59.999Z`). The injected chain stays
+captured at the envelope cutoff while the child request's outer clock advances.
+This does not exercise default live-provider dependency acquisition, credentials
+or production. It adds no historical prices, inferred gap membership or durable
+retention.
+
+`review/integrated244-*` records this local integration against merge
+`26872621cec6cf29b9175cc3c8f845a463e0d78b`. The first three browser groups passed
+in both layouts before an incorrect QA-only timestamp expectation was corrected.
+The remaining membership/layout groups were run separately with
+`--membership-only`; its receipt links the earlier completed checks rather than
+claiming a single uninterrupted run. The 320px screenshot captures the first
+2400px of the history island; containment checks inspect the entire island.
+Earlier full consumer checks and the reviewed producer CI are reused; this is
+not a fresh full-suite, whole-site, authenticated-production or release PASS.

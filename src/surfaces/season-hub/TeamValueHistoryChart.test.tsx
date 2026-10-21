@@ -36,14 +36,14 @@ test("area tint is confined to complete recorded continuity, and never spans a m
   expect(renderToStaticMarkup(<TeamValueHistoryChart points={partial} range={source.requestedRange} selectedDay={partial[0].day} />)).not.toContain("data-history-area");
 });
 
-test("quiet markers retain every line vertex and the selected day without adding a trend", () => {
+test("every supported point remains visible for hover or tap without adding a trend", () => {
   const source = teamValueHistoryFixture();
   const points = source.points.filter(point => point.day >= "2026-10-14" && point.day <= "2026-10-16").map(point => ({ ...point, priceKind: "recorded" as const, priced: 3, subtotalCents: 30000 }));
   const html = renderToStaticMarkup(<TeamValueHistoryChart points={points} range={source.requestedRange} selectedDay="2026-10-14" />);
   const vertices = html.match(/<polyline[^>]*points="([^"]+)"/)![1].split(" ");
   expect(vertices).toHaveLength(3);
   expect(new Set(vertices.map(vertex => vertex.split(",")[1])).size).toBe(1);
-  expect(html.match(/data-history-point=/g)).toHaveLength(2);
+  expect(html.match(/data-history-point=/g)).toHaveLength(3);
   const selected = renderToStaticMarkup(<TeamValueHistoryChart points={points} range={source.requestedRange} selectedDay="2026-10-15" />);
   expect(selected.match(/data-history-point=/g)).toHaveLength(3);
 });

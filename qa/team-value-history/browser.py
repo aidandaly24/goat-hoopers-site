@@ -60,7 +60,7 @@ with sync_playwright() as p:
    if width==1440:shot(page,h.locator('[data-team-history-chart]'),'synthetic-chart-1440-100.webp')
    case['timelineFocus']=focus(timeline);timeline.press('Home')
    day=h.get_by_label('Inspect day · UTC',exact=True);assert day.input_value()=='2025-10-20'
-   h.locator('[data-history-detail]').wait_for();assert '0 of 3 players priced' in h.locator('[data-history-detail]').inner_text()
+   h.locator('[data-history-detail]').wait_for();assert '0 of unknown players priced' in h.locator('[data-history-detail]').inner_text()
    timeline.press('ArrowRight');assert day.input_value()=='2025-10-21'
    timeline.press('End');assert day.input_value()=='2026-10-20'
    timeline.press('PageUp');assert day.input_value()=='2026-10-13'
@@ -68,7 +68,7 @@ with sync_playwright() as p:
    timeline.click(position={'x':g['plot']['w']*.25,'y':g['plot']['h']*.5})
    assert day.input_value()=='2026-01-16',day.input_value()
    h.locator('[data-history-detail]').wait_for()
-   assert '0 of 3 players priced' in h.locator('[data-history-detail]').inner_text()
+   assert '0 of unknown players priced' in h.locator('[data-history-detail]').inner_text()
    case['checks'].append('inception/default all-time; missing day pointer/keyboard Home/End/day/week selection; no invented quote')
    month=h.get_by_label('Calendar month',exact=True);month.select_option('2026-10')
    b=h.locator('[data-history-day="2026-10-19"]');case['calendarFocus']=focus(b);b.press('Enter')
@@ -80,8 +80,9 @@ with sync_playwright() as p:
    assert '+$1.66' in detail.locator('[data-player-change]').first.inner_text()
    assert 'Joined this roster between the two observations' in detail.inner_text()
    assert 'Left this roster between observations' in detail.inner_text()
-   assert 'Other roster participant' in detail.inner_text()
-   assert 'historical trade net are unavailable' in detail.inner_text()
+   assert 'Other roster participant' not in detail.locator('[data-move-received]').first.inner_text()
+   assert 'Other declared participants: Roster 2, Roster 3' in detail.inner_text()
+   assert 'Historical trade net unavailable' in detail.inner_text()
    assert 'Assets in' not in detail.inner_text() and 'Assets out' not in detail.inner_text()
    proof=detail.get_by_text('Price source',exact=True).first;focus(proof);proof.press('Enter')
    assert 'synthetic-quote-2026-10-19-0' in detail.inner_text()

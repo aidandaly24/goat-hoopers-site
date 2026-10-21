@@ -1,0 +1,370 @@
+{
+  "synthetic": true,
+  "cases": [
+    {
+      "width": 1440,
+      "rootText": 100,
+      "checks": [
+        "inception default, chart immediately followed by inspector, no calendar/date controls, no eager detail reads",
+        "mouse hover on value dot selects exact day without click",
+        "matching value/player changes and roster-scoped trade legs, picks, source units; keyboard day selection/focus",
+        "keyboard inception/end and missing day, sourced historical terms, missing-versus-empty fields, source disclosure/focus; no fabricated value"
+      ],
+      "allTimeGeometry": {
+        "root": {
+          "left": 176,
+          "right": 1264,
+          "width": 1088,
+          "height": 592.703125
+        },
+        "pageWidth": 1440,
+        "scroll": 1440,
+        "escapes": []
+      },
+      "detailGeometry": {
+        "root": {
+          "left": 176,
+          "right": 1264,
+          "width": 1088,
+          "height": 2996.390625
+        },
+        "pageWidth": 1440,
+        "scroll": 1440,
+        "escapes": []
+      },
+      "timelineFocus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 128
+      },
+      "sourceFocus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 45
+      },
+      "historicalGeometry": {
+        "root": {
+          "left": 176,
+          "right": 1264,
+          "width": 1088,
+          "height": 2403.546875
+        },
+        "pageWidth": 1440,
+        "scroll": 1440,
+        "escapes": []
+      },
+      "targetHeights": [
+        {
+          "text": "Since inception",
+          "height": 44
+        },
+        {
+          "text": "Last 30 days",
+          "height": 44
+        },
+        {
+          "text": "Zoom to values",
+          "height": 44
+        },
+        {
+          "text": "Move source",
+          "height": 45
+        },
+        {
+          "text": "Nearby moves or timing unknown (1)",
+          "height": 45
+        },
+        {
+          "text": "Roster evidence",
+          "height": 45
+        },
+        {
+          "text": "Sources and coverage",
+          "height": 45
+        }
+      ],
+      "detailRequests": 6
+    },
+    {
+      "width": 390,
+      "rootText": 100,
+      "checks": [
+        "inception default, chart immediately followed by inspector, no calendar/date controls, no eager detail reads",
+        "touch on value dot selects exact day",
+        "matching value/player changes and roster-scoped trade legs, picks, source units; keyboard day selection/focus",
+        "keyboard inception/end and missing day, sourced historical terms, missing-versus-empty fields, source disclosure/focus; no fabricated value"
+      ],
+      "allTimeGeometry": {
+        "root": {
+          "left": 16,
+          "right": 374,
+          "width": 358,
+          "height": 576.75
+        },
+        "pageWidth": 390,
+        "scroll": 390,
+        "escapes": []
+      },
+      "detailGeometry": {
+        "root": {
+          "left": 16,
+          "right": 374,
+          "width": 358,
+          "height": 3511.4375
+        },
+        "pageWidth": 390,
+        "scroll": 390,
+        "escapes": []
+      },
+      "timelineFocus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 64.4375
+      },
+      "sourceFocus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 45
+      },
+      "historicalGeometry": {
+        "root": {
+          "left": 16,
+          "right": 374,
+          "width": 358,
+          "height": 2907.59375
+        },
+        "pageWidth": 390,
+        "scroll": 390,
+        "escapes": []
+      },
+      "targetHeights": [
+        {
+          "text": "Since inception",
+          "height": 44
+        },
+        {
+          "text": "Last 30 days",
+          "height": 44
+        },
+        {
+          "text": "Zoom to values",
+          "height": 44
+        },
+        {
+          "text": "Move source",
+          "height": 45
+        },
+        {
+          "text": "Nearby moves or timing unknown (1)",
+          "height": 45
+        },
+        {
+          "text": "Roster evidence",
+          "height": 45
+        },
+        {
+          "text": "Sources and coverage",
+          "height": 45
+        }
+      ],
+      "detailRequests": 6
+    },
+    {
+      "width": 320,
+      "rootText": 100,
+      "checks": [
+        "inception default, chart immediately followed by inspector, no calendar/date controls, no eager detail reads",
+        "touch on value dot selects exact day",
+        "matching value/player changes and roster-scoped trade legs, picks, source units; keyboard day selection/focus",
+        "keyboard inception/end and missing day, sourced historical terms, missing-versus-empty fields, source disclosure/focus; no fabricated value"
+      ],
+      "allTimeGeometry": {
+        "root": {
+          "left": 16,
+          "right": 304,
+          "width": 288,
+          "height": 672.3125
+        },
+        "pageWidth": 320,
+        "scroll": 320,
+        "escapes": []
+      },
+      "detailGeometry": {
+        "root": {
+          "left": 16,
+          "right": 304,
+          "width": 288,
+          "height": 3949
+        },
+        "pageWidth": 320,
+        "scroll": 320,
+        "escapes": []
+      },
+      "timelineFocus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 64
+      },
+      "sourceFocus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 45
+      },
+      "historicalGeometry": {
+        "root": {
+          "left": 16,
+          "right": 304,
+          "width": 288,
+          "height": 3210.65625
+        },
+        "pageWidth": 320,
+        "scroll": 320,
+        "escapes": []
+      },
+      "targetHeights": [
+        {
+          "text": "Since inception",
+          "height": 44
+        },
+        {
+          "text": "Last 30 days",
+          "height": 44
+        },
+        {
+          "text": "Zoom to values",
+          "height": 44
+        },
+        {
+          "text": "Move source",
+          "height": 45
+        },
+        {
+          "text": "Nearby moves or timing unknown (1)",
+          "height": 45
+        },
+        {
+          "text": "Roster evidence",
+          "height": 45
+        },
+        {
+          "text": "Sources and coverage",
+          "height": 45
+        }
+      ],
+      "detailRequests": 6
+    },
+    {
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "inception default, chart immediately followed by inspector, no calendar/date controls, no eager detail reads",
+        "touch on value dot selects exact day",
+        "matching value/player changes and roster-scoped trade legs, picks, source units; keyboard day selection/focus",
+        "keyboard inception/end and missing day, sourced historical terms, missing-versus-empty fields, source disclosure/focus; no fabricated value",
+        "rapid selection cancels stale detail; generation409 clears detail; unavailable read retries successfully"
+      ],
+      "allTimeGeometry": {
+        "root": {
+          "left": 32,
+          "right": 288,
+          "width": 256,
+          "height": 2016.171875
+        },
+        "pageWidth": 320,
+        "scroll": 320,
+        "escapes": []
+      },
+      "detailGeometry": {
+        "root": {
+          "left": 32,
+          "right": 288,
+          "width": 256,
+          "height": 13347.40625
+        },
+        "pageWidth": 320,
+        "scroll": 320,
+        "escapes": []
+      },
+      "timelineFocus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 128
+      },
+      "sourceFocus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 90
+      },
+      "historicalGeometry": {
+        "root": {
+          "left": 32,
+          "right": 288,
+          "width": 256,
+          "height": 11315.796875
+        },
+        "pageWidth": 320,
+        "scroll": 320,
+        "escapes": []
+      },
+      "targetHeights": [
+        {
+          "text": "Since inception",
+          "height": 68
+        },
+        {
+          "text": "Last 30 days",
+          "height": 68
+        },
+        {
+          "text": "Zoom to values",
+          "height": 68
+        },
+        {
+          "text": "Move source",
+          "height": 90
+        },
+        {
+          "text": "Nearby moves or timing unknown (1)",
+          "height": 174
+        },
+        {
+          "text": "Roster evidence",
+          "height": 90
+        },
+        {
+          "text": "Sources and coverage",
+          "height": 132
+        }
+      ],
+      "detailRequests": 11
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "external": [],
+  "failures": [],
+  "base": "3d13c9660e463affd34d2b4e727ffbf78728461c",
+  "sourceBlobs": {
+    "src/surfaces/season-hub/TeamValueHistory.tsx": "28f1aef3d66bcef3ada2e1afa79b0645a554f1e6",
+    "src/surfaces/season-hub/TeamValueHistoryChart.tsx": "c0d73ee530eabc7e1e260365400cd89ae1959074",
+    "src/surfaces/season-hub/TeamValueHistoryDetail.tsx": "b22f50f5bd52c9bea2b90853d85588c78fb60cd9",
+    "src/surfaces/season-hub/TeamValueHistory.module.css": "6773314aef49d96dff6242903e553255aba0d9bf",
+    "src/surfaces/season-hub/TeamValueHistoryClient.ts": "d330a8ddcf5c4bc2829d5bd3762dd2d903af8e90",
+    "src/surfaces/season-hub/team-value-history-view.ts": "6496873a17eda91bb3646ec0b7500551753820ac"
+  },
+  "receiptNote": "Source identities appended after successful final-layout run; product files unchanged since fixture build. Driver now records these on subsequent runs.",
+  "mainAdvance": {
+    "sha": "478f343acc943303366117abc519b3f49858ba91",
+    "sourceDelta": "WeekTwoDraft.tsx/module CSS only; history and shell disjoint, verified GitHub merge diff",
+    "testedBase": "3d13c9660e463affd34d2b4e727ffbf78728461c",
+    "notClaimed": "Full combined-tree build or PR241 journey retest"
+  }
+}

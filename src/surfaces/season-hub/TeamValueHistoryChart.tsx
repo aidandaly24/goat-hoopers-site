@@ -5,7 +5,7 @@ import styles from "./TeamValueHistory.module.css";
 const money = (cents: number) => "$" + (cents / 100).toLocaleString("en-US", { maximumFractionDigits: 2 });
 const date = (day: string) => new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(day + "T00:00:00Z"));
 const kind = (point: TeamHistoryPoint) => (point.priceKind === "recorded" ? styles.recorded
-  : point.priceKind === "reconstructed" ? styles.reconstructed : styles.mixed) + (historyPointComplete(point) ? "" : " " + styles.partial);
+  : point.priceKind === "reconstructed" ? styles.reconstructed : point.priceKind === "mixed" ? styles.mixed : styles.partial) + (historyPointComplete(point) ? "" : " " + styles.partial);
 
 /** Private client-subtree view. The entire calendar, including gaps, is selectable. */
 export function TeamValueHistoryChart({ points, range, selectedDay, onSelectDay }: {
@@ -22,24 +22,38 @@ export function TeamValueHistoryChart({ points, range, selectedDay, onSelectDay 
   const segments = historySegments(points);
   const largest = new Set(historyLargestChanges(historyValueChanges(points)).map(change => change.day));
   const selected = points.find(point => point.day === selectedDay);
+  function selectAt(event: { clientX: number; clientY: number; currentTarget: HTMLDivElement }) {
+    if (!onSelectDay) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const px = event.clientX - bounds.left, py = event.clientY - bounds.top;
+    let nearest: TeamHistoryPoint | undefined, distance = Infinity;
+    for (const point of points) {
+      if (point.subtotalCents === null) continue;
+      const delta = Math.hypot(x(point.day) / 600 * bounds.width - px, y(point.subtotalCents) / 184 * bounds.height - py);
+      if (delta < distance) { nearest = point; distance = delta; }
+    }
+    onSelectDay(nearest && distance <= 16 ? nearest.day : historyDayAtPosition(range, (px / bounds.width * 600 - 8) / 584));
+  }
   return <figure className={styles.figure} data-team-history-chart>
     <figcaption className={styles.legend}>
-      <span><i className={styles.recorded} />Recorded model</span>
-      <span><i className={styles.reconstructed} />Reconstructed</span>
+      <span><i className={styles.recorded} />Observed quote</span>
+      <span><i className={styles.reconstructed} />Reconstructed model</span>
       <span><i className={styles.partial} />Partial subtotal</span>
-      <span><i className={styles.gapKey} />No loaded value</span>
+      <span><i className={styles.gapKey} />No value</span>
       {points.some(point => point.priceKind === "mixed") && <span><i className={styles.mixed} />Mixed sources</span>}
     </figcaption>
     <div className={styles.plot}>
       <div className={styles.yAxis} aria-hidden="true"><span>{values.length ? money(max) : "FAAB"}</span><span>{values.length ? money(min) : "—"}</span></div>
       <div className={styles.plotCanvas} data-history-timeline role={onSelectDay ? "slider" : undefined}
-        tabIndex={onSelectDay ? 0 : undefined} aria-label={onSelectDay ? "Select a history day" : undefined}
+        tabIndex={onSelectDay ? 0 : undefined} aria-label={onSelectDay ? "Team value timeline" : undefined}
         aria-valuemin={onSelectDay ? 0 : undefined} aria-valuemax={onSelectDay ? days - 1 : undefined}
         aria-valuenow={onSelectDay ? selectedIndex : undefined}
         aria-valuetext={onSelectDay ? date(selectedDay) + " UTC, " + (selected?.subtotalCents != null ? money(selected.subtotalCents) + " " + selected.priceKind : "valuation unavailable") : undefined}
+        onFocus={onSelectDay ? () => onSelectDay(selectedDay) : undefined}
+        onPointerMove={onSelectDay ? event => { if (event.pointerType === "mouse") selectAt(event); } : undefined}
         onClick={onSelectDay ? event => {
-          const bounds = event.currentTarget.getBoundingClientRect();
-          onSelectDay(historyDayAtPosition(range, ((event.clientX - bounds.left) / bounds.width * 600 - 8) / 584));
+          const target = (event.target as Element).closest<SVGElement>("[data-history-day]");
+          if (target?.dataset.historyDay) onSelectDay(target.dataset.historyDay); else selectAt(event);
         } : undefined}
         onKeyDown={onSelectDay ? event => {
           const amounts: Record<string, number> = { ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1, PageUp: -7, PageDown: 7 };
@@ -62,20 +76,19 @@ export function TeamValueHistoryChart({ points, range, selectedDay, onSelectDay 
               points={x(segment[0].day) + ",168 " + segment.map(point => x(point.day) + "," + y(point.subtotalCents!)).join(" ") + " " + x(segment.at(-1)!.day) + ",168"} />}
             {segment.length > 1 && segment[0].priceKind !== "unavailable" && <polyline fill="none" vectorEffect="non-scaling-stroke"
               points={segment.map(point => x(point.day) + "," + y(point.subtotalCents!)).join(" ")} />}
-            {segment.map((point, index) => {
+            {segment.map(point => {
               const important = largest.has(point.day);
-              if (segment.length > 2 && index !== 0 && index !== segment.length - 1 && point.day !== selectedDay && !important) return null;
               const title = date(point.day) + ": " + money(point.subtotalCents!) + " · " + point.priceKind + " · " + point.priced + "/" + point.rosterCount + " priced";
-              return historyPointComplete(point) ? <circle key={point.id} cx={x(point.day)} cy={y(point.subtotalCents!)} r={point.day === selectedDay ? 4 : important ? 3.5 : segment.length === 1 ? 2.5 : 1.5}
-                vectorEffect="non-scaling-stroke" data-history-point={point.id} data-history-change={important ? point.day : undefined}><title>{title}</title></circle>
+              return historyPointComplete(point) ? <circle key={point.id} cx={x(point.day)} cy={y(point.subtotalCents!)} r={point.day === selectedDay ? 4 : important ? 3.5 : 2.5}
+                vectorEffect="non-scaling-stroke" data-history-point={point.id} data-history-day={point.day} data-history-change={important ? point.day : undefined}><title>{title}</title></circle>
                 : <rect key={point.id} x={x(point.day) - 2.5} y={y(point.subtotalCents!) - 2.5} width="5" height="5" className={styles.partial}
-                  vectorEffect="non-scaling-stroke" data-history-point={point.id}><title>{title}</title></rect>;
+                  vectorEffect="non-scaling-stroke" data-history-point={point.id} data-history-day={point.day}><title>{title}</title></rect>;
             })}
           </g>)}
         </svg>
       </div>
     </div>
     <div className={styles.xAxis}><span>{date(range.from)}</span><span>{date(shiftHistoryDay(range.toExclusive, -1))}</span></div>
-    <p className={styles.caption}>{values.length} of {days} days have a supported valuation. {onSelectDay ? "Select the timeline or a calendar day to inspect it. Arrow keys move one day; Page Up/Down one week." : "Unpriced days remain visible."}</p>
+    <p className={styles.caption}>{onSelectDay ? "Hover or tap for details. Keyboard arrows change day; Home/End select range edges." : `${values.length} observed or reconstructed values.`}</p>
   </figure>;
 }
