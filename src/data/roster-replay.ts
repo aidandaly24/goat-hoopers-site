@@ -40,9 +40,16 @@
  * Source admission is bounded and proven, not assumed:
  *
  * - A draft receipt must prove it is complete before it anchors a
- *   segment or derives the boundary: pick numbers form the
- *   contiguous sequence 1..N and the (round, slot) cells form the
- *   full grid — every round carries the same slot set. A missing,
+ *   segment or derives the boundary, and its dimensions are proven
+ *   against an independent witness — the draft object's own declared
+ *   metadata (`settings.rounds`, `settings.teams`, and the
+ *   `draft_order` slot set) — never inferred from the picks
+ *   themselves: a receipt truncated at a whole round is a smaller
+ *   self-consistent grid and would prove itself. Against that
+ *   witness the receipt must be exact: pick numbers form the
+ *   contiguous sequence 1..N, N equals declared rounds × slots, and
+ *   every declared round carries exactly the declared slot set.
+ *   Missing draft metadata rejects the load too. A missing,
  *   truncated, or gapped receipt rejects the load: inversion and
  *   replay consume the same draft, so neither can detect an omission
  *   the receipt itself does not rule out, and an omitted pick would
@@ -402,7 +409,46 @@ async function defaultSeasonTwoWeeks(): Promise<number[]> {
   return weeks;
 }
 
-function completedDraft(drafts: RawDraft[], leagueId: string): { draft: RawDraft; completedMs: number } {
+/**
+ * The grid a complete draft must fill, derived from the draft
+ * object's own declared metadata — the independent witness a pick
+ * receipt is proven against. Nothing here reads the picks: the
+ * round count is the draft's configured `settings.rounds`, and the
+ * slot set is the `draft_order` the draft itself declares, cross-
+ * checked against `settings.teams`. Absent or unreadable metadata
+ * rejects: an unwitnessed receipt proves nothing.
+ */
+export type DraftGridExpectation = {
+  /** Rounds the draft was configured to run (`settings.rounds`). */
+  rounds: number;
+  /** Draft slots the draft order declares, ascending. */
+  slots: number[];
+};
+
+function draftGridExpectation(draft: RawDraft): DraftGridExpectation {
+  const fail = (reason: string): RosterReplayError =>
+    new RosterReplayError(`Draft ${draft.draft_id} declares no proven grid: ${reason}`);
+  const settings = draft.settings;
+  if (!settings || typeof settings !== "object") throw fail("its settings are absent");
+  const { rounds, teams } = settings;
+  if (!Number.isSafeInteger(rounds) || (rounds as number) < 1) throw fail("settings.rounds is unreadable");
+  if (!Number.isSafeInteger(teams) || (teams as number) < 1) throw fail("settings.teams is unreadable");
+  const order = draft.draft_order;
+  if (!order || typeof order !== "object" || Array.isArray(order)) throw fail("its draft order is absent");
+  const slots = Object.values(order);
+  if (slots.length !== teams) {
+    throw fail(`its draft order names ${slots.length} slots for ${teams} declared teams`);
+  }
+  if (!slots.every(slot => Number.isSafeInteger(slot) && slot >= 1)) {
+    throw fail("its draft order carries an unreadable slot");
+  }
+  if (new Set(slots).size !== slots.length) throw fail("its draft order repeats a slot");
+  return { rounds: rounds as number, slots: [...slots].sort((a, b) => a - b) };
+}
+
+function completedDraft(drafts: RawDraft[], leagueId: string): {
+  draft: RawDraft; completedMs: number; grid: DraftGridExpectation;
+} {
   const completed = drafts.filter(entry => entry.status === "complete");
   if (completed.length !== 1) {
     throw new RosterReplayError(`League ${leagueId} must carry exactly one completed draft; found ${completed.length}`);
@@ -411,21 +457,26 @@ function completedDraft(drafts: RawDraft[], leagueId: string): { draft: RawDraft
   if (typeof draft.last_picked !== "number" || !Number.isFinite(draft.last_picked)) {
     throw new RosterReplayError(`Completed draft ${draft.draft_id} carries no completion instant`);
   }
-  return { draft, completedMs: draft.last_picked };
+  return { draft, completedMs: draft.last_picked, grid: draftGridExpectation(draft) };
 }
 
 /**
  * Prove a draft receipt complete before anything derives from it.
  * The receipt is the only evidence of the draft's assignments —
  * inversion and replay both consume it, so an omission neither can
- * detect must be ruled out by the receipt's own structure: pick
- * numbers are exactly 1..N with no gaps or repeats, and the
- * (round, draft_slot) cells form the full grid — rounds run 1..max
- * with none missing and every round carries the same slot set. A
- * completed draft has made every pick; anything less is a missing,
- * truncated, or unproven receipt and rejects the load.
+ * detect must be ruled out structurally. The grid it must fill is
+ * NOT inferred from the picks: a receipt truncated at a whole round
+ * is a smaller, self-consistent grid and would prove itself, its
+ * omitted players resurfacing as backdated boundary additions.
+ * The dimensions come from the independent witness in `expected`
+ * (the draft's own declared settings and draft order): pick numbers
+ * are exactly 1..N with no gaps or repeats, N is exactly declared
+ * rounds × declared slots, and every declared round carries exactly
+ * the declared slot set. A completed draft has made every pick;
+ * anything less — or anything more — is a missing, truncated, or
+ * unproven receipt and rejects the load.
  */
-function validateDraftReceipt(picks: RawDraftPick[], draftId: string): void {
+function validateDraftReceipt(picks: RawDraftPick[], draftId: string, expected: DraftGridExpectation): void {
   if (!Array.isArray(picks) || picks.length === 0) {
     throw new RosterReplayError(`Draft ${draftId} carries no draft-pick receipt`);
   }
@@ -459,22 +510,35 @@ function validateDraftReceipt(picks: RawDraftPick[], draftId: string): void {
       throw new RosterReplayError(`Draft ${draftId} receipt is incomplete: pick number ${pickNo} is missing`);
     }
   }
+  // The dimensions are the witness's, not the receipt's: the count,
+  // the round range, and every round's slot set must match the grid
+  // the draft itself declared, exactly.
+  const declaredSlots = new Set(expected.slots);
+  if (picks.length !== expected.rounds * expected.slots.length) {
+    throw new RosterReplayError(
+      `Draft ${draftId} receipt is incomplete: ${picks.length} picks against the draft's declared `
+      + `${expected.rounds} rounds × ${expected.slots.length} slots`);
+  }
   const rounds = [...slotsByRound.keys()].sort((a, b) => a - b);
-  const slotSet = slotsByRound.get(rounds[0])!;
-  for (let round = 1; round <= rounds.length; round++) {
+  if (rounds.length !== expected.rounds) {
+    throw new RosterReplayError(
+      `Draft ${draftId} receipt is incomplete: it covers ${rounds.length} rounds `
+      + `against the draft's declared ${expected.rounds}`);
+  }
+  for (let round = 1; round <= expected.rounds; round++) {
     const slots = slotsByRound.get(round);
     if (!slots) {
       throw new RosterReplayError(`Draft ${draftId} receipt is incomplete: round ${round} is missing`);
     }
-    if (slots.size !== slotSet.size || [...slots].some(slot => !slotSet.has(slot))) {
+    if (slots.size !== declaredSlots.size || [...slots].some(slot => !declaredSlots.has(slot))) {
       throw new RosterReplayError(
-        `Draft ${draftId} receipt is incomplete: round ${round} does not carry every draft slot`);
+        `Draft ${draftId} receipt is incomplete: round ${round} does not carry the declared draft slots`);
     }
   }
 }
 
-function draftAssignments(picks: RawDraftPick[], draftId: string): Map<number, string[]> {
-  validateDraftReceipt(picks, draftId);
+function draftAssignments(picks: RawDraftPick[], draftId: string, expected: DraftGridExpectation): Map<number, string[]> {
+  validateDraftReceipt(picks, draftId, expected);
   const rosters = new Map<number, string[]>();
   const seen = new Set<string>();
   for (const pick of picks) {
@@ -619,7 +683,7 @@ export async function loadChainRosterReplay(deps: RosterReplayDeps = {}): Promis
   if (!Number.isFinite(asOfMs)) throw new RosterReplayError("The as-of cutoff is not a finite instant");
 
   /* Season one: draft anchor, forward replay, verified final. */
-  const { draft: draftOne, completedMs: draftOneMs } =
+  const { draft: draftOne, completedMs: draftOneMs, grid: gridOne } =
     completedDraft(await fetchDrafts(SEASON_ONE_LEAGUE_ID), SEASON_ONE_LEAGUE_ID);
   if (draftOneMs > asOfMs) {
     throw new RosterReplayError(`League ${SEASON_ONE_LEAGUE_ID} draft completes after the as-of cutoff`);
@@ -629,7 +693,7 @@ export async function loadChainRosterReplay(deps: RosterReplayDeps = {}): Promis
     fetchMoves(SEASON_ONE_LEAGUE_ID, SEASON_ONE_WEEKS),
     fetchRostersDep(SEASON_ONE_LEAGUE_ID),
   ]);
-  const anchorOne = draftAssignments(picksOne, draftOne.draft_id);
+  const anchorOne = draftAssignments(picksOne, draftOne.draft_id, gridOne);
   const timelineOne = buildRosterTimeline({
     anchorAtMs: draftOneMs, anchorRosters: anchorOne,
     moves: admitFeedMoves(movesOne, SEASON_ONE_LEAGUE_ID, asOfMs),
@@ -638,7 +702,7 @@ export async function loadChainRosterReplay(deps: RosterReplayDeps = {}): Promis
   assertRostersEqual(timelineOne.finalRosters(), observedOne, "Season-one replay does not reproduce Sleeper's final 2025 rosters");
 
   /* Season two: derive the boundary, replay forward, verify current. */
-  const { draft: draftTwo, completedMs: draftTwoMs } =
+  const { draft: draftTwo, completedMs: draftTwoMs, grid: gridTwo } =
     completedDraft(await fetchDrafts(LEAGUE_ID), LEAGUE_ID);
   if (draftTwoMs > asOfMs) {
     throw new RosterReplayError(`League ${LEAGUE_ID} draft completes after the as-of cutoff`);
@@ -653,7 +717,7 @@ export async function loadChainRosterReplay(deps: RosterReplayDeps = {}): Promis
   // boundary derivation consumes these assignments, and an omitted
   // pick would otherwise pass through it silently into backdated
   // boundary membership.
-  const assignmentsTwo = draftAssignments(picksTwo, draftTwo.draft_id);
+  const assignmentsTwo = draftAssignments(picksTwo, draftTwo.draft_id, gridTwo);
   const draftEventTwo: RosterDraftEvent = {
     draftId: draftTwo.draft_id, effectiveMs: draftTwoMs,
     adds: [...assignmentsTwo.entries()].flatMap(([rosterId, players]) =>

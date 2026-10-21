@@ -143,6 +143,15 @@ export type RawDraft = {
   start_time?: number;
   /** Unix ms the final pick was made; the draft's completion instant. */
   last_picked?: number;
+  /**
+   * The draft's own declared dimensions, independent of its pick
+   * receipt: how many rounds it ran and how many teams drafted.
+   * Consumers proving a receipt complete measure it against these,
+   * never against the picks themselves.
+   */
+  settings?: { rounds?: number; teams?: number };
+  /** user_id → draft slot, as declared on the draft itself. */
+  draft_order?: Record<string, number>;
 };
 
 export type RawDraftPick = {

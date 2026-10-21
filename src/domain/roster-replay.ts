@@ -44,8 +44,10 @@
  *   any instant past the loader's as-of observation instant: an
  *   end-of-day is claimed only for a day the cutoff has fully
  *   covered, and draft receipts must prove complete (contiguous
- *   pick numbers, the full rounds×slots grid) before they anchor
- *   or derive anything.
+ *   pick numbers, and the full rounds×slots grid measured against
+ *   the draft's own declared metadata — its settings and draft
+ *   order, never inferred from the picks themselves) before they
+ *   anchor or derive anything.
  *
  * Team identity follows the roster SLOT, not the owner: slot 8 was
  * another owner's team in 2025 and is NeuralNets in 2026; the replay

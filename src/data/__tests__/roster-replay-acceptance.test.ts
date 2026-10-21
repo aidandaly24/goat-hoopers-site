@@ -21,7 +21,10 @@
  *
  * The loader-integrity describe at the bottom pins the dot's PR #243
  * review probes against these same fixtures: draft-receipt
- * completeness, as-of admission, and duplicate transaction records.
+ * completeness, as-of admission, and duplicate transaction records —
+ * and, from the re-review, receipt dimensions proven against the
+ * draft's own declared metadata (settings + draft order), never
+ * inferred from the picks, so whole-round truncations reject too.
  */
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -47,6 +50,8 @@ const manifest = readJson("manifest.json") as {
 type FixtureDraft = {
   draft_id: string; season: string; status: string; type: string;
   start_time: number; last_picked: number;
+  settings: { rounds: number; teams: number };
+  draft_order: Record<string, number>;
 };
 type FixturePick = { pick_no: number; round: number; draft_slot: number; roster_id: number; player_id: string };
 type FixtureRoster = { roster_id: number; owner_id: string; players: string[] };
@@ -78,6 +83,7 @@ function fixtureDeps(): RosterReplayDeps {
       return [{
         draft_id: draft.draft_id, season: draft.season, status: draft.status,
         type: draft.type, start_time: draft.start_time, last_picked: draft.last_picked,
+        settings: draft.settings, draft_order: draft.draft_order,
       } satisfies RawDraft];
     },
     fetchDraftPicks: async draftId => picks[draftId].map(pick => ({
@@ -274,6 +280,17 @@ describe("loader source integrity — the dot's PR #243 review probes", () => {
     };
   };
 
+  const draftsOverride = (
+    leagueId: string, map: (draft: RawDraft) => RawDraft,
+  ): RosterReplayDeps => {
+    const base = fixtureDeps();
+    return {
+      ...base,
+      fetchDrafts: async id => (id === leagueId
+        ? (await base.fetchDrafts!(id)).map(map) : base.fetchDrafts!(id)),
+    };
+  };
+
   const movesOverride = (rows: RawTransaction[]): RosterReplayDeps => {
     const base = fixtureDeps();
     return {
@@ -306,6 +323,62 @@ describe("loader source integrity — the dot's PR #243 review probes", () => {
     await expect(loadChainRosterReplay(
       picksOverride(DRAFT_TWO_ID, picks => picks.filter(pick => pick.pick_no !== 30)),
     )).rejects.toThrow(RosterReplayError);
+  });
+
+  // The re-review's probes: a receipt truncated at a WHOLE round is
+  // a smaller self-consistent grid, so dimensions inferred from the
+  // picks prove it complete and its omitted players resurface as
+  // boundary additions on 2026-08-13. The dimensions must come from
+  // the draft's own declared metadata instead.
+  it("rejects a 2026 draft receipt truncated at a whole round (pick_no ≤ 20)", async () => {
+    const base = fixtureDeps();
+    const all = await base.fetchDraftPicks!(DRAFT_TWO_ID);
+    // The dot's repro: pick 21 is player 4867 — under the truncated
+    // receipt it appears on 2026-08-13 instead of at the draft.
+    expect(all.find(pick => pick.pick_no === 21)?.player_id).toBe("4867");
+    await expect(loadChainRosterReplay(
+      picksOverride(DRAFT_TWO_ID, picks => picks.filter(pick => pick.pick_no <= 20)),
+    )).rejects.toThrow(RosterReplayError);
+  });
+
+  it("rejects a 2026 draft receipt truncated to a single round (pick_no ≤ 10)", async () => {
+    await expect(loadChainRosterReplay(
+      picksOverride(DRAFT_TWO_ID, picks => picks.filter(pick => pick.pick_no <= 10)),
+    )).rejects.toThrow(RosterReplayError);
+  });
+
+  it("rejects a 2026 draft receipt truncated mid-grid (pick_no ≤ 5)", async () => {
+    await expect(loadChainRosterReplay(
+      picksOverride(DRAFT_TWO_ID, picks => picks.filter(pick => pick.pick_no <= 5)),
+    )).rejects.toThrow(RosterReplayError);
+  });
+
+  it("rejects a 2025 draft receipt truncated at a whole round (rounds 1–19 of 20)", async () => {
+    await expect(loadChainRosterReplay(
+      picksOverride(DRAFT_ONE_ID, picks => picks.filter(pick => pick.round <= 19)),
+    )).rejects.toThrow(RosterReplayError);
+  });
+
+  it("rejects the full 2026 receipt when the draft metadata understates its rounds", async () => {
+    // The witness is actually consulted: full picks against a draft
+    // declaring 2 rounds is a contradiction, not a 3-round receipt.
+    await expect(loadChainRosterReplay(draftsOverride(LEAGUE_ID, draft => ({
+      ...draft, settings: { ...draft.settings, rounds: 2 },
+    })))).rejects.toThrow(RosterReplayError);
+  });
+
+  it("rejects when the draft order names fewer slots than the declared teams", async () => {
+    await expect(loadChainRosterReplay(draftsOverride(LEAGUE_ID, draft => {
+      const order = { ...draft.draft_order };
+      delete order[Object.keys(order)[0]];
+      return { ...draft, draft_order: order };
+    }))).rejects.toThrow(RosterReplayError);
+  });
+
+  it("rejects a draft carrying no declared grid metadata at all", async () => {
+    await expect(loadChainRosterReplay(draftsOverride(LEAGUE_ID, draft => ({
+      ...draft, settings: undefined, draft_order: undefined,
+    })))).rejects.toThrow(RosterReplayError);
   });
 
   it("asserts no membership beyond the as-of observation instant", async () => {

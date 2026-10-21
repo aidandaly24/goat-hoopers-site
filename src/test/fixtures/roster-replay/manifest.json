@@ -1,5 +1,5 @@
 {
- "description": "Captured Sleeper receipts for the roster-replay ground-truth acceptance tests (#224/#217). Each fixture is a field projection of the raw response (only the fields the replay reads); raw responses are retained verbatim in the goal hidden_files (roster-replay-capture-2026-10-21) and hashed below.",
+ "description": "Captured Sleeper receipts for the roster-replay ground-truth acceptance tests (#224/#217). Each fixture is a field projection of the raw response (only the fields the replay reads); raw responses are retained verbatim in the goal hidden_files (roster-replay-capture-2026-10-21) and hashed below. Amendment (2026-10-21, PR #243 re-review): the two draft fixtures were re-projected from the same retained raw responses (rawSha256 unchanged) to also carry the draft's declared dimensions — settings.rounds, settings.teams, draft_order — against which the replay now proves each pick receipt; every other fixture is byte-identical to the original capture.",
  "capturedAt": "2026-10-21T05:47:13.482172+00:00",
  "projection": {
   "draft": [
@@ -9,7 +9,10 @@
    "status",
    "type",
    "start_time",
-   "last_picked"
+   "last_picked",
+   "settings.rounds",
+   "settings.teams",
+   "draft_order"
   ],
   "draftPicks": [
    "pick_no",
@@ -39,8 +42,8 @@
  },
  "files": {
   "season-2025-draft.json": {
-   "sha256": "e26c14a5767956542b94b3ac89a5aeabeb034176bc71b2a2e3228b81064c364f",
-   "bytes": 196,
+   "sha256": "dc7fe2c96ea5c5bf6a3a6af7576cb7069811793a9dceca7a9669d02b65cdd4ad",
+   "bytes": 546,
    "sources": [
     "https://api.sleeper.app/v1/league/1282883196567977984/drafts"
    ],
@@ -125,8 +128,8 @@
    }
   },
   "season-2026-draft.json": {
-   "sha256": "8005822de8087d74fe48fa74bde0b7d94f1fe15d335c80a9ab2df63e20cb5aea",
-   "bytes": 197,
+   "sha256": "8f81daa7c0b9da33f68bce8f2b6858206bd479a344f2c304bcb6461e861c478c",
+   "bytes": 546,
    "sources": [
     "https://api.sleeper.app/v1/league/1387473752807190528/drafts"
    ],
