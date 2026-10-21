@@ -12,37 +12,56 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ## Directory map
 
-### Team value history — recorded-only producer (issue #217)
+### Team value history — recorded-only producer, replay-wired membership (issues #217/#224)
 
 `data/team-value-history.ts` produces the v1 `TeamValueHistory` envelope and
 detail from read-only sources only: recorded modeled quotes via the batched
 `data/recorded-quotes.ts` adapter over `stock_snapshots` (original quote ids,
 integer cents, native UTC-convention timestamps — the stock store itself is
-untouched and its snapshot-saving path is never called), a pinned dated
-roster anchor (current Sleeper rosters), and completed-move generation over
-the public Sleeper transaction feeds of both leagues in the chain — the
-current league over its state-proven week range and the inaugural 2025
-league over its fixed, final weeks 1–24 — in the frozen replay ordering
-(`status_updated`, tie-break `transaction_id`, complete-only, trades atomic).
-Supported days are labelled `replayed`; anything the anchor or ordering
-cannot prove stays ambiguous/unavailable with no point. Under the #224
-amendment, day detail also lists the 2025 league's completed moves as
-sourced events (team-scoped legs — every add/drop carries its roster id —
-plus declared participants, shaped draft picks and waiver FAAB, with
-carried-none picks distinguished from a record that does not carry the
-field); the events assert only their own legs, so the 2025 roster band
-stays `ambiguous` and 2025 valuation stays `unavailable`. League provenance
-is load-bearing: each feed is normalized separately and every move (and its
-DTO) carries its source `leagueId`; only the current league's moves enter
-roster inversion, point derivation and the receipt, since the anchor is the
-current league's roster — a prior league's move is a display event only,
-whatever its timestamps. Team relevance includes declared participants and
-draft picks, so a pick-only trade still emits as an event and binds the
-generation. The generation
-fingerprints the anchor roster, the move set (provenance included), the
-admitted quote set and the
-roster/source bounds, so any added/revised/pruned quote yields a new
-generation and stale detail/summary requests get 409. The producer fails
+untouched and its snapshot-saving path is never called), dated roster
+membership from the forward chain replay in `data/roster-replay.ts` (next
+section), a pinned dated roster anchor (current Sleeper rosters — the
+current quote's basis and the quote scope's seed), and the completed-move
+event stream over the public Sleeper transaction feeds of both leagues in
+the chain — the current league over its state-proven week range and the
+inaugural 2025 league over its fixed, final weeks 1–24 — in the frozen
+replay ordering (`status_updated`, tie-break `transaction_id`,
+complete-only, trades atomic). Days the replay proves are labelled
+`replayed` and carry the replayed roster: priced days evaluate at the
+exact quote instant, unpriced proven days at UTC day end (today at the
+fixed as-of cutoff), with null prices and a null subtotal unless the
+roster is proven empty; gap and pre-anchor days stay `ambiguous` with a
+null count, and no point is ever minted from membership alone. Under the
+#224 amendment, day detail also lists the 2025 league's completed moves
+as sourced events (team-scoped legs — every add/drop carries its roster
+id — plus declared participants, shaped draft picks and waiver FAAB,
+with carried-none picks distinguished from a record that does not carry
+the field); the events assert only their own legs, while 2025 membership
+is the replay's proof and 2025 valuation stays `unavailable` — no
+recorded quote exists for any 2025 day (see
+`docs/team-value-history-inventory.md`). League provenance is
+load-bearing: each feed is normalized separately and every move (and its
+DTO) carries its source `leagueId`; the event stream is never a
+membership source — membership comes only from the chain replay, whose
+loader admits each league's feed under its own provenance — and only the
+current league's moves enter the receipt's generation-move list, since
+the anchor is the current league's roster. A prior league's move is a
+display event only, whatever its timestamps. Team relevance includes
+declared participants and draft picks, so a pick-only trade still emits
+as an event and binds the generation. The generation is the opaque
+token `th2:<canonical-asOf>:<evidence-hash>` (contract §4 on #224): the
+hash binds both replay anchors, both drafts' grid/league witnesses,
+both leagues' admitted moves with provenance, the boundary
+reconciliation, the bounds including the chain's gap range, the
+admitted quote set and the shared cutoff — the anchor's observation
+instant is deliberately excluded. The summary/detail routes parse the
+token server-side, pin both loaders to its cutoff as one constant clock,
+recompute bounded there and compare the whole generation: drift or a
+genuine source advance is 409 (replay admission rejections under a
+pinned token map to 409; outages and malformed evidence stay 503 in
+both modes), malformed, multiply-supplied or future-cutoff tokens are
+400 decided before any load, and legacy `th1-…` tokens take the
+refresh-409 path. Envelope version stays 1. The producer fails
 closed throughout: the move feed loads through the strict
 `fetchTransactionsByWeekComplete` (any failed or malformed week rejects the
 load — a silent week is never replayed as an empty move set), normalization
@@ -63,7 +82,9 @@ envelope as serializable props into the `TeamValueHistory` consumer in
 performs zero Neon writes: the #219 tables stay unapplied/unpopulated here,
 nothing is backfilled or reconstructed, and the envelope states the
 retained-source (30-day prune) limitation in its source notes until a
-separate persistence PR lands.
+separate persistence PR lands; `docs/team-value-history-inventory.md`
+inventories retained quotes vs proven membership (recoverable-omitted
+vs genuinely-unavailable).
 
 ### Roster replay — forward dated membership (issues #224/#217)
 
@@ -99,9 +120,13 @@ load, and membership is never asserted past the cutoff. Ground truth is pinned b
 `src/test/fixtures/roster-replay/` (re-capture:
 `scripts/capture-roster-replay-fixtures.mjs`) and the acceptance tests in
 `src/data/__tests__/roster-replay-acceptance.test.ts`. Membership only —
-no prices — and nothing is wired into the live history envelope yet:
-flipping the 2025 band off `ambiguous` is a separate gated step after the
-contract handoff on #224. Zero writes, like the producer above.
+no prices. The replay is wired into the live history envelope under the
+#224 contract (previous section): it supplies every `replayed` roster
+the producer serves and its evidence is bound into the th2 generation.
+A replay admission rejection caused by sources advancing past a pinned
+cutoff is the producer's 409 signal (`RosterReplayAdvanceError`); every
+other replay failure surfaces as a 503. Zero writes, like the producer
+above.
 
 ### Modeled valuation timeline contract
 

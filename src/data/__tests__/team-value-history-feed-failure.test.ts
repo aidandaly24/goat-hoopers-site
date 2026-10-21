@@ -18,11 +18,13 @@ vi.mock("../sleeper", async importOriginal => {
   return { ...original, fetchNbaState: vi.fn(), fetchTransactions: vi.fn(), fetchTransactionsForLeague: vi.fn() };
 });
 
-import { fetchNbaState, fetchTransactions, fetchTransactionsForLeague, type RawTransaction } from "../sleeper";
+import { fetchNbaState, fetchTransactions, fetchTransactionsForLeague, LEAGUE_ID, type RawTransaction } from "../sleeper";
 import { fetchTransactionsByWeekComplete } from "../league";
 import type { RecordedQuote } from "../recorded-quotes";
+import type { RosterMembership } from "@/domain/roster-replay";
+import { buildRosterTimeline, type ChainRosterReplay } from "../roster-replay";
 import {
-  getTeamValueHistory, loadTeamHistoryState, type TeamHistoryDeps,
+  getTeamValueHistory, loadTeamHistoryState, SEASON_ONE_LEAGUE_ID, toHistoryMoves, type TeamHistoryDeps,
 } from "../team-value-history";
 
 const NOW = new Date("2026-10-20T12:00:00Z");
@@ -53,7 +55,78 @@ const QUOTES: RecordedQuote[] = [
   { quoteId: "q-t1-2711", playerId: "2711", priceCents: 9000, nativeTimestamp: T1 },
 ];
 
-/** Anchor + quotes injected; moves deliberately NOT injected. */
+const DAY_MS = 86_400_000;
+
+/**
+ * Hand-rolled chain for this file: membership is not what is under
+ * test here (the move FEED is), so the chain is a miniature built
+ * with the real timeline builder — season two anchored on the
+ * boundary rosters with the audited CUT applied, season one carrying
+ * slot 1 only (so team 2's 2025 days stay unproven, as asserted
+ * below). The default chain loader is NOT used: it would reach the
+ * real Sleeper client for drafts/rosters, which this file mocks only
+ * for transactions.
+ */
+function fakeChain(): ChainRosterReplay {
+  const seasonOneTimeline = buildRosterTimeline({
+    anchorAtMs: Date.parse("2025-10-20T18:00:00Z"),
+    anchorRosters: new Map([[1, ["101"]]]),
+    moves: [],
+  });
+  const seasonTwoTimeline = buildRosterTimeline({
+    anchorAtMs: Date.parse("2026-08-13T00:00:00Z"),
+    anchorRosters: new Map([[1, ["101", "102", "103"]], [2, ["201", "202", "2711"]]]),
+    moves: toHistoryMoves([CUT], LEAGUE_ID),
+  });
+  const membershipAt = (rosterId: number, instantMs: number): RosterMembership | null => {
+    if (instantMs > NOW.getTime()) return null;
+    if (instantMs >= seasonTwoTimeline.anchorAtMs) {
+      if (!seasonTwoTimeline.rostersAt(instantMs).has(rosterId)) return null;
+      return {
+        rosterId, at: new Date(instantMs).toISOString(),
+        playerIds: seasonTwoTimeline.rosterAt(rosterId, instantMs),
+        provenance: {
+          anchorKind: "boundary-reconciliation", anchorLeagueId: LEAGUE_ID,
+          anchorAt: "2026-08-13T00:00:00.000Z", movesApplied: seasonTwoTimeline.movesAppliedAt(instantMs),
+          reconciliation: { rosterId, cuts: [], additions: [] },
+        },
+      };
+    }
+    if (instantMs >= seasonOneTimeline.anchorAtMs && instantMs < Date.parse("2026-04-02T00:00:00Z")) {
+      if (!seasonOneTimeline.rostersAt(instantMs).has(rosterId)) return null;
+      return {
+        rosterId, at: new Date(instantMs).toISOString(),
+        playerIds: seasonOneTimeline.rosterAt(rosterId, instantMs),
+        provenance: {
+          anchorKind: "draft", anchorLeagueId: SEASON_ONE_LEAGUE_ID,
+          anchorAt: "2025-10-20T18:00:00.000Z", movesApplied: seasonOneTimeline.movesAppliedAt(instantMs),
+          reconciliation: null,
+        },
+      };
+    }
+    return null;
+  };
+  return {
+    asOf: NOW.toISOString(),
+    seasonOne: {
+      leagueId: SEASON_ONE_LEAGUE_ID, draftId: "draft-fixture-2025", grid: { rounds: 1, slots: [1, 2] },
+      anchorAt: "2025-10-20T18:00:00.000Z", timeline: seasonOneTimeline, finalRosters: seasonOneTimeline.finalRosters(),
+    },
+    seasonTwo: {
+      leagueId: LEAGUE_ID, draftId: "draft-fixture-2026", grid: { rounds: 1, slots: [1, 2] },
+      anchorAt: "2026-08-13T00:00:00.000Z", timeline: seasonTwoTimeline, finalRosters: seasonTwoTimeline.finalRosters(),
+      reconciliation: [
+        { rosterId: 1, cuts: [], additions: [] },
+        { rosterId: 2, cuts: [], additions: [] },
+      ],
+    },
+    gapRange: { from: "2026-04-02", toExclusive: "2026-08-13" },
+    membershipAt,
+    membershipOnDay: (rosterId, day) => membershipAt(rosterId, Date.parse(day) + DAY_MS - 1),
+  };
+}
+
+/** Anchor + quotes + chain injected; moves deliberately NOT injected. */
 function deps(): TeamHistoryDeps {
   return {
     quotes: {
@@ -63,6 +136,7 @@ function deps(): TeamHistoryDeps {
       }),
     },
     fetchAnchor: async () => ANCHOR,
+    fetchChain: async () => fakeChain(),
     fetchNames: async () => ({}),
     now: () => NOW,
   };
