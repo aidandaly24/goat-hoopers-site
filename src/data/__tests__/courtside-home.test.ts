@@ -269,19 +269,32 @@ describe("courtside archive mode (issue #224 P1)", () => {
   it("sources an explicitly archived edition from its own game record, not the live week", async () => {
     const result = await getCourtsideHomeData("2026-W40", archiveDependencies(111, 99));
     expect(result.edition?.id).toBe("2026-W40");
+    // The game record stays on the edition, where the archived feature
+    // reads it: teams 5 and 7, recorded 326–251.5 final.
+    expect(result.edition?.game.teamIds).toEqual(["5", "7"]);
+    expect(result.edition?.game.scores).toEqual([326, 251.5]);
+    // The directory is live data. The frozen game is nobody's current
+    // matchup, and the live week's points (111/99) appear nowhere in
+    // an archived render.
+    for (const entry of result.directory) {
+      expect(entry.currentMatchup).toBeNull();
+    }
+  });
+
+  it("keeps the archived game out of the live directory — no fabricated current opponent", async () => {
+    // Regression (PR #247 review): the loader used to pass the frozen
+    // matchup into buildLiveClubhouseDirectory as `currentMatchup`, so
+    // /weekly/2026-W40's directory labelled roster 7 roster 5's
+    // "Current opponent / Week 0" — W40 has no leagueWeek, so the week
+    // was fabricated as 0, and even a real historical week would still
+    // be a historical opponent presented as current.
+    const result = await getCourtsideHomeData("2026-W40", archiveDependencies(111, 99));
     const five = result.directory.find((entry) => entry.identity.id === "5");
     const seven = result.directory.find((entry) => entry.identity.id === "7");
-    const two = result.directory.find((entry) => entry.identity.id === "2");
-    expect(five?.currentMatchup).toMatchObject({
-      homePoints: 326,
-      awayPoints: 251.5,
-    });
-    expect(five?.currentMatchup?.home.id).toBe("5");
-    expect(five?.currentMatchup?.away.id).toBe("7");
-    expect(seven?.currentMatchup?.home.id).toBe("5");
-    expect(seven?.currentMatchup?.away.id).toBe("7");
-    // Nobody outside the edition's game carries a matchup at all.
-    expect(two?.currentMatchup).toBeNull();
+    expect(five?.currentMatchup).toBeNull();
+    expect(seven?.currentMatchup).toBeNull();
+    expect(five?.opener).toBeNull();
+    expect(seven?.opener).toBeNull();
   });
 
   it("leaves the archived directory identical when the live week advances", async () => {

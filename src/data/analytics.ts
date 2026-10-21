@@ -413,12 +413,22 @@ function phi(x: number): number {
  * Preview the current (or most recent upcoming) week's matchups.
  *
  * The target week is the first week that is not yet completed (the
- * in-progress week, by the shared boundary); when every supplied week
- * is completed, it falls back to the latest week with matchups.
+ * in-progress week, by the shared boundary). When no such week was
+ * supplied — every supplied week is completed, or the current week's
+ * fetch came back empty — there is no admissible current/upcoming
+ * matchup and this returns null: a past final is not a preview.
  * Expected score = 50/50 blend of the team's points-per-game with the
  * league scoring average (shrinks thin samples toward the mean). Win
  * probability = normal CDF on the projected differential. The "pick" is
  * the higher-probability team — a projection, never a lock.
+ *
+ * PPG inputs are bounded to the same completed slice: both the scoring
+ * sums and the game counts are replayed from completed finals (as the
+ * power reconstruction does), never read from the loader's live Team
+ * aggregates — those totals already include the in-progress week's
+ * partial points while their W/L/T counts do not, so dividing one by
+ * the other inflates a partial week into the historical average and
+ * can flip the pick on unfinished games.
  *
  * No-evidence rule (issue #224 P1): with no completed game anywhere,
  * there is nothing to project from — every PPG is 0, the league average
@@ -434,7 +444,8 @@ export function computeMatchupPreviews(
   if (matchupsByWeek.length === 0) return null;
 
   const completed = completedMatchupsByWeek(matchupsByWeek, currentWeek);
-  if (!completed.flat().some(isFinal)) return null;
+  const finals = completed.flat().filter(isFinal);
+  if (finals.length === 0) return null;
 
   let target = -1;
   for (let w = completed.length; w < matchupsByWeek.length; w++) {
@@ -443,29 +454,40 @@ export function computeMatchupPreviews(
       break;
     }
   }
-  if (target === -1) {
-    for (let w = matchupsByWeek.length - 1; w >= 0; w--) {
-      if (matchupsByWeek[w].length > 0) {
-        target = w;
-        break;
-      }
-    }
-  }
+  // No fallback to a completed week: when the current/upcoming week's
+  // matchups were not supplied (a failed fetch arrives as an empty
+  // slot), the latest final is history, not a preview.
   if (target === -1) return null;
+
+  // Completed-evidence scoring sums and game counts, replayed from the
+  // finals themselves. Matchup scores are raw points; projections live
+  // in the hundredths scale of Team.pointsFor (the preview surface
+  // divides by 100), so the sums convert once, here.
+  const scored = new Map<string, { points: number; games: number }>();
+  for (const m of finals) {
+    const home = scored.get(m.home.id) ?? { points: 0, games: 0 };
+    home.points += m.homePoints as number;
+    home.games += 1;
+    scored.set(m.home.id, home);
+    const away = scored.get(m.away.id) ?? { points: 0, games: 0 };
+    away.points += m.awayPoints as number;
+    away.games += 1;
+    scored.set(m.away.id, away);
+  }
 
   const ppg = new Map<string, number>();
   let leagueAvg = 0;
   for (const t of teams) {
-    const g = gamesPlayed(t);
-    const v = g === 0 ? 0 : t.pointsFor / g;
+    const s = scored.get(t.id);
+    const v = !s || s.games === 0 ? 0 : (s.points * 100) / s.games;
     ppg.set(t.id, v);
     leagueAvg += v;
   }
   leagueAvg = teams.length === 0 ? 0 : leagueAvg / teams.length;
 
   const expected = (t: Team) => {
-    const g = gamesPlayed(t);
-    if (g === 0) return leagueAvg; // unplayed team = league average, honestly
+    const s = scored.get(t.id);
+    if (!s || s.games === 0) return leagueAvg; // unplayed team = league average, honestly
     const mine = ppg.get(t.id) as number;
     return 0.5 * mine + 0.5 * leagueAvg;
   };

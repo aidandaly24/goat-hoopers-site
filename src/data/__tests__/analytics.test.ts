@@ -130,8 +130,8 @@ describe("computeMatchupPreviews", () => {
   });
 
   it("names no pick on an exact projection tie", () => {
-    // Matchups embed the same full Team objects the loader passes in
-    // `teams` — projections read their aggregates.
+    // The completed week-1 final below is 100–100, so both teams'
+    // completed-evidence PPG is identical and projections tie exactly.
     const a = teamA({ pointsFor: 10000, ties: 1 });
     const b = teamB({ pointsFor: 10000, ties: 1 });
     const previews = computeMatchupPreviews({
@@ -147,6 +147,60 @@ describe("computeMatchupPreviews", () => {
     expect(previews![0].matchup.week).toBe(2);
     expect(previews![0].homeWinPct).toBeCloseTo(0.5, 3);
     expect(previews![0].pick).toBeNull();
+  });
+
+  it("returns null when the current week's fetch came back empty — a past final is not a preview", () => {
+    // The real loader converts a failed current-week fetch into an
+    // empty week slot: completed weeks 1–2 are present, week 3 (the
+    // current week) is empty. The old fallback then selected week 2
+    // and the /intel route rendered a finished game as "This week /
+    // Week 2 Preview". No admissible current/upcoming matchup was
+    // supplied, so the honest answer is unavailable.
+    expect(
+      computeMatchupPreviews({
+        teams: [teamA(), teamB()],
+        matchupsByWeek: [[winForA(1)], [winForB(2)], []],
+        currentWeek: 3,
+      }),
+    ).toBeNull();
+  });
+
+  it("derives preview PPG from completed evidence only — a live partial cannot flip the pick", () => {
+    // Completed week 1: Alpha 100, Beta 90 (raw points). The loader's
+    // Team aggregates are live, though: in the polluted run Beta's
+    // pointsFor already includes its in-progress week-2 partial of
+    // 200 (290 total) while its W/L/T game count still reflects only
+    // the completed game. Dividing the live total by the completed
+    // count inflated Beta's projection to 242.5 and flipped the pick.
+    const week2 = (homePoints: number | null, awayPoints: number | null) => [
+      { week: 2, home: teamA(), away: teamB(), homePoints, awayPoints },
+    ];
+    const baseline = computeMatchupPreviews({
+      teams: [
+        teamA({ pointsFor: 10000, wins: 1 }),
+        teamB({ pointsFor: 9000, losses: 1 }),
+      ],
+      matchupsByWeek: [[winForA(1, 100, 90)], week2(null, null)],
+      currentWeek: 2,
+    });
+    const polluted = computeMatchupPreviews({
+      teams: [
+        teamA({ pointsFor: 10000, wins: 1 }),
+        teamB({ pointsFor: 29000, losses: 1 }),
+      ],
+      matchupsByWeek: [[winForA(1, 100, 90)], week2(0, 200)],
+      currentWeek: 2,
+    });
+    expect(baseline).not.toBeNull();
+    expect(polluted).not.toBeNull();
+    // Completed evidence is identical, so the projection must be too.
+    // (Completed PPG: Alpha 100, Beta 90 raw → blended expectations
+    // 9750 / 9250 in the hundredths scale projections are stored in.)
+    expect(polluted![0].projectedHome).toBe(baseline![0].projectedHome);
+    expect(polluted![0].projectedAway).toBe(baseline![0].projectedAway);
+    expect(polluted![0].projectedHome).toBeCloseTo(9750, 6);
+    expect(polluted![0].projectedAway).toBeCloseTo(9250, 6);
+    expect(polluted![0].pick?.id).toBe("1");
   });
 
   it("still picks the favorite once completed evidence separates the teams", () => {

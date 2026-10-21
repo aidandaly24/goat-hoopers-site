@@ -174,20 +174,15 @@ export async function getCourtsideHomeData(editionId?: string, dependencies = co
   // resolves is frozen editorial. Its matchup story is the edition's
   // own game record — never the live current week, whose pair and
   // scores would otherwise be narrated as the archived edition's game.
+  // The historical pair stays on the edition record, where the feature
+  // renders it with historical context; the directory below is live
+  // data, so an archived render feeds it no matchups at all — passing
+  // the frozen game in as `currentMatchup` labelled a historical
+  // opponent "Current opponent / Week 0" (W40 has no leagueWeek).
   const archived = editionId !== undefined && edition !== null;
   let matchups: Matchup[];
   if (archived) {
-    const game = edition.game;
-    const teamIds = game.teamIds;
-    const byTeamId = new Map(hub.teams.map((team) => [team.id, team]));
-    const home = teamIds ? byTeamId.get(teamIds[0]) : undefined;
-    const away = teamIds ? byTeamId.get(teamIds[1]) : undefined;
-    matchups = home && away ? [{
-      week: game.leagueWeek ?? 0,
-      home, away,
-      homePoints: game.scores?.[0] ?? null,
-      awayPoints: game.scores?.[1] ?? null,
-    }] : [];
+    matchups = [];
   } else {
     const weeks = validSeasonWeeks(state);
     const week = weeks.at(-1);
