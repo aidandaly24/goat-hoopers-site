@@ -1,0 +1,38 @@
+{
+  "synthetic": true,
+  "baseline": false,
+  "cases": [
+    {
+      "case": "header-shortcuts-1440",
+      "rankedDestination": true,
+      "explicitPracticeDestination": true,
+      "noOverflow": true
+    },
+    {
+      "case": "header-shortcuts-320",
+      "rankedDestination": true,
+      "explicitPracticeDestination": true,
+      "noOverflow": true
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "unexpectedWrites": [],
+  "failures": [],
+  "consumerBlobs": {
+    "src/surfaces/arcade/ArcadeHub.tsx": "f0ba31897d50156f865f7a0ab58368f0c244a558",
+    "src/surfaces/arcade/CompetitionLeaderboard.tsx": "094d70b2bb616de2d664defd36a60c15a33d6e71",
+    "src/surfaces/arcade/CompetitionLeaderboard.module.css": "6f739462f3355ef1f59e5dd40bf6d5328d87add4",
+    "src/surfaces/arcade/GameCard.tsx": "d0c436972fd1aa41fe82c1fc09549cf8535c6ecf",
+    "src/surfaces/arcade/RankedFreeThrow.tsx": "2f348e529252fd62ce93390ea404210aadc84b3e",
+    "src/surfaces/arcade/RankedFreeThrow.module.css": "137c34e1c6e4d11dd0aef07774a17611b993313e"
+  },
+  "priorHead": "568cf7694ecc1afd3ce10a5ae3be3f8c3030caa6",
+  "reuse": "Only ArcadeHub runtime source changed. Prior save, board state and layout evidence remains unchanged by blob identity. This targeted run checks hydrated header destinations at1440px and320px/200% root text, including Back and explicitly labelled local practice.",
+  "checks": {
+    "focusedTests": 11,
+    "typecheck": "pass",
+    "scopedLint": "pass, zero warnings",
+    "productionNextFixtureBuild": "pass"
+  }
+}

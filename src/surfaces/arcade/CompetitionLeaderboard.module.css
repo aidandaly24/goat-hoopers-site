@@ -8,4 +8,8 @@
 .links { display: flex; flex-wrap: wrap; gap: var(--gh-s4); margin-top: var(--gh-s4); }
 .links a { min-height: var(--gh-target-touch); display: inline-flex; align-items: center; }
 .filters { display: flex; flex-wrap: wrap; gap: var(--gh-s2); margin-block: var(--gh-s3); }
+.caption { color: var(--gh-text-dim); font-size: var(--gh-text-xs); }
+.period { font-weight: 600; }
+.links a:focus-visible { outline: 2px solid var(--gh-focus); outline-offset: 3px; }
+.links a[aria-current="page"] { font-weight: 600; text-underline-offset: .2em; }
 @media(max-width:40rem) { .rows li { grid-template-columns: 1.5rem minmax(0,1fr); } .rows li > span:last-of-type { grid-column: 2; } }

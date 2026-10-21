@@ -25,6 +25,15 @@ const failure = (status: string) => ({
 }[status] ?? "The request could not be completed. Your result has not been confirmed.");
 const accuracy = (value: number | null) => value === null ? "—" : `${Math.round(value * 100)}%`;
 
+/** Accepted score feedback only. The current response does not certify records. */
+export function SavedRoundFeedback({ score, justAccepted }: { score: RankedScore; justAccepted: boolean }) {
+  return <div className={styles.confirmation} data-just-accepted={justAccepted} role={justAccepted ? "status" : undefined}>
+    <strong>{justAccepted ? "Round saved" : "Saved result"}</strong>
+    <span>{score.makes} of {score.attempts} makes · server validated</span>
+    <p>Your best eligible round counts on the weekly and compatible all-time boards.</p>
+  </div>;
+}
+
 /** Documented composite: public court + private result + bounded weekly board. */
 export function RankedFreeThrow({ availability, initialRunId, client = defaultClient }: {
   availability: RankedAvailability; initialRunId?: string; client?: RankedClient;
@@ -35,6 +44,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
   const [phase, setPhase] = useState<"idle" | "starting" | "playing" | "saving" | "saved" | "uncertain">("idle");
   const [roundStatus, setRoundStatus] = useState<ReturnType<RankedRoundRecorder["status"]> | null>(null);
   const [saved, setSaved] = useState<RankedScore | null>(null);
+  const [justAcceptedId, setJustAcceptedId] = useState<string | null>(null);
   const [message, setMessage] = useState("");
   const [checking, setChecking] = useState((availability.status === "available" || availability.status === "recovery") && !!initialRunId);
   const [scope, setScope] = useState<RankedScope>("everyone");
@@ -86,7 +96,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
     if (!result.ok) { setPhase(saved ? "saved" : "idle"); setMessage(failure(result.status)); return; }
     const received = performance.now();
     recorder.current = new RankedRoundRecorder(result.value, sent, received);
-    setAdmission(result.value); setSaved(null); setRoundStatus(recorder.current.status(received)); setPhase("playing");
+    setAdmission(result.value); setSaved(null); setJustAcceptedId(null); setRoundStatus(recorder.current.status(received)); setPhase("playing");
     const url = new URL(window.location.href); url.searchParams.set("run", result.value.run.id);
     // Let Next synchronize its canonical URL and copy its own history metadata.
     // Passing the existing __NA state bypasses that integration and loses ?run.
@@ -99,7 +109,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
     const result = await client.submit(payload, controller.signal);
     request.current = null;
     if (controller.signal.aborted) return;
-    if (result.ok) rememberResult(result.value);
+    if (result.ok) { setJustAcceptedId(result.value.id); rememberResult(result.value); }
     else { setPhase("uncertain"); setMessage(`${failure(result.status)} Check the saved result before retrying.`); }
   }
   async function checkSaved() {
@@ -119,7 +129,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
   const rules = admission?.rules ?? (availability.status === "available" ? availability.rules : null);
 
   return <div className={styles.wrap}>
-    <Card>
+    <Card className={styles.card}>
       <SectionHeading eyebrow="The Arcade" title="Ranked free throws" level={1} />
       <p><Link href="/arcade/free-throw">Play local practice</Link></p>
       {!enabled ? <>
@@ -137,7 +147,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
       {recoverable && initialRunId && !saved && <button className={styles.button} disabled={checking} onClick={checkSaved}>{checking ? "Checking saved result…" : "Check saved result"}</button>}
     </Card>
     {enabled && active && status && <section aria-label="Active ranked round">
-      <Card>
+      <Card className={styles.card}>
         <p className={styles.roundStatus}>{status.attempts} / {admission.rules.shots} shots · {status.expired ? "Time expired" : `${Math.ceil(status.remainingMs / 1000)} seconds left`}</p>
         <p>Finish every shot and save before time expires. Displayed court stats are provisional until validated.</p>
         <div className={styles.actions}>
@@ -155,7 +165,8 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
         onSettled: () => { recorder.current?.settle(); setRoundStatus(recorder.current?.status(performance.now()) ?? null); },
       }} />
     </section>}
-    {recoverable && saved && <Card>
+    {recoverable && saved && <Card className={styles.card}>
+      <SavedRoundFeedback key={saved.id} score={saved} justAccepted={justAcceptedId === saved.id} />
       <SectionHeading eyebrow={`Saved · ${saved.week}`} title={`Final score: ${saved.score}`} />
       <dl className={styles.stats}>
         <div><dt>Makes / attempts</dt><dd>{saved.makes} / {saved.attempts}</dd></div>
@@ -165,6 +176,8 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
       </dl>
       <ol className={styles.outcomes} aria-label="Validated shots in order">{saved.outcomes.map((made, index) => <li key={index} aria-label={`Shot ${index + 1}: ${made ? "make" : "miss"}`}>{made}</li>)}</ol>
       <p>1 = make · 0 = miss. Saved {new Date(saved.achievedAtMs).toISOString()}.</p>
+      <nav className={styles.actions} aria-label="Saved score leaderboards"><Link className={styles.button} href="/arcade/leaderboard">Weekly leaderboard</Link>
+        <Link className={styles.button} href="/arcade/free-throw/leaderboard">All-time ranked leaderboard</Link></nav>
     </Card>}
     {enabled && <WeeklyLeaderboard scope={scope} limit={50}
       state={boardState === "ready" && board ? { status: "ready", board } : { status: boardState === "ready" ? "error" : boardState }}
