@@ -19,6 +19,7 @@ import type {
   RealNewsSection,
 } from "@/domain/news";
 import { playerSearchKey } from "@/domain/player-search";
+import { normalizeNewsSummary } from "@/domain/news";
 
 export const ESPN_RSS_URL = "https://www.espn.com/espn/rss/nba/news";
 export const CBS_RSS_URL = "https://www.cbssports.com/rss/headlines/nba/";
@@ -402,7 +403,7 @@ const SUMMARY_CHARS = 200;
 
 /** Trim a summary to ~200 chars at a word boundary. */
 function summarize(description: string): string {
-  const text = plainText(description);
+  const text = normalizeNewsSummary(plainText(description));
   if (text.length <= SUMMARY_CHARS) return text;
   const cut = text.slice(0, SUMMARY_CHARS);
   const lastSpace = cut.lastIndexOf(" ");

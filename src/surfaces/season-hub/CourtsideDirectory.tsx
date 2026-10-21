@@ -6,7 +6,9 @@ import { ControlIcon } from "@/ui/ControlIcon";
 
 import { useRef, useState, type ReactNode } from "react";
 import type { LiveClubhouseDirectoryEntry } from "@/domain/clubhouse-directory";
+import { playerNameMatches } from "@/domain/player-search";
 import { TeamAvatar } from "@/ui/TeamAvatar";
+import { TransactionDate } from "@/ui/TransactionDate";
 import { cs } from "./CourtsideStyles";
 import {
   directoryInitialDirection, nextSort, sortDirectory,
@@ -37,13 +39,13 @@ export function CourtsideDirectory({
   const [query, setQuery] = useState("");
   const [order, setOrder] = useState<SortOrder<DirectorySortKey>>({ key: "league", direction: "asc" });
   const input = useRef<HTMLInputElement>(null);
-  const search = query.trim().toLocaleLowerCase();
+  const search = query.trim();
   const filtered = sortDirectory(entries.filter((entry) =>
     [
       entry.identity.name,
       entry.identity.managerName,
       ...entry.players.map((player) => player.fullName),
-    ].some((name) => name.toLocaleLowerCase().includes(search)),
+    ].some((name) => playerNameMatches(name, search)),
   ), order, preseason);
   const sortLabels: Record<DirectorySortKey, string> = {
     league: "League order", team: "Team", manager: "Manager", finish: "2025 finish",
@@ -312,13 +314,7 @@ export function CourtsideDirectory({
                       <p className={cs("roster-wire")}>
                         <strong>
                           Latest move ·{" "}
-                          {new Date(
-                            entry.latestMove.createdAt,
-                          ).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                            timeZone: "UTC",
-                          })}
+                          <TransactionDate timestamp={entry.latestMove.createdAt} />
                         </strong>{" "}
                         {entry.latestMove.summary}
                       </p>

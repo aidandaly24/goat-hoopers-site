@@ -1,0 +1,263 @@
+{
+  "synthetic": true,
+  "base": "478f343acc943303366117abc519b3f49858ba91",
+  "sourceReproductions": {
+    "rss": "<description><p>null</p></description> became the truthy summary string null on the unchanged base.",
+    "date": "1792463400000 renders Oct20 in UTC and Oct19 in America/New_York / America/Los_Angeles; both surfaces use the same createdAt field.",
+    "search": "Plain lowercasing retains the diacritics in Alperen \u015eeng\u00fcn, so sengun fails substring matching; the unchanged public playerNameMatches helper normalizes both forms."
+  },
+  "cases": [
+    {
+      "case": "news-null-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "summaryMode": "null",
+      "headlineRetained": true,
+      "legitimateNullProseRetained": true
+    },
+    {
+      "case": "news-missing-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "summaryMode": "missing",
+      "headlineRetained": true,
+      "legitimateNullProseRetained": true
+    },
+    {
+      "case": "news-cached-null-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "summaryMode": "cached-null",
+      "headlineRetained": true,
+      "legitimateNullProseRetained": true
+    },
+    {
+      "case": "news-legitimate-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "summaryMode": "legitimate",
+      "headlineRetained": true,
+      "legitimateNullProseRetained": true
+    },
+    {
+      "case": "directory-and-trade-search-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "accentedAndUnaccentedQueries": [
+        "Sengun",
+        "\u015eeng\u00fcn",
+        "\u015eENG\u00dcN",
+        "S\u0327engu\u0308n",
+        "Alperen"
+      ],
+      "displayNameAndCanonicalIdPreserved": true,
+      "crossSideDuplicateRejected": true
+    },
+    {
+      "case": "news-null-390",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      },
+      "summaryMode": "null",
+      "headlineRetained": true,
+      "legitimateNullProseRetained": true
+    },
+    {
+      "case": "news-missing-390",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      },
+      "summaryMode": "missing",
+      "headlineRetained": true,
+      "legitimateNullProseRetained": true
+    },
+    {
+      "case": "news-cached-null-390",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      },
+      "summaryMode": "cached-null",
+      "headlineRetained": true,
+      "legitimateNullProseRetained": true
+    },
+    {
+      "case": "news-legitimate-390",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      },
+      "summaryMode": "legitimate",
+      "headlineRetained": true,
+      "legitimateNullProseRetained": true
+    },
+    {
+      "case": "directory-and-trade-search-390",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      },
+      "accentedAndUnaccentedQueries": [
+        "Sengun",
+        "\u015eeng\u00fcn",
+        "\u015eENG\u00dcN",
+        "S\u0327engu\u0308n",
+        "Alperen"
+      ],
+      "displayNameAndCanonicalIdPreserved": true,
+      "crossSideDuplicateRejected": true
+    },
+    {
+      "case": "move-date-2026-10-20T02:30:00Z-America/Los_Angeles-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "label": "Oct 19, 2026, EDT",
+      "originalInstant": "2026-10-20T02:30:00.000Z",
+      "browserZone": "America/Los_Angeles",
+      "homeMatchesTransactions": true
+    },
+    {
+      "case": "move-date-2026-10-20T04:00:00Z-America/Los_Angeles-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "label": "Oct 20, 2026, EDT",
+      "originalInstant": "2026-10-20T04:00:00.000Z",
+      "browserZone": "America/Los_Angeles",
+      "homeMatchesTransactions": true
+    },
+    {
+      "case": "move-date-2026-01-01T04:30:00Z-America/Los_Angeles-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "label": "Dec 31, 2025, EST",
+      "originalInstant": "2026-01-01T04:30:00.000Z",
+      "browserZone": "America/Los_Angeles",
+      "homeMatchesTransactions": true
+    },
+    {
+      "case": "move-date-2026-10-20T02:30:00Z-UTC-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "label": "Oct 19, 2026, EDT",
+      "originalInstant": "2026-10-20T02:30:00.000Z",
+      "browserZone": "UTC",
+      "homeMatchesTransactions": true
+    },
+    {
+      "case": "move-date-2026-10-20T02:30:00Z-Asia/Tokyo-1440",
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      "label": "Oct 19, 2026, EDT",
+      "originalInstant": "2026-10-20T02:30:00.000Z",
+      "browserZone": "Asia/Tokyo",
+      "homeMatchesTransactions": true
+    },
+    {
+      "case": "move-date-2026-10-20T02:30:00Z-America/Los_Angeles-390",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      },
+      "label": "Oct 19, 2026, EDT",
+      "originalInstant": "2026-10-20T02:30:00.000Z",
+      "browserZone": "America/Los_Angeles",
+      "homeMatchesTransactions": true
+    },
+    {
+      "case": "move-date-2026-10-20T04:00:00Z-America/Los_Angeles-390",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      },
+      "label": "Oct 20, 2026, EDT",
+      "originalInstant": "2026-10-20T04:00:00.000Z",
+      "browserZone": "America/Los_Angeles",
+      "homeMatchesTransactions": true
+    },
+    {
+      "case": "move-date-2026-01-01T04:30:00Z-America/Los_Angeles-390",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      },
+      "label": "Dec 31, 2025, EST",
+      "originalInstant": "2026-01-01T04:30:00.000Z",
+      "browserZone": "America/Los_Angeles",
+      "homeMatchesTransactions": true
+    },
+    {
+      "case": "move-date-2026-10-20T02:30:00Z-UTC-390",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      },
+      "label": "Oct 19, 2026, EDT",
+      "originalInstant": "2026-10-20T02:30:00.000Z",
+      "browserZone": "UTC",
+      "homeMatchesTransactions": true
+    },
+    {
+      "case": "move-date-2026-10-20T02:30:00Z-Asia/Tokyo-390",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      },
+      "label": "Oct 19, 2026, EDT",
+      "originalInstant": "2026-10-20T02:30:00.000Z",
+      "browserZone": "Asia/Tokyo",
+      "homeMatchesTransactions": true
+    }
+  ],
+  "sourceBlobs": {
+    "src/data/real-news.ts": "344c0bfddab2cf0dfffa264cdcc86622651ddec2",
+    "src/domain/news.ts": "37ba1d52b2dd2cecf72e2ada0361aec0f504f30e",
+    "src/surfaces/news/NewsFeed.tsx": "86288f700ee332e4a3355ff63f2f9a7af4b02fe7",
+    "src/ui/TransactionDate.tsx": "d0b7d1c78cdae1bdfc69b65e8be390747cd520ed",
+    "src/surfaces/season-hub/CourtsideDirectory.tsx": "44ca27f338f62935e1af0cc6a43963154bdbcdb0",
+    "src/surfaces/transactions/TransactionFilters.tsx": "c6fbaaccceb684a5ffe41b891ae23060848cbb01",
+    "src/surfaces/trade-analyzer/TradeAnalyzer.tsx": "eb3345d98e7c9b48baa4bd3147d46ce962c891ba"
+  },
+  "failures": [],
+  "pageErrors": [],
+  "hydrationErrors": [],
+  "external": [],
+  "writes": [],
+  "reuse": "Eight completed news cases are reused with identical runtime source. Date cases were rerun using the explicit roster aria-label rather than ambiguous opponent text, with additional browser timezone checks. Both search journeys were rerun with same-side duplicate, removal/re-add and punctuation checks.",
+  "checks": {
+    "focusedTests": 90,
+    "typecheck": "pass",
+    "otherTouchedFilesLint": "pass, zero warnings",
+    "NewsFeedLint": "One react-hooks/set-state-in-effect finding at RelativeTime line48; baseline/current diagnostics compare exactly. Unrelated timestamp effect unchanged.",
+    "surfaceContracts": 104,
+    "productionNextFixtureBuild": "pass"
+  },
+  "limits": [
+    "Synthetic actual-Next sources only; no live provider/account/database/score requests or writes.",
+    "No stock-history audit, active TeamValueHistory work, historical coverage or completed-week/Intel claim.",
+    "No event timestamps, canonical player IDs, display names or duplicate guards changed.",
+    "The existing NewsFeed lint finding remains on both main and this head.",
+    "Fresh exact-head CI, independent review and genuine Muse readiness are separate gates."
+  ]
+}
