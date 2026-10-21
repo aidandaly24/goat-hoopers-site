@@ -58,7 +58,7 @@ export function PowerRankings({
             ? "Rankings drop when the season tips off — no games, no order."
             : dataState === "no-closed-week"
               ? "No order yet — rankings come from completed finals, and no week has closed yet. Live scores are not finals."
-              : "Rankings are unavailable right now — the data feed did not answer, and an invented order is worse than none."}
+              : "Rankings are unavailable right now — the required data is unavailable, and an invented order is worse than none."}
         </p>
       ) : (
         <ol className={styles.list}>

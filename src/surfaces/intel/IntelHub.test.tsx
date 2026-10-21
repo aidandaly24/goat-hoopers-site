@@ -54,11 +54,13 @@ describe("IntelHub empty states", () => {
 
   it("when the data is unavailable, every tool says so neutrally — no tip-off claim, no closed-week claim", () => {
     const html = renderEmpty("unavailable");
-    // Each tool names the actual state: its feed did not answer.
+    // Each tool names the actual state: the required data is unavailable.
     expect(html).toContain("Previews are unavailable right now");
     expect(html).toContain("Rankings are unavailable right now");
     expect(html).toContain("Odds are unavailable right now");
     expect(html).toContain("The record book is unavailable right now");
+    expect(html).toContain("the required data is unavailable");
+    expect(html).not.toContain("did not answer");
     // And none of them dresses the gap up as either proven world.
     expect(html).not.toContain("tips off");
     expect(html).not.toContain("first whistle");

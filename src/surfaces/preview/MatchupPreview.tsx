@@ -118,7 +118,7 @@ export function MatchupPreview({
             ? "No matchups to preview yet — the schedule drops when the season tips off."
             : dataState === "no-closed-week"
               ? "No previews yet — projections run on completed finals, and no week has closed yet. Live scores are not finals."
-              : "Previews are unavailable right now — the data feed did not answer, and this page does not guess. Check back shortly."}
+              : "Previews are unavailable right now — the required data is unavailable, and this page does not guess. Check back shortly."}
         </p>
       ) : (
         <ul className={styles.list}>

@@ -77,8 +77,8 @@ export function RecordBook({ book, championTeamId, dataState }: { book: RecordBo
             </>
           ) : (
             <>
-              The record book is unavailable right now — the data feed did
-              not answer. The 2025 archive lives in the{" "}
+              The record book is unavailable right now — the required data is
+              unavailable. The 2025 archive lives in the{" "}
               <Link href="/history">Trophy Room</Link>.
             </>
           )}

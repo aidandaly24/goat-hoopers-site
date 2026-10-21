@@ -37,7 +37,7 @@ export function PlayoffOdds({
             ? "Odds go live when games do — simulating a season with no data is just arithmetic wearing a costume."
             : dataState === "no-closed-week"
               ? "No odds yet — the simulation runs on completed finals, and no week has closed yet. Anything sooner is just arithmetic wearing a costume."
-              : "Odds are unavailable right now — the data feed did not answer, and simulating missing data is just arithmetic wearing a costume."}
+              : "Odds are unavailable right now — the required data is unavailable, and simulating missing data is just arithmetic wearing a costume."}
         </p>
       ) : (
         <>
