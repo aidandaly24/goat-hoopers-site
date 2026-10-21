@@ -44,10 +44,19 @@ not independently observed.
 ## Recoverable-omitted
 
 **None in the quote lane.** The producer's quote scope is the
-team's anchor roster plus every counterparty of a cutoff-admissible
-completed move, read over the full league window — nothing retained
-in `stock_snapshots` for those players is excluded by the read, and
-nothing outside that scope is that team's evidence. Quotes pruned
+team's anchor roster, every player the forward replay proves on the
+team in either segment, and every counterparty of a
+cutoff-admissible completed current-league move, read over the full
+league window — nothing retained in `stock_snapshots` for those
+players is excluded by the read, and nothing outside that scope is
+that team's evidence. (Scope note, from the dot's review of the
+wiring PR: the scope originally derived from the anchor plus
+current-league legs only, which excluded a retained quote for a
+player the replay proves on the team in 2025 — e.g. a synthetic
+retained quote for a 2025-proven player on 2025-11-01 was not read.
+The scope now derives from all proven membership; membership alone
+still supplies no dated valuation — a point exists only where a
+retained quote was actually read.) Quotes pruned
 by the 30-day retention are **destroyed, not omitted** — they are
 genuinely unavailable, which is exactly the persistence question
 gated to the ~Nov 7 joint decision (persisting recorded points

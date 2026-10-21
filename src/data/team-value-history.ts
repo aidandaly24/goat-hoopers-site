@@ -519,6 +519,37 @@ function chainEvidence(chain: ChainRosterReplay) {
   };
 }
 
+/**
+ * Every player the forward replay PROVES was on this roster in
+ * either segment: both segments' final rosters plus every add/drop
+ * leg the timelines carry for the slot (pre-anchor evidence, applied
+ * moves, draft-event additions). This is the membership-derived half
+ * of the quote scope: a player the replay proves on the team can
+ * hold a retained quote at a proven instant, and that quote is this
+ * team's evidence even when neither today's anchor nor a
+ * current-league move leg names them — the 2025-only player is the
+ * canonical case (dot review note on #244). Membership alone still
+ * mints no point: a point exists only where a retained quote was
+ * actually read at a proven instant.
+ */
+function chainProvenPlayers(chain: ChainRosterReplay, rosterId: number): string[] {
+  const proven = new Set<string>();
+  for (const segment of [chain.seasonOne, chain.seasonTwo]) {
+    for (const playerId of segment.finalRosters.get(rosterId) ?? []) proven.add(playerId);
+    for (const move of [...segment.timeline.preAnchorMoves, ...segment.timeline.appliedMoves]) {
+      for (const entry of [...move.adds, ...move.drops]) {
+        if (entry.rosterId === rosterId) proven.add(entry.playerId);
+      }
+    }
+    for (const event of segment.timeline.appliedDraftEvents) {
+      for (const entry of event.adds) {
+        if (entry.rosterId === rosterId) proven.add(entry.playerId);
+      }
+    }
+  }
+  return [...proven];
+}
+
 /* ------------------------- detail evidence ------------------------- */
 
 const listIds = (ids: readonly string[]): string =>
@@ -657,8 +688,15 @@ function buildState(args: {
     const prior = byDay.get(day);
     if (prior && (prior.pricedIds.length > pricedIds.length
       || prior.pricedIds.length === pricedIds.length && prior.ev.nativeTimestamp >= ev.nativeTimestamp)) continue;
-    const subtotalCents = pricedIds.length > 0
-      ? pricedIds.reduce((sum, id) => sum + ev.quotes.get(id)!.priceCents, 0) : null;
+    // A proven-EMPTY roster is a real $0, never an unknown: the
+    // domain contract's known-empty zero invariant — the same one
+    // detail()'s unpriced-day branch enforces. A quote instant can
+    // land on an empty roster day (a retained quote for a player the
+    // replay has since proven off the team); subtotal null there
+    // would violate both DTO validators and fail the whole envelope.
+    const subtotalCents = ev.roster.length === 0 ? 0
+      : pricedIds.length > 0
+        ? pricedIds.reduce((sum, id) => sum + ev.quotes.get(id)!.priceCents, 0) : null;
     byDay.set(day, {
       ev, pricedIds,
       build: {
@@ -715,7 +753,7 @@ function buildState(args: {
     moves: moves.map(move => [move.leagueId, move.id, move.effectiveMs, move.type, move.leg, move.rosterIds, move.waiverBid, move.draftPicks,
       move.adds.map(entry => [entry.playerId, entry.rosterId]), move.drops.map(entry => [entry.playerId, entry.rosterId])]),
     bounds: {
-      players: [...new Set([...anchorRoster, ...moves.flatMap(move => [...move.adds, ...move.drops]
+      players: [...new Set([...anchorRoster, ...chainProvenPlayers(chain, rosterId), ...moves.flatMap(move => [...move.adds, ...move.drops]
         .filter(entry => entry.rosterId === rosterId).map(entry => entry.playerId))])].sort(),
       fromDay: admittedDays[0] ?? null, toDay: admittedDays.at(-1) ?? null,
     },
@@ -780,7 +818,7 @@ function buildState(args: {
     "Every point is a recorded modeled FAAB quote captured at the instant shown. Modeled quotes are not sale prices or team performance.",
     "Rosters are replayed forward from pinned anchors — the 2025 startup draft and the derived 2026 season boundary — through completed Sleeper moves; the offseason gap asserts no membership, and no day outside the proven replay shows an assumed roster.",
     "Unknown prices are shown as unavailable, never as $0, and no line is drawn across days without a recorded point.",
-    "Moves shown for 2025 days are that season's completed Sleeper transactions, listed as sourced events with team-scoped legs, picks and waiver FAAB; 2025 rosters are not asserted and 2025 prices do not exist in any retained source.",
+    "Moves shown for 2025 days are that season's completed Sleeper transactions, listed as sourced events with team-scoped legs, picks and waiver FAAB; each event asserts only its own legs. 2025 membership itself is asserted by the forward replay from the startup draft (see coverage); 2025 prices do not exist in any retained source.",
   ];
 
   const base = {
@@ -945,8 +983,9 @@ function validQuote(quote: RecordedQuote): boolean {
  * Load and build one team's producer state. Throws TeamHistoryError:
  * 503 when a source is unavailable or fails closed, 404 for an unknown
  * team. The quote read is bounded to the team's lifetime player scope
- * (anchor roster plus its move counterparties) over the full league
- * window; a truncated read is an incomplete admitted set → 503.
+ * (anchor roster, every player the chain replay proves on the team,
+ * and its admitted move counterparties) over the full league window;
+ * a truncated read is an incomplete admitted set → 503.
  */
 export async function loadTeamHistoryState(
   teamId: string, deps: TeamHistoryDeps = {}, options: { pinned?: boolean } = {},
@@ -982,13 +1021,21 @@ export async function loadTeamHistoryState(
   // evidence, so its counterparties must not widen the scope — otherwise
   // an earlier quote for a player only that future move names would be
   // admitted, inventing an unpriced day and moving the generation for a
-  // move that is itself excluded. Provenance applies the same way: only
-  // the current league's moves can name a player a roster replay could
-  // ever price, so prior-league counterparties stay out of the scope.
+  // move that is itself excluded. The scope is the union of three
+  // proven sources: today's anchor roster; every player the chain
+  // replay proves on this team in either segment (the chain's own
+  // admission already rejected post-cutoff and cross-boundary
+  // evidence, so this adds exactly the historically proven names —
+  // e.g. a 2025-only player no current-league leg names); and the
+  // cutoff-admissible current-league move legs.
   const admissibleMoves = moves.filter(move => move.leagueId === LEAGUE_ID
     && moveMicros(move) <= now.getTime() * 1000);
-  const scope = [...new Set([...team.players, ...admissibleMoves.flatMap(move => [...move.adds, ...move.drops]
-    .filter(entry => entry.rosterId === Number(teamId)).map(entry => entry.playerId))])].sort();
+  const scope = [...new Set([
+    ...team.players,
+    ...chainProvenPlayers(chain, Number(teamId)),
+    ...admissibleMoves.flatMap(move => [...move.adds, ...move.drops]
+      .filter(entry => entry.rosterId === Number(teamId)).map(entry => entry.playerId)),
+  ])].sort();
   let rows;
   try {
     rows = await store.readWindow({
@@ -1053,7 +1100,11 @@ function dayParam(url: URL, name: string): string {
  * - a `th2:` token that fails the shape or the canonical round-trip
  *   (ms UTC ISO, exactly as minted) → 400, before any load;
  * - a token whose cutoff is in the future versus the server clock
- *   captured here → 400, before any load.
+ *   captured here → 400, before any load;
+ * - a token whose cutoff predates the supported view's founding
+ *   bound (`HISTORY_LEAGUE_FROM`) → 400, before any load: no
+ *   generation can ever have been minted below it, so the answer
+ *   must not depend on source health after real reads.
  *
  * A token that passes returns its cutoff; the helpers inject it as
  * one constant clock into both loaders, recompute from current
@@ -1082,6 +1133,13 @@ function pinnedCutoff(url: URL, nowMs: number): { token: string; cutoffMs: numbe
   // Future is judged against the load clock (deps.now — the same
   // clock the loaders will be pinned to), never a second time source.
   if (cutoffMs > nowMs) throw new TeamHistoryError("Generation cutoff is in the future", 400);
+  // The supported view is bounded below by the league's founding
+  // bound: a cutoff before it names a view that cannot exist, so it
+  // is rejected here — deterministically, with zero source reads —
+  // rather than surfacing as a source-health-dependent 409/503.
+  if (cutoffMs < Date.parse(`${HISTORY_LEAGUE_FROM}T00:00:00.000Z`)) {
+    throw new TeamHistoryError("Generation cutoff predates the supported history range", 400);
+  }
   return { token, cutoffMs };
 }
 

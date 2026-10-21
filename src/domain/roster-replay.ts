@@ -40,7 +40,12 @@
  *   every departure is a recorded move, and the only non-transaction
  *   membership event in the chain is the 2026 draft itself, which is
  *   recorded in that league's draft feed and applied as a dated draft
- *   event. Gap days assert no membership at all, and neither does
+ *   event. Segment bounds are enforced independently of either
+ *   feed's tail: a prior-league record effective at or after the
+ *   season boundary — the current segment's first instant — is an
+ *   impossible overlap and rejects the load, so it can never extend
+ *   the prior segment (or the gap's start) into days the current
+ *   segment owns. Gap days assert no membership at all, and neither does
  *   any instant past the loader's as-of observation instant: an
  *   end-of-day is claimed only for a day the cutoff has fully
  *   covered, and draft receipts must prove complete (contiguous

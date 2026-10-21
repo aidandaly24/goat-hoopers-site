@@ -21,7 +21,9 @@ integer cents, native UTC-convention timestamps — the stock store itself is
 untouched and its snapshot-saving path is never called), dated roster
 membership from the forward chain replay in `data/roster-replay.ts` (next
 section), a pinned dated roster anchor (current Sleeper rosters — the
-current quote's basis and the quote scope's seed), and the completed-move
+current quote's basis and the quote scope's seed; the full scope
+unions the anchor, every player the chain replay proves on the
+team in either segment, and the cutoff-admissible move legs), and the completed-move
 event stream over the public Sleeper transaction feeds of both leagues in
 the chain — the current league over its state-proven week range and the
 inaugural 2025 league over its fixed, final weeks 1–24 — in the frozen
@@ -59,9 +61,9 @@ token server-side, pin both loaders to its cutoff as one constant clock,
 recompute bounded there and compare the whole generation: drift or a
 genuine source advance is 409 (replay admission rejections under a
 pinned token map to 409; outages and malformed evidence stay 503 in
-both modes), malformed, multiply-supplied or future-cutoff tokens are
-400 decided before any load, and legacy `th1-…` tokens take the
-refresh-409 path. Envelope version stays 1. The producer fails
+both modes), malformed, multiply-supplied, future-cutoff or
+below-the-founding-bound tokens are 400 decided before any load, and
+legacy `th1-…` tokens take the refresh-409 path. Envelope version stays 1. The producer fails
 closed throughout: the move feed loads through the strict
 `fetchTransactionsByWeekComplete` (any failed or malformed week rejects the
 load — a silent week is never replayed as an empty move set), normalization
@@ -116,7 +118,10 @@ foreign or missing league identity rejects) before they anchor or
 derive anything, repeated
 transaction records are deduplicated (the same id with different
 contents rejects), source events effective after the cutoff reject the
-load, and membership is never asserted past the cutoff. Ground truth is pinned by captured, hash-manifested receipts in
+load, a prior-league record effective at or after the season boundary
+rejects as an impossible overlap (it can never extend the prior
+segment or the gap's start into days the current segment owns), and
+membership is never asserted past the cutoff. Ground truth is pinned by captured, hash-manifested receipts in
 `src/test/fixtures/roster-replay/` (re-capture:
 `scripts/capture-roster-replay-fixtures.mjs`) and the acceptance tests in
 `src/data/__tests__/roster-replay-acceptance.test.ts`. Membership only —

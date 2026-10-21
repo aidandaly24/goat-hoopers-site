@@ -447,6 +447,162 @@ function emptyWorldDeps(): TeamHistoryDeps {
   };
 }
 
+describe("dot review 5598430768 on a643361 — remediation", () => {
+  it("rejects a prior-league record dated at/after the season boundary instead of letting it shadow 2026 membership (P2-1)", async () => {
+    // Control: the healthy world's gap and 2026 membership are as proven.
+    const healthy = await loadChainRosterReplay(replayDepsFrom(chainWorld()));
+    expect(healthy.gapRange).toEqual({ from: "2025-12-03", toExclusive: "2026-08-13" });
+    expect(healthy.membershipAt(1, Date.parse("2026-10-08T12:00:00Z"))!.playerIds)
+      .toEqual(["101", "102", "103"]);
+
+    // The dot's repro: a completed pick-only record (no player legs)
+    // appended to the 2025 feed, dated 2026-10-09. Both segment
+    // finals still verify — the record moves no player — but pre-fix
+    // the old feed's tail extended gapRange.from to 2026-10-10:
+    // membershipAt then selected season one for Oct 2026 instants
+    // (slot 1 read [101,102,103,104] on Oct 8 instead of the 2026
+    // segment's [101,102,103]) and the envelope carried a reversed
+    // gap interval (2026-10-10 → 2026-08-13), failing validation and
+    // nulling the homepage history. An old-league record at or after
+    // the season boundary is an impossible overlap: the chain must
+    // reject it before constructing a view, never let it shadow
+    // current-league membership.
+    const world = chainWorld();
+    world.tx[SEASON_ONE_LEAGUE_ID] = [
+      ...world.tx[SEASON_ONE_LEAGUE_ID],
+      tx({
+        transaction_id: "1425000000000000099", type: "trade", leg: 24, roster_ids: [1, 3],
+        created: Date.parse("2026-10-09T12:00:00Z"), status_updated: Date.parse("2026-10-09T12:00:00Z"),
+        adds: null, drops: null,
+        draft_picks: [{ season: "2027", round: 1, roster_id: 1, previous_owner_id: 1, owner_id: 3 }],
+      }),
+    ];
+    await expect(loadChainRosterReplay(replayDepsFrom(world)))
+      .rejects.toThrow(/at or after the season boundary/);
+    await expect(loadTeamHistoryState("1", deps({ fetchChain: fetchFixtureChain(world) })))
+      .rejects.toMatchObject({ status: 503 });
+    expect(await getTeamValueHistory("1", deps({ fetchChain: fetchFixtureChain(world) }))).toBeNull();
+  });
+
+  it("serves a proven-empty quote point as a real zero instead of an invalid null subtotal (P2-2)", async () => {
+    // Slot 2 is cut to empty on Oct 10 (both remaining players
+    // dropped; Sleeper's observed current roster follows). A
+    // retained quote for former player 201 lands Oct 11 at T3: the
+    // quote is inside the lifetime read scope (201's legs are
+    // admissible), so the day evaluates — against a PROVEN-empty
+    // roster. Pre-fix the point inherited subtotal null, violating
+    // the domain's known-empty zero invariant in both validators
+    // and failing the whole envelope; Oct 12 (no quote) already
+    // served count 0 / subtotal 0 through the unpriced-day branch.
+    const world = chainWorld();
+    world.tx[LEAGUE_ID] = [
+      ...world.tx[LEAGUE_ID],
+      tx({
+        transaction_id: "1417000000000000001", created: Date.parse("2026-10-10T15:00:00Z"),
+        status_updated: Date.parse("2026-10-10T15:00:00Z"), drops: { "201": 2 },
+      }),
+      tx({
+        transaction_id: "1417000000000000002", created: Date.parse("2026-10-10T16:00:00Z"),
+        status_updated: Date.parse("2026-10-10T16:00:00Z"), drops: { "202": 2 },
+      }),
+    ];
+    world.rosters[LEAGUE_ID] = world.rosters[LEAGUE_ID].map(entry =>
+      entry.roster_id === 2 ? { ...entry, players: [] } : entry);
+    const emptyDeps = deps({
+      fetchAnchor: async () => ({
+        ...ANCHOR,
+        teams: ANCHOR.teams.map(team => team.id === "2" ? { ...team, players: [] } : team),
+      }),
+      fetchMoves: async () => mergeHistoryMoveSets(
+        toHistoryMoves(world.tx[SEASON_ONE_LEAGUE_ID], SEASON_ONE_LEAGUE_ID),
+        toHistoryMoves(world.tx[LEAGUE_ID], LEAGUE_ID)),
+      fetchChain: fetchFixtureChain(world),
+      quotes: {
+        readWindow: async request => ({
+          quotes: [...QUOTES, quote("q-t3-201", "201", 6000, T3)]
+            .filter(entry => request.playerIds.includes(entry.playerId)),
+          truncated: false,
+        }),
+      },
+    });
+    const envelope = await getTeamValueHistory("2", emptyDeps);
+    expect(envelope).not.toBeNull();
+    expect(isTeamValueHistoryEnvelope(envelope)).toBe(true);
+    const state = await loadTeamHistoryState("2", emptyDeps);
+    const point = state.points.find(entry => entry.day === "2026-10-11")!;
+    expect(point).toBeDefined();
+    expect(point.rosterCount).toBe(0);
+    expect(point.priced).toBe(0);
+    expect(point.subtotalCents).toBe(0);
+    const detail = state.detail("2026-10-11", NAMES);
+    expect(isTeamValueHistoryDetail(detail)).toBe(true);
+    expect(historyDetailMatchesPoint(detail, point)).toBe(true);
+    expect(detail.rosterCount).toBe(0);
+    expect(detail.players).toEqual([]);
+    expect(detail.subtotalCents).toBe(0);
+    // The unpriced Oct 12 already served the same zero — consistent.
+    const oct12 = state.detail("2026-10-12", NAMES);
+    expect(oct12.rosterCount).toBe(0);
+    expect(oct12.subtotalCents).toBe(0);
+  });
+
+  it("rejects a below-bound cutoff with 400 BEFORE any source access (P2-3)", async () => {
+    // The settled §4 contract validates the supported view bounds
+    // before loading: a cutoff predating the 2025-10-20 founding
+    // bound can never have been minted. Pre-fix it passed the gate,
+    // both helpers loaded (29 source reads in the dot's probe) and
+    // the answer depended on source health — 409 with sources up,
+    // 503 with sources down — instead of a deterministic 400.
+    let reads = 0;
+    const counting = deps({
+      fetchAnchor: async () => { reads += 1; throw new Error("down"); },
+      fetchMoves: async () => { reads += 1; throw new Error("down"); },
+      fetchChain: async () => { reads += 1; throw new Error("down"); },
+    });
+    const belowBound = "th2:2000-01-01T00:00:00.000Z:0123456789abcdef01234567";
+    expect((await teamHistoryDetailResponse(detailUrl(belowBound), counting)).status).toBe(400);
+    expect((await teamHistorySummaryResponse(summaryUrl(belowBound), counting)).status).toBe(400);
+    expect(reads).toBe(0);
+    // The founding instant itself is inside the supported bounds:
+    // the token passes the 400 gate and the pinned recompute answers
+    // for itself (409 — the view at that cutoff differs / advanced).
+    const atBound = await teamHistoryDetailResponse(
+      detailUrl("th2:2025-10-20T00:00:00.000Z:0123456789abcdef01234567"), deps());
+    expect(atBound.status).toBe(409);
+  });
+
+  it("reads retained quotes for players the replay alone proves on the team (review note: quote scope)", async () => {
+    // Player 104 is proven on slot 1 by the 2025 replay (startup
+    // draft + the Oct 28 free-agent add) but appears in neither
+    // today's anchor nor any current-league move leg — the old
+    // scope, derived for the inversion era, excluded it, so a
+    // retained quote at a proven 2025 instant was never read and
+    // the inventory's "none recoverable-omitted" claim failed on
+    // exactly this shape. The scope now derives from all proven
+    // membership: the anchor, every player the chain proves on the
+    // team in either segment, and the admitted event legs.
+    const withOldQuote = deps({
+      quotes: {
+        readWindow: async request => ({
+          quotes: [...QUOTES, quote("q-2025-104", "104", 1234, "2025-11-01T04:00:00.000000")]
+            .filter(entry => request.playerIds.includes(entry.playerId)),
+          truncated: false,
+        }),
+      },
+    });
+    const state = await loadTeamHistoryState("1", withOldQuote);
+    const point = state.points.find(entry => entry.day === "2025-11-01")!;
+    expect(point).toBeDefined();
+    expect(point.rosterCount).toBe(4);
+    expect(point.priced).toBe(1);
+    expect(point.subtotalCents).toBe(1234);
+    const detail = state.detail("2025-11-01", NAMES);
+    expect(isTeamValueHistoryDetail(detail)).toBe(true);
+    expect(historyDetailMatchesPoint(detail, point)).toBe(true);
+    expect(detail.players.find(player => player.id === "104")!.priceCents).toBe(1234);
+  });
+});
+
 describe("§§1–3 — proven-empty vs unknown", () => {
   it("serves a real zero for a proven-empty roster and nulls for the gap", async () => {
     const emptyDeps = emptyWorldDeps();
