@@ -37,6 +37,29 @@
  * own drops produced. Pick-only records carry no player legs and
  * apply as no-ops. Team identity is the roster SLOT, never the owner.
  *
+ * Source admission is bounded and proven, not assumed:
+ *
+ * - A draft receipt must prove it is complete before it anchors a
+ *   segment or derives the boundary: pick numbers form the
+ *   contiguous sequence 1..N and the (round, slot) cells form the
+ *   full grid — every round carries the same slot set. A missing,
+ *   truncated, or gapped receipt rejects the load: inversion and
+ *   replay consume the same draft, so neither can detect an omission
+ *   the receipt itself does not rule out, and an omitted pick would
+ *   otherwise resurface as backdated boundary membership.
+ * - The loader captures an explicit as-of instant (injectable, for
+ *   tests). A completed source event effective after it — or a draft
+ *   completing after it — rejects the load, and membership is never
+ *   asserted for an instant past it: an end-of-day is only claimed
+ *   for a day the cutoff has fully covered.
+ * - Repeated transaction records are admitted once per league:
+ *   identical repeats (after normalization) are deduplicated; the
+ *   same transaction id carrying different contents rejects.
+ * - The draft/transaction tie rule is one rule in both directions:
+ *   forward replay applies the draft before a move at the same
+ *   instant, so inversion treats an equal-instant move as post-draft
+ *   — it is undone BEFORE the draft's additions are stripped.
+ *
  * Membership only: no prices are read, derived, or asserted here.
  * This module performs no writes of any kind.
  */
@@ -288,8 +311,14 @@ export function deriveBoundaryReconciliation(args: {
   draft: RosterDraftEvent;
 }): BoundaryDerivation {
   const ordered = [...args.moves].sort(byFrozenOrder);
-  const preDraftMoves = ordered.filter(move => move.effectiveMs <= args.draft.effectiveMs);
-  const postDraftMoves = ordered.filter(move => move.effectiveMs > args.draft.effectiveMs);
+  // The tie rule mirrors forward replay, which applies the draft
+  // before a move at the same instant: an equal-instant move acted
+  // on the draft's outcome, so it is post-draft here and inverts
+  // BEFORE the draft's additions are stripped. Partitioning it as
+  // pre-draft would strip the draft out from under the move and the
+  // round-trip would contradict itself.
+  const preDraftMoves = ordered.filter(move => move.effectiveMs < args.draft.effectiveMs);
+  const postDraftMoves = ordered.filter(move => move.effectiveMs >= args.draft.effectiveMs);
 
   const draftedBy = new Map<string, number>();
   for (const add of args.draft.adds) {
@@ -355,6 +384,8 @@ export type RosterReplayDeps = {
   fetchMoves?: (leagueId: string, weeks: number[]) => Promise<HistoryMove[]>;
   /** The current league's provable transaction week range. */
   seasonTwoWeeks?: () => Promise<number[]>;
+  /** The observation instant bounding source admission; defaults to the load instant. */
+  now?: () => Date;
 };
 
 async function defaultFetchMoves(leagueId: string, weeks: number[]): Promise<HistoryMove[]> {
@@ -383,14 +414,70 @@ function completedDraft(drafts: RawDraft[], leagueId: string): { draft: RawDraft
   return { draft, completedMs: draft.last_picked };
 }
 
+/**
+ * Prove a draft receipt complete before anything derives from it.
+ * The receipt is the only evidence of the draft's assignments —
+ * inversion and replay both consume it, so an omission neither can
+ * detect must be ruled out by the receipt's own structure: pick
+ * numbers are exactly 1..N with no gaps or repeats, and the
+ * (round, draft_slot) cells form the full grid — rounds run 1..max
+ * with none missing and every round carries the same slot set. A
+ * completed draft has made every pick; anything less is a missing,
+ * truncated, or unproven receipt and rejects the load.
+ */
+function validateDraftReceipt(picks: RawDraftPick[], draftId: string): void {
+  if (!Array.isArray(picks) || picks.length === 0) {
+    throw new RosterReplayError(`Draft ${draftId} carries no draft-pick receipt`);
+  }
+  const pickNos = new Set<number>();
+  const cells = new Set<string>();
+  const slotsByRound = new Map<number, Set<number>>();
+  for (const pick of picks) {
+    if (!pick || typeof pick !== "object"
+      || typeof pick.player_id !== "string" || pick.player_id.length === 0
+      || !Number.isSafeInteger(pick.roster_id) || pick.roster_id < 1
+      || !Number.isSafeInteger(pick.pick_no) || pick.pick_no < 1
+      || !Number.isSafeInteger(pick.round) || pick.round < 1
+      || !Number.isSafeInteger(pick.draft_slot) || pick.draft_slot < 1) {
+      throw new RosterReplayError(`Draft ${draftId} carries an unreadable pick`);
+    }
+    if (pickNos.has(pick.pick_no)) {
+      throw new RosterReplayError(`Draft ${draftId} repeats pick number ${pick.pick_no}`);
+    }
+    pickNos.add(pick.pick_no);
+    const cell = `${pick.round}:${pick.draft_slot}`;
+    if (cells.has(cell)) {
+      throw new RosterReplayError(`Draft ${draftId} repeats round ${pick.round} slot ${pick.draft_slot}`);
+    }
+    cells.add(cell);
+    const slots = slotsByRound.get(pick.round) ?? new Set<number>();
+    slots.add(pick.draft_slot);
+    slotsByRound.set(pick.round, slots);
+  }
+  for (let pickNo = 1; pickNo <= picks.length; pickNo++) {
+    if (!pickNos.has(pickNo)) {
+      throw new RosterReplayError(`Draft ${draftId} receipt is incomplete: pick number ${pickNo} is missing`);
+    }
+  }
+  const rounds = [...slotsByRound.keys()].sort((a, b) => a - b);
+  const slotSet = slotsByRound.get(rounds[0])!;
+  for (let round = 1; round <= rounds.length; round++) {
+    const slots = slotsByRound.get(round);
+    if (!slots) {
+      throw new RosterReplayError(`Draft ${draftId} receipt is incomplete: round ${round} is missing`);
+    }
+    if (slots.size !== slotSet.size || [...slots].some(slot => !slotSet.has(slot))) {
+      throw new RosterReplayError(
+        `Draft ${draftId} receipt is incomplete: round ${round} does not carry every draft slot`);
+    }
+  }
+}
+
 function draftAssignments(picks: RawDraftPick[], draftId: string): Map<number, string[]> {
+  validateDraftReceipt(picks, draftId);
   const rosters = new Map<number, string[]>();
   const seen = new Set<string>();
   for (const pick of picks) {
-    if (typeof pick.player_id !== "string" || pick.player_id.length === 0
-      || !Number.isSafeInteger(pick.roster_id) || pick.roster_id < 1) {
-      throw new RosterReplayError(`Draft ${draftId} carries an unreadable pick`);
-    }
     if (seen.has(pick.player_id)) {
       throw new RosterReplayError(`Draft ${draftId} assigns player ${pick.player_id} twice`);
     }
@@ -399,7 +486,6 @@ function draftAssignments(picks: RawDraftPick[], draftId: string): Map<number, s
     roster.push(pick.player_id);
     rosters.set(pick.roster_id, roster);
   }
-  if (rosters.size === 0) throw new RosterReplayError(`Draft ${draftId} carries no picks`);
   return new Map([...rosters.entries()].map(([id, players]) => [id, [...players].sort()]));
 }
 
@@ -451,6 +537,8 @@ export type SeasonRosterReplay = {
 };
 
 export type ChainRosterReplay = {
+  /** ISO as-of cutoff: no source evidence after it was admitted, and no membership is asserted past it. */
+  asOf: string;
   seasonOne: SeasonRosterReplay;
   seasonTwo: SeasonRosterReplay & {
     /** Per-slot silent boundary deltas (empty arrays on the proven boundary). */
@@ -458,14 +546,58 @@ export type ChainRosterReplay = {
   };
   /** The offseason gap: days in [from, toExclusive) assert no membership. */
   gapRange: { from: string; toExclusive: string };
-  /** Membership at an instant, or null in the gap / before the founding draft completed. */
+  /** Membership at an instant, or null in the gap / before the founding draft completed / past the as-of cutoff. */
   membershipAt: (rosterId: number, instantMs: number) => RosterMembership | null;
-  /** Membership at the end of a UTC day (`YYYY-MM-DD`), or null on gap days. */
+  /** Membership at the end of a UTC day (`YYYY-MM-DD`), or null on gap days and days the as-of cutoff has not fully covered. */
   membershipOnDay: (rosterId: number, day: string) => RosterMembership | null;
 };
 
 const DAY_MS = 86_400_000;
 const iso = (ms: number) => new Date(ms).toISOString();
+
+/** Canonical content fingerprint of one normalized move. */
+function moveFingerprint(move: HistoryMove): string {
+  const legs = (entries: { playerId: string; rosterId: number }[]) =>
+    entries.map(entry => `${entry.playerId}@${entry.rosterId}`).sort();
+  return JSON.stringify({
+    leagueId: move.leagueId, type: move.type, effectiveMs: move.effectiveMs, leg: move.leg,
+    rosterIds: [...move.rosterIds].sort((a, b) => a - b),
+    adds: legs(move.adds), drops: legs(move.drops),
+    waiverBid: move.waiverBid, draftPicks: move.draftPicks,
+  });
+}
+
+/**
+ * Admit one league's completed moves for replay, bounded by the
+ * as-of cutoff. A record effective after the cutoff is unobserved
+ * evidence and rejects the load — it is never replayed, inverted, or
+ * counted. A repeated transaction id is admitted once when the
+ * repeats are identical after normalization (a strict per-week feed
+ * can surface the same record twice); the same id with different
+ * contents is a contradiction and rejects.
+ */
+function admitFeedMoves(moves: HistoryMove[], leagueId: string, asOfMs: number): HistoryMove[] {
+  const seen = new Map<string, string>();
+  const admitted: HistoryMove[] = [];
+  for (const move of moves) {
+    if (move.effectiveMs > asOfMs) {
+      throw new RosterReplayError(
+        `League ${leagueId} feed carries completed move ${move.id} effective ${iso(move.effectiveMs)}, after the as-of cutoff ${iso(asOfMs)}`);
+    }
+    const fingerprint = moveFingerprint(move);
+    const prior = seen.get(move.id);
+    if (prior !== undefined) {
+      if (prior !== fingerprint) {
+        throw new RosterReplayError(
+          `League ${leagueId} feed carries transaction ${move.id} twice with different contents`);
+      }
+      continue;
+    }
+    seen.set(move.id, fingerprint);
+    admitted.push(move);
+  }
+  return admitted;
+}
 
 /**
  * Load the full chain replay from Sleeper (or injected fakes). Both
@@ -480,40 +612,62 @@ export async function loadChainRosterReplay(deps: RosterReplayDeps = {}): Promis
   const fetchMoves = deps.fetchMoves ?? defaultFetchMoves;
   const seasonTwoWeeks = deps.seasonTwoWeeks ?? defaultSeasonTwoWeeks;
 
+  // The as-of cutoff: the instant this load observes its sources.
+  // Nothing effective after it is admitted as evidence, and no
+  // membership is asserted past it.
+  const asOfMs = (deps.now ?? (() => new Date()))().getTime();
+  if (!Number.isFinite(asOfMs)) throw new RosterReplayError("The as-of cutoff is not a finite instant");
+
   /* Season one: draft anchor, forward replay, verified final. */
   const { draft: draftOne, completedMs: draftOneMs } =
     completedDraft(await fetchDrafts(SEASON_ONE_LEAGUE_ID), SEASON_ONE_LEAGUE_ID);
+  if (draftOneMs > asOfMs) {
+    throw new RosterReplayError(`League ${SEASON_ONE_LEAGUE_ID} draft completes after the as-of cutoff`);
+  }
   const [picksOne, movesOne, observedFinalOne] = await Promise.all([
     fetchPicks(draftOne.draft_id),
     fetchMoves(SEASON_ONE_LEAGUE_ID, SEASON_ONE_WEEKS),
     fetchRostersDep(SEASON_ONE_LEAGUE_ID),
   ]);
   const anchorOne = draftAssignments(picksOne, draftOne.draft_id);
-  const timelineOne = buildRosterTimeline({ anchorAtMs: draftOneMs, anchorRosters: anchorOne, moves: movesOne });
+  const timelineOne = buildRosterTimeline({
+    anchorAtMs: draftOneMs, anchorRosters: anchorOne,
+    moves: admitFeedMoves(movesOne, SEASON_ONE_LEAGUE_ID, asOfMs),
+  });
   const observedOne = observedRosters(observedFinalOne, SEASON_ONE_LEAGUE_ID);
   assertRostersEqual(timelineOne.finalRosters(), observedOne, "Season-one replay does not reproduce Sleeper's final 2025 rosters");
 
   /* Season two: derive the boundary, replay forward, verify current. */
   const { draft: draftTwo, completedMs: draftTwoMs } =
     completedDraft(await fetchDrafts(LEAGUE_ID), LEAGUE_ID);
+  if (draftTwoMs > asOfMs) {
+    throw new RosterReplayError(`League ${LEAGUE_ID} draft completes after the as-of cutoff`);
+  }
   const weeksTwo = await seasonTwoWeeks();
   const [picksTwo, movesTwo, observedCurrent] = await Promise.all([
     fetchPicks(draftTwo.draft_id),
     fetchMoves(LEAGUE_ID, weeksTwo),
     fetchRostersDep(LEAGUE_ID),
   ]);
+  // The 2026 draft event is built from the VALIDATED receipt: the
+  // boundary derivation consumes these assignments, and an omitted
+  // pick would otherwise pass through it silently into backdated
+  // boundary membership.
+  const assignmentsTwo = draftAssignments(picksTwo, draftTwo.draft_id);
   const draftEventTwo: RosterDraftEvent = {
     draftId: draftTwo.draft_id, effectiveMs: draftTwoMs,
-    adds: picksTwo.map(pick => ({ playerId: pick.player_id, rosterId: pick.roster_id })),
+    adds: [...assignmentsTwo.entries()].flatMap(([rosterId, players]) =>
+      players.map(playerId => ({ playerId, rosterId }))),
   };
+  const admittedMovesTwo = admitFeedMoves(movesTwo, LEAGUE_ID, asOfMs);
   const observedTwo = observedRosters(observedCurrent, LEAGUE_ID);
   const derivation = deriveBoundaryReconciliation({
-    priorFinalRosters: observedOne, currentRosters: observedTwo, moves: movesTwo, draft: draftEventTwo,
+    priorFinalRosters: observedOne, currentRosters: observedTwo, moves: admittedMovesTwo, draft: draftEventTwo,
   });
   const boundaryAtMs = Date.parse(`${HISTORY_SEASON_TWO_FROM}T00:00:00Z`);
   const timelineTwo = buildRosterTimeline({
     anchorAtMs: boundaryAtMs, anchorRosters: derivation.boundaryRosters,
-    moves: movesTwo, draftEvents: [draftEventTwo],
+    moves: admittedMovesTwo, draftEvents: [draftEventTwo],
   });
   assertRostersEqual(timelineTwo.finalRosters(), observedTwo, "Season-two replay does not reproduce Sleeper's current rosters");
 
@@ -542,12 +696,14 @@ export async function loadChainRosterReplay(deps: RosterReplayDeps = {}): Promis
   };
 
   const membershipAt = (rosterId: number, instantMs: number): RosterMembership | null => {
+    if (instantMs > asOfMs) return null;
     if (instantMs >= timelineOne.anchorAtMs && instantMs < gapStartMs) return membership(rosterId, instantMs, "one");
     if (instantMs >= timelineTwo.anchorAtMs) return membership(rosterId, instantMs, "two");
     return null;
   };
 
   return {
+    asOf: iso(asOfMs),
     seasonOne: {
       leagueId: SEASON_ONE_LEAGUE_ID, draftId: draftOne.draft_id,
       anchorAt: iso(draftOneMs), timeline: timelineOne, finalRosters: timelineOne.finalRosters(),

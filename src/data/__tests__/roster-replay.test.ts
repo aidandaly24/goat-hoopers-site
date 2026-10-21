@@ -198,3 +198,51 @@ describe("deriveBoundaryReconciliation", () => {
     })).toThrow(RosterReplayError);
   });
 });
+
+describe("deriveBoundaryReconciliation — draft-instant tie rule", () => {
+  // Forward replay applies the draft before a move at the same
+  // instant, so an equal-instant move acted on the draft's outcome.
+  // Inversion must undo it BEFORE stripping the draft. The dot's
+  // repro on PR #243: with the trade partitioned as pre-draft, the
+  // derivation threw "Drafted player rookie is absent from slot 1"
+  // on a feed that round-trips cleanly forward.
+  const tieDraft: RosterDraftEvent = {
+    draftId: "dt", effectiveMs: 2_000, adds: [{ playerId: "rookie", rosterId: 1 }],
+  };
+  const tieFeed = moves([
+    tx({
+      transaction_id: "800", type: "trade", status_updated: 2_000, roster_ids: [1, 2],
+      adds: { rookie: 2 }, drops: { rookie: 1 },
+    }),
+  ]);
+  const tiePrior = new Map<number, readonly string[]>([[1, []], [2, []]]);
+  const tieCurrent = new Map<number, readonly string[]>([[1, []], [2, ["rookie"]]]);
+
+  it("treats an equal-instant move as post-draft and round-trips", () => {
+    const derived = deriveBoundaryReconciliation({
+      priorFinalRosters: tiePrior, currentRosters: tieCurrent, moves: tieFeed, draft: tieDraft,
+    });
+    expect(derived.preDraftMoves).toEqual([]);
+    expect(derived.postDraftMoves.map(move => move.id)).toEqual(["800"]);
+    // At the draft's completion the rookie sits on the drafting
+    // slot: in the inversion's frame the equal-instant trade has
+    // been undone and the draft not yet stripped. The boundary
+    // itself is empty on both slots, with no silent deltas.
+    expect(derived.atDraftCompletion.get(1)).toEqual(["rookie"]);
+    expect(derived.atDraftCompletion.get(2)).toEqual([]);
+    expect(derived.boundaryRosters.get(1)).toEqual([]);
+    expect(derived.boundaryRosters.get(2)).toEqual([]);
+    expect(derived.reconciliation).toEqual([
+      { rosterId: 1, cuts: [], additions: [] },
+      { rosterId: 2, cuts: [], additions: [] },
+    ]);
+    // The forward timeline from that boundary reproduces the
+    // observed current rosters exactly.
+    const timeline = buildRosterTimeline({
+      anchorAtMs: 1_000, anchorRosters: derived.boundaryRosters,
+      moves: tieFeed, draftEvents: [tieDraft],
+    });
+    expect(timeline.finalRosters().get(1)).toEqual([]);
+    expect(timeline.finalRosters().get(2)).toEqual(["rookie"]);
+  });
+});

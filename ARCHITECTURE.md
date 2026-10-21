@@ -86,7 +86,12 @@ non-transaction membership event). Gap days assert no membership. Every
 application is fail-closed (a drop of an unowned player or an add of an
 owned one rejects the load), team identity is the roster slot, and both
 segments verify against Sleeper's observed rosters before anything is
-served. Ground truth is pinned by captured, hash-manifested receipts in
+served. Source admission is bounded by an explicit as-of cutoff: draft
+receipts must prove complete (contiguous pick numbers, the full
+rounds×slots grid) before they anchor or derive anything, repeated
+transaction records are deduplicated (the same id with different
+contents rejects), source events effective after the cutoff reject the
+load, and membership is never asserted past the cutoff. Ground truth is pinned by captured, hash-manifested receipts in
 `src/test/fixtures/roster-replay/` (re-capture:
 `scripts/capture-roster-replay-fixtures.mjs`) and the acceptance tests in
 `src/data/__tests__/roster-replay-acceptance.test.ts`. Membership only —

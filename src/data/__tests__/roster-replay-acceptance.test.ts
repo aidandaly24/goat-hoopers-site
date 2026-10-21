@@ -18,6 +18,10 @@
  * 49 rows, 46 complete, split 12 pre-draft / 34 post-draft by the
  * 2026 draft's completion (2026-10-05T17:34:08.922Z). The boundary
  * reconciliation is EMPTY for every slot — no silent keeper cuts.
+ *
+ * The loader-integrity describe at the bottom pins the dot's PR #243
+ * review probes against these same fixtures: draft-receipt
+ * completeness, as-of admission, and duplicate transaction records.
  */
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -28,7 +32,7 @@ import {
 } from "../sleeper";
 import { SEASON_ONE_LEAGUE_ID, toHistoryMoves } from "../team-value-history";
 import {
-  deriveBoundaryReconciliation, loadChainRosterReplay,
+  deriveBoundaryReconciliation, loadChainRosterReplay, RosterReplayError,
   type RosterDraftEvent, type RosterReplayDeps,
 } from "../roster-replay";
 
@@ -92,6 +96,11 @@ function fixtureDeps(): RosterReplayDeps {
       return toHistoryMoves(transactions[leagueId], leagueId);
     },
     seasonTwoWeeks: async () => [1],
+    // The receipts were captured on 2026-10-21; pin the loader's
+    // as-of clock to that day's noon — after every captured record
+    // (the last is effective 2026-10-20T18:09:18.417Z) and before
+    // that day's unobserved end.
+    now: () => new Date("2026-10-21T12:00:00Z"),
   };
 }
 
@@ -247,5 +256,97 @@ describe("the chain — gap honesty and coverage", () => {
     picks.forEach(pick => ever.add(pick.player_id));
     expect(picks).toHaveLength(200);
     expect(ever.size).toBe(373);
+  });
+});
+
+describe("loader source integrity — the dot's PR #243 review probes", () => {
+  const DRAFT_ONE_ID = "1282883197582987264";
+  const DRAFT_TWO_ID = "1387473752819785728";
+
+  const picksOverride = (
+    draftId: string, map: (picks: Awaited<ReturnType<NonNullable<RosterReplayDeps["fetchDraftPicks"]>>>) =>
+      Awaited<ReturnType<NonNullable<RosterReplayDeps["fetchDraftPicks"]>>>,
+  ): RosterReplayDeps => {
+    const base = fixtureDeps();
+    return {
+      ...base,
+      fetchDraftPicks: async id => (id === draftId ? map(await base.fetchDraftPicks!(id)) : base.fetchDraftPicks!(id)),
+    };
+  };
+
+  const movesOverride = (rows: RawTransaction[]): RosterReplayDeps => {
+    const base = fixtureDeps();
+    return {
+      ...base,
+      fetchMoves: async (leagueId, weeks) =>
+        leagueId === LEAGUE_ID ? toHistoryMoves(rows, leagueId) : base.fetchMoves!(leagueId, weeks),
+    };
+  };
+
+  it("rejects an empty 2026 draft-pick receipt instead of backdating its 30 players", async () => {
+    await expect(loadChainRosterReplay(picksOverride(DRAFT_TWO_ID, () => [])))
+      .rejects.toThrow(RosterReplayError);
+  });
+
+  it("rejects an empty 2025 draft-pick receipt", async () => {
+    await expect(loadChainRosterReplay(picksOverride(DRAFT_ONE_ID, () => [])))
+      .rejects.toThrow(RosterReplayError);
+  });
+
+  it("rejects a 2026 draft receipt missing pick #1 (player 4866, slot 8)", async () => {
+    const base = fixtureDeps();
+    const all = await base.fetchDraftPicks!(DRAFT_TWO_ID);
+    expect(all.find(pick => pick.pick_no === 1)?.player_id).toBe("4866");
+    await expect(loadChainRosterReplay(
+      picksOverride(DRAFT_TWO_ID, picks => picks.filter(pick => pick.pick_no !== 1)),
+    )).rejects.toThrow(RosterReplayError);
+  });
+
+  it("rejects a 2026 draft receipt missing its final pick (truncated grid)", async () => {
+    await expect(loadChainRosterReplay(
+      picksOverride(DRAFT_TWO_ID, picks => picks.filter(pick => pick.pick_no !== 30)),
+    )).rejects.toThrow(RosterReplayError);
+  });
+
+  it("asserts no membership beyond the as-of observation instant", async () => {
+    const chain = await loadChainRosterReplay(fixtureDeps());
+    expect(chain.asOf).toBe("2026-10-21T12:00:00.000Z");
+    expect(chain.membershipAt(1, Date.parse("2099-01-01T00:00:00Z"))).toBeNull();
+    expect(chain.membershipOnDay(1, "2099-01-01")).toBeNull();
+    // The capture day is only half observed at the pinned noon
+    // cutoff: its end-of-day is not asserted…
+    expect(chain.membershipOnDay(1, "2026-10-21")).toBeNull();
+    // …while the last fully observed day serves the final rosters
+    // (the 2026 feed's last record is effective that evening).
+    expect(chain.membershipOnDay(1, "2026-10-20")!.playerIds)
+      .toEqual(fixtureRosters("season-2026-rosters.json").get(1));
+  });
+
+  it("rejects a completed source event effective after the as-of cutoff", async () => {
+    const future: RawTransaction = {
+      transaction_id: "9999999999999999999", type: "trade", status: "complete",
+      roster_ids: [1, 2], leg: 1,
+      created: Date.parse("2099-01-01T00:00:00Z"), status_updated: Date.parse("2099-01-01T00:00:00Z"),
+      adds: null, drops: null,
+      draft_picks: [{ season: "2027", round: 1, roster_id: 1, owner_id: 2, previous_owner_id: 1 }],
+    };
+    const rows = [...(readJson("season-2026-transactions.json") as RawTransaction[]), future];
+    await expect(loadChainRosterReplay(movesOverride(rows))).rejects.toThrow(RosterReplayError);
+  });
+
+  it("deduplicates an identical repeated transaction record", async () => {
+    const rows = readJson("season-2026-transactions.json") as RawTransaction[];
+    const original = rows.find(row => row.status === "complete")!;
+    const chain = await loadChainRosterReplay(movesOverride([...rows, original]));
+    expect(chain.seasonTwo.timeline.appliedMoves).toHaveLength(46);
+    expect(chain.seasonTwo.finalRosters).toEqual(fixtureRosters("season-2026-rosters.json"));
+  });
+
+  it("rejects the same transaction id carrying different contents", async () => {
+    const rows = readJson("season-2026-transactions.json") as RawTransaction[];
+    const original = rows.find(row => row.status === "complete" && row.adds && Object.keys(row.adds).length > 0)!;
+    const inconsistent: RawTransaction = { ...original, adds: { "999999": 1 } };
+    await expect(loadChainRosterReplay(movesOverride([...rows, inconsistent])))
+      .rejects.toThrow(RosterReplayError);
   });
 });

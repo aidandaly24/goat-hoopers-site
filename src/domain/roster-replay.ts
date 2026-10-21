@@ -28,7 +28,11 @@
  *   DERIVED by inverting the 2026 feed from the observed current
  *   rosters, segmented at the 2026 draft (2026-10-05): post-draft
  *   moves invert first, the draft's own additions are stripped, then
- *   pre-draft moves invert. The derivation is checked against the
+ *   pre-draft moves invert. A move effective exactly at the draft's
+ *   completion instant counts as post-draft: forward replay applies
+ *   the draft first at an equal instant, so inversion undoes the
+ *   move before the draft is stripped — one tie rule in both
+ *   directions. The derivation is checked against the
  *   prior season's final rosters and the per-slot silent deltas are
  *   enumerated as a reconciliation (below) — labeled reconciliation,
  *   never dressed up as transactions. On the captured evidence the
@@ -36,7 +40,12 @@
  *   every departure is a recorded move, and the only non-transaction
  *   membership event in the chain is the 2026 draft itself, which is
  *   recorded in that league's draft feed and applied as a dated draft
- *   event. Gap days assert no membership at all.
+ *   event. Gap days assert no membership at all, and neither does
+ *   any instant past the loader's as-of observation instant: an
+ *   end-of-day is claimed only for a day the cutoff has fully
+ *   covered, and draft receipts must prove complete (contiguous
+ *   pick numbers, the full rounds×slots grid) before they anchor
+ *   or derive anything.
  *
  * Team identity follows the roster SLOT, not the owner: slot 8 was
  * another owner's team in 2025 and is NeuralNets in 2026; the replay
