@@ -58,6 +58,7 @@ export function WeekTwoDraft({ client }: { client: DraftRosterClient }) {
   const [search, setSearch] = useState("");
   const [inspectionTime, setInspectionTime] = useState<number | null>(null);
   const [drawFrame, setDrawFrame] = useState(0);
+  const surface = useRef<HTMLDivElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const firstDrawStarted = useRef(false);
   const active = useRef(true);
@@ -137,7 +138,8 @@ export function WeekTwoDraft({ client }: { client: DraftRosterClient }) {
   useEffect(() => {
     if (state.phase === "teaser" || state.phase === "drawing") return;
     heading.current?.focus({ preventScroll: true });
-    heading.current?.scrollIntoView({ block: "start", behavior: "instant" });
+    // Keep Back/preview context visible while the heading receives focus.
+    surface.current?.scrollIntoView({ block: "start", behavior: "instant" });
   }, [state.phase]);
   useEffect(() => { active.current = true; return () => { active.current = false; requestController.current?.abort(); }; }, []);
 
@@ -152,7 +154,7 @@ export function WeekTwoDraft({ client }: { client: DraftRosterClient }) {
     finally { exportBusy.current = false; }
   };
 
-  return <div className={`gh-week-two-draft ${styles.root}`} data-draft-phase={state.phase}>
+  return <div ref={surface} className={`gh-week-two-draft ${styles.root}`} data-draft-phase={state.phase}>
     <div className={styles.topline}>
       <Link href="/arcade" className={styles.back}>Back to Arcade</Link>
       <span className={styles.edition}>THE GAME ROOM <span>/</span> VOL. 02</span>

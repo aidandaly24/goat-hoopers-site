@@ -1,4 +1,4 @@
-.root { max-width: 82rem; margin: auto; padding: 0 var(--gh-s8) var(--gh-s8); color: var(--gh-draft-ink); }
+.root { max-width: 82rem; margin: auto; padding: 0 var(--gh-s8) var(--gh-s8); color: var(--gh-draft-ink); scroll-margin-top: calc(var(--gh-chrome-h, var(--gh-s16)) + var(--gh-s4)); }
 .root button { cursor: pointer; }
 .root button:disabled { cursor: default; opacity: .5; }
 .root h1:focus { outline: none; }
