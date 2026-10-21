@@ -65,6 +65,35 @@ nothing is backfilled or reconstructed, and the envelope states the
 retained-source (30-day prune) limitation in its source notes until a
 separate persistence PR lands.
 
+### Roster replay — forward dated membership (issues #224/#217)
+
+`data/roster-replay.ts` is the forward counterpart of the producer above,
+serving the contract in `domain/roster-replay.ts`: dated roster membership
+replayed FORWARD from pinned anchors instead of inverted from today's
+roster. The 2025 segment anchors on the completed startup draft's own
+assignments (draft `1282883197582987264`, at its completion instant) and
+applies the league's complete feed in the same frozen order; moves
+effective at or before the anchor are pre-anchor evidence, never applied.
+The 2026 segment has no draft anchor for its keeper core — the offseason
+gap (2026-04-02 → 2026-08-12) carries no rows in either feed — so its
+boundary roster is derived by inverting the 2026 feed from the observed
+current rosters, segmented at the 2026 draft (post-draft moves invert,
+the draft's additions strip, pre-draft moves invert), and the per-slot
+silent delta against the 2025 finals is exposed as an explicit
+reconciliation (empty on the captured evidence: no silent keeper cuts;
+the 2026 draft, applied forward as a dated draft event, is the only
+non-transaction membership event). Gap days assert no membership. Every
+application is fail-closed (a drop of an unowned player or an add of an
+owned one rejects the load), team identity is the roster slot, and both
+segments verify against Sleeper's observed rosters before anything is
+served. Ground truth is pinned by captured, hash-manifested receipts in
+`src/test/fixtures/roster-replay/` (re-capture:
+`scripts/capture-roster-replay-fixtures.mjs`) and the acceptance tests in
+`src/data/__tests__/roster-replay-acceptance.test.ts`. Membership only —
+no prices — and nothing is wired into the live history envelope yet:
+flipping the 2025 band off `ambiguous` is a separate gated step after the
+contract handoff on #224. Zero writes, like the producer above.
+
 ### Modeled valuation timeline contract
 
 The selected-player read-only `/api/stocks/[playerId]/history` route delegates

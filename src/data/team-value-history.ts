@@ -167,7 +167,7 @@ export const SEASON_ONE_LEAGUE_ID = "1282883196567977984";
  * strict loader reads exactly that range rather than deriving weeks
  * from live season state that describes the current season only.
  */
-const SEASON_ONE_WEEKS = Array.from({ length: 24 }, (_, i) => i + 1);
+export const SEASON_ONE_WEEKS = Array.from({ length: 24 }, (_, i) => i + 1);
 const DAY_MS = 86_400_000;
 const MAX_RESPONSE_BYTES = 256 * 1024;
 
