@@ -1,5 +1,8 @@
 /**
- * team-value-history.ts — the recorded-only producer for issue #217.
+ * team-value-history.ts — the recorded-only producer for issue #217,
+ * with forward-replay membership wired in under the #224 contract
+ * (semantics confirmed on the issue: comments 6311714485, 6311832961,
+ * 6312076373, 6312158306, 6312224861, 6312327589).
  *
  * Serves the v1 team-value-history envelope/detail (contract:
  * `src/domain/team-value-history.ts`, integration doc on PR #218) from
@@ -10,46 +13,62 @@
  *   native UTC-convention timestamps). The market loader's saving path
  *   is never invoked: API reads write nothing.
  * - A pinned, dated roster anchor: the current Sleeper rosters, observed
- *   at load time.
+ *   at load time. The anchor still values the CURRENT quote (today's
+ *   independently observed membership) and binds the generation.
+ * - Dated membership from the forward roster replay
+ *   (`loadChainRosterReplay` in `roster-replay.ts`): both segments
+ *   replay FORWARD from pinned anchors (the 2025 startup draft; the
+ *   derived 2026 season boundary) and verify against Sleeper's
+ *   observed rosters at load. A team's roster at a quote instant is
+ *   the replay's membership at that instant — priced days evaluate
+ *   at the exact quote instant, unpriced completed days at UTC day
+ *   end, today at the fixed as-of cutoff — never an inversion of the
+ *   anchor. Days the replay does not prove (the offseason gap,
+ *   pre-anchor, past the cutoff) stay unpriced and are reported
+ *   ambiguous/unavailable, never stretched. The inventory of
+ *   retained quotes / reconstruction inputs against this proven
+ *   membership lives in `docs/team-value-history-inventory.md`.
  * - The completed-move generation over the public Sleeper transaction
  *   feeds of BOTH leagues in the chain — the current league, over the
  *   week range the live season state proves, and the inaugural 2025
  *   league, over its fixed, final week range 1–24 — in the frozen
  *   replay ordering (status_updated asc, tie-break transaction_id,
- *   complete-only, trades atomic). A team's roster at a quote instant
- *   is its anchor roster with every later completed move inverted;
- *   days whose membership cannot be proven that way stay unpriced and
- *   are reported ambiguous/unavailable, never stretched.
+ *   complete-only, trades atomic). This stream is the day-detail
+ *   EVENT evidence (2025 events included) and binds the generation;
+ *   it no longer derives membership.
  *
  * 2025 EVENTS (#224 amendment to the #217 recorded-only contract,
  * agreed on-thread): the 2025 league's completed moves are emitted in
  * day detail as dated, sourced EVENTS — team-scoped legs (every add /
  * drop carries its roster id), declared participants, shaped draft
- * picks and waiver FAAB. Events assert only their own legs: the 2025
- * roster band stays `ambiguous`, 2025 valuation stays `unavailable`,
- * no 2025 point is emitted, and detail keeps returning `players: []`
- * for 2025 days. The offseason gap (2026-04-02 → 2026-08-12) has no
- * rows in either feed and gets no events. Flipping the 2025 band to
- * `replayed` is a separate, larger contract change — not this one.
+ * picks and waiver FAAB. Events assert only their own legs. Under
+ * the wiring contract the 2025 roster band is `replayed` wherever
+ * the forward replay proves membership, and 2025 day detail lists
+ * the replayed roster with every price null — but 2025 valuation
+ * stays `unavailable` and no 2025 point is emitted: no recorded
+ * quote exists for any 2025 day in a retained source, and no price
+ * is reconstructed (see the inventory doc). The offseason gap
+ * (2026-04-02 → 2026-08-12) has no rows in either feed, gets no
+ * events, and asserts no membership.
  *
  * LEAGUE PROVENANCE (dot P1 on PR #236): every normalized move carries
  * the league whose feed produced it, and the two feeds are normalized
  * separately before they merge — provenance can never be lost in the
- * merge. Only the CURRENT league's moves enter roster inversion,
- * point derivation and the receipt's generation-move list: the anchor
- * is the current league's roster, so inverting another league's move
- * against it is a category error regardless of the move's timestamps
- * (a 2025-feed trade whose `status_updated` lands in Oct 2026 would
- * otherwise rewrite recorded 2026 rosters). Prior-league moves are
- * day-detail display events only. Provenance is bound into the
- * generation fingerprint and emitted on every DTO move (`leagueId`).
+ * merge. Only the CURRENT league's moves enter the receipt's
+ * generation-move list: the anchor is the current league's roster,
+ * so attributing another league's move to it is a category error
+ * regardless of the move's timestamps (a 2025-feed trade whose
+ * `status_updated` lands in Oct 2026 must never rewrite recorded
+ * 2026 rosters). Prior-league moves are day-detail display events
+ * only. Provenance is bound into the generation hash and emitted on
+ * every DTO move (`leagueId`).
  *
  * TEAM RELEVANCE (dot P2 on PR #236): a move belongs to a team's
  * history when its player legs touch the team, its declared
  * participants (`roster_ids`) include the team, or its draft picks
  * name the team as pick roster / owner / previous owner. A pick-only
  * trade therefore emits as an event for both teams and rebinds their
- * generations even though it has no player legs to invert.
+ * generations even though it has no player legs at all.
  *
  * MALFORMED COMPLETED ROWS (dot P2 on PR #236): normalization
  * validates every completed record before the feed is accepted as
@@ -67,12 +86,33 @@
  * pre-Oct-2026 prices. Persisting recorded points against the 30-day
  * prune is a separate, separately reviewed PR.
  *
- * GENERATION FINGERPRINT (dot's invariant on #217): the generation binds
- * the anchor roster, the completed-move set, the admitted recorded
- * quote set (quote ids + exact native timestamps + integer cents) and
- * the roster/source bounds. Adding, revising or pruning any admitted
- * quote changes the generation; detail/summary requests carrying an
- * obsolete generation get HTTP 409 instead of a silently different day.
+ * GENERATION (wiring contract §4 on #224, settled): a generation is
+ * the opaque token `th2:<canonical-asOf>:<evidence-hash>` — canonical
+ * ms UTC ISO with exact round-trip validation, colon-delimited. The
+ * hash extends the retired th1 fingerprint (payload version 2): it
+ * binds BOTH replay anchors (2025 draft assignments; 2026 derived
+ * boundary rosters), BOTH drafts' metadata witnesses (draft ids,
+ * declared rounds × teams, `draft_order` slot sets, league binding),
+ * the chain's admitted moves for both leagues with provenance plus
+ * its applied draft events, the boundary reconciliation, the source
+ * bounds (incl. `gapRange`), the anchor roster, this team's
+ * completed-move event set, the admitted recorded quote set (quote
+ * ids + exact native timestamps + integer cents) and the shared
+ * fixed cutoff. `HistoryAnchor.observedAt` is deliberately NOT
+ * bound — a fetch timestamp is not evidence. Summary and detail
+ * helpers parse the token before loading (see `pinnedCutoff`, the
+ * one place the status mapping lives), inject its cutoff as one
+ * constant clock into BOTH loaders, recompute bounded at it and
+ * compare the whole recomputed generation: equality serves the view
+ * with the envelope `asOf` fixed at the token cutoff; any mismatch —
+ * drift, correction, or genuine source advance, including replay
+ * admission rejections that only occur because sources moved past
+ * the pinned cutoff — is HTTP 409/refresh instead of a silently
+ * different day; malformed evidence and genuine source outage stay
+ * 503. Legacy `th1-…` tokens take the refresh-409 path, never a
+ * silent upgrade. Envelope `version` stays 1 and `generation`
+ * remains an opaque string to the DTO validators, so no client
+ * transport change is needed.
  *
  * FAIL-CLOSED FEED: the move generation loads through a strict fetcher
  * — every season week must succeed. A failed or malformed week rejects
@@ -105,6 +145,11 @@ import {
   type TeamValueHistoryDetail, type TeamValueHistoryEnvelope,
 } from "@/domain/team-value-history";
 import { getRecordedQuoteStore, type RecordedQuote, type RecordedQuoteStore } from "./recorded-quotes";
+import type { RosterMembership } from "@/domain/roster-replay";
+import {
+  loadChainRosterReplay, RosterReplayAdvanceError,
+  type ChainRosterReplay, type SeasonRosterReplay,
+} from "./roster-replay";
 import {
   fetchNbaState, fetchPlayerDirectory, fetchRosters, fetchUsers, LEAGUE_ID,
   type RawPlayerEntry, type RawTransaction,
@@ -153,6 +198,13 @@ export type TeamHistoryDeps = {
   fetchAnchor?: () => Promise<HistoryAnchor>;
   fetchMoves?: () => Promise<HistoryMove[]>;
   fetchNames?: () => Promise<Record<string, RawPlayerEntry>>;
+  /**
+   * The forward-replay chain (dated membership for both seasons).
+   * The default loads it from Sleeper with the SAME clock as the
+   * history load, so chain `asOf` === envelope `asOf` for every
+   * generation — fresh or pinned.
+   */
+  fetchChain?: () => Promise<ChainRosterReplay>;
   now?: () => Date;
 };
 
@@ -280,7 +332,7 @@ function validLegs(
  * completed moves in the frozen replay order, each stamped with the
  * league's provenance. Feeds are normalized separately and combined
  * with `mergeHistoryMoveSets`, never pooled raw — pooling would strip
- * the provenance the roster-inversion boundary depends on.
+ * the provenance the receipt boundary depends on.
  *
  * Completed records are validated before the feed is accepted as
  * complete: a completed row with no usable timestamp, an unreadable
@@ -379,7 +431,7 @@ async function defaultMoves(): Promise<HistoryMove[]> {
   ]);
   // Normalize each feed separately so every move keeps its league
   // provenance, then merge in frozen order. Pooling the raw rows and
-  // normalizing once would strip the provenance the roster-inversion
+  // normalizing once would strip the provenance the receipt
   // boundary (current league only) depends on.
   return mergeHistoryMoveSets(
     toHistoryMoves(seasonOne.flat(), SEASON_ONE_LEAGUE_ID),
@@ -394,6 +446,8 @@ type InstantEval = {
   /** The instant at native microsecond precision (epoch µs). */
   micros: number;
   roster: string[];
+  /** The forward-replay membership snapshot this roster came from. */
+  membership: RosterMembership;
   quotes: Map<string, RecordedQuote>;
 };
 
@@ -420,16 +474,125 @@ export type TeamHistoryReceipt = {
   points: {
     pointId: string; day: string; valuationAt: string; roster: string[];
     pricedPlayerIds: string[]; subtotalCents: number | null;
-    /** Completed moves inverted to derive this roster from the anchor. */
+    /** Completed current-league moves effective after this point — the delta to the anchor roster. */
     generationMoves: { id: string; type: string; effectiveAt: string }[];
   }[];
 };
+
+/* --------------------- generation evidence (§4) --------------------- */
+
+const evidenceMove = (move: HistoryMove) => [
+  move.leagueId, move.id, move.effectiveMs, move.type, move.leg, move.rosterIds, move.waiverBid, move.draftPicks,
+  move.adds.map(entry => [entry.playerId, entry.rosterId]), move.drops.map(entry => [entry.playerId, entry.rosterId]),
+];
+const evidenceRosters = (rosters: Map<number, string[]>) =>
+  [...rosters.entries()].sort((a, b) => a[0] - b[0]).map(([id, players]) => [id, [...players].sort()]);
+
+/** One replay segment's full evidence, as the generation binds it. */
+function segmentEvidence(segment: SeasonRosterReplay) {
+  return {
+    leagueId: segment.leagueId, draftId: segment.draftId,
+    grid: { rounds: segment.grid.rounds, slots: segment.grid.slots },
+    anchorAt: segment.anchorAt,
+    anchorRosters: evidenceRosters(segment.timeline.rostersAt(segment.timeline.anchorAtMs)),
+    finalRosters: evidenceRosters(segment.finalRosters),
+    preAnchorMoves: segment.timeline.preAnchorMoves.map(evidenceMove),
+    appliedMoves: segment.timeline.appliedMoves.map(evidenceMove),
+    appliedDraftEvents: segment.timeline.appliedDraftEvents.map(event => [
+      event.draftId, event.effectiveMs, event.adds.map(add => [add.playerId, add.rosterId]),
+    ]),
+  };
+}
+
+/**
+ * The chain-level evidence the th2 hash binds: both anchors, both
+ * drafts' metadata witnesses, both leagues' admitted moves (whole —
+ * never team-filtered), the boundary reconciliation and the gap
+ * bounds. Computed identically at envelope load and child recompute.
+ */
+function chainEvidence(chain: ChainRosterReplay) {
+  return {
+    asOf: chain.asOf,
+    seasonOne: segmentEvidence(chain.seasonOne),
+    seasonTwo: { ...segmentEvidence(chain.seasonTwo), reconciliation: chain.seasonTwo.reconciliation },
+    gapRange: chain.gapRange,
+  };
+}
+
+/**
+ * Every player the forward replay PROVES was on this roster in
+ * either segment: both segments' final rosters plus every add/drop
+ * leg the timelines carry for the slot (pre-anchor evidence, applied
+ * moves, draft-event additions). This is the membership-derived half
+ * of the quote scope: a player the replay proves on the team can
+ * hold a retained quote at a proven instant, and that quote is this
+ * team's evidence even when neither today's anchor nor a
+ * current-league move leg names them — the 2025-only player is the
+ * canonical case (dot review note on #244). Membership alone still
+ * mints no point: a point exists only where a retained quote was
+ * actually read at a proven instant.
+ */
+function chainProvenPlayers(chain: ChainRosterReplay, rosterId: number): string[] {
+  const proven = new Set<string>();
+  for (const segment of [chain.seasonOne, chain.seasonTwo]) {
+    for (const playerId of segment.finalRosters.get(rosterId) ?? []) proven.add(playerId);
+    for (const move of [...segment.timeline.preAnchorMoves, ...segment.timeline.appliedMoves]) {
+      for (const entry of [...move.adds, ...move.drops]) {
+        if (entry.rosterId === rosterId) proven.add(entry.playerId);
+      }
+    }
+    for (const event of segment.timeline.appliedDraftEvents) {
+      for (const entry of event.adds) {
+        if (entry.rosterId === rosterId) proven.add(entry.playerId);
+      }
+    }
+  }
+  return [...proven];
+}
+
+/* ------------------------- detail evidence ------------------------- */
+
+const listIds = (ids: readonly string[]): string =>
+  ids.length <= 20 ? ids.join(", ") : `${ids.slice(0, 20).join(", ")} +${ids.length - 20} more`;
+
+/**
+ * Render one membership snapshot's provenance into detail
+ * `rosterEvidence` (prose, per the confirmed §3 mapping on #224):
+ * the draft/boundary basis, league and anchor instant ride here; the
+ * structured inspection instant stays `detail.valuationAt`.
+ * `movesApplied` is league-wide replay depth, never a team count,
+ * and the reconciliation is presented as the derivation it is —
+ * never as a sourced trade.
+ */
+function membershipEvidence(membership: RosterMembership): string[] {
+  const provenance = membership.provenance;
+  const basis = provenance.anchorKind === "draft"
+    ? `Membership replayed forward from the completed startup draft of league ${provenance.anchorLeagueId} `
+      + `(anchor ${provenance.anchorAt}); the segment's final rosters are verified against Sleeper's observed rosters at load.`
+    : `Membership replayed forward from the season-boundary reconciliation of league ${provenance.anchorLeagueId} `
+      + `(anchor ${provenance.anchorAt}): the boundary roster is derived from the observed current rosters by inverting `
+      + `the 2026 feed, segmented at the 2026 draft; the segment's final rosters are verified against Sleeper's observed rosters at load.`;
+  const depth = `${provenance.movesApplied} completed move(s) applied league-wide between the anchor and this instant — `
+    + "replay depth, not this team's move count. Intermediate instants are replay-asserted, not independently verified.";
+  const evidence = [basis, depth];
+  const reconciliation = provenance.reconciliation;
+  if (reconciliation) {
+    evidence.push(reconciliation.cuts.length === 0 && reconciliation.additions.length === 0
+      ? "Boundary reconciliation for this slot is empty: the derived boundary roster equals the prior season's final roster, "
+        + "so every departure is a recorded move. The reconciliation is a derivation, not a sourced transaction."
+      : `Boundary reconciliation for this slot records ${reconciliation.cuts.length} silent cut(s) (${listIds(reconciliation.cuts)}) `
+        + `and ${reconciliation.additions.length} silent addition(s) (${listIds(reconciliation.additions)}) across the offseason gap. `
+        + "The reconciliation is a derivation from the two seasons' evidence, not a sourced transaction.");
+  }
+  return evidence;
+}
 
 function buildState(args: {
   anchor: HistoryAnchor;
   team: { id: string; name: string; players: string[] };
   moves: HistoryMove[];
   quotes: RecordedQuote[];
+  chain: ChainRosterReplay;
   now: Date;
 }): TeamHistoryState {
   const { anchor, team } = args;
@@ -455,36 +618,27 @@ function buildState(args: {
     || (move.draftPicks ?? []).some(pick => pick.rosterId === rosterId
       || pick.ownerId === rosterId || pick.previousOwnerId === rosterId);
   const moves = args.moves.filter(move => moveMicros(move) <= cutoffMicros && touchesTeam(move));
-  // Inversion consumes ONLY the current league's moves: the anchor is
-  // the current league's roster, and a prior league's move — whatever
-  // its timestamps — describes a different roster universe. Prior-
-  // league moves in `moves` are day-detail display events only.
-  const inversionMoves = moves.filter(move => move.leagueId === LEAGUE_ID);
+  // The receipt's move stream: ONLY the current league's moves — a
+  // prior league's move, whatever its timestamps, describes a
+  // different roster universe, and prior-league moves in `moves` are
+  // day-detail display events only. (Membership itself no longer
+  // derives from this stream at all; it comes from the forward
+  // replay below.)
+  const receiptMoves = moves.filter(move => move.leagueId === LEAGUE_ID);
 
   /**
-   * Roster at an instant (epoch µs): the anchor with every completed
-   * current-league move effective after the instant inverted, in exact
-   * reverse frozen order. Returns null when inversion contradicts the
-   * anchor (an add to invert that is absent, a drop to restore that is
-   * present) — membership unproven.
+   * Membership at an instant (epoch µs), from the forward replay.
+   * The cutoff comparison has already happened at µs precision in
+   * the admission filter above; only admitted instants are converted
+   * to the replay's millisecond granularity here (Sleeper move
+   * instants are epoch ms, so flooring an admitted instant is exact
+   * for move ordering). Returns null where the replay proves no
+   * membership — the offseason gap, before the founding draft
+   * completed, or past the cutoff — and the day stays unpriced.
    */
-  function rosterAt(micros: number): string[] | null {
-    const roster = new Set(anchorRoster);
-    for (let i = inversionMoves.length - 1; i >= 0; i--) {
-      const move = inversionMoves[i];
-      if (moveMicros(move) <= micros) break;
-      for (const drop of move.drops) {
-        if (drop.rosterId !== rosterId) continue;
-        if (roster.has(drop.playerId)) return null;
-        roster.add(drop.playerId);
-      }
-      for (const add of move.adds) {
-        if (add.rosterId !== rosterId) continue;
-        if (!roster.has(add.playerId)) return null;
-        roster.delete(add.playerId);
-      }
-    }
-    return [...roster].sort();
+  const chain = args.chain;
+  function membershipAtMicros(micros: number): RosterMembership | null {
+    return chain.membershipAt(rosterId, Math.floor(micros / 1000));
   }
 
   // Genuine common observation instants: quotes grouped by their exact
@@ -516,8 +670,10 @@ function buildState(args: {
   const evals: InstantEval[] = [];
   for (const [nativeTimestamp, at] of instantList) {
     const micros = instantMicros(nativeTimestamp);
-    const roster = rosterAt(micros);
-    if (roster) evals.push({ nativeTimestamp, micros, roster, quotes: at });
+    const membership = membershipAtMicros(micros);
+    if (membership) {
+      evals.push({ nativeTimestamp, micros, roster: membership.playerIds, membership, quotes: at });
+    }
   }
 
   const rosterRef = (roster: readonly string[]) => `roster-${team.id}-${sha([...roster].sort().join(",")).slice(0, 12)}`;
@@ -532,8 +688,15 @@ function buildState(args: {
     const prior = byDay.get(day);
     if (prior && (prior.pricedIds.length > pricedIds.length
       || prior.pricedIds.length === pricedIds.length && prior.ev.nativeTimestamp >= ev.nativeTimestamp)) continue;
-    const subtotalCents = pricedIds.length > 0
-      ? pricedIds.reduce((sum, id) => sum + ev.quotes.get(id)!.priceCents, 0) : null;
+    // A proven-EMPTY roster is a real $0, never an unknown: the
+    // domain contract's known-empty zero invariant — the same one
+    // detail()'s unpriced-day branch enforces. A quote instant can
+    // land on an empty roster day (a retained quote for a player the
+    // replay has since proven off the team); subtotal null there
+    // would violate both DTO validators and fail the whole envelope.
+    const subtotalCents = ev.roster.length === 0 ? 0
+      : pricedIds.length > 0
+        ? pricedIds.reduce((sum, id) => sum + ev.quotes.get(id)!.priceCents, 0) : null;
     byDay.set(day, {
       ev, pricedIds,
       build: {
@@ -572,17 +735,25 @@ function buildState(args: {
     break;
   }
 
-  // Generation fingerprint: binds the anchor roster, this team's
-  // completed-move set, the admitted quote set (ids, exact native
-  // timestamps, integer cents) and the roster/source bounds. Any
-  // add/revise/prune of an admitted quote changes the generation.
+  // Generation (§4 on #224): `th2:<canonical-asOf>:<evidence-hash>`.
+  // The hash payload (v2) binds the whole evidence view — the replay
+  // chain's anchors, draft witnesses, admitted moves and
+  // reconciliation enter WHOLE, not filtered to this team's legs, so
+  // evidence drift anywhere in the chain invalidates every team's
+  // token; this team's anchor roster, event-move set and admitted
+  // quote set bind as before; the shared fixed cutoff binds the view
+  // in time. `HistoryAnchor.observedAt` stays out: a fetch timestamp
+  // is not evidence, and binding it would manufacture perpetual
+  // 409s. The hash-input set is identical at envelope load and at
+  // child recompute — both build state through this same function.
   const admittedDays = quotes.map(quote => dayOf(quote.nativeTimestamp)).sort();
-  const generation = `th1-${sha(JSON.stringify({
-    v: 1, teamId: team.id, anchor: anchorRoster,
+  const generation = `th2:${args.now.toISOString()}:${sha(JSON.stringify({
+    v: 2, teamId: team.id, cutoff: args.now.toISOString(), anchor: anchorRoster,
+    chain: chainEvidence(chain),
     moves: moves.map(move => [move.leagueId, move.id, move.effectiveMs, move.type, move.leg, move.rosterIds, move.waiverBid, move.draftPicks,
       move.adds.map(entry => [entry.playerId, entry.rosterId]), move.drops.map(entry => [entry.playerId, entry.rosterId])]),
     bounds: {
-      players: [...new Set([...anchorRoster, ...moves.flatMap(move => [...move.adds, ...move.drops]
+      players: [...new Set([...anchorRoster, ...chainProvenPlayers(chain, rosterId), ...moves.flatMap(move => [...move.adds, ...move.drops]
         .filter(entry => entry.rosterId === rosterId).map(entry => entry.playerId))])].sort(),
       fromDay: admittedDays[0] ?? null, toDay: admittedDays.at(-1) ?? null,
     },
@@ -600,19 +771,33 @@ function buildState(args: {
   ];
 
   const coverage: TeamValueHistoryEnvelope["coverage"] = { roster: [], valuation: [] };
+  // Roster coverage is the forward replay's proof map (§§1–3 on
+  // #224): both segments replayed from their pinned anchors, the
+  // offseason gap — the chain's own returned range — asserted as
+  // nothing. Day detail still lists the 2025 league's completed
+  // moves as sourced events; each event asserts only its own legs,
+  // and membership now comes from the replay, never from the events.
   coverage.roster.push({
-    from: HISTORY_LEAGUE_FROM, toExclusive: HISTORY_SEASON_TWO_FROM, status: "ambiguous",
-    reason: "Offseason keeper cuts between the 2025 and 2026 seasons appear in neither league's transaction feed, and this release carries no dated 2025 roster anchor; 2025 membership is not asserted. Day detail does list the 2025 league's completed moves as sourced events — each event asserts only its own legs, never the day's roster.",
+    from: HISTORY_LEAGUE_FROM, toExclusive: chain.gapRange.from, status: "replayed",
+    reason: "Membership replayed forward from the 2025 startup draft's own assignments through the season's completed moves in frozen order (status_updated, then transaction_id); the segment's final rosters are verified against Sleeper's observed rosters at load. Replayed is not independently verified at intermediate instants.",
+  });
+  // The gap band exists only when the gap is non-empty. When the
+  // 2025 segment's last move lands on the boundary eve, the
+  // day-rounded gap start equals the boundary itself and the gap is
+  // the empty interval [boundary, boundary): no day sits inside it,
+  // so there is nothing to be ambiguous about — the segments touch
+  // and coverage is replayed | replayed. Emitting the empty interval
+  // as a band would produce a zero-length range the DTO rejects,
+  // nulling the whole envelope over a nonexistent gap.
+  if (chain.gapRange.from < chain.gapRange.toExclusive) coverage.roster.push({
+    from: chain.gapRange.from, toExclusive: chain.gapRange.toExclusive, status: "ambiguous",
+    reason: "The offseason gap between the 2025 and 2026 seasons carries no rows in either league's transaction feed, so no day inside it asserts membership. The 2026 boundary roster is derived by an explicit reconciliation (see the day detail's roster evidence), never observed day by day.",
+  });
+  coverage.roster.push({
+    from: HISTORY_SEASON_TWO_FROM, toExclusive: leagueRange.toExclusive, status: "replayed",
+    reason: "Membership replayed forward from the derived season-boundary roster through the 2026 league's completed moves and its draft, in frozen order; the segment's final rosters are verified against Sleeper's observed current rosters at load. Replayed is not independently verified at intermediate instants.",
   });
   if (firstPointDay) {
-    if (firstPointDay > HISTORY_SEASON_TWO_FROM) coverage.roster.push({
-      from: HISTORY_SEASON_TWO_FROM, toExclusive: firstPointDay, status: "ambiguous",
-      reason: "Roster proof in this release is asserted only across the retained recorded window; membership before the first retained recorded quote is not independently dated.",
-    });
-    coverage.roster.push({
-      from: firstPointDay, toExclusive: leagueRange.toExclusive, status: "replayed",
-      reason: "Membership replayed deterministically from the dated current-roster anchor through completed Sleeper moves in frozen order (status_updated, then transaction_id). Replayed is not independently verified.",
-    });
     const spanDays = Math.round((Date.parse(`${lastPointDay}T00:00:00Z`) - Date.parse(`${firstPointDay}T00:00:00Z`)) / DAY_MS) + 1;
     coverage.valuation.push({
       from: HISTORY_LEAGUE_FROM, toExclusive: firstPointDay, status: "unavailable",
@@ -630,10 +815,6 @@ function buildState(args: {
       reason: `No retained recorded quote after ${lastPointDay} yet.`,
     });
   } else {
-    coverage.roster.push({
-      from: HISTORY_SEASON_TWO_FROM, toExclusive: leagueRange.toExclusive, status: "ambiguous",
-      reason: "No retained recorded quotes, so no supported roster band is asserted in this release.",
-    });
     coverage.valuation.push({
       from: HISTORY_LEAGUE_FROM, toExclusive: leagueRange.toExclusive, status: "unavailable",
       reason: "No recorded modeled quotes are currently retained for this team.",
@@ -643,9 +824,9 @@ function buildState(args: {
   const sourceNotes = [
     "Retained-source limitation: recorded points are read live from stock_snapshots, which keeps only the most recent 30 days. Until recorded points are persisted separately, recorded days fall out of this history as that window slides — this is not yet a permanent archive.",
     "Every point is a recorded modeled FAAB quote captured at the instant shown. Modeled quotes are not sale prices or team performance.",
-    "Rosters are replayed from today's dated roster anchor through completed Sleeper moves; days outside the proven recorded window show no value rather than an assumed roster.",
+    "Rosters are replayed forward from pinned anchors — the 2025 startup draft and the derived 2026 season boundary — through completed Sleeper moves; the offseason gap asserts no membership, and no day outside the proven replay shows an assumed roster.",
     "Unknown prices are shown as unavailable, never as $0, and no line is drawn across days without a recorded point.",
-    "Moves shown for 2025 days are that season's completed Sleeper transactions, listed as sourced events with team-scoped legs, picks and waiver FAAB; 2025 rosters are not asserted and 2025 prices do not exist in any retained source.",
+    "Moves shown for 2025 days are that season's completed Sleeper transactions, listed as sourced events with team-scoped legs, picks and waiver FAAB; each event asserts only its own legs. 2025 membership itself is asserted by the forward replay from the startup draft (see coverage); 2025 prices do not exist in any retained source.",
   ];
 
   const base = {
@@ -700,10 +881,7 @@ function buildState(args: {
       return {
         ...shared, valuationAt: build.valuationAt, pointId: build.id, rosterRef: build.rosterRef,
         rosterStatus: "replayed", rosterCount: build.rosterCount, priced: build.priced, subtotalCents: build.subtotalCents,
-        rosterEvidence: [
-          `Roster replayed from the dated anchor (current rosters observed ${anchor.observedAt}) through completed moves in frozen order (status_updated, then transaction_id).`,
-          `${inversionMoves.filter(move => moveMicros(move) > ev.micros).length} completed current-league move(s) involving this team are effective after this valuation instant and were inverted to derive this roster.`,
-        ],
+        rosterEvidence: membershipEvidence(ev.membership),
         players: ev.roster.map(id => {
           const quote = ev.quotes.get(id);
           return quote ? {
@@ -723,38 +901,51 @@ function buildState(args: {
       };
     }
 
-    if (firstPointDay && day >= firstPointDay && day <= asOf.slice(0, 10)) {
-      // Proven band, no retained snapshot this day: roster stays
-      // inspectable at the day's cutoff; no price is invented. The
-      // cutoff is the earlier of end-of-day and the validated as-of
-      // instant — for today, replay is claimed only through the cutoff,
-      // never through an end-of-day that has not happened yet.
-      const endOfDayMicros = instantMicros(`${day}T23:59:59.999999`);
-      const capped = cutoffMicros < endOfDayMicros;
-      const roster = rosterAt(Math.min(endOfDayMicros, cutoffMicros));
-      if (roster) {
+    if (day <= asOf.slice(0, 10)) {
+      // No point this day, but the forward replay may still prove
+      // the roster: evaluate at the earlier of UTC day end and the
+      // validated as-of cutoff — for today, membership is claimed
+      // only through the cutoff, never through an end-of-day that
+      // has not happened yet (§1 on #224). No price is invented.
+      const dayEndMs = Date.parse(`${day}T00:00:00Z`) + DAY_MS - 1;
+      const capped = cutoffMs < dayEndMs;
+      const membership = chain.membershipAt(rosterId, Math.min(dayEndMs, cutoffMs));
+      if (membership) {
+        const roster = membership.playerIds;
+        const missingReason = day < HISTORY_SEASON_TWO_FROM
+          ? "No recorded quote exists for the 2025 season; prices for this day are unavailable in every retained source."
+          : "No retained recorded snapshot on this day.";
         return {
-          ...shared, valuationAt: capped ? instantIso(cutoffMs) : `${day}T23:59:59.999999Z`, pointId: null, rosterRef: rosterRef(roster),
-          rosterStatus: "replayed", rosterCount: roster.length, priced: 0, subtotalCents: null,
-          rosterEvidence: [capped
-            ? "Roster replayed as of the validated as-of cutoff on this UTC day; the rest of the day has not been observed. No retained recorded snapshot exists for this day, so no player is priced."
-            : "Roster replayed as of the end of this UTC day. No retained recorded snapshot exists for this day, so no player is priced."],
+          ...shared, valuationAt: membership.at, pointId: null, rosterRef: rosterRef(roster),
+          rosterStatus: "replayed", rosterCount: roster.length, priced: 0,
+          subtotalCents: roster.length === 0 ? 0 : null,
+          rosterEvidence: [...membershipEvidence(membership), capped
+            ? "Roster replayed as of the validated as-of cutoff on this UTC day; the rest of the day has not been observed. No player is priced."
+            : "Roster replayed as of the end of this UTC day. No player is priced from membership alone."],
           players: roster.map(id => ({
-            id, name: playerName(names, id), priceCents: null, price: null,
-            missingReason: "No retained recorded snapshot on this day.",
+            id, name: playerName(names, id), priceCents: null, price: null, missingReason,
           })),
           moves: nearby.map(move => toMove(move, names)),
         };
       }
     }
 
+    // Membership unproven for this day: the offseason gap (the
+    // chain's own returned range), before the founding draft
+    // completed, or a day the pinned cutoff has not reached. The
+    // day's sourced events still display — they assert only their
+    // own legs, never this roster.
+    const inGap = day >= chain.gapRange.from && day < chain.gapRange.toExclusive;
     return {
       ...shared, valuationAt: `${day}T00:00:00.000000Z`, pointId: null, rosterRef: `unproven-${team.id}`,
       rosterStatus: "ambiguous", rosterCount: null, priced: 0, subtotalCents: null,
-      rosterEvidence: [day < HISTORY_SEASON_TWO_FROM
-        ? "The 2025 season is separated from the 2026 anchor by undated offseason keeper cuts; membership for this day cannot be established in this release."
-          + (nearby.length > 0 ? " The moves below are the 2025 league's completed transactions, shown as sourced events — they assert only their own legs, not this day's roster." : "")
-        : "Membership for this day is outside the proven recorded window in this release."],
+      rosterEvidence: [inGap
+        ? `The offseason gap (${chain.gapRange.from} to ${chain.gapRange.toExclusive}) carries no transaction rows in either league's feed; membership for this day is not asserted. The 2026 boundary roster is derived by reconciliation at the season boundary, not observed day by day.`
+          + (nearby.length > 0 ? " The moves below are sourced events from the adjacent days — they assert only their own legs, not this day's roster." : "")
+        : day < HISTORY_SEASON_TWO_FROM
+          ? `This day precedes the 2025 segment's draft anchor (${chain.seasonOne.anchorAt}); membership before the founding draft completed is not asserted.`
+            + (nearby.length > 0 ? " The moves below are the 2025 league's completed transactions, shown as sourced events — they assert only their own legs, not this day's roster." : "")
+          : "Membership for this day is outside the forward replay's proven range at the validated as-of cutoff."],
       players: [],
       moves: nearby.map(move => toMove(move, names)),
     };
@@ -766,7 +957,10 @@ function buildState(args: {
       points: builds.map(({ build, ev, pricedIds }) => ({
         pointId: build.id, day: build.day, valuationAt: build.valuationAt, roster: ev.roster,
         pricedPlayerIds: pricedIds, subtotalCents: build.subtotalCents,
-        generationMoves: inversionMoves.filter(move => moveMicros(move) > ev.micros)
+        // The completed current-league moves involving this team that
+        // are effective after the point's instant: the delta between
+        // the point's replayed roster and today's anchor roster.
+        generationMoves: receiptMoves.filter(move => moveMicros(move) > ev.micros)
           .map(move => ({ id: move.id, type: move.type, effectiveAt: instantIso(move.effectiveMs) })),
       })),
     };
@@ -797,35 +991,59 @@ function validQuote(quote: RecordedQuote): boolean {
  * Load and build one team's producer state. Throws TeamHistoryError:
  * 503 when a source is unavailable or fails closed, 404 for an unknown
  * team. The quote read is bounded to the team's lifetime player scope
- * (anchor roster plus its move counterparties) over the full league
- * window; a truncated read is an incomplete admitted set → 503.
+ * (anchor roster, every player the chain replay proves on the team,
+ * and its admitted move counterparties) over the full league window;
+ * a truncated read is an incomplete admitted set → 503.
  */
-export async function loadTeamHistoryState(teamId: string, deps: TeamHistoryDeps = {}): Promise<TeamHistoryState> {
+export async function loadTeamHistoryState(
+  teamId: string, deps: TeamHistoryDeps = {}, options: { pinned?: boolean } = {},
+): Promise<TeamHistoryState> {
   const store = deps.quotes === undefined ? getRecordedQuoteStore() : deps.quotes;
   if (!store) throw new TeamHistoryError("Recorded quote source is unavailable", 503);
-  let anchor: HistoryAnchor, moves: HistoryMove[];
+  // One clock capture per load, shared by every loader: the default
+  // chain load receives the same instant, so chain `asOf` ===
+  // envelope `asOf` === the generation token's cutoff, fresh or
+  // pinned (§4 precision 1 on #224).
+  const now = (deps.now ?? (() => new Date()))();
+  const fetchChain = deps.fetchChain ?? (() => loadChainRosterReplay({ now: () => now }));
+  let anchor: HistoryAnchor, moves: HistoryMove[], chain: ChainRosterReplay;
   try {
-    [anchor, moves] = await Promise.all([
-      (deps.fetchAnchor ?? defaultAnchor)(), (deps.fetchMoves ?? defaultMoves)(),
+    [anchor, moves, chain] = await Promise.all([
+      (deps.fetchAnchor ?? defaultAnchor)(), (deps.fetchMoves ?? defaultMoves)(), fetchChain(),
     ]);
-  } catch {
+  } catch (error) {
+    // Advance-vs-outage (§4 precision 5): a replay admission
+    // rejection under a PINNED load is the source-advance signal and
+    // maps to 409/refresh; under a fresh load it is a source fault.
+    // Fetch failures and malformed evidence stay 503 in both modes —
+    // the catch-all must never flatten the advance into a 503.
+    if (options.pinned && error instanceof RosterReplayAdvanceError) {
+      throw new TeamHistoryError("History has advanced past the pinned generation; refresh for the new generation", 409);
+    }
     throw new TeamHistoryError("League sources are unavailable", 503);
   }
   const team = anchor.teams.find(entry => entry.id === teamId);
   if (!team) throw new TeamHistoryError("Unknown team", 404);
-  const now = (deps.now ?? (() => new Date()))();
   // Admission order matters: the as-of cutoff applies to moves BEFORE
   // the quote scope is derived from them. A future-dated move is not
   // evidence, so its counterparties must not widen the scope — otherwise
   // an earlier quote for a player only that future move names would be
   // admitted, inventing an unpriced day and moving the generation for a
-  // move that is itself excluded. Provenance applies the same way: only
-  // the current league's moves can name a player a roster replay could
-  // ever price, so prior-league counterparties stay out of the scope.
+  // move that is itself excluded. The scope is the union of three
+  // proven sources: today's anchor roster; every player the chain
+  // replay proves on this team in either segment (the chain's own
+  // admission already rejected post-cutoff and cross-boundary
+  // evidence, so this adds exactly the historically proven names —
+  // e.g. a 2025-only player no current-league leg names); and the
+  // cutoff-admissible current-league move legs.
   const admissibleMoves = moves.filter(move => move.leagueId === LEAGUE_ID
     && moveMicros(move) <= now.getTime() * 1000);
-  const scope = [...new Set([...team.players, ...admissibleMoves.flatMap(move => [...move.adds, ...move.drops]
-    .filter(entry => entry.rosterId === Number(teamId)).map(entry => entry.playerId))])].sort();
+  const scope = [...new Set([
+    ...team.players,
+    ...chainProvenPlayers(chain, Number(teamId)),
+    ...admissibleMoves.flatMap(move => [...move.adds, ...move.drops]
+      .filter(entry => entry.rosterId === Number(teamId)).map(entry => entry.playerId)),
+  ])].sort();
   let rows;
   try {
     rows = await store.readWindow({
@@ -836,7 +1054,7 @@ export async function loadTeamHistoryState(teamId: string, deps: TeamHistoryDeps
   }
   if (rows.truncated) throw new TeamHistoryError("Recorded quote window exceeds its bound; refusing a partial admitted set", 503);
   if (!rows.quotes.every(validQuote)) throw new TeamHistoryError("Recorded quote source returned a malformed row", 503);
-  return buildState({ anchor, team, moves, quotes: rows.quotes, now });
+  return buildState({ anchor, team, moves, quotes: rows.quotes, chain, now });
 }
 
 /**
@@ -880,11 +1098,64 @@ function dayParam(url: URL, name: string): string {
   return value;
 }
 
+/**
+ * THE th2 token gate (§4 on #224) — the one place the status mapping
+ * lives, so a counter on any single verdict is a one-line change:
+ *
+ * - missing or multiply supplied `generation` → 400, before any load;
+ * - a well-formed legacy `th1-…` token → refresh-409, never parsed
+ *   further and never silently upgraded;
+ * - a `th2:` token that fails the shape or the canonical round-trip
+ *   (ms UTC ISO, exactly as minted) → 400, before any load;
+ * - a token whose cutoff is in the future versus the server clock
+ *   captured here → 400, before any load;
+ * - a token whose cutoff predates the supported view's founding
+ *   bound (`HISTORY_LEAGUE_FROM`) → 400, before any load: no
+ *   generation can ever have been minted below it, so the answer
+ *   must not depend on source health after real reads.
+ *
+ * A token that passes returns its cutoff; the helpers inject it as
+ * one constant clock into both loaders, recompute from current
+ * sources bounded at it, and compare the WHOLE recomputed generation
+ * — mismatch (drift, correction, or genuine advance) is the caller's
+ * 409. The token authorizes nothing by itself: admission in both
+ * loaders is bounded by the injected clock, which is set from the
+ * token only after the validation above.
+ */
+const TH2_TOKEN = /^th2:(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z):([0-9a-f]{24})$/;
+
+function pinnedCutoff(url: URL, nowMs: number): { token: string; cutoffMs: number } {
+  const supplied = url.searchParams.getAll("generation");
+  if (supplied.length === 0) throw new TeamHistoryError("Missing generation parameter", 400);
+  if (supplied.length !== 1) throw new TeamHistoryError("Generation must be supplied exactly once", 400);
+  const token = supplied[0];
+  if (token.startsWith("th1-")) {
+    throw new TeamHistoryError("History has changed; refresh for the new generation", 409);
+  }
+  const match = TH2_TOKEN.exec(token);
+  if (!match) throw new TeamHistoryError("Malformed generation token", 400);
+  const cutoffMs = Date.parse(match[1]);
+  if (!Number.isFinite(cutoffMs) || new Date(cutoffMs).toISOString() !== match[1]) {
+    throw new TeamHistoryError("Malformed generation token", 400);
+  }
+  // Future is judged against the load clock (deps.now — the same
+  // clock the loaders will be pinned to), never a second time source.
+  if (cutoffMs > nowMs) throw new TeamHistoryError("Generation cutoff is in the future", 400);
+  // The supported view is bounded below by the league's founding
+  // bound: a cutoff before it names a view that cannot exist, so it
+  // is rejected here — deterministically, with zero source reads —
+  // rather than surfacing as a source-health-dependent 409/503.
+  if (cutoffMs < Date.parse(`${HISTORY_LEAGUE_FROM}T00:00:00.000Z`)) {
+    throw new TeamHistoryError("Generation cutoff predates the supported history range", 400);
+  }
+  return { token, cutoffMs };
+}
+
 /** Summary route: GET /api/team-value-history/summary?teamId&generation&from&toExclusive */
 export async function teamHistorySummaryResponse(url: URL, deps: TeamHistoryDeps = {}): Promise<Response> {
   try {
     const teamId = requiredParam(url, "teamId");
-    const generation = requiredParam(url, "generation");
+    const { token, cutoffMs } = pinnedCutoff(url, (deps.now ?? (() => new Date()))().getTime());
     const range = { from: dayParam(url, "from"), toExclusive: dayParam(url, "toExclusive") };
     if (url.searchParams.has("cursor")) {
       throw new TeamHistoryError("This producer serves the full requested range in one page; cursors are not issued", 400);
@@ -892,8 +1163,8 @@ export async function teamHistorySummaryResponse(url: URL, deps: TeamHistoryDeps
     if (!validHistoryRange(range)) throw new TeamHistoryError("Expected from < toExclusive", 400);
     const spanDays = Math.round((Date.parse(`${range.toExclusive}T00:00:00Z`) - Date.parse(`${range.from}T00:00:00Z`)) / DAY_MS);
     if (spanDays > TEAM_HISTORY_MAX_POINTS) throw new TeamHistoryError(`Range exceeds the ${TEAM_HISTORY_MAX_POINTS}-point summary cap`, 400);
-    const state = await loadTeamHistoryState(teamId, deps);
-    if (generation !== state.generation) throw new TeamHistoryError("History has changed; refresh for the new generation", 409);
+    const state = await loadTeamHistoryState(teamId, { ...deps, now: () => new Date(cutoffMs) }, { pinned: true });
+    if (token !== state.generation) throw new TeamHistoryError("History has changed; refresh for the new generation", 409);
     const envelope = state.envelope(range);
     if (!isTeamValueHistoryEnvelope(envelope)) return json({ error: "History envelope failed validation" }, 503);
     return boundedJson(envelope);
@@ -907,10 +1178,10 @@ export async function teamHistorySummaryResponse(url: URL, deps: TeamHistoryDeps
 export async function teamHistoryDetailResponse(url: URL, deps: TeamHistoryDeps = {}): Promise<Response> {
   try {
     const teamId = requiredParam(url, "teamId");
-    const generation = requiredParam(url, "generation");
+    const { token, cutoffMs } = pinnedCutoff(url, (deps.now ?? (() => new Date()))().getTime());
     const day = dayParam(url, "day");
-    const state = await loadTeamHistoryState(teamId, deps);
-    if (generation !== state.generation) throw new TeamHistoryError("History has changed; refresh for the new generation", 409);
+    const state = await loadTeamHistoryState(teamId, { ...deps, now: () => new Date(cutoffMs) }, { pinned: true });
+    if (token !== state.generation) throw new TeamHistoryError("History has changed; refresh for the new generation", 409);
     if (day < state.leagueRange.from || day >= state.leagueRange.toExclusive) {
       throw new TeamHistoryError("Day is outside the league's recorded bounds", 400);
     }

@@ -1,5 +1,6 @@
 /**
- * Recorded-only team-value-history producer (issue #217).
+ * Recorded-only team-value-history producer (issue #217), with
+ * forward-replay membership wired in under the #224 contract.
  *
  * The fixture mirrors the audited 2026 Sleeper feed exactly where the
  * audit pinned facts: roster 2's only post-Oct-8 move is the completed
@@ -8,6 +9,9 @@
  * its 2026-10-05 drops. The reconciliation assertions are the audit's
  * known endpoints: at Oct 8, roster 1 is unchanged and roster 2 still
  * holds 2711; after the cut instant, roster 2 no longer does.
+ * Membership itself now comes from the miniature chain world in
+ * history-chain-fixture.ts (run through the real replay loader),
+ * whose segment finals the loader verifies against the same rosters.
  */
 import { describe, expect, it } from "vitest";
 import { PgDialect } from "drizzle-orm/pg-core";
@@ -22,6 +26,7 @@ import {
   teamHistoryDetailResponse, teamHistorySummaryResponse,
   toHistoryMoves, type TeamHistoryDeps,
 } from "../team-value-history";
+import { fetchFixtureChain } from "./history-chain-fixture";
 
 const NOW = new Date("2026-10-20T12:00:00Z");
 
@@ -77,6 +82,7 @@ function deps(overrides: Partial<TeamHistoryDeps> = {}, quotes: RecordedQuote[] 
     },
     fetchAnchor: async () => ANCHOR,
     fetchMoves: async () => toHistoryMoves(RAW_TX, LEAGUE_ID),
+    fetchChain: fetchFixtureChain(),
     fetchNames: async () => NAMES,
     now: () => NOW,
     ...overrides,
@@ -220,7 +226,9 @@ describe("detail", () => {
 
   it("returns ambiguous evidence, never a roster, for unproven days", async () => {
     const state = await loadTeamHistoryState("1", deps());
-    for (const day of ["2025-11-03", "2026-09-01"]) {
+    // The offseason gap and the days before the 2025 draft anchor are
+    // the days the forward replay cannot prove — they stay ambiguous.
+    for (const day of ["2026-06-01", "2025-10-19"]) {
       const detail = state.detail(day, NAMES);
       expect(isTeamValueHistoryDetail(detail)).toBe(true);
       expect(detail.rosterStatus).toBe("ambiguous");
@@ -228,6 +236,29 @@ describe("detail", () => {
       expect(detail.players).toEqual([]);
       expect(detail.subtotalCents).toBeNull();
     }
+  });
+
+  it("proves 2025 and pre-quote 2026 membership by forward replay", async () => {
+    const state = await loadTeamHistoryState("1", deps());
+    // 2025-11-03: the Oct 28 free-agent add has joined the draft roster.
+    const seasonOne = state.detail("2025-11-03", NAMES);
+    expect(isTeamValueHistoryDetail(seasonOne)).toBe(true);
+    expect(seasonOne.rosterStatus).toBe("replayed");
+    expect(seasonOne.players.map(player => player.id)).toEqual(["101", "102", "103", "104"]);
+    expect(seasonOne.players.every(player => player.priceCents === null)).toBe(true);
+    // 2026-09-01: the boundary roster — the Oct 5 post-draft drops
+    // have not run yet, so the three eventual drops are still members.
+    const boundary = state.detail("2026-09-01", NAMES);
+    expect(isTeamValueHistoryDetail(boundary)).toBe(true);
+    expect(boundary.rosterStatus).toBe("replayed");
+    expect(boundary.players.map(player => player.id)).toEqual(["101", "102", "103", "2467", "2475", "2482"]);
+    // The coverage roster bands follow the chain's own gap range.
+    expect(state.coverage.roster.map(({ from, toExclusive, status }) => ({ from, toExclusive, status }))).toEqual([
+      { from: "2025-10-20", toExclusive: "2025-12-03", status: "replayed" },
+      { from: "2025-12-03", toExclusive: "2026-08-13", status: "ambiguous" },
+      { from: "2026-08-13", toExclusive: "2026-10-21", status: "replayed" },
+    ]);
+    expect(state.coverage.roster.every(band => typeof band.reason === "string" && band.reason.length > 0)).toBe(true);
   });
 });
 
@@ -587,8 +618,8 @@ describe("conflicting same-instant quotes (dot P2 regression)", () => {
  * the audited 2025 feed: one two-sided trade with a pick, one paid
  * waiver claim, one free-agent add — the shapes the real feed carries,
  * with invented ids/players. The honesty contract under test: events
- * assert only their own legs; 2025 rosters stay ambiguous and 2025
- * prices stay unavailable, and no recorded point moves.
+ * assert only their own legs; 2025 membership is the forward replay's
+ * proof, 2025 prices stay unavailable, and no recorded point moves.
  */
 const TRADE_AT = Date.parse("2025-11-15T18:30:00Z");
 const WAIVER_AT = Date.parse("2025-12-02T15:00:00Z");
@@ -639,12 +670,15 @@ describe("2025 sourced events (#224 amendment)", () => {
     const state3 = await loadTeamHistoryState("3", deps2025());
     const detail3 = state3.detail("2025-11-15", NAMES_2025);
     expect(isTeamValueHistoryDetail(detail3)).toBe(true);
-    // Honesty labels: the event never asserts the day's roster or a price.
-    expect(detail3.rosterStatus).toBe("ambiguous");
-    expect(detail3.rosterCount).toBeNull();
+    // The event asserts only its own legs; the day's roster is the
+    // forward replay's proof (the trade has run by day end), and no
+    // 2025 price exists — every price stays null.
+    expect(detail3.rosterStatus).toBe("replayed");
+    expect(detail3.rosterCount).toBe(3);
     expect(detail3.priced).toBe(0);
     expect(detail3.subtotalCents).toBeNull();
-    expect(detail3.players).toEqual([]);
+    expect(detail3.players.map(player => player.id)).toEqual(["301", "304", "701"]);
+    expect(detail3.players.every(player => player.priceCents === null)).toBe(true);
 
     const move = detail3.moves.find(entry => entry.sourceId === "1425000000000000001")!;
     expect(move).toMatchObject({ origin: "transaction", type: "trade", status: "complete", leg: 5, waiverBid: null, leagueId: SEASON_ONE_LEAGUE_ID });
@@ -676,19 +710,25 @@ describe("2025 sourced events (#224 amendment)", () => {
     expect(claim).toMatchObject({ type: "waiver", leg: 7, waiverBid: 12, draftPicks: [] });
     expect(claim.adds).toEqual([{ id: "303", name: "Fixture Claim", rosterId: 3 }]);
     expect(claim.drops).toEqual([{ id: "304", name: "Fixture Waived", rosterId: 3 }]);
-    expect(detail.rosterStatus).toBe("ambiguous");
-    expect(detail.players).toEqual([]);
+    expect(detail.rosterStatus).toBe("replayed");
+    expect(detail.players.map(player => player.id)).toEqual(["301", "303", "701"]);
   });
 
   it("fabricates no events for the offseason gap or for event-free days", async () => {
     const state = await loadTeamHistoryState("3", deps2025());
-    // The gap has no rows in either feed; an event-free 2025 day has none nearby.
-    for (const day of ["2026-06-01", "2026-08-12", "2025-11-20"]) {
+    // The gap has no rows in either feed and proves no membership.
+    for (const day of ["2026-06-01", "2026-08-12"]) {
       const detail = state.detail(day, NAMES_2025);
       expect(isTeamValueHistoryDetail(detail), day).toBe(true);
       expect(detail.moves, day).toEqual([]);
       expect(detail.rosterStatus, day).toBe("ambiguous");
     }
+    // An event-free 2025 day has no moves nearby, but the replay still
+    // proves its roster — the two claims stay separate.
+    const quiet = state.detail("2025-11-20", NAMES_2025);
+    expect(quiet.moves).toEqual([]);
+    expect(quiet.rosterStatus).toBe("replayed");
+    expect(quiet.players.map(player => player.id)).toEqual(["301", "304", "701"]);
   });
 
   it("2025 events never move a recorded point, but they do rebind the generation", async () => {
@@ -700,7 +740,7 @@ describe("2025 sourced events (#224 amendment)", () => {
     const detail = withEvents.detail("2025-10-28", NAMES_2025);
     expect(detail.moves.map(entry => entry.sourceId)).toEqual(["1425000000000000003"]);
     expect(detail.moves[0].adds).toEqual([{ id: "104", name: "Fixture Prospect", rosterId: 1 }]);
-    expect(detail.rosterStatus).toBe("ambiguous");
+    expect(detail.rosterStatus).toBe("replayed");
     expect(detail.subtotalCents).toBeNull();
   });
 });
@@ -758,7 +798,7 @@ describe("dot PR #236 review regressions", () => {
       toHistoryMoves(RAW_TX, LEAGUE_ID), toHistoryMoves([LATE_2025_TRADE], leagueId)),
   });
 
-  it("P1: a prior-league trade never enters current-league inversion, whatever its timestamps", async () => {
+  it("P1: a prior-league trade never rewrites replayed membership, whatever its timestamps", async () => {
     const baseline1 = await loadTeamHistoryState("1", deps());
     const baseline2 = await loadTeamHistoryState("2", deps());
     const state1 = await loadTeamHistoryState("1", depsLateTrade(SEASON_ONE_LEAGUE_ID));
@@ -781,12 +821,28 @@ describe("dot PR #236 review regressions", () => {
     expect(shown.adds.filter(entry => entry.rosterId === 1).map(entry => entry.id)).toEqual(["201"]);
   });
 
-  it("P1 sensitivity: the same record normalized as a current-league move DOES rewrite the replay", async () => {
-    // Guards the regression above against vacuity: provenance, not the
-    // record's shape, is what keeps it out of the inversion.
+  it("P1 sensitivity: even as a current-league move, the history feed cannot rewrite the replay", async () => {
+    // The wiring contract changed the mechanism this guard used to
+    // prove: membership now comes ONLY from the chain replay, whose
+    // loader admits each league's feed under its own provenance — the
+    // history event stream is never a membership source, whatever
+    // league a record is normalized under. The same record therefore
+    // leaves every point untouched even as a current-league move; it
+    // still binds the generation (it is served history) and still
+    // displays as an event. Membership movement is proven instead by
+    // the chain loader's own acceptance tests and by the generation
+    // hash-coverage mutations in team-value-history-wiring.test.ts.
     const baseline = await loadTeamHistoryState("1", deps());
-    const corrupted = await loadTeamHistoryState("1", depsLateTrade(LEAGUE_ID));
-    expect(corrupted.points).not.toEqual(baseline.points);
+    const asCurrent = await loadTeamHistoryState("1", depsLateTrade(LEAGUE_ID));
+    expect(asCurrent.points).toEqual(baseline.points);
+    // The receipt's rosters/subtotals are likewise untouched — the
+    // trade appears there only as a named post-point move, exactly
+    // like the pick-only trade below.
+    expect(asCurrent.receipt().points.map(point => [point.day, point.roster, point.subtotalCents]))
+      .toEqual(baseline.receipt().points.map(point => [point.day, point.roster, point.subtotalCents]));
+    expect(asCurrent.generation).not.toBe(baseline.generation);
+    const detail = asCurrent.detail("2026-10-19", NAMES);
+    expect(detail.moves.map(entry => entry.sourceId)).toContain("1425000000000000099");
   });
 
   const PICK_ONLY_TRADE = tx({
@@ -810,7 +866,7 @@ describe("dot PR #236 review regressions", () => {
     expect(shown.draftPicks).toEqual([{ season: "2027", round: 1, rosterId: 1, ownerId: 2, previousOwnerId: 1 }]);
     expect(state2.detail("2026-10-15", NAMES).moves.map(entry => entry.sourceId)).toContain("pick-only-trade");
     // No player legs: the recorded points are untouched, and the trade
-    // sits in the inversion stream as a no-op (named in the receipt).
+    // sits in the receipt stream as a no-op (named in the receipt).
     expect(state1.points).toEqual(baseline1.points);
     expect(state1.receipt().points.map(point => [point.day, point.roster, point.subtotalCents]))
       .toEqual(baseline1.receipt().points.map(point => [point.day, point.roster, point.subtotalCents]));

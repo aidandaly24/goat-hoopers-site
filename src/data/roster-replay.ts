@@ -61,9 +61,12 @@
  *   otherwise resurface as backdated boundary membership.
  * - The loader captures an explicit as-of instant (injectable, for
  *   tests). A completed source event effective after it — or a draft
- *   completing after it — rejects the load, and membership is never
- *   asserted for an instant past it: an end-of-day is only claimed
- *   for a day the cutoff has fully covered.
+ *   completing after it — rejects the load with
+ *   `RosterReplayAdvanceError` (the §4 source-advance signal the
+ *   history wiring maps to 409 under a pinned generation token), and
+ *   membership is never asserted for an instant past it: an
+ *   end-of-day is only claimed for a day the cutoff has fully
+ *   covered.
  * - Repeated transaction records are admitted once per league:
  *   identical repeats (after normalization) are deduplicated; the
  *   same transaction id carrying different contents rejects.
@@ -91,6 +94,19 @@ import {
 } from "./team-value-history";
 
 export class RosterReplayError extends Error {}
+
+/**
+ * Source-advance rejection (wiring contract §4 on #224): the load
+ * failed ONLY because a source event sits after the caller's as-of
+ * cutoff — a completed move effective after it, or a draft completing
+ * after it. Under a fresh load this is a source fault like any other;
+ * under a generation token that PINS the cutoff it is the advance
+ * signal — the world moved past the pinned view — and the history
+ * helpers map it to 409/refresh instead of 503. Fetch failures and
+ * malformed or contradictory evidence stay plain `RosterReplayError`
+ * in both modes.
+ */
+export class RosterReplayAdvanceError extends RosterReplayError {}
 
 /** A completed draft, applied as one dated membership event. */
 export type RosterDraftEvent = {
@@ -611,6 +627,13 @@ function assertRostersEqual(actual: RosterState, expected: RosterState, label: s
 export type SeasonRosterReplay = {
   leagueId: string;
   draftId: string;
+  /**
+   * The draft-metadata witness the segment's receipt was proven
+   * against (declared rounds × the draft order's slot set). Exposed
+   * so the history wiring's generation fingerprint can bind the
+   * witness itself, not just the assignments it validated.
+   */
+  grid: DraftGridExpectation;
   /** ISO instant of the segment anchor. */
   anchorAt: string;
   timeline: RosterTimeline;
@@ -663,7 +686,7 @@ function admitFeedMoves(moves: HistoryMove[], leagueId: string, asOfMs: number):
   const admitted: HistoryMove[] = [];
   for (const move of moves) {
     if (move.effectiveMs > asOfMs) {
-      throw new RosterReplayError(
+      throw new RosterReplayAdvanceError(
         `League ${leagueId} feed carries completed move ${move.id} effective ${iso(move.effectiveMs)}, after the as-of cutoff ${iso(asOfMs)}`);
     }
     const fingerprint = moveFingerprint(move);
@@ -701,20 +724,40 @@ export async function loadChainRosterReplay(deps: RosterReplayDeps = {}): Promis
   if (!Number.isFinite(asOfMs)) throw new RosterReplayError("The as-of cutoff is not a finite instant");
 
   /* Season one: draft anchor, forward replay, verified final. */
+  // The season boundary — the first instant of the current league's
+  // segment — is a source-confirmed constant, independent of either
+  // feed's contents, and it bounds season one BEFORE any timeline is
+  // built: a prior-league record effective at or after it is an
+  // impossible overlap, not season-one evidence. Admitting one (the
+  // shape is a completed pick-only record carrying no player legs,
+  // so both segment finals still verify) would stretch the gap's
+  // start past the boundary, and membershipAt's season-one-first
+  // selection would then serve the 2025 finals state for instants
+  // the current segment owns — an old-league correction/no-op must
+  // never shadow current-league membership.
+  const boundaryAtMs = Date.parse(`${HISTORY_SEASON_TWO_FROM}T00:00:00Z`);
   const { draft: draftOne, completedMs: draftOneMs, grid: gridOne } =
     completedDraft(await fetchDrafts(SEASON_ONE_LEAGUE_ID), SEASON_ONE_LEAGUE_ID);
   if (draftOneMs > asOfMs) {
-    throw new RosterReplayError(`League ${SEASON_ONE_LEAGUE_ID} draft completes after the as-of cutoff`);
+    throw new RosterReplayAdvanceError(`League ${SEASON_ONE_LEAGUE_ID} draft completes after the as-of cutoff`);
   }
   const [picksOne, movesOne, observedFinalOne] = await Promise.all([
     fetchPicks(draftOne.draft_id),
     fetchMoves(SEASON_ONE_LEAGUE_ID, SEASON_ONE_WEEKS),
     fetchRostersDep(SEASON_ONE_LEAGUE_ID),
   ]);
+  const admittedMovesOne = admitFeedMoves(movesOne, SEASON_ONE_LEAGUE_ID, asOfMs);
+  for (const move of admittedMovesOne) {
+    if (move.effectiveMs >= boundaryAtMs) {
+      throw new RosterReplayError(
+        `League ${SEASON_ONE_LEAGUE_ID} feed carries completed move ${move.id} effective ${iso(move.effectiveMs)}, ` +
+        `at or after the season boundary ${iso(boundaryAtMs)} — an old-league record cannot overlap the current segment`);
+    }
+  }
   const anchorOne = draftAssignments(picksOne, draftOne.draft_id, gridOne);
   const timelineOne = buildRosterTimeline({
     anchorAtMs: draftOneMs, anchorRosters: anchorOne,
-    moves: admitFeedMoves(movesOne, SEASON_ONE_LEAGUE_ID, asOfMs),
+    moves: admittedMovesOne,
   });
   const observedOne = observedRosters(observedFinalOne, SEASON_ONE_LEAGUE_ID);
   assertRostersEqual(timelineOne.finalRosters(), observedOne, "Season-one replay does not reproduce Sleeper's final 2025 rosters");
@@ -723,7 +766,7 @@ export async function loadChainRosterReplay(deps: RosterReplayDeps = {}): Promis
   const { draft: draftTwo, completedMs: draftTwoMs, grid: gridTwo } =
     completedDraft(await fetchDrafts(LEAGUE_ID), LEAGUE_ID);
   if (draftTwoMs > asOfMs) {
-    throw new RosterReplayError(`League ${LEAGUE_ID} draft completes after the as-of cutoff`);
+    throw new RosterReplayAdvanceError(`League ${LEAGUE_ID} draft completes after the as-of cutoff`);
   }
   const weeksTwo = await seasonTwoWeeks();
   const [picksTwo, movesTwo, observedCurrent] = await Promise.all([
@@ -746,7 +789,6 @@ export async function loadChainRosterReplay(deps: RosterReplayDeps = {}): Promis
   const derivation = deriveBoundaryReconciliation({
     priorFinalRosters: observedOne, currentRosters: observedTwo, moves: admittedMovesTwo, draft: draftEventTwo,
   });
-  const boundaryAtMs = Date.parse(`${HISTORY_SEASON_TWO_FROM}T00:00:00Z`);
   const timelineTwo = buildRosterTimeline({
     anchorAtMs: boundaryAtMs, anchorRosters: derivation.boundaryRosters,
     moves: admittedMovesTwo, draftEvents: [draftEventTwo],
@@ -787,11 +829,11 @@ export async function loadChainRosterReplay(deps: RosterReplayDeps = {}): Promis
   return {
     asOf: iso(asOfMs),
     seasonOne: {
-      leagueId: SEASON_ONE_LEAGUE_ID, draftId: draftOne.draft_id,
+      leagueId: SEASON_ONE_LEAGUE_ID, draftId: draftOne.draft_id, grid: gridOne,
       anchorAt: iso(draftOneMs), timeline: timelineOne, finalRosters: timelineOne.finalRosters(),
     },
     seasonTwo: {
-      leagueId: LEAGUE_ID, draftId: draftTwo.draft_id,
+      leagueId: LEAGUE_ID, draftId: draftTwo.draft_id, grid: gridTwo,
       anchorAt: iso(boundaryAtMs), timeline: timelineTwo, finalRosters: timelineTwo.finalRosters(),
       reconciliation: derivation.reconciliation,
     },
