@@ -28,16 +28,16 @@ export function GameCard({ game }: { game: PlayableGame }) {
       <div className={styles.details}>
         <p className={styles.mode}>{rankedFreeThrow ? "Ranked Free Throw · Local practice" : practice ? "Local practice" : preview ? "Week 2 · Unranked preview" : "League game"}</p>
         <h2 className={styles.name}>{game.name}</h2>
-        <p className={styles.desc}>{rankedFreeThrow ? "Play a saved ranked round, or warm up on the local practice court." : game.description}</p>
+        <p className={styles.desc}>{rankedFreeThrow ? "Play a saved ranked round when entries are open, or warm up on the local practice court." : game.description}</p>
         {practice && <p className={styles.access}>{rankedFreeThrow ? "Ranked rounds require a verified personal account. Local practice needs no sign-in and does not save a ranked score." : "No sign-in needed. Scores stay in this session."}</p>}
-        {preview && <p className={styles.access}>Try the draft. Week 2 competition stays closed.</p>}
+        {preview && <p className={styles.access}>Playable roster-draft preview. Week 2 competition stays closed. No scores, rankings or prizes.</p>}
         <Link href={rankedFreeThrow ? "/arcade/ranked-free-throw" : `/arcade/${game.id}`} className={styles.play} aria-label={rankedFreeThrow ? "Play ranked free throws" : `${preview ? "Preview" : "Practice"} ${game.name}`}>
           {rankedFreeThrow ? "Play ranked free throws" : preview ? "Enter 82–0 preview" : "Play local practice"}
         </Link>
         {rankedFreeThrow ? <>
           <Link className={controls.quiet} href="/arcade/free-throw">Local practice court</Link>
           <Link className={controls.quiet} href="/arcade/free-throw/leaderboard">All-time ranked leaderboard</Link>
-        </> : <p className={styles.access}>Unranked · no weekly or all-time leaderboard.</p>}
+        </> : <p className={styles.access}>{practice ? "Ranked competition is still in development. Local practice is playable now. " : ""}Unranked · no weekly or all-time leaderboard.</p>}
         <details className={styles.controls}>
           <summary>How to play</summary>
           <p>{game.play.touchInstructions}</p>

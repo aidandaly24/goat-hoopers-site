@@ -1,7 +1,8 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { expect, it, vi } from "vitest";
-import { claimAcceptedScore, RankedFreeThrow, SavedRoundFeedback } from "./RankedFreeThrow";
+import { claimAcceptedScore, rankedLoginHref, RankedFreeThrow, SavedRoundFeedback } from "./RankedFreeThrow";
+import { loginContinuationHref, safeLoginDestination } from "@/domain/login-navigation";
 import type { RankedClient } from "@/data/ranked-free-throw/client";
 import type { RankedRecordFeedback } from "@/domain/arcade/ranked-record-feedback";
 import { sampleScore } from "@/data/ranked-free-throw/__tests__/fixtures";
@@ -15,7 +16,23 @@ it("keeps disabled ranked play closed with practice reachable and no account/API
 });
 it("provides a personal sign-in entry only when ranked configuration is available", () => {
   const html = renderToStaticMarkup(createElement(RankedFreeThrow, { availability: { status: "sign_in" } }));
-  expect(html).toContain('href="/account/login"'); expect(html).not.toContain("Start ranked round");
+  expect(html).toContain(`href="${rankedLoginHref()}"`); expect(html).not.toContain("Start ranked round");
+});
+it("retains a ranked bookmark through login validation and continuation without accepting an arbitrary redirect", () => {
+  const id = "11111111-1111-4111-8111-111111111111";
+  const destination = `/arcade/ranked-free-throw?run=${id}`;
+  const login = new URL(rankedLoginHref(id), "https://fixture.invalid");
+  expect(login.pathname).toBe("/account/login");
+  expect(login.search).toBe(`?next=${encodeURIComponent(destination)}`);
+  expect(safeLoginDestination(login.searchParams.get("next"))).toBe(destination);
+  const continuation = new URL(loginContinuationHref(login.searchParams.get("next")), login.origin);
+  expect(safeLoginDestination(continuation.searchParams.get("next"))).toBe(destination);
+  const html = renderToStaticMarkup(createElement(RankedFreeThrow, { availability: { status: "sign_in" }, initialRunId: id }));
+  expect(html).toContain(`href="${rankedLoginHref(id)}"`);
+  expect(html).toContain("Sign in to check this round");
+  for (const hostile of ["https://attacker.invalid", "//attacker.invalid", "/arcade/ranked-free-throw?next=//attacker.invalid", `${id}&next=https://attacker.invalid`, "%2f%2fattacker.invalid", "invalid"]) {
+    expect(new URL(rankedLoginHref(hostile), login.origin).searchParams.get("next")).toBe("/arcade/ranked-free-throw");
+  }
 });
 it("offers owned-result recovery without any new-round or score-submit controls after closure", () => {
   const html = renderToStaticMarkup(createElement(RankedFreeThrow, { availability: { status: "recovery", reason: "closed" }, initialRunId: "11111111-1111-4111-8111-111111111111" }));

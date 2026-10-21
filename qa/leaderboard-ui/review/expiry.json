@@ -1,0 +1,24 @@
+{
+  "synthetic": true,
+  "baseline": false,
+  "cases": [
+    {
+      "case": "expired-round",
+      "saveDisabled": true,
+      "newRoundAvailable": true,
+      "syntheticScorePosts": 0
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "unexpectedWrites": [],
+  "failures": [],
+  "consumerBlobs": {
+    "src/surfaces/arcade/ArcadeHub.tsx": "f0ba31897d50156f865f7a0ab58368f0c244a558",
+    "src/surfaces/arcade/CompetitionLeaderboard.tsx": "094d70b2bb616de2d664defd36a60c15a33d6e71",
+    "src/surfaces/arcade/CompetitionLeaderboard.module.css": "6f739462f3355ef1f59e5dd40bf6d5328d87add4",
+    "src/surfaces/arcade/GameCard.tsx": "237748bf0f1370e5cd18b904bfe6bc3ca09917da",
+    "src/surfaces/arcade/RankedFreeThrow.tsx": "561d60ec3aa1384a4a580d3817153bc5960848c7",
+    "src/surfaces/arcade/RankedFreeThrow.module.css": "cf01d5075dc67bb54bfa0636f168b7519eec4399"
+  }
+}

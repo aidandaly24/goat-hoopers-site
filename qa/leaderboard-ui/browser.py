@@ -171,6 +171,20 @@ with sync_playwright() as p:
                     assert len(posts)==sent
                     report['cases'].append({'case':run,'beatenEffect':expected_beaten,'recoveryWithoutNotice':True,'noOverflow':True,'reducedMotion':motion,'duplicateSuppressed':mode=='duplicate'})
                     page.close()
+            if 'expiry' in selected:
+                page=openpage('expiry','/arcade/ranked-free-throw')
+                page.clock.install()
+                posts=[];page.on('request',lambda r:posts.append(r.url) if r.method=='POST' else None)
+                page.get_by_role('button',name='Start ranked round',exact=True).click()
+                page.get_by_role('button',name='Take synthetic shot',exact=True).wait_for()
+                page.clock.fast_forward(31000)
+                page.get_by_text('Time expired',exact=False).wait_for()
+                assert page.get_by_role('button',name='Save completed round',exact=True).is_disabled()
+                assert page.get_by_role('button',name='Start ranked round',exact=True).is_enabled()
+                assert not page.locator('[data-just-accepted]').count()
+                assert len(posts)==1 and posts[0].endswith('/runs'),posts
+                report['cases'].append({'case':'expired-round','saveDisabled':True,'newRoundAvailable':True,'syntheticScorePosts':0})
+                page.close()
             for mode in ['held','error','empty','invalid','blocked']:
                 if selected and mode not in selected:continue
                 page=openpage('state-'+mode,mode=mode,width=320,text=200)

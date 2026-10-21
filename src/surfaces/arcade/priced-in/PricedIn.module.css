@@ -45,6 +45,7 @@
 
 .progress {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: var(--gh-s4);
   margin-bottom: var(--gh-s6);
@@ -56,10 +57,12 @@
 }
 .player {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--gh-s4);
   margin-bottom: var(--gh-s6);
 }
+.player > :last-child { min-width: 0; flex: 1 1 12rem; overflow-wrap: anywhere; }
 .playerName { margin: 0 0 var(--gh-s1); font-size: 1.5rem; line-height: 1.15; }
 .playerMeta { margin: 0; color: var(--gh-arcade-muted); }
 
@@ -85,7 +88,7 @@
   padding: var(--gh-s2) 0;
   border-top: 1px solid var(--gh-border-strong);
 }
-.recapName { font-weight: 600; }
+.recapName { font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
 
 @keyframes priced-in-reveal {
   from { opacity: 0; transform: scale(0.96); }

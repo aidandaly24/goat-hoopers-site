@@ -5,7 +5,7 @@ leaderboard consumers, ranked input recorder and browser transport. Source reads
 availability and score acceptance use explicit synthetic in-memory responders.
 The input court replaces the unchanged renderer so browser checks can focus on
 UI and request state; the real recorder and server replay still process inputs.
-There is no sign-in setup, database, provider, production request or test score.
+There is no live sign-in setup, database, provider, production request or test score.
 
 ```sh
 python3 qa/leaderboard-ui/prepare.py /tmp/goat-leaderboard-ui
@@ -30,3 +30,35 @@ Target only the header navigation with `header-shortcuts` as the browser command
 third argument. Its receipt covers hydrated ranked navigation, Back, explicit local
 practice and 1440px / 320px at 200% root text. Other unchanged checks retain their
 prior source identities in `review/receipt.json`.
+
+The separate minigame bugbash copies the actual static preview route and uses
+synthetic, runtime-validated NBA directory/selected-roster reads. Run:
+
+```sh
+python3 qa/leaderboard-ui/bugbash.py /tmp/goat-leaderboard-ui http://127.0.0.1:4365
+python3 qa/leaderboard-ui/browser.py /tmp/goat-leaderboard-ui http://127.0.0.1:4365 expiry
+```
+
+`review/bugbash.json` covers header/card/direct navigation, keyboard entry, both
+local games, development status before legacy account/store loading, signed-out,
+disabled, unavailable and recovery states, archive/scope/period mismatches and
+source-failure retries. Desktop and320px/200% root text pass. The extra expiry
+probe confirms disabled save, available new-round control and zero score POSTs.
+An optional third bugbash argument is a separately retained prior-source fixture
+origin, used only to reproduce the old development-route instructions.
+
+The focused auth/layout regression fixture copies the real account login page,
+AccountForm and continuation route. Only the isolated fixture aliases auth reads
+and the same-origin sign-in response to a synthetic cookie; no provider account,
+credentials or product configuration is used. Use the local Next canonical host:
+
+```sh
+python3 qa/leaderboard-ui/auth-layout.py /tmp/goat-leaderboard-ui http://localhost:4365
+```
+
+It covers validated ranked/run return paths, unsafe/ambiguous queries, expired
+auth during start/save/result checks, saved recovery without record replay, and
+ordinary/long-name Priced In active and reveal states. All synthetic auth writes
+stay on loopback. Its case-name arguments select narrow reruns. The receipt in
+`review/auth-layout.json` preserves the exact source identities and reused auth
+evidence separately from the final long-name wrapping checks.
