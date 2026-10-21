@@ -55,17 +55,27 @@ function ScoreLine({ s, championTeamId }: { s: TeamWeekScore; championTeamId?: s
  *
  * Self-contained for homepage embedding: receives `book`
  * (RecordBook | null) and renders. Computed from every final in
- * src/data/analytics.ts. Null = no games yet, honest empty state.
+ * src/data/analytics.ts. Null = no finals yet, honest empty state.
  */
-export function RecordBook({ book, championTeamId }: { book: RecordBook | null; /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */ championTeamId?: string | null }) {
+export function RecordBook({ book, championTeamId, seasonStarted }: { book: RecordBook | null; /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */ championTeamId?: string | null; /** True once games are underway: the empty state then says no week has closed yet instead of claiming the first whistle has not blown. */ seasonStarted?: boolean }) {
   return (
     <Card>
       <SectionHeading eyebrow="Immortality" title="This Season's Record Book" />
       {book === null ? (
         <p className={styles.empty}>
-          No records yet this season — history starts when the first whistle
-          blows. The 2025 archive lives in the{" "}
-          <Link href="/history">Trophy Room</Link>.
+          {seasonStarted ? (
+            <>
+              No records yet this season — records come from finals, and no
+              week has closed yet. The 2025 archive lives in the{" "}
+              <Link href="/history">Trophy Room</Link>.
+            </>
+          ) : (
+            <>
+              No records yet this season — history starts when the first whistle
+              blows. The 2025 archive lives in the{" "}
+              <Link href="/history">Trophy Room</Link>.
+            </>
+          )}
         </p>
       ) : (
         <div className={styles.columns}>

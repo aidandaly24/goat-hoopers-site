@@ -797,6 +797,23 @@ export async function getRosterSnapshotHistory(playerIds: readonly string[]): Pr
 }
 
 /**
+ * Whether the NBA regular season has started — the same signal
+ * fetchAnalyticsInputs uses for hasGames (Sleeper NBA state past
+ * "pre"). The Intel page needs it apart from the four datasets: they
+ * are null both before tip-off and in-season before the first week
+ * closes, and the empty-state copy must not confuse the two. Never
+ * throws; an unreachable state reads as not started.
+ */
+export async function getSeasonStarted(): Promise<boolean> {
+  try {
+    const state = await fetchNbaState();
+    return state.season_type !== "pre";
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Projections + picks for the current week's matchups. Null in the
  * preseason or on failure. Never throws.
  */

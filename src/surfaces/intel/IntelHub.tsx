@@ -8,7 +8,10 @@
  * and gives the page its broadcast-desk framing.
  *
  * Contract:
- * - Receives the four datasets (each `| null` in the preseason).
+ * - Receives the four datasets (each `| null` when it has no
+ *   completed-week evidence: before tip-off, or the season underway
+ *   with no week closed yet) plus `seasonStarted`, which tells those
+ *   two null worlds apart for the empty-state copy.
  * - Never fetches. Never touches Sleeper. Domain objects in, JSX out.
  * - Documented composite surface (ARCHITECTURE.md §3): composes the
  *   public entrypoints of preview, playoffs, power-rankings, and
@@ -32,6 +35,7 @@ export function IntelHub({
   odds,
   book,
   championTeamId,
+  seasonStarted,
 }: {
   previews: MatchupPreviewT[] | null;
   rankings: PowerRanking[] | null;
@@ -39,6 +43,9 @@ export function IntelHub({
   book: RecordBookT | null;
   /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
   championTeamId?: string | null;
+  /** From getSeasonStarted(). True once games are underway; the tools'
+   * empty states then blame missing completed weeks, not tip-off. */
+  seasonStarted?: boolean;
 }) {
   return (
     <div className={styles.surface}>
@@ -52,12 +59,12 @@ export function IntelHub({
       </header>
       <div className={styles.grid}>
         <div className={styles.span}>
-          <MatchupPreview previews={previews} championTeamId={championTeamId} />
+          <MatchupPreview previews={previews} championTeamId={championTeamId} seasonStarted={seasonStarted} />
         </div>
-        <PowerRankings rankings={rankings} championTeamId={championTeamId} />
-        <PlayoffOdds odds={odds} championTeamId={championTeamId} />
+        <PowerRankings rankings={rankings} championTeamId={championTeamId} seasonStarted={seasonStarted} />
+        <PlayoffOdds odds={odds} championTeamId={championTeamId} seasonStarted={seasonStarted} />
         <div className={styles.span}>
-          <RecordBook book={book} championTeamId={championTeamId} />
+          <RecordBook book={book} championTeamId={championTeamId} seasonStarted={seasonStarted} />
         </div>
       </div>
     </div>

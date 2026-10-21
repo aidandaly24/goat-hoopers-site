@@ -87,16 +87,22 @@ function PreviewCard({ preview, championTeamId }: { preview: MatchupPreview; cha
  * Self-contained for homepage embedding: receives `previews`
  * (MatchupPreview[] | null) and renders. The projection model is
  * documented in src/domain/matchup-preview.ts; math in
- * src/data/analytics.ts. Null = preseason, honest empty state.
+ * src/data/analytics.ts. Null = no completed-week evidence yet,
+ * honest empty state.
  */
 export function MatchupPreview({
   previews,
   championTeamId,
+  seasonStarted,
 }: {
-  /** From getMatchupPreviews(). Null before the season tips off. */
+  /** From getMatchupPreviews(). Null when no completed week exists to
+   * project from — before tip-off, or Week 1 still live. */
   previews: MatchupPreview[] | null;
   /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
   championTeamId?: string | null;
+  /** True once games are underway: the empty state then says no week
+   * has closed yet instead of claiming the season has not tipped off. */
+  seasonStarted?: boolean;
 }) {
   const week = previews?.[0]?.matchup.week;
   return (
@@ -107,8 +113,9 @@ export function MatchupPreview({
       />
       {previews === null || previews.length === 0 ? (
         <p className={styles.empty}>
-          No matchups to preview yet — the schedule drops when the season
-          tips off.
+          {seasonStarted
+            ? "No previews yet — projections run on completed finals, and no week has closed yet. Live scores are not finals."
+            : "No matchups to preview yet — the schedule drops when the season tips off."}
         </p>
       ) : (
         <ul className={styles.list}>

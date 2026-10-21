@@ -31,23 +31,31 @@ function Movement({ movement }: { movement: number }) {
  * Self-contained for homepage embedding: receives `rankings`
  * (PowerRanking[] | null) and renders. Formula lives in
  * src/domain/power.ts; the math in src/data/analytics.ts. Null =
- * preseason, rendered as an honest empty state, never fake rows.
+ * no completed-week evidence yet, rendered as an honest empty state,
+ * never fake rows.
  */
 export function PowerRankings({
   rankings,
   championTeamId,
+  seasonStarted,
 }: {
-  /** From getPowerRankings(). Null before the season tips off. */
+  /** From getPowerRankings(). Null when no completed week exists to
+   * rank from — before tip-off, or Week 1 still live. */
   rankings: PowerRanking[] | null;
   /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
   championTeamId?: string | null;
+  /** True once games are underway: the empty state then says no week
+   * has closed yet instead of claiming the season has not tipped off. */
+  seasonStarted?: boolean;
 }) {
   return (
     <Card>
       <SectionHeading eyebrow="The numbers" title="Power Rankings" />
       {rankings === null || rankings.length === 0 ? (
         <p className={styles.empty}>
-          Rankings drop when the season tips off — no games, no order.
+          {seasonStarted
+            ? "No order yet — rankings come from completed finals, and no week has closed yet. Live scores are not finals."
+            : "Rankings drop when the season tips off — no games, no order."}
         </p>
       ) : (
         <ol className={styles.list}>

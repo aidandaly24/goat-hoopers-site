@@ -42,6 +42,17 @@ const entry = (t: Team, currentMatchup: Matchup | null): PairEntry => ({
   currentMatchup,
 });
 
+const prior = (wins: number, losses: number, finish: number): PairEntry["previousSeason"] => ({
+  season: "2025", wins, losses, finish, ownerNote: null,
+});
+
+/** The live directory as production builds it: the finalists carry their
+ * verified 2025 lines (5: 17–4, champion; 7: 16–5, runner-up) alongside
+ * their current 0–0 records. */
+const withPriors = (entries: PairEntry[]): PairEntry[] =>
+  entries.map((e) => e.identity.id === "5" ? { ...e, previousSeason: prior(17, 4, 1) }
+    : e.identity.id === "7" ? { ...e, previousSeason: prior(16, 5, 2) } : e);
+
 /** Live Week 1: team 1 vs team 5 at 0–0 — the pair the bug borrowed. */
 const liveEntries = (fivePoints: number, onePoints: number): PairEntry[] => [
   entry(ONE, { week: 1, home: ONE, away: FIVE, homePoints: onePoints, awayPoints: fivePoints }),
@@ -77,7 +88,7 @@ const renderArchived = (entries: PairEntry[]) => {
 describe("archived CourtsideFeature (2026-W40, the 2025 final)", () => {
   it("renders the edition's own final, not the live Week 1 pair", () => {
     const html = renderArchived(liveEntries(0, 0));
-    expect(html).toContain("Historical final · 2026");
+    expect(html).toContain("Historical final · 2025");
     expect(html).toContain("The first crown belongs to vannweinkauf.");
     expect(html).toContain("Final score");
     expect(html).toContain("326.0");
@@ -85,6 +96,21 @@ describe("archived CourtsideFeature (2026-W40, the 2025 final)", () => {
     expect(html).not.toContain("Current score");
     expect(html).not.toContain("Week 1 matchups");
     expect(html).not.toContain("Saved AI matchup preview");
+  });
+
+  it("labels the final with its own season and the finalists' historical records", () => {
+    const html = renderArchived(withPriors(liveEntries(0, 0)));
+    // The final is the 2025 final (the edition's own note says so); the
+    // badge and the score-block caption must name that season, not the
+    // edition's 2026 editorial season.
+    expect(html).toContain("Historical final · 2025");
+    expect(html).not.toContain("Historical final · 2026");
+    expect(html).toContain("2025 · archived edition");
+    // The finalists' lines are their 2025 records from the directory —
+    // never their current 0–0 records mixed into a historical final.
+    expect(html).toContain("2025 · 17–4 · champion");
+    expect(html).toContain("2025 · 16–5 · 2nd place");
+    expect(html).not.toContain("Record 0–0");
   });
 
   it("is byte-identical when the live week advances underneath it", () => {

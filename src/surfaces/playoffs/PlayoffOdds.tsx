@@ -11,24 +11,30 @@ import styles from "./PlayoffOdds.module.css";
  * Self-contained for homepage embedding: receives `odds`
  * (PlayoffOdds[] | null) and renders. The Monte Carlo model is documented
  * in src/domain/playoff-odds.ts; the math in src/data/analytics.ts.
- * Null = preseason, rendered as an honest empty state.
+ * Null = no completed-week evidence yet, rendered as an honest empty state.
  */
 export function PlayoffOdds({
   odds,
   championTeamId,
+  seasonStarted,
 }: {
-  /** From getPlayoffOdds(). Null before the season tips off. */
+  /** From getPlayoffOdds(). Null when no completed week exists to
+   * simulate from — before tip-off, or Week 1 still live. */
   odds: PlayoffOdds[] | null;
   /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
   championTeamId?: string | null;
+  /** True once games are underway: the empty state then says no week
+   * has closed yet instead of claiming games have not started. */
+  seasonStarted?: boolean;
 }) {
   return (
     <Card>
       <SectionHeading eyebrow="The crystal ball" title="Playoff Odds" />
       {odds === null || odds.length === 0 ? (
         <p className={styles.empty}>
-          Odds go live when games do — simulating a season with no data is
-          just arithmetic wearing a costume.
+          {seasonStarted
+            ? "No odds yet — the simulation runs on completed finals, and no week has closed yet. Anything sooner is just arithmetic wearing a costume."
+            : "Odds go live when games do — simulating a season with no data is just arithmetic wearing a costume."}
         </p>
       ) : (
         <>
