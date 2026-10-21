@@ -49,7 +49,12 @@
  *   witness the receipt must be exact: pick numbers form the
  *   contiguous sequence 1..N, N equals declared rounds × slots, and
  *   every declared round carries exactly the declared slot set.
- *   Missing draft metadata rejects the load too. A missing,
+ *   Missing draft metadata rejects the load too. The witness must
+ *   also be the segment's own draft: the draft's declared
+ *   `league_id` is bound to the league being loaded before any of
+ *   its metadata is used — a draft declaring a foreign league, or
+ *   no league at all, rejects rather than having its evidence
+ *   relabelled with the requested league. A missing,
  *   truncated, or gapped receipt rejects the load: inversion and
  *   replay consume the same draft, so neither can detect an omission
  *   the receipt itself does not rule out, and an omitted pick would
@@ -454,6 +459,19 @@ function completedDraft(drafts: RawDraft[], leagueId: string): {
     throw new RosterReplayError(`League ${leagueId} must carry exactly one completed draft; found ${completed.length}`);
   }
   const draft = completed[0];
+  // The witness must be the segment's own draft: its declared league
+  // identity is checked against the league being loaded BEFORE its
+  // metadata is used as the completeness witness. A foreign draft's
+  // grid proves nothing about this league's receipt, and a draft
+  // declaring no league at all is unproven provenance — both reject
+  // rather than being relabelled with the requested league.
+  if (typeof draft.league_id !== "string" || draft.league_id.length === 0) {
+    throw new RosterReplayError(`Completed draft ${draft.draft_id} declares no league identity`);
+  }
+  if (draft.league_id !== leagueId) {
+    throw new RosterReplayError(
+      `Completed draft ${draft.draft_id} declares league ${draft.league_id}, not the league being loaded (${leagueId})`);
+  }
   if (typeof draft.last_picked !== "number" || !Number.isFinite(draft.last_picked)) {
     throw new RosterReplayError(`Completed draft ${draft.draft_id} carries no completion instant`);
   }

@@ -48,7 +48,7 @@ const manifest = readJson("manifest.json") as {
 };
 
 type FixtureDraft = {
-  draft_id: string; season: string; status: string; type: string;
+  draft_id: string; league_id: string; season: string; status: string; type: string;
   start_time: number; last_picked: number;
   settings: { rounds: number; teams: number };
   draft_order: Record<string, number>;
@@ -81,7 +81,7 @@ function fixtureDeps(): RosterReplayDeps {
     fetchDrafts: async leagueId => {
       const draft = drafts[leagueId];
       return [{
-        draft_id: draft.draft_id, season: draft.season, status: draft.status,
+        draft_id: draft.draft_id, league_id: draft.league_id, season: draft.season, status: draft.status,
         type: draft.type, start_time: draft.start_time, last_picked: draft.last_picked,
         settings: draft.settings, draft_order: draft.draft_order,
       } satisfies RawDraft];
@@ -379,6 +379,37 @@ describe("loader source integrity — the dot's PR #243 review probes", () => {
     await expect(loadChainRosterReplay(draftsOverride(LEAGUE_ID, draft => ({
       ...draft, settings: undefined, draft_order: undefined,
     })))).rejects.toThrow(RosterReplayError);
+  });
+
+  // The second re-review's identity probes: the grid witness must
+  // belong to the league being loaded. Changing only the 2026 draft
+  // object's league_id to the 2025 league — picks, dimensions and
+  // every other source unchanged — still loaded at the prior head,
+  // and the segment was labelled with the requested league anyway.
+  // A foreign draft's metadata proves nothing about this league's
+  // receipt, and missing provenance is not provenance.
+  it("rejects the 2026 draft witness declaring the 2025 league (the dot's repro)", async () => {
+    await expect(loadChainRosterReplay(draftsOverride(LEAGUE_ID, draft => ({
+      ...draft, league_id: SEASON_ONE_LEAGUE_ID,
+    })))).rejects.toThrow(/declares league 1282883196567977984/);
+  });
+
+  it("rejects the 2025 draft witness declaring the 2026 league", async () => {
+    await expect(loadChainRosterReplay(draftsOverride(SEASON_ONE_LEAGUE_ID, draft => ({
+      ...draft, league_id: LEAGUE_ID,
+    })))).rejects.toThrow(/declares league 1387473752807190528/);
+  });
+
+  it("rejects a 2026 draft witness carrying no league identity", async () => {
+    await expect(loadChainRosterReplay(draftsOverride(LEAGUE_ID, draft => ({
+      ...draft, league_id: undefined,
+    })))).rejects.toThrow(/declares no league identity/);
+  });
+
+  it("rejects a 2025 draft witness carrying no league identity", async () => {
+    await expect(loadChainRosterReplay(draftsOverride(SEASON_ONE_LEAGUE_ID, draft => ({
+      ...draft, league_id: undefined,
+    })))).rejects.toThrow(/declares no league identity/);
   });
 
   it("asserts no membership beyond the as-of observation instant", async () => {

@@ -89,8 +89,10 @@ segments verify against Sleeper's observed rosters before anything is
 served. Source admission is bounded by an explicit as-of cutoff: draft
 receipts must prove complete (contiguous pick numbers, the full
 rounds×slots grid checked against the draft's own declared
-settings/draft-order metadata, never inferred from the picks)
-before they anchor or derive anything, repeated
+settings/draft-order metadata, never inferred from the picks, and
+the witnessing draft must declare the league being loaded — a
+foreign or missing league identity rejects) before they anchor or
+derive anything, repeated
 transaction records are deduplicated (the same id with different
 contents rejects), source events effective after the cutoff reject the
 load, and membership is never asserted past the cutoff. Ground truth is pinned by captured, hash-manifested receipts in

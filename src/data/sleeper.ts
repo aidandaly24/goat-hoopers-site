@@ -136,6 +136,13 @@ export type RawPlayerEntry = {
 /** A draft (e.g. the league's rookie draft). */
 export type RawDraft = {
   draft_id: string;
+  /**
+   * The league the draft itself declares it belongs to. A consumer
+   * using a draft as evidence for a league segment must bind this
+   * identity to the league being loaded — never relabel a foreign
+   * draft's witness with the requested league.
+   */
+  league_id?: string;
   season: string;
   status: string;
   type: string;

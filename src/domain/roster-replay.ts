@@ -46,7 +46,9 @@
  *   covered, and draft receipts must prove complete (contiguous
  *   pick numbers, and the full rounds×slots grid measured against
  *   the draft's own declared metadata — its settings and draft
- *   order, never inferred from the picks themselves) before they
+ *   order, never inferred from the picks themselves — and the
+ *   witnessing draft must declare the very league being loaded: a
+ *   foreign or missing league identity proves nothing) before they
  *   anchor or derive anything.
  *
  * Team identity follows the roster SLOT, not the owner: slot 8 was
