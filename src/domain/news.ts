@@ -52,6 +52,13 @@ export type RealNewsArticle = {
   sections: RealNewsSection[];
 };
 
+/** Missing descriptions may arrive as literal RSS/cache sentinel text. */
+export function normalizeNewsSummary(value: unknown): string {
+  if (typeof value !== "string") return "";
+  const text = value.trim();
+  return /^(?:null|undefined)$/i.test(text) ? "" : text;
+}
+
 /** A player reference for cross-linking. */
 export type PlayerRef = {
   playerId: string;

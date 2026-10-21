@@ -7,6 +7,7 @@ import { Badge } from "@/ui/Badge";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TransactionSummary } from "@/ui/TransactionSummary";
+import { TransactionDate } from "@/ui/TransactionDate";
 import styles from "./TransactionHistory.module.css";
 import { readTransactionFilters, transactionFilterHref, type TransactionFilterState } from "./transactionQuery";
 
@@ -31,13 +32,6 @@ const TYPE_FILTERS = [
 
 function weekLabel(week: number): string {
   return week <= 0 ? "Preseason" : `Week ${week}`;
-}
-
-function dateLabel(createdAt: number): string {
-  return new Date(createdAt).toLocaleDateString(undefined, {
-    month: "short",
-    day: "numeric",
-  });
 }
 
 /**
@@ -130,7 +124,7 @@ export function TransactionFilters({
                   <TransactionSummary transaction={t} teams={teams} />
                 </span>
                 <span className={styles.meta}>
-                  {weekLabel(t.week)} · {dateLabel(t.createdAt)}
+                  {weekLabel(t.week)} · <TransactionDate timestamp={t.createdAt} />
                 </span>
               </div>
             </li>

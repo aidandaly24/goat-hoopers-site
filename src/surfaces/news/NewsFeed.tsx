@@ -8,7 +8,7 @@ import type {
   RealNewsArticle,
   RealNewsSection,
 } from "@/domain/news";
-import { NEWS_SECTIONS, sectionCoverageStatus } from "@/domain/news";
+import { NEWS_SECTIONS, normalizeNewsSummary, sectionCoverageStatus } from "@/domain/news";
 import {
   hasLegacyStoryParams,
   parseSectionParam,
@@ -57,6 +57,11 @@ function RelativeTime({ ts }: { ts: number }) {
       {label}
     </time>
   );
+}
+
+function Summary({ value, className }: { value: unknown; className: string }) {
+  const text = normalizeNewsSummary(value);
+  return text ? <p className={className}>{text}</p> : null;
 }
 
 function PlayerChips({ article }: { article: RealNewsArticle }) {
@@ -266,7 +271,7 @@ export function NewsFeed({ edition }: { edition: LeagueNewsEdition }) {
             <h2 className={styles.leadTitle}>
               <ArticleLink article={lead}>{lead.headline}</ArticleLink>
             </h2>
-            {lead.summary && <p className={styles.excerpt}>{lead.summary}</p>}
+            <Summary value={lead.summary} className={styles.excerpt} />
             <div className={styles.byline}>
               <span>{lead.outlet.name}</span>
               <RelativeTime ts={lead.publishedAt} />
@@ -290,9 +295,7 @@ export function NewsFeed({ edition }: { edition: LeagueNewsEdition }) {
                     <h3>
                       <ArticleLink article={a}>{a.headline}</ArticleLink>
                     </h3>
-                    {a.summary && (
-                      <p className={styles.rowSummary}>{a.summary}</p>
-                    )}
+                    <Summary value={a.summary} className={styles.rowSummary} />
                     <PlayerChips article={a} />
                   </li>
                 ))}

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import type { StockQuote, TradeVerdict } from "@/domain";
 import { analyzeTrade, tradeTotal } from "@/domain";
+import { playerNameMatches } from "@/domain/player-search";
 import { decodeTrade, encodeTradeUrl } from "./tradeUrl";
 import styles from "./TradeAnalyzer.module.css";
 
@@ -66,14 +67,14 @@ function SidePicker({
   onRemove: (playerId: string) => void;
 }) {
   const [query, setQuery] = useState("");
-  const q = query.trim().toLowerCase();
+  const q = query.trim();
   const results = useMemo(() => {
     if (q.length === 0) return [];
     return stocks
       .filter(
         (s) =>
           !pickedIds.has(s.playerId) &&
-          s.playerName.toLowerCase().includes(q)
+          playerNameMatches(s.playerName, q)
       )
       .slice(0, MAX_RESULTS);
   }, [stocks, q, pickedIds]);
