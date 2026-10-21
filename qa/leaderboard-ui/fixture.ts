@@ -24,6 +24,8 @@ function recordFeedback(score:RankedScore,mode:string):RankedRecordFeedback|null
 }
 export async function respond(request:Request){
   const{state,mode}=await fixture(),url=new URL(request.url),scope=url.searchParams.get('scope')??'everyone';
+  const signedIn=(request.headers.get('cookie')??'').split(';').some(c=>c.trim()==='qa_ranked_signed_in=1');
+  if(!signedIn&&(mode==='auth401-start'&&url.pathname.endsWith('/runs')||mode==='auth401-save'&&url.pathname.endsWith('/scores')||['auth401-result','auth401-check'].includes(mode)&&url.pathname.endsWith('/results')))return response({status:'unauthenticated'},401);
   if(url.pathname.startsWith('/api/arcade/nba/teams')){
     const teams=Array.from({length:30},(_,i)=>({id:String(i+1),city:'Synthetic city '+(i+1),name:'Team '+(i+1),abbreviation:'T'+(i+1),logo:null}));
     const source=(sourceUrl:string)=>({provider:'ESPN',sourceUrl,observedAt:new Date().toISOString(),sourceUpdatedAt:null,seasonLabel:'Synthetic QA fixture'});
@@ -49,6 +51,7 @@ export async function respond(request:Request){
   if(url.pathname.endsWith('/scores')){
     state.saveAttempts=(state.saveAttempts??0)+1;
     if(mode==='reject')return response({status:'unavailable'},503);
+    if(mode==='auth401-check')return response({status:'unavailable'},503);
     if(mode==='record-retry'&&state.saveAttempts===1)return response({status:'unavailable'},503);
     if(mode==='record-duplicate'&&state.score)return response({status:'saved',score:state.score,recordFeedback:recordFeedback(state.score,mode)},201);
     const body=await request.json(),a=state.admission;
@@ -60,7 +63,7 @@ export async function respond(request:Request){
       return response({status:'saved',score:state.score,recordFeedback:mode==='record-malformed'?{...feedback,weeklyRecord:{previousScore:0,outcome:'first'}}:feedback},201);
     }catch{return response({status:'invalid_score'},400);}
   }
-  if(url.pathname.endsWith('/results'))return state.score?response({score:state.score}):response({status:'not_found'},404);
+  if(url.pathname.endsWith('/results'))return state.score&&state.score.runId===url.searchParams.get('runId')?response({score:state.score}):response({status:'not_found'},404);
   if(url.pathname.endsWith('/leaderboard'))return response({gameId:'free-throw',rulesVersion:version,ruleSetId:policy.ruleSetId,calendar:policy.calendar,scope,period,entries:entries(state,scope,'weekly')});
   return response({status:'unavailable'},404);
 }

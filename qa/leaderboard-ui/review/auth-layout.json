@@ -1,0 +1,720 @@
+{
+  "synthetic": true,
+  "parent": "0f8388a1a255395a198b197412bbb93941fb0d56",
+  "changedProductFiles": [
+    "src/surfaces/arcade/RankedFreeThrow.tsx",
+    "src/surfaces/arcade/priced-in/PricedIn.module.css"
+  ],
+  "cases": [
+    {
+      "case": "signed-out-bookmark",
+      "realLoginFormAndContinuation": true,
+      "runPreserved": true,
+      "untrustedNextDropped": true,
+      "staleRunNoResult": true,
+      "scorePosts": 0
+    },
+    {
+      "case": "invalid-run-1",
+      "invalidOrAmbiguousRunDropped": true,
+      "canonicalRankedReturn": true
+    },
+    {
+      "case": "invalid-run-2",
+      "invalidOrAmbiguousRunDropped": true,
+      "canonicalRankedReturn": true
+    },
+    {
+      "case": "login-rejects-external-next",
+      "actualLoginRejectsExternalNext": true
+    },
+    {
+      "case": "auth401-start",
+      "contextualSignIn": true,
+      "destination": "/arcade/ranked-free-throw",
+      "noAutomaticRetryOrAcceptedFeedback": true
+    },
+    {
+      "case": "auth401-save",
+      "contextualSignIn": true,
+      "destination": "/arcade/ranked-free-throw?run=cf522560-c208-4f54-9911-75ce988cc0b2",
+      "noAutomaticRetryOrAcceptedFeedback": true
+    },
+    {
+      "case": "auth401-result",
+      "contextualSignIn": true,
+      "destination": "/arcade/ranked-free-throw?run=11111111-1111-4111-8111-111111111111",
+      "noAutomaticRetryOrAcceptedFeedback": true
+    },
+    {
+      "case": "auth401-check",
+      "contextualSignIn": true,
+      "destination": "/arcade/ranked-free-throw?run=62fd7594-d718-4e14-8b63-83ba21776934",
+      "noAutomaticRetryOrAcceptedFeedback": true
+    },
+    {
+      "case": "saved-recovery-and-foreign-run",
+      "ownedRecoveryWithoutCelebration": true,
+      "foreignRunNoPrivateResult": true,
+      "ownershipIsSyntheticFixtureOnly": true
+    },
+    {
+      "case": "playing-ready-1440",
+      "width": 1440,
+      "rootTextPercent": 100,
+      "activeAndRevealStates": [
+        {
+          "state": "active-1",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "reveal-1",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "active-2",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "reveal-2",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "active-3",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "reveal-3",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "active-4",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "reveal-4",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "active-5",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "reveal-5",
+          "viewport": 1440,
+          "scroll": 1440
+        }
+      ],
+      "minimumButtonHeight": 44,
+      "longUnbrokenNames": false
+    },
+    {
+      "case": "playing-priced-long-names-1440",
+      "width": 1440,
+      "rootTextPercent": 100,
+      "activeAndRevealStates": [
+        {
+          "state": "active-1",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "reveal-1",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "active-2",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "reveal-2",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "active-3",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "reveal-3",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "active-4",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "reveal-4",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "active-5",
+          "viewport": 1440,
+          "scroll": 1440
+        },
+        {
+          "state": "reveal-5",
+          "viewport": 1440,
+          "scroll": 1440
+        }
+      ],
+      "minimumButtonHeight": 44,
+      "longUnbrokenNames": true
+    },
+    {
+      "case": "playing-ready-390",
+      "width": 390,
+      "rootTextPercent": 100,
+      "activeAndRevealStates": [
+        {
+          "state": "active-1",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "reveal-1",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "active-2",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "reveal-2",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "active-3",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "reveal-3",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "active-4",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "reveal-4",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "active-5",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "reveal-5",
+          "viewport": 390,
+          "scroll": 390
+        }
+      ],
+      "minimumButtonHeight": 44,
+      "longUnbrokenNames": false
+    },
+    {
+      "case": "playing-ready-320",
+      "width": 320,
+      "rootTextPercent": 200,
+      "activeAndRevealStates": [
+        {
+          "state": "active-1",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "reveal-1",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "active-2",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "reveal-2",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "active-3",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "reveal-3",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "active-4",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "reveal-4",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "active-5",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "reveal-5",
+          "viewport": 320,
+          "scroll": 320
+        }
+      ],
+      "minimumButtonHeight": 44,
+      "longUnbrokenNames": false
+    },
+    {
+      "case": "playing-priced-long-names-390",
+      "width": 390,
+      "rootTextPercent": 100,
+      "activeAndRevealStates": [
+        {
+          "state": "active-1",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "reveal-1",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "active-2",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "reveal-2",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "active-3",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "reveal-3",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "active-4",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "reveal-4",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "active-5",
+          "viewport": 390,
+          "scroll": 390
+        },
+        {
+          "state": "reveal-5",
+          "viewport": 390,
+          "scroll": 390
+        }
+      ],
+      "minimumButtonHeight": 44,
+      "longUnbrokenNames": true
+    },
+    {
+      "case": "playing-priced-long-names-320",
+      "width": 320,
+      "rootTextPercent": 200,
+      "activeAndRevealStates": [
+        {
+          "state": "active-1",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "reveal-1",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "active-2",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "reveal-2",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "active-3",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "reveal-3",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "active-4",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "reveal-4",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "active-5",
+          "viewport": 320,
+          "scroll": 320
+        },
+        {
+          "state": "reveal-5",
+          "viewport": 320,
+          "scroll": 320
+        }
+      ],
+      "minimumButtonHeight": 44,
+      "longUnbrokenNames": true
+    }
+  ],
+  "failures": [],
+  "pageErrors": [],
+  "external": [],
+  "unexpectedWrites": [],
+  "sourceBlobs": {
+    "src/surfaces/arcade/RankedFreeThrow.tsx": "b296f710c4089b94cb6f3e81fffcfff4703d1ca5",
+    "src/surfaces/arcade/priced-in/PricedIn.module.css": "53e45aae278af7020170d317e43586beebcbc80a",
+    "src/app/account/login/page.tsx": "b71a9d58872832c8a68fe7a5ba52f7c8745d7d07",
+    "src/app/account/continue/route.ts": "c64834ff88e5ddde6a5e34af5d1480a0f277089e",
+    "src/domain/login-navigation.ts": "d87c94fc57cda941034130adeb7bfe30ce949268",
+    "src/surfaces/accounts/AccountForm.tsx": "c1d2fd2e9043f2845c180074ffffeb20427af746"
+  },
+  "reuse": {
+    "initialSuccessfulCases": 13,
+    "initialFailures": [
+      {
+        "case": "playing-priced-long-names-390",
+        "error": "{'viewport': 390, 'scroll': 405}",
+        "resolution": "Long unbroken names now wrap in final recap; progress row wraps inside its card."
+      },
+      {
+        "case": "playing-priced-long-names-320",
+        "error": "{'viewport': 320, 'scroll': 808}",
+        "resolution": "Long unbroken names now wrap in final recap; progress row wraps inside its card."
+      }
+    ],
+    "initialSourceBlobs": {
+      "src/surfaces/arcade/RankedFreeThrow.tsx": "b296f710c4089b94cb6f3e81fffcfff4703d1ca5",
+      "src/surfaces/arcade/priced-in/PricedIn.module.css": "003bed4568ebf6e6d06d24b50976dc0cb37e9796",
+      "src/app/account/login/page.tsx": "b71a9d58872832c8a68fe7a5ba52f7c8745d7d07",
+      "src/app/account/continue/route.ts": "c64834ff88e5ddde6a5e34af5d1480a0f277089e",
+      "src/domain/login-navigation.ts": "d87c94fc57cda941034130adeb7bfe30ce949268",
+      "src/surfaces/accounts/AccountForm.tsx": "c1d2fd2e9043f2845c180074ffffeb20427af746"
+    },
+    "finalLayoutRerun": [
+      {
+        "case": "playing-priced-long-names-1440",
+        "width": 1440,
+        "rootTextPercent": 100,
+        "activeAndRevealStates": [
+          {
+            "state": "active-1",
+            "viewport": 1440,
+            "scroll": 1440
+          },
+          {
+            "state": "reveal-1",
+            "viewport": 1440,
+            "scroll": 1440
+          },
+          {
+            "state": "active-2",
+            "viewport": 1440,
+            "scroll": 1440
+          },
+          {
+            "state": "reveal-2",
+            "viewport": 1440,
+            "scroll": 1440
+          },
+          {
+            "state": "active-3",
+            "viewport": 1440,
+            "scroll": 1440
+          },
+          {
+            "state": "reveal-3",
+            "viewport": 1440,
+            "scroll": 1440
+          },
+          {
+            "state": "active-4",
+            "viewport": 1440,
+            "scroll": 1440
+          },
+          {
+            "state": "reveal-4",
+            "viewport": 1440,
+            "scroll": 1440
+          },
+          {
+            "state": "active-5",
+            "viewport": 1440,
+            "scroll": 1440
+          },
+          {
+            "state": "reveal-5",
+            "viewport": 1440,
+            "scroll": 1440
+          }
+        ],
+        "minimumButtonHeight": 44,
+        "longUnbrokenNames": true
+      },
+      {
+        "case": "playing-priced-long-names-390",
+        "width": 390,
+        "rootTextPercent": 100,
+        "activeAndRevealStates": [
+          {
+            "state": "active-1",
+            "viewport": 390,
+            "scroll": 390
+          },
+          {
+            "state": "reveal-1",
+            "viewport": 390,
+            "scroll": 390
+          },
+          {
+            "state": "active-2",
+            "viewport": 390,
+            "scroll": 390
+          },
+          {
+            "state": "reveal-2",
+            "viewport": 390,
+            "scroll": 390
+          },
+          {
+            "state": "active-3",
+            "viewport": 390,
+            "scroll": 390
+          },
+          {
+            "state": "reveal-3",
+            "viewport": 390,
+            "scroll": 390
+          },
+          {
+            "state": "active-4",
+            "viewport": 390,
+            "scroll": 390
+          },
+          {
+            "state": "reveal-4",
+            "viewport": 390,
+            "scroll": 390
+          },
+          {
+            "state": "active-5",
+            "viewport": 390,
+            "scroll": 390
+          },
+          {
+            "state": "reveal-5",
+            "viewport": 390,
+            "scroll": 390
+          }
+        ],
+        "minimumButtonHeight": 44,
+        "longUnbrokenNames": true
+      },
+      {
+        "case": "playing-ready-320",
+        "width": 320,
+        "rootTextPercent": 200,
+        "activeAndRevealStates": [
+          {
+            "state": "active-1",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "reveal-1",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "active-2",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "reveal-2",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "active-3",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "reveal-3",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "active-4",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "reveal-4",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "active-5",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "reveal-5",
+            "viewport": 320,
+            "scroll": 320
+          }
+        ],
+        "minimumButtonHeight": 44,
+        "longUnbrokenNames": false
+      },
+      {
+        "case": "playing-priced-long-names-320",
+        "width": 320,
+        "rootTextPercent": 200,
+        "activeAndRevealStates": [
+          {
+            "state": "active-1",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "reveal-1",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "active-2",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "reveal-2",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "active-3",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "reveal-3",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "active-4",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "reveal-4",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "active-5",
+            "viewport": 320,
+            "scroll": 320
+          },
+          {
+            "state": "reveal-5",
+            "viewport": 320,
+            "scroll": 320
+          }
+        ],
+        "minimumButtonHeight": 44,
+        "longUnbrokenNames": true
+      }
+    ],
+    "reason": "Ranked/auth runtime source is unchanged between the initial successful auth cases and final layout run. The only product delta is Priced In progress/recap wrapping, covered by final desktop/390px/320px long-name and320px ordinary-name active/reveal/final cases."
+  },
+  "checks": {
+    "focusedTests": 35,
+    "typecheck": "pass",
+    "scopedLint": "pass, zero warnings",
+    "surfaceContracts": 104,
+    "finalProductionNextFixtureBuild": "pass",
+    "reviewedRecordFunctions": "claimAcceptedScore and SavedRoundFeedback retain exact reviewed function source"
+  },
+  "limits": [
+    "All auth and game data are synthetic; no provider, live account, database or production scores.",
+    "Actual account login page, AccountForm, safe destination validation and continuation route are unchanged; fixture aliases provider reads and sign-in response only.",
+    "Foreign/not-found behavior is an owner-scoped synthetic response, not new backend IDOR proof.",
+    "The court renderer/controller/art are unchanged and omitted from this UI fixture.",
+    "200% is root text size, not page zoom.",
+    "No new PR CI or independent review is claimed; draft creation/publication remains held."
+  ],
+  "unchangedBackend": {
+    "ARCHITECTURE.md": "37cd1f497152587ca92cd941196114a547e0249e",
+    "docs/ranked-record-feedback.md": "a9f2449679757a4407547b69f2f7075fbd1e042f",
+    "src/data/arcade-competition/postgres-local.test.ts": "339f7715eea2cd71a6018c9a13f61526aa5e39a8",
+    "src/data/arcade-competition/store.ts": "185b16edc64e6f52af9ba1b593754d39dbbd2a14",
+    "src/data/ranked-free-throw/__tests__/client.test.ts": "19d3aee975537e7605a21c6bd2cfcef761e6a2b3",
+    "src/data/ranked-free-throw/__tests__/http.test.ts": "125dd0c0e419a1af11034b348b437be11d0523da",
+    "src/data/ranked-free-throw/__tests__/service.test.ts": "db6ff7bac8594f0c771da8237c29013168d72cf0",
+    "src/data/ranked-free-throw/client.ts": "ecb94761ed8a9fb5ee0872c98ca9ed3d81d12c0c",
+    "src/data/ranked-free-throw/service.ts": "ebe604f42eefaf4dad643508ed616bad0824d504",
+    "src/data/ranked-free-throw/store.ts": "d615e827d1449a11e164460132aa3cc289833f4f",
+    "src/domain/arcade/ranked-record-feedback.test.ts": "d1292efd7b30df41ce3bc1ed11438c15e9d7555e",
+    "src/domain/arcade/ranked-record-feedback.ts": "72b0550d7bb4c817b9320169b316366b09031d93"
+  }
+}

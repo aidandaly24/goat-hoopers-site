@@ -7,7 +7,8 @@ import { PRACTICE_ASSETS } from "@/domain/arcade/free-throw";
 import { RankedRoundRecorder } from "@/domain/arcade/ranked-round";
 import type { RankedAdmission, RankedAvailability, RankedBoard, RankedScore, RankedScope } from "@/domain/arcade/ranked-free-throw";
 import type { RankedRecordFeedback } from "@/domain/arcade/ranked-record-feedback";
-import { rankedPhysics, rankedPositions } from "@/domain/arcade/ranked-free-throw";
+import { rankedId, rankedPhysics, rankedPositions } from "@/domain/arcade/ranked-free-throw";
+import { safeLoginDestination } from "@/domain/login-navigation";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { FreeThrowPractice } from "./free-throw/FreeThrowPractice";
@@ -25,6 +26,12 @@ const failure = (status: string) => ({
   rate_limited: "Too many requests. Please try again later.",
 }[status] ?? "The request could not be completed. Your result has not been confirmed.");
 const accuracy = (value: number | null) => value === null ? "—" : `${Math.round(value * 100)}%`;
+
+/** Carry only this route and a validated run through the existing login contract. */
+export function rankedLoginHref(runId?: string): string {
+  const destination = safeLoginDestination(`/arcade/ranked-free-throw${rankedId(runId) ? `?run=${encodeURIComponent(runId)}` : ""}`);
+  return `/account/login?next=${encodeURIComponent(destination)}`;
+}
 
 /** Mark before rendering, so repeated accepted responses cannot replay a notice. */
 export function claimAcceptedScore(id: string, seen: Set<string>, storage?: Pick<Storage, "getItem" | "setItem">): boolean {
@@ -80,8 +87,11 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
   const [board, setBoard] = useState<RankedBoard | null>(null);
   const [boardState, setBoardState] = useState<"loading" | "ready" | "error">("loading");
   const [refresh, setRefresh] = useState(0);
-  const enabled = availability.status === "available";
-  const recoverable = enabled || availability.status === "recovery";
+  const [authRequired, setAuthRequired] = useState(false);
+  const needsSignIn = availability.status === "sign_in" || authRequired;
+  const enabled = availability.status === "available" && !authRequired;
+  const recoverable = (enabled || availability.status === "recovery") && !authRequired;
+  const continuationRun = admission?.run.id ?? initialRunId;
 
   useEffect(() => () => { request.current?.abort(); }, []);
   useEffect(() => {
@@ -107,7 +117,10 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
       if (controller.signal.aborted) return;
       request.current = null; setChecking(false);
       if (result.ok) { setJustAcceptedId(null); setRecordFeedback(null); setSaved(result.value); setPhase("saved"); }
-      else setMessage(result.status === "not_found" ? "No saved result was found for this account and round." : failure(result.status));
+      else {
+        if (result.status === "unauthenticated") setAuthRequired(true);
+        setMessage(result.status === "not_found" ? "No saved result was found for this account and round." : failure(result.status));
+      }
     });
     return () => { controller.abort(); if (request.current === controller) request.current = null; };
   }, [client, recoverable, initialRunId]);
@@ -122,7 +135,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
     const sent = performance.now(), result = await client.start(controller.signal);
     request.current = null;
     if (controller.signal.aborted) return;
-    if (!result.ok) { setPhase(saved ? "saved" : "idle"); setMessage(failure(result.status)); return; }
+    if (!result.ok) { if (result.status === "unauthenticated") setAuthRequired(true); setPhase(saved ? "saved" : "idle"); setMessage(failure(result.status)); return; }
     const received = performance.now();
     recorder.current = new RankedRoundRecorder(result.value, sent, received);
     setAdmission(result.value); setSaved(null); setJustAcceptedId(null); setRecordFeedback(null); setRoundStatus(recorder.current.status(received)); setPhase("playing");
@@ -146,7 +159,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
       setRecordFeedback(first ? result.value.recordFeedback ?? null : null);
       rememberResult(result.value);
     }
-    else { setPhase("uncertain"); setMessage(`${failure(result.status)} Check the saved result before retrying.`); }
+    else { if (result.status === "unauthenticated") setAuthRequired(true); setPhase("uncertain"); setMessage(`${failure(result.status)} Check the saved result before retrying.`); }
   }
   async function checkSaved() {
     const id = admission?.run.id ?? initialRunId;
@@ -158,7 +171,7 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
     setChecking(false);
     if (result.ok) { setJustAcceptedId(null); setRecordFeedback(null); rememberResult(result.value); }
     else if (result.status === "not_found") { setPhase(admission ? "playing" : "idle"); setMessage("No saved result found. You can retry saving this round while its timer is open."); }
-    else setMessage(failure(result.status));
+    else { if (result.status === "unauthenticated") setAuthRequired(true); setMessage(failure(result.status)); }
   }
   const status = roundStatus;
   const active = admission && (phase === "playing" || phase === "saving" || phase === "uncertain");
@@ -169,9 +182,10 @@ export function RankedFreeThrow({ availability, initialRunId, client = defaultCl
       <SectionHeading eyebrow="The Arcade" title="Ranked free throws" level={1} />
       <p><Link href="/arcade/free-throw">Play local practice</Link></p>
       {!enabled ? <>
-        <p>{availability.status === "recovery" ? availability.reason === "closed" ? "New rounds are closed. Your saved results remain available." : "New rounds are temporarily unavailable. You can still check your saved result."
-          : availability.status === "sign_in" ? "Sign in to a verified personal account to play ranked rounds or view your saved result." : availability.status === "unavailable" ? "Ranked play is temporarily unavailable." : "Ranked play is closed until the competition schedule and storage are enabled."}</p>
-        {availability.status === "sign_in" && <Link className={styles.button} href="/account/login">Sign in</Link>}
+        <p>{needsSignIn ? "Sign in to a verified personal account to play ranked rounds or view your saved result." : availability.status === "recovery" ? availability.reason === "closed" ? "New rounds are closed. Your saved results remain available." : "New rounds are temporarily unavailable. You can still check your saved result."
+          : availability.status === "unavailable" ? "Ranked play is temporarily unavailable." : "Ranked play is closed until the competition schedule and storage are enabled."}</p>
+        {needsSignIn && <Link className={styles.button} href={rankedLoginHref(continuationRun)}>{rankedId(continuationRun) ? "Sign in to check this round" : "Sign in"}</Link>}
+        {authRequired && <p>Your sign-in has expired. Signing in returns here to check for a saved result; it does not resubmit your shots.</p>}
       </> : <>
         <p>Around the court · one point per make. Everyone gets the same positions. Your best valid completed round counts. Rewards are off.</p>
         {rules && <p>{rules.shots} shots · {rules.durationMs / 1000} seconds · {rules.maxRunsPerWeek === null ? "unlimited attempts while open" : `maximum ${rules.maxRunsPerWeek} rounds per week`}.</p>}
