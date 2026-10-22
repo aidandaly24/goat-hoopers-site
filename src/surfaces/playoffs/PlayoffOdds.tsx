@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { PlayoffOdds } from "@/domain";
+import type { DataToolsState, PlayoffOdds } from "@/domain";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
@@ -11,24 +11,33 @@ import styles from "./PlayoffOdds.module.css";
  * Self-contained for homepage embedding: receives `odds`
  * (PlayoffOdds[] | null) and renders. The Monte Carlo model is documented
  * in src/domain/playoff-odds.ts; the math in src/data/analytics.ts.
- * Null = preseason, rendered as an honest empty state.
+ * Null = no completed-week evidence yet, rendered as an honest empty state.
  */
 export function PlayoffOdds({
   odds,
   championTeamId,
+  dataState,
 }: {
-  /** From getPlayoffOdds(). Null before the season tips off. */
+  /** From getPlayoffOdds(). Null when it has no data — before
+   * tip-off, before any week closes, or when its feed failed. */
   odds: PlayoffOdds[] | null;
   /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
   championTeamId?: string | null;
+  /** From getDataToolsState(): the PROVEN reason odds may be null.
+   * The empty state describes only that world; omitted =
+   * "unavailable", the claim-free default. */
+  dataState?: DataToolsState;
 }) {
   return (
     <Card>
       <SectionHeading eyebrow="The crystal ball" title="Playoff Odds" />
       {odds === null || odds.length === 0 ? (
         <p className={styles.empty}>
-          Odds go live when games do — simulating a season with no data is
-          just arithmetic wearing a costume.
+          {dataState === "pre-tipoff"
+            ? "Odds go live when games do — simulating a season with no data is just arithmetic wearing a costume."
+            : dataState === "no-closed-week"
+              ? "No odds yet — the simulation runs on completed finals, and no week has closed yet. Anything sooner is just arithmetic wearing a costume."
+              : "Odds are unavailable right now — the required data is unavailable, and simulating missing data is just arithmetic wearing a costume."}
         </p>
       ) : (
         <>

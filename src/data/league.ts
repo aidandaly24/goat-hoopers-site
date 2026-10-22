@@ -14,6 +14,7 @@ import { selectWeeklyEdition, weeklyEditions, getWeeklyEdition } from "./weekly-
 import type { LiveClubhouseDirectoryEntry } from "@/domain/clubhouse-directory";
 import type { WeeklyEdition } from "@/domain/weekly-spotlight";
 import type {
+  DataToolsState,
   Season,
   Team,
   Standing,
@@ -689,18 +690,40 @@ type AnalyticsInputs = {
 };
 
 /**
+ * Raw fetchers for the analytics assembly. Injectable so tests can
+ * drive the real loaders with fake clients (rule 11). Defaults are
+ * the real Sleeper fetchers.
+ */
+export type AnalyticsFetchers = {
+  fetchLeague?: typeof fetchLeague;
+  fetchRosters?: typeof fetchRosters;
+  fetchUsers?: typeof fetchUsers;
+  fetchNbaState?: typeof fetchNbaState;
+  fetchMatchups?: typeof fetchMatchups;
+};
+
+/**
  * Shared assembly for every data tool: teams, season (with playoff
  * settings), and every played week's matchups. Fetching lives here; the
  * math lives in the pure functions in analytics.ts. Returns nulls on
  * failure — every tool degrades to its honest empty state.
  */
-async function fetchAnalyticsInputs(): Promise<AnalyticsInputs | null> {
+async function fetchAnalyticsInputs(
+  fetchers: AnalyticsFetchers = {}
+): Promise<AnalyticsInputs | null> {
+  const {
+    fetchLeague: getLeague = fetchLeague,
+    fetchRosters: getRosters = fetchRosters,
+    fetchUsers: getUsers = fetchUsers,
+    fetchNbaState: getState = fetchNbaState,
+    fetchMatchups: getMatchups = fetchMatchups,
+  } = fetchers;
   try {
     const [league, rosters, users, nbaState] = await Promise.all([
-      fetchLeague(),
-      fetchRosters(),
-      fetchUsers(),
-      fetchNbaState().catch(() => null),
+      getLeague(),
+      getRosters(),
+      getUsers(),
+      getState().catch(() => null),
     ]);
     const season = toSeason(league, nbaState);
     const teams = toTeams(rosters, users);
@@ -712,7 +735,7 @@ async function fetchAnalyticsInputs(): Promise<AnalyticsInputs | null> {
     const weeks = Array.from({ length: currentWeek }, (_, i) => i + 1);
     const matchupWeeks = await Promise.all(
       weeks.map((w): Promise<RawMatchupEntry[]> =>
-        fetchMatchups(w).catch(() => [])
+        getMatchups(w).catch(() => [])
       )
     );
     const matchupsByWeek = matchupWeeks.map((raw, i) => {
@@ -794,6 +817,44 @@ export async function getRosterSnapshotHistory(playerIds: readonly string[]): Pr
   } catch {
     return {};
   }
+}
+
+/**
+ * What can be PROVEN about why the four data tools might be null —
+ * the Intel page hands this to the tools so their empty-state copy
+ * only ever describes a proven world (issue #224 follow-through).
+ *
+ * The proof obligations, in order:
+ * - "pre-tipoff" requires the NBA state fetch itself to succeed and
+ *   say "pre" — a failed state fetch proves nothing.
+ * - "no-closed-week" requires the season underway (state past "pre"),
+ *   the analytics assembly loaded with games underway, and the
+ *   current week still the first: only then is zero completed weeks
+ *   a fact rather than an inference from a null. A null assembly
+ *   (league/roster/user outage) proves nothing about the tools'
+ *   evidence, however early the week.
+ * - Everything else is "unavailable": the state fetch failed, the
+ *   assembly failed, or a later week is current — weeks HAVE closed,
+ *   so a null tool (e.g. previews with completed finals on file but
+ *   the current schedule missing) is a data gap, and its copy must
+ *   say so neutrally instead of blaming missing finals.
+ *
+ * Never throws.
+ */
+export async function getDataToolsState(
+  fetchers: AnalyticsFetchers = {}
+): Promise<DataToolsState> {
+  const { fetchNbaState: getState = fetchNbaState } = fetchers;
+  let state: RawNbaState;
+  try {
+    state = await getState();
+  } catch {
+    return "unavailable";
+  }
+  if (state.season_type === "pre") return "pre-tipoff";
+  const input = await fetchAnalyticsInputs(fetchers);
+  if (!input || !input.hasGames) return "unavailable";
+  return input.currentWeek <= 1 ? "no-closed-week" : "unavailable";
 }
 
 /**
