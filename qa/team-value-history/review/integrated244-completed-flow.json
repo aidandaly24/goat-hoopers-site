@@ -1,0 +1,50 @@
+{
+  "syntheticSources": true,
+  "actualProducer": true,
+  "route": "signed-in homepage / \u2192 Your roster",
+  "cases": [
+    {
+      "width": 1440,
+      "rootText": 100,
+      "checks": [
+        "actual signed-in homepage Your roster; hover/tap selects real-producer point/detail with exact price and th2 token",
+        "real summary/detail accept opaque token under later request clock; returned cutoff remains fixed; keyboard selection retained",
+        "same-cutoff source correction returns actual producer409; real RSC Refresh loads corrected envelope/detail, preserves selected day/zoom/focus, clears old cache"
+      ]
+    },
+    {
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "actual signed-in homepage Your roster; hover/tap selects real-producer point/detail with exact price and th2 token",
+        "real summary/detail accept opaque token under later request clock; returned cutoff remains fixed; keyboard selection retained",
+        "same-cutoff source correction returns actual producer409; real RSC Refresh loads corrected envelope/detail, preserves selected day/zoom/focus, clears old cache"
+      ]
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "writes": [],
+  "failures": [
+    {
+      "width": 1440,
+      "rootText": 100,
+      "error": "",
+      "trace": "Traceback (most recent call last):\n  File \"/workspace/goat-history-integrated244/qa/team-value-history/integrated-browser.py\", line 85, in <module>\n    assert '2025-11-01T23:59:59.999999Z' in d.locator('time').inner_text()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "width": 320,
+      "rootText": 200,
+      "error": "",
+      "trace": "Traceback (most recent call last):\n  File \"/workspace/goat-history-integrated244/qa/team-value-history/integrated-browser.py\", line 85, in <module>\n    assert '2025-11-01T23:59:59.999999Z' in d.locator('time').inner_text()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    }
+  ],
+  "base": "26872621cec6cf29b9175cc3c8f845a463e0d78b",
+  "sourceBlobs": {
+    "src/data/team-value-history.ts": "62421f5204408cdb424b42b3cdcacfca8ccf8425",
+    "src/data/roster-replay.ts": "e543128eb69a71db470c3c72ed267e3027c181c3",
+    "src/surfaces/season-hub/TeamValueHistory.tsx": "f6edb2909d958bc6d2f160731fc3bfe15b38086a",
+    "src/surfaces/season-hub/TeamValueHistoryDetail.tsx": "252f76f9a8b05bd31be9c405ef675cd66c743c85",
+    "src/surfaces/season-hub/TeamValueHistoryChart.tsx": "c0d73ee530eabc7e1e260365400cd89ae1959074"
+  }
+}

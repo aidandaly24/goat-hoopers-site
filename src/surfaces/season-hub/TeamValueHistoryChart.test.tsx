@@ -3,6 +3,19 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { teamValueHistoryFixture } from "@/test/team-value-history-fixture";
 import { TeamValueHistoryChart } from "./TeamValueHistoryChart";
 import styles from "./TeamValueHistory.module.css";
+import { compactHistory } from "../../../qa/team-value-history/compact-fixture";
+import { historyInitialRange } from "./team-value-history-view";
+
+test("the focused sparse plot announces a selected subtotal and its actual price coverage", () => {
+  const h = compactHistory(), selected = h.points.at(-1)!;
+  const html = renderToStaticMarkup(<TeamValueHistoryChart points={h.points} range={historyInitialRange(h.points, h.leagueRange)} selectedDay={selected.day} onSelectDay={() => {}} />);
+  expect(html).toContain('aria-valuemax="14"');
+  expect(html).toContain('aria-valuenow="14"');
+  expect(html).toContain("Oct 21, 2026 UTC, $123 subtotal, recorded, 1/4 priced");
+  expect(html).toContain('aria-describedby=');
+  expect(html).toContain('aria-keyshortcuts=');
+  expect(html.match(/data-history-point=/g)).toHaveLength(15);
+});
 
 test("SVG point titles render as one server/client-safe text value under React19", () => {
   const source = teamValueHistoryFixture("one"), error = vi.spyOn(console, "error").mockImplementation(() => {});
@@ -36,14 +49,14 @@ test("area tint is confined to complete recorded continuity, and never spans a m
   expect(renderToStaticMarkup(<TeamValueHistoryChart points={partial} range={source.requestedRange} selectedDay={partial[0].day} />)).not.toContain("data-history-area");
 });
 
-test("quiet markers retain every line vertex and the selected day without adding a trend", () => {
+test("every supported point remains visible for hover or tap without adding a trend", () => {
   const source = teamValueHistoryFixture();
   const points = source.points.filter(point => point.day >= "2026-10-14" && point.day <= "2026-10-16").map(point => ({ ...point, priceKind: "recorded" as const, priced: 3, subtotalCents: 30000 }));
   const html = renderToStaticMarkup(<TeamValueHistoryChart points={points} range={source.requestedRange} selectedDay="2026-10-14" />);
   const vertices = html.match(/<polyline[^>]*points="([^"]+)"/)![1].split(" ");
   expect(vertices).toHaveLength(3);
   expect(new Set(vertices.map(vertex => vertex.split(",")[1])).size).toBe(1);
-  expect(html.match(/data-history-point=/g)).toHaveLength(2);
+  expect(html.match(/data-history-point=/g)).toHaveLength(3);
   const selected = renderToStaticMarkup(<TeamValueHistoryChart points={points} range={source.requestedRange} selectedDay="2026-10-15" />);
   expect(selected.match(/data-history-point=/g)).toHaveLength(3);
 });

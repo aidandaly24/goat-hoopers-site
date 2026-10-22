@@ -1,0 +1,99 @@
+{
+  "base": "33e353e31c5b96364a8ce680e47d58143981ac5c",
+  "baseTree": "ff4369a25296390e72ace00d8c6fc15533019628",
+  "synthetic": true,
+  "sourceBlobs": {
+    "src/surfaces/season-hub/TeamValueHistoryDetail.tsx": "8803284a9747de4984282822bf21b9d2167a959c",
+    "src/surfaces/season-hub/team-value-history-view.ts": "6496873a17eda91bb3646ec0b7500551753820ac",
+    "src/surfaces/season-hub/TeamValueHistory.module.css": "4785647c0704a782cd3e91a45dfe0a7fda293989"
+  },
+  "cases": [
+    {
+      "viewport": 1440,
+      "rootText": 100,
+      "historyWidth": 1088,
+      "scrollWidth": 1440,
+      "earlyContained": true,
+      "pricedContained": true,
+      "focus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 45
+      },
+      "checks": [
+        "2025 ambiguous/unpriced event; own legs scoped; declared IDs; picks received/sent/origin-other/missing; empty-vs-unavailable; whole and zero FAAB; source proof/focus; no overflow",
+        "current supported date comparison and keyboard day selection retained"
+      ],
+      "detailRequests": 3
+    },
+    {
+      "viewport": 390,
+      "rootText": 100,
+      "historyWidth": 358,
+      "scrollWidth": 390,
+      "earlyContained": true,
+      "pricedContained": true,
+      "focus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 45
+      },
+      "checks": [
+        "2025 ambiguous/unpriced event; own legs scoped; declared IDs; picks received/sent/origin-other/missing; empty-vs-unavailable; whole and zero FAAB; source proof/focus; no overflow",
+        "current supported date comparison and keyboard day selection retained"
+      ],
+      "detailRequests": 3
+    },
+    {
+      "viewport": 320,
+      "rootText": 100,
+      "historyWidth": 288,
+      "scrollWidth": 320,
+      "earlyContained": true,
+      "pricedContained": true,
+      "focus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 45
+      },
+      "checks": [
+        "2025 ambiguous/unpriced event; own legs scoped; declared IDs; picks received/sent/origin-other/missing; empty-vs-unavailable; whole and zero FAAB; source proof/focus; no overflow",
+        "current supported date comparison and keyboard day selection retained"
+      ],
+      "detailRequests": 3
+    },
+    {
+      "viewport": 320,
+      "rootText": 200,
+      "historyWidth": 256,
+      "scrollWidth": 320,
+      "earlyContained": true,
+      "pricedContained": true,
+      "focus": {
+        "active": true,
+        "outline": "2px",
+        "style": "solid",
+        "height": 90
+      },
+      "checks": [
+        "2025 ambiguous/unpriced event; own legs scoped; declared IDs; picks received/sent/origin-other/missing; empty-vs-unavailable; whole and zero FAAB; source proof/focus; no overflow",
+        "current supported date comparison and keyboard day selection retained",
+        "stale response cancelled and generation409 clears old detail"
+      ],
+      "detailRequests": 7
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "browserWrites": [],
+  "reuse": "Existing calendar/chart/client logic and full prior journey evidence are reused; current tests cover changed move rendering and a selected 409/cancellation path.",
+  "contractLimits": [
+    "DTO has source participant roster IDs, no team names or pairwise exchange relationship. UI shows declared IDs only.",
+    "Pick direction uses ownerId/previousOwnerId; original roster is provenance only. Missing fields and null/empty terms remain distinct.",
+    "Waiver bid is raw whole FAAB units at transaction level; no payer-specific or cash sale-price inference.",
+    "Historical trade net and full all-time valuation remain unavailable. Startup draft events and durable retention remain separate work."
+  ]
+}
