@@ -110,7 +110,12 @@ export function recordedQuoteChunks(request: RecordedQuoteWindow): RecordedQuote
   return chunks;
 }
 
-/** The batched window query. One lookahead row detects truncation. */
+/**
+ * The batched window query. `cap` is the caller's remaining row
+ * allowance for this request; one lookahead row (LIMIT cap + 1)
+ * detects overflow, so a response longer than `cap` proves the
+ * request's allowance cut the chunk short.
+ */
 export function recordedQuoteQuery(request: RecordedQuoteWindow, cap = MAX_RECORDED_QUOTE_ROWS): SQL {
   const ids = sql.join([...new Set(request.playerIds)].map(id => sql`${id}`), sql`, `);
   return sql`WITH page AS (
@@ -175,16 +180,22 @@ export function getRecordedQuoteStore(db?: Db | null): RecordedQuoteStore | null
         // The read as a whole is bounded (dot's #224 requirement): one
         // span probe, then day-chunks over the POPULATED span only,
         // under a per-chunk row cap, a cumulative row budget and a
-        // query budget. Chunks are consecutive and each is ordered
-        // (snapshot_at, id), so concatenation preserves the window's
-        // global deterministic order, duplicates and timestamp ties
-        // included — rows are returned verbatim, never deduplicated.
-        // Any cap, budget exhaustion or failed chunk fails the window
-        // closed (truncated, or the error propagates to the producer's
+        // query budget. Each chunk REQUEST is capped by the remaining
+        // cumulative allowance — the query's one-row lookahead fetches
+        // at most allowance + 1 rows — so the total bound holds by
+        // construction on every return branch (normal completion,
+        // chunk overflow, query-budget exhaustion), never merely
+        // checked after a whole chunk has been transferred. Chunks are
+        // consecutive and each is ordered (snapshot_at, id), so
+        // concatenation preserves the window's global deterministic
+        // order, duplicates and timestamp ties included — rows are
+        // returned verbatim, never deduplicated. Any cap, budget
+        // exhaustion or failed chunk fails the window closed
+        // (truncated, or the error propagates to the producer's
         // load-failure path): a partial enumeration is never reported
-        // as complete. The { quotes, truncated } contract — and with it
-        // the producer's th2 pinned-cutoff/generation semantics — is
-        // unchanged.
+        // as complete. The { quotes, truncated } contract — and with
+        // it the producer's th2 pinned-cutoff/generation semantics —
+        // is unchanged.
         let queries = 0;
         const spanResult = await client.execute<{ span: RecordedQuoteSpan }>(recordedQuoteSpanQuery(request));
         queries += 1;
@@ -196,19 +207,19 @@ export function getRecordedQuoteStore(db?: Db | null): RecordedQuoteStore | null
         const quotes: RecordedQuote[] = [];
         for (const chunk of recordedQuoteChunks({ playerIds: request.playerIds, fromDay, toDay })) {
           if (queries >= MAX_RECORDED_QUOTE_QUERIES) return { quotes, truncated: true };
-          const result = await client.execute<{ records: RecordedQuote[] }>(recordedQuoteQuery(chunk));
+          const allowance = Math.min(
+            MAX_RECORDED_QUOTE_ROWS,
+            MAX_RECORDED_QUOTE_TOTAL_ROWS - quotes.length,
+          );
+          const result = await client.execute<{ records: RecordedQuote[] }>(recordedQuoteQuery(chunk, allowance));
           queries += 1;
           const rows = result.rows[0];
           if (!rows || !Array.isArray(rows.records)) throw new Error("Missing recorded-quote read envelope");
-          if (rows.records.length > MAX_RECORDED_QUOTE_ROWS) {
-            quotes.push(...rows.records.slice(0, MAX_RECORDED_QUOTE_ROWS));
+          if (rows.records.length > allowance) {
+            quotes.push(...rows.records.slice(0, allowance));
             return { quotes, truncated: true };
           }
           quotes.push(...rows.records);
-          if (quotes.length > MAX_RECORDED_QUOTE_TOTAL_ROWS) {
-            quotes.length = MAX_RECORDED_QUOTE_TOTAL_ROWS;
-            return { quotes, truncated: true };
-          }
         }
         return { quotes, truncated: false };
       },

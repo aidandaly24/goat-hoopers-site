@@ -132,6 +132,36 @@ describe("recorded-quote store bounded reads", () => {
     expect(calls()).toBe(1 + 21); // probe + 20 full chunks + the chunk that crosses the budget
   });
 
+  it("never exceeds the total cap when an overflowing chunk lands at near-total budget", async () => {
+    // Combined regression (dot, PR #250): the cumulative budget is
+    // nearly exhausted — 99,999 of 100,000 rows collected, one row of
+    // allowance left — when the next chunk overflows. The request
+    // itself must be capped by the remaining allowance (LIMIT =
+    // allowance + 1 lookahead), and the returned set must never
+    // exceed MAX_RECORDED_QUOTE_TOTAL_ROWS on this branch.
+    const full = (prefix: string, count: number) =>
+      Array.from({ length: count }, (_, i) => quote(`${prefix}${i}`, "2024-06-01T04:00:00.000000"));
+    const pages = [
+      ...Array.from({ length: 19 }, (_, p) => full(`f${p}-`, 5000)), // 95,000 rows
+      full("p", 4999), // 99,999 cumulative — one row of allowance left
+      full("o", 5001), // overflowing chunk against a 1-row allowance
+      full("never", 1), // must never be read
+    ];
+    const { store, rendered, calls } = scriptedStore(pages,
+      { earliest: "2024-01-01T04:00:00.000000", latest: "2025-12-31T04:00:00.000000" });
+    const result = await store.readWindow({ playerIds: ["101"], fromDay: "2024-01-01", toDay: "2026-01-01" });
+    expect(result.truncated).toBe(true);
+    expect(result.quotes.length).toBeLessThanOrEqual(MAX_RECORDED_QUOTE_TOTAL_ROWS);
+    expect(result.quotes).toHaveLength(MAX_RECORDED_QUOTE_TOTAL_ROWS);
+    expect(result.quotes.at(-2)!.quoteId).toBe("p4998");
+    expect(result.quotes.at(-1)!.quoteId).toBe("o0"); // exactly the 1-row allowance, in order
+    expect(calls()).toBe(1 + 21); // probe + 21 chunk requests; paging stops at the overflow
+    // The overflowing request was capped by construction: LIMIT param
+    // is allowance (1) + lookahead (1), not the 5,000 per-chunk cap.
+    expect(rendered.at(-1)!.params).toContain(2);
+    expect(rendered[1].params).toContain(5001); // full allowance + lookahead on the first chunk
+  });
+
   it("fails closed at the query budget over a very long populated span", async () => {
     const pages = Array.from({ length: 200 }, () => [quote("x", "2020-01-01T04:00:00.000000")]);
     const { store, calls } = scriptedStore(pages,
