@@ -45,6 +45,30 @@ regenerable with `scripts/validate-gamelog-2025-26.py`. Prices derived
 from these rows are reconstructions and must stay labeled MODELED
 wherever they surface.
 
+Minutes representation (corrected in PR #252 review): the source
+`minutes` column is a clock-time float — integer part minutes, two-digit
+fractional part seconds (`48.53` = 48:53) — not decimal minutes. A
+seconds part of 60 is the encoding's own carry (`30.6` = 31:00;
+Basketball-Reference confirms Towns at 31:00 for the game whose raw
+value is 30.6). The mapper converts through
+`source_minutes_to_decimal` in `scripts/prepare-gamelog.py` (integer
+arithmetic, round-half-up at the file's 0.1-minute convention, max
+storage error 0.05 min); the receipt's `minutesRepresentation` block
+records the evidence (whole-hundredth fractional parts with implied
+seconds in 0..60 across all 26,648 rows, decoded team-game totals
+within −1..+3 s of the legal 240 + 25/OT minutes, 15 Basketball-
+Reference clock readings matching to the second), and the validator
+recomputes every mapped 2025-26 minutes value from the raw sidecar and
+fails on any mismatch. The first #252 heads stored `round(raw, 1)`,
+reading the clock float as decimal (48.53 → 48.5 instead of 48.9); only
+the appended season was regenerated. Disclosure: the pre-existing
+seasons were produced by the same decimal misreading of the same
+MM.SS-encoded source (verified on the 2024-25 file at the pinned
+revision; a handful of patched rows there, e.g. 2025-02-21 MEM@ORL,
+are true decimal minutes and were rounded correctly). Their minutes
+stand as committed — rewriting them rides with the separate full-
+regeneration approval above, not with this append.
+
 Public league scoring was checked on 2026-10-08 through `src/data/sleeper.ts`:
 `pts=.5, reb=1, ast=1, stl=2, blk=2, to=-1, tpm=.5, dd=1, td=2`, plus
 `bonus_pt_40p=2, bonus_pt_50p=2, bonus_ast_15p=2, bonus_reb_20p=2, ff=-2, tf=-2`.

@@ -4,7 +4,7 @@
  "inputs": {
   "gamelogMapped": {
    "path": "data/gamelog_mapped.json",
-   "sha256": "6bc78094c5b1407f55a864ce7271918bdf032afea099fbc918e254b9adabbe79"
+   "sha256": "b0a888af20b9b75885a06803075c2e6135d100f77608830d4818af4905f551b4"
   },
   "provenance": {
    "path": "data/gamelog_2025-26_provenance.json",
@@ -319,24 +319,80 @@
   },
   "note": "The 2026 segment (12,748 player-days) stays unpriceable: it has no same-season games in window and cross-season carry is prohibited. GC-1 membership-gap team-days (2026-04-02 -> 2026-08-12) stay unvalued regardless of prices."
  },
+ "minutesRepresentation": {
+  "sourceEncoding": "clock-time float MM.SS: the integer part is whole minutes and the two-digit fractional part is seconds (48.53 = 48:53). The source minutes column is NOT decimal minutes.",
+  "conversion": "totalSeconds = 60 * floor(raw) + round(100 * frac(raw)); mappedMinutes = round-half-up(totalSeconds / 60) at 0.1-minute storage precision, computed in integer arithmetic ((10 * totalSeconds + 30) // 60) / 10. A raw seconds part of 60 is the encoding's own carry into the next minute (30.6 = 31:00).",
+  "storageTolerance": "mapped minutes are within 0.05 minute (3 s) of the exact decoded value; the decoded value itself matches Basketball-Reference clock readings to the second on every spot check",
+  "evidence": [
+   "all 26,648 raw values at rev d480e56 have a whole-hundredth fractional part (max deviation 3.4e-13) with implied seconds in 0..60, never 61..99 as decimal hundredths would",
+   "Basketball-Reference clock readings match the decoded source value to the second for all 15 players checked: the five spot-check players below plus all ten Cleveland players in game 0022500003 (2025-10-22 CLE @ NYK: Mobley 35:56, Mitchell 35:53, Merrill 28:22, Allen 28:13, Wade 28:07, Ball 23:29, Tyson 20:13, Nance 16:59, Proctor 16:06, Porter 6:43)",
+   "decoded per-team game totals equal the legal 240 + 25/OT minutes within the deltaSecondsVsLegal scatter below for every team-game; a decimal reading of the same values lands ~2 minutes short per team-game",
+   "the seconds-60 carry is externally confirmed: raw 30.6 for Karl-Anthony Towns, 2025-10-22 CLE @ NYK, against Basketball-Reference's 31:00"
+  ],
+  "teamGameTotals": {
+   "teamGames": 2460,
+   "deltaSecondsVsLegal": {
+    "-1": 63,
+    "0": 2021,
+    "1": 314,
+    "2": 56,
+    "3": 6
+   }
+  },
+  "priorBug": "PR #252 heads dff7d9f..05691e6 stored round(raw, 1), reading the clock float as decimal minutes (48.53 -> 48.5 instead of 48.9; understatement up to 0.4 min on seconds-60 rows). The receipt at those heads also mislabeled the spot checks 'exact on every field': the counting fields were exact, and the raw source minutes were exact as clock readings, but the mapped decimal minutes were not the recorded times. fppg never used minutes and is unaffected. Fixed by converting in scripts/prepare-gamelog.py (source_minutes_to_decimal) and regenerating only the appended season; the provenance sidecar is byte-identical (raw values unchanged) and no pre-2025-26 row changed."
+ },
+ "minutesCheck": {
+  "rowsChecked": 26648,
+  "mismatches": 0,
+  "seconds60CarryRows": 77,
+  "mismatchExamples": []
+ },
  "spotChecks": [
   {
    "game": "2025-10-21 HOU @ OKC (final 124-125 2OT)",
    "source": "basketball-reference.com box score",
    "players": {
-    "Alperen Sengun": "39 pts / 11 reb / 7 ast / 2 stl / 1 blk / 4 tov / 5 fg3m / 48:53",
-    "Kevin Durant": "23 pts / 9 reb / 3 ast / 0 stl / 0 blk / 4 tov / 0 fg3m / 47:03"
+    "Alperen Sengun": {
+     "line": "39 pts / 11 reb / 7 ast / 2 stl / 1 blk / 4 tov / 5 fg3m / 48:53",
+     "sourceRawMinutes": 48.53,
+     "mappedMinutes": 48.9
+    },
+    "Kevin Durant": {
+     "line": "23 pts / 9 reb / 3 ast / 0 stl / 0 blk / 4 tov / 0 fg3m / 47:03",
+     "sourceRawMinutes": 47.03,
+     "mappedMinutes": 47.1
+    }
    },
-   "result": "exact on every field"
+   "result": "counting fields exact for every player; minutes: the source raw value decodes to the recorded clock time exactly (MM.SS encoding) and the mapped decimal minutes are its conversion at 0.1-minute storage precision"
   },
   {
    "game": "2025-10-22 SAS @ DAL (final 125-92)",
    "source": "basketball-reference.com box score",
    "players": {
-    "Victor Wembanyama": "40 pts / 15 reb / 1 ast / 1 stl / 3 blk / 0 tov / 1 fg3m / 29:41",
-    "Cooper Flagg": "10 pts / 10 reb / 0 ast / 1 stl / 0 blk / 3 tov / 0 fg3m / 31:32"
+    "Victor Wembanyama": {
+     "line": "40 pts / 15 reb / 1 ast / 1 stl / 3 blk / 0 tov / 1 fg3m / 29:41",
+     "sourceRawMinutes": 29.41,
+     "mappedMinutes": 29.7
+    },
+    "Cooper Flagg": {
+     "line": "10 pts / 10 reb / 0 ast / 1 stl / 0 blk / 3 tov / 0 fg3m / 31:32",
+     "sourceRawMinutes": 31.32,
+     "mappedMinutes": 31.5
+    }
    },
-   "result": "exact on every field"
+   "result": "counting fields exact for every player; minutes: the source raw value decodes to the recorded clock time exactly (MM.SS encoding) and the mapped decimal minutes are its conversion at 0.1-minute storage precision"
+  },
+  {
+   "game": "2025-10-22 CLE @ NYK (final 111-119)",
+   "source": "basketball-reference.com box score",
+   "players": {
+    "Karl-Anthony Towns": {
+     "line": "19 pts / 11 reb / 2 ast / 0 stl / 0 blk / 3 tov / 1 fg3m / 31:00",
+     "sourceRawMinutes": 30.6,
+     "mappedMinutes": 31.0
+    }
+   },
+   "result": "counting fields exact for every player; minutes: the source raw value decodes to the recorded clock time exactly (MM.SS encoding) and the mapped decimal minutes are its conversion at 0.1-minute storage precision"
   }
  ],
  "players": {

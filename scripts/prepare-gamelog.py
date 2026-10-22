@@ -24,16 +24,19 @@ the Bitadze hand-map below; a full regeneration would add those 217 rows and
 remains a separate approval (see data/README.md). The 2025-26 append was done
 by mapping that season alone and merging with merge-gamelog-season.py, which
 asserts every pre-existing row is unchanged.
+
+Minutes: the source `minutes` column is a CLOCK-TIME float, not decimal
+minutes — see source_minutes_to_seconds below. Every mapped row's minutes
+go through source_minutes_to_decimal; never round(float(minutes), 1).
 """
 import hashlib
 import json
+import math
 import os
 import re
 import sys
 import unicodedata
 from collections import defaultdict
-
-import pyarrow.parquet as pq
 
 ALL_SEASONS = ("2021-22", "2022-23", "2023-24", "2024-25", "2025-26")
 
@@ -77,6 +80,59 @@ def normalize(name: str) -> str:
     return " ".join(parts)
 
 
+def source_minutes_to_seconds(raw) -> int:
+    """Decode the source `minutes` value to a whole-second count.
+
+    The parquet `minutes` column is NOT decimal minutes. It is a
+    clock-time float: the integer part is whole minutes and the
+    two-digit fractional part is seconds — 48.53 means 48:53, not
+    48.53 minutes. Evidence (2025-26 file, rev d480e56):
+
+    - Every one of the 26,648 raw values has a fractional part that is a
+      whole hundredth (max deviation 3.4e-13), and the implied seconds
+      land in 0..60 — never 61..99, as true decimal hundredths would.
+    - Basketball-Reference clock readings match the decoded value to
+      the second for every player checked (Sengun 48.53 <-> 48:53,
+      Durant 47.03 <-> 47:03, Wembanyama 29.41 <-> 29:41, Flagg
+      31.32 <-> 31:32, and all ten Cleveland players in game
+      0022500003).
+    - Decoded per-team game totals equal the legal 240 + 25/OT minutes
+      within -1..+3 s for all 2,460 team-games (the source feed's own
+      per-player rounding), which no decimal reading reproduces.
+
+    A seconds part of exactly 60 occurs (77 of 26,648 rows in 2025-26)
+    and is the encoding's own carry: 30.6 encodes 31:00 —
+    Basketball-Reference lists Karl-Anthony Towns at 31:00 for
+    2025-10-22 NYK vs CLE, the game whose raw value is 30.6 — and the
+    team totals above only balance with the carry applied. A seconds
+    part above 60 means the row is not in this encoding (a few patched
+    rows in older-season files are true decimal minutes, e.g. the
+    2025-02-21 MEM@ORL rows in 2024-25); refuse rather than guess.
+    """
+    value = float(raw)
+    whole = math.floor(value)
+    seconds = round((value - whole) * 100)
+    if seconds > 60:
+        raise ValueError(
+            f"source minutes {raw!r} implies {seconds} seconds: not the "
+            "MM.SS clock encoding (a true-decimal patch row?); refusing "
+            "to convert without a separate decision"
+        )
+    return whole * 60 + seconds
+
+
+def source_minutes_to_decimal(raw) -> float:
+    """Decimal minutes for the mapped file, at its 0.1-minute convention.
+
+    Integer arithmetic only: tenths = (10 * total_seconds + 30) // 60
+    is round-half-up of total_seconds / 6, so 47:03 -> 47.1 exactly.
+    (The float path would give 47.0: 47.05 is stored as 47.04999... and
+    round() rounds it down.) Storage error is at most 0.05 min (3 s).
+    """
+    total_seconds = source_minutes_to_seconds(raw)
+    return ((total_seconds * 10 + 30) // 60) / 10
+
+
 def game_fppg(r) -> float:
     total = (
         r["pts"] * SCORING["pts"]
@@ -106,6 +162,8 @@ def game_fppg(r) -> float:
 
 
 def main():
+    import pyarrow.parquet as pq  # only needed when actually mapping
+
     seasons = tuple(sys.argv[1:]) or ALL_SEASONS
     gamelog_dir = os.environ.get("GAMELOG_DIR", "/tmp/gamelogs")
     # Sleeper directory: normalized name -> player_id.
@@ -181,7 +239,7 @@ def main():
                     "date": str(r.game_date),
                     "season": season,
                     "fppg": game_fppg(raw),
-                    "minutes": round(float(r.minutes), 1),
+                    "minutes": source_minutes_to_decimal(r.minutes),
                 }
             )
 
