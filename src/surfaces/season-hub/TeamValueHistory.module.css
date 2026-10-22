@@ -70,6 +70,18 @@
 .comparison h4 { margin: 0; font-size: var(--gh-text-sm); }
 .comparison p { margin: var(--gh-s1) 0; }
 
+.changeSummary { color: var(--gh-text-dim); font-size: var(--gh-text-xs); }
+.changeSummary p { margin: var(--gh-s1) 0; }
+.changeSummary strong { color: var(--gh-text); font-family: var(--gh-font-mono); }
+.priceChanges { list-style: none; margin: var(--gh-s3) 0; padding: 0; }
+.priceChanges > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: var(--gh-s3); padding: var(--gh-s3) 0; border-bottom: 1px solid var(--gh-border); }
+.priceChanges a { color: var(--gh-text); font-weight: 600; text-underline-offset: .18em; }
+.priceChanges small { display: block; color: var(--gh-text-dim); font-size: var(--gh-text-xs); font-family: var(--gh-font-mono); }
+.priceChanges strong { font-family: var(--gh-font-mono); }
+.snapshot { border-top: 1px solid var(--gh-border); }
+.snapshot > summary, .moves > summary { padding: var(--gh-s2) 0; }
+@container team-history (max-width: 20rem) { .priceChanges > li { grid-template-columns: minmax(0, 1fr); gap: var(--gh-s1); } }
+
 
 .moveTerms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gh-s3); }
 .moveTerms p > span { display: block; }

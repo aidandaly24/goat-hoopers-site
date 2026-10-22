@@ -1,0 +1,56 @@
+{
+  "baseline": "d0e64042bde9859f7d3f0fbef09b45e64393a5c1",
+  "scope": "synthetic/offline consumer follow-up, not live production verification",
+  "applicationBlobs": {
+    "src/surfaces/season-hub/TeamValueHistoryDetail.tsx": "2d93f418f134e374699ecf4609a97433d93f7110",
+    "src/surfaces/season-hub/TeamValueHistory.tsx": "d04efc285373733e0afae22ca21f6e09982594b7",
+    "src/surfaces/season-hub/TeamValueHistory.module.css": "b94e4c824db7a38951777efec8832b6b1447bb0f",
+    "src/surfaces/season-hub/RosterValueSection.tsx": "a4c2db04f77b6f373bbfc1ac41497ef044fdc901"
+  },
+  "checks": [
+    {
+      "command": "npm test -- src/surfaces/season-hub/TeamValueHistoryChanges.test.tsx src/surfaces/season-hub/TeamValueHistoryDetail.test.tsx",
+      "result": "28 passed (15 new, 13 existing)",
+      "at": "2026-10-22T18:14:31Z"
+    },
+    {
+      "command": "npm test -- --config qa/team-value-history/producer-integration.config.mts",
+      "result": "4 passed; real producer with injected offline sources; includes same-input headline reconciliation",
+      "at": "2026-10-22T17:59:24Z"
+    },
+    {
+      "command": "npm run typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "npx eslint <changed TS/TSX application, tests and fixture files>",
+      "result": "passed"
+    },
+    {
+      "command": "python3 -m py_compile qa/team-value-history/changes-browser.py qa/team-value-history/prepare-changes.py",
+      "result": "passed"
+    },
+    {
+      "command": "python3 qa/team-value-history/prepare-changes.py <isolated-fixture>; python3 qa/team-value-history/serve.py <isolated-fixture> 4411",
+      "result": "actual synthetic-source Next production build passed; no credentials or external access; substituted fonts/session/data"
+    },
+    {
+      "command": "python3 qa/team-value-history/changes-browser.py <isolated-fixture> http://127.0.0.1:4411",
+      "result": "6 cases passed; see changes-browser.json"
+    },
+    {
+      "command": "new behavior regressions against original released Detail source, then restore working source",
+      "result": "5 expected failures confirmed before fix"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "limits": [
+    "No full unchanged local suite repeated; application production build/whole suite also await exact-head CI.",
+    "No live production reads, writes, account actions or provider acquisitions.",
+    "Prior executor Chromium tunnel failure was not retested; no live graph/mismatch claim.",
+    "No producer/persistence/configuration changes. Retention and full earlier-price coverage remain open on #224."
+  ]
+}
