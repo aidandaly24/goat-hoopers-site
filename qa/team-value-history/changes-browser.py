@@ -17,6 +17,9 @@ def geometry(h):
     return h.evaluate('''n=>{const b=n.getBoundingClientRect();return{width:b.width,height:b.height,page:document.documentElement.scrollWidth,viewport:innerWidth,escapes:[...n.querySelectorAll('*')].filter(x=>{const r=x.getBoundingClientRect();return x.checkVisibility()&&r.width>1&&(r.left<b.left-1||r.right>b.right+1)}).map(x=>x.tagName)}}''')
 
 layouts = [('changed',390,100),('changed',320,100),('changed',320,200),('changed',1440,100),('unchanged',320,200),('unknown',320,200)]
+if '--text-fix-only' in sys.argv[3:]:
+    layouts = [('changed',390,100),('changed',320,200)]
+    report['scope'] = 'Follow-up plain-text row correction; remaining unchanged layout/state cases reuse the initial six-case receipt.'
 with sync_playwright() as p:
     browser = p.chromium.launch(executable_path='/usr/bin/chromium', args=['--no-sandbox'])
     for mode,width,scale in layouts:
@@ -42,6 +45,7 @@ with sync_playwright() as p:
             else:
                 row=detail.locator('[data-history-price-change]');row.wait_for();assert row.count()==1
                 assert 'Tobias Harris' in row.inner_text() and '$24.35' in row.inner_text() and '$10.96' in row.inner_text() and '−$13.39' in row.inner_text()
+                assert '$24.35 to $10.96' in row.inner_text()
                 assert ('1 changed · 6 unchanged · 1 comparison unavailable' if mode=='unknown' else '1 changed · 7 unchanged') in detail.inner_text()
                 link=row.get_by_role('link',name='Tobias Harris',exact=True);link.focus()
                 case['focus']=link.evaluate('n=>({active:n===document.activeElement,outline:getComputedStyle(n).outlineWidth})')

@@ -19,6 +19,7 @@ const changedRows = (html: string) => html.match(/<ul[^>]*data-history-price-cha
 test("the default changes list shows only Tobias's genuine -13.39 change, retaining the unchanged roster behind a disclosure", () => {
   const html = render(), rows = changedRows(html);
   expect(rows).toContain("Tobias Harris"); expect(rows).toContain("$24.35"); expect(rows).toContain("$10.96"); expect(rows).toContain("−$13.39");
+  expect(rows).toContain(" to ");
   for (const name of ["Damian Lillard", "Joel Embiid", "Myles Turner", "Derrick White", "Grayson Allen", "Anthony Edwards", "Payton Pritchard"]) {
     expect(rows).not.toContain(name); expect(html).toContain(name);
   }

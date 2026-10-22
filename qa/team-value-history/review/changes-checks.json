@@ -52,5 +52,22 @@
     "No live production reads, writes, account actions or provider acquisitions.",
     "Prior executor Chromium tunnel failure was not retested; no live graph/mismatch claim.",
     "No producer/persistence/configuration changes. Retention and full earlier-price coverage remain open on #224."
-  ]
+  ],
+  "textCorrection": {
+    "previousHead": "cdd9e7ccd499700073e092817faaa93fc0023667",
+    "trigger": "CI39830192841, authored-controls policy rejected the newly authored arrow glyph. No test was weakened.",
+    "change": "Replace the glyph/span with plain to. Comparison, pricing, membership, transport, CSS and other application blobs unchanged.",
+    "applicationBlobs": {
+      "src/surfaces/season-hub/TeamValueHistoryDetail.tsx": "674386749061a521ab2f4a05f4920b0fd7da6e61",
+      "src/surfaces/season-hub/TeamValueHistory.tsx": "d04efc285373733e0afae22ca21f6e09982594b7",
+      "src/surfaces/season-hub/TeamValueHistory.module.css": "b94e4c824db7a38951777efec8832b6b1447bb0f",
+      "src/surfaces/season-hub/RosterValueSection.tsx": "a4c2db04f77b6f373bbfc1ac41497ef044fdc901"
+    },
+    "checks": [
+      "30 component/policy tests passed (includes authored-controls scan).",
+      "Fresh synthetic actual-Next production fixture build passed.",
+      "Affected 390/100% and 320/200% Chromium cases passed with the to text, no clipping or scroll expansion, retained focus and full roster/evidence access."
+    ],
+    "reused": "Initial four real-producer tests and six-case coverage/state receipt remain scoped to the recorded initial source identities."
+  }
 }

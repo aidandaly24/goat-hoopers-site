@@ -8,7 +8,7 @@ transport, producer, persistence or configuration algorithm is changed.
 
 The default detail list contains only continuing players with a compatible,
 nonzero dated-price difference, sorted by absolute change. The screenshot's
-eight-player example therefore shows Tobias Harris `$24.35 → $10.96`,
+eight-player example therefore shows Tobias Harris `$24.35 to $10.96`,
 `−$13.39`, with `1 changed · 7 unchanged`. Full selected rosters, moves and
 exact timestamp/source evidence remain available in native disclosures.
 Unknown comparisons are counted separately; different model versions, missing

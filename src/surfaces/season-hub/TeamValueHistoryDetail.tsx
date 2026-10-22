@@ -72,7 +72,7 @@ export function TeamValueHistoryDetail({ detail, previous, comparisonLoading, co
       </div>
       {changed.length ? <ul className={styles.priceChanges} data-history-price-changes>{changed.map(player => <li key={player.id} data-history-price-change={player.id}>
         <div><Link prefetch={false} href={`/player/${encodeURIComponent(player.id)}`}>{player.name}</Link>
-          <small>{money(player.beforeCents!)} <span aria-label="to">→</span> {money(player.afterCents!)}</small></div>
+          <small>{money(player.beforeCents!)} to {money(player.afterCents!)}</small></div>
         <strong>{signed(player.deltaCents!)}</strong>
       </li>)}</ul> : <p className={styles.caption} data-history-no-changes>No comparable player-price changes.{unknown > 0 ? " Unavailable comparisons are not counted as unchanged." : ""}</p>}
     </> : !comparisonLoading && !comparisonError && <p className={styles.caption}>No earlier comparable value. Player changes are unavailable.</p>}

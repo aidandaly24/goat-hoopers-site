@@ -42,6 +42,15 @@ identify the tested application. No credential, provider or production request
 is involved. Prior graph/409/rollover evidence below remains scoped to its stated
 revision; the unchanged matrix was not repeated for this consumer follow-up.
 
+CI caught the repository's no-arrow-glyph text rule on the initial head. The
+row now says **to**. The corrected source passes 30 component/policy tests and
+a fresh synthetic Next build; the affected 390/100% and 320/200% browser journeys
+pass again (`changes-text-fix-browser.json`, `changes-final-*` captures). Run the
+driver with `--text-fix-only` to reproduce that bounded follow-up. The original
+six-case receipt/captures retain their original source identities; unchanged
+producer/comparison/state logic is reused. Exact-head CI remains the full app
+build and regression gate.
+
 ## Prior compact-view regression
 
 Surface contract: the user asks how their team's value changed and what roster
