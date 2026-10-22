@@ -1,5 +1,6 @@
 import type { DraftPick } from "./draft";
 import type { Player } from "./player";
+import type { ProductionSummary } from "./player-production";
 import type { Team } from "./team";
 import type { Transaction } from "./transaction";
 
@@ -20,4 +21,11 @@ export type PlayerDetail = {
   transactions: Transaction[];
   /** Their rookie-draft pick, if they were drafted this season. */
   draftPick: DraftPick | null;
+  /**
+   * Dated season-average NBA production evidence (P4, issue #224): the
+   * card's honest state — a dated evidence card, or a precise unavailable
+   * reason. Optional: older call sites build PlayerDetail without it and
+   * the page degrades to the generic unavailable reason.
+   */
+  production?: ProductionSummary;
 };

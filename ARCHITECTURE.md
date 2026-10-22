@@ -412,7 +412,10 @@ src/
   domain/        # The shared language: Team, Standing, Matchup, Player
                  # (carries espnId: string | null — the ESPN athlete id the
                  # headshot renders from; null = initials fallback),
-                 # Transaction, DraftPick, Season, LeagueStats, PlayerDetail,
+                 # Transaction, DraftPick, Season, LeagueStats, PlayerDetail
+                 # (carries optional `production`: ProductionSummary from
+                 # player-production.ts — dated season-average evidence or a
+                 # precise unavailable reason; P4, issue #224),
                  # TeamProfile, PowerRanking, PlayoffOdds, RecordBook,
                  # MatchupPreview, PlayerMove, PlayerStock/StockMarket,
                  # TradeVerdict/analyzeTrade, ManagerArchetype (GM IQ:

@@ -40,6 +40,8 @@ import type { PlayerStatProfile } from "@/domain";
 import type { PriceHistoryPoint } from "@/domain";
 import type { TeamRosterValue } from "@/domain/team-roster-value";
 import { buildTeamRosterValue } from "@/domain/team-roster-value";
+import type { ProductionSummary } from "@/domain/player-production";
+import { summarizeProduction } from "@/domain/player-production";
 import { stockDetailHistory, STOCK_CHART_POINTS } from "./stock-history-sampling";
 import { computeTeamValues, completedMatchupsByWeek, projectTableLeague, signedStreak } from "@/domain";
 import {
@@ -818,21 +820,26 @@ export async function getMatchupPreviews(): Promise<MatchupPreview[] | null> {
 
 /**
  * One player's page data: identity, the GOAT Hoopers roster holding them
- * (null = free agent), their wire history, and their rookie-draft pick.
+ * (null = free agent), their wire history, their rookie-draft pick, and
+ * dated season-average NBA production evidence (P4, issue #224).
  * Returns null only when the league itself is unreachable — unknown player
- * ids degrade to a stub Player, never a failed page.
+ * ids degrade to a stub Player, never a failed page. The production join
+ * is best-effort: without a recorded stat line the page renders the
+ * precise unavailable reason, never invented numbers.
  */
 export async function getPlayerDetail(
   playerId: string
 ): Promise<PlayerDetail | null> {
   try {
-    const [rosters, users, directory, history, picks] = await Promise.all([
-      fetchRosters(),
-      fetchUsers(),
-      safePlayerDirectory(),
-      getTransactionHistory(),
-      fetchDraftPicksSafe(),
-    ]);
+    const [rosters, users, directory, history, picks, league] =
+      await Promise.all([
+        fetchRosters(),
+        fetchUsers(),
+        safePlayerDirectory(),
+        getTransactionHistory(),
+        fetchDraftPicksSafe(),
+        fetchLeague(),
+      ]);
     const player = toPlayer(
       playerId,
       directory?.[playerId],
@@ -855,7 +862,19 @@ export async function getPlayerDetail(
     );
     const draftPick = picks.find((p) => p.playerId === playerId) ?? null;
 
-    return { player, team, transactions, draftPick };
+    // P4 (issue #224): dated single-player production evidence. Best-effort —
+    // the cached stats fetch never fails the page; without a recorded line
+    // the summary carries the precise unavailable reason. Season comes from
+    // the league object, never hardcoded. One player id, no history fanout.
+    let production: ProductionSummary;
+    try {
+      const lines = await fetchSeasonStats(league.season);
+      production = summarizeProduction(league.season, lines[playerId]);
+    } catch {
+      production = { state: "unavailable", reason: "no-recorded-stats" };
+    }
+
+    return { player, team, transactions, draftPick, production };
   } catch {
     return null;
   }
