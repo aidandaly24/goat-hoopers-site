@@ -202,7 +202,7 @@ describe("batched recorded snapshot history", () => {
       b: [{ date: "2026-10-02T00:00:00.000Z", price: 25, source: "live" }],
     });
     expect(calls).toHaveLength(1);
-    expect(calls[0].sql).toContain('from "stock_snapshots"');
+    expect(calls[0].sql).toContain('"stock_snapshots"');
     expect(calls[0].sql).not.toContain("price_history");
   });
 
@@ -217,6 +217,29 @@ describe("batched recorded snapshot history", () => {
     const missing = fixtureDb({ reconstructed: [], snapshots: [], missing: new Set(["stock_snapshots"]) });
     await expect(getStockStore(missing.db).getSnapshotHistory(["a"])).resolves.toEqual({});
     await expect(getStockStore(db).getSnapshotHistory([])).resolves.toEqual({});
+  });
+
+  it("keeps the (timestamp, id)-latest 40 in SQL when timestamps tie at the boundary", async () => {
+    // 39 daily points (Sep 1 – Oct 9) plus two same-timestamp points on
+    // Oct 10 with id ties 1 and 2: the SQL bound must drop only the
+    // oldest day and keep both ties, in ascending (timestamp, id)
+    // order — the same set the previous in-memory slice produced.
+    const daily = Array.from({ length: 39 }, (_, day) =>
+      snapshot("a", new Date(Date.UTC(2026, 8, 1 + day)).toISOString().replace("T", " ").replace("Z", ""), 1000 + day));
+    const tied = [
+      snapshot("a", "2026-10-10 00:00:00", 101, 1),
+      snapshot("a", "2026-10-10 00:00:00", 102, 2),
+    ];
+    const { db, calls } = fixtureDb({ reconstructed: [], snapshots: [...daily, ...tied] });
+    const history = await getStockStore(db).getSnapshotHistory(["a"]);
+    expect(history.a).toHaveLength(40);
+    expect(history.a[0].date).toBe("2026-09-02T00:00:00.000Z"); // Sep 1 dropped
+    expect(history.a.at(-2)).toEqual({ date: "2026-10-10T00:00:00.000Z", price: 1.01, source: "live" });
+    expect(history.a.at(-1)).toEqual({ date: "2026-10-10T00:00:00.000Z", price: 1.02, source: "live" });
+    // One query; the enveloped payload is the bounded 40 entries, not all 41 rows.
+    expect(calls).toHaveLength(1);
+    expect(calls[0].rows).toBe(40);
+    expect(calls[0].sql).toContain("row_number()");
   });
 });
 

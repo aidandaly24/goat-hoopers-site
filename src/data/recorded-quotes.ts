@@ -15,13 +15,14 @@
  *   (the envelope declares `recordedTimestampConvention: "UTC-assumed"`).
  * - This module NEVER writes. In particular it never calls the market
  *   loader's snapshot-saving path — API reads stay read-only.
- * - Bounds are explicit: player ids, a half-open native-day range and a
- *   hard per-query row cap. Snapshots are retained append-only (#224
- *   retention correction), so a window can span years: reads page the
- *   window into day-chunks under the cap and aggregate, so no single
- *   read is oversized and no window is silently incomplete. A chunk
- *   hitting the cap reports `truncated` so the producer can fail closed
- *   instead of admitting a partial quote set.
+ * - Bounds are explicit and apply to the read as a whole: player ids,
+ *   a half-open native-day range, a hard per-query row cap, a query
+ *   budget and a cumulative row budget. Snapshots are retained
+ *   append-only (#224 retention correction), so a window can span
+ *   years: one span probe locates the populated span, day-chunks under
+ *   the cap page through it, and any cap, budget exhaustion or failed
+ *   chunk fails closed (`truncated`, or the error propagates) — a
+ *   partial enumeration is never reported as a complete quote set.
  */
 import { sql, type SQL } from "drizzle-orm";
 import { getDb, type Db } from "./db";
@@ -71,6 +72,19 @@ export const MAX_RECORDED_QUOTE_ROWS = 5000;
 /** Days per paged chunk when reading a window (see readWindow). */
 export const RECORDED_QUOTE_CHUNK_DAYS = 31;
 
+/**
+ * Whole-read budgets for one readWindow call, probe included. The read
+ * as a whole — not just each query — is bounded: at most this many
+ * queries and this many cumulative rows. Both sit far above any real
+ * team window (a two-season populated span is ~25 chunks and, with
+ * duplicate batches tolerated, well under 100k rows for one team's
+ * scope) and exist so a pathological scope fails closed (`truncated`)
+ * instead of enumerating without limit. Records are fixed-shape
+ * four-field rows, so the row budget bounds transfer bytes linearly.
+ */
+export const MAX_RECORDED_QUOTE_QUERIES = 64;
+export const MAX_RECORDED_QUOTE_TOTAL_ROWS = 100_000;
+
 /** Add days to a `YYYY-MM-DD` day string (UTC calendar math). */
 function addHistoryDays(day: string, days: number): string {
   const ms = Date.parse(`${day}T00:00:00.000Z`);
@@ -112,6 +126,40 @@ export function recordedQuoteQuery(request: RecordedQuoteWindow, cap = MAX_RECOR
 }
 
 /**
+ * The retained span actually populated inside a requested window: the
+ * earliest and latest native snapshot timestamps for the scope, or
+ * nulls when the window holds no snapshots. One indexed probe lets
+ * readWindow page only the populated span — the empty inception prefix
+ * of a multi-year window costs this one query, never one query per
+ * empty day or chunk.
+ */
+export function recordedQuoteSpanQuery(request: RecordedQuoteWindow) {
+  const ids = [...new Set(request.playerIds)];
+  return sql`
+  SELECT jsonb_build_object(
+      'earliest', to_char(min(snapshot_at), 'YYYY-MM-DD"T"HH24:MI:SS.US'),
+      'latest', to_char(max(snapshot_at), 'YYYY-MM-DD"T"HH24:MI:SS.US')
+    ) AS span
+  FROM stock_snapshots
+  WHERE player_id IN (${sql.join(ids.map(id => sql`${id}`), sql`, `)})
+    AND snapshot_at >= ${request.fromDay}::timestamp
+    AND snapshot_at < ${request.toDay}::timestamp`;
+}
+
+type RecordedQuoteSpan = { earliest: string | null; latest: string | null };
+
+function readSpan(rows: { span?: unknown } | undefined): RecordedQuoteSpan {
+  const span = rows?.span;
+  if (!span || typeof span !== "object") throw new Error("Missing recorded-quote span envelope");
+  const { earliest, latest } = span as Record<string, unknown>;
+  const valid = (value: unknown) => value === null || typeof value === "string";
+  if (!valid(earliest) || !valid(latest) || (earliest === null) !== (latest === null)) {
+    throw new Error("Malformed recorded-quote span envelope");
+  }
+  return { earliest: earliest as string | null, latest: latest as string | null };
+}
+
+/**
  * The store to use. Returns null when no database is provisioned — the
  * history producer then reports the recorded source as unavailable
  * rather than inventing a series. An injected Db supports offline tests;
@@ -124,14 +172,32 @@ export function getRecordedQuoteStore(db?: Db | null): RecordedQuoteStore | null
     return {
       async readWindow(request) {
         if (request.playerIds.length === 0) return { quotes: [], truncated: false };
-        // Page the window in day-chunks: retention is append-only, so a
-        // multi-year window must never ride on one oversized read. Each
-        // chunk is ordered (snapshot_at, id) and chunks are consecutive,
-        // so concatenation preserves the window's global order. A chunk
-        // that hits the cap fails the whole window closed.
+        // The read as a whole is bounded (dot's #224 requirement): one
+        // span probe, then day-chunks over the POPULATED span only,
+        // under a per-chunk row cap, a cumulative row budget and a
+        // query budget. Chunks are consecutive and each is ordered
+        // (snapshot_at, id), so concatenation preserves the window's
+        // global deterministic order, duplicates and timestamp ties
+        // included — rows are returned verbatim, never deduplicated.
+        // Any cap, budget exhaustion or failed chunk fails the window
+        // closed (truncated, or the error propagates to the producer's
+        // load-failure path): a partial enumeration is never reported
+        // as complete. The { quotes, truncated } contract — and with it
+        // the producer's th2 pinned-cutoff/generation semantics — is
+        // unchanged.
+        let queries = 0;
+        const spanResult = await client.execute<{ span: RecordedQuoteSpan }>(recordedQuoteSpanQuery(request));
+        queries += 1;
+        const span = readSpan(spanResult.rows[0]);
+        if (span.earliest === null || span.latest === null) return { quotes: [], truncated: false };
+        const fromDay = span.earliest.slice(0, 10) > request.fromDay ? span.earliest.slice(0, 10) : request.fromDay;
+        const latestNext = addHistoryDays(span.latest.slice(0, 10), 1);
+        const toDay = latestNext < request.toDay ? latestNext : request.toDay;
         const quotes: RecordedQuote[] = [];
-        for (const chunk of recordedQuoteChunks(request)) {
+        for (const chunk of recordedQuoteChunks({ playerIds: request.playerIds, fromDay, toDay })) {
+          if (queries >= MAX_RECORDED_QUOTE_QUERIES) return { quotes, truncated: true };
           const result = await client.execute<{ records: RecordedQuote[] }>(recordedQuoteQuery(chunk));
+          queries += 1;
           const rows = result.rows[0];
           if (!rows || !Array.isArray(rows.records)) throw new Error("Missing recorded-quote read envelope");
           if (rows.records.length > MAX_RECORDED_QUOTE_ROWS) {
@@ -139,6 +205,10 @@ export function getRecordedQuoteStore(db?: Db | null): RecordedQuoteStore | null
             return { quotes, truncated: true };
           }
           quotes.push(...rows.records);
+          if (quotes.length > MAX_RECORDED_QUOTE_TOTAL_ROWS) {
+            quotes.length = MAX_RECORDED_QUOTE_TOTAL_ROWS;
+            return { quotes, truncated: true };
+          }
         }
         return { quotes, truncated: false };
       },

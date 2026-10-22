@@ -89,16 +89,49 @@ class DrizzleStockStore implements StockStore {
     const ids = [...new Set(playerIds)];
     if (ids.length === 0) return {};
     try {
-      const rows = await this.db
-        .select({ playerId: stockSnapshots.playerId, priceCents: stockSnapshots.priceCents, snapshotAt: stockSnapshots.snapshotAt })
-        .from(stockSnapshots)
-        .where(inArray(stockSnapshots.playerId, ids))
-        .orderBy(stockSnapshots.playerId, stockSnapshots.snapshotAt, stockSnapshots.id);
+      // The latest-40-per-player bound lives in SQL (row_number over
+      // snapshot_at desc, id desc — the same ordering the previous
+      // in-memory slice used), so retention growth never inflates this
+      // read's transfer: one query returns one jsonb envelope of at
+      // most 40 entries per player, ordered player, snapshot_at, id
+      // ascending exactly as before. Timestamps ride as native strings
+      // (the stock_snapshots UTC convention) and are re-anchored to Z
+      // explicitly instead of relying on driver-local parsing. The
+      // in-memory slice below stays as a guard with identical
+      // semantics, in case a transport ever returns more than the SQL
+      // bound.
+      const result = await this.db.execute(sql`
+        SELECT COALESCE(jsonb_agg(entry ORDER BY player_id, snapshot_at, id), '[]'::jsonb) AS records
+        FROM (
+          SELECT jsonb_build_object(
+              'playerId', player_id,
+              'priceCents', price_cents,
+              'snapshotAt', to_char(snapshot_at, 'YYYY-MM-DD"T"HH24:MI:SS.US')
+            ) AS entry,
+            player_id, snapshot_at, id
+          FROM (
+            SELECT player_id, price_cents, snapshot_at, id,
+              row_number() OVER (PARTITION BY player_id ORDER BY snapshot_at DESC, id DESC) AS rn
+            FROM ${stockSnapshots}
+            WHERE player_id IN (${sql.join(ids.map(id => sql`${id}`), sql`, `)})
+          ) ranked
+          WHERE rn <= ${SNAPSHOT_HISTORY_POINTS}
+        ) bounded`) as unknown as { rows: Array<{ records?: unknown }> };
+      const records = result.rows[0]?.records;
+      if (!Array.isArray(records)) throw new Error("Missing snapshot-history read envelope");
       const grouped = new Map<string, PriceHistoryPoint[]>();
-      for (const row of rows) {
-        const points = grouped.get(row.playerId) ?? [];
-        points.push({ date: row.snapshotAt.toISOString(), price: row.priceCents / 100, source: "live" });
-        grouped.set(row.playerId, points);
+      for (const record of records) {
+        const entry = record as { playerId?: unknown; priceCents?: unknown; snapshotAt?: unknown };
+        if (typeof entry.playerId !== "string" || typeof entry.priceCents !== "number"
+          || !Number.isFinite(entry.priceCents) || typeof entry.snapshotAt !== "string") {
+          throw new Error("Malformed snapshot-history entry");
+        }
+        const points = grouped.get(entry.playerId) ?? [];
+        points.push({
+          date: new Date(`${entry.snapshotAt}Z`).toISOString(),
+          price: entry.priceCents / 100, source: "live",
+        });
+        grouped.set(entry.playerId, points);
       }
       return Object.fromEntries([...grouped].map(([id, points]) => [
         id, points.length > SNAPSHOT_HISTORY_POINTS ? points.slice(-SNAPSHOT_HISTORY_POINTS) : points,
