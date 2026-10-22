@@ -85,12 +85,25 @@ historical replay roster. GET routes live at
 `/api/team-value-history/{summary,detail}`; the member homepage passes the
 envelope as serializable props into the `TeamValueHistory` consumer in
 `season-hub`, replacing the current-roster repricing line. This producer
-performs zero Neon writes: the #219 tables stay unapplied/unpopulated here,
-nothing is backfilled or reconstructed, and the envelope states the
-retained-source (30-day prune) limitation in its source notes until a
-separate persistence PR lands; `docs/team-value-history-inventory.md`
-inventories retained quotes vs proven membership (recoverable-omitted
-vs genuinely-unavailable).
+performs zero Neon writes and does not populate the #219 tables or backfill
+reconstruction. Recorded snapshots are append-only in `stocks.ts`; the
+recorded adapter bounds per-query and whole-read work and reports truncation
+rather than declaring an incomplete window complete. Preservation does not
+recreate absent evidence. `docs/team-value-history-inventory.md` is the dated
+inventory of retained quotes versus proven membership.
+
+The separate `domain/current-team-quote.ts` projection binds the member headline
+and chart's **Current** marker to one existing `HomeTeamSummary` calculation:
+integer cents, the same roster/priced coverage, calculation timestamp and
+pricing basis. Its schema-versioned calculation identity includes that tuple;
+it is not a historical dataset ID or an asserted engine revision. The server
+`RosterValueSection` creates this pure projection without another market load,
+fetch or write. Current quotes remain outside the history envelope, saved
+`currentQuote` field, th2 generation and comparison cache. The client provides
+separate current/saved selection even on the same day; current roster detail
+uses the projected summary, while historical dates retain their lazy source
+detail. Refreshes preserve selection intent and cancel stale historical reads.
+No current quote is persisted or relabeled as a recorded/retrospective point.
 
 ### Roster replay — forward dated membership (issues #224/#217)
 

@@ -1,0 +1,383 @@
+{
+  "synthetic": true,
+  "route": "actual Next member homepage / -> Your roster",
+  "cases": [
+    {
+      "mode": "full",
+      "width": 390,
+      "rootText": 100,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read",
+        "new viewport gap days remain keyboard-selectable through the pinned cutoff; another right selects the distinct current quote",
+        "same-team RSC refresh swaps headline/current version together and cancels stale details;409 refresh retains historical day/focus; current selection never mixes old history"
+      ],
+      "initialIdentityHash": "55902208db3c6b3cdc5be7959841326b109b2d82ba1c3ea89a5cc73793ac6825",
+      "focusSeparation": 12,
+      "initialGeometry": {
+        "width": 358,
+        "page": 390,
+        "viewport": 390,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 358,
+        "page": 390,
+        "viewport": 390,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 358,
+        "page": 390,
+        "viewport": 390,
+        "escapes": []
+      },
+      "staleDetailRequestObserved": true,
+      "historyRequests": 7
+    },
+    {
+      "mode": "full",
+      "width": 320,
+      "rootText": 100,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read",
+        "new viewport gap days remain keyboard-selectable through the pinned cutoff; another right selects the distinct current quote"
+      ],
+      "initialIdentityHash": "55902208db3c6b3cdc5be7959841326b109b2d82ba1c3ea89a5cc73793ac6825",
+      "focusSeparation": 12,
+      "initialGeometry": {
+        "width": 288,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 288,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 288,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyRequests": 2
+    },
+    {
+      "mode": "full",
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read",
+        "new viewport gap days remain keyboard-selectable through the pinned cutoff; another right selects the distinct current quote",
+        "same-team RSC refresh swaps headline/current version together and cancels stale details;409 refresh retains historical day/focus; current selection never mixes old history"
+      ],
+      "initialIdentityHash": "55902208db3c6b3cdc5be7959841326b109b2d82ba1c3ea89a5cc73793ac6825",
+      "focusSeparation": 24,
+      "initialGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "staleDetailRequestObserved": true,
+      "historyRequests": 7
+    },
+    {
+      "mode": "full",
+      "width": 1440,
+      "rootText": 100,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read",
+        "new viewport gap days remain keyboard-selectable through the pinned cutoff; another right selects the distinct current quote"
+      ],
+      "initialIdentityHash": "55902208db3c6b3cdc5be7959841326b109b2d82ba1c3ea89a5cc73793ac6825",
+      "focusSeparation": 12,
+      "initialGeometry": {
+        "width": 1088,
+        "page": 1440,
+        "viewport": 1440,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 1088,
+        "page": 1440,
+        "viewport": 1440,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 1088,
+        "page": 1440,
+        "viewport": 1440,
+        "escapes": []
+      },
+      "historyRequests": 2
+    },
+    {
+      "mode": "partial",
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read"
+      ],
+      "initialIdentityHash": "211dc0ed30b3225cdc48f5c2ef425a061bfca5073745e626d97fd0f942223618",
+      "focusSeparation": 24,
+      "initialGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyRequests": 2
+    },
+    {
+      "mode": "unpriced",
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read"
+      ],
+      "focusSeparation": 24,
+      "initialGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyRequests": 2
+    },
+    {
+      "mode": "empty",
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read"
+      ],
+      "initialIdentityHash": "43720b887ef82937a66238e22654b6946d03e4f1798e27bb307827abfea577f4",
+      "focusSeparation": 24,
+      "initialGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyRequests": 2
+    },
+    {
+      "mode": "unknown",
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read"
+      ],
+      "focusSeparation": 24,
+      "initialGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyRequests": 2
+    },
+    {
+      "mode": "long",
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read"
+      ],
+      "initialIdentityHash": "55902208db3c6b3cdc5be7959841326b109b2d82ba1c3ea89a5cc73793ac6825",
+      "focusSeparation": 24,
+      "initialGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyRequests": 2
+    },
+    {
+      "mode": "same-day",
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read"
+      ],
+      "initialIdentityHash": "38b0dbf3a41972fc2cc787a3f5012593ce86ad989a6a91a68302ab75ae1a747c",
+      "focusSeparation": 24,
+      "initialGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyRequests": 2
+    },
+    {
+      "mode": "retrospective",
+      "width": 390,
+      "rootText": 100,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read"
+      ],
+      "initialIdentityHash": "55902208db3c6b3cdc5be7959841326b109b2d82ba1c3ea89a5cc73793ac6825",
+      "focusSeparation": 12,
+      "initialGeometry": {
+        "width": 358,
+        "page": 390,
+        "viewport": 390,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 358,
+        "page": 390,
+        "viewport": 390,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 358,
+        "page": 390,
+        "viewport": 390,
+        "escapes": []
+      },
+      "historyRequests": 2
+    },
+    {
+      "mode": "rollover",
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "current headline/readout/marker share one calculation; partial/empty/unknown states remain honest; no history GET; current roster stays compact and keyboard-accessible",
+        "historical hover/tap/keyboard selection preserves saved or reconstructed values and changed-only rows; full calendar gaps stay missing; End returns to Current without a historical read"
+      ],
+      "initialIdentityHash": "9dbb4228292eb75b1e304d5ede54381adbb0c8605f2de09bf0b8baee7975bf74",
+      "focusSeparation": 24,
+      "initialGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "rosterGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyGeometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "historyRequests": 2
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "writes": [],
+  "base": "c923dfc268551ee16c35609ec720d2afec8fe18b",
+  "sourceBlobs": {
+    "src/domain/current-team-quote.ts": "3d94c0a1a512bcd1f1dc2914b78c78f79ef1b1bb",
+    "src/surfaces/season-hub/RosterValueSection.tsx": "6cd21a9df31133d70b66929a9e98578b9f984111",
+    "src/surfaces/season-hub/TeamValueHistory.tsx": "4a0522f76da64a9f3c8bf407408a7ef2405d6824",
+    "src/surfaces/season-hub/TeamValueHistoryChart.tsx": "93f186570027e230b85394825dcfda403a042bdf",
+    "src/surfaces/season-hub/TeamValueHistory.module.css": "aa67fb8d5a95bddbb06d9d22eb09d3eece64dac0"
+  }
+}

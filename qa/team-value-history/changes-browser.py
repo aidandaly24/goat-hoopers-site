@@ -35,6 +35,9 @@ with sync_playwright() as p:
             q.evaluate('(s)=>document.documentElement.style.fontSize=s+"%"',scale)
             h=q.locator('[data-team-value-history]');readout=h.locator('[data-history-readout]');inspector=h.locator('[data-history-inspector]')
             q.wait_for_timeout(250);assert not calls
+            if h.locator('[data-history-current-select]').count():
+                assert 'Current modeled quote' in readout.inner_text()
+                h.get_by_role('button',name='History',exact=True).click()
             assert 'Saved snapshot' in readout.inner_text() and 'Oct 20, 2026' in readout.inner_text()
             assert ('$216.35' if mode=='unchanged' else '$202.96') in readout.inner_text()
             summary=inspector.locator(':scope > summary');summary.focus();summary.press('Enter')
