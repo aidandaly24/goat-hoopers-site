@@ -16,15 +16,18 @@ const render = (mode = "changed") => {
 };
 const changedRows = (html: string) => html.match(/<ul[^>]*data-history-price-changes[^>]*>([\s\S]*?)<\/ul>/)?.[1] ?? "";
 
-test("the default changes list shows only Tobias's genuine -13.39 change, retaining the unchanged roster behind a disclosure", () => {
+test("the visible cards show only Tobias's genuine -13.39 change, without a full-team disclosure", () => {
   const html = render(), rows = changedRows(html);
   expect(rows).toContain("Tobias Harris"); expect(rows).toContain("$24.35"); expect(rows).toContain("$10.96"); expect(rows).toContain("−$13.39");
-  expect(rows).toContain(" to ");
+  expect(rows).toContain('aria-label="Price from Oct 19, 2026 to Oct 20, 2026"');
+  expect(rows).toContain('aria-label="Decrease $13.39"');
   for (const name of ["Damian Lillard", "Joel Embiid", "Myles Turner", "Derrick White", "Grayson Allen", "Anthony Edwards", "Payton Pritchard"]) {
-    expect(rows).not.toContain(name); expect(html).toContain(name);
+    expect(rows).not.toContain(name); expect(html).not.toContain(name);
   }
   expect(html).toContain("1 changed · 7 unchanged");
-  expect(html).toMatch(/<details[^>]+data-history-snapshot[^>]*><summary>Selected roster/);
+  expect(html).not.toContain("data-history-snapshot");
+  expect(html).toContain("Player changes");
+  expect(html).toContain("Comparable price change");
   expect(html).not.toMatch(/<details[^>]* open/);
   expect(html).toContain("Snapshot evidence"); expect(html).toContain("2026-10-20T04:00:00.123456Z");
 });
@@ -35,7 +38,7 @@ test("zero changes and missing comparisons remain different states", () => {
   expect(unchanged).toContain("No comparable player-price changes."); expect(unchanged).not.toContain("comparison unavailable");
   expect(changedRows(unknown)).toContain("Tobias Harris"); expect(changedRows(unknown)).not.toContain("Damian Lillard");
   expect(unknown).toContain("1 changed · 6 unchanged · 1 comparison unavailable");
-  expect(unknown).toContain("Comparison unavailable");
+  expect(unknown).toContain("Known price change subtotal");
 });
 
 test("source contradictions cannot become a displayed price change", () => {
@@ -111,7 +114,8 @@ test("roster additions and departures are not attributed as comparable player-pr
   after.players[1] = { ...after.players[1], id: "synthetic-new-member", name: "New member" };
   const html = renderToStaticMarkup(<TeamValueHistoryDetail detail={after} previous={before} />);
   expect(changedRows(html)).not.toContain("New member");
-  expect(html).toContain("Joined this roster"); expect(html).toContain("Left this roster");
+  expect(html).toContain("1 joined and 1 left this roster between observations");
+  expect(html).not.toContain("New member"); expect(html).not.toContain("Damian Lillard");
   expect(html).toContain("not comparable price changes"); expect(html).toContain("not trade profit");
 });
 
@@ -119,5 +123,26 @@ test.each(["loading", "unavailable", "changed", "no-previous"])("%s comparison d
   const html = renderToStaticMarkup(<TeamValueHistoryDetail detail={changesDetail("2026-10-20")}
     comparisonLoading={state === "loading"} comparisonError={state === "unavailable" ? "unavailable" : state === "changed" ? "changed" : undefined} />);
   expect(changedRows(html)).toBe(""); expect(html).not.toContain("0 changed"); expect(html).not.toContain("No comparable player-price changes");
-  expect(html).toContain("Selected roster");
+  expect(html).toContain("Selected historical date");
+  expect(html).not.toContain("data-history-change-net");
+});
+
+
+test("changed-player cards accept existing identity media and use initials when none is supplied", () => {
+  const before = changesDetail("2026-10-19"), detail = changesDetail("2026-10-20");
+  const photo = renderToStaticMarkup(<TeamValueHistoryDetail detail={detail} previous={before} playerPhotos={{ "1-player-0": { espnId: "6440", portraitSrc: "/courtside/portraits/player-6440.png" } }} />);
+  expect(changedRows(photo)).toContain('src="/courtside/portraits/player-6440.png"');
+  expect(changedRows(photo)).toContain('aria-label="View Tobias Harris"');
+  expect(changedRows(render())).toContain("Tobias Harris headshot unavailable");
+});
+
+test("all unknown comparisons never display a zero net and sparse intervals never claim a daily change", () => {
+  const before = changesDetail("2026-10-19"), detail = changesDetail("2026-10-20");
+  before.players.forEach(player => { player.price = null; player.priceCents = null; });
+  before.priced = 0; before.subtotalCents = null;
+  let html = renderToStaticMarkup(<TeamValueHistoryDetail detail={detail} previous={before} />);
+  expect(html).toContain("8 comparisons unavailable"); expect(html).not.toContain("data-history-change-net"); expect(html).not.toContain("+$0.00");
+  before.day = "2026-10-09";
+  html = renderToStaticMarkup(<TeamValueHistoryDetail detail={detail} previous={before} />);
+  expect(html).toContain("11 days apart"); expect(html).not.toContain("daily change");
 });

@@ -15,8 +15,7 @@ test("dated player changes and roster differences never become a trade-profit cl
   expect(html).toContain("11 days between observations");
   expect(html).toContain("+$35.00");
   expect(html).toContain("+$11.66");
-  expect(html).toContain("Joined this roster between the two observations");
-  expect(html).toContain("Left this roster between observations");
+  expect(html).toContain("1 joined and 1 left this roster between observations");
   expect(html).toContain("Selected roster ID unavailable");
   expect(html).toContain("Received by roster 99: Other roster participant");
   expect(html).toContain("Sent by roster 99: Unknown side participant");
@@ -30,7 +29,8 @@ test("failed or changed comparison keeps selected evidence without presenting a 
   const detail = teamValueHistoryDetailFixture("2026-10-19");
   for (const error of ["changed", "unavailable"] as const) {
     const html = renderToStaticMarkup(<TeamValueHistoryDetail detail={detail} comparisonError={error} retryComparison={() => {}} />);
-    expect(html).toContain("Synthetic guard");
+    expect(html).toContain("Player changes");
+    expect(html).not.toContain("data-history-price-change=");
     expect(html).not.toContain("data-history-comparison");
     expect(html.includes("Retry comparison")).toBe(error === "unavailable");
   }
@@ -50,7 +50,7 @@ test("sparse initial view keeps selected partial value inside the graph and seco
   expect(caption).toContain("Subtotal · Saved snapshot");
   expect(caption).toContain("1/4 priced");
   expect(caption).not.toContain("Value not recorded");
-  expect(html).toMatch(/<\/figure><details[^>]+data-history-inspector/);
+  expect(html).toMatch(/<\/figure><section[^>]+data-history-inspector/);
   expect(html).not.toMatch(/<details[^>]* open/);
   expect(html).not.toContain('type="date"');
   expect(html).not.toContain("Largest observed changes");
@@ -143,7 +143,7 @@ test.each([
   expect(html).toContain(expected);
   expect(html.includes("No players on this roster at the selected date.")).toBe(empty);
   expect(html).not.toContain("$0.00");
-  if (d.rosterCount) expect(html).toContain("Synthetic a roster member");
+  if (d.rosterCount) expect(html).not.toContain("Synthetic a roster member");
   expect(html).toContain(`dateTime="${d.valuationAt}"`);
   expect(html).toContain(d.valuationAt);
 });

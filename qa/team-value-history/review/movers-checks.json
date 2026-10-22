@@ -1,0 +1,41 @@
+{
+  "base": "3bcc19bb6aa550a75c0ce8ae0a7da1ef99235412",
+  "synthetic": true,
+  "commands": [
+    {
+      "command": "npx vitest run (nine files listed in README)",
+      "outcome": "PASS: 101 tests / 9 files"
+    },
+    {
+      "command": "npm run typecheck",
+      "outcome": "PASS"
+    },
+    {
+      "command": "npm run check:contracts",
+      "outcome": "PASS: 104 surface files"
+    },
+    {
+      "command": "python qa/team-value-history/serve.py /workspace/goat-movers-evidence 4372",
+      "outcome": "PASS: actual production Next/webpack fixture build, typecheck and loopback start"
+    },
+    {
+      "command": "python qa/team-value-history/movers-browser.py /workspace/goat-movers-evidence http://127.0.0.1:4372",
+      "outcome": "PASS: 7 hydrated journeys; 0 page errors, external requests, writes or content escapes"
+    },
+    {
+      "command": "npm run build",
+      "outcome": "Environment limitation: Turbopack rejects retained node_modules symlink outside worktree root"
+    },
+    {
+      "command": "next build --webpack",
+      "outcome": "Environment limitation: fonts.googleapis.com EAI_AGAIN; Anton/Geist Mono/Inter unavailable. Normal production build must pass exact-head CI."
+    }
+  ],
+  "limits": [
+    "Synthetic fixtures are not live league history or production behavior.",
+    "No production DB writes/import/backfill; no historical producer/source files changed.",
+    "Existing live browser tunnel failure was not retried; authenticated production graph remains unverified.",
+    "No unchanged broad test matrix rerun; full suite/normal production build required in exact-head CI.",
+    "The failed webpack app build generated account route types that reject its pre-existing optional default props. Failed build artifacts are preserved outside the worktree; clean-source typecheck passes. Exact-head normal CI/build remains required."
+  ]
+}
