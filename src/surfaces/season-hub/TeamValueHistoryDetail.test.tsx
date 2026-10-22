@@ -47,7 +47,7 @@ test("sparse initial view keeps selected partial value inside the graph and seco
   const caption = html.match(/<figcaption[^>]*>(.*?)<\/figcaption>/)?.[1];
   expect(caption).toContain("Oct 21, 2026");
   expect(caption).toContain("$123.00");
-  expect(caption).toContain("Subtotal · Observed quote");
+  expect(caption).toContain("Subtotal · Saved snapshot");
   expect(caption).toContain("1/4 priced");
   expect(caption).not.toContain("Value not recorded");
   expect(html).toMatch(/<\/figure><details[^>]+data-history-inspector/);
@@ -59,17 +59,17 @@ test("sparse initial view keeps selected partial value inside the graph and seco
 
 test.each([
   { name: "partial", subtotalCents: 12300, priced: 1, rosterCount: 4,
-    expected: "Current roster quote subtotal: $123.00 · 1/4 priced" },
+    expected: "Saved quote for current roster subtotal: $123.00 · 1/4 priced" },
   { name: "full", subtotalCents: 12300, priced: 4, rosterCount: 4,
-    expected: "Current roster quote: $123.00 · 4/4 priced" },
+    expected: "Saved quote for current roster: $123.00 · 4/4 priced" },
   { name: "empty", subtotalCents: 0, priced: 0, rosterCount: 0,
-    expected: "Current roster quote: $0.00 · 0/0 priced · Empty roster" },
+    expected: "Saved quote for current roster: $0.00 · 0/0 priced · Empty roster" },
 ])("current roster quote identifies $name coverage", ({ name, subtotalCents, priced, rosterCount, expected }) => {
   const history = teamValueHistoryFixture();
   history.currentQuote = { at: history.asOf, subtotalCents, priced, rosterCount };
   expect(isTeamValueHistoryEnvelope(history)).toBe(true);
   const html = renderToStaticMarkup(<TeamValueHistory history={history} />);
-  const quote = html.match(/<p>Current roster quote[^<]*<\/p>/)?.[0];
+  const quote = html.match(/<p>Saved quote for current roster[^<]*<\/p>/)?.[0];
   expect(quote).toContain(expected);
   expect(quote).toContain(history.asOf);
   if (name !== "partial") expect(quote).not.toContain("quote subtotal");

@@ -12,7 +12,46 @@ open on their loaded observation window; **All days** exposes the unchanged
 inception-to-today calendar, including missing-price days. Time remains linear
 inside either viewport, with no fabricated prices or lines through gaps.
 
-## Current local compact-view regression
+## Changed-player and current-value follow-up
+
+The default detail list now shows only nonzero comparable changes, with unchanged
+and unavailable comparisons counted separately. Full roster, moves and evidence
+stay in native disclosures. Sources distinguishes the actual current headline
+and calculation timestamp from selected saved history; no price is substituted.
+See [FOLLOWUP-NOTES.md](./FOLLOWUP-NOTES.md) for code-supported cadence, historical
+evidence limits and the separate producer/retention proposal.
+
+```sh
+npm test -- src/surfaces/season-hub/TeamValueHistoryChanges.test.tsx src/surfaces/season-hub/TeamValueHistoryDetail.test.tsx
+npm test -- --config qa/team-value-history/producer-integration.config.mts
+npm run typecheck
+python3 qa/team-value-history/prepare-changes.py /tmp/goat-changes-review
+python3 qa/team-value-history/serve.py /tmp/goat-changes-review 4411
+# In another terminal:
+python3 qa/team-value-history/changes-browser.py /tmp/goat-changes-review http://127.0.0.1:4411
+```
+
+The six synthetic actual-Next homepage cases cover changed detail at 390/100%,
+320/100%, 320/200% and 1440/100%, plus all-unchanged and missing-comparison states
+at 320/200%. They verify the eight-player reproduction, keyboard disclosure and
+focus, no eager detail reads, full roster access, exact microseconds, separate
+historical/current inputs and subtotal coverage. A real offline-producer test
+reconciles identical roster/price inputs against the headline sum. Receipts and
+representative captures are in `review/changes-*`; source blobs and baseline
+identify the tested application. No credential, provider or production request
+is involved. Prior graph/409/rollover evidence below remains scoped to its stated
+revision; the unchanged matrix was not repeated for this consumer follow-up.
+
+CI caught the repository's no-arrow-glyph text rule on the initial head. The
+row now says **to**. The corrected source passes 30 component/policy tests and
+a fresh synthetic Next build; the affected 390/100% and 320/200% browser journeys
+pass again (`changes-text-fix-browser.json`, `changes-final-*` captures). Run the
+driver with `--text-fix-only` to reproduce that bounded follow-up. The original
+six-case receipt/captures retain their original source identities; unchanged
+producer/comparison/state logic is reused. Exact-head CI remains the full app
+build and regression gate.
+
+## Prior compact-view regression
 
 Surface contract: the user asks how their team's value changed and what roster
 or moves explain the selected day; the main action is graph inspection. Sparse,

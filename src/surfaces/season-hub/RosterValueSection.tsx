@@ -82,6 +82,10 @@ export function RosterValueSection({ summary, portraits, teamHistory }: {
           history={teamHistory}
           detailEndpoint="/api/team-value-history/detail"
           pageEndpoint="/api/team-value-history/summary"
+          currentValue={{ team: { id: team.id }, market, valuation: {
+            total: valuation.total, priced: valuation.priced, unpriced: valuation.unpriced,
+            complete: valuation.complete, knownRoster: valuation.knownRoster,
+          } }}
         />
       )}
     </section>

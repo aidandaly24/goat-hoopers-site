@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import type { HomeTeamSummary } from "@/domain/personalized-home";
 import {
   historyDetailMatchesPoint, historyInstantKey, historyPointComplete, historyRangeContains, isTeamValueHistoryEnvelope,
   shiftHistoryDay, validHistoryDay, validHistoryRange,
@@ -19,13 +20,20 @@ const money = (cents: number) => `$${(cents / 100).toLocaleString("en-US", { min
 const signedMoney = (cents: number) => (cents < 0 ? "−" : "+") + money(Math.abs(cents));
 const fullDay = (day: string) => new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${day}T00:00:00Z`));
 const shortStatus = (value: string) => value === "verified" ? "Verified roster" : value === "replayed" ? "Replayed roster · unverified" : value === "ambiguous" ? "Ambiguous roster" : "Roster unavailable";
-const priceLabel = (point: TeamHistoryPoint) => point.rosterCount === 0 ? "Empty roster" : point.priceKind === "recorded" ? "Observed quote"
+const priceLabel = (point: TeamHistoryPoint) => point.rosterCount === 0 ? "Empty roster" : point.priceKind === "recorded" ? "Saved snapshot"
   : point.priceKind === "reconstructed" ? "Reconstructed model" : point.priceKind === "mixed" ? "Mixed sources" : "No dated price";
 type PageState = "idle" | "loading" | "error" | "changed";
 type DetailState = { key: string } & ({ kind: "loading" } | { kind: "ready"; value: TeamValueHistoryDetail } | { kind: "error"; changed: boolean });
+type HistoryProps = {
+  history: TeamValueHistoryEnvelope; detailEndpoint?: string; pageEndpoint?: string;
+  currentValue?: Pick<HomeTeamSummary, "market"> & {
+    team: Pick<HomeTeamSummary["team"], "id">;
+    valuation: Pick<HomeTeamSummary["valuation"], "total" | "priced" | "unpriced" | "complete" | "knownRoster">;
+  };
+};
 
 /** The timeline selects the day; detail stays directly beneath it. */
-export function TeamValueHistory(props: { history: TeamValueHistoryEnvelope; detailEndpoint?: string; pageEndpoint?: string }) {
+export function TeamValueHistory(props: HistoryProps) {
   if (!isTeamValueHistoryEnvelope(props.history)) return <p className={styles.notice}>Team history is unavailable. No value has been substituted.</p>;
   return <HistoryView key={props.history.team.id} {...props} />;
 }
@@ -39,7 +47,7 @@ function RefreshHistory() {
     }}>{pending ? "Refreshing history…" : "Refresh history"}</button>;
 }
 
-function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamValueHistoryEnvelope; detailEndpoint?: string; pageEndpoint?: string }) {
+function HistoryView({ history, detailEndpoint, pageEndpoint, currentValue }: HistoryProps) {
   const id = useId();
   // A new server envelope takes precedence over pages from an older props delivery.
   // Keeping the team subtree mounted preserves selection and keyboard focus.
@@ -165,11 +173,16 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
   const currentDetail = !viewChanged && detail.key === detailKey ? detail : null;
   const readyDetail = currentDetail?.kind === "ready" ? currentDetail.value : null;
   const readout = point ?? readyDetail;
+  const current = currentValue?.team.id === envelope.team.id ? currentValue : null;
+  const currentTotal = current?.valuation.total !== null && current?.valuation.total !== undefined
+    && Number.isFinite(current.valuation.total) && current.valuation.total >= 0 ? current.valuation.total : null;
+  const currentTime = current?.market && Number.isFinite(new Date(current.market.updatedAt).getTime())
+    ? new Date(current.market.updatedAt).toISOString() : null;
   const currentComparison = previousPoint && comparison.key === previousKey ? comparison : null;
   const retryDetail = () => { cache.current.delete(detailKey); setDetail({ key: detailKey, kind: "loading" }); setAttempt(value => value + 1); };
   const retryComparison = () => { cache.current.delete(previousKey); setComparison({ key: previousKey, kind: "loading" }); setAttempt(value => value + 1); };
   return <section className={styles.root} data-team-value-history aria-label={`${envelope.team.name} historical roster valuation`}>
-    <div className={styles.heading}><SectionHeading eyebrow={envelope.team.name} title="Team value" /></div>
+    <div className={styles.heading}><SectionHeading eyebrow={envelope.team.name} title="Value history" /></div>
     {rangeError && <p className={styles.notice} role="alert">{rangeError}</p>}
     <TeamValueHistoryChart points={points} range={range} selectedDay={selectedDay} onSelectDay={selectDay} caption={<>
       <div className={styles.presets} role="group" aria-label="Timeline range">
@@ -192,7 +205,6 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
       onToggle={event => { if (event.currentTarget.open) setInspecting(true); }}>
       <summary>Roster &amp; moves</summary>
       {readout && <p className={styles.caption}>{shortStatus(readout.rosterStatus)}</p>}
-      {selectedChange && <p className={styles.caption}>{signedMoney(selectedChange.cents)} since {fullDay(selectedChange.previousDay)}</p>}
       {viewChanged ? <p className={styles.caption}>Refresh history before inspecting this day.</p>
         : currentDetail?.kind === "ready" ? <DayDetail detail={currentDetail.value}
           previous={currentComparison?.kind === "ready" ? currentComparison.value : undefined}
@@ -209,9 +221,14 @@ function HistoryView({ history, detailEndpoint, pageEndpoint }: { history: TeamV
     </div>}
     {(pageState === "error" || pageState === "changed") && <p className={styles.notice} role="status">{pageState === "changed" ? "History changed. Refresh the page for the new history." : "More history could not be loaded. Existing points remain available."}</p>}
     <details className={styles.evidence}><summary>Sources</summary>
+      <p data-history-value-basis>The value above uses today’s roster and current modeled prices. This graph uses the roster and saved prices at the selected historical time. Different dates, rosters or price coverage can produce different totals.</p>
+      {selectedChange && <p>Saved roster-value difference since {fullDay(selectedChange.previousDay)}: {signedMoney(selectedChange.cents)}. Price and membership changes can both contribute.</p>}
+      {current && <p data-history-current-model>Current roster value above{!current.valuation.complete && currentTotal !== null ? " subtotal" : ""}: {currentTotal === null ? "unavailable" : money(Math.round(currentTotal * 100))} · {current.valuation.priced}/{current.valuation.knownRoster ? current.valuation.priced + current.valuation.unpriced : "unknown"} priced{currentTime && <> · calculated <time dateTime={currentTime}>{currentTime}</time></>}. Inputs may be cached.</p>}
+      {readout && <p>Selected {readout.subtotalCents === null ? "roster inspection" : "snapshot"}: <time dateTime={readout.valuationAt}>{readout.valuationAt}</time>.</p>}
       <p className={styles.caption} data-history-coverage>{envelope.points.filter(item => item.subtotalCents !== null).length} loaded value observations across {historyDayCount(envelope.leagueRange)} calendar days, beginning {fullDay(envelope.leagueRange.from)}. Missing prices are not filled.</p>
+      <p className={styles.caption}>All days opens the full league calendar. Only dates with retained price evidence have values; missing snapshots and older unrecorded prices are not recreated.</p>
       <p className={styles.caption}>Hover or tap for a date and value. Values focuses the loaded observations; All days keeps every league day accessible. Recorded, reconstructed and partial observations retain their source styles; no line is drawn through a missing day.</p>
-      {envelope.currentQuote && <p>Current roster quote{envelope.currentQuote.subtotalCents !== null && envelope.currentQuote.priced < envelope.currentQuote.rosterCount ? " subtotal" : ""}: {envelope.currentQuote.subtotalCents === null ? "unavailable" : money(envelope.currentQuote.subtotalCents)}
+      {envelope.currentQuote && <p>Saved quote for current roster{envelope.currentQuote.subtotalCents !== null && envelope.currentQuote.priced < envelope.currentQuote.rosterCount ? " subtotal" : ""}: {envelope.currentQuote.subtotalCents === null ? "unavailable" : money(envelope.currentQuote.subtotalCents)}
         {" · "}{envelope.currentQuote.priced}/{envelope.currentQuote.rosterCount} priced{envelope.currentQuote.rosterCount === 0 ? " · Empty roster" : ""} · {envelope.currentQuote.at}. Separate from the selected historical value.</p>}
       <ul>{envelope.sourceNotes.map((note, index) => <li key={index}>{note}</li>)}</ul>
       {(["roster", "valuation"] as const).map(key => <div key={key}><strong>{key === "roster" ? "Roster coverage" : "Value coverage"}</strong><ul>{envelope.coverage[key].filter(item => item.from < range.toExclusive && item.toExclusive > range.from).map((item, index) => <li key={index}>{fullDay(item.from)} – {fullDay(shiftHistoryDay(item.toExclusive, -1))}: {item.status.replaceAll("_", " ")} · {item.reason}</li>)}</ul></div>)}
