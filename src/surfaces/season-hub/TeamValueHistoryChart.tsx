@@ -1,3 +1,4 @@
+import { useId, type ReactNode } from "react";
 import { historyPointComplete, historySegments, shiftHistoryDay, type TeamHistoryPoint, type TeamHistoryRange } from "@/domain/team-value-history";
 import { historyDayAtPosition, historyDayCount, historyLargestChanges, historyUnpricedRanges, historyValueChanges } from "./team-value-history-view";
 import styles from "./TeamValueHistory.module.css";
@@ -8,9 +9,11 @@ const kind = (point: TeamHistoryPoint) => (point.priceKind === "recorded" ? styl
   : point.priceKind === "reconstructed" ? styles.reconstructed : point.priceKind === "mixed" ? styles.mixed : styles.partial) + (historyPointComplete(point) ? "" : " " + styles.partial);
 
 /** Private client-subtree view. The entire calendar, including gaps, is selectable. */
-export function TeamValueHistoryChart({ points, range, selectedDay, onSelectDay }: {
+export function TeamValueHistoryChart({ points, range, selectedDay, onSelectDay, caption }: {
   points: TeamHistoryPoint[]; range: TeamHistoryRange; selectedDay: string; onSelectDay?: (day: string) => void;
+  caption?: ReactNode;
 }) {
+  const instructionId = useId();
   const values = points.flatMap(point => point.subtotalCents === null ? [] : [point.subtotalCents]);
   const low = values.length ? Math.min(...values) : 0, high = values.length ? Math.max(...values) : 0;
   const pad = Math.max(100, (high - low) * .12), min = Math.max(0, low - pad), max = high + pad;
@@ -35,20 +38,16 @@ export function TeamValueHistoryChart({ points, range, selectedDay, onSelectDay 
     onSelectDay(nearest && distance <= 16 ? nearest.day : historyDayAtPosition(range, (px / bounds.width * 600 - 8) / 584));
   }
   return <figure className={styles.figure} data-team-history-chart>
-    <figcaption className={styles.legend}>
-      <span><i className={styles.recorded} />Observed quote</span>
-      <span><i className={styles.reconstructed} />Reconstructed model</span>
-      <span><i className={styles.partial} />Partial subtotal</span>
-      <span><i className={styles.gapKey} />No value</span>
-      {points.some(point => point.priceKind === "mixed") && <span><i className={styles.mixed} />Mixed sources</span>}
-    </figcaption>
+    {caption && <figcaption className={styles.chartHeader}>{caption}</figcaption>}
     <div className={styles.plot}>
       <div className={styles.yAxis} aria-hidden="true"><span>{values.length ? money(max) : "FAAB"}</span><span>{values.length ? money(min) : "—"}</span></div>
       <div className={styles.plotCanvas} data-history-timeline role={onSelectDay ? "slider" : undefined}
         tabIndex={onSelectDay ? 0 : undefined} aria-label={onSelectDay ? "Team value timeline" : undefined}
+        aria-describedby={onSelectDay ? instructionId : undefined}
+        aria-keyshortcuts={onSelectDay ? "ArrowLeft ArrowRight ArrowUp ArrowDown Home End PageUp PageDown" : undefined}
         aria-valuemin={onSelectDay ? 0 : undefined} aria-valuemax={onSelectDay ? days - 1 : undefined}
         aria-valuenow={onSelectDay ? selectedIndex : undefined}
-        aria-valuetext={onSelectDay ? date(selectedDay) + " UTC, " + (selected?.subtotalCents != null ? money(selected.subtotalCents) + " " + selected.priceKind : "valuation unavailable") : undefined}
+        aria-valuetext={onSelectDay ? date(selectedDay) + " UTC, " + (selected?.subtotalCents != null ? money(selected.subtotalCents) + (historyPointComplete(selected) ? " " : " subtotal, ") + selected.priceKind + ", " + selected.priced + "/" + selected.rosterCount + " priced" : "valuation unavailable") : undefined}
         onFocus={onSelectDay ? () => onSelectDay(selectedDay) : undefined}
         onPointerMove={onSelectDay ? event => { if (event.pointerType === "mouse") selectAt(event); } : undefined}
         onClick={onSelectDay ? event => {
@@ -89,6 +88,6 @@ export function TeamValueHistoryChart({ points, range, selectedDay, onSelectDay 
       </div>
     </div>
     <div className={styles.xAxis}><span>{date(range.from)}</span><span>{date(shiftHistoryDay(range.toExclusive, -1))}</span></div>
-    <p className={styles.caption}>{onSelectDay ? "Hover or tap for details. Keyboard arrows change day; Home/End select range edges." : `${values.length} observed or reconstructed values.`}</p>
+    {onSelectDay && <p id={instructionId} className={styles.srOnly}>Hover or tap a point. Arrow keys change day, PageUp and PageDown change week, and Home and End select the range edges. All days includes the full league calendar; missing prices stay unavailable.</p>}
   </figure>;
 }

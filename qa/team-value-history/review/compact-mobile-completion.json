@@ -1,0 +1,26 @@
+{
+  "scope": "Three mobile cases completed all assertions before the fourth desktop case timed out at its initial hover step. Per-case geometry was not persisted by that first run. This receipt records completion scope, not reconstructed metrics.",
+  "layouts": [
+    [
+      390,
+      100
+    ],
+    [
+      320,
+      100
+    ],
+    [
+      320,
+      200
+    ]
+  ],
+  "failedFourthCase": [
+    1440,
+    100
+  ],
+  "driver": "/workspace/goat-compact-history-evidence/compact-browser-before-scroll.py",
+  "driverSHA256": "2e085e1b57bb238e4fb594e0bd9438af4e84fc54af74fa066d981f629dd1b068",
+  "failureLog": "/workspace/goat-compact-history-evidence/browser-final.log",
+  "probe": "/workspace/goat-compact-history-evidence/mobile-completed-probe.jsonl",
+  "evidence": "Driver runs cases sequentially. All four first-view screenshots exist; mobile runs each reached the view-b RSC refresh and next-calendar-range assertion. The desktop run has only the initial history call and its first-view capture. Screenshot capture changed page scroll, so desktop mouse coordinates were outside the viewport. App source unchanged for the completion run."
+}

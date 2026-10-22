@@ -65,6 +65,27 @@ describe("compact profile capability parity", () => {
     expect(games).toContain(">Final</span>");
   });
 
+  it("renders a scored in-progress week as Live — never Final, never badged (issue #224 P1)", () => {
+    // Week 6 is in progress with both scores posted live; week 4 is a
+    // genuinely completed loss. Pre-fix, isFinal alone labelled the
+    // live week "Final" and awarded it W/L badges.
+    const live = {
+      ...profile,
+      inProgressWeek: 6,
+      matchups: [
+        { week: 6, home: teams[0], away: teams[1], homePoints: 121.5, awayPoints: 98 },
+        { week: 4, home: teams[0], away: teams[1], homePoints: 0, awayPoints: 10 },
+      ],
+    };
+    const html = render({ profile: live, teams });
+    const games = html.split('id="team-games"')[1].split('id="team-picks"')[0];
+    expect(games).toContain(">Live</span>");
+    expect(games.match(/>Final<\/span>/g)).toHaveLength(1);
+    // The only W/L badges in the log belong to the completed week 4.
+    expect(games.match(/>W<\/span>/g)).toHaveLength(1);
+    expect(games.match(/>L<\/span>/g)).toHaveLength(1);
+  });
+
   it("shows truthful empty sections without controls or invented games, moves, picks or current-season labels", () => {
     const empty = { ...profile, players: [], matchups: [], draftPicks: [], transactions: [], streak: 0 };
     const html = render({ profile: empty, teams });

@@ -41,7 +41,7 @@ import type { PriceHistoryPoint } from "@/domain";
 import type { TeamRosterValue } from "@/domain/team-roster-value";
 import { buildTeamRosterValue } from "@/domain/team-roster-value";
 import { stockDetailHistory, STOCK_CHART_POINTS } from "./stock-history-sampling";
-import { computeTeamValues, projectTableLeague, signedStreak } from "@/domain";
+import { computeTeamValues, completedMatchupsByWeek, projectTableLeague, signedStreak } from "@/domain";
 import {
   fetchLeague,
   LEAGUE_ID,
@@ -170,13 +170,28 @@ export async function getCourtsideHomeData(editionId?: string, dependencies = co
   catch { rosterNamesAvailable = false; references = ids.map((id) => toPlayer(id, undefined, resolveEspnId(id, ESPN_ID_MAP))); }
   const byId = new Map(references.map((player) => [player.id, player]));
   const playersByTeam = Object.fromEntries(rosters.map((roster) => [String(roster.roster_id), (roster.players ?? []).map((id) => byId.get(id)!).filter(Boolean)]));
-  const weeks = validSeasonWeeks(state);
-  const week = weeks.at(-1);
-  const rawMatchups = week ? await dependencies.matchups(week).catch(() => []) : [];
-  const matchups = toMatchups(rawMatchups, hub.teams).map((matchup) => ({ ...matchup, week: week ?? 1,
-    homePoints: state?.season_type === "pre" ? null : matchup.homePoints,
-    awayPoints: state?.season_type === "pre" ? null : matchup.awayPoints,
-  }));
+  // Archive mode (issue #224 P1): an explicitly requested edition that
+  // resolves is frozen editorial. Its matchup story is the edition's
+  // own game record — never the live current week, whose pair and
+  // scores would otherwise be narrated as the archived edition's game.
+  // The historical pair stays on the edition record, where the feature
+  // renders it with historical context; the directory below is live
+  // data, so an archived render feeds it no matchups at all — passing
+  // the frozen game in as `currentMatchup` labelled a historical
+  // opponent "Current opponent / Week 0" (W40 has no leagueWeek).
+  const archived = editionId !== undefined && edition !== null;
+  let matchups: Matchup[];
+  if (archived) {
+    matchups = [];
+  } else {
+    const weeks = validSeasonWeeks(state);
+    const week = weeks.at(-1);
+    const rawMatchups = week ? await dependencies.matchups(week).catch(() => []) : [];
+    matchups = toMatchups(rawMatchups, hub.teams).map((matchup) => ({ ...matchup, week: week ?? 1,
+      homePoints: state?.season_type === "pre" ? null : matchup.homePoints,
+      awayPoints: state?.season_type === "pre" ? null : matchup.awayPoints,
+    }));
+  }
   return { hub, edition, checkedAt, rosterNamesAvailable,
     directory: buildLiveClubhouseDirectory(hub.teams, playersByTeam, matchups, hub.transactions),
   };
@@ -722,6 +737,7 @@ export async function getPowerRankings(): Promise<PowerRanking[] | null> {
     return computePowerRankings({
       teams: input.teams,
       matchupsByWeek: input.matchupsByWeek,
+      currentWeek: input.currentWeek,
     });
   } catch {
     return null;
@@ -756,7 +772,10 @@ export async function getRecordBook(): Promise<RecordBook | null> {
   try {
     const input = await fetchAnalyticsInputs();
     if (!input) return null;
-    return computeRecordBook({ matchupsByWeek: input.matchupsByWeek });
+    return computeRecordBook({
+      matchupsByWeek: input.matchupsByWeek,
+      currentWeek: input.currentWeek,
+    });
   } catch {
     return null;
   }
@@ -788,6 +807,7 @@ export async function getMatchupPreviews(): Promise<MatchupPreview[] | null> {
     return computeMatchupPreviews({
       matchupsByWeek: input.matchupsByWeek,
       teams: input.teams,
+      currentWeek: input.currentWeek,
     });
   } catch {
     return null;
@@ -875,7 +895,16 @@ export async function getTeamProfile(
       )
       .sort((a, b) => b.week - a.week);
 
-    const streak = signedStreak(team.id, matchupsByWeek);
+    // Streaks end at the last COMPLETED week (issue #224 P1): the
+    // in-progress week's live scores are partials, and a partial "win"
+    // is not a result — counting it fabricates a streak.
+    const streak = input
+      ? signedStreak(
+          team.id,
+          completedMatchupsByWeek(matchupsByWeek, input.currentWeek)
+        )
+      : 0;
+    const inProgressWeek = input && input.hasGames ? input.currentWeek : null;
     const draftPicks = picks.filter((p) => p.teamId === team.id);
 
     // Recent wire activity for this team (best-effort).
@@ -889,7 +918,7 @@ export async function getTeamProfile(
       transactions = [];
     }
 
-    return { team, players, matchups, streak, draftPicks, transactions };
+    return { team, players, matchups, streak, inProgressWeek, draftPicks, transactions };
   } catch {
     return null;
   }

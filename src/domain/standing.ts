@@ -8,8 +8,15 @@ import type { Team } from "./team";
  */
 export type Standing = {
   team: Team;
-  /** 1-based rank in the league table. */
-  rank: number;
+  /**
+   * 1-based rank in the league table, or null before any team has a
+   * recorded result. Live points-for accumulates during the in-progress
+   * week while every record is still 0–0 — ordering tied 0–0 teams by
+   * that drip would fabricate a No. 1, so ranks exist only once a real
+   * win, loss or tie is on the books (the same hasResults rule The
+   * Table applies). Display order stays deterministic either way.
+   */
+  rank: number | null;
   wins: number;
   losses: number;
   ties: number;

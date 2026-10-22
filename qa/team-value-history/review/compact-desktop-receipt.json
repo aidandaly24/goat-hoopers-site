@@ -1,0 +1,44 @@
+{
+  "synthetic": true,
+  "route": "signed-in fixture homepage / -> Your roster.",
+  "cases": [
+    {
+      "width": 1440,
+      "rootText": 100,
+      "checks": [
+        "15 real fixture observations span the initial plot; latest Oct21 partial quote selected after Oct22 UTC rollover; coverage prose collapsed; no eager detail read",
+        "tap/hover updates the in-chart date/value/source; native keyboard disclosure reveals exact-time roster detail and closes again",
+        "full inception-to-today calendar and missing-day counts remain accessible; 409/refresh preserves day, focused viewport and DOM focus across another UTC rollover"
+      ],
+      "firstView": {
+        "height": 535.1875,
+        "width": 1088,
+        "page": 1440,
+        "viewport": 1440,
+        "escapes": []
+      },
+      "spread": {
+        "count": 15,
+        "ratio": 0.9084444046020508
+      },
+      "expanded": {
+        "height": 535.1875,
+        "width": 1088,
+        "page": 1440,
+        "viewport": 1440,
+        "escapes": []
+      },
+      "requests": 5
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "writes": [],
+  "sourceBlobs": {
+    "src/surfaces/season-hub/TeamValueHistory.tsx": "ebdd00358839b50ecf6315b9c40a6073fbeb85e0",
+    "src/surfaces/season-hub/TeamValueHistoryChart.tsx": "1e08edd4343b885ec340632bfb7e07e4adb9653f",
+    "src/surfaces/season-hub/TeamValueHistory.module.css": "c2df10c748522eedad0c10d45f7e31ea8594c4b5",
+    "src/surfaces/season-hub/team-value-history-view.ts": "3f4014d0b0b3d84a82d3775ab932f21c5cddb549"
+  },
+  "reuse": "Three completed mobile cases are recorded in ../mobile-completion.json and its preserved driver/probe/first-view captures. Only desktop remains to run after the QA mouse-scroll correction; no app source changed."
+}

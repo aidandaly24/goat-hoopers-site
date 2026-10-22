@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { historyPickDirection, historyRosterId } from "./team-value-history-view";
+import { historyPickDirection, historyRosterId, historyInitialRange, historyObservationRange } from "./team-value-history-view";
+import { compactHistory } from "../../../qa/team-value-history/compact-fixture";
 
 import { teamValueHistoryFixture, teamValueHistoryDetailFixture } from "@/test/team-value-history-fixture";
 import { historyCalendarDays, historyCalendarMonths, historyDayAtPosition, historyLargestChanges, historyUnpricedRanges, historyValueChanges, historyPreviousPoint, compareHistoryRosters } from "./team-value-history-view";
@@ -17,6 +18,18 @@ test("selected roster ids are canonical, and pick origin never implies direction
 });
 
 describe("the league calendar is independent of price coverage", () => {
+  test("focuses sparse observations on first view without moving inception or creating prices", () => {
+    const h = compactHistory(), original = structuredClone(h);
+    expect(historyCalendarDays(h.leagueRange)).toHaveLength(368);
+    expect(h.points).toHaveLength(15);
+    expect(historyInitialRange(h.points, h.leagueRange)).toEqual({ from: "2026-10-07", toExclusive: "2026-10-22" });
+    expect(h.points.at(-1)?.day).toBe("2026-10-21");
+    expect(h.asOf.slice(0, 10)).toBe("2026-10-22");
+    expect(h).toEqual(original);
+    expect(historyInitialRange([], h.leagueRange)).toEqual(h.leagueRange);
+    expect(historyObservationRange([h.points[0]], h.leagueRange)).toEqual({ from: "2026-10-06", toExclusive: "2026-10-09" });
+    expect(historyInitialRange([h.points[0], { ...h.points[1], day: h.leagueRange.from }], h.leagueRange)).toEqual(h.leagueRange);
+  });
   test("preserves inception rather than using the first quote or a rolling year", () => {
     const range = { from: "2024-09-15", toExclusive: "2026-10-21" };
     const days = historyCalendarDays(range), months = historyCalendarMonths(range);

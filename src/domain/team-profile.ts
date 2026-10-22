@@ -22,8 +22,18 @@ export type TeamProfile = {
   /**
    * Active streak, ending with the latest final week: positive = wins,
    * negative = losses, 0 = no games played yet. "W3" / "L2" style.
+   * Computed from completed weeks only — a live partial in the
+   * in-progress week never extends or breaks a streak (issue #224 P1).
    */
   streak: number;
+  /**
+   * The in-progress week while it is being played (Sleeper's current
+   * week), or null in the offseason / before any tip. A matchup in this
+   * week may carry live scores without being final — Sleeper serves
+   * current-week points live — so surfaces must render this week's
+   * matchups as live, never "Final".
+   */
+  inProgressWeek: number | null;
   /** This team's rookie-draft picks, in pick order. */
   draftPicks: DraftPick[];
   /** Recent transactions involving this team, newest first. */

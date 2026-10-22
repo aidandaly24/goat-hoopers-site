@@ -34,7 +34,7 @@ detail=app/'app/teams/[id]';detail.mkdir(parents=True,exist_ok=True)
 (detail/'page.tsx').write_text('''import { TeamProfile } from '@/surfaces/teams/TeamProfile';
 import { personalizedFixture } from '@/test/personalized-home-fixture';
 export const dynamic='force-dynamic';
-export default async function Page({params}:{params:Promise<{id:string}>}){const {id}=await params;const {teams}=personalizedFixture();const team=teams.find(t=>t.id===id)!;return <section data-synthetic-detail={id}><TeamProfile teams={teams} profile={{team,players:[],matchups:[],streak:0,draftPicks:[],transactions:[]}}/></section>}
+export default async function Page({params}:{params:Promise<{id:string}>}){const {id}=await params;const {teams}=personalizedFixture();const team=teams.find(t=>t.id===id)!;return <section data-synthetic-detail={id}><TeamProfile teams={teams} profile={{team,players:[],matchups:[],inProgressWeek:null,streak:0,draftPicks:[],transactions:[]}}/></section>}
 ''')
 for route in ['summary','detail']:
  dest=app/'app/api/team-value-history'/route;dest.mkdir(parents=True,exist_ok=True)

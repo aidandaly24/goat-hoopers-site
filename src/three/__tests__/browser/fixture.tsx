@@ -28,7 +28,7 @@ if (mode === "load-error") {
 const profile: TeamProfileData = {
   team: { id: "8", name: "Offline Hoopers", managerName: "Fixture Manager", avatar: null, wins: 5, losses: 2, ties: 0, pointsFor: 123456, pointsAgainst: 112233 },
   players: [{ id: "fixture-player", fullName: "Fixture Guard", position: "PG", nbaTeam: "TST", espnId: null }],
-  matchups: [], streak: 2, draftPicks: [], transactions: [],
+  matchups: [], streak: 2, inProgressWeek: null, draftPicks: [], transactions: [],
 };
 const franchise: FranchiseHistory = {
   teamId: "8", teamName: profile.team.name, founded: "2025", championships: 0, finalsAppearances: 0,

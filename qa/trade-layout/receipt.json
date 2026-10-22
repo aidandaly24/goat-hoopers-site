@@ -1,0 +1,285 @@
+{
+  "synthetic": true,
+  "base": "d25036edf16f14b10332fa591aa388b3dd527a01",
+  "candidateIdentity": "Tested uncommitted CSS blob below; all other product blobs equal base. CI records the submitted commit and merge identity separately.",
+  "baseline": {
+    "sourceRevision": "d25036edf16f14b10332fa591aa388b3dd527a01",
+    "sourceBlobs": {
+      "src/surfaces/trade-analyzer/TradeAnalyzer.tsx": "eb3345d98e7c9b48baa4bd3147d46ce962c891ba",
+      "src/surfaces/trade-analyzer/TradeAnalyzer.module.css": "1a06fa2a19666f0aa58d2657c242cf05b0281824",
+      "src/surfaces/trade-analyzer/tradeUrl.ts": "f3f11062566e92b5a81eb9a20682dbd61e11573d",
+      "src/domain/player-search.ts": "030a56a3c7a1c9f0e6b7722d1eb83ea3f15dd742"
+    },
+    "cases": [
+      {
+        "case": "1440px-100percent-no-preference",
+        "scrollWidthByState": [
+          1440,
+          1440,
+          1440,
+          1440,
+          1440,
+          1440,
+          1440,
+          1440
+        ]
+      },
+      {
+        "case": "1280px-200percent-no-preference",
+        "scrollWidthByState": [
+          1280,
+          1280,
+          1280,
+          1801,
+          1782,
+          1942,
+          1924,
+          1924
+        ]
+      },
+      {
+        "case": "390px-200percent-reduce",
+        "scrollWidthByState": [
+          390,
+          565,
+          547,
+          1228,
+          1209,
+          1369,
+          1351,
+          1351
+        ]
+      },
+      {
+        "case": "320px-100percent-reduce",
+        "scrollWidthByState": [
+          320,
+          320,
+          320,
+          616,
+          616,
+          687,
+          687,
+          687
+        ]
+      },
+      {
+        "case": "320px-200percent-no-preference",
+        "scrollWidthByState": [
+          321,
+          565,
+          547,
+          1228,
+          1209,
+          1369,
+          1351,
+          1351
+        ]
+      },
+      {
+        "case": "320px-200percent-reduce",
+        "scrollWidthByState": [
+          321,
+          565,
+          547,
+          1228,
+          1209,
+          1369,
+          1351,
+          1351
+        ]
+      }
+    ],
+    "failures": [],
+    "external": [],
+    "writes": [],
+    "pageErrors": [],
+    "hydrationErrors": []
+  },
+  "candidate": {
+    "sourceRevision": "d25036edf16f14b10332fa591aa388b3dd527a01",
+    "sourceBlobs": {
+      "src/surfaces/trade-analyzer/TradeAnalyzer.tsx": "eb3345d98e7c9b48baa4bd3147d46ce962c891ba",
+      "src/surfaces/trade-analyzer/TradeAnalyzer.module.css": "6e81907d452bde84f496a6a5263406468d73ea65",
+      "src/surfaces/trade-analyzer/tradeUrl.ts": "f3f11062566e92b5a81eb9a20682dbd61e11573d",
+      "src/domain/player-search.ts": "030a56a3c7a1c9f0e6b7722d1eb83ea3f15dd742"
+    },
+    "cases": [
+      {
+        "case": "1440px-100percent-no-preference",
+        "scrollWidthByState": [
+          1440,
+          1440,
+          1440,
+          1440,
+          1440,
+          1440,
+          1440,
+          1440
+        ],
+        "maximumEscapeCount": 0,
+        "minimumControlWidth": 44,
+        "minimumControlHeight": 44,
+        "completeNamesWithoutClipping": true,
+        "flowChecks": {
+          "accentSearch": true,
+          "keyboardSelection": true,
+          "duplicateGuard": true,
+          "pricedVerdict": true,
+          "canonicalReload": true,
+          "removeAndReadd": true
+        }
+      },
+      {
+        "case": "1280px-200percent-no-preference",
+        "scrollWidthByState": [
+          1280,
+          1280,
+          1280,
+          1280,
+          1280,
+          1280,
+          1280,
+          1280
+        ],
+        "maximumEscapeCount": 0,
+        "minimumControlWidth": 44,
+        "minimumControlHeight": 44,
+        "completeNamesWithoutClipping": true,
+        "flowChecks": {
+          "accentSearch": true,
+          "keyboardSelection": true,
+          "duplicateGuard": true,
+          "pricedVerdict": true,
+          "canonicalReload": true,
+          "removeAndReadd": true
+        }
+      },
+      {
+        "case": "390px-200percent-reduce",
+        "scrollWidthByState": [
+          390,
+          390,
+          390,
+          390,
+          390,
+          390,
+          390,
+          390
+        ],
+        "maximumEscapeCount": 0,
+        "minimumControlWidth": 44,
+        "minimumControlHeight": 44,
+        "completeNamesWithoutClipping": true,
+        "flowChecks": {
+          "accentSearch": true,
+          "keyboardSelection": true,
+          "duplicateGuard": true,
+          "pricedVerdict": true,
+          "canonicalReload": true,
+          "removeAndReadd": true
+        }
+      },
+      {
+        "case": "320px-100percent-reduce",
+        "scrollWidthByState": [
+          320,
+          320,
+          320,
+          320,
+          320,
+          320,
+          320,
+          320
+        ],
+        "maximumEscapeCount": 0,
+        "minimumControlWidth": 44,
+        "minimumControlHeight": 44,
+        "completeNamesWithoutClipping": true,
+        "flowChecks": {
+          "accentSearch": true,
+          "keyboardSelection": true,
+          "duplicateGuard": true,
+          "pricedVerdict": true,
+          "canonicalReload": true,
+          "removeAndReadd": true
+        }
+      },
+      {
+        "case": "320px-200percent-no-preference",
+        "scrollWidthByState": [
+          320,
+          320,
+          320,
+          320,
+          320,
+          320,
+          320,
+          320
+        ],
+        "maximumEscapeCount": 0,
+        "minimumControlWidth": 44,
+        "minimumControlHeight": 44,
+        "completeNamesWithoutClipping": true,
+        "flowChecks": {
+          "accentSearch": true,
+          "keyboardSelection": true,
+          "duplicateGuard": true,
+          "pricedVerdict": true,
+          "canonicalReload": true,
+          "removeAndReadd": true
+        }
+      },
+      {
+        "case": "320px-200percent-reduce",
+        "scrollWidthByState": [
+          320,
+          320,
+          320,
+          320,
+          320,
+          320,
+          320,
+          320
+        ],
+        "maximumEscapeCount": 0,
+        "minimumControlWidth": 44,
+        "minimumControlHeight": 44,
+        "completeNamesWithoutClipping": true,
+        "flowChecks": {
+          "accentSearch": true,
+          "keyboardSelection": true,
+          "duplicateGuard": true,
+          "pricedVerdict": true,
+          "canonicalReload": true,
+          "removeAndReadd": true
+        }
+      }
+    ],
+    "failures": [],
+    "external": [],
+    "writes": [],
+    "pageErrors": [],
+    "hydrationErrors": []
+  },
+  "localChecks": {
+    "focusedTests": 14,
+    "typecheck": "pass",
+    "surfaceContracts": 104,
+    "syntheticProductionNextBuild": "pass"
+  },
+  "limits": [
+    "Local synthetic Chromium only; no physical phone or live-provider/production/account/database/score requests.",
+    "Independent exact-head review and genuine Muse readiness are separate gates."
+  ],
+  "stateOrder": [
+    "empty",
+    "accented-picker",
+    "selected-accented-player",
+    "long-name-picker",
+    "both-sides-priced",
+    "unbroken-name-picker",
+    "three-selected-players",
+    "full-copy-failure-label"
+  ]
+}

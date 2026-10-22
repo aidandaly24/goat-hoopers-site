@@ -1,10 +1,11 @@
 import { expect, test } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { teamValueHistoryDetailFixture, teamValueHistoryFixture } from "@/test/team-value-history-fixture";
-import { isTeamValueHistoryDetail } from "@/domain/team-value-history";
+import { isTeamValueHistoryDetail, isTeamValueHistoryEnvelope } from "@/domain/team-value-history";
 import { TeamValueHistoryDetail } from "./TeamValueHistoryDetail";
 import { TeamValueHistory } from "./TeamValueHistory";
 import { membershipDetail } from "../../../qa/team-value-history/membership-fixture";
+import { compactHistory } from "../../../qa/team-value-history/compact-fixture";
 
 test("dated player changes and roster differences never become a trade-profit claim", () => {
   const before = teamValueHistoryDetailFixture("2026-10-08"), after = teamValueHistoryDetailFixture("2026-10-19");
@@ -35,19 +36,43 @@ test("failed or changed comparison keeps selected evidence without presenting a 
   }
 });
 
-test("all time defaults to the league bounds even with a subset summary", () => {
-  const history = teamValueHistoryFixture("paged");
-  history.requestedRange = { from: "2026-10-01", toExclusive: history.leagueRange.toExclusive };
-  history.loadedRange = { from: "2026-10-01", toExclusive: "2026-10-19" };
-  history.points = history.points.filter(point => point.day >= "2026-10-01");
+test("sparse initial view keeps selected partial value inside the graph and secondary information collapsed", () => {
+  const history = compactHistory();
+  expect(isTeamValueHistoryEnvelope(history)).toBe(true);
   const html = renderToStaticMarkup(<TeamValueHistory history={history} detailEndpoint="/api/team-value-history/detail" pageEndpoint="/api/team-value-history/summary" />);
-  expect(html).toContain('aria-pressed="true">Since inception');
-  expect(html).toContain("Oct 19, 2025");
-  expect(html).toContain("Some dates in this range have not loaded");
+  expect(html).toContain('aria-pressed="true">Values');
+  expect(html).toContain('aria-pressed="false">All days');
+  expect(html).toContain("Oct 20, 2025");
+  expect(html).toContain("15 loaded value observations across 368 calendar days");
+  const caption = html.match(/<figcaption[^>]*>(.*?)<\/figcaption>/)?.[1];
+  expect(caption).toContain("Oct 21, 2026");
+  expect(caption).toContain("$123.00");
+  expect(caption).toContain("Subtotal · Observed quote");
+  expect(caption).toContain("1/4 priced");
+  expect(caption).not.toContain("Value not recorded");
+  expect(html).toMatch(/<\/figure><details[^>]+data-history-inspector/);
+  expect(html).not.toMatch(/<details[^>]* open/);
   expect(html).not.toContain('type="date"');
-  expect(html).not.toContain('Calendar month');
-  expect(html).toMatch(/<\/figure><section[^>]+data-history-inspector/);
-  expect(html).toContain("data-history-inspector");
+  expect(html).not.toContain("Largest observed changes");
+  expect(html).not.toContain("Zoom to values");
+});
+
+test.each([
+  { name: "partial", subtotalCents: 12300, priced: 1, rosterCount: 4,
+    expected: "Current roster quote subtotal: $123.00 · 1/4 priced" },
+  { name: "full", subtotalCents: 12300, priced: 4, rosterCount: 4,
+    expected: "Current roster quote: $123.00 · 4/4 priced" },
+  { name: "empty", subtotalCents: 0, priced: 0, rosterCount: 0,
+    expected: "Current roster quote: $0.00 · 0/0 priced · Empty roster" },
+])("current roster quote identifies $name coverage", ({ name, subtotalCents, priced, rosterCount, expected }) => {
+  const history = teamValueHistoryFixture();
+  history.currentQuote = { at: history.asOf, subtotalCents, priced, rosterCount };
+  expect(isTeamValueHistoryEnvelope(history)).toBe(true);
+  const html = renderToStaticMarkup(<TeamValueHistory history={history} />);
+  const quote = html.match(/<p>Current roster quote[^<]*<\/p>/)?.[0];
+  expect(quote).toContain(expected);
+  expect(quote).toContain(history.asOf);
+  if (name !== "partial") expect(quote).not.toContain("quote subtotal");
 });
 
 test("scopes both sides of a multi-roster trade without inventing counterparties or prices", () => {

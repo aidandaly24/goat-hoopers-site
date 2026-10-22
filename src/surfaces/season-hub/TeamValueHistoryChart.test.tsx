@@ -3,6 +3,19 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { teamValueHistoryFixture } from "@/test/team-value-history-fixture";
 import { TeamValueHistoryChart } from "./TeamValueHistoryChart";
 import styles from "./TeamValueHistory.module.css";
+import { compactHistory } from "../../../qa/team-value-history/compact-fixture";
+import { historyInitialRange } from "./team-value-history-view";
+
+test("the focused sparse plot announces a selected subtotal and its actual price coverage", () => {
+  const h = compactHistory(), selected = h.points.at(-1)!;
+  const html = renderToStaticMarkup(<TeamValueHistoryChart points={h.points} range={historyInitialRange(h.points, h.leagueRange)} selectedDay={selected.day} onSelectDay={() => {}} />);
+  expect(html).toContain('aria-valuemax="14"');
+  expect(html).toContain('aria-valuenow="14"');
+  expect(html).toContain("Oct 21, 2026 UTC, $123 subtotal, recorded, 1/4 priced");
+  expect(html).toContain('aria-describedby=');
+  expect(html).toContain('aria-keyshortcuts=');
+  expect(html.match(/data-history-point=/g)).toHaveLength(15);
+});
 
 test("SVG point titles render as one server/client-safe text value under React19", () => {
   const source = teamValueHistoryFixture("one"), error = vi.spyOn(console, "error").mockImplementation(() => {});

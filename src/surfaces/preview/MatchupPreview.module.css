@@ -38,6 +38,13 @@
   color: var(--gh-text-faint);
 }
 
+.even {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gh-text-faint);
+}
+
 .vs {
   display: grid;
   grid-template-columns: 1fr auto 1fr;

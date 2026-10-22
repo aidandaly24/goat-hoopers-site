@@ -19,6 +19,22 @@ export function historyPickDirection(pick: TeamHistoryDraftPick, rosterId: numbe
 export const historyDayCount = (range: TeamHistoryRange) =>
   Math.round((Date.parse(range.toExclusive + "T00:00:00Z") - Date.parse(range.from + "T00:00:00Z")) / 86400000);
 
+/** A calendar viewport, never additional observations or a compressed time axis. */
+export function historyObservationRange(points: readonly TeamHistoryPoint[], league: TeamHistoryRange): TeamHistoryRange {
+  const days = points.filter(point => point.subtotalCents !== null).map(point => point.day).sort();
+  if (!days.length) return league;
+  return {
+    from: days.length === 1 && shiftHistoryDay(days[0], -1) >= league.from ? shiftHistoryDay(days[0], -1) : days[0],
+    toExclusive: days.length === 1 && shiftHistoryDay(days[0], 2) <= league.toExclusive
+      ? shiftHistoryDay(days[0], 2) : shiftHistoryDay(days.at(-1)!, 1),
+  };
+}
+
+export function historyInitialRange(points: readonly TeamHistoryPoint[], league: TeamHistoryRange): TeamHistoryRange {
+  const observed = historyObservationRange(points, league);
+  return historyDayCount(observed) * 2 < historyDayCount(league) ? observed : league;
+}
+
 /** Calendar positions come from the requested bounds, never the available quotes. */
 export function historyCalendarDays(range: TeamHistoryRange): string[] {
   return Array.from({ length: historyDayCount(range) }, (_, index) => shiftHistoryDay(range.from, index));

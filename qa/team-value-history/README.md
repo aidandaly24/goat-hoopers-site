@@ -5,9 +5,47 @@ assert live league, account, provider, database or production behavior.
 
 The current interaction is the chart: hover a value dot on desktop, tap the
 chart on mobile, or use its keyboard arrows, PageUp/PageDown and Home/End.
-Details are immediately beneath the graph. There is no calendar/date input.
-The default range begins at league inception. Timeline zoom controls retain
-that full range while allowing dense supported points to be inspected.
+The selected date, value, source and partial-price coverage live in the graph.
+Roster/move detail is in a native disclosure immediately beneath it. There is
+no calendar/date input or separate largest-change card list. Sparse histories
+open on their loaded observation window; **All days** exposes the unchanged
+inception-to-today calendar, including missing-price days. Time remains linear
+inside either viewport, with no fabricated prices or lines through gaps.
+
+## Current local compact-view regression
+
+Surface contract: the user asks how their team's value changed and what roster
+or moves explain the selected day; the main action is graph inspection. Sparse,
+full, partial, unpriced/unknown and changed-generation states remain distinct.
+At 320px and 200% root text the value, subtotal qualification, source, controls
+and keyboard access stay readable. Invented daily prices, silent partial totals,
+calendar-picker preambles and separate change-card walls are forbidden.
+
+```sh
+npm test -- src/surfaces/season-hub/TeamValueHistoryChart.test.tsx src/surfaces/season-hub/TeamValueHistoryDetail.test.tsx src/surfaces/season-hub/team-value-history-view.test.ts
+npm test -- --config qa/team-value-history/producer-integration.config.mts
+npm run typecheck
+python3 qa/team-value-history/prepare-compact.py /tmp/goat-compact-review
+python3 qa/team-value-history/serve.py /tmp/goat-compact-review 4399
+# In another terminal:
+python3 qa/team-value-history/compact-browser.py /tmp/goat-compact-review http://127.0.0.1:4399
+```
+
+The compact fixture has 368 calendar days and 15 synthetic observations, with
+the last quote on Oct 21 and an Oct 22 UTC cutoff. A selected 1/4-priced quote
+is labelled as a subtotal inside the chart. The first view checks actual dot
+spacing before any zoom/range action, collapsed explanation, and no eager
+detail fetch. The same actual Next homepage fixture then checks hover/tap,
+native keyboard disclosure, all 368 calendar days, missing-day membership,
+and retained day/viewport/focus through a 409/RSC refresh and another UTC
+rollover. Layouts are 390/100%, 320/100%, 320/200% and 1440/100%.
+
+This is local-only preparation on the retained PR244 producer base and held
+consumer patch. It is not published, a current-main integration verdict, a live
+membership/price check or an authenticated production check. `compact-*`
+captures/receipts identify the exact source blobs. The earlier drivers and
+receipts below preserve checks of their stated revisions; their old control
+labels and inception-default assertions are not the current interaction.
 
 Prepare an isolated fixture with the locked dependencies and repository Node:
 
