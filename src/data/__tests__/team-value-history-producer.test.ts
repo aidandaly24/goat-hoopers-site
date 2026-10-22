@@ -378,13 +378,26 @@ describe("recorded-quote adapter", () => {
 
   it("maps rows verbatim and flags truncation; empty scope reads nothing", async () => {
     const rows = [quote("q1", "101", 123, T1), quote("q2", "101", 124, T2)];
-    const store = getRecordedQuoteStore({ execute: async () => ({ rows: [{ records: rows }] }) } as unknown as Db);
+    // Reads open with one span probe, then page the populated span by
+    // day-chunk: the window's rows arrive in the first chunk.
+    let call = 0;
+    const store = getRecordedQuoteStore({ execute: async () => {
+      call += 1;
+      if (call === 1) return { rows: [{ span: { earliest: T1, latest: T2 } }] };
+      return { rows: [{ records: call === 2 ? rows : [] }] };
+    } } as unknown as Db);
     expect(store).not.toBeNull();
     await expect(store!.readWindow({ playerIds: ["101"], fromDay: "2025-10-20", toDay: "2026-10-21" }))
       .resolves.toEqual({ quotes: rows, truncated: false });
 
     const many = Array.from({ length: 5001 }, (_, i) => quote(`q${i}`, "101", 1, T1));
-    const capped = getRecordedQuoteStore({ execute: async () => ({ rows: [{ records: many }] }) } as unknown as Db);
+    let cappedCall = 0;
+    const capped = getRecordedQuoteStore({ execute: async () => {
+      cappedCall += 1;
+      return cappedCall === 1
+        ? { rows: [{ span: { earliest: T1, latest: T2 } }] }
+        : { rows: [{ records: many }] };
+    } } as unknown as Db);
     const cappedResult = await capped!.readWindow({ playerIds: ["101"], fromDay: "2025-10-20", toDay: "2026-10-21" });
     expect(cappedResult.truncated).toBe(true);
     expect(cappedResult.quotes).toHaveLength(5000);

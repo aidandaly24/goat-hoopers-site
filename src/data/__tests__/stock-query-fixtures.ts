@@ -18,6 +18,42 @@ export function fixtureDb(fixture: StockQueryFixture) {
   const calls: FixtureQuery[] = [];
   const query = async (sql: string, params: unknown[]) => {
     const call = { sql, params: [...params], rows: 0, bytes: 0 }; calls.push(call);
+    if (sql.includes("row_number()")) {
+      // Modelled semantics of getSnapshotHistory's ranked query: the
+      // latest N rows per player by (snapshot_at desc, id desc),
+      // returned as one jsonb-style records envelope ordered
+      // (player_id, snapshot_at, id) ascending. call.rows counts the
+      // enveloped payload entries — the quantity the SQL bound governs.
+      if (fixture.missing?.has("stock_snapshots")) throw new Error("Missing fixture table: stock_snapshots");
+      const bound = Number(params.at(-1));
+      const ids = params.slice(0, -1).map(String);
+      const groups = new Map<string, FixtureRow[]>();
+      for (const row of fixture.snapshots) {
+        if (!ids.includes(String(row.player_id))) continue;
+        const group = groups.get(String(row.player_id)) ?? [];
+        group.push(row); groups.set(String(row.player_id), group);
+      }
+      const byText = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
+      const kept: FixtureRow[] = [];
+      for (const group of groups.values()) {
+        kept.push(...[...group]
+          .sort((a, b) => byText(String(b.snapshot_at), String(a.snapshot_at)) || byText(String(b.id), String(a.id)))
+          .slice(0, bound));
+      }
+      kept.sort((a, b) => byText(String(a.player_id), String(b.player_id))
+        || byText(String(a.snapshot_at), String(b.snapshot_at)) || byText(String(a.id), String(b.id)));
+      const native = (value: string) => {
+        const naive = value.replace("Z", "").replace(" ", "T");
+        return naive.includes(".") ? naive : `${naive}.000000`;
+      };
+      const records = kept.map(row => ({
+        playerId: String(row.player_id), priceCents: Number(row.price_cents),
+        snapshotAt: native(String(row.snapshot_at)),
+      }));
+      call.rows = records.length;
+      call.bytes = Buffer.byteLength(JSON.stringify(records), "utf8");
+      return { rows: [{ records }] };
+    }
     const match = sql.match(/^select(?: distinct on \((.*?)\))? (.*?) from "(.*?)"(.*)$/);
     if (!match) throw new Error(`Unsupported fixture query: ${sql}`);
     const [, distinct, projection, table, rest] = match;

@@ -776,7 +776,8 @@ Fundamentals are cached in the `player_stat_cache` table (one row per
 player, UPSERTED, refreshed at most daily) by `src/data/nba-stats.ts`,
 so page loads never hit the stats feed and Neon stays quiet. Price
 history has two layers: `stock_snapshots` holds live daily snapshots
-(30-day retention), and `price_history` holds reconstructed deep history
+(append-only recorded evidence — no prune since the #224 retention
+correction), and `price_history` holds reconstructed deep history
 — per-game `gamelog` points backfilled from real game logs plus yearly
 `backtest` points for seasons without log coverage. The store
 (`src/data/stocks.ts`) uses separate quote and chart reads.
@@ -825,8 +826,9 @@ move whose effective time is unknown stores `precision = 'unknown'` with
 NULL `effective_at` / `day` rather than an invented cut date.
 `team_value_points` is the derived daily series whose `subtotal_cents`
 (and `roster_count`) is nullable because unknown means NULL, never zero.
-Recorded points persist there with their original quote references
-because `stock_snapshots` prunes after 30 days. The dot owns the
+Recorded points persist there with their original quote references as
+the durable derived series (`stock_snapshots` itself is append-only
+since the #224 retention correction). The dot owns the
 presentation contract (`src/domain/team-value-history.ts`) and picker;
 the producer that fills these tables is a later, separately reviewed lane.
 
