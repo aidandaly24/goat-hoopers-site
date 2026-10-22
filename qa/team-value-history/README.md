@@ -12,6 +12,37 @@ open on their loaded observation window; **All days** exposes the unchanged
 inception-to-today calendar, including missing-price days. Time remains linear
 inside either viewport, with no fabricated prices or lines through gaps.
 
+## Current quote and historical selection
+
+The default **Current** marker/readout is the same validated calculation as the
+headline, with the same cents, roster, priced coverage, timestamp and calculation
+identity. It is a distinct modeled quote, never a saved observation. **History**
+selects the historical observations; **All days** exposes the full calendar.
+Current and saved quotes can coexist on one day or at one plotted value without
+overwriting each other. End selects Current when available; left from Current
+returns to the latest historical point. Current roster and evidence use compact
+native disclosures and do not trigger historical detail reads.
+
+```sh
+npm test -- src/domain/current-team-quote.test.ts src/surfaces/season-hub/TeamValueHistoryCurrent.test.tsx src/surfaces/season-hub/TeamValueHistoryChanges.test.tsx src/surfaces/season-hub/TeamValueHistoryChart.test.tsx src/surfaces/season-hub/TeamValueHistoryDetail.test.tsx src/surfaces/season-hub/team-value-history-view.test.ts src/test/authored-controls.test.tsx
+npm run typecheck
+python3 qa/team-value-history/prepare-current.py /tmp/goat-current-review
+python3 qa/team-value-history/serve.py /tmp/goat-current-review 4415
+# In another terminal:
+python3 qa/team-value-history/current-browser.py /tmp/goat-current-review http://127.0.0.1:4415
+```
+
+The current driver checks actual Next server rendering/hydration with explicit
+synthetic sources: headline/marker equality, same-day overlapping current/saved
+quotes, partial/unpriced/empty/unknown membership, long names, separate
+retrospective provenance, UTC rollover, keyboard/touch/pointer selection,
+same-team RSC refresh, delayed stale requests and 409 refresh retaining day/focus.
+Layouts include desktop, 390px, 320px and 320px at 200% root text. Fixture preparation
+records exact source blobs and the driver rejects a source change during the
+run. It has no application credentials, external calls or write actions.
+Historical acquisition/producer work remains separate; these synthetic checks
+do not establish real historical coverage or live behavior.
+
 ## Changed-player and current-value follow-up
 
 The default detail list now shows only nonzero comparable changes, with unchanged

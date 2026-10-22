@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { HomeTeamSummary } from "@/domain/personalized-home";
 import type { TeamValueHistoryEnvelope } from "@/domain/team-value-history";
+import { currentTeamQuote } from "@/domain/current-team-quote";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { cs } from "./CourtsideStyles";
 import { formatHomeStamp } from "./homeFormat";
@@ -30,6 +31,7 @@ export function RosterValueSection({ summary, portraits, teamHistory }: {
   teamHistory?: TeamValueHistoryEnvelope | null;
 }) {
   const { team, valuation, coverage, market } = summary;
+  const currentQuote = currentTeamQuote(summary);
   const total = valuation.total;
   const dollars = total !== null ? Math.floor(total) : null;
   const cents = total !== null ? Math.round((total - Math.floor(total)) * 100) : null;
@@ -46,12 +48,12 @@ export function RosterValueSection({ summary, portraits, teamHistory }: {
         <div className={styles.panel}>
           <p className={styles.label}>Roster value · FAAB</p>
           {total === null || dollars === null || cents === null ? (
-            <p className={styles.unavailable} data-value-unavailable>
+            <p className={styles.unavailable} data-value-unavailable data-quote-calculation={currentQuote?.calculationId}>
               Roster value unavailable. Current player prices could not be verified.
             </p>
           ) : (
             <>
-              <p className={styles.total} data-team-value>
+              <p className={styles.total} data-team-value data-quote-calculation={currentQuote?.calculationId}>
                 ${dollars.toLocaleString("en-US")}<span className={styles.cents}>.{String(cents).padStart(2, "0")}</span>
               </p>
               <p className={styles.meta}>
@@ -82,10 +84,7 @@ export function RosterValueSection({ summary, portraits, teamHistory }: {
           history={teamHistory}
           detailEndpoint="/api/team-value-history/detail"
           pageEndpoint="/api/team-value-history/summary"
-          currentValue={{ team: { id: team.id }, market, valuation: {
-            total: valuation.total, priced: valuation.priced, unpriced: valuation.unpriced,
-            complete: valuation.complete, knownRoster: valuation.knownRoster,
-          } }}
+          currentQuote={currentQuote}
         />
       )}
     </section>

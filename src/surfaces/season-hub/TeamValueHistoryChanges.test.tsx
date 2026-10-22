@@ -73,7 +73,7 @@ test("real zero-price transitions remain non-zero comparable changes and sort by
   expect(rows.indexOf("Joel Embiid")).toBeLessThan(rows.indexOf("Damian Lillard"));
 });
 
-test("the current headline and historical selection retain their actual separate totals, dates and rosters", () => {
+test("the initial current marker matches the headline while saved observations keep their original totals and rosters", () => {
   const f = personalizedFixture(), history = changesHistory();
   f.market.updatedAt = Date.parse(history.asOf); f.home.checkedAt = history.asOf;
   const data = buildPersonalizedHome({ kind: "member", teamId: "1" }, f.home, f.weekly, f.market);
@@ -83,8 +83,10 @@ test("the current headline and historical selection retain their actual separate
   const selected = html.match(/<div[^>]+data-history-readout[^>]*>([\s\S]*?)<\/div>/)?.[1] ?? "";
   expect(data.summary.valuation.total).toBe(110);
   expect(current).toContain("$110.00"); expect(current).toContain("4/4 priced"); expect(current).toContain(history.asOf);
-  expect(selected).toContain("$202.96"); expect(selected).toContain("Oct 20, 2026"); expect(selected).toContain("8/8 priced");
-  expect(selected).not.toContain("$110.00");
+  expect(selected).toContain("$110.00"); expect(selected).toContain("Current"); expect(selected).toContain("4/4 priced");
+  expect(selected).not.toContain("$202.96");
+  expect(history.points.at(-1)?.subtotalCents).toBe(20296); expect(history.points.at(-1)?.rosterCount).toBe(8);
+  expect(html).toContain("$202.96"); expect(html).toContain("Oct 20, 2026");
   expect(html).toContain("Different dates, rosters or price coverage can produce different totals");
   expect(html).toContain("Saved quote for current roster: $100.96");
   expect(html).toContain("All days opens the full league calendar");

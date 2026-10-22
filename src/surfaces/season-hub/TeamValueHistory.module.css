@@ -11,6 +11,11 @@
 .caption { color: var(--gh-text-dim); font-size: var(--gh-text-xs); overflow-wrap: anywhere; margin: var(--gh-s2) 0; }
 .figure { margin: var(--gh-s3) 0 0; min-width: 0; }
 .chartHeader { display: grid; gap: var(--gh-s3); }
+.chartControls { display: flex; flex-wrap: wrap; align-items: stretch; gap: var(--gh-s2); }
+.chartControls > .presets { flex: 2 1 10rem; }
+.currentSelect { flex: 1 1 5rem; background: transparent; border-color: transparent; font-weight: 500; }
+.currentSelect[aria-pressed="true"] { color: var(--gh-accent); background: color-mix(in srgb, var(--gh-accent) 7%, var(--gh-bg)); font-weight: 600; }
+.currentMarker { fill: var(--gh-bg); stroke: var(--gh-accent); stroke-width: 2; }
 .plot { margin-top: var(--gh-s3); min-width: 0; }
 .plot svg { display: block; width: 100%; height: clamp(10rem, 35cqw, 14rem); }
 .yAxis { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--gh-s2); padding-bottom: var(--gh-s1); color: var(--gh-text-dim); font: var(--gh-text-xs)/var(--gh-lh-xs) var(--gh-font-mono); }
@@ -34,6 +39,7 @@
 .details, .evidence { border-top: 1px solid var(--gh-border); }
 .root summary { min-height: 44px; padding: var(--gh-s3) 0; cursor: pointer; font-weight: 600; overflow-wrap: anywhere; }
 .inspection { min-width: 0; }
+.currentInspection { display: flow-root; padding-top: var(--gh-s3); }
 .players { list-style: none; margin: 0; padding: 0; }
 .players > li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--gh-s3); padding: var(--gh-s3) 0; border-bottom: 1px solid var(--gh-border); overflow-wrap: anywhere; }
 .players a { color: var(--gh-text); font-weight: 600; text-underline-offset: .18em; }

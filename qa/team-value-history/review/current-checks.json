@@ -1,0 +1,29 @@
+{
+  "base": "c923dfc268551ee16c35609ec720d2afec8fe18b",
+  "scope": "Local current quote consistency; synthetic evidence only. Full app build and broader suite remain exact-head CI gates.",
+  "focused": {
+    "command": "npm test -- src/domain/current-team-quote.test.ts src/surfaces/season-hub/TeamValueHistoryCurrent.test.tsx src/surfaces/season-hub/TeamValueHistoryChanges.test.tsx src/surfaces/season-hub/TeamValueHistoryChart.test.tsx src/surfaces/season-hub/TeamValueHistoryDetail.test.tsx src/surfaces/season-hub/team-value-history-view.test.ts src/test/authored-controls.test.tsx",
+    "files": 7,
+    "passed": 60
+  },
+  "typecheck": "passed",
+  "scopedEslint": "passed",
+  "pythonCompile": "passed",
+  "diffCheck": "passed",
+  "actualNextSyntheticProductionBuild": "passed",
+  "browserCases": 12,
+  "additionalCollapsedInitialViews": 2,
+  "sourceBlobs": {
+    "src/domain/current-team-quote.ts": "3d94c0a1a512bcd1f1dc2914b78c78f79ef1b1bb",
+    "src/surfaces/season-hub/RosterValueSection.tsx": "6cd21a9df31133d70b66929a9e98578b9f984111",
+    "src/surfaces/season-hub/TeamValueHistory.tsx": "4a0522f76da64a9f3c8bf407408a7ef2405d6824",
+    "src/surfaces/season-hub/TeamValueHistoryChart.tsx": "93f186570027e230b85394825dcfda403a042bdf",
+    "src/surfaces/season-hub/TeamValueHistory.module.css": "aa67fb8d5a95bddbb06d9d22eb09d3eece64dac0"
+  },
+  "limits": [
+    "Not authenticated production verification; prior ordinary browser transport failed before site content.",
+    "Does not recover historical prices or prove real historical coverage.",
+    "No provider, production database, credential, persistence or configuration changes.",
+    "Current calculation identity is view payload identity, not a historical dataset or engine revision."
+  ]
+}
