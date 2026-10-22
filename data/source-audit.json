@@ -156,7 +156,8 @@
     "2021-22": 25772,
     "2022-23": 25649,
     "2023-24": 26026,
-    "2024-25": 26084
+    "2024-25": 26084,
+    "2025-26": 26648
   },
   "committedRowsMatched": 103531,
   "committedPlayersMatched": 918,
@@ -165,10 +166,37 @@
   ],
   "extraUpstreamGames": 217,
   "inputSha256": {
-    "gamelog_mapped.json": "9258827fe4a5541fe9d64e9b8d9f640210d332bcaba10f6f240ad4ff2c10ff59",
+    "gamelog_mapped.json": "6bc78094c5b1407f55a864ce7271918bdf032afea099fbc918e254b9adabbe79",
     "sleeper_players.json": "d5f22653887268cf65e9a6dc5fd9b0c3e083157e4121ff4b25362685fb4c72cf"
   },
   "sourceColumnValues": [
     "kaggle_v515"
+  ],
+  "appendedSeasons": [
+    {
+      "season": "2025-26",
+      "appendedOn": "2026-10-22",
+      "issue": "#217 Stage 1",
+      "upstreamRevision": "d480e56d900e9f0c716bc923aa5d7dd17f0bcfcf",
+      "upstreamFile": "game_logs/game_logs_2025-26.parquet",
+      "upstreamSha256": "2119a573915ebcd548a290e9d2d9c509921adb85b7e01e570908f423d60cb3a3",
+      "upstreamRows": 26648,
+      "upstreamGames": 1230,
+      "lineageProof": "The 2024-25 file at this revision hashes to a4cc538112a7c4c7a4f42476022726159907ed71fc13cdd9a070c9950c2b50d6, byte-identical to the pinned entry above; the 2025-26 file carries the same 27-column schema and source=kaggle_v515.",
+      "mappedRows": 26648,
+      "mappedPlayers": 582,
+      "unmappedNames": [],
+      "identityFixes": [
+        "HAND_MAP 'hansen yang' -> 'Yang Hansen' (Sleeper 4763 lists family name first)",
+        "ID_OVERRIDES 'jaylin williams' -> Sleeper 2475 (OKC); duplicate active entry 2845 is team-less and previously captured his games"
+      ],
+      "validation": [
+        "Games-played vs ESPN core v2 2025-26 season totals (issue #198 extract, 582 athletes) joined via src/data/espn-id-map.json: 477 exact of 479 joinable; Nick Richards 47 vs 48 and Tony Bradley 40 vs 41 are single-game upstream discrepancies",
+        "Spot-checked full stat lines against Basketball-Reference box scores (2025-10-21 HOU@OKC; 2025-10-22 SAS@DAL): Sengun, Durant, Wembanyama, Flagg exact on every field",
+        "Coverage vs the #217 step-0 census replay: 34,755 of 36,774 2025-segment player-days priceable (94.51%); residuals are pre-first-game days (1,309) and six players with no 2025-26 NBA game (710 days: Lillard, Irving, Haliburton, Sorber, VanVleet, legacy directory id 1228)"
+      ],
+      "baseInputSha256": "9258827fe4a5541fe9d64e9b8d9f640210d332bcaba10f6f240ad4ff2c10ff59",
+      "mergeInvariant": "scripts/merge-gamelog-season.py asserted that removing the appended season reproduces the pre-append committed file exactly; no pre-existing row was rewritten (a full regeneration remains a separate approval because it would add the 217 Bitadze hand-map rows to old seasons)"
+    }
   ]
 }

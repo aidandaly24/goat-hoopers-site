@@ -2,21 +2,34 @@
 """
 Prepare game-log data for the price-history backfill.
 
-Reads the Hugging Face parquet game logs (2021-22 through 2024-25),
+Reads the Hugging Face parquet game logs (2021-22 through 2025-26),
 maps player_name -> Sleeper player_id via normalized name matching,
 computes approximate per-game fantasy PPG (ff/tf penalties are omitted), and
 writes a JSON file for scripts/backfill-price-history.ts to price.
 
-Usage: python3 scripts/prepare-gamelog.py
-Reads: /tmp/gamelogs/gl_*.parquet, /tmp/sleeper_players.json
-Writes: /tmp/gamelog_mapped.json
+Usage: python3 scripts/prepare-gamelog.py [season ...]
+  Seasons default to all five. Pass one season (e.g. 2025-26) to map only
+  that season, e.g. as input to scripts/merge-gamelog-season.py.
+Reads: $GAMELOG_DIR (default /tmp/gamelogs) — game_logs/game_logs_<season>.parquet
+  or legacy gl_<season>.parquet; $SLEEPER_PLAYERS (default /tmp/sleeper_players.json)
+Writes: $GAMELOG_OUT (default /tmp/gamelog_mapped.json)
+
+Note: the committed data/gamelog_mapped.json rows for 2021-22..2024-25 predate
+the Bitadze hand-map below; a full regeneration would add those 217 rows and
+remains a separate approval (see data/README.md). The 2025-26 append was done
+by mapping that season alone and merging with merge-gamelog-season.py, which
+asserts every pre-existing row is unchanged.
 """
 import json
+import os
 import re
+import sys
 import unicodedata
 from collections import defaultdict
 
 import pyarrow.parquet as pq
+
+ALL_SEASONS = ("2021-22", "2022-23", "2023-24", "2024-25", "2025-26")
 
 # League scoring (from Sleeper league 1387473752807190528).
 # Legacy inputs do not retain ff/tf or raw box scores. Do not describe the
@@ -37,6 +50,15 @@ SUFFIXES = {"jr", "sr", "ii", "iii", "iv", "v"}
 # Dataset quirks: truncated/misspelled names mapped by hand.
 HAND_MAP = {
     "ga bitadze": "Goga Bitadze",  # first name truncated in the source
+    "hansen yang": "Yang Hansen",  # source uses Western order; Sleeper lists family name first
+}
+
+# Directory duplicates the name matcher cannot resolve: normalized name ->
+# Sleeper player_id, pinned by identity evidence (team + espn-id-map entry).
+ID_OVERRIDES = {
+    # Two active "Jaylin Williams" entries exist; 2845 is a team-less
+    # duplicate, 2475 is the OKC player (and the espn-id-map identity).
+    "jaylin williams": "2475",
 }
 
 
@@ -78,8 +100,10 @@ def game_fppg(r) -> float:
 
 
 def main():
+    seasons = tuple(sys.argv[1:]) or ALL_SEASONS
+    gamelog_dir = os.environ.get("GAMELOG_DIR", "/tmp/gamelogs")
     # Sleeper directory: normalized name -> player_id.
-    directory = json.load(open("/tmp/sleeper_players.json"))
+    directory = json.load(open(os.environ.get("SLEEPER_PLAYERS", "/tmp/sleeper_players.json")))
     name_to_id = {}
     for pid, p in directory.items():
         full = p.get("full_name")
@@ -89,13 +113,21 @@ def main():
         # First write wins; duplicates (rare) keep the active player.
         if key not in name_to_id or p.get("active"):
             name_to_id[key] = pid
+    for key, pid in ID_OVERRIDES.items():
+        if pid in directory:
+            name_to_id[key] = pid
 
     games_by_player = defaultdict(list)
     unmapped = defaultdict(int)
     total_rows = 0
 
-    for season in ("2021-22", "2022-23", "2023-24", "2024-25"):
-        t = pq.read_table(f"/tmp/gamelogs/gl_{season}.parquet")
+    for season in seasons:
+        candidates = [
+            os.path.join(gamelog_dir, "game_logs", f"game_logs_{season}.parquet"),
+            os.path.join(gamelog_dir, f"gl_{season}.parquet"),
+        ]
+        path = next((p for p in candidates if os.path.exists(p)), candidates[0])
+        t = pq.read_table(path)
         df = t.to_pandas()
         for r in df.itertuples():
             total_rows += 1
@@ -126,7 +158,7 @@ def main():
             for pid, games in games_by_player.items()
         }
     }
-    json.dump(out, open("/tmp/gamelog_mapped.json", "w"))
+    json.dump(out, open(os.environ.get("GAMELOG_OUT", "/tmp/gamelog_mapped.json"), "w"))
 
     n_players = len(games_by_player)
     n_games = sum(len(games) for games in games_by_player.values())

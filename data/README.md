@@ -25,6 +25,21 @@ Name matching discarded source player IDs, game IDs and raw box scores; the
 mapping has no durable manual identity audit. Recover these fields when
 approving a new source revision rather than treating name matching as authority.
 
+2025-26 was appended on 2026-10-22 (issue #217, Stage 1) from the same
+upstream source at revision `d480e56d900e9f0c716bc923aa5d7dd17f0bcfcf` —
+the 2024-25 file at that revision is byte-identical to the pinned audit
+hash above, same 27-column schema, same `kaggle_v515` lineage. The season
+was mapped with the extended mapper (`scripts/prepare-gamelog.py`, now
+covering all five seasons, with two identity fixes: a `hansen yang`
+hand-map and a Jaylin Williams id override) and **appended** with
+`scripts/merge-gamelog-season.py`, which asserts the pre-existing seasons
+are reproduced exactly when the new season is stripped — no old row was
+rewritten, so the Bitadze regeneration question above is untouched. All
+26,648 rows mapped across 582 players, zero unmapped. Validation and the
+coverage report against the #217 census live in `data/source-audit.json`
+(`appendedSeasons`). Prices derived from these rows are reconstructions
+and must stay labeled MODELED wherever they surface.
+
 Public league scoring was checked on 2026-10-08 through `src/data/sleeper.ts`:
 `pts=.5, reb=1, ast=1, stl=2, blk=2, to=-1, tpm=.5, dd=1, td=2`, plus
 `bonus_pt_40p=2, bonus_pt_50p=2, bonus_ast_15p=2, bonus_reb_20p=2, ff=-2, tf=-2`.
