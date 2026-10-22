@@ -378,7 +378,14 @@ describe("recorded-quote adapter", () => {
 
   it("maps rows verbatim and flags truncation; empty scope reads nothing", async () => {
     const rows = [quote("q1", "101", 123, T1), quote("q2", "101", 124, T2)];
-    const store = getRecordedQuoteStore({ execute: async () => ({ rows: [{ records: rows }] }) } as unknown as Db);
+    // Reads page by day-chunk: the window's rows arrive in the first
+    // chunk, later chunks are empty.
+    let firstCall = true;
+    const store = getRecordedQuoteStore({ execute: async () => {
+      const records = firstCall ? rows : [];
+      firstCall = false;
+      return { rows: [{ records }] };
+    } } as unknown as Db);
     expect(store).not.toBeNull();
     await expect(store!.readWindow({ playerIds: ["101"], fromDay: "2025-10-20", toDay: "2026-10-21" }))
       .resolves.toEqual({ quotes: rows, truncated: false });

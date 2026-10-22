@@ -11,7 +11,7 @@
  * a no-op store. The market still computes live prices; change % and the
  * movers sections simply show their "no history yet" states.
  */
-import { desc, eq, inArray, lt, sql } from "drizzle-orm";
+import { desc, eq, inArray, sql } from "drizzle-orm";
 import { createHash } from "node:crypto";
 import type { PriceHistoryPoint, PriceSource } from "@/domain/stock";
 import type { PriceHistoryArtifact, PriceHistoryPublicationPlan } from "../domain/price-history-import";
@@ -29,15 +29,16 @@ const HISTORY_POINTS = STOCK_CHART_POINTS;
 /** Live snapshots kept in a selected-player chart. */
 const LIVE_POINTS = 10;
 /** Recorded snapshots kept per player in a batched roster-history read.
- * Snapshots land at most daily (see SNAPSHOT_MIN_INTERVAL_MS) inside a
- * 30-day retention, so 40 covers the whole retained window. */
+ * Snapshots land at most daily (see SNAPSHOT_MIN_INTERVAL_MS) and are
+ * retained append-only; this is a DISPLAY window (the latest 40 daily
+ * points), not a storage limit — the full retained series is read by
+ * the team-history producer through `recorded-quotes.ts`. */
 const SNAPSHOT_HISTORY_POINTS = 40;
-const RETENTION_DAYS = 30;
 /**
  * Minimum gap between snapshots. Fundamentals refresh daily (see
  * nba-stats.ts), so anything more frequent is pure write amplification
  * on Neon's free tier. The 5-minute era wrote ~75k rows/day; daily
- * writes ~262 rows/day against a 30-day retention.
+ * writes ~262 rows/day, retained append-only (see saveSnapshot).
  */
 const SNAPSHOT_MIN_INTERVAL_MS = 24 * 60 * 60 * 1000;
 
@@ -158,9 +159,12 @@ class DrizzleStockStore implements StockStore {
         priceCents: Math.round(price * 100),
       }))
     );
-    // Prune anything older than the retention window.
-    const cutoff = new Date(Date.now() - RETENTION_DAYS * 24 * 60 * 60 * 1000);
-    await db.delete(stockSnapshots).where(lt(stockSnapshots.snapshotAt, cutoff));
+    // Append-only: snapshots are the recorded evidence base for team
+    // value history (#217/#224 retention correction, Aidan directive
+    // 2026-10-22). No write path ever deletes them; storage retention
+    // is separate from UI/query windows, and long-range reads page
+    // (see recorded-quotes.ts). The pre-correction 30-day prune would
+    // have destroyed the recorded span starting 2026-11-07.
   }
 }
 

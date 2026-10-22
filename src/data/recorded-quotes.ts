@@ -16,8 +16,12 @@
  * - This module NEVER writes. In particular it never calls the market
  *   loader's snapshot-saving path — API reads stay read-only.
  * - Bounds are explicit: player ids, a half-open native-day range and a
- *   hard row cap. Hitting the cap reports `truncated` so the producer can
- *   fail closed instead of admitting a partial quote set.
+ *   hard per-query row cap. Snapshots are retained append-only (#224
+ *   retention correction), so a window can span years: reads page the
+ *   window into day-chunks under the cap and aggregate, so no single
+ *   read is oversized and no window is silently incomplete. A chunk
+ *   hitting the cap reports `truncated` so the producer can fail closed
+ *   instead of admitting a partial quote set.
  */
 import { sql, type SQL } from "drizzle-orm";
 import { getDb, type Db } from "./db";
@@ -56,12 +60,41 @@ export type RecordedQuoteStore = {
 };
 
 /**
- * Hard row bound for one batched read. The retained window is at most
- * ~30 daily snapshot runs; a team's lifetime player scope is bounded by
- * its anchor roster plus its move counterparties, so real reads land in
- * the low hundreds. The cap exists to fail closed, not to page.
+ * Hard row bound for ONE batched read (one day-chunk). A team's lifetime
+ * player scope is bounded by its anchor roster plus its move
+ * counterparties and snapshots land at most daily, so a 31-day chunk
+ * lands in the low thousands at most. The cap exists to fail closed,
+ * not to page; paging happens across chunks, never inside one read.
  */
 export const MAX_RECORDED_QUOTE_ROWS = 5000;
+
+/** Days per paged chunk when reading a window (see readWindow). */
+export const RECORDED_QUOTE_CHUNK_DAYS = 31;
+
+/** Add days to a `YYYY-MM-DD` day string (UTC calendar math). */
+function addHistoryDays(day: string, days: number): string {
+  const ms = Date.parse(`${day}T00:00:00.000Z`);
+  if (Number.isNaN(ms)) throw new Error(`Invalid history day: ${day}`);
+  return new Date(ms + days * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
+/**
+ * Split a half-open day window into consecutive half-open chunks of at
+ * most RECORDED_QUOTE_CHUNK_DAYS days. ISO day strings compare
+ * chronologically, so chunking is pure string/date math. An empty or
+ * inverted window yields no chunks.
+ */
+export function recordedQuoteChunks(request: RecordedQuoteWindow): RecordedQuoteWindow[] {
+  const chunks: RecordedQuoteWindow[] = [];
+  let fromDay = request.fromDay;
+  while (fromDay < request.toDay) {
+    const next = addHistoryDays(fromDay, RECORDED_QUOTE_CHUNK_DAYS);
+    const toDay = next < request.toDay ? next : request.toDay;
+    chunks.push({ playerIds: request.playerIds, fromDay, toDay });
+    fromDay = toDay;
+  }
+  return chunks;
+}
 
 /** The batched window query. One lookahead row detects truncation. */
 export function recordedQuoteQuery(request: RecordedQuoteWindow, cap = MAX_RECORDED_QUOTE_ROWS): SQL {
@@ -91,11 +124,23 @@ export function getRecordedQuoteStore(db?: Db | null): RecordedQuoteStore | null
     return {
       async readWindow(request) {
         if (request.playerIds.length === 0) return { quotes: [], truncated: false };
-        const result = await client.execute<{ records: RecordedQuote[] }>(recordedQuoteQuery(request));
-        const rows = result.rows[0];
-        if (!rows || !Array.isArray(rows.records)) throw new Error("Missing recorded-quote read envelope");
-        const quotes = rows.records.slice(0, MAX_RECORDED_QUOTE_ROWS);
-        return { quotes, truncated: rows.records.length > MAX_RECORDED_QUOTE_ROWS };
+        // Page the window in day-chunks: retention is append-only, so a
+        // multi-year window must never ride on one oversized read. Each
+        // chunk is ordered (snapshot_at, id) and chunks are consecutive,
+        // so concatenation preserves the window's global order. A chunk
+        // that hits the cap fails the whole window closed.
+        const quotes: RecordedQuote[] = [];
+        for (const chunk of recordedQuoteChunks(request)) {
+          const result = await client.execute<{ records: RecordedQuote[] }>(recordedQuoteQuery(chunk));
+          const rows = result.rows[0];
+          if (!rows || !Array.isArray(rows.records)) throw new Error("Missing recorded-quote read envelope");
+          if (rows.records.length > MAX_RECORDED_QUOTE_ROWS) {
+            quotes.push(...rows.records.slice(0, MAX_RECORDED_QUOTE_ROWS));
+            return { quotes, truncated: true };
+          }
+          quotes.push(...rows.records);
+        }
+        return { quotes, truncated: false };
       },
     };
   } catch {

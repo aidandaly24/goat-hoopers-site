@@ -117,8 +117,11 @@ export const rewards = pgTable("rewards", {
  * Stock market price history. One row per player per snapshot; the loader
  * writes a snapshot each time it recomputes prices (at most daily —
  * fundamentals refresh daily, so anything more frequent is write
- * amplification on Neon's free tier). Rows older than 30 days are pruned on
- * write, so this table stays small.
+ * amplification on Neon's free tier). Rows are APPEND-ONLY recorded
+ * evidence: no write path deletes them (#217/#224 retention correction,
+ * Aidan directive 2026-10-22 — this table is the recorded-quote source
+ * for team value history, read via `recorded-quotes.ts`). UI/query
+ * windows are bounded at read time, never by deleting storage.
  *
  * Until the database is provisioned (see top of file) the stock market
  * simply runs without history — prices still compute, change % shows as
@@ -406,9 +409,9 @@ export const rosterBoundaryMoves = pgTable("roster_boundary_moves", {
  * continuity_id null) break the line.
  *
  * Recorded points persist HERE, with their source references (original
- * stock_snapshots row ids + timestamps in source_refs), because
- * stock_snapshots prunes after 30 days — this table is the durable record
- * the pruning would otherwise erase.
+ * stock_snapshots row ids + timestamps in source_refs): this table is
+ * the durable derived series, independent of the snapshot table's own
+ * retention (append-only since the #224 retention correction).
  */
 export const teamValuePoints = pgTable("team_value_points", {
   id: uuid("id").defaultRandom().primaryKey(),
