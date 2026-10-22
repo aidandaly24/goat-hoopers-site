@@ -1,0 +1,18 @@
+{
+ "datasetId": "9404b6bc05de4ce7765d02cfe2ef095105365f88b9073a7c464f9cdcc70d035d",
+ "inputHash": "9f944fe09d97d8d72fb6f87481c8d029df1dfa2c7085c8de72e15a9c192cf79c",
+ "pointsHash": "0ce085d9976ffd9b5536a88130f30761303b6ae7813b81c4aacd223ca99dc1ac",
+ "modelVersion": "v2",
+ "reconstructionVersion": "2",
+ "modelCodeHash": "e6d6239b2820a56429739197741a768074ccf87c1922276c9a7719ba041db5c2",
+ "rows": 104407,
+ "players": 875,
+ "gamelogPoints": 104407,
+ "backtestPoints": 0,
+ "generatedBy": "scripts/prepare-reconstruction-inputs.ts (npm run price-history:inputs)",
+ "inputs": {
+  "gamelog": "data/gamelog_mapped.json",
+  "directorySource": "data/sleeper_players.json",
+  "draftReceipts": "src/test/fixtures/roster-replay/season-{2025,2026}-draft{,-picks}.json"
+ }
+}

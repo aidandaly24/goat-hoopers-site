@@ -14,7 +14,9 @@
     "price-history:plan": "tsx scripts/plan-price-history.ts",
     "test:price-history:local": "RUN_PRICE_HISTORY_LOCAL_TEST=1 vitest run src/data/__tests__/price-history-local.test.ts",
     "check:contracts": "tsx scripts/check-surface-contracts.ts",
-    "test:free-throw": "vitest run src/surfaces/arcade/free-throw"
+    "test:free-throw": "vitest run src/surfaces/arcade/free-throw",
+    "price-history:inputs": "tsx scripts/prepare-reconstruction-inputs.ts",
+    "backfill:modeled": "tsx scripts/build-modeled-backfill.ts"
   },
   "dependencies": {
     "@better-auth/drizzle-adapter": "1.7.7",
