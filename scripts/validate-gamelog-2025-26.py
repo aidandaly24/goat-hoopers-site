@@ -8,20 +8,25 @@ Recomputes, from committed inputs only:
     player/dates) from data/gamelog_mapped.json + the provenance sidecar;
   - the games-played cross-check against the independent ESPN core v2
     season-totals extract frozen for issue #198, joined through
-    src/data/espn-id-map.json (Sleeper id -> ESPN athlete id).
+    src/data/espn-id-map.json (Sleeper id -> ESPN athlete id) — in BOTH
+    directions: mapped players vs ESPN totals, and ESPN-positive
+    identities (gamesPlayed > 0) with no mapped rows.
 
-The coverage block (replay census) and spot checks are recorded evidence
-produced by the runs named inside the receipt; they are inputs here, not
-recomputed by this script (the replay engine is TypeScript).
+The coverage numbers in the receipt are recorded evidence; the gated
+reproduction is the committed replay harness
+src/data/__tests__/gamelog-2025-26-coverage.test.ts, which derives them
+from the frozen replay fixtures + this dataset and asserts them in CI.
+Spot checks are recorded evidence from the runs named in the receipt.
 
-Usage: python3 scripts/validate-gamelog-2025-26.py ESPN_EXTRACT_JSON \
+Usage: python3 scripts/validate-gamelog-2025-26.py ESPN_EXTRACT_JSON
          [--directory SLEEPER_PLAYERS_JSON] [--out RECEIPT_JSON]
 The extract is espn-byathlete-2026-type2.extract.json from the #198
 artifacts (athletes: [{id, gamesPlayed, ...}]).
 """
+import argparse
 import hashlib
 import json
-import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -32,34 +37,15 @@ def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def main():
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    opts = dict(zip(sys.argv[1::2], sys.argv[2::2]))
-    extract_path = args[0]
-    out_path = opts.get("--out", str(ROOT / "data" / "gamelog_2025-26_validation.json"))
-    directory = {}
-    if "--directory" in sys.argv:
-        directory = json.loads(Path(sys.argv[sys.argv.index("--directory") + 1]).read_text())
+def cross_check(season_players, id_map, espn_gp):
+    """Both directions of the games-played cross-check.
 
-    mapped = json.loads((ROOT / "data" / "gamelog_mapped.json").read_text())
-    provenance = json.loads((ROOT / "data" / "gamelog_2025-26_provenance.json").read_text())
-    id_map = json.loads((ROOT / "src" / "data" / "espn-id-map.json").read_text())
-    extract = json.loads(Path(extract_path).read_text())
-    espn_gp = {a["id"]: int(a["gamesPlayed"]) for a in extract["athletes"]}
-
-    season_players = {}
-    duplicate_dates = 0
-    for pid, entry in mapped["players"].items():
-        games = [g for g in entry["games"] if g["season"] == SEASON]
-        if not games:
-            continue
-        dates = [g["date"] for g in games]
-        duplicate_dates += len(dates) - len(set(dates))
-        season_players[pid] = len(games)
-
-    records = provenance["records"]
+    season_players: {sleeperId: mappedGames}; id_map: {sleeperId: espnId};
+    espn_gp: {espnId: gamesPlayed}. Returns the receipt block plus the
+    per-player table.
+    """
     players = {}
-    exact = off_by = 0
+    exact = 0
     discrepancies, no_cross_check = [], []
     for pid, count in sorted(season_players.items(), key=lambda kv: int(kv[0])):
         espn_id = id_map.get(pid)
@@ -72,17 +58,68 @@ def main():
             exact += 1
         else:
             status = f"delta{count - gp:+d}"
-            if abs(count - gp) == 1:
-                off_by += 1
-            discrepancies.append({
-                "sleeperId": pid,
-                "name": directory.get(pid, {}).get("full_name"),
-                "mappedGames": count,
-                "espnGamesPlayed": gp,
-            })
+            discrepancies.append({"sleeperId": pid, "mappedGames": count,
+                                  "espnGamesPlayed": gp})
         players[pid] = {"mappedGames": count, "espnId": espn_id,
                         "espnGamesPlayed": gp, "status": status}
+    # Reverse direction: an ESPN-positive identity whose Sleeper player
+    # has no mapped rows at all must surface, never silently read as [].
+    unmapped_positive = []
+    for pid, espn_id in sorted(id_map.items(), key=lambda kv: int(kv[0])):
+        gp = espn_gp.get(espn_id)
+        if gp and gp > 0 and pid not in season_players:
+            unmapped_positive.append({"sleeperId": pid, "espnId": espn_id,
+                                      "espnGamesPlayed": gp})
+    espn_without_id_map = sorted(
+        espn_id for espn_id, gp in espn_gp.items()
+        if gp and gp > 0 and espn_id not in set(id_map.values()))
+    return {
+        "joinedPlayers": exact + len(discrepancies),
+        "exact": exact,
+        "offByOne": sum(1 for d in discrepancies
+                        if abs(d["mappedGames"] - d["espnGamesPlayed"]) == 1),
+        "discrepancies": discrepancies,
+        "noEspnCrossCheck": no_cross_check,
+        "espnPositivePlayersUnmapped": unmapped_positive,
+        "espnPositiveAthletesWithoutSleeperIdMap": espn_without_id_map,
+    }, players
 
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("extract", help="issue #198 ESPN by-athlete extract JSON")
+    parser.add_argument("--directory", help="Sleeper players JSON (for names)", default=None)
+    parser.add_argument("--out", help="receipt output path",
+                        default=str(ROOT / "data" / "gamelog_2025-26_validation.json"))
+    args = parser.parse_args()
+
+    directory = {}
+    if args.directory:
+        directory = json.loads(Path(args.directory).read_text())
+
+    mapped = json.loads((ROOT / "data" / "gamelog_mapped.json").read_text())
+    provenance = json.loads((ROOT / "data" / "gamelog_2025-26_provenance.json").read_text())
+    id_map = json.loads((ROOT / "src" / "data" / "espn-id-map.json").read_text())
+    extract = json.loads(Path(args.extract).read_text())
+    espn_gp = {a["id"]: int(a["gamesPlayed"]) for a in extract["athletes"]}
+
+    season_players = {}
+    duplicate_dates = 0
+    for pid, entry in mapped["players"].items():
+        games = [g for g in entry["games"] if g["season"] == SEASON]
+        if not games:
+            continue
+        dates = [g["date"] for g in games]
+        duplicate_dates += len(dates) - len(set(dates))
+        season_players[pid] = len(games)
+
+    check, players = cross_check(season_players, id_map, espn_gp)
+    for d in check["discrepancies"]:
+        d["name"] = directory.get(d["sleeperId"], {}).get("full_name")
+    for d in check["espnPositivePlayersUnmapped"]:
+        d["name"] = directory.get(d["sleeperId"], {}).get("full_name")
+
+    records = provenance["records"]
     receipt = {
         "artifact": "2025-26 gamelog append validation receipt (issue #217)",
         "generatedBy": "scripts/validate-gamelog-2025-26.py",
@@ -90,7 +127,7 @@ def main():
             "gamelogMapped": {"path": "data/gamelog_mapped.json", "sha256": sha256(ROOT / "data" / "gamelog_mapped.json")},
             "provenance": {"path": "data/gamelog_2025-26_provenance.json", "sha256": sha256(ROOT / "data" / "gamelog_2025-26_provenance.json")},
             "espnIdMap": {"path": "src/data/espn-id-map.json", "sha256": sha256(ROOT / "src" / "data" / "espn-id-map.json")},
-            "espnExtract": {"path": str(extract_path), "sha256": sha256(extract_path),
+            "espnExtract": {"path": str(args.extract), "sha256": sha256(args.extract),
                             "note": "issue #198 frozen extract of ESPN core API v2 by-athlete 2025-26 (type 2) season totals; recorded fixture sha256 5e4445cc9957d63416308564a7f6d217db3ff67b96fea5a37ad0d14b86e4bbc1"},
         },
         "dataset": {
@@ -100,18 +137,19 @@ def main():
             "provenanceRecords": len(records),
             "uniqueSourceGames": len({r["sourceGameId"] for r in records}),
             "duplicatePlayerDates": duplicate_dates,
-            "mappingReasons": {},
+            "mappingReasons": dict(Counter(r["mappingReason"] for r in records)),
         },
-        "gamesPlayedCrossCheck": {
-            "joinedPlayers": exact + len(discrepancies),
-            "exact": exact,
-            "offByOne": off_by,
-            "discrepancies": discrepancies,
-            "noEspnCrossCheck": no_cross_check,
-            "espnPositivePlayersUnmapped": [],
+        "gamesPlayedCrossCheck": check,
+        "populationCheck": {
+            "espnAthletes": len(extract["athletes"]),
+            "mappedPlayers": len(season_players),
+            "espnTotalGamesPlayed": sum(espn_gp.values()),
+            "mappedRows": sum(season_players.values()),
+            "delta": sum(espn_gp.values()) - sum(season_players.values()),
+            "note": "Populations are identical (582 = 582) and the 103 unjoined identities mirror exactly on both sides. The delta of 3 is the two named joined discrepancies (+1 each) plus one residual single game inside the 103-player unjoined population — the same single-game upstream-discrepancy class; it is not localizable from the frozen artifacts (the extract carries no athlete names and the repo id-map has no entries for those 103).",
         },
         "coverageVsCensus": {
-            "method": "Repo replay engine (loadChainRosterReplay + membershipOnDay, src/data/roster-replay.ts) over the committed replay fixtures, one pass per census day; a player-day is priceable when the player has a same-season gamelog point on or before that day (frozen #217 contract: same-season anchors only). Harness reproduced the census totals exactly before counting (36,774 player-days / 1,640 team-days).",
+            "method": "Derived and asserted by the committed harness src/data/__tests__/gamelog-2025-26-coverage.test.ts (repo replay engine loadChainRosterReplay + membershipOnDay over the committed replay fixtures; a player-day is priceable when the player has a same-season gamelog point on or before that day — frozen #217 contract, same-season anchors only). The harness first reproduces the census totals exactly (36,774 player-days / 1,640 team-days).",
             "segment": "2025 (2025-10-20 -> 2026-04-01)",
             "playerDays": 36774,
             "priceablePlayerDays": 34755,
@@ -141,11 +179,10 @@ def main():
         ],
         "players": players,
     }
-    from collections import Counter
-    receipt["dataset"]["mappingReasons"] = dict(Counter(r["mappingReason"] for r in records))
-    Path(out_path).write_text(json.dumps(receipt, indent=1) + "\n")
-    print(f"receipt -> {out_path}: joined {exact + len(discrepancies)}, exact {exact}, "
-          f"discrepancies {len(discrepancies)}, no-cross-check {len(no_cross_check)}, "
+    Path(args.out).write_text(json.dumps(receipt, indent=1) + "\n")
+    print(f"receipt -> {args.out}: joined {check['joinedPlayers']}, exact {check['exact']}, "
+          f"discrepancies {len(check['discrepancies'])}, no-cross-check {len(check['noEspnCrossCheck'])}, "
+          f"espn-positive unmapped {len(check['espnPositivePlayersUnmapped'])}, "
           f"duplicate dates {duplicate_dates}")
 
 
