@@ -831,15 +831,13 @@ export async function getPlayerDetail(
   playerId: string
 ): Promise<PlayerDetail | null> {
   try {
-    const [rosters, users, directory, history, picks, league] =
-      await Promise.all([
-        fetchRosters(),
-        fetchUsers(),
-        safePlayerDirectory(),
-        getTransactionHistory(),
-        fetchDraftPicksSafe(),
-        fetchLeague(),
-      ]);
+    const [rosters, users, directory, history, picks] = await Promise.all([
+      fetchRosters(),
+      fetchUsers(),
+      safePlayerDirectory(),
+      getTransactionHistory(),
+      fetchDraftPicksSafe(),
+    ]);
     const player = toPlayer(
       playerId,
       directory?.[playerId],
@@ -863,13 +861,15 @@ export async function getPlayerDetail(
     const draftPick = picks.find((p) => p.playerId === playerId) ?? null;
 
     // P4 (issue #224): dated single-player production evidence. Best-effort —
-    // the cached stats fetch never fails the page; without a recorded line
-    // the summary carries the precise unavailable reason. Season comes from
-    // the league object, never hardcoded. One player id, no history fanout.
+    // the season lookup and stats fetch both live inside this try/catch, so
+    // their failure degrades `production` to the unavailable state and never
+    // blanks the roster/wire/draft content. Season comes from the league
+    // object, never hardcoded. One player id, no history fanout.
     let production: ProductionSummary;
     try {
-      const lines = await fetchSeasonStats(league.season);
-      production = summarizeProduction(league.season, lines[playerId]);
+      const season = (await fetchLeague()).season;
+      const lines = await fetchSeasonStats(season);
+      production = summarizeProduction(season, lines[playerId]);
     } catch {
       production = { state: "unavailable", reason: "no-recorded-stats" };
     }
