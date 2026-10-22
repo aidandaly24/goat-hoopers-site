@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { AiDecidesData, AiWeeklySlate } from "@/domain/ai-decider";
-import { postWeek1Refresh, readWeek1RefreshResponse, type WeeklyTransport } from "./client";
+import { postWeek1Refresh, readWeek1RefreshResponse, readWeeklyPublishResponse, type WeeklyTransport } from "./client";
 import styles from "./AiDecides.module.css";
 
 /** Private weekly operator control; independent of the personal decision draft. */
@@ -24,7 +24,9 @@ export function Week1Refresh({ metadata, weekly, canRun, signedIn, authUnavailab
   const status = useRef<HTMLParagraphElement>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   const reloadOpener = useRef<HTMLButtonElement | null>(null);
-  const completeWeek1 = weekly.week === 1 && weekly.status === "ready" && weekly.matchups.length === 5 && new Set(weekly.matchups.map(p => p.matchupId)).size === 5 && new Set(weekly.matchups.flatMap(p => p.teamIds)).size === 10;
+  // A source-settings notice can make an intact saved slate display-stale.
+  // It does not revoke the separate server-owned one-shot availability.
+  const completeWeek1 = weekly.week === 1 && readWeeklyPublishResponse({ status: "ready", weekly }).status === "ready";
   // Next preserves local state on router.refresh(). Only a deliberate reread
   // followed by a new server metadata object can clear the local failure lock.
   const reread = reloadMetadata !== null && metadata !== reloadMetadata;

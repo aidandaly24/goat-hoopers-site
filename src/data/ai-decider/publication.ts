@@ -1,12 +1,13 @@
 import "server-only";
 import { createHash, timingSafeEqual } from "node:crypto";
 import type { AiPublicationContext, AiWeeklyInput, AiWeeklyPublishResponse } from "@/domain/ai-decider";
+import { GOAT_LINEUP_POLICY } from "@/domain/ai-lineup-policy";
 import { loadAiLineupPreview, loadAiPublicationContext } from "../league";
 import { aiDataDeadline } from "./deadline";
 import { availability, failure, generateWeeklyPicksAsIdentity, resolveAiIdentity, type AiRuntime } from "./service";
 import { validAiIdentity, type AiIdentity } from "./store";
 import { exactKeys, isRecord, readAiBody } from "./validation";
-import { cachedWeek, prepareWeeklySlate, validWeeklyInput, weekKey, weeklyReadiness } from "./weekly";
+import { cachedWeek, prepareWeeklySlate, validWeeklyInput, weekKey, weeklyReadiness, withSourceCompatibility } from "./weekly";
 
 export type AiPublicationSources = {
   context(): Promise<AiPublicationContext>;
@@ -27,15 +28,15 @@ export async function publishWeeklyPreview(identity: AiIdentity, runtime: AiRunt
     const existing = await persistence.getWeek(key);
     if (existing) {
       const weekly = cachedWeek(existing, runtime.now(), context.leg);
-      if (existing.result) return weekly.status === "ready" ? { status: "ready", weekly } : failure("unavailable", "publication_partial", "The saved preview has unavailable matchups. Its immutable result is retained.");
+      if (existing.result) return weekly.status === "ready" ? { status: "ready", weekly: withSourceCompatibility(weekly, existing.input) } : failure("unavailable", "publication_partial", "The saved preview has unavailable matchups. Its immutable result is retained.");
       return failure("unavailable", "publication_incomplete", "This week has a sealed incomplete attempt. Review is required before another paid attempt.");
     }
     const input = await aiDataDeadline(sources.input(context), 10000);
-    if (!validWeeklyInput(input) || !input.preview || weekKey(input) !== key || input.preview.sourceLeg !== context.leg || input.phase !== context.phase) return failure("unavailable", "weekly_input", "The public source could not establish an upcoming preview.");
+    if (!validWeeklyInput(input) || !input.preview || input.lineupPolicy !== GOAT_LINEUP_POLICY.version || weekKey(input) !== key || input.preview.sourceLeg !== context.leg || input.phase !== context.phase) return failure("unavailable", "weekly_input", "The public source could not establish an upcoming eleven-starter preview.");
     const reason = weeklyReadiness(input, runtime.now());
     if (reason) return failure("unavailable", "weekly_not_ready", reason);
     const prepared = prepareWeeklySlate(input, runtime.now());
-    if (!prepared.matchups.every(m => m.baseline?.teamValues.every(v => v.value !== null))) return failure("unavailable", "weekly_not_ready", "All five pairs need eligible lineups and at least 8/10 observed prior-season starters per team. The week remains unsealed.");
+    if (!prepared.matchups.every(m => m.baseline?.teamValues.every(v => v.value !== null))) return failure("unavailable", "weekly_not_ready", "All five pairs need all eleven declared starters and at least 9/11 observed prior-season starters per team. The week remains unsealed.");
     const result = await generateWeeklyPicksAsIdentity(input, identity, runtime);
     if (!("matchups" in result)) return result.status === "ready" ? failure("unavailable", "publication_invalid", "The publication result could not be validated.") : result;
     return result.status === "ready" ? { status: "ready", weekly: result } : failure("unavailable", "publication_partial", "The saved preview has unavailable matchups. Its immutable result is retained.");

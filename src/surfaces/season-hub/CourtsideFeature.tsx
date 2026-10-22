@@ -103,13 +103,14 @@ function seasonLine(entry: PairEntry | undefined, preseason: boolean): string | 
 /** The member's desk beside the court: identity, last season's line, the
  * Week 1 matchup, their own saved AI probability with provenance, and the
  * team actions. Every block gates on its own data — nothing renders empty. */
-function MemberDesk({ summary, entries, pair, preseason, rosterCount, championTeamId }: {
+function MemberDesk({ summary, entries, pair, preseason, rosterCount, championTeamId, sourceCompatibility }: {
   summary: HomeTeamSummary;
   entries: PairEntry[];
   pair: WeekPair | null;
   preseason: boolean;
   rosterCount: number | undefined;
   championTeamId: string | undefined;
+  sourceCompatibility: AiWeeklySlate["sourceCompatibility"];
 }) {
   const team = summary.team;
   const ownEntry = entries.find((entry) => entry.identity.id === team.id);
@@ -182,6 +183,7 @@ function MemberDesk({ summary, entries, pair, preseason, rosterCount, championTe
             <p className={cs("caption")}>
               {AI_PROBABILITY_LABEL} · {ai.label}{ai.status === "stale" ? ` · Stale · saved Week ${ai.week}` : ""}{savedStamp ? ` · Saved ${savedStamp}` : ""} · Model choice: {choiceName}
             </p>
+            {sourceCompatibility && <p className={cs("caption")} data-ai-source-compatibility={sourceCompatibility.status}>{sourceCompatibility.message}</p>}
           </>
         ) : (
           <p className={cs("desk-subline")}>No saved AI result for your matchup yet — the full slate is down the page.</p>
@@ -257,8 +259,9 @@ function LeagueDesk({ edition, pair, entries, preseason, aiWeekly, season, champ
                 <span style={{ width: `${(result.probabilities.find((row) => row.choice === pair.home.id)?.probability ?? 0) * 100}%` }} />
               </div>
               <p className={cs("caption")}>
-                {AI_PROBABILITY_LABEL} · {aiWeekly?.status === "stale" ? "Past-week saved picks" : "Saved result"}{savedStamp ? ` · Saved ${savedStamp}` : ""} · {result.model}
+                {AI_PROBABILITY_LABEL} · {aiWeekly?.status === "stale" ? (aiWeekly.sourceCompatibility?.currentWindow && aiWeekly.sourceCompatibility.status !== "compatible" ? "Saved comparison" : "Past-week saved picks") : "Saved result"}{savedStamp ? ` · Saved ${savedStamp}` : ""} · {result.model}
               </p>
+              {aiWeekly?.sourceCompatibility && <p className={cs("caption")} data-ai-source-compatibility={aiWeekly.sourceCompatibility.status}>{aiWeekly.sourceCompatibility.message}</p>}
             </>
           ) : (
             <p className={cs("desk-subline")}>No saved AI preview for this pairing yet.</p>
@@ -374,6 +377,7 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
             preseason={preseason}
             rosterCount={rosterCounts[heroSummary.team.id]}
             championTeamId={championTeamId}
+            sourceCompatibility={aiWeekly?.sourceCompatibility}
           />
         ) : (
           <LeagueDesk
