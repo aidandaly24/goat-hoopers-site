@@ -37,8 +37,13 @@ are reproduced exactly when the new season is stripped — no old row was
 rewritten, so the Bitadze regeneration question above is untouched. All
 26,648 rows mapped across 582 players, zero unmapped. Validation and the
 coverage report against the #217 census live in `data/source-audit.json`
-(`appendedSeasons`). Prices derived from these rows are reconstructions
-and must stay labeled MODELED wherever they surface.
+(`appendedSeasons`); the per-row source join keys the mapped shape
+discards are retained in `data/gamelog_2025-26_provenance.json`, and the
+machine-readable validation receipt (ESPN games-played joins, census
+coverage, spot checks) is `data/gamelog_2025-26_validation.json`,
+regenerable with `scripts/validate-gamelog-2025-26.py`. Prices derived
+from these rows are reconstructions and must stay labeled MODELED
+wherever they surface.
 
 Public league scoring was checked on 2026-10-08 through `src/data/sleeper.ts`:
 `pts=.5, reb=1, ast=1, stl=2, blk=2, to=-1, tpm=.5, dd=1, td=2`, plus

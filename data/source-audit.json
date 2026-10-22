@@ -196,7 +196,10 @@
         "Coverage vs the #217 step-0 census replay: 34,755 of 36,774 2025-segment player-days priceable (94.51%); residuals are pre-first-game days (1,309) and six players with no 2025-26 NBA game (710 days: Lillard, Irving, Haliburton, Sorber, VanVleet, legacy directory id 1228)"
       ],
       "baseInputSha256": "9258827fe4a5541fe9d64e9b8d9f640210d332bcaba10f6f240ad4ff2c10ff59",
-      "mergeInvariant": "scripts/merge-gamelog-season.py asserted that removing the appended season reproduces the pre-append committed file exactly; no pre-existing row was rewritten (a full regeneration remains a separate approval because it would add the 217 Bitadze hand-map rows to old seasons)"
+      "mergeInvariant": "scripts/merge-gamelog-season.py asserted that removing the appended season reproduces the pre-append committed file exactly; no pre-existing row was rewritten (a full regeneration remains a separate approval because it would add the 217 Bitadze hand-map rows to old seasons)",
+      "provenanceSidecar": "data/gamelog_2025-26_provenance.json — per-row source player/game IDs, full raw stat line, Sleeper ID and mapping reason (directory-name 26,540 / id-override 65 / hand-map 43), emitted by prepare-gamelog.py with $GAMELOG_PROVENANCE_OUT",
+      "validationReceipt": "data/gamelog_2025-26_validation.json — machine-readable receipt emitted by scripts/validate-gamelog-2025-26.py from the committed inputs: 479 ESPN joins (477 exact; discrepancies Tony Bradley 40 vs 41 and Nick Richards 47 vs 48), 103 players with no ESPN cross-check (all named), 0 duplicate player/dates, census coverage block and spot-check records",
+      "mergeValidatorFix": "PR #252 review fix: merge-gamelog-season.py now grows its seen-date set per accepted row (an incoming duplicate previously passed against the base-only snapshot); regression in scripts/test_merge_gamelog_season.py (incoming duplicate, base overlap, wrong season, unchanged old span). Re-running the fixed merge reproduces the committed file byte-identically (sha256 above)."
     }
   ]
 }

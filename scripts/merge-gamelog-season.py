@@ -38,6 +38,10 @@ def main():
         for g in games:
             if g["date"] in existing_dates:
                 raise SystemExit(f"duplicate game date {g['date']} for {pid}")
+            # Grow the seen set with every accepted row: two incoming rows
+            # for the same player/date must reject, not both pass against
+            # the base-only snapshot.
+            existing_dates.add(g["date"])
             merged["players"][pid]["games"].append(g)
             added_games += 1
         merged["players"][pid]["games"].sort(key=lambda g: g["date"])

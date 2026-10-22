@@ -13,6 +13,11 @@ Usage: python3 scripts/prepare-gamelog.py [season ...]
 Reads: $GAMELOG_DIR (default /tmp/gamelogs) — game_logs/game_logs_<season>.parquet
   or legacy gl_<season>.parquet; $SLEEPER_PLAYERS (default /tmp/sleeper_players.json)
 Writes: $GAMELOG_OUT (default /tmp/gamelog_mapped.json)
+  Optional $GAMELOG_PROVENANCE_OUT: also write a per-row provenance sidecar
+  retaining the source join keys the mapped shape discards (source player
+  and game IDs, the full raw stat line, the Sleeper ID it mapped to, and
+  the mapping reason) — data/README.md asks for exactly this on a new
+  source revision. $GAMELOG_SOURCE_REVISION is recorded in the sidecar.
 
 Note: the committed data/gamelog_mapped.json rows for 2021-22..2024-25 predate
 the Bitadze hand-map below; a full regeneration would add those 217 rows and
@@ -20,6 +25,7 @@ remains a separate approval (see data/README.md). The 2025-26 append was done
 by mapping that season alone and merging with merge-gamelog-season.py, which
 asserts every pre-existing row is unchanged.
 """
+import hashlib
 import json
 import os
 import re
@@ -120,6 +126,15 @@ def main():
     games_by_player = defaultdict(list)
     unmapped = defaultdict(int)
     total_rows = 0
+    provenance_out = os.environ.get("GAMELOG_PROVENANCE_OUT")
+    provenance = []
+
+    def json_safe(value):
+        if value is None or isinstance(value, (str, int, float, bool)):
+            return value
+        if hasattr(value, "item"):
+            return value.item()
+        return str(value)
 
     for season in seasons:
         candidates = [
@@ -127,15 +142,37 @@ def main():
             os.path.join(gamelog_dir, f"gl_{season}.parquet"),
         ]
         path = next((p for p in candidates if os.path.exists(p)), candidates[0])
+        file_sha256 = hashlib.sha256(open(path, "rb").read()).hexdigest()
         t = pq.read_table(path)
         df = t.to_pandas()
         for r in df.itertuples():
             total_rows += 1
-            key = normalize(r.player_name)
+            raw = r._asdict()
+            raw_key = normalize(r.player_name)
+            if raw_key in ID_OVERRIDES:
+                reason = "id-override"
+            elif raw_key in HAND_MAP:
+                reason = "hand-map"
+            else:
+                reason = "directory-name"
+            key = raw_key
             # Hand-map known dataset quirks before the directory lookup.
             if key in HAND_MAP:
                 key = normalize(HAND_MAP[key])
             pid = name_to_id.get(key)
+            if provenance_out:
+                provenance.append({
+                    "season": season,
+                    "sourceFile": os.path.basename(path),
+                    "sourceFileSha256": file_sha256,
+                    "sourcePlayerId": json_safe(raw.get("player_id")),
+                    "sourcePlayerName": r.player_name,
+                    "sourceGameId": json_safe(raw.get("game_id")),
+                    "sleeperId": pid,
+                    "mappingReason": reason if pid else "unmapped",
+                    # "Index" is the itertuples row number, not a source column.
+                    "raw": {k: json_safe(v) for k, v in raw.items() if k != "Index"},
+                })
             if not pid:
                 unmapped[r.player_name] += 1
                 continue
@@ -143,7 +180,7 @@ def main():
                 {
                     "date": str(r.game_date),
                     "season": season,
-                    "fppg": game_fppg(r._asdict()),
+                    "fppg": game_fppg(raw),
                     "minutes": round(float(r.minutes), 1),
                 }
             )
@@ -159,6 +196,15 @@ def main():
         }
     }
     json.dump(out, open(os.environ.get("GAMELOG_OUT", "/tmp/gamelog_mapped.json"), "w"))
+
+    if provenance_out:
+        sidecar = {
+            "source": "cbratkovics/nba-game-logs",
+            "sourceRevision": os.environ.get("GAMELOG_SOURCE_REVISION"),
+            "records": provenance,
+        }
+        json.dump(sidecar, open(provenance_out, "w"), separators=(",", ":"))
+        print(f"provenance: {len(provenance)} records -> {provenance_out}")
 
     n_players = len(games_by_player)
     n_games = sum(len(games) for games in games_by_player.values())

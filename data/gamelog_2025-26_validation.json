@@ -1,0 +1,3723 @@
+{
+ "artifact": "2025-26 gamelog append validation receipt (issue #217)",
+ "generatedBy": "scripts/validate-gamelog-2025-26.py",
+ "inputs": {
+  "gamelogMapped": {
+   "path": "data/gamelog_mapped.json",
+   "sha256": "6bc78094c5b1407f55a864ce7271918bdf032afea099fbc918e254b9adabbe79"
+  },
+  "provenance": {
+   "path": "data/gamelog_2025-26_provenance.json",
+   "sha256": "b491af18a7db3f967af7eef4515ec5c82a491a41dbd9ad8a47f610fdf8ce2c0b"
+  },
+  "espnIdMap": {
+   "path": "src/data/espn-id-map.json",
+   "sha256": "7164394e11514aeee1377d1cafbc33424bba240903c0e186e230951996340fd8"
+  },
+  "espnExtract": {
+   "path": "/home/hatch/workspace/goals/goat-hoopers-league-website/hidden_files/issue-198/espn-byathlete-2026-type2.extract.json",
+   "sha256": "f7e9d3fa398e931a4c4e2e070f1480907f3c913e38356a9a2fcc96106d32a5cf",
+   "note": "issue #198 frozen extract of ESPN core API v2 by-athlete 2025-26 (type 2) season totals; recorded fixture sha256 5e4445cc9957d63416308564a7f6d217db3ff67b96fea5a37ad0d14b86e4bbc1"
+  }
+ },
+ "dataset": {
+  "season": "2025-26",
+  "mappedRows": 26648,
+  "mappedPlayers": 582,
+  "provenanceRecords": 26648,
+  "uniqueSourceGames": 1230,
+  "duplicatePlayerDates": 0,
+  "mappingReasons": {
+   "directory-name": 26540,
+   "id-override": 65,
+   "hand-map": 43
+  }
+ },
+ "gamesPlayedCrossCheck": {
+  "joinedPlayers": 479,
+  "exact": 477,
+  "offByOne": 2,
+  "discrepancies": [
+   {
+    "sleeperId": "1842",
+    "name": "Tony Bradley",
+    "mappedGames": 40,
+    "espnGamesPlayed": 41
+   },
+   {
+    "sleeperId": "2141",
+    "name": "Nick Richards",
+    "mappedGames": 47,
+    "espnGamesPlayed": 48
+   }
+  ],
+  "noEspnCrossCheck": [
+   "1016",
+   "1041",
+   "1124",
+   "1154",
+   "1175",
+   "1187",
+   "1277",
+   "1282",
+   "1285",
+   "1319",
+   "1322",
+   "1339",
+   "1434",
+   "1449",
+   "1492",
+   "1559",
+   "1581",
+   "1591",
+   "1621",
+   "1651",
+   "1674",
+   "1746",
+   "1771",
+   "1772",
+   "1798",
+   "1800",
+   "1821",
+   "1852",
+   "1873",
+   "1895",
+   "2021",
+   "2030",
+   "2039",
+   "2041",
+   "2075",
+   "2084",
+   "2102",
+   "2163",
+   "2165",
+   "2172",
+   "2182",
+   "2243",
+   "2270",
+   "2278",
+   "2283",
+   "2290",
+   "2298",
+   "2334",
+   "2339",
+   "2346",
+   "2352",
+   "2402",
+   "2408",
+   "2413",
+   "2428",
+   "2436",
+   "2439",
+   "2442",
+   "2443",
+   "2446",
+   "2466",
+   "2469",
+   "2471",
+   "2481",
+   "2487",
+   "2493",
+   "2495",
+   "2512",
+   "2522",
+   "2524",
+   "2535",
+   "2543",
+   "2569",
+   "2570",
+   "2611",
+   "2616",
+   "2618",
+   "2627",
+   "2652",
+   "2670",
+   "2717",
+   "2751",
+   "2756",
+   "2769",
+   "2825",
+   "2837",
+   "2838",
+   "2846",
+   "2871",
+   "4785",
+   "4795",
+   "4796",
+   "4799",
+   "4805",
+   "4822",
+   "4823",
+   "4836",
+   "4845",
+   "4849",
+   "4854",
+   "4856",
+   "4858",
+   "4859"
+  ],
+  "espnPositivePlayersUnmapped": []
+ },
+ "coverageVsCensus": {
+  "method": "Repo replay engine (loadChainRosterReplay + membershipOnDay, src/data/roster-replay.ts) over the committed replay fixtures, one pass per census day; a player-day is priceable when the player has a same-season gamelog point on or before that day (frozen #217 contract: same-season anchors only). Harness reproduced the census totals exactly before counting (36,774 player-days / 1,640 team-days).",
+  "segment": "2025 (2025-10-20 -> 2026-04-01)",
+  "playerDays": 36774,
+  "priceablePlayerDays": 34755,
+  "priceablePct": 94.51,
+  "preFirstGamePlayerDays": 1309,
+  "noSameSeasonGamePlayerDays": 710,
+  "noGamePlayers": [
+   {
+    "sleeperId": "1444",
+    "name": "Damian Lillard",
+    "days": 164
+   },
+   {
+    "sleeperId": "1054",
+    "name": "Kyrie Irving",
+    "days": 164
+   },
+   {
+    "sleeperId": "4762",
+    "name": "Thomas Sorber",
+    "days": 164
+   },
+   {
+    "sleeperId": "2161",
+    "name": "Tyrese Haliburton",
+    "days": 164
+   },
+   {
+    "sleeperId": "1717",
+    "name": "Fred VanVleet",
+    "days": 45
+   },
+   {
+    "sleeperId": "1228",
+    "name": "Kobe Bryant (legacy directory entry)",
+    "days": 9
+   }
+  ],
+  "teamDays": {
+   "total": 1640,
+   "complete": 621,
+   "partial": 1009,
+   "unavailable": 10
+  },
+  "note": "The 2026 segment (12,748 player-days) stays unpriceable: it has no same-season games in window and cross-season carry is prohibited. GC-1 membership-gap team-days (2026-04-02 -> 2026-08-12) stay unvalued regardless of prices."
+ },
+ "spotChecks": [
+  {
+   "game": "2025-10-21 HOU @ OKC (final 124-125 2OT)",
+   "source": "basketball-reference.com box score",
+   "players": {
+    "Alperen Sengun": "39 pts / 11 reb / 7 ast / 2 stl / 1 blk / 4 tov / 5 fg3m / 48:53",
+    "Kevin Durant": "23 pts / 9 reb / 3 ast / 0 stl / 0 blk / 4 tov / 0 fg3m / 47:03"
+   },
+   "result": "exact on every field"
+  },
+  {
+   "game": "2025-10-22 SAS @ DAL (final 125-92)",
+   "source": "basketball-reference.com box score",
+   "players": {
+    "Victor Wembanyama": "40 pts / 15 reb / 1 ast / 1 stl / 3 blk / 0 tov / 1 fg3m / 29:41",
+    "Cooper Flagg": "10 pts / 10 reb / 0 ast / 1 stl / 0 blk / 3 tov / 0 fg3m / 31:32"
+   },
+   "result": "exact on every field"
+  }
+ ],
+ "players": {
+  "1000": {
+   "mappedGames": 38,
+   "espnId": "6430",
+   "espnGamesPlayed": 38,
+   "status": "exact"
+  },
+  "1016": {
+   "mappedGames": 10,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1029": {
+   "mappedGames": 80,
+   "espnId": "2528210",
+   "espnGamesPlayed": 80,
+   "status": "exact"
+  },
+  "1041": {
+   "mappedGames": 10,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1074": {
+   "mappedGames": 37,
+   "espnId": "4251",
+   "espnGamesPlayed": 37,
+   "status": "exact"
+  },
+  "1081": {
+   "mappedGames": 69,
+   "espnId": "6475",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "1082": {
+   "mappedGames": 68,
+   "espnId": "6589",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "1085": {
+   "mappedGames": 43,
+   "espnId": "3975",
+   "espnGamesPlayed": 43,
+   "status": "exact"
+  },
+  "1092": {
+   "mappedGames": 77,
+   "espnId": "6578",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "1124": {
+   "mappedGames": 22,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1128": {
+   "mappedGames": 6,
+   "espnId": "6580",
+   "espnGamesPlayed": 6,
+   "status": "exact"
+  },
+  "1131": {
+   "mappedGames": 63,
+   "espnId": "6585",
+   "espnGamesPlayed": 63,
+   "status": "exact"
+  },
+  "1141": {
+   "mappedGames": 51,
+   "espnId": "2581018",
+   "espnGamesPlayed": 51,
+   "status": "exact"
+  },
+  "1154": {
+   "mappedGames": 25,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1175": {
+   "mappedGames": 20,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1178": {
+   "mappedGames": 75,
+   "espnId": "3448",
+   "espnGamesPlayed": 75,
+   "status": "exact"
+  },
+  "1187": {
+   "mappedGames": 37,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1200": {
+   "mappedGames": 54,
+   "espnId": "3195",
+   "espnGamesPlayed": 54,
+   "status": "exact"
+  },
+  "1240": {
+   "mappedGames": 70,
+   "espnId": "3992",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "1254": {
+   "mappedGames": 70,
+   "espnId": "3032979",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "1257": {
+   "mappedGames": 45,
+   "espnId": "3213",
+   "espnGamesPlayed": 45,
+   "status": "exact"
+  },
+  "1265": {
+   "mappedGames": 53,
+   "espnId": "3995",
+   "espnGamesPlayed": 53,
+   "status": "exact"
+  },
+  "1272": {
+   "mappedGames": 20,
+   "espnId": "6583",
+   "espnGamesPlayed": 20,
+   "status": "exact"
+  },
+  "1277": {
+   "mappedGames": 6,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1282": {
+   "mappedGames": 41,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1285": {
+   "mappedGames": 30,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1308": {
+   "mappedGames": 65,
+   "espnId": "6450",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "1319": {
+   "mappedGames": 65,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1321": {
+   "mappedGames": 77,
+   "espnId": "3978",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "1322": {
+   "mappedGames": 14,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1328": {
+   "mappedGames": 12,
+   "espnId": "3442",
+   "espnGamesPlayed": 12,
+   "status": "exact"
+  },
+  "1339": {
+   "mappedGames": 16,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1350": {
+   "mappedGames": 76,
+   "espnId": "3032976",
+   "espnGamesPlayed": 76,
+   "status": "exact"
+  },
+  "1362": {
+   "mappedGames": 60,
+   "espnId": "1966",
+   "espnGamesPlayed": 60,
+   "status": "exact"
+  },
+  "1378": {
+   "mappedGames": 63,
+   "espnId": "6609",
+   "espnGamesPlayed": 63,
+   "status": "exact"
+  },
+  "1380": {
+   "mappedGames": 36,
+   "espnId": "3032977",
+   "espnGamesPlayed": 36,
+   "status": "exact"
+  },
+  "1432": {
+   "mappedGames": 32,
+   "espnId": "2991235",
+   "espnGamesPlayed": 32,
+   "status": "exact"
+  },
+  "1433": {
+   "mappedGames": 78,
+   "espnId": "3202",
+   "espnGamesPlayed": 78,
+   "status": "exact"
+  },
+  "1434": {
+   "mappedGames": 64,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1449": {
+   "mappedGames": 74,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1450": {
+   "mappedGames": 76,
+   "espnId": "2490149",
+   "espnGamesPlayed": 76,
+   "status": "exact"
+  },
+  "1486": {
+   "mappedGames": 64,
+   "espnId": "6478",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "1487": {
+   "mappedGames": 63,
+   "espnId": "6440",
+   "espnGamesPlayed": 63,
+   "status": "exact"
+  },
+  "1492": {
+   "mappedGames": 29,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1511": {
+   "mappedGames": 38,
+   "espnId": "3059318",
+   "espnGamesPlayed": 38,
+   "status": "exact"
+  },
+  "1512": {
+   "mappedGames": 57,
+   "espnId": "2991070",
+   "espnGamesPlayed": 57,
+   "status": "exact"
+  },
+  "1525": {
+   "mappedGames": 68,
+   "espnId": "3059319",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "1526": {
+   "mappedGames": 39,
+   "espnId": "3064440",
+   "espnGamesPlayed": 39,
+   "status": "exact"
+  },
+  "1534": {
+   "mappedGames": 72,
+   "espnId": "2528426",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "1535": {
+   "mappedGames": 79,
+   "espnId": "3064514",
+   "espnGamesPlayed": 79,
+   "status": "exact"
+  },
+  "1541": {
+   "mappedGames": 75,
+   "espnId": "3102529",
+   "espnGamesPlayed": 75,
+   "status": "exact"
+  },
+  "1546": {
+   "mappedGames": 62,
+   "espnId": "2990992",
+   "espnGamesPlayed": 62,
+   "status": "exact"
+  },
+  "1547": {
+   "mappedGames": 63,
+   "espnId": "2531367",
+   "espnGamesPlayed": 63,
+   "status": "exact"
+  },
+  "1548": {
+   "mappedGames": 43,
+   "espnId": "2993874",
+   "espnGamesPlayed": 43,
+   "status": "exact"
+  },
+  "1559": {
+   "mappedGames": 27,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1581": {
+   "mappedGames": 48,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1583": {
+   "mappedGames": 41,
+   "espnId": "3102530",
+   "espnGamesPlayed": 41,
+   "status": "exact"
+  },
+  "1585": {
+   "mappedGames": 36,
+   "espnId": "3064290",
+   "espnGamesPlayed": 36,
+   "status": "exact"
+  },
+  "1589": {
+   "mappedGames": 67,
+   "espnId": "3064482",
+   "espnGamesPlayed": 67,
+   "status": "exact"
+  },
+  "1590": {
+   "mappedGames": 32,
+   "espnId": "3102531",
+   "espnGamesPlayed": 32,
+   "status": "exact"
+  },
+  "1591": {
+   "mappedGames": 34,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1595": {
+   "mappedGames": 71,
+   "espnId": "3133628",
+   "espnGamesPlayed": 71,
+   "status": "exact"
+  },
+  "1598": {
+   "mappedGames": 21,
+   "espnId": "3155535",
+   "espnGamesPlayed": 21,
+   "status": "exact"
+  },
+  "1602": {
+   "mappedGames": 56,
+   "espnId": "2530530",
+   "espnGamesPlayed": 56,
+   "status": "exact"
+  },
+  "1604": {
+   "mappedGames": 50,
+   "espnId": "3133603",
+   "espnGamesPlayed": 50,
+   "status": "exact"
+  },
+  "1613": {
+   "mappedGames": 75,
+   "espnId": "3136195",
+   "espnGamesPlayed": 75,
+   "status": "exact"
+  },
+  "1614": {
+   "mappedGames": 67,
+   "espnId": "3135046",
+   "espnGamesPlayed": 67,
+   "status": "exact"
+  },
+  "1620": {
+   "mappedGames": 35,
+   "espnId": "2580365",
+   "espnGamesPlayed": 35,
+   "status": "exact"
+  },
+  "1621": {
+   "mappedGames": 26,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1637": {
+   "mappedGames": 58,
+   "espnId": "2595516",
+   "espnGamesPlayed": 58,
+   "status": "exact"
+  },
+  "1648": {
+   "mappedGames": 64,
+   "espnId": "3136193",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "1651": {
+   "mappedGames": 22,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1652": {
+   "mappedGames": 42,
+   "espnId": "2578239",
+   "espnGamesPlayed": 42,
+   "status": "exact"
+  },
+  "1658": {
+   "mappedGames": 65,
+   "espnId": "3112335",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "1674": {
+   "mappedGames": 5,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1690": {
+   "mappedGames": 60,
+   "espnId": "2991043",
+   "espnGamesPlayed": 60,
+   "status": "exact"
+  },
+  "1691": {
+   "mappedGames": 82,
+   "espnId": "2991139",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "1697": {
+   "mappedGames": 48,
+   "espnId": "4017837",
+   "espnGamesPlayed": 48,
+   "status": "exact"
+  },
+  "1698": {
+   "mappedGames": 77,
+   "espnId": "3913176",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "1704": {
+   "mappedGames": 26,
+   "espnId": "2990962",
+   "espnGamesPlayed": 26,
+   "status": "exact"
+  },
+  "1707": {
+   "mappedGames": 51,
+   "espnId": "2990984",
+   "espnGamesPlayed": 51,
+   "status": "exact"
+  },
+  "1711": {
+   "mappedGames": 71,
+   "espnId": "3917376",
+   "espnGamesPlayed": 71,
+   "status": "exact"
+  },
+  "1713": {
+   "mappedGames": 14,
+   "espnId": "3907497",
+   "espnGamesPlayed": 14,
+   "status": "exact"
+  },
+  "1716": {
+   "mappedGames": 62,
+   "espnId": "3149673",
+   "espnGamesPlayed": 62,
+   "status": "exact"
+  },
+  "1718": {
+   "mappedGames": 46,
+   "espnId": "3134908",
+   "espnGamesPlayed": 46,
+   "status": "exact"
+  },
+  "1726": {
+   "mappedGames": 73,
+   "espnId": "3134903",
+   "espnGamesPlayed": 73,
+   "status": "exact"
+  },
+  "1728": {
+   "mappedGames": 37,
+   "espnId": "2578185",
+   "espnGamesPlayed": 37,
+   "status": "exact"
+  },
+  "1736": {
+   "mappedGames": 50,
+   "espnId": "3936099",
+   "espnGamesPlayed": 50,
+   "status": "exact"
+  },
+  "1739": {
+   "mappedGames": 19,
+   "espnId": "3155942",
+   "espnGamesPlayed": 19,
+   "status": "exact"
+  },
+  "1746": {
+   "mappedGames": 3,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1747": {
+   "mappedGames": 75,
+   "espnId": "3936299",
+   "espnGamesPlayed": 75,
+   "status": "exact"
+  },
+  "1752": {
+   "mappedGames": 42,
+   "espnId": "4066336",
+   "espnGamesPlayed": 42,
+   "status": "exact"
+  },
+  "1759": {
+   "mappedGames": 68,
+   "espnId": "3064560",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "1771": {
+   "mappedGames": 9,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1772": {
+   "mappedGames": 5,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1777": {
+   "mappedGames": 78,
+   "espnId": "3913174",
+   "espnGamesPlayed": 78,
+   "status": "exact"
+  },
+  "1779": {
+   "mappedGames": 62,
+   "espnId": "4066262",
+   "espnGamesPlayed": 62,
+   "status": "exact"
+  },
+  "1787": {
+   "mappedGames": 56,
+   "espnId": "4066328",
+   "espnGamesPlayed": 56,
+   "status": "exact"
+  },
+  "1792": {
+   "mappedGames": 56,
+   "espnId": "3155526",
+   "espnGamesPlayed": 56,
+   "status": "exact"
+  },
+  "1797": {
+   "mappedGames": 60,
+   "espnId": "3934723",
+   "espnGamesPlayed": 60,
+   "status": "exact"
+  },
+  "1798": {
+   "mappedGames": 35,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1799": {
+   "mappedGames": 69,
+   "espnId": "3134907",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "1800": {
+   "mappedGames": 27,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1801": {
+   "mappedGames": 56,
+   "espnId": "2991350",
+   "espnGamesPlayed": 56,
+   "status": "exact"
+  },
+  "1803": {
+   "mappedGames": 66,
+   "espnId": "3062679",
+   "espnGamesPlayed": 66,
+   "status": "exact"
+  },
+  "1809": {
+   "mappedGames": 69,
+   "espnId": "3908845",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "1821": {
+   "mappedGames": 67,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1822": {
+   "mappedGames": 16,
+   "espnId": "4065648",
+   "espnGamesPlayed": 16,
+   "status": "exact"
+  },
+  "1830": {
+   "mappedGames": 77,
+   "espnId": "3078576",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "1831": {
+   "mappedGames": 67,
+   "espnId": "3934719",
+   "espnGamesPlayed": 67,
+   "status": "exact"
+  },
+  "1841": {
+   "mappedGames": 78,
+   "espnId": "2583632",
+   "espnGamesPlayed": 78,
+   "status": "exact"
+  },
+  "1842": {
+   "mappedGames": 40,
+   "espnId": "4065673",
+   "espnGamesPlayed": 41,
+   "status": "delta-1"
+  },
+  "1845": {
+   "mappedGames": 70,
+   "espnId": "3908809",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "1846": {
+   "mappedGames": 73,
+   "espnId": "4066261",
+   "espnGamesPlayed": 73,
+   "status": "exact"
+  },
+  "1852": {
+   "mappedGames": 43,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1866": {
+   "mappedGames": 10,
+   "espnId": "4066650",
+   "espnGamesPlayed": 10,
+   "status": "exact"
+  },
+  "1871": {
+   "mappedGames": 23,
+   "espnId": "3037789",
+   "espnGamesPlayed": 23,
+   "status": "exact"
+  },
+  "1872": {
+   "mappedGames": 72,
+   "espnId": "4066259",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "1873": {
+   "mappedGames": 6,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1879": {
+   "mappedGames": 52,
+   "espnId": "4065654",
+   "espnGamesPlayed": 52,
+   "status": "exact"
+  },
+  "1883": {
+   "mappedGames": 78,
+   "espnId": "4277847",
+   "espnGamesPlayed": 78,
+   "status": "exact"
+  },
+  "1887": {
+   "mappedGames": 60,
+   "espnId": "4351852",
+   "espnGamesPlayed": 60,
+   "status": "exact"
+  },
+  "1892": {
+   "mappedGames": 68,
+   "espnId": "4277811",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "1895": {
+   "mappedGames": 57,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "1899": {
+   "mappedGames": 51,
+   "espnId": "3914044",
+   "espnGamesPlayed": 51,
+   "status": "exact"
+  },
+  "1901": {
+   "mappedGames": 7,
+   "espnId": "4291678",
+   "espnGamesPlayed": 7,
+   "status": "exact"
+  },
+  "1907": {
+   "mappedGames": 50,
+   "espnId": "3133602",
+   "espnGamesPlayed": 50,
+   "status": "exact"
+  },
+  "1909": {
+   "mappedGames": 82,
+   "espnId": "4065670",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "1913": {
+   "mappedGames": 77,
+   "espnId": "4066383",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "1920": {
+   "mappedGames": 78,
+   "espnId": "4065663",
+   "espnGamesPlayed": 78,
+   "status": "exact"
+  },
+  "1924": {
+   "mappedGames": 48,
+   "espnId": "4277961",
+   "espnGamesPlayed": 48,
+   "status": "exact"
+  },
+  "1925": {
+   "mappedGames": 53,
+   "espnId": "3133635",
+   "espnGamesPlayed": 53,
+   "status": "exact"
+  },
+  "1932": {
+   "mappedGames": 36,
+   "espnId": "3150844",
+   "espnGamesPlayed": 36,
+   "status": "exact"
+  },
+  "1934": {
+   "mappedGames": 47,
+   "espnId": "4222252",
+   "espnGamesPlayed": 47,
+   "status": "exact"
+  },
+  "1941": {
+   "mappedGames": 69,
+   "espnId": "4066372",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "1945": {
+   "mappedGames": 15,
+   "espnId": "4277905",
+   "espnGamesPlayed": 15,
+   "status": "exact"
+  },
+  "1946": {
+   "mappedGames": 56,
+   "espnId": "3133626",
+   "espnGamesPlayed": 56,
+   "status": "exact"
+  },
+  "1950": {
+   "mappedGames": 59,
+   "espnId": "4066211",
+   "espnGamesPlayed": 59,
+   "status": "exact"
+  },
+  "1951": {
+   "mappedGames": 42,
+   "espnId": "3914285",
+   "espnGamesPlayed": 42,
+   "status": "exact"
+  },
+  "1957": {
+   "mappedGames": 68,
+   "espnId": "4278073",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "1959": {
+   "mappedGames": 51,
+   "espnId": "3135045",
+   "espnGamesPlayed": 51,
+   "status": "exact"
+  },
+  "1961": {
+   "mappedGames": 77,
+   "espnId": "3157465",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "1964": {
+   "mappedGames": 82,
+   "espnId": "3934673",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "1967": {
+   "mappedGames": 74,
+   "espnId": "3934672",
+   "espnGamesPlayed": 74,
+   "status": "exact"
+  },
+  "1970": {
+   "mappedGames": 64,
+   "espnId": "3945274",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "1972": {
+   "mappedGames": 49,
+   "espnId": "4066436",
+   "espnGamesPlayed": 49,
+   "status": "exact"
+  },
+  "1974": {
+   "mappedGames": 72,
+   "espnId": "4278129",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "1975": {
+   "mappedGames": 82,
+   "espnId": "3147657",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "1982": {
+   "mappedGames": 65,
+   "espnId": "4277843",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "1983": {
+   "mappedGames": 55,
+   "espnId": "4351851",
+   "espnGamesPlayed": 55,
+   "status": "exact"
+  },
+  "1986": {
+   "mappedGames": 60,
+   "espnId": "4277848",
+   "espnGamesPlayed": 60,
+   "status": "exact"
+  },
+  "1987": {
+   "mappedGames": 65,
+   "espnId": "4278077",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "1988": {
+   "mappedGames": 52,
+   "espnId": "4278104",
+   "espnGamesPlayed": 52,
+   "status": "exact"
+  },
+  "1994": {
+   "mappedGames": 4,
+   "espnId": "4277919",
+   "espnGamesPlayed": 4,
+   "status": "exact"
+  },
+  "1997": {
+   "mappedGames": 55,
+   "espnId": "4278049",
+   "espnGamesPlayed": 55,
+   "status": "exact"
+  },
+  "1998": {
+   "mappedGames": 50,
+   "espnId": "4395651",
+   "espnGamesPlayed": 50,
+   "status": "exact"
+  },
+  "1999": {
+   "mappedGames": 12,
+   "espnId": "4065778",
+   "espnGamesPlayed": 12,
+   "status": "exact"
+  },
+  "2001": {
+   "mappedGames": 57,
+   "espnId": "4395625",
+   "espnGamesPlayed": 57,
+   "status": "exact"
+  },
+  "2007": {
+   "mappedGames": 45,
+   "espnId": "4396907",
+   "espnGamesPlayed": 45,
+   "status": "exact"
+  },
+  "2008": {
+   "mappedGames": 59,
+   "espnId": "3912848",
+   "espnGamesPlayed": 59,
+   "status": "exact"
+  },
+  "2009": {
+   "mappedGames": 38,
+   "espnId": "4397140",
+   "espnGamesPlayed": 38,
+   "status": "exact"
+  },
+  "2010": {
+   "mappedGames": 64,
+   "espnId": "4348700",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "2012": {
+   "mappedGames": 39,
+   "espnId": "4277956",
+   "espnGamesPlayed": 39,
+   "status": "exact"
+  },
+  "2017": {
+   "mappedGames": 30,
+   "espnId": "3907498",
+   "espnGamesPlayed": 30,
+   "status": "exact"
+  },
+  "2020": {
+   "mappedGames": 68,
+   "espnId": "4066648",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "2021": {
+   "mappedGames": 15,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2028": {
+   "mappedGames": 58,
+   "espnId": "3138160",
+   "espnGamesPlayed": 58,
+   "status": "exact"
+  },
+  "2029": {
+   "mappedGames": 56,
+   "espnId": "4278078",
+   "espnGamesPlayed": 56,
+   "status": "exact"
+  },
+  "2030": {
+   "mappedGames": 4,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2032": {
+   "mappedGames": 69,
+   "espnId": "4278067",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "2036": {
+   "mappedGames": 77,
+   "espnId": "4396971",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "2037": {
+   "mappedGames": 44,
+   "espnId": "3134916",
+   "espnGamesPlayed": 44,
+   "status": "exact"
+  },
+  "2039": {
+   "mappedGames": 56,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2040": {
+   "mappedGames": 20,
+   "espnId": "4279888",
+   "espnGamesPlayed": 20,
+   "status": "exact"
+  },
+  "2041": {
+   "mappedGames": 2,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2050": {
+   "mappedGames": 45,
+   "espnId": "4065732",
+   "espnGamesPlayed": 45,
+   "status": "exact"
+  },
+  "2053": {
+   "mappedGames": 66,
+   "espnId": "4397077",
+   "espnGamesPlayed": 66,
+   "status": "exact"
+  },
+  "2054": {
+   "mappedGames": 62,
+   "espnId": "4395628",
+   "espnGamesPlayed": 62,
+   "status": "exact"
+  },
+  "2055": {
+   "mappedGames": 78,
+   "espnId": "4278039",
+   "espnGamesPlayed": 78,
+   "status": "exact"
+  },
+  "2059": {
+   "mappedGames": 82,
+   "espnId": "2596112",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2061": {
+   "mappedGames": 36,
+   "espnId": "4066218",
+   "espnGamesPlayed": 36,
+   "status": "exact"
+  },
+  "2065": {
+   "mappedGames": 82,
+   "espnId": "4395723",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2074": {
+   "mappedGames": 63,
+   "espnId": "3907823",
+   "espnGamesPlayed": 63,
+   "status": "exact"
+  },
+  "2075": {
+   "mappedGames": 46,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2084": {
+   "mappedGames": 53,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2086": {
+   "mappedGames": 33,
+   "espnId": "4395725",
+   "espnGamesPlayed": 33,
+   "status": "exact"
+  },
+  "2090": {
+   "mappedGames": 15,
+   "espnId": "4065733",
+   "espnGamesPlayed": 15,
+   "status": "exact"
+  },
+  "2091": {
+   "mappedGames": 54,
+   "espnId": "3138196",
+   "espnGamesPlayed": 54,
+   "status": "exact"
+  },
+  "2095": {
+   "mappedGames": 69,
+   "espnId": "4397020",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "2102": {
+   "mappedGames": 3,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2118": {
+   "mappedGames": 72,
+   "espnId": "4431687",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "2119": {
+   "mappedGames": 24,
+   "espnId": "4278355",
+   "espnGamesPlayed": 24,
+   "status": "exact"
+  },
+  "2120": {
+   "mappedGames": 63,
+   "espnId": "4432822",
+   "espnGamesPlayed": 63,
+   "status": "exact"
+  },
+  "2122": {
+   "mappedGames": 4,
+   "espnId": "4432808",
+   "espnGamesPlayed": 4,
+   "status": "exact"
+  },
+  "2125": {
+   "mappedGames": 71,
+   "espnId": "4395702",
+   "espnGamesPlayed": 71,
+   "status": "exact"
+  },
+  "2126": {
+   "mappedGames": 70,
+   "espnId": "4431678",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "2128": {
+   "mappedGames": 65,
+   "espnId": "4278562",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "2131": {
+   "mappedGames": 72,
+   "espnId": "4397136",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "2133": {
+   "mappedGames": 61,
+   "espnId": "4594268",
+   "espnGamesPlayed": 61,
+   "status": "exact"
+  },
+  "2135": {
+   "mappedGames": 73,
+   "espnId": "4431671",
+   "espnGamesPlayed": 73,
+   "status": "exact"
+  },
+  "2136": {
+   "mappedGames": 74,
+   "espnId": "4431680",
+   "espnGamesPlayed": 74,
+   "status": "exact"
+  },
+  "2139": {
+   "mappedGames": 52,
+   "espnId": "4066757",
+   "espnGamesPlayed": 52,
+   "status": "exact"
+  },
+  "2141": {
+   "mappedGames": 47,
+   "espnId": "4278076",
+   "espnGamesPlayed": 48,
+   "status": "delta-1"
+  },
+  "2142": {
+   "mappedGames": 79,
+   "espnId": "4066354",
+   "espnGamesPlayed": 79,
+   "status": "exact"
+  },
+  "2143": {
+   "mappedGames": 82,
+   "espnId": "4066320",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2144": {
+   "mappedGames": 45,
+   "espnId": "4396909",
+   "espnGamesPlayed": 45,
+   "status": "exact"
+  },
+  "2145": {
+   "mappedGames": 65,
+   "espnId": "4395626",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "2146": {
+   "mappedGames": 67,
+   "espnId": "4395630",
+   "espnGamesPlayed": 67,
+   "status": "exact"
+  },
+  "2152": {
+   "mappedGames": 73,
+   "espnId": "4431679",
+   "espnGamesPlayed": 73,
+   "status": "exact"
+  },
+  "2155": {
+   "mappedGames": 58,
+   "espnId": "4432811",
+   "espnGamesPlayed": 58,
+   "status": "exact"
+  },
+  "2156": {
+   "mappedGames": 53,
+   "espnId": "4397189",
+   "espnGamesPlayed": 53,
+   "status": "exact"
+  },
+  "2157": {
+   "mappedGames": 70,
+   "espnId": "4395724",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "2159": {
+   "mappedGames": 58,
+   "espnId": "4432810",
+   "espnGamesPlayed": 58,
+   "status": "exact"
+  },
+  "2163": {
+   "mappedGames": 30,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2164": {
+   "mappedGames": 52,
+   "espnId": "4431690",
+   "espnGamesPlayed": 52,
+   "status": "exact"
+  },
+  "2165": {
+   "mappedGames": 35,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2172": {
+   "mappedGames": 9,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2179": {
+   "mappedGames": 72,
+   "espnId": "4432816",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "2181": {
+   "mappedGames": 66,
+   "espnId": "4683021",
+   "espnGamesPlayed": 66,
+   "status": "exact"
+  },
+  "2182": {
+   "mappedGames": 23,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2185": {
+   "mappedGames": 65,
+   "espnId": "4578893",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "2192": {
+   "mappedGames": 55,
+   "espnId": "2581184",
+   "espnGamesPlayed": 55,
+   "status": "exact"
+  },
+  "2193": {
+   "mappedGames": 46,
+   "espnId": "3136777",
+   "espnGamesPlayed": 46,
+   "status": "exact"
+  },
+  "2233": {
+   "mappedGames": 74,
+   "espnId": "4278594",
+   "espnGamesPlayed": 74,
+   "status": "exact"
+  },
+  "2243": {
+   "mappedGames": 6,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2255": {
+   "mappedGames": 69,
+   "espnId": "4397002",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "2256": {
+   "mappedGames": 41,
+   "espnId": "4431823",
+   "espnGamesPlayed": 41,
+   "status": "exact"
+  },
+  "2257": {
+   "mappedGames": 67,
+   "espnId": "4277922",
+   "espnGamesPlayed": 67,
+   "status": "exact"
+  },
+  "2258": {
+   "mappedGames": 75,
+   "espnId": "4397014",
+   "espnGamesPlayed": 75,
+   "status": "exact"
+  },
+  "2259": {
+   "mappedGames": 65,
+   "espnId": "4432158",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "2260": {
+   "mappedGames": 55,
+   "espnId": "4432170",
+   "espnGamesPlayed": 55,
+   "status": "exact"
+  },
+  "2262": {
+   "mappedGames": 60,
+   "espnId": "4432171",
+   "espnGamesPlayed": 60,
+   "status": "exact"
+  },
+  "2265": {
+   "mappedGames": 13,
+   "espnId": "4397886",
+   "espnGamesPlayed": 13,
+   "status": "exact"
+  },
+  "2266": {
+   "mappedGames": 58,
+   "espnId": "4280151",
+   "espnGamesPlayed": 58,
+   "status": "exact"
+  },
+  "2267": {
+   "mappedGames": 64,
+   "espnId": "4432166",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "2268": {
+   "mappedGames": 69,
+   "espnId": "4277951",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "2270": {
+   "mappedGames": 36,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2275": {
+   "mappedGames": 62,
+   "espnId": "4432194",
+   "espnGamesPlayed": 62,
+   "status": "exact"
+  },
+  "2278": {
+   "mappedGames": 42,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2280": {
+   "mappedGames": 56,
+   "espnId": "4433137",
+   "espnGamesPlayed": 56,
+   "status": "exact"
+  },
+  "2281": {
+   "mappedGames": 43,
+   "espnId": "4593125",
+   "espnGamesPlayed": 43,
+   "status": "exact"
+  },
+  "2283": {
+   "mappedGames": 41,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2284": {
+   "mappedGames": 72,
+   "espnId": "4701230",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "2285": {
+   "mappedGames": 66,
+   "espnId": "4397688",
+   "espnGamesPlayed": 66,
+   "status": "exact"
+  },
+  "2286": {
+   "mappedGames": 56,
+   "espnId": "4277813",
+   "espnGamesPlayed": 56,
+   "status": "exact"
+  },
+  "2289": {
+   "mappedGames": 80,
+   "espnId": "4433134",
+   "espnGamesPlayed": 80,
+   "status": "exact"
+  },
+  "2290": {
+   "mappedGames": 6,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2296": {
+   "mappedGames": 80,
+   "espnId": "4278580",
+   "espnGamesPlayed": 80,
+   "status": "exact"
+  },
+  "2297": {
+   "mappedGames": 53,
+   "espnId": "4432819",
+   "espnGamesPlayed": 53,
+   "status": "exact"
+  },
+  "2298": {
+   "mappedGames": 22,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2299": {
+   "mappedGames": 65,
+   "espnId": "4397183",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "2301": {
+   "mappedGames": 70,
+   "espnId": "4278053",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "2302": {
+   "mappedGames": 76,
+   "espnId": "4397424",
+   "espnGamesPlayed": 76,
+   "status": "exact"
+  },
+  "2303": {
+   "mappedGames": 71,
+   "espnId": "4592492",
+   "espnGamesPlayed": 71,
+   "status": "exact"
+  },
+  "2304": {
+   "mappedGames": 34,
+   "espnId": "4566434",
+   "espnGamesPlayed": 34,
+   "status": "exact"
+  },
+  "2305": {
+   "mappedGames": 57,
+   "espnId": "4432165",
+   "espnGamesPlayed": 57,
+   "status": "exact"
+  },
+  "2306": {
+   "mappedGames": 36,
+   "espnId": "4433247",
+   "espnGamesPlayed": 36,
+   "status": "exact"
+  },
+  "2308": {
+   "mappedGames": 72,
+   "espnId": "4871144",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "2309": {
+   "mappedGames": 32,
+   "espnId": "4437244",
+   "espnGamesPlayed": 32,
+   "status": "exact"
+  },
+  "2313": {
+   "mappedGames": 54,
+   "espnId": "4871145",
+   "espnGamesPlayed": 54,
+   "status": "exact"
+  },
+  "2316": {
+   "mappedGames": 51,
+   "espnId": "4066457",
+   "espnGamesPlayed": 51,
+   "status": "exact"
+  },
+  "2317": {
+   "mappedGames": 68,
+   "espnId": "3146557",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "2322": {
+   "mappedGames": 69,
+   "espnId": "4277869",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "2324": {
+   "mappedGames": 69,
+   "espnId": "4432907",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "2325": {
+   "mappedGames": 53,
+   "espnId": "4431675",
+   "espnGamesPlayed": 53,
+   "status": "exact"
+  },
+  "2329": {
+   "mappedGames": 78,
+   "espnId": "4065804",
+   "espnGamesPlayed": 78,
+   "status": "exact"
+  },
+  "2334": {
+   "mappedGames": 11,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2335": {
+   "mappedGames": 82,
+   "espnId": "4065731",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2339": {
+   "mappedGames": 24,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2341": {
+   "mappedGames": 70,
+   "espnId": "4278402",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "2346": {
+   "mappedGames": 11,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2352": {
+   "mappedGames": 32,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2358": {
+   "mappedGames": 47,
+   "espnId": "4066399",
+   "espnGamesPlayed": 47,
+   "status": "exact"
+  },
+  "2360": {
+   "mappedGames": 70,
+   "espnId": "4066993",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "2397": {
+   "mappedGames": 66,
+   "espnId": "4397040",
+   "espnGamesPlayed": 66,
+   "status": "exact"
+  },
+  "2402": {
+   "mappedGames": 4,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2408": {
+   "mappedGames": 40,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2412": {
+   "mappedGames": 29,
+   "espnId": "4397251",
+   "espnGamesPlayed": 29,
+   "status": "exact"
+  },
+  "2413": {
+   "mappedGames": 21,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2414": {
+   "mappedGames": 4,
+   "espnId": "4593049",
+   "espnGamesPlayed": 4,
+   "status": "exact"
+  },
+  "2416": {
+   "mappedGames": 10,
+   "espnId": "4431785",
+   "espnGamesPlayed": 10,
+   "status": "exact"
+  },
+  "2417": {
+   "mappedGames": 78,
+   "espnId": "4397475",
+   "espnGamesPlayed": 78,
+   "status": "exact"
+  },
+  "2422": {
+   "mappedGames": 80,
+   "espnId": "4278585",
+   "espnGamesPlayed": 80,
+   "status": "exact"
+  },
+  "2428": {
+   "mappedGames": 4,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2431": {
+   "mappedGames": 46,
+   "espnId": "4280245",
+   "espnGamesPlayed": 46,
+   "status": "exact"
+  },
+  "2432": {
+   "mappedGames": 72,
+   "espnId": "4702177",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "2433": {
+   "mappedGames": 48,
+   "espnId": "4433159",
+   "espnGamesPlayed": 48,
+   "status": "exact"
+  },
+  "2434": {
+   "mappedGames": 62,
+   "espnId": "4397018",
+   "espnGamesPlayed": 62,
+   "status": "exact"
+  },
+  "2435": {
+   "mappedGames": 54,
+   "espnId": "4683634",
+   "espnGamesPlayed": 54,
+   "status": "exact"
+  },
+  "2436": {
+   "mappedGames": 9,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2438": {
+   "mappedGames": 70,
+   "espnId": "4433621",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "2439": {
+   "mappedGames": 37,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2440": {
+   "mappedGames": 60,
+   "espnId": "4701232",
+   "espnGamesPlayed": 60,
+   "status": "exact"
+  },
+  "2441": {
+   "mappedGames": 5,
+   "espnId": "4433136",
+   "espnGamesPlayed": 5,
+   "status": "exact"
+  },
+  "2442": {
+   "mappedGames": 6,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2443": {
+   "mappedGames": 5,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2444": {
+   "mappedGames": 82,
+   "espnId": "4592691",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2445": {
+   "mappedGames": 77,
+   "espnId": "4432639",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "2446": {
+   "mappedGames": 16,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2447": {
+   "mappedGames": 60,
+   "espnId": "4433192",
+   "espnGamesPlayed": 60,
+   "status": "exact"
+  },
+  "2449": {
+   "mappedGames": 76,
+   "espnId": "4869342",
+   "espnGamesPlayed": 76,
+   "status": "exact"
+  },
+  "2450": {
+   "mappedGames": 31,
+   "espnId": "4683935",
+   "espnGamesPlayed": 31,
+   "status": "exact"
+  },
+  "2451": {
+   "mappedGames": 44,
+   "espnId": "4610139",
+   "espnGamesPlayed": 44,
+   "status": "exact"
+  },
+  "2452": {
+   "mappedGames": 28,
+   "espnId": "4565201",
+   "espnGamesPlayed": 28,
+   "status": "exact"
+  },
+  "2453": {
+   "mappedGames": 33,
+   "espnId": "4593803",
+   "espnGamesPlayed": 33,
+   "status": "exact"
+  },
+  "2454": {
+   "mappedGames": 54,
+   "espnId": "4576087",
+   "espnGamesPlayed": 54,
+   "status": "exact"
+  },
+  "2455": {
+   "mappedGames": 69,
+   "espnId": "4433255",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "2456": {
+   "mappedGames": 23,
+   "espnId": "4594327",
+   "espnGamesPlayed": 23,
+   "status": "exact"
+  },
+  "2457": {
+   "mappedGames": 44,
+   "espnId": "4431767",
+   "espnGamesPlayed": 44,
+   "status": "exact"
+  },
+  "2458": {
+   "mappedGames": 72,
+   "espnId": "4432573",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "2459": {
+   "mappedGames": 8,
+   "espnId": "4432645",
+   "espnGamesPlayed": 8,
+   "status": "exact"
+  },
+  "2461": {
+   "mappedGames": 57,
+   "espnId": "4395712",
+   "espnGamesPlayed": 57,
+   "status": "exact"
+  },
+  "2463": {
+   "mappedGames": 74,
+   "espnId": "4591725",
+   "espnGamesPlayed": 74,
+   "status": "exact"
+  },
+  "2464": {
+   "mappedGames": 42,
+   "espnId": "4576086",
+   "espnGamesPlayed": 42,
+   "status": "exact"
+  },
+  "2465": {
+   "mappedGames": 49,
+   "espnId": "4687718",
+   "espnGamesPlayed": 49,
+   "status": "exact"
+  },
+  "2466": {
+   "mappedGames": 40,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2467": {
+   "mappedGames": 11,
+   "espnId": "4432646",
+   "espnGamesPlayed": 11,
+   "status": "exact"
+  },
+  "2468": {
+   "mappedGames": 77,
+   "espnId": "4432582",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "2469": {
+   "mappedGames": 46,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2471": {
+   "mappedGames": 26,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2472": {
+   "mappedGames": 28,
+   "espnId": "4576085",
+   "espnGamesPlayed": 28,
+   "status": "exact"
+  },
+  "2473": {
+   "mappedGames": 27,
+   "espnId": "4431778",
+   "espnGamesPlayed": 27,
+   "status": "exact"
+  },
+  "2474": {
+   "mappedGames": 73,
+   "espnId": "4433249",
+   "espnGamesPlayed": 73,
+   "status": "exact"
+  },
+  "2475": {
+   "mappedGames": 65,
+   "espnId": "4432823",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "2476": {
+   "mappedGames": 50,
+   "espnId": "4914336",
+   "espnGamesPlayed": 50,
+   "status": "exact"
+  },
+  "2477": {
+   "mappedGames": 64,
+   "espnId": "4432446",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "2478": {
+   "mappedGames": 18,
+   "espnId": "4433623",
+   "espnGamesPlayed": 18,
+   "status": "exact"
+  },
+  "2480": {
+   "mappedGames": 47,
+   "espnId": "4997528",
+   "espnGamesPlayed": 47,
+   "status": "exact"
+  },
+  "2481": {
+   "mappedGames": 14,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2482": {
+   "mappedGames": 57,
+   "espnId": "4997526",
+   "espnGamesPlayed": 57,
+   "status": "exact"
+  },
+  "2485": {
+   "mappedGames": 57,
+   "espnId": "4868423",
+   "espnGamesPlayed": 57,
+   "status": "exact"
+  },
+  "2487": {
+   "mappedGames": 12,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2488": {
+   "mappedGames": 68,
+   "espnId": "4997536",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "2490": {
+   "mappedGames": 62,
+   "espnId": "4997538",
+   "espnGamesPlayed": 62,
+   "status": "exact"
+  },
+  "2492": {
+   "mappedGames": 71,
+   "espnId": "4870562",
+   "espnGamesPlayed": 71,
+   "status": "exact"
+  },
+  "2493": {
+   "mappedGames": 4,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2494": {
+   "mappedGames": 82,
+   "espnId": "4592479",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2495": {
+   "mappedGames": 24,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2497": {
+   "mappedGames": 70,
+   "espnId": "3899664",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "2505": {
+   "mappedGames": 66,
+   "espnId": "4592714",
+   "espnGamesPlayed": 66,
+   "status": "exact"
+  },
+  "2512": {
+   "mappedGames": 2,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2514": {
+   "mappedGames": 32,
+   "espnId": "4279318",
+   "espnGamesPlayed": 32,
+   "status": "exact"
+  },
+  "2521": {
+   "mappedGames": 49,
+   "espnId": "4592829",
+   "espnGamesPlayed": 49,
+   "status": "exact"
+  },
+  "2522": {
+   "mappedGames": 53,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2524": {
+   "mappedGames": 7,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2535": {
+   "mappedGames": 2,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2537": {
+   "mappedGames": 40,
+   "espnId": "4278572",
+   "espnGamesPlayed": 40,
+   "status": "exact"
+  },
+  "2543": {
+   "mappedGames": 14,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2562": {
+   "mappedGames": 65,
+   "espnId": "4433076",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "2563": {
+   "mappedGames": 76,
+   "espnId": "5106060",
+   "espnGamesPlayed": 76,
+   "status": "exact"
+  },
+  "2564": {
+   "mappedGames": 82,
+   "espnId": "4709138",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2565": {
+   "mappedGames": 56,
+   "espnId": "5104155",
+   "espnGamesPlayed": 56,
+   "status": "exact"
+  },
+  "2566": {
+   "mappedGames": 73,
+   "espnId": "4684742",
+   "espnGamesPlayed": 73,
+   "status": "exact"
+  },
+  "2567": {
+   "mappedGames": 38,
+   "espnId": "4432107",
+   "espnGamesPlayed": 38,
+   "status": "exact"
+  },
+  "2568": {
+   "mappedGames": 65,
+   "espnId": "4433287",
+   "espnGamesPlayed": 65,
+   "status": "exact"
+  },
+  "2569": {
+   "mappedGames": 30,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2570": {
+   "mappedGames": 6,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2571": {
+   "mappedGames": 66,
+   "espnId": "4712896",
+   "espnGamesPlayed": 66,
+   "status": "exact"
+  },
+  "2573": {
+   "mappedGames": 21,
+   "espnId": "5105592",
+   "espnGamesPlayed": 21,
+   "status": "exact"
+  },
+  "2574": {
+   "mappedGames": 79,
+   "espnId": "4684740",
+   "espnGamesPlayed": 79,
+   "status": "exact"
+  },
+  "2575": {
+   "mappedGames": 16,
+   "espnId": "4683736",
+   "espnGamesPlayed": 16,
+   "status": "exact"
+  },
+  "2576": {
+   "mappedGames": 51,
+   "espnId": "4683750",
+   "espnGamesPlayed": 51,
+   "status": "exact"
+  },
+  "2577": {
+   "mappedGames": 64,
+   "espnId": "5104157",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "2578": {
+   "mappedGames": 76,
+   "espnId": "5106258",
+   "espnGamesPlayed": 76,
+   "status": "exact"
+  },
+  "2579": {
+   "mappedGames": 61,
+   "espnId": "4431752",
+   "espnGamesPlayed": 61,
+   "status": "exact"
+  },
+  "2580": {
+   "mappedGames": 54,
+   "espnId": "4433627",
+   "espnGamesPlayed": 54,
+   "status": "exact"
+  },
+  "2581": {
+   "mappedGames": 75,
+   "espnId": "5105839",
+   "espnGamesPlayed": 75,
+   "status": "exact"
+  },
+  "2582": {
+   "mappedGames": 59,
+   "espnId": "4684806",
+   "espnGamesPlayed": 59,
+   "status": "exact"
+  },
+  "2583": {
+   "mappedGames": 75,
+   "espnId": "4432848",
+   "espnGamesPlayed": 75,
+   "status": "exact"
+  },
+  "2584": {
+   "mappedGames": 7,
+   "espnId": "4683688",
+   "espnGamesPlayed": 7,
+   "status": "exact"
+  },
+  "2585": {
+   "mappedGames": 53,
+   "espnId": "4595400",
+   "espnGamesPlayed": 53,
+   "status": "exact"
+  },
+  "2586": {
+   "mappedGames": 77,
+   "espnId": "4683692",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "2587": {
+   "mappedGames": 57,
+   "espnId": "4594326",
+   "espnGamesPlayed": 57,
+   "status": "exact"
+  },
+  "2589": {
+   "mappedGames": 57,
+   "espnId": "4432181",
+   "espnGamesPlayed": 57,
+   "status": "exact"
+  },
+  "2590": {
+   "mappedGames": 64,
+   "espnId": "4712849",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "2591": {
+   "mappedGames": 55,
+   "espnId": "5105806",
+   "espnGamesPlayed": 55,
+   "status": "exact"
+  },
+  "2592": {
+   "mappedGames": 48,
+   "espnId": "5105553",
+   "espnGamesPlayed": 48,
+   "status": "exact"
+  },
+  "2596": {
+   "mappedGames": 49,
+   "espnId": "4997537",
+   "espnGamesPlayed": 49,
+   "status": "exact"
+  },
+  "2597": {
+   "mappedGames": 53,
+   "espnId": "4431684",
+   "espnGamesPlayed": 53,
+   "status": "exact"
+  },
+  "2600": {
+   "mappedGames": 54,
+   "espnId": "4431714",
+   "espnGamesPlayed": 54,
+   "status": "exact"
+  },
+  "2602": {
+   "mappedGames": 68,
+   "espnId": "4432247",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "2603": {
+   "mappedGames": 55,
+   "espnId": "5105550",
+   "espnGamesPlayed": 55,
+   "status": "exact"
+  },
+  "2606": {
+   "mappedGames": 77,
+   "espnId": "4712863",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "2608": {
+   "mappedGames": 68,
+   "espnId": "4683689",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "2610": {
+   "mappedGames": 60,
+   "espnId": "4396818",
+   "espnGamesPlayed": 60,
+   "status": "exact"
+  },
+  "2611": {
+   "mappedGames": 48,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2612": {
+   "mappedGames": 3,
+   "espnId": "4433622",
+   "espnGamesPlayed": 3,
+   "status": "exact"
+  },
+  "2613": {
+   "mappedGames": 82,
+   "espnId": "4431736",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2615": {
+   "mappedGames": 64,
+   "espnId": "5099752",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "2616": {
+   "mappedGames": 1,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2617": {
+   "mappedGames": 13,
+   "espnId": "4398207",
+   "espnGamesPlayed": 13,
+   "status": "exact"
+  },
+  "2618": {
+   "mappedGames": 21,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2619": {
+   "mappedGames": 50,
+   "espnId": "4398390",
+   "espnGamesPlayed": 50,
+   "status": "exact"
+  },
+  "2620": {
+   "mappedGames": 30,
+   "espnId": "4683678",
+   "espnGamesPlayed": 30,
+   "status": "exact"
+  },
+  "2621": {
+   "mappedGames": 46,
+   "espnId": "5044385",
+   "espnGamesPlayed": 46,
+   "status": "exact"
+  },
+  "2622": {
+   "mappedGames": 75,
+   "espnId": "5081727",
+   "espnGamesPlayed": 75,
+   "status": "exact"
+  },
+  "2627": {
+   "mappedGames": 5,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2632": {
+   "mappedGames": 27,
+   "espnId": "4432827",
+   "espnGamesPlayed": 27,
+   "status": "exact"
+  },
+  "2637": {
+   "mappedGames": 27,
+   "espnId": "4431695",
+   "espnGamesPlayed": 27,
+   "status": "exact"
+  },
+  "2640": {
+   "mappedGames": 64,
+   "espnId": "4701233",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "2642": {
+   "mappedGames": 4,
+   "espnId": "4397204",
+   "espnGamesPlayed": 4,
+   "status": "exact"
+  },
+  "2644": {
+   "mappedGames": 15,
+   "espnId": "4395650",
+   "espnGamesPlayed": 15,
+   "status": "exact"
+  },
+  "2652": {
+   "mappedGames": 19,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2654": {
+   "mappedGames": 32,
+   "espnId": "4066268",
+   "espnGamesPlayed": 32,
+   "status": "exact"
+  },
+  "2657": {
+   "mappedGames": 47,
+   "espnId": "4397233",
+   "espnGamesPlayed": 47,
+   "status": "exact"
+  },
+  "2658": {
+   "mappedGames": 4,
+   "espnId": "4593034",
+   "espnGamesPlayed": 4,
+   "status": "exact"
+  },
+  "2664": {
+   "mappedGames": 6,
+   "espnId": "4397689",
+   "espnGamesPlayed": 6,
+   "status": "exact"
+  },
+  "2670": {
+   "mappedGames": 5,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2681": {
+   "mappedGames": 13,
+   "espnId": "4395623",
+   "espnGamesPlayed": 13,
+   "status": "exact"
+  },
+  "2703": {
+   "mappedGames": 15,
+   "espnId": "4397784",
+   "espnGamesPlayed": 15,
+   "status": "exact"
+  },
+  "2709": {
+   "mappedGames": 54,
+   "espnId": "4897943",
+   "espnGamesPlayed": 54,
+   "status": "exact"
+  },
+  "2710": {
+   "mappedGames": 70,
+   "espnId": "4888725",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "2711": {
+   "mappedGames": 77,
+   "espnId": "4702382",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "2712": {
+   "mappedGames": 66,
+   "espnId": "4683747",
+   "espnGamesPlayed": 66,
+   "status": "exact"
+  },
+  "2713": {
+   "mappedGames": 67,
+   "espnId": "4683778",
+   "espnGamesPlayed": 67,
+   "status": "exact"
+  },
+  "2714": {
+   "mappedGames": 48,
+   "espnId": "5174563",
+   "espnGamesPlayed": 48,
+   "status": "exact"
+  },
+  "2715": {
+   "mappedGames": 82,
+   "espnId": "4845374",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2716": {
+   "mappedGames": 43,
+   "espnId": "4432847",
+   "espnGamesPlayed": 43,
+   "status": "exact"
+  },
+  "2717": {
+   "mappedGames": 65,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2718": {
+   "mappedGames": 11,
+   "espnId": "4600663",
+   "espnGamesPlayed": 11,
+   "status": "exact"
+  },
+  "2719": {
+   "mappedGames": 82,
+   "espnId": "4711272",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2720": {
+   "mappedGames": 66,
+   "espnId": "5061589",
+   "espnGamesPlayed": 66,
+   "status": "exact"
+  },
+  "2721": {
+   "mappedGames": 77,
+   "espnId": "4593841",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "2722": {
+   "mappedGames": 68,
+   "espnId": "4845367",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "2723": {
+   "mappedGames": 72,
+   "espnId": "4684272",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "2724": {
+   "mappedGames": 59,
+   "espnId": "4683766",
+   "espnGamesPlayed": 59,
+   "status": "exact"
+  },
+  "2725": {
+   "mappedGames": 67,
+   "espnId": "4895758",
+   "espnGamesPlayed": 67,
+   "status": "exact"
+  },
+  "2726": {
+   "mappedGames": 77,
+   "espnId": "5105623",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "2727": {
+   "mappedGames": 7,
+   "espnId": "4702159",
+   "espnGamesPlayed": 7,
+   "status": "exact"
+  },
+  "2728": {
+   "mappedGames": 77,
+   "espnId": "5105565",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "2729": {
+   "mappedGames": 38,
+   "espnId": "4433188",
+   "espnGamesPlayed": 38,
+   "status": "exact"
+  },
+  "2730": {
+   "mappedGames": 25,
+   "espnId": "4433607",
+   "espnGamesPlayed": 25,
+   "status": "exact"
+  },
+  "2732": {
+   "mappedGames": 29,
+   "espnId": "5211983",
+   "espnGamesPlayed": 29,
+   "status": "exact"
+  },
+  "2733": {
+   "mappedGames": 48,
+   "espnId": "5160992",
+   "espnGamesPlayed": 48,
+   "status": "exact"
+  },
+  "2734": {
+   "mappedGames": 10,
+   "espnId": "5159925",
+   "espnGamesPlayed": 10,
+   "status": "exact"
+  },
+  "2736": {
+   "mappedGames": 37,
+   "espnId": "5211176",
+   "espnGamesPlayed": 37,
+   "status": "exact"
+  },
+  "2737": {
+   "mappedGames": 67,
+   "espnId": "5211175",
+   "espnGamesPlayed": 67,
+   "status": "exact"
+  },
+  "2738": {
+   "mappedGames": 48,
+   "espnId": "5170947",
+   "espnGamesPlayed": 48,
+   "status": "exact"
+  },
+  "2741": {
+   "mappedGames": 21,
+   "espnId": "4411057",
+   "espnGamesPlayed": 21,
+   "status": "exact"
+  },
+  "2742": {
+   "mappedGames": 62,
+   "espnId": "4433225",
+   "espnGamesPlayed": 62,
+   "status": "exact"
+  },
+  "2743": {
+   "mappedGames": 54,
+   "espnId": "4871141",
+   "espnGamesPlayed": 54,
+   "status": "exact"
+  },
+  "2744": {
+   "mappedGames": 35,
+   "espnId": "5157066",
+   "espnGamesPlayed": 35,
+   "status": "exact"
+  },
+  "2745": {
+   "mappedGames": 1,
+   "espnId": "4592965",
+   "espnGamesPlayed": 1,
+   "status": "exact"
+  },
+  "2746": {
+   "mappedGames": 4,
+   "espnId": "4592699",
+   "espnGamesPlayed": 4,
+   "status": "exact"
+  },
+  "2747": {
+   "mappedGames": 67,
+   "espnId": "4593016",
+   "espnGamesPlayed": 67,
+   "status": "exact"
+  },
+  "2748": {
+   "mappedGames": 64,
+   "espnId": "4711297",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "2749": {
+   "mappedGames": 71,
+   "espnId": "5105637",
+   "espnGamesPlayed": 71,
+   "status": "exact"
+  },
+  "2751": {
+   "mappedGames": 20,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2752": {
+   "mappedGames": 72,
+   "espnId": "4433083",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "2753": {
+   "mappedGames": 69,
+   "espnId": "5112087",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "2755": {
+   "mappedGames": 42,
+   "espnId": "4683774",
+   "espnGamesPlayed": 42,
+   "status": "exact"
+  },
+  "2756": {
+   "mappedGames": 4,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2758": {
+   "mappedGames": 10,
+   "espnId": "4592686",
+   "espnGamesPlayed": 10,
+   "status": "exact"
+  },
+  "2761": {
+   "mappedGames": 7,
+   "espnId": "4433618",
+   "espnGamesPlayed": 7,
+   "status": "exact"
+  },
+  "2763": {
+   "mappedGames": 40,
+   "espnId": "5107897",
+   "espnGamesPlayed": 40,
+   "status": "exact"
+  },
+  "2764": {
+   "mappedGames": 82,
+   "espnId": "4432241",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2765": {
+   "mappedGames": 55,
+   "espnId": "4845363",
+   "espnGamesPlayed": 55,
+   "status": "exact"
+  },
+  "2766": {
+   "mappedGames": 77,
+   "espnId": "4684793",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "2767": {
+   "mappedGames": 32,
+   "espnId": "4431786",
+   "espnGamesPlayed": 32,
+   "status": "exact"
+  },
+  "2768": {
+   "mappedGames": 70,
+   "espnId": "4601025",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "2769": {
+   "mappedGames": 12,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2771": {
+   "mappedGames": 82,
+   "espnId": "4601023",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "2772": {
+   "mappedGames": 57,
+   "espnId": "4900671",
+   "espnGamesPlayed": 57,
+   "status": "exact"
+  },
+  "2773": {
+   "mappedGames": 19,
+   "espnId": "4701225",
+   "espnGamesPlayed": 19,
+   "status": "exact"
+  },
+  "2776": {
+   "mappedGames": 72,
+   "espnId": "5107199",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "2777": {
+   "mappedGames": 14,
+   "espnId": "4396963",
+   "espnGamesPlayed": 14,
+   "status": "exact"
+  },
+  "2779": {
+   "mappedGames": 14,
+   "espnId": "4592857",
+   "espnGamesPlayed": 14,
+   "status": "exact"
+  },
+  "2780": {
+   "mappedGames": 7,
+   "espnId": "5107818",
+   "espnGamesPlayed": 7,
+   "status": "exact"
+  },
+  "2781": {
+   "mappedGames": 42,
+   "espnId": "4592435",
+   "espnGamesPlayed": 42,
+   "status": "exact"
+  },
+  "2784": {
+   "mappedGames": 5,
+   "espnId": "4592979",
+   "espnGamesPlayed": 5,
+   "status": "exact"
+  },
+  "2807": {
+   "mappedGames": 9,
+   "espnId": "5177362",
+   "espnGamesPlayed": 9,
+   "status": "exact"
+  },
+  "2818": {
+   "mappedGames": 11,
+   "espnId": "4713010",
+   "espnGamesPlayed": 11,
+   "status": "exact"
+  },
+  "2825": {
+   "mappedGames": 3,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2827": {
+   "mappedGames": 9,
+   "espnId": "4433268",
+   "espnGamesPlayed": 9,
+   "status": "exact"
+  },
+  "2831": {
+   "mappedGames": 61,
+   "espnId": "4431893",
+   "espnGamesPlayed": 61,
+   "status": "exact"
+  },
+  "2833": {
+   "mappedGames": 64,
+   "espnId": "4592427",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "2835": {
+   "mappedGames": 77,
+   "espnId": "4711294",
+   "espnGamesPlayed": 77,
+   "status": "exact"
+  },
+  "2836": {
+   "mappedGames": 78,
+   "espnId": "4683771",
+   "espnGamesPlayed": 78,
+   "status": "exact"
+  },
+  "2837": {
+   "mappedGames": 12,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2838": {
+   "mappedGames": 2,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2840": {
+   "mappedGames": 9,
+   "espnId": "4431734",
+   "espnGamesPlayed": 9,
+   "status": "exact"
+  },
+  "2841": {
+   "mappedGames": 64,
+   "espnId": "5106268",
+   "espnGamesPlayed": 64,
+   "status": "exact"
+  },
+  "2846": {
+   "mappedGames": 14,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "2854": {
+   "mappedGames": 5,
+   "espnId": "4432872",
+   "espnGamesPlayed": 5,
+   "status": "exact"
+  },
+  "2855": {
+   "mappedGames": 25,
+   "espnId": "4897449",
+   "espnGamesPlayed": 25,
+   "status": "exact"
+  },
+  "2856": {
+   "mappedGames": 11,
+   "espnId": "4397114",
+   "espnGamesPlayed": 11,
+   "status": "exact"
+  },
+  "2859": {
+   "mappedGames": 18,
+   "espnId": "5159895",
+   "espnGamesPlayed": 18,
+   "status": "exact"
+  },
+  "2860": {
+   "mappedGames": 17,
+   "espnId": "4431941",
+   "espnGamesPlayed": 17,
+   "status": "exact"
+  },
+  "2863": {
+   "mappedGames": 15,
+   "espnId": "4397882",
+   "espnGamesPlayed": 15,
+   "status": "exact"
+  },
+  "2867": {
+   "mappedGames": 26,
+   "espnId": "4397449",
+   "espnGamesPlayed": 26,
+   "status": "exact"
+  },
+  "2871": {
+   "mappedGames": 3,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4736": {
+   "mappedGames": 2,
+   "espnId": "5242496",
+   "espnGamesPlayed": 2,
+   "status": "exact"
+  },
+  "4737": {
+   "mappedGames": 75,
+   "espnId": "5124612",
+   "espnGamesPlayed": 75,
+   "status": "exact"
+  },
+  "4738": {
+   "mappedGames": 60,
+   "espnId": "5238230",
+   "espnGamesPlayed": 60,
+   "status": "exact"
+  },
+  "4739": {
+   "mappedGames": 74,
+   "espnId": "5144126",
+   "espnGamesPlayed": 74,
+   "status": "exact"
+  },
+  "4740": {
+   "mappedGames": 81,
+   "espnId": "5061575",
+   "espnGamesPlayed": 81,
+   "status": "exact"
+  },
+  "4741": {
+   "mappedGames": 31,
+   "espnId": "5239590",
+   "espnGamesPlayed": 31,
+   "status": "exact"
+  },
+  "4742": {
+   "mappedGames": 56,
+   "espnId": "5279130",
+   "espnGamesPlayed": 56,
+   "status": "exact"
+  },
+  "4743": {
+   "mappedGames": 57,
+   "espnId": "5107173",
+   "espnGamesPlayed": 57,
+   "status": "exact"
+  },
+  "4744": {
+   "mappedGames": 52,
+   "espnId": "5175643",
+   "espnGamesPlayed": 52,
+   "status": "exact"
+  },
+  "4745": {
+   "mappedGames": 63,
+   "espnId": "5037873",
+   "espnGamesPlayed": 63,
+   "status": "exact"
+  },
+  "4746": {
+   "mappedGames": 44,
+   "espnId": "5242502",
+   "espnGamesPlayed": 44,
+   "status": "exact"
+  },
+  "4747": {
+   "mappedGames": 40,
+   "espnId": "5279133",
+   "espnGamesPlayed": 40,
+   "status": "exact"
+  },
+  "4748": {
+   "mappedGames": 62,
+   "espnId": "4903027",
+   "espnGamesPlayed": 62,
+   "status": "exact"
+  },
+  "4749": {
+   "mappedGames": 44,
+   "espnId": "4873201",
+   "espnGamesPlayed": 44,
+   "status": "exact"
+  },
+  "4750": {
+   "mappedGames": 82,
+   "espnId": "5144091",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "4751": {
+   "mappedGames": 81,
+   "espnId": "4869780",
+   "espnGamesPlayed": 81,
+   "status": "exact"
+  },
+  "4752": {
+   "mappedGames": 74,
+   "espnId": "5175647",
+   "espnGamesPlayed": 74,
+   "status": "exact"
+  },
+  "4753": {
+   "mappedGames": 71,
+   "espnId": "5061568",
+   "espnGamesPlayed": 71,
+   "status": "exact"
+  },
+  "4754": {
+   "mappedGames": 69,
+   "espnId": "5037871",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "4755": {
+   "mappedGames": 57,
+   "espnId": "5093267",
+   "espnGamesPlayed": 57,
+   "status": "exact"
+  },
+  "4756": {
+   "mappedGames": 41,
+   "espnId": "5108024",
+   "espnGamesPlayed": 41,
+   "status": "exact"
+  },
+  "4757": {
+   "mappedGames": 69,
+   "espnId": "4896372",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "4758": {
+   "mappedGames": 72,
+   "espnId": "4873138",
+   "espnGamesPlayed": 72,
+   "status": "exact"
+  },
+  "4759": {
+   "mappedGames": 53,
+   "espnId": "5214640",
+   "espnGamesPlayed": 53,
+   "status": "exact"
+  },
+  "4760": {
+   "mappedGames": 70,
+   "espnId": "5041939",
+   "espnGamesPlayed": 70,
+   "status": "exact"
+  },
+  "4761": {
+   "mappedGames": 46,
+   "espnId": "5203685",
+   "espnGamesPlayed": 46,
+   "status": "exact"
+  },
+  "4763": {
+   "mappedGames": 43,
+   "espnId": "5217746",
+   "espnGamesPlayed": 43,
+   "status": "exact"
+  },
+  "4764": {
+   "mappedGames": 75,
+   "espnId": "4702384",
+   "espnGamesPlayed": 75,
+   "status": "exact"
+  },
+  "4765": {
+   "mappedGames": 54,
+   "espnId": "5239561",
+   "espnGamesPlayed": 54,
+   "status": "exact"
+  },
+  "4767": {
+   "mappedGames": 69,
+   "espnId": "5289900",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "4768": {
+   "mappedGames": 50,
+   "espnId": "5023693",
+   "espnGamesPlayed": 50,
+   "status": "exact"
+  },
+  "4770": {
+   "mappedGames": 37,
+   "espnId": "4697268",
+   "espnGamesPlayed": 37,
+   "status": "exact"
+  },
+  "4771": {
+   "mappedGames": 38,
+   "espnId": "4703421",
+   "espnGamesPlayed": 38,
+   "status": "exact"
+  },
+  "4773": {
+   "mappedGames": 69,
+   "espnId": "4897262",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "4774": {
+   "mappedGames": 11,
+   "espnId": "4433569",
+   "espnGamesPlayed": 11,
+   "status": "exact"
+  },
+  "4775": {
+   "mappedGames": 50,
+   "espnId": "4606840",
+   "espnGamesPlayed": 50,
+   "status": "exact"
+  },
+  "4776": {
+   "mappedGames": 34,
+   "espnId": "4700852",
+   "espnGamesPlayed": 34,
+   "status": "exact"
+  },
+  "4777": {
+   "mappedGames": 69,
+   "espnId": "4576060",
+   "espnGamesPlayed": 69,
+   "status": "exact"
+  },
+  "4778": {
+   "mappedGames": 82,
+   "espnId": "4602025",
+   "espnGamesPlayed": 82,
+   "status": "exact"
+  },
+  "4779": {
+   "mappedGames": 5,
+   "espnId": "5157587",
+   "espnGamesPlayed": 5,
+   "status": "exact"
+  },
+  "4780": {
+   "mappedGames": 41,
+   "espnId": "4781746",
+   "espnGamesPlayed": 41,
+   "status": "exact"
+  },
+  "4781": {
+   "mappedGames": 25,
+   "espnId": "5060631",
+   "espnGamesPlayed": 25,
+   "status": "exact"
+  },
+  "4782": {
+   "mappedGames": 31,
+   "espnId": "4683934",
+   "espnGamesPlayed": 31,
+   "status": "exact"
+  },
+  "4783": {
+   "mappedGames": 61,
+   "espnId": "4432185",
+   "espnGamesPlayed": 61,
+   "status": "exact"
+  },
+  "4784": {
+   "mappedGames": 22,
+   "espnId": "4702745",
+   "espnGamesPlayed": 22,
+   "status": "exact"
+  },
+  "4785": {
+   "mappedGames": 11,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4786": {
+   "mappedGames": 23,
+   "espnId": "4702656",
+   "espnGamesPlayed": 23,
+   "status": "exact"
+  },
+  "4787": {
+   "mappedGames": 68,
+   "espnId": "4702352",
+   "espnGamesPlayed": 68,
+   "status": "exact"
+  },
+  "4788": {
+   "mappedGames": 6,
+   "espnId": "4593043",
+   "espnGamesPlayed": 6,
+   "status": "exact"
+  },
+  "4790": {
+   "mappedGames": 12,
+   "espnId": "4591259",
+   "espnGamesPlayed": 12,
+   "status": "exact"
+  },
+  "4791": {
+   "mappedGames": 55,
+   "espnId": "5105977",
+   "espnGamesPlayed": 55,
+   "status": "exact"
+  },
+  "4792": {
+   "mappedGames": 40,
+   "espnId": "4684208",
+   "espnGamesPlayed": 40,
+   "status": "exact"
+  },
+  "4793": {
+   "mappedGames": 74,
+   "espnId": "4898371",
+   "espnGamesPlayed": 74,
+   "status": "exact"
+  },
+  "4794": {
+   "mappedGames": 59,
+   "espnId": "5214637",
+   "espnGamesPlayed": 59,
+   "status": "exact"
+  },
+  "4795": {
+   "mappedGames": 7,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4796": {
+   "mappedGames": 7,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4797": {
+   "mappedGames": 14,
+   "espnId": "4696317",
+   "espnGamesPlayed": 14,
+   "status": "exact"
+  },
+  "4799": {
+   "mappedGames": 5,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4802": {
+   "mappedGames": 2,
+   "espnId": "4590360",
+   "espnGamesPlayed": 2,
+   "status": "exact"
+  },
+  "4803": {
+   "mappedGames": 9,
+   "espnId": "4700818",
+   "espnGamesPlayed": 9,
+   "status": "exact"
+  },
+  "4804": {
+   "mappedGames": 49,
+   "espnId": "4433144",
+   "espnGamesPlayed": 49,
+   "status": "exact"
+  },
+  "4805": {
+   "mappedGames": 37,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4807": {
+   "mappedGames": 44,
+   "espnId": "4433174",
+   "espnGamesPlayed": 44,
+   "status": "exact"
+  },
+  "4808": {
+   "mappedGames": 60,
+   "espnId": "4433629",
+   "espnGamesPlayed": 60,
+   "status": "exact"
+  },
+  "4809": {
+   "mappedGames": 4,
+   "espnId": "4702602",
+   "espnGamesPlayed": 4,
+   "status": "exact"
+  },
+  "4811": {
+   "mappedGames": 10,
+   "espnId": "4898369",
+   "espnGamesPlayed": 10,
+   "status": "exact"
+  },
+  "4812": {
+   "mappedGames": 9,
+   "espnId": "4702972",
+   "espnGamesPlayed": 9,
+   "status": "exact"
+  },
+  "4813": {
+   "mappedGames": 45,
+   "espnId": "4431772",
+   "espnGamesPlayed": 45,
+   "status": "exact"
+  },
+  "4818": {
+   "mappedGames": 38,
+   "espnId": "4701208",
+   "espnGamesPlayed": 38,
+   "status": "exact"
+  },
+  "4820": {
+   "mappedGames": 6,
+   "espnId": "4702134",
+   "espnGamesPlayed": 6,
+   "status": "exact"
+  },
+  "4821": {
+   "mappedGames": 17,
+   "espnId": "5174655",
+   "espnGamesPlayed": 17,
+   "status": "exact"
+  },
+  "4822": {
+   "mappedGames": 2,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4823": {
+   "mappedGames": 12,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4824": {
+   "mappedGames": 4,
+   "espnId": "4585618",
+   "espnGamesPlayed": 4,
+   "status": "exact"
+  },
+  "4826": {
+   "mappedGames": 13,
+   "espnId": "4898238",
+   "espnGamesPlayed": 13,
+   "status": "exact"
+  },
+  "4830": {
+   "mappedGames": 34,
+   "espnId": "4706557",
+   "espnGamesPlayed": 34,
+   "status": "exact"
+  },
+  "4836": {
+   "mappedGames": 8,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4838": {
+   "mappedGames": 18,
+   "espnId": "4433149",
+   "espnGamesPlayed": 18,
+   "status": "exact"
+  },
+  "4845": {
+   "mappedGames": 6,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4847": {
+   "mappedGames": 3,
+   "espnId": "4701845",
+   "espnGamesPlayed": 3,
+   "status": "exact"
+  },
+  "4849": {
+   "mappedGames": 1,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4851": {
+   "mappedGames": 13,
+   "espnId": "4683742",
+   "espnGamesPlayed": 13,
+   "status": "exact"
+  },
+  "4852": {
+   "mappedGames": 7,
+   "espnId": "4709131",
+   "espnGamesPlayed": 7,
+   "status": "exact"
+  },
+  "4853": {
+   "mappedGames": 4,
+   "espnId": "4702670",
+   "espnGamesPlayed": 4,
+   "status": "exact"
+  },
+  "4854": {
+   "mappedGames": 4,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4855": {
+   "mappedGames": 5,
+   "espnId": "4703889",
+   "espnGamesPlayed": 5,
+   "status": "exact"
+  },
+  "4856": {
+   "mappedGames": 5,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4857": {
+   "mappedGames": 15,
+   "espnId": "4898237",
+   "espnGamesPlayed": 15,
+   "status": "exact"
+  },
+  "4858": {
+   "mappedGames": 8,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4859": {
+   "mappedGames": 6,
+   "espnId": null,
+   "espnGamesPlayed": null,
+   "status": "no-espn-cross-check"
+  },
+  "4861": {
+   "mappedGames": 1,
+   "espnId": "5176420",
+   "espnGamesPlayed": 1,
+   "status": "exact"
+  }
+ }
+}
