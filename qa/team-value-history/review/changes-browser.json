@@ -1,0 +1,186 @@
+{
+  "synthetic": true,
+  "route": "signed-in fixture homepage / -> Your roster.",
+  "cases": [
+    {
+      "mode": "changed",
+      "width": 390,
+      "rootText": 100,
+      "checks": [
+        "default list contains only genuine non-zero comparable changes; unchanged and unknown states stay distinct; no provenance wall",
+        "full roster and exact microsecond provenance remain keyboard-accessible; current model uses the same $110 headline while the selected saved value/date stays separate",
+        "earliest selected snapshot reports unavailable comparison rather than unchanged or a current-value substitution"
+      ],
+      "focus": {
+        "active": true,
+        "outline": "2px"
+      },
+      "defaultGeometry": {
+        "width": 358,
+        "height": 772.859375,
+        "page": 390,
+        "viewport": 390,
+        "escapes": []
+      },
+      "expandedGeometry": {
+        "width": 358,
+        "height": 1543.859375,
+        "page": 390,
+        "viewport": 390,
+        "escapes": []
+      },
+      "detailRequests": 2
+    },
+    {
+      "mode": "changed",
+      "width": 320,
+      "rootText": 100,
+      "checks": [
+        "default list contains only genuine non-zero comparable changes; unchanged and unknown states stay distinct; no provenance wall",
+        "full roster and exact microsecond provenance remain keyboard-accessible; current model uses the same $110 headline while the selected saved value/date stays separate",
+        "earliest selected snapshot reports unavailable comparison rather than unchanged or a current-value substitution"
+      ],
+      "focus": {
+        "active": true,
+        "outline": "2px"
+      },
+      "defaultGeometry": {
+        "width": 288,
+        "height": 819.859375,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "expandedGeometry": {
+        "width": 288,
+        "height": 1728.859375,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "detailRequests": 2
+    },
+    {
+      "mode": "changed",
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "default list contains only genuine non-zero comparable changes; unchanged and unknown states stay distinct; no provenance wall",
+        "full roster and exact microsecond provenance remain keyboard-accessible; current model uses the same $110 headline while the selected saved value/date stays separate",
+        "earliest selected snapshot reports unavailable comparison rather than unchanged or a current-value substitution"
+      ],
+      "focus": {
+        "active": true,
+        "outline": "2px"
+      },
+      "defaultGeometry": {
+        "width": 256,
+        "height": 1902.125,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "expandedGeometry": {
+        "width": 256,
+        "height": 5772.125,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "detailRequests": 2
+    },
+    {
+      "mode": "changed",
+      "width": 1440,
+      "rootText": 100,
+      "checks": [
+        "default list contains only genuine non-zero comparable changes; unchanged and unknown states stay distinct; no provenance wall",
+        "full roster and exact microsecond provenance remain keyboard-accessible; current model uses the same $110 headline while the selected saved value/date stays separate",
+        "earliest selected snapshot reports unavailable comparison rather than unchanged or a current-value substitution"
+      ],
+      "focus": {
+        "active": true,
+        "outline": "2px"
+      },
+      "defaultGeometry": {
+        "width": 1088,
+        "height": 836.859375,
+        "page": 1440,
+        "viewport": 1440,
+        "escapes": []
+      },
+      "expandedGeometry": {
+        "width": 1088,
+        "height": 1361.859375,
+        "page": 1440,
+        "viewport": 1440,
+        "escapes": []
+      },
+      "detailRequests": 2
+    },
+    {
+      "mode": "unchanged",
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "default list contains only genuine non-zero comparable changes; unchanged and unknown states stay distinct; no provenance wall",
+        "full roster and exact microsecond provenance remain keyboard-accessible; current model uses the same $110 headline while the selected saved value/date stays separate",
+        "earliest selected snapshot reports unavailable comparison rather than unchanged or a current-value substitution"
+      ],
+      "defaultGeometry": {
+        "width": 256,
+        "height": 1757.125,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "expandedGeometry": {
+        "width": 256,
+        "height": 5627.125,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "detailRequests": 2
+    },
+    {
+      "mode": "unknown",
+      "width": 320,
+      "rootText": 200,
+      "checks": [
+        "default list contains only genuine non-zero comparable changes; unchanged and unknown states stay distinct; no provenance wall",
+        "full roster and exact microsecond provenance remain keyboard-accessible; current model uses the same $110 headline while the selected saved value/date stays separate",
+        "earliest selected snapshot reports unavailable comparison rather than unchanged or a current-value substitution"
+      ],
+      "focus": {
+        "active": true,
+        "outline": "2px"
+      },
+      "defaultGeometry": {
+        "width": 256,
+        "height": 2058.125,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "expandedGeometry": {
+        "width": 256,
+        "height": 5634.125,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "detailRequests": 2
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "writes": [],
+  "base": "d0e64042bde9859f7d3f0fbef09b45e64393a5c1",
+  "sourceBlobs": {
+    "src/surfaces/season-hub/TeamValueHistoryDetail.tsx": "2d93f418f134e374699ecf4609a97433d93f7110",
+    "src/surfaces/season-hub/TeamValueHistory.tsx": "d04efc285373733e0afae22ca21f6e09982594b7",
+    "src/surfaces/season-hub/TeamValueHistory.module.css": "b94e4c824db7a38951777efec8832b6b1447bb0f",
+    "src/surfaces/season-hub/RosterValueSection.tsx": "a4c2db04f77b6f373bbfc1ac41497ef044fdc901"
+  }
+}
