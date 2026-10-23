@@ -118,3 +118,10 @@
 .moveTerms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gh-s3); }
 .moveTerms p > span { display: block; }
 @container team-history (max-width: 26rem) { .moveTerms { grid-template-columns: minmax(0, 1fr); gap: var(--gh-s1); } }
+
+.calendarPresets { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--gh-s1); }
+.calendarPresets > button { min-width: 0; background: transparent; border-color: transparent; font-weight: 500; }
+.calendarPresets > button[aria-pressed="true"] { color: var(--gh-accent); background: color-mix(in srgb, var(--gh-accent) 7%, var(--gh-bg)); font-weight: 600; }
+.rangeCoverage { display: grid; gap: var(--gh-s1); color: var(--gh-text-dim); font-size: var(--gh-text-xs); }
+@container team-history (max-width: 35rem) { .calendarPresets { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@container team-history (max-width: 12rem) { .calendarPresets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

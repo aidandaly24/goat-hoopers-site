@@ -15,7 +15,7 @@ import controls from "@/ui/controls.module.css";
 import { createTeamHistoryClient, TeamHistoryReadError } from "./TeamValueHistoryClient";
 import { TeamValueHistoryChart } from "./TeamValueHistoryChart";
 import { TeamValueHistoryDetail as DayDetail, type HistoryPlayerPhotos } from "./TeamValueHistoryDetail";
-import { historyDayCount, historyInitialRange, historyObservationRange, historyPreviousPoint, historyValueChanges } from "./team-value-history-view";
+import { HISTORY_CALENDAR_PRESETS, historyCalendarPresetRange, type HistoryCalendarPreset, historyDayCount, historyInitialRange, historyObservationRange, historyPreviousPoint, historyValueChanges } from "./team-value-history-view";
 import styles from "./TeamValueHistory.module.css";
 
 const money = (cents: number) => `$${(cents / 100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -80,15 +80,17 @@ function HistoryView({ history, detailEndpoint, pageEndpoint, currentValue, curr
     && currentQuote.calculatedAt.slice(0, 10) <= envelope.leagueRange.toExclusive ? currentQuote : null;
   const [currentSelected, setCurrentSelected] = useState(() => !!quote);
   const [zoomRange, setRange] = useState(() => historyInitialRange(history.points, history.leagueRange));
-  const [preset, setPreset] = useState(() => zoomRange.from === history.leagueRange.from && zoomRange.toExclusive === history.leagueRange.toExclusive ? "all" : "values");
+  const [preset, setPreset] = useState<HistoryCalendarPreset | "values">(() => zoomRange.from === history.leagueRange.from && zoomRange.toExclusive === history.leagueRange.toExclusive ? "all" : "values");
   const boundedRange = { from: zoomRange.from < envelope.leagueRange.from ? envelope.leagueRange.from : zoomRange.from,
     toExclusive: zoomRange.toExclusive > envelope.leagueRange.toExclusive ? envelope.leagueRange.toExclusive : zoomRange.toExclusive };
-  const range = preset === "all" ? envelope.leagueRange : validHistoryRange(boundedRange) ? boundedRange : envelope.leagueRange;
+  const range = preset !== "values" ? historyCalendarPresetRange(envelope.leagueRange, preset) : validHistoryRange(boundedRange) ? boundedRange : envelope.leagueRange;
+  const observationRange = historyObservationRange([...history.points, ...envelope.points], envelope.leagueRange);
   const quoteDay = quote?.calculatedAt.slice(0, 10);
-  const chartRange = quoteDay ? {
+  const chartRange = quoteDay && (preset === "values" || currentSelected) ? {
     from: quoteDay < range.from ? quoteDay : range.from,
     toExclusive: quoteDay >= range.toExclusive ? shiftHistoryDay(quoteDay, 1) : range.toExclusive,
   } : range;
+  const chartQuote = quoteDay && quoteDay >= chartRange.from && quoteDay < chartRange.toExclusive ? quote : null;
   const [selection, setSelectedDay] = useState(() => [...history.points].filter(point => point.subtotalCents !== null).sort((a, b) => a.day.localeCompare(b.day)).at(-1)?.day ?? shiftHistoryDay(history.leagueRange.toExclusive, -1));
   const selectedDay = selection < chartRange.from ? chartRange.from : selection >= chartRange.toExclusive ? shiftHistoryDay(chartRange.toExclusive, -1) : selection;
   const viewKey = `${envelope.team.id}/${envelope.generation}/${envelope.asOf}`;
@@ -195,7 +197,7 @@ function HistoryView({ history, detailEndpoint, pageEndpoint, currentValue, curr
       }
     }
   }
-  function applyRange(next: TeamHistoryRange, label: string) {
+  function applyRange(next: TeamHistoryRange, label: HistoryCalendarPreset | "values") {
     pageRequest.current?.abort(); ++pageSequence.current;
     if (!validHistoryRange(next) || !historyRangeContains(envelope.leagueRange, next)) { setRangeError("This range is unavailable."); return; }
     setRangeError(""); setRange(next); setPreset(label);
@@ -223,19 +225,28 @@ function HistoryView({ history, detailEndpoint, pageEndpoint, currentValue, curr
     <div className={styles.heading}><SectionHeading eyebrow={envelope.team.name} title="Value history" /></div>
     {rangeError && <p className={styles.notice} role="alert">{rangeError}</p>}
     <TeamValueHistoryChart points={points} range={chartRange} selectedDay={currentSelected && quoteDay ? quoteDay : selectedDay}
-      currentQuote={quote} currentSelected={currentSelected} onSelectCurrent={() => setCurrentSelected(true)} onSelectDay={selectDay} caption={<>
+      currentQuote={chartQuote} currentSelected={currentSelected} onSelectCurrent={() => setCurrentSelected(true)} onSelectDay={selectDay} caption={<>
       <div className={styles.chartControls}>
       {(quote || currentSelected) && <button type="button" className={`${controls.quiet} ${styles.currentSelect}`} aria-pressed={currentSelected}
         disabled={!quote} data-history-current-select onClick={() => {
-          setRange(historyObservationRange(envelope.points, envelope.leagueRange)); setPreset("values"); setCurrentSelected(true);
+          setRange(observationRange); setPreset("values"); setCurrentSelected(true);
         }}>Current</button>}
       <div className={styles.presets} role="group" aria-label="Timeline range">
         <button type="button" className={controls.quiet} aria-pressed={!currentSelected && preset === "values"}
-          onClick={() => applyRange(historyObservationRange(envelope.points, envelope.leagueRange), "values")}>{quote ? "History" : "Values"}</button>
-        <button type="button" className={controls.quiet} aria-pressed={!currentSelected && preset === "all"}
-          onClick={() => applyRange(envelope.leagueRange, "all")}>All days</button>
+          onClick={() => applyRange(observationRange, "values")}>{quote ? "History" : "Values"}</button>
       </div>
       </div>
+      <div className={styles.calendarPresets} role="group" aria-label="Calendar range">
+        {HISTORY_CALENDAR_PRESETS.map(item => <button key={item} type="button" className={controls.quiet}
+          aria-label={item === "all" ? "All days" : undefined} aria-pressed={!currentSelected && preset === item}
+          onClick={() => applyRange(historyCalendarPresetRange(envelope.leagueRange, item), item)}>{item === "all" ? "All" : item}</button>)}
+      </div>
+      {!currentSelected && preset !== "values" && <div className={styles.rangeCoverage} data-history-range-coverage role="status">
+        <span>{fullDay(range.from)} – {fullDay(shiftHistoryDay(range.toExclusive, -1))} · UTC</span>
+        <span>{points.filter(item => item.subtotalCents !== null).length} loaded value dates across {historyDayCount(range)} calendar days.
+          {pageState === "loading" ? " Loading range…" : !rangeLoaded || sameRequestedRange && envelope.page.nextCursor !== null ? " Range coverage incomplete."
+            : !points.some(item => item.subtotalCents !== null) ? " No supported historical values in this range." : " Missing dates stay unpriced."}</span>
+      </div>}
       <div className={styles.readout} role="status" aria-live="polite" aria-atomic="true" data-history-readout
         data-quote-calculation={currentSelected ? quote?.calculationId : undefined}>
         <span>{currentSelected ? `Current${quoteDay ? ` · ${fullDay(quoteDay)}` : ""}` : fullDay(selectedDay)} · UTC</span>

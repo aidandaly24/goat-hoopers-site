@@ -1,0 +1,19 @@
+{
+  "base": "b46b83e88edb1d0abd674da5170106d36b213fae",
+  "scope": "Separate calendar-control follow-up on the unchanged PR256 UI tree",
+  "synthetic": true,
+  "results": {
+    "focusedTests": "51 passed / 5 files",
+    "typecheck": "PASS",
+    "targetedEslint": "PASS",
+    "surfaceContracts": "104 files PASS",
+    "productionNextFixtureBuild": "PASS; source components compiled with synthetic sources and existing local fonts",
+    "browser": "6 hydrated guarded journeys PASS, including next-day Current exclusion from preset windows and History recovery after empty reads; 0 content escapes/external requests/writes/page errors"
+  },
+  "limits": [
+    "No database, producer, historical source or recorded quote modification.",
+    "Synthetic November 22 cutoff fixture; not production/live dates.",
+    "Normal full app build and full suite delegated to exact-head CI; known saved worktree dependency/font limitations were not retried.",
+    "No merge until exact-head CI and independent Dot + genuine Muse readiness."
+  ]
+}
