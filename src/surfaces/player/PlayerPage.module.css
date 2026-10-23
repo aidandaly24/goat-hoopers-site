@@ -145,6 +145,7 @@
   border-radius: var(--gh-radius);
   background: var(--gh-bg-raised);
   min-height: 2.75rem;
+  min-width: 0;
 }
 
 .statValue {
@@ -154,6 +155,9 @@
   font-variant-numeric: tabular-nums;
   color: var(--gh-text);
   line-height: 1.2;
+  /* Worst case (tiny viewport + large text): wrap rather than clip. */
+  overflow-wrap: anywhere;
+  text-align: center;
 }
 
 .statLabel {
