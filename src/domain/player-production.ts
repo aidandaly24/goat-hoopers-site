@@ -16,10 +16,18 @@
  * Pure projection: no fetching, no persistence, no inference.
  */
 
-/** Precise unavailable reasons — the page renders these, never invents data. */
+/**
+ * Precise unavailable reasons — the page renders these, never invents data.
+ *
+ * `no-recorded-stats` means the source responded and carries no line for
+ * this player + season. `source-unavailable` means the feed (or the season
+ * lookup) could not be reached — a failed fetch cannot establish absence,
+ * so the two are never conflated.
+ */
 export type ProductionUnavailableReason =
-  | "no-recorded-stats" // source carries no line for this player + season yet
-  | "invalid-record"; // line exists but fails validation (not finite, negative, gp <= 0)
+  | "no-recorded-stats"
+  | "invalid-record" // line exists but fails validation (not finite, negative, gp <= 0)
+  | "source-unavailable";
 
 /** Per-game production, each figure = season total / gp. Percentages are null when there were no attempts. */
 export type ProductionAverages = {
@@ -57,10 +65,18 @@ export type PlayerProduction = {
   averages: ProductionAverages;
 };
 
-/** The card's honest states: a dated evidence card, or a precise unavailable reason. */
+/**
+ * The card's honest states: a dated evidence card, or a precise unavailable
+ * reason. Unavailable results preserve the season context whenever it is
+ * known (null only when the season lookup itself failed).
+ */
 export type ProductionSummary =
   | { state: "available"; production: PlayerProduction }
-  | { state: "unavailable"; reason: ProductionUnavailableReason };
+  | {
+      state: "unavailable";
+      reason: ProductionUnavailableReason;
+      season: string | null;
+    };
 
 const num = (value: unknown): value is number =>
   typeof value === "number" && Number.isFinite(value);
@@ -102,21 +118,26 @@ export function summarizeProduction(
   season: string,
   entry: Record<string, number> | null | undefined
 ): ProductionSummary {
+  const absent = (reason: ProductionUnavailableReason): ProductionSummary => ({
+    state: "unavailable",
+    reason,
+    season,
+  });
   if (!entry || typeof entry !== "object" || Object.keys(entry).length === 0) {
-    return { state: "unavailable", reason: "no-recorded-stats" };
+    return absent("no-recorded-stats");
   }
   const gp = entry.gp;
   if (gp === undefined || gp === 0) {
-    // No games recorded for this player + season.
-    return { state: "unavailable", reason: "no-recorded-stats" };
+    // The source responded: no games recorded for this player + season.
+    return absent("no-recorded-stats");
   }
   if (!Number.isSafeInteger(gp) || gp < 0) {
     // A present-but-impossible gp is a malformed record, not absent data.
-    return { state: "unavailable", reason: "invalid-record" };
+    return absent("invalid-record");
   }
   const gs = entry.gs ?? 0;
   if (!Number.isSafeInteger(gs) || gs < 0 || gs > gp) {
-    return { state: "unavailable", reason: "invalid-record" };
+    return absent("invalid-record");
   }
   // Sleeper omits stat categories a player recorded zero in (no `blk` key =
   // 0 blocks), matching the repo's existing `line[stat] ?? 0` convention.
@@ -126,7 +147,7 @@ export function summarizeProduction(
   const perGame: Record<string, number> = {};
   for (const field of fields) {
     const total = entry[field] ?? 0;
-    if (!nonNeg(total)) return { state: "unavailable", reason: "invalid-record" };
+    if (!nonNeg(total)) return absent("invalid-record");
     perGame[field] = round1(total / gp);
   }
   const fga = entry.fga ?? 0;
@@ -134,7 +155,7 @@ export function summarizeProduction(
   const fta = entry.fta ?? 0;
   const ftm = entry.ftm ?? 0;
   if (!nonNeg(fga) || !nonNeg(fgm) || !nonNeg(fta) || !nonNeg(ftm)) {
-    return { state: "unavailable", reason: "invalid-record" };
+    return absent("invalid-record");
   }
   const production: PlayerProduction = {
     version: 1,
@@ -156,7 +177,7 @@ export function summarizeProduction(
     },
   };
   if (!isProductionEvidence(production)) {
-    return { state: "unavailable", reason: "invalid-record" };
+    return absent("invalid-record");
   }
   return { state: "available", production };
 }

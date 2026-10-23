@@ -79,6 +79,18 @@ test("impossible lines are invalid-record, not projected", () => {
   });
 });
 
+test("unavailable results preserve the season context", () => {
+  expect(summarizeProduction("2026", null)).toMatchObject({
+    state: "unavailable", reason: "no-recorded-stats", season: "2026",
+  });
+  expect(summarizeProduction("2025", {})).toMatchObject({
+    state: "unavailable", reason: "no-recorded-stats", season: "2025",
+  });
+  expect(summarizeProduction("2026", { ...YAXEL_LINE, gs: 2 })).toMatchObject({
+    state: "unavailable", reason: "invalid-record", season: "2026",
+  });
+});
+
 test("the season travels with the evidence — never attributed elsewhere", () => {
   const a = summarizeProduction("2026", YAXEL_LINE);
   const b = summarizeProduction("2025", YAXEL_LINE);

@@ -863,15 +863,18 @@ export async function getPlayerDetail(
     // P4 (issue #224): dated single-player production evidence. Best-effort —
     // the season lookup and stats fetch both live inside this try/catch, so
     // their failure degrades `production` to the unavailable state and never
-    // blanks the roster/wire/draft content. Season comes from the league
-    // object, never hardcoded. One player id, no history fanout.
+    // blanks the roster/wire/draft content. A failed fetch cannot establish
+    // absence: it reports `source-unavailable`, never `no-recorded-stats`.
+    // Season comes from the league object, never hardcoded, and is preserved
+    // whenever the league lookup succeeded. One player id, no history fanout.
     let production: ProductionSummary;
+    let season: string | null = null;
     try {
-      const season = (await fetchLeague()).season;
+      season = (await fetchLeague()).season;
       const lines = await fetchSeasonStats(season);
       production = summarizeProduction(season, lines[playerId]);
     } catch {
-      production = { state: "unavailable", reason: "no-recorded-stats" };
+      production = { state: "unavailable", reason: "source-unavailable", season };
     }
 
     return { player, team, transactions, draftPick, production };

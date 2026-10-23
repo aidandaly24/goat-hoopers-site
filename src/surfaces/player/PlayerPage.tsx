@@ -143,11 +143,20 @@ function ProductionCard({
     );
   }
   if (summary.state === "unavailable") {
+    // Neutral, dated copy: a failed fetch cannot establish absence, and an
+    // absent line cannot establish season timing or DNP — so the two states
+    // never share wording. Season context is preserved whenever known.
+    const seasonYear = summary.season ? ` ${summary.season}` : "";
+    const seasonSpan = summary.season ? ` for the ${summary.season} season` : "";
+    const reason =
+      summary.reason === "source-unavailable"
+        ? `Sleeper's stat feed couldn't be reached — no${seasonYear} season production to show for ${playerName} right now.`
+        : summary.reason === "invalid-record"
+          ? `Sleeper's recorded${seasonSpan} line for ${playerName} failed validation, so it's withheld rather than shown.`
+          : `Sleeper's stat feed has no recorded line for ${playerName}${seasonSpan} yet.`;
     return (
       <p className={styles.body}>
-        {summary.reason === "no-recorded-stats"
-          ? `Sleeper's stat feed has no recorded line for ${playerName} yet — the season just tipped off.`
-          : `Sleeper's recorded line for ${playerName} failed validation, so it's withheld rather than shown.`}{" "}
+        {reason}{" "}
         League numbers — roster, wire, draft — are the real content.
       </p>
     );
