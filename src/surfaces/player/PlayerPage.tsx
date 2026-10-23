@@ -18,8 +18,10 @@ import styles from "./PlayerPage.module.css";
  *
  * Contract:
  * - Receives `detail` (PlayerDetail) and `teams` (for transaction links).
- * - Sleeper's directory carries no per-game NBA stats, so the stats
- *   section is an honest empty state, not fabricated numbers.
+ * - The Season stats card renders `detail.production`: dated season-average
+ *   evidence from Sleeper's stat feed when the source has a recorded line,
+ *   and a precise unavailable reason otherwise. Nothing is fabricated or
+ *   relabeled across seasons.
  */
 export function PlayerPage({
   detail,
@@ -85,11 +87,10 @@ export function PlayerPage({
 
         <Card>
           <SectionHeading eyebrow="NBA numbers" title="Season stats" />
-          <p className={styles.body}>
-            Sleeper&apos;s data doesn&apos;t carry per-game NBA stat lines, so
-            there&apos;s nothing honest to show here yet. League numbers —
-            roster, wire, draft — are the real content.
-          </p>
+          <ProductionCard
+            summary={detail.production}
+            playerName={player.fullName}
+          />
         </Card>
       </div>
 
@@ -117,5 +118,76 @@ export function PlayerPage({
         )}
       </Card>
     </div>
+  );
+}
+
+/**
+ * Season-stats card body (P4, issue #224). Renders the dated production
+ * evidence from `detail.production` when the source has a recorded line —
+ * per-game season averages with known GP/GS — and a precise unavailable
+ * reason otherwise. Never fabricated, never relabeled across seasons.
+ */
+function ProductionCard({
+  summary,
+  playerName,
+}: {
+  summary: PlayerDetail["production"];
+  playerName: string;
+}) {
+  if (!summary) {
+    return (
+      <p className={styles.body}>
+        Season production isn&apos;t available for {playerName} right now.
+        League numbers — roster, wire, draft — are the real content.
+      </p>
+    );
+  }
+  if (summary.state === "unavailable") {
+    // Neutral, dated copy: a failed fetch cannot establish absence, and an
+    // absent line cannot establish season timing or DNP — so the two states
+    // never share wording. Season context is preserved whenever known.
+    const seasonYear = summary.season ? ` ${summary.season}` : "";
+    const seasonSpan = summary.season ? ` for the ${summary.season} season` : "";
+    const reason =
+      summary.reason === "source-unavailable"
+        ? `Sleeper's stat feed couldn't be reached — no${seasonYear} season production to show for ${playerName} right now.`
+        : summary.reason === "invalid-record"
+          ? `Sleeper's recorded${seasonSpan} line for ${playerName} failed validation, so it's withheld rather than shown.`
+          : `Sleeper's stat feed has no recorded line for ${playerName}${seasonSpan} yet.`;
+    return (
+      <p className={styles.body}>
+        {reason}{" "}
+        League numbers — roster, wire, draft — are the real content.
+      </p>
+    );
+  }
+  const { production } = summary;
+  const { averages } = production;
+  const cells: Array<{ label: string; value: string }> = [
+    { label: "PTS", value: averages.pts.toFixed(1) },
+    { label: "REB", value: averages.reb.toFixed(1) },
+    { label: "AST", value: averages.ast.toFixed(1) },
+    { label: "STL", value: averages.stl.toFixed(1) },
+    { label: "BLK", value: averages.blk.toFixed(1) },
+    { label: "3PM", value: averages.tpm.toFixed(1) },
+    { label: "MIN", value: averages.min.toFixed(1) },
+    { label: "FG%", value: averages.fgPct === null ? "—" : `${averages.fgPct.toFixed(1)}%` },
+    { label: "FT%", value: averages.ftPct === null ? "—" : `${averages.ftPct.toFixed(1)}%` },
+  ];
+  return (
+    <>
+      <div className={styles.statGrid} role="list" aria-label="Season averages">
+        {cells.map((cell) => (
+          <div key={cell.label} className={styles.statCell} role="listitem">
+            <span className={styles.statValue}>{cell.value}</span>
+            <span className={styles.statLabel}>{cell.label}</span>
+          </div>
+        ))}
+      </div>
+      <p className={styles.statNote}>
+        Recorded {production.season} season averages · {production.gp} GP ·{" "}
+        {production.gs} GS · Sleeper stat feed
+      </p>
+    </>
   );
 }

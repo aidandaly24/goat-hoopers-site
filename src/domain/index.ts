@@ -47,6 +47,13 @@ export type { Matchup, } from "./matchup";
 export { completedMatchupsByWeek, isFinal, signedStreak, winner } from "./matchup";
 export type { Player } from "./player";
 export type { PlayerDetail } from "./player-detail";
+export type {
+  PlayerProduction,
+  ProductionAverages,
+  ProductionSummary,
+  ProductionUnavailableReason,
+} from "./player-production";
+export { summarizeProduction } from "./player-production";
 export type { TeamProfile } from "./team-profile";
 export type { PowerRanking } from "./power";
 export type { PlayoffOdds } from "./playoff-odds";
