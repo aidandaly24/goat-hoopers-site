@@ -19,6 +19,27 @@ export function historyPickDirection(pick: TeamHistoryDraftPick, rosterId: numbe
 export const historyDayCount = (range: TeamHistoryRange) =>
   Math.round((Date.parse(range.toExclusive + "T00:00:00Z") - Date.parse(range.from + "T00:00:00Z")) / 86400000);
 
+export const HISTORY_CALENDAR_PRESETS = ["1W", "1M", "3M", "6M", "YTD", "1Y", "all"] as const;
+export type HistoryCalendarPreset = typeof HISTORY_CALENDAR_PRESETS[number];
+
+/** UTC day windows ending at the envelope's exclusive cutoff, independent of
+ * retained quotes and the browser clock. Months/years clamp at month end. */
+export function historyCalendarPresetRange(league: TeamHistoryRange, preset: HistoryCalendarPreset): TeamHistoryRange {
+  const end = league.toExclusive;
+  let from = league.from;
+  if (preset === "1W") from = shiftHistoryDay(end, -7);
+  else if (preset === "YTD") from = `${shiftHistoryDay(end, -1).slice(0, 4)}-01-01`;
+  else if (preset !== "all") {
+    const months = { "1M": 1, "3M": 3, "6M": 6, "1Y": 12 }[preset];
+    const cutoff = new Date(`${end}T00:00:00Z`);
+    const first = new Date(Date.UTC(cutoff.getUTCFullYear(), cutoff.getUTCMonth() - months, 1));
+    const lastDay = new Date(Date.UTC(first.getUTCFullYear(), first.getUTCMonth() + 1, 0)).getUTCDate();
+    first.setUTCDate(Math.min(cutoff.getUTCDate(), lastDay));
+    from = first.toISOString().slice(0, 10);
+  }
+  return { from: from < league.from ? league.from : from, toExclusive: end };
+}
+
 /** A calendar viewport, never additional observations or a compressed time axis. */
 export function historyObservationRange(points: readonly TeamHistoryPoint[], league: TeamHistoryRange): TeamHistoryRange {
   const days = points.filter(point => point.subtotalCents !== null).map(point => point.day).sort();

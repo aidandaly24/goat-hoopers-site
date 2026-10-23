@@ -41,7 +41,7 @@ test("sparse initial view keeps selected partial value inside the graph and seco
   expect(isTeamValueHistoryEnvelope(history)).toBe(true);
   const html = renderToStaticMarkup(<TeamValueHistory history={history} detailEndpoint="/api/team-value-history/detail" pageEndpoint="/api/team-value-history/summary" />);
   expect(html).toContain('aria-pressed="true">Values');
-  expect(html).toContain('aria-pressed="false">All days');
+  expect(html).toContain('aria-pressed="false">All');
   expect(html).toContain("Oct 20, 2025");
   expect(html).toContain("15 loaded value observations across 368 calendar days");
   const caption = html.match(/<figcaption[^>]*>(.*?)<\/figcaption>/)?.[1];

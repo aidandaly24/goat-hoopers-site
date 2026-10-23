@@ -43,6 +43,37 @@ run. It has no application credentials, external calls or write actions.
 Historical acquisition/producer work remains separate; these synthetic checks
 do not establish real historical coverage or live behavior.
 
+## Calendar range controls
+
+**1W / 1M / 3M / 6M / YTD / 1Y / All** filter actual dated points through
+the existing summary range endpoint. The bounds are half-open UTC day windows
+ending at the envelope's exclusive cutoff, never the browser clock or latest
+quote. 1W is seven included days; months/years subtract calendar months from that
+cutoff with month-end clamping. YTD starts January 1 of the last included day's
+year. Every window clips to league inception; All retains the entire calendar.
+History/Values still focuses sparse observations, and Current remains a distinct
+current calculation. A current quote outside a calendar window does not extend
+its bounds or become a historical observation.
+
+A compact range caption states exact dates, loaded value dates and calendar days.
+Unloaded/paged/failed reads remain incomplete. A fully loaded empty range is
+explicitly empty; no missing price becomes zero or a synthetic daily point.
+
+```sh
+npm test -- src/surfaces/season-hub/TeamValueHistoryRanges.test.tsx src/surfaces/season-hub/TeamValueHistoryDetail.test.tsx src/surfaces/season-hub/TeamValueHistoryCurrent.test.tsx src/surfaces/season-hub/TeamValueHistoryChart.test.tsx src/surfaces/season-hub/team-value-history-view.test.ts
+python3 qa/team-value-history/prepare-ranges.py /tmp/goat-ranges-review
+python3 qa/team-value-history/serve.py /tmp/goat-ranges-review 4373
+# In another terminal:
+python3 qa/team-value-history/ranges-browser.py /tmp/goat-ranges-review http://127.0.0.1:4373
+```
+
+`review/ranges-*` records six guarded hydrated Next journeys: all seven exact
+window bounds/query parameters, lazy reads, empty versus failed/incomplete
+coverage, current/historical separation, changed cards, touch/keyboard/focus,
+390px/320px/desktop and 320px/200% text containment. The deliberately synthetic
+fixture's history cutoff is November 22, 2026 (with one next-day Current-quote edge case); it is not a live-history or current-date
+claim. Existing PR256 portrait/compare evidence remains separately scoped.
+
 ## Visible selected-day player changes
 
 The historical selection opens a visible player-change panel, not an accordion.

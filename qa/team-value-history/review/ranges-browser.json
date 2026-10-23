@@ -1,0 +1,573 @@
+{
+  "synthetic": true,
+  "cases": [
+    {
+      "width": 390,
+      "rootText": 100,
+      "summaryFailure": false,
+      "nextDayCurrent": false,
+      "checks": [
+        "History recovers known observations after a loaded empty window",
+        "all seven UTC bounds, lazy range queries, empty versus incomplete, current/historical distinction, changed cards, touch/keyboard and focus"
+      ],
+      "windows": [
+        {
+          "label": "1W",
+          "fromDay": "2026-11-16",
+          "coverage": "Nov 16, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n0 loaded value dates across 7 calendar days. No supported historical values in this range.",
+          "points": 0
+        },
+        {
+          "label": "1M",
+          "fromDay": "2026-10-23",
+          "coverage": "Oct 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n0 loaded value dates across 31 calendar days. No supported historical values in this range.",
+          "points": 0
+        },
+        {
+          "label": "3M",
+          "fromDay": "2026-08-23",
+          "coverage": "Aug 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 92 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "6M",
+          "fromDay": "2026-05-23",
+          "coverage": "May 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 184 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "YTD",
+          "fromDay": "2026-01-01",
+          "coverage": "Jan 1, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 326 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "1Y",
+          "fromDay": "2025-11-23",
+          "coverage": "Nov 23, 2025 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 365 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "All days",
+          "fromDay": "2025-10-20",
+          "coverage": "Oct 20, 2025 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 399 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        }
+      ],
+      "geometry": {
+        "width": 358,
+        "page": 390,
+        "viewport": 390,
+        "escapes": []
+      },
+      "requests": [
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-11-16",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-10-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-10-19",
+          "toExclusive": "2026-10-21"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-08-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-05-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-01-01",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2025-11-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2025-10-20",
+          "toExclusive": "2026-11-23"
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "rootText": 100,
+      "summaryFailure": false,
+      "nextDayCurrent": false,
+      "checks": [
+        "History recovers known observations after a loaded empty window",
+        "all seven UTC bounds, lazy range queries, empty versus incomplete, current/historical distinction, changed cards, touch/keyboard and focus"
+      ],
+      "windows": [
+        {
+          "label": "1W",
+          "fromDay": "2026-11-16",
+          "coverage": "Nov 16, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n0 loaded value dates across 7 calendar days. No supported historical values in this range.",
+          "points": 0
+        },
+        {
+          "label": "1M",
+          "fromDay": "2026-10-23",
+          "coverage": "Oct 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n0 loaded value dates across 31 calendar days. No supported historical values in this range.",
+          "points": 0
+        },
+        {
+          "label": "3M",
+          "fromDay": "2026-08-23",
+          "coverage": "Aug 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 92 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "6M",
+          "fromDay": "2026-05-23",
+          "coverage": "May 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 184 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "YTD",
+          "fromDay": "2026-01-01",
+          "coverage": "Jan 1, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 326 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "1Y",
+          "fromDay": "2025-11-23",
+          "coverage": "Nov 23, 2025 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 365 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "All days",
+          "fromDay": "2025-10-20",
+          "coverage": "Oct 20, 2025 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 399 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        }
+      ],
+      "geometry": {
+        "width": 288,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "requests": [
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-11-16",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-10-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-10-19",
+          "toExclusive": "2026-10-21"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-08-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-05-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-01-01",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2025-11-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2025-10-20",
+          "toExclusive": "2026-11-23"
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "rootText": 200,
+      "summaryFailure": false,
+      "nextDayCurrent": false,
+      "checks": [
+        "History recovers known observations after a loaded empty window",
+        "all seven UTC bounds, lazy range queries, empty versus incomplete, current/historical distinction, changed cards, touch/keyboard and focus"
+      ],
+      "windows": [
+        {
+          "label": "1W",
+          "fromDay": "2026-11-16",
+          "coverage": "Nov 16, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n0 loaded value dates across 7 calendar days. No supported historical values in this range.",
+          "points": 0
+        },
+        {
+          "label": "1M",
+          "fromDay": "2026-10-23",
+          "coverage": "Oct 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n0 loaded value dates across 31 calendar days. No supported historical values in this range.",
+          "points": 0
+        },
+        {
+          "label": "3M",
+          "fromDay": "2026-08-23",
+          "coverage": "Aug 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 92 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "6M",
+          "fromDay": "2026-05-23",
+          "coverage": "May 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 184 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "YTD",
+          "fromDay": "2026-01-01",
+          "coverage": "Jan 1, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 326 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "1Y",
+          "fromDay": "2025-11-23",
+          "coverage": "Nov 23, 2025 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 365 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "All days",
+          "fromDay": "2025-10-20",
+          "coverage": "Oct 20, 2025 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 399 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        }
+      ],
+      "geometry": {
+        "width": 256,
+        "page": 320,
+        "viewport": 320,
+        "escapes": []
+      },
+      "requests": [
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-11-16",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-10-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-10-19",
+          "toExclusive": "2026-10-21"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-08-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-05-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-01-01",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2025-11-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2025-10-20",
+          "toExclusive": "2026-11-23"
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "rootText": 100,
+      "summaryFailure": false,
+      "nextDayCurrent": false,
+      "checks": [
+        "History recovers known observations after a loaded empty window",
+        "all seven UTC bounds, lazy range queries, empty versus incomplete, current/historical distinction, changed cards, touch/keyboard and focus"
+      ],
+      "windows": [
+        {
+          "label": "1W",
+          "fromDay": "2026-11-16",
+          "coverage": "Nov 16, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n0 loaded value dates across 7 calendar days. No supported historical values in this range.",
+          "points": 0
+        },
+        {
+          "label": "1M",
+          "fromDay": "2026-10-23",
+          "coverage": "Oct 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n0 loaded value dates across 31 calendar days. No supported historical values in this range.",
+          "points": 0
+        },
+        {
+          "label": "3M",
+          "fromDay": "2026-08-23",
+          "coverage": "Aug 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 92 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "6M",
+          "fromDay": "2026-05-23",
+          "coverage": "May 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 184 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "YTD",
+          "fromDay": "2026-01-01",
+          "coverage": "Jan 1, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 326 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "1Y",
+          "fromDay": "2025-11-23",
+          "coverage": "Nov 23, 2025 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 365 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "All days",
+          "fromDay": "2025-10-20",
+          "coverage": "Oct 20, 2025 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 399 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        }
+      ],
+      "geometry": {
+        "width": 1088,
+        "page": 1440,
+        "viewport": 1440,
+        "escapes": []
+      },
+      "requests": [
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-11-16",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-10-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-10-19",
+          "toExclusive": "2026-10-21"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-08-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-05-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-01-01",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2025-11-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2025-10-20",
+          "toExclusive": "2026-11-23"
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "rootText": 200,
+      "summaryFailure": true,
+      "nextDayCurrent": false,
+      "checks": [
+        "failed lazy range read remains incomplete, never silently empty or zero"
+      ]
+    },
+    {
+      "width": 390,
+      "rootText": 100,
+      "summaryFailure": false,
+      "nextDayCurrent": true,
+      "checks": [
+        "History recovers known observations after a loaded empty window",
+        "all seven UTC bounds, lazy range queries, empty versus incomplete, current/historical distinction, changed cards, touch/keyboard and focus"
+      ],
+      "windows": [
+        {
+          "label": "1W",
+          "fromDay": "2026-11-16",
+          "coverage": "Nov 16, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n0 loaded value dates across 7 calendar days. No supported historical values in this range.",
+          "points": 0
+        },
+        {
+          "label": "1M",
+          "fromDay": "2026-10-23",
+          "coverage": "Oct 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n0 loaded value dates across 31 calendar days. No supported historical values in this range.",
+          "points": 0
+        },
+        {
+          "label": "3M",
+          "fromDay": "2026-08-23",
+          "coverage": "Aug 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 92 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "6M",
+          "fromDay": "2026-05-23",
+          "coverage": "May 23, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 184 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "YTD",
+          "fromDay": "2026-01-01",
+          "coverage": "Jan 1, 2026 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 326 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "1Y",
+          "fromDay": "2025-11-23",
+          "coverage": "Nov 23, 2025 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 365 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        },
+        {
+          "label": "All days",
+          "fromDay": "2025-10-20",
+          "coverage": "Oct 20, 2025 \u2013 Nov 22, 2026 \u00b7 UTC\n2 loaded value dates across 399 calendar days. Missing dates stay unpriced.",
+          "points": 2
+        }
+      ],
+      "geometry": {
+        "width": 358,
+        "page": 390,
+        "viewport": 390,
+        "escapes": []
+      },
+      "requests": [
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-11-16",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-10-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-10-19",
+          "toExclusive": "2026-10-21"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-08-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-05-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2026-01-01",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2025-11-23",
+          "toExclusive": "2026-11-23"
+        },
+        {
+          "teamId": "1",
+          "generation": "synthetic-changes-changed",
+          "from": "2025-10-20",
+          "toExclusive": "2026-11-23"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "writes": [],
+  "base": "b46b83e88edb1d0abd674da5170106d36b213fae",
+  "sourceBlobs": {
+    "src/surfaces/season-hub/TeamValueHistory.tsx": "40ad297c47a7eea4d2fd810f072defa6f7259773",
+    "src/surfaces/season-hub/TeamValueHistory.module.css": "43b72062a75ffbcc2440e65bb83b6794226c4805",
+    "src/surfaces/season-hub/team-value-history-view.ts": "6dd02d4d557bf56202b68b28fa3ea37ee38d1a30"
+  }
+}
