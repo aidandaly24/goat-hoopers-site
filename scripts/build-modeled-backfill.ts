@@ -33,7 +33,8 @@ import { createPriceHistoryArtifact, validatePriceHistoryArtifact } from "../src
 import type { ReconstructionInput } from "../src/domain/price-history-import";
 import {
   assertMembershipSnapshot, assertModeledDataset, buildModeledBackfillPackage,
-  buildModeledPlayerTimelines, buildModeledTeamPoints, endOfDay, parseRecordedInventory,
+  buildModeledPlayerTimelines, buildModeledTeamPoints, computeRecordedAdmissionHash,
+  endOfDay, parseRecordedInventory,
   type MembershipSnapshot,
 } from "../src/data/modeled-backfill";
 
@@ -78,11 +79,16 @@ assertModeledDataset(artifact, readJson(manifestPath).datasetId);
 // the snapshot's structure (canonical days, unique teams, no
 // duplicated member in a team-day) and its claimed membership hash
 // against its actual dated content; the inventory's canonical days,
-// known teams, and freedom from duplicate entries. Malformed input
-// rejects the run — it is never normalized away.
+// known teams, freedom from duplicate entries, and — when the file
+// carries one — its claimed admission hash against the validated
+// set. Malformed input rejects the run — it is never normalized
+// away. The validated admission set's own hash is computed here and
+// bound into the package and generation: suppression is part of
+// the effective series, so it is part of the series' identity.
 const snapshot = readJson(membershipPath) as MembershipSnapshot;
 assertMembershipSnapshot(snapshot);
 const admitted = parseRecordedInventory(readJson(inventoryPath), snapshot.teamIds);
+const recordedAdmissionHash = computeRecordedAdmissionHash(admitted);
 
 const range = {
   fromDay: arg("from") ?? snapshot.range.fromDay,
@@ -110,6 +116,7 @@ const pkg = buildModeledBackfillPackage({
   artifact,
   rosterEvidenceHash: snapshot.rosterEvidenceHash,
   membershipHash: snapshot.membershipHash,
+  recordedAdmissionHash,
   range,
   result,
 });
@@ -117,7 +124,8 @@ const pkg = buildModeledBackfillPackage({
 mkdirSync(dirname(resolve(outPath)), { recursive: true });
 writeFileSync(resolve(outPath), `${JSON.stringify(pkg, null, 1)}\n`);
 console.log(JSON.stringify({
-  datasetId: pkg.datasetId, generation: pkg.generation, range: pkg.range,
+  datasetId: pkg.datasetId, generation: pkg.generation,
+  recordedAdmissionHash: pkg.recordedAdmissionHash, range: pkg.range,
   diagnostics: pkg.diagnostics,
   pricedPlayerDays: pkg.points.reduce((n, entry) => n + entry.point.priced, 0),
   out: outPath,

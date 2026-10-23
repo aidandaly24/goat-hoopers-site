@@ -511,13 +511,46 @@ export function assertMembershipSnapshot(snapshot: unknown): asserts snapshot is
   }
 }
 
+/** Canonical content hash of a validated recorded-admission set (the
+ *  `teamId|day` keys parseRecordedInventory returns). Suppression is
+ *  part of the effective series — the same membership over a
+ *  different admitted set emits different points — so the admitted
+ *  set carries an identity of its own, bound into the package and
+ *  the generation. Canonicalization: entries sort by (teamId, day),
+ *  so entry order in the source JSON does not matter; the set does.
+ *  The empty set is a distinct identity, not the absence of one: its
+ *  payload (count 0, no entries) differs from every non-empty set's,
+ *  so a run that suppresses nothing and a run that suppresses even
+ *  one team-day can never share a generation. */
+export function computeRecordedAdmissionHash(admitted: ReadonlySet<string>): string {
+  const entries = [...admitted].map(key => {
+    const sep = key.indexOf("|");
+    const teamId = sep > 0 ? key.slice(0, sep) : "";
+    const day = sep > 0 ? key.slice(sep + 1) : "";
+    if (!/^\d+$/.test(teamId) || !isCalendarDay(day)) {
+      throw new Error(`Malformed recorded-admission key: ${JSON.stringify(key)}`);
+    }
+    return [Number(teamId), day] as const;
+  });
+  entries.sort((a, b) => (a[0] - b[0]) || (a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : 0));
+  return sha256(JSON.stringify({
+    version: "recorded-admissions-v1",
+    count: entries.length,
+    admittedTeamDays: entries,
+  }));
+}
+
 /**
  * Validate the runner's recorded-lane inventory and return the
  * admitted team-day key set. Fails closed: a non-canonical day (an
  * ISO instant can never match a composition day key, so its
  * suppression would be silently missed), a team the membership
  * snapshot does not carry, or a duplicated entry all reject the run
- * rather than normalizing uncertain evidence away.
+ * rather than normalizing uncertain evidence away. When the file
+ * carries a `recordedAdmissionHash` claim, it is verified against
+ * the validated set before anything composes (the membership
+ * snapshot's assert pattern): an inventory edited after hashing
+ * rejects instead of silently changing which points are suppressed.
  */
 export function parseRecordedInventory(inventory: unknown, teamIds: readonly number[]): Set<string> {
   if (typeof inventory !== "object" || inventory === null
@@ -543,21 +576,38 @@ export function parseRecordedInventory(inventory: unknown, teamIds: readonly num
     }
     admitted.add(key);
   }
+  const claimed = (inventory as { recordedAdmissionHash?: unknown }).recordedAdmissionHash;
+  if (claimed !== undefined) {
+    if (typeof claimed !== "string" || !SHA256_PATTERN.test(claimed)) {
+      throw new Error("Recorded inventory's recordedAdmissionHash is not a sha256 hex string");
+    }
+    if (computeRecordedAdmissionHash(admitted) !== claimed) {
+      throw new Error("recordedAdmissionHash does not match the inventory's validated admission set — "
+        + "the inventory was altered after hashing or its hash is stale; recompute it "
+        + "(computeRecordedAdmissionHash over the admitted team-days) and restamp the file");
+    }
+  }
   return admitted;
 }
 
 /** The series generation: dataset + carry policy + roster evidence +
- *  dated membership. The membership hash binds historical membership
- *  truth itself, so two replays that agree on final rosters but
- *  differ on any past team-day are different generations. */
-export const buildModeledGeneration = (datasetId: string, rosterEvidenceHash: string, membershipHash: string) =>
-  `${MODELED_BACKFILL_PRODUCER_VERSION}:${datasetId}:${MODELED_CARRY_POLICY_ID}:${rosterEvidenceHash}:${membershipHash}`;
+ *  dated membership + the recorded-admission set. The membership
+ *  hash binds historical membership truth itself, so two replays
+ *  that agree on final rosters but differ on any past team-day are
+ *  different generations; the admission hash binds what the recorded
+ *  lane suppressed, so two runs over identical membership that admit
+ *  different recorded team-days are different generations too. */
+export const buildModeledGeneration = (
+  datasetId: string, rosterEvidenceHash: string, membershipHash: string, recordedAdmissionHash: string,
+) =>
+  `${MODELED_BACKFILL_PRODUCER_VERSION}:${datasetId}:${MODELED_CARRY_POLICY_ID}:${rosterEvidenceHash}:${membershipHash}:${recordedAdmissionHash}`;
 
 /** Assemble the runner's output package from a composition result. */
 export function buildModeledBackfillPackage(input: {
   artifact: PriceHistoryArtifact;
   rosterEvidenceHash: string;
   membershipHash: string;
+  recordedAdmissionHash: string;
   range: { fromDay: string; throughDay: string };
   result: BuildModeledTeamPointsResult;
 }): ModeledBackfillPackage {
@@ -571,7 +621,9 @@ export function buildModeledBackfillPackage(input: {
     reconstructionVersion: manifest.reconstructionVersion,
     rosterEvidenceHash: input.rosterEvidenceHash,
     membershipHash: input.membershipHash,
-    generation: buildModeledGeneration(manifest.datasetId, input.rosterEvidenceHash, input.membershipHash),
+    recordedAdmissionHash: input.recordedAdmissionHash,
+    generation: buildModeledGeneration(
+      manifest.datasetId, input.rosterEvidenceHash, input.membershipHash, input.recordedAdmissionHash),
     range: input.range,
     diagnostics: input.result.diagnostics,
     points: input.result.points,

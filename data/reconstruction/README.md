@@ -46,6 +46,16 @@ have no same-season anchors. The runner refuses to run without the
 file, so if a future window could overlap recorded coverage, the
 inventory must be regenerated from the retained recorded export first.
 
+The file also carries a `recordedAdmissionHash` claim: the canonical
+hash of its validated admission set. The runner verifies the claim
+before composing and binds the admission identity into the emitted
+package and its generation, so the empty inventory and any admitted
+inventory are different generations — suppression is part of the
+effective series, hence part of its identity. If the admissions are
+ever regenerated, recompute the claim over the new set
+(`computeRecordedAdmissionHash` in `src/data/modeled-backfill.ts`)
+and restamp the file; a stale claim rejects the run.
+
 ## Legacy minutes: exactly where they can and cannot reach
 
 The dot's post-#252 validation question, answered from the code and

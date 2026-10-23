@@ -86,7 +86,14 @@ export type ModeledBackfillPackage = {
    *  run, so a changed past membership cannot reuse this package's
    *  generation. */
   membershipHash: string;
-  /** datasetId + policy + roster-evidence + membership binding for this series. */
+  /** Canonical hash of the validated recorded-admission set the
+   *  composition consumed: the team-days the recorded lane admits,
+   *  whose modeled points were suppressed. Suppression changes the
+   *  effective series, so the admitted set is part of its identity —
+   *  the empty set hashes distinctly from every non-empty set, and an
+   *  admission change cannot reuse this package's generation. */
+  recordedAdmissionHash: string;
+  /** datasetId + policy + roster-evidence + membership + recorded-admissions binding for this series. */
   generation: string;
   range: { fromDay: string; throughDay: string };
   diagnostics: ModeledBackfillDiagnostics;

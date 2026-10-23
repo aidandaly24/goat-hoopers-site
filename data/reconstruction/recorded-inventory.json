@@ -1,4 +1,5 @@
 {
   "description": "Team-days the recorded lane admits, in the shape the modeled backfill runner requires (--recorded-inventory). A modeled point is emitted only where this inventory admits nothing. Current state: EMPTY — the recorded lane's first day is 2026-10-08 (issue #217 census), which is after the last day the modeled lane can price (the 2025 segment ends 2026-04-01 and the 2026 segment has no same-season anchors), so the two lanes are disjoint today. When a future run's window could overlap recorded coverage, regenerate this file from the retained recorded export (IDs + UTC dates) before running.",
-  "admittedTeamDays": []
+  "admittedTeamDays": [],
+  "recordedAdmissionHash": "d99472f0582f19582bb01dc963921fde5101ab5770ee09eb4c87cb306f6c0420"
 }

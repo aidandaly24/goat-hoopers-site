@@ -6,9 +6,10 @@ import {
   type TeamHistoryPoint, type TeamValueHistoryDetail,
 } from "../../domain/team-value-history";
 import {
-  assertMembershipSnapshot, assertModeledDataset, buildModeledGeneration,
-  buildModeledPlayerTimelines, buildModeledTeamPoints, composeHistorySeries,
-  computeMembershipSnapshotHash, endOfDay, parseRecordedInventory,
+  assertMembershipSnapshot, assertModeledDataset, buildModeledBackfillPackage,
+  buildModeledGeneration, buildModeledPlayerTimelines, buildModeledTeamPoints,
+  composeHistorySeries, computeMembershipSnapshotHash, computeRecordedAdmissionHash,
+  endOfDay, parseRecordedInventory,
   type MembershipOnDay, type MembershipSnapshot,
 } from "../modeled-backfill";
 
@@ -178,7 +179,7 @@ describe("modeled backfill producer", () => {
     const { artifact, result } = compose();
     const entry = result.points.find(e => e.point.day === "2025-10-25")!;
     const detail: TeamValueHistoryDetail = {
-      version: 1, teamId: "1", generation: buildModeledGeneration(artifact.manifest.datasetId, "fixture-evidence", "fixture-membership"),
+      version: 1, teamId: "1", generation: buildModeledGeneration(artifact.manifest.datasetId, "fixture-evidence", "fixture-membership", "fixture-admissions"),
       day: entry.point.day, valuationAt: entry.point.valuationAt, pointId: entry.point.id,
       rosterRef: entry.point.rosterRef, rosterStatus: entry.point.rosterStatus,
       rosterCount: entry.point.rosterCount, priced: entry.point.priced,
@@ -204,11 +205,12 @@ describe("modeled backfill producer", () => {
     const { artifact } = compose();
     expect(() => assertModeledDataset(artifact, artifact.manifest.datasetId)).not.toThrow();
     expect(() => assertModeledDataset(artifact, "some-other-dataset")).toThrow(/dataset mismatch/i);
-    const a = buildModeledGeneration(artifact.manifest.datasetId, "evidence-a", "membership-a");
+    const a = buildModeledGeneration(artifact.manifest.datasetId, "evidence-a", "membership-a", "admissions-a");
     expect(a).toContain("gamelog-carry-v1");
-    expect(a).not.toBe(buildModeledGeneration(artifact.manifest.datasetId, "evidence-b", "membership-a"));
-    expect(a).not.toBe(buildModeledGeneration(artifact.manifest.datasetId, "evidence-a", "membership-b"));
-    expect(a).not.toBe(buildModeledGeneration("other-dataset", "evidence-a", "membership-a"));
+    expect(a).not.toBe(buildModeledGeneration(artifact.manifest.datasetId, "evidence-b", "membership-a", "admissions-a"));
+    expect(a).not.toBe(buildModeledGeneration(artifact.manifest.datasetId, "evidence-a", "membership-b", "admissions-a"));
+    expect(a).not.toBe(buildModeledGeneration(artifact.manifest.datasetId, "evidence-a", "membership-a", "admissions-b"));
+    expect(a).not.toBe(buildModeledGeneration("other-dataset", "evidence-a", "membership-a", "admissions-a"));
   });
 });
 
@@ -246,11 +248,12 @@ describe("modeled backfill offline input integrity", () => {
   it("binds dated membership: a corrected past membership changes the hash and the generation, finals preserved", () => {
     expect(pastCorrected.membershipHash).not.toBe(finalsPreserved.membershipHash);
     const generation = (s: MembershipSnapshot) =>
-      buildModeledGeneration("dataset-x", s.rosterEvidenceHash, s.membershipHash);
+      buildModeledGeneration("dataset-x", s.rosterEvidenceHash, s.membershipHash, "fixture-admissions");
     expect(generation(pastCorrected)).not.toBe(generation(finalsPreserved));
     expect(() => assertMembershipSnapshot(finalsPreserved)).not.toThrow();
     expect(() => assertMembershipSnapshot(pastCorrected)).not.toThrow();
   });
+
 
   it("canonicalizes the hash: key order and per-day list order do not change it", () => {
     const shuffled = snapshotFixture({
@@ -309,5 +312,103 @@ describe("modeled backfill offline input integrity", () => {
     )).toThrow(/does not carry/);
     expect(() => parseRecordedInventory({ admittedTeamDays: "nope" }, [1]))
       .toThrow(/admittedTeamDays array/);
+  });
+});
+
+/**
+ * Recorded-admission identity binding (the dot's remaining P2 on
+ * head 89a6303): suppression consumes the recorded inventory, but
+ * its identity reached neither the package nor the generation — an
+ * empty inventory emitted a point for a team-day while admitting
+ * that team-day emitted zero points for it, both under the SAME
+ * generation. Each test below names a failure that head permitted.
+ */
+describe("modeled backfill recorded-admission identity", () => {
+  const packageFor = (admitted: ReadonlySet<string>) => {
+    const { artifact, result } = compose((teamId, day) => admitted.has(`${teamId}|${day}`));
+    return buildModeledBackfillPackage({
+      artifact,
+      rosterEvidenceHash: "fixture-evidence",
+      membershipHash: "fixture-membership",
+      recordedAdmissionHash: computeRecordedAdmissionHash(admitted),
+      range: { fromDay: "2025-10-20", throughDay: "2026-08-13" },
+      result,
+    });
+  };
+
+  it("canonicalizes the admission hash: entry reordering does not change it", () => {
+    const forward = parseRecordedInventory({ admittedTeamDays: [
+      { teamId: 1, day: "2025-10-21" }, { teamId: 1, day: "2025-10-22" }, { teamId: 2, day: "2025-10-21" },
+    ] }, [1, 2]);
+    const shuffled = parseRecordedInventory({ admittedTeamDays: [
+      { teamId: 2, day: "2025-10-21" }, { teamId: 1, day: "2025-10-22" }, { teamId: 1, day: "2025-10-21" },
+    ] }, [1, 2]);
+    expect(computeRecordedAdmissionHash(shuffled)).toBe(computeRecordedAdmissionHash(forward));
+    expect(computeRecordedAdmissionHash(new Set(["2|2025-10-21", "1|2025-10-21"])))
+      .toBe(computeRecordedAdmissionHash(new Set(["1|2025-10-21", "2|2025-10-21"])));
+    expect(packageFor(shuffled).generation).toBe(packageFor(forward).generation);
+  });
+
+  it("changes the hash, the package identity, and the generation on any effective admission change", () => {
+    const base = new Set(["1|2025-10-21", "1|2025-10-22"]);
+    expect(computeRecordedAdmissionHash(new Set([...base, "1|2025-10-25"])))
+      .not.toBe(computeRecordedAdmissionHash(base));
+    expect(computeRecordedAdmissionHash(new Set(["1|2025-10-21"])))
+      .not.toBe(computeRecordedAdmissionHash(base));
+
+    // Even an admission change that suppresses nothing (a day with
+    // no proven membership) must move the identity: dataset and
+    // membership stay fixed, the emitted points are identical, and
+    // only the admission binding differs.
+    const plain = packageFor(new Set());
+    const admittedOutside = packageFor(new Set(["1|2025-10-23"]));
+    expect(admittedOutside.points.map(e => e.point.day)).toEqual(plain.points.map(e => e.point.day));
+    expect(admittedOutside.datasetId).toBe(plain.datasetId);
+    expect(admittedOutside.membershipHash).toBe(plain.membershipHash);
+    expect(admittedOutside.recordedAdmissionHash).not.toBe(plain.recordedAdmissionHash);
+    expect(admittedOutside.generation).not.toBe(plain.generation);
+  });
+
+  it("gives the empty admission set a distinct identity from every admitted set", () => {
+    const emptyHash = computeRecordedAdmissionHash(new Set());
+    expect(emptyHash).not.toBe(computeRecordedAdmissionHash(new Set(["1|2025-10-21"])));
+
+    // The dot's probe shape: the empty inventory emits a point for
+    // 2025-10-21; admitting that team-day emits none. The two runs
+    // must not share an identifier.
+    const empty = packageFor(new Set());
+    const admitted = packageFor(new Set(["1|2025-10-21"]));
+    expect(empty.points.map(e => e.point.day)).toContain("2025-10-21");
+    expect(admitted.points.map(e => e.point.day)).not.toContain("2025-10-21");
+    expect(admitted.diagnostics.suppressedRecordedTeamDays).toBe(1);
+    expect(empty.recordedAdmissionHash).toBe(emptyHash);
+    expect(empty.generation.endsWith(`:${emptyHash}`)).toBe(true);
+    expect(admitted.generation).not.toBe(empty.generation);
+  });
+
+  it("verifies a stamped admission claim before composing, and rejects a stale or malformed one", () => {
+    const entries = [{ teamId: 1, day: "2025-10-21" }];
+    const set = parseRecordedInventory({ admittedTeamDays: entries }, [1]);
+    const claim = computeRecordedAdmissionHash(set);
+    expect(parseRecordedInventory({ admittedTeamDays: entries, recordedAdmissionHash: claim }, [1]))
+      .toEqual(set);
+    // A claim computed over a DIFFERENT set (here: the empty set)
+    // rejects — an inventory edited after hashing never composes.
+    expect(() => parseRecordedInventory(
+      { admittedTeamDays: entries, recordedAdmissionHash: computeRecordedAdmissionHash(new Set()) }, [1],
+    )).toThrow(/recordedAdmissionHash does not match/);
+    expect(() => parseRecordedInventory(
+      { admittedTeamDays: [], recordedAdmissionHash: "not-a-hash" }, [1],
+    )).toThrow(/not a sha256/);
+    // Unclaimed inputs still parse: the claim is verified when
+    // present, and the runner always binds the recomputed hash.
+    expect(parseRecordedInventory({ admittedTeamDays: [] }, [1])).toEqual(new Set());
+  });
+
+  it("rejects a malformed admission key instead of hashing it into an identity", () => {
+    expect(() => computeRecordedAdmissionHash(new Set(["bogus"])))
+      .toThrow(/Malformed recorded-admission key/);
+    expect(() => computeRecordedAdmissionHash(new Set(["1|2025-10-21T00:00:00Z"])))
+      .toThrow(/Malformed recorded-admission key/);
   });
 });
