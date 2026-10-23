@@ -124,15 +124,15 @@
 
 .statGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: var(--gh-s3);
+  /*
+   * Columns follow available card width AND text size. The rem-based minimum
+   * grows with text zoom, so auto-fit drops columns before numbers become
+   * unreadable: 3 columns at 320px/100% text, collapsing toward 1 as text
+   * enlarges (P4 rendered QA, issue #224). Numbers are never hidden/clipped.
+   */
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
   margin: 0 0 var(--gh-s3);
-}
-
-@media (min-width: 40rem) {
-  .statGrid {
-    grid-template-columns: repeat(5, 1fr);
-  }
 }
 
 .statCell {
