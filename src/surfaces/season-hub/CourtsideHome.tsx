@@ -96,6 +96,11 @@ export function CourtsideHome({
     : "Season status unavailable";
   const memberSummary: HomeTeamSummary | null = personal?.kind === "member" ? personal.summary : null;
   const facesList = faces ?? [];
+  // Identity media already loaded for this page; no new directory/history fetch.
+  const historyPhotos = Object.fromEntries([
+    ...Object.entries(portraits).map(([id, portraitSrc]) => [id, { espnId: null, portraitSrc }]),
+    ...data.directory.flatMap(entry => entry.players.map(player => [player.id, { espnId: player.espnId, portraitSrc: portraits[player.id] }])),
+  ]);
   const entrySlice = data.directory.map(({ identity, previousSeason, currentRecord, currentMatchup }) => ({ identity, previousSeason, currentRecord, currentMatchup }));
   const { pairs, preseasonPreview } = deriveWeekPairs(entrySlice, aiWeekly, hub?.season.seasonYear ?? null);
   const championTeamId = championTeamIdOf(entrySlice);
@@ -262,7 +267,7 @@ export function CourtsideHome({
               </figure>
             )}
             {memberSummary && (
-              <RosterValueSection summary={memberSummary} portraits={portraits} teamHistory={teamHistory} />
+              <RosterValueSection summary={memberSummary} portraits={portraits} teamHistory={teamHistory} playerPhotos={historyPhotos} />
             )}
             {memberSummary && (
               <MemberTeamActions summary={memberSummary} />
@@ -339,7 +344,7 @@ export function CourtsideHome({
         <div className={cs("wrap")}>
           {memberSummary ? (
             <Reveal>
-              <RosterValueSection summary={memberSummary} portraits={portraits} teamHistory={teamHistory} />
+              <RosterValueSection summary={memberSummary} portraits={portraits} teamHistory={teamHistory} playerPhotos={historyPhotos} />
             </Reveal>
           ) : (
             <Reveal>

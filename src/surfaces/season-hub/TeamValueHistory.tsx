@@ -14,7 +14,7 @@ import { SectionHeading } from "@/ui/SectionHeading";
 import controls from "@/ui/controls.module.css";
 import { createTeamHistoryClient, TeamHistoryReadError } from "./TeamValueHistoryClient";
 import { TeamValueHistoryChart } from "./TeamValueHistoryChart";
-import { TeamValueHistoryDetail as DayDetail } from "./TeamValueHistoryDetail";
+import { TeamValueHistoryDetail as DayDetail, type HistoryPlayerPhotos } from "./TeamValueHistoryDetail";
 import { historyDayCount, historyInitialRange, historyObservationRange, historyPreviousPoint, historyValueChanges } from "./team-value-history-view";
 import styles from "./TeamValueHistory.module.css";
 
@@ -29,6 +29,7 @@ type DetailState = { key: string } & ({ kind: "loading" } | { kind: "ready"; val
 type HistoryProps = {
   history: TeamValueHistoryEnvelope; detailEndpoint?: string; pageEndpoint?: string;
   currentQuote?: CurrentTeamQuote | null;
+  playerPhotos?: HistoryPlayerPhotos;
   currentValue?: Pick<HomeTeamSummary, "market"> & {
     team: Pick<HomeTeamSummary["team"], "id">;
     valuation: Pick<HomeTeamSummary["valuation"], "total" | "priced" | "unpriced" | "complete" | "knownRoster">;
@@ -68,7 +69,7 @@ function RefreshHistory() {
     }}>{pending ? "Refreshing history…" : "Refresh history"}</button>;
 }
 
-function HistoryView({ history, detailEndpoint, pageEndpoint, currentValue, currentQuote }: HistoryProps) {
+function HistoryView({ history, detailEndpoint, pageEndpoint, currentValue, currentQuote, playerPhotos }: HistoryProps) {
   const id = useId();
   // A new server envelope takes precedence over pages from an older props delivery.
   // Keeping the team subtree mounted preserves selection and keyboard focus.
@@ -198,7 +199,7 @@ function HistoryView({ history, detailEndpoint, pageEndpoint, currentValue, curr
     pageRequest.current?.abort(); ++pageSequence.current;
     if (!validHistoryRange(next) || !historyRangeContains(envelope.leagueRange, next)) { setRangeError("This range is unavailable."); return; }
     setRangeError(""); setRange(next); setPreset(label);
-    setCurrentSelected(false);
+    setCurrentSelected(false); setInspecting(true);
     const day = selectedDay < next.from ? next.from : selectedDay >= next.toExclusive ? shiftHistoryDay(next.toExclusive, -1) : selectedDay;
     setSelectedDay(day); if (day !== selectedDay) { setDetail({ key: "", kind: "loading" }); setComparison({ key: "", kind: "loading" }); }
     setPageState("idle");
@@ -249,20 +250,22 @@ function HistoryView({ history, detailEndpoint, pageEndpoint, currentValue, curr
     {viewChanged && <div className={styles.notice} role="status">
         <p>History changed. Refresh to inspect the new roster evidence.</p><RefreshHistory />
     </div>}
-    <details id={`${id}-explanation`} className={styles.details} data-history-inspector aria-label={currentSelected ? "Current quote explanation" : `Day explanation for ${fullDay(selectedDay)}`}
+    {currentSelected ? <details id={`${id}-explanation`} className={styles.details} data-history-inspector aria-label="Current quote explanation"
       onToggle={event => { if (event.currentTarget.open) setInspecting(true); }}>
-      <summary>Roster &amp; moves</summary>
-      {!currentSelected && readout && <p className={styles.caption}>{shortStatus(readout.rosterStatus)}</p>}
-      {currentSelected ? <CurrentQuoteDetail quote={quote} /> : viewChanged ? <p className={styles.caption}>Refresh history before inspecting this day.</p>
+      <summary>Current roster &amp; evidence</summary><CurrentQuoteDetail quote={quote} />
+    </details> : <section id={`${id}-explanation`} className={styles.dayInspection} data-history-inspector aria-label={`Day explanation for ${fullDay(selectedDay)}`}>
+      {viewChanged ? <p className={styles.caption}>Refresh history before inspecting this day.</p>
         : currentDetail?.kind === "ready" ? <DayDetail detail={currentDetail.value}
+          playerPhotos={playerPhotos}
           previous={currentComparison?.kind === "ready" ? currentComparison.value : undefined}
           comparisonLoading={!!previousPoint && (!currentComparison || currentComparison.kind === "loading")}
           comparisonError={currentComparison?.kind === "error" ? currentComparison.changed ? "changed" : "unavailable" : undefined}
           retryComparison={retryComparison} /> : currentDetail?.kind === "error" ? <div className={styles.notice} role="status">
           <p>{currentDetail.changed ? "History changed. Refresh the page to inspect the new roster evidence." : "Day details could not be loaded."}</p>
           {!currentDetail.changed && detailEndpoint && <button type="button" className={controls.secondary} onClick={retryDetail}>Retry day details</button>}
-        </div> : <p className={styles.notice} role="status">Loading roster and moves…</p>}
-    </details>
+        </div> : <p className={styles.notice} role="status">{inspecting ? "Loading player changes…" : "Select a point to see player changes."}</p>}
+      {readout && <p className={styles.caption}>{shortStatus(readout.rosterStatus)}</p>}
+    </section>}
     {(!rangeLoaded || envelope.page.nextCursor !== null && sameRequestedRange) && <div className={styles.pageNotice}>
       <p>{pageState === "loading" ? "Loading history…" : "Some dates in this range have not loaded."}</p>
       {pageEndpoint && pageState !== "loading" && <button type="button" className={controls.secondary} onClick={() => void loadRange(range, envelope.page.nextCursor !== null && sameRequestedRange)}>Load more history</button>}

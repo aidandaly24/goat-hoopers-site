@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { HomeTeamSummary } from "@/domain/personalized-home";
 import type { TeamValueHistoryEnvelope } from "@/domain/team-value-history";
 import { currentTeamQuote } from "@/domain/current-team-quote";
+import type { HistoryPlayerPhotos } from "./TeamValueHistoryDetail";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { cs } from "./CourtsideStyles";
 import { formatHomeStamp } from "./homeFormat";
@@ -25,10 +26,11 @@ import styles from "./RosterValueSection.module.css";
  * panel is the true replayed series with explicit gaps, and detail
  * loads on inspection through the v1 routes.
  */
-export function RosterValueSection({ summary, portraits, teamHistory }: {
+export function RosterValueSection({ summary, portraits, teamHistory, playerPhotos }: {
   summary: HomeTeamSummary;
   portraits: Record<string, string>;
   teamHistory?: TeamValueHistoryEnvelope | null;
+  playerPhotos?: HistoryPlayerPhotos;
 }) {
   const { team, valuation, coverage, market } = summary;
   const currentQuote = currentTeamQuote(summary);
@@ -85,6 +87,7 @@ export function RosterValueSection({ summary, portraits, teamHistory }: {
           detailEndpoint="/api/team-value-history/detail"
           pageEndpoint="/api/team-value-history/summary"
           currentQuote={currentQuote}
+          playerPhotos={playerPhotos}
         />
       )}
     </section>

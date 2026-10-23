@@ -6,7 +6,7 @@ assert live league, account, provider, database or production behavior.
 The current interaction is the chart: hover a value dot on desktop, tap the
 chart on mobile, or use its keyboard arrows, PageUp/PageDown and Home/End.
 The selected date, value, source and partial-price coverage live in the graph.
-Roster/move detail is in a native disclosure immediately beneath it. There is
+Selected-day changed-player cards appear immediately beneath it; moves and source evidence remain secondary disclosures. There is
 no calendar/date input or separate largest-change card list. Sparse histories
 open on their loaded observation window; **All days** exposes the unchanged
 inception-to-today calendar, including missing-price days. Time remains linear
@@ -43,44 +43,46 @@ run. It has no application credentials, external calls or write actions.
 Historical acquisition/producer work remains separate; these synthetic checks
 do not establish real historical coverage or live behavior.
 
-## Changed-player and current-value follow-up
+## Visible selected-day player changes
 
-The default detail list now shows only nonzero comparable changes, with unchanged
-and unavailable comparisons counted separately. Full roster, moves and evidence
-stay in native disclosures. Sources distinguishes the actual current headline
-and calculation timestamp from selected saved history; no price is substituted.
-See [FOLLOWUP-NOTES.md](./FOLLOWUP-NOTES.md) for code-supported cadence, historical
-evidence limits and the separate producer/retention proposal.
+The historical selection opens a visible player-change panel, not an accordion.
+Only nonzero, comparable continuing-player prices become cards. Each card uses
+existing identity media through `PlayerHeadshot` (approved local portrait, resolved
+ESPN ID, then initials), signed change, and dated before/after amounts. The full
+historical roster is omitted from this view. Current roster details remain a
+separate disclosure under **Current**, with the full-roster link above the chart.
+
+The header sums only comparable continuing-player deltas, not roster movements or
+trade profit. If any continuing-player comparison is unknown it is explicitly a
+known-price-change subtotal; all-unknown never becomes zero. Comparisons name both
+observation dates and disclose multi-day gaps. Moves and snapshot/source evidence
+remain keyboard-accessible secondary disclosures. No transport, producer, quote
+calculation or stored history is changed.
 
 ```sh
-npm test -- src/surfaces/season-hub/TeamValueHistoryChanges.test.tsx src/surfaces/season-hub/TeamValueHistoryDetail.test.tsx
-npm test -- --config qa/team-value-history/producer-integration.config.mts
+npm test -- src/surfaces/season-hub/TeamValueHistoryChanges.test.tsx src/surfaces/season-hub/TeamValueHistoryDetail.test.tsx src/surfaces/season-hub/TeamValueHistoryCurrent.test.tsx src/surfaces/season-hub/TeamValueHistoryChart.test.tsx src/surfaces/season-hub/TeamValueHistoryClient.test.ts src/surfaces/season-hub/team-value-history-view.test.ts src/surfaces/season-hub/CourtsideHome.test.tsx src/domain/current-team-quote.test.ts src/test/authored-controls.test.tsx
 npm run typecheck
-python3 qa/team-value-history/prepare-changes.py /tmp/goat-changes-review
-python3 qa/team-value-history/serve.py /tmp/goat-changes-review 4411
+npm run check:contracts
+python3 qa/team-value-history/prepare-movers.py /tmp/goat-movers-review
+python3 qa/team-value-history/serve.py /tmp/goat-movers-review 4372
 # In another terminal:
-python3 qa/team-value-history/changes-browser.py /tmp/goat-changes-review http://127.0.0.1:4411
+python3 qa/team-value-history/movers-browser.py /tmp/goat-movers-review http://127.0.0.1:4372
 ```
 
-The six synthetic actual-Next homepage cases cover changed detail at 390/100%,
-320/100%, 320/200% and 1440/100%, plus all-unchanged and missing-comparison states
-at 320/200%. They verify the eight-player reproduction, keyboard disclosure and
-focus, no eager detail reads, full roster access, exact microseconds, separate
-historical/current inputs and subtotal coverage. A real offline-producer test
-reconciles identical roster/price inputs against the headline sum. Receipts and
-representative captures are in `review/changes-*`; source blobs and baseline
-identify the tested application. No credential, provider or production request
-is involved. Prior graph/409/rollover evidence below remains scoped to its stated
-revision; the unchanged matrix was not repeated for this consumer follow-up.
+The seven hydrated actual-Next journeys use explicitly synthetic values and
+matching approved portraits. They cover 390px, 320px, 320px/200% text and desktop,
+unchanged/unknown comparisons, broken-photo and absent-photo fallback, long names,
+visible changes outside any disclosure, signed subtotals, exact microseconds,
+keyboard/touch selection, All days missing history, and return to the identical
+current $110 headline/marker. All requests are guarded: no production, provider,
+account or database traffic. See `review/movers-browser.json`, representative
+`review/movers-*.webp`, and `review/movers-checks.json` for base, application blobs,
+commands and limits. The source-only UI revision does not recover historical data.
 
-CI caught the repository's no-arrow-glyph text rule on the initial head. The
-row now says **to**. The corrected source passes 30 component/policy tests and
-a fresh synthetic Next build; the affected 390/100% and 320/200% browser journeys
-pass again (`changes-text-fix-browser.json`, `changes-final-*` captures). Run the
-driver with `--text-fix-only` to reproduce that bounded follow-up. The original
-six-case receipt/captures retain their original source identities; unchanged
-producer/comparison/state logic is reused. Exact-head CI remains the full app
-build and regression gate.
+Earlier `changes-*`, `current-*` and integration receipts below are retained
+revision-scoped evidence; older drivers that target the previous disclosure
+structure are archived, not current-UI validation. Cadence and history analysis
+remain in [FOLLOWUP-NOTES.md](./FOLLOWUP-NOTES.md).
 
 ## Prior compact-view regression
 
