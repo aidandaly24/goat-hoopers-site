@@ -6,8 +6,10 @@ import {
   type TeamHistoryPoint, type TeamValueHistoryDetail,
 } from "../../domain/team-value-history";
 import {
-  assertModeledDataset, buildModeledGeneration, buildModeledPlayerTimelines,
-  buildModeledTeamPoints, composeHistorySeries, endOfDay, type MembershipOnDay,
+  assertMembershipSnapshot, assertModeledDataset, buildModeledGeneration,
+  buildModeledPlayerTimelines, buildModeledTeamPoints, composeHistorySeries,
+  computeMembershipSnapshotHash, endOfDay, parseRecordedInventory,
+  type MembershipOnDay, type MembershipSnapshot,
 } from "../modeled-backfill";
 
 /**
@@ -176,7 +178,7 @@ describe("modeled backfill producer", () => {
     const { artifact, result } = compose();
     const entry = result.points.find(e => e.point.day === "2025-10-25")!;
     const detail: TeamValueHistoryDetail = {
-      version: 1, teamId: "1", generation: buildModeledGeneration(artifact.manifest.datasetId, "fixture-evidence"),
+      version: 1, teamId: "1", generation: buildModeledGeneration(artifact.manifest.datasetId, "fixture-evidence", "fixture-membership"),
       day: entry.point.day, valuationAt: entry.point.valuationAt, pointId: entry.point.id,
       rosterRef: entry.point.rosterRef, rosterStatus: entry.point.rosterStatus,
       rosterCount: entry.point.rosterCount, priced: entry.point.priced,
@@ -202,9 +204,110 @@ describe("modeled backfill producer", () => {
     const { artifact } = compose();
     expect(() => assertModeledDataset(artifact, artifact.manifest.datasetId)).not.toThrow();
     expect(() => assertModeledDataset(artifact, "some-other-dataset")).toThrow(/dataset mismatch/i);
-    const a = buildModeledGeneration(artifact.manifest.datasetId, "evidence-a");
+    const a = buildModeledGeneration(artifact.manifest.datasetId, "evidence-a", "membership-a");
     expect(a).toContain("gamelog-carry-v1");
-    expect(a).not.toBe(buildModeledGeneration(artifact.manifest.datasetId, "evidence-b"));
-    expect(a).not.toBe(buildModeledGeneration("other-dataset", "evidence-a"));
+    expect(a).not.toBe(buildModeledGeneration(artifact.manifest.datasetId, "evidence-b", "membership-a"));
+    expect(a).not.toBe(buildModeledGeneration(artifact.manifest.datasetId, "evidence-a", "membership-b"));
+    expect(a).not.toBe(buildModeledGeneration("other-dataset", "evidence-a", "membership-a"));
+  });
+});
+
+/**
+ * Offline input integrity (dot's P2s on the first Stage 2 head,
+ * 7a55775): the generation bound only final rosters, so a corrected
+ * historical membership kept the old generation; and the runner's
+ * loose input checks let a duplicated member double-count and a
+ * non-canonical inventory day silently drop recorded suppression.
+ * Each test below names a failure the old head permitted.
+ */
+describe("modeled backfill offline input integrity", () => {
+  const snapshotFixture = (days: MembershipSnapshot["days"]): MembershipSnapshot => {
+    const content = {
+      seasonTwoFromDay: "2026-08-13",
+      range: { fromDay: "2025-10-20", throughDay: "2026-08-13" },
+      teamIds: [1],
+      days,
+    };
+    return {
+      version: "membership-snapshot-v1",
+      rosterEvidenceHash: "a".repeat(64),
+      membershipHash: computeMembershipSnapshotHash(content),
+      ...content,
+    };
+  };
+  // Final day identical in both: only a PAST membership differs.
+  const finalsPreserved = snapshotFixture({
+    "1": { "2025-10-21": ["101", "102"], "2026-08-13": ["101", "102"] },
+  });
+  const pastCorrected = snapshotFixture({
+    "1": { "2025-10-21": ["101", "103"], "2026-08-13": ["101", "102"] },
+  });
+
+  it("binds dated membership: a corrected past membership changes the hash and the generation, finals preserved", () => {
+    expect(pastCorrected.membershipHash).not.toBe(finalsPreserved.membershipHash);
+    const generation = (s: MembershipSnapshot) =>
+      buildModeledGeneration("dataset-x", s.rosterEvidenceHash, s.membershipHash);
+    expect(generation(pastCorrected)).not.toBe(generation(finalsPreserved));
+    expect(() => assertMembershipSnapshot(finalsPreserved)).not.toThrow();
+    expect(() => assertMembershipSnapshot(pastCorrected)).not.toThrow();
+  });
+
+  it("canonicalizes the hash: key order and per-day list order do not change it", () => {
+    const shuffled = snapshotFixture({
+      "1": { "2026-08-13": ["102", "101"], "2025-10-21": ["102", "101"] },
+    });
+    expect(shuffled.membershipHash).toBe(finalsPreserved.membershipHash);
+    expect(() => assertMembershipSnapshot(shuffled)).not.toThrow();
+  });
+
+  it("rejects altered membership carrying an unchanged claimed hash", () => {
+    const tampered: MembershipSnapshot = {
+      ...pastCorrected,
+      membershipHash: finalsPreserved.membershipHash,
+    };
+    expect(() => assertMembershipSnapshot(tampered)).toThrow(/membershipHash does not match/);
+  });
+
+  it("rejects a duplicated player in a snapshot team-day instead of pricing it twice", () => {
+    const duplicated = snapshotFixture({ "1": { "2025-10-21": ["101", "101"] } });
+    expect(() => assertMembershipSnapshot(duplicated)).toThrow(/more than once/);
+  });
+
+  it("rejects a non-canonical snapshot day key instead of letting it miss every composition day", () => {
+    const instantKeyed = snapshotFixture({ "1": { "2025-10-21T00:00:00Z": ["101"] } });
+    expect(() => assertMembershipSnapshot(instantKeyed)).toThrow(/non-canonical day key/);
+  });
+
+  it("rejects duplicated membership at composition time too", () => {
+    const artifact = fixtureArtifact();
+    const built = buildModeledPlayerTimelines(artifact, {
+      from: "2024-07-01T00:00:00.000Z", asOf: endOfDay("2026-08-13"),
+    });
+    expect(() => buildModeledTeamPoints({
+      built, datasetId: artifact.manifest.datasetId, modelVersion: artifact.manifest.modelVersion,
+      membershipOnDay: () => ({ playerIds: ["101", "101"] }),
+      recordedAdmits: () => false, teamIds: [1],
+      range: { fromDay: "2025-10-21", throughDay: "2025-10-21" },
+      seasonTwoFromDay: "2026-08-13",
+    })).toThrow(/more than once/);
+  });
+
+  it("rejects a non-canonical inventory day instead of silently missing its recorded suppression", () => {
+    expect(parseRecordedInventory({ admittedTeamDays: [{ teamId: 1, day: "2025-10-22" }] }, [1]))
+      .toEqual(new Set(["1|2025-10-22"]));
+    expect(() => parseRecordedInventory(
+      { admittedTeamDays: [{ teamId: 1, day: "2025-10-22T00:00:00Z" }] }, [1],
+    )).toThrow(/Malformed recorded-inventory entry/);
+  });
+
+  it("rejects duplicate inventory entries and teams the snapshot does not carry", () => {
+    expect(() => parseRecordedInventory(
+      { admittedTeamDays: [{ teamId: 1, day: "2025-10-22" }, { teamId: 1, day: "2025-10-22" }] }, [1],
+    )).toThrow(/more than once/);
+    expect(() => parseRecordedInventory(
+      { admittedTeamDays: [{ teamId: 99, day: "2025-10-22" }] }, [1],
+    )).toThrow(/does not carry/);
+    expect(() => parseRecordedInventory({ admittedTeamDays: "nope" }, [1]))
+      .toThrow(/admittedTeamDays array/);
   });
 });

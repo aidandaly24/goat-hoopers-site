@@ -32,8 +32,9 @@ import { dirname, resolve } from "node:path";
 import { createPriceHistoryArtifact, validatePriceHistoryArtifact } from "../src/data/price-history-artifact";
 import type { ReconstructionInput } from "../src/domain/price-history-import";
 import {
-  assertModeledDataset, buildModeledBackfillPackage, buildModeledPlayerTimelines,
-  buildModeledTeamPoints, endOfDay, type MembershipSnapshot,
+  assertMembershipSnapshot, assertModeledDataset, buildModeledBackfillPackage,
+  buildModeledPlayerTimelines, buildModeledTeamPoints, endOfDay, parseRecordedInventory,
+  type MembershipSnapshot,
 } from "../src/data/modeled-backfill";
 
 function arg(name: string): string | null {
@@ -73,21 +74,15 @@ const artifact = createPriceHistoryArtifact(input, config.source, modelCodeHash)
 validatePriceHistoryArtifact(artifact);
 assertModeledDataset(artifact, readJson(manifestPath).datasetId);
 
+// Both offline inputs are validated before anything is composed:
+// the snapshot's structure (canonical days, unique teams, no
+// duplicated member in a team-day) and its claimed membership hash
+// against its actual dated content; the inventory's canonical days,
+// known teams, and freedom from duplicate entries. Malformed input
+// rejects the run — it is never normalized away.
 const snapshot = readJson(membershipPath) as MembershipSnapshot;
-if (snapshot?.version !== "membership-snapshot-v1" || typeof snapshot.days !== "object" || !snapshot.days) {
-  throw new Error("Membership snapshot is missing or not a membership-snapshot-v1 document");
-}
-const inventory = readJson(inventoryPath);
-if (!Array.isArray(inventory?.admittedTeamDays)) {
-  throw new Error("Recorded inventory must carry an admittedTeamDays array");
-}
-const admitted = new Set<string>();
-for (const entry of inventory.admittedTeamDays) {
-  if (!Number.isInteger(entry?.teamId) || typeof entry?.day !== "string") {
-    throw new Error(`Malformed recorded-inventory entry: ${JSON.stringify(entry)}`);
-  }
-  admitted.add(`${entry.teamId}|${entry.day}`);
-}
+assertMembershipSnapshot(snapshot);
+const admitted = parseRecordedInventory(readJson(inventoryPath), snapshot.teamIds);
 
 const range = {
   fromDay: arg("from") ?? snapshot.range.fromDay,
@@ -114,6 +109,7 @@ const result = buildModeledTeamPoints({
 const pkg = buildModeledBackfillPackage({
   artifact,
   rosterEvidenceHash: snapshot.rosterEvidenceHash,
+  membershipHash: snapshot.membershipHash,
   range,
   result,
 });

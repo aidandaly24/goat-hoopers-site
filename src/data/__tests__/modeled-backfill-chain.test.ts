@@ -8,7 +8,8 @@ import { LEAGUE_ID, type RawDraft, type RawDraftPick, type RawRoster, type RawTr
 import { HISTORY_SEASON_TWO_FROM, SEASON_ONE_LEAGUE_ID, toHistoryMoves } from "../team-value-history";
 import { loadChainRosterReplay, type RosterReplayDeps } from "../roster-replay";
 import {
-  buildModeledPlayerTimelines, buildModeledTeamPoints, endOfDay, exportMembershipSnapshot,
+  assertMembershipSnapshot, buildModeledPlayerTimelines, buildModeledTeamPoints,
+  endOfDay, exportMembershipSnapshot,
 } from "../modeled-backfill";
 
 /**
@@ -69,6 +70,9 @@ describe("modeled backfill over the real chain", () => {
     const snapshot = exportMembershipSnapshot(chain);
     expect(snapshot.seasonTwoFromDay).toBe(HISTORY_SEASON_TWO_FROM);
     expect(snapshot).toEqual(readJsonAt(DATA, "reconstruction/membership.json"));
+    // The committed snapshot validates, and its claimed membership
+    // hash verifies against its actual dated content.
+    expect(() => assertMembershipSnapshot(snapshot)).not.toThrow();
 
     const artifact = pinnedArtifact();
     const range = { fromDay: snapshot.range.fromDay, throughDay: snapshot.range.throughDay };

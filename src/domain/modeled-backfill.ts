@@ -80,7 +80,13 @@ export type ModeledBackfillPackage = {
   reconstructionVersion: string;
   /** Hash of the roster-replay evidence the membership came from. */
   rosterEvidenceHash: string;
-  /** datasetId + policy + roster-evidence binding for this series. */
+  /** Hash of the dated membership snapshot the composition consumed:
+   *  every team-day's player list, the window, and the season
+   *  boundary — verified against the snapshot's content before the
+   *  run, so a changed past membership cannot reuse this package's
+   *  generation. */
+  membershipHash: string;
+  /** datasetId + policy + roster-evidence + membership binding for this series. */
   generation: string;
   range: { fromDay: string; throughDay: string };
   diagnostics: ModeledBackfillDiagnostics;

@@ -48,8 +48,18 @@ const hash12 = (parts: readonly string[]) => sha256(parts.join(",")).slice(0, 12
 /** The end-of-day instant a gamelog point dated `day` prices at. */
 export const endOfDay = (day: string) => `${day}T23:59:59.999999Z`;
 
+/** True exactly for canonical `YYYY-MM-DD` strings that name a real
+ *  calendar day. An ISO instant such as `2025-10-22T00:00:00Z` is NOT
+ *  a calendar day here: it can never equal a composition day key, so
+ *  accepting it would silently drop whatever it was meant to assert. */
+const isCalendarDay = (day: string): boolean => {
+  if (!DAY_PATTERN.test(day)) return false;
+  const ms = Date.parse(`${day}T00:00:00.000Z`);
+  return !Number.isNaN(ms) && new Date(ms).toISOString().slice(0, 10) === day;
+};
+
 function assertDay(day: string, label: string): void {
-  if (!DAY_PATTERN.test(day) || new Date(`${day}T00:00:00.000Z`).toISOString().slice(0, 10) !== day) {
+  if (!isCalendarDay(day)) {
     throw new Error(`${label} is not a calendar day: ${day}`);
   }
 }
@@ -236,6 +246,13 @@ export function buildModeledTeamPoints(input: BuildModeledTeamPointsInput): Buil
       const at = endOfDay(cursor);
       const season = String(nbaSeasonStartYear(cursor));
       const memberIds = [...membership.playerIds].sort((a, b) => Number(a) - Number(b));
+      if (new Set(memberIds).size !== memberIds.length) {
+        // A duplicated member would be priced once per listing and
+        // silently double its contribution to the subtotal. Membership
+        // is evidence: reject the duplication, never absorb it.
+        throw new Error(
+          `Membership for team ${teamId} on ${cursor} lists a player more than once; refusing to price a duplicated roster`);
+      }
       const lines: ModeledTeamPointPackage["players"] = [];
       const pricedIds: string[] = [];
       let subtotal = 0;
@@ -346,12 +363,51 @@ export function computeRosterEvidenceHash(chain: ChainRosterReplay): string {
 export type MembershipSnapshot = {
   version: "membership-snapshot-v1";
   rosterEvidenceHash: string;
+  /** Canonical hash of the snapshot's DATED membership content — the
+   *  window, the season boundary, and every team-day's player list.
+   *  Unlike the roster-evidence hash (final rosters, gap, boundary
+   *  reconciliation), this binds historical membership truth itself:
+   *  a corrected past trade date changes it even when the final
+   *  rosters are untouched. Verified before any composition. */
+  membershipHash: string;
   /** The chain's season-two anchor day (HISTORY_SEASON_TWO_FROM). */
   seasonTwoFromDay: string;
   range: { fromDay: string; throughDay: string };
   teamIds: number[];
   days: Record<string, Record<string, readonly string[]>>;
 };
+
+const PLAYER_ID_PATTERN = /^\d+$/;
+const SHA256_PATTERN = /^[0-9a-f]{64}$/;
+/** Total order for player ids: numeric, with a string tiebreak so ids
+ *  beyond float precision still canonicalize deterministically. */
+const comparePlayerIds = (a: string, b: string) => (Number(a) - Number(b)) || (a < b ? -1 : a > b ? 1 : 0);
+
+/** Canonical content hash of a membership snapshot's dated truth:
+ *  the window (range + season boundary) and, per team, each day's
+ *  player list. Key order and per-day list order in the source JSON
+ *  do not matter; the dated content does. */
+export function computeMembershipSnapshotHash(snapshot: {
+  seasonTwoFromDay: string;
+  range: { fromDay: string; throughDay: string };
+  teamIds: readonly number[];
+  days: MembershipSnapshot["days"];
+}): string {
+  const teamIds = [...snapshot.teamIds].sort((a, b) => a - b);
+  const days = teamIds.map(teamId => [
+    teamId,
+    Object.entries(snapshot.days[String(teamId)] ?? {})
+      .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+      .map(([day, playerIds]) => [day, [...playerIds].sort(comparePlayerIds)] as const),
+  ]);
+  return sha256(JSON.stringify({
+    version: "membership-snapshot-v1",
+    seasonTwoFromDay: snapshot.seasonTwoFromDay,
+    range: [snapshot.range.fromDay, snapshot.range.throughDay],
+    teamIds,
+    days,
+  }));
+}
 
 export function exportMembershipSnapshot(chain: ChainRosterReplay): MembershipSnapshot {
   const teamIds = [...chain.seasonOne.finalRosters.keys()].sort((a, b) => a - b);
@@ -366,24 +422,142 @@ export function exportMembershipSnapshot(chain: ChainRosterReplay): MembershipSn
     }
     days[String(teamId)] = perDay;
   }
-  return {
-    version: "membership-snapshot-v1",
-    rosterEvidenceHash: computeRosterEvidenceHash(chain),
+  const content = {
     seasonTwoFromDay: chain.seasonTwo.anchorAt.slice(0, 10),
     range: { fromDay, throughDay },
     teamIds,
     days,
   };
+  return {
+    version: "membership-snapshot-v1",
+    rosterEvidenceHash: computeRosterEvidenceHash(chain),
+    membershipHash: computeMembershipSnapshotHash(content),
+    ...content,
+  };
 }
 
-/** The series generation: dataset + carry policy + roster evidence. */
-export const buildModeledGeneration = (datasetId: string, rosterEvidenceHash: string) =>
-  `${MODELED_BACKFILL_PRODUCER_VERSION}:${datasetId}:${MODELED_CARRY_POLICY_ID}:${rosterEvidenceHash}`;
+/**
+ * Validate an offline membership snapshot before it is trusted, and
+ * verify its claimed membership hash against its actual dated
+ * content. Fails closed on anything malformed: non-canonical day
+ * keys, unknown or missing teams, duplicated player ids in a
+ * team-day (which composition would otherwise price twice), or a
+ * hash that does not match the days it claims to bind (a corrected
+ * historical membership reusing a stale generation is rejected, not
+ * silently composed).
+ */
+export function assertMembershipSnapshot(snapshot: unknown): asserts snapshot is MembershipSnapshot {
+  const fail = (why: string): never => {
+    throw new Error(`Membership snapshot rejected: ${why}`);
+  };
+  if (typeof snapshot !== "object" || snapshot === null || Array.isArray(snapshot)) fail("not an object");
+  const s = snapshot as Record<string, unknown>;
+  if (s.version !== "membership-snapshot-v1") fail(`version is ${JSON.stringify(s.version)}, not "membership-snapshot-v1"`);
+  if (typeof s.rosterEvidenceHash !== "string" || !SHA256_PATTERN.test(s.rosterEvidenceHash)) {
+    fail("rosterEvidenceHash is not a sha256 hex string");
+  }
+  if (typeof s.membershipHash !== "string" || !SHA256_PATTERN.test(s.membershipHash)) {
+    fail("membershipHash is not a sha256 hex string");
+  }
+  if (typeof s.seasonTwoFromDay !== "string" || !isCalendarDay(s.seasonTwoFromDay)) {
+    fail(`seasonTwoFromDay is not a calendar day: ${JSON.stringify(s.seasonTwoFromDay)}`);
+  }
+  const rawRange = s.range as { fromDay?: unknown; throughDay?: unknown } | null;
+  const rangeFromDay = rawRange?.fromDay;
+  const rangeThroughDay = rawRange?.throughDay;
+  if (typeof rangeFromDay !== "string" || !isCalendarDay(rangeFromDay)
+    || typeof rangeThroughDay !== "string" || !isCalendarDay(rangeThroughDay)) {
+    fail("range does not carry two canonical calendar days");
+  }
+  // The guard above threw unless both are canonical day strings.
+  const range = { fromDay: rangeFromDay as string, throughDay: rangeThroughDay as string };
+  if (range.fromDay > range.throughDay) fail("range is inverted");
+  if (!Array.isArray(s.teamIds) || s.teamIds.length === 0
+    || !s.teamIds.every(id => Number.isSafeInteger(id) && (id as number) > 0)) {
+    fail("teamIds is not a non-empty list of positive integer team ids");
+  }
+  const teamIds = s.teamIds as number[];
+  if (new Set(teamIds).size !== teamIds.length) fail("teamIds lists a team more than once");
+  if (typeof s.days !== "object" || s.days === null || Array.isArray(s.days)) fail("days is not an object");
+  const days = s.days as Record<string, unknown>;
+  const expectedKeys = new Set(teamIds.map(id => String(id)));
+  for (const key of Object.keys(days)) {
+    if (!expectedKeys.has(key)) fail(`days carries team ${key}, which teamIds does not`);
+  }
+  for (const teamId of teamIds) {
+    const perDay = days[String(teamId)];
+    if (typeof perDay !== "object" || perDay === null || Array.isArray(perDay)) {
+      fail(`days has no membership object for team ${teamId}`);
+    }
+    for (const [day, playerIds] of Object.entries(perDay as Record<string, unknown>)) {
+      if (!isCalendarDay(day)) {
+        fail(`team ${teamId} carries a non-canonical day key: ${JSON.stringify(day)}`);
+      }
+      if (day < range.fromDay || day > range.throughDay) {
+        fail(`team ${teamId} carries day ${day}, outside the snapshot range`);
+      }
+      if (!Array.isArray(playerIds) || !playerIds.every(id => typeof id === "string" && PLAYER_ID_PATTERN.test(id))) {
+        fail(`team ${teamId} on ${day} does not carry a list of player ids`);
+      }
+      if (new Set(playerIds as string[]).size !== (playerIds as string[]).length) {
+        fail(`team ${teamId} on ${day} lists a player more than once; a duplicated member would be priced twice`);
+      }
+    }
+  }
+  const verified = snapshot as MembershipSnapshot;
+  if (computeMembershipSnapshotHash(verified) !== verified.membershipHash) {
+    fail("membershipHash does not match the snapshot's dated membership content — "
+      + "the snapshot was altered after hashing or its hash is stale; regenerate it (modeled-backfill-export harness)");
+  }
+}
+
+/**
+ * Validate the runner's recorded-lane inventory and return the
+ * admitted team-day key set. Fails closed: a non-canonical day (an
+ * ISO instant can never match a composition day key, so its
+ * suppression would be silently missed), a team the membership
+ * snapshot does not carry, or a duplicated entry all reject the run
+ * rather than normalizing uncertain evidence away.
+ */
+export function parseRecordedInventory(inventory: unknown, teamIds: readonly number[]): Set<string> {
+  if (typeof inventory !== "object" || inventory === null
+    || !Array.isArray((inventory as { admittedTeamDays?: unknown }).admittedTeamDays)) {
+    throw new Error("Recorded inventory must carry an admittedTeamDays array");
+  }
+  const knownTeams = new Set(teamIds);
+  const admitted = new Set<string>();
+  for (const entry of (inventory as { admittedTeamDays: unknown[] }).admittedTeamDays) {
+    const e = entry as { teamId?: unknown; day?: unknown } | null;
+    if (typeof e !== "object" || e === null || !Number.isInteger(e.teamId)
+      || typeof e.day !== "string" || !isCalendarDay(e.day)) {
+      throw new Error(`Malformed recorded-inventory entry: ${JSON.stringify(entry)}`);
+    }
+    if (!knownTeams.has(e.teamId as number)) {
+      throw new Error(
+        `Recorded inventory names team ${e.teamId}, which the membership snapshot does not carry`);
+    }
+    const key = `${e.teamId}|${e.day}`;
+    if (admitted.has(key)) {
+      throw new Error(
+        `Recorded inventory lists team-day ${key} more than once; refusing to guess which entry is authoritative`);
+    }
+    admitted.add(key);
+  }
+  return admitted;
+}
+
+/** The series generation: dataset + carry policy + roster evidence +
+ *  dated membership. The membership hash binds historical membership
+ *  truth itself, so two replays that agree on final rosters but
+ *  differ on any past team-day are different generations. */
+export const buildModeledGeneration = (datasetId: string, rosterEvidenceHash: string, membershipHash: string) =>
+  `${MODELED_BACKFILL_PRODUCER_VERSION}:${datasetId}:${MODELED_CARRY_POLICY_ID}:${rosterEvidenceHash}:${membershipHash}`;
 
 /** Assemble the runner's output package from a composition result. */
 export function buildModeledBackfillPackage(input: {
   artifact: PriceHistoryArtifact;
   rosterEvidenceHash: string;
+  membershipHash: string;
   range: { fromDay: string; throughDay: string };
   result: BuildModeledTeamPointsResult;
 }): ModeledBackfillPackage {
@@ -396,7 +570,8 @@ export function buildModeledBackfillPackage(input: {
     modelVersion: manifest.modelVersion,
     reconstructionVersion: manifest.reconstructionVersion,
     rosterEvidenceHash: input.rosterEvidenceHash,
-    generation: buildModeledGeneration(manifest.datasetId, input.rosterEvidenceHash),
+    membershipHash: input.membershipHash,
+    generation: buildModeledGeneration(manifest.datasetId, input.rosterEvidenceHash, input.membershipHash),
     range: input.range,
     diagnostics: input.result.diagnostics,
     points: input.result.points,
