@@ -39,12 +39,30 @@ export function WeeklyChallengeCountdown({ readClock = defaultReader }: { readCl
     document.addEventListener("visibilitychange", visibility); window.addEventListener("pageshow", restored);
     return () => { invalidate(); document.removeEventListener("visibilitychange", visibility); window.removeEventListener("pageshow", restored); };
   }, [refresh]);
+  useEffect(() => {
+    if (!clock || clock.asOfMs >= WEEK_ONE_RANKED_OPENING.startsAtMs) return;
+    // Reconfirm the held state once the announced time passes; never infer admission from elapsed time.
+    const remaining = WEEK_ONE_RANKED_OPENING.startsAtMs - clock.upperServerNowAtReceiptMs;
+    const timer = setTimeout(() => { void refresh(); }, Math.max(0, remaining) + 1000);
+    return () => clearTimeout(timer);
+  }, [clock, refresh]);
+  return <HeldRankedOpening clock={clock} failed={failed} refresh={refresh} />;
+}
+
+/** Private client-subtree presentation. A past launch announcement is not an active competition clock. */
+export function HeldRankedOpening({ clock, failed, refresh }: {
+  clock: ServerClockAnchor | null; failed: boolean; refresh: () => void;
+}) {
+  if (clock && clock.asOfMs >= WEEK_ONE_RANKED_OPENING.startsAtMs) return <section className={styles.timing} aria-label="Ranked status">
+    <p role="status">Ranked rounds are currently closed.</p>
+    <p>The leaderboard will show when the competition is open. Local practice remains available.</p>
+  </section>;
   return <section className={styles.timing} aria-label="Ranked opening countdown">
-    <p>Scheduled ranked opening: <time dateTime={new Date(WEEK_ONE_RANKED_OPENING.startsAtMs).toISOString()}>{openingLabel}</time>.</p>
+    {clock && <p>Scheduled ranked opening: <time dateTime={new Date(WEEK_ONE_RANKED_OPENING.startsAtMs).toISOString()}>{openingLabel}</time>.</p>}
     <ServerCountdown clock={clock} deadlineMs={WEEK_ONE_RANKED_OPENING.startsAtMs}
       label="Ranked opening in" endedLabel="Scheduled opening reached · ranked remains held"
       uncertaintyLabel={failed ? "Server clock unavailable · ranked remains held" : "Checking server clock…"}
       onRequestReconciliation={refresh} />
-    <p>Ranked stays closed until the closing time and competition rules are confirmed. Reaching zero does not open entries.</p>
+    <p>Check the leaderboard for competition availability. Reaching zero does not open entries.</p>
   </section>;
 }

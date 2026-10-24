@@ -4,6 +4,7 @@ import { getFriendsDb } from "../friends-auth/db";
 import { readRankedConfiguration, freeThrowRulesVersion } from "./config";
 import { ArcadeCompetitionStore } from "../arcade-competition/store";
 import { DEFAULT_COMPETITION_POLICY, readCompetitionCalendar } from "../arcade-competition/config";
+import { recordRankedReadiness } from "./readiness";
 
 import type { RankedRuntime } from "./service";
 import type { RankedAvailability } from "@/domain/arcade/ranked-free-throw";
@@ -14,6 +15,7 @@ export function createRankedRuntime(): RankedRuntime {
   if (process.env.GOAT_RANKED_FREE_THROW_ENABLED === "1" && !process.env.GOAT_RANKED_FREE_THROW_RULES) configuration = { status: "ready", policy: DEFAULT_COMPETITION_POLICY, rulesVersion: freeThrowRulesVersion(DEFAULT_COMPETITION_POLICY) };
   if (configuration.status === "ready" && !readCompetitionCalendar(process.env)) configuration = { status: "invalid" };
   if (configuration.status === "ready" && !friendsEnrollmentEnabled()) configuration = { status: "invalid" };
+  recordRankedReadiness(process.env, configuration);
   let store: ArcadeCompetitionStore | undefined;
   return {
     configuration,

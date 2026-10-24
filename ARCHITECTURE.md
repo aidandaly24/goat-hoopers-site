@@ -1479,6 +1479,9 @@ Other games remain unranked until they have their own validated adapter.
 
 `data/ranked-free-throw/runtime.ts` composes the canonical competition store only
 when the exact enable flag, personal auth and a valid reviewed calendar exist.
+Its private readiness receipt logs only configuration predicates and canonical
+calendar/database-target fingerprints, once per configuration per server process;
+it never logs credentials, hosts, account data or calendar payloads, and performs no database I/O.
 Default-off requests stop before account/DB work. Verified owners have a separate
 read-only result-recovery state when new-round admission is closed/unavailable;
 bookmarked run IDs survive that state and never grant admission. Admissions/saves take period
