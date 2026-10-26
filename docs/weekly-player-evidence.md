@@ -62,24 +62,51 @@ generator:
    his final played game — and reconciles the team sum against the
    leg's official points.
 
+Generation is **fail-closed**; none of these is inferred from score sums:
+
+- Every week-tagged game must report Sleeper status `complete` and a
+  final ESPN status, or generation aborts. An in-progress week produces
+  no receipt, however well interim totals might reconcile.
+- `endsAt` comes only from the next week's `scores` rows. If that
+  source is absent, generation aborts — the last game's start is never
+  substituted as a boundary.
+- Every game must match an ESPN event and return a box score for both
+  teams, or generation aborts. Partial coverage is not a receipt.
+- An explicit lock whose game has no box-score evidence for the player
+  (no stat line, and the box score does not record him as present at
+  all) marks the row unproven (`evidenceComplete: false`) and forces
+  the team `unreconciled`. Another played game is **never** substituted
+  for a locked game. A box score that affirmatively records the player
+  as present without an appearance (DNP / 0 minutes) instead proves the
+  locked game counts as zero.
+
+The generator's selection, classification, window and completion rules
+are covered by offline fixtures: `python3
+scripts/generate-weekly-evidence.py --self-test`.
+
 ### Reconciliation status
 
-- `verified` — residual 0. The counted games are proven.
-- `verified-foul-residual` — |residual| ≤ 4. ESPN box scores do not
-  itemise technical or flagrant fouls, which Sleeper scores at −2 each,
-  so a small residual is fully explained by fouls the box score cannot
-  show (Week 1: rosters 1, 6 and 8; roster 8's +2.0 is Kevin Durant's
-  technical in his final game, corroborated by Sleeper's own REST value
-  for that game). Individual counted values are box-score values; the
-  residual is disclosed in the receipt, never silently spread across
-  players.
-- `unreconciled` — the counted games cannot be identified from available
-  sources. The adapter refuses to serve the team. Week 1 roster 9 is
-  unreconciled (residual +26.0 against its official 214.0, with its locks
-  mutually inconsistent with the total under every game combination
-  that fits — 598 combinations reach 214.0, so no honest per-player
-  answer exists yet). The showcase reports the team as unavailable
-  rather than ranking invented numbers.
+- `verified` — residual exactly 0. The counted games are proven, and
+  the values are actuals.
+- `estimated-foul-residual` — residual is a positive multiple of 2, at
+  most +4. ESPN box scores do not itemise technical or flagrant fouls,
+  which Sleeper scores at −2 each, so such a residual is fully
+  explained by fouls the box score cannot show — but a team residual
+  does **not** prove which player or game caused it, so the gap is
+  never attributed to an individual and never spread across players.
+  The per-player values are box-score **estimates**, bounded by the
+  disclosed residual. A negative residual, or one that is not a
+  multiple of the −2 foul unit, is not explained by fouls at all and is
+  never given this status. Week 1: rosters 1 (+4.0), 6 (+2.0) and 8
+  (+2.0).
+- `unreconciled` — the counted games cannot be identified from
+  available sources, the residual is unexplained, or lock evidence is
+  incomplete. The adapter refuses to serve the team anywhere. Week 1
+  roster 9 is unreconciled (residual +26.0 against its official 214.0,
+  with its locks mutually inconsistent with the total under every game
+  combination that fits — 598 combinations reach 214.0, so no honest
+  per-player answer exists yet). The showcase reports the team as
+  unavailable rather than ranking invented numbers.
 
 ## The adapter
 
@@ -89,18 +116,28 @@ passed in (dependency inversion) and validated at load
 residual from its rows and drops any receipt that disagrees with itself).
 
 - `getCompletedPlayerWeek(receipts, { season, week, teamId })` — the
-  domain `CompletedPlayerWeek` for one team, or null. Players are the
-  week's eleven starters only: they are the players whose participation
-  in the team's score the leg verifies. A starter who never appeared
-  keeps `fantasyPoints: null` with `gamesPlayed: 0` (a DNP is excluded
-  by the guide, never shown as a rough week); a verified zero with
-  appearances stays 0.
+  domain `CompletedPlayerWeek` for one team, or null. This is the
+  **exact-points contract**: the guide labels its values "Actual
+  recorded fantasy points", so only `verified` teams (residual exactly
+  0) are served. Estimated and unreconciled teams return null and the
+  guide falls back to its unavailable state — an estimate is never
+  relabeled an actual. Players are the week's eleven starters only:
+  they are the players whose participation in the team's score the leg
+  verifies. A starter who never appeared keeps `fantasyPoints: null`
+  with `gamesPlayed: 0` (a DNP is excluded by the guide, never shown as
+  a rough week); a verified zero with appearances stays 0.
 - `getPreviousCompletedPlayerWeek(receipts, { season, currentWeek, teamId })`
   — the same for `currentWeek - 1`.
-- `getWeekShowcase(receipts, { season, week, limit? })` — every
-  reconciled team's top counted performances (default 3; ties broken by
-  games played, then player id) plus `unavailableTeamIds` for the
-  honest gap.
+- `getWeekShowcase(receipts, { season, week, limit? })` — every team's
+  top counted performances (default 3; ties broken by games played,
+  then player id) plus `unavailableTeamIds` for the honest gap. Each
+  team entry is discriminated by `basis`: `verified` entries carry
+  proven `fantasyPoints`; `estimated-foul-residual` entries carry
+  `estimatedPoints` (a differently named field, on purpose) with the
+  team's `officialPoints`, `computedPoints` and `residual` disclosed.
+  A surface rendering the estimated shape must present the values as
+  estimates — the type makes the actual-points path unreachable for
+  them.
 - `WEEKLY_EVIDENCE_RECEIPTS` — the committed receipts, validated.
 
 ## Wiring (Dot-owned surfaces)
@@ -112,15 +149,49 @@ Per the #190 split, integration belongs with the guide/home owners:
    `getPreviousCompletedPlayerWeek(WEEKLY_EVIDENCE_RECEIPTS, { season, currentWeek, teamId })`
    using the NBA state the loader already reads (`season` from
    `state.season`, `currentWeek` from `state.week`). That lights up Your
-   Best / The Rough Week for every reconciled team with no surface
-   changes.
+   Best / The Rough Week for every **verified** team with no surface
+   changes (Week 1: rosters 2, 3, 4, 5, 7, 10). Estimated teams
+   (rosters 1, 6, 8) deliberately stay on the guide's unavailable state:
+   the guide's copy promises actual recorded points, and only the
+   showcase may show their estimates, labeled as estimates.
 2. For the league-wide showcase, hand `getWeekShowcase(...)` output to a
-   home/season-hub surface next to the standings; render
+   home/season-hub surface next to the standings; branch on each team's
+   `basis` — verified entries render as recorded points, estimated
+   entries render as estimates with the residual disclosed — and render
    `unavailableTeamIds` as an explicit "not yet verified" row.
+
+## Week 1 source facts, reconciled
+
+Two figures in the original receipt drew questions; both are settled
+by the sources themselves:
+
+- `startsAt` is **2026-10-20T19:00:00Z**, not 23:00Z. Sleeper `scores`
+  tags an afternoon game as Week 1's first tip (Detroit, 19:00Z), and
+  ESPN's matching event (401909088, Little Caesars Arena) independently
+  records 2026-10-20T19:00Z with `STATUS_FINAL`. The 23:00Z figure is
+  Week 2's first tip — this receipt's `endsAt` — and was never Week 1's
+  start.
+- `generatedAt` precedes `endsAt` by design of the boundary:
+  `endsAt` is the *next* week's first tip (an exclusive scheduling
+  bound), not the week's last game. Week 1's last game tipped
+  2026-10-26T01:00:00Z, and all 43 week-tagged games carried Sleeper
+  status `complete` with final ESPN statuses when the receipt was
+  generated. Completion rests on that per-game final evidence — which
+  the generator now enforces — not on the end bound having passed.
+  (The guide separately declines to show a week until `endsAt` has
+  passed, so the Week 1 recap cannot light up before 23:00Z on
+  2026-10-26 regardless.)
+
+The Week 1 receipt was regenerated on 2026-10-26 under the fail-closed
+generator rules from the same day's source snapshot: every player row,
+counted game and team total is unchanged; the regeneration reclassified
+rosters 1, 6 and 8 from the old `verified-foul-residual` label to
+`estimated-foul-residual` and recorded `evidenceComplete` per team.
 
 ## Weekly operation
 
 After each week closes (the next week's first tip has passed), rerun the
 generator for that week and commit the new receipt plus a one-line
-registry addition in the adapter. No credentials, database writes, or
-runtime fetches are involved at serve time.
+registry addition in the adapter. When the generator itself changes,
+run its offline fixtures first (`--self-test`). No credentials, database
+writes, or runtime fetches are involved at serve time.

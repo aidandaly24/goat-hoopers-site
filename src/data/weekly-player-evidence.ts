@@ -15,16 +15,28 @@ import weekOneReceipt from "./weekly-receipts/2026-week-01.json";
  * scoring settings, and reconciles every team's sum against the leg's
  * official points before the receipt may be served.
  *
- * A team whose counted games cannot be reconciled with its official total
- * is marked `unreconciled` in the receipt and is never served here: the
- * guide falls back to its existing unavailable state for that team instead
- * of showing numbers no source can prove. See
- * `docs/weekly-player-evidence.md` for the full source investigation.
+ * Two honesty contracts are served from a receipt, and they are not
+ * interchangeable:
+ *
+ * - The exact-points contract (`getCompletedPlayerWeek`, consumed by the
+ *   personal guide as "Actual recorded fantasy points") serves ONLY
+ *   `verified` teams — residual exactly zero. A team with any unexplained
+ *   gap fails closed to the guide's unavailable state.
+ * - Residual teams whose gap is fully explained by technical/flagrant
+ *   fouls ESPN box scores cannot itemise (a positive multiple of the −2
+ *   foul unit, at most +4) are `estimated-foul-residual`: their per-player
+ *   values are box-score estimates, bounded by the disclosed residual but
+ *   attributable to no individual player. They are served only through
+ *   the showcase's explicitly estimated contract, never as actuals.
+ * - A team whose counted games cannot be reconciled with its official
+ *   total, or whose lock evidence is incomplete, is `unreconciled` and is
+ *   never served anywhere. See `docs/weekly-player-evidence.md` for the
+ *   full source investigation.
  */
 
 export type WeeklyEvidenceStatus =
   | "verified"
-  | "verified-foul-residual"
+  | "estimated-foul-residual"
   | "unreconciled";
 
 export type WeeklyPlayerEvidence = {
@@ -34,8 +46,10 @@ export type WeeklyPlayerEvidence = {
   /**
    * Fantasy points from the game that counted for the team's score: the
    * locked game when the matchup leg records a lock, otherwise the
-   * player's final played game of the week. Null only when the starter
-   * never appeared in the week.
+   * player's final played game of the week. Null when the starter never
+   * appeared in the week, or when an explicit lock's game has no
+   * box-score evidence for him (the row is then unproven and the whole
+   * team is `unreconciled`, so it is never served).
    */
   countedPoints: number | null;
   countedGameId: string | null;
@@ -50,6 +64,13 @@ export type WeeklyTeamEvidence = {
   computedPoints: number;
   residual: number;
   status: WeeklyEvidenceStatus;
+  /**
+   * False when any starter's counted game lacks box-score evidence (an
+   * explicit lock whose game records nothing for the player). Such a
+   * team is always `unreconciled`: a coincidental sum never verifies an
+   * unproven counted game.
+   */
+  evidenceComplete: boolean;
   players: WeeklyPlayerEvidence[];
 };
 
@@ -68,27 +89,79 @@ export type WeeklyEvidenceReceipt = {
 
 export type WeekShowcasePlayer = {
   playerId: string;
+  /** Proven counted points: the team's sum reconciles exactly. */
   fantasyPoints: number;
   gamesPlayed: number;
   locked: boolean;
 };
+
+export type WeekShowcaseEstimatedPlayer = {
+  playerId: string;
+  /**
+   * Box-score estimate, NOT a recorded actual: the team's counted sum
+   * overstates its official total by the team's disclosed `residual`
+   * (un-itemised technical/flagrant fouls), and the overstatement cannot
+   * be attributed to individual players. Never label these as actual
+   * recorded points.
+   */
+  estimatedPoints: number;
+  gamesPlayed: number;
+  locked: boolean;
+};
+
+/**
+ * One team's showcase entry. The `basis` discriminant keeps exact and
+ * estimated weeks in separate shapes so a surface cannot render an
+ * estimate through the actual-points path by accident.
+ */
+export type WeekShowcaseTeam =
+  | {
+      teamId: string;
+      basis: "verified";
+      officialPoints: number;
+      topPlayers: WeekShowcasePlayer[];
+    }
+  | {
+      teamId: string;
+      basis: "estimated-foul-residual";
+      officialPoints: number;
+      /** Box-score sum; overstates `officialPoints` by `residual`. */
+      computedPoints: number;
+      /** Explained only by un-itemised −2 fouls; allocation unknown. */
+      residual: number;
+      topPlayers: WeekShowcaseEstimatedPlayer[];
+    };
 
 export type WeekShowcase = {
   season: string;
   week: number;
   startsAt: string;
   endsAt: string;
-  teams: {
-    teamId: string;
-    officialPoints: number;
-    status: Exclude<WeeklyEvidenceStatus, "unreconciled">;
-    topPlayers: WeekShowcasePlayer[];
-  }[];
+  teams: WeekShowcaseTeam[];
   /** Teams whose week could not be reconciled; surfaces show a gap, not zeros. */
   unavailableTeamIds: string[];
 };
 
-const STATUSES: readonly string[] = ["verified", "verified-foul-residual", "unreconciled"];
+const STATUSES: readonly string[] = ["verified", "estimated-foul-residual", "unreconciled"];
+
+/** Largest residual still explainable by un-itemised −2 fouls. */
+const MAX_FOUL_RESIDUAL = 4;
+const EPSILON = 0.011;
+
+/**
+ * The only statuses a residual can honestly carry: exactly zero is
+ * verified; a positive multiple of the −2 foul unit within the bound is
+ * explained-but-estimated; anything else (negative, non-multiple, or
+ * larger) is not explained by un-itemised fouls at all.
+ */
+export function classifyWeeklyResidual(residual: number): WeeklyEvidenceStatus {
+  if (Math.abs(residual) <= EPSILON) return "verified";
+  if (residual > 0 && residual <= MAX_FOUL_RESIDUAL + EPSILON) {
+    const units = residual / 2;
+    if (Math.abs(units - Math.round(units)) <= EPSILON) return "estimated-foul-residual";
+  }
+  return "unreconciled";
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -107,7 +180,11 @@ function parsePlayer(value: unknown): WeeklyPlayerEvidence | null {
   if (typeof value.locked !== "boolean") return null;
   // A counted score requires a counted game; a DNP starter has neither.
   if ((value.countedPoints === null) !== (value.countedGameId === null)) return null;
-  if (value.countedPoints !== null && (value.gamesPlayed as number) < 1) return null;
+  // A counted score normally requires an appearance. The one exception is
+  // a proven zero: a locked game whose box score affirmatively records
+  // the player as present without playing counts as exactly 0.
+  if (value.countedPoints !== null && (value.gamesPlayed as number) < 1
+    && !(value.countedPoints === 0 && value.locked === true)) return null;
   return {
     playerId: value.playerId,
     gamesPlayed: value.gamesPlayed as number,
@@ -136,18 +213,28 @@ function parseTeam(value: unknown): WeeklyTeamEvidence | null {
   // it: the recorded computed total is the sum of the counted rows, and the
   // recorded residual is that sum against the leg's official total.
   const computed = players.reduce((sum, player) => sum + (player.countedPoints ?? 0), 0);
-  if (Math.abs(computed - value.computedPoints) > 0.011) return null;
-  if (Math.abs(computed - value.officialPoints - value.residual) > 0.011) return null;
+  if (Math.abs(computed - value.computedPoints) > EPSILON) return null;
+  if (Math.abs(computed - value.officialPoints - value.residual) > EPSILON) return null;
+  // The recorded status must be the status the residual can honestly
+  // carry — a receipt may not upgrade an estimate to "verified", nor
+  // dress an unexplained gap as a foul residual. The one override is
+  // incomplete lock evidence: it fails the team closed as "unreconciled"
+  // whatever the residual happens to be.
   const status = value.status as WeeklyEvidenceStatus;
-  if (status === "verified" && Math.abs(value.residual) > 0.011) return null;
-  if (status === "verified-foul-residual" && (Math.abs(value.residual) <= 0.011 || Math.abs(value.residual) > 4)) return null;
-  if (status === "unreconciled" && Math.abs(value.residual) <= 4) return null;
+  if (value.evidenceComplete !== undefined && typeof value.evidenceComplete !== "boolean") return null;
+  const evidenceComplete = value.evidenceComplete !== false;
+  if (!evidenceComplete) {
+    if (status !== "unreconciled") return null;
+  } else if (status !== classifyWeeklyResidual(value.residual)) {
+    return null;
+  }
   return {
     teamId: value.teamId,
     officialPoints: value.officialPoints,
     computedPoints: value.computedPoints,
     residual: value.residual,
     status,
+    evidenceComplete,
     players,
   };
 }
@@ -201,18 +288,23 @@ function findReceipt(
   return receipts.find((receipt) => receipt.season === season && receipt.week === week) ?? null;
 }
 
-function verifiedTeam(receipt: WeeklyEvidenceReceipt, teamId: string): WeeklyTeamEvidence | null {
+function exactTeam(receipt: WeeklyEvidenceReceipt, teamId: string): WeeklyTeamEvidence | null {
   const team = receipt.teams.find((row) => row.teamId === teamId) ?? null;
-  if (!team || team.status === "unreconciled") return null;
+  // Exact-points contract: only a zero-residual week is an actual.
+  // Estimated and unreconciled teams fail closed here.
+  if (!team || team.status !== "verified") return null;
   return team;
 }
 
 /**
  * The completed-week evidence for one team, in the domain contract the
- * personal player guide consumes. Only the week's eleven starters are
- * listed: they are the players whose participation in the team's score is
- * verified by the matchup leg. Bench players never counted, so they are
- * absent rather than zeroed.
+ * personal player guide consumes as actual recorded points. Only
+ * `verified` teams (residual exactly zero) are served; a team with any
+ * residual fails closed to null and the guide shows its unavailable
+ * state rather than ranking estimates as actuals. Only the week's eleven
+ * starters are listed: they are the players whose participation in the
+ * team's score is verified by the matchup leg. Bench players never
+ * counted, so they are absent rather than zeroed.
  */
 export function getCompletedPlayerWeek(
   receipts: readonly WeeklyEvidenceReceipt[],
@@ -220,7 +312,7 @@ export function getCompletedPlayerWeek(
 ): CompletedPlayerWeek | null {
   const receipt = findReceipt(receipts, input.season, input.week);
   if (!receipt) return null;
-  const team = verifiedTeam(receipt, input.teamId);
+  const team = exactTeam(receipt, input.teamId);
   if (!team) return null;
   return {
     season: receipt.season,
@@ -251,17 +343,35 @@ export function getPreviousCompletedPlayerWeek(
   });
 }
 
-function compareShowcasePlayers(a: WeekShowcasePlayer, b: WeekShowcasePlayer): number {
-  if (b.fantasyPoints !== a.fantasyPoints) return b.fantasyPoints - a.fantasyPoints;
+function compareShowcasePlayers(
+  a: { points: number; gamesPlayed: number; playerId: string },
+  b: { points: number; gamesPlayed: number; playerId: string },
+): number {
+  if (b.points !== a.points) return b.points - a.points;
   if (b.gamesPlayed !== a.gamesPlayed) return b.gamesPlayed - a.gamesPlayed;
   return a.playerId < b.playerId ? -1 : a.playerId > b.playerId ? 1 : 0;
 }
 
+function topCounted(team: WeeklyTeamEvidence, limit: number) {
+  return team.players
+    .filter((player): player is WeeklyPlayerEvidence & { countedPoints: number } => player.countedPoints !== null)
+    .map((player) => ({
+      playerId: player.playerId,
+      points: player.countedPoints,
+      gamesPlayed: player.gamesPlayed,
+      locked: player.locked,
+    }))
+    .sort(compareShowcasePlayers)
+    .slice(0, limit);
+}
+
 /**
- * League-wide best players for a completed week: every reconciled team's
- * top `limit` counted performances. Unreconciled teams are reported as
- * unavailable so a surface can show an honest gap instead of inventing a
- * ranking.
+ * League-wide best players for a completed week. Verified teams are
+ * served as proven actuals; foul-residual teams are served through the
+ * separate estimated shape — per-player box-score estimates with the
+ * team's residual disclosed, never as actuals. Unreconciled teams are
+ * reported as unavailable so a surface can show an honest gap instead of
+ * inventing a ranking.
  */
 export function getWeekShowcase(
   receipts: readonly WeeklyEvidenceReceipt[],
@@ -277,21 +387,32 @@ export function getWeekShowcase(
       unavailableTeamIds.push(team.teamId);
       continue;
     }
-    const topPlayers = team.players
-      .filter((player): player is WeeklyPlayerEvidence & { countedPoints: number } => player.countedPoints !== null)
-      .map((player) => ({
-        playerId: player.playerId,
-        fantasyPoints: player.countedPoints,
-        gamesPlayed: player.gamesPlayed,
-        locked: player.locked,
-      }))
-      .sort(compareShowcasePlayers)
-      .slice(0, limit);
+    if (team.status === "estimated-foul-residual") {
+      teams.push({
+        teamId: team.teamId,
+        basis: "estimated-foul-residual",
+        officialPoints: team.officialPoints,
+        computedPoints: team.computedPoints,
+        residual: team.residual,
+        topPlayers: topCounted(team, limit).map((player) => ({
+          playerId: player.playerId,
+          estimatedPoints: player.points,
+          gamesPlayed: player.gamesPlayed,
+          locked: player.locked,
+        })),
+      });
+      continue;
+    }
     teams.push({
       teamId: team.teamId,
+      basis: "verified",
       officialPoints: team.officialPoints,
-      status: team.status,
-      topPlayers,
+      topPlayers: topCounted(team, limit).map((player) => ({
+        playerId: player.playerId,
+        fantasyPoints: player.points,
+        gamesPlayed: player.gamesPlayed,
+        locked: player.locked,
+      })),
     });
   }
   teams.sort((a, b) => (a.teamId < b.teamId ? -1 : a.teamId > b.teamId ? 1 : 0));

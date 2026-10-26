@@ -3,7 +3,7 @@
   "week": 1,
   "startsAt": "2026-10-20T19:00:00Z",
   "endsAt": "2026-10-26T23:00:00Z",
-  "generatedAt": "2026-10-26T16:44:02.175318Z",
+  "generatedAt": "2026-10-26T17:29:52.796055Z",
   "generator": "scripts/generate-weekly-evidence.py",
   "source": "Sleeper authenticated matchup leg (starters, lock map, official totals) + ESPN box scores scored with the league's scoring_settings",
   "teams": [
@@ -12,7 +12,8 @@
       "officialPoints": 294.0,
       "computedPoints": 298.0,
       "residual": 4.0,
-      "status": "verified-foul-residual",
+      "status": "estimated-foul-residual",
+      "evidenceComplete": true,
       "players": [
         {
           "playerId": "2133",
@@ -99,6 +100,7 @@
       "computedPoints": 289.5,
       "residual": 0.0,
       "status": "verified",
+      "evidenceComplete": true,
       "players": [
         {
           "playerId": "2259",
@@ -185,6 +187,7 @@
       "computedPoints": 280.0,
       "residual": 0.0,
       "status": "verified",
+      "evidenceComplete": true,
       "players": [
         {
           "playerId": "1957",
@@ -271,6 +274,7 @@
       "computedPoints": 281.0,
       "residual": 0.0,
       "status": "verified",
+      "evidenceComplete": true,
       "players": [
         {
           "playerId": "2126",
@@ -357,6 +361,7 @@
       "computedPoints": 312.5,
       "residual": 0.0,
       "status": "verified",
+      "evidenceComplete": true,
       "players": [
         {
           "playerId": "1658",
@@ -442,7 +447,8 @@
       "officialPoints": 253.5,
       "computedPoints": 255.5,
       "residual": 2.0,
-      "status": "verified-foul-residual",
+      "status": "estimated-foul-residual",
+      "evidenceComplete": true,
       "players": [
         {
           "playerId": "2267",
@@ -529,6 +535,7 @@
       "computedPoints": 310.5,
       "residual": 0.0,
       "status": "verified",
+      "evidenceComplete": true,
       "players": [
         {
           "playerId": "1970",
@@ -614,7 +621,8 @@
       "officialPoints": 247.5,
       "computedPoints": 249.5,
       "residual": 2.0,
-      "status": "verified-foul-residual",
+      "status": "estimated-foul-residual",
+      "evidenceComplete": true,
       "players": [
         {
           "playerId": "1380",
@@ -701,6 +709,7 @@
       "computedPoints": 240.0,
       "residual": 26.0,
       "status": "unreconciled",
+      "evidenceComplete": true,
       "players": [
         {
           "playerId": "4873",
@@ -787,6 +796,7 @@
       "computedPoints": 294.5,
       "residual": 0.0,
       "status": "verified",
+      "evidenceComplete": true,
       "players": [
         {
           "playerId": "1747",

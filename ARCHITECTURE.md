@@ -19,8 +19,12 @@ completed weeks from committed receipts (`src/data/weekly-receipts/*.json`)
 produced offline by `scripts/generate-weekly-evidence.py`: the authenticated
 Sleeper matchup leg supplies starters, the lock map and official team
 totals; ESPN box scores scored with the league's settings supply each
-starter's counted game (locked game, else final played game); a team is
-served only when its reconstructed sum reconciles with the leg total.
+starter's counted game (locked game, else final played game). Generation is
+fail-closed (per-game final status, source-only end boundary, full
+box-score coverage, no substitution for a locked game). The adapter's
+exact-points contract serves only zero-residual (`verified`) teams; teams
+whose residual is fully explained by un-itemised −2 fouls are served only
+through the showcase's explicitly estimated shape, never as actuals.
 Public REST matchup points ignore locks and are never used as results.
 Full source investigation and wiring notes: `docs/weekly-player-evidence.md`.
 
