@@ -246,6 +246,15 @@ integer leg, prior stats season and season-start source date. Preseason leg0
 prepares week1 even when the unrelated display week is2. During the regular
 season it prepares leg+1, before that matchup week. `loadAiLineupPreview` fetches
 only league/state, rosters, that one week and completed prior-season raw stats.
+
+Issue #149 adds a separate, explicit current-week operator selection beside
+that planning context. `loadAiPublicationSelection("current")` prepares the
+live leg itself (`week == leg`) only during the regular phase and only when the
+reviewed week calendar (`docs/ai-week-calendar.json`, never a runtime fetch)
+carries a verified first-tip window for that season/week;
+`loadAiCurrentLineupPreview` then builds from the live week's own matchup rows.
+The planning context and its leg+1 preview are unchanged, and cached reads keep
+their legacy rules unless a record carries the calendar provenance below.
 It strips BN from the starter slot declaration, uses week-specific starters,
 checks roster ownership plus explicit reserve/taxi fields, and freezes the actual
 source-read time. No player directory, current scores, valuation cache or repair
@@ -283,6 +292,16 @@ publication closure at00:00UTC on Sleeper's season_start_date, cutoffAt is one
 millisecond earlier, and endsAt is null because no fantasy-week end calendar has
 been verified. For regular previews both period dates are null; cutoffAt is the
 source-read evidence cutoff and sourceLeg<week establishes pre-week preparation.
+The current-week selection above is the one exception: when a reviewed
+calendar window applies, the preview carries its version as
+`preview.calendarVersion` provenance, startsAt is the week's verified first
+tip, cutoffAt is one millisecond earlier, endsAt stays null (the window is a
+publication deadline, not a matchup period), and sourceLeg equals week. The
+deadline is rechecked immediately before the provider call and again on
+completion; at or after first tip the run closes (`weekly_closed`) — a
+post-tip result would be labeled analysis, not a forecast, and no late-analysis
+variant exists in the publish contract. Cached calendar-provenance records
+become stale at first tip rather than at a later leg.
 A fresh, uncached phase/season/leg check occurs before paid work and after the
 model completes. An advanced/unavailable source boundary withholds publication
 while retaining the usage count. Cached previews remain readable during their

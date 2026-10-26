@@ -1,8 +1,8 @@
 import "server-only";
 import { createHash, timingSafeEqual } from "node:crypto";
-import type { AiPublicationContext, AiWeeklyInput, AiWeeklyPublishResponse } from "@/domain/ai-decider";
+import type { AiPublicationContext, AiPublicationTarget, AiWeeklyInput, AiWeeklyPublishResponse } from "@/domain/ai-decider";
 import { GOAT_LINEUP_POLICY } from "@/domain/ai-lineup-policy";
-import { loadAiLineupPreview, loadAiPublicationContext } from "../league";
+import { loadAiCurrentLineupPreview, loadAiLineupPreview, loadAiPublicationContext, loadAiPublicationSelection } from "../league";
 import { aiDataDeadline } from "./deadline";
 import { availability, failure, generateWeeklyPicksAsIdentity, resolveAiIdentity, type AiRuntime } from "./service";
 import { validAiIdentity, type AiIdentity } from "./store";
@@ -14,6 +14,26 @@ export type AiPublicationSources = {
   input(context: AiPublicationContext): Promise<AiWeeklyInput>;
 };
 export const publicationSources: AiPublicationSources = { context: loadAiPublicationContext, input: loadAiLineupPreview };
+
+/**
+ * Current-week operator selection: the context's week IS the source leg and
+ * the input is bounded by the reviewed calendar window. Selection failure
+ * (no verified window, preseason, moved source) throws weekly_context and
+ * the publisher fails closed before any provider work.
+ */
+export const currentPublicationSources: AiPublicationSources = {
+  context: async () => (await loadAiPublicationSelection("current")).context,
+  input: async context => {
+    const { window } = await loadAiPublicationSelection("current");
+    if (!window) throw new Error("weekly_context");
+    return loadAiCurrentLineupPreview(context, window);
+  },
+};
+
+/** Only the exact server value "current" selects the in-week repair target. */
+export function publicationSourcesFor(target: AiPublicationTarget): AiPublicationSources {
+  return target === "current" ? currentPublicationSources : publicationSources;
+}
 
 /** One immutable attempt per source week. Daily checks never retry paid work. */
 export async function publishWeeklyPreview(identity: AiIdentity, runtime: AiRuntime, sources: AiPublicationSources = publicationSources): Promise<AiWeeklyPublishResponse> {
@@ -33,6 +53,7 @@ export async function publishWeeklyPreview(identity: AiIdentity, runtime: AiRunt
     }
     const input = await aiDataDeadline(sources.input(context), 10000);
     if (!validWeeklyInput(input) || !input.preview || input.lineupPolicy !== GOAT_LINEUP_POLICY.version || weekKey(input) !== key || input.preview.sourceLeg !== context.leg || input.phase !== context.phase) return failure("unavailable", "weekly_input", "The public source could not establish an upcoming eleven-starter preview.");
+    if (input.preview.calendarVersion !== undefined && runtime.now() >= Date.parse(input.startsAt!)) return failure("unavailable", "weekly_closed", "The current week's first tip has passed. A late result would be analysis, not a forecast, and is not published.");
     const reason = weeklyReadiness(input, runtime.now());
     if (reason) return failure("unavailable", "weekly_not_ready", reason);
     const prepared = prepareWeeklySlate(input, runtime.now());
