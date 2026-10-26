@@ -352,6 +352,17 @@ settings-stale transport response or using it as the displayed original for
 that already-authorized one-shot control. Ordinary expired slates without such
 a notice, partial rows and malformed notices remain rejected/disabled. Server
 refresh gates, the sealed-attempt guard and paid admission are unchanged.
+
+Repeat publication reads carry the same notice. A repeat POST that finds a
+saved calendar-provenance record compares it against a lightweight live
+configuration (`loadAiSourceConfiguration`: the league declaration only)
+before returning it: changed or unverifiable settings annotate the returned
+slate exactly as the public read does, so the publish response can never
+replace the displayed slate with the bare record and erase the warning. An
+absent or failed configuration lookup annotates as unverified, never as
+compatible. The slate is re-derived at the post-lookup clock, so a lookup
+that crosses first tip still closes the window. The stored input, result and
+hash are never rewritten, and no provider work repeats.
 The derived notice's `currentWindow` records whether the validated cache slate
 was ready before settings annotation. Compatibility-stale admission requires it
 to be true; an already ended/advanced-source-leg result retains false even when

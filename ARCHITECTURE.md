@@ -1326,6 +1326,11 @@ so changed/unverified settings cannot reopen expired windows or revoke
 separately authorized refresh controls. Saved AI/home surfaces show that
 provenance; the complete interactive roster path is unchanged. Named
 game mode and positional assignment remain unverified.
+`loadAiSourceConfiguration` projects the same configuration from a
+league-only read for the publish path: repeat reads of saved calendar
+records are annotated against it (unverified when the lookup is absent or
+fails), so a repeat POST cannot erase the changed/unverified warning the
+public read shows.
 `migrations/ai-decider.sql` starts disabled and was separately provisioned under
 root authorization before this source change; no new migration is introduced. Existing auth/valuation/repair tables are reused
 or read without schema/behavior changes. UI/page integration has a separate owner.

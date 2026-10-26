@@ -1,9 +1,10 @@
 import { describe, expect, it, vi } from "vitest";
-import type { AiPublicationContext, AiWeeklyInput } from "@/domain/ai-decider";
+import type { AiPublicationContext, AiSourceConfiguration, AiWeeklyInput } from "@/domain/ai-decider";
 import { GOAT_LINEUP_POLICY } from "@/domain/ai-lineup-policy";
-import { loadAiCurrentLineupPreview, loadAiPublicationContext, loadAiPublicationSelection } from "../../league";
+import { loadAiCurrentLineupPreview, loadAiPublicationContext, loadAiPublicationSelection, loadAiSourceConfiguration } from "../../league";
 import type { RawLeague, RawNbaState, RawRoster } from "../../sleeper";
 import { handleAiWeeklyCron, handleAiWeeklyPost, publishWeeklyPreview, type AiPublicationSources } from "../publication";
+import { loadAiDecidesData } from "../runtime";
 import { generateWeeklyPicksAsIdentity } from "../service";
 import { aiWeekCalendarWindow } from "../week-calendar";
 import { cachedWeek, validWeeklyInput, weekKey, weeklyReadiness } from "../weekly";
@@ -65,6 +66,10 @@ describe("current-week selection (loaders)", () => {
     expect(selected.window).toMatchObject({ season: "2026", week: 2, firstTipAt: FIRST_TIP, calendarVersion: version });
     expect((await loadAiPublicationSelection("next", deps)).window).toBeNull();
     expect((await loadAiPublicationSelection(undefined, deps)).context.week).toBe(3);
+  });
+  it("projects the lightweight source configuration from the league declaration only", async () => {
+    expect(await loadAiSourceConfiguration({ league: async () => league })).toEqual({ starterSlots: [...GOAT_LINEUP_POLICY.starterSlots], scoring: { pts: 0.5 }, gameModeCode: 1 });
+    expect((await loadAiSourceConfiguration({ league: async () => ({ ...league, roster_positions: undefined }) })).starterSlots).toBeNull();
   });
   it("fails closed without a reviewed calendar window or outside the regular phase", async () => {
     await expect(loadAiPublicationSelection("current", { league: async () => league, state: async () => liveState, calendar: () => null })).rejects.toThrow("weekly_context");
@@ -137,7 +142,18 @@ describe("current-week publication", () => {
     expect(response.weekly.snapshot).toMatchObject({ comparison: "weekly_lineup_preview", sourceLeg: 2, startsAt: FIRST_TIP, endsAt: null });
     expect(response.weekly.matchups[0].evidence.join(" ")).toContain("Current-week lineup-strength preview");
     expect(response.weekly.matchups[0].evidence.join(" ")).toContain(version);
-    expect(await publishWeeklyPreview(identity(), h.runtime, h.sources)).toEqual(response);
+    const record = h.persistence.weeks.get(weekKey(currentInput()))!;
+    const frozen = structuredClone({ input: record.input, result: record.result, hash: record.hash });
+    const repeat = await publishWeeklyPreview(identity(), h.runtime, h.sources);
+    expect(repeat.status).toBe("ready"); if (repeat.status !== "ready") throw new Error("fixture");
+    // The repeat is a pure record read. Its transport projection may carry
+    // a read-time source-compatibility annotation the first response did
+    // not (unverified here: these sources provide no live configuration),
+    // so equality is asserted on what must not move — the stored input,
+    // result and hash — plus zero additional provider work.
+    expect(repeat.weekly.sourceCompatibility?.status).toBe("unverified");
+    expect(repeat.weekly.matchups).toEqual(response.weekly.matchups);
+    expect({ input: record.input, result: record.result, hash: record.hash }).toEqual(frozen);
     expect(h.sources.input).toHaveBeenCalledTimes(1); expect(h.create).toHaveBeenCalledTimes(1);
   });
   it("a first run at or after first tip fails closed with no seal and no provider call", async () => {
@@ -215,5 +231,74 @@ describe("current-week publication", () => {
     const h2 = currentHarness(); h2.runtime.weeklyOperator = { kind: "weekly_job", userId: USER, auth: "legacy" };
     const scheduled = await handleAiWeeklyCron(cron(), SECRET, h2.runtime, h2.sources);
     expect(scheduled.status).toBe(200); expect(h2.create).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("current-week repeat reads preserve the compatibility warning", () => {
+  // The configuration the saved Week 2 input was frozen under.
+  const savedConfiguration: AiSourceConfiguration = { starterSlots: [...GOAT_LINEUP_POLICY.starterSlots], scoring: { pts: 1 }, gameModeCode: 1 };
+  const changedConfiguration: AiSourceConfiguration = { ...savedConfiguration, scoring: { pts: 0.5 } };
+  const readContext = (configuration?: AiSourceConfiguration) => async () => {
+    const input = currentInput();
+    return { leagueId: input.leagueId, season: input.season, week: input.week, matchups: input.matchups, phase: input.phase, ...(configuration ? { configuration } : {}) };
+  };
+
+  it("keeps the changed-settings warning from the GET on the repeat POST slate", async () => {
+    const h = currentHarness();
+    expect((await publishWeeklyPreview(identity(), h.runtime, h.sources)).status).toBe("ready");
+    const record = h.persistence.weeks.get(weekKey(currentInput()))!;
+    const frozen = structuredClone({ input: record.input, result: record.result, hash: record.hash });
+    // Public read once settings have since changed: stale projection with
+    // the warning attached, which is what enables the Publish control.
+    const read = await loadAiDecidesData(h.runtime, readContext(changedConfiguration));
+    expect(read.weekly.status).toBe("stale");
+    expect(read.weekly.sourceCompatibility).toMatchObject({ status: "changed", currentWindow: true });
+    // The repeat POST returns the slate the surface will display instead:
+    // it must carry the same warning, not the bare ready record.
+    h.sources.configuration = vi.fn(async () => changedConfiguration);
+    const repeat = await publishWeeklyPreview(identity(), h.runtime, h.sources);
+    expect(repeat.status).toBe("ready"); if (repeat.status !== "ready") throw new Error("fixture");
+    expect(repeat.weekly.status).toBe("stale");
+    expect(repeat.weekly.sourceCompatibility).toMatchObject({ status: "changed", currentWindow: true, savedStarterCount: 11, currentStarterCount: 11 });
+    expect(repeat.weekly.matchups).toEqual(read.weekly.matchups);
+    expect({ input: record.input, result: record.result, hash: record.hash }).toEqual(frozen);
+    expect(h.sources.input).toHaveBeenCalledTimes(1); expect(h.create).toHaveBeenCalledTimes(1);
+  });
+
+  it("annotates the repeat as unverified when current settings cannot be verified", async () => {
+    const h = currentHarness();
+    expect((await publishWeeklyPreview(identity(), h.runtime, h.sources)).status).toBe("ready");
+    const read = await loadAiDecidesData(h.runtime, readContext());
+    expect(read.weekly.sourceCompatibility?.status).toBe("unverified");
+    h.sources.configuration = vi.fn(async () => { throw new Error("source_down"); });
+    const repeat = await publishWeeklyPreview(identity(), h.runtime, h.sources);
+    expect(repeat.status).toBe("ready"); if (repeat.status !== "ready") throw new Error("fixture");
+    expect(repeat.weekly.status).toBe("stale");
+    expect(repeat.weekly.sourceCompatibility?.status).toBe("unverified");
+    expect(h.sources.input).toHaveBeenCalledTimes(1); expect(h.create).toHaveBeenCalledTimes(1);
+  });
+
+  it("keeps an unchanged, verified repeat ready and compatible, with no provider work", async () => {
+    const h = currentHarness();
+    expect((await publishWeeklyPreview(identity(), h.runtime, h.sources)).status).toBe("ready");
+    h.sources.configuration = vi.fn(async () => savedConfiguration);
+    const repeat = await publishWeeklyPreview(identity(), h.runtime, h.sources);
+    expect(repeat.status).toBe("ready"); if (repeat.status !== "ready") throw new Error("fixture");
+    expect(repeat.weekly.status).toBe("ready");
+    expect(repeat.weekly.sourceCompatibility).toMatchObject({ status: "compatible", currentWindow: true });
+    expect(h.sources.input).toHaveBeenCalledTimes(1); expect(h.create).toHaveBeenCalledTimes(1);
+  });
+
+  it("never returns the saved slate as ready on a repeat after first tip (expired-window control)", async () => {
+    const h = currentHarness();
+    expect((await publishWeeklyPreview(identity(), h.runtime, h.sources)).status).toBe("ready");
+    h.setTime(Date.parse(FIRST_TIP) + 1);
+    const read = await loadAiDecidesData(h.runtime, readContext(savedConfiguration));
+    expect(read.weekly.status).toBe("stale");
+    expect(read.weekly.sourceCompatibility?.currentWindow).toBe(false);
+    h.sources.configuration = vi.fn(async () => savedConfiguration);
+    const repeat = await publishWeeklyPreview(identity(), h.runtime, h.sources);
+    expect(repeat).toMatchObject({ status: "unavailable", code: "publication_partial" });
+    expect(h.create).toHaveBeenCalledTimes(1);
   });
 });

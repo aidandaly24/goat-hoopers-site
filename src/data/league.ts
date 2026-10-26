@@ -109,7 +109,7 @@ import {
 import type { LeagueNewsEdition } from "@/domain/news";
 import { createTtlCache } from "./cache";
 import { aiMatchupPairs, buildAiWeeklyInput, type AiWeekPreparation } from "./ai-decider/inputs";
-import type { AiDecidesData, AiLeagueRosterInput, AiPublicationContext, AiPublicationTarget, AiWeekCalendarWindow, AiWeeklyInput } from "@/domain/ai-decider";
+import type { AiDecidesData, AiLeagueRosterInput, AiPublicationContext, AiPublicationTarget, AiSourceConfiguration, AiWeekCalendarWindow, AiWeeklyInput } from "@/domain/ai-decider";
 import { buildAiLeagueRosterInput } from "./ai-decider/roster-context";
 import { aiWeekCalendarWindow } from "./ai-decider/week-calendar";
 /* Headshot seam: the Sleeper -> ESPN id map is injected into the toPlayer /
@@ -1434,6 +1434,21 @@ export async function loadAiWeekContext(deps = { league: fetchLeague, state: fet
   return { leagueId: "1387473752807190528", season: league.season, week, matchups: pairs, phase: state.season_type as AiWeeklyInput["phase"],
     configuration: { starterSlots: league.roster_positions ? league.roster_positions.filter(slot => slot !== "BN") : null,
       scoring: { ...league.scoring_settings }, gameModeCode: Number.isSafeInteger(league.settings.game_mode) ? league.settings.game_mode! : null } };
+}
+
+/**
+ * Lightweight current-settings projection for read-time source-compatibility
+ * checks: the league declaration only — no state, rosters, matchups, stats
+ * or player directory. Mirrors the configuration loadAiWeekContext publishes
+ * on the public read path, so publish-path repeat reads annotate saved
+ * records against the same facts.
+ */
+export async function loadAiSourceConfiguration(deps = { league: fetchLeague }): Promise<AiSourceConfiguration> {
+  if (LEAGUE_ID !== "1387473752807190528") throw new Error("weekly_context");
+  const league = await deps.league();
+  if (!/^20\d{2}$/.test(league.season)) throw new Error("weekly_context");
+  return { starterSlots: league.roster_positions ? league.roster_positions.filter(slot => slot !== "BN") : null,
+    scoring: { ...league.scoring_settings }, gameModeCode: Number.isSafeInteger(league.settings.game_mode) ? league.settings.game_mode! : null };
 }
 
 /** Fixed-source next-leg context; numeric game mode remains explicitly unconfirmed. */
