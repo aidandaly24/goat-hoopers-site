@@ -109,8 +109,9 @@ import {
 import type { LeagueNewsEdition } from "@/domain/news";
 import { createTtlCache } from "./cache";
 import { aiMatchupPairs, buildAiWeeklyInput, type AiWeekPreparation } from "./ai-decider/inputs";
-import type { AiDecidesData, AiLeagueRosterInput, AiPublicationContext, AiWeeklyInput } from "@/domain/ai-decider";
+import type { AiDecidesData, AiLeagueRosterInput, AiPublicationContext, AiPublicationTarget, AiWeekCalendarWindow, AiWeeklyInput } from "@/domain/ai-decider";
 import { buildAiLeagueRosterInput } from "./ai-decider/roster-context";
+import { aiWeekCalendarWindow } from "./ai-decider/week-calendar";
 /* Headshot seam: the Sleeper -> ESPN id map is injected into the toPlayer /
  * toDraftPicks transforms here (rule 11). ESPN_ID_MAP is the full table
  * (607 players, built 2026-10-08) — no component changes. */
@@ -1445,6 +1446,23 @@ export async function loadAiPublicationContext(deps = { league: fetchLeague, sta
   return { leagueId: "1387473752807190528", season: league.season, phase: state.season_type as "pre" | "regular", leg: state.leg!, week: state.leg! + 1, seasonStartDate, statsSeason: state.previous_season, gameModeCode: mode ?? null };
 }
 
+/**
+ * Operator-selected publication target. "next" returns the planning context
+ * above unchanged. "current" targets the source leg's OWN live matchup week
+ * (week == leg, regular phase only) and requires a reviewed calendar window
+ * for that season/week; without one it fails closed — no window is guessed.
+ * The default preserves next-leg planning exactly.
+ */
+export async function loadAiPublicationSelection(target: AiPublicationTarget = "next", deps: { league?: typeof fetchLeague; state?: typeof fetchAiPublicationState; calendar?: (season: string, week: number) => AiWeekCalendarWindow | null } = {}): Promise<{ context: AiPublicationContext; window: AiWeekCalendarWindow | null }> {
+  const calendar = deps.calendar ?? aiWeekCalendarWindow;
+  const context = await loadAiPublicationContext({ league: deps.league ?? fetchLeague, state: deps.state ?? fetchAiPublicationState });
+  if (target === "next") return { context, window: null };
+  if (context.phase !== "regular" || context.leg < 1) throw new Error("weekly_context");
+  const window = calendar(context.season, context.leg);
+  if (!window) throw new Error("weekly_context");
+  return { context: { ...context, week: context.leg }, window };
+}
+
 /** No fantasy calendar is guessed. Phase/leg, prior stats and actual source reads are frozen. */
 export async function loadAiLineupPreview(context: AiPublicationContext, deps = { league: fetchLeague, state: fetchAiPublicationState, rosters: fetchRosters, matchups: fetchMatchups, stats: fetchSeasonStats, now: Date.now }): Promise<AiWeeklyInput> {
   const [league, state, rosters, matchups, stats] = await Promise.all([deps.league(), deps.state(), deps.rosters(), deps.matchups(context.week), deps.stats(context.statsSeason)]);
@@ -1452,6 +1470,22 @@ export async function loadAiLineupPreview(context: AiPublicationContext, deps = 
   const capturedAt = new Date(deps.now()).toISOString();
   const expiresAt = `${context.seasonStartDate}T00:00:00.000Z`;
   return buildAiWeeklyInput({ season: context.season, week: context.week, phase: context.phase, scoringMode: "unknown", capturedAt, statsAvailableAt: capturedAt, statsSeason: context.statsSeason, cutoffAt: context.phase === "pre" ? new Date(Date.parse(expiresAt) - 1).toISOString() : capturedAt, startsAt: context.phase === "pre" ? expiresAt : null, endsAt: null, preview: { kind: "lineup_strength", sourceLeg: context.leg, seasonStartDate: context.seasonStartDate, gameModeCode: context.gameModeCode } }, league, rosters, matchups, stats);
+}
+
+/**
+ * Current-week counterpart of loadAiLineupPreview: the context's week IS the
+ * source leg, so matchups/starters come from the live week. The reviewed
+ * calendar window bounds the input instead of the leg boundary: startsAt is
+ * the week's first tip, cutoffAt is one millisecond before it, and the
+ * window's calendar version rides in the frozen preview provenance. The
+ * source boundary is re-read and must still equal the context exactly.
+ */
+export async function loadAiCurrentLineupPreview(context: AiPublicationContext, window: AiWeekCalendarWindow, deps = { league: fetchLeague, state: fetchAiPublicationState, rosters: fetchRosters, matchups: fetchMatchups, stats: fetchSeasonStats, now: Date.now }): Promise<AiWeeklyInput> {
+  const [league, state, rosters, matchups, stats] = await Promise.all([deps.league(), deps.state(), deps.rosters(), deps.matchups(context.week), deps.stats(context.statsSeason)]);
+  if (LEAGUE_ID !== context.leagueId || context.phase !== "regular" || context.week !== context.leg || window.season !== context.season || window.week !== context.week || league.season !== context.season || state.season !== context.season || state.season_type !== context.phase || state.leg !== context.leg || state.previous_season !== context.statsSeason || state.season_start_date !== context.seasonStartDate || (league.settings.game_mode ?? null) !== context.gameModeCode) throw new Error("weekly_context");
+  const capturedAt = new Date(deps.now()).toISOString();
+  const firstTipMs = Date.parse(window.firstTipAt);
+  return buildAiWeeklyInput({ season: context.season, week: context.week, phase: context.phase, scoringMode: "unknown", capturedAt, statsAvailableAt: capturedAt, statsSeason: context.statsSeason, cutoffAt: new Date(firstTipMs - 1).toISOString(), startsAt: window.firstTipAt, endsAt: null, preview: { kind: "lineup_strength", sourceLeg: context.leg, seasonStartDate: context.seasonStartDate, gameModeCode: context.gameModeCode, calendarVersion: window.calendarVersion } }, league, rosters, matchups, stats);
 }
 
 /** Fresh source state only; no rosters, stats, outcomes or player directory. */

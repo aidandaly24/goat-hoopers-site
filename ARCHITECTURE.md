@@ -1324,7 +1324,15 @@ legacy default and client request/result contracts remain unchanged.
 `loadAiPublicationContext`/`loadAiLineupPreview` prepare the next verified Sleeper
 leg, using fresh source-state checks before/after paid generation. Preview bounds
 may be null where no calendar is verified; captured source and generated result
-timestamps stay distinct. `POST /api/ai-decides/weekly` accepts only an empty
+timestamps stay distinct. Beside them, `loadAiPublicationSelection("current")`
+and `loadAiCurrentLineupPreview` implement the explicit current-week selection
+(issue #149): the target is the live leg itself, bounded by the reviewed
+first-tip window in `docs/ai-week-calendar.json` (read by
+`src/data/ai-decider/week-calendar.ts`), which rides in the frozen snapshot as
+`startsAt`/provenance (`preview.calendarVersion`) and is rechecked immediately
+before the provider call, failing closed at or after first tip. The selection
+reaches the weekly route from the runtime's `GOAT_AI_PUBLICATION_TARGET`
+operator setting, read in the runtime factory and never in the request. `POST /api/ai-decides/weekly` accepts only an empty
 same-origin manager request; the protected daily GET uses CRON_SECRET and one
 configured stable app UUID with atomic membership checks. It never borrows a
 browser session, resets counters or automatically retries a sealed incomplete

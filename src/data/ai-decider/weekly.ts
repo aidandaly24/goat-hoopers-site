@@ -1,6 +1,7 @@
 import "server-only";
 import { createHash } from "node:crypto";
 import { AI_DECISION_MODEL, AI_LINEUP_PREVIEW_PROMPT_VERSION, AI_WEEKLY_PROMPT_VERSION, type AiBaseline, type AiDecisionResult, type AiGenerationManifest, type AiSnapshotMetadata, type AiWeeklyInput, type AiWeeklyOutcome, type AiWeeklyPick, type AiWeeklySlate } from "@/domain/ai-decider";
+import { aiWeekCalendarWindow } from "./week-calendar";
 import { exactKeys, isRecord, teamIdValid } from "./validation";
 import { makePayload, type DecisionSpec } from "./provider";
 import type { AiPersistence, AiStoredWeek } from "./store";
@@ -28,9 +29,9 @@ export function validWeeklyInput(v: unknown): v is AiWeeklyInput {
   if (!isRecord(v) || !exactKeys(v, ["leagueId", "season", "week", "capturedAt", "cutoffAt", "startsAt", "endsAt", "phase", "scoringMode", "scoring", "starterSlots", "statsSeason", "statsAvailableAt", "matchups", "teams", ...(Object.hasOwn(v, "preview") ? ["preview"] : [])])) return false;
   if (Object.hasOwn(v, "preview")) {
     const p = v.preview;
-    if (!isRecord(p) || !exactKeys(p, ["kind", "sourceLeg", "seasonStartDate", "gameModeCode"]) || p.kind !== "lineup_strength" || !Number.isSafeInteger(p.sourceLeg) || (p.sourceLeg as number) < 0 || (p.sourceLeg as number) > 29 || typeof p.seasonStartDate !== "string" || !/^20\d{2}-\d{2}-\d{2}$/.test(p.seasonStartDate) || !Number.isFinite(Date.parse(p.seasonStartDate)) || new Date(p.seasonStartDate).toISOString().slice(0, 10) !== p.seasonStartDate || (p.gameModeCode !== null && (!Number.isSafeInteger(p.gameModeCode) || (p.gameModeCode as number) < 0 || (p.gameModeCode as number) > 100))) return false;
+    if (!isRecord(p) || !exactKeys(p, ["kind", "sourceLeg", "seasonStartDate", "gameModeCode", ...(Object.hasOwn(p, "calendarVersion") ? ["calendarVersion"] : [])]) || p.kind !== "lineup_strength" || !Number.isSafeInteger(p.sourceLeg) || (p.sourceLeg as number) < 0 || (p.sourceLeg as number) > 29 || typeof p.seasonStartDate !== "string" || !/^20\d{2}-\d{2}-\d{2}$/.test(p.seasonStartDate) || !Number.isFinite(Date.parse(p.seasonStartDate)) || new Date(p.seasonStartDate).toISOString().slice(0, 10) !== p.seasonStartDate || (p.gameModeCode !== null && (!Number.isSafeInteger(p.gameModeCode) || (p.gameModeCode as number) < 0 || (p.gameModeCode as number) > 100)) || (Object.hasOwn(p, "calendarVersion") && (typeof p.calendarVersion !== "string" || !/^[a-z0-9][a-z0-9._/-]{0,127}$/.test(p.calendarVersion)))) return false;
   }
-  const periodValid = v.preview ? v.endsAt === null && (v.phase === "regular" ? v.startsAt === null : date(v.startsAt)) : [v.startsAt, v.endsAt].every(date);
+  const periodValid = v.preview ? v.endsAt === null && (v.phase === "regular" ? v.startsAt === null || date(v.startsAt) : date(v.startsAt)) : [v.startsAt, v.endsAt].every(date);
   if (v.leagueId !== GOAT_LEAGUE_ID || typeof v.season !== "string" || !/^20\d{2}$/.test(v.season) || !Number.isInteger(v.week) || (v.week as number) < 1 || (v.week as number) > 30 || ![v.capturedAt, v.cutoffAt, v.statsAvailableAt].every(date) || !periodValid || !["pre", "regular", "post"].includes(v.phase as string) || !["lock_in", "game_pick", "unknown"].includes(v.scoringMode as string) || !isRecord(v.scoring) || Object.keys(v.scoring).length > 40 || !Object.entries(v.scoring).every(([k, x]) => /^[a-z][a-z0-9_]{0,31}$/.test(k) && finite(x) && Math.abs(x) <= 100) || !Array.isArray(v.starterSlots) || v.starterSlots.length > 20 || !v.starterSlots.every(s => typeof s === "string" && s.length <= 10) || typeof v.statsSeason !== "string" || !/^20\d{2}$/.test(v.statsSeason) || !Array.isArray(v.teams) || v.teams.length !== 10 || !Array.isArray(v.matchups) || v.matchups.length !== 5) return false;
   const teams = new Set<string>();
   for (const t of v.teams) {
@@ -54,6 +55,13 @@ export function validWeeklyInput(v: unknown): v is AiWeeklyInput {
   return paired.size === 10;
 }
 
+/** Current-week selections are bounded by the reviewed calendar window, never the leg+1 rule. */
+export function currentWindowSlate(slate: AiWeeklySlate, now: number): AiWeeklySlate {
+  const startsAt = slate.snapshot?.startsAt;
+  if (startsAt && now >= Date.parse(startsAt)) { slate.status = "stale"; slate.message = "This cached prediction window has ended. New picks have not been published."; }
+  return slate;
+}
+
 /** Stable hashing ignores object-key order, retains lineup/order/value provenance. */
 export function canonicalJson(value: unknown): string {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
@@ -70,8 +78,17 @@ export function weeklyReadiness(input: AiWeeklyInput, now: number): string | nul
   if (Date.parse(input.capturedAt) > now || Date.parse(input.capturedAt) > Date.parse(input.cutoffAt) || Date.parse(input.statsAvailableAt) > Date.parse(input.preview ? input.capturedAt : input.cutoffAt) || Number(input.statsSeason) >= Number(input.season)) return "Snapshot dates or prior-season evidence do not establish a pre-week cutoff.";
   if (input.preview) {
     const p = input.preview;
-    if (p.seasonStartDate.slice(0, 4) !== input.season || input.week !== p.sourceLeg + 1 || (input.phase === "pre" ? p.sourceLeg !== 0 : input.phase !== "regular" || p.sourceLeg < 1)) return "The source leg does not establish an upcoming lineup preview.";
-    if (input.phase === "pre") {
+    if (p.calendarVersion !== undefined) {
+      // Current-week repair selection: the target week IS the source leg and
+      // a reviewed calendar window bounds it. The stored record must carry
+      // the exact window the reviewed calendar still publishes for that
+      // season/week; any drift, or a reached first tip, closes publication.
+      if (input.phase !== "regular" || p.sourceLeg < 1 || input.week !== p.sourceLeg) return "The source leg does not establish a current-week lineup preview.";
+      const window = aiWeekCalendarWindow(input.season, input.week);
+      if (!window || window.calendarVersion !== p.calendarVersion || input.startsAt !== window.firstTipAt || input.endsAt !== null || Date.parse(input.cutoffAt) !== Date.parse(window.firstTipAt) - 1) return "The current-week calendar window is missing or unverified.";
+      if (now >= Date.parse(window.firstTipAt)) return "The current-week first tip has passed; a new forecast cannot be published for a week already underway.";
+    } else if (p.seasonStartDate.slice(0, 4) !== input.season || input.week !== p.sourceLeg + 1 || (input.phase === "pre" ? p.sourceLeg !== 0 : input.phase !== "regular" || p.sourceLeg < 1)) return "The source leg does not establish an upcoming lineup preview.";
+    else if (input.phase === "pre") {
       const expiresAt = `${p.seasonStartDate}T00:00:00.000Z`;
       if (input.startsAt !== expiresAt || input.endsAt !== null || Date.parse(input.cutoffAt) >= Date.parse(expiresAt) || now >= Date.parse(expiresAt)) return "The preseason preview window is closed or unverified.";
     } else if (input.startsAt !== null || input.endsAt !== null || input.cutoffAt !== input.capturedAt) return "Unverified fantasy-week dates cannot bound a lineup preview.";
@@ -103,7 +120,7 @@ function preparePair(input: AiWeeklyInput, pair: AiWeeklyInput["matchups"][numbe
     const baseline: AiBaseline = { version: "prior-observed-starter-ppg-v2", label: "Observed-starter mean prior-season fantasy PPG; missing starters are excluded, never filled with zero. Not a ten-player total or weekly score forecast.", teamValues: teams.map(t => ({ teamId: t.teamId, value: supported ? Math.round(observedPlayers(t).reduce((sum, p) => sum + p.priorFantasyPpg!, 0) / observedPlayers(t).length * 100) / 100 : null })), pick: null };
     if (supported && baseline.teamValues[0].value !== baseline.teamValues[1].value) baseline.pick = baseline.teamValues[0].value! > baseline.teamValues[1].value! ? pair.teamIds[0] : pair.teamIds[1];
     const evidence = teams.map(t => `Roster ${t.teamId}: ${observedPlayers(t).length}/10 starters have ${input.statsSeason} production under the supplied scoring; ${10 - observedPlayers(t).length} starter(s) have unknown prior production. Missing production is not zero.`);
-    evidence.push(`${input.phase === "pre" ? "Preseason" : "Upcoming-week"} lineup-strength preview from Sleeper source leg ${input.preview.sourceLeg}. Current injuries, schedules, lineup changes and game-selection decisions are unknown. No PPG-by-games adjustment.`);
+    evidence.push(input.preview.calendarVersion ? `Current-week lineup-strength preview from Sleeper source leg ${input.preview.sourceLeg}, bounded by reviewed calendar ${input.preview.calendarVersion} with first tip ${input.startsAt}. Current injuries, schedules, lineup changes and game-selection decisions are unknown. No PPG-by-games adjustment.` : `${input.phase === "pre" ? "Preseason" : "Upcoming-week"} lineup-strength preview from Sleeper source leg ${input.preview.sourceLeg}. Current injuries, schedules, lineup changes and game-selection decisions are unknown. No PPG-by-games adjustment.`);
     if (input.scoringMode === "unknown") evidence.push(`League mode is unconfirmed (Sleeper raw code ${input.preview.gameModeCode ?? "unavailable"}); no Lock-In or Game Pick strategy is assumed.`);
     return { ...pair, teamIds: [...pair.teamIds], status: "unavailable", result: null, message: reason ?? (supported ? "Prepared lineup preview; AI pick has not been generated." : "An eligible lineup or minimum 8/10 prior-stat coverage is unavailable."), evidence, baseline: reason ? null : baseline };
   }
@@ -163,7 +180,7 @@ export function completeWeeklySlate(input: AiWeeklyInput, prepared: AiWeeklySlat
   });
   const status = matchups.every(m => m.status === "ready") ? "ready" : "unavailable";
   const message = status === "ready" ? (input.preview ? `${input.phase === "pre" ? "Preseason" : "Upcoming-week"} lineup previews: five saved picks with explicit prior-stat coverage. Model probabilities are not calibrated sports odds.` : "Five cached experimental picks. Model probabilities are not calibrated sports odds.") : "Some matchups are unavailable; missing evidence is not replaced with a guess.";
-  return { ...prepared, generatedAt, matchups, status, message };
+  return { ...prepared, generatedAt, matchups, status, message: input.preview?.calendarVersion ? message.replace("Upcoming-week", "Current-week") : message };
 }
 
 /** Cache reads cannot generate. Stale predictions retain their frozen evidence. */
@@ -173,6 +190,7 @@ export function cachedWeek(record: AiStoredWeek, now: number, sourceLeg?: number
   if (canonicalJson(record.slate) !== canonicalJson(prepared)) throw new Error("weekly_cache");
   const slate = structuredClone(record.result ?? record.slate);
   if (!validCachedSlate(slate, record.input, record.manifest, prepared)) throw new Error("weekly_cache");
+  if (record.input.preview?.calendarVersion !== undefined) return currentWindowSlate(slate, now);
   if ((record.input.endsAt && now >= Date.parse(record.input.endsAt)) || (record.input.preview && sourceLeg !== undefined && sourceLeg > record.input.week)) { slate.status = "stale"; slate.message = "This cached prediction window has ended. New picks have not been published."; }
   return slate;
 }

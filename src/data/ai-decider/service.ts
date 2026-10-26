@@ -1,6 +1,6 @@
 import "server-only";
 import { createHash } from "node:crypto";
-import type { AiDecideRequest, AiDecideResponse, AiDecisionResult, AiWeeklyInput, AiWeeklySlate, AiLeagueRosterInput } from "@/domain/ai-decider";
+import type { AiDecideRequest, AiDecideResponse, AiDecisionResult, AiPublicationTarget, AiWeeklyInput, AiWeeklySlate, AiLeagueRosterInput } from "@/domain/ai-decider";
 import type { GameStore } from "../arcade";
 import type { getProviderIdentity } from "../friends-auth/runtime";
 import { AI_LIMITS, parseAiRequest, teamIdValid, uuidValid } from "./validation";
@@ -11,6 +11,7 @@ import type { AiWeek1RefreshPolicy } from "./refresh-policy";
 import { aiDataDeadline } from "./deadline";
 import { leagueRosterDecision } from "./roster-context";
 import { visibleRosterDecision } from "./context-preview";
+import { aiWeekCalendarWindow } from "./week-calendar";
 
 export type AiRuntime = {
   enabled: boolean;
@@ -26,6 +27,8 @@ export type AiRuntime = {
   /** Fresh public NBA state rechecks the source-leg publication boundary. */
   getSourceState?: () => Promise<{ season: string; leg: number; phase: string }>;
   weeklyOperator?: AiWeeklyJobIdentity | null;
+  /** Operator-selected publication target, set only by the server runtime. */
+  publicationTarget?: AiPublicationTarget;
   week1Refresh?: AiWeek1RefreshPolicy;
   timeoutMs?: number;
 };
@@ -33,6 +36,18 @@ export const failure = (status: Exclude<AiDecideResponse["status"], "ready">, co
 
 export async function predictionOpen(input: AiWeeklyInput, runtime: AiRuntime): Promise<boolean> {
   if (!input.preview) return !!input.startsAt && runtime.now() < Date.parse(input.startsAt);
+  if (input.preview.calendarVersion !== undefined) {
+    // Current-week selections are bounded by the reviewed calendar window:
+    // the source leg must still be the target week itself (no leg+1
+    // semantics) and first tip must not have been reached. The calendar
+    // version is re-verified so a drifted artifact closes the window.
+    if (!input.startsAt || runtime.now() >= Date.parse(input.startsAt)) return false;
+    const window = aiWeekCalendarWindow(input.season, input.week);
+    if (!window || window.calendarVersion !== input.preview.calendarVersion || window.firstTipAt !== input.startsAt) return false;
+    if (!runtime.getSourceState) return false;
+    const source = await aiDataDeadline(runtime.getSourceState(), 3000);
+    return source.season === input.season && source.phase === input.phase && Number.isSafeInteger(source.leg) && source.leg === input.week;
+  }
   if (!runtime.getSourceState) return false;
   const source = await aiDataDeadline(runtime.getSourceState(), 3000);
   return source.season === input.season && source.phase === input.phase && Number.isSafeInteger(source.leg) && source.leg === input.preview.sourceLeg && (!input.startsAt || runtime.now() < Date.parse(input.startsAt));

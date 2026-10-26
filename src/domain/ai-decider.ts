@@ -135,6 +135,8 @@ export type AiWeeklySlate = {
 export type AiDecidesData = {
   /** Present only while the separately reviewed one-shot Week 1 refresh is enabled. */
   week1Refresh?: { status: "available" | "sealed" | "published" | "unavailable"; message: string };
+  /** Present only while the operator current-week publication selection is enabled. */
+  publicationTarget?: AiPublicationTarget;
   availability: { status: "available" | "unavailable"; code: string; message: string };
   weekly: AiWeeklySlate;
 };
@@ -160,6 +162,11 @@ export type AiWeeklyInput = {
     sourceLeg: number;
     seasonStartDate: string;
     gameModeCode: number | null;
+    /**
+     * Present only on current-week selections (target week == source leg):
+     * the reviewed calendar version whose first-tip window bounded the run.
+     */
+    calendarVersion?: string;
   };
   matchups: { matchupId: string; teamIds: [string, string] }[];
   teams: {
@@ -195,4 +202,32 @@ export type AiPublicationContext = {
   seasonStartDate: string;
   statsSeason: string;
   gameModeCode: number | null;
+};
+
+/**
+ * Operator-selected publication target. "next" is the original pre-week
+ * preparation: the publication context's week is the upcoming leg (source
+ * leg + 1) and Sleeper's leg boundary alone gates paid work. "current" is
+ * the in-week repair selection: the target week IS the source leg's live
+ * matchup week and a reviewed calendar window gates paid work instead.
+ */
+export type AiPublicationTarget = "next" | "current";
+
+/**
+ * Reviewed first-tip window for one current-week target, sourced from the
+ * versioned calendar in docs/ai-week-calendar.json / .md. Not a fantasy
+ * matchup period: endsAt stays unverified (null) and the window's only
+ * force is the publication deadline at first tip.
+ */
+export type AiWeekCalendarWindow = {
+  season: string;
+  week: number;
+  /** Scheduled start of the week's first NBA game (the forecast deadline). */
+  firstTipAt: string;
+  /** Calendar artifact version that supplied this window. */
+  calendarVersion: string;
+  /** URL the window was observed from. */
+  calendarSource: string;
+  /** Fixture identifiers observed at firstTipAt in the source. */
+  fixtureIds: string[];
 };

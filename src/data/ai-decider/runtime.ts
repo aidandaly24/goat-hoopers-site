@@ -13,6 +13,9 @@ import { WEEK1_ORIGINAL_HASH, WEEK1_REFRESH_KEY } from "./refresh-policy";
 
 export function createAiRuntime(headers?: Headers): AiRuntime {
   const enabled = process.env.GOAT_AI_DECIDES_ENABLED === "true";
+  // Operator current-week selection; only the exact value "current" switches
+  // the publication target from next-leg planning to the live week.
+  const publicationTarget = process.env.GOAT_AI_PUBLICATION_TARGET === "current" ? "current" as const : undefined;
   const week1Refresh = process.env.GOAT_AI_WEEK1_REFRESH_ENABLED === "1" ? { originalHash: WEEK1_ORIGINAL_HASH } : undefined;
   const providerAuth = friendsAuthEnabled();
   const userId = process.env.GOAT_AI_WEEKLY_USER_ID;
@@ -24,7 +27,7 @@ export function createAiRuntime(headers?: Headers): AiRuntime {
   // Lazy provider import keeps the default legacy path independent of provider configuration.
   const providerSession = providerAuth ? async () => headers
     ? (await import("../friends-auth/runtime")).getProviderIdentity(headers) : null : undefined;
-  return { enabled, client: key ? createOpenAiDecisionsClient(key) : null, store, sessions, providerSession, weeklyOperator, week1Refresh, now: Date.now, getLeagueContext: loadAiLeagueRosterContext, getSourceState: loadAiPublicationState, getWeekKey: async () => weekKey(await aiDataDeadline(loadAiWeekContext(), 3000)) };
+  return { enabled, client: key ? createOpenAiDecisionsClient(key) : null, store, sessions, providerSession, weeklyOperator, week1Refresh, ...(publicationTarget ? { publicationTarget } : {}), now: Date.now, getLeagueContext: loadAiLeagueRosterContext, getSourceState: loadAiPublicationState, getWeekKey: async () => weekKey(await aiDataDeadline(loadAiWeekContext(), 3000)) };
 }
 
 export async function loadAiDecidesData(runtime = createAiRuntime(), context = loadAiWeekContext): Promise<AiDecidesData> {
@@ -35,7 +38,7 @@ export async function loadAiDecidesData(runtime = createAiRuntime(), context = l
     const current = await aiDataDeadline(context(), 3000);
     weekly = { ...weekly, leagueId: current.leagueId, season: current.season, week: current.week, message: current.phase === "pre" ? "Preseason: lineup previews have not been published for the five known pairings." : "Cached picks have not been prepared for this week.", matchups: current.matchups.map(m => ({ ...m, status: "unavailable", message: "A verified input snapshot and pre-generated result are not available.", result: null, evidence: [], baseline: null })) };
     const record = await runtime.store?.persistence.getWeek(weekKey(current));
-    if (record) weekly = cachedWeek(record, runtime.now(), current.phase === "pre" ? 0 : current.week);
+    if (record) weekly = cachedWeek(record, runtime.now(), record.input.preview?.calendarVersion !== undefined ? undefined : current.phase === "pre" ? 0 : current.week);
     if (runtime.week1Refresh && weekKey(current) === WEEK1_REFRESH_KEY && runtime.store) {
       week1Refresh = !record?.result || current.phase !== "pre" || weekly.status !== "ready" || (!record.refreshed && record.hash !== runtime.week1Refresh.originalHash)
         ? { status: "unavailable", message: "The reviewed one-time preseason refresh is unavailable." }
