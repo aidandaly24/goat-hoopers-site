@@ -46,7 +46,10 @@ export async function predictionOpen(input: AiWeeklyInput, runtime: AiRuntime): 
     if (!window || window.calendarVersion !== input.preview.calendarVersion || window.firstTipAt !== input.startsAt) return false;
     if (!runtime.getSourceState) return false;
     const source = await aiDataDeadline(runtime.getSourceState(), 3000);
-    return source.season === input.season && source.phase === input.phase && Number.isSafeInteger(source.leg) && source.leg === input.week;
+    // The clock is re-read after the awaited source lookup, exactly as in
+    // the legacy branch below: a lookup that itself crosses first tip must
+    // not leave the pre-lookup admission standing.
+    return runtime.now() < Date.parse(input.startsAt) && source.season === input.season && source.phase === input.phase && Number.isSafeInteger(source.leg) && source.leg === input.week;
   }
   if (!runtime.getSourceState) return false;
   const source = await aiDataDeadline(runtime.getSourceState(), 3000);
@@ -77,7 +80,7 @@ export async function availability(runtime: AiRuntime): Promise<{ status: "avail
   } catch { return { status: "unavailable", code: "state_unavailable", message: "AI Decides usage controls are unavailable. Try later." }; }
 }
 
-export async function evaluate(runtime: AiRuntime, identity: AiIdentity, payload: DecisionPayload, specs: DecisionSpec[], fingerprint: string, maxTokens: number, shared = false): Promise<{ results: (AiDecisionResult | null)[] } | AiDecideResponse> {
+export async function evaluate(runtime: AiRuntime, identity: AiIdentity, payload: DecisionPayload, specs: DecisionSpec[], fingerprint: string, maxTokens: number, shared = false, beforeProviderCall?: () => Promise<AiDecideResponse | null>): Promise<{ results: (AiDecisionResult | null)[] } | AiDecideResponse> {
   if (!runtime.client || !runtime.store) return failure("unavailable", "provider_unconfigured", "AI Decides is not configured yet.");
   let reserved: number;
   try { reserved = inputTokenReservation(payload, maxTokens); } catch { return failure("invalid", "input_limit", "This request exceeds the input budget. Shorten the prompt or choices."); }
@@ -91,6 +94,25 @@ export async function evaluate(runtime: AiRuntime, identity: AiIdentity, payload
     if (reservation.status !== "reserved") return failure("unavailable", "state_unavailable", "The usage reservation could not be validated.");
     leaseId = reservation.leaseId;
   } catch { return failure("unavailable", "state_unavailable", "AI Decides usage controls are unavailable. Try later."); }
+
+  // A caller with a hard external deadline (weekly publication) revalidates
+  // it here: after the final awaited budget admission, immediately before
+  // the provider invocation, with no await between the guard's verdict and
+  // the call (callWithTimeout invokes the client synchronously). A blocked
+  // call never reaches the provider; its lease is settled with unknown
+  // spend so the reservation stays counted — the same conservative
+  // accounting as an unmeasurable provider response — and cannot linger
+  // as an active lease.
+  if (beforeProviderCall) {
+    let blocked: AiDecideResponse | null;
+    try { blocked = await beforeProviderCall(); }
+    catch { blocked = failure("unavailable", "state_unavailable", "The decision could not be safely validated."); }
+    if (blocked) {
+      try { await runtime.store.finish(leaseId, null, true, true, runtime.now()); }
+      catch { return failure("unavailable", "state_unavailable", "The decision could not be safely recorded. Try later."); }
+      return blocked;
+    }
+  }
 
   let decoded: ReturnType<typeof decodeDecision> | null = null;
   let actualTokens: number | null = null;
@@ -193,7 +215,18 @@ export async function generateWeeklyPicksAsIdentity(input: AiWeeklyInput, identi
   let completed = structuredClone(record.slate);
   if (decision.specs.length > 0) {
     const fingerprint = createHash("sha256").update(`weekly:${record.key}:${record.hash}`).digest("hex");
-    const response = await evaluate(runtime, identity, decision.payload, decision.specs, fingerprint, AI_LIMITS.weeklyInputTokens, true);
+    // Final deadline revalidation, run inside evaluate after its budget
+    // reservation and immediately before the provider call: availability,
+    // sealing and the reservation are all awaits during which first tip
+    // can pass. If the window has closed by then, no paid call is made.
+    // The week stays sealed-but-incomplete — an explicit state the
+    // publisher reports as publication_incomplete rather than retrying —
+    // and the reservation remains counted.
+    const response = await evaluate(runtime, identity, decision.payload, decision.specs, fingerprint, AI_LIMITS.weeklyInputTokens, true, async () => {
+      try {
+        return (await predictionOpen(input, runtime)) ? null : failure("unavailable", "weekly_closed", "The prediction window closed before the provider call. No paid call was made; the sealed attempt is retained incomplete.");
+      } catch { return failure("unavailable", "source_unavailable", "The publication boundary could not be validated before the provider call."); }
+    });
     if (!("results" in response)) return response;
     const generatedAt = new Date(runtime.now()).toISOString();
     try {

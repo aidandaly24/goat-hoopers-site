@@ -119,12 +119,56 @@ describe("current-week publication", () => {
     expect(await publishWeeklyPreview(identity(), h.runtime, h.sources)).toMatchObject({ status: "unavailable", code: "weekly_closed" });
     expect(h.persistence.weeks.size).toBe(0); expect(h.create).not.toHaveBeenCalled();
   });
+  it("fails closed when the source lookup itself crosses first tip", async () => {
+    const h = currentHarness(Date.parse(FIRST_TIP) - 1);
+    h.runtime.getSourceState = vi.fn(async () => { h.setTime(Date.parse(FIRST_TIP) + 1); return { season: "2026", leg: 2, phase: "regular" as const }; });
+    expect(await publishWeeklyPreview(identity(), h.runtime, h.sources)).toMatchObject({ status: "unavailable", code: "weekly_closed" });
+    expect(h.persistence.weeks.size).toBe(0); expect(h.create).not.toHaveBeenCalled();
+  });
+  it("makes no provider call when sealing itself crosses first tip, and keeps the sealed attempt explicitly incomplete", async () => {
+    const h = currentHarness();
+    const seal = h.persistence.sealWeek.bind(h.persistence);
+    vi.spyOn(h.persistence, "sealWeek").mockImplementation(async record => { const sealed = await seal(record); h.setTime(Date.parse(FIRST_TIP) + 1); return sealed; });
+    expect(await publishWeeklyPreview(identity(), h.runtime, h.sources)).toMatchObject({ status: "unavailable", code: "weekly_closed" });
+    expect(h.create).not.toHaveBeenCalled();
+    // The attempt was already sealed when the deadline passed: it is
+    // retained incomplete (never completed after expiry) and blocks any
+    // later paid attempt instead of being silently retried.
+    const record = h.persistence.weeks.get(weekKey(currentInput()))!;
+    expect(record.result).toBeNull();
+    expect(await publishWeeklyPreview(identity(), h.runtime, h.sources)).toMatchObject({ status: "unavailable", code: "publication_incomplete" });
+    expect(h.create).not.toHaveBeenCalled();
+  });
+  it("makes no provider call when the budget reservation crosses first tip", async () => {
+    const h = currentHarness();
+    const store = h.runtime.store!;
+    const reserve = store.reserve.bind(store);
+    vi.spyOn(store, "reserve").mockImplementation(async (...args: Parameters<typeof reserve>) => { const result = await reserve(...args); h.setTime(Date.parse(FIRST_TIP) + 1); return result; });
+    expect(await publishWeeklyPreview(identity(), h.runtime, h.sources)).toMatchObject({ status: "unavailable", code: "weekly_closed" });
+    expect(h.create).not.toHaveBeenCalled();
+    expect(h.persistence.weeks.get(weekKey(currentInput()))?.result).toBeNull();
+    // Conservative accounting: the reservation stays counted and its lease
+    // is settled (completed), never refunded and never left active.
+    expect(h.persistence.control!.state.requests).toBe(1);
+    expect(h.persistence.control!.state.leases).toHaveLength(1);
+    expect(h.persistence.control!.state.leases[0].completed).toBe(true);
+  });
   it("withholds completion when the provider finishes after first tip", async () => {
     const h = currentHarness();
     h.create.mockImplementationOnce(async p => { h.setTime(Date.parse(FIRST_TIP) + 1); return providerAnswer(p); });
     expect(await generateWeeklyPicksAsIdentity(currentInput(), identity(), h.runtime)).toMatchObject({ code: "weekly_closed" });
     expect(h.persistence.weeks.get(weekKey(currentInput()))?.result).toBeNull();
     expect(h.persistence.control!.state.requests).toBe(1);
+  });
+  it("withholds completion when the completion recheck's source lookup crosses first tip", async () => {
+    const h = currentHarness();
+    let lookups = 0;
+    // Lookups 1–2 are the pre-seal check and the pre-provider guard; the
+    // third is the completion recheck, and it resolves after first tip.
+    h.runtime.getSourceState = vi.fn(async () => { lookups++; if (lookups >= 3) h.setTime(Date.parse(FIRST_TIP) + 1); return { season: "2026", leg: 2, phase: "regular" as const }; });
+    expect(await generateWeeklyPicksAsIdentity(currentInput(), identity(), h.runtime)).toMatchObject({ code: "weekly_closed" });
+    expect(h.create).toHaveBeenCalledTimes(1);
+    expect(h.persistence.weeks.get(weekKey(currentInput()))?.result).toBeNull();
   });
   it("closes when the source leg advances past the target week mid-run", async () => {
     const h = currentHarness();
