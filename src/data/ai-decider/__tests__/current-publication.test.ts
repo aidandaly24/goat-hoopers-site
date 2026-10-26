@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import type { AiPublicationContext, AiWeeklyInput } from "@/domain/ai-decider";
+import { GOAT_LINEUP_POLICY } from "@/domain/ai-lineup-policy";
 import { loadAiCurrentLineupPreview, loadAiPublicationContext, loadAiPublicationSelection } from "../../league";
 import type { RawLeague, RawNbaState, RawRoster } from "../../sleeper";
 import { handleAiWeeklyCron, handleAiWeeklyPost, publishWeeklyPreview, type AiPublicationSources } from "../publication";
@@ -13,15 +14,33 @@ import { harness, identity, providerAnswer, TOKEN, USER, weeklyInput } from "./f
  * Week 2; the planning context targets Week 3 (leg+1) while the current
  * selection targets Week 2 itself, bounded by the reviewed calendar window
  * whose first tip is 2026-10-26T23:00:00Z. All source reads are synthetic.
+ *
+ * Composition with #226: the real Week 2 input is eleven-slot. The shared
+ * weeklyInput() stays the legacy ten-slot fixture the historical decoders
+ * are tested against, so this file extends it to the league's actual
+ * eleven declared starters under the versioned policy (schema 3) — the
+ * regression that the combined head reaches ready on the real shape.
  */
 const FIRST_TIP = "2026-10-26T23:00:00.000Z";
 const BEFORE = Date.parse("2026-10-26T12:00:00Z");
-const league: RawLeague = { name: "Synthetic", season: "2026", status: "in_season", total_rosters: 10, settings: { game_mode: 1, playoff_teams: 6, playoff_week_start: 19, divisions: 0 }, roster_positions: [...weeklyInput().starterSlots, ...Array(10).fill("BN")], scoring_settings: { pts: 0.5 } };
+const league: RawLeague = { name: "Synthetic", season: "2026", status: "in_season", total_rosters: 10, settings: { game_mode: 1, playoff_teams: 6, playoff_week_start: 19, divisions: 0 }, roster_positions: [...GOAT_LINEUP_POLICY.starterSlots, ...Array(9).fill("BN")], scoring_settings: { pts: 0.5 } };
 const liveState: RawNbaState = { season: "2026", season_type: "regular", leg: 2, week: 2, season_start_date: "2026-10-20", previous_season: "2025" };
 const version = aiWeekCalendarWindow("2026", 2)!.calendarVersion;
 
+function elevenSlotInput(): AiWeeklyInput {
+  const input = weeklyInput();
+  input.lineupPolicy = GOAT_LINEUP_POLICY.version;
+  input.starterSlots = [...GOAT_LINEUP_POLICY.starterSlots];
+  input.teams.forEach((t, n) => {
+    const added = String(1100 + n);
+    t.starters.push(added);
+    t.players.push({ playerId: added, priorFantasyPpg: 20 + n, priorGames: 70 });
+  });
+  return input;
+}
+
 function currentInput(capturedMs = BEFORE): AiWeeklyInput {
-  const input: AiWeeklyInput = { ...weeklyInput(), week: 2, capturedAt: new Date(capturedMs).toISOString(), statsAvailableAt: new Date(capturedMs).toISOString(), cutoffAt: "2026-10-26T22:59:59.999Z", startsAt: FIRST_TIP, endsAt: null, preview: { kind: "lineup_strength", sourceLeg: 2, seasonStartDate: "2026-10-20", gameModeCode: 1, calendarVersion: version } };
+  const input: AiWeeklyInput = { ...elevenSlotInput(), week: 2, capturedAt: new Date(capturedMs).toISOString(), statsAvailableAt: new Date(capturedMs).toISOString(), cutoffAt: "2026-10-26T22:59:59.999Z", startsAt: FIRST_TIP, endsAt: null, preview: { kind: "lineup_strength", sourceLeg: 2, seasonStartDate: "2026-10-20", gameModeCode: 1, calendarVersion: version } };
   input.teams.forEach((t, n) => { if (n < 7) { t.players[0].priorFantasyPpg = null; t.players[0].priorGames = null; } });
   return input;
 }
@@ -53,7 +72,7 @@ describe("current-week selection (loaders)", () => {
   });
   it("builds a calendar-bounded input from the live week's own matchups", async () => {
     const { context, window } = await loadAiPublicationSelection("current", { league: async () => league, state: async () => liveState });
-    const raw = weeklyInput();
+    const raw = elevenSlotInput();
     const rosters = raw.teams.map(t => ({ roster_id: Number(t.teamId), players: t.starters, reserve: [], taxi: [] })) as unknown as RawRoster[];
     const matchups = raw.matchups.flatMap(m => m.teamIds.map(id => ({ roster_id: Number(id), matchup_id: Number(m.matchupId), points: 9999, starters: raw.teams.find(t => t.teamId === id)!.starters })));
     const stats = Object.fromEntries(raw.teams.flatMap(t => t.starters.map(id => [id, { pts: 2000, gp: 50 }])));
@@ -63,12 +82,25 @@ describe("current-week selection (loaders)", () => {
     expect(input.week).toBe(2); expect(input.startsAt).toBe(FIRST_TIP); expect(input.endsAt).toBeNull();
     expect(input.cutoffAt).toBe("2026-10-26T22:59:59.999Z");
     expect(input.preview).toMatchObject({ sourceLeg: 2, calendarVersion: version });
+    // The builder stamps the eleven-starter policy and the league's eleven
+    // declared slots on the real current-week input (composition with #226).
+    expect(input.lineupPolicy).toBe(GOAT_LINEUP_POLICY.version);
+    expect(input.starterSlots).toEqual([...GOAT_LINEUP_POLICY.starterSlots]);
+    expect(input.teams.every(t => t.starters.length === 11)).toBe(true);
     expect(validWeeklyInput(input)).toBe(true);
     expect(weeklyReadiness(input, BEFORE)).toBeNull();
   });
 });
 
 describe("current-week readiness and cache bounds", () => {
+  it("reaches ready on the real eleven-slot Week 2 shape (no weekly_not_ready)", () => {
+    const input = currentInput();
+    expect(input.lineupPolicy).toBe(GOAT_LINEUP_POLICY.version);
+    expect(input.starterSlots).toEqual([...GOAT_LINEUP_POLICY.starterSlots]);
+    expect(input.teams.every(t => t.starters.length === 11 && t.players.length === 11)).toBe(true);
+    expect(validWeeklyInput(input)).toBe(true);
+    expect(weeklyReadiness(input, BEFORE)).toBeNull();
+  });
   it("accepts one millisecond before first tip and fails closed at and after it", () => {
     const input = currentInput();
     expect(weeklyReadiness(input, Date.parse(FIRST_TIP) - 1)).toBeNull();

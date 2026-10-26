@@ -48,7 +48,14 @@ export async function publishWeeklyPreview(identity: AiIdentity, runtime: AiRunt
     const existing = await persistence.getWeek(key);
     if (existing) {
       const weekly = cachedWeek(existing, runtime.now(), context.leg);
-      if (existing.result) return weekly.status === "ready" ? { status: "ready", weekly: withSourceCompatibility(weekly, existing.input) } : failure("unavailable", "publication_partial", "The saved preview has unavailable matchups. Its immutable result is retained.");
+      // Composition (#149): calendar-window records are freshness-governed
+      // by their reviewed window — cachedWeek's current-window rule above
+      // already marks them stale from first tip — so a repeat inside the
+      // window returns the immutable publication unchanged. The
+      // source-compatibility annotation applies to saved non-calendar
+      // records here, and to every record on the public read path, where
+      // a live configuration is available for comparison.
+      if (existing.result) return weekly.status === "ready" ? { status: "ready", weekly: existing.input.preview?.calendarVersion !== undefined ? weekly : withSourceCompatibility(weekly, existing.input) } : failure("unavailable", "publication_partial", "The saved preview has unavailable matchups. Its immutable result is retained.");
       return failure("unavailable", "publication_incomplete", "This week has a sealed incomplete attempt. Review is required before another paid attempt.");
     }
     const input = await aiDataDeadline(sources.input(context), 10000);
