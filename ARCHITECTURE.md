@@ -12,6 +12,18 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ## Directory map
 
+### Weekly player evidence — reconciled receipts for completed weeks (issue #190)
+
+`src/data/weekly-player-evidence.ts` serves per-player counted points for
+completed weeks from committed receipts (`src/data/weekly-receipts/*.json`)
+produced offline by `scripts/generate-weekly-evidence.py`: the authenticated
+Sleeper matchup leg supplies starters, the lock map and official team
+totals; ESPN box scores scored with the league's settings supply each
+starter's counted game (locked game, else final played game); a team is
+served only when its reconstructed sum reconciles with the leg total.
+Public REST matchup points ignore locks and are never used as results.
+Full source investigation and wiring notes: `docs/weekly-player-evidence.md`.
+
 ### Team value history — recorded-only producer, replay-wired membership (issues #217/#224)
 
 `data/team-value-history.ts` produces the v1 `TeamValueHistory` envelope and
