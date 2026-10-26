@@ -12,6 +12,26 @@ into domain objects (`src/domain/`), and is rendered by surfaces
 
 ## Directory map
 
+### Weekly player evidence — reconciled receipts for completed weeks (issue #190)
+
+`src/data/weekly-player-evidence.ts` serves per-player counted points for
+completed weeks from committed receipts (`src/data/weekly-receipts/*.json`)
+produced offline by `scripts/generate-weekly-evidence.py`: the authenticated
+Sleeper matchup leg supplies starters, the lock map and official team
+totals; ESPN box scores scored with the league's settings supply each
+starter's counted game (locked game, else final played game). Generation is
+fail-closed (per-game final status, source-only end boundary, full
+box-score coverage, no substitution for a locked game, proven zeros
+only from explicit DNP records or complete validated stat lines —
+absent/truncated stats are missing evidence, never presence — and
+rejected box-score entries retained through selection, so an unlocked
+starter's derived final game is never certified on a gapped record). The adapter's
+exact-points contract serves only zero-residual (`verified`) teams; teams
+whose residual is fully explained by un-itemised −2 fouls are served only
+through the showcase's explicitly estimated shape, never as actuals.
+Public REST matchup points ignore locks and are never used as results.
+Full source investigation and wiring notes: `docs/weekly-player-evidence.md`.
+
 ### Team value history — recorded-only producer, replay-wired membership (issues #217/#224)
 
 `data/team-value-history.ts` produces the v1 `TeamValueHistory` envelope and
