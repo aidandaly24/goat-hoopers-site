@@ -103,6 +103,19 @@ Generation is **fail-closed**; none of these is inferred from score sums:
   certified as a DNP week, and a score-sum match does not establish
   which game counted. Explicit DNP stays separate from unknown data:
   it is validated presence, never rejected evidence.
+- A **locked** starter's counted game is dictated by the leg, so
+  rejected evidence elsewhere never moves it — the locked game's
+  proven points (or proven zero) stand exactly as recorded, never
+  substituted and never zeroed. But `gamesPlayed` is certified from
+  the same appearance record, and consumers read it as a complete
+  count (the guide's one-recorded-game/small-sample label, the
+  showcase's games-played tiebreak), so a rejected entry in any other
+  game of the week leaves participation unproven: surviving lines
+  prove only a lower bound (GP=1 certified when the truth may be 2;
+  GP=0 certified on a proven-zero lock when another appearance is
+  unknown). The row keeps its proven counted points, but the team is
+  forced `unreconciled` (`evidenceComplete: false`) rather than serve
+  a participation count that is not established.
 
 The generator's selection, classification, window and completion rules
 are covered by offline fixtures: `python3
@@ -125,9 +138,10 @@ scripts/generate-weekly-evidence.py --self-test`.
   (+2.0).
 - `unreconciled` — the counted games cannot be identified from
   available sources, the residual is unexplained, or counted-game
-  evidence is incomplete (a lock with no box-score evidence, or
+  evidence is incomplete (a lock with no box-score evidence,
   rejected box-score data behind an unlocked starter's derived final
-  game). The adapter refuses to serve the team anywhere. Week 1
+  game, or rejected box-score data behind a locked starter's
+  participation count). The adapter refuses to serve the team anywhere. Week 1
   roster 9 is unreconciled (residual +26.0 against its official 214.0,
   with its locks mutually inconsistent with the total under every game
   combination that fits — 598 combinations reach 214.0, so no honest
@@ -219,6 +233,16 @@ updated parser and selection over all 43 ESPN box scores: no unlocked
 starter has a rejected entry, and every counted point and participation
 count reproduces exactly, so the receipt stands unchanged under that
 rule as well.
+
+The locked-participation rule (a proven lock keeps its counted points,
+but a rejected entry in any other game of the week leaves the locked
+starter's participation count unproven and fails the team closed) was
+verified the same way: replaying the updated parser and selection over
+all 43 box scores finds no rejected entry touching any starter —
+locked or unlocked — so every row, counted game, participation count,
+team total and status reproduces exactly and the receipt again stands
+unchanged except `generatedAt`. The week's one rejected entry overall
+remains the non-starter reserve noted below.
 
 It was regenerated again the same day under the validated-presence
 parser (proven zeros require an explicit DNP record or a complete stat

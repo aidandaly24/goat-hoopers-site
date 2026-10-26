@@ -49,6 +49,17 @@ and every counted game is proven:
   earlier valid game is NEVER silently promoted to "final", and unknown
   data is never certified as a DNP week. A score-sum match does not
   establish which game counted.
+- A LOCKED starter's counted game is dictated by the leg, so rejected
+  evidence elsewhere never moves it: the locked game's proven points
+  (or proven zero) stand exactly as recorded. But `gamesPlayed` is
+  certified from the same appearance record, so a rejected entry in
+  any OTHER game of the week leaves his participation count unproven —
+  a surviving-lines count is only a lower bound (GP=1 certified when
+  the truth may be 2; GP=0 certified on a proven-zero lock when
+  another appearance is unknown). The row keeps its proven counted
+  points, but the team is forced "unreconciled"
+  (`evidenceComplete: false`) rather than serve a participation count
+  neither consumer may treat as complete.
 
 Each team is then reconciled against the leg's official points:
 
@@ -347,9 +358,18 @@ def select_counted_game_for_player(player_id, played, locked_game, lines,
     the player at all, the row is missing evidence: no other game is
     ever substituted. (A locked game's own rejected entry is already
     adjudicated by this branch: the player is then neither lined nor
-    present for that game. `rejected_games` governs only the unlocked
-    derivation below, where the counted game is inferred from the
-    appearance record rather than dictated by the leg.)
+    present for that game.)
+
+    A proven lock does NOT close the evidence question, though:
+    `gamesPlayed` is certified from the appearance record, and a
+    rejected entry in any other game of the week leaves that count
+    unproven — the surviving lines prove only a lower bound. So a
+    proven lock with `rejected_games` non-empty returns its counted
+    points and game untouched (never substituted, never zeroed) but
+    flags `missingEvidence`, failing the team closed: neither consumer
+    may read the recorded participation count as complete. The
+    locked-zero case is the same shape: a proven zero on the locked
+    game plus a rejected appearance elsewhere is GP unknown, not GP=0.
 
     Without a lock the counted game is the final played game, derived
     from the appearance record itself — so `rejected_games` (games whose
@@ -367,14 +387,15 @@ def select_counted_game_for_player(player_id, played, locked_game, lines,
         if line is not None:
             return {"countedPoints": fantasy_points(line, settings),
                     "countedGameId": locked_id, "locked": True,
-                    "missingLockEvidence": False, "missingEvidence": False}
+                    "missingLockEvidence": False,
+                    "missingEvidence": bool(rejected_games)}
         if player_id in (presence.get(locked_id) or set()):
             # The box score records the player in this game with no
             # appearance (DNP / 0 minutes): the locked game provably
             # counts as zero.
             return {"countedPoints": 0.0, "countedGameId": locked_id,
                     "locked": True, "missingLockEvidence": False,
-                    "missingEvidence": False}
+                    "missingEvidence": bool(rejected_games)}
         return {"countedPoints": None, "countedGameId": None,
                 "locked": True, "missingLockEvidence": True,
                 "missingEvidence": True}
@@ -399,7 +420,8 @@ def build_receipt(season, week, legs, settings, lines, presence, game_ids,
     for that game was rejected as absent/truncated (see
     `parse_box_score_players`); it is carried into selection so an
     unlocked starter's derived final game is never certified on a
-    record with gaps.
+    record with gaps, and a locked starter's participation count is
+    never certified from surviving lines alone.
     """
     rejected = rejected or {}
     teams = []
@@ -435,9 +457,11 @@ def build_receipt(season, week, legs, settings, lines, presence, game_ids,
         residual = round(computed - official, 2) if official is not None else None
         # Missing counted-game evidence (a lock with no box-score
         # evidence, rejected data behind an unlocked starter's derived
-        # final game, or a missing official total) fails the team
-        # closed no matter what the residual happens to be: a
-        # coincidental sum never verifies an unproven counted game.
+        # final game, rejected data behind a locked starter's
+        # participation count, or a missing official total) fails the
+        # team closed no matter what the residual happens to be: a
+        # coincidental sum never verifies an unproven counted game or
+        # an unproven participation count.
         status = classify_residual(residual) if evidence_complete \
             else "unreconciled"
         teams.append({
@@ -533,7 +557,8 @@ def main():
     # locked game's proven non-appearance can be told apart from missing
     # or truncated evidence; rejected[game_id] = players the box score
     # records with absent/truncated stats, retained so an unlocked
-    # starter's derived final game is never certified on a gapped record.
+    # starter's derived final game and a locked starter's participation
+    # count are never certified on a gapped record.
     lines = {}
     presence = {}
     rejected = {}
@@ -919,6 +944,131 @@ def run_self_tests():
             self.assertIsNone(picked["countedGameId"])
             self.assertFalse(picked["locked"])
 
+    class LockedParticipationEvidence(unittest.TestCase):
+        """Raw-parser -> build_receipt regressions for the locked P2:
+        a lock dictates the counted game, so a rejected entry in a
+        DIFFERENT game never moves the counted points — but it leaves
+        the participation count (gamesPlayed, certified from the same
+        appearance record) unproven, and the team must fail closed
+        rather than serve a surviving-lines lower bound as complete
+        GP. p2 is never a starter here — he only keeps each game's box
+        score valid and nonempty, as in the traced counterexample."""
+        KEYS = BoxScoreParsing.KEYS
+        ID_MAP = {"e1": "p1", "e2": "p2"}
+
+        def stats(self, points="20"):
+            # Only raw points contribute (0.5 each), so fantasy points
+            # are points/2 with no bonuses in play.
+            return ["30", points, "4-9", "0-0", "0-0", "0", "0", "0",
+                    "0", "0", "0", "0", "0", "+0"]
+
+        def team(self, athletes):
+            return {"statistics": [{"keys": self.KEYS,
+                                    "athletes": athletes}]}
+
+        def athlete(self, espn_id, stats, dnp=False):
+            return {"athlete": {"id": espn_id}, "didNotPlay": dnp,
+                    "stats": stats}
+
+        def game(self, p1_stats, p1_dnp=False):
+            return [self.team([self.athlete("e1", p1_stats, p1_dnp)]),
+                    self.team([self.athlete("e2", self.stats())])]
+
+        def receipt_for(self, games, official, locks):
+            lines, presence, rejected = {}, {}, {}
+            for gid, boxes in games.items():
+                per, present, rej = parse_box_score_players(
+                    boxes, self.ID_MAP)
+                lines[gid] = per
+                presence[gid] = present
+                rejected[gid] = rej
+            legs = [{"roster_id": 1, "points": official,
+                     "starters": ["p1"], "starters_games": locks}]
+            return build_receipt(
+                "2026", 1, legs, settings, lines, presence,
+                sorted(games),
+                datetime(2026, 10, 20, 19, tzinfo=timezone.utc),
+                datetime(2026, 10, 26, 23, tzinfo=timezone.utc),
+                datetime(2026, 10, 26, 17, tzinfo=timezone.utc), rejected)
+
+        def row(self, receipt):
+            return receipt["teams"][0]["players"][0]
+
+        def test_valid_lock_with_malformed_other_game_fails_closed(self):
+            # The review's counterexample: p1 locks a valid g1 for
+            # 10.0 points; g2 records p1 with truncated stats while p2
+            # keeps coverage nonempty. The official total equals the
+            # locked score exactly, so the sum reconciles — but GP
+            # certified from surviving lines (1) may really be 2.
+            receipt = self.receipt_for(
+                {"g1": self.game(self.stats(points="20")),
+                 "g2": self.game(self.stats()[:3])},
+                official=10.0, locks={"p1": "g1"})
+            team = receipt["teams"][0]
+            self.assertFalse(team["evidenceComplete"])
+            self.assertEqual(team["status"], "unreconciled")
+            # The lock's proven points are preserved, never substituted
+            # or zeroed: only the participation certification fails.
+            row = self.row(receipt)
+            self.assertEqual(row["countedPoints"], 10.0)
+            self.assertEqual(row["countedGameId"], "g1")
+            self.assertTrue(row["locked"])
+
+        def test_locked_zero_with_malformed_other_game_fails_closed(self):
+            # The locked-zero variant: an explicit DNP proves the
+            # locked game counts as zero, but a rejected appearance in
+            # g2 means weekly participation is unknown — GP=0 may not
+            # be certified on that basis, however well 0.0 reconciles.
+            receipt = self.receipt_for(
+                {"g1": self.game([], p1_dnp=True),
+                 "g2": self.game(self.stats()[:3])},
+                official=0.0, locks={"p1": "g1"})
+            team = receipt["teams"][0]
+            self.assertFalse(team["evidenceComplete"])
+            self.assertEqual(team["status"], "unreconciled")
+            row = self.row(receipt)
+            self.assertEqual(row["countedPoints"], 0.0)
+            self.assertEqual(row["countedGameId"], "g1")
+            self.assertTrue(row["locked"])
+
+        def test_clean_locked_week_still_certifies(self):
+            # Lock on g1, a valid (uncounted) appearance in g2: the
+            # counted game is the lock's, and GP is proven complete.
+            receipt = self.receipt_for(
+                {"g1": self.game(self.stats(points="20")),
+                 "g2": self.game(self.stats(points="30"))},
+                official=10.0, locks={"p1": "g1"})
+            team = receipt["teams"][0]
+            self.assertTrue(team["evidenceComplete"])
+            self.assertEqual(team["status"], "verified")
+            row = self.row(receipt)
+            self.assertEqual(row["countedGameId"], "g1")
+            self.assertEqual(row["countedPoints"], 10.0)
+            self.assertEqual(row["gamesPlayed"], 2)
+            self.assertTrue(row["locked"])
+
+        def test_select_flags_locked_rejection_as_participation_gap(self):
+            # Select-level: the flag is missingEvidence (participation),
+            # NOT missingLockEvidence — the lock itself is proven, and
+            # its points survive untouched.
+            picked = select_counted_game_for_player(
+                "p1", [("g1", line(20))], "g1",
+                {"g1": {"p1": line(20)}}, {"g1": {"p1"}}, settings, ["g2"])
+            self.assertTrue(picked["missingEvidence"])
+            self.assertFalse(picked["missingLockEvidence"])
+            self.assertEqual(picked["countedPoints"], 10.0)
+            self.assertEqual(picked["countedGameId"], "g1")
+            self.assertTrue(picked["locked"])
+
+        def test_select_flags_locked_zero_rejection_the_same_way(self):
+            picked = select_counted_game_for_player(
+                "p1", [], "g1", {"g1": {}}, {"g1": {"p1"}}, settings,
+                ["g2"])
+            self.assertTrue(picked["missingEvidence"])
+            self.assertFalse(picked["missingLockEvidence"])
+            self.assertEqual(picked["countedPoints"], 0.0)
+            self.assertEqual(picked["countedGameId"], "g1")
+
     class ResidualClassification(unittest.TestCase):
         def test_bands(self):
             self.assertEqual(classify_residual(0.0), "verified")
@@ -948,8 +1098,8 @@ def run_self_tests():
     suite = unittest.TestSuite()
     loader = unittest.TestLoader()
     for case in (CountedGameSelection, BoxScoreParsing,
-                 UnlockedEvidencePropagation, ResidualClassification,
-                 WindowAndCompletion):
+                 UnlockedEvidencePropagation, LockedParticipationEvidence,
+                 ResidualClassification, WindowAndCompletion):
         suite.addTests(loader.loadTestsFromTestCase(case))
     result = unittest.TextTestRunner(verbosity=2).run(suite)
     return 0 if result.wasSuccessful() else 1
