@@ -90,6 +90,19 @@ Generation is **fail-closed**; none of these is inferred from score sums:
   to manufacture one. The adapter mirrors this accounting: a team whose
   receipt does not record `evidenceComplete` at all is rejected, since
   a certified zero's only proof is that evidence accounting.
+- An **unlocked** starter's counted game is not dictated by the leg —
+  it is derived from his appearance record as his final played game —
+  so rejected evidence anywhere in that record propagates: the parser
+  retains each recorded-but-rejected athlete entry (absent/truncated
+  stats) as rejected evidence instead of discarding it, and selection
+  carries it through. Any rejected entry for an unlocked starter
+  leaves his final played game — and his participation count —
+  unproven: the row is emitted unproven (`evidenceComplete: false`)
+  and the team is forced `unreconciled`. An earlier valid game is
+  **never** silently promoted to "final", unknown data is never
+  certified as a DNP week, and a score-sum match does not establish
+  which game counted. Explicit DNP stays separate from unknown data:
+  it is validated presence, never rejected evidence.
 
 The generator's selection, classification, window and completion rules
 are covered by offline fixtures: `python3
@@ -111,8 +124,10 @@ scripts/generate-weekly-evidence.py --self-test`.
   never given this status. Week 1: rosters 1 (+4.0), 6 (+2.0) and 8
   (+2.0).
 - `unreconciled` — the counted games cannot be identified from
-  available sources, the residual is unexplained, or lock evidence is
-  incomplete. The adapter refuses to serve the team anywhere. Week 1
+  available sources, the residual is unexplained, or counted-game
+  evidence is incomplete (a lock with no box-score evidence, or
+  rejected box-score data behind an unlocked starter's derived final
+  game). The adapter refuses to serve the team anywhere. Week 1
   roster 9 is unreconciled (residual +26.0 against its official 214.0,
   with its locks mutually inconsistent with the total under every game
   combination that fits — 598 combinations reach 214.0, so no honest
@@ -198,6 +213,12 @@ generator rules from the same day's source snapshot: every player row,
 counted game and team total is unchanged; the regeneration reclassified
 rosters 1, 6 and 8 from the old `verified-foul-residual` label to
 `estimated-foul-residual` and recorded `evidenceComplete` per team.
+The later unlocked-evidence rule (rejected entries propagating through
+final-game derivation) was verified against Week 1 by replaying the
+updated parser and selection over all 43 ESPN box scores: no unlocked
+starter has a rejected entry, and every counted point and participation
+count reproduces exactly, so the receipt stands unchanged under that
+rule as well.
 
 It was regenerated again the same day under the validated-presence
 parser (proven zeros require an explicit DNP record or a complete stat

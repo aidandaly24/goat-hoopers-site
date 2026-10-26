@@ -29,9 +29,10 @@ import weekOneReceipt from "./weekly-receipts/2026-week-01.json";
  *   attributable to no individual player. They are served only through
  *   the showcase's explicitly estimated contract, never as actuals.
  * - A team whose counted games cannot be reconciled with its official
- *   total, or whose lock evidence is incomplete, is `unreconciled` and is
- *   never served anywhere. See `docs/weekly-player-evidence.md` for the
- *   full source investigation.
+ *   total, or whose counted-game evidence is incomplete (a lock with no
+ *   box-score evidence, or rejected data behind an unlocked starter's
+ *   derived final game), is `unreconciled` and is never served anywhere.
+ *   See `docs/weekly-player-evidence.md` for the full source investigation.
  */
 
 export type WeeklyEvidenceStatus =
@@ -47,9 +48,11 @@ export type WeeklyPlayerEvidence = {
    * Fantasy points from the game that counted for the team's score: the
    * locked game when the matchup leg records a lock, otherwise the
    * player's final played game of the week. Null when the starter never
-   * appeared in the week, or when an explicit lock's game has no
-   * box-score evidence for him (the row is then unproven and the whole
-   * team is `unreconciled`, so it is never served).
+   * appeared in the week, when an explicit lock's game has no box-score
+   * evidence for him, or when rejected box-score data leaves an
+   * unlocked starter's derived final game unproven (in both evidence
+   * cases the row is unproven and the whole team is `unreconciled`, so
+   * it is never served).
    */
   countedPoints: number | null;
   countedGameId: string | null;
@@ -65,10 +68,12 @@ export type WeeklyTeamEvidence = {
   residual: number;
   status: WeeklyEvidenceStatus;
   /**
-   * False when any starter's counted game lacks box-score evidence (an
-   * explicit lock whose game records nothing for the player). Such a
-   * team is always `unreconciled`: a coincidental sum never verifies an
-   * unproven counted game.
+   * False when any starter's counted game lacks box-score evidence: an
+   * explicit lock whose game records nothing for the player, or
+   * rejected (absent/truncated) box-score data behind an unlocked
+   * starter, whose counted game is derived from his appearance record.
+   * Such a team is always `unreconciled`: a coincidental sum never
+   * verifies an unproven counted game.
    */
   evidenceComplete: boolean;
   players: WeeklyPlayerEvidence[];

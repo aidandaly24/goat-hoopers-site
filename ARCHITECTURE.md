@@ -21,9 +21,11 @@ Sleeper matchup leg supplies starters, the lock map and official team
 totals; ESPN box scores scored with the league's settings supply each
 starter's counted game (locked game, else final played game). Generation is
 fail-closed (per-game final status, source-only end boundary, full
-box-score coverage, no substitution for a locked game, and proven zeros
+box-score coverage, no substitution for a locked game, proven zeros
 only from explicit DNP records or complete validated stat lines —
-absent/truncated stats are missing evidence, never presence). The adapter's
+absent/truncated stats are missing evidence, never presence — and
+rejected box-score entries retained through selection, so an unlocked
+starter's derived final game is never certified on a gapped record). The adapter's
 exact-points contract serves only zero-residual (`verified`) teams; teams
 whose residual is fully explained by un-itemised −2 fouls are served only
 through the showcase's explicitly estimated shape, never as actuals.

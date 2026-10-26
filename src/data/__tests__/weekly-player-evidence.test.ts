@@ -209,6 +209,28 @@ describe("receipt validation", () => {
     expect(getWeekShowcase([receipt], { season: "2026", week: 1 })?.unavailableTeamIds).toEqual(["4"]);
   });
 
+  it("accepts incomplete unlocked evidence only as unreconciled, and never serves it", () => {
+    // The shape the generator emits when an unlocked starter's derived
+    // final game is unproven: he HAS validated appearances, but rejected
+    // box-score data elsewhere in his week means no game may be
+    // certified as counted, so his points are null. The team's sums
+    // still reconcile (residual 0) — a coincidental sum must not
+    // upgrade the team through either contract.
+    const incomplete = team("4", [
+      { playerId: "a", gamesPlayed: 3, countedPoints: 21.5 },
+      { playerId: "b", gamesPlayed: 1, countedPoints: null },
+    ]);
+    expect(incomplete.players[1].locked).toBe(false);
+    const receipt = receiptWith([{
+      ...incomplete,
+      status: "unreconciled" as const,
+      evidenceComplete: false,
+    }]);
+    expect(parseWeeklyEvidenceReceipt(receipt)).not.toBeNull();
+    expect(getCompletedPlayerWeek([receipt], { season: "2026", week: 1, teamId: "4" })).toBeNull();
+    expect(getWeekShowcase([receipt], { season: "2026", week: 1 })?.unavailableTeamIds).toEqual(["4"]);
+  });
+
   it("rejects a receipt that does not record evidence completeness", () => {
     // A certified zero's only proof is the generator's evidence
     // accounting; a team that records none cannot serve one.
