@@ -7,6 +7,7 @@ export const AI_VISIBLE_LEAGUE_PROMPT_VERSION = "goat-visible-roster-v1";
 export const AI_PROMPT_MAX_CHARS = 12000;
 export const AI_WEEKLY_PROMPT_VERSION = "goat-weekly-lock-in-v1";
 export const AI_LINEUP_PREVIEW_PROMPT_VERSION = "goat-lineup-preview-v2";
+export const AI_ELEVEN_STARTER_PROMPT_VERSION = "goat-lineup-preview-v3";
 export const AI_PROBABILITY_LABEL = "Model probability — not calibrated sports odds" as const;
 
 /** Drafts need no account. Only an authenticated server run spends a budget. */
@@ -77,11 +78,11 @@ export type AiSnapshotMetadata = {
 
 /** Immutable generation provenance. Historical reads do not use today's policy. */
 export type AiGenerationManifest = {
-  schemaVersion: 1 | 2;
+  schemaVersion: 1 | 2 | 3;
   model: string;
   promptVersion: string;
   instructions: string;
-  baselineVersion: "prior-starter-ppg-v1" | "prior-observed-starter-ppg-v2";
+  baselineVersion: "prior-starter-ppg-v1" | "prior-observed-starter-ppg-v2" | "prior-observed-starter-ppg-v3";
 };
 
 export type AiFailureStatus = "unavailable" | "invalid" | "unauthenticated" | "rate_limited" | "busy" | "refused" | "timeout";
@@ -130,6 +131,26 @@ export type AiWeeklySlate = {
   generatedAt: string | null;
   matchups: AiWeeklyPick[];
   snapshot: AiSnapshotMetadata | null;
+  /** Derived on public read; never saved into a frozen input/result or its hash. */
+  sourceCompatibility?: AiSourceCompatibility;
+};
+
+/** Slim projection of the already-fetched league declaration, without player data. */
+export type AiSourceConfiguration = {
+  starterSlots: string[] | null;
+  scoring: Record<string, number>;
+  gameModeCode: number | null;
+};
+
+export type AiSourceCompatibility = {
+  status: "compatible" | "changed" | "unverified";
+  /** Saved result was ready before this read-time settings annotation. A
+   * source warning never reopens a previously ended/advanced prediction window. */
+  currentWindow: boolean;
+  savedStarterCount: number;
+  currentStarterCount: number | null;
+  savedPolicy: "legacy-ten-starters" | "goat-eleven-starters-v1";
+  message: string;
 };
 
 export type AiDecidesData = {
@@ -154,6 +175,8 @@ export type AiWeeklyInput = {
   starterSlots: string[];
   statsSeason: string;
   statsAvailableAt: string;
+  /** Absent in frozen schema1/2 records; only schema3 uses the eleven-slot policy. */
+  lineupPolicy?: "goat-eleven-starters-v1";
   /** Supplied only by the server's public-source loader. No numeric mode mapping. */
   preview?: {
     kind: "lineup_strength";

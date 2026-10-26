@@ -42,9 +42,10 @@ export function AiDecidesSection({ pairs, aiWeekly, season, preseasonPreview, ch
       <p className={cs("ai-week-line")}>
         {week ? `Week ${week} · AI Decides` : "AI Decides"}
         {preseasonPreview && " · Preseason lineup preview"}
-        {aiWeekly?.status === "stale" && " · Past-week saved picks"}
+        {aiWeekly?.status === "stale" && (aiWeekly.sourceCompatibility?.currentWindow && aiWeekly.sourceCompatibility.status !== "compatible" ? " · Saved comparison" : " · Past-week saved picks")}
         {!aiWeekly && " · No saved slate for this week yet"}
       </p>
+      {aiWeekly?.sourceCompatibility && <p className={cs("caption")} data-ai-source-compatibility={aiWeekly.sourceCompatibility.status}>{aiWeekly.sourceCompatibility.message}</p>}
       {!pairs.length ? (
         <p className={cs("empty")}>Current pairings are temporarily unavailable. Team profiles remain available below.</p>
       ) : !aiWeekly ? (
@@ -98,7 +99,7 @@ export function AiDecidesSection({ pairs, aiWeekly, season, preseasonPreview, ch
                   <details className={cs("ai-prov")}>
                     <summary>Saved result &amp; provenance</summary>
                     <p>
-                      {comparison ?? "Saved model pick"}{aiWeekly.status === "stale" ? " · past week" : ""} ·{" "}
+                      {comparison ?? "Saved model pick"}{aiWeekly.status === "stale" ? (aiWeekly.sourceCompatibility?.currentWindow && aiWeekly.sourceCompatibility.status !== "compatible" ? " · saved comparison" : " · past week") : ""} ·{" "}
                       {aiWeekly.generatedAt ? <>Saved <time dateTime={aiWeekly.generatedAt}>{savedTimestamp(aiWeekly.generatedAt)}</time>.</> : "No saved prediction time available."}
                     </p>
                     {period && <p>{period}</p>}

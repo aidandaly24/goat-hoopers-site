@@ -10,9 +10,25 @@ import type { RosterValuation, RosterValueTrend } from "./roster-value";
 
 /** Shared with the existing matchup sidebar so its Week 1 exception cannot drift. */
 export function isHomePreseasonPreview(weekly: AiWeeklySlate | undefined, season: string | null): boolean {
-  return weekly?.status === "ready" && weekly.season === season && weekly.week === 1
-    && weekly.snapshot?.comparison === "preseason_lineup_preview"
-    && (weekly.snapshot.sourceLeg === 0 || weekly.snapshot.sourceLeg === 1);
+  if (!weekly || weekly.season !== season || weekly.week !== 1
+    || weekly.snapshot?.comparison !== "preseason_lineup_preview"
+    || (weekly.snapshot.sourceLeg !== 0 && weekly.snapshot.sourceLeg !== 1)) return false;
+  if (weekly.status === "ready") return true;
+  // A complete saved slate remains historical context when today's settings
+  // differ or cannot be checked. Its adjacent compatibility notice is required;
+  // ordinary expired/partial results do not gain the preseason exception.
+  return weekly.status === "stale" && !!weekly.sourceCompatibility
+    && weekly.sourceCompatibility.currentWindow === true
+    && ["changed", "unverified"].includes(weekly.sourceCompatibility.status)
+    && weekly.matchups.length === 5
+    && new Set(weekly.matchups.map(pair => pair.matchupId)).size === 5
+    && new Set(weekly.matchups.flatMap(pair => pair.teamIds)).size === 10
+    && weekly.matchups.every(pair => pair.status === "ready" && pair.result !== null
+      && pair.teamIds[0] !== pair.teamIds[1]
+      && pair.result.probabilities.length === 2
+      && new Set(pair.result.probabilities.map(row => row.choice)).size === 2
+      && pair.result.probabilities.every(row => pair.teamIds.includes(row.choice) && Number.isFinite(row.probability) && row.probability >= 0 && row.probability <= 1)
+      && Math.abs(pair.result.probabilities.reduce((sum, row) => sum + row.probability, 0) - 1) < .0001);
 }
 
 /** Server-resolved membership only; never constructed from URL/client input. */

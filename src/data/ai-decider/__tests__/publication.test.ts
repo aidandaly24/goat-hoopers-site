@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import type { AiPublicationContext, AiWeeklyInput } from "@/domain/ai-decider";
-import { AI_LINEUP_PREVIEW_PROMPT_VERSION } from "@/domain/ai-decider";
+import { AI_ELEVEN_STARTER_PROMPT_VERSION } from "@/domain/ai-decider";
 import { loadAiLineupPreview, loadAiPublicationContext } from "../../league";
 import type { RawLeague, RawNbaState, RawRoster } from "../../sleeper";
 import { handleAiWeeklyCron, handleAiWeeklyPost, publishWeeklyPreview, type AiPublicationSources } from "../publication";
@@ -9,10 +9,14 @@ import { inputTokenReservation } from "../provider";
 import { AI_LIMITS } from "../validation";
 import { cachedWeek, prepareWeeklySlate, recordWeeklyOutcome, validWeeklyInput, weekHash, weekKey, weeklyDecision } from "../weekly";
 import { harness, identity, NOW, providerAnswer, TOKEN, USER, weeklyInput } from "./fixtures";
+import legacy from "./legacy-weekly-fixtures.json";
+import type { AiStoredWeek } from "../store";
 
 const context = (): AiPublicationContext => ({ leagueId: "1387473752807190528", season: "2026", phase: "pre", leg: 0, week: 1, seasonStartDate: "2026-10-20", statsSeason: "2025", gameModeCode: 1 });
 function previewInput(): AiWeeklyInput {
-  const input: AiWeeklyInput = { ...weeklyInput(), phase: "pre", scoringMode: "unknown", startsAt: "2026-10-20T00:00:00.000Z", endsAt: null, preview: { kind: "lineup_strength", sourceLeg: 0, seasonStartDate: "2026-10-20", gameModeCode: 1 } };
+  const input: AiWeeklyInput = { ...weeklyInput(), lineupPolicy: "goat-eleven-starters-v1", phase: "pre", scoringMode: "unknown", startsAt: "2026-10-20T00:00:00.000Z", endsAt: null, preview: { kind: "lineup_strength", sourceLeg: 0, seasonStartDate: "2026-10-20", gameModeCode: 1 } };
+  input.starterSlots.push("UTIL");
+  input.teams.forEach((t, n) => { const id = String(2000 + n); t.starters.push(id); t.players.push({ playerId: id, priorFantasyPpg: 20 + n, priorGames: 70 }); });
   input.teams.forEach((t, n) => { if (n < 7) { t.players[0].priorFantasyPpg = null; t.players[0].priorGames = null; } });
   return input;
 }
@@ -27,18 +31,18 @@ const SECRET = "synthetic-scheduler-secret-not-a-credential";
 const cron = (secret = SECRET, query = "") => new Request(`https://synthetic.invalid/api/ai-decides/weekly${query}`, { headers: { Authorization: `Bearer ${secret}` } });
 
 describe("authoritative source projection", () => {
-  const league: RawLeague = { name: "Synthetic", season: "2026", status: "in_season", total_rosters: 10, settings: { game_mode: 1, playoff_teams: 6, playoff_week_start: 19, divisions: 0 }, roster_positions: [...weeklyInput().starterSlots, ...Array(10).fill("BN")], scoring_settings: { pts: 0.5 } };
+  const league: RawLeague = { name: "Synthetic", season: "2026", status: "in_season", total_rosters: 10, settings: { game_mode: 1, playoff_teams: 6, playoff_week_start: 19, divisions: 0 }, roster_positions: [...previewInput().starterSlots, ...Array(10).fill("BN")], scoring_settings: { pts: 0.5 } };
   const state: RawNbaState = { season: "2026", season_type: "pre", leg: 0, week: 2, season_start_date: "2026-10-20", previous_season: "2025" };
   it("uses leg0 rather than preseason display week2; normalizes only BN and retains unknown mode", async () => {
     const sources = { league: async () => league, state: async () => state };
     expect(await loadAiPublicationContext(sources)).toEqual(context());
-    const raw = weeklyInput();
+    const raw = previewInput();
     const rosters = raw.teams.map(t => ({ roster_id: Number(t.teamId), players: t.starters, reserve: [], taxi: [] })) as unknown as RawRoster[];
     const matchups = raw.matchups.flatMap(m => m.teamIds.map(id => ({ roster_id: Number(id), matchup_id: Number(m.matchupId), points: 9999, starters: raw.teams.find(t => t.teamId === id)!.starters })));
     const stats = Object.fromEntries(raw.teams.flatMap(t => t.starters.map(id => [id, { pts: 2000, gp: 50 }])));
     const input = await loadAiLineupPreview(context(), { ...sources, rosters: async () => rosters, matchups: async () => matchups, stats: async () => stats, now: () => NOW });
     expect(input.starterSlots).toEqual(raw.starterSlots); expect(validWeeklyInput(input)).toBe(true);
-    expect(input.scoringMode).toBe("unknown"); expect(input.teams[0].players[0].priorFantasyPpg).toBe(20);
+    expect(input.lineupPolicy).toBe("goat-eleven-starters-v1"); expect(input.scoringMode).toBe("unknown"); expect(input.teams[0].players[0].priorFantasyPpg).toBe(20);
     expect(input.capturedAt).toBe(new Date(NOW).toISOString()); expect(input.statsAvailableAt).toBe(input.capturedAt);
     expect(input.endsAt).toBeNull(); expect(JSON.stringify(input)).not.toContain("9999");
     rosters[0].players = rosters[0].players.slice(1);
@@ -58,20 +62,46 @@ describe("bounded preview publication", () => {
     const h = previewHarness(), response = await publishWeeklyPreview(identity(), h.runtime, h.sources);
     expect(response.status).toBe("ready"); if (response.status !== "ready") throw new Error("fixture");
     expect(response.weekly.status).toBe("ready"); expect(response.weekly.matchups).toHaveLength(5);
-    expect(response.weekly.snapshot).toMatchObject({ comparison: "preseason_lineup_preview", sourceLeg: 0, scoringMode: "unknown", promptVersion: AI_LINEUP_PREVIEW_PROMPT_VERSION, endsAt: null });
-    expect(response.weekly.matchups[0].evidence.join(" ")).toContain("9/10");
-    expect(response.weekly.matchups[0].baseline?.version).toBe("prior-observed-starter-ppg-v2");
+    expect(response.weekly.snapshot).toMatchObject({ comparison: "preseason_lineup_preview", sourceLeg: 0, scoringMode: "unknown", promptVersion: AI_ELEVEN_STARTER_PROMPT_VERSION, endsAt: null });
+    expect(response.weekly.matchups[0].evidence.join(" ")).toContain("10/11");
+    expect(response.weekly.matchups[0].baseline?.version).toBe("prior-observed-starter-ppg-v3");
     expect(response.weekly.matchups[0].baseline?.teamValues[0].value).toBe(25); // Observed mean; missing is not zero.
     expect(response.weekly.matchups.every(m => m.result?.probabilities.length === 2)).toBe(true);
     const frozen = structuredClone(h.persistence.weeks.get(weekKey(previewInput())));
-    expect(await publishWeeklyPreview(identity(), h.runtime, h.sources)).toEqual(response);
+    const cached = await publishWeeklyPreview(identity(), h.runtime, h.sources);
+    expect(cached.status).toBe("ready"); if (cached.status !== "ready") throw Error("fixture");
+    expect(cached.weekly).toMatchObject({ status: "stale", sourceCompatibility: { status: "unverified", currentWindow: true, savedStarterCount: 11, savedPolicy: "goat-eleven-starters-v1" } });
+    expect(cached.weekly.snapshot).toEqual(response.weekly.snapshot);
+    expect(cached.weekly.matchups).toEqual(response.weekly.matchups);
     expect(h.sources.input).toHaveBeenCalledTimes(1); expect(h.create).toHaveBeenCalledTimes(1);
     expect(h.persistence.weeks.get(weekKey(previewInput()))).toEqual(frozen);
     const decision = weeklyDecision(previewInput(), prepareWeeklySlate(previewInput(), NOW), "f".repeat(64));
     expect(inputTokenReservation(decision.payload, AI_LIMITS.weeklyInputTokens)).toBeLessThanOrEqual(20000);
     expect(response.weekly.snapshot?.hash).toBe(weekHash(previewInput()));
   });
-  it.each(["coverage", "zero", "reserve", "taxi", "ownership", "scoring", "phase", "extra_preview"])("keeps unsupported %s inputs unsealed", async change => {
+  it("returns a labeled legacy cache hit before source stats or paid work, preserving the frozen record", async () => {
+    const h = previewHarness(), record = structuredClone(legacy.records[1]) as unknown as AiStoredWeek;
+    h.persistence.weeks.set(record.key, record);
+    const before = JSON.stringify(record), result = await publishWeeklyPreview(identity(), h.runtime, h.sources);
+    expect(result.status).toBe("ready"); if (result.status !== "ready") throw Error("fixture");
+    expect(result.weekly).toMatchObject({ status: "stale", sourceCompatibility: { status: "unverified", savedStarterCount: 10 } });
+    expect(result.weekly.matchups).toEqual(record.result!.matchups);
+    expect(h.sources.input).not.toHaveBeenCalled(); expect(h.create).not.toHaveBeenCalled();
+    expect(JSON.stringify(h.persistence.weeks.get(record.key))).toBe(before);
+  });
+  it("compares any two teams from a current eleven-starter frozen snapshot", async () => {
+    const h = previewHarness(), input = previewInput();
+    await publishWeeklyPreview(identity(), h.runtime, h.sources);
+    const result = await runAiDecision({ kind: "matchup", teamIds: ["1", "2"] }, TOKEN, h.runtime);
+    expect(result.status).toBe("ready"); if (result.status !== "ready") throw Error("fixture");
+    expect(result.result.probabilities.map(p => p.choice)).toEqual(["1", "2"]);
+    expect(result.result.evidence.at(-1)).toContain("Hypothetical");
+    const payload = h.create.mock.calls[1][0];
+    expect(JSON.parse(payload.input).snapshot.teams.map((t: { teamId: string }) => t.teamId)).toEqual(["1", "2"]);
+    expect(JSON.parse(payload.input).snapshot.teams[0].players).toHaveLength(11);
+    expect(result.result.snapshot?.hash).toBe(weekHash(input));
+  });
+  it.each(["coverage", "zero", "reserve", "taxi", "ownership", "scoring", "phase", "extra_preview", "legacy_policy"])("keeps unsupported %s inputs unsealed", async change => {
     const h = previewHarness(), input = previewInput();
     if (change === "coverage") input.teams[0].players.slice(0, 3).forEach(p => { p.priorFantasyPpg = null; p.priorGames = null; });
     if (change === "zero") input.teams[0].starters[0] = "0";
@@ -80,6 +110,7 @@ describe("bounded preview publication", () => {
     if (change === "ownership") input.teams[0].eligibilityKnown = false;
     if (change === "scoring") input.scoring = {};
     if (change === "phase") input.phase = "post";
+    if (change === "legacy_policy") { delete input.lineupPolicy; input.starterSlots.pop(); input.teams.forEach(team => { team.starters.pop(); team.players.pop(); }); }
     if (change === "extra_preview") Object.assign(input.preview!, { url: "https://untrusted.invalid" });
     h.sources.input = async () => input;
     expect((await publishWeeklyPreview(identity(), h.runtime, h.sources)).status).toBe("unavailable");

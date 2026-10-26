@@ -1430,7 +1430,9 @@ export async function loadAiWeekContext(deps = { league: fetchLeague, state: fet
   const pairs = aiMatchupPairs(await deps.matchups(week));
   const paired = pairs.flatMap(p => p.teamIds);
   if (pairs.length !== 5 || new Set(paired).size !== 10 || paired.some(id => !/^(?:[1-9]|10)$/.test(id))) throw new Error("weekly_context");
-  return { leagueId: "1387473752807190528", season: league.season, week, matchups: pairs, phase: state.season_type };
+  return { leagueId: "1387473752807190528", season: league.season, week, matchups: pairs, phase: state.season_type as AiWeeklyInput["phase"],
+    configuration: { starterSlots: league.roster_positions ? league.roster_positions.filter(slot => slot !== "BN") : null,
+      scoring: { ...league.scoring_settings }, gameModeCode: Number.isSafeInteger(league.settings.game_mode) ? league.settings.game_mode! : null } };
 }
 
 /** Fixed-source next-leg context; numeric game mode remains explicitly unconfirmed. */
