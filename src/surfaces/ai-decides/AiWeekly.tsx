@@ -37,17 +37,19 @@ export function ProbabilityRows({ result, compact = false, matchup, championTeam
 export function AiDecidesHomeEntry({ data, teams }: { data: AiDecidesData; teams: AiTeam[] }) {
   return <section className={styles.homeEntry} aria-labelledby="home-ai-decides">
     <div className={styles.sectionHeading}><h2 id="home-ai-decides">AI Decides</h2><Link href="/ai-decides">Open picks &amp; make a call</Link></div>
+    {data.weekly.sourceCompatibility && <p className={styles.helper} data-ai-source-compatibility={data.weekly.sourceCompatibility.status}>{data.weekly.sourceCompatibility.message}</p>}
     {data.weekly.matchups.length ? <div className={styles.weeklyGrid}>{data.weekly.matchups.map(p => <Link className={styles.homePick} href="/ai-decides#weekly" key={p.matchupId}>
       {p.status === "ready" && p.result ? <><ProbabilityRows result={p.result} compact matchup={{ teamIds: p.teamIds, teams }} /><small>Model choice: <ChoiceLabel choice={p.result.choice} matchup={{ teamIds: p.teamIds, teams }} /></small></> : <><strong>{name(p.teamIds[0], teams)}</strong><span>{name(p.teamIds[1], teams)}</span><small>Prediction unavailable</small></>}
     </Link>)}</div> : <p>{data.weekly.message}</p>}
-    <p className={styles.provenance}>{comparisonLabel(data.weekly.snapshot) && <>{comparisonLabel(data.weekly.snapshot)}. </>}Experimental model estimates, not calibrated sports odds. {data.weekly.status === "stale" ? "Past week · " : ""}Generated {timestamp(data.weekly.generatedAt)}.</p>
+    <p className={styles.provenance}>{comparisonLabel(data.weekly.snapshot) && <>{comparisonLabel(data.weekly.snapshot)}. </>}Experimental model estimates, not calibrated sports odds. {data.weekly.status === "stale" ? (data.weekly.sourceCompatibility?.currentWindow && data.weekly.sourceCompatibility.status !== "compatible" ? "Saved comparison · " : "Past week · ") : ""}Generated {timestamp(data.weekly.generatedAt)}.</p>
   </section>;
 }
 
 export function AiWeekly({ data, teams, onPair, championTeamId }: { data: AiDecidesData; teams: AiTeam[]; onPair: (ids: [string, string], opener: HTMLButtonElement) => void; /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */ championTeamId?: string | null }) {
   return <section id="weekly" className={styles.weekly} aria-labelledby="weekly-ai-title">
     <div className={styles.sectionHeading}><h2 id="weekly-ai-title">This week’s picks</h2><span>Saved picks · separate from your experiments</span></div>
-    <p className={styles.helper}>{comparisonLabel(data.weekly.snapshot) && <strong>{comparisonLabel(data.weekly.snapshot)} · </strong>}{data.weekly.status === "stale" ? "Past week · " : ""}{data.weekly.message}</p>
+    <p className={styles.helper}>{comparisonLabel(data.weekly.snapshot) && <strong>{comparisonLabel(data.weekly.snapshot)} · </strong>}{data.weekly.status === "stale" ? (data.weekly.sourceCompatibility?.currentWindow && data.weekly.sourceCompatibility.status !== "compatible" ? "Saved comparison · " : "Past week · ") : ""}{data.weekly.message}</p>
+    {data.weekly.sourceCompatibility && <p className={styles.helper} data-ai-source-compatibility={data.weekly.sourceCompatibility.status}>{data.weekly.sourceCompatibility.message}</p>}
     <p className={styles.provenance}>{data.weekly.generatedAt ? <>Generated <time dateTime={data.weekly.generatedAt}>{timestamp(data.weekly.generatedAt)}</time>.</> : "Generation time unavailable."}</p>
     <div className={styles.weeklyGrid}>{data.weekly.matchups.map((p, index) => <div className={styles.weeklyPick} key={p.matchupId}>
       <div className={styles.pickMeta}><span>0{index + 1}</span><span>{p.status === "ready" ? "Published" : "Unavailable"}</span></div>

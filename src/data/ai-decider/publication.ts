@@ -1,18 +1,47 @@
 import "server-only";
 import { createHash, timingSafeEqual } from "node:crypto";
-import type { AiPublicationContext, AiWeeklyInput, AiWeeklyPublishResponse } from "@/domain/ai-decider";
-import { loadAiLineupPreview, loadAiPublicationContext } from "../league";
+import type { AiPublicationContext, AiPublicationTarget, AiSourceConfiguration, AiWeeklyInput, AiWeeklyPublishResponse } from "@/domain/ai-decider";
+import { GOAT_LINEUP_POLICY } from "@/domain/ai-lineup-policy";
+import { loadAiCurrentLineupPreview, loadAiLineupPreview, loadAiPublicationContext, loadAiPublicationSelection, loadAiSourceConfiguration } from "../league";
 import { aiDataDeadline } from "./deadline";
 import { availability, failure, generateWeeklyPicksAsIdentity, resolveAiIdentity, type AiRuntime } from "./service";
 import { validAiIdentity, type AiIdentity } from "./store";
 import { exactKeys, isRecord, readAiBody } from "./validation";
-import { cachedWeek, prepareWeeklySlate, validWeeklyInput, weekKey, weeklyReadiness } from "./weekly";
+import { cachedWeek, prepareWeeklySlate, validWeeklyInput, weekKey, weeklyReadiness, withSourceCompatibility } from "./weekly";
 
 export type AiPublicationSources = {
   context(): Promise<AiPublicationContext>;
   input(context: AiPublicationContext): Promise<AiWeeklyInput>;
+  /**
+   * Lightweight live-settings projection used only to annotate saved
+   * calendar records on repeat reads. Optional: an absent or failed lookup
+   * annotates the record as unverified — never as compatible — so a repeat
+   * read cannot silently drop the changed/unverified warning.
+   */
+  configuration?(context: AiPublicationContext): Promise<AiSourceConfiguration>;
 };
 export const publicationSources: AiPublicationSources = { context: loadAiPublicationContext, input: loadAiLineupPreview };
+
+/**
+ * Current-week operator selection: the context's week IS the source leg and
+ * the input is bounded by the reviewed calendar window. Selection failure
+ * (no verified window, preseason, moved source) throws weekly_context and
+ * the publisher fails closed before any provider work.
+ */
+export const currentPublicationSources: AiPublicationSources = {
+  context: async () => (await loadAiPublicationSelection("current")).context,
+  input: async context => {
+    const { window } = await loadAiPublicationSelection("current");
+    if (!window) throw new Error("weekly_context");
+    return loadAiCurrentLineupPreview(context, window);
+  },
+  configuration: async () => loadAiSourceConfiguration(),
+};
+
+/** Only the exact server value "current" selects the in-week repair target. */
+export function publicationSourcesFor(target: AiPublicationTarget): AiPublicationSources {
+  return target === "current" ? currentPublicationSources : publicationSources;
+}
 
 /** One immutable attempt per source week. Daily checks never retry paid work. */
 export async function publishWeeklyPreview(identity: AiIdentity, runtime: AiRuntime, sources: AiPublicationSources = publicationSources): Promise<AiWeeklyPublishResponse> {
@@ -26,16 +55,33 @@ export async function publishWeeklyPreview(identity: AiIdentity, runtime: AiRunt
     const key = weekKey(context);
     const existing = await persistence.getWeek(key);
     if (existing) {
-      const weekly = cachedWeek(existing, runtime.now(), context.leg);
-      if (existing.result) return weekly.status === "ready" ? { status: "ready", weekly } : failure("unavailable", "publication_partial", "The saved preview has unavailable matchups. Its immutable result is retained.");
-      return failure("unavailable", "publication_incomplete", "This week has a sealed incomplete attempt. Review is required before another paid attempt.");
+      let weekly = cachedWeek(existing, runtime.now(), context.leg);
+      if (!existing.result) return failure("unavailable", "publication_incomplete", "This week has a sealed incomplete attempt. Review is required before another paid attempt.");
+      // Read-time source-compatibility annotation applies to every saved
+      // record on a repeat read, calendar-window records included: a valid
+      // window is freshness evidence, not evidence that league slots,
+      // scoring or mode still match the frozen input. Calendar records
+      // compare against the sources' lightweight live configuration; an
+      // absent or failed lookup annotates as unverified, so a repeat POST
+      // can never return the old slate with the changed/unverified warning
+      // erased. The annotation is transport-only — the stored input,
+      // result and hash are never rewritten, and no provider work repeats.
+      let current: AiSourceConfiguration | undefined;
+      if (existing.input.preview?.calendarVersion !== undefined && sources.configuration) {
+        try { current = await aiDataDeadline(sources.configuration(context), 3000); } catch { current = undefined; }
+        // The lookup itself may have crossed first tip; re-derive the
+        // slate at the post-lookup clock before judging the window.
+        weekly = cachedWeek(existing, runtime.now(), context.leg);
+      }
+      return weekly.status === "ready" ? { status: "ready", weekly: withSourceCompatibility(weekly, existing.input, current) } : failure("unavailable", "publication_partial", "The saved preview has unavailable matchups. Its immutable result is retained.");
     }
     const input = await aiDataDeadline(sources.input(context), 10000);
-    if (!validWeeklyInput(input) || !input.preview || weekKey(input) !== key || input.preview.sourceLeg !== context.leg || input.phase !== context.phase) return failure("unavailable", "weekly_input", "The public source could not establish an upcoming preview.");
+    if (!validWeeklyInput(input) || !input.preview || input.lineupPolicy !== GOAT_LINEUP_POLICY.version || weekKey(input) !== key || input.preview.sourceLeg !== context.leg || input.phase !== context.phase) return failure("unavailable", "weekly_input", "The public source could not establish an upcoming eleven-starter preview.");
+    if (input.preview.calendarVersion !== undefined && runtime.now() >= Date.parse(input.startsAt!)) return failure("unavailable", "weekly_closed", "The current week's first tip has passed. A late result would be analysis, not a forecast, and is not published.");
     const reason = weeklyReadiness(input, runtime.now());
     if (reason) return failure("unavailable", "weekly_not_ready", reason);
     const prepared = prepareWeeklySlate(input, runtime.now());
-    if (!prepared.matchups.every(m => m.baseline?.teamValues.every(v => v.value !== null))) return failure("unavailable", "weekly_not_ready", "All five pairs need eligible lineups and at least 8/10 observed prior-season starters per team. The week remains unsealed.");
+    if (!prepared.matchups.every(m => m.baseline?.teamValues.every(v => v.value !== null))) return failure("unavailable", "weekly_not_ready", "All five pairs need all eleven declared starters and at least 9/11 observed prior-season starters per team. The week remains unsealed.");
     const result = await generateWeeklyPicksAsIdentity(input, identity, runtime);
     if (!("matchups" in result)) return result.status === "ready" ? failure("unavailable", "publication_invalid", "The publication result could not be validated.") : result;
     return result.status === "ready" ? { status: "ready", weekly: result } : failure("unavailable", "publication_partial", "The saved preview has unavailable matchups. Its immutable result is retained.");

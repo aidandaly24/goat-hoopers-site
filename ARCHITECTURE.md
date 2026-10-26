@@ -1326,6 +1326,11 @@ so changed/unverified settings cannot reopen expired windows or revoke
 separately authorized refresh controls. Saved AI/home surfaces show that
 provenance; the complete interactive roster path is unchanged. Named
 game mode and positional assignment remain unverified.
+`loadAiSourceConfiguration` projects the same configuration from a
+league-only read for the publish path: repeat reads of saved calendar
+records are annotated against it (unverified when the lookup is absent or
+fails), so a repeat POST cannot erase the changed/unverified warning the
+public read shows.
 `migrations/ai-decider.sql` starts disabled and was separately provisioned under
 root authorization before this source change; no new migration is introduced. Existing auth/valuation/repair tables are reused
 or read without schema/behavior changes. UI/page integration has a separate owner.
@@ -1344,7 +1349,15 @@ legacy default and client request/result contracts remain unchanged.
 `loadAiPublicationContext`/`loadAiLineupPreview` prepare the next verified Sleeper
 leg, using fresh source-state checks before/after paid generation. Preview bounds
 may be null where no calendar is verified; captured source and generated result
-timestamps stay distinct. `POST /api/ai-decides/weekly` accepts only an empty
+timestamps stay distinct. Beside them, `loadAiPublicationSelection("current")`
+and `loadAiCurrentLineupPreview` implement the explicit current-week selection
+(issue #149): the target is the live leg itself, bounded by the reviewed
+first-tip window in `docs/ai-week-calendar.json` (read by
+`src/data/ai-decider/week-calendar.ts`), which rides in the frozen snapshot as
+`startsAt`/provenance (`preview.calendarVersion`) and is rechecked immediately
+before the provider call, failing closed at or after first tip. The selection
+reaches the weekly route from the runtime's `GOAT_AI_PUBLICATION_TARGET`
+operator setting, read in the runtime factory and never in the request. `POST /api/ai-decides/weekly` accepts only an empty
 same-origin manager request; the protected daily GET uses CRON_SECRET and one
 configured stable app UUID with atomic membership checks. It never borrows a
 browser session, resets counters or automatically retries a sealed incomplete

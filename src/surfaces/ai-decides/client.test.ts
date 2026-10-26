@@ -272,6 +272,35 @@ describe("manual weekly publication boundary", () => {
     expect(value.weekly.matchups[0].result!.probabilities[0].choice).toBe("2");
     expect(JSON.stringify(value)).toBe(before);
   });
+  it.each(["changed", "unverified"] as const)("retains a complete display-stale %s-settings cache response without changing probabilities", status => {
+    const value = published(); value.weekly.status = "stale";
+    value.weekly.sourceCompatibility = { status, currentWindow: true, savedStarterCount: 10, currentStarterCount: status === "changed" ? 11 : null, savedPolicy: "legacy-ten-starters", message: "Saved settings differ or are unverified." };
+    const before = JSON.stringify(value);
+    expect(readWeeklyPublishResponse(value)).toBe(value);
+    expect(readWeek1RefreshResponse(published(), value.weekly).status).toBe("ready");
+    expect(JSON.stringify(value)).toBe(before);
+  });
+  it("preserves a schema3 cache response with an unverified current-settings notice", () => {
+    const value = published(); value.weekly.status = "stale";
+    value.weekly.snapshot = { ...value.weekly.snapshot!, promptVersion: "goat-lineup-preview-v3", baselineVersion: "prior-observed-starter-ppg-v3" };
+    value.weekly.matchups.forEach(row => { if (row.result) { row.result.promptVersion = "goat-lineup-preview-v3"; row.result.snapshot = value.weekly.snapshot; } });
+    value.weekly.sourceCompatibility = { status: "unverified", currentWindow: true, savedStarterCount: 11, currentStarterCount: null, savedPolicy: "goat-eleven-starters-v1", message: "Compatibility with current league settings is unverified." };
+    const before = JSON.stringify(value);
+    expect(readWeeklyPublishResponse(value)).toBe(value);
+    expect(JSON.stringify(value)).toBe(before);
+  });
+  it("rejects a temporally expired slate even when its settings notice is valid", () => {
+    const value = published(); value.weekly.status = "stale";
+    value.weekly.sourceCompatibility = { status: "changed", currentWindow: false, savedStarterCount: 10, currentStarterCount: 11, savedPolicy: "legacy-ten-starters", message: "Settings changed after the saved window ended." };
+    expect(readWeeklyPublishResponse(value).status).toBe("unavailable");
+    expect(readWeek1RefreshResponse(published(), value.weekly).status).toBe("unavailable");
+  });
+  it.each([{ status: "future" }, { currentWindow: "true" }, { savedStarterCount: 11 }, { currentStarterCount: -1 }, { savedPolicy: "future" }, { message: null }])("rejects malformed settings notices %s", change => {
+    const value = published(); value.weekly.status = "stale";
+    Object.assign(value.weekly, { sourceCompatibility: { status: "changed", currentWindow: true, savedStarterCount: 10, currentStarterCount: 11, savedPolicy: "legacy-ten-starters", message: "Settings changed.", ...change } });
+    expect(readWeeklyPublishResponse(value).status).toBe("unavailable");
+    expect(readWeek1RefreshResponse(published(), value.weekly).status).toBe("unavailable");
+  });
   it("rejects partial, stale, malformed and repeated-identity success payloads", () => {
     const partial = published(); partial.weekly.matchups[0].status = "unavailable"; partial.weekly.matchups[0].result = null;
     const stale = published(); stale.weekly.status = "stale";

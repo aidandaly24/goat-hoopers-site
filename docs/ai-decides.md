@@ -246,19 +246,36 @@ integer leg, prior stats season and season-start source date. Preseason leg0
 prepares week1 even when the unrelated display week is2. During the regular
 season it prepares leg+1, before that matchup week. `loadAiLineupPreview` fetches
 only league/state, rosters, that one week and completed prior-season raw stats.
+
+Issue #149 adds a separate, explicit current-week operator selection beside
+that planning context. `loadAiPublicationSelection("current")` prepares the
+live leg itself (`week == leg`) only during the regular phase and only when the
+reviewed week calendar (`docs/ai-week-calendar.json`, never a runtime fetch)
+carries a verified first-tip window for that season/week;
+`loadAiCurrentLineupPreview` then builds from the live week's own matchup rows.
+The planning context and its leg+1 preview are unchanged, and cached reads keep
+their legacy rules unless a record carries the calendar provenance below.
 It strips BN from the starter slot declaration, uses week-specific starters,
 checks roster ownership plus explicit reserve/taxi fields, and freezes the actual
 source-read time. No player directory, current scores, valuation cache or repair
 table enters the input. Missing/duplicate/zero/IR/taxi/unowned starters block
 publication. All five pairs must be supported before the runner seals a week.
 
-The current explicit preview policy is `goat-lineup-preview-v2`, manifest schema2,
-model `gpt-6-luna`, baseline `prior-observed-starter-ppg-v2`. It requires a complete
-eligible ten-starter lineup and observed prior production for at least8 starters
-per team. Missing production remains null and its coverage is displayed; it is
-never replaced with zero. The separate baseline is the mean of observed starter
-fantasy PPG under actual league scoring. It is neither a ten-starter total nor a
-weekly score forecast. The model sees individual observed production, games and
+Fresh explicit previews use `goat-lineup-preview-v3`, manifest schema3,
+model `gpt-6-luna`, baseline `prior-observed-starter-ppg-v3`, and the frozen input
+policy tag `goat-eleven-starters-v1`. The shared declaration in
+`domain/ai-lineup-policy.ts` is PG, SG, G, SF, PF, F, C and four UTIL: eleven active
+starters. BN, reserve and taxi add no active slots. The source input must contain
+all eleven unique, source-owned starters, excluding explicit reserve/taxi IDs,
+and prior production for at least9/11 (the existing 80% floor rounded up).
+A missing eleventh player, unknown membership, or only8/11 observed productions
+blocks the relevant pair. Full publication requires all five pairs, before any
+week is sealed or paid work begins. Position-to-slot assignment legality is not
+independently verified; a declared count plus membership is not proof of it.
+Missing production remains null and its coverage is displayed; it is never
+replaced with zero. The separate baseline is the mean of observed starter
+fantasy PPG under actual league scoring. It is neither an eleven-starter total
+nor a weekly score forecast. The model sees individual observed production, games and
 unknowns, and the prompt directs it to consider coverage and uncertainty.
 Schedules, current injuries, recent form, lineup changes and game-selection
 choices remain unknown. No game-count multiplier or inferred selection strategy
@@ -275,6 +292,16 @@ publication closure at00:00UTC on Sleeper's season_start_date, cutoffAt is one
 millisecond earlier, and endsAt is null because no fantasy-week end calendar has
 been verified. For regular previews both period dates are null; cutoffAt is the
 source-read evidence cutoff and sourceLeg<week establishes pre-week preparation.
+The current-week selection above is the one exception: when a reviewed
+calendar window applies, the preview carries its version as
+`preview.calendarVersion` provenance, startsAt is the week's verified first
+tip, cutoffAt is one millisecond earlier, endsAt stays null (the window is a
+publication deadline, not a matchup period), and sourceLeg equals week. The
+deadline is rechecked immediately before the provider call and again on
+completion; at or after first tip the run closes (`weekly_closed`) — a
+post-tip result would be labeled analysis, not a forecast, and no late-analysis
+variant exists in the publish contract. Cached calendar-provenance records
+become stale at first tip rather than at a later leg.
 A fresh, uncached phase/season/leg check occurs before paid work and after the
 model completes. An advanced/unavailable source boundary withholds publication
 while retaining the usage count. Cached previews remain readable during their
@@ -295,11 +322,81 @@ No outcome is fed back into a prompt. Preview outcome recording refuses an
 unverified calendar/finality; the existing append-only reviewed-calendar v1
 outcome path is preserved.
 
+### Frozen history and current-source compatibility
+
+Schema2 `goat-lineup-preview-v2` records retain exactly their ten-starter policy,
+minimum8/10 coverage, prompt, baseline, evidence and hash. They are not upgraded
+in place. Schema1 and schema2 use the absence of the new input tag to select their
+original decoders; schema3 requires the explicit eleven-starter tag and preview.
+Cross-version pairings and unknown future tags/schema versions fail closed.
+The synthetic legacy fixtures were captured from the unchanged functions at
+main `6994603ade3a1dac70253a0eb675b923f15e91ca`; regression tests compare complete
+prepared slates, saved results and hashes, not only a slot count.
+
+`loadAiWeekContext` now projects declared starter slots, scoring and raw mode
+code from its already-fetched league response, with no extra source request.
+After validating the saved record, the public runtime attaches a derived
+`sourceCompatibility` notice. Slot, scoring or raw-mode differences label the
+result as a saved historical comparison with changed settings; absent source
+facts are explicitly unverified. Those states mark the read projection stale,
+so a same-week saved ten-starter result does not claim to predict current
+eleven-starter settings. `/ai-decides`, its reusable home entry, and the integrated
+homepage show the notice beside the unchanged saved probabilities. A settings
+mismatch is not mislabeled as a past week. Matching raw codes do not establish
+named game-selection rules or position legality. The notice is never added to
+stored input, prepared slate, result evidence or hash, and reads never regenerate,
+repair or replace immutable history. The independent one-time Week1 refresh
+availability is computed from its original gates before this display annotation.
+The client validates the notice and every saved row before accepting a complete
+settings-stale transport response or using it as the displayed original for
+that already-authorized one-shot control. Ordinary expired slates without such
+a notice, partial rows and malformed notices remain rejected/disabled. Server
+refresh gates, the sealed-attempt guard and paid admission are unchanged.
+
+Repeat publication reads carry the same notice. A repeat POST that finds a
+saved calendar-provenance record compares it against a lightweight live
+configuration (`loadAiSourceConfiguration`: the league declaration only)
+before returning it: changed or unverifiable settings annotate the returned
+slate exactly as the public read does, so the publish response can never
+replace the displayed slate with the bare record and erase the warning. An
+absent or failed configuration lookup annotates as unverified, never as
+compatible. The slate is re-derived at the post-lookup clock, so a lookup
+that crosses first tip still closes the window. The stored input, result and
+hash are never rewritten, and no provider work repeats.
+The derived notice's `currentWindow` records whether the validated cache slate
+was ready before settings annotation. Compatibility-stale admission requires it
+to be true; an already ended/advanced-source-leg result retains false even when
+settings also changed. A source warning never reopens a temporal window.
+
+A complete settings-stale Week1 slate retains the existing homepage preseason
+exception when the provider's display week is2: same season, target week1,
+preseason comparison and source leg0/1 remain required. All five distinct pairs
+must retain their saved distributions. Missing notices, ordinary expiry and
+partial results cannot activate that exception. The home desk and slate retain
+the saved probabilities with their settings warning.
+
+Architecture handoff: the new pure `src/domain/ai-lineup-policy.ts` declaration
+and `AiSourceConfiguration` / `AiSourceCompatibility` read projection in
+`src/domain/ai-decider.ts` need their bounded map entry in `ARCHITECTURE.md`.
+Muse owns that file through PR225; this work deliberately leaves it untouched.
+Coordinate that documentation hunk with Muse before integration.
+
 The older `loadAiWeeklyInput`/`generateWeeklyPicks` reviewed-calendar Lock-In path
 and its schema1 `goat-weekly-lock-in-v1`/`prior-starter-ppg-v1` reconstruction stay
 supported. That path still requires confirmed Lock-In, regular-season dates and
 all ten prior-production values. Historical reads validate the frozen manifest,
 not today's policy constants. Existing immutable records are never upgraded.
+The legacy reviewed-calendar preparation/generation exports remain an explicit
+server compatibility seam with no active production caller; public publication
+uses the schema3 loader and rejects untagged fresh inputs. Clients cannot select
+a weekly input policy. The separate frozen-lineup `kind:"matchup"` experiment
+accepts only the current schema3 manifest; old saved snapshots remain read-only
+there. This does not change the full-roster interactive league/custom path.
+A manual publication request that finds any ready cached record, including
+schema3, returns that unchanged result with an unverified-settings notice: the
+publication context alone cannot compare current slots/scoring. It never drops a
+settings warning merely because the saved record uses the latest policy, and
+does not load stats or generate again to obtain this read-time notice.
 
 ## Protected daily refresh handoff
 
@@ -452,7 +549,7 @@ is beta Decisions protocol, serverless overlap, current auth and incomplete
 Sleeper facts. The singleton CAS concentrates the existing DB coordination cost
 and is adequate at this scale. A separate limiter service or generic AI framework
 would add accidental complexity without a required outcome. Issue #149 adds the missing weekly caller and BN normalization, removing accidental
-readiness/publication gaps. The two frozen baseline decoders and explicit preview
+readiness/publication gaps. The three versioned baseline decoders and explicit preview
 coverage are transitional complexity; verified mode/calendar/schedule and later
 outcome calibration remain unknowns. One purpose-built runner reuses the existing
 store and paid guards. No generic framework, new infrastructure or auth rewrite

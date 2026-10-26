@@ -8,6 +8,10 @@ import { CourtsideFeature } from "./CourtsideFeature";
 import { CourtsideHome } from "./CourtsideHome";
 import { AiDecidesSection } from "./AiDecidesSection";
 import { deriveWeekPairs } from "./weekPairs";
+import { buildPersonalizedHome } from "@/data/personalized-home";
+import { personalizedFixture } from "@/test/personalized-home-fixture";
+import { isHomePreseasonPreview } from "@/domain/personalized-home";
+import legacy from "@/data/ai-decider/__tests__/legacy-weekly-fixtures.json";
 
 // Synthetic presentation inputs only: these percentages are never league content.
 const team = (id: string): Team => ({ id, name: `Current ${id}`, managerName: "Synthetic manager",
@@ -86,6 +90,55 @@ describe("archive gate", () => {
     // The rest of the feature — headline, court, desk — still renders.
     expect(html).toContain('<h1 id="game-title">Synthetic featured game</h1>');
     expect(html).toContain("data-league-desk");
+  });
+});
+
+describe("settings compatibility at saved home probabilities", () => {
+  it("labels a same-week settings mismatch in the public desk and full slate without calling it a past week", () => {
+    const data = weekly(); data.status = "stale";
+    data.sourceCompatibility = { status: "changed", currentWindow: true, savedStarterCount: 10, currentStarterCount: 11, savedPolicy: "legacy-ten-starters", message: "Saved ten-starter inputs; current source declares eleven. Saved probabilities are unchanged." };
+    for (const html of [renderFeature(data), renderAiSection(data)]) {
+      expect(html).toContain('data-ai-source-compatibility="changed"');
+      expect(html).toContain("current source declares eleven");
+      expect(html).toContain("Saved comparison"); expect(html).not.toContain("Past-week saved picks");
+      expect(html).toContain("width:38%");
+    }
+  });
+  it("retains the complete saved Week1 context on a preseason week2 homepage with its settings warning", () => {
+    const fixture = personalizedFixture(), saved = structuredClone(legacy.records[1].result) as AiWeeklySlate;
+    saved.status = "stale"; saved.sourceCompatibility = { status: "changed", currentWindow: true, savedStarterCount: 10, currentStarterCount: 11, savedPolicy: "legacy-ten-starters", message: "Saved ten-starter comparison; current source declares eleven. Saved probabilities are unchanged." };
+    fixture.home.hub!.season.status = "pre_season";
+    fixture.home.directory.forEach(entry => { if (entry.currentMatchup) entry.currentMatchup.week = 2; });
+    fixture.home.checkedAt = "2026-10-19T12:00:00Z";
+    const personal = buildPersonalizedHome({ kind: "member", teamId: "1" }, fixture.home, saved, fixture.market, fixture.news);
+    expect(personal.kind === "member" && personal.summary?.ai?.week).toBe(1);
+    const html = renderToStaticMarkup(createElement(CourtsideHome, { data: fixture.home, archive: [], portraits: {}, aiWeekly: saved, personal }));
+    expect(html).toContain("current source declares eleven");
+    expect(html).toContain('data-ai-source-compatibility="changed"');
+    expect(html).toContain("Week 1 · AI Decides"); expect(html).toContain("width:35%"); expect(html).toContain("width:65%");
+    expect(html).not.toContain("Past-week saved picks");
+    for (const change of ["season", "week", "sourceLeg", "comparison", "partial", "notice", "row", "expired"] as const) {
+      const invalid = structuredClone(saved);
+      if (change === "season") invalid.season = "2025";
+      if (change === "week") invalid.week = 2;
+      if (change === "sourceLeg") invalid.snapshot!.sourceLeg = 2;
+      if (change === "comparison") invalid.snapshot!.comparison = "weekly_lineup_preview";
+      if (change === "partial") invalid.matchups.pop();
+      if (change === "notice") delete invalid.sourceCompatibility;
+      if (change === "expired") invalid.sourceCompatibility!.currentWindow = false;
+      if (change === "row") { invalid.matchups[0].status = "unavailable"; invalid.matchups[0].result = null; }
+      expect(isHomePreseasonPreview(invalid, "2026")).toBe(false);
+    }
+  });
+  it("carries the same compatibility notice beside a member's saved probability", () => {
+    const fixture = personalizedFixture(); fixture.weekly.status = "stale";
+    fixture.weekly.sourceCompatibility = { status: "unverified", currentWindow: true, savedStarterCount: 10, currentStarterCount: null, savedPolicy: "legacy-ten-starters", message: "Compatibility with current league settings is unverified." };
+    const personal = buildPersonalizedHome({ kind: "member", teamId: "1" }, fixture.home, fixture.weekly, fixture.market, fixture.news);
+    if (personal.kind !== "member" || !personal.summary || !fixture.home.edition) throw Error("Synthetic member missing");
+    const html = renderToStaticMarkup(createElement(CourtsideFeature, { edition: fixture.home.edition, entries: fixture.home.directory, rosterCounts: {}, preseason: false, checkedAt: fixture.home.checkedAt, season: "2026", aiWeekly: fixture.weekly, hero: { summary: personal.summary, faces: [] } }));
+    expect(html).toContain("data-team-desk"); expect(html).toContain('data-ai-source-compatibility="unverified"');
+    expect(html).toContain("Compatibility with current league settings is unverified");
+    expect(html).toContain("Your AI win probability");
   });
 });
 

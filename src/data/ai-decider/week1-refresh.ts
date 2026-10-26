@@ -31,7 +31,7 @@ export async function refreshWeek1(identity: AiIdentity, runtime: AiRuntime, sou
     const now = runtime.now(), reason = weeklyReadiness(input, now);
     if (reason || now - Date.parse(input.capturedAt) > 60000) return failure("unavailable", "weekly_not_ready", reason ?? "A fresh input capture is required.");
     const slate = prepareWeeklySlate(input, now);
-    if (!slate.matchups.every(m => m.baseline?.teamValues.every(v => v.value !== null))) return failure("unavailable", "weekly_not_ready", "All five pairs need complete eligible lineups and at least 8/10 observed prior-season starters per team.");
+    if (!slate.matchups.every(m => m.baseline?.teamValues.every(v => v.value !== null))) return failure("unavailable", "weekly_not_ready", `All five pairs need complete declared lineups and at least ${input.lineupPolicy ? "9/11" : "8/10"} observed prior-season starters per team.`);
     if (!(await predictionOpen(input, runtime))) return failure("unavailable", "weekly_closed", "The source changed before the refresh could be sealed.");
     const safety = createHash("sha256").update(`goat-ai:${identity.userId}`).digest("hex");
     const decision = weeklyDecision(input, slate, safety);
