@@ -71,14 +71,25 @@ Generation is **fail-closed**; none of these is inferred from score sums:
   source is absent, generation aborts — the last game's start is never
   substituted as a boundary.
 - Every game must match an ESPN event and return a box score for both
-  teams, or generation aborts. Partial coverage is not a receipt.
+  teams, or generation aborts. Partial coverage is not a receipt:
+  coverage is validated per team — a team container with no statistics,
+  or recording no athletes, aborts generation rather than letting the
+  other team's rows paper over the gap.
 - An explicit lock whose game has no box-score evidence for the player
   (no stat line, and the box score does not record him as present at
   all) marks the row unproven (`evidenceComplete: false`) and forces
   the team `unreconciled`. Another played game is **never** substituted
   for a locked game. A box score that affirmatively records the player
-  as present without an appearance (DNP / 0 minutes) instead proves the
-  locked game counts as zero.
+  as present without an appearance instead proves the locked game
+  counts as zero — but presence is only ever *validated* presence: an
+  explicit DNP record (`didNotPlay`), or a complete stat line whose
+  minutes parse to a numeric zero. An athlete entry with absent or
+  truncated stats (missing minutes, a `"--"` placeholder, a stats list
+  shorter than its keys, a missing counting field) is not presence and
+  not a zero — it is missing evidence, and no field ever defaults to 0
+  to manufacture one. The adapter mirrors this accounting: a team whose
+  receipt does not record `evidenceComplete` at all is rejected, since
+  a certified zero's only proof is that evidence accounting.
 
 The generator's selection, classification, window and completion rules
 are covered by offline fixtures: `python3
@@ -187,6 +198,17 @@ generator rules from the same day's source snapshot: every player row,
 counted game and team total is unchanged; the regeneration reclassified
 rosters 1, 6 and 8 from the old `verified-foul-residual` label to
 `estimated-foul-residual` and recorded `evidenceComplete` per team.
+
+It was regenerated again the same day under the validated-presence
+parser (proven zeros require an explicit DNP record or a complete stat
+line; absent/truncated stats are unproven). Again, no player row,
+counted game, team total or status changed — only `generatedAt`. The
+snapshot contains exactly one athlete entry of the newly rejected
+shape (a Knicks reserve recorded with minutes `"--"` and placeholder
+stats, `didNotPlay` false); he is not a starter on any leg, so no
+counted row ever rested on his presence — but under the old parser he
+was recorded as present, and a lock on his game would have certified a
+zero from nothing.
 
 ## Weekly operation
 

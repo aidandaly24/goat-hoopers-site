@@ -7,6 +7,7 @@ import {
   getWeekShowcase,
   parseWeeklyEvidenceReceipt,
   type WeeklyEvidenceReceipt,
+  type WeeklyTeamEvidence,
 } from "../weekly-player-evidence";
 
 function receiptWith(teams: WeeklyEvidenceReceipt["teams"]): WeeklyEvidenceReceipt {
@@ -206,6 +207,20 @@ describe("receipt validation", () => {
     expect(parseWeeklyEvidenceReceipt(receipt)).not.toBeNull();
     expect(getCompletedPlayerWeek([receipt], { season: "2026", week: 1, teamId: "4" })).toBeNull();
     expect(getWeekShowcase([receipt], { season: "2026", week: 1 })?.unavailableTeamIds).toEqual(["4"]);
+  });
+
+  it("rejects a receipt that does not record evidence completeness", () => {
+    // A certified zero's only proof is the generator's evidence
+    // accounting; a team that records none cannot serve one.
+    const provenZero = team("4", [
+      { playerId: "a", gamesPlayed: 3, countedPoints: 21.5 },
+      { playerId: "b", gamesPlayed: 0, countedPoints: 0 },
+    ]);
+    provenZero.players[1].locked = true;
+    provenZero.players[1].countedGameId = "game-b";
+    const bad = receiptWith([provenZero]);
+    delete (bad.teams[0] as Partial<WeeklyTeamEvidence>).evidenceComplete;
+    expect(parseWeeklyEvidenceReceipt(bad)).toBeNull();
   });
 
   it("rejects incomplete evidence dressed as verified", () => {

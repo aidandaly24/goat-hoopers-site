@@ -221,8 +221,12 @@ function parseTeam(value: unknown): WeeklyTeamEvidence | null {
   // incomplete lock evidence: it fails the team closed as "unreconciled"
   // whatever the residual happens to be.
   const status = value.status as WeeklyEvidenceStatus;
-  if (value.evidenceComplete !== undefined && typeof value.evidenceComplete !== "boolean") return null;
-  const evidenceComplete = value.evidenceComplete !== false;
+  // Evidence completeness must be recorded explicitly. A receipt that
+  // omits it makes no evidence claim at all, so nothing in it — least of
+  // all a certified zero, whose entire proof is the generator's evidence
+  // accounting — may be served.
+  if (typeof value.evidenceComplete !== "boolean") return null;
+  const evidenceComplete = value.evidenceComplete;
   if (!evidenceComplete) {
     if (status !== "unreconciled") return null;
   } else if (status !== classifyWeeklyResidual(value.residual)) {

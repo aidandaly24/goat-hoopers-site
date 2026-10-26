@@ -33,9 +33,12 @@ and every counted game is proven:
   (no stat line, and the box score does not even record the player as
   present) is MISSING evidence: the starter's row is emitted unproven and
   the team is forced "unreconciled". Another played game is NEVER
-  substituted for a locked game. (A box score that affirmatively records
-  the player as present with no appearance — DNP / 0 minutes — proves the
-  locked game counts as zero instead.)
+  substituted for a locked game. Presence proves a zero ONLY when it is
+  validated: an explicit DNP record (`didNotPlay`), or a complete stat
+  line whose minutes parse to a numeric zero. An athlete entry with
+  absent or truncated stats (missing minutes, a "--" placeholder, a
+  missing counting field) is NOT presence — it is unproven, exactly like
+  a missing lock, and never defaults any field to 0.
 
 Each team is then reconciled against the leg's official points:
 
@@ -124,6 +127,111 @@ def gql(query, token):
         time.sleep(2)
 
 
+# Stat fields a box-score line must carry — present and parseable — before
+# the line (or a zero built on it) can be admitted as evidence. A line
+# missing any of these is truncated, not a zero.
+REQUIRED_STAT_KEYS = (
+    "minutes", "points", "rebounds", "assists", "steals", "blocks",
+    "turnovers", "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+)
+
+
+def _parse_number(value):
+    """Parse one numeric stat field; absent/placeholder values raise."""
+    if value in (None, "", "--"):
+        raise ValueError("stat field is absent")
+    return float(value)
+
+
+def _parse_made(value):
+    """Parse the made half of a "made-attempted" stat field."""
+    if not isinstance(value, str) or "-" not in value:
+        raise ValueError("made-attempted field is absent or malformed")
+    made, attempted = value.split("-", 1)
+    _parse_number(attempted)
+    return _parse_number(made)
+
+
+def parse_stat_line(keys, stats):
+    """Validate one athlete's raw stat line.
+
+    Returns the scored line dict, or None when the line is incomplete:
+    stats shorter than the key list (truncated), a required field absent
+    from the keys, or a required value missing/unparseable. Incomplete
+    lines are unproven evidence — no field ever defaults to 0.
+    """
+    if not keys or not stats or len(stats) < len(keys):
+        return None
+    if any(key not in keys for key in REQUIRED_STAT_KEYS):
+        return None
+    raw = dict(zip(keys, stats))
+    try:
+        return {
+            "min": _parse_number(raw["minutes"]),
+            "pts": _parse_number(raw["points"]),
+            "reb": _parse_number(raw["rebounds"]),
+            "ast": _parse_number(raw["assists"]),
+            "stl": _parse_number(raw["steals"]),
+            "blk": _parse_number(raw["blocks"]),
+            "to": _parse_number(raw["turnovers"]),
+            "tpm": _parse_made(
+                raw["threePointFieldGoalsMade-threePointFieldGoalsAttempted"]),
+        }
+    except (ValueError, TypeError):
+        return None
+
+
+def parse_box_score_players(team_boxes, espn_to_sleeper):
+    """Parse one game's ESPN box score into (lines, validated presence).
+
+    `lines[sleeper_id]` holds validated stat lines with minutes > 0.
+    `presence` holds only VALIDATED presence: an explicit DNP record, or
+    a complete stat line (including a validated zero-minutes line). An
+    athlete whose stats are absent or truncated appears in neither map —
+    his presence is unproven, so a lock on this game for him is missing
+    evidence, never a proven zero.
+
+    Coverage is validated per expected team before anything is admitted:
+    a team container with no statistics, or recording no athletes at all,
+    raises ValueError — an empty half of a box score can never be papered
+    over by the other team's rows.
+    """
+    if len(team_boxes) < 2:
+        raise ValueError("box score does not cover both teams")
+    per = {}
+    present = set()
+    for team in team_boxes:
+        statistics = team.get("statistics") or []
+        if not statistics:
+            raise ValueError(
+                "a team box score has no statistics; coverage is unproven")
+        athletes_seen = 0
+        for stat in statistics:
+            keys = stat.get("keys", [])
+            for athlete in stat.get("athletes", []):
+                athletes_seen += 1
+                sleeper_id = espn_to_sleeper.get(
+                    str((athlete.get("athlete") or {}).get("id")))
+                if not sleeper_id:
+                    continue
+                if athlete.get("didNotPlay"):
+                    # An explicit DNP record affirmatively proves the
+                    # player was recorded for this game and did not play.
+                    present.add(sleeper_id)
+                    continue
+                line = parse_stat_line(keys, athlete.get("stats"))
+                if line is None:
+                    # Absent/truncated stats: unproven, never a zero.
+                    continue
+                present.add(sleeper_id)
+                if line["min"] > 0:
+                    per[sleeper_id] = line
+        if athletes_seen == 0:
+            raise ValueError(
+                "a team box score records no athletes; coverage is unproven")
+    return per, present
+
+
 def fantasy_points(line, settings):
     cats = sum(1 for k in ("pts", "reb", "ast", "stl", "blk") if line[k] >= 10)
     value = (line["pts"] * settings["pts"] + line["reb"] * settings["reb"]
@@ -209,9 +317,12 @@ def select_counted_game_for_player(player_id, played, locked_game, lines,
 
     With an explicit lock the counted game is the locked game — proven by
     its box-score line, or proven zero when the box score affirmatively
-    records the player as present without an appearance. When the locked
-    game has no evidence for the player at all, the row is missing
-    evidence: no other game is ever substituted.
+    records the player as present without an appearance. `presence` here
+    is validated presence only (see `parse_box_score_players`): an
+    athlete entry with absent/truncated stats never reaches it, so it
+    can never certify a zero. When the locked game has no evidence for
+    the player at all, the row is missing evidence: no other game is
+    ever substituted.
     """
     if locked_game:
         locked_id = str(locked_game)
@@ -361,10 +472,11 @@ def main():
             completed = (event.get("status") or {}).get("type", {}).get("completed")
             events[(date, abbr["away"], abbr["home"])] = (event["id"], completed)
 
-    # lines[game_id][sleeper_player_id] = stat line (minutes > 0 only);
-    # presence[game_id] = every mapped player the box score records at all
-    # (including DNP / 0-minute rows), so a locked game's non-appearance
-    # can be told apart from missing evidence.
+    # lines[game_id][sleeper_player_id] = validated stat line (minutes
+    # > 0 only); presence[game_id] = validated presence only (explicit
+    # DNP, or a complete stat line including a zero-minutes one), so a
+    # locked game's proven non-appearance can be told apart from missing
+    # or truncated evidence.
     lines = {}
     presence = {}
     for game in week_games:
@@ -386,39 +498,13 @@ def main():
                      f"{game['game_id']} is not final; refusing to "
                      "generate from an in-progress game")
         team_boxes = (summary.get("boxscore") or {}).get("players") or []
-        if len(team_boxes) < 2:
+        try:
+            per, present = parse_box_score_players(team_boxes,
+                                                   espn_to_sleeper)
+        except ValueError as err:
             sys.exit(f"ESPN summary for event {event_id} has no complete "
-                     "box score; refusing to generate from partial data")
-        per = {}
-        present = set()
-        for team in team_boxes:
-            for stat in team.get("statistics", []):
-                keys = stat.get("keys", [])
-                for athlete in stat.get("athletes", []):
-                    sleeper_id = espn_to_sleeper.get(str(athlete["athlete"]["id"]))
-                    if not sleeper_id:
-                        continue
-                    present.add(sleeper_id)
-                    if athlete.get("didNotPlay"):
-                        continue
-                    raw = dict(zip(keys, athlete.get("stats", [])))
-
-                    def num(key):
-                        value = raw.get(key)
-                        return float(value) if value not in (None, "", "--") else 0.0
-
-                    def made(key):
-                        return float(str(raw.get(key) or "0-0").split("-")[0])
-
-                    if num("minutes") <= 0:
-                        continue
-                    per[sleeper_id] = {
-                        "min": num("minutes"), "pts": num("points"),
-                        "reb": num("rebounds"), "ast": num("assists"),
-                        "stl": num("steals"), "blk": num("blocks"),
-                        "to": num("turnovers"),
-                        "tpm": made("threePointFieldGoalsMade-threePointFieldGoalsAttempted"),
-                    }
+                     f"box score ({err}); refusing to generate from "
+                     "partial data")
         if not per:
             sys.exit(f"ESPN summary for event {event_id} produced no "
                      "player lines; refusing to generate from partial data")
@@ -517,6 +603,125 @@ def run_self_tests():
             self.assertFalse(team["evidenceComplete"])
             self.assertEqual(team["status"], "unreconciled")
 
+    class BoxScoreParsing(unittest.TestCase):
+        """Raw-summary fixtures: the parser, not a preconstructed presence
+        set, decides what is proven — that is where the P2 lived."""
+        KEYS = ["minutes", "points",
+                "fieldGoalsMade-fieldGoalsAttempted",
+                "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+                "freeThrowsMade-freeThrowsAttempted",
+                "rebounds", "assists", "turnovers", "steals", "blocks",
+                "offensiveRebounds", "defensiveRebounds", "fouls",
+                "plusMinus"]
+        ID_MAP = {"e1": "p1", "e2": "p2"}
+
+        def stats(self, minutes="30", points="10", reb="5", ast="3",
+                  to="1", stl="1", blk="0", tpm="2-5"):
+            return [minutes, points, "4-9", tpm, "0-0", reb, ast, to,
+                    stl, blk, "1", "4", "2", "+3"]
+
+        def team(self, athletes, keys=None):
+            return {"statistics": [
+                {"keys": self.KEYS if keys is None else keys,
+                 "athletes": athletes}]}
+
+        def athlete(self, espn_id, stats, dnp=False):
+            return {"athlete": {"id": espn_id}, "didNotPlay": dnp,
+                    "stats": stats}
+
+        def boxes(self, p1_stats, dnp=False):
+            return [self.team([self.athlete("e1", p1_stats, dnp)]),
+                    self.team([self.athlete("e2", self.stats())])]
+
+        def picked_for_lock(self, per, present):
+            return select_counted_game_for_player(
+                "p1", [], "g1", {"g1": per}, {"g1": present}, settings)
+
+        def test_missing_minutes_value_is_unproven(self):
+            per, present = parse_box_score_players(
+                self.boxes(self.stats(minutes="")), self.ID_MAP)
+            self.assertNotIn("p1", present)
+            self.assertNotIn("p1", per)
+            self.assertIn("p2", per)  # the valid athlete still parses
+            picked = self.picked_for_lock(per, present)
+            self.assertTrue(picked["missingLockEvidence"])
+            self.assertIsNone(picked["countedPoints"])
+
+        def test_placeholder_minutes_is_unproven(self):
+            # The traced counterexample shape: minutes recorded as "--"
+            # with the rest of the row placeholders, didNotPlay false.
+            stats = ["--"] * len(self.KEYS)
+            per, present = parse_box_score_players(
+                self.boxes(stats), self.ID_MAP)
+            self.assertNotIn("p1", present)
+            picked = self.picked_for_lock(per, present)
+            self.assertTrue(picked["missingLockEvidence"])
+
+        def test_truncated_stat_line_is_unproven(self):
+            per, present = parse_box_score_players(
+                self.boxes(self.stats()[:3]), self.ID_MAP)
+            self.assertNotIn("p1", present)
+            self.assertNotIn("p1", per)
+            picked = self.picked_for_lock(per, present)
+            self.assertTrue(picked["missingLockEvidence"])
+
+        def test_missing_counting_field_is_unproven(self):
+            per, present = parse_box_score_players(
+                self.boxes(self.stats(points="")), self.ID_MAP)
+            self.assertNotIn("p1", present)
+            self.assertNotIn("p1", per)
+            picked = self.picked_for_lock(per, present)
+            self.assertTrue(picked["missingLockEvidence"])
+
+        def test_absent_counting_key_is_unproven(self):
+            keys = [k for k in self.KEYS if k != "steals"]
+            stats = self.stats()
+            del stats[self.KEYS.index("steals")]
+            boxes = [self.team([self.athlete("e1", stats)], keys=keys),
+                     self.team([self.athlete("e2", self.stats())])]
+            per, present = parse_box_score_players(boxes, self.ID_MAP)
+            self.assertNotIn("p1", present)
+            self.assertNotIn("p1", per)
+
+        def test_complete_zero_line_certifies_a_proven_zero(self):
+            zero = self.stats(minutes="0", points="0", reb="0", ast="0",
+                              to="0", stl="0", blk="0", tpm="0-0")
+            per, present = parse_box_score_players(
+                self.boxes(zero), self.ID_MAP)
+            self.assertIn("p1", present)
+            self.assertNotIn("p1", per)  # recorded, but never appeared
+            picked = self.picked_for_lock(per, present)
+            self.assertEqual(picked["countedPoints"], 0.0)
+            self.assertEqual(picked["countedGameId"], "g1")
+            self.assertFalse(picked["missingLockEvidence"])
+
+        def test_explicit_dnp_certifies_a_proven_zero(self):
+            per, present = parse_box_score_players(
+                self.boxes([], dnp=True), self.ID_MAP)
+            self.assertIn("p1", present)
+            picked = self.picked_for_lock(per, present)
+            self.assertEqual(picked["countedPoints"], 0.0)
+            self.assertFalse(picked["missingLockEvidence"])
+
+        def test_valid_line_parses_into_a_line(self):
+            per, present = parse_box_score_players(
+                self.boxes(self.stats()), self.ID_MAP)
+            self.assertIn("p1", present)
+            self.assertEqual(per["p1"]["pts"], 10.0)
+            self.assertEqual(per["p1"]["tpm"], 2.0)
+            picked = self.picked_for_lock(per, present)
+            self.assertFalse(picked["missingLockEvidence"])
+            self.assertIsNotNone(picked["countedPoints"])
+
+        def test_one_empty_team_fails_coverage(self):
+            valid = self.team([self.athlete("e2", self.stats())])
+            with self.assertRaises(ValueError):
+                parse_box_score_players([valid, {"statistics": []}],
+                                        self.ID_MAP)
+            with self.assertRaises(ValueError):
+                parse_box_score_players(
+                    [valid, self.team([])], self.ID_MAP)
+
     class ResidualClassification(unittest.TestCase):
         def test_bands(self):
             self.assertEqual(classify_residual(0.0), "verified")
@@ -545,8 +750,8 @@ def run_self_tests():
 
     suite = unittest.TestSuite()
     loader = unittest.TestLoader()
-    for case in (CountedGameSelection, ResidualClassification,
-                 WindowAndCompletion):
+    for case in (CountedGameSelection, BoxScoreParsing,
+                 ResidualClassification, WindowAndCompletion):
         suite.addTests(loader.loadTestsFromTestCase(case))
     result = unittest.TextTestRunner(verbosity=2).run(suite)
     return 0 if result.wasSuccessful() else 1
