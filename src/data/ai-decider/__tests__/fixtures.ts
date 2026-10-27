@@ -87,6 +87,10 @@ export class TestPersistence implements AiPersistence {
     if (series.some(r => r.evidenceHash === revision.evidenceHash)) return false;
     const head = series[series.length - 1] ?? null;
     if ((head?.revisionId ?? null) !== (revision.supersedes ?? null)) return false;
+    // Monotonic observation rule: a strictly fresher current selection
+    // refuses a delayed writer's older-evidence publication outright.
+    const cur = this.forecastCurrent.get(key);
+    if (cur && Date.parse(cur.observedAt) > Date.parse(observedAt)) return false;
     series.push(structuredClone(revision));
     this.forecasts.set(key, series);
     this.forecastCurrent.set(key, { weekKey: key, revisionId: revision.revisionId, evidenceHash: revision.evidenceHash, observedAt });
@@ -94,11 +98,28 @@ export class TestPersistence implements AiPersistence {
   }
   async markForecastCurrent(key: string, revisionId: string, evidenceHash: string, observedAt: string) {
     const stored = (this.forecasts.get(key) ?? []).find(r => r.revisionId === revisionId);
-    if (!stored || stored.evidenceHash !== evidenceHash) return false;
+    if (!stored || stored.evidenceHash !== evidenceHash) return "missing" as const;
+    const cur = this.forecastCurrent.get(key);
+    if (cur && Date.parse(cur.observedAt) > Date.parse(observedAt)) {
+      return cur.revisionId === revisionId && cur.evidenceHash === evidenceHash ? "current" as const : "stale" as const;
+    }
     this.forecastCurrent.set(key, { weekKey: key, revisionId, evidenceHash, observedAt });
-    return true;
+    return "moved" as const;
   }
   async getForecastCurrent(key: string) { return structuredClone(this.forecastCurrent.get(key) ?? null); }
+  /** Test hook: the next N joined reads simulate a torn snapshot — the pointer is visible but its revision is not — as a non-joining store could observe mid-publication. */
+  tornForecastReads = 0;
+  async getForecastCurrentRevision(key: string) {
+    const pointer = this.forecastCurrent.get(key);
+    if (!pointer) return null;
+    const series = this.forecasts.get(key) ?? [];
+    if (this.tornForecastReads > 0) {
+      this.tornForecastReads--;
+      return { pointer: structuredClone(pointer), revision: null, revisionCount: series.length };
+    }
+    const revision = series.find(r => r.revisionId === pointer.revisionId) ?? null;
+    return { pointer: structuredClone(pointer), revision: structuredClone(revision), revisionCount: series.length };
+  }
 }
 
 export function weeklyInput(): AiWeeklyInput & { startsAt: string; endsAt: string } {

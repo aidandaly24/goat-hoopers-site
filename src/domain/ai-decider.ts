@@ -275,6 +275,15 @@ export type AiForecastRevision = {
  * hit that appends nothing, so public selection always agrees with what
  * the refresh path considers current (an A → B → A evidence recurrence
  * presents A again, not the last-inserted B).
+ *
+ * Pointer moves are monotonic in evidence observation time: `observedAt`
+ * records when the setting refresh observed its evidence, a move applies
+ * only when the incoming observation is at least as fresh as the stored
+ * one (ties resolve by store serialization order), and a delayed writer
+ * carrying strictly older evidence converges on the current selection
+ * instead of regressing it. A re-observation of an old revision carries
+ * a FRESH `observedAt` — revision age is not observation age — so the
+ * A → B → A recurrence above is a fresh move, not a stale one.
  */
 export type AiForecastCurrentPointer = {
   weekKey: string;

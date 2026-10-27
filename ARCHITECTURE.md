@@ -1397,7 +1397,12 @@ migration's unique indexes cap the supersedes chain at one child per
 revision), and a per-week current pointer in `ai_decider_forecast_current`
 — re-observed on every refresh outcome, dedupe hits included — is what
 public reads select through, so selection never disagrees with refresh
-semantics after an evidence recurrence. Revisions persist append-only in `ai_decider_forecasts`
+semantics after an evidence recurrence. Pointer moves are monotonic in
+evidence observation time (a delayed writer carrying strictly older
+evidence converges on the current selection instead of regressing it;
+ties break by store serialization order), and public reads join the
+pointer to its revision in one statement, re-reading once to reconcile
+before a dangling pointer may fail closed. Revisions persist append-only in `ai_decider_forecasts`
 (additive `migrations/ai-decider-forecast.sql`, separately reviewed, not
 applied by this change). `GET /api/ai-decides/forecast` is the daily Vercel
 cron under the same CRON_SECRET/weekly-operator identity as the weekly job;

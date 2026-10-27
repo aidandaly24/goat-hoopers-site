@@ -483,6 +483,28 @@ times before failing closed. Concurrent cron and manual refreshes with
 different evidence therefore resolve into one linear chain, and the
 pointer ends on the chain head.
 
+Pointer moves are **monotonic in evidence observation time**. The
+pointer records the `observedAt` of the refresh that set it, and a move
+applies only when the incoming refresh observed its evidence at or
+after that stored time — on BOTH pointer paths (the publication CAS and
+the dedupe re-observation). A delayed writer carrying strictly older
+evidence (a slow evaluator finishing after a fresher refresh published,
+a queued cron draining late) therefore cannot regress public selection:
+its publication does not land, its re-observation is refused, and the
+refresh *converges* — it returns the revision the pointer currently
+names as its result instead of erroring or publishing over it. Ties
+(equal `observedAt`) break by store serialization order — the
+later-completing refresh wins — which can never resurrect strictly
+older evidence. The rule keys on observation, not revision age: a
+genuine A → B → A recurrence re-observes A *fresh*, so the pointer
+legitimately moves back to A; only a writer whose observation itself is
+old is refused. Public reads are likewise consistent: the store joins
+the pointer to its revision in a single statement (one snapshot), and
+any read that cannot see the named revision re-reads once and
+reconciles before it may declare the pointer corrupt — a genuinely
+dangling pointer still fails closed, but only after the confirming
+re-read also dangles.
+
 ### Lock-in math and provenance
 
 Every starter slot contributes exactly one counted game. Per slot the

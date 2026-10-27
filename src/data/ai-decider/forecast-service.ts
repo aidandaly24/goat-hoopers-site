@@ -5,7 +5,7 @@ import { aiDataDeadline } from "./deadline";
 import { loadAiForecastContext, loadAiForecastInput, type AiForecastContext } from "./forecast-evidence";
 import { buildForecastRevision, computeForecastTeamLine, forecastDecision, forecastEvidenceHash, forecastWeekUnderway, validForecastInput, validForecastRevision, type AiForecastInput } from "./forecast";
 import { availability, evaluate, failure, resolveAiIdentity, type AiRuntime } from "./service";
-import { validAiIdentity, type AiIdentity } from "./store";
+import { validAiIdentity, type AiIdentity, type AiPersistence } from "./store";
 import { AI_LIMITS, exactKeys, isRecord, readAiBody } from "./validation";
 import { inputTokenReservation } from "./provider";
 import { weekKey } from "./weekly";
@@ -31,15 +31,35 @@ const readyState = (revision: AiForecastRevision, revisionCount: number): AiFore
 /** Public read: the week's current revision and the series size. Never generates. */
 export async function loadAiForecastState(runtime: AiRuntime, key: string): Promise<AiForecastState> {
   if (!runtime.store) return unavailableState("The forecast store is unavailable.");
-  const series = await runtime.store.persistence.getForecasts(key);
-  if (series.length === 0) return unavailableState("No in-season forecast has been published for this week yet.");
+  const persistence = runtime.store.persistence;
   // Public selection goes through the recorded current pointer, never
   // insertion order: after evidence recurs (A → B → A) the pointer names
   // A again although B was inserted later, so the public read agrees
-  // with what the refresh path considers current. A series with no
-  // pointer recorded yet falls back to its latest revision; a pointer
-  // naming no stored revision is corrupt and fails closed.
-  const pointer = await runtime.store.persistence.getForecastCurrent(key);
+  // with what the refresh path considers current.
+  //
+  // The read is CONSISTENT: the store joins the pointer to the revision
+  // it names in one statement (one snapshot), so a publication landing
+  // mid-read can never tear the pair and masquerade as corruption. A
+  // joined read whose revision half is missing is either such a torn
+  // snapshot (a store that cannot join atomically) or a genuinely
+  // dangling pointer — indistinguishable on one read — so the read is
+  // confirmed ONCE more and reconciled; only a confirming re-read that
+  // also dangles fails closed as corrupt.
+  for (let read = 0; read < 2; read++) {
+    const joined = await persistence.getForecastCurrentRevision(key);
+    if (!joined) break;
+    const { pointer, revision } = joined;
+    if (pointer.weekKey === key && revision && revision.evidenceHash === pointer.evidenceHash) {
+      if (!validForecastRevision(revision) || weekKey(revision) !== key) return unavailableState("The stored forecast revision could not be validated.");
+      return readyState(revision, joined.revisionCount);
+    }
+    if (read === 1) return unavailableState("The stored forecast revision could not be validated.");
+  }
+  // No pointer recorded yet: fall back to the series itself (its latest
+  // revision), preserving the pre-pointer read contract.
+  const series = await persistence.getForecasts(key);
+  if (series.length === 0) return unavailableState("No in-season forecast has been published for this week yet.");
+  const pointer = await persistence.getForecastCurrent(key);
   let current: AiForecastRevision | undefined;
   if (pointer) {
     current = pointer.weekKey === key ? series.find(r => r.revisionId === pointer.revisionId && r.evidenceHash === pointer.evidenceHash) : undefined;
@@ -52,13 +72,35 @@ export async function loadAiForecastState(runtime: AiRuntime, key: string): Prom
 }
 
 /**
+ * Convergence for a writer that lost the pointer's monotonic race: its
+ * evidence was observed strictly before the current selection was, so
+ * its refresh result IS the current revision — the freshest recorded
+ * selection — never its own older-evidence revision and never a
+ * spurious error. Null when the current selection cannot be read back
+ * as a valid revision for this week; the caller then fails closed.
+ */
+async function convergeToCurrent(persistence: AiPersistence, key: string): Promise<AiForecastRefreshResponse | null> {
+  const pointer = await persistence.getForecastCurrent(key);
+  if (!pointer || pointer.weekKey !== key) return null;
+  const series = await persistence.getForecasts(key);
+  const current = series.find(r => r.revisionId === pointer.revisionId && r.evidenceHash === pointer.evidenceHash);
+  if (!current || !validForecastRevision(current) || weekKey(current) !== key) return null;
+  return { status: "ready", forecast: readyState(current, series.length) };
+}
+
+/**
  * One refresh attempt. Identical evidence returns the stored revision
  * without provider spend (dedupe); a genuinely changed evidence state
  * appends exactly one new revision through the existing budget/lease
  * overlap protection, and a lost publication race converges on the
  * winner. Every outcome — dedupe hit included — re-observes the
  * resolved revision as the week's current selection, so the public
- * read through the pointer always agrees with this resolution.
+ * read through the pointer always agrees with this resolution —
+ * subject to the pointer's monotonic observation rule: a DELAYED
+ * refresh whose evidence was observed strictly before the current
+ * selection was observed (a slow evaluator, a queued cron) cannot
+ * regress the pointer to its older evidence on either path; it
+ * converges on the current revision and returns it as its result.
  */
 export async function refreshForecast(identity: AiIdentity, runtime: AiRuntime, sources: AiForecastSources = forecastSources): Promise<AiForecastRefreshResponse> {
   if (!validAiIdentity(identity)) return failure("unauthenticated", "sign_in_required", "A validated forecast identity is required.");
@@ -83,9 +125,20 @@ export async function refreshForecast(identity: AiIdentity, runtime: AiRuntime, 
     // pointer moves back to it, so public reads present it too.
     const existing = await persistence.getForecastByEvidenceHash(key, evidenceHash);
     if (existing && validForecastRevision(existing) && weekKey(existing) === key) {
-      if (!(await persistence.markForecastCurrent(key, existing.revisionId, existing.evidenceHash, observedAt))) return failure("unavailable", "forecast_unavailable", "The forecast revision could not be safely recorded.");
-      const series = await persistence.getForecasts(key);
-      return { status: "ready", forecast: readyState(existing, series.length) };
+      const mark = await persistence.markForecastCurrent(key, existing.revisionId, existing.evidenceHash, observedAt);
+      if (mark === "moved" || mark === "current") {
+        const series = await persistence.getForecasts(key);
+        return { status: "ready", forecast: readyState(existing, series.length) };
+      }
+      // "stale": a strictly fresher observation is already current —
+      // this delayed re-observation converges on it rather than
+      // dragging selection back to older evidence. "missing" (the
+      // stored revision vanished under us) fails closed.
+      if (mark === "stale") {
+        const converged = await convergeToCurrent(persistence, key);
+        if (converged) return converged;
+      }
+      return failure("unavailable", "forecast_unavailable", "The forecast revision could not be safely recorded.");
     }
     const safety = createHash("sha256").update(`goat-ai:${identity.userId}`).digest("hex");
     const decision = forecastDecision(input, lines, safety);
@@ -104,7 +157,10 @@ export async function refreshForecast(identity: AiIdentity, runtime: AiRuntime, 
     // it (the evaluation results are reused — no extra provider spend)
     // and retries, so the series stays one linear chain and the
     // pointer ends on the chain head. A concurrent same-evidence
-    // refresh converges on the stored revision for this evidence.
+    // refresh converges on the stored revision for this evidence. The
+    // CAS is also gated on the pointer's monotonic rule: a refresh
+    // whose evidence was observed strictly before the current
+    // selection's observation never lands at all — it converges below.
     let predecessor = await persistence.getLatestForecast(key);
     for (let attempt = 0; attempt < 3; attempt++) {
       const revision = buildForecastRevision(input, lines, response.results, observedAt, predecessor && validForecastRevision(predecessor) ? predecessor.revisionId : null);
@@ -117,9 +173,27 @@ export async function refreshForecast(identity: AiIdentity, runtime: AiRuntime, 
       }
       const stored = await persistence.getForecastByEvidenceHash(key, evidenceHash);
       if (stored && validForecastRevision(stored) && weekKey(stored) === key) {
-        if (!(await persistence.markForecastCurrent(key, stored.revisionId, stored.evidenceHash, observedAt))) return failure("unavailable", "forecast_unavailable", "The forecast revision could not be safely recorded.");
-        const series = await persistence.getForecasts(key);
-        return { status: "ready", forecast: readyState(stored, series.length) };
+        const mark = await persistence.markForecastCurrent(key, stored.revisionId, stored.evidenceHash, observedAt);
+        if (mark === "moved" || mark === "current") {
+          const series = await persistence.getForecasts(key);
+          return { status: "ready", forecast: readyState(stored, series.length) };
+        }
+        if (mark === "stale") {
+          const converged = await convergeToCurrent(persistence, key);
+          if (converged) return converged;
+        }
+        return failure("unavailable", "forecast_unavailable", "The forecast revision could not be safely recorded.");
+      }
+      // Nothing for this evidence landed. If a strictly fresher
+      // observation is already current, this refresh's evidence is
+      // stale: rebuilding on the new chain head cannot make it fresh
+      // (the delayed-evaluator race), so converge on the current
+      // selection instead of appending over it or failing spuriously.
+      const pointer = await persistence.getForecastCurrent(key);
+      if (pointer && Date.parse(pointer.observedAt) > Date.parse(observedAt)) {
+        const converged = await convergeToCurrent(persistence, key);
+        if (converged) return converged;
+        return failure("unavailable", "forecast_unavailable", "The forecast revision could not be safely recorded.");
       }
       predecessor = await persistence.getLatestForecast(key);
     }

@@ -645,7 +645,7 @@ describe("actual PostgreSQL forecast series", () => {
     // Evidence recurs to A: the refresh outcome re-observes A (the dedupe
     // hit appends nothing). Insertion order still ends at B — the public
     // read must present A anyway, by revision id AND evidence hash.
-    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, at(3))).toBe(true);
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, at(3))).toBe("moved");
     expect((await p.getLatestForecast(KEY))!.revisionId).toBe(b.revisionId);
     state = await loadAiForecastState(h.runtime, KEY);
     expect(state.status).toBe("ready");
@@ -661,6 +661,49 @@ describe("actual PostgreSQL forecast series", () => {
     expect(state.revisionCount).toBe(3);
     expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(c.revisionId);
     expect((await p.getForecasts(KEY)).map(r => r.supersedes)).toEqual([null, a.revisionId, b.revisionId]);
+  });
+  it("monotonic pointer: strictly-older moves are refused at the SQL layer on both paths; a fresh re-observation still moves the pointer back", async () => {
+    const p = persistence();
+    const at = (s: number) => new Date(NOW + s * 1000).toISOString();
+    const a = rev("a".repeat(64), "1".repeat(64), 1), b = rev("b".repeat(64), "2".repeat(64), 2, a.revisionId);
+    expect(await p.publishForecast(KEY, a, at(10))).toBe(true);
+    expect(await p.publishForecast(KEY, b, at(20))).toBe(true);
+    // Delayed dedupe re-observation of A carrying an older observation
+    // time: refused as stale, pointer and timestamp unmoved.
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, at(15))).toBe("stale");
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(b.revisionId);
+    expect((await p.getForecastCurrent(KEY))!.observedAt).toBe(at(20));
+    // Delayed publication of new evidence on the chain head, also
+    // carrying an older observation time: refused outright — no append.
+    const d = rev("d".repeat(64), "4".repeat(64), 4, b.revisionId);
+    expect(await p.publishForecast(KEY, d, at(18))).toBe(false);
+    expect((await p.getForecasts(KEY)).map(r => r.revisionId)).toEqual([a.revisionId, b.revisionId]);
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(b.revisionId);
+    // Marking an unknown revision reports missing; marking the current
+    // revision with an older time reports current and writes nothing.
+    expect(await p.markForecastCurrent(KEY, "f".repeat(64), "9".repeat(64), at(30))).toBe("missing");
+    expect(await p.markForecastCurrent(KEY, b.revisionId, b.evidenceHash, at(19))).toBe("current");
+    expect((await p.getForecastCurrent(KEY))!.observedAt).toBe(at(20));
+    // A FRESH re-observation of A (newer observed_at) legitimately
+    // moves the pointer back — revision age is not observation age.
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, at(30))).toBe("moved");
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(a.revisionId);
+    // The joined consistent read agrees, with the series count.
+    const joined = await p.getForecastCurrentRevision(KEY);
+    expect(joined!.pointer.revisionId).toBe(a.revisionId);
+    expect(joined!.revision!.revisionId).toBe(a.revisionId);
+    expect(joined!.revisionCount).toBe(2);
+  });
+  it("consistent read contract: no pointer yet reads as null, and the joined read returns the named revision from one snapshot", async () => {
+    const p = persistence();
+    expect(await p.getForecastCurrentRevision(KEY)).toBeNull();
+    const at = new Date(NOW).toISOString();
+    const a = rev("a".repeat(64), "1".repeat(64), 1);
+    expect(await p.publishForecast(KEY, a, at)).toBe(true);
+    const joined = await p.getForecastCurrentRevision(KEY);
+    expect(joined!.pointer).toMatchObject({ weekKey: KEY, revisionId: a.revisionId, evidenceHash: a.evidenceHash });
+    expect(joined!.revision).toEqual(a);
+    expect(joined!.revisionCount).toBe(1);
   });
   it("concurrent different-evidence publications serialize into one linear chain with the pointer on the head", async () => {
     const p1 = persistence(), p2 = persistence();

@@ -55,3 +55,16 @@ CREATE TABLE ai_decider_forecast_current (
   observed_at timestamptz NOT NULL,
   FOREIGN KEY (week_key, revision_id) REFERENCES ai_decider_forecasts (week_key, revision_id)
 );
+-- Monotonic observation rule (enforced by the store's pointer writes,
+-- keyed on this table's observed_at — no extra column is needed, since
+-- observed_at already records the evidence-observation time of the
+-- refresh that set the pointer): a pointer move applies only when the
+-- incoming refresh observed its evidence at or after the stored
+-- observed_at, so a delayed writer carrying strictly older evidence can
+-- never regress public selection to a superseded state; the stale
+-- writer converges on the current revision instead of publishing over
+-- it. Ties (equal observed_at) resolve by store serialization order —
+-- the later-completing refresh wins — which cannot resurrect strictly
+-- older evidence. A dedupe re-observation of an old revision carries a
+-- FRESH observed_at: revision age is not observation age, so a genuine
+-- A → B → A recurrence still moves the pointer back to A.

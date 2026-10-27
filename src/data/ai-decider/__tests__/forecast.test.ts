@@ -5,7 +5,7 @@ import { AI_FORECAST_PROMPT_VERSION } from "@/domain/ai-decider";
 import { buildForecastRevision, classifyForecastStarter, computeForecastTeamLine, validForecastInput, validForecastRevision, type AiForecastInput, type AiForecastStarterEvidence } from "../forecast";
 import { handleAiForecastCron, handleAiForecastPost, loadAiForecastState, refreshForecast, type AiForecastSources } from "../forecast-service";
 import { canonicalJson, GOAT_LEAGUE_ID } from "../weekly";
-import { harness, identity, NOW, TOKEN, USER } from "./fixtures";
+import { harness, identity, NOW, providerAnswer, TOKEN, USER } from "./fixtures";
 
 const OBS = "2026-10-28T14:55:00.000Z";
 const games = (...points: number[]) => points.map((p, i) => ({ gameId: String(9001 + i), points: p }));
@@ -448,6 +448,131 @@ describe("forecast refresh service", () => {
   });
 });
 
+describe("monotonic current selection: delayed writers converge, never regress", () => {
+  const changedInput = (counted: number, gamesRemaining: number) => {
+    const input = forecastInput();
+    input.teams[0].starters[0] = starter("3000", { countedPoints: counted, playedGames: games(counted), gamesRemaining });
+    input.teams[0].officialPoints = counted;
+    return input;
+  };
+  it("delayed evaluator: a refresh that observed A before B was published cannot regress the pointer — it appends nothing and returns B as its result", async () => {
+    const h = forecastHarness();
+    // T1 observes evidence A at t1; its provider call is gated, so the
+    // refresh completes only after T2 has published fresher evidence.
+    let release!: () => void;
+    const gate = new Promise<void>(resolve => { release = resolve; });
+    let calls = 0;
+    h.create.mockImplementation(async payload => { calls++; if (calls === 1) await gate; return providerAnswer(payload); });
+    const sourcesB: AiForecastSources = { context: vi.fn(async () => context(2)), input: vi.fn(async () => structuredClone(changedInput(41, 0))) };
+    const pendingA = refreshForecast(identity(), h.runtime, h.sources);
+    await vi.waitFor(() => expect(calls).toBe(1));
+    // T2 observes changed evidence B at t2 > t1, evaluates and publishes.
+    h.setTime(NOW + 300000);
+    const resB = await refreshForecast(identity(2), h.runtime, sourcesB);
+    expect(resB.status).toBe("ready"); if (resB.status !== "ready") throw new Error("fixture");
+    const bId = resB.forecast.revision!.revisionId;
+    expect((await loadAiForecastState(h.runtime, KEY)).revision!.revisionId).toBe(bId);
+    // T1's evaluator finally returns. Its evidence was observed at t1 —
+    // strictly older than the current selection — so its publication is
+    // refused by the monotonic rule (rebuilding on the new head cannot
+    // make old evidence fresh) and the refresh converges on B.
+    release();
+    const resA = await pendingA;
+    expect(resA.status).toBe("ready"); if (resA.status !== "ready") throw new Error("fixture");
+    expect(resA.forecast.revision!.revisionId).toBe(bId);
+    expect(resA.forecast.revisionCount).toBe(1);
+    // The stale append never landed: the series holds only B.
+    expect((await h.persistence.getForecasts(KEY)).map(r => r.revisionId)).toEqual([bId]);
+    expect(await h.persistence.getForecastCurrent(KEY)).toMatchObject({ revisionId: bId, observedAt: new Date(NOW + 300000).toISOString() });
+    expect((await loadAiForecastState(h.runtime, KEY)).revision!.revisionId).toBe(bId);
+    expect(calls).toBe(2);
+  });
+  it("delayed dedupe: an older re-observation of A completing after B became current converges on B — public stays B, nothing appended, nothing spent", async () => {
+    const h = forecastHarness();
+    const first = await refreshForecast(identity(), h.runtime, h.sources);
+    if (first.status !== "ready") throw new Error("fixture");
+    const aId = first.forecast.revision!.revisionId;
+    h.sources.input = vi.fn(async () => structuredClone(changedInput(41, 0)));
+    h.setTime(NOW + 120000);
+    const second = await refreshForecast(identity(), h.runtime, h.sources);
+    if (second.status !== "ready") throw new Error("fixture");
+    const bId = second.forecast.revision!.revisionId;
+    expect(bId).not.toBe(aId);
+    // A delayed writer now re-observes A, but its observation time is
+    // older than B's: the dedupe hit resolves to A, yet the pointer
+    // refuses the move and the refresh returns B as its result.
+    h.sources.input = vi.fn(async () => structuredClone(forecastInput()));
+    h.setTime(NOW + 60000);
+    const delayed = await refreshForecast(identity(), h.runtime, h.sources);
+    expect(delayed.status).toBe("ready"); if (delayed.status !== "ready") throw new Error("fixture");
+    expect(delayed.forecast.revision!.revisionId).toBe(bId);
+    expect(delayed.forecast.revisionCount).toBe(2);
+    expect(h.create).toHaveBeenCalledTimes(2);
+    expect((await h.persistence.getForecasts(KEY)).length).toBe(2);
+    expect(await h.persistence.getForecastCurrent(KEY)).toMatchObject({ revisionId: bId, observedAt: new Date(NOW + 120000).toISOString() });
+    expect((await loadAiForecastState(h.runtime, KEY)).revision!.revisionId).toBe(bId);
+  });
+  it("delayed B writer completing after a FRESH A → B → A re-observation converges on A: public stays A and the writer returns A as its result", async () => {
+    const h = forecastHarness();
+    const first = await refreshForecast(identity(), h.runtime, h.sources);
+    if (first.status !== "ready") throw new Error("fixture");
+    const aId = first.forecast.revision!.revisionId;
+    h.sources.input = vi.fn(async () => structuredClone(changedInput(41, 0)));
+    h.setTime(NOW + 120000);
+    const second = await refreshForecast(identity(), h.runtime, h.sources);
+    if (second.status !== "ready") throw new Error("fixture");
+    const bId = second.forecast.revision!.revisionId;
+    // Evidence recurs to A and is observed FRESH (t3): the pointer
+    // legitimately moves back to A — revision age is not observation age.
+    h.sources.input = vi.fn(async () => structuredClone(forecastInput()));
+    h.setTime(NOW + 240000);
+    const third = await refreshForecast(identity(), h.runtime, h.sources);
+    if (third.status !== "ready") throw new Error("fixture");
+    expect(third.forecast.revision!.revisionId).toBe(aId);
+    expect(await h.persistence.getForecastCurrent(KEY)).toMatchObject({ revisionId: aId, observedAt: new Date(NOW + 240000).toISOString() });
+    // Now a delayed writer carrying B-era evidence with an OLDER
+    // observation time (t2 < its time < t3) completes. It must not move
+    // the pointer off fresh-A, and it returns A as its refresh result.
+    h.sources.input = vi.fn(async () => structuredClone(changedInput(41, 0)));
+    h.setTime(NOW + 180000);
+    const delayed = await refreshForecast(identity(), h.runtime, h.sources);
+    expect(delayed.status).toBe("ready"); if (delayed.status !== "ready") throw new Error("fixture");
+    expect(delayed.forecast.revision!.revisionId).toBe(aId);
+    expect(delayed.forecast.revision!.revisionId).not.toBe(bId);
+    expect(h.create).toHaveBeenCalledTimes(2);
+    expect((await h.persistence.getForecasts(KEY)).length).toBe(2);
+    expect(await h.persistence.getForecastCurrent(KEY)).toMatchObject({ revisionId: aId, observedAt: new Date(NOW + 240000).toISOString() });
+    expect((await loadAiForecastState(h.runtime, KEY)).revision!.revisionId).toBe(aId);
+  });
+});
+
+describe("public read consistency", () => {
+  it("an untorn public read is a single consistent joined read", async () => {
+    const h = forecastHarness();
+    const response = await refreshForecast(identity(), h.runtime, h.sources);
+    if (response.status !== "ready") throw new Error("fixture");
+    const spy = vi.spyOn(h.persistence, "getForecastCurrentRevision");
+    const state = await loadAiForecastState(h.runtime, KEY);
+    expect(state.status).toBe("ready");
+    expect(state.revision!.revisionId).toBe(response.forecast.revision!.revisionId);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it("a torn read (pointer visible before its revision, mid-publication) reconciles on the confirming re-read — no false corruption verdict", async () => {
+    const h = forecastHarness();
+    const response = await refreshForecast(identity(), h.runtime, h.sources);
+    if (response.status !== "ready") throw new Error("fixture");
+    const spy = vi.spyOn(h.persistence, "getForecastCurrentRevision");
+    // The first snapshot tears: the pointer is visible but the revision
+    // it names is not (as a split read could observe mid-publication).
+    h.persistence.tornForecastReads = 1;
+    const state = await loadAiForecastState(h.runtime, KEY);
+    expect(state.status).toBe("ready");
+    expect(state.revision!.revisionId).toBe(response.forecast.revision!.revisionId);
+    expect(state.revisionCount).toBe(1);
+    expect(spy).toHaveBeenCalledTimes(2);
+  });
+});
+
 describe("publication contract: chain-head CAS and the current pointer", () => {
   const revisionFor = (input: AiForecastInput, supersedes: string | null) => buildForecastRevision(
     input, input.teams.map(t => computeForecastTeamLine(t, input.capturedAt)), input.matchups.map(() => null), OBS, supersedes);
@@ -479,18 +604,88 @@ describe("publication contract: chain-head CAS and the current pointer", () => {
     expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(b.revisionId);
     // Re-observation (the dedupe hit) moves the pointer back to A
     // without appending; an unknown revision can never become current.
-    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, OBS)).toBe(true);
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, OBS)).toBe("moved");
     expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(a.revisionId);
     expect((await p.getForecasts(KEY)).length).toBe(2);
-    expect(await p.markForecastCurrent(KEY, "f".repeat(64), a.evidenceHash, OBS)).toBe(false);
-    expect(await p.markForecastCurrent(KEY, a.revisionId, "f".repeat(64), OBS)).toBe(false);
+    expect(await p.markForecastCurrent(KEY, "f".repeat(64), a.evidenceHash, OBS)).toBe("missing");
+    expect(await p.markForecastCurrent(KEY, a.revisionId, "f".repeat(64), OBS)).toBe("missing");
   });
-  it("fails the public read closed when the pointer names no stored revision", async () => {
+  it("fails the public read closed when the pointer names no stored revision — only after the confirming re-read also dangles", async () => {
     const h = forecastHarness();
     const response = await refreshForecast(identity(), h.runtime, h.sources);
     if (response.status !== "ready") throw new Error("fixture");
     h.persistence.forecastCurrent.set(KEY, { weekKey: KEY, revisionId: "f".repeat(64), evidenceHash: "e".repeat(64), observedAt: OBS });
+    const spy = vi.spyOn(h.persistence, "getForecastCurrentRevision");
     expect((await loadAiForecastState(h.runtime, KEY)).status).toBe("unavailable");
+    // One consistent read plus exactly one confirming re-read before
+    // the corruption verdict — never a verdict on a single torn read.
+    expect(spy).toHaveBeenCalledTimes(2);
+  });
+  it("monotonic pointer: strictly-older moves are refused on BOTH pointer paths and the pointer never regresses", async () => {
+    const h = harness();
+    const p = h.persistence;
+    const t = (s: number) => new Date(Date.parse(OBS) + s * 1000).toISOString();
+    const a = revisionFor(forecastInput(), null);
+    const b = revisionFor(inputB(), a.revisionId);
+    expect(await p.publishForecast(KEY, a, t(10))).toBe(true);
+    expect(await p.publishForecast(KEY, b, t(20))).toBe(true);
+    expect(await p.getForecastCurrent(KEY)).toEqual({ weekKey: KEY, revisionId: b.revisionId, evidenceHash: b.evidenceHash, observedAt: t(20) });
+    // Delayed dedupe re-observation of A carrying its older observation
+    // time: refused as stale; the pointer stays on B, timestamp intact.
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, t(15))).toBe("stale");
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(b.revisionId);
+    expect((await p.getForecastCurrent(KEY))!.observedAt).toBe(t(20));
+    // Delayed fresh publication of new evidence C on the chain head,
+    // also carrying an older observation time: refused outright — the
+    // append does not land and the pointer does not move.
+    const cInput = forecastInput();
+    cInput.teams[0].starters[0] = starter("3000", { countedPoints: 33, playedGames: games(33), gamesRemaining: 1 });
+    cInput.teams[0].officialPoints = 33;
+    const c = revisionFor(cInput, b.revisionId);
+    expect(await p.publishForecast(KEY, c, t(18))).toBe(false);
+    expect((await p.getForecasts(KEY)).map(r => r.revisionId)).toEqual([a.revisionId, b.revisionId]);
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(b.revisionId);
+    // The same C carrying a fresh observation lands and becomes current.
+    expect(await p.publishForecast(KEY, c, t(30))).toBe(true);
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(c.revisionId);
+    // A FRESH re-observation of A (newer time) still moves the pointer
+    // back: revision age is not observation age.
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, t(40))).toBe("moved");
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(a.revisionId);
+  });
+  it("tie policy: at equal observedAt the later-completing move applies (store serialization order), and an older mark of the already-current revision reports current", async () => {
+    const h = harness();
+    const p = h.persistence;
+    const a = revisionFor(forecastInput(), null);
+    const b = revisionFor(inputB(), a.revisionId);
+    expect(await p.publishForecast(KEY, a, OBS)).toBe(true);
+    // Equal observation time: the chain-extending publish still lands.
+    expect(await p.publishForecast(KEY, b, OBS)).toBe(true);
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(b.revisionId);
+    // Equal observation time: a re-observation still moves the pointer.
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, OBS)).toBe("moved");
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(a.revisionId);
+    // The pointer already names the target at a FRESHER observation:
+    // an older mark writes nothing and reports "current" — selection is
+    // already as asked, and the stored timestamp never moves backward.
+    const later = new Date(Date.parse(OBS) + 60000).toISOString();
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, later)).toBe("moved");
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, OBS)).toBe("current");
+    expect((await p.getForecastCurrent(KEY))!.observedAt).toBe(later);
+  });
+  it("consistent read contract: the joined read returns pointer, named revision and series count from one snapshot — and null before any pointer exists", async () => {
+    const h = harness();
+    const p = h.persistence;
+    expect(await p.getForecastCurrentRevision(KEY)).toBeNull();
+    const a = revisionFor(forecastInput(), null);
+    const b = revisionFor(inputB(), a.revisionId);
+    expect(await p.publishForecast(KEY, a, OBS)).toBe(true);
+    expect(await p.publishForecast(KEY, b, OBS)).toBe(true);
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, OBS)).toBe("moved");
+    const joined = await p.getForecastCurrentRevision(KEY);
+    expect(joined!.pointer).toEqual({ weekKey: KEY, revisionId: a.revisionId, evidenceHash: a.evidenceHash, observedAt: OBS });
+    expect(joined!.revision!.revisionId).toBe(a.revisionId);
+    expect(joined!.revisionCount).toBe(2);
   });
 });
 
