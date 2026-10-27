@@ -2,7 +2,7 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { sql, type SQL } from "drizzle-orm";
 import { getDb, type Db } from "../db";
-import type { AiGenerationManifest, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
+import type { AiForecastRevision, AiGenerationManifest, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
 import { isRecord, uuidValid } from "./validation";
 import { aiDataDeadline } from "./deadline";
 import { refreshStorageKey, WEEK1_REFRESH_KEY, type AiWeek1RefreshPolicy } from "./refresh-policy";
@@ -42,6 +42,10 @@ export type AiPersistence = {
   completeWeekRefresh(hash: string, slate: AiWeeklySlate, identity: AiIdentity): Promise<boolean>;
   completeWeek(key: string, hash: string, slate: AiWeeklySlate): Promise<boolean>;
   recordOutcome(key: string, outcome: AiWeeklyOutcome): Promise<boolean>;
+  /** In-season forecast series (issue #149): append-only; false when this revision id or evidence hash is already stored for the week. */
+  appendForecast(key: string, revision: AiForecastRevision): Promise<boolean>;
+  getForecasts(key: string): Promise<AiForecastRevision[]>;
+  getLatestForecast(key: string): Promise<AiForecastRevision | null>;
 };
 export type AiReservation = { status: "reserved"; leaseId: string } | { status: "disabled" | "rate_limited" | "burst_limited" | "busy" | "duplicate"; retryAfterSeconds?: number };
 const count = (v: unknown): v is number => typeof v === "number" && Number.isSafeInteger(v) && v >= 0;
@@ -265,6 +269,21 @@ export class PostgresAiPersistence implements AiPersistence {
   async recordOutcome(key: string, outcome: AiWeeklyOutcome): Promise<boolean> {
     const result = await this.execute(sql`INSERT INTO ai_decider_outcomes (week_key, matchup_id, outcome) VALUES (${key}, ${outcome.matchupId}, ${JSON.stringify(outcome)}::jsonb) ON CONFLICT (week_key, matchup_id) DO NOTHING RETURNING matchup_id`);
     return result.rows.length === 1;
+  }
+  async appendForecast(key: string, revision: AiForecastRevision): Promise<boolean> {
+    // Either unique key (revision id, or evidence hash within the week)
+    // turns a repeat append into a no-op: overlapping refreshes converge
+    // on one stored revision per evidence state.
+    const result = await this.execute(sql`INSERT INTO ai_decider_forecasts (week_key, revision_id, evidence_hash, revision) VALUES (${key}, ${revision.revisionId}, ${revision.evidenceHash}, ${JSON.stringify(revision)}::jsonb) ON CONFLICT DO NOTHING RETURNING revision_id`);
+    return result.rows.length === 1;
+  }
+  async getForecasts(key: string): Promise<AiForecastRevision[]> {
+    const result = await this.execute(sql`SELECT revision FROM ai_decider_forecasts WHERE week_key = ${key} ORDER BY seq ASC`);
+    return result.rows.map(r => r.revision as AiForecastRevision);
+  }
+  async getLatestForecast(key: string): Promise<AiForecastRevision | null> {
+    const result = await this.execute(sql`SELECT revision FROM ai_decider_forecasts WHERE week_key = ${key} ORDER BY seq DESC LIMIT 1`);
+    return result.rows[0] ? result.rows[0].revision as AiForecastRevision : null;
   }
 }
 

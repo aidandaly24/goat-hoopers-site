@@ -160,7 +160,126 @@ export type AiDecidesData = {
   publicationTarget?: AiPublicationTarget;
   availability: { status: "available" | "unavailable"; code: string; message: string };
   weekly: AiWeeklySlate;
+  /** Latest in-season rolling forecast for the current week, when one exists. */
+  forecast?: AiForecastState;
 };
+
+/* ------------------------------------------------------------------ */
+/* In-season rolling forecast (issue #149). A separately identified    */
+/* mode from the pregame slate: the pregame record and its publication */
+/* window guard are untouched. Each refresh appends one immutable      */
+/* revision; prior revisions are never mutated, so forecast movement   */
+/* stays diffable.                                                     */
+/* ------------------------------------------------------------------ */
+
+export const AI_FORECAST_MODE = "in-season-live" as const;
+export const AI_FORECAST_PROMPT_VERSION = "goat-in-season-forecast-v1";
+/** Projection config identity: one observed-FPPG counting game per open starter. */
+export const AI_FORECAST_CONFIG_VERSION = "observed-fppg-v1" as const;
+
+/** Per-input retrieval evidence. observedAt is retrieval time, never a claimed source update time. */
+export type AiForecastInputFreshness = { source: string; observedAt: string };
+
+/**
+ * A counted-points value with its evidence basis. Exact and estimated
+ * values are NOT interchangeable: exact means two independent sources
+ * agree precisely; estimated means the value is identified only within
+ * the foul-residual band (ESPN box scores do not itemise technical /
+ * flagrant fouls — the band the #190 weekly-evidence receipts disclose).
+ */
+export type AiForecastPoints = { value: number; basis: "exact" | "estimated" };
+
+/**
+ * Per-slot counting-state provenance. A slot's contribution is locked
+ * (explicit lock evidence), final (no lock and no games remaining — its
+ * counted value is determinate), open (unlocked with games remaining —
+ * its currently displayed score may still be replaced), or unknown
+ * (evidence cannot prove the state; never guessed).
+ */
+export type AiForecastSlotState = {
+  playerId: string;
+  state: "locked" | "final" | "open" | "unknown";
+  /** Sleeper game id of the counted game for locked/final slots; null otherwise or when unattributable. */
+  gameId: string | null;
+  /** Counted points for the locked/final slot; null for open slots and unproven values. */
+  countedPoints: number | null;
+  basis: "exact" | "estimated" | "unavailable";
+  /** Evidence feed the determination came from. */
+  source: string;
+  observedAt: string;
+};
+
+export type AiForecastTeamLine = {
+  rosterId: string;
+  /**
+   * Points from slots with explicit lock evidence ONLY. The live team
+   * total is never treated as banked: an unlocked slot's displayed score
+   * may still be replaced. A verified zero (lock coverage proven, no
+   * locks) is { value: 0 } — distinct from null (lock coverage unknown).
+   */
+  lockedPoints: AiForecastPoints | null;
+  /**
+   * Determinate points from slots with no lock and no games remaining:
+   * their final counted values. Kept separate from locked points so the
+   * week can fully resolve at its end without forever-null totals.
+   */
+  finalPoints: AiForecastPoints | null;
+  /**
+   * Projected eventual counted contribution of still-unlocked slots —
+   * exactly ONE counting game per open slot at observed fantasy PPG,
+   * never PPG × remaining games. Explicitly locked slots contribute
+   * zero future projection. Exactly 0 when no slot remains open; null
+   * when an open slot's projection evidence is missing.
+   */
+  projectedRemainingPoints: number | null;
+  /** locked + final + projected, only when all three are known; otherwise null. */
+  totalPoints: number | null;
+  slots: AiForecastSlotState[];
+};
+
+export type AiForecastMatchup = {
+  matchupId: string;
+  teamIds: [string, string];
+  /** Null when the model declined this pairing in this revision. */
+  result: AiDecisionResult | null;
+};
+
+/** One immutable in-season forecast revision in the week's own series. */
+export type AiForecastRevision = {
+  mode: typeof AI_FORECAST_MODE;
+  /** Content-addressed identity of this exact revision. */
+  revisionId: string;
+  leagueId: string;
+  season: string;
+  week: number;
+  /** True as-of time of this refresh. Never backdated. */
+  generatedAt: string;
+  /** The revision this one refreshes, or null for the week's first. */
+  supersedes: string | null;
+  inputFreshness: AiForecastInputFreshness[];
+  teams: AiForecastTeamLine[];
+  matchups: AiForecastMatchup[];
+  /** Model/config identity that produced this revision. */
+  model: string;
+  promptVersion: string;
+  configVersion: string;
+  /** Hash of the evidence the revision was computed from; dedupes refreshes. */
+  evidenceHash: string;
+};
+
+/** Public read state for the current week's forecast series. */
+export type AiForecastState = {
+  status: "ready" | "unavailable";
+  message: string;
+  revision: AiForecastRevision | null;
+  /** Total immutable revisions retained for the week, this one included. */
+  revisionCount: number;
+};
+
+/** Refresh is an operator/scheduler operation; public reads never generate. */
+export type AiForecastRefreshResponse =
+  | { status: "ready"; forecast: AiForecastState }
+  | Exclude<AiDecideResponse, { status: "ready" }>;
 
 /** Inputs retained once per week. No post-cutoff inputs or observed outcomes. */
 export type AiWeeklyInput = {

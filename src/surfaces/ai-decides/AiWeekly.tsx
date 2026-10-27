@@ -42,6 +42,7 @@ export function AiDecidesHomeEntry({ data, teams }: { data: AiDecidesData; teams
       {p.status === "ready" && p.result ? <><ProbabilityRows result={p.result} compact matchup={{ teamIds: p.teamIds, teams }} /><small>Model choice: <ChoiceLabel choice={p.result.choice} matchup={{ teamIds: p.teamIds, teams }} /></small></> : <><strong>{name(p.teamIds[0], teams)}</strong><span>{name(p.teamIds[1], teams)}</span><small>Prediction unavailable</small></>}
     </Link>)}</div> : <p>{data.weekly.message}</p>}
     <p className={styles.provenance}>{comparisonLabel(data.weekly.snapshot) && <>{comparisonLabel(data.weekly.snapshot)}. </>}Experimental model estimates, not calibrated sports odds. {data.weekly.status === "stale" ? (data.weekly.sourceCompatibility?.currentWindow && data.weekly.sourceCompatibility.status !== "compatible" ? "Saved comparison · " : "Past week · ") : ""}Generated {timestamp(data.weekly.generatedAt)}.</p>
+    {data.forecast?.revision && <p className={styles.provenance}>In-season forecast · Week {data.forecast.revision.week}: locked and projected points as of {timestamp(data.forecast.revision.generatedAt)}. <Link href="/ai-decides#forecast">See the live split</Link></p>}
   </section>;
 }
 

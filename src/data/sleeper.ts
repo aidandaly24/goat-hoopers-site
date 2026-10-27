@@ -89,6 +89,10 @@ export type RawMatchupEntry = {
   /** Fantasy points; null before the matchup is played. */
   points: number | null;
   starters?: string[];
+  /** Counted points aligned with `starters`; read only by the in-season forecast lane. */
+  starters_points?: number[];
+  /** Counted points per rostered player id; read only by the in-season forecast lane. */
+  players_points?: Record<string, number>;
 };
 
 export type RawTransaction = {

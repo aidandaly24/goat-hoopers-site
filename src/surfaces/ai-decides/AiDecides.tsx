@@ -10,6 +10,7 @@ import { decisionDraft, draftContextLabel, previewIsIntact, recognizedTeamPair }
 import { createPickerHistory } from "./pickerHistory";
 import { restorePickerFocus } from "./pickerFocus";
 import { Week1Refresh } from "./Week1Refresh";
+import { AiForecast } from "./ForecastPanel";
 import styles from "./AiDecides.module.css";
 
 type State = Exclude<AiDecideResponse, { status: "ready" }> | (Extract<AiDecideResponse, { status: "ready" }> & { teamIds?: [string, string] }) | { status: "idle" } | { status: "pending" };
@@ -206,6 +207,7 @@ export function AiDecides({ data, teams, signedIn, authUnavailable = false, deci
   return <div className={styles.page} data-paused={paused || reduced} data-visible={visible}>
     <div className={styles.pageHeading}><div><h1>AI Decides</h1><p>Saved weekly picks up top. Your question and choices below.</p></div><span className={styles.experimental}>Experimental</span></div>
     <AiWeekly data={{ ...data, weekly }} teams={teams} onPair={(ids, opener) => openPicker("wins", opener, ids)} championTeamId={championTeamId} />
+    <AiForecast data={data} teams={teams} championTeamId={championTeamId} />
     {canRun && weekly.status !== "ready" && <div className={styles.publication}>
       <button type="button" aria-disabled={publication !== "idle"} onClick={publish}>{publication === "pending" ? "Publishing previews…" : publication === "failed" ? "Publication needs review" : "Publish weekly previews"}</button>
       <p className={styles.helper}>Generates one shared batch of five previews within the existing model budget. Incomplete attempts need review before retrying.</p>

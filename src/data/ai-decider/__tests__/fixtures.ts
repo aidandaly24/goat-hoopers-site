@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { vi } from "vitest";
-import type { AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
+import type { AiForecastRevision, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
 import type { AiRuntime } from "../service";
 import { AiDeciderStore, emptyBudgetState, type AiControl, type AiBudgetState, type AiIdentity, type AiLegacyIdentity, type AiPersistence, type AiStoredWeek, type AiWeeklyJobIdentity } from "../store";
 import type { DecisionPayload, DecisionsClient } from "../provider";
@@ -67,6 +67,16 @@ export class TestPersistence implements AiPersistence {
     this.outcomes.set(id, structuredClone(outcome));
     return true;
   }
+  forecasts = new Map<string, AiForecastRevision[]>();
+  async appendForecast(key: string, revision: AiForecastRevision) {
+    const series = this.forecasts.get(key) ?? [];
+    if (series.some(r => r.revisionId === revision.revisionId || r.evidenceHash === revision.evidenceHash)) return false;
+    series.push(structuredClone(revision));
+    this.forecasts.set(key, series);
+    return true;
+  }
+  async getForecasts(key: string) { return structuredClone(this.forecasts.get(key) ?? []); }
+  async getLatestForecast(key: string) { const series = this.forecasts.get(key) ?? []; return structuredClone(series[series.length - 1] ?? null); }
 }
 
 export function weeklyInput(): AiWeeklyInput & { startsAt: string; endsAt: string } {
