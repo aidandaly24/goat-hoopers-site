@@ -1,6 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "crons": [{ "path": "/api/ai-decides/weekly", "schedule": "0 9 * * *" }],
+  "crons": [
+    { "path": "/api/ai-decides/weekly", "schedule": "0 9 * * *" },
+    { "path": "/api/ai-decides/forecast", "schedule": "30 14 * * *" }
+  ],
   "git": {
     "deploymentEnabled": {
       "**": false,

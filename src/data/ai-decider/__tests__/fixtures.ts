@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { vi } from "vitest";
-import type { AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
+import type { AiForecastCurrentPointer, AiForecastRevision, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
 import type { AiRuntime } from "../service";
 import { AiDeciderStore, emptyBudgetState, type AiControl, type AiBudgetState, type AiIdentity, type AiLegacyIdentity, type AiPersistence, type AiStoredWeek, type AiWeeklyJobIdentity } from "../store";
 import type { DecisionPayload, DecisionsClient } from "../provider";
@@ -66,6 +66,67 @@ export class TestPersistence implements AiPersistence {
     if (this.outcomes.has(id)) return false;
     this.outcomes.set(id, structuredClone(outcome));
     return true;
+  }
+  forecasts = new Map<string, AiForecastRevision[]>();
+  forecastCurrent = new Map<string, AiForecastCurrentPointer>();
+  async appendForecast(key: string, revision: AiForecastRevision) {
+    const series = this.forecasts.get(key) ?? [];
+    if (series.some(r => r.revisionId === revision.revisionId || r.evidenceHash === revision.evidenceHash)) return false;
+    // Same chain-linearity contract as the Postgres unique indexes: one
+    // child per predecessor, one genesis per week — a fork never stores.
+    if (series.some(r => (r.supersedes ?? null) === (revision.supersedes ?? null))) return false;
+    series.push(structuredClone(revision));
+    this.forecasts.set(key, series);
+    return true;
+  }
+  async getForecasts(key: string) { return structuredClone(this.forecasts.get(key) ?? []); }
+  async getLatestForecast(key: string) { const series = this.forecasts.get(key) ?? []; return structuredClone(series[series.length - 1] ?? null); }
+  async getForecastByEvidenceHash(key: string, evidenceHash: string) { return structuredClone((this.forecasts.get(key) ?? []).find(r => r.evidenceHash === evidenceHash) ?? null); }
+  async publishForecast(key: string, revision: AiForecastRevision, observedAt: string) {
+    // Sequential model of the Postgres contract (the store's locked-row
+    // enforcement under overlapping transactions is proven in the
+    // disposable-PostgreSQL suite): the outcome modeled here is the
+    // SELECTION result — false means "did not become current". The one
+    // Postgres-only nuance this fake does not reproduce is that a
+    // publication refused at the pointer in the first-creation
+    // interleave may leave its revision as inert, never-selected
+    // history; no service outcome depends on that distinction.
+    const series = this.forecasts.get(key) ?? [];
+    if (series.some(r => r.evidenceHash === revision.evidenceHash)) return false;
+    const head = series[series.length - 1] ?? null;
+    if ((head?.revisionId ?? null) !== (revision.supersedes ?? null)) return false;
+    // Monotonic observation rule: a strictly fresher current selection
+    // refuses a delayed writer's older-evidence publication outright.
+    const cur = this.forecastCurrent.get(key);
+    if (cur && Date.parse(cur.observedAt) > Date.parse(observedAt)) return false;
+    series.push(structuredClone(revision));
+    this.forecasts.set(key, series);
+    this.forecastCurrent.set(key, { weekKey: key, revisionId: revision.revisionId, evidenceHash: revision.evidenceHash, observedAt });
+    return true;
+  }
+  async markForecastCurrent(key: string, revisionId: string, evidenceHash: string, observedAt: string) {
+    const stored = (this.forecasts.get(key) ?? []).find(r => r.revisionId === revisionId);
+    if (!stored || stored.evidenceHash !== evidenceHash) return "missing" as const;
+    const cur = this.forecastCurrent.get(key);
+    if (cur && Date.parse(cur.observedAt) > Date.parse(observedAt)) {
+      return cur.revisionId === revisionId && cur.evidenceHash === evidenceHash ? "current" as const : "stale" as const;
+    }
+    this.forecastCurrent.set(key, { weekKey: key, revisionId, evidenceHash, observedAt });
+    return "moved" as const;
+  }
+  async getForecastCurrent(key: string) { return structuredClone(this.forecastCurrent.get(key) ?? null); }
+  /** Test hook: the next N joined reads simulate a torn snapshot — the pointer is visible but its revision is not — as a non-joining store could observe mid-publication. */
+  tornForecastReads = 0;
+  async getForecastCurrentRevision(key: string) {
+    const pointer = this.forecastCurrent.get(key);
+    if (!pointer) return null;
+    const series = this.forecasts.get(key) ?? [];
+    if (this.tornForecastReads > 0) {
+      this.tornForecastReads--;
+      return { pointer: structuredClone(pointer), revision: null, revisionCount: series.length };
+    }
+    const revision = series.find(r => r.revisionId === pointer.revisionId) ?? null;
+    return { pointer: structuredClone(pointer), revision: structuredClone(revision), revisionCount: series.length };
   }
 }
 

@@ -438,6 +438,161 @@ or provider failure never resets or refunds counters. Both feature gates and the
 kill switch continue to govern the job. No authentication runtime, schema,
 production setting, credential or counter was changed in this source task.
 
+## In-season rolling forecast (issue #149)
+
+A separate mode, `in-season-live`, answers the question the pregame slate
+cannot: once the week's first tip has passed, what does the week look like
+**now**? It never reads, seals, completes or replaces a pregame slate, and
+the pregame publication window guard does not apply to it. The original
+pregame record stays intact.
+
+Each refresh assembles server-side evidence for the source leg's own live
+week and, when the evidence has changed, appends one immutable
+`AiForecastRevision` to that week's own revision series (Postgres table
+`ai_decider_forecasts`; a prior revision is never mutated — a database
+trigger rejects UPDATE/DELETE). A revision carries its true as-of
+`generatedAt`, per-input freshness (`source`, retrieval `observedAt` —
+retrieval time, never a claimed source-update time), model/prompt/config
+identity, a `supersedes` pointer to the previous revision, and a
+content-addressed `revisionId` (SHA-256 of the asserted body), re-verified
+on every read — including a re-derivation of each bucket's value **and
+basis** from the stored slot provenance, so a body whose hash was
+recomputed after tampering still fails validation. Identical evidence
+(same evidence hash) returns the stored revision with no provider call —
+the lookup spans the week's whole series, so evidence that recurs after
+a change (A → B → A) returns the original revision, never the later one;
+genuinely changed evidence goes through
+the existing evaluator's budget reservation, shared fingerprint dedup and
+lease overlap protection, within the existing weekly input-token bound.
+No new provider, credential or paid service is introduced, and provider
+runs are not assumed free — the existing bounded budget is the control.
+
+Which revision is *current* is a recorded fact, not an accident of
+insertion order. A per-week pointer (`ai_decider_forecast_current`) names
+the revision public reads present, and every refresh outcome moves it —
+a fresh append moves it atomically with the append, and a dedupe hit
+re-observes the stored revision it resolved to, so after A → B → A the
+public read presents A again even though B was inserted later.
+Publication is serialized as a chain-head CAS: an append lands only on
+top of the predecessor its `supersedes` names, the migration's unique
+indexes allow at most one child per revision (and one genesis) per week
+so the chain cannot fork at the storage layer, and a refresh that loses
+the race re-reads the head, rebuilds on top of it (reusing its
+evaluation — no extra provider spend) and retries a bounded number of
+times before failing closed. Concurrent cron and manual refreshes with
+different evidence therefore resolve into one linear chain, and the
+pointer ends on the chain head.
+
+Pointer moves are **monotonic in evidence observation time**. The
+pointer records the `observedAt` of the refresh that set it, and a move
+applies only when the incoming refresh observed its evidence at or
+after that stored time — on BOTH pointer paths (the publication CAS and
+the dedupe re-observation). A delayed writer carrying strictly older
+evidence (a slow evaluator finishing after a fresher refresh published,
+a queued cron draining late) therefore cannot regress public selection:
+its publication does not land, its re-observation is refused, and the
+refresh *converges* — it returns the revision the pointer currently
+names as its result instead of erroring or publishing over it. Ties
+(equal `observedAt`) break by store serialization order — the
+later-completing refresh wins — which can never resurrect strictly
+older evidence. The rule keys on observation, not revision age: a
+genuine A → B → A recurrence re-observes A *fresh*, so the pointer
+legitimately moves back to A; only a writer whose observation itself is
+old is refused. The rule is enforced where the write lands, under
+genuinely overlapping transactions: a statement-snapshot check cannot
+see a concurrent writer's move that commits while the statement waits,
+so both pointer writers take the week's pointer row lock
+(`SELECT … FOR UPDATE`) — which waits out the concurrent holder and
+then re-reads the newest committed row — evaluate the freshness gate
+and (for the dedupe path) the moved/current/stale classification
+against that locked row, and hold the lock to the statement's end.
+The publication's pointer move is a guarded UPDATE followed by a
+yielding creation INSERT — never an upsert — covering the one case
+with no row to lock: an UPDATE cannot see a selection a concurrent
+writer is inserting (so it cannot overwrite one), and the creation
+INSERT defers to any concurrent creator, so a fresher first selection
+landing mid-statement stands and the older publication reports "did
+not take". A losing
+publication returns "did not take" and the refresh converges on the
+fresher selection; in the narrow first-creation interleave its append
+may stand as inert, never-selected history rather than being rolled
+back, which the append-only series tolerates by design. Public reads are likewise consistent: the store joins
+the pointer to its revision in a single statement (one snapshot), and
+any read that cannot see the named revision re-reads once and
+reconciles before it may declare the pointer corrupt — a genuinely
+dangling pointer still fails closed, but only after the confirming
+re-read also dangles.
+
+### Lock-in math and provenance
+
+Every starter slot contributes exactly one counted game. Per slot the
+revision stores provenance (`gameId`, counted points, basis, source,
+observedAt) and one counting state:
+
+- **locked** — explicit lock evidence. The site cannot read the
+  authenticated matchup leg (Sleeper rejects it without credentials and
+  no new credentials are authorized), so a lock is proven by
+  reconciliation: the public leg's counted value for the slot is matched
+  to a scored ESPN box-score game (the #190 weekly-evidence receipts
+  method), and a counted game that is **not** the slot's latest played
+  game is only possible under Sleeper's rules when that game was locked
+  in. ESPN does not itemise technical/flagrant fouls, so a counted value
+  may sit exactly 0, 2 or 4 points below its box-score game: a gap-0
+  identification is `exact`, a band identification is `estimated`. The
+  two are never conflated, and aggregates inherit the weakest basis.
+- **final** — no lock and no games remaining (Sleeper's public `scores`
+  feed): the slot's counted value is determinate. Final points are
+  reported separately from locked points, so a week fully resolves at
+  its end instead of carrying forever-null totals.
+- **open** — proven unlocked with games remaining: in practice a slot
+  with no completed appearance yet, so nothing exists that could have
+  been locked. Its projected eventual counted contribution is **one**
+  counting game at observed fantasy PPG (current season, prior-season
+  fallback; config `observed-fppg-v1`) — never PPG × remaining games.
+  Explicitly locked slots contribute zero future projection, so locked
+  and projected sets are disjoint and nothing is double-counted.
+- **unknown** — evidence cannot prove the state (a game in progress, a
+  rejected box score, missing schedule/counted evidence, leg totals
+  that do not reconcile, an ambiguous counted game, or a counted game
+  that is the slot's latest played game while games remain).
+  Aggregates the state could contaminate are null — explicit, never an
+  invented zero. A **verified zero** lock set (every slot classified,
+  none locked) is `{ value: 0 }`, a different fact from unknown lock
+  coverage (null).
+
+Counted-game identification is uniqueness-checked across the whole
+0/2/4 foul band: if more than one played game can explain the counted
+value — on either side of the latest-played boundary, or several
+earlier games — the counted game's identity, the lock state and the
+basis are unproven and the slot fails closed to unknown. The same
+discipline applies at the latest boundary itself: a lock placed on a
+slot's latest played game is indistinguishable in public data from an
+unlocked slot displaying that game, so while games remain the slot is
+unknown rather than an asserted exact open; at week end the counted
+value is determinate either way and resolves as final. Any source
+failure aborts the refresh (fail closed), and a week with no completed
+starter appearance refuses with `forecast_not_started` — the pregame
+slate owns the window before play.
+
+### Scheduling and activation
+
+`vercel.json` declares a second daily cron, `30 14 * * *` for
+`GET /api/ai-decides/forecast`, under the same rules as the weekly cron
+above (once-daily Hobby cadence, hour-wide delivery window, no assumed
+exact delivery). It authenticates with the same **CRON_SECRET** bearer
+and runs under the same configured weekly operator identity
+(**GOAT_AI_WEEKLY_USER_ID**); no new settings are introduced. A manual
+`POST /api/ai-decides/forecast` mirrors the weekly POST boundary
+(same-origin, empty JSON body, validated manager session). Public reads
+never generate.
+
+`migrations/ai-decider-forecast.sql` is additive and, like the base
+migration, is a separately reviewed production step: it is not registered
+in any automatic migration/build command and has not been applied.
+Activation follows the merged source per the authorization recorded on
+issue #149; this source change applies no migration, changes no Vercel
+setting and publishes nothing to production.
+
 ## Disposable PostgreSQL verification
 
 The additive `AI Decides disposable PostgreSQL` job in `.github/workflows/ci.yml`

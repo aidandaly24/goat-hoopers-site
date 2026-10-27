@@ -1379,6 +1379,37 @@ one selected snapshot, retaining the original-hash check within SQL.
 Removing the flag restores original reads without deleting either record.
 It adds no migration, counter reset or cron behavior. This source is dormant
 until separate review/release/setting clearance and a genuine manager action.
+Beside the pregame path, the in-season rolling forecast (issue #149) runs as a
+separate mode, `in-season-live`, with its own immutable revision series.
+`src/domain/ai-decider.ts` carries the forecast contract (`AiForecastRevision`
+with per-slot counting-state provenance: locked/final/open/unknown, counted
+values labeled exact vs estimated under the receipts pipeline's foul-residual
+band, locked points from explicit lock evidence only, final points reported
+separately, and exactly one projected counting game per open slot).
+`src/data/ai-decider/forecast.ts` owns classification, the additive split and
+revision validation; `forecast-evidence.ts` assembles live evidence from the
+public matchup leg, Sleeper's public `scores` feed and ESPN box scores scored
+under league settings (the authenticated leg is unavailable to the service, so
+locks are proven by reconciliation); `forecast-service.ts` dedupes evidence
+by hash across the week's series and appends revisions through the existing evaluator's
+budget/lease controls. Publication is serialized by a chain-head CAS (the
+migration's unique indexes cap the supersedes chain at one child per
+revision), and a per-week current pointer in `ai_decider_forecast_current`
+— re-observed on every refresh outcome, dedupe hits included — is what
+public reads select through, so selection never disagrees with refresh
+semantics after an evidence recurrence. Pointer moves are monotonic in
+evidence observation time (a delayed writer carrying strictly older
+evidence converges on the current selection instead of regressing it;
+ties break by store serialization order), and public reads join the
+pointer to its revision in one statement, re-reading once to reconcile
+before a dangling pointer may fail closed. Revisions persist append-only in `ai_decider_forecasts`
+(additive `migrations/ai-decider-forecast.sql`, separately reviewed, not
+applied by this change). `GET /api/ai-decides/forecast` is the daily Vercel
+cron under the same CRON_SECRET/weekly-operator identity as the weekly job;
+`POST` is the same-origin manual operator boundary. The AI surface renders the
+latest revision in `ForecastPanel.tsx` next to the pregame slate with as-of,
+per-input freshness and the labeled locked/final/projected split;
+`AiDecidesHomeEntry` adds a one-line provenance link when a revision exists.
 See [AI Decides handoff](docs/ai-decides.md) for limits, retention, exact contracts,
 auth findings and outstanding activation/verification work.
 

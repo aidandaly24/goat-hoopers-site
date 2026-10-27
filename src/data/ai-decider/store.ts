@@ -2,7 +2,7 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { sql, type SQL } from "drizzle-orm";
 import { getDb, type Db } from "../db";
-import type { AiGenerationManifest, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
+import type { AiForecastCurrentPointer, AiForecastRevision, AiGenerationManifest, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
 import { isRecord, uuidValid } from "./validation";
 import { aiDataDeadline } from "./deadline";
 import { refreshStorageKey, WEEK1_REFRESH_KEY, type AiWeek1RefreshPolicy } from "./refresh-policy";
@@ -28,6 +28,16 @@ export type AiBudgetState = {
 };
 export type AiControl = { enabled: boolean; revision: number; state: AiBudgetState };
 export type AiStoredWeek = { key: string; hash: string; manifest: AiGenerationManifest; input: AiWeeklyInput; slate: AiWeeklySlate; result: AiWeeklySlate | null; refreshed?: true };
+/**
+ * Outcome of a guarded current-pointer move (see markForecastCurrent):
+ * "moved" — the pointer now names the target revision at the caller's
+ * observation; "current" — it already named the target at a fresher
+ * observation, so selection was already as asked and nothing was
+ * written; "stale" — a strictly fresher observation of a DIFFERENT
+ * revision is current and the move was refused; "missing" — no such
+ * stored revision exists for the week and nothing was written.
+ */
+export type AiForecastMarkResult = "moved" | "current" | "stale" | "missing";
 /** Purpose-built CAS and append-only operations, not a generic storage framework. */
 export type AiPersistence = {
   readControl(): Promise<AiControl | null>;
@@ -42,6 +52,91 @@ export type AiPersistence = {
   completeWeekRefresh(hash: string, slate: AiWeeklySlate, identity: AiIdentity): Promise<boolean>;
   completeWeek(key: string, hash: string, slate: AiWeeklySlate): Promise<boolean>;
   recordOutcome(key: string, outcome: AiWeeklyOutcome): Promise<boolean>;
+  /** In-season forecast series (issue #149): append-only; false when this revision id or evidence hash is already stored for the week. Raw primitive — publication goes through publishForecast. */
+  appendForecast(key: string, revision: AiForecastRevision): Promise<boolean>;
+  getForecasts(key: string): Promise<AiForecastRevision[]>;
+  getLatestForecast(key: string): Promise<AiForecastRevision | null>;
+  /** The stored revision for one evidence state, looked up across the week's whole series (evidence can recur: A → B → A). */
+  getForecastByEvidenceHash(key: string, evidenceHash: string): Promise<AiForecastRevision | null>;
+  /**
+   * Serialized publication: in ONE statement, appends this revision and
+   * moves the week's current pointer to it — but only while the chain
+   * head is still `revision.supersedes`, no revision for this evidence
+   * state exists, and the move is not stale under the pointer's
+   * monotonic observation rule (see markForecastCurrent: a writer whose
+   * evidence was observed strictly before the current selection was
+   * observed may not append over it or move the pointer). The
+   * monotonic gate is enforced against the pointer row AS LOCKED by
+   * this statement (SELECT … FOR UPDATE re-reads the newest committed
+   * version after any wait, and the row lock is held to the statement's
+   * end), never against a statement-snapshot read: a fresher selection
+   * committed by a concurrent writer while this statement waited is
+   * seen by the gate. The move itself is a guarded UPDATE followed by
+   * a yielding creation INSERT (never an upsert): an UPDATE cannot
+   * see — let alone overwrite — a selection a concurrent writer is
+   * inserting, its guard is re-checked against the latest committed
+   * version after any wait, and the INSERT (DO NOTHING) defers to any
+   * concurrent creator, so the no-pointer-row interleave cannot
+   * regress selection either. False means the
+   * publication did not take as current selection (the chain moved, a
+   * fork was refused, the evidence is already stored, or a strictly
+   * fresher selection is already current): the caller re-reads and
+   * converges or retries on the new head. One corner is deliberate: if
+   * the week's pointer row is FIRST created, at a strictly fresher
+   * observation, by a concurrent mark while this statement is in
+   * flight (possible only before any publication has landed — service
+   * publications create the pointer atomically with the genesis
+   * append), the guarded mutation refuses and this returns false, but
+   * the append may already stand as inert, never-selected history; the
+   * caller converges on the fresher selection exactly as for any other
+   * lost race. This store executes single statements (neon-http has
+   * no interactive transactions), so the CAS is per-statement atomic and
+   * the migration's unique chain indexes make a fork structurally
+   * impossible even across statement snapshots.
+   */
+  publishForecast(key: string, revision: AiForecastRevision, observedAt: string): Promise<boolean>;
+  /**
+   * Re-observes an already-stored revision as the week's current
+   * selection (the dedupe hit that appends nothing), under the
+   * MONOTONIC OBSERVATION RULE: the pointer records the evidence
+   * observedAt of the refresh that set it, and a move applies only when
+   * the incoming observedAt is >= the stored one — a delayed writer
+   * carrying strictly older evidence can never drag public selection
+   * back to a superseded state, and instead converges on the current
+   * selection (see AiForecastMarkResult for the outcomes). Tie policy:
+   * at EQUAL observedAt the move applies — ties break by store
+   * serialization order (the later-completing refresh wins), so two
+   * refreshes that observed their evidence in the same instant resolve
+   * exactly like sequential refreshes; the rule forbids only regression
+   * to STRICTLY older evidence, and neither writer can flap the pointer
+   * without completing a refresh of its own. Note the asymmetry the
+   * rule relies on: a re-observation of an old REVISION carries a fresh
+   * observedAt — revision age is not observation age — so a genuine
+   * A → B → A recurrence still moves the pointer back to A. The
+   * classification is proven from the pointer row AS LOCKED by the
+   * statement (SELECT … FOR UPDATE re-reads the newest committed
+   * version after any wait and the lock is held to the statement's
+   * end), never from the pre-wait statement snapshot: a selection
+   * committed by a concurrent writer while this statement waited on
+   * the row is the state the verdict describes, and no further move
+   * can interleave before this statement commits. (A move landing
+   * after this statement commits is a later fact, not a contradiction:
+   * the verdict is exact as of its own commit, and every subsequent
+   * read — public reads included — goes through the pointer afresh.)
+   */
+  markForecastCurrent(key: string, revisionId: string, evidenceHash: string, observedAt: string): Promise<AiForecastMarkResult>;
+  /** The week's recorded current selection, or null when no refresh outcome has been recorded for it yet. */
+  getForecastCurrent(key: string): Promise<AiForecastCurrentPointer | null>;
+  /**
+   * Consistent public read: the pointer joined to the revision it names
+   * in ONE statement, so both halves come from a single snapshot and a
+   * publication landing mid-read can never tear the pair. `revision` is
+   * null only when the named revision is genuinely absent from that
+   * same snapshot (a dangling pointer); `revisionCount` is the week's
+   * series size in the same snapshot. Null when no pointer has been
+   * recorded for the week yet.
+   */
+  getForecastCurrentRevision(key: string): Promise<{ pointer: AiForecastCurrentPointer; revision: AiForecastRevision | null; revisionCount: number } | null>;
 };
 export type AiReservation = { status: "reserved"; leaseId: string } | { status: "disabled" | "rate_limited" | "burst_limited" | "busy" | "duplicate"; retryAfterSeconds?: number };
 const count = (v: unknown): v is number => typeof v === "number" && Number.isSafeInteger(v) && v >= 0;
@@ -266,6 +361,193 @@ export class PostgresAiPersistence implements AiPersistence {
     const result = await this.execute(sql`INSERT INTO ai_decider_outcomes (week_key, matchup_id, outcome) VALUES (${key}, ${outcome.matchupId}, ${JSON.stringify(outcome)}::jsonb) ON CONFLICT (week_key, matchup_id) DO NOTHING RETURNING matchup_id`);
     return result.rows.length === 1;
   }
+  async appendForecast(key: string, revision: AiForecastRevision): Promise<boolean> {
+    // Either unique key (revision id, or evidence hash within the week)
+    // turns a repeat append into a no-op: overlapping refreshes converge
+    // on one stored revision per evidence state.
+    const result = await this.execute(sql`INSERT INTO ai_decider_forecasts (week_key, revision_id, evidence_hash, revision) VALUES (${key}, ${revision.revisionId}, ${revision.evidenceHash}, ${JSON.stringify(revision)}::jsonb) ON CONFLICT DO NOTHING RETURNING revision_id`);
+    return result.rows.length === 1;
+  }
+  async getForecasts(key: string): Promise<AiForecastRevision[]> {
+    try {
+      const result = await this.execute(sql`SELECT revision FROM ai_decider_forecasts WHERE week_key = ${key} ORDER BY seq ASC`);
+      return result.rows.map(r => r.revision as AiForecastRevision);
+    } catch (error) { if (isMissingForecastTable(error)) return []; throw error; }
+  }
+  async getLatestForecast(key: string): Promise<AiForecastRevision | null> {
+    try {
+      const result = await this.execute(sql`SELECT revision FROM ai_decider_forecasts WHERE week_key = ${key} ORDER BY seq DESC LIMIT 1`);
+      return result.rows[0] ? result.rows[0].revision as AiForecastRevision : null;
+    } catch (error) { if (isMissingForecastTable(error)) return null; throw error; }
+  }
+  async getForecastByEvidenceHash(key: string, evidenceHash: string): Promise<AiForecastRevision | null> {
+    try {
+      const result = await this.execute(sql`SELECT revision FROM ai_decider_forecasts WHERE week_key = ${key} AND evidence_hash = ${evidenceHash} LIMIT 1`);
+      return result.rows[0] ? result.rows[0].revision as AiForecastRevision : null;
+    } catch (error) { if (isMissingForecastTable(error)) return null; throw error; }
+  }
+  async publishForecast(key: string, revision: AiForecastRevision, observedAt: string): Promise<boolean> {
+    // One statement, so append and pointer move commit or fail together.
+    // The append is gated on the evidence state being absent AND the
+    // chain head still being the revision's recorded predecessor; a
+    // concurrent winner makes this insert a no-op (or a unique-violation
+    // on the chain indexes, folded into the same "CAS lost" result).
+    // The monotonic gate is the third condition: while a strictly
+    // fresher selection is current, a delayed writer's older evidence
+    // neither appends over it nor moves the pointer — the publication
+    // simply does not take, and the caller converges on the current
+    // revision (rebuilding on the new head cannot make old evidence
+    // fresh). Equal observed_at is NOT stale (the documented tie
+    // policy): sequential same-instant refreshes still publish.
+    //
+    // The gate is evaluated on the LOCKED pointer row, not on a
+    // snapshot subquery: `cur_lock` takes the row's lock (FOR UPDATE),
+    // which waits out any concurrent writer holding it and then
+    // returns the NEWEST committed version of the row — so a fresher
+    // dedupe observation committed while this statement was starting
+    // (invisible to the statement snapshot, which is exactly how an
+    // unguarded snapshot check gets bypassed) is seen by the gate, and
+    // the lock is then held to the statement's end, so the gated
+    // append and the pointer move below serialize against every other
+    // pointer writer.
+    //
+    // The pointer move itself is UPDATE-then-INSERT, never an
+    // INSERT … ON CONFLICT DO UPDATE: when NO pointer row existed to
+    // lock (a series built without one), a concurrent mark can insert
+    // the row while this statement runs, and an upsert reaches that
+    // row through the speculative-insertion path — the one path whose
+    // post-wait behaviour cannot be trusted to honour the guard. The
+    // split makes the overwrite structurally impossible instead: the
+    // guarded UPDATE is the only verb that ever changes an existing
+    // selection (it cannot see a concurrent uncommitted insert at
+    // all, and after any lock wait its WHERE is re-checked against
+    // the latest committed version), and the creation INSERT yields
+    // to any concurrent creator (DO NOTHING — it never updates), so a
+    // fresher first selection landing mid-statement stands and this
+    // publication simply reports false, its append left as inert,
+    // never-selected history (see the interface contract).
+    try {
+      const result = await this.execute(sql`
+        WITH cur_lock AS (
+          SELECT observed_at FROM ai_decider_forecast_current
+          WHERE week_key = ${key}
+          FOR UPDATE
+        ),
+        ins AS (
+          INSERT INTO ai_decider_forecasts (week_key, revision_id, evidence_hash, revision)
+          SELECT ${key}, ${revision.revisionId}, ${revision.evidenceHash}, ${JSON.stringify(revision)}::jsonb
+          WHERE NOT EXISTS (SELECT 1 FROM ai_decider_forecasts WHERE week_key = ${key} AND evidence_hash = ${revision.evidenceHash})
+            AND COALESCE((SELECT revision_id FROM ai_decider_forecasts WHERE week_key = ${key} ORDER BY seq DESC LIMIT 1), '') = ${revision.supersedes ?? ""}
+            AND NOT EXISTS (SELECT 1 FROM cur_lock WHERE cur_lock.observed_at > ${observedAt}::timestamptz)
+          ON CONFLICT DO NOTHING
+          RETURNING revision_id
+        ),
+        ptr_upd AS (
+          UPDATE ai_decider_forecast_current c
+          SET revision_id = ins.revision_id, evidence_hash = ${revision.evidenceHash}, observed_at = ${observedAt}::timestamptz
+          FROM ins
+          WHERE c.week_key = ${key} AND c.observed_at <= ${observedAt}::timestamptz
+          RETURNING c.revision_id
+        ),
+        ptr_ins AS (
+          INSERT INTO ai_decider_forecast_current (week_key, revision_id, evidence_hash, observed_at)
+          SELECT ${key}, ins.revision_id, ${revision.evidenceHash}, ${observedAt}::timestamptz FROM ins
+          WHERE NOT EXISTS (SELECT 1 FROM ptr_upd)
+          ON CONFLICT (week_key) DO NOTHING
+          RETURNING revision_id
+        ),
+        ptr AS (
+          SELECT revision_id FROM ptr_upd
+          UNION ALL
+          SELECT revision_id FROM ptr_ins
+        )
+        SELECT revision_id FROM ptr`);
+      return result.rows.length === 1;
+    } catch (error) { if ((error as { code?: unknown } | null)?.code === "23505") return false; throw error; }
+  }
+  async markForecastCurrent(key: string, revisionId: string, evidenceHash: string, observedAt: string): Promise<AiForecastMarkResult> {
+    // The pointer may only ever name a revision actually stored for the
+    // week (the SELECT source), mirroring the table's foreign key — and
+    // it may only move monotonically: the upsert's WHERE refuses to
+    // overwrite a strictly fresher observation. The classification
+    // reads `cur` AS A LOCKED RE-READ (FOR UPDATE): if a concurrent
+    // writer holds the row, the read waits and then returns the newest
+    // committed version — the selection the refused upsert actually
+    // lost to — and the lock is held to the statement's end, so the
+    // verdict and the write can never disagree. (A plain snapshot read
+    // here could still see the pre-wait row and report "current" for a
+    // revision a committed concurrent move had already replaced.)
+    try {
+      const result = await this.execute(sql`
+        WITH stored AS (
+          SELECT week_key, revision_id, evidence_hash FROM ai_decider_forecasts
+          WHERE week_key = ${key} AND revision_id = ${revisionId} AND evidence_hash = ${evidenceHash}
+        ),
+        cur AS (
+          SELECT revision_id, evidence_hash, observed_at FROM ai_decider_forecast_current WHERE week_key = ${key} FOR UPDATE
+        ),
+        up AS (
+          INSERT INTO ai_decider_forecast_current (week_key, revision_id, evidence_hash, observed_at)
+          SELECT week_key, revision_id, evidence_hash, ${observedAt}::timestamptz FROM stored
+          ON CONFLICT (week_key) DO UPDATE SET revision_id = EXCLUDED.revision_id, evidence_hash = EXCLUDED.evidence_hash, observed_at = EXCLUDED.observed_at
+          WHERE ai_decider_forecast_current.observed_at <= EXCLUDED.observed_at
+          RETURNING revision_id
+        )
+        SELECT CASE
+          WHEN NOT EXISTS (SELECT 1 FROM stored) THEN 'missing'
+          WHEN EXISTS (SELECT 1 FROM up) THEN 'moved'
+          WHEN EXISTS (SELECT 1 FROM cur WHERE revision_id = ${revisionId} AND evidence_hash = ${evidenceHash}) THEN 'current'
+          ELSE 'stale'
+        END AS outcome`);
+      const outcome = result.rows[0]?.outcome;
+      return outcome === "moved" || outcome === "current" || outcome === "stale" ? outcome : "missing";
+    } catch (error) { if (isMissingForecastTable(error)) return "missing"; throw error; }
+  }
+  async getForecastCurrent(key: string): Promise<AiForecastCurrentPointer | null> {
+    try {
+      const result = await this.execute(sql`SELECT week_key, revision_id, evidence_hash, observed_at FROM ai_decider_forecast_current WHERE week_key = ${key}`);
+      const r = result.rows[0];
+      if (!r) return null;
+      const at = r.observed_at as Date | string;
+      return { weekKey: r.week_key as string, revisionId: r.revision_id as string, evidenceHash: r.evidence_hash as string, observedAt: at instanceof Date ? at.toISOString() : String(at) };
+    } catch (error) { if (isMissingForecastTable(error)) return null; throw error; }
+  }
+  async getForecastCurrentRevision(key: string): Promise<{ pointer: AiForecastCurrentPointer; revision: AiForecastRevision | null; revisionCount: number } | null> {
+    // ONE statement: the pointer, the revision it names and the series
+    // count all come from a single snapshot, so a publication landing
+    // mid-read can never tear the pair. The LEFT JOIN yields a null
+    // revision only when the named revision is genuinely absent from
+    // that same snapshot (a dangling pointer — which the table's
+    // foreign key already makes structurally impossible here, but the
+    // read contract does not rely on that).
+    try {
+      const result = await this.execute(sql`
+        SELECT c.revision_id AS pointer_revision_id, c.evidence_hash AS pointer_evidence_hash, c.observed_at AS pointer_observed_at,
+               f.revision AS revision,
+               (SELECT count(*)::int FROM ai_decider_forecasts WHERE week_key = ${key}) AS revision_count
+        FROM ai_decider_forecast_current c
+        LEFT JOIN ai_decider_forecasts f ON f.week_key = c.week_key AND f.revision_id = c.revision_id
+        WHERE c.week_key = ${key}`);
+      const r = result.rows[0];
+      if (!r) return null;
+      const at = r.pointer_observed_at as Date | string;
+      return {
+        pointer: { weekKey: key, revisionId: r.pointer_revision_id as string, evidenceHash: r.pointer_evidence_hash as string, observedAt: at instanceof Date ? at.toISOString() : String(at) },
+        revision: (r.revision as AiForecastRevision | null) ?? null,
+        revisionCount: Number(r.revision_count),
+      };
+    } catch (error) { if (isMissingForecastTable(error)) return null; throw error; }
+  }
+}
+
+/**
+ * The forecast tables are applied separately from the base migration;
+ * until they exist, forecast reads are a clean empty series, never an
+ * error that could disturb the pregame read path.
+ */
+function isMissingForecastTable(error: unknown): boolean {
+  const e = error as { code?: unknown; message?: unknown } | null;
+  return e?.code === "42P01" || (typeof e?.message === "string" && /ai_decider_forecast/.test(e.message) && /does not exist/i.test(e.message));
 }
 
 export function getAiDeciderStore(weeklyOperator?: { userId: string; auth: "legacy" | "friends" }, refreshPolicy?: AiWeek1RefreshPolicy): AiDeciderStore { return new AiDeciderStore(new PostgresAiPersistence(getDb(), weeklyOperator, refreshPolicy)); }

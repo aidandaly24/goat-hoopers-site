@@ -29,3 +29,13 @@
 .helper,.source{overflow-wrap:anywhere}
 
 .promptHeading{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:var(--gh-s2);margin-bottom:var(--gh-s2)}.promptHeading label{margin:0}.promptHeading>span{font:.6875rem var(--gh-font-mono);color:var(--gh-text-dim);white-space:nowrap}.page textarea.rosterPrompt{min-height:18rem;line-height:1.5}.contextActions{display:flex;align-items:center;flex-wrap:wrap;gap:var(--gh-s2);margin:var(--gh-s2) 0}.contextActions:empty{display:none}.page .contextActions button{font-size:.75rem;background:transparent}.contextActions .helper{margin:0}
+
+/* In-season forecast (issue #149): split lines + points table reuse the weekly tokens. */
+.forecastLines{list-style:none;margin:var(--gh-s3) 0 0;padding:0;display:grid;gap:var(--gh-s2);font-size:.6875rem;color:var(--gh-text-dim)}
+.forecastLines li{display:grid;gap:var(--gh-s1)}
+.forecastTableWrap{overflow-x:auto;margin-top:var(--gh-s6)}
+.forecastTable{border-collapse:collapse;width:100%;font-size:.8125rem}
+.forecastTable caption{text-align:left;font-size:.75rem;color:var(--gh-text-dim);margin-bottom:var(--gh-s2)}
+.forecastTable th,.forecastTable td{border-top:1px solid var(--gh-border);padding:var(--gh-s2) var(--gh-s3);text-align:right;white-space:nowrap}
+.forecastTable th:first-child,.forecastTable td:first-child{text-align:left;white-space:normal}
+.forecastTable thead th{font-size:.6875rem;color:var(--gh-text-dim)}
