@@ -1,0 +1,186 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 8710,
+  "bytes": 872997,
+  "jpegQuality": 81,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 7710,
+      "cropTop": 290,
+      "height": 710
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 439,
+      "differingRatio": 0.0003048611111111111,
+      "meanChannelError": 0.0005525462962962963,
+      "maxChannelError": 50,
+      "tolerance": "at least 99.9% exact pixels; mean channel error <= 0.02/255; sparse text rasterization only"
+    },
+    {
+      "name": "middle",
+      "documentY": 4000,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "tolerance": "at least 99.9% exact pixels; mean channel error <= 0.02/255; sparse text rasterization only"
+    },
+    {
+      "name": "bottom",
+      "documentY": 7710,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "tolerance": "at least 99.9% exact pixels; mean channel error <= 0.02/255; sparse text rasterization only"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Reaves Dropper vs Ware the Hoes At?",
+      "y": 437
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 626
+    },
+    {
+      "text": "Your roster.",
+      "y": 1393
+    },
+    {
+      "text": "Players to watch.",
+      "y": 1857
+    },
+    {
+      "text": "Weekly performers.",
+      "y": 2537
+    },
+    {
+      "text": "News & recent moves.",
+      "y": 2537
+    },
+    {
+      "text": "Player spotlights.",
+      "y": 3353
+    },
+    {
+      "text": "A league of our own.",
+      "y": 3725
+    },
+    {
+      "text": "Faces of the league",
+      "y": 4602
+    },
+    {
+      "text": "Around the league",
+      "y": 4972
+    },
+    {
+      "text": "Know who you’re playing.",
+      "y": 5376
+    },
+    {
+      "text": "Standings, leaders & moves.",
+      "y": 6862
+    },
+    {
+      "text": "Standings",
+      "y": 6939
+    },
+    {
+      "text": "League stats",
+      "y": 6939
+    },
+    {
+      "text": "Recent activity",
+      "y": 7090
+    },
+    {
+      "text": "Stocks",
+      "y": 7873
+    },
+    {
+      "text": "Arcade",
+      "y": 7873
+    },
+    {
+      "text": "Every week has a story.",
+      "y": 8055
+    }
+  ],
+  "footer": {
+    "text": "2026 season · In SeasonA fan-made league hub. Not affiliated with the NBA or Sleeper.HomeArcadeTeamsTransactionsWeekly archiveCopyright 2026 GOAT Hoopers. Built for the league, by the league.",
+    "y": 8457
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": 8192,
+  "inventorySha256": "a6a686c505b737477e537e74ac55ae5587532f44c9587d991903ddc470a00980",
+  "captureOnlyStyle": "sticky header static; animation and caret suppressed",
+  "contentPreserved": true
+}

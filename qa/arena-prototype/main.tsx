@@ -63,7 +63,7 @@ function Review() {
       </div>
     </aside>
     <SiteHeader user={member ? { displayName: "Aidan · sample", teamId: "1", avatar: null } : null} logoutAction={async () => setMember(false)} />
-    <div className="arena-location" aria-hidden="true"><span>HOME COURT</span><span>GOAT HOOPERS · EST. 2025</span><span>10 TEAMS / ONE HOUSE</span></div>
+    <div className="arena-location" aria-hidden="true"><span>Home court</span><span>GOAT Hoopers · Est. 2025</span><span>10 teams / One house</span></div>
     <main className="arena-study" id="main-content" tabIndex={-1} data-arena-ready={actualMode === "ready"} data-review-view={member ? "member" : "public"}>
       <CourtsideHome data={data.home} archive={data.archive} portraits={portraits} personal={data.personal}
         aiWeekly={data.weekly} faces={data.faces} viewerTeamId={member ? "1" : undefined} />

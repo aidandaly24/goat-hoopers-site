@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
+import { capturePage } from "./capture-page.mjs";
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE ?? "/opt/codex/cua_node/lib/node_modules/playwright/index.mjs");
 const origin = process.env.ARENA_ORIGIN ?? "http://127.0.0.1:4196";
 const out = process.env.ARENA_EVIDENCE ?? "/tmp/goat-arena-evidence";
@@ -59,7 +60,7 @@ try {
     assert.equal(await tab.evaluate(() => window.goatArenaMetrics.frames), after.frames);
     check(`${member ? "member" : "public"}: one context, no idle/scroll rendering`, after);
     await tab.evaluate(() => scrollTo(0, 0));
-    await tab.screenshot({ path: `${out}/${member ? "member" : "public"}-desktop-full.png`, fullPage: true });
+    await capturePage(tab, `${out}/${member ? "member" : "public"}-desktop-full.png`);
     await tab.screenshot({ path: `${out}/${member ? "member" : "public"}-desktop-top.png` });
     await tab.locator("#teams").scrollIntoViewIfNeeded();
     await tab.screenshot({ path: `${out}/${member ? "member" : "public"}-directory.png` });
@@ -67,7 +68,7 @@ try {
   }
 
   const { tab: desktop } = await page({ member: true, theme: "dark" });
-  await desktop.screenshot({ path: `${out}/member-dark-full.png`, fullPage: true });
+  await capturePage(desktop, `${out}/member-dark-full.png`);
   // Native team disclosures remain keyboard-operated; all roster links survive.
   const summary = desktop.locator("[data-team-id]").first().locator("summary").first();
   await summary.focus(); await desktop.keyboard.press("Enter");
@@ -93,7 +94,7 @@ try {
     assert((await overflow(tab)).document <= width);
     check(`${width}px ${member ? "member" : "public"}: reflow, 44px review controls, expanded roster`, size);
     await tab.evaluate(() => scrollTo(0, 0));
-    await tab.screenshot({ path: `${out}/${member ? "member" : "public"}-${width}-full.png`, fullPage: true });
+    await capturePage(tab, `${out}/${member ? "member" : "public"}-${width}-full.png`);
     await tab.context().close();
   }
 

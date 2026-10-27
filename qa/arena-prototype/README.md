@@ -51,6 +51,7 @@ With the local app running, verify and capture:
 
 ```sh
 node qa/arena-prototype/verify.mjs
+node qa/arena-prototype/recapture.mjs
 npm run typecheck
 node node_modules/vite/bin/vite.js build --config qa/arena-prototype/vite.config.mts
 node node_modules/eslint/bin/eslint.js qa/arena-prototype
@@ -63,6 +64,14 @@ and `checks.json` to `/tmp/goat-arena-evidence`. Curated review captures live un
 `review/`. Production builds go to `/tmp/goat-arena-build` and intentionally do
 not copy the repository's entire public asset tree; run the dev command above
 for the complete playable local review, including fonts and existing media.
+
+Use `recapture.mjs` for delivery JPEGs below 900KB: it writes bounded viewport
+tiles, top/middle/bottom pixel checkpoint sheets, OCR/section-order and footer
+evidence to `/tmp/goat-arena-corrected`. It uses already installed Sharp and
+Tesseract. Native fullPage screenshots wrap beyond the software renderer's
+8192px limit; old PNG originals are historical artifacts and must not be used as
+complete-page evidence. See [the design/capture review](DESIGN-REVIEW.md) for the
+read-only Hallmark input, Muse's design split, and the exact capture method.
 
 Vite emits expected `use client` directive notices for reused Next components
 and a large-chunk notice for deferred installed Three/GLTFLoader. This is an
