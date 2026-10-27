@@ -195,6 +195,23 @@ gates; chart rendering and the bounded sampling fix remain separately owned.
 
 ### Courtside homepage and weekly archive
 
+`domain/home-weekly-recap.ts` distinguishes official team totals from exact,
+estimated and unavailable counted-player breakdowns. The pure
+`data/home-weekly-context.ts` joins injected, validated weekly receipts to the
+homepage's already-loaded season/current matchups; it selects only the previous
+source week, checks the receipt window against `checkedAt`, and supplies only
+the weekly adapter's exact contract to the existing member guide. The guide
+continues to intersect current membership and exclude missing participation.
+No source loader, network read, database operation or shared private cache is
+added. `season-hub/WeeklyLeagueRecap` uses native team disclosures with every
+counted starter, GP and lock labels; official totals determine shared Stud/Chud
+ties only with full league coverage. The earlier editorial spotlights remain
+in their own dated disclosure. Live recap/Power props are ignored in archive
+mode. `HomePowerRankings` keeps legal-lineup Power explicitly unavailable until
+Muse's prospective 11-slot producer lands (#190 comment 6433681384); the old
+retrospective standings composite is never used as a substitute. See
+`docs/home-weekly-recap.md` for integration and verification boundaries.
+
 The accepted opening tip constant and pure `openingPhase` gate live in
 `domain/season-opening.ts`, shared by the server homepage/feature and the
 client countdown. Server Components import only the rendered `TipCountdown`
