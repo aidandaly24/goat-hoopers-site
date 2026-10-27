@@ -9,6 +9,8 @@ import type { Db } from "../../db";
 import { AiDeciderStore, PostgresAiPersistence, emptyBudgetState, AI_BUDGET, type AiIdentity, type AiLegacyIdentity, type AiBudgetState, type AiStoredWeek, type AiWeeklyJobIdentity } from "../store";
 import type { AiForecastRevision } from "@/domain/ai-decider";
 import { generateWeeklyPicks, resolveAiIdentity, runAiDecision } from "../service";
+import { buildForecastRevision, computeForecastTeamLine, type AiForecastTeamInput } from "../forecast";
+import { loadAiForecastState } from "../forecast-service";
 import { loadAiDecidesData } from "../runtime";
 import { decodeDecision } from "../provider";
 import { AI_WEEKLY_MANIFEST, cachedWeek, manifestForInput, prepareWeeklySlate, recordWeeklyOutcome, weekHash, weekKey, weeklyDecision } from "../weekly";
@@ -585,22 +587,100 @@ describe("actual PostgreSQL one-time refresh preservation and admission", () => 
 });
 
 describe("actual PostgreSQL forecast series", () => {
+  const KEY = "1387473752807190528:2026:2";
+  const rev = (revisionId: string, evidenceHash: string, marker: number, supersedes: string | null = null) => ({ revisionId, evidenceHash, marker, supersedes }) as unknown as AiForecastRevision;
   it("appends append-only revisions, dedupes by evidence hash across the series, and reads back by hash", async () => {
     const p = persistence();
-    const key = "1387473752807190528:2026:2";
-    const rev = (revisionId: string, evidenceHash: string, marker: number) => ({ revisionId, evidenceHash, marker }) as unknown as AiForecastRevision;
-    const a = rev("a".repeat(64), "1".repeat(64), 1), b = rev("b".repeat(64), "2".repeat(64), 2);
-    expect(await p.appendForecast(key, a)).toBe(true);
-    expect(await p.appendForecast(key, b)).toBe(true);
+    const a = rev("a".repeat(64), "1".repeat(64), 1), b = rev("b".repeat(64), "2".repeat(64), 2, a.revisionId);
+    expect(await p.appendForecast(KEY, a)).toBe(true);
+    expect(await p.appendForecast(KEY, b)).toBe(true);
     // The same evidence hash under a different revision id no-ops across
     // the whole series (the A → B → A recurrence), as does a repeat append.
-    expect(await p.appendForecast(key, rev("c".repeat(64), "1".repeat(64), 3))).toBe(false);
-    expect(await p.appendForecast(key, a)).toBe(false);
-    expect((await p.getForecasts(key)).map(r => r.revisionId)).toEqual([a.revisionId, b.revisionId]);
-    expect(await p.getLatestForecast(key)).toEqual(b);
-    expect(await p.getForecastByEvidenceHash(key, a.evidenceHash)).toEqual(a);
-    expect(await p.getForecastByEvidenceHash(key, "9".repeat(64))).toBeNull();
+    expect(await p.appendForecast(KEY, rev("c".repeat(64), "1".repeat(64), 3))).toBe(false);
+    expect(await p.appendForecast(KEY, a)).toBe(false);
+    // The chain cannot fork at the storage layer either: a second genesis
+    // and a second child of A are both refused by the unique chain indexes.
+    expect(await p.appendForecast(KEY, rev("d".repeat(64), "4".repeat(64), 4))).toBe(false);
+    expect(await p.appendForecast(KEY, rev("e".repeat(64), "5".repeat(64), 5, a.revisionId))).toBe(false);
+    expect((await p.getForecasts(KEY)).map(r => r.revisionId)).toEqual([a.revisionId, b.revisionId]);
+    expect(await p.getLatestForecast(KEY)).toEqual(b);
+    expect(await p.getForecastByEvidenceHash(KEY, a.evidenceHash)).toEqual(a);
+    expect(await p.getForecastByEvidenceHash(KEY, "9".repeat(64))).toBeNull();
     await expect(pool.query("UPDATE ai_decider_forecasts SET revision='{}'::jsonb")).rejects.toThrow("append-only");
     await expect(pool.query("DELETE FROM ai_decider_forecasts")).rejects.toThrow("append-only");
+  });
+  it("public selection follows the current pointer: A → B → A presents A, then a genuinely new C presents C", async () => {
+    const p = persistence();
+    const h = realHarness();
+    const at = (s: number) => new Date(NOW + s * 1000).toISOString();
+    // Valid revision bodies (the public read validates on read-back).
+    const validInput = (counted: number, gamesRemaining: number) => {
+      const teams: AiForecastTeamInput[] = Array.from({ length: 10 }, (_, n) => ({
+        rosterId: String(n + 1), officialPoints: 0,
+        starters: [0, 1, 2].map(i => ({
+          playerId: String(3000 + n * 10 + i), countedPoints: 0, playedGames: [], rejectedAppearance: false,
+          liveGameInProgress: false, gamesRemaining: 2, projectionPpg: 20, projectionBasis: "current" as const,
+        })),
+      }));
+      teams[0].starters[0] = { ...teams[0].starters[0], countedPoints: counted, playedGames: [{ gameId: "9001", points: counted }], gamesRemaining };
+      teams[0].officialPoints = counted;
+      return {
+        leagueId: "1387473752807190528", season: "2026", week: 2, capturedAt: at(0), scoring: { pts: 0.5 },
+        matchups: [["1", "2"], ["3", "4"], ["5", "6"], ["7", "8"], ["9", "10"]].map((pair, i) => ({ matchupId: String(i + 1), teamIds: pair as [string, string] })),
+        teams, freshness: [{ source: "sleeper-matchups", observedAt: at(0) }],
+      };
+    };
+    const revisionFor = (input: ReturnType<typeof validInput>, generatedAt: string, supersedes: string | null) => buildForecastRevision(
+      input, input.teams.map(t => computeForecastTeamLine(t, input.capturedAt)), input.matchups.map(() => null), generatedAt, supersedes);
+    const a = revisionFor(validInput(25, 2), at(1), null);
+    const b = revisionFor(validInput(41, 0), at(2), a.revisionId);
+    const c = revisionFor(validInput(33, 1), at(4), b.revisionId);
+    expect(new Set([a.evidenceHash, b.evidenceHash, c.evidenceHash]).size).toBe(3);
+    expect(await p.publishForecast(KEY, a, at(1))).toBe(true);
+    let state = await loadAiForecastState(h.runtime, KEY);
+    expect(state.revision!.revisionId).toBe(a.revisionId);
+    expect(await p.publishForecast(KEY, b, at(2))).toBe(true);
+    state = await loadAiForecastState(h.runtime, KEY);
+    expect(state.revision!.revisionId).toBe(b.revisionId);
+    // Evidence recurs to A: the refresh outcome re-observes A (the dedupe
+    // hit appends nothing). Insertion order still ends at B — the public
+    // read must present A anyway, by revision id AND evidence hash.
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, at(3))).toBe(true);
+    expect((await p.getLatestForecast(KEY))!.revisionId).toBe(b.revisionId);
+    state = await loadAiForecastState(h.runtime, KEY);
+    expect(state.status).toBe("ready");
+    expect(state.revision!.revisionId).toBe(a.revisionId);
+    expect(state.revision!.evidenceHash).toBe(a.evidenceHash);
+    expect(state.revisionCount).toBe(2);
+    // A subsequent genuinely-new C appends on the chain head (B) and the
+    // public read presents C.
+    expect(await p.publishForecast(KEY, c, at(4))).toBe(true);
+    state = await loadAiForecastState(h.runtime, KEY);
+    expect(state.revision!.revisionId).toBe(c.revisionId);
+    expect(state.revision!.evidenceHash).toBe(c.evidenceHash);
+    expect(state.revisionCount).toBe(3);
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(c.revisionId);
+    expect((await p.getForecasts(KEY)).map(r => r.supersedes)).toEqual([null, a.revisionId, b.revisionId]);
+  });
+  it("concurrent different-evidence publications serialize into one linear chain with the pointer on the head", async () => {
+    const p1 = persistence(), p2 = persistence();
+    const at = new Date(NOW).toISOString();
+    const x = rev("a".repeat(64), "1".repeat(64), 1), y = rev("b".repeat(64), "2".repeat(64), 2);
+    // Both writers captured the same empty predecessor; exactly one CAS lands.
+    const [rx, ry] = await Promise.all([p1.publishForecast(KEY, x, at), p2.publishForecast(KEY, y, at)]);
+    expect([rx, ry].filter(Boolean)).toHaveLength(1);
+    const winner = rx ? x : y, loser = rx ? y : x, loserStore = rx ? p2 : p1;
+    // The loser's append was not lost and did not fork: rebuilt on the
+    // winner (the new chain head) it lands as the chain's second link.
+    expect(await loserStore.publishForecast(KEY, { ...loser, supersedes: winner.revisionId }, at)).toBe(true);
+    const series = await p1.getForecasts(KEY);
+    expect(series.map(r => r.revisionId)).toEqual([winner.revisionId, loser.revisionId]);
+    expect(series.map(r => r.supersedes)).toEqual([null, winner.revisionId]);
+    expect((await p1.getForecastCurrent(KEY))!.revisionId).toBe(loser.revisionId);
+    // A raw insert that would fork the chain (a second child of the
+    // winner) is refused by the unique chain index itself.
+    await expect(pool.query("INSERT INTO ai_decider_forecasts (week_key, revision_id, evidence_hash, revision) VALUES ($1, $2, $3, $4::jsonb)",
+      [KEY, "c".repeat(64), "3".repeat(64), JSON.stringify(rev("c".repeat(64), "3".repeat(64), 3, winner.revisionId))])).rejects.toThrow();
+    expect((await p1.getForecasts(KEY)).length).toBe(2);
   });
 });

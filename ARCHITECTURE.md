@@ -1392,7 +1392,12 @@ public matchup leg, Sleeper's public `scores` feed and ESPN box scores scored
 under league settings (the authenticated leg is unavailable to the service, so
 locks are proven by reconciliation); `forecast-service.ts` dedupes evidence
 by hash across the week's series and appends revisions through the existing evaluator's
-budget/lease controls. Revisions persist append-only in `ai_decider_forecasts`
+budget/lease controls. Publication is serialized by a chain-head CAS (the
+migration's unique indexes cap the supersedes chain at one child per
+revision), and a per-week current pointer in `ai_decider_forecast_current`
+— re-observed on every refresh outcome, dedupe hits included — is what
+public reads select through, so selection never disagrees with refresh
+semantics after an evidence recurrence. Revisions persist append-only in `ai_decider_forecasts`
 (additive `migrations/ai-decider-forecast.sql`, separately reviewed, not
 applied by this change). `GET /api/ai-decides/forecast` is the daily Vercel
 cron under the same CRON_SECRET/weekly-operator identity as the weekly job;

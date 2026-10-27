@@ -28,21 +28,37 @@ const readyState = (revision: AiForecastRevision, revisionCount: number): AiFore
   };
 };
 
-/** Public read: the latest immutable revision and the series size. Never generates. */
+/** Public read: the week's current revision and the series size. Never generates. */
 export async function loadAiForecastState(runtime: AiRuntime, key: string): Promise<AiForecastState> {
   if (!runtime.store) return unavailableState("The forecast store is unavailable.");
   const series = await runtime.store.persistence.getForecasts(key);
   if (series.length === 0) return unavailableState("No in-season forecast has been published for this week yet.");
-  const latest = series[series.length - 1];
-  if (!validForecastRevision(latest) || weekKey(latest) !== key) return unavailableState("The stored forecast revision could not be validated.");
-  return readyState(latest, series.length);
+  // Public selection goes through the recorded current pointer, never
+  // insertion order: after evidence recurs (A → B → A) the pointer names
+  // A again although B was inserted later, so the public read agrees
+  // with what the refresh path considers current. A series with no
+  // pointer recorded yet falls back to its latest revision; a pointer
+  // naming no stored revision is corrupt and fails closed.
+  const pointer = await runtime.store.persistence.getForecastCurrent(key);
+  let current: AiForecastRevision | undefined;
+  if (pointer) {
+    current = pointer.weekKey === key ? series.find(r => r.revisionId === pointer.revisionId && r.evidenceHash === pointer.evidenceHash) : undefined;
+    if (!current) return unavailableState("The stored forecast revision could not be validated.");
+  } else {
+    current = series[series.length - 1];
+  }
+  if (!validForecastRevision(current) || weekKey(current) !== key) return unavailableState("The stored forecast revision could not be validated.");
+  return readyState(current, series.length);
 }
 
 /**
  * One refresh attempt. Identical evidence returns the stored revision
  * without provider spend (dedupe); a genuinely changed evidence state
  * appends exactly one new revision through the existing budget/lease
- * overlap protection, and a lost append race converges on the winner.
+ * overlap protection, and a lost publication race converges on the
+ * winner. Every outcome — dedupe hit included — re-observes the
+ * resolved revision as the week's current selection, so the public
+ * read through the pointer always agrees with this resolution.
  */
 export async function refreshForecast(identity: AiIdentity, runtime: AiRuntime, sources: AiForecastSources = forecastSources): Promise<AiForecastRefreshResponse> {
   if (!validAiIdentity(identity)) return failure("unauthenticated", "sign_in_required", "A validated forecast identity is required.");
@@ -58,13 +74,16 @@ export async function refreshForecast(identity: AiIdentity, runtime: AiRuntime, 
     if (!forecastWeekUnderway(input)) return failure("unavailable", "forecast_not_started", "No starter has completed a game this week yet. The pregame slate owns the window before play begins.");
     const lines = input.teams.map(team => computeForecastTeamLine(team, input.capturedAt));
     const evidenceHash = forecastEvidenceHash(input);
-    const latest = await persistence.getLatestForecast(key);
+    const observedAt = new Date(runtime.now()).toISOString();
     // Dedupe across the week's whole series, not just its latest
     // revision: evidence can recur (A → B → A), and the stored revision
     // for THIS evidence state is the ready result — never a later
-    // revision computed from different evidence.
+    // revision computed from different evidence. The hit appends
+    // nothing, but it DOES re-observe that revision as current: the
+    // pointer moves back to it, so public reads present it too.
     const existing = await persistence.getForecastByEvidenceHash(key, evidenceHash);
     if (existing && validForecastRevision(existing) && weekKey(existing) === key) {
+      if (!(await persistence.markForecastCurrent(key, existing.revisionId, existing.evidenceHash, observedAt))) return failure("unavailable", "forecast_unavailable", "The forecast revision could not be safely recorded.");
       const series = await persistence.getForecasts(key);
       return { status: "ready", forecast: readyState(existing, series.length) };
     }
@@ -78,19 +97,33 @@ export async function refreshForecast(identity: AiIdentity, runtime: AiRuntime, 
       if (response.status === "ready") return failure("unavailable", "forecast_unavailable", "The forecast evaluation could not be validated.");
       return response;
     }
-    const revision = buildForecastRevision(input, lines, response.results, new Date(runtime.now()).toISOString(), latest && validForecastRevision(latest) ? latest.revisionId : null);
-    await persistence.appendForecast(key, revision);
-    // Converge on the stored revision for this evidence state: if a
-    // concurrent refresh won the append race (the append above no-ops on
-    // the evidence-hash unique key), its stored revision — not whatever
-    // happens to be the series latest — is the result for this evidence.
-    const stored = await persistence.getForecastByEvidenceHash(key, evidenceHash);
-    if (stored && validForecastRevision(stored) && weekKey(stored) === key) {
-      const series = await persistence.getForecasts(key);
-      return { status: "ready", forecast: readyState(stored, series.length) };
+    // Serialized publication: the append is a chain-head CAS — it lands
+    // only on top of the predecessor the revision names. A concurrent
+    // different-evidence refresh (cron vs manual is enough) can move
+    // the head first; the loser re-reads the head, rebuilds on top of
+    // it (the evaluation results are reused — no extra provider spend)
+    // and retries, so the series stays one linear chain and the
+    // pointer ends on the chain head. A concurrent same-evidence
+    // refresh converges on the stored revision for this evidence.
+    let predecessor = await persistence.getLatestForecast(key);
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const revision = buildForecastRevision(input, lines, response.results, observedAt, predecessor && validForecastRevision(predecessor) ? predecessor.revisionId : null);
+      if (await persistence.publishForecast(key, revision, observedAt)) {
+        const stored = await persistence.getForecastByEvidenceHash(key, evidenceHash);
+        if (stored && validForecastRevision(stored) && weekKey(stored) === key) {
+          const series = await persistence.getForecasts(key);
+          return { status: "ready", forecast: readyState(stored, series.length) };
+        }
+      }
+      const stored = await persistence.getForecastByEvidenceHash(key, evidenceHash);
+      if (stored && validForecastRevision(stored) && weekKey(stored) === key) {
+        if (!(await persistence.markForecastCurrent(key, stored.revisionId, stored.evidenceHash, observedAt))) return failure("unavailable", "forecast_unavailable", "The forecast revision could not be safely recorded.");
+        const series = await persistence.getForecasts(key);
+        return { status: "ready", forecast: readyState(stored, series.length) };
+      }
+      predecessor = await persistence.getLatestForecast(key);
     }
-    const forecast = await loadAiForecastState(runtime, key);
-    return forecast.status === "ready" ? { status: "ready", forecast } : failure("unavailable", "forecast_unavailable", "The forecast revision could not be safely recorded.");
+    return failure("unavailable", "forecast_unavailable", "The forecast revision could not be safely recorded.");
   } catch { return failure("unavailable", "forecast_unavailable", "The live forecast sources or durable controls are unavailable."); }
 }
 

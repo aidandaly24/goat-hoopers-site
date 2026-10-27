@@ -267,6 +267,23 @@ export type AiForecastRevision = {
   evidenceHash: string;
 };
 
+/**
+ * Per-week current-selection record for the forecast series: the stored
+ * revision public reads present. This is mutable selection state, not a
+ * revision — revisions stay append-only and immutable, and the pointer
+ * is re-observed (moved) on every refresh outcome, including a dedupe
+ * hit that appends nothing, so public selection always agrees with what
+ * the refresh path considers current (an A → B → A evidence recurrence
+ * presents A again, not the last-inserted B).
+ */
+export type AiForecastCurrentPointer = {
+  weekKey: string;
+  revisionId: string;
+  evidenceHash: string;
+  /** ISO time this revision was most recently observed as current. */
+  observedAt: string;
+};
+
 /** Public read state for the current week's forecast series. */
 export type AiForecastState = {
   status: "ready" | "unavailable";

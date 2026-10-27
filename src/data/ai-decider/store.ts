@@ -2,7 +2,7 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { sql, type SQL } from "drizzle-orm";
 import { getDb, type Db } from "../db";
-import type { AiForecastRevision, AiGenerationManifest, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
+import type { AiForecastCurrentPointer, AiForecastRevision, AiGenerationManifest, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
 import { isRecord, uuidValid } from "./validation";
 import { aiDataDeadline } from "./deadline";
 import { refreshStorageKey, WEEK1_REFRESH_KEY, type AiWeek1RefreshPolicy } from "./refresh-policy";
@@ -42,12 +42,28 @@ export type AiPersistence = {
   completeWeekRefresh(hash: string, slate: AiWeeklySlate, identity: AiIdentity): Promise<boolean>;
   completeWeek(key: string, hash: string, slate: AiWeeklySlate): Promise<boolean>;
   recordOutcome(key: string, outcome: AiWeeklyOutcome): Promise<boolean>;
-  /** In-season forecast series (issue #149): append-only; false when this revision id or evidence hash is already stored for the week. */
+  /** In-season forecast series (issue #149): append-only; false when this revision id or evidence hash is already stored for the week. Raw primitive — publication goes through publishForecast. */
   appendForecast(key: string, revision: AiForecastRevision): Promise<boolean>;
   getForecasts(key: string): Promise<AiForecastRevision[]>;
   getLatestForecast(key: string): Promise<AiForecastRevision | null>;
   /** The stored revision for one evidence state, looked up across the week's whole series (evidence can recur: A → B → A). */
   getForecastByEvidenceHash(key: string, evidenceHash: string): Promise<AiForecastRevision | null>;
+  /**
+   * Serialized publication: in ONE statement, appends this revision and
+   * moves the week's current pointer to it — but only while the chain
+   * head is still `revision.supersedes` and no revision for this evidence
+   * state exists. False means the CAS did not take (the chain moved, a
+   * fork was refused, or the evidence is already stored): the caller
+   * re-reads and retries on the new head. This store executes single
+   * statements (neon-http has no interactive transactions), so the CAS is
+   * per-statement atomic and the migration's unique chain indexes make a
+   * fork structurally impossible even across statement snapshots.
+   */
+  publishForecast(key: string, revision: AiForecastRevision, observedAt: string): Promise<boolean>;
+  /** Re-observes an already-stored revision as the week's current selection (the dedupe hit that appends nothing). False when no such stored revision exists. */
+  markForecastCurrent(key: string, revisionId: string, evidenceHash: string, observedAt: string): Promise<boolean>;
+  /** The week's recorded current selection, or null when no refresh outcome has been recorded for it yet. */
+  getForecastCurrent(key: string): Promise<AiForecastCurrentPointer | null>;
 };
 export type AiReservation = { status: "reserved"; leaseId: string } | { status: "disabled" | "rate_limited" | "burst_limited" | "busy" | "duplicate"; retryAfterSeconds?: number };
 const count = (v: unknown): v is number => typeof v === "number" && Number.isSafeInteger(v) && v >= 0;
@@ -297,16 +313,64 @@ export class PostgresAiPersistence implements AiPersistence {
       return result.rows[0] ? result.rows[0].revision as AiForecastRevision : null;
     } catch (error) { if (isMissingForecastTable(error)) return null; throw error; }
   }
+  async publishForecast(key: string, revision: AiForecastRevision, observedAt: string): Promise<boolean> {
+    // One statement, so append and pointer move commit or fail together.
+    // The append is gated on the evidence state being absent AND the
+    // chain head still being the revision's recorded predecessor; a
+    // concurrent winner makes this insert a no-op (or a unique-violation
+    // on the chain indexes, folded into the same "CAS lost" result).
+    try {
+      const result = await this.execute(sql`
+        WITH ins AS (
+          INSERT INTO ai_decider_forecasts (week_key, revision_id, evidence_hash, revision)
+          SELECT ${key}, ${revision.revisionId}, ${revision.evidenceHash}, ${JSON.stringify(revision)}::jsonb
+          WHERE NOT EXISTS (SELECT 1 FROM ai_decider_forecasts WHERE week_key = ${key} AND evidence_hash = ${revision.evidenceHash})
+            AND COALESCE((SELECT revision_id FROM ai_decider_forecasts WHERE week_key = ${key} ORDER BY seq DESC LIMIT 1), '') = ${revision.supersedes ?? ""}
+          ON CONFLICT DO NOTHING
+          RETURNING revision_id
+        ),
+        ptr AS (
+          INSERT INTO ai_decider_forecast_current (week_key, revision_id, evidence_hash, observed_at)
+          SELECT ${key}, ins.revision_id, ${revision.evidenceHash}, ${observedAt}::timestamptz FROM ins
+          ON CONFLICT (week_key) DO UPDATE SET revision_id = EXCLUDED.revision_id, evidence_hash = EXCLUDED.evidence_hash, observed_at = EXCLUDED.observed_at
+          RETURNING revision_id
+        )
+        SELECT revision_id FROM ptr`);
+      return result.rows.length === 1;
+    } catch (error) { if ((error as { code?: unknown } | null)?.code === "23505") return false; throw error; }
+  }
+  async markForecastCurrent(key: string, revisionId: string, evidenceHash: string, observedAt: string): Promise<boolean> {
+    // The pointer may only ever name a revision actually stored for the
+    // week (the SELECT source), mirroring the table's foreign key.
+    try {
+      const result = await this.execute(sql`
+        INSERT INTO ai_decider_forecast_current (week_key, revision_id, evidence_hash, observed_at)
+        SELECT week_key, revision_id, evidence_hash, ${observedAt}::timestamptz FROM ai_decider_forecasts
+        WHERE week_key = ${key} AND revision_id = ${revisionId} AND evidence_hash = ${evidenceHash}
+        ON CONFLICT (week_key) DO UPDATE SET revision_id = EXCLUDED.revision_id, evidence_hash = EXCLUDED.evidence_hash, observed_at = EXCLUDED.observed_at
+        RETURNING revision_id`);
+      return result.rows.length === 1;
+    } catch (error) { if (isMissingForecastTable(error)) return false; throw error; }
+  }
+  async getForecastCurrent(key: string): Promise<AiForecastCurrentPointer | null> {
+    try {
+      const result = await this.execute(sql`SELECT week_key, revision_id, evidence_hash, observed_at FROM ai_decider_forecast_current WHERE week_key = ${key}`);
+      const r = result.rows[0];
+      if (!r) return null;
+      const at = r.observed_at as Date | string;
+      return { weekKey: r.week_key as string, revisionId: r.revision_id as string, evidenceHash: r.evidence_hash as string, observedAt: at instanceof Date ? at.toISOString() : String(at) };
+    } catch (error) { if (isMissingForecastTable(error)) return null; throw error; }
+  }
 }
 
 /**
- * The forecast table is applied separately from the base migration; until
- * it exists, forecast reads are a clean empty series, never an error that
- * could disturb the pregame read path.
+ * The forecast tables are applied separately from the base migration;
+ * until they exist, forecast reads are a clean empty series, never an
+ * error that could disturb the pregame read path.
  */
 function isMissingForecastTable(error: unknown): boolean {
   const e = error as { code?: unknown; message?: unknown } | null;
-  return e?.code === "42P01" || (typeof e?.message === "string" && /ai_decider_forecasts/.test(e.message) && /does not exist/i.test(e.message));
+  return e?.code === "42P01" || (typeof e?.message === "string" && /ai_decider_forecast/.test(e.message) && /does not exist/i.test(e.message));
 }
 
 export function getAiDeciderStore(weeklyOperator?: { userId: string; auth: "legacy" | "friends" }, refreshPolicy?: AiWeek1RefreshPolicy): AiDeciderStore { return new AiDeciderStore(new PostgresAiPersistence(getDb(), weeklyOperator, refreshPolicy)); }

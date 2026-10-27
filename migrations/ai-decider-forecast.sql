@@ -26,3 +26,32 @@ CREATE TRIGGER ai_decider_forecast_immutable BEFORE UPDATE OR DELETE ON ai_decid
   FOR EACH ROW EXECUTE FUNCTION ai_decider_protect_forecast();
 -- Immutable forecast revisions are retained for season review, like the
 -- weekly prediction/outcome records. They contain no prompts or credentials.
+--
+-- The supersedes chain is linear by construction, not by caller care: at
+-- most one revision may supersede any given revision within a week, and at
+-- most one revision may be the week's genesis (supersedes NULL). A racing
+-- append that would fork the chain violates one of these indexes and is
+-- skipped, which is what makes the store's optimistic chain-head CAS safe
+-- under concurrent scheduler/manual refreshes.
+CREATE UNIQUE INDEX ai_decider_forecasts_one_child
+  ON ai_decider_forecasts (week_key, ((revision ->> 'supersedes')))
+  WHERE (revision ->> 'supersedes') IS NOT NULL;
+CREATE UNIQUE INDEX ai_decider_forecasts_one_genesis
+  ON ai_decider_forecasts (week_key)
+  WHERE (revision ->> 'supersedes') IS NULL;
+--
+-- Per-week current-selection pointer: the one mutable record in this lane.
+-- Public reads present the revision this pointer names, so selection is a
+-- recorded observation — refreshed on EVERY refresh outcome, including a
+-- dedupe hit that appends nothing — and never an accident of insertion
+-- order (after evidence recurs A → B → A, the pointer names A again even
+-- though B was inserted later). The pointer names a stored revision via
+-- the foreign key; it carries no facts of its own beyond when that
+-- revision was most recently observed as current.
+CREATE TABLE ai_decider_forecast_current (
+  week_key text PRIMARY KEY,
+  revision_id text NOT NULL CHECK (revision_id ~ '^[a-f0-9]{64}$'),
+  evidence_hash text NOT NULL CHECK (evidence_hash ~ '^[a-f0-9]{64}$'),
+  observed_at timestamptz NOT NULL,
+  FOREIGN KEY (week_key, revision_id) REFERENCES ai_decider_forecasts (week_key, revision_id)
+);

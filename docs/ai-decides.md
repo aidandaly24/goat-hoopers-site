@@ -467,6 +467,22 @@ lease overlap protection, within the existing weekly input-token bound.
 No new provider, credential or paid service is introduced, and provider
 runs are not assumed free — the existing bounded budget is the control.
 
+Which revision is *current* is a recorded fact, not an accident of
+insertion order. A per-week pointer (`ai_decider_forecast_current`) names
+the revision public reads present, and every refresh outcome moves it —
+a fresh append moves it atomically with the append, and a dedupe hit
+re-observes the stored revision it resolved to, so after A → B → A the
+public read presents A again even though B was inserted later.
+Publication is serialized as a chain-head CAS: an append lands only on
+top of the predecessor its `supersedes` names, the migration's unique
+indexes allow at most one child per revision (and one genesis) per week
+so the chain cannot fork at the storage layer, and a refresh that loses
+the race re-reads the head, rebuilds on top of it (reusing its
+evaluation — no extra provider spend) and retries a bounded number of
+times before failing closed. Concurrent cron and manual refreshes with
+different evidence therefore resolve into one linear chain, and the
+pointer ends on the chain head.
+
 ### Lock-in math and provenance
 
 Every starter slot contributes exactly one counted game. Per slot the

@@ -246,7 +246,51 @@ describe("forecast refresh service", () => {
     expect(second.forecast.revision!.teams[0].finalPoints).toBeNull();
     expect(second.forecast.revision!.teams[0].slots[0].state).toBe("unknown");
   });
-  it("regression: evidence A → B → A returns the stored A revision with no third provider call", async () => {
+  it("regression: evidence A → B → A returns the stored A revision with no third provider call — and the public read presents A again", async () => {
+    const h = forecastHarness();
+    const first = await refreshForecast(identity(), h.runtime, h.sources);
+    if (first.status !== "ready") throw new Error("fixture");
+    const aId = first.forecast.revision!.revisionId;
+    const aHash = first.forecast.revision!.evidenceHash;
+    const changed = forecastInput();
+    changed.teams[0].starters[0] = starter("3000", { countedPoints: 41, playedGames: games(41), gamesRemaining: 0 });
+    changed.teams[0].officialPoints = 41;
+    h.sources.input = vi.fn(async () => structuredClone(changed));
+    const second = await refreshForecast(identity(), h.runtime, h.sources);
+    if (second.status !== "ready") throw new Error("fixture");
+    expect(second.forecast.revision!.revisionId).not.toBe(aId);
+    expect(second.forecast.revisionCount).toBe(2);
+    // While B is current, insertion order and the pointer agree.
+    expect((await loadAiForecastState(h.runtime, KEY)).revision!.revisionId).toBe(second.forecast.revision!.revisionId);
+    // The evidence reverts to A: dedupe must find A across the series and
+    // return it — not spend again, not no-op the append and return B.
+    h.sources.input = vi.fn(async () => structuredClone(forecastInput()));
+    const third = await refreshForecast(identity(), h.runtime, h.sources);
+    expect(third.status).toBe("ready"); if (third.status !== "ready") throw new Error("fixture");
+    expect(third.forecast.revision!.revisionId).toBe(aId);
+    expect(third.forecast.revisionCount).toBe(2);
+    expect(h.create).toHaveBeenCalledTimes(2);
+    expect((await h.persistence.getForecasts(KEY)).length).toBe(2);
+    // The dedupe hit appended nothing but re-observed A as current: the
+    // public read must present A (id + evidence hash), not the
+    // last-inserted B that getLatestForecast still reports.
+    expect((await h.persistence.getLatestForecast(KEY))!.revisionId).not.toBe(aId);
+    expect(await h.persistence.getForecastCurrent(KEY)).toMatchObject({ weekKey: KEY, revisionId: aId, evidenceHash: aHash });
+    const pub = await loadAiForecastState(h.runtime, KEY);
+    expect(pub.status).toBe("ready");
+    expect(pub.revision!.revisionId).toBe(aId);
+    expect(pub.revision!.evidenceHash).toBe(aHash);
+    expect(pub.revisionCount).toBe(2);
+    // Another unchanged-A refresh keeps presenting A publicly, still
+    // with no further spend and no new revision.
+    const fourth = await refreshForecast(identity(), h.runtime, h.sources);
+    expect(fourth.status).toBe("ready"); if (fourth.status !== "ready") throw new Error("fixture");
+    expect(fourth.forecast.revision!.revisionId).toBe(aId);
+    expect(h.create).toHaveBeenCalledTimes(2);
+    expect((await loadAiForecastState(h.runtime, KEY)).revision!.revisionId).toBe(aId);
+    expect((await h.persistence.getForecasts(KEY)).length).toBe(2);
+  });
+  it("after A → B → A, a genuinely new evidence C appends on the chain head and the public read presents C", async () => {
     const h = forecastHarness();
     const first = await refreshForecast(identity(), h.runtime, h.sources);
     if (first.status !== "ready") throw new Error("fixture");
@@ -257,17 +301,80 @@ describe("forecast refresh service", () => {
     h.sources.input = vi.fn(async () => structuredClone(changed));
     const second = await refreshForecast(identity(), h.runtime, h.sources);
     if (second.status !== "ready") throw new Error("fixture");
-    expect(second.forecast.revision!.revisionId).not.toBe(aId);
-    expect(second.forecast.revisionCount).toBe(2);
-    // The evidence reverts to A: dedupe must find A across the series and
-    // return it — not spend again, not no-op the append and return B.
+    const bId = second.forecast.revision!.revisionId;
     h.sources.input = vi.fn(async () => structuredClone(forecastInput()));
-    const third = await refreshForecast(identity(), h.runtime, h.sources);
-    expect(third.status).toBe("ready"); if (third.status !== "ready") throw new Error("fixture");
-    expect(third.forecast.revision!.revisionId).toBe(aId);
-    expect(third.forecast.revisionCount).toBe(2);
+    await refreshForecast(identity(), h.runtime, h.sources);
+    expect((await loadAiForecastState(h.runtime, KEY)).revision!.revisionId).toBe(aId);
+    // Evidence moves on to C: the append extends the chain head (B —
+    // re-observation never appends), and the pointer moves to C.
+    const third = forecastInput();
+    third.teams[0].starters[0] = starter("3000", { countedPoints: 33, playedGames: games(33), gamesRemaining: 1 });
+    third.teams[0].officialPoints = 33;
+    h.sources.input = vi.fn(async () => structuredClone(third));
+    const cRefresh = await refreshForecast(identity(), h.runtime, h.sources);
+    expect(cRefresh.status).toBe("ready"); if (cRefresh.status !== "ready") throw new Error("fixture");
+    const cId = cRefresh.forecast.revision!.revisionId;
+    expect(cId).not.toBe(aId); expect(cId).not.toBe(bId);
+    expect(cRefresh.forecast.revision!.supersedes).toBe(bId);
+    expect(cRefresh.forecast.revisionCount).toBe(3);
+    const pub = await loadAiForecastState(h.runtime, KEY);
+    expect(pub.revision!.revisionId).toBe(cId);
+    expect(pub.revision!.evidenceHash).toBe(cRefresh.forecast.revision!.evidenceHash);
+    expect(await h.persistence.getForecastCurrent(KEY)).toMatchObject({ revisionId: cId });
+    const series = await h.persistence.getForecasts(KEY);
+    expect(series.map(r => r.revisionId)).toEqual([aId, bId, cId]);
+    expect(series.map(r => r.supersedes)).toEqual([null, aId, bId]);
+    expect(h.create).toHaveBeenCalledTimes(3);
+  });
+  it("concurrency: two competing different-evidence refreshes resolve into one linear chain, the pointer ends on the chain head, and the retry spends nothing", async () => {
+    const h = forecastHarness();
+    const inputB = forecastInput();
+    inputB.teams[0].starters[0] = starter("3000", { countedPoints: 41, playedGames: games(41), gamesRemaining: 0 });
+    inputB.teams[0].officialPoints = 41;
+    const sourcesA: AiForecastSources = { context: vi.fn(async () => context(2)), input: vi.fn(async () => structuredClone(forecastInput())) };
+    const sourcesB: AiForecastSources = { context: vi.fn(async () => context(2)), input: vi.fn(async () => structuredClone(inputB)) };
+    // Force the publication race: both refreshes read the same (empty)
+    // chain head and build genesis revisions. The first publish attempt
+    // is gated until the competing stale attempt arrives; the competing
+    // attempt then runs only after the first has fully landed, so its
+    // chain-head CAS must lose and the service must rebuild on the new
+    // head instead of forking the chain or losing the append.
+    const realPublish = h.persistence.publishForecast.bind(h.persistence);
+    let openGate!: () => void;
+    const gate = new Promise<void>(resolve => { openGate = resolve; });
+    let firstPublish: Promise<boolean> | null = null;
+    h.persistence.publishForecast = (key, revision, observedAt) => {
+      if (!firstPublish) {
+        firstPublish = (async () => { await gate; return realPublish(key, revision, observedAt); })();
+        return firstPublish;
+      }
+      if (revision.supersedes === null) {
+        openGate();
+        return firstPublish.then(() => realPublish(key, revision, observedAt));
+      }
+      return realPublish(key, revision, observedAt);
+    };
+    const [resA, resB] = await Promise.all([
+      refreshForecast(identity(), h.runtime, sourcesA),
+      refreshForecast(identity(2), h.runtime, sourcesB),
+    ]);
+    expect(resA.status).toBe("ready"); expect(resB.status).toBe("ready");
+    if (resA.status !== "ready" || resB.status !== "ready") throw new Error("fixture");
+    const series = await h.persistence.getForecasts(KEY);
+    expect(series).toHaveLength(2);
+    // One linear chain: genesis, then exactly one child on top of it —
+    // no fork (two geneses / two children of one parent), no lost append.
+    expect(series[0].supersedes).toBeNull();
+    expect(series[1].supersedes).toBe(series[0].revisionId);
+    expect(new Set(series.map(r => r.revisionId))).toEqual(new Set([resA.forecast.revision!.revisionId, resB.forecast.revision!.revisionId]));
+    // The pointer ends on the chain head and the public read agrees.
+    expect(await h.persistence.getForecastCurrent(KEY)).toMatchObject({ revisionId: series[1].revisionId, evidenceHash: series[1].evidenceHash });
+    const pub = await loadAiForecastState(h.runtime, KEY);
+    expect(pub.revision!.revisionId).toBe(series[1].revisionId);
+    expect(pub.revisionCount).toBe(2);
+    // The losing publication retried on the rebuilt revision only: the
+    // provider ran once per refresh, never a third time.
     expect(h.create).toHaveBeenCalledTimes(2);
-    expect((await h.persistence.getForecasts(KEY)).length).toBe(2);
   });
   it("directed: at week end the totals resolve — projected is exactly 0 and the total is locked + final", async () => {
     const input = forecastInput();
@@ -338,6 +445,52 @@ describe("forecast refresh service", () => {
     expect(validForecastInput(input)).toBe(false);
     expect((await refreshForecast(identity(), h.runtime, h.sources)).status).toBe("unavailable");
     expect(h.create).not.toHaveBeenCalled();
+  });
+});
+
+describe("publication contract: chain-head CAS and the current pointer", () => {
+  const revisionFor = (input: AiForecastInput, supersedes: string | null) => buildForecastRevision(
+    input, input.teams.map(t => computeForecastTeamLine(t, input.capturedAt)), input.matchups.map(() => null), OBS, supersedes);
+  const inputB = () => {
+    const input = forecastInput();
+    input.teams[0].starters[0] = starter("3000", { countedPoints: 41, playedGames: games(41), gamesRemaining: 0 });
+    input.teams[0].officialPoints = 41;
+    return input;
+  };
+  it("publish lands only on the recorded predecessor, moves the pointer with the append, and refuses forks and replays", async () => {
+    const h = harness();
+    const p = h.persistence;
+    const a = revisionFor(forecastInput(), null);
+    const bStale = revisionFor(inputB(), null);
+    const b = revisionFor(inputB(), a.revisionId);
+    expect(await p.getForecastCurrent(KEY)).toBeNull();
+    expect(await p.publishForecast(KEY, a, OBS)).toBe(true);
+    expect(await p.getForecastCurrent(KEY)).toEqual({ weekKey: KEY, revisionId: a.revisionId, evidenceHash: a.evidenceHash, observedAt: OBS });
+    // A stale genesis for different evidence loses the CAS: no fork, no
+    // second genesis, pointer unmoved. A replay of A also loses: its
+    // evidence state is already stored.
+    expect(await p.publishForecast(KEY, bStale, OBS)).toBe(false);
+    expect(await p.publishForecast(KEY, a, OBS)).toBe(false);
+    expect((await p.getForecasts(KEY)).map(r => r.revisionId)).toEqual([a.revisionId]);
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(a.revisionId);
+    // Rebuilt on the actual head, the competing publication lands and
+    // the pointer follows it to the new chain head.
+    expect(await p.publishForecast(KEY, b, OBS)).toBe(true);
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(b.revisionId);
+    // Re-observation (the dedupe hit) moves the pointer back to A
+    // without appending; an unknown revision can never become current.
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, OBS)).toBe(true);
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(a.revisionId);
+    expect((await p.getForecasts(KEY)).length).toBe(2);
+    expect(await p.markForecastCurrent(KEY, "f".repeat(64), a.evidenceHash, OBS)).toBe(false);
+    expect(await p.markForecastCurrent(KEY, a.revisionId, "f".repeat(64), OBS)).toBe(false);
+  });
+  it("fails the public read closed when the pointer names no stored revision", async () => {
+    const h = forecastHarness();
+    const response = await refreshForecast(identity(), h.runtime, h.sources);
+    if (response.status !== "ready") throw new Error("fixture");
+    h.persistence.forecastCurrent.set(KEY, { weekKey: KEY, revisionId: "f".repeat(64), evidenceHash: "e".repeat(64), observedAt: OBS });
+    expect((await loadAiForecastState(h.runtime, KEY)).status).toBe("unavailable");
   });
 });
 

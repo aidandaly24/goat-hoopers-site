@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { vi } from "vitest";
-import type { AiForecastRevision, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
+import type { AiForecastCurrentPointer, AiForecastRevision, AiWeeklyInput, AiWeeklyOutcome, AiWeeklySlate } from "@/domain/ai-decider";
 import type { AiRuntime } from "../service";
 import { AiDeciderStore, emptyBudgetState, type AiControl, type AiBudgetState, type AiIdentity, type AiLegacyIdentity, type AiPersistence, type AiStoredWeek, type AiWeeklyJobIdentity } from "../store";
 import type { DecisionPayload, DecisionsClient } from "../provider";
@@ -68,9 +68,13 @@ export class TestPersistence implements AiPersistence {
     return true;
   }
   forecasts = new Map<string, AiForecastRevision[]>();
+  forecastCurrent = new Map<string, AiForecastCurrentPointer>();
   async appendForecast(key: string, revision: AiForecastRevision) {
     const series = this.forecasts.get(key) ?? [];
     if (series.some(r => r.revisionId === revision.revisionId || r.evidenceHash === revision.evidenceHash)) return false;
+    // Same chain-linearity contract as the Postgres unique indexes: one
+    // child per predecessor, one genesis per week — a fork never stores.
+    if (series.some(r => (r.supersedes ?? null) === (revision.supersedes ?? null))) return false;
     series.push(structuredClone(revision));
     this.forecasts.set(key, series);
     return true;
@@ -78,6 +82,23 @@ export class TestPersistence implements AiPersistence {
   async getForecasts(key: string) { return structuredClone(this.forecasts.get(key) ?? []); }
   async getLatestForecast(key: string) { const series = this.forecasts.get(key) ?? []; return structuredClone(series[series.length - 1] ?? null); }
   async getForecastByEvidenceHash(key: string, evidenceHash: string) { return structuredClone((this.forecasts.get(key) ?? []).find(r => r.evidenceHash === evidenceHash) ?? null); }
+  async publishForecast(key: string, revision: AiForecastRevision, observedAt: string) {
+    const series = this.forecasts.get(key) ?? [];
+    if (series.some(r => r.evidenceHash === revision.evidenceHash)) return false;
+    const head = series[series.length - 1] ?? null;
+    if ((head?.revisionId ?? null) !== (revision.supersedes ?? null)) return false;
+    series.push(structuredClone(revision));
+    this.forecasts.set(key, series);
+    this.forecastCurrent.set(key, { weekKey: key, revisionId: revision.revisionId, evidenceHash: revision.evidenceHash, observedAt });
+    return true;
+  }
+  async markForecastCurrent(key: string, revisionId: string, evidenceHash: string, observedAt: string) {
+    const stored = (this.forecasts.get(key) ?? []).find(r => r.revisionId === revisionId);
+    if (!stored || stored.evidenceHash !== evidenceHash) return false;
+    this.forecastCurrent.set(key, { weekKey: key, revisionId, evidenceHash, observedAt });
+    return true;
+  }
+  async getForecastCurrent(key: string) { return structuredClone(this.forecastCurrent.get(key) ?? null); }
 }
 
 export function weeklyInput(): AiWeeklyInput & { startsAt: string; endsAt: string } {
