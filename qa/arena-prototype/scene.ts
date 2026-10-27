@@ -7,7 +7,8 @@ declare global { interface Window { goatArenaMetrics?: Metrics } }
 
 // These files appear ONLY after fetch-assets.py structurally inspects the GLBs.
 // No downloaded code or remote ES modules are imported/executed.
-const assets = import.meta.glob("./assets/*.glb", { eager: true, query: "?url", import: "default" }) as unknown as Record<string, string>;
+const assets = import.meta.glob("./assets/polyfork/*.glb", { eager: true, query: "?url", import: "default" }) as unknown as Record<string, string>;
+const approved = new Set(["yard-basketball-post-b71ee3", "match-scoreboard-58f51e", "trophy-cabinet-e963ac"]);
 
 export async function mountArena(host: HTMLElement, onStatus: (status: Status) => void) {
   const renderer = new THREE.WebGLRenderer({ alpha: false, antialias: true, powerPreference: "low-power", preserveDrawingBuffer: true });
@@ -111,12 +112,13 @@ export async function mountArena(host: HTMLElement, onStatus: (status: Status) =
     for (let beam = 0; beam < 5; beam++) box(.14, .14, 40, -20 + beam * 10, 12, 0, aisle);
   }
   // Original static backboards provide an honest court while optional props are unavailable.
+  const originalHoops: THREE.Object3D[] = [];
   for (const side of [-1, 1]) {
-    box(.25, 3, .25, side * 15, 1.5, 0, steel);
-    box(1.6, .14, .15, side * 14.3, 3, 0, steel);
-    box(.08, 1.05, 1.8, side * 12.95, 3.5, 0, white);
+    originalHoops.push(box(.25, 3, .25, side * 15, 1.5, 0, steel));
+    originalHoops.push(box(1.6, .14, .15, side * 14.3, 3, 0, steel));
+    originalHoops.push(box(.08, 1.05, 1.8, side * 12.95, 3.5, 0, white));
     const geometry = new THREE.TorusGeometry(.24, .027, 5, 20); geometries.add(geometry);
-    const hoop = new THREE.Mesh(geometry, rim); hoop.rotation.x = Math.PI / 2; hoop.position.set(side * 12.55, 3.05, 0); scene.add(hoop);
+    const hoop = new THREE.Mesh(geometry, rim); hoop.rotation.x = Math.PI / 2; hoop.position.set(side * 12.55, 3.05, 0); scene.add(hoop); originalHoops.push(hoop);
   }
   // A wide, restrained arena ribbon, never a fake live scoreboard.
   const signCanvas = document.createElement("canvas"); signCanvas.width = 1024; signCanvas.height = 128;
@@ -141,9 +143,8 @@ export async function mountArena(host: HTMLElement, onStatus: (status: Status) =
     camera.left = -halfWidth; camera.right = halfWidth; camera.top = halfHeight; camera.bottom = -halfHeight;
     camera.updateProjectionMatrix(); renderer.render(scene, camera);
     metrics.frames++; metrics.drawCalls = renderer.info.render.calls; metrics.triangles = renderer.info.render.triangles; metrics.pixelRatio = ratio;
-    // Reuse this one still-rendered scene as the full-page material, including
-    // screenshot capture below the viewport. No second renderer or scroll loop.
-    document.documentElement.style.setProperty("--arena-poster", `url("${renderer.domElement.toDataURL("image/webp", .84)}")`);
+    // One fixed scene under the entire document. No section-owned poster,
+    // repeated backdrop tile, second renderer or scroll loop.
     onStatus("ready");
   }
   function requestFrame() { if (!disposed && frame === null && !document.hidden) frame = requestAnimationFrame(render); }
@@ -170,7 +171,7 @@ export async function mountArena(host: HTMLElement, onStatus: (status: Status) =
     renderer.domElement.removeEventListener("webglcontextlost", contextLost);
     disposeObject(scene); geometries.forEach(geometry => geometry.dispose()); materials.forEach(value => value.dispose()); textures.forEach(value => value.dispose());
     renderer.dispose(); renderer.forceContextLoss(); renderer.domElement.remove();
-    document.documentElement.style.removeProperty("--arena-poster"); metrics.active = false;
+    metrics.active = false;
   }
   function contextLost(event: Event) { event.preventDefault(); dispose(); onStatus("unavailable"); }
   renderer.domElement.addEventListener("webglcontextlost", contextLost);
@@ -178,14 +179,22 @@ export async function mountArena(host: HTMLElement, onStatus: (status: Status) =
   const loader = new GLTFLoader();
   // All optional prop files are reviewed local binary data; parse no external URLs.
   for (const [path, url] of Object.entries(assets)) {
+    const id = path.split("/").at(-1)?.replace(".glb", "");
+    if (!id || !approved.has(id)) continue;
     void fetch(url, { signal: abort.signal }).then(response => {
       if (!response.ok) throw new Error("Local asset unavailable"); return response.arrayBuffer();
     }).then(buffer => loader.parseAsync(buffer, "")).then(gltf => {
       if (disposed) { disposeObject(gltf.scene); return; }
       const object = gltf.scene;
-      if (path.includes("basketball-post")) { object.position.set(-15, 0, -5); object.rotation.y = Math.PI / 2; }
-      else if (path.includes("scoreboard")) { object.position.set(0, 1.5, -19); object.scale.setScalar(2.5); }
-      else if (path.includes("cabinet")) { object.position.set(20, 0, -5); object.rotation.y = -Math.PI / 2; object.scale.setScalar(2); }
+      // Rest poses only. In particular, the scoreboard's inspected pennant
+      // quaternion clip is inert: no mixer, tick callback or animation loop.
+      if (path.includes("basketball-post")) {
+        object.position.set(-13.5, 0, 0); object.rotation.y = Math.PI / 2; object.scale.setScalar(1.1);
+        const opposite = object.clone(true); opposite.position.x = 13.5; opposite.rotation.y = -Math.PI / 2;
+        scene.add(opposite); originalHoops.forEach(fixture => scene.remove(fixture));
+      }
+      else if (path.includes("scoreboard")) { object.position.set(0, 0, -17.5); object.scale.setScalar(1.2); }
+      else if (path.includes("cabinet")) { object.position.set(19, 0, -6); object.rotation.y = -Math.PI / 2; object.scale.setScalar(1.4); }
       scene.add(object); metrics.props++; requestFrame();
     }).catch(error => { if (!disposed && error.name !== "AbortError") metrics.failedProps++; });
   }

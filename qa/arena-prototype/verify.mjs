@@ -29,6 +29,8 @@ async function page({ width = 1440, member = false, theme = "light", reducedMoti
   await tab.evaluate(() => document.fonts.ready);
   if (reducedMotion === "no-preference" && !saveData && !extra.includes("scene=still")) {
     await tab.waitForFunction(() => window.goatArenaMetrics?.active);
+    await tab.waitForFunction(() => window.goatArenaMetrics?.props === 3);
+    await tab.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     await tab.waitForFunction(() => document.querySelector("[data-arena-ready=true]"));
   }
   pages.push(context);

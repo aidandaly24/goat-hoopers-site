@@ -22,6 +22,7 @@ try {
     await tab.route("**/*", route => { if (new URL(route.request().url()).origin === origin) return route.continue(); external.push(route.request().url()); return route.abort(); });
     await tab.goto(`${origin}/?view=${state.member ? "member" : "public"}`, { waitUntil: "networkidle" });
     await tab.waitForFunction(() => document.querySelector("[data-arena-ready=true]"));
+    await tab.waitForFunction(() => window.goatArenaMetrics?.props === 3);
     const capture = await capturePage(tab, `${output}/${state.name}.jpg`, { checkpoints: true });
     const ocr = execFileSync("tesseract", [`${output}/${state.name}.jpg`, "stdout", "--psm", "6"], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
     await writeFile(`${output}/${state.name}.ocr.txt`, ocr);

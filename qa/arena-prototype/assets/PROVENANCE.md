@@ -37,3 +37,17 @@ binary data at these exact approved IDs; visual inspection is still required
 before calling their placement complete. The local GLTFLoader path is ready
 and only discovers actual local `.glb` files. No remote model/module, MCP,
 account, credential, paid plan or package was added.
+
+## Resolved repository handoff — current revision
+
+Muse provided the approved three GLBs and metadata in #268 at exact commit
+24b36aef62923251bf9b3a56656bd5c9f2ed3bbc. Files in assets/polyfork are embedded
+only in this prototype; they are not an asset pack/export service. The earlier
+network failure remains historical, and its route was not retried or bypassed.
+
+Independent hashes, resource/triangle/material counts, URI/extension/skin gates
+and transform-clip inspection are in inspection.json; static browser world
+bounds/resource records are in visual-inspection.json. Actual prop pixels were
+reviewed before placement. The scoreboard's one 13.6-second pennant/card
+quaternion clip is retained as inert data, with no mixer/tick playback.
+The reference HTML was read but its remote modules/runtime were not copied.

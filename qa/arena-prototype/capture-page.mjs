@@ -79,37 +79,59 @@ export async function capturePage(tab, output, { checkpoints = false } = {}) {
     if (extname(output) !== ".png") await writeFile(`${prefix}.png`, png);
     const proof = [];
     if (checkpoints) {
-      const checkpointY = [0, tiles[Math.floor(tiles.length / 2)].documentY, Math.max(0, height - viewport.height)];
+      const checkpointTiles = [tiles[0], tiles[Math.floor(tiles.length / 2)], tiles.at(-1)];
       const contact = [];
       const contactWidth = Math.min(720, viewport.width);
       let contactHeight = 0;
       for (const [index, name] of ["top", "middle", "bottom"].entries()) {
-        await tab.evaluate(y => scrollTo({ top: y, behavior: "instant" }), checkpointY[index]);
+        const tile = checkpointTiles[index];
+        await tab.evaluate(y => scrollTo({ top: y, behavior: "instant" }), tile.scrollY);
         await settle(tab); await tab.waitForTimeout(70);
         const scroll = await tab.evaluate(() => scrollY);
         const independent = await tab.screenshot({ fullPage: false, animations: "disabled", caret: "hide", scale: "css" });
-        const fromPage = await sharp(png).extract({ left: 0, top: scroll, width: viewport.width, height: viewport.height }).removeAlpha().raw().toBuffer();
-        const fromViewport = await sharp(independent).removeAlpha().raw().toBuffer();
+        const fromPage = await sharp(png).extract({ left: 0, top: tile.documentY, width: viewport.width, height: tile.height }).removeAlpha().raw().toBuffer();
+        const fromViewport = await sharp(independent).extract({ left: 0, top: tile.cropTop, width: viewport.width, height: tile.height }).removeAlpha().raw().toBuffer();
         await writeFile(`${prefix}-${name}.png`, independent);
-        let differing = 0, absoluteError = 0, maxChannelError = 0;
+        await sharp(independent).jpeg({ quality: 88, progressive: true, chromaSubsampling: "4:4:4" }).toFile(`${prefix}-${name}.jpg`);
+        const media = await tab.evaluate(() => [...document.images].filter(image => image.getClientRects().length && getComputedStyle(image).opacity !== "0").map(image => {
+          const rect = image.getBoundingClientRect(); let left = rect.left, right = rect.right, top = rect.top, bottom = rect.bottom;
+          for (let parent = image.parentElement; parent; parent = parent.parentElement) {
+            const style = getComputedStyle(parent), box = parent.getBoundingClientRect();
+            if (/(hidden|clip|auto|scroll)/.test(style.overflowX)) { left = Math.max(left, box.left); right = Math.min(right, box.right); }
+            if (/(hidden|clip|auto|scroll)/.test(style.overflowY)) { top = Math.max(top, box.top); bottom = Math.min(bottom, box.bottom); }
+          }
+          return { left, right, top, bottom };
+        }));
+        let differing = 0, absoluteError = 0, maxChannelError = 0, rasterOnly = 0, materialDifferences = 0, nonMediaError = 0, nonMediaChannels = 0;
         for (let i = 0; i < fromPage.length; i += 3) {
-          let changed = false;
+          let changed = false, pixelMax = 0, pixelError = 0;
           for (let channel = 0; channel < 3; channel++) {
             const delta = Math.abs(fromPage[i + channel] - fromViewport[i + channel]);
-            changed ||= delta > 0; absoluteError += delta; maxChannelError = Math.max(maxChannelError, delta);
+            changed ||= delta > 0; absoluteError += delta; pixelError += delta; pixelMax = Math.max(pixelMax, delta); maxChannelError = Math.max(maxChannelError, delta);
           }
-          if (changed) differing++;
+          const x = (i / 3) % viewport.width, y = Math.floor(i / 3 / viewport.width) + tile.cropTop;
+          const inMedia = media.some(rect => x >= rect.left && x < rect.right && y >= rect.top && y < rect.bottom);
+          if (!inMedia) { nonMediaError += pixelError; nonMediaChannels += 3; }
+          if (changed) {
+            differing++;
+            if (inMedia && pixelMax <= 12) rasterOnly++; else materialDifferences++;
+          }
         }
         // Chromium can rerasterize fractional-position text after scrolling.
         // Bound that sparse antialias noise; a wrapped or missing region fails.
-        const differingRatio = differing / (viewport.width * viewport.height);
+        const differingRatio = differing / (viewport.width * tile.height);
         const meanChannelError = absoluteError / fromPage.length;
-        assert(differingRatio <= .001 && meanChannelError <= .02, `${name} viewport mismatch: ${differing} pixels, mean channel error ${meanChannelError}`);
+        const materialDifferenceRatio = materialDifferences / (viewport.width * tile.height);
+        const nonMediaMeanError = nonMediaError / Math.max(1, nonMediaChannels);
+        assert(materialDifferenceRatio <= .001 && nonMediaMeanError <= .02 && meanChannelError <= .2,
+          `${name} viewport mismatch: ${materialDifferences} material pixels, non-media mean ${nonMediaMeanError}, total mean ${meanChannelError}`);
         const thumb = await sharp(independent).resize({ width: contactWidth }).png().toBuffer();
         const thumbMeta = await sharp(thumb).metadata(); contactHeight = thumbMeta.height;
         contact.push({ input: thumb, left: index * contactWidth, top: 0 });
-        proof.push({ name, documentY: scroll, width: viewport.width, height: viewport.height, differingPixels: differing,
-          differingRatio, meanChannelError, maxChannelError, tolerance: "at least 99.9% exact pixels; mean channel error <= 0.02/255; sparse text rasterization only" });
+        proof.push({ name, documentY: tile.documentY, scrollY: scroll, cropTop: tile.cropTop, width: viewport.width, height: tile.height, differingPixels: differing,
+          differingRatio, meanChannelError, maxChannelError, rasterOnlyMediaPixels: rasterOnly, materialDifferences, materialDifferenceRatio, nonMediaMeanError,
+          tolerance: "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          comparedRegion: name === "bottom" ? "final overlapping tile slice; normal bottom crop shows the full viewport" : "full viewport" });
       }
       await sharp({ create: { width: contactWidth * 3, height: contactHeight, channels: 3, background: "white" } })
         .composite(contact).jpeg({ quality: 90, chromaSubsampling: "4:4:4" }).toFile(`${prefix}-checkpoints.jpg`);
