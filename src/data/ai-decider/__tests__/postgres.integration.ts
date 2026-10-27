@@ -2,7 +2,7 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { createHash, randomUUID } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { Pool } from "pg";
+import { Pool, type PoolClient } from "pg";
 import { PgDialect } from "drizzle-orm/pg-core";
 import type { SQL } from "drizzle-orm";
 import type { Db } from "../../db";
@@ -34,6 +34,35 @@ const db = { execute: async (statement: SQL) => {
   return pool.query(query.sql, query.params);
 } } as unknown as Db;
 const persistence = () => new PostgresAiPersistence(db);
+// Held-lock concurrency regressions need sessions that may WAIT on a row
+// lock: the shared pool's lock_timeout (250ms) and statement_timeout
+// (1000ms) would kill a legitimately blocked statement, so those tests
+// run on their own pool with patient timeouts — same database, same
+// schema, same store code; only the transport's session settings differ.
+const racePool = new Pool({ host: "127.0.0.1", port: 55447, database: "goat_ai_decides_ci", user: "goat_ai_ci", password: "synthetic-ci-only", ssl: false,
+  max: 4, connectionTimeoutMillis: 2000, query_timeout: 30000, statement_timeout: 30000,
+  options: `-c search_path=${schema} -c idle_in_transaction_session_timeout=60000` });
+const raceDbFor = (client: PoolClient) => ({ execute: async (statement: SQL) => {
+  const query = dialect.sqlToQuery(statement);
+  return client.query(query.sql, query.params);
+} } as unknown as Db);
+const racePersistence = (client: PoolClient) => new PostgresAiPersistence(raceDbFor(client));
+const pidOf = async (client: PoolClient): Promise<number> => (await client.query<{ pid: number }>("SELECT pg_backend_pid() AS pid")).rows[0].pid;
+/**
+ * Deterministic overlap: poll the lock catalog until the victim backend
+ * is OBSERVED waiting on the holder's lock (an observable state, not a
+ * timing guess). Fails loudly if the victim settles first — a statement
+ * that completes without ever blocking did not exercise the race.
+ */
+const waitForBlocked = async (victimPid: number, blockerPid: number, isSettled: () => boolean): Promise<void> => {
+  for (let i = 0; i < 100; i++) {
+    const blockers = (await pool.query<{ b: number[] }>("SELECT pg_blocking_pids($1) AS b", [victimPid])).rows[0].b;
+    if (blockers.includes(blockerPid)) return;
+    if (isSettled()) throw new Error(`backend ${victimPid} settled without ever blocking on ${blockerPid}`);
+    await new Promise(r => setTimeout(r, 5));
+  }
+  throw new Error(`backend ${victimPid} never blocked on ${blockerPid}`);
+};
 const store = () => new AiDeciderStore(persistence());
 const token = (n = 1) => n.toString(16).padStart(64, "0");
 const principal = (n = 1): AiLegacyIdentity => ({ kind: "legacy", userId: identity(n).userId, tokenHash: createHash("sha256").update(token(n)).digest("hex") });
@@ -117,7 +146,7 @@ afterAll(async () => {
       expect((await pool.query("SELECT nspname FROM pg_namespace WHERE nspname=$1", [schema])).rows).toHaveLength(0);
       console.info("Owned AI schema removed; no persistent test data retained");
     }
-  } finally { await pool.end(); }
+  } finally { await racePool.end(); await pool.end(); }
 });
 
 describe("actual PostgreSQL provider-session admission", () => {
@@ -725,5 +754,191 @@ describe("actual PostgreSQL forecast series", () => {
     await expect(pool.query("INSERT INTO ai_decider_forecasts (week_key, revision_id, evidence_hash, revision) VALUES ($1, $2, $3, $4::jsonb)",
       [KEY, "c".repeat(64), "3".repeat(64), JSON.stringify(rev("c".repeat(64), "3".repeat(64), 3, winner.revisionId))])).rejects.toThrow();
     expect((await p1.getForecasts(KEY)).length).toBe(2);
+  });
+});
+
+describe("actual PostgreSQL forecast pointer under held row locks", () => {
+  // The sequential tests above cannot express a statement that starts
+  // while another writer's pointer move is uncommitted: that needs two
+  // real connections and a row lock HELD across the victim statement's
+  // start, with the overlap proven from the lock catalog
+  // (waitForBlocked) rather than from timing. The holder below performs
+  // the winning write as a raw UPDATE inside an open transaction — the
+  // exact lock/snapshot conditions a slow in-flight store statement
+  // presents — and commits only once the victim is observed blocked.
+  const KEY = "1387473752807190528:2026:2";
+  const at = (s: number) => new Date(NOW + s * 1000).toISOString();
+  const rev = (revisionId: string, evidenceHash: string, marker: number, supersedes: string | null = null) => ({ revisionId, evidenceHash, marker, supersedes }) as unknown as AiForecastRevision;
+  // Valid revision bodies (the public read validates on read-back),
+  // mirroring the A → B → A series test above.
+  const validInput = (counted: number, gamesRemaining: number) => {
+    const teams: AiForecastTeamInput[] = Array.from({ length: 10 }, (_, n) => ({
+      rosterId: String(n + 1), officialPoints: 0,
+      starters: [0, 1, 2].map(i => ({
+        playerId: String(3000 + n * 10 + i), countedPoints: 0, playedGames: [], rejectedAppearance: false,
+        liveGameInProgress: false, gamesRemaining: 2, projectionPpg: 20, projectionBasis: "current" as const,
+      })),
+    }));
+    teams[0].starters[0] = { ...teams[0].starters[0], countedPoints: counted, playedGames: [{ gameId: "9001", points: counted }], gamesRemaining };
+    teams[0].officialPoints = counted;
+    return {
+      leagueId: "1387473752807190528", season: "2026", week: 2, capturedAt: at(0), scoring: { pts: 0.5 },
+      matchups: [["1", "2"], ["3", "4"], ["5", "6"], ["7", "8"], ["9", "10"]].map((pair, i) => ({ matchupId: String(i + 1), teamIds: pair as [string, string] })),
+      teams, freshness: [{ source: "sleeper-matchups", observedAt: at(0) }],
+    };
+  };
+  const revisionFor = (input: ReturnType<typeof validInput>, generatedAt: string, supersedes: string | null) => buildForecastRevision(
+    input, input.teams.map(t => computeForecastTeamLine(t, input.capturedAt)), input.matchups.map(() => null), generatedAt, supersedes);
+
+  it("publish vs fresher dedupe: blocked on the held pointer lock, the older-evidence publication is refused at the locked row — no append, no regression", async () => {
+    const p = persistence();
+    const h = realHarness();
+    const a = revisionFor(validInput(25, 2), at(10), null);
+    const b = revisionFor(validInput(41, 0), at(20), a.revisionId);
+    const c = revisionFor(validInput(33, 1), at(30), b.revisionId);
+    expect(new Set([a.evidenceHash, b.evidenceHash, c.evidenceHash]).size).toBe(3);
+    expect(await p.publishForecast(KEY, a, at(10))).toBe(true);
+    expect(await p.publishForecast(KEY, b, at(20))).toBe(true);
+    // Chain A→B, pointer B@20. A dedupe re-observation of A@40 lands on
+    // its own connection and HOLDS the pointer row lock uncommitted.
+    const holder = await racePool.connect();
+    const victim = await racePool.connect();
+    try {
+      await holder.query("BEGIN");
+      const upd = await holder.query("UPDATE ai_decider_forecast_current SET revision_id=$1, evidence_hash=$2, observed_at=$3 WHERE week_key=$4",
+        [a.revisionId, a.evidenceHash, at(40), KEY]);
+      expect(upd.rowCount).toBe(1);
+      const holderPid = await pidOf(holder), victimPid = await pidOf(victim);
+      // The publisher of C@30 starts now: its snapshot still shows the
+      // committed B@20 (every round-3 gate would pass), so only the
+      // locked-row enforcement can refuse it.
+      let settled = false;
+      const attempt = racePersistence(victim).publishForecast(KEY, c, at(30))
+        .then(v => { settled = true; return v; }, (e: unknown) => { settled = true; throw e; });
+      await waitForBlocked(victimPid, holderPid, () => settled);
+      await holder.query("COMMIT");
+      // Refused at the pointer: the publication did not take.
+      await expect(attempt).resolves.toBe(false);
+      // No append landed, and public selection is the fresher A@40.
+      expect((await p.getForecasts(KEY)).map(r => r.revisionId)).toEqual([a.revisionId, b.revisionId]);
+      expect(await p.getForecastCurrent(KEY)).toEqual({ weekKey: KEY, revisionId: a.revisionId, evidenceHash: a.evidenceHash, observedAt: at(40) });
+      const state = await loadAiForecastState(h.runtime, KEY);
+      expect(state.status).toBe("ready");
+      expect(state.revision!.revisionId).toBe(a.revisionId);
+      expect(state.revision!.evidenceHash).toBe(a.evidenceHash);
+    } finally {
+      try { await holder.query("ROLLBACK"); } catch { /* already committed */ }
+      holder.release(); victim.release();
+    }
+  });
+
+  it("publish vs fresher dedupe, other commit order: the publication commits first, the fresher dedupe then moves the pointer — same final selection", async () => {
+    const p = persistence();
+    const a = revisionFor(validInput(25, 2), at(10), null);
+    const b = revisionFor(validInput(41, 0), at(20), a.revisionId);
+    const c = revisionFor(validInput(33, 1), at(30), b.revisionId);
+    expect(await p.publishForecast(KEY, a, at(10))).toBe(true);
+    expect(await p.publishForecast(KEY, b, at(20))).toBe(true);
+    // No lock held: C@30 is the freshest observation when it commits,
+    // so its append legitimately lands and it becomes current.
+    expect(await p.publishForecast(KEY, c, at(30))).toBe(true);
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(c.revisionId);
+    // The fresher dedupe re-observation of A@40 then moves the pointer,
+    // exactly as in the held-lock order: final selection is A either
+    // way; C stands as history because it WAS current at its commit.
+    expect(await p.markForecastCurrent(KEY, a.revisionId, a.evidenceHash, at(40))).toBe("moved");
+    expect(await p.getForecastCurrent(KEY)).toEqual({ weekKey: KEY, revisionId: a.revisionId, evidenceHash: a.evidenceHash, observedAt: at(40) });
+    expect((await p.getForecasts(KEY)).map(r => r.revisionId)).toEqual([a.revisionId, b.revisionId, c.revisionId]);
+    const joined = await p.getForecastCurrentRevision(KEY);
+    expect(joined!.revision!.revisionId).toBe(a.revisionId);
+  });
+
+  it("refused mark vs concurrent different selection: an A@20 mark blocked by a held B@30 move classifies stale from the post-wait row, never current", async () => {
+    const p = persistence();
+    const h = realHarness();
+    const a = revisionFor(validInput(25, 2), at(10), null);
+    const b = revisionFor(validInput(41, 0), at(20), a.revisionId);
+    // Series A→B stored, but the pointer still names A@10 (B arrived via
+    // the raw append primitive, which never moves selection).
+    expect(await p.publishForecast(KEY, a, at(10))).toBe(true);
+    expect(await p.appendForecast(KEY, b)).toBe(true);
+    expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(a.revisionId);
+    // A concurrent move to B@30 holds the pointer row lock uncommitted.
+    const holder = await racePool.connect();
+    const victim = await racePool.connect();
+    try {
+      await holder.query("BEGIN");
+      const upd = await holder.query("UPDATE ai_decider_forecast_current SET revision_id=$1, evidence_hash=$2, observed_at=$3 WHERE week_key=$4",
+        [b.revisionId, b.evidenceHash, at(30), KEY]);
+      expect(upd.rowCount).toBe(1);
+      const holderPid = await pidOf(holder), victimPid = await pidOf(victim);
+      // The delayed A@20 mark starts: its statement snapshot shows A@10
+      // as current — a snapshot-proven classification would wrongly
+      // report "current" once the upsert's guard refuses the move.
+      let settled = false;
+      const attempt = racePersistence(victim).markForecastCurrent(KEY, a.revisionId, a.evidenceHash, at(20))
+        .then(v => { settled = true; return v; }, (e: unknown) => { settled = true; throw e; });
+      await waitForBlocked(victimPid, holderPid, () => settled);
+      await holder.query("COMMIT");
+      // The verdict describes the post-wait selection: B is current and
+      // this older re-observation is stale — the service converges on B
+      // instead of returning A as ready.
+      await expect(attempt).resolves.toBe("stale");
+      expect(await p.getForecastCurrent(KEY)).toEqual({ weekKey: KEY, revisionId: b.revisionId, evidenceHash: b.evidenceHash, observedAt: at(30) });
+      const joined = await p.getForecastCurrentRevision(KEY);
+      expect(joined!.revision!.revisionId).toBe(b.revisionId);
+      const state = await loadAiForecastState(h.runtime, KEY);
+      expect(state.status).toBe("ready");
+      expect(state.revision!.revisionId).toBe(b.revisionId);
+    } finally {
+      try { await holder.query("ROLLBACK"); } catch { /* already committed */ }
+      holder.release(); victim.release();
+    }
+  });
+
+  it("two publishers queued on the held pointer lock serialize into one linear chain; the loser's rebuild lands on the head", async () => {
+    const p = persistence();
+    const a = rev("a".repeat(64), "1".repeat(64), 1), b = rev("b".repeat(64), "2".repeat(64), 2, a.revisionId);
+    expect(await p.publishForecast(KEY, a, at(10))).toBe(true);
+    expect(await p.publishForecast(KEY, b, at(20))).toBe(true);
+    // Both racers built on the same head B with different evidence.
+    const c = rev("c".repeat(64), "3".repeat(64), 3, b.revisionId);
+    const d = rev("d".repeat(64), "4".repeat(64), 4, b.revisionId);
+    const holder = await racePool.connect();
+    const v1 = await racePool.connect();
+    const v2 = await racePool.connect();
+    try {
+      // Hold the pointer row lock without changing its values, so both
+      // publishers provably queue behind it in their lock step.
+      await holder.query("BEGIN");
+      const upd = await holder.query("UPDATE ai_decider_forecast_current SET observed_at = observed_at WHERE week_key=$1", [KEY]);
+      expect(upd.rowCount).toBe(1);
+      const holderPid = await pidOf(holder), pid1 = await pidOf(v1), pid2 = await pidOf(v2);
+      let s1 = false, s2 = false;
+      const a1 = racePersistence(v1).publishForecast(KEY, c, at(30)).then(v => { s1 = true; return v; }, (e: unknown) => { s1 = true; throw e; });
+      const a2 = racePersistence(v2).publishForecast(KEY, d, at(30)).then(v => { s2 = true; return v; }, (e: unknown) => { s2 = true; throw e; });
+      await waitForBlocked(pid1, holderPid, () => s1);
+      await waitForBlocked(pid2, holderPid, () => s2);
+      await holder.query("COMMIT");
+      const [r1, r2] = await Promise.all([a1, a2]);
+      // Exactly one CAS lands; the chain cannot fork under the lock.
+      expect([r1, r2].filter(Boolean)).toHaveLength(1);
+      const winner = r1 ? c : d, loser = r1 ? d : c, loserClient = r1 ? v2 : v1;
+      let series = await p.getForecasts(KEY);
+      expect(series.map(r => r.revisionId)).toEqual([a.revisionId, b.revisionId, winner.revisionId]);
+      expect(series.map(r => r.supersedes)).toEqual([null, a.revisionId, b.revisionId]);
+      expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(winner.revisionId);
+      // The loser's rebuild on the new head lands (equal observation
+      // time: the documented tie policy), and the pointer ends on the
+      // chain head — the round-2/3 race outcomes, under true overlap.
+      expect(await racePersistence(loserClient).publishForecast(KEY, { ...loser, supersedes: winner.revisionId }, at(30))).toBe(true);
+      series = await p.getForecasts(KEY);
+      expect(series.map(r => r.revisionId)).toEqual([a.revisionId, b.revisionId, winner.revisionId, loser.revisionId]);
+      expect(series.map(r => r.supersedes)).toEqual([null, a.revisionId, b.revisionId, winner.revisionId]);
+      expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(loser.revisionId);
+    } finally {
+      try { await holder.query("ROLLBACK"); } catch { /* already committed */ }
+      holder.release(); v1.release(); v2.release();
+    }
   });
 });

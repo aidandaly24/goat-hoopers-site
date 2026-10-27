@@ -65,11 +65,26 @@ export type AiPersistence = {
    * state exists, and the move is not stale under the pointer's
    * monotonic observation rule (see markForecastCurrent: a writer whose
    * evidence was observed strictly before the current selection was
-   * observed may not append over it or move the pointer). False means
-   * the publication did not take (the chain moved, a fork was refused,
-   * the evidence is already stored, or a strictly fresher selection is
-   * already current): the caller re-reads and converges or retries on
-   * the new head. This store executes single statements (neon-http has
+   * observed may not append over it or move the pointer). The
+   * monotonic gate is enforced against the pointer row AS LOCKED by
+   * this statement (SELECT … FOR UPDATE re-reads the newest committed
+   * version after any wait, and the row lock is held to the statement's
+   * end), never against a statement-snapshot read: a fresher selection
+   * committed by a concurrent writer while this statement waited is
+   * seen by the gate, and the pointer mutation itself carries the same
+   * guard, re-checked against the latest row version. False means the
+   * publication did not take as current selection (the chain moved, a
+   * fork was refused, the evidence is already stored, or a strictly
+   * fresher selection is already current): the caller re-reads and
+   * converges or retries on the new head. One corner is deliberate: if
+   * the week's pointer row is FIRST created, at a strictly fresher
+   * observation, by a concurrent mark while this statement is in
+   * flight (possible only before any publication has landed — service
+   * publications create the pointer atomically with the genesis
+   * append), the guarded mutation refuses and this returns false, but
+   * the append may already stand as inert, never-selected history; the
+   * caller converges on the fresher selection exactly as for any other
+   * lost race. This store executes single statements (neon-http has
    * no interactive transactions), so the CAS is per-statement atomic and
    * the migration's unique chain indexes make a fork structurally
    * impossible even across statement snapshots.
@@ -92,7 +107,17 @@ export type AiPersistence = {
    * without completing a refresh of its own. Note the asymmetry the
    * rule relies on: a re-observation of an old REVISION carries a fresh
    * observedAt — revision age is not observation age — so a genuine
-   * A → B → A recurrence still moves the pointer back to A.
+   * A → B → A recurrence still moves the pointer back to A. The
+   * classification is proven from the pointer row AS LOCKED by the
+   * statement (SELECT … FOR UPDATE re-reads the newest committed
+   * version after any wait and the lock is held to the statement's
+   * end), never from the pre-wait statement snapshot: a selection
+   * committed by a concurrent writer while this statement waited on
+   * the row is the state the verdict describes, and no further move
+   * can interleave before this statement commits. (A move landing
+   * after this statement commits is a later fact, not a contradiction:
+   * the verdict is exact as of its own commit, and every subsequent
+   * read — public reads included — goes through the pointer afresh.)
    */
   markForecastCurrent(key: string, revisionId: string, evidenceHash: string, observedAt: string): Promise<AiForecastMarkResult>;
   /** The week's recorded current selection, or null when no refresh outcome has been recorded for it yet. */
@@ -369,14 +394,35 @@ export class PostgresAiPersistence implements AiPersistence {
     // revision (rebuilding on the new head cannot make old evidence
     // fresh). Equal observed_at is NOT stale (the documented tie
     // policy): sequential same-instant refreshes still publish.
+    //
+    // The gate is evaluated on the LOCKED pointer row, not on a
+    // snapshot subquery: `cur_lock` takes the row's lock (FOR UPDATE),
+    // which waits out any concurrent writer holding it and then
+    // returns the NEWEST committed version of the row — so a fresher
+    // dedupe observation committed while this statement was starting
+    // (invisible to the statement snapshot, which is exactly how an
+    // unguarded snapshot check gets bypassed) is seen by the gate, and
+    // the lock is then held to the statement's end, so the gated
+    // append and the pointer move below serialize against every other
+    // pointer writer. The pointer mutation is additionally guarded in
+    // its own right: the upsert's WHERE is re-checked against the
+    // latest committed row version after any lock wait, which covers
+    // the one case the lock cannot — no pointer row existed to lock
+    // when the statement began and a concurrent first creation lands
+    // mid-statement.
     try {
       const result = await this.execute(sql`
-        WITH ins AS (
+        WITH cur_lock AS (
+          SELECT observed_at FROM ai_decider_forecast_current
+          WHERE week_key = ${key}
+          FOR UPDATE
+        ),
+        ins AS (
           INSERT INTO ai_decider_forecasts (week_key, revision_id, evidence_hash, revision)
           SELECT ${key}, ${revision.revisionId}, ${revision.evidenceHash}, ${JSON.stringify(revision)}::jsonb
           WHERE NOT EXISTS (SELECT 1 FROM ai_decider_forecasts WHERE week_key = ${key} AND evidence_hash = ${revision.evidenceHash})
             AND COALESCE((SELECT revision_id FROM ai_decider_forecasts WHERE week_key = ${key} ORDER BY seq DESC LIMIT 1), '') = ${revision.supersedes ?? ""}
-            AND NOT EXISTS (SELECT 1 FROM ai_decider_forecast_current WHERE week_key = ${key} AND observed_at > ${observedAt}::timestamptz)
+            AND NOT EXISTS (SELECT 1 FROM cur_lock WHERE cur_lock.observed_at > ${observedAt}::timestamptz)
           ON CONFLICT DO NOTHING
           RETURNING revision_id
         ),
@@ -384,6 +430,7 @@ export class PostgresAiPersistence implements AiPersistence {
           INSERT INTO ai_decider_forecast_current (week_key, revision_id, evidence_hash, observed_at)
           SELECT ${key}, ins.revision_id, ${revision.evidenceHash}, ${observedAt}::timestamptz FROM ins
           ON CONFLICT (week_key) DO UPDATE SET revision_id = EXCLUDED.revision_id, evidence_hash = EXCLUDED.evidence_hash, observed_at = EXCLUDED.observed_at
+          WHERE ai_decider_forecast_current.observed_at <= EXCLUDED.observed_at
           RETURNING revision_id
         )
         SELECT revision_id FROM ptr`);
@@ -394,9 +441,14 @@ export class PostgresAiPersistence implements AiPersistence {
     // The pointer may only ever name a revision actually stored for the
     // week (the SELECT source), mirroring the table's foreign key — and
     // it may only move monotonically: the upsert's WHERE refuses to
-    // overwrite a strictly fresher observation, in the same statement
-    // that classifies the outcome from the pre-write snapshot (`cur`),
-    // so the verdict and the write can never disagree.
+    // overwrite a strictly fresher observation. The classification
+    // reads `cur` AS A LOCKED RE-READ (FOR UPDATE): if a concurrent
+    // writer holds the row, the read waits and then returns the newest
+    // committed version — the selection the refused upsert actually
+    // lost to — and the lock is held to the statement's end, so the
+    // verdict and the write can never disagree. (A plain snapshot read
+    // here could still see the pre-wait row and report "current" for a
+    // revision a committed concurrent move had already replaced.)
     try {
       const result = await this.execute(sql`
         WITH stored AS (
@@ -404,7 +456,7 @@ export class PostgresAiPersistence implements AiPersistence {
           WHERE week_key = ${key} AND revision_id = ${revisionId} AND evidence_hash = ${evidenceHash}
         ),
         cur AS (
-          SELECT revision_id, evidence_hash, observed_at FROM ai_decider_forecast_current WHERE week_key = ${key}
+          SELECT revision_id, evidence_hash, observed_at FROM ai_decider_forecast_current WHERE week_key = ${key} FOR UPDATE
         ),
         up AS (
           INSERT INTO ai_decider_forecast_current (week_key, revision_id, evidence_hash, observed_at)

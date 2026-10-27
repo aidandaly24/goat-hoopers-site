@@ -83,6 +83,14 @@ export class TestPersistence implements AiPersistence {
   async getLatestForecast(key: string) { const series = this.forecasts.get(key) ?? []; return structuredClone(series[series.length - 1] ?? null); }
   async getForecastByEvidenceHash(key: string, evidenceHash: string) { return structuredClone((this.forecasts.get(key) ?? []).find(r => r.evidenceHash === evidenceHash) ?? null); }
   async publishForecast(key: string, revision: AiForecastRevision, observedAt: string) {
+    // Sequential model of the Postgres contract (the store's locked-row
+    // enforcement under overlapping transactions is proven in the
+    // disposable-PostgreSQL suite): the outcome modeled here is the
+    // SELECTION result — false means "did not become current". The one
+    // Postgres-only nuance this fake does not reproduce is that a
+    // publication refused at the pointer in the first-creation
+    // interleave may leave its revision as inert, never-selected
+    // history; no service outcome depends on that distinction.
     const series = this.forecasts.get(key) ?? [];
     if (series.some(r => r.evidenceHash === revision.evidenceHash)) return false;
     const head = series[series.length - 1] ?? null;

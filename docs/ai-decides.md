@@ -498,7 +498,21 @@ later-completing refresh wins — which can never resurrect strictly
 older evidence. The rule keys on observation, not revision age: a
 genuine A → B → A recurrence re-observes A *fresh*, so the pointer
 legitimately moves back to A; only a writer whose observation itself is
-old is refused. Public reads are likewise consistent: the store joins
+old is refused. The rule is enforced where the write lands, under
+genuinely overlapping transactions: a statement-snapshot check cannot
+see a concurrent writer's move that commits while the statement waits,
+so both pointer writers take the week's pointer row lock
+(`SELECT … FOR UPDATE`) — which waits out the concurrent holder and
+then re-reads the newest committed row — evaluate the freshness gate
+and (for the dedupe path) the moved/current/stale classification
+against that locked row, and hold the lock to the statement's end;
+the publication's pointer upsert additionally re-checks its guard
+against the latest row version, covering the one case with no row to
+lock (a concurrent first creation of the pointer). A losing
+publication returns "did not take" and the refresh converges on the
+fresher selection; in the narrow first-creation interleave its append
+may stand as inert, never-selected history rather than being rolled
+back, which the append-only series tolerates by design. Public reads are likewise consistent: the store joins
 the pointer to its revision in a single statement (one snapshot), and
 any read that cannot see the named revision re-reads once and
 reconciles before it may declare the pointer corrupt — a genuinely

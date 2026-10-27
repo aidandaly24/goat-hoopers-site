@@ -68,3 +68,11 @@ CREATE TABLE ai_decider_forecast_current (
 -- older evidence. A dedupe re-observation of an old revision carries a
 -- FRESH observed_at: revision age is not observation age, so a genuine
 -- A → B → A recurrence still moves the pointer back to A.
+-- Enforcement is at the locked row, not at statement snapshots (whose
+-- reads cannot see a concurrent writer's uncommitted-then-committed
+-- move): pointer writers lock this table's row for the week
+-- (SELECT … FOR UPDATE), which waits out a concurrent holder and then
+-- re-reads the newest committed version, and the mutation's own guard
+-- is re-checked against that latest version after any wait. The
+-- dedupe classification is likewise proven from the locked row, so a
+-- verdict describes the selection as of the statement's own commit.
