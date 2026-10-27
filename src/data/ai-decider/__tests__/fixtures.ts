@@ -77,6 +77,7 @@ export class TestPersistence implements AiPersistence {
   }
   async getForecasts(key: string) { return structuredClone(this.forecasts.get(key) ?? []); }
   async getLatestForecast(key: string) { const series = this.forecasts.get(key) ?? []; return structuredClone(series[series.length - 1] ?? null); }
+  async getForecastByEvidenceHash(key: string, evidenceHash: string) { return structuredClone((this.forecasts.get(key) ?? []).find(r => r.evidenceHash === evidenceHash) ?? null); }
 }
 
 export function weeklyInput(): AiWeeklyInput & { startsAt: string; endsAt: string } {

@@ -7,6 +7,7 @@ import { PgDialect } from "drizzle-orm/pg-core";
 import type { SQL } from "drizzle-orm";
 import type { Db } from "../../db";
 import { AiDeciderStore, PostgresAiPersistence, emptyBudgetState, AI_BUDGET, type AiIdentity, type AiLegacyIdentity, type AiBudgetState, type AiStoredWeek, type AiWeeklyJobIdentity } from "../store";
+import type { AiForecastRevision } from "@/domain/ai-decider";
 import { generateWeeklyPicks, resolveAiIdentity, runAiDecision } from "../service";
 import { loadAiDecidesData } from "../runtime";
 import { decodeDecision } from "../provider";
@@ -21,6 +22,7 @@ const pool = new Pool({ host: "127.0.0.1", port: 55447, database: "goat_ai_decid
   max: 6, connectionTimeoutMillis: 1500, query_timeout: 1500, statement_timeout: 1000,
   options: `-c search_path=${schema} -c lock_timeout=250 -c idle_in_transaction_session_timeout=5000` });
 const migration = readFileSync("migrations/ai-decider.sql", "utf8");
+const forecastMigration = readFileSync("migrations/ai-decider-forecast.sql", "utf8");
 const migrationHash = createHash("sha256").update(migration).digest("hex");
 const dialect = new PgDialect();
 // Only the driver transport changes: production PostgresAiPersistence emits the
@@ -100,8 +102,9 @@ beforeEach(async () => {
     await pool.query("INSERT INTO auth_session(id,token,user_id,expires_at) VALUES($1,$2,$3,'2126-01-01T00:00:00Z')", [provider.sessionId, `synthetic-ci-token-${n}`, provider.subject]);
     await pool.query("INSERT INTO account_identities(subject,user_id) VALUES($1,$2)", [provider.subject, provider.userId]);
   }
-  // This exact additive file is applied only in the generated disposable schema.
+  // These exact additive files are applied only in the generated disposable schema.
   await pool.query(migration);
+  await pool.query(forecastMigration);
   expect((await control()).enabled).toBe(false);
   await pool.query("UPDATE ai_decider_control SET enabled=true,state=$1::jsonb", [JSON.stringify(emptyBudgetState(NOW))]);
 });
@@ -578,5 +581,26 @@ describe("actual PostgreSQL one-time refresh preservation and admission", () => 
     expect(await persistence().claimWeekRefresh(h.replacement, providerPrincipal())).toBe(false);
     await expect(h.enabled().claimWeekRefresh(h.replacement, { kind: "weekly_job", userId: principal().userId, auth: "friends" })).rejects.toThrow("refresh_identity");
     expect(await persistence().getWeek(WEEK1_REFRESH_KEY)).toEqual(h.original);
+  });
+});
+
+describe("actual PostgreSQL forecast series", () => {
+  it("appends append-only revisions, dedupes by evidence hash across the series, and reads back by hash", async () => {
+    const p = persistence();
+    const key = "1387473752807190528:2026:2";
+    const rev = (revisionId: string, evidenceHash: string, marker: number) => ({ revisionId, evidenceHash, marker }) as unknown as AiForecastRevision;
+    const a = rev("a".repeat(64), "1".repeat(64), 1), b = rev("b".repeat(64), "2".repeat(64), 2);
+    expect(await p.appendForecast(key, a)).toBe(true);
+    expect(await p.appendForecast(key, b)).toBe(true);
+    // The same evidence hash under a different revision id no-ops across
+    // the whole series (the A → B → A recurrence), as does a repeat append.
+    expect(await p.appendForecast(key, rev("c".repeat(64), "1".repeat(64), 3))).toBe(false);
+    expect(await p.appendForecast(key, a)).toBe(false);
+    expect((await p.getForecasts(key)).map(r => r.revisionId)).toEqual([a.revisionId, b.revisionId]);
+    expect(await p.getLatestForecast(key)).toEqual(b);
+    expect(await p.getForecastByEvidenceHash(key, a.evidenceHash)).toEqual(a);
+    expect(await p.getForecastByEvidenceHash(key, "9".repeat(64))).toBeNull();
+    await expect(pool.query("UPDATE ai_decider_forecasts SET revision='{}'::jsonb")).rejects.toThrow("append-only");
+    await expect(pool.query("DELETE FROM ai_decider_forecasts")).rejects.toThrow("append-only");
   });
 });

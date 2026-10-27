@@ -254,7 +254,10 @@ export async function loadAiForecastInput(context: AiForecastContext, deps: AiFo
         const playedGames: AiForecastPlayedGame[] = [];
         let rejectedAppearance = false;
         if (teamGames) {
-          for (const game of teamGames) {
+          // Chronological order is load-bearing, whatever order the feed
+          // returned: classification treats the final played game as the
+          // latest played game.
+          for (const game of [...teamGames].sort((a, b) => a.startMs - b.startMs)) {
             if (game.status !== "complete") continue;
             const box = boxByGame.get(game.gameId);
             if (!box) continue;

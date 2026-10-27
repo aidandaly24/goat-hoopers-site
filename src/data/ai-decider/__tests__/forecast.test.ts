@@ -1,9 +1,10 @@
 import { describe, expect, it, vi } from "vitest";
+import { createHash } from "node:crypto";
 import type { AiForecastRevision, AiForecastSlotState } from "@/domain/ai-decider";
 import { AI_FORECAST_PROMPT_VERSION } from "@/domain/ai-decider";
-import { classifyForecastStarter, computeForecastTeamLine, validForecastInput, validForecastRevision, type AiForecastInput, type AiForecastStarterEvidence } from "../forecast";
+import { buildForecastRevision, classifyForecastStarter, computeForecastTeamLine, validForecastInput, validForecastRevision, type AiForecastInput, type AiForecastStarterEvidence } from "../forecast";
 import { handleAiForecastCron, handleAiForecastPost, loadAiForecastState, refreshForecast, type AiForecastSources } from "../forecast-service";
-import { GOAT_LEAGUE_ID } from "../weekly";
+import { canonicalJson, GOAT_LEAGUE_ID } from "../weekly";
 import { harness, identity, NOW, TOKEN, USER } from "./fixtures";
 
 const OBS = "2026-10-28T14:55:00.000Z";
@@ -65,11 +66,29 @@ describe("starter lock classification", () => {
       .toEqual({ state: "locked", banked: 30, gameId: "9001", basis: "estimated" });
     expect(classifyForecastStarter(starter("1", { countedPoints: 30, playedGames: games(31), gamesRemaining: 0 })).state).toBe("unknown");
   });
-  it("keeps a starter open while his counted game is his latest played game", () => {
-    expect(classifyForecastStarter(starter("1", { countedPoints: 10, playedGames: games(30, 10), gamesRemaining: 1 }))).toEqual({ state: "open" });
+  it("keeps a starter with no played game provably open, and final once no games remain", () => {
     expect(classifyForecastStarter(starter("1", { countedPoints: 0, playedGames: [], gamesRemaining: 3 }))).toEqual({ state: "open" });
     expect(classifyForecastStarter(starter("1", { countedPoints: 0, playedGames: [], gamesRemaining: 0 })))
       .toEqual({ state: "final", banked: 0, gameId: null, basis: "exact" });
+  });
+  it("fails closed to unknown when the counted game is the latest played game and games remain: a lock on it is indistinguishable from an unlocked display", () => {
+    expect(classifyForecastStarter(starter("1", { countedPoints: 10, playedGames: games(30, 10), gamesRemaining: 1 })).state).toBe("unknown");
+    expect(classifyForecastStarter(starter("1", { countedPoints: 25, playedGames: games(25), gamesRemaining: 2 })).state).toBe("unknown");
+    // At week end the same evidence is determinate either way: final.
+    expect(classifyForecastStarter(starter("1", { countedPoints: 10, playedGames: games(30, 10), gamesRemaining: 0 })))
+      .toEqual({ state: "final", banked: 10, gameId: "9002", basis: "exact" });
+  });
+  it("directed straddle: counted explainable by an earlier gap-0 game AND by the latest game inside the foul band is unknown, never a banked lock", () => {
+    expect(classifyForecastStarter(starter("1", { countedPoints: 30, playedGames: games(30, 32), gamesRemaining: 2 })).state).toBe("unknown");
+    expect(classifyForecastStarter(starter("1", { countedPoints: 30, playedGames: games(30, 32), gamesRemaining: 0 })).state).toBe("unknown");
+    expect(classifyForecastStarter(starter("1", { countedPoints: 30, playedGames: games(30, 34), gamesRemaining: 1 })).state).toBe("unknown");
+  });
+  it("directed straddle, mirrored: counted explainable by the latest gap-0 game AND by an earlier game inside the foul band is unknown", () => {
+    expect(classifyForecastStarter(starter("1", { countedPoints: 30, playedGames: games(32, 30), gamesRemaining: 2 })).state).toBe("unknown");
+    expect(classifyForecastStarter(starter("1", { countedPoints: 30, playedGames: games(34, 30), gamesRemaining: 0 })).state).toBe("unknown");
+  });
+  it("fails closed when several earlier games can each explain the counted value: the counted game's identity and basis are unproven", () => {
+    expect(classifyForecastStarter(starter("1", { countedPoints: 30, playedGames: games(30, 32, 10), gamesRemaining: 1 })).state).toBe("unknown");
   });
   it.each([
     ["rejected box score", { rejectedAppearance: true }],
@@ -155,11 +174,15 @@ describe("forecast refresh service", () => {
     expect(revision.promptVersion).toBe(AI_FORECAST_PROMPT_VERSION);
     expect(revision.inputFreshness).toEqual(forecastInput().freshness);
     const team1 = revision.teams.find(t => t.rosterId === "1")!;
-    expect(team1.lockedPoints).toEqual({ value: 0, basis: "exact" });
-    expect(team1.finalPoints).toEqual({ value: 0, basis: "exact" });
-    expect(team1.projectedRemainingPoints).toBe(60);
-    expect(team1.totalPoints).toBe(60);
+    // Starter 3000's counted game is his latest played game with games
+    // remaining: his lock state is unproven, so every aggregate is null
+    // (unknown lock coverage) — never an exact zero lock set.
+    expect(team1.lockedPoints).toBeNull();
+    expect(team1.finalPoints).toBeNull();
+    expect(team1.projectedRemainingPoints).toBeNull();
+    expect(team1.totalPoints).toBeNull();
     expect(team1.slots).toHaveLength(3);
+    expect(team1.slots.map(s => s.state)).toEqual(["unknown", "open", "open"]);
     expect(revision.matchups).toHaveLength(5);
     expect(revision.matchups.every(m => m.result?.probabilities.length === 2)).toBe(true);
     expect(response.forecast.revisionCount).toBe(1);
@@ -200,14 +223,18 @@ describe("forecast refresh service", () => {
     expect(series[1].revisionId).toBe(second.forecast.revision!.revisionId);
     expect(h.create).toHaveBeenCalledTimes(2);
   });
-  it("directed: an unlocked player's displayed score is never banked, even after it is replaced by a later game", async () => {
+  it("directed: a displayed score that may still be replaced is never banked — a latest-counted slot stays unknown while games remain, across two revisions", async () => {
     const h = forecastHarness();
     const first = await refreshForecast(identity(), h.runtime, h.sources);
     if (first.status !== "ready") throw new Error("fixture");
-    // Starter 3000 displays 25 (official team total 25) but is unlocked with games remaining: nothing banked.
-    expect(first.forecast.revision!.teams[0].lockedPoints).toEqual({ value: 0, basis: "exact" });
-    expect(first.forecast.revision!.teams[0].finalPoints).toEqual({ value: 0, basis: "exact" });
-    // He plays again and the leg now displays 12 instead of 25: still unlocked, still nothing banked.
+    // Starter 3000 displays 25 (official team total 25); whether that latest
+    // game was locked is unprovable in public data, so lock coverage is
+    // unknown (null) — not an exact zero, and never banked as locked.
+    expect(first.forecast.revision!.teams[0].lockedPoints).toBeNull();
+    expect(first.forecast.revision!.teams[0].finalPoints).toBeNull();
+    expect(first.forecast.revision!.teams[0].slots[0].state).toBe("unknown");
+    // He plays again and the leg now displays 12 instead of 25: still
+    // latest-counted with a game remaining, still unknown, still not banked.
     const replaced = forecastInput();
     replaced.teams[0].starters[0] = starter("3000", { countedPoints: 12, playedGames: games(25, 12), gamesRemaining: 1 });
     replaced.teams[0].officialPoints = 12;
@@ -215,9 +242,32 @@ describe("forecast refresh service", () => {
     const second = await refreshForecast(identity(), h.runtime, h.sources);
     expect(second.status).toBe("ready"); if (second.status !== "ready") throw new Error("fixture");
     expect(second.forecast.revisionCount).toBe(2);
-    expect(second.forecast.revision!.teams[0].lockedPoints).toEqual({ value: 0, basis: "exact" });
-    expect(second.forecast.revision!.teams[0].finalPoints).toEqual({ value: 0, basis: "exact" });
-    expect(second.forecast.revision!.teams[0].slots[0].state).toBe("open");
+    expect(second.forecast.revision!.teams[0].lockedPoints).toBeNull();
+    expect(second.forecast.revision!.teams[0].finalPoints).toBeNull();
+    expect(second.forecast.revision!.teams[0].slots[0].state).toBe("unknown");
+  });
+  it("regression: evidence A → B → A returns the stored A revision with no third provider call", async () => {
+    const h = forecastHarness();
+    const first = await refreshForecast(identity(), h.runtime, h.sources);
+    if (first.status !== "ready") throw new Error("fixture");
+    const aId = first.forecast.revision!.revisionId;
+    const changed = forecastInput();
+    changed.teams[0].starters[0] = starter("3000", { countedPoints: 41, playedGames: games(41), gamesRemaining: 0 });
+    changed.teams[0].officialPoints = 41;
+    h.sources.input = vi.fn(async () => structuredClone(changed));
+    const second = await refreshForecast(identity(), h.runtime, h.sources);
+    if (second.status !== "ready") throw new Error("fixture");
+    expect(second.forecast.revision!.revisionId).not.toBe(aId);
+    expect(second.forecast.revisionCount).toBe(2);
+    // The evidence reverts to A: dedupe must find A across the series and
+    // return it — not spend again, not no-op the append and return B.
+    h.sources.input = vi.fn(async () => structuredClone(forecastInput()));
+    const third = await refreshForecast(identity(), h.runtime, h.sources);
+    expect(third.status).toBe("ready"); if (third.status !== "ready") throw new Error("fixture");
+    expect(third.forecast.revision!.revisionId).toBe(aId);
+    expect(third.forecast.revisionCount).toBe(2);
+    expect(h.create).toHaveBeenCalledTimes(2);
+    expect((await h.persistence.getForecasts(KEY)).length).toBe(2);
   });
   it("directed: at week end the totals resolve — projected is exactly 0 and the total is locked + final", async () => {
     const input = forecastInput();
@@ -288,6 +338,49 @@ describe("forecast refresh service", () => {
     expect(validForecastInput(input)).toBe(false);
     expect((await refreshForecast(identity(), h.runtime, h.sources)).status).toBe("unavailable");
     expect(h.create).not.toHaveBeenCalled();
+  });
+});
+
+describe("read-back validation: recomputed-hash tamper resistance", () => {
+  const revisionFrom = (input: AiForecastInput) => buildForecastRevision(
+    input, input.teams.map(t => computeForecastTeamLine(t, input.capturedAt)), input.matchups.map(() => null), OBS, null);
+  /** Recompute the content-addressed id after a mutation, so the hash alone cannot save the tampered body. */
+  const rehash = (revision: AiForecastRevision): AiForecastRevision => {
+    const { revisionId, ...body } = structuredClone(revision);
+    return { ...body, revisionId: createHash("sha256").update(canonicalJson(body)).digest("hex") };
+  };
+  it("rejects an aggregate basis upgraded from estimated to exact, even with a recomputed revision id", () => {
+    const input = forecastInput();
+    input.teams[0].starters[0] = starter("3000", { countedPoints: 30, playedGames: games(34, 10), gamesRemaining: 1 }); // band-identified lock → estimated
+    input.teams[0].officialPoints = 30;
+    const revision = revisionFrom(input);
+    expect(revision.teams[0].lockedPoints).toEqual({ value: 30, basis: "estimated" });
+    expect(validForecastRevision(revision)).toBe(true);
+    const tampered = structuredClone(revision);
+    tampered.teams[0].lockedPoints = { value: 30, basis: "exact" };
+    expect(validForecastRevision(rehash(tampered))).toBe(false);
+  });
+  it("rejects a non-null projection surviving an unknown slot, even with a recomputed revision id", () => {
+    const input = forecastInput();
+    input.teams[0].starters[1] = starter("3001", { countedPoints: 10, playedGames: games(10), gamesRemaining: 1, rejectedAppearance: true });
+    input.teams[0].officialPoints = 35;
+    const revision = revisionFrom(input);
+    expect(revision.teams[0].projectedRemainingPoints).toBeNull();
+    expect(validForecastRevision(revision)).toBe(true);
+    const tampered = structuredClone(revision);
+    tampered.teams[0].projectedRemainingPoints = 20;
+    expect(validForecastRevision(rehash(tampered))).toBe(false);
+  });
+  it("rejects a counted locked slot carrying no gameId, even with a recomputed revision id", () => {
+    const input = forecastInput();
+    input.teams[0].starters[0] = starter("3000", { countedPoints: 30, playedGames: games(30, 10), gamesRemaining: 1 });
+    input.teams[0].officialPoints = 30;
+    const revision = revisionFrom(input);
+    expect(revision.teams[0].slots[0]).toMatchObject({ state: "locked", gameId: "9001", countedPoints: 30 });
+    expect(validForecastRevision(revision)).toBe(true);
+    const tampered = structuredClone(revision);
+    tampered.teams[0].slots[0].gameId = null;
+    expect(validForecastRevision(rehash(tampered))).toBe(false);
   });
 });
 

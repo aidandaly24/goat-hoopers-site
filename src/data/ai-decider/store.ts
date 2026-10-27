@@ -46,6 +46,8 @@ export type AiPersistence = {
   appendForecast(key: string, revision: AiForecastRevision): Promise<boolean>;
   getForecasts(key: string): Promise<AiForecastRevision[]>;
   getLatestForecast(key: string): Promise<AiForecastRevision | null>;
+  /** The stored revision for one evidence state, looked up across the week's whole series (evidence can recur: A → B → A). */
+  getForecastByEvidenceHash(key: string, evidenceHash: string): Promise<AiForecastRevision | null>;
 };
 export type AiReservation = { status: "reserved"; leaseId: string } | { status: "disabled" | "rate_limited" | "burst_limited" | "busy" | "duplicate"; retryAfterSeconds?: number };
 const count = (v: unknown): v is number => typeof v === "number" && Number.isSafeInteger(v) && v >= 0;
@@ -278,13 +280,33 @@ export class PostgresAiPersistence implements AiPersistence {
     return result.rows.length === 1;
   }
   async getForecasts(key: string): Promise<AiForecastRevision[]> {
-    const result = await this.execute(sql`SELECT revision FROM ai_decider_forecasts WHERE week_key = ${key} ORDER BY seq ASC`);
-    return result.rows.map(r => r.revision as AiForecastRevision);
+    try {
+      const result = await this.execute(sql`SELECT revision FROM ai_decider_forecasts WHERE week_key = ${key} ORDER BY seq ASC`);
+      return result.rows.map(r => r.revision as AiForecastRevision);
+    } catch (error) { if (isMissingForecastTable(error)) return []; throw error; }
   }
   async getLatestForecast(key: string): Promise<AiForecastRevision | null> {
-    const result = await this.execute(sql`SELECT revision FROM ai_decider_forecasts WHERE week_key = ${key} ORDER BY seq DESC LIMIT 1`);
-    return result.rows[0] ? result.rows[0].revision as AiForecastRevision : null;
+    try {
+      const result = await this.execute(sql`SELECT revision FROM ai_decider_forecasts WHERE week_key = ${key} ORDER BY seq DESC LIMIT 1`);
+      return result.rows[0] ? result.rows[0].revision as AiForecastRevision : null;
+    } catch (error) { if (isMissingForecastTable(error)) return null; throw error; }
   }
+  async getForecastByEvidenceHash(key: string, evidenceHash: string): Promise<AiForecastRevision | null> {
+    try {
+      const result = await this.execute(sql`SELECT revision FROM ai_decider_forecasts WHERE week_key = ${key} AND evidence_hash = ${evidenceHash} LIMIT 1`);
+      return result.rows[0] ? result.rows[0].revision as AiForecastRevision : null;
+    } catch (error) { if (isMissingForecastTable(error)) return null; throw error; }
+  }
+}
+
+/**
+ * The forecast table is applied separately from the base migration; until
+ * it exists, forecast reads are a clean empty series, never an error that
+ * could disturb the pregame read path.
+ */
+function isMissingForecastTable(error: unknown): boolean {
+  const e = error as { code?: unknown; message?: unknown } | null;
+  return e?.code === "42P01" || (typeof e?.message === "string" && /ai_decider_forecasts/.test(e.message) && /does not exist/i.test(e.message));
 }
 
 export function getAiDeciderStore(weeklyOperator?: { userId: string; auth: "legacy" | "friends" }, refreshPolicy?: AiWeek1RefreshPolicy): AiDeciderStore { return new AiDeciderStore(new PostgresAiPersistence(getDb(), weeklyOperator, refreshPolicy)); }

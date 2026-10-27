@@ -1,6 +1,6 @@
 import "server-only";
 import { createHash, timingSafeEqual } from "node:crypto";
-import type { AiForecastRefreshResponse, AiForecastState } from "@/domain/ai-decider";
+import type { AiForecastRefreshResponse, AiForecastRevision, AiForecastState } from "@/domain/ai-decider";
 import { aiDataDeadline } from "./deadline";
 import { loadAiForecastContext, loadAiForecastInput, type AiForecastContext } from "./forecast-evidence";
 import { buildForecastRevision, computeForecastTeamLine, forecastDecision, forecastEvidenceHash, forecastWeekUnderway, validForecastInput, validForecastRevision, type AiForecastInput } from "./forecast";
@@ -18,6 +18,16 @@ export const forecastSources: AiForecastSources = { context: () => loadAiForecas
 
 const unavailableState = (message: string): AiForecastState => ({ status: "unavailable", message, revision: null, revisionCount: 0 });
 
+const readyState = (revision: AiForecastRevision, revisionCount: number): AiForecastState => {
+  const declined = revision.matchups.filter(m => m.result === null).length;
+  return {
+    status: "ready",
+    message: declined ? `In-season rolling forecast; the model declined ${declined} of ${revision.matchups.length} pairings in this revision. Locked and projected points are server-computed from evidence.` : "In-season rolling forecast: locked points are counted facts, projected remaining points are estimates.",
+    revision,
+    revisionCount,
+  };
+};
+
 /** Public read: the latest immutable revision and the series size. Never generates. */
 export async function loadAiForecastState(runtime: AiRuntime, key: string): Promise<AiForecastState> {
   if (!runtime.store) return unavailableState("The forecast store is unavailable.");
@@ -25,13 +35,7 @@ export async function loadAiForecastState(runtime: AiRuntime, key: string): Prom
   if (series.length === 0) return unavailableState("No in-season forecast has been published for this week yet.");
   const latest = series[series.length - 1];
   if (!validForecastRevision(latest) || weekKey(latest) !== key) return unavailableState("The stored forecast revision could not be validated.");
-  const declined = latest.matchups.filter(m => m.result === null).length;
-  return {
-    status: "ready",
-    message: declined ? `In-season rolling forecast; the model declined ${declined} of ${latest.matchups.length} pairings in this revision. Locked and projected points are server-computed from evidence.` : "In-season rolling forecast: locked points are counted facts, projected remaining points are estimates.",
-    revision: latest,
-    revisionCount: series.length,
-  };
+  return readyState(latest, series.length);
 }
 
 /**
@@ -55,8 +59,14 @@ export async function refreshForecast(identity: AiIdentity, runtime: AiRuntime, 
     const lines = input.teams.map(team => computeForecastTeamLine(team, input.capturedAt));
     const evidenceHash = forecastEvidenceHash(input);
     const latest = await persistence.getLatestForecast(key);
-    if (latest && validForecastRevision(latest) && latest.evidenceHash === evidenceHash) {
-      return { status: "ready", forecast: await loadAiForecastState(runtime, key) };
+    // Dedupe across the week's whole series, not just its latest
+    // revision: evidence can recur (A → B → A), and the stored revision
+    // for THIS evidence state is the ready result — never a later
+    // revision computed from different evidence.
+    const existing = await persistence.getForecastByEvidenceHash(key, evidenceHash);
+    if (existing && validForecastRevision(existing) && weekKey(existing) === key) {
+      const series = await persistence.getForecasts(key);
+      return { status: "ready", forecast: readyState(existing, series.length) };
     }
     const safety = createHash("sha256").update(`goat-ai:${identity.userId}`).digest("hex");
     const decision = forecastDecision(input, lines, safety);
@@ -70,6 +80,15 @@ export async function refreshForecast(identity: AiIdentity, runtime: AiRuntime, 
     }
     const revision = buildForecastRevision(input, lines, response.results, new Date(runtime.now()).toISOString(), latest && validForecastRevision(latest) ? latest.revisionId : null);
     await persistence.appendForecast(key, revision);
+    // Converge on the stored revision for this evidence state: if a
+    // concurrent refresh won the append race (the append above no-ops on
+    // the evidence-hash unique key), its stored revision — not whatever
+    // happens to be the series latest — is the result for this evidence.
+    const stored = await persistence.getForecastByEvidenceHash(key, evidenceHash);
+    if (stored && validForecastRevision(stored) && weekKey(stored) === key) {
+      const series = await persistence.getForecasts(key);
+      return { status: "ready", forecast: readyState(stored, series.length) };
+    }
     const forecast = await loadAiForecastState(runtime, key);
     return forecast.status === "ready" ? { status: "ready", forecast } : failure("unavailable", "forecast_unavailable", "The forecast revision could not be safely recorded.");
   } catch { return failure("unavailable", "forecast_unavailable", "The live forecast sources or durable controls are unavailable."); }

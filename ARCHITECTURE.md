@@ -1390,8 +1390,8 @@ separately, and exactly one projected counting game per open slot).
 revision validation; `forecast-evidence.ts` assembles live evidence from the
 public matchup leg, Sleeper's public `scores` feed and ESPN box scores scored
 under league settings (the authenticated leg is unavailable to the service, so
-locks are proven by reconciliation); `forecast-service.ts` dedupes unchanged
-evidence by hash and appends revisions through the existing evaluator's
+locks are proven by reconciliation); `forecast-service.ts` dedupes evidence
+by hash across the week's series and appends revisions through the existing evaluator's
 budget/lease controls. Revisions persist append-only in `ai_decider_forecasts`
 (additive `migrations/ai-decider-forecast.sql`, separately reviewed, not
 applied by this change). `GET /api/ai-decides/forecast` is the daily Vercel

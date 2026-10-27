@@ -40,8 +40,15 @@ export async function loadAiDecidesData(runtime = createAiRuntime(), context: ()
     const current = await aiDataDeadline(context(), 3000);
     // In-season forecast read (issue #149): the latest immutable revision
     // for the current week, beside the pregame slate — never a generation
-    // path, and a forecast failure never disturbs the slate read.
-    try { const loaded = await loadAiForecastState(runtime, weekKey(current)); if (loaded.status === "ready") forecast = loaded; } catch { /* Forecast stays absent. */ }
+    // path, and a forecast failure never disturbs the slate read. The
+    // forecast lane is regular-phase only (its own context loader refuses
+    // any other phase), so this read is gated on the regular phase: the
+    // pregame/preseason read path — including the Week 1 refresh flow —
+    // keeps its exact prior read contract and never queries the forecast
+    // table, which is applied separately and may not exist yet.
+    if (current.phase === "regular") {
+      try { const loaded = await loadAiForecastState(runtime, weekKey(current)); if (loaded.status === "ready") forecast = loaded; } catch { /* Forecast stays absent. */ }
+    }
     weekly = { ...weekly, leagueId: current.leagueId, season: current.season, week: current.week, message: current.phase === "pre" ? "Preseason: lineup previews have not been published for the five known pairings." : "Cached picks have not been prepared for this week.", matchups: current.matchups.map(m => ({ ...m, status: "unavailable", message: "A verified input snapshot and pre-generated result are not available.", result: null, evidence: [], baseline: null })) };
     const record = await runtime.store?.persistence.getWeek(weekKey(current));
     if (record) weekly = cachedWeek(record, runtime.now(), record.input.preview?.calendarVersion !== undefined ? undefined : current.phase === "pre" ? 0 : current.week);

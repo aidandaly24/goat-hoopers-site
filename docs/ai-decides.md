@@ -455,8 +455,13 @@ trigger rejects UPDATE/DELETE). A revision carries its true as-of
 retrieval time, never a claimed source-update time), model/prompt/config
 identity, a `supersedes` pointer to the previous revision, and a
 content-addressed `revisionId` (SHA-256 of the asserted body), re-verified
-on every read. Identical evidence (same evidence hash) returns the stored
-revision with no provider call; genuinely changed evidence goes through
+on every read — including a re-derivation of each bucket's value **and
+basis** from the stored slot provenance, so a body whose hash was
+recomputed after tampering still fails validation. Identical evidence
+(same evidence hash) returns the stored revision with no provider call —
+the lookup spans the week's whole series, so evidence that recurs after
+a change (A → B → A) returns the original revision, never the later one;
+genuinely changed evidence goes through
 the existing evaluator's budget reservation, shared fingerprint dedup and
 lease overlap protection, within the existing weekly input-token bound.
 No new provider, credential or paid service is introduced, and provider
@@ -483,27 +488,35 @@ observedAt) and one counting state:
   feed): the slot's counted value is determinate. Final points are
   reported separately from locked points, so a week fully resolves at
   its end instead of carrying forever-null totals.
-- **open** — unlocked with games remaining. The slot's currently
-  displayed score may still be replaced by a later game, so it banks
-  nothing; the official live team total is never treated as locked.
-  Its projected eventual counted contribution is **one** counting game
-  at observed fantasy PPG (current season, prior-season fallback;
-  config `observed-fppg-v1`) — never PPG × remaining games. Explicitly
-  locked slots contribute zero future projection, so locked and
-  projected sets are disjoint and nothing is double-counted.
+- **open** — proven unlocked with games remaining: in practice a slot
+  with no completed appearance yet, so nothing exists that could have
+  been locked. Its projected eventual counted contribution is **one**
+  counting game at observed fantasy PPG (current season, prior-season
+  fallback; config `observed-fppg-v1`) — never PPG × remaining games.
+  Explicitly locked slots contribute zero future projection, so locked
+  and projected sets are disjoint and nothing is double-counted.
 - **unknown** — evidence cannot prove the state (a game in progress, a
-  rejected box score, missing schedule/counted evidence, or leg totals
-  that do not reconcile). Aggregates the state could contaminate are
-  null — explicit, never an invented zero. A **verified zero** lock set
-  (every slot classified, none locked) is `{ value: 0 }`, a different
-  fact from unknown lock coverage (null).
+  rejected box score, missing schedule/counted evidence, leg totals
+  that do not reconcile, an ambiguous counted game, or a counted game
+  that is the slot's latest played game while games remain).
+  Aggregates the state could contaminate are null — explicit, never an
+  invented zero. A **verified zero** lock set (every slot classified,
+  none locked) is `{ value: 0 }`, a different fact from unknown lock
+  coverage (null).
 
-Disclosed detection limit: a lock placed on a slot's latest played game
-whose value also matches an earlier candidate is indistinguishable in
-public data from the parsimonious read; the latest matching game is
-taken as the counted game. Any source failure aborts the refresh (fail
-closed), and a week with no completed starter appearance refuses with
-`forecast_not_started` — the pregame slate owns the window before play.
+Counted-game identification is uniqueness-checked across the whole
+0/2/4 foul band: if more than one played game can explain the counted
+value — on either side of the latest-played boundary, or several
+earlier games — the counted game's identity, the lock state and the
+basis are unproven and the slot fails closed to unknown. The same
+discipline applies at the latest boundary itself: a lock placed on a
+slot's latest played game is indistinguishable in public data from an
+unlocked slot displaying that game, so while games remain the slot is
+unknown rather than an asserted exact open; at week end the counted
+value is determinate either way and resolves as final. Any source
+failure aborts the refresh (fail closed), and a week with no completed
+starter appearance refuses with `forecast_not_started` — the pregame
+slate owns the window before play.
 
 ### Scheduling and activation
 

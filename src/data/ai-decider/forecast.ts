@@ -34,23 +34,27 @@ import { makePayload, type DecisionSpec } from "./provider";
  * - `final`: no lock and no games remaining (Sleeper `scores`) — the
  *   slot's counted value is determinate and final. It is NOT locked
  *   points and is reported separately, so a week can fully resolve.
- * - `open`: unlocked with games remaining. Its currently displayed
- *   score may still be replaced by a later game, so it contributes
- *   nothing banked; its projected eventual counted contribution is ONE
+ * - `open`: proven unlocked with games remaining — in practice a slot
+ *   with no completed appearance yet, so nothing exists that could have
+ *   been locked. Its projected eventual counted contribution is ONE
  *   game at observed fantasy PPG — never PPG × remaining games.
  * - `unknown`: evidence cannot prove the state (live game in progress,
  *   rejected box score, missing schedule/counted evidence, leg totals
- *   that do not reconcile). Aggregates the state could contaminate are
+ *   that do not reconcile, an ambiguous counted game, or a counted game
+ *   that is the slot's latest played game while games remain — a lock
+ *   on that game is indistinguishable in public data from an unlocked
+ *   slot displaying it). Aggregates the state could contaminate are
  *   null — explicit, never an invented zero. A verified zero lock set
  *   (every slot classified, none locked) is { value: 0 }, which is a
  *   different fact from unknown lock coverage (null).
  *
  * The official live team total is never treated as banked: it mixes
- * locked, final and merely-displayed scores. Known detection limit,
- * disclosed rather than hidden: a lock placed on a slot's latest played
- * game with the same value as an earlier candidate is indistinguishable
- * in public data from the parsimonious read; the latest matching game
- * is taken as the counted game.
+ * locked, final and merely-displayed scores. Counted-game identification
+ * is uniqueness-checked across the whole foul band: if more than one
+ * played game can explain the counted value — on either side of the
+ * latest-played boundary, or several earlier games — the counted game's
+ * identity, the lock state and the basis are all unproven, and the slot
+ * fails closed to `unknown` rather than asserting a banked lock.
  */
 
 export type AiForecastPlayedGame = { gameId: string; points: number };
@@ -160,13 +164,23 @@ export function classifyForecastStarter(s: AiForecastStarterEvidence): AiForecas
     // final (he can no longer contribute) once none do.
     return s.gamesRemaining > 0 ? { state: "open" } : { state: "final", banked: 0, gameId: null, basis: "exact" };
   }
-  // Identify the counted game: prefer an exact (gap-0) match, else the
-  // latest match inside the foul-residual band (an estimated attribution).
+  // Identify the counted game among ALL played games whose box value
+  // explains the counted points inside the foul-residual band. The
+  // identification must be unique before any state is asserted:
+  // - more than one candidate — on either side of the latest-played
+  //   boundary (an earlier gap-0 game plus a latest game reachable via a
+  //   tf/ff residual, or the mirror image), or several earlier games —
+  //   leaves the counted game's identity, and with it the lock state
+  //   and the basis, unproven;
+  // - a unique candidate that IS the latest played game leaves the lock
+  //   state unproven while games remain: a manager may already have
+  //   locked that game, which public evidence cannot distinguish from
+  //   an unlocked slot displaying its latest game. Only at week end is
+  //   the counted value determinate either way (final).
   const matches = played.map(g => ({ game: g, gap: foulGap(g.points, s.countedPoints!) })).filter(m => m.gap !== null);
   if (matches.length === 0) return { state: "unknown", reason: "counted points match no played game" };
-  const exact = matches.filter(m => m.gap === 0);
-  const pool = exact.length ? exact : matches;
-  const counted = pool[pool.length - 1];
+  if (matches.length > 1) return { state: "unknown", reason: "counted points match more than one played game" };
+  const counted = matches[0];
   const basis = counted.gap === 0 ? "exact" as const : "estimated" as const;
   if (counted.game.gameId !== played[played.length - 1].gameId) {
     // The leg counts an earlier played game despite a later played one:
@@ -175,7 +189,7 @@ export function classifyForecastStarter(s: AiForecastStarterEvidence): AiForecas
   }
   return s.gamesRemaining === 0
     ? { state: "final", banked: s.countedPoints, gameId: counted.game.gameId, basis }
-    : { state: "open" };
+    : { state: "unknown", reason: "the counted game is the latest played game; a lock on it cannot be distinguished from an unlocked display while games remain" };
 }
 
 const SLOT_SOURCE = "sleeper-matchups+espn-box-scores+sleeper-scores";
@@ -308,6 +322,20 @@ export function validForecastRevision(v: unknown): v is AiForecastRevision {
     if (fp !== null && Math.abs(fp.value - sum("final")) > 0.011) return false;
     if ((lp === null || fp === null || pr === null) !== (tp === null)) return false;
     if (tp !== null && Math.abs(lp!.value + fp!.value + pr! - tp) > 0.011) return false;
+    // The bucket basis is re-derived from the contributing slots, weakest
+    // wins (an empty bucket is exact): the content hash below proves the
+    // body was hashed, not that the aggregate was derived from the slots,
+    // so a basis upgraded from estimated to exact must fail here.
+    const bucketBasis = (state: string): AiForecastPoints["basis"] => slots.some(s => s.state === state && s.basis === "estimated") ? "estimated" : "exact";
+    if (lp !== null && lp.basis !== bucketBasis("locked")) return false;
+    if (fp !== null && fp.basis !== bucketBasis("final")) return false;
+    // An unknown slot contaminates the projection as well as the counted
+    // buckets: projected remaining points must be null alongside them.
+    if (anyUnknown && pr !== null) return false;
+    // A counted locked/final slot must name the game it counts; the only
+    // legitimate unattributed counted slot is the proven no-appearance
+    // zero (state final, countedPoints 0, gameId null).
+    if (slots.some(s => (s.state === "locked" || s.state === "final") && (s.countedPoints ?? 0) > 0 && s.gameId === null)) return false;
   }
   const paired = new Set<string>();
   for (const m of v.matchups) {
