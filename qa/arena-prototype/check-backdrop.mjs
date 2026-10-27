@@ -24,6 +24,7 @@ try {
     await tab.goto(`${origin}/?view=${state.member ? "member" : "public"}`, { waitUntil: "networkidle" });
     await tab.waitForFunction(() => window.goatArenaMetrics?.props === 3);
     await tab.evaluate(async () => { await document.fonts.ready; for (const image of document.images) image.loading = "eager"; await Promise.allSettled([...document.images].map(image => image.decode())); });
+    await tab.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     const structure = await tab.evaluate(() => {
       const styles = element => { const s = getComputedStyle(element); return { color: s.backgroundColor, image: s.backgroundImage, repeat: s.backgroundRepeat }; };
       const context = document.createElement("canvas").getContext("2d");
@@ -37,6 +38,16 @@ try {
       const textColors = Object.fromEntries(["--gh-text", "--gh-text-dim", "--gh-win", "--gh-loss", "--gh-control"].map(name => [name, rgba(root.getPropertyValue(name)).slice(0, 3)]));
       textColors["reading-accent"] = rgba(home.getPropertyValue("--gh-cs-tan")).slice(0, 3);
       const contrastBounds = Object.fromEntries(Object.entries(textColors).map(([name, color]) => [name, Math.min(...backgrounds.map(background => contrast(color, background)))]));
+      const teamLabels = [...document.querySelectorAll('[class*="face-team"] > span[style]')].map(element => ({
+        name: element.textContent, color: getComputedStyle(element).color,
+        contrast: Math.min(...backgrounds.map(background => contrast(rgba(getComputedStyle(element).color).slice(0, 3), background))),
+      }));
+      const initials = [...document.querySelectorAll('[class*="initials"]')].map(element => {
+        const badge = element.parentElement.getBoundingClientRect(), range = document.createRange(); range.selectNodeContents(element);
+        const lines = [...range.getClientRects()].filter(rect => rect.width > 0);
+        return { text: element.textContent, badge: { width: badge.width, height: badge.height }, lines: lines.length,
+          contained: lines.every(rect => rect.left >= badge.left && rect.right <= badge.right && rect.top >= badge.top && rect.bottom <= badge.bottom) };
+      });
       const worlds = document.querySelectorAll(".arena-world");
       const boxes = [...document.querySelectorAll("[data-courtside-home] > section, [data-courtside-home] > div, [data-courtside-home] > section > div")].map(element => ({ tag: element.tagName, ...styles(element) }));
       return { body: styles(document.body), main: styles(document.querySelector("main")), footer: styles(document.querySelector("footer")),
@@ -47,13 +58,16 @@ try {
         faceClipping: [...document.querySelectorAll("[class*=face-card]")].some(element => element.scrollWidth > element.clientWidth),
         duoColumns: getComputedStyle(document.querySelector("[class*=value-face-list]") ?? document.body).gridTemplateColumns,
         overflow: document.documentElement.scrollWidth > innerWidth,
-        contrastBounds, backgroundRgbBounds: backgrounds, metrics: window.goatArenaMetrics };
+        contrastBounds, teamLabels, initials, backgroundRgbBounds: backgrounds, metrics: window.goatArenaMetrics };
     });
     assert.equal(structure.worldCount, 1); assert.equal(structure.canvasCount, 1); assert.equal(structure.worldPosition, "fixed");
     assert.equal(structure.main.image, "none"); assert.equal(structure.footer.image, "none");
     assert(structure.boxes.every(box => box.color === "rgba(0, 0, 0, 0)" && box.image === "none"), "A section resets the shared backdrop");
     assert.equal(structure.faceCount, 10); assert.equal(structure.faceClipping, false); assert.equal(structure.overflow, false);
     for (const [name, ratio] of Object.entries(structure.contrastBounds)) assert(ratio >= (name === "--gh-control" ? 3 : 4.5), `${name} contrast bound ${ratio} is too low`);
+    assert.equal(structure.teamLabels.length, 10);
+    assert(structure.teamLabels.every(label => label.contrast >= 4.5), "A team label has insufficient contrast over slate");
+    assert(structure.initials.every(badge => badge.lines === 1 && badge.contained), "Initials wrap or overflow their badge");
     if (state.width < 600 && !state.member) assert(!structure.duoColumns.includes(" "), "Phone matchup pair is not stacked");
     const offsets = await tab.evaluate(member => {
       const y = element => Math.max(0, Math.round(element.getBoundingClientRect().top + scrollY));

@@ -29,28 +29,32 @@ existing unavailable state remains; no history is invented. The baseline switch
 `&style=baseline&scene=still` permits exact content/link comparison without the
 composition overrides.
 
-One large original court/arena supplies the background across the page. Reading
-surfaces use existing Paper + Slate tokens; scenic seams and gutters expose the
-court throughout. An initial still frame is reused as the page's scenery. There
-is one deferred Three renderer, no scroll/camera animation and no idle frame loop.
+One continuous grey/slate field, one fixed court/arena and one uniform translucent
+reading veil continue through the whole page. Sections and wraps are transparent;
+there are no repeated section posters or opaque page resets. The local text roles
+derive from existing Paper + Slate tokens and are checked against the darkest and
+lightest possible scene pixels. There is one deferred Three renderer, no
+scroll/camera animation and no idle frame loop.
 Pixel ratio is bounded to 1.5 and 1.6 million drawing pixels. Seating is instanced;
 no shadows, physics or animation framework are involved. Reduced motion,
 Save-Data and the review's Still mode skip the scene/model download entirely.
 Live reduced-motion changes, resize, tab visibility, teardown and context loss
 are handled. The fallback is an original SVG plus the approved hero court photo.
 
-**Polyfork prop integration is pending a concrete network blocker.** Public
-metadata and GLB CDN reads return HTTP 403 from this environment's proxy; no
-model was downloaded or visually inspected. The reviewed GLTFLoader integration
-discovers local GLBs only. See [asset provenance](assets/PROVENANCE.md). When the
-same approved public URLs are reachable, run `python3 qa/arena-prototype/fetch-assets.py`,
-then inspect the actual three files/placements before declaring that part complete.
+The three approved Polyfork props arrived through Muse's isolated repository
+handoff #268 at `24b36aef62923251bf9b3a56656bd5c9f2ed3bbc`. Their actual bytes,
+hashes, resource counts, world bounds and visual pixels were independently
+inspected before placement. The existing local GLTFLoader loads two cloned posts,
+one scoreboard and one trophy cabinet; its animation data remains inert.
+See [asset provenance](assets/PROVENANCE.md). The failed public network route was
+not retried, and the reference spike's remote modules/runtime were not copied.
 No MCP, account, API key, subscription, asset code execution or dependency install.
 
 With the local app running, verify and capture:
 
 ```sh
 node qa/arena-prototype/verify.mjs
+node qa/arena-prototype/check-backdrop.mjs
 node qa/arena-prototype/recapture.mjs
 npm run typecheck
 node node_modules/vite/bin/vite.js build --config qa/arena-prototype/vite.config.mts
@@ -78,7 +82,7 @@ and a large-chunk notice for deferred installed Three/GLTFLoader. This is an
 all-client offline review app, not a production Next payload benchmark.
 
 Do not merge, deploy or integrate this study into `/` without reviewed follow-on
-work. Parent Dot owns exact-head review and user delivery; Muse review/readiness
-and the pending asset inspection remain separate gates. The [#190 ownership
+work. Parent Dot owns exact-head review and user delivery; Muse's fresh final-head
+visual judgment remains a delivery gate. The [#190 ownership
 comment](https://github.com/aidandaly24/goat-hoopers-site/issues/190#issuecomment-6453072755)
 records this non-overlapping claim. No release authorization is implied.

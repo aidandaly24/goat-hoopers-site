@@ -28,14 +28,13 @@ The approved free GLB shortlist is:
 | match-scoreboard-58f51e | 592 | 108 KB |
 | trophy-cabinet-e963ac | 671 | 80 KB |
 
-**Pending:** this execution environment's network proxy returns HTTP 403 for
+**Historical network failure, resolved by repository handoff below:** this execution environment's network proxy returned HTTP 403 for
 both the public metadata API and the public GLB CDN, including an approved
 escalated read. Chromium also reports `ERR_TUNNEL_CONNECTION_FAILED`. No GLB
-was received, inspected or claimed as used. The prototype currently renders
-only original scenery. `fetch-assets.py` saves only structurally inspected
-binary data at these exact approved IDs; visual inspection is still required
-before calling their placement complete. The local GLTFLoader path is ready
-and only discovers actual local `.glb` files. No remote model/module, MCP,
+was received through that route. `fetch-assets.py` saves only structurally inspected
+binary data at these exact approved IDs; visual inspection was subsequently
+completed on the repository handoff. The local GLTFLoader only discovers actual
+local `.glb` files. No remote model/module, MCP,
 account, credential, paid plan or package was added.
 
 ## Resolved repository handoff — current revision

@@ -22,11 +22,10 @@ Read on 2026-10-27 from the public [Nutlope/hallmark repository](https://github.
 Useful guidance applied: carry content and wiring verbatim; let the existing
 brand win; distinguish sections through hierarchy and composition; prefer rows,
 tables and open space over nested cards; retain readable text, focus and mobile
-order. The reading surface now continues between sections, the faces rail and
+order. The shared translucent veil continues between sections, the faces rail and
 table/stat blocks lose ornamental frames, the notebook has a lead and supporting
 rows, and the title/value figures carry more hierarchy. Phone headings and notes
-stack so adjacent metadata does not crowd them. The 3D arena stays substantial
-in the opening, gutters and closing instead of becoming a small hero ornament.
+stack so adjacent metadata does not crowd them. The 3D arena continues behind every section in one fixed layer.
 
 No Hallmark package, service, theme scaffold, font, script, linter, AGENTS edit
 or `.hallmark` state was installed or executed. This is a bounded application of
@@ -50,14 +49,18 @@ camera flight. This branch does not implement or claim Muse's zone flights.
 
 [Muse announced](https://github.com/aidandaly24/goat-hoopers-site/issues/190#issuecomment-6453801071)
 a night-blacktop streetball spike with two hoops/floodlights and about 33k
-triangles. The named private HTML/artifact is not accessible in this environment;
-actual comparison and visual inspection remain pending its read-only handoff.
+triangles. The actual HTML and three approved GLBs subsequently arrived through
+draft #268 at `24b36aef62923251bf9b3a56656bd5c9f2ed3bbc`. Its camera, night
+blacktop, paired hoops and furnishing composition were inspected read-only. The
+spike’s remote modules, zoom suppression and perpetual auto-rotate/render loop
+were not copied. Only the verified GLBs entered the existing guarded renderer.
 [The asset request](https://github.com/aidandaly24/goat-hoopers-site/issues/190#issuecomment-6453852364)
 asks for an isolated repository commit containing the approved free GLBs,
 metadata/hashes/license provenance and the source artifact. No failed Polyfork
 network route is retried or bypassed, and original geometry is not labelled as
-Polyfork. Parent delivery must distinguish this checkpoint from the completed
-joint hub until the actual scene/input is reviewed.
+Polyfork. This full-page composition uses Muse’s input and inspected props; it does not
+claim the optional hub camera flights. A fresh final-head visual review from
+Muse remains pending. Older visual passes do not apply to this revision.
 
 ## Tall screenshot defect and correction
 
@@ -75,14 +78,35 @@ overlapping final viewport. No content, link, field or handler changes; an
 inventory hash checks that. It restores the header and initial scroll afterward.
 
 Fresh top, middle and bottom viewport captures are compared against the stitched
-pixels. Sparse fractional-text antialias variation is bounded at 0.1% differing
-pixels and mean channel error 0.02/255; the current member-desktop top has 439
-changed pixels out of 1,440,000 and mean 0.000553/255. Every other checkpoint is
-pixel-exact. This tolerance cannot admit wrapped/missing page regions. Separate
-OCR of the actual final JPEGs verifies section order and the footer's “Built for
-the league” text; the checkpoint sheets also show the actual footer pixels.
+pixels at matching scroll anchors. The last document slice uses its actual
+cropTop, since the background is viewport anchored. Sparse text antialias
+variation is bounded at 0.1% differing pixels and mean channel error 0.02/255.
+Inside actual image bounds, fractional filtered-media raster noise up to 12/255
+is recorded separately; non-media pixels retain the strict bound. Overall mean
+error is capped at 0.2/255. These limits cannot admit missing or wrapped regions.
+Separate OCR of the actual final JPEGs verifies section order and the footer’s
+“Built for the league” text. The checkpoint sheets show actual footer pixels.
 
 See `review/capture-evidence.json` and the individual capture records for every
 tile offset, viewport, content inventory, heading position and pixel check.
 Corrected JPEGs stay below 900,000 bytes at full document dimensions. No physical
 phone, screen-reader, hardware-GPU or live-auth/data claim is made.
+
+## Continuous backdrop and targeted visual QA
+
+The rejected alternating reading plane was removed in actual scoped CSS. One
+grey/slate body field, one fixed guarded scene and one uniform translucent veil
+continue through header, all sections and footer. No per-section poster or
+opaque background reset remains. Six state checks include six real viewport
+crops each, exposed slate pixels, section transparency, typography/controls and
+conservative scene-overlay contrast bounds. Faces are an unclipped responsive
+grid; the phone pairing stacks; roster photos/caption no longer overlap; the
+footer photo is desaturated. Facts and ordinary controls stay intact.
+
+The compact WT initials defect was reproduced: inherited overflow-wrap:anywhere
+split two glyphs over two lines in a 24px badge. Scoped nowrap/normal wrapping,
+line-height and compact label sizing keep the glyphs in one contained line.
+Team-name inline colors in the faces row now use the readable theme text role;
+actual computed label contrast and every initial badge are checked in six states.
+The avatar colors and champion crown remain intact. This is a prototype-only
+correction; shared component source is unchanged.

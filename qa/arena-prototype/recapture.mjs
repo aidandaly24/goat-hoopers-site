@@ -14,7 +14,7 @@ try {
     { name: "member-dark-full", width: 1440, height: 1000, member: true, theme: "dark" },
     { name: "public-390-full", width: 390, height: 844, member: false, theme: "dark" },
     { name: "member-390-full", width: 390, height: 844, member: true, theme: "dark" },
-  ]) {
+  ].filter(state => !process.env.CAPTURE_VIEW || state.name === process.env.CAPTURE_VIEW)) {
     const context = await browser.newContext({ viewport: { width: state.width, height: state.height }, deviceScaleFactor: 1 });
     const errors = [], external = [];
     await context.addInitScript(theme => localStorage.setItem("goat-hoopers.theme", theme), state.theme);
@@ -40,5 +40,6 @@ try {
     console.log("PASS", state.name, `${capture.width}x${capture.height}`, `${capture.bytes} bytes`, `${capture.tiles.length} tiles`, "top/middle/bottom pixel comparisons; ordered OCR + footer");
     await context.close();
   }
-  await writeFile(`${output}/capture-evidence.json`, JSON.stringify({ revision: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), results }, null, 2) + "\n");
+  const suffix = process.env.CAPTURE_VIEW ? `-${process.env.CAPTURE_VIEW}` : "";
+  await writeFile(`${output}/capture-evidence${suffix}.json`, JSON.stringify({ revision: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), results }, null, 2) + "\n");
 } finally { await browser.close(); }

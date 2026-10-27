@@ -6,6 +6,7 @@ import notebook from "@/surfaces/season-hub/ScoutingNotebook.module.css";
 import spotlight from "@/surfaces/season-hub/StudChud.module.css";
 import roster from "@/surfaces/season-hub/RosterValueSection.module.css";
 import portraitStage from "@/surfaces/season-hub/RosterPortraitStage.module.css";
+import avatar from "@/ui/TeamAvatar.module.css";
 
 /** Review-only composition overrides. Source components, DOM content and
  * production CSS remain unchanged. Resolved module names avoid fuzzy selectors. */
@@ -85,6 +86,9 @@ const rules = `
   .arena-study .${home["faces-strip"]} { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); overflow: visible; }
   .arena-study .${home["face-card"]} { min-width: 0; }
   .arena-study .${home["face-team"]} { align-items: flex-start; color: var(--gh-text); }
+  .arena-study .${home["face-team"]} > span[style] { color: var(--gh-text) !important; }
+  .arena-study .${avatar.initials} { white-space: nowrap; overflow-wrap: normal; word-break: normal; line-height: 1; }
+  .arena-study .${home["face-team"]} .${avatar.initials} { font-size: var(--gh-text-xs); }
   .arena-study .${home["value-face-pos"]} { color: var(--arena-muted); }
   .arena-study .${home["face-team"]} > :first-child { flex-shrink: 0; }
   .arena-study .${portraitStage.stage} { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gh-s2); height: auto; overflow: visible; border: 0; }
