@@ -56,6 +56,7 @@ With the local app running, verify and capture:
 node qa/arena-prototype/verify.mjs
 node qa/arena-prototype/check-backdrop.mjs
 node qa/arena-prototype/recapture.mjs
+node node_modules/typescript/bin/tsc --noEmit -p qa/arena-prototype/tsconfig.json
 npm run typecheck
 node node_modules/vite/bin/vite.js build --config qa/arena-prototype/vite.config.mts
 node node_modules/eslint/bin/eslint.js qa/arena-prototype
@@ -86,3 +87,10 @@ work. Parent Dot owns exact-head review and user delivery; Muse's fresh final-he
 visual judgment remains a delivery gate. The [#190 ownership
 comment](https://github.com/aidandaly24/goat-hoopers-site/issues/190#issuecomment-6453072755)
 records this non-overlapping claim. No release authorization is implied.
+
+Repository build limitation: default Next/Turbopack rejects the shared
+node_modules symlink in this separate checkout. The existing --webpack option
+compiles, then generated types reject the unchanged optional AccountPage
+argument (also present in the prototype base). Global typecheck passed before
+those generated route checks existed; afterward it reports the same route
+error. The scoped prototype TypeScript check above passes independently.

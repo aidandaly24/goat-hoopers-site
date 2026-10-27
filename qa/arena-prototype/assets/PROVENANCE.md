@@ -1,7 +1,8 @@
 # Arena prototype asset provenance
 
-The floor, complete court markings, seating, structure, backboards, ribbon and
-fallback SVG are original geometry/art for this prototype. Their colors reuse
+The floor, complete court markings, seating, structure, ribbon and fallback
+SVG are original geometry/art for this prototype. Original primitive hoops are
+a fallback; the verified Polyfork posts replace them after successful parsing. Their colors reuse
 the existing GOAT scene and slate tokens. No downloaded code is executed.
 
 Approved existing assets are read from `public/courtside/`, without edits. The

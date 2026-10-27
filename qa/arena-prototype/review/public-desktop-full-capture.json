@@ -5,8 +5,8 @@
     "height": 1000
   },
   "width": 1440,
-  "height": 7657,
-  "bytes": 869974,
+  "height": 7912,
+  "bytes": 829037,
   "jpegQuality": 85,
   "tiles": [
     {
@@ -53,44 +53,65 @@
     },
     {
       "documentY": 7000,
-      "scrollY": 6657,
-      "cropTop": 343,
-      "height": 657
+      "scrollY": 6912,
+      "cropTop": 88,
+      "height": 912
     }
   ],
   "checkpoints": [
     {
       "name": "top",
       "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
       "width": 1440,
       "height": 1000,
-      "differingPixels": 0,
-      "differingRatio": 0,
-      "meanChannelError": 0,
-      "maxChannelError": 0,
-      "tolerance": "at least 99.9% exact pixels; mean channel error <= 0.02/255; sparse text rasterization only"
+      "differingPixels": 294,
+      "differingRatio": 0.00020416666666666668,
+      "meanChannelError": 0.00008518518518518518,
+      "maxChannelError": 1,
+      "rasterOnlyMediaPixels": 294,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
     },
     {
       "name": "middle",
       "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
       "width": 1440,
       "height": 1000,
       "differingPixels": 0,
       "differingRatio": 0,
       "meanChannelError": 0,
       "maxChannelError": 0,
-      "tolerance": "at least 99.9% exact pixels; mean channel error <= 0.02/255; sparse text rasterization only"
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
     },
     {
       "name": "bottom",
-      "documentY": 6657,
+      "documentY": 7000,
+      "scrollY": 6912,
+      "cropTop": 88,
       "width": 1440,
-      "height": 1000,
+      "height": 912,
       "differingPixels": 0,
       "differingRatio": 0,
       "meanChannelError": 0,
       "maxChannelError": 0,
-      "tolerance": "at least 99.9% exact pixels; mean channel error <= 0.02/255; sparse text rasterization only"
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
     }
   ],
   "headings": [
@@ -124,44 +145,44 @@
     },
     {
       "text": "Around the league",
-      "y": 3937
+      "y": 4191
     },
     {
       "text": "Know who you’re playing.",
-      "y": 4340
+      "y": 4595
     },
     {
       "text": "Standings, leaders & moves.",
-      "y": 5826
+      "y": 6081
     },
     {
       "text": "Standings",
-      "y": 5904
+      "y": 6158
     },
     {
       "text": "League stats",
-      "y": 5904
+      "y": 6158
     },
     {
       "text": "Recent activity",
-      "y": 6054
+      "y": 6309
     },
     {
       "text": "Stocks",
-      "y": 6820
+      "y": 7075
     },
     {
       "text": "Arcade",
-      "y": 6820
+      "y": 7075
     },
     {
       "text": "Every week has a story.",
-      "y": 7002
+      "y": 7257
     }
   ],
   "footer": {
     "text": "2026 season · In SeasonA fan-made league hub. Not affiliated with the NBA or Sleeper.HomeArcadeTeamsTransactionsWeekly archiveCopyright 2026 GOAT Hoopers. Built for the league, by the league.",
-    "y": 7404
+    "y": 7659
   },
   "teams": 10,
   "rosterReferences": 228,

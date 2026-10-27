@@ -5,9 +5,9 @@
     "height": 844
   },
   "width": 390,
-  "height": 12804,
-  "bytes": 860950,
-  "jpegQuality": 91,
+  "height": 13831,
+  "bytes": 854886,
+  "jpegQuality": 89,
   "tiles": [
     {
       "documentY": 0,
@@ -101,44 +101,71 @@
     },
     {
       "documentY": 12660,
-      "scrollY": 11960,
-      "cropTop": 700,
-      "height": 144
+      "scrollY": 12660,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 13504,
+      "scrollY": 12987,
+      "cropTop": 517,
+      "height": 327
     }
   ],
   "checkpoints": [
     {
       "name": "top",
       "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
       "width": 390,
       "height": 844,
       "differingPixels": 0,
       "differingRatio": 0,
       "meanChannelError": 0,
       "maxChannelError": 0,
-      "tolerance": "at least 99.9% exact pixels; mean channel error <= 0.02/255; sparse text rasterization only"
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
     },
     {
       "name": "middle",
       "documentY": 6752,
+      "scrollY": 6752,
+      "cropTop": 0,
       "width": 390,
       "height": 844,
       "differingPixels": 0,
       "differingRatio": 0,
       "meanChannelError": 0,
       "maxChannelError": 0,
-      "tolerance": "at least 99.9% exact pixels; mean channel error <= 0.02/255; sparse text rasterization only"
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
     },
     {
       "name": "bottom",
-      "documentY": 11960,
+      "documentY": 13504,
+      "scrollY": 12987,
+      "cropTop": 517,
       "width": 390,
-      "height": 844,
+      "height": 327,
       "differingPixels": 0,
       "differingRatio": 0,
       "meanChannelError": 0,
       "maxChannelError": 0,
-      "tolerance": "at least 99.9% exact pixels; mean channel error <= 0.02/255; sparse text rasterization only"
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
     }
   ],
   "headings": [
@@ -156,68 +183,68 @@
     },
     {
       "text": "Players to watch.",
-      "y": 2561
+      "y": 2544
     },
     {
       "text": "Weekly performers.",
-      "y": 3726
+      "y": 3709
     },
     {
       "text": "News & recent moves.",
-      "y": 4567
+      "y": 4550
     },
     {
       "text": "Player spotlights.",
-      "y": 4975
+      "y": 4958
     },
     {
       "text": "A league of our own.",
-      "y": 5642
+      "y": 5625
     },
     {
       "text": "Faces of the league",
-      "y": 6802
+      "y": 6786
     },
     {
       "text": "Around the league",
-      "y": 7186
+      "y": 8212
     },
     {
       "text": "Know who you’re playing.",
-      "y": 7883
+      "y": 8910
     },
     {
       "text": "Standings, leaders & moves.",
-      "y": 9629
+      "y": 10656
     },
     {
       "text": "Standings",
-      "y": 9697
+      "y": 10724
     },
     {
       "text": "League stats",
-      "y": 11040
+      "y": 12067
     },
     {
       "text": "Recent activity",
-      "y": 11207
+      "y": 12234
     },
     {
       "text": "Stocks",
-      "y": 11512
+      "y": 12539
     },
     {
       "text": "Arcade",
-      "y": 11697
+      "y": 12724
     },
     {
       "text": "Every week has a story.",
-      "y": 11872
+      "y": 12899
     }
   ],
   "footer": {
     "text": "2026 season · In SeasonA fan-made league hub. Not affiliated with the NBA or Sleeper.HomeArcadeTeamsTransactionsWeekly archiveCopyright 2026 GOAT Hoopers. Built for the league, by the league.",
-    "y": 12398
+    "y": 13424
   },
   "teams": 10,
   "rosterReferences": 228,

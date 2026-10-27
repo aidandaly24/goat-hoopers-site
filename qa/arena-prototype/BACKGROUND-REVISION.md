@@ -1,34 +1,48 @@
-# Continuous backdrop revision — working checkpoint
+# Continuous backdrop revision — review candidate
 
-Aidan rejected the prior alternating opaque reading plane and arena margins.
-The exact quote is forwarded to Muse on #190 comment 6454594162. Prior WIP
-reviews are not user approval. No production merge/deploy is authorized here.
+Aidan's rejection was forwarded verbatim to Muse in #190 comment 6454594162.
+Muse agreed with this direction in 6454614263 and promised a fresh visual review.
+Older WIP passes are not approval of this revision or permission to integrate it.
 
-This checkpoint changes actual CSS: one continuous grey/slate body field, one
-fixed guarded scene and one shared translucent reading veil. There is no
-section-owned repeated poster. Section/wrap backgrounds are transparent;
-header/footer/captions use the same field. Functional content remains readable
-using local theme-derived contrast roles. Muse's clipping/collage/phone-duo and
-photo-grade notes are addressed without removing any data or control.
+Actual scoped CSS now uses one continuous grey/slate body field, one fixed
+guarded arena and one shared translucent reading veil. All section/wrap
+backgrounds are transparent; header, captions and footer use the same field.
+The repeated poster and alternating opaque reading planes are gone. Existing
+theme-derived text/control roles retain readable contrast over the scene.
 
-Normal viewport crops from six public/member desktop/phone/theme states are
-saved in review/continuous, with backdrop/contrast evidence. New full-height
-capture verification and final exact-head checks are still pending. The old
-four full-height JPEGs describe the superseded composition and MUST NOT be
-used for this revision's user delivery. Original PNGs remain historical.
+Muse's specific notes are addressed: all ten faces form an unclipped grid, the
+phone matchup pair stacks, roster name/photos/caption occupy distinct rows,
+and the closing photo is desaturated. The compact WT badge was reproduced and
+corrected using scoped nowrap, line-height and compact font sizing. Team-name
+labels use the readable text role rather than dark inline team colors. All
+initials fit on one line; conservative face-label contrast is 7.91:1 light and
+5.99:1 dark. Original avatar/crown behavior and every fact/control remain.
 
-Muse handoff #268 at 24b36aef62923251bf9b3a56656bd5c9f2ed3bbc was fetched for
-inspection only, not merged. Actual local GLB hashes/bytes, triangle/material
-counts, resource limits, transform-only clip data and world bounds were
-independently checked. All three props were visually inspected before placement;
-see assets/polyfork/{provenance,inspection,visual-inspection}.json and
-review/polyfork-props-inspected.jpg. The scoreboard clip is inert. No remote
-module, auto-rotate, perpetual loop or zoom suppression from the reference HTML
-was copied. The existing guarded renderer uses only these three local GLBs.
+Actual Muse handoff #268 at 24b36aef62923251bf9b3a56656bd5c9f2ed3bbc was
+inspected without merging. The three local GLB hashes, resource counts, world
+bounds and pixels were checked before placement. The scoreboard's validated
+transform-only clip remains inert. No remote module, zoom suppression,
+auto-rotate or perpetual loop from the spike was copied. Provenance and raw
+inspection records are retained under assets/polyfork.
 
-Working-tree checks completed before this recovery checkpoint: all 18 browser
-checks passed after GLB integration; six backdrop/contrast state checks passed.
-The latest full-height capture run was interrupted or failed before a complete
-aggregate receipt, so it is not a pass. Execution transport disconnected and
-then a fresh command succeeded; this commit preserves the current work before
-further validation. Muse's fresh exact-head visual judgment remains required.
+All four current full-height JPEGs in review/ are new, under 900KB and complete
+through their actual footer. Bounded viewport tiles avoid Chromium's 8192px
+capture limit. Independent top/middle/bottom pixel checks and actual-JPEG OCR
+verify section order and footer. Six states each have six normal-size viewport
+crops in review/continuous. Historical PNG originals remain unchanged and must
+not be delivered as current complete-page screenshots.
+
+The isolated app passes 18 browser checks, six backdrop/contrast/badge cases,
+scoped TypeScript, ESLint and its Vite production build. The repository-wide
+Next build has two separate blockers: Turbopack rejects this checkout's shared
+node_modules symlink; --webpack compiles but generated types reject the existing
+optional AccountPage argument at src/app/account/page.tsx:9. The identical
+signature exists in the prototype base. Global typecheck passed before Next
+generated those checks; afterward it reports that same existing route error.
+The production route is outside this prototype's scope and is unchanged.
+
+Fresh final-head Muse visual judgment remains pending before user handoff.
+An earlier WIP status/review comment to #190 was rejected by automatic approval
+review for missing exact-destination/payload authorization; it did not post and
+was not rerouted. Parent owns final review, artifact delivery and any permission
+resolution. No production route change, merge or deployment occurred.
