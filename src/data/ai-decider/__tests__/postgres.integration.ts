@@ -50,18 +50,24 @@ const racePersistence = (client: PoolClient) => new PostgresAiPersistence(raceDb
 const pidOf = async (client: PoolClient): Promise<number> => (await client.query<{ pid: number }>("SELECT pg_backend_pid() AS pid")).rows[0].pid;
 /**
  * Deterministic overlap: poll the lock catalog until the victim backend
- * is OBSERVED waiting on the holder's lock (an observable state, not a
- * timing guess). Fails loudly if the victim settles first — a statement
- * that completes without ever blocking did not exercise the race.
+ * is OBSERVED waiting on a lock (an observable state, not a timing
+ * guess). Fails loudly if the victim settles first — a statement that
+ * completes without ever blocking did not exercise the race. With
+ * `anyBlocker`, any observed blocker satisfies the wait: in a lock
+ * convoy (two racers queued on one row lock) the second waiter is
+ * attributed to the waiter ahead of it rather than to the original
+ * holder, and either attribution proves it is queued in the convoy.
  */
-const waitForBlocked = async (victimPid: number, blockerPid: number, isSettled: () => boolean): Promise<void> => {
+const waitForBlocked = async (victimPid: number, blockerPid: number, isSettled: () => boolean, anyBlocker = false): Promise<void> => {
+  let last: number[] = [];
   for (let i = 0; i < 100; i++) {
     const blockers = (await pool.query<{ b: number[] }>("SELECT pg_blocking_pids($1) AS b", [victimPid])).rows[0].b;
-    if (blockers.includes(blockerPid)) return;
+    last = blockers;
+    if (anyBlocker ? blockers.length > 0 : blockers.includes(blockerPid)) return;
     if (isSettled()) throw new Error(`backend ${victimPid} settled without ever blocking on ${blockerPid}`);
     await new Promise(r => setTimeout(r, 5));
   }
-  throw new Error(`backend ${victimPid} never blocked on ${blockerPid}`);
+  throw new Error(`backend ${victimPid} never blocked on ${blockerPid} (last blockers: ${last.join(",") || "none"})`);
 };
 const store = () => new AiDeciderStore(persistence());
 const token = (n = 1) => n.toString(16).padStart(64, "0");
@@ -917,8 +923,12 @@ describe("actual PostgreSQL forecast pointer under held row locks", () => {
       let s1 = false, s2 = false;
       const a1 = racePersistence(v1).publishForecast(KEY, c, at(30)).then(v => { s1 = true; return v; }, (e: unknown) => { s1 = true; throw e; });
       const a2 = racePersistence(v2).publishForecast(KEY, d, at(30)).then(v => { s2 = true; return v; }, (e: unknown) => { s2 = true; throw e; });
+      // Both statements must be observed queued in the pointer lock
+      // convoy before the holder releases: the first waits on the
+      // holder directly; the second may be attributed to the first
+      // (queue order), which proves the same overlap.
       await waitForBlocked(pid1, holderPid, () => s1);
-      await waitForBlocked(pid2, holderPid, () => s2);
+      await waitForBlocked(pid2, holderPid, () => s2, true);
       await holder.query("COMMIT");
       const [r1, r2] = await Promise.all([a1, a2]);
       // Exactly one CAS lands; the chain cannot fork under the lock.
