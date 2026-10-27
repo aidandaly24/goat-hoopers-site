@@ -74,5 +74,10 @@ CREATE TABLE ai_decider_forecast_current (
 -- (SELECT … FOR UPDATE), which waits out a concurrent holder and then
 -- re-reads the newest committed version, and the mutation's own guard
 -- is re-checked against that latest version after any wait. The
+-- publication's move is a guarded UPDATE plus a yielding creation
+-- INSERT (never an upsert): where no row existed to lock, an UPDATE
+-- cannot see a concurrently inserting writer's selection, and the
+-- INSERT defers to any concurrent creator — so a fresher first
+-- selection can never be overwritten by an older publication. The
 -- dedupe classification is likewise proven from the locked row, so a
 -- verdict describes the selection as of the statement's own commit.

@@ -505,10 +505,14 @@ so both pointer writers take the week's pointer row lock
 (`SELECT … FOR UPDATE`) — which waits out the concurrent holder and
 then re-reads the newest committed row — evaluate the freshness gate
 and (for the dedupe path) the moved/current/stale classification
-against that locked row, and hold the lock to the statement's end;
-the publication's pointer upsert additionally re-checks its guard
-against the latest row version, covering the one case with no row to
-lock (a concurrent first creation of the pointer). A losing
+against that locked row, and hold the lock to the statement's end.
+The publication's pointer move is a guarded UPDATE followed by a
+yielding creation INSERT — never an upsert — covering the one case
+with no row to lock: an UPDATE cannot see a selection a concurrent
+writer is inserting (so it cannot overwrite one), and the creation
+INSERT defers to any concurrent creator, so a fresher first selection
+landing mid-statement stands and the older publication reports "did
+not take". A losing
 publication returns "did not take" and the refresh converges on the
 fresher selection; in the narrow first-creation interleave its append
 may stand as inert, never-selected history rather than being rolled

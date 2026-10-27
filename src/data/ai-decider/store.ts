@@ -71,8 +71,13 @@ export type AiPersistence = {
    * version after any wait, and the row lock is held to the statement's
    * end), never against a statement-snapshot read: a fresher selection
    * committed by a concurrent writer while this statement waited is
-   * seen by the gate, and the pointer mutation itself carries the same
-   * guard, re-checked against the latest row version. False means the
+   * seen by the gate. The move itself is a guarded UPDATE followed by
+   * a yielding creation INSERT (never an upsert): an UPDATE cannot
+   * see — let alone overwrite — a selection a concurrent writer is
+   * inserting, its guard is re-checked against the latest committed
+   * version after any wait, and the INSERT (DO NOTHING) defers to any
+   * concurrent creator, so the no-pointer-row interleave cannot
+   * regress selection either. False means the
    * publication did not take as current selection (the chain moved, a
    * fork was refused, the evidence is already stored, or a strictly
    * fresher selection is already current): the caller re-reads and
@@ -404,12 +409,23 @@ export class PostgresAiPersistence implements AiPersistence {
     // unguarded snapshot check gets bypassed) is seen by the gate, and
     // the lock is then held to the statement's end, so the gated
     // append and the pointer move below serialize against every other
-    // pointer writer. The pointer mutation is additionally guarded in
-    // its own right: the upsert's WHERE is re-checked against the
-    // latest committed row version after any lock wait, which covers
-    // the one case the lock cannot — no pointer row existed to lock
-    // when the statement began and a concurrent first creation lands
-    // mid-statement.
+    // pointer writer.
+    //
+    // The pointer move itself is UPDATE-then-INSERT, never an
+    // INSERT … ON CONFLICT DO UPDATE: when NO pointer row existed to
+    // lock (a series built without one), a concurrent mark can insert
+    // the row while this statement runs, and an upsert reaches that
+    // row through the speculative-insertion path — the one path whose
+    // post-wait behaviour cannot be trusted to honour the guard. The
+    // split makes the overwrite structurally impossible instead: the
+    // guarded UPDATE is the only verb that ever changes an existing
+    // selection (it cannot see a concurrent uncommitted insert at
+    // all, and after any lock wait its WHERE is re-checked against
+    // the latest committed version), and the creation INSERT yields
+    // to any concurrent creator (DO NOTHING — it never updates), so a
+    // fresher first selection landing mid-statement stands and this
+    // publication simply reports false, its append left as inert,
+    // never-selected history (see the interface contract).
     try {
       const result = await this.execute(sql`
         WITH cur_lock AS (
@@ -426,12 +442,24 @@ export class PostgresAiPersistence implements AiPersistence {
           ON CONFLICT DO NOTHING
           RETURNING revision_id
         ),
-        ptr AS (
+        ptr_upd AS (
+          UPDATE ai_decider_forecast_current c
+          SET revision_id = ins.revision_id, evidence_hash = ${revision.evidenceHash}, observed_at = ${observedAt}::timestamptz
+          FROM ins
+          WHERE c.week_key = ${key} AND c.observed_at <= ${observedAt}::timestamptz
+          RETURNING c.revision_id
+        ),
+        ptr_ins AS (
           INSERT INTO ai_decider_forecast_current (week_key, revision_id, evidence_hash, observed_at)
           SELECT ${key}, ins.revision_id, ${revision.evidenceHash}, ${observedAt}::timestamptz FROM ins
-          ON CONFLICT (week_key) DO UPDATE SET revision_id = EXCLUDED.revision_id, evidence_hash = EXCLUDED.evidence_hash, observed_at = EXCLUDED.observed_at
-          WHERE ai_decider_forecast_current.observed_at <= EXCLUDED.observed_at
+          WHERE NOT EXISTS (SELECT 1 FROM ptr_upd)
+          ON CONFLICT (week_key) DO NOTHING
           RETURNING revision_id
+        ),
+        ptr AS (
+          SELECT revision_id FROM ptr_upd
+          UNION ALL
+          SELECT revision_id FROM ptr_ins
         )
         SELECT revision_id FROM ptr`);
       return result.rows.length === 1;

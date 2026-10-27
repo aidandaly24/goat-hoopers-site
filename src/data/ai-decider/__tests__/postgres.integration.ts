@@ -902,6 +902,56 @@ describe("actual PostgreSQL forecast pointer under held row locks", () => {
     }
   });
 
+  it("no-pointer-row genesis: a publication racing a concurrent first pointer creation cannot overwrite the fresher selection", async () => {
+    const p = persistence();
+    const a = rev("a".repeat(64), "1".repeat(64), 1), b = rev("b".repeat(64), "2".repeat(64), 2, a.revisionId);
+    const c = rev("c".repeat(64), "3".repeat(64), 3, b.revisionId);
+    // The series exists with NO pointer row at all (built through the
+    // raw append primitive): there is no row for a publication to lock,
+    // so its pointer move is exposed to a concurrent first creation.
+    expect(await p.appendForecast(KEY, a)).toBe(true);
+    expect(await p.appendForecast(KEY, b)).toBe(true);
+    expect(await p.getForecastCurrent(KEY)).toBeNull();
+    // A mark's first creation of the pointer (A@40), held uncommitted —
+    // the speculative-insert state a publisher's creation must meet.
+    const holder = await racePool.connect();
+    const victim = await racePool.connect();
+    try {
+      await holder.query("BEGIN");
+      const ins = await holder.query("INSERT INTO ai_decider_forecast_current (week_key, revision_id, evidence_hash, observed_at) VALUES ($1, $2, $3, $4)",
+        [KEY, a.revisionId, a.evidenceHash, at(40)]);
+      expect(ins.rowCount).toBe(1);
+      const holderPid = await pidOf(holder), victimPid = await pidOf(victim);
+      // The stale publisher of C@30 starts: no pointer row is visible
+      // to it anywhere — neither snapshot nor lock can refuse it — so
+      // only the move's own structure (guarded UPDATE, yielding
+      // creation INSERT) can keep it from overwriting A@40.
+      let settled = false;
+      const attempt = racePersistence(victim).publishForecast(KEY, c, at(30))
+        .then(v => { settled = true; return v; }, (e: unknown) => { settled = true; throw e; });
+      await waitForBlocked(victimPid, holderPid, () => settled);
+      await holder.query("COMMIT");
+      // The publication did not take as current selection.
+      await expect(attempt).resolves.toBe(false);
+      // The fresher first selection stands; the append stands as inert,
+      // never-selected history (the documented corner), and the joined
+      // read presents A.
+      expect(await p.getForecastCurrent(KEY)).toEqual({ weekKey: KEY, revisionId: a.revisionId, evidenceHash: a.evidenceHash, observedAt: at(40) });
+      expect((await p.getForecasts(KEY)).map(r => r.revisionId)).toEqual([a.revisionId, b.revisionId, c.revisionId]);
+      const joined = await p.getForecastCurrentRevision(KEY);
+      expect(joined!.pointer.revisionId).toBe(a.revisionId);
+      expect(joined!.revision!.revisionId).toBe(a.revisionId);
+      // The machinery is unharmed afterwards: a genuinely fresh
+      // publication on the chain head still lands and becomes current.
+      const d = rev("d".repeat(64), "4".repeat(64), 4, c.revisionId);
+      expect(await p.publishForecast(KEY, d, at(50))).toBe(true);
+      expect((await p.getForecastCurrent(KEY))!.revisionId).toBe(d.revisionId);
+    } finally {
+      try { await holder.query("ROLLBACK"); } catch { /* already committed */ }
+      holder.release(); victim.release();
+    }
+  });
+
   it("two publishers queued on the held pointer lock serialize into one linear chain; the loser's rebuild lands on the head", async () => {
     const p = persistence();
     const a = rev("a".repeat(64), "1".repeat(64), 1), b = rev("b".repeat(64), "2".repeat(64), 2, a.revisionId);
