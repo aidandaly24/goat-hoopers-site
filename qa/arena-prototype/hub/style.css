@@ -10,6 +10,8 @@ body:has(.hub-shell) { background: var(--gh-scene-hover); }
 .hub-skip:not(:focus) { width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); padding: 0; }
 .hub-court { position: absolute; inset: 0; z-index: -1; background: var(--gh-scene-hover) url('../assets/arena-fallback.svg') center/cover no-repeat; }
 .hub-court canvas { display: block; width: 100%; height: 100%; }
+.hub-intro, .hub-pins, .hub-manual, .hub-matchup { z-index: 1; }
+.hub-stage .hub-intro, .hub-stage .hub-matchup { background: color-mix(in srgb,var(--gh-scene-hover) 94%,transparent); box-shadow: 0 0 var(--gh-s4) var(--gh-s2) color-mix(in srgb,var(--gh-scene-hover) 94%,transparent); }
 .hub-intro { position: absolute; top: var(--gh-s6); left: var(--gh-s8); max-width: min(38rem,65%); color: var(--gh-scene-text); pointer-events: none; }
 .hub-kicker { margin: 0 0 var(--gh-s2); font-size: var(--gh-text-xs); letter-spacing: .08em; }
 .hub-intro h1 { margin: 0 0 var(--gh-s2); font-size: clamp(var(--gh-s6),3vw,var(--gh-s10)); line-height: 1.1; letter-spacing: -.03em; }
