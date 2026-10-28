@@ -2,7 +2,7 @@
 @font-face { font-family: 'Geist Mono'; src: url('/design-preview/neutral-courtside/assets/geist-mono.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
 :root { --font-body: Inter; --font-mono: 'Geist Mono'; }
 body:has(.hub-shell) { background: var(--gh-scene-hover); }
-.hub-shell { min-height: 100svh; height: 100svh; display: grid; grid-template-rows: auto minmax(26rem,1fr) auto auto; }
+.hub-shell { min-height: 100svh; display: grid; grid-template-rows: auto minmax(26rem,calc(100svh - var(--gh-chrome-h,0px) - var(--hub-directory-h,0px) - var(--hub-note-h,0px))) auto auto; }
 .hub-shell [data-site-chrome] { position: relative; z-index: 5; }
 .hub-stage { position: relative; isolation: isolate; min-width: 0; background: var(--gh-scene-hover); overflow: hidden; }
 .hub-stage::before { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(to bottom,color-mix(in srgb,var(--gh-scene-hover) 92%,transparent),transparent 32% 68%,color-mix(in srgb,var(--gh-scene-hover) 92%,transparent)); }
@@ -76,7 +76,6 @@ body:has(.hub-shell) { background: var(--gh-scene-hover); }
  .hub-intro { left: var(--gh-s4); max-width: 60%; }
 }
 @media(max-width:40rem) {
- .hub-shell { grid-template-rows: auto minmax(26rem,1fr) auto auto; }
  .hub-intro { top: var(--gh-s4); left: var(--gh-s4); right: var(--gh-s4); max-width: none; }
  .hub-intro h1 { font-size: var(--gh-s6); }
  .hub-intro > p:not(.hub-kicker) { max-width: 32ch; }

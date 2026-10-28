@@ -55,9 +55,19 @@ function HomeCourt() {
 
   useEffect(() => {
     const stage = host.current?.parentElement;
-    if (!stage) return;
-    const measure = () => setCompact(stage.clientHeight < parseFloat(getComputedStyle(document.documentElement).fontSize) * 32);
-    const observer = new ResizeObserver(measure); observer.observe(stage); measure();
+    const shell = stage?.parentElement;
+    const directory = shell?.querySelector<HTMLElement>(".hub-directory");
+    const note = shell?.querySelector<HTMLElement>(".hub-note");
+    if (!stage || !shell || !directory || !note) return;
+    const measure = () => {
+      for (const [name, element] of [["--hub-directory-h", directory], ["--hub-note-h", note]] as const) {
+        const height = `${element.getBoundingClientRect().height}px`;
+        if (shell.style.getPropertyValue(name) !== height) shell.style.setProperty(name, height);
+      }
+      setCompact(stage.clientHeight < parseFloat(getComputedStyle(document.documentElement).fontSize) * 32);
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(stage); observer.observe(directory); observer.observe(note); measure();
     return () => observer.disconnect();
   }, []);
   useEffect(() => {

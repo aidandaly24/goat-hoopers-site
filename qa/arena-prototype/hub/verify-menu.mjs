@@ -41,12 +41,19 @@ try {
     await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
     const expanded = await read();
     assert(expanded.stage >= expanded.minimumStage - 1, "Expanded navigation collapsed the arena");
+    assert(Math.abs(expanded.stage - closed.stage) <= 1, "Disclosure reduced the closed-menu arena height");
     assert(expanded.panel > 0 && expanded.panel < expanded.header, "Disclosure did not stay inside the header grid item");
     assert.equal(expanded.overflow, false);
     assert.equal(expanded.canvases, state.still || state.reduce ? 0 : 1);
     assert.equal(expanded.pinsVisible, expanded.stage < expanded.minimumStage / 26 * 32 ? 0 : 6);
     assert.equal(expanded.directoryTargets.length, 6);
     assert(expanded.directoryTargets.every(e => e.width >= 44 && e.height >= 44));
+    const visited = [];
+    for (let step = 0; step < 5; step++) {
+      await p.keyboard.press("Tab");
+      visited.push(await p.evaluate(() => ({ tag: document.activeElement.tagName, text: document.activeElement.textContent.trim(), inPanel: Boolean(document.activeElement.closest("#site-navigation-panel")) })));
+    }
+    assert(visited.some(item => item.inPanel && item.tag === "A"), "Keyboard traversal never reaches disclosure links");
     const name = `menu-${state.width}-${state.member ? "member" : "public"}-${state.theme}${state.text ? "-200" : ""}${state.still ? "-still" : ""}${state.reduce ? "-reduced" : ""}`;
     await p.screenshot({ path: `${out}/${name}-expanded.jpg`, type: "jpeg", quality: 86, animations: "disabled" });
     await p.locator(".hub-stage").scrollIntoViewIfNeeded();
@@ -72,7 +79,7 @@ try {
     await trigger.click(); await p.locator("#site-navigation-panel").waitFor({ state: "visible" });
     await trigger.click(); await p.locator("#site-navigation-panel").waitFor({ state: "hidden" });
     assert((await read()).stage >= closed.minimumStage - 1);
-    results.push({ state, closed, expanded, restored, screenshot: name, foregroundTitlePixelVerified: true });
+    results.push({ state, closed, expanded, restored, visited, screenshot: name, foregroundTitlePixelVerified: true });
     console.log("PASS menu state", JSON.stringify(state), `${closed.stage}→${expanded.stage}→${restored.stage}px; reader/focus/reopen intact`);
     await context.close();
   }
