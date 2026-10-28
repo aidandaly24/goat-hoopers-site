@@ -30,6 +30,7 @@ function HomeCourt() {
   const [place, setPlace] = useState<Destination | null>(initialPlace);
   const [data, setData] = useState<Fixture | null>(null);
   const [anchors, setAnchors] = useState(initialAnchors);
+  const [compact, setCompact] = useState(false);
   const host = useRef<HTMLDivElement>(null), court = useRef<Court | null>(null);
   const dialog = useRef<HTMLDialogElement>(null), heading = useRef<HTMLHeadingElement>(null);
   const lastTrigger = useRef<HTMLElement | null>(null), placeRef = useRef(place);
@@ -52,6 +53,13 @@ function HomeCourt() {
     else { history.replaceState({ goatHub: true, depth: 0 }, "", location.pathname + location.search); placeRef.current = null; setPlace(null); }
   }, []);
 
+  useEffect(() => {
+    const stage = host.current?.parentElement;
+    if (!stage) return;
+    const measure = () => setCompact(stage.clientHeight < parseFloat(getComputedStyle(document.documentElement).fontSize) * 32);
+    const observer = new ResizeObserver(measure); observer.observe(stage); measure();
+    return () => observer.disconnect();
+  }, []);
   useEffect(() => {
     const media = matchMedia("(prefers-reduced-motion: reduce)");
     const change = () => setReduced(media.matches);
@@ -115,7 +123,7 @@ function HomeCourt() {
   }}>
     <div className="hub-header"><SiteHeader user={member ? { displayName: "Aidan · sample", teamId: "1", avatar: null } : null} logoutAction={async () => setMember(false)} /></div>
     <Link className="hub-skip" href="#arena-directory">Skip to arena destinations</Link>
-    <main className="hub-stage" id="main-content" tabIndex={-1} aria-labelledby="hub-title" data-reader-open={Boolean(place)}>
+    <main className="hub-stage" id="main-content" tabIndex={-1} aria-labelledby="hub-title" data-reader-open={Boolean(place)} data-compact={compact}>
       <div ref={host} className="hub-court" aria-hidden="true" />
       <div className="hub-intro">
         <p className="hub-kicker">GOAT HOOPERS / EST. 2025</p>

@@ -48,7 +48,11 @@ try {
     const name = `menu-${state.width}-${state.member ? "member" : "public"}-${state.theme}${state.text ? "-200" : ""}${state.still ? "-still" : ""}${state.reduce ? "-reduced" : ""}`;
     await p.screenshot({ path: `${out}/${name}-expanded.jpg`, type: "jpeg", quality: 86, animations: "disabled" });
     await p.locator(".hub-stage").scrollIntoViewIfNeeded();
-    await p.screenshot({ path: `${out}/${name}-arena.jpg`, type: "jpeg", quality: 86, animations: "disabled" });
+    await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
+    const arenaImage = `${out}/${name}-arena.jpg`;
+    await p.screenshot({ path: arenaImage, type: "jpeg", quality: 86, animations: "disabled" });
+    const pixelText = execFileSync("tesseract", [arenaImage, "stdout", "--psm", "11"], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).toLowerCase().replace(/[^a-z]/g, "");
+    assert(pixelText.includes(state.member ? "yourhomecourt" : "tenteamsonehouse"), "Actual arena screenshot lost the foreground title");
     await p.keyboard.press("Escape"); await p.locator("#site-navigation-panel").waitFor({ state: "hidden" });
     await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
     assert.equal(await trigger.evaluate(e => document.activeElement === e), true);
@@ -59,7 +63,7 @@ try {
     await trigger.click(); await p.locator("#site-navigation-panel").waitFor({ state: "visible" });
     await trigger.click(); await p.locator("#site-navigation-panel").waitFor({ state: "hidden" });
     assert((await read()).stage >= closed.minimumStage - 1);
-    results.push({ state, closed, expanded, restored, screenshot: name });
+    results.push({ state, closed, expanded, restored, screenshot: name, foregroundTitlePixelVerified: true });
     console.log("PASS menu state", JSON.stringify(state), `${closed.stage}→${expanded.stage}→${restored.stage}px; reader/focus/reopen intact`);
     await context.close();
   }
