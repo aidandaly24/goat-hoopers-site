@@ -7,7 +7,14 @@ const origin = "http://127.0.0.1:4197";
 const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", args: ["--no-sandbox"] });
 const results = [], errors = [], remote = [];
 const inventory = page => page.locator("[data-courtside-home]").evaluate(element => {
-  const root = element.cloneNode(true); root.querySelector("[data-matchup-spread]")?.remove();
+  const root = element.cloneNode(true);
+  if (root.querySelector("[data-qa-feature]")) root.querySelector("[data-qa-feature]").remove();
+  else if (root.querySelector("#game-title") && root.querySelector("#clubhouse-court")) {
+    // The opening is intentionally recomposed. Compare the unchanged lower
+    // page independently, then assert retained opening facts/links below.
+    const grid = root.querySelector("#clubhouse-court").parentElement.parentElement;
+    root.querySelector("#game-title").parentElement.remove(); grid.remove();
+  }
   return {
     text: root.textContent,
     links: [...root.querySelectorAll("a")].map(e => [e.textContent, e.getAttribute("href"), e.getAttribute("aria-label")]),
@@ -27,9 +34,12 @@ try {
       const url = `${origin}/?view=${view}${missing ? "&edition=missing" : ""}`;
       await page.goto(`${url}&style=baseline`); await page.waitForSelector("[data-courtside-home]"); await settle(page);
       const before = await inventory(page);
+      const originalHrefs = await page.locator("[data-courtside-home] a").evaluateAll(links => [...new Set(links.map(a => a.getAttribute("href")))]);
       await page.goto(url); await page.waitForSelector("[data-courtside-home]"); await settle(page);
       if (!missing) await page.waitForSelector("[data-matchup-spread]");
-      assert.deepEqual(await inventory(page), before, "Original content/wiring changed");
+      assert.deepEqual(await inventory(page), before, "Unchanged lower-page content/wiring changed");
+      const revisedHrefs = await page.locator("[data-courtside-home] a").evaluateAll(links => new Set(links.map(a => a.getAttribute("href"))).values().toArray());
+      assert(originalHrefs.every(href => revisedHrefs.includes(href)), "A source destination was dropped");
       assert.equal(await page.locator("[data-team-id]").count(), 10);
       assert.equal(await page.locator("[data-ai-row]").count(), 5);
       assert.equal(await page.locator("[data-faces-strip] li").count(), 10);
@@ -38,6 +48,16 @@ try {
       if (!missing) {
         assert.match(await page.locator("[data-matchup-spread]").innerText(), /0\.0/);
         assert.match(await page.locator("[data-matchup-spread]").innerText(), /Pending/);
+        assert.equal(await page.locator("[data-qa-feature] h1").count(), 1);
+        assert.equal(await page.locator("[data-qa-feature] a").filter({ hasText: /^Ware the Hoes At\?$/ }).count(), 1);
+        assert.equal(await page.locator("[data-qa-feature] a").filter({ hasText: /^Reaves Dropper$/ }).count(), 1);
+        const context = page.locator("[data-edition-story]");
+        assert.match(await context.locator("summary").innerText(), /scores pending/);
+        assert.match(await context.locator("summary").innerText(), /next edition pending/);
+        await context.locator("summary").focus(); await page.keyboard.press("Enter");
+        assert.match(await context.innerText(), /Muse has not published/);
+        assert.match(await context.innerText(), /editorial calendar is separate/);
+        await page.keyboard.press("Enter");
       }
       const search = page.getByRole("searchbox", { name: "Find a team, manager or roster player" });
       await search.fill("Embiid"); assert.equal(await page.locator("[data-team-id]").count(), 1);
@@ -61,7 +81,7 @@ try {
       const standings = page.getByRole("table", { name: "League standings" });
       await standings.getByRole("button", { name: /Points for: sort/ }).click();
       assert.equal(await standings.getByRole("row").count(), 11);
-      results.push({ view, missing, parity: true, originalLinks: before.links.length, originalControls: before.controls.length,
+      results.push({ view, missing, unchangedLowerPageParity: true, sourceDestinationsRetained: originalHrefs.length, deduplicatedOpening: !missing, originalLinks: before.links.length, originalControls: before.controls.length,
         rosterReferences: 228, directorySearchSortKeyboard: true, fullRoster: true, provenance: true, standingsSort: true });
       await context.close();
     }
@@ -78,10 +98,16 @@ try {
       headings: [...document.querySelectorAll("h1,h2")].filter(e => e.getClientRects().length).map(e => ({ text: e.textContent, y: e.getBoundingClientRect().top + scrollY })),
       clippedFaces: [...document.querySelectorAll("[data-faces-strip] li")].filter(e => { const r=e.getBoundingClientRect(); return r.left < 0 || r.right > innerWidth; }).length,
       stage: document.querySelector("[data-matchup-spread]").getBoundingClientRect().toJSON(),
+      personalDeskY: document.querySelector("[data-team-desk]")?.getBoundingClientRect().top + scrollY || null,
+      rosterHeadingY: document.querySelector("[data-roster-value] h2")?.getBoundingClientRect().top + scrollY || null,
     }));
     assert.equal(layout.scrollWidth, layout.width, `${view}/${theme}/${size}: page overflow`);
     assert.equal(layout.clippedFaces, 0);
     assert(layout.stage.width > 0 && layout.stage.height > 0);
+    if (view === "member" && size === "phone") {
+      assert(layout.personalDeskY < 750, `Personal desk delayed to ${layout.personalDeskY}`);
+      assert(layout.rosterHeadingY < 1200, `Roster delayed to ${layout.rosterHeadingY}`);
+    }
     await page.getByRole("button", { name: theme === "light" ? "Switch to dark theme" : "Switch to light theme" }).click();
     assert.equal(await page.locator("html").getAttribute("data-theme"), theme === "light" ? "dark" : "light");
     if (size !== "desktop") {

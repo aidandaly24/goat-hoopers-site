@@ -4,6 +4,13 @@ import { fileURLToPath } from "node:url";
 export default defineConfig({
   root: fileURLToPath(new URL(".", import.meta.url)),
   publicDir: fileURLToPath(new URL("../../public", import.meta.url)),
+  plugins: [{ name: "qa-current-home-feature", enforce: "pre", resolveId(source, importer) {
+    // Substitute only the composite's feature import in this QA build.
+    // Other production consumers and the source comparison stay original.
+    if (source === "./CourtsideFeature" && importer?.endsWith("/src/surfaces/season-hub/CourtsideHome.tsx")) {
+      return fileURLToPath(new URL("./EditorialFeature.tsx", import.meta.url));
+    }
+  } }],
   resolve: { alias: [
     { find: "next/link", replacement: fileURLToPath(new URL("./link.tsx", import.meta.url)) },
     { find: "next/navigation", replacement: fileURLToPath(new URL("./navigation.ts", import.meta.url)) },

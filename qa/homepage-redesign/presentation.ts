@@ -27,38 +27,15 @@ ${s} {
   background: var(--gh-bg);
 }
 ${s} h2 { font-size: var(--gh-cs-heading); letter-spacing: -.045em; }
-${s} p { text-wrap: pretty; }
-${c("opening-zone")} { padding-top: var(--gh-s8); padding-bottom: var(--gh-s8); }
-${c("header-edition")} { display: flex; justify-content: space-between; gap: var(--gh-s3); border: 0; padding: 0 0 var(--gh-s3); border-bottom: 1px solid var(--gh-control); }
-${c("stale-note")} { padding: var(--gh-s3) 0; margin: 0; color: var(--gh-text-dim); font-size: var(--gh-text-sm); }
-${c("feature-heading")} { padding-block: var(--gh-s6); }
-${c("feature-heading")} h1 { font-size: var(--gh-cs-title); max-width: 23ch; line-height: 1.05; font-weight: 750; letter-spacing: -.06em; text-wrap: balance; }
-${c("feature-label")} { color: var(--gh-accent); font-size: var(--gh-text-sm); margin-bottom: var(--gh-s4); }
-${c("feature-season")}, ${c("desk-eyebrow")}, ${c("desk-label")}, ${c("section-eyebrow")},
 ${s} .${heading.eyebrow}, ${s} .${roster.label} { text-transform: none; letter-spacing: 0; font-size: var(--gh-text-sm); }
-${c("watchlist-basis")} { margin-top: var(--gh-s3); }
-${c("feature-grid")} { grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); gap: var(--gh-s8); margin-top: 0; }
-${c("clubhouse-court")} { aspect-ratio: auto; overflow: visible; background: transparent; }
-${c("clubhouse-court")} > img { display: none; }
-${c("court-clock")} { position: static; max-width: none; padding: var(--gh-s4); margin-top: var(--gh-s3); border-radius: 0; background: var(--gh-bg-hover); color: var(--gh-text); }
-${c("feature-caption-row")} { gap: var(--gh-s3); }
-${c("feature-context")} { margin-block: var(--gh-s4); font-size: var(--gh-text-sm); }
-${c("team-desk")} { border: 0; padding: 0; background: transparent; }
-${c("desk-eyebrow")} { margin-bottom: var(--gh-s4); }
-${c("desk-headline")}, ${c("desk-identity")} h2 { font-size: var(--gh-s6); line-height: 1.15; }
-${c("desk-dek")}, ${c("desk-manager")}, ${c("desk-subline")} { font-size: var(--gh-text-sm); }
-${c("desk-teams")} { margin-top: var(--gh-s4); }
-${c("desk-ai")} { border: 0; padding: var(--gh-s4) 0; }
-${c("desk-ai-value")} strong { font-size: var(--gh-s8); }
-${c("desk-stats")} { border-bottom: 1px solid var(--gh-border); padding-block: var(--gh-s4); }
-${c("desk-stats")} dt { text-transform: none; letter-spacing: 0; }
-${c("desk-matchup")} { padding-top: var(--gh-s4); }
-${c("desk-actions")} { border-radius: 0; }
+${s} p { text-wrap: pretty; }
+${c("opening-zone")} { padding-top: var(--gh-s4); padding-bottom: var(--gh-s4); }
+${c("header-edition")}, ${c("stale-note")} { display: none; }
 ${c("edition-links")} { gap: var(--gh-s6); border-top: 1px solid var(--gh-border); padding-top: var(--gh-s3); margin-top: var(--gh-s4); }
-${c("weekly-zone")} { background: var(--gh-bg); padding-top: var(--gh-s4); padding-bottom: var(--gh-s16); }
+${c("weekly-zone")} { background: var(--gh-bg); padding-top: 0; padding-bottom: var(--gh-s12); }
 ${s} .${heading.wrap} { align-items: baseline; gap: var(--gh-s6); margin-bottom: var(--gh-s6); }
 ${s} .${heading.eyebrow} { margin-bottom: var(--gh-s2); color: var(--gh-text-dim); }
-${s} .${roster.section}, ${c("value-section")} { margin-top: var(--gh-s6); padding-top: var(--gh-s6); border-top: 1px solid var(--gh-control); }
+${s} .${roster.section}, ${c("value-section")} { margin-top: var(--gh-s4); padding-top: var(--gh-s4); border-top: 1px solid var(--gh-control); }
 ${s} .${roster.layout} { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: var(--gh-s12); margin-top: 0; }
 ${s} .${roster.panel} { padding-top: 0; }
 ${s} .${roster.total} { font-family: var(--gh-font-body); font-size: clamp(var(--gh-s10), 5vw, var(--gh-s16)); font-weight: 700; letter-spacing: -.06em; }
@@ -139,7 +116,7 @@ ${s} :focus-visible { outline: 2px solid var(--gh-focus); outline-offset: var(--
 }
 @media(max-width:40rem) {
   ${s} { --gh-cs-s7: var(--gh-s12); }
-  ${c("opening-zone")} { padding-top: var(--gh-s6); }
+  ${c("opening-zone")} { padding-top: var(--gh-s3); }
   ${c("feature-heading")} h1 { font-size: var(--gh-s8); line-height: 1.1; }
   ${c("feature-heading")} { padding-block: var(--gh-s4); }
   ${c("header-edition")} { flex-wrap: wrap; }

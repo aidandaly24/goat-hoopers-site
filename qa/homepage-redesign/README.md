@@ -30,22 +30,45 @@ saved picks and every team without signing in.
 - The purely decorative warm court strip at the footer is hidden in this QA
   presentation. Its empty-alt image and all original bytes remain untouched.
 
-`CourtsideHome`, header, footer and their real handlers are reused unchanged.
-The typed matchup drawing is a QA portal into the figure; scoped CSS uses exact
-resolved module names. A production integration should replace that portal with
-an explicitly owned leaf and review the resulting Next boundary. It is not a
-production implementation or a proposed new data contract.
+`CourtsideHome`, the lower-page components, header/footer and their real handlers
+are reused unchanged. The current opening alone is substituted with
+`EditorialFeature.tsx` by the QA Vite resolver; the baseline URL and archives
+still render the original feature. No production import is changed. The new leaf
+uses the existing pure pair/saved-pick/clock helpers and unchanged team actions.
+A production integration would need an explicitly owned feature change and real
+Next checks; this QA substitution is not a new route or data contract.
 
 ## Inventory and ownership
 
-Every original word, heading, link, field, disclosure, ID and hook is retained
-in the source tree. Automated comparison removes only the added matchup drawing
-and compares the redesign DOM with the same current-home component/fixture.
-No original copy is rewritten. The court figure and decorative footer image are
-the only images suppressed by presentation; aria-hidden montage lettering is
-also suppressed. Portraits, identities, manager attribution and all roster links
-stay. The 228 unique player references and all ten teams remain available behind
-their native disclosures. The new drawing repeats existing facts, not new claims.
+The lower-page word/heading/control/ID inventory is compared exactly against the
+original component with identical props. Every unique source destination remains
+available. The opening's repeated prose is deliberately consolidated, rather
+than claiming a verbatim-copy comparison: team names appear once in the H1,
+records/managers/scores once below; the member desk uses roster count, standing,
+team actions and its distinct AI signal. Known zero and unknown stay different.
+The score/provenance hooks and original anchor IDs remain. Portraits, identities,
+manager attribution and all 228 roster references stay available.
+
+Opening copy map after independent review6459136388:
+
+- Separate date/edition/sample/stale/season/pair-status lines → one visible
+  expandable edition/status area. Sample status, actual editorial date, pending
+  next edition and incomplete scores stay visible when closed. Opening reveals
+  the exact stale notice, publication state, separate editorial calendar,
+  historical game context, selection reason and preseason qualifier when relevant.
+- Repeated H1 pair, large pair panel, member opponent desk and caption → one
+  linked pair heading, manager/record/score rows and a distinct personal desk.
+  The old duplicated caption's status is in the visible compact context; its
+  anchor ID remains for compatibility. No matchup or selection fact is removed.
+- Long inline AI provenance → visible saved/model qualification and probability,
+  with timestamp, stale status and returned model choice in a native disclosure.
+  All five full result/provenance disclosures remain unchanged down-page.
+- The QA sample-data warning remains visible in a compact review-controls
+  disclosure. No photo/portal is mounted by the new feature; decorative footer
+  image and aria-hidden montage lettering remain suppressed by QA presentation.
+
+The original c2ec178 screenshots remain recoverable at that immutable commit.
+Current screenshot filenames are updated in place after each reviewed revision.
 
 Recap #266 is frozen at `dab8c1611d631a01bf465e414efdf6f962aaa662`.
 Power consumer #270 is separate; the merged producer alone adds no current
@@ -104,12 +127,17 @@ anchors retain actual source hrefs; destination pages are not reimplemented here
 ## Evidence and limits
 
 `review/verification.json` records the source revision and 20 actual Chromium
-scenarios: exact content/control inventory in public/member and missing-editorial
-states; search, both sort controls, keyboard roster expansion, all 24 member
+scenarios: exact unchanged lower-page inventory and retention of every source
+destination in public/member and missing-editorial states; explicit deduplicated
+opening facts/status/disclosure checks; search, both sort controls, keyboard
+roster expansion, all 24 member
 valuations, saved provenance, standings sorting; light/dark at 1440/390/320 and
 separate `html {font-size:200%}` checks; theme toggle and compact-menu Escape/focus;
 no page errors, no remote resource requests. More content is visible as it grows;
 no height clamp or clipping is used to make reflow pass.
+Normal 390px checks also record the actual personal-desk and roster-heading
+document offsets, with regression ceilings of750px/1200px respectively; 200%
+text remains independently checked without those normal-density limits.
 `contrast.json` measures actual text/ancestor-background pairs in the changed
 matchup, roster, faces and member-desk regions in both themes and widths. It
 resolves the avatar's identical-stop accent gradient; image content is excluded.
