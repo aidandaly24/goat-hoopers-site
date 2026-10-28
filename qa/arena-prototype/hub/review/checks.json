@@ -1,0 +1,90 @@
+{
+  "revision": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+  "method": "offline Vite component fixture; software Chromium; sample current data",
+  "checks": [
+    {
+      "name": "arena entry: six physical destinations, one renderer, no idle frames",
+      "detail": {
+        "active": true,
+        "frames": 3,
+        "drawCalls": 87,
+        "triangles": 21545,
+        "pixelRatio": 1,
+        "props": 3,
+        "failedProps": 0,
+        "contexts": 1
+      }
+    },
+    {
+      "name": "keyboard: activate, contained modal traversal, Escape and original focus return",
+      "detail": true
+    },
+    {
+      "name": "actual 3D jumbotron picking opens the same HTML destination",
+      "detail": true
+    },
+    {
+      "name": "HTML tables/directory work; browser Back/Forward changes reader; Close returns overview",
+      "detail": true
+    },
+    {
+      "name": "manual camera updates projected labels then stops rendering",
+      "detail": true
+    },
+    {
+      "name": "public: exact full-edition text/link inventory, 10 teams/228 players and working destinations",
+      "detail": true
+    },
+    {
+      "name": "member: exact full-edition text/link inventory, 10 teams/228 players and working destinations",
+      "detail": true
+    },
+    {
+      "name": "390px public: 44px targets, reader reflow, long-detail scroll and visible close",
+      "detail": true
+    },
+    {
+      "name": "390px member: 44px targets, reader reflow, long-detail scroll and visible close",
+      "detail": true
+    },
+    {
+      "name": "320px public: 44px targets, reader reflow, long-detail scroll and visible close",
+      "detail": true
+    },
+    {
+      "name": "320px member: 44px targets, reader reflow, long-detail scroll and visible close",
+      "detail": true
+    },
+    {
+      "name": "200% text: page and reader controls reflow",
+      "detail": true
+    },
+    {
+      "name": "still fallback retains destinations without scene/models: {\"reducedMotion\":\"reduce\"}",
+      "detail": true
+    },
+    {
+      "name": "still fallback retains destinations without scene/models: {\"saveData\":true}",
+      "detail": true
+    },
+    {
+      "name": "still fallback retains destinations without scene/models: {\"extra\":\"&scene=still\"}",
+      "detail": true
+    },
+    {
+      "name": "live reduced preference disposal/reopen and actual WebGL loss preserve navigation",
+      "detail": true
+    },
+    {
+      "name": "direct reader URL: initial focus, nested place and Close restore arena/destination focus",
+      "detail": true
+    },
+    {
+      "name": "no browser errors, external requests or writes",
+      "detail": true
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "writes": []
+}
