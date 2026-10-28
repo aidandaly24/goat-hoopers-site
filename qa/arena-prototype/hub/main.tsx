@@ -107,7 +107,12 @@ function HomeCourt() {
   const summary = data?.personal.kind === "member" ? data.personal.summary : null;
   const matchup = summary?.matchup ?? data?.home.directory[0]?.currentMatchup;
   const positions = fallback ? initialAnchors : anchors;
-  return <div className="hub-shell" data-mode={fallback ? "still" : mode} data-member={member}>
+  return <div className="hub-shell" data-mode={fallback ? "still" : mode} data-member={member} onKeyUpCapture={event => {
+    if (event.key === "Escape") requestAnimationFrame(() => {
+      const focused = document.activeElement;
+      if (focused instanceof HTMLElement && focused.closest(".hub-header")) focused.scrollIntoView({ block: "nearest", behavior: "instant" });
+    });
+  }}>
     <div className="hub-header"><SiteHeader user={member ? { displayName: "Aidan · sample", teamId: "1", avatar: null } : null} logoutAction={async () => setMember(false)} /></div>
     <Link className="hub-skip" href="#arena-directory">Skip to arena destinations</Link>
     <main className="hub-stage" id="main-content" tabIndex={-1} aria-labelledby="hub-title" data-reader-open={Boolean(place)}>
@@ -116,6 +121,7 @@ function HomeCourt() {
         <p className="hub-kicker">GOAT HOOPERS / EST. 2025</p>
         <h1 id="hub-title">{member ? "Your home court." : "Ten teams. One house."}</h1>
         <p>{summary ? `${summary.team.name} · ${summary.coverage.roster} players${summary.standing ? ` · No. ${summary.standing.rank} in the sample table` : ""}` : "The matchup. The players. The whole league. Pick your place."}</p>
+        <p className="hub-compact-hint">Choose a place from the names below the court.</p>
       </div>
       <nav className="hub-pins" aria-label="Places in the arena">
         {zones.map(zone => { const point = positions.find(item => item.id === zone.id)!; return <button key={zone.id} type="button"

@@ -4,7 +4,7 @@
 body:has(.hub-shell) { background: var(--gh-scene-hover); }
 .hub-shell { min-height: 100svh; height: 100svh; display: grid; grid-template-rows: auto minmax(26rem,1fr) auto auto; }
 .hub-shell [data-site-chrome] { position: relative; z-index: 5; }
-.hub-stage { position: relative; isolation: isolate; min-width: 0; background: var(--gh-scene-hover); overflow: hidden; }
+.hub-stage { position: relative; isolation: isolate; container-type: size; min-width: 0; background: var(--gh-scene-hover); overflow: hidden; }
 .hub-stage::before { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(to bottom,color-mix(in srgb,var(--gh-scene-hover) 92%,transparent),transparent 32% 68%,color-mix(in srgb,var(--gh-scene-hover) 92%,transparent)); }
 .hub-skip { position: absolute; z-index: 10; top: var(--gh-s2); left: var(--gh-s2); padding: var(--gh-s3) var(--gh-s4); background: var(--gh-bg); color: var(--gh-text); min-height: var(--gh-target-touch); }
 .hub-skip:not(:focus) { width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); padding: 0; }
@@ -13,7 +13,12 @@ body:has(.hub-shell) { background: var(--gh-scene-hover); }
 .hub-intro { position: absolute; top: var(--gh-s6); left: var(--gh-s8); max-width: min(38rem,65%); color: var(--gh-scene-text); pointer-events: none; }
 .hub-kicker { margin: 0 0 var(--gh-s2); font-size: var(--gh-text-xs); letter-spacing: .08em; }
 .hub-intro h1 { margin: 0 0 var(--gh-s2); font-size: clamp(var(--gh-s6),3vw,var(--gh-s10)); line-height: 1.1; letter-spacing: -.03em; }
-.hub-intro > p:last-child { margin: 0; font-size: var(--gh-text-sm); color: var(--gh-scene-muted); }
+.hub-intro > p:not(.hub-kicker) { margin: 0; font-size: var(--gh-text-sm); color: var(--gh-scene-muted); }
+.hub-intro .hub-compact-hint { display: none; margin-top: var(--gh-s2); }
+@container (height < 32rem) {
+ .hub-pin { display: none; }
+ .hub-intro .hub-compact-hint { display: block; }
+}
 .hub-review { display: flex; flex-wrap: wrap; gap: var(--gh-s2); padding-block: var(--gh-s2); }
 .hub-review button { backdrop-filter: blur(12px); }
 .hub-pins { position: absolute; inset: 0; pointer-events: none; }
@@ -74,7 +79,7 @@ body:has(.hub-shell) { background: var(--gh-scene-hover); }
  .hub-shell { grid-template-rows: auto minmax(26rem,1fr) auto auto; }
  .hub-intro { top: var(--gh-s4); left: var(--gh-s4); right: var(--gh-s4); max-width: none; }
  .hub-intro h1 { font-size: var(--gh-s6); }
- .hub-intro > p:last-child { max-width: 32ch; }
+ .hub-intro > p:not(.hub-kicker) { max-width: 32ch; }
  .hub-review button { padding-inline: var(--gh-s3); font-size: var(--gh-text-xs); }
  .hub-pin { width: var(--gh-target-touch); padding: 0; max-width: none; border-radius: 50%; }
  .hub-pin-label { display: none; }

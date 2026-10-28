@@ -101,3 +101,10 @@ eight expanded/closed states across public/member,1440/390/320, both themes,
 menu flow, no horizontal overflow, renderer count, Escape/focus restoration,
 reader activation afterward and repeat open/close. Shared header and scene
 files are unchanged. Older overview captures do not prove this menu state.
+
+Compact/large-text court areas use the persistent named destination list and
+hide optional floating map markers before they crowd the introduction. The
+same six actions remain real 44px-or-larger controls. Escape also scrolls the
+restored header trigger into view locally: the enlarged-text disclosure could
+otherwise restore focus to a trigger849px above the viewport after scrolling.
+No shared-header behavior or scene/camera file is edited.

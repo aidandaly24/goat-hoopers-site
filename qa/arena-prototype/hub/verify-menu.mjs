@@ -30,6 +30,8 @@ try {
       rows: getComputedStyle(document.querySelector(".hub-shell")).gridTemplateRows,
       overflow: document.documentElement.scrollWidth > innerWidth,
       canvases: document.querySelectorAll(".hub-court canvas").length,
+      pinsVisible: [...document.querySelectorAll(".hub-pin")].filter(e => e.getClientRects().length).length,
+      directoryTargets: [...document.querySelectorAll(".hub-directory button")].map(e => ({ width: e.getBoundingClientRect().width, height: e.getBoundingClientRect().height })),
     }));
     const closed = await read();
     const trigger = p.getByRole("button", { name: state.width < 600 ? /^Menu/ : /^League tools/ });
@@ -40,12 +42,17 @@ try {
     assert(expanded.panel > 0 && expanded.panel < expanded.header, "Disclosure did not stay inside the header grid item");
     assert.equal(expanded.overflow, false);
     assert.equal(expanded.canvases, state.still || state.reduce ? 0 : 1);
+    assert.equal(expanded.pinsVisible, expanded.stage < expanded.minimumStage / 26 * 32 ? 0 : 6);
+    assert.equal(expanded.directoryTargets.length, 6);
+    assert(expanded.directoryTargets.every(e => e.width >= 44 && e.height >= 44));
     const name = `menu-${state.width}-${state.member ? "member" : "public"}-${state.theme}${state.text ? "-200" : ""}${state.still ? "-still" : ""}${state.reduce ? "-reduced" : ""}`;
     await p.screenshot({ path: `${out}/${name}-expanded.jpg`, type: "jpeg", quality: 86, animations: "disabled" });
     await p.locator(".hub-stage").scrollIntoViewIfNeeded();
     await p.screenshot({ path: `${out}/${name}-arena.jpg`, type: "jpeg", quality: 86, animations: "disabled" });
     await p.keyboard.press("Escape"); await p.locator("#site-navigation-panel").waitFor({ state: "hidden" });
+    await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
     assert.equal(await trigger.evaluate(e => document.activeElement === e), true);
+    assert.equal(await trigger.evaluate(e => { const r = e.getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; }), true, "Restored menu focus is outside the viewport");
     const restored = await read(); assert(Math.abs(restored.stage - closed.stage) <= 1);
     await p.locator('[data-directory="standings"]').click(); await p.locator("[data-league-section]").waitFor({ state: "visible" });
     await p.keyboard.press("Escape"); await p.locator("#hub-reader").waitFor({ state: "hidden" });
