@@ -1413,6 +1413,35 @@ per-input freshness and the labeled locked/final/projected split;
 See [AI Decides handoff](docs/ai-decides.md) for limits, retention, exact contracts,
 auth findings and outstanding activation/verification work.
 
+### Lineup Power snapshots — prospective legal-lineup producer (issue #190)
+
+`src/domain/lineup-power.ts` carries the `LineupPowerSnapshot` contract
+(published on #190): one snapshot projects the next matchup week
+(horizon `"next-week"`) as, per team, the sum over the legal eleven
+starting slots of each slot's projected single-game counted contribution
+under lock-in semantics — a proven locked or determinate final counted
+value when the projected week's evidence carries one, otherwise one
+projected counting game at observed fantasy PPG under league scoring;
+never PPG × games. The basis is performance evidence only (counted-game
+receipts and season game logs); prices and valuations are never inputs,
+and the retrospective composite in `domain/power.ts` is a separate,
+backward-looking concept. `src/data/lineup-power.ts` is the producer:
+a pure, deterministic builder (content-addressed `lp1:` snapshot ids,
+`priorSnapshotId` chaining, ranks/movement as pure domain helpers) plus
+a live loader over the Sleeper data layer (declared starters under the
+eleven-starter policy; current-season PPG via `fppgUnderScoring`,
+prior-season fallback). Coverage is honest by construction: a team
+total exists only when all 11 slots contribute (`complete`, or
+`partial` when any projected slot rests solely on prior-season
+evidence); otherwise the team is `unavailable` with a null total — a
+partial sum is never emitted, so no team is estimated into a rank. The
+next week's public matchup leg does not exist at production time, so
+the live loader carries no locked/final slot values; the builder
+honors them if a future source can prove them. No persistence, route
+or surface consumes the snapshot yet — the homepage `HomePowerRankings`
+wiring is a deliberate follow-up; until then the compact
+Power-unavailable state stands.
+
 `src/surfaces/ai-decides/AiDecides.tsx` owns the editable frontend and its native
 team dialog. The thin `/ai-decides` page loads cached AI data, slim team identities
 and current-user status in parallel. Only a manual authenticated run can POST to

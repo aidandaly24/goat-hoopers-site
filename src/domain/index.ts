@@ -56,6 +56,8 @@ export type {
 export { summarizeProduction } from "./player-production";
 export type { TeamProfile } from "./team-profile";
 export type { PowerRanking } from "./power";
+export type { LineupPowerCoverage, LineupPowerSnapshot, LineupPowerTeam } from "./lineup-power";
+export { isLineupPowerSnapshot, lineupPowerMovement, lineupPowerRanks } from "./lineup-power";
 export type { PlayoffOdds } from "./playoff-odds";
 export type { RecordBook, TeamWeekScore } from "./record-book";
 export type { MatchupPreview } from "./matchup-preview";
