@@ -32,18 +32,21 @@ async function create({ width = 1440, member = false, reducedMotion = "no-prefer
   return { p, requests };
 }
 const noOverflow = async p => assert.equal(await p.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+const settle = p => p.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
 const shot = async (p, name) => {
   await p.evaluate(async () => { await document.fonts.ready; await Promise.allSettled([...document.images].filter(e => e.getClientRects().length).map(e => e.decode())); });
+  await settle(p);
   return p.screenshot({ path: `${out}/${name}.jpg`, type: "jpeg", quality: 86, animations: "disabled", caret: "hide" });
 };
-const open = async (p, id) => { await p.locator(`[data-directory=${id}]`).click(); await p.locator("#hub-reader").waitFor({ state: "visible" }); await p.locator(".hub-content").waitFor(); await p.waitForTimeout(240); };
-const close = async p => { await p.getByRole("button", { name: "Close reader and return to arena" }).click(); await p.locator("#hub-reader").waitFor({ state: "hidden" }); await p.waitForTimeout(220); };
+const open = async (p, id) => { await p.locator(`[data-directory=${id}]`).click(); await p.locator("#hub-reader").waitFor({ state: "visible" }); await p.locator(".hub-content").waitFor(); await p.waitForTimeout(240); await settle(p); };
+const close = async p => { await p.getByRole("button", { name: "Close reader and return to arena" }).click(); await p.locator("#hub-reader").waitFor({ state: "hidden" }); await p.waitForTimeout(220); await settle(p); };
 const inventory = p => p.locator("[data-courtside-home]").evaluate(e => ({ text: e.textContent.replace(/\s+/g, " ").trim(), links: [...e.querySelectorAll("a")].map(a => [a.textContent.trim(), a.getAttribute("href")]) }));
 try {
   const { p } = await create();
   assert.equal(await p.locator(".hub-court canvas").count(), 1);
   assert.equal(await p.locator("#hub-reader").isVisible(), false);
   assert.equal(await p.locator(".hub-pin").count(), 6); await noOverflow(p);
+  assert((await p.locator('[data-site-chrome] a[href^="/arena.html"]').count()) >= 2);
   await shot(p, "public-desktop-overview");
   const before = await p.evaluate(() => ({ ...window.goatHubMetrics })); await p.waitForTimeout(400);
   assert.equal(await p.evaluate(() => window.goatHubMetrics.frames), before.frames);
@@ -79,7 +82,7 @@ try {
   await close(p); assert.equal(new URL(p.url()).hash, "");
   check("HTML tables/directory work; browser Back/Forward changes reader; Close returns overview");
 
-  const anchor = await p.locator('[data-destination="team"]').getAttribute("style"); await p.getByRole("button", { name: "Turn arena left" }).click(); await p.waitForTimeout(260);
+  const anchor = await p.locator('[data-destination="team"]').getAttribute("style"); await p.getByRole("button", { name: "Turn arena left" }).click(); await p.waitForTimeout(260); await settle(p);
   assert.notEqual(await p.locator('[data-destination="team"]').getAttribute("style"), anchor);
   const afterTurn = await p.evaluate(() => window.goatHubMetrics.frames); await p.waitForTimeout(400);
   assert.equal(await p.evaluate(() => window.goatHubMetrics.frames), afterTurn);

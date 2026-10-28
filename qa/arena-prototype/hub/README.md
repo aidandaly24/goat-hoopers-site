@@ -8,7 +8,9 @@ remain unchanged. They do not demonstrate acceptance of this concept.
 Run the existing QA Vite config from the repository root; open `/arena.html`.
 `?view=member` selects the synthetic member fixture. `?scene=still` skips 3D.
 `#place=standings` demonstrates direct destination restoration. `/index.html`
-retains the prior study. This entry is not a production route or a deployment.
+retains the prior study. A QA-only Link shim keeps Home/logo in the arena entry;
+all other destinations retain their original hrefs. This entry is not a
+production route or a deployment.
 
 User question: where do I go in our league's home court? Primary action: choose
 a physical destination, then inspect its readable HTML. The overview is an

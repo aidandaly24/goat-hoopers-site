@@ -5,7 +5,7 @@ export default defineConfig({
   root: fileURLToPath(new URL(".", import.meta.url)),
   publicDir: fileURLToPath(new URL("../../public", import.meta.url)),
   resolve: { alias: [
-    { find: "next/link", replacement: fileURLToPath(new URL("../../src/test/site-shell/link.tsx", import.meta.url)) },
+    { find: "next/link", replacement: fileURLToPath(new URL("./hub/link.tsx", import.meta.url)) },
     { find: "next/navigation", replacement: fileURLToPath(new URL("./navigation.ts", import.meta.url)) },
     { find: "@", replacement: fileURLToPath(new URL("../../src", import.meta.url)) },
   ] },
