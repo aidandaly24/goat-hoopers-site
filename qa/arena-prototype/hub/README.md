@@ -82,3 +82,11 @@ hierarchy and open rows, and avoid decorative nested cards. It is not a template
 for this arena. No external skill/hooks/package or automated Hallmark run was
 installed. This prototype's current images are in hub/review; older study
 captures outside that folder remain prior-concept references only.
+
+A final scoped reader-action correction replaces an inherited inverted strip
+whose secondary label lost contrast in dark mode. Actual public matchup
+readers at 1440/390 in both themes now measure secondary-label contrast
+6.89:1 dark / 4.87:1 light; activation still scrolls to saved picks and Escape
+returns to the arena. Action-contrast receipts and recaptured affected views
+are stored beside the base 18-case interaction receipt. Runtime source IDs
+and each image's capture source are explicit in artifacts.json.
