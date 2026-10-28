@@ -1,12 +1,14 @@
 import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
+import sharp from "sharp";
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE ?? "/opt/codex/cua_node/lib/node_modules/playwright/index.mjs");
 const origin = process.env.ARENA_ORIGIN ?? "http://127.0.0.1:4196";
 const out = process.env.HUB_EVIDENCE ?? "/tmp/goat-hub-review";
 await mkdir(out, { recursive: true });
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? "/usr/bin/chromium", args: ["--no-sandbox", "--enable-unsafe-swiftshader", "--use-angle=swiftshader"] });
 const results = [], errors = [], external = [];
+const revision = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
 try {
   for (const state of [
     { width: 1440, member: false, theme: "dark" }, { width: 1440, member: true, theme: "light" },
@@ -51,8 +53,15 @@ try {
     await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
     const arenaImage = `${out}/${name}-arena.jpg`;
     await p.screenshot({ path: arenaImage, type: "jpeg", quality: 86, animations: "disabled" });
-    const pixelText = execFileSync("tesseract", [arenaImage, "stdout", "--psm", "11"], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).toLowerCase().replace(/[^a-z]/g, "");
-    assert(pixelText.includes(state.member ? "yourhomecourt" : "tenteamsonehouse"), "Actual arena screenshot lost the foreground title");
+    const title = await p.locator("#hub-title").boundingBox();
+    assert(title.x >= 0 && title.y >= 0 && title.x + title.width <= state.width && title.y + title.height <= (state.width < 600 ? 844 : 1000));
+    const headingProof = `${out}/${name}-heading.png`;
+    // OCR only the actual title pixels, avoiding unrelated menu/court text.
+    // The native viewport JPEG above is never altered.
+    await sharp(arenaImage).extract({ left: Math.floor(title.x), top: Math.floor(title.y), width: Math.ceil(title.width), height: Math.ceil(title.height) }).resize({ width: Math.ceil(title.width) * 3 }).png().toFile(headingProof);
+    const pixelText = execFileSync("tesseract", [headingProof, "stdout", "--psm", "6"], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).toLowerCase().replace(/[^a-z]/g, "");
+    await writeFile(`${out}/${name}-capture.json`, JSON.stringify({ revision, state, title, pixelText, viewportImagesUnaltered: true }, null, 2) + "\n");
+    assert(pixelText.includes(state.member ? "homecourt" : "teamsonehouse"), "Actual arena screenshot lost the foreground title");
     await p.keyboard.press("Escape"); await p.locator("#site-navigation-panel").waitFor({ state: "hidden" });
     await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
     assert.equal(await trigger.evaluate(e => document.activeElement === e), true);
@@ -68,5 +77,5 @@ try {
     await context.close();
   }
   assert.deepEqual(errors, []); assert.deepEqual(external, []);
-  await writeFile(`${out}/menu-checks.json`, JSON.stringify({ revision: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), results, errors, external }, null, 2) + "\n");
+  await writeFile(`${out}/menu-checks.json`, JSON.stringify({ revision, results, errors, external }, null, 2) + "\n");
 } finally { await browser.close(); }
