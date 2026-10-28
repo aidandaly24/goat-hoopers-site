@@ -90,14 +90,32 @@ export function MemberTeamActions({ summary, className, style }: {
   );
 }
 
-/** A desk team's previous-season (preseason) or current line, e.g.
- * "2025 · 17–4 · champion" / "2025 · 16–5 · 4th place". */
+/** A previous-season line, e.g. "2025 · 17–4 · champion" /
+ * "2025 · 16–5 · 4th place". */
+function priorSeasonLine(prior: NonNullable<PairEntry["previousSeason"]>): string {
+  return `${prior.season} · ${prior.wins}–${prior.losses}${prior.finish ? ` · ${prior.finish === 1 ? "champion" : `${ordinal(prior.finish)} place`}` : ""}${prior.ownerNote ? " · previous manager" : ""}`;
+}
+
+/** A desk team's previous-season (preseason) or current line. */
 function seasonLine(entry: PairEntry | undefined, preseason: boolean): string | null {
   if (!entry) return null;
   const prior = preseason ? entry.previousSeason : null;
-  if (prior) return `${prior.season} · ${prior.wins}–${prior.losses}${prior.finish ? ` · ${prior.finish === 1 ? "champion" : `${ordinal(prior.finish)} place`}` : ""}${prior.ownerNote ? " · previous manager" : ""}`;
+  if (prior) return priorSeasonLine(prior);
   const record = entry.currentRecord;
   return record ? `Record ${record.wins}–${record.losses}` : null;
+}
+
+/** An archived desk team's line: the previous-season record the
+ * historical game belongs to, or nothing. An archived render never
+ * quotes a current record beside a historical final — when no
+ * historical record is on file the line is omitted, not backfilled
+ * from the live standings. The record must also belong to the
+ * archived game's own season: a directory entry carrying another
+ * season's record (a later archive built on a different directory)
+ * is omitted the same way, never silently quoted. */
+function historicalLine(entry: PairEntry | undefined, gameSeason: string): string | null {
+  const prior = entry?.previousSeason ?? null;
+  return prior && prior.season === gameSeason ? priorSeasonLine(prior) : null;
 }
 
 /** The member's desk beside the court: identity, last season's line, the
@@ -223,7 +241,7 @@ function LeagueDesk({ edition, pair, entries, preseason, aiWeekly, season, champ
         <ul className={cs("desk-teams")}>
           {[pair.home, pair.away].map((side) => {
             const entry = entries.find((candidate) => candidate.identity.id === side.id);
-            const line = seasonLine(entry, preseason);
+            const line = archived ? historicalLine(entry, game.season ?? edition.season) : seasonLine(entry, preseason);
             return (
               <li key={side.id}>
                 <TeamAvatar name={side.name} avatar={side.avatar} isChampion={side.id === championTeamId} />
@@ -243,7 +261,7 @@ function LeagueDesk({ edition, pair, entries, preseason, aiWeekly, season, champ
             <span><strong className="gh-num">{pair.homePoints?.toFixed(1)}</strong> {pair.home.name}</span>
             <span>{pair.away.name} <strong className="gh-num">{pair.awayPoints?.toFixed(1)}</strong></span>
           </p>
-          <p className={cs("caption")}>{edition.season} · archived edition</p>
+          <p className={cs("caption")}>{game.season ?? edition.season} · archived edition</p>
         </div>
       )}
       {pair && !archived && (
@@ -285,6 +303,10 @@ function LeagueDesk({ edition, pair, entries, preseason, aiWeekly, season, champ
 export function CourtsideFeature({ edition, entries, rosterCounts, preseason, checkedAt, season, aiWeekly, hero, archived = false }: Props) {
   const { pairs, preseasonPreview } = deriveWeekPairs(entries, aiWeekly, season);
   const game = edition.game;
+  // Labels about the game name the game's own season: a look-back
+  // edition's final belongs to its historical season, not to the
+  // edition's editorial season.
+  const gameSeason = game.season ?? edition.season;
   const week = pairs[0]?.week ?? game.leagueWeek ?? null;
   const championTeamId = championTeamIdOf(entries);
   const heroSummary = hero?.summary ?? null;
@@ -313,12 +335,12 @@ export function CourtsideFeature({ edition, entries, rosterCounts, preseason, ch
     ? `${currentPair.home.name} vs ${currentPair.away.name}`
     : game.title;
   const status = archived
-    ? game.state === "final" ? `Historical final · ${edition.season}` : `Archived edition · ${edition.season}`
+    ? game.state === "final" ? `Historical final · ${gameSeason}` : `Archived edition · ${gameSeason}`
     : preseasonPreview
       ? `Preseason lineup preview · target Week ${week ?? 1}`
       : ownPair || publicPair
         ? `Week ${(ownPair ?? publicPair)!.week} · ${hasPairScores((ownPair ?? publicPair)!) ? "Current score" : "Upcoming · scores pending"}`
-        : game.state === "final" ? `Historical final · ${edition.season}` : "Spotlight pending";
+        : game.state === "final" ? `Historical final · ${gameSeason}` : "Spotlight pending";
   const captionBold = !archived && currentPair ? `${ownPair ? "Your " : ""}Week ${currentPair.week} pairing.` : game.note;
   const captionDek = !archived && currentPair
     ? preseasonPreview

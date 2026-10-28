@@ -112,7 +112,7 @@ export {
 } from "./manager-archetype";
 export type { LiveGame, LiveGameStatus } from "./live-game";
 export { isGameDay } from "./live-game";
-export type { Season } from "./season";
+export type { DataToolsState, Season } from "./season";
 export { formatSeasonStatus } from "./season";
 export type {
   LeagueStats,

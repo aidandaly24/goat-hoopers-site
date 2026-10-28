@@ -67,7 +67,7 @@ export const weeklyEditions: WeeklyEdition[] = [
     startsAt: "2026-09-28T00:00:00Z", endsAt: "2026-10-05T00:00:00Z",
     status: "draft", publishedAt: null,
     game: {
-      title: "The first crown belongs to vannweinkauf.", note: "A look back · 2025 final", leagueWeek: null,
+      title: "The first crown belongs to vannweinkauf.", note: "A look back · 2025 final", season: "2025", leagueWeek: null,
       teamIds: ["5", "7"], state: "final", scores: [326, 251.5],
       context: "Josh Diddy’s Roster finished 17–4, then beat papichooter 326.0–251.5 in the inaugural final. That is the bar for the next season.",
       selectionReason: "Historical recap of the verified 2025 final. This sample archive entry demonstrates browsing older weekly editions; it was not published by Muse.",

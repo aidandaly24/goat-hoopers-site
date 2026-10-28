@@ -206,7 +206,7 @@ member, missing-edition and archived states; the CI offline job runs this probe.
 
 `src/app/page.tsx` loads `getCourtsideHomeData`, archive references and approved portrait URLs, then composes `CourtsideHome` in the existing `season-hub` surface. `/weekly` and `/weekly/[editionId]` are source-controlled editorial routes. The old `SeasonHub`/`LeagueHero` components and static review stay available for comparison.
 
-`getCourtsideHomeData` accepts injectable clock/data dependencies. Live team identities, all roster references, current pairings and recent moves come through the existing Sleeper/transform membrane; `buildLiveClubhouseDirectory` is a pure projection. Archive mode (issue #224 P1): when an edition id is explicitly requested and resolves, the loader skips the live matchup fetch and builds the directory with no matchup at all — the frozen game record stays on the edition (`edition.game`: its teams and recorded scores) and is never fed into the live directory as a `currentMatchup`, so an archived edition can neither narrate the current week as its game nor label a historical opponent a current one; `CourtsideFeature` mirrors the rule on the surface — archived renders take their pair, status and score block from the edition record, never from live pairs. Only the slim roster player references are cached for a day, keyed by sorted current roster IDs. A changed roster ID set resolves immediately. The full player directory stays outside Next’s data cache. Existing 300-second league fetches deduplicate across layout and page. No DB/schema, environment, scheduler or publishing changes are involved.
+`getCourtsideHomeData` accepts injectable clock/data dependencies. Live team identities, all roster references, current pairings and recent moves come through the existing Sleeper/transform membrane; `buildLiveClubhouseDirectory` is a pure projection. Archive mode (issue #224 P1): when an edition id is explicitly requested and resolves, the loader skips the live matchup fetch and builds the directory with no matchup at all — the frozen game record stays on the edition (`edition.game`: its teams and recorded scores) and is never fed into the live directory as a `currentMatchup`, so an archived edition can neither narrate the current week as its game nor label a historical opponent a current one; `CourtsideFeature` mirrors the rule on the surface — archived renders take their pair, status and score block from the edition record, never from live pairs. Archived labels stay in the game's own context (#224 follow-through): the game record may carry its own `season` when it differs from the edition's editorial season (a look-back edition's final belongs to its historical season), and the historical-final badge and final-score caption name that season; the archived desk's team lines quote the directory's previous-season records — only when the record's own season matches the archived game's season, omitted when none is on file or the season differs — never current records beside a historical final. Only the slim roster player references are cached for a day, keyed by sorted current roster IDs. A changed roster ID set resolves immediately. The full player directory stays outside Next’s data cache. Existing 300-second league fetches deduplicate across layout and page. No DB/schema, environment, scheduler or publishing changes are involved.
 
 Editorial entries carry explicit draft/publication and date bounds. The latest started entry stays visible with a stale notice after its period ends, never invented weekly results. Source dates, selection reasons, NBA/college period qualifiers and verified historical finals are retained. NeuralNets’ 2025 record visibly names the previous manager in the collapsed summary and explains QBs Gremlins in the full roster.
 
@@ -1109,8 +1109,21 @@ previews) follow the same seam: `src/data/analytics.ts` holds the pure
 functions (`computePowerRankings`, `computePlayoffOdds`,
 `computeRecordBook`, `computeMatchupPreviews` — inputs in, domain objects
 out, never null-filled), and `league.ts` loaders assemble their inputs
-from live Sleeper data. Every tool returns null in the preseason, and its
-surface renders an honest empty state. Formulas/models are documented on
+from live Sleeper data. Every tool returns null when it has no
+completed-week evidence — the preseason, or the season underway with
+no week closed yet — and its surface renders an honest empty state.
+`/intel` also loads `getDataToolsState()` and hands the result
+(`DataToolsState`, `src/domain/season.ts`) through `IntelHub` to the
+four tools, so their empty-state copy describes only a PROVEN world:
+`pre-tipoff` requires the NBA-state fetch itself to succeed and say
+"pre"; `no-closed-week` requires the season underway, the analytics
+assembly loaded, and the current week still the first — a null is
+never itself evidence, so a failed state fetch, a failed assembly
+(roster/league outage), or any later week (weeks have closed; a null
+tool — e.g. previews with finals on file but the current schedule
+missing — is a data gap) all read `unavailable`, whose copy stays
+neutral: it claims neither tip-off nor missing closed weeks.
+Formulas/models are documented on
 the domain types themselves (`power.ts`, `playoff-odds.ts`,
 `matchup-preview.ts`).
 

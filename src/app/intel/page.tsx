@@ -3,9 +3,14 @@
  *
  * Thin page: loads the four data tools in parallel via the data layer
  * (every loader is null-safe and never throws), hands them to the intel
- * surface. In the preseason each tool renders its honest empty state.
+ * surface. Each tool renders its honest empty state when it has no
+ * data — the page also loads `dataState`, the PROVEN reason a tool
+ * may be empty (pre-tipoff, no week closed yet, or simply
+ * unavailable), so the empty-state copy never confuses the three
+ * (issue #224 follow-through).
  */
 import {
+  getDataToolsState,
   getMatchupPreviews,
   getPlayoffOdds,
   getPowerRankings,
@@ -26,16 +31,17 @@ export const metadata: Metadata = {
 export const revalidate = 300; // refresh league data every 5 minutes
 
 export default async function IntelPage() {
-  const [previews, rankings, odds, book] = await Promise.all([
+  const [previews, rankings, odds, book, dataState] = await Promise.all([
     getMatchupPreviews(),
     getPowerRankings(),
     getPlayoffOdds(),
     getRecordBook(),
+    getDataToolsState(),
   ]);
   return (
     <>
       <SectionNav current="intel" />
-      <IntelHub previews={previews} rankings={rankings} odds={odds} book={book} championTeamId={reigningChampionRosterId()} />
+      <IntelHub previews={previews} rankings={rankings} odds={odds} book={book} championTeamId={reigningChampionRosterId()} dataState={dataState} />
     </>
   );
 }

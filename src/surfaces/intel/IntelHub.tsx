@@ -8,13 +8,17 @@
  * and gives the page its broadcast-desk framing.
  *
  * Contract:
- * - Receives the four datasets (each `| null` in the preseason).
+ * - Receives the four datasets (each `| null` when it has no data)
+ *   plus `dataState`, the proven reason a dataset may be null —
+ *   pre-tipoff, no week closed yet, or unavailable — which the
+ *   empty-state copy must not confuse.
  * - Never fetches. Never touches Sleeper. Domain objects in, JSX out.
  * - Documented composite surface (ARCHITECTURE.md §3): composes the
  *   public entrypoints of preview, playoffs, power-rankings, and
  *   records. Does not import their private internals.
  */
 import type {
+  DataToolsState,
   MatchupPreview as MatchupPreviewT,
   PlayoffOdds as PlayoffOddsT,
   PowerRanking,
@@ -32,6 +36,7 @@ export function IntelHub({
   odds,
   book,
   championTeamId,
+  dataState,
 }: {
   previews: MatchupPreviewT[] | null;
   rankings: PowerRanking[] | null;
@@ -39,6 +44,11 @@ export function IntelHub({
   book: RecordBookT | null;
   /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
   championTeamId?: string | null;
+  /** From getDataToolsState(): the proven reason a tool may be null.
+   * Threaded to every tool so no empty state claims a world the
+   * loader did not prove. Omitted = "unavailable", the claim-free
+   * default. */
+  dataState?: DataToolsState;
 }) {
   return (
     <div className={styles.surface}>
@@ -52,12 +62,12 @@ export function IntelHub({
       </header>
       <div className={styles.grid}>
         <div className={styles.span}>
-          <MatchupPreview previews={previews} championTeamId={championTeamId} />
+          <MatchupPreview previews={previews} championTeamId={championTeamId} dataState={dataState} />
         </div>
-        <PowerRankings rankings={rankings} championTeamId={championTeamId} />
-        <PlayoffOdds odds={odds} championTeamId={championTeamId} />
+        <PowerRankings rankings={rankings} championTeamId={championTeamId} dataState={dataState} />
+        <PlayoffOdds odds={odds} championTeamId={championTeamId} dataState={dataState} />
         <div className={styles.span}>
-          <RecordBook book={book} championTeamId={championTeamId} />
+          <RecordBook book={book} championTeamId={championTeamId} dataState={dataState} />
         </div>
       </div>
     </div>

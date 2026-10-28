@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { PowerRanking } from "@/domain";
+import type { DataToolsState, PowerRanking } from "@/domain";
 import { Card } from "@/ui/Card";
 import { SectionHeading } from "@/ui/SectionHeading";
 import { TeamAvatar } from "@/ui/TeamAvatar";
@@ -31,23 +31,34 @@ function Movement({ movement }: { movement: number }) {
  * Self-contained for homepage embedding: receives `rankings`
  * (PowerRanking[] | null) and renders. Formula lives in
  * src/domain/power.ts; the math in src/data/analytics.ts. Null =
- * preseason, rendered as an honest empty state, never fake rows.
+ * no data, rendered as an honest empty state naming the proven
+ * reason (`dataState`), never fake rows.
  */
 export function PowerRankings({
   rankings,
   championTeamId,
+  dataState,
 }: {
-  /** From getPowerRankings(). Null before the season tips off. */
+  /** From getPowerRankings(). Null when it has no data — before
+   * tip-off, before any week closes, or when its feed failed. */
   rankings: PowerRanking[] | null;
   /** Reigning champion's roster id — from reigningChampionRosterId (previous-season finish). */
   championTeamId?: string | null;
+  /** From getDataToolsState(): the PROVEN reason rankings may be
+   * null. The empty state describes only that world; omitted =
+   * "unavailable", the claim-free default. */
+  dataState?: DataToolsState;
 }) {
   return (
     <Card>
       <SectionHeading eyebrow="The numbers" title="Power Rankings" />
       {rankings === null || rankings.length === 0 ? (
         <p className={styles.empty}>
-          Rankings drop when the season tips off — no games, no order.
+          {dataState === "pre-tipoff"
+            ? "Rankings drop when the season tips off — no games, no order."
+            : dataState === "no-closed-week"
+              ? "No order yet — rankings come from completed finals, and no week has closed yet. Live scores are not finals."
+              : "Rankings are unavailable right now — the required data is unavailable, and an invented order is worse than none."}
         </p>
       ) : (
         <ol className={styles.list}>
