@@ -75,3 +75,10 @@ Vite fixture in software Chromium, not production Next navigation, a real
 logged-in account, a physical phone, GPU benchmark or screen-reader session.
 The previously recorded root Next build blockers are not changed by this QA
 entry. No production integration or release is authorized by this prototype.
+
+Read-only Hallmark input from the earlier recorded public source review is
+applied selectively: retain real content/wiring, let GOAT identity lead, use
+hierarchy and open rows, and avoid decorative nested cards. It is not a template
+for this arena. No external skill/hooks/package or automated Hallmark run was
+installed. This prototype's current images are in hub/review; older study
+captures outside that folder remain prior-concept references only.
