@@ -91,6 +91,7 @@ node_modules/.bin/eslint qa/homepage-redesign --no-error-on-unmatched-pattern
 node_modules/.bin/tsc --noEmit -p qa/homepage-redesign/tsconfig.json
 node_modules/.bin/vite build --config qa/homepage-redesign/vite.config.mts
 node qa/homepage-redesign/verify.mjs
+node qa/homepage-redesign/contrast.mjs
 node qa/homepage-redesign/capture.mjs
 ```
 
@@ -109,6 +110,9 @@ valuations, saved provenance, standings sorting; light/dark at 1440/390/320 and
 separate `html {font-size:200%}` checks; theme toggle and compact-menu Escape/focus;
 no page errors, no remote resource requests. More content is visible as it grows;
 no height clamp or clipping is used to make reflow pass.
+`contrast.json` measures actual text/ancestor-background pairs in the changed
+matchup, roster, faces and member-desk regions in both themes and widths. It
+resolves the avatar's identical-stop accent gradient; image content is excluded.
 
 Four full-height `public/member × desktop/phone390` JPEGs are below 900KB.
 Lossless full-height PNG originals remain. Tall captures use bounded viewport

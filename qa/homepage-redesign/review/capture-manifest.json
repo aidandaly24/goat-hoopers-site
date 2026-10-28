@@ -1,0 +1,1176 @@
+{
+  "sourceHead": "6589564024896a50f8d42c9dcc1920a174cc08e7",
+  "source": "Current main CourtsideHome production component + isolated QA presentation; all current metrics synthetic",
+  "captures": [
+    {
+      "file": "qa/homepage-redesign/review/public-desktop.jpg",
+      "view": "public",
+      "label": "desktop",
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1440,
+      "height": 7872,
+      "bytes": 879676,
+      "jpegQuality": 90,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 1000,
+          "scrollY": 1000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 2000,
+          "scrollY": 2000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 3000,
+          "scrollY": 3000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 6000,
+          "scrollY": 6000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 7000,
+          "scrollY": 6872,
+          "cropTop": 128,
+          "height": 872
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 7000,
+          "scrollY": 6872,
+          "cropTop": 128,
+          "width": 1440,
+          "height": 872,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Reaves Dropper vs Ware the Hoes At?",
+          "y": 345
+        },
+        {
+          "text": "Reaves Dropper vs Ware the Hoes At?",
+          "y": 583
+        },
+        {
+          "text": "Behind the matchup.",
+          "y": 1324
+        },
+        {
+          "text": "Players to watch.",
+          "y": 1660
+        },
+        {
+          "text": "Player spotlights.",
+          "y": 2266
+        },
+        {
+          "text": "A league of our own.",
+          "y": 2723
+        },
+        {
+          "text": "Faces of the league",
+          "y": 3530
+        },
+        {
+          "text": "Around the league",
+          "y": 4202
+        },
+        {
+          "text": "Know who you’re playing.",
+          "y": 4564
+        },
+        {
+          "text": "Standings, leaders & moves.",
+          "y": 6031
+        },
+        {
+          "text": "Standings",
+          "y": 6117
+        },
+        {
+          "text": "League stats",
+          "y": 6117
+        },
+        {
+          "text": "Recent activity",
+          "y": 6277
+        },
+        {
+          "text": "Stocks",
+          "y": 7136
+        },
+        {
+          "text": "Arcade",
+          "y": 7136
+        },
+        {
+          "text": "Every week has a story.",
+          "y": 7350
+        }
+      ],
+      "footer": {
+        "text": "2026 season · In SeasonA fan-made league hub. Not affiliated with the NBA or Sleeper.HomeArcadeTeamsTransactionsWeekly archiveCopyright 2026 GOAT Hoopers. Built for the league, by the league.",
+        "y": 7619
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "c945eb65d56c379cd3a85634da15451db22004df873d352321bbdf108f97b08a",
+      "captureOnlyStyle": "sticky header static; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "file": "qa/homepage-redesign/review/public-desktop-matchup.jpg",
+      "view": "public",
+      "label": "desktop",
+      "crop": "matchup",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "documentY": 81,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/public-desktop-roster.jpg",
+      "view": "public",
+      "label": "desktop",
+      "crop": "roster",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "documentY": 896,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/public-desktop-picks.jpg",
+      "view": "public",
+      "label": "desktop",
+      "crop": "picks",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "documentY": 2491,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/public-desktop-directory.jpg",
+      "view": "public",
+      "label": "desktop",
+      "crop": "directory",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "documentY": 4680,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/public-desktop-standings.jpg",
+      "view": "public",
+      "label": "desktop",
+      "crop": "standings",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "documentY": 6028,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/public-phone390.jpg",
+      "view": "public",
+      "label": "phone390",
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "height": 12373,
+      "bytes": 843664,
+      "jpegQuality": 93,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 844,
+          "scrollY": 844,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 1688,
+          "scrollY": 1688,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 2532,
+          "scrollY": 2532,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 3376,
+          "scrollY": 3376,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 4220,
+          "scrollY": 4220,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5064,
+          "scrollY": 5064,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5908,
+          "scrollY": 5908,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 6752,
+          "scrollY": 6752,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 9284,
+          "scrollY": 9284,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10128,
+          "scrollY": 10128,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10972,
+          "scrollY": 10972,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 11816,
+          "scrollY": 11529,
+          "cropTop": 287,
+          "height": 557
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 5908,
+          "scrollY": 5908,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 11816,
+          "scrollY": 11529,
+          "cropTop": 287,
+          "width": 390,
+          "height": 557,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Reaves Dropper vs Ware the Hoes At?",
+          "y": 490
+        },
+        {
+          "text": "Reaves Dropper vs Ware the Hoes At?",
+          "y": 1455
+        },
+        {
+          "text": "Behind the matchup.",
+          "y": 2067
+        },
+        {
+          "text": "Players to watch.",
+          "y": 2524
+        },
+        {
+          "text": "Player spotlights.",
+          "y": 3311
+        },
+        {
+          "text": "A league of our own.",
+          "y": 4031
+        },
+        {
+          "text": "Faces of the league",
+          "y": 5245
+        },
+        {
+          "text": "Around the league",
+          "y": 6894
+        },
+        {
+          "text": "Know who you’re playing.",
+          "y": 7494
+        },
+        {
+          "text": "Standings, leaders & moves.",
+          "y": 9274
+        },
+        {
+          "text": "Standings",
+          "y": 9347
+        },
+        {
+          "text": "League stats",
+          "y": 10732
+        },
+        {
+          "text": "Recent activity",
+          "y": 10903
+        },
+        {
+          "text": "Stocks",
+          "y": 11173
+        },
+        {
+          "text": "Arcade",
+          "y": 11356
+        },
+        {
+          "text": "Every week has a story.",
+          "y": 11557
+        }
+      ],
+      "footer": {
+        "text": "2026 season · In SeasonA fan-made league hub. Not affiliated with the NBA or Sleeper.HomeArcadeTeamsTransactionsWeekly archiveCopyright 2026 GOAT Hoopers. Built for the league, by the league.",
+        "y": 11966
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "c945eb65d56c379cd3a85634da15451db22004df873d352321bbdf108f97b08a",
+      "captureOnlyStyle": "sticky header static; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "file": "qa/homepage-redesign/review/public-phone390-matchup.jpg",
+      "view": "public",
+      "label": "phone390",
+      "crop": "matchup",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentY": 384,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/public-phone390-roster.jpg",
+      "view": "public",
+      "label": "phone390",
+      "crop": "roster",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentY": 1791,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/public-phone390-picks.jpg",
+      "view": "public",
+      "label": "phone390",
+      "crop": "picks",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentY": 4107,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/public-phone390-directory.jpg",
+      "view": "public",
+      "label": "phone390",
+      "crop": "directory",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentY": 7867,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/public-phone390-standings.jpg",
+      "view": "public",
+      "label": "phone390",
+      "crop": "standings",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentY": 9754,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-desktop.jpg",
+      "view": "member",
+      "label": "desktop",
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1440,
+      "height": 8986,
+      "bytes": 849826,
+      "jpegQuality": 85,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 1000,
+          "scrollY": 1000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 2000,
+          "scrollY": 2000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 3000,
+          "scrollY": 3000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 6000,
+          "scrollY": 6000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 7000,
+          "scrollY": 7000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 8000,
+          "scrollY": 7986,
+          "cropTop": 14,
+          "height": 986
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 8000,
+          "scrollY": 7986,
+          "cropTop": 14,
+          "width": 1440,
+          "height": 986,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Reaves Dropper vs Ware the Hoes At?",
+          "y": 345
+        },
+        {
+          "text": "Reaves Dropper",
+          "y": 583
+        },
+        {
+          "text": "Your roster.",
+          "y": 1324
+        },
+        {
+          "text": "Players to watch.",
+          "y": 1786
+        },
+        {
+          "text": "Weekly performers.",
+          "y": 2515
+        },
+        {
+          "text": "News & recent moves.",
+          "y": 2527
+        },
+        {
+          "text": "Player spotlights.",
+          "y": 3363
+        },
+        {
+          "text": "A league of our own.",
+          "y": 3820
+        },
+        {
+          "text": "Faces of the league",
+          "y": 4627
+        },
+        {
+          "text": "Around the league",
+          "y": 5299
+        },
+        {
+          "text": "Know who you’re playing.",
+          "y": 5661
+        },
+        {
+          "text": "Standings, leaders & moves.",
+          "y": 7128
+        },
+        {
+          "text": "Standings",
+          "y": 7214
+        },
+        {
+          "text": "League stats",
+          "y": 7214
+        },
+        {
+          "text": "Recent activity",
+          "y": 7373
+        },
+        {
+          "text": "Stocks",
+          "y": 8249
+        },
+        {
+          "text": "Arcade",
+          "y": 8249
+        },
+        {
+          "text": "Every week has a story.",
+          "y": 8463
+        }
+      ],
+      "footer": {
+        "text": "2026 season · In SeasonA fan-made league hub. Not affiliated with the NBA or Sleeper.HomeArcadeTeamsTransactionsWeekly archiveCopyright 2026 GOAT Hoopers. Built for the league, by the league.",
+        "y": 8733
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "c5cd8365d14e426a2828eef90acb452be39443fdf70f28dcd7260bb15d597612",
+      "captureOnlyStyle": "sticky header static; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-desktop-matchup.jpg",
+      "view": "member",
+      "label": "desktop",
+      "crop": "matchup",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "documentY": 81,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-desktop-roster.jpg",
+      "view": "member",
+      "label": "desktop",
+      "crop": "roster",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "documentY": 959,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-desktop-picks.jpg",
+      "view": "member",
+      "label": "desktop",
+      "crop": "picks",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "documentY": 3587,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-desktop-directory.jpg",
+      "view": "member",
+      "label": "desktop",
+      "crop": "directory",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "documentY": 5777,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-desktop-standings.jpg",
+      "view": "member",
+      "label": "desktop",
+      "crop": "standings",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "documentY": 7133,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-desktop-dark.jpg",
+      "theme": "dark",
+      "view": "member",
+      "label": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-phone390.jpg",
+      "view": "member",
+      "label": "phone390",
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "height": 14466,
+      "bytes": 889227,
+      "jpegQuality": 91,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 844,
+          "scrollY": 844,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 1688,
+          "scrollY": 1688,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 2532,
+          "scrollY": 2532,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 3376,
+          "scrollY": 3376,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 4220,
+          "scrollY": 4220,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5064,
+          "scrollY": 5064,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5908,
+          "scrollY": 5908,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 6752,
+          "scrollY": 6752,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 9284,
+          "scrollY": 9284,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10128,
+          "scrollY": 10128,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10972,
+          "scrollY": 10972,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 11816,
+          "scrollY": 11816,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 12660,
+          "scrollY": 12660,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 13504,
+          "scrollY": 13504,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 14348,
+          "scrollY": 13622,
+          "cropTop": 726,
+          "height": 118
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 14348,
+          "scrollY": 13622,
+          "cropTop": 726,
+          "width": 390,
+          "height": 118,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Reaves Dropper vs Ware the Hoes At?",
+          "y": 490
+        },
+        {
+          "text": "Reaves Dropper",
+          "y": 1455
+        },
+        {
+          "text": "Your roster.",
+          "y": 2176
+        },
+        {
+          "text": "Players to watch.",
+          "y": 2921
+        },
+        {
+          "text": "Weekly performers.",
+          "y": 4057
+        },
+        {
+          "text": "News & recent moves.",
+          "y": 4926
+        },
+        {
+          "text": "Player spotlights.",
+          "y": 5366
+        },
+        {
+          "text": "A league of our own.",
+          "y": 6086
+        },
+        {
+          "text": "Faces of the league",
+          "y": 7300
+        },
+        {
+          "text": "Around the league",
+          "y": 8949
+        },
+        {
+          "text": "Know who you’re playing.",
+          "y": 9550
+        },
+        {
+          "text": "Standings, leaders & moves.",
+          "y": 11330
+        },
+        {
+          "text": "Standings",
+          "y": 11402
+        },
+        {
+          "text": "League stats",
+          "y": 12804
+        },
+        {
+          "text": "Recent activity",
+          "y": 12975
+        },
+        {
+          "text": "Stocks",
+          "y": 13266
+        },
+        {
+          "text": "Arcade",
+          "y": 13449
+        },
+        {
+          "text": "Every week has a story.",
+          "y": 13650
+        }
+      ],
+      "footer": {
+        "text": "2026 season · In SeasonA fan-made league hub. Not affiliated with the NBA or Sleeper.HomeArcadeTeamsTransactionsWeekly archiveCopyright 2026 GOAT Hoopers. Built for the league, by the league.",
+        "y": 14060
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "c5cd8365d14e426a2828eef90acb452be39443fdf70f28dcd7260bb15d597612",
+      "captureOnlyStyle": "sticky header static; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-phone390-matchup.jpg",
+      "view": "member",
+      "label": "phone390",
+      "crop": "matchup",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentY": 384,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-phone390-roster.jpg",
+      "view": "member",
+      "label": "phone390",
+      "crop": "roster",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentY": 2038,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-phone390-picks.jpg",
+      "view": "member",
+      "label": "phone390",
+      "crop": "picks",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentY": 6163,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-phone390-directory.jpg",
+      "view": "member",
+      "label": "phone390",
+      "crop": "directory",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentY": 9922,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-phone390-standings.jpg",
+      "view": "member",
+      "label": "phone390",
+      "crop": "standings",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentY": 11828,
+      "method": "native unretouched viewport"
+    },
+    {
+      "file": "qa/homepage-redesign/review/member-phone390-dark.jpg",
+      "theme": "dark",
+      "view": "member",
+      "label": "phone390",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "method": "native unretouched viewport"
+    }
+  ]
+}
