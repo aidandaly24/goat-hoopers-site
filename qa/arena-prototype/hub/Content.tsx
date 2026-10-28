@@ -36,6 +36,8 @@ const rules = `
 .hub-content ${c("feature-grid")} { display: block; }
 .hub-content ${c("feature-heading")} h1 { font-size: clamp(var(--gh-s6), 3vw, var(--gh-s8)); }
 .hub-content ${c("team-desk")} { margin-block: var(--gh-s6); }
+.hub-content ${c("desk-actions")} { background: var(--gh-bg-hover); color: var(--gh-text); border: 1px solid var(--gh-control); }
+.hub-content ${c("desk-actions")} span { color: var(--gh-text-dim); }
 .hub-content ${c("faces-strip")} { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); overflow: visible; gap: var(--gh-s4); }
 .hub-content ${c("face-card")} { min-width: 0; border: 0; background: transparent; }
 .hub-content ${c("face-team")} > span[style] { color: var(--gh-text) !important; }
