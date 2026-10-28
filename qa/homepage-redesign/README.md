@@ -15,9 +15,10 @@ remains **My team / View roster**. Public readers can inspect the featured pairi
 saved picks and every team without signing in.
 
 - Paper + Slate, the selected GOAT logos, Inter and Geist Mono stay.
-- A large matchup headline leads an open edition spread. The decorative court
-  photo is replaced by the existing pair's managers, records, known/unknown
-  scores and top modeled player values. Zero stays zero; missing stays Pending.
+- One linked matchup heading leads an open edition spread, followed by the
+  existing managers, records and known/unknown scores. A shallow original-court
+  crop supports that information instead of dominating it. Zero stays zero;
+  missing stays Pending. Roster anchors/values stay in their useful lower sections.
 - The personal roster becomes three separate readable identities beside the one
   roster total, coverage, history state and complete valuation disclosure. No
   giant overlapping cutouts or invented history chart.
@@ -182,7 +183,7 @@ accounts/providers, physical iOS/Android, manual screen reader or a measured
 production Lighthouse score. Desktop/mobile pixels and automated checks do not
 replace independent Muse judgment or explicit authorization for live integration.
 
-The old homepage does better at instantly expressing “basketball arena” through
-its large photograph. This study trades that mood for useful league information
-and clearer hierarchy; it retains the league's actual people and identity, but
-the visual direction remains a reviewable proposal.
+The old homepage gives the court photograph more theatre. This study keeps a
+bounded illustration of the same court while leading with useful league facts
+and a clearer personal action. It remains a reviewable design option alongside
+Muse's immersive scene, not an approved production replacement.

@@ -1,5 +1,5 @@
 {
-  "sourceHead": "6589564024896a50f8d42c9dcc1920a174cc08e7",
+  "sourceHead": "221bb52fdac65b7bd37d4f29b34b78cf33423679",
   "method": "Actual Chromium production-component fixture with synthetic props; native QA anchors, not Next App Router",
   "browser": "154.0.8037.57",
   "text200Method": "html font-size:200%, independently of 320 CSS px reflow",
@@ -7,9 +7,11 @@
     {
       "view": "public",
       "missing": false,
-      "parity": true,
-      "originalLinks": 376,
-      "originalControls": 34,
+      "unchangedLowerPageParity": true,
+      "sourceDestinationsRetained": 260,
+      "deduplicatedOpening": true,
+      "originalLinks": 372,
+      "originalControls": 33,
       "rosterReferences": 228,
       "directorySearchSortKeyboard": true,
       "fullRoster": true,
@@ -19,7 +21,9 @@
     {
       "view": "public",
       "missing": true,
-      "parity": true,
+      "unchangedLowerPageParity": true,
+      "sourceDestinationsRetained": 249,
+      "deduplicatedOpening": false,
       "originalLinks": 357,
       "originalControls": 30,
       "rosterReferences": 228,
@@ -31,9 +35,11 @@
     {
       "view": "member",
       "missing": false,
-      "parity": true,
-      "originalLinks": 411,
-      "originalControls": 35,
+      "unchangedLowerPageParity": true,
+      "sourceDestinationsRetained": 261,
+      "deduplicatedOpening": true,
+      "originalLinks": 407,
+      "originalControls": 34,
       "rosterReferences": 228,
       "directorySearchSortKeyboard": true,
       "fullRoster": true,
@@ -43,7 +49,9 @@
     {
       "view": "member",
       "missing": true,
-      "parity": true,
+      "unchangedLowerPageParity": true,
+      "sourceDestinationsRetained": 251,
+      "deduplicatedOpening": false,
       "originalLinks": 397,
       "originalControls": 31,
       "rosterReferences": 228,
@@ -60,81 +68,75 @@
       "scrollWidth": 1440,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 344.859375
-        },
-        {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 583.484375
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 222.90625
         },
         {
           "text": "Behind the matchup.",
-          "y": 1323.59375
+          "y": 903.890625
         },
         {
           "text": "Players to watch.",
-          "y": 1660.46875
+          "y": 1240.765625
         },
         {
           "text": "Player spotlights.",
-          "y": 2266.46875
+          "y": 1850.765625
         },
         {
           "text": "A league of our own.",
-          "y": 2722.890625
+          "y": 2307.1875
         },
         {
           "text": "Faces of the league",
-          "y": 3530
+          "y": 3114.296875
         },
         {
           "text": "Around the league",
-          "y": 4202.34375
+          "y": 3786.640625
         },
         {
           "text": "Know who you’re playing.",
-          "y": 4563.875
+          "y": 4132.171875
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 6031.046875
-        },
-        {
-          "text": "Standings",
-          "y": 6117.046875
+          "y": 5599.34375
         },
         {
           "text": "League stats",
-          "y": 6117.046875
+          "y": 5685.34375
         },
         {
           "text": "Recent activity",
-          "y": 6276.640625
+          "y": 5844.9375
         },
         {
           "text": "Stocks",
-          "y": 7135.5625
+          "y": 6609.859375
         },
         {
           "text": "Arcade",
-          "y": 7135.5625
+          "y": 6609.859375
         },
         {
           "text": "Every week has a story.",
-          "y": 7349.5625
+          "y": 6823.859375
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 96,
-        "y": 545.796875,
-        "width": 781.703125,
-        "height": 534.875,
-        "top": 545.796875,
-        "right": 877.703125,
-        "bottom": 1080.671875,
+        "y": 222.90625,
+        "width": 1248,
+        "height": 488.453125,
+        "top": 222.90625,
+        "right": 1344,
+        "bottom": 711.359375,
         "left": 96
       },
+      "personalDeskY": null,
+      "rosterHeadingY": null,
       "themeToggle": true,
       "compactMenuEscape": false,
       "noHorizontalOverflow": true,
@@ -148,81 +150,75 @@
       "scrollWidth": 390,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 490.015625
-        },
-        {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 1455.359375
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 221.875
         },
         {
           "text": "Behind the matchup.",
-          "y": 2067.0625
+          "y": 924.03125
         },
         {
           "text": "Players to watch.",
-          "y": 2524.1875
+          "y": 1381.15625
         },
         {
           "text": "Player spotlights.",
-          "y": 3310.75
+          "y": 2171.71875
         },
         {
           "text": "A league of our own.",
-          "y": 4030.84375
+          "y": 2891.8125
         },
         {
           "text": "Faces of the league",
-          "y": 5244.515625
+          "y": 4105.484375
         },
         {
           "text": "Around the league",
-          "y": 6893.546875
+          "y": 5754.515625
         },
         {
           "text": "Know who you’re playing.",
-          "y": 7494.328125
+          "y": 6339.296875
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 9274.046875
-        },
-        {
-          "text": "Standings",
-          "y": 9346.609375
+          "y": 8119.015625
         },
         {
           "text": "League stats",
-          "y": 10731.796875
+          "y": 9496.203125
         },
         {
           "text": "Recent activity",
-          "y": 10902.75
+          "y": 9667.15625
         },
         {
           "text": "Stocks",
-          "y": 11172.78125
+          "y": 9937.1875
         },
         {
           "text": "Arcade",
-          "y": 11356.03125
+          "y": 10120.4375
         },
         {
           "text": "Every week has a story.",
-          "y": 11556.59375
+          "y": 10321
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 16,
-        "y": 632.390625,
+        "y": 221.875,
         "width": 358,
-        "height": 595.5,
-        "top": 632.390625,
+        "height": 520.78125,
+        "top": 221.875,
         "right": 374,
-        "bottom": 1227.890625,
+        "bottom": 742.65625,
         "left": 16
       },
+      "personalDeskY": null,
+      "rosterHeadingY": null,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
@@ -236,81 +232,75 @@
       "scrollWidth": 320,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 526.703125
-        },
-        {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 1752.296875
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 243.5625
         },
         {
           "text": "Behind the matchup.",
-          "y": 2499.75
+          "y": 991.40625
         },
         {
           "text": "Players to watch.",
-          "y": 3005.46875
+          "y": 1497.125
         },
         {
           "text": "Player spotlights.",
-          "y": 3876.03125
+          "y": 2371.6875
         },
         {
           "text": "A league of our own.",
-          "y": 4596.125
+          "y": 3091.78125
         },
         {
           "text": "Faces of the league",
-          "y": 5809.796875
+          "y": 4305.453125
         },
         {
           "text": "Around the league",
-          "y": 7542.53125
+          "y": 6038.1875
         },
         {
           "text": "Know who you’re playing.",
-          "y": 8239.53125
+          "y": 6719.1875
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 10212.96875
-        },
-        {
-          "text": "Standings",
-          "y": 10312.40625
+          "y": 8692.625
         },
         {
           "text": "League stats",
-          "y": 11697.59375
+          "y": 10096.6875
         },
         {
           "text": "Recent activity",
-          "y": 11868.546875
+          "y": 10267.640625
         },
         {
           "text": "Stocks",
-          "y": 12176.34375
+          "y": 10575.4375
         },
         {
           "text": "Arcade",
-          "y": 12359.59375
+          "y": 10758.6875
         },
         {
           "text": "Every week has a story.",
-          "y": 12581.84375
+          "y": 10980.9375
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 16,
-        "y": 669.078125,
+        "y": 243.5625,
         "width": 288,
-        "height": 855.75,
-        "top": 669.078125,
+        "height": 520.78125,
+        "top": 243.5625,
         "right": 304,
-        "bottom": 1524.828125,
+        "bottom": 764.34375,
         "left": 16
       },
+      "personalDeskY": null,
+      "rosterHeadingY": null,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
@@ -324,81 +314,75 @@
       "scrollWidth": 390,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 1419.296875
-        },
-        {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 4851.953125
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 592.734375
         },
         {
           "text": "Behind the matchup.",
-          "y": 6914.71875
+          "y": 2525.140625
         },
         {
           "text": "Players to watch.",
-          "y": 9265.046875
+          "y": 4875.46875
         },
         {
           "text": "Player spotlights.",
-          "y": 11441.65625
+          "y": 7060.078125
         },
         {
           "text": "A league of our own.",
-          "y": 14667.640625
+          "y": 10286.0625
         },
         {
           "text": "Faces of the league",
-          "y": 17452.984375
+          "y": 13071.40625
         },
         {
           "text": "Around the league",
-          "y": 21639.421875
+          "y": 17257.84375
         },
         {
           "text": "Know who you’re playing.",
-          "y": 23320.984375
+          "y": 18907.40625
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 29285.328125
-        },
-        {
-          "text": "Standings",
-          "y": 29537.96875
+          "y": 24871.75
         },
         {
           "text": "League stats",
-          "y": 33609.484375
+          "y": 29034.765625
         },
         {
           "text": "Recent activity",
-          "y": 34050.59375
+          "y": 29475.875
         },
         {
           "text": "Stocks",
-          "y": 34837.4375
+          "y": 30262.71875
         },
         {
           "text": "Arcade",
-          "y": 35246.359375
+          "y": 30671.640625
         },
         {
           "text": "Every week has a story.",
-          "y": 35690.890625
+          "y": 31116.171875
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 32,
-        "y": 1856.046875,
+        "y": 592.734375,
         "width": 326,
-        "height": 2453.734375,
-        "top": 1856.046875,
+        "height": 1346.671875,
+        "top": 592.734375,
         "right": 358,
-        "bottom": 4309.78125,
+        "bottom": 1939.40625,
         "left": 32
       },
+      "personalDeskY": null,
+      "rosterHeadingY": null,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
@@ -412,81 +396,75 @@
       "scrollWidth": 1440,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 344.859375
-        },
-        {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 583.484375
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 222.90625
         },
         {
           "text": "Behind the matchup.",
-          "y": 1323.59375
+          "y": 903.890625
         },
         {
           "text": "Players to watch.",
-          "y": 1660.46875
+          "y": 1240.765625
         },
         {
           "text": "Player spotlights.",
-          "y": 2266.46875
+          "y": 1850.765625
         },
         {
           "text": "A league of our own.",
-          "y": 2722.890625
+          "y": 2307.1875
         },
         {
           "text": "Faces of the league",
-          "y": 3530
+          "y": 3114.296875
         },
         {
           "text": "Around the league",
-          "y": 4202.34375
+          "y": 3786.640625
         },
         {
           "text": "Know who you’re playing.",
-          "y": 4563.875
+          "y": 4132.171875
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 6031.046875
-        },
-        {
-          "text": "Standings",
-          "y": 6117.046875
+          "y": 5599.34375
         },
         {
           "text": "League stats",
-          "y": 6117.046875
+          "y": 5685.34375
         },
         {
           "text": "Recent activity",
-          "y": 6276.640625
+          "y": 5844.9375
         },
         {
           "text": "Stocks",
-          "y": 7135.5625
+          "y": 6609.859375
         },
         {
           "text": "Arcade",
-          "y": 7135.5625
+          "y": 6609.859375
         },
         {
           "text": "Every week has a story.",
-          "y": 7349.5625
+          "y": 6823.859375
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 96,
-        "y": 545.796875,
-        "width": 781.703125,
-        "height": 534.875,
-        "top": 545.796875,
-        "right": 877.703125,
-        "bottom": 1080.671875,
+        "y": 222.90625,
+        "width": 1248,
+        "height": 488.453125,
+        "top": 222.90625,
+        "right": 1344,
+        "bottom": 711.359375,
         "left": 96
       },
+      "personalDeskY": null,
+      "rosterHeadingY": null,
       "themeToggle": true,
       "compactMenuEscape": false,
       "noHorizontalOverflow": true,
@@ -500,81 +478,75 @@
       "scrollWidth": 390,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 490.015625
-        },
-        {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 1455.359375
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 221.875
         },
         {
           "text": "Behind the matchup.",
-          "y": 2067.0625
+          "y": 924.03125
         },
         {
           "text": "Players to watch.",
-          "y": 2524.1875
+          "y": 1381.15625
         },
         {
           "text": "Player spotlights.",
-          "y": 3310.75
+          "y": 2171.71875
         },
         {
           "text": "A league of our own.",
-          "y": 4030.84375
+          "y": 2891.8125
         },
         {
           "text": "Faces of the league",
-          "y": 5244.515625
+          "y": 4105.484375
         },
         {
           "text": "Around the league",
-          "y": 6893.546875
+          "y": 5754.515625
         },
         {
           "text": "Know who you’re playing.",
-          "y": 7494.328125
+          "y": 6339.296875
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 9274.046875
-        },
-        {
-          "text": "Standings",
-          "y": 9346.609375
+          "y": 8119.015625
         },
         {
           "text": "League stats",
-          "y": 10731.796875
+          "y": 9496.203125
         },
         {
           "text": "Recent activity",
-          "y": 10902.75
+          "y": 9667.15625
         },
         {
           "text": "Stocks",
-          "y": 11172.78125
+          "y": 9937.1875
         },
         {
           "text": "Arcade",
-          "y": 11356.03125
+          "y": 10120.4375
         },
         {
           "text": "Every week has a story.",
-          "y": 11556.59375
+          "y": 10321
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 16,
-        "y": 632.390625,
+        "y": 221.875,
         "width": 358,
-        "height": 595.5,
-        "top": 632.390625,
+        "height": 520.78125,
+        "top": 221.875,
         "right": 374,
-        "bottom": 1227.890625,
+        "bottom": 742.65625,
         "left": 16
       },
+      "personalDeskY": null,
+      "rosterHeadingY": null,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
@@ -588,81 +560,75 @@
       "scrollWidth": 320,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 526.703125
-        },
-        {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 1752.296875
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 243.5625
         },
         {
           "text": "Behind the matchup.",
-          "y": 2499.75
+          "y": 991.40625
         },
         {
           "text": "Players to watch.",
-          "y": 3005.46875
+          "y": 1497.125
         },
         {
           "text": "Player spotlights.",
-          "y": 3876.03125
+          "y": 2371.6875
         },
         {
           "text": "A league of our own.",
-          "y": 4596.125
+          "y": 3091.78125
         },
         {
           "text": "Faces of the league",
-          "y": 5809.796875
+          "y": 4305.453125
         },
         {
           "text": "Around the league",
-          "y": 7542.53125
+          "y": 6038.1875
         },
         {
           "text": "Know who you’re playing.",
-          "y": 8239.53125
+          "y": 6719.1875
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 10212.96875
-        },
-        {
-          "text": "Standings",
-          "y": 10312.40625
+          "y": 8692.625
         },
         {
           "text": "League stats",
-          "y": 11697.59375
+          "y": 10096.6875
         },
         {
           "text": "Recent activity",
-          "y": 11868.546875
+          "y": 10267.640625
         },
         {
           "text": "Stocks",
-          "y": 12176.34375
+          "y": 10575.4375
         },
         {
           "text": "Arcade",
-          "y": 12359.59375
+          "y": 10758.6875
         },
         {
           "text": "Every week has a story.",
-          "y": 12581.84375
+          "y": 10980.9375
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 16,
-        "y": 669.078125,
+        "y": 243.5625,
         "width": 288,
-        "height": 855.75,
-        "top": 669.078125,
+        "height": 520.78125,
+        "top": 243.5625,
         "right": 304,
-        "bottom": 1524.828125,
+        "bottom": 764.34375,
         "left": 16
       },
+      "personalDeskY": null,
+      "rosterHeadingY": null,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
@@ -676,81 +642,75 @@
       "scrollWidth": 390,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 1419.296875
-        },
-        {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 4851.953125
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 592.734375
         },
         {
           "text": "Behind the matchup.",
-          "y": 6914.71875
+          "y": 2525.140625
         },
         {
           "text": "Players to watch.",
-          "y": 9265.046875
+          "y": 4875.46875
         },
         {
           "text": "Player spotlights.",
-          "y": 11441.65625
+          "y": 7060.078125
         },
         {
           "text": "A league of our own.",
-          "y": 14667.640625
+          "y": 10286.0625
         },
         {
           "text": "Faces of the league",
-          "y": 17452.984375
+          "y": 13071.40625
         },
         {
           "text": "Around the league",
-          "y": 21639.421875
+          "y": 17257.84375
         },
         {
           "text": "Know who you’re playing.",
-          "y": 23320.984375
+          "y": 18907.40625
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 29285.328125
-        },
-        {
-          "text": "Standings",
-          "y": 29537.96875
+          "y": 24871.75
         },
         {
           "text": "League stats",
-          "y": 33609.484375
+          "y": 29034.765625
         },
         {
           "text": "Recent activity",
-          "y": 34050.59375
+          "y": 29475.875
         },
         {
           "text": "Stocks",
-          "y": 34837.4375
+          "y": 30262.71875
         },
         {
           "text": "Arcade",
-          "y": 35246.359375
+          "y": 30671.640625
         },
         {
           "text": "Every week has a story.",
-          "y": 35690.890625
+          "y": 31116.171875
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 32,
-        "y": 1856.046875,
+        "y": 592.734375,
         "width": 326,
-        "height": 2453.734375,
-        "top": 1856.046875,
+        "height": 1346.671875,
+        "top": 592.734375,
         "right": 358,
-        "bottom": 4309.78125,
+        "bottom": 1939.40625,
         "left": 32
       },
+      "personalDeskY": null,
+      "rosterHeadingY": null,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
@@ -764,89 +724,87 @@
       "scrollWidth": 1440,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 344.859375
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 222.90625
         },
         {
-          "text": "Reaves Dropper",
-          "y": 583.484375
+          "text": "Your team desk",
+          "y": 222.90625
         },
         {
           "text": "Your roster.",
-          "y": 1323.59375
+          "y": 783.203125
         },
         {
           "text": "Players to watch.",
-          "y": 1786.421875
+          "y": 1246.03125
         },
         {
           "text": "Weekly performers.",
-          "y": 2515.421875
+          "y": 1979.03125
         },
         {
           "text": "News & recent moves.",
-          "y": 2526.578125
+          "y": 1990.1875
         },
         {
           "text": "Player spotlights.",
-          "y": 3363.21875
+          "y": 2826.828125
         },
         {
           "text": "A league of our own.",
-          "y": 3819.640625
+          "y": 3283.25
         },
         {
           "text": "Faces of the league",
-          "y": 4626.75
+          "y": 4090.359375
         },
         {
           "text": "Around the league",
-          "y": 5299.09375
+          "y": 4762.703125
         },
         {
           "text": "Know who you’re playing.",
-          "y": 5660.625
+          "y": 5108.234375
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 7127.796875
-        },
-        {
-          "text": "Standings",
-          "y": 7213.796875
+          "y": 6575.40625
         },
         {
           "text": "League stats",
-          "y": 7213.796875
+          "y": 6661.40625
         },
         {
           "text": "Recent activity",
-          "y": 7373.390625
+          "y": 6821
         },
         {
           "text": "Stocks",
-          "y": 8249.109375
+          "y": 7602.71875
         },
         {
           "text": "Arcade",
-          "y": 8249.109375
+          "y": 7602.71875
         },
         {
           "text": "Every week has a story.",
-          "y": 8463.109375
+          "y": 7816.71875
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 96,
-        "y": 545.796875,
+        "y": 222.90625,
         "width": 781.703125,
-        "height": 534.875,
-        "top": 545.796875,
+        "height": 367.765625,
+        "top": 222.90625,
         "right": 877.703125,
-        "bottom": 1080.671875,
+        "bottom": 590.671875,
         "left": 96
       },
+      "personalDeskY": 222.90625,
+      "rosterHeadingY": 783.203125,
       "themeToggle": true,
       "compactMenuEscape": false,
       "noHorizontalOverflow": true,
@@ -860,89 +818,87 @@
       "scrollWidth": 390,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 490.015625
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 243.5625
         },
         {
-          "text": "Reaves Dropper",
-          "y": 1455.359375
+          "text": "Your team desk",
+          "y": 625.28125
         },
         {
           "text": "Your roster.",
-          "y": 2175.625
+          "y": 1090.859375
         },
         {
           "text": "Players to watch.",
-          "y": 2921.4375
+          "y": 1806.984375
         },
         {
           "text": "Weekly performers.",
-          "y": 4057
+          "y": 2946.546875
         },
         {
           "text": "News & recent moves.",
-          "y": 4926.359375
+          "y": 3815.90625
         },
         {
           "text": "Player spotlights.",
-          "y": 5366.3125
+          "y": 4255.859375
         },
         {
           "text": "A league of our own.",
-          "y": 6086.40625
+          "y": 4975.953125
         },
         {
           "text": "Faces of the league",
-          "y": 7300.078125
+          "y": 6189.625
         },
         {
           "text": "Around the league",
-          "y": 8949.109375
+          "y": 7838.65625
         },
         {
           "text": "Know who you’re playing.",
-          "y": 9549.890625
+          "y": 8423.4375
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 11329.609375
-        },
-        {
-          "text": "Standings",
-          "y": 11402.171875
+          "y": 10203.15625
         },
         {
           "text": "League stats",
-          "y": 12804.15625
+          "y": 11597.140625
         },
         {
           "text": "Recent activity",
-          "y": 12975.109375
+          "y": 11768.09375
         },
         {
           "text": "Stocks",
-          "y": 13265.9375
+          "y": 12058.921875
         },
         {
           "text": "Arcade",
-          "y": 13449.1875
+          "y": 12242.171875
         },
         {
           "text": "Every week has a story.",
-          "y": 13649.75
+          "y": 12442.734375
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 16,
-        "y": 632.390625,
+        "y": 243.5625,
         "width": 358,
-        "height": 595.5,
-        "top": 632.390625,
+        "height": 348.71875,
+        "top": 243.5625,
         "right": 374,
-        "bottom": 1227.890625,
+        "bottom": 592.28125,
         "left": 16
       },
+      "personalDeskY": 608.28125,
+      "rosterHeadingY": 1090.859375,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
@@ -956,89 +912,87 @@
       "scrollWidth": 320,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 526.703125
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 243.5625
         },
         {
-          "text": "Reaves Dropper",
-          "y": 1752.296875
+          "text": "Your team desk",
+          "y": 625.28125
         },
         {
           "text": "Your roster.",
-          "y": 2518.25
+          "y": 1158.234375
         },
         {
           "text": "Players to watch.",
-          "y": 3285.75
+          "y": 1896.046875
         },
         {
           "text": "Weekly performers.",
-          "y": 4526.3125
+          "y": 3140.609375
         },
         {
           "text": "News & recent moves.",
-          "y": 5416.671875
+          "y": 4030.96875
         },
         {
           "text": "Player spotlights.",
-          "y": 5931.015625
+          "y": 4545.3125
         },
         {
           "text": "A league of our own.",
-          "y": 6651.109375
+          "y": 5265.40625
         },
         {
           "text": "Faces of the league",
-          "y": 7870.375
+          "y": 6484.671875
         },
         {
           "text": "Around the league",
-          "y": 9603.109375
+          "y": 8217.40625
         },
         {
           "text": "Know who you’re playing.",
-          "y": 10300.109375
+          "y": 8898.40625
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 12273.546875
-        },
-        {
-          "text": "Standings",
-          "y": 12372.984375
+          "y": 10871.84375
         },
         {
           "text": "League stats",
-          "y": 13774.96875
+          "y": 12292.703125
         },
         {
           "text": "Recent activity",
-          "y": 13945.921875
+          "y": 12463.65625
         },
         {
           "text": "Stocks",
-          "y": 14274.515625
+          "y": 12792.25
         },
         {
           "text": "Arcade",
-          "y": 14457.765625
+          "y": 12975.5
         },
         {
           "text": "Every week has a story.",
-          "y": 14680.015625
+          "y": 13197.75
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 16,
-        "y": 669.078125,
+        "y": 243.5625,
         "width": 288,
-        "height": 855.75,
-        "top": 669.078125,
+        "height": 348.71875,
+        "top": 243.5625,
         "right": 304,
-        "bottom": 1524.828125,
+        "bottom": 592.28125,
         "left": 16
       },
+      "personalDeskY": 608.28125,
+      "rosterHeadingY": 1158.234375,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
@@ -1052,89 +1006,87 @@
       "scrollWidth": 390,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 1419.296875
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 592.734375
         },
         {
-          "text": "Reaves Dropper",
-          "y": 4808.5625
+          "text": "Your team desk",
+          "y": 1574.671875
         },
         {
           "text": "Your roster.",
-          "y": 6781.40625
+          "y": 2948.015625
         },
         {
           "text": "Players to watch.",
-          "y": 8898.3125
+          "y": 5005.53125
         },
         {
           "text": "Weekly performers.",
-          "y": 12016.875
+          "y": 8132.09375
         },
         {
           "text": "News & recent moves.",
-          "y": 14221.953125
+          "y": 10337.171875
         },
         {
           "text": "Player spotlights.",
-          "y": 15535.1875
+          "y": 11650.40625
         },
         {
           "text": "A league of our own.",
-          "y": 18761.171875
+          "y": 14876.390625
         },
         {
           "text": "Faces of the league",
-          "y": 22092.046875
+          "y": 18207.265625
         },
         {
           "text": "Around the league",
-          "y": 26278.484375
+          "y": 22393.703125
         },
         {
           "text": "Know who you’re playing.",
-          "y": 27960.046875
+          "y": 24043.265625
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 33924.390625
-        },
-        {
-          "text": "Standings",
-          "y": 34177.03125
+          "y": 30007.609375
         },
         {
           "text": "League stats",
-          "y": 38282.140625
+          "y": 34204.21875
         },
         {
           "text": "Recent activity",
-          "y": 38723.25
+          "y": 34645.328125
         },
         {
           "text": "Stocks",
-          "y": 39551.6875
+          "y": 35473.765625
         },
         {
           "text": "Arcade",
-          "y": 39960.609375
+          "y": 35882.6875
         },
         {
           "text": "Every week has a story.",
-          "y": 40405.140625
+          "y": 36327.21875
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 32,
-        "y": 1856.046875,
+        "y": 592.734375,
         "width": 326,
-        "height": 2453.734375,
-        "top": 1856.046875,
+        "height": 916.9375,
+        "top": 592.734375,
         "right": 358,
-        "bottom": 4309.78125,
+        "bottom": 1509.671875,
         "left": 32
       },
+      "personalDeskY": 1541.671875,
+      "rosterHeadingY": 2948.015625,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
@@ -1148,89 +1100,87 @@
       "scrollWidth": 1440,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 344.859375
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 222.90625
         },
         {
-          "text": "Reaves Dropper",
-          "y": 583.484375
+          "text": "Your team desk",
+          "y": 222.90625
         },
         {
           "text": "Your roster.",
-          "y": 1323.59375
+          "y": 783.203125
         },
         {
           "text": "Players to watch.",
-          "y": 1786.421875
+          "y": 1246.03125
         },
         {
           "text": "Weekly performers.",
-          "y": 2515.421875
+          "y": 1979.03125
         },
         {
           "text": "News & recent moves.",
-          "y": 2526.578125
+          "y": 1990.1875
         },
         {
           "text": "Player spotlights.",
-          "y": 3363.21875
+          "y": 2826.828125
         },
         {
           "text": "A league of our own.",
-          "y": 3819.640625
+          "y": 3283.25
         },
         {
           "text": "Faces of the league",
-          "y": 4626.75
+          "y": 4090.359375
         },
         {
           "text": "Around the league",
-          "y": 5299.09375
+          "y": 4762.703125
         },
         {
           "text": "Know who you’re playing.",
-          "y": 5660.625
+          "y": 5108.234375
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 7127.796875
-        },
-        {
-          "text": "Standings",
-          "y": 7213.796875
+          "y": 6575.40625
         },
         {
           "text": "League stats",
-          "y": 7213.796875
+          "y": 6661.40625
         },
         {
           "text": "Recent activity",
-          "y": 7373.390625
+          "y": 6821
         },
         {
           "text": "Stocks",
-          "y": 8249.109375
+          "y": 7602.71875
         },
         {
           "text": "Arcade",
-          "y": 8249.109375
+          "y": 7602.71875
         },
         {
           "text": "Every week has a story.",
-          "y": 8463.109375
+          "y": 7816.71875
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 96,
-        "y": 545.796875,
+        "y": 222.90625,
         "width": 781.703125,
-        "height": 534.875,
-        "top": 545.796875,
+        "height": 367.765625,
+        "top": 222.90625,
         "right": 877.703125,
-        "bottom": 1080.671875,
+        "bottom": 590.671875,
         "left": 96
       },
+      "personalDeskY": 222.90625,
+      "rosterHeadingY": 783.203125,
       "themeToggle": true,
       "compactMenuEscape": false,
       "noHorizontalOverflow": true,
@@ -1244,89 +1194,87 @@
       "scrollWidth": 390,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 490.015625
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 243.5625
         },
         {
-          "text": "Reaves Dropper",
-          "y": 1455.359375
+          "text": "Your team desk",
+          "y": 625.28125
         },
         {
           "text": "Your roster.",
-          "y": 2175.625
+          "y": 1090.859375
         },
         {
           "text": "Players to watch.",
-          "y": 2921.4375
+          "y": 1806.984375
         },
         {
           "text": "Weekly performers.",
-          "y": 4057
+          "y": 2946.546875
         },
         {
           "text": "News & recent moves.",
-          "y": 4926.359375
+          "y": 3815.90625
         },
         {
           "text": "Player spotlights.",
-          "y": 5366.3125
+          "y": 4255.859375
         },
         {
           "text": "A league of our own.",
-          "y": 6086.40625
+          "y": 4975.953125
         },
         {
           "text": "Faces of the league",
-          "y": 7300.078125
+          "y": 6189.625
         },
         {
           "text": "Around the league",
-          "y": 8949.109375
+          "y": 7838.65625
         },
         {
           "text": "Know who you’re playing.",
-          "y": 9549.890625
+          "y": 8423.4375
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 11329.609375
-        },
-        {
-          "text": "Standings",
-          "y": 11402.171875
+          "y": 10203.15625
         },
         {
           "text": "League stats",
-          "y": 12804.15625
+          "y": 11597.140625
         },
         {
           "text": "Recent activity",
-          "y": 12975.109375
+          "y": 11768.09375
         },
         {
           "text": "Stocks",
-          "y": 13265.9375
+          "y": 12058.921875
         },
         {
           "text": "Arcade",
-          "y": 13449.1875
+          "y": 12242.171875
         },
         {
           "text": "Every week has a story.",
-          "y": 13649.75
+          "y": 12442.734375
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 16,
-        "y": 632.390625,
+        "y": 243.5625,
         "width": 358,
-        "height": 595.5,
-        "top": 632.390625,
+        "height": 348.71875,
+        "top": 243.5625,
         "right": 374,
-        "bottom": 1227.890625,
+        "bottom": 592.28125,
         "left": 16
       },
+      "personalDeskY": 608.28125,
+      "rosterHeadingY": 1090.859375,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
@@ -1340,89 +1288,87 @@
       "scrollWidth": 320,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 526.703125
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 243.5625
         },
         {
-          "text": "Reaves Dropper",
-          "y": 1752.296875
+          "text": "Your team desk",
+          "y": 625.28125
         },
         {
           "text": "Your roster.",
-          "y": 2518.25
+          "y": 1158.234375
         },
         {
           "text": "Players to watch.",
-          "y": 3285.75
+          "y": 1896.046875
         },
         {
           "text": "Weekly performers.",
-          "y": 4526.3125
+          "y": 3140.609375
         },
         {
           "text": "News & recent moves.",
-          "y": 5416.671875
+          "y": 4030.96875
         },
         {
           "text": "Player spotlights.",
-          "y": 5931.015625
+          "y": 4545.3125
         },
         {
           "text": "A league of our own.",
-          "y": 6651.109375
+          "y": 5265.40625
         },
         {
           "text": "Faces of the league",
-          "y": 7870.375
+          "y": 6484.671875
         },
         {
           "text": "Around the league",
-          "y": 9603.109375
+          "y": 8217.40625
         },
         {
           "text": "Know who you’re playing.",
-          "y": 10300.109375
+          "y": 8898.40625
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 12273.546875
-        },
-        {
-          "text": "Standings",
-          "y": 12372.984375
+          "y": 10871.84375
         },
         {
           "text": "League stats",
-          "y": 13774.96875
+          "y": 12292.703125
         },
         {
           "text": "Recent activity",
-          "y": 13945.921875
+          "y": 12463.65625
         },
         {
           "text": "Stocks",
-          "y": 14274.515625
+          "y": 12792.25
         },
         {
           "text": "Arcade",
-          "y": 14457.765625
+          "y": 12975.5
         },
         {
           "text": "Every week has a story.",
-          "y": 14680.015625
+          "y": 13197.75
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 16,
-        "y": 669.078125,
+        "y": 243.5625,
         "width": 288,
-        "height": 855.75,
-        "top": 669.078125,
+        "height": 348.71875,
+        "top": 243.5625,
         "right": 304,
-        "bottom": 1524.828125,
+        "bottom": 592.28125,
         "left": 16
       },
+      "personalDeskY": 608.28125,
+      "rosterHeadingY": 1158.234375,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
@@ -1436,93 +1382,115 @@
       "scrollWidth": 390,
       "headings": [
         {
-          "text": "Reaves Dropper vs Ware the Hoes At?",
-          "y": 1419.296875
+          "text": "Reaves Dropper versus Ware the Hoes At?",
+          "y": 592.734375
         },
         {
-          "text": "Reaves Dropper",
-          "y": 4808.5625
+          "text": "Your team desk",
+          "y": 1574.671875
         },
         {
           "text": "Your roster.",
-          "y": 6781.40625
+          "y": 2948.015625
         },
         {
           "text": "Players to watch.",
-          "y": 8898.3125
+          "y": 5005.53125
         },
         {
           "text": "Weekly performers.",
-          "y": 12016.875
+          "y": 8132.09375
         },
         {
           "text": "News & recent moves.",
-          "y": 14221.953125
+          "y": 10337.171875
         },
         {
           "text": "Player spotlights.",
-          "y": 15535.1875
+          "y": 11650.40625
         },
         {
           "text": "A league of our own.",
-          "y": 18761.171875
+          "y": 14876.390625
         },
         {
           "text": "Faces of the league",
-          "y": 22092.046875
+          "y": 18207.265625
         },
         {
           "text": "Around the league",
-          "y": 26278.484375
+          "y": 22393.703125
         },
         {
           "text": "Know who you’re playing.",
-          "y": 27960.046875
+          "y": 24043.265625
         },
         {
           "text": "Standings, leaders & moves.",
-          "y": 33924.390625
-        },
-        {
-          "text": "Standings",
-          "y": 34177.03125
+          "y": 30007.609375
         },
         {
           "text": "League stats",
-          "y": 38282.140625
+          "y": 34204.21875
         },
         {
           "text": "Recent activity",
-          "y": 38723.25
+          "y": 34645.328125
         },
         {
           "text": "Stocks",
-          "y": 39551.6875
+          "y": 35473.765625
         },
         {
           "text": "Arcade",
-          "y": 39960.609375
+          "y": 35882.6875
         },
         {
           "text": "Every week has a story.",
-          "y": 40405.140625
+          "y": 36327.21875
         }
       ],
       "clippedFaces": 0,
       "stage": {
         "x": 32,
-        "y": 1856.046875,
+        "y": 592.734375,
         "width": 326,
-        "height": 2453.734375,
-        "top": 1856.046875,
+        "height": 916.9375,
+        "top": 592.734375,
         "right": 358,
-        "bottom": 4309.78125,
+        "bottom": 1509.671875,
         "left": 32
       },
+      "personalDeskY": 1541.671875,
+      "rosterHeadingY": 2948.015625,
       "themeToggle": true,
       "compactMenuEscape": true,
       "noHorizontalOverflow": true,
       "allFacesVisible": true
+    },
+    {
+      "view": "public",
+      "aiState": "stale",
+      "visibleQualification": true,
+      "zeroPendingDistinct": true
+    },
+    {
+      "view": "public",
+      "aiState": "missing",
+      "visibleQualification": true,
+      "zeroPendingDistinct": true
+    },
+    {
+      "view": "member",
+      "aiState": "stale",
+      "visibleQualification": true,
+      "zeroPendingDistinct": true
+    },
+    {
+      "view": "member",
+      "aiState": "missing",
+      "visibleQualification": true,
+      "zeroPendingDistinct": true
     }
   ],
   "errors": [],
