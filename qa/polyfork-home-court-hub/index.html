@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:,">
+<title>GOAT Hoopers — Home-Court Hub (Skeleton)</title>
+<style>
+  :root{
+    --bg:#0a0f16;
+    --panel:#0e1319;
+    --panel-line:#26303c;
+    --paper:#f2ede3;
+    --paper-dim:#d8d2c4;
+    --muted:#b9c2cc;
+    --faint:#8b96a1;
+    --orange:#e8703a;
+    --amber:#e8b98a;
+  }
+  *{ box-sizing:border-box; }
+  html, body{ margin:0; padding:0; height:100%; background:var(--bg); overflow:hidden; }
+  body{ font-family:system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--paper); }
+  #app{ position:fixed; inset:0; touch-action:none; }
+  #app canvas{ display:block; }
+
+  /* ---------- branding chip ---------- */
+  .chip{
+    position:fixed; top:max(14px, env(safe-area-inset-top)); left:14px; z-index:20;
+    background:var(--panel); border:1px solid var(--panel-line); border-top:3px solid var(--orange);
+    padding:11px 14px 12px; max-width:min(84vw, 372px);
+  }
+  .chip h1{
+    margin:0; font-family:Georgia, "Times New Roman", serif; font-weight:700;
+    font-size:14px; line-height:1.35; letter-spacing:.14em; color:var(--paper);
+    text-transform:uppercase;
+  }
+  .chip p{
+    margin:5px 0 0; font-size:12.5px; line-height:1.5; color:var(--muted);
+  }
+  .chip p .status{ display:block; margin-top:3px; color:var(--amber); font-size:11.5px; }
+
+  .hint{
+    position:fixed; left:14px; bottom:max(86px, env(safe-area-inset-bottom)); z-index:10;
+    font-size:11px; letter-spacing:.04em; color:var(--faint);
+    background:rgba(10,15,22,.72); padding:4px 8px;
+  }
+  @media (max-width:560px){ .hint{ display:none; } }
+
+  /* ---------- zone buttons ---------- */
+  .zonebar{
+    position:fixed; left:0; right:0; bottom:0; z-index:20;
+    display:flex; flex-wrap:wrap; justify-content:center; gap:6px;
+    padding:10px 10px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(10,15,22,.88);
+    border-top:1px solid var(--panel-line);
+  }
+  .zonebar button{
+    min-height:44px; padding:8px 14px; cursor:pointer;
+    background:var(--panel); color:var(--paper);
+    border:1px solid var(--panel-line);
+    font-family:Georgia, "Times New Roman", serif; font-size:13px; font-weight:700;
+    letter-spacing:.1em; text-transform:uppercase;
+  }
+  .zonebar button:hover{ border-color:var(--orange); }
+  .zonebar button:focus-visible{ outline:2px solid var(--orange); outline-offset:2px; }
+  .zonebar button[aria-pressed="true"]{ border-color:var(--orange); color:var(--amber); }
+
+  /* ---------- placeholder panel (bottom sheet) ---------- */
+  .sheet{
+    position:fixed; left:0; right:0; bottom:0; z-index:30;
+    background:var(--panel); border-top:3px solid var(--orange);
+    padding:20px 20px calc(20px + env(safe-area-inset-bottom));
+    transform:translateY(110%); visibility:hidden;
+    transition:transform 260ms cubic-bezier(.2,.8,.25,1), visibility 0s linear 260ms;
+  }
+  .sheet.open{
+    transform:translateY(0); visibility:visible;
+    transition:transform 260ms cubic-bezier(.2,.8,.25,1);
+  }
+  @media (min-width:720px){
+    .sheet{ left:auto; width:440px; right:14px; bottom:14px; border:1px solid var(--panel-line); border-top:3px solid var(--orange); }
+  }
+  .sheet h2{
+    margin:0 44px 8px 0; font-family:Georgia, "Times New Roman", serif;
+    font-size:21px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--paper);
+  }
+  .sheet .desc{ margin:0 0 14px; font-size:14.5px; line-height:1.55; color:var(--paper-dim); }
+  .sheet .note{
+    display:inline-block; margin:0 0 16px; padding:5px 9px;
+    border:1px solid var(--panel-line); color:var(--amber);
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .sheet .back{
+    display:block; min-height:48px; padding:12px 18px; cursor:pointer;
+    background:var(--orange); color:#1c1109; border:0;
+    font-size:13px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  }
+  .sheet .back:focus-visible{ outline:2px solid var(--paper); outline-offset:2px; }
+  .sheet .close{
+    position:absolute; top:8px; right:8px; width:44px; height:44px; cursor:pointer;
+    background:transparent; border:0; color:var(--paper); font-size:22px; line-height:1;
+  }
+  .sheet .close:focus-visible{ outline:2px solid var(--orange); outline-offset:1px; }
+
+  /* ---------- WebGL fallback ---------- */
+  .fallback{
+    position:fixed; inset:0; z-index:40; display:none;
+    align-items:center; justify-content:center; padding:24px; background:var(--bg);
+    pointer-events:none; /* the note must never trap the page: the zone row stays clickable */
+  }
+  .fallback.show{ display:flex; }
+  .fallback .card{
+    position:relative;
+    background:var(--panel); border:1px solid var(--panel-line); border-top:3px solid var(--orange);
+    padding:22px; max-width:420px; pointer-events:auto;
+  }
+  .fallback .close{
+    position:absolute; top:6px; right:6px; width:44px; height:44px; cursor:pointer;
+    background:transparent; border:0; color:var(--paper); font-size:22px; line-height:1;
+  }
+  .fallback .close:focus-visible{ outline:2px solid var(--orange); outline-offset:1px; }
+  /* With WebGL dead, the DOM navigation is the only path — keep it above the note. */
+  body.no-webgl .zonebar{ z-index:50; }
+  body.no-webgl .sheet{ z-index:60; }
+  .fallback h2{
+    margin:0 0 8px; font-family:Georgia, "Times New Roman", serif; font-size:17px;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--paper);
+  }
+  .fallback p{ margin:0; font-size:13.5px; line-height:1.6; color:var(--muted); }
+
+  @media (prefers-reduced-motion: reduce){
+    .sheet, .sheet.open{ transition:none; }
+  }
+</style>
+<script type="importmap">
+{ "imports": {
+    "three": "https://unpkg.com/three@0.180.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.180.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="app"></div>
+
+<header class="chip">
+  <h1>GOAT Hoopers — Home-Court Hub (skeleton)</h1>
+  <p>Mockup skeleton — the court is the front door, and every panel is a placeholder.
+     <span class="status" id="status">Loading the court…</span></p>
+</header>
+
+<div class="hint">Drag to orbit &middot; Pinch or scroll to zoom &middot; Tap a label to fly in</div>
+
+<nav class="zonebar" aria-label="Court zones">
+  <button type="button" data-zone="ai-decides" aria-pressed="false">AI Decides</button>
+  <button type="button" data-zone="studs-chuds" aria-pressed="false">Studs &amp; Chuds</button>
+  <button type="button" data-zone="stats" aria-pressed="false">League Stats</button>
+  <button type="button" data-zone="your-team" aria-pressed="false">Your Team</button>
+  <button type="button" data-zone="arcade" aria-pressed="false">Arcade</button>
+</nav>
+
+<section class="sheet" id="sheet" aria-hidden="true" aria-labelledby="sheet-title">
+  <button type="button" class="close" id="sheet-close" aria-label="Close panel and return to full court">&times;</button>
+  <h2 id="sheet-title"></h2>
+  <p class="desc" id="sheet-desc"></p>
+  <p class="note">Placeholder panel — no live data</p>
+  <button type="button" class="back" id="sheet-back">Back to full court</button>
+</section>
+
+<div class="fallback" id="fallback">
+  <div class="card">
+    <button type="button" class="close" id="fallback-close" aria-label="Dismiss this note">&times;</button>
+    <h2>The court needs WebGL</h2>
+    <p>This home-court mockup is a 3D scene, and your browser could not start WebGL, so the court cannot be drawn. The zone buttons below still open every section&rsquo;s panel. Or try a recent version of Chrome, Safari, Firefox or Edge — the league&rsquo;s regular pages still work without 3D.</p>
+  </div>
+</div>
+
+<script>
+  // Honest failure surface: if a 3D module stalls or throws, say so in the chip.
+  window.__hubReady = false;
+  function hubError(msg){
+    var s = document.getElementById('status');
+    if (s && !window.__hubReady) s.textContent = msg;
+  }
+  window.addEventListener('error', function(e){
+    if (e && e.message) hubError('Hit a snag: ' + e.message);
+  });
+  window.addEventListener('unhandledrejection', function(){
+    hubError('Hit a snag loading a 3D module. Check connection and reload.');
+  });
+  setTimeout(function(){
+    hubError('Still loading — a CDN module may have failed. Check connection and reload.');
+  }, 20000);
+</script>
+
+<script>
+  // ---------- DOM navigation layer (P2-B) ----------
+  // The zone row and placeholder panels are bound HERE, in plain DOM code
+  // that runs before the 3D module is even requested. If the CDN import is
+  // blocked or WebGL context creation fails, the court cannot draw — but
+  // every zone's panel still opens, because none of this depends on the
+  // renderer. The 3D module, when it does load, only adds camera flights
+  // through window.__hubFlyTo / window.__hubFlyHome.
+  var ZONE_PANELS = {
+    'ai-decides': {
+      title: 'AI Decides',
+      desc: 'The scoreboard is where the league\u2019s AI matchup verdicts and pick explanations will live.'
+    },
+    'studs-chuds': {
+      title: 'Studs & Chuds',
+      desc: 'The baseline boards are where each week\u2019s top performers (studs) and bottom performers (chuds) will be posted.'
+    },
+    'stats': {
+      title: 'League Stats',
+      desc: 'The stats table is where league standings, leaderboards and box-score numbers will plug in.'
+    },
+    'your-team': {
+      title: 'Your Team',
+      desc: 'Your bench is where your roster, team value and next matchup will live.'
+    },
+    'arcade': {
+      title: 'Arcade',
+      desc: 'The far hoop is the arcade door — the free-throw game will launch from here.'
+    }
+  };
+  window.__zonePanels = ZONE_PANELS;
+  (function(){
+    var sheet = document.getElementById('sheet');
+    var sheetTitle = document.getElementById('sheet-title');
+    var sheetDesc = document.getElementById('sheet-desc');
+    var zoneButtons = Array.prototype.slice.call(document.querySelectorAll('.zonebar button'));
+    var currentZone = null;
+    function markButtons(){
+      for (var i = 0; i < zoneButtons.length; i++) {
+        var b = zoneButtons[i];
+        b.setAttribute('aria-pressed', b.getAttribute('data-zone') === currentZone ? 'true' : 'false');
+      }
+    }
+    function openPanel(id){
+      var p = ZONE_PANELS[id];
+      if (!p) return;
+      sheetTitle.textContent = p.title;
+      sheetDesc.textContent = p.desc;
+      sheet.classList.add('open');
+      sheet.setAttribute('aria-hidden', 'false');
+    }
+    function closePanel(){
+      sheet.classList.remove('open');
+      sheet.setAttribute('aria-hidden', 'true');
+    }
+    function selectZone(id){
+      if (!ZONE_PANELS[id]) return;
+      currentZone = id;
+      markButtons();
+      openPanel(id);
+      if (typeof window.__hubFlyTo === 'function') window.__hubFlyTo(id);
+    }
+    function goHome(){
+      currentZone = null;
+      markButtons();
+      closePanel();
+      if (typeof window.__hubFlyHome === 'function') window.__hubFlyHome();
+    }
+    for (var i = 0; i < zoneButtons.length; i++) {
+      (function(b){
+        b.addEventListener('click', function(){ selectZone(b.getAttribute('data-zone')); });
+      })(zoneButtons[i]);
+    }
+    document.getElementById('sheet-back').addEventListener('click', goHome);
+    document.getElementById('sheet-close').addEventListener('click', goHome);
+    var fbClose = document.getElementById('fallback-close');
+    if (fbClose) fbClose.addEventListener('click', function(){
+      document.getElementById('fallback').classList.remove('show');
+    });
+    // Debug/automation hook — same interface the 3D module used to own.
+    window.__hub = { zones: Object.keys(ZONE_PANELS), goTo: selectZone, goHome: goHome };
+  })();
+</script>
+
+<script>
+(async function(){
+let THREE, OrbitControls;
+try {
+  THREE = await import('three');
+  ({ OrbitControls } = await import('three/addons/controls/OrbitControls.js'));
+} catch (e) {
+  hubError('Hit a snag loading the 3D library. Check connection and reload.');
+  return;
+}
+
+const statusEl = document.getElementById('status');
+const setStatus = t => { statusEl.textContent = t; };
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---------- renderer (with a real fallback if WebGL is unavailable) ----------
+const app = document.getElementById('app');
+let renderer = null;
+try {
+  renderer = new THREE.WebGLRenderer({ antialias:true, preserveDrawingBuffer:true, powerPreference:'high-performance' });
+} catch (e) {
+  document.getElementById('fallback').classList.add('show');
+  document.body.classList.add('no-webgl');
+  setStatus('WebGL unavailable — the zone buttons below still open every panel.');
+  return;
+}
+// Pixel budget: a phone's native DPR (3 on current iPhones) quadruples the
+// fragment work for a flat-shaded scene that cannot show the difference.
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+// The scene is static, so shadow maps are baked once (needsUpdate below,
+// and once more after the catalog assets land) instead of re-rendered on
+// every frame — that was three extra scene passes per frame. The two small
+// swaying trims (hoop nets, scoreboard cards) keep animating; only their
+// shadows are baked, which is invisible at night-game scale.
+renderer.shadowMap.autoUpdate = false;
+renderer.toneMapping = THREE.NoToneMapping; // Polyfork colors are authored for no tone mapping
+app.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0a0f16);
+scene.fog = new THREE.Fog(0x0a0f16, 34, 95);
+const camera = new THREE.PerspectiveCamera(42, window.innerWidth/window.innerHeight, 0.1, 400);
+
+const OVERVIEW_POS = new THREE.Vector3(17, 9, 20);
+const OVERVIEW_TARGET = new THREE.Vector3(0, 1.1, 0);
+camera.position.copy(OVERVIEW_POS);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.copy(OVERVIEW_TARGET);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.minDistance = 3;
+controls.maxDistance = 55;
+controls.maxPolarAngle = 1.45;
+controls.autoRotateSpeed = -0.55;
+controls.autoRotate = false; // the bounded intro starts once the full scene is up (end of this script)
+// Intro rotation (P2-A): after the scene is ready the overview turns slowly
+// for INTRO_MS, then parks for good. Any interaction ends it sooner, and
+// returning to full court does NOT restart it — the resting state of this
+// page is a still court that renders only on demand.
+const INTRO_MS = 6000;
+let introDeadline = 0;
+
+// ---------- zones ----------
+// Panel text lives in the DOM layer (window.__zonePanels) so the panels work
+// with no renderer at all; here it is only re-read for the in-scene labels.
+const PANELS = window.__zonePanels || {};
+const panelOf = id => PANELS[id] || { title: id, desc: '' };
+const ZONES = {
+  'ai-decides': {
+    title: panelOf('ai-decides').title,
+    desc: panelOf('ai-decides').desc,
+    focus: new THREE.Vector3(0, 2.6, -19.5),
+    cam:   new THREE.Vector3(0, 4.6, -11.9)
+  },
+  'studs-chuds': {
+    title: panelOf('studs-chuds').title,
+    desc: panelOf('studs-chuds').desc,
+    focus: new THREE.Vector3(0, 1.7, -15.3),
+    cam:   new THREE.Vector3(0, 2.7, -3.6)
+  },
+  'stats': {
+    title: panelOf('stats').title,
+    desc: panelOf('stats').desc,
+    focus: new THREE.Vector3(2.6, 0.9, 12.4),
+    cam:   new THREE.Vector3(6.4, 2.5, 7.6)
+  },
+  'your-team': {
+    title: panelOf('your-team').title,
+    desc: panelOf('your-team').desc,
+    focus: new THREE.Vector3(-8.6, 0.8, -0.4),
+    cam:   new THREE.Vector3(-3.4, 2.6, 3.0)
+  },
+  'arcade': {
+    title: panelOf('arcade').title,
+    desc: panelOf('arcade').desc,
+    focus: new THREE.Vector3(0, 2.7, -13.8),
+    cam:   new THREE.Vector3(4.6, 3.3, -7.8)
+  }
+};
+const ZONE_IDS = Object.keys(ZONES);
+
+// ---------- base lights (Polyfork stage() night rig layers on top later) ----------
+scene.add(new THREE.HemisphereLight(0x2a3c55, 0x0b0d10, 0.35));
+function addSpot(x, z, tx, tz){
+  const s = new THREE.SpotLight(0xffd9a3, 900, 70, 0.58, 0.7, 1.6);
+  s.position.set(x, 7.7, z);
+  s.target.position.set(tx, 0, tz);
+  s.castShadow = true;
+  s.shadow.mapSize.set(1024, 1024);
+  s.shadow.camera.near = 2; s.shadow.camera.far = 45;
+  s.shadow.bias = -0.0005;
+  scene.add(s); scene.add(s.target);
+}
+addSpot(-9.5, -14.5, -1.5, -5);
+addSpot( 9.5,  14.5,  1.5,  5);
+
+// ---------- hand-made court (NOT Polyfork): asphalt pad + painted lines + balls ----------
+const paintMat = new THREE.MeshStandardMaterial({ color:0xe8e6df, roughness:0.9, metalness:0 });
+
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(120, 120),
+  new THREE.MeshStandardMaterial({ color:0x0c0f13, roughness:1 })
+);
+ground.rotation.x = -Math.PI/2; ground.position.y = -0.02; ground.receiveShadow = true;
+scene.add(ground);
+
+const pad = new THREE.Mesh(
+  new THREE.PlaneGeometry(15.6, 26.6),
+  new THREE.MeshStandardMaterial({ color:0x23262b, roughness:0.97, metalness:0 })
+);
+pad.rotation.x = -Math.PI/2; pad.position.y = 0.012; pad.receiveShadow = true;
+scene.add(pad);
+
+function strip(w, d, x, z){
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, 0.006, d), paintMat);
+  m.position.set(x, 0.02, z); m.receiveShadow = true; scene.add(m); return m;
+}
+function ring(rIn, rOut, x, z){
+  const g = new THREE.RingGeometry(rIn, rOut, 56); g.rotateX(-Math.PI/2);
+  const m = new THREE.Mesh(g, paintMat); m.position.set(x, 0.021, z); m.receiveShadow = true; scene.add(m); return m;
+}
+function arcStrip(rIn, rOut, a0, a1, x, z){
+  const s = new THREE.Shape();
+  s.absarc(0, 0, rOut, a0, a1, false);
+  s.absarc(0, 0, rIn, a1, a0, true);
+  const g = new THREE.ShapeGeometry(s, 48); g.rotateX(-Math.PI/2);
+  const m = new THREE.Mesh(g, paintMat); m.position.set(x, 0.021, z); m.receiveShadow = true; scene.add(m); return m;
+}
+strip(0.12, 25.2, -7.1, 0); strip(0.12, 25.2, 7.1, 0);
+strip(14.32, 0.12, 0, -12.6); strip(14.32, 0.12, 0, 12.6);
+strip(14.32, 0.12, 0, 0);
+ring(1.74, 1.86, 0, 0);
+for (const e of [-1, 1]) {
+  const bz = 12.6 * e;
+  const fz = 6.8 * e;
+  strip(0.12, 5.8, -2.45, (bz + fz)/2);
+  strip(0.12, 5.8,  2.45, (bz + fz)/2);
+  strip(5.02, 0.12, 0, fz);
+  ring(1.74, 1.86, 0, fz);
+  if (e < 0) arcStrip(6.63, 6.87, Math.PI, 2*Math.PI, 0, -11.0);
+  else       arcStrip(6.63, 6.87, 0, Math.PI, 0, 11.0);
+}
+const ballMat = new THREE.MeshStandardMaterial({ color:0xd96c33, roughness:0.8, flatShading:true });
+for (const [bx, bz] of [[1.1, -2.5], [7.3, 6.3]]) {
+  const b = new THREE.Mesh(new THREE.IcosahedronGeometry(0.121, 2), ballMat);
+  b.position.set(bx, 0.121, bz); b.castShadow = true; scene.add(b);
+}
+
+// ---------- floating zone labels (canvas sprites) ----------
+function makeLabelSprite(text){
+  const c = document.createElement('canvas'); c.width = 768; c.height = 192;
+  const g = c.getContext('2d');
+  g.fillStyle = 'rgba(14,19,25,0.94)'; g.fillRect(0, 0, 768, 192);
+  g.strokeStyle = '#26303c'; g.lineWidth = 4; g.strokeRect(2, 2, 764, 188);
+  g.fillStyle = '#e8703a'; g.fillRect(0, 178, 768, 10);
+  g.fillStyle = '#f2ede3';
+  g.font = '700 64px Georgia, serif';
+  g.textAlign = 'center'; g.textBaseline = 'middle';
+  try { g.letterSpacing = '7px'; } catch (e) {}
+  g.fillText(text.toUpperCase(), 384, 90);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map:tex, transparent:true, depthWrite:false }));
+  const w = Math.max(2.4, text.length * 0.21);
+  sp.scale.set(w, w * 0.25, 1);
+  // Base size for the overview distance LOD in the render loop: far labels
+  // grow toward a constant screen size so they stay legible from the
+  // overview camera; near labels barely change.
+  sp.userData.baseW = w;
+  sp.userData.baseH = w * 0.25;
+  return sp;
+}
+
+const hitTargets = [];
+const zoneLabels = {};
+function addZoneDressing(id, labelPos, hitSize, hitPos){
+  const label = makeLabelSprite(ZONES[id].title);
+  label.position.copy(labelPos);
+  label.userData.zoneId = id;
+  scene.add(label);
+  zoneLabels[id] = label;
+  hitTargets.push(label);
+  const hit = new THREE.Mesh(
+    new THREE.BoxGeometry(hitSize[0], hitSize[1], hitSize[2]),
+    new THREE.MeshBasicMaterial({ transparent:true, opacity:0, depthWrite:false })
+  );
+  hit.position.copy(hitPos);
+  hit.userData.zoneId = id;
+  scene.add(hit);
+  hitTargets.push(hit);
+}
+// Label anchors are staggered at the far end (scoreboard left and high,
+// arcade right, boards low-center) so the three far labels do not stack
+// into one unreadable cluster from the overview camera. Hit boxes stay on
+// the installations themselves.
+addZoneDressing('ai-decides',  new THREE.Vector3(-2.6, 6.0, -19.5),  [4.6, 5.6, 2.2], new THREE.Vector3(0, 2.6, -19.5));
+addZoneDressing('studs-chuds', new THREE.Vector3(0, 3.3, -15.3),    [13.5, 3.6, 2.2], new THREE.Vector3(0, 1.8, -15.3));
+addZoneDressing('stats',       new THREE.Vector3(2.6, 2.3, 12.4),   [3.4, 2.6, 3.0], new THREE.Vector3(2.6, 1.0, 12.4));
+addZoneDressing('your-team',   new THREE.Vector3(-8.6, 2.6, 0),     [3.2, 2.8, 10.5], new THREE.Vector3(-8.6, 1.1, 0));
+addZoneDressing('arcade',      new THREE.Vector3(2.8, 5.05, -13.8), [3.6, 4.6, 2.6], new THREE.Vector3(0, 2.4, -13.8));
+
+// ---------- STUDS & CHUDS billboards (hand-made, canvas textures) ----------
+function makeBoardTexture(word){
+  const c = document.createElement('canvas'); c.width = 512; c.height = 288;
+  const g = c.getContext('2d');
+  g.fillStyle = '#11161d'; g.fillRect(0, 0, 512, 288);
+  g.fillStyle = '#e8703a'; g.fillRect(0, 258, 512, 10);
+  g.fillStyle = '#f2ede3';
+  g.font = '700 92px Georgia, serif';
+  g.textAlign = 'center'; g.textBaseline = 'middle';
+  try { g.letterSpacing = '8px'; } catch (e) {}
+  g.fillText(word, 256, 138);
+  g.font = '400 25px system-ui, sans-serif';
+  g.fillStyle = '#8b96a1';
+  g.fillText('THIS WEEK', 256, 216);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+const frameMat = new THREE.MeshStandardMaterial({ color:0x1a2129, roughness:0.7, metalness:0.25 });
+const postMat = new THREE.MeshStandardMaterial({ color:0x39434e, roughness:0.6, metalness:0.4 });
+for (const [word, bx] of [['STUDS', -4.8], ['CHUDS', 4.8]]) {
+  const grp = new THREE.Group();
+  const frame = new THREE.Mesh(new THREE.BoxGeometry(3.7, 2.15, 0.1), frameMat);
+  frame.position.y = 1.85; frame.castShadow = true; frame.receiveShadow = true;
+  grp.add(frame);
+  const face = new THREE.Mesh(
+    new THREE.PlaneGeometry(3.45, 1.94),
+    new THREE.MeshStandardMaterial({ map:makeBoardTexture(word), roughness:0.85 })
+  );
+  face.position.set(0, 1.85, 0.056);
+  grp.add(face);
+  for (const px of [-1.5, 1.5]) {
+    const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.85, 10), postMat);
+    leg.position.set(px, 0.42, -0.05); leg.castShadow = true;
+    grp.add(leg);
+  }
+  grp.position.set(bx, 0, -15.3);
+  scene.add(grp);
+}
+
+// ---------- STATS plinth (hand-made) ----------
+{
+  const grp = new THREE.Group();
+  const bodyMat = new THREE.MeshStandardMaterial({ color:0x232b34, roughness:0.8 });
+  const body = new THREE.Mesh(new THREE.BoxGeometry(1.9, 0.92, 0.95), bodyMat);
+  body.position.y = 0.46; body.castShadow = true; body.receiveShadow = true;
+  grp.add(body);
+  const top = new THREE.Mesh(new THREE.BoxGeometry(2.1, 0.08, 1.1),
+    new THREE.MeshStandardMaterial({ color:0x39434e, roughness:0.5, metalness:0.3 }));
+  top.position.y = 0.96; top.castShadow = true;
+  grp.add(top);
+  const c = document.createElement('canvas'); c.width = 512; c.height = 160;
+  const g = c.getContext('2d');
+  g.fillStyle = '#0e1319'; g.fillRect(0, 0, 512, 160);
+  g.fillStyle = '#e8703a'; g.fillRect(0, 146, 512, 8);
+  g.fillStyle = '#f2ede3'; g.font = '700 62px Georgia, serif';
+  g.textAlign = 'center'; g.textBaseline = 'middle';
+  try { g.letterSpacing = '8px'; } catch (e) {}
+  g.fillText('STATS', 256, 76);
+  const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+  const sign = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 0.47),
+    new THREE.MeshStandardMaterial({ map:tex, roughness:0.85 }));
+  sign.position.set(0, 0.52, -0.481); sign.rotation.y = Math.PI;
+  grp.add(sign);
+  // a couple of "sheet" props on top — plain paper slabs, no numbers
+  const paperMat = new THREE.MeshStandardMaterial({ color:0xe8e6df, roughness:0.9 });
+  const sheet1 = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.015, 0.75), paperMat);
+  sheet1.position.set(-0.4, 1.01, 0); sheet1.rotation.y = 0.3;
+  grp.add(sheet1);
+  const sheet2 = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.015, 0.75), paperMat);
+  sheet2.position.set(0.45, 1.01, 0.05); sheet2.rotation.y = -0.2;
+  grp.add(sheet2);
+  grp.position.set(2.6, 0, 12.4);
+  scene.add(grp);
+}
+
+// ---------- event-driven rendering ----------
+// No idle RAF loop: frames are produced only while a flight is running,
+// auto-rotation is on, the user is interacting / damping is settling, or
+// something explicitly asks for one.
+const tickers = [];
+let rafId = null;
+let flight = null;
+let interacting = false;
+let dampingUntil = 0;
+
+function ensureLoop(){
+  if (rafId === null) rafId = requestAnimationFrame(loop);
+}
+function loop(ts){
+  rafId = null;
+  let keepGoing = false;
+  // Bounded intro (P2-A): once the intro window closes, rotation stops and
+  // the court parks — no perpetual loop at the overview.
+  if (controls.autoRotate && introDeadline && ts >= introDeadline) {
+    controls.autoRotate = false;
+    settleControls();
+  }
+  if (flight) { stepFlight(ts); keepGoing = true; }
+  controls.update();
+  // Label LOD: keep far-end labels legible from the overview without
+  // inflating near ones. Runs only while the loop runs (flights, intro,
+  // interaction), so a parked court still renders nothing.
+  for (const id of ZONE_IDS) {
+    const label = zoneLabels[id];
+    if (!label || !label.visible || !label.userData.baseW) continue;
+    const d = camera.position.distanceTo(label.position);
+    const f = Math.min(1.6, Math.max(0.9, d / 26));
+    label.scale.set(label.userData.baseW * f, label.userData.baseH * f, 1);
+  }
+  const t = ts / 1000;
+  for (const o of tickers) { try { o.userData.tick(t); } catch (e) {} }
+  renderer.render(scene, camera);
+  if (flight) keepGoing = true;
+  if (controls.autoRotate) keepGoing = true;
+  if (interacting) keepGoing = true;
+  if (ts < dampingUntil) keepGoing = true;
+  if (keepGoing) ensureLoop();
+}
+function renderOnce(){ ensureLoop(); }
+
+controls.addEventListener('start', () => {
+  interacting = true;
+  if (controls.autoRotate) { controls.autoRotate = false; introDeadline = 0; } // intro never resumes
+  ensureLoop();
+});
+controls.addEventListener('end', () => {
+  interacting = false;
+  dampingUntil = performance.now() + 700; // let damping settle, then stop
+  ensureLoop();
+});
+controls.addEventListener('change', ensureLoop);
+
+// OrbitControls damping keeps a decaying tail of rotation deltas after
+// autoRotate (or a flick) ends; while that tail decays, update() keeps
+// dispatching 'change', which would keep this render loop — and the camera
+// creep — alive for ~a minute at slow frame rates. Settling runs update()
+// until it reports no change: the remaining tail (under a degree) lands in
+// a single frame and the camera is then truly still, so the loop can park.
+function settleControls(){
+  let guard = 0;
+  while (controls.update() && guard++ < 240) {}
+}
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderOnce();
+});
+
+// ---------- camera flights ----------
+// Smootherstep (6t^5 - 15t^4 + 10t^3): velocity is zero at both ends and
+// continuous in between. The old easeOutCubic started at maximum velocity —
+// a visible jolt the moment a flight began — and the tween is driven by the
+// rAF timestamp, so there are no fixed steps and no per-frame allocations.
+const easeFlight = t => t * t * t * (t * (t * 6 - 15) + 10);
+function flyTo(toPos, toTarget, done){
+  if (reducedMotion) {
+    flight = null;
+    camera.position.copy(toPos);
+    controls.target.copy(toTarget);
+    controls.update();
+    renderOnce();
+    if (done) done();
+    return;
+  }
+  const dist = camera.position.distanceTo(toPos);
+  const dur = Math.min(900, Math.max(450, dist * 42));
+  flight = {
+    start: performance.now(), dur,
+    fromPos: camera.position.clone(), toPos: toPos.clone(),
+    fromTarget: controls.target.clone(), toTarget: toTarget.clone(),
+    done
+  };
+  controls.enabled = false;
+  ensureLoop();
+}
+function stepFlight(ts){
+  const f = flight; if (!f) return;
+  const k = Math.min(1, (ts - f.start) / f.dur);
+  const e = easeFlight(k);
+  camera.position.lerpVectors(f.fromPos, f.toPos, e);
+  controls.target.lerpVectors(f.fromTarget, f.toTarget, e);
+  if (k >= 1) {
+    flight = null;
+    controls.enabled = true;
+    if (f.done) f.done();
+  }
+}
+
+// ---------- camera hooks for the DOM navigation layer ----------
+// Panels, buttons and aria state are owned by the DOM layer in the plain
+// script above, because they must keep working with no renderer at all.
+// This module only adds the camera: the DOM layer calls these hooks after
+// it updates the panel.
+window.__hubFlyTo = (id) => {
+  const z = ZONES[id];
+  if (!z) return;
+  if (controls.autoRotate || introDeadline > 0) settleControls(); // kill the intro's damping tail before flying
+  controls.autoRotate = false; introDeadline = 0;
+  // While zoomed in, only the active zone's label stays up — the rest
+  // would sit between the camera and the subject.
+  for (const k of ZONE_IDS) if (zoneLabels[k]) zoneLabels[k].visible = (k === id);
+  flyTo(z.cam, z.focus, null);
+};
+window.__hubFlyHome = () => {
+  if (controls.autoRotate || introDeadline > 0) settleControls();
+  controls.autoRotate = false; introDeadline = 0;
+  for (const k of ZONE_IDS) if (zoneLabels[k]) zoneLabels[k].visible = true;
+  flyTo(OVERVIEW_POS, OVERVIEW_TARGET, () => { renderOnce(); });
+  // No auto-rotate restart here: the intro is a one-shot (P2-A).
+};
+
+// Tap detection: a tap is a single-pointer press whose MAXIMUM travel
+// stays within ~8px — not just its net displacement. (The first cut only
+// compared pointerup against pointerdown, so a drag that wandered out and
+// came back could still navigate; the Dot caught that in review.)
+// Multi-touch gestures and cancelled presses never navigate.
+const raycaster = new THREE.Raycaster();
+const ndc = new THREE.Vector2();
+let tapId = null, tapX = 0, tapY = 0, tapMax = 0, activePointers = 0;
+const tapEl = renderer.domElement;
+tapEl.addEventListener('pointerdown', e => {
+  activePointers++;
+  if (tapId === null) { tapId = e.pointerId; tapX = e.clientX; tapY = e.clientY; tapMax = 0; }
+});
+tapEl.addEventListener('pointermove', e => {
+  if (e.pointerId === tapId) {
+    tapMax = Math.max(tapMax, Math.hypot(e.clientX - tapX, e.clientY - tapY));
+  }
+});
+function endTap(e, cancelled){
+  if (e.pointerId === tapId) {
+    const wasOnlyPointer = activePointers === 1;
+    const net = Math.hypot(e.clientX - tapX, e.clientY - tapY);
+    tapId = null;
+    if (!cancelled && wasOnlyPointer && tapMax <= 8 && net <= 8) {
+      ndc.set((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1);
+      raycaster.setFromCamera(ndc, camera);
+      const hits = raycaster.intersectObjects(hitTargets, false).filter(h => h.object.visible);
+      if (hits.length && hits[0].object.userData.zoneId) window.__hub.goTo(hits[0].object.userData.zoneId);
+    }
+  }
+  activePointers = Math.max(0, activePointers - 1);
+}
+tapEl.addEventListener('pointerup', e => endTap(e, false));
+tapEl.addEventListener('pointercancel', e => endTap(e, true));
+
+renderer.shadowMap.needsUpdate = true; // bake the base scene's shadow maps once
+renderOnce();
+window.__hubReady = true;
+setStatus('Court is up — rolling the equipment out…');
+
+// ---------- Polyfork catalog modules (defensive: one bad apple must not kill the scene) ----------
+const CDN = 'https://polyfork.dev/cdn/';
+const skipped = [];
+async function loadModule(id){
+  try { return await import(CDN + id + '.mjs'); }
+  catch (e) { console.warn('Polyfork module skipped:', id, e); skipped.push(id); return null; }
+}
+const [
+  mPost, mHoop, mBoard, mBin, mCart, mFlood, mTile, mRail, mBench, mWall, mScore, mMerge, mStage
+] = await Promise.all([
+  loadModule('yard-basketball-post-b71ee3'),
+  loadModule('driveway-basketball-hoop-40deb7'),
+  loadModule('basketball-backboard-2624e9'),
+  loadModule('ball-bin-3198fe'),
+  loadModule('ball-cart-8274fd'),
+  loadModule('skatepark-floodlight-column-5f7964'),
+  loadModule('yard-hardstanding-tile-2afb6a'),
+  loadModule('railing-and-gate-run-5c8137'),
+  loadModule('substitutes-bench-ea0ef7'),
+  loadModule('perimeter-wall-run-adc811'),
+  loadModule('match-scoreboard-58f51e'),
+  loadModule('merge'),
+  loadModule('stage')
+]);
+
+if (mStage && typeof mStage.stage === 'function') {
+  try {
+    mStage.stage(renderer, scene, { time:'night' });
+    scene.background = new THREE.Color(0x0a0f16);
+    scene.fog = new THREE.Fog(0x0a0f16, 34, 95);
+  } catch (e) { console.warn('stage() failed, keeping base lights', e); }
+}
+
+// ---------- Polyfork tile apron (instanced) ----------
+if (mTile) {
+  try {
+    const probe = mTile.createAsset();
+    probe.updateMatrixWorld(true);
+    let src = null;
+    probe.traverse(o => { if (o.isMesh && !src) src = o; });
+    if (src) {
+      const geo = src.geometry.clone().applyMatrix4(src.matrixWorld);
+      const cells = [];
+      for (let x = -11; x <= 11; x++) for (let z = -21; z <= 16; z++) {
+        if (Math.abs(x) <= 7 && Math.abs(z) <= 13) continue; // court hole
+        cells.push([x, z]);
+      }
+      const inst = new THREE.InstancedMesh(geo, src.material, cells.length);
+      const d = new THREE.Object3D();
+      cells.forEach(([x, z], i) => { d.position.set(x, 0, z); d.updateMatrix(); inst.setMatrixAt(i, d.matrix); });
+      inst.receiveShadow = true;
+      scene.add(inst);
+    }
+  } catch (e) { console.warn('tile apron failed', e); skipped.push('tile-apron'); }
+}
+
+// ---------- Polyfork assets: place, then merge the statics ----------
+function place(mod, params, x, y, z, ry){
+  if (!mod) return null;
+  try {
+    const o = params ? mod.createAsset(params) : mod.createAsset();
+    o.position.set(x, y, z); if (ry) o.rotation.y = ry;
+    o.traverse(n => { if (n.isMesh) { n.castShadow = true; n.receiveShadow = true; } });
+    if (o.userData && typeof o.userData.tick === 'function') tickers.push(o);
+    return o;
+  } catch (e) { console.warn('createAsset failed', e); return null; }
+}
+
+const statics = [];
+function keep(o, mergeIt){ if (!o) return; if (mergeIt) statics.push(o); else scene.add(o); }
+
+keep(place(mPost,  null, 0, 0, -13.8, 0), true);                 // ARCADE: hero post, far end, faces +Z
+keep(place(mHoop,  null, 0, 0,  13.8, Math.PI), true);           // driveway hoop, near end, faces -Z
+keep(place(mScore, null, 0, 0, -19.5, 0), true);                 // AI DECIDES: match scoreboard beyond far baseline
+keep(place(mBoard, null, 9.0, 0, 0, -Math.PI/2), true);          // wall board, east side, faces -X
+for (const wz of [-2, 0, 2]) keep(place(mWall, null, 9.45, 0, wz, -Math.PI/2), true);
+keep(place(mBench, null, -8.6, 0, -3, Math.PI/2), true);         // YOUR TEAM: benches, west side
+keep(place(mBench, null, -8.6, 0,  3, Math.PI/2), true);
+keep(place(mBin,   null, -8.2, 0, -6, Math.PI/2), true);          // ball bin
+keep(place(mCart,  null,  8.3, 0,  5.5, -Math.PI/2), true);      // ball cart
+for (let i = 0; i < 6; i++) {                                     // railing runs along both baselines
+  const x = -7.5 + i * 3;
+  keep(place(mRail, null, x, 0, -15.2, 0), true);
+  keep(place(mRail, null, x, 0,  15.2, Math.PI), true);
+}
+keep(place(mFlood, { heads:'four', aim:40, lit:true }, -9.5, 0, -14.5,  0.58), false);
+keep(place(mFlood, { heads:'four', aim:40, lit:true },  9.5, 0,  14.5, -2.56), false);
+
+let mergedOk = false;
+if (mMerge && typeof mMerge.mergeAssets === 'function' && statics.length) {
+  try {
+    const { merged, dynamic } = mMerge.mergeAssets(statics);
+    if (merged) { scene.add(merged); mergedOk = true; }
+    (dynamic || []).forEach(o => scene.add(o));
+  } catch (e) { console.warn('mergeAssets failed, adding unmerged', e); }
+}
+if (!mergedOk) statics.forEach(o => scene.add(o));
+
+renderer.shadowMap.needsUpdate = true; // re-bake once with the full scene (stage lights + assets)
+renderOnce();
+try {
+  const info = renderer.info.render;
+  console.info('Home-court hub triangles (last frame):', info.triangles);
+} catch (e) {}
+setStatus(skipped.length
+  ? 'Night game — some pieces skipped: ' + skipped.join(', ')
+  : 'Night game at the blacktop — tap a zone to fly in.');
+
+// Bounded intro (P2-A): one slow turn of the court now that everything is
+// on it, then the page parks — renders stop until the next interaction.
+if (!reducedMotion) {
+  controls.autoRotate = true;
+  introDeadline = performance.now() + INTRO_MS;
+  ensureLoop();
+}
+})();
+</script>
+</body>
+</html>
