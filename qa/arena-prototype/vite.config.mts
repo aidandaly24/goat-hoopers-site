@@ -10,6 +10,7 @@ export default defineConfig({
     { find: "@", replacement: fileURLToPath(new URL("../../src", import.meta.url)) },
   ] },
   define: { "process.env": JSON.stringify({ NODE_ENV: "development" }) },
-  build: { outDir: "/tmp/goat-arena-build", emptyOutDir: true, copyPublicDir: false },
+  build: { outDir: "/tmp/goat-arena-build", emptyOutDir: true, copyPublicDir: false,
+    rolldownOptions: { input: { study: fileURLToPath(new URL("./index.html", import.meta.url)), arena: fileURLToPath(new URL("./arena.html", import.meta.url)) } } },
   server: { host: "127.0.0.1", port: 4196, strictPort: true },
 });
