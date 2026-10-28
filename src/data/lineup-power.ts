@@ -92,11 +92,19 @@ export function lineupPowerSlotContribution(slot: LineupPowerSlotEvidence): Slot
 }
 
 export function buildLineupPowerTeam(team: LineupPowerTeamEvidence): LineupPowerTeam {
+  if (team.starters.length > LEGAL_SLOTS) {
+    // Malformed evidence: an over-long lineup has no legal 11 to
+    // attribute contributions to, so nothing counts. This keeps the
+    // producer's unavailable representation inside the snapshot guard,
+    // which never accepts unavailable with slotsProjected === 11.
+    return { rosterId: team.rosterId, projectedCountedPoints: null, coverage: "unavailable", slotsProjected: 0 };
+  }
   const contributions = team.starters.map(lineupPowerSlotContribution);
   const slotsProjected = contributions.filter(c => c !== null).length;
   if (team.starters.length !== LEGAL_SLOTS || slotsProjected !== LEGAL_SLOTS) {
     // No honest 11-slot total exists: unavailable, never a partial sum.
-    return { rosterId: team.rosterId, projectedCountedPoints: null, coverage: "unavailable", slotsProjected: Math.min(slotsProjected, LEGAL_SLOTS) };
+    // (Length is at most LEGAL_SLOTS here, so slotsProjected < 11.)
+    return { rosterId: team.rosterId, projectedCountedPoints: null, coverage: "unavailable", slotsProjected };
   }
   const settled = contributions as SlotContribution[];
   const coverage: LineupPowerCoverage = settled.some(c => c.kind === "projected" && c.basis === "prior") ? "partial" : "complete";

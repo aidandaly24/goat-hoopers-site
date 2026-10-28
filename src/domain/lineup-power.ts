@@ -25,7 +25,8 @@
  *   no honest team total exists: `projectedCountedPoints` is null and
  *   `slotsProjected` records how many slots did contribute. A partial
  *   sum is never emitted — ranking one against complete totals would
- *   fabricate a rank.
+ *   fabricate a rank. A malformed over-long lineup has no legal 11 at
+ *   all, so it contributes 0.
  *
  * Snapshots are immutable once produced. `priorSnapshotId` chains to the
  * comparable prior snapshot (same horizon); movement is always computed
@@ -85,9 +86,13 @@ export function isLineupPowerSnapshot(v: unknown): v is LineupPowerSnapshot {
     if (t.coverage === "unavailable") {
       // No honest total exists; anything else would be a fabricated rank input.
       if (t.projectedCountedPoints !== null || t.slotsProjected === 11) return false;
-    } else {
+    } else if (t.coverage === "complete" || t.coverage === "partial") {
       if (!finitePoints(t.projectedCountedPoints) || (t.projectedCountedPoints as number) < 0) return false;
       if (t.slotsProjected !== 11) return false;
+    } else {
+      // Unknown-input guard: a coverage outside the contract enum
+      // certifies nothing, however well-formed the rest of the team looks.
+      return false;
     }
   }
   return true;
@@ -117,14 +122,19 @@ export function lineupPowerRanks(snapshot: LineupPowerSnapshot): Record<string, 
  * Rank movement vs the comparable prior snapshot: positive = climbed
  * (same sign convention as `PowerRanking.movement`). Null per team when
  * either snapshot leaves the team unranked, and null for every team when
- * the two snapshots are not comparable (different horizon — impossible
- * under the current contract — or the same snapshot).
+ * the supplied prior is not the snapshot `current` chains to: movement
+ * is only ever reported against the documented real prior
+ * (`current.priorSnapshotId === prior.snapshotId`), so a first snapshot
+ * (null chain) or a mismatched prior yields null everywhere rather than
+ * manufactured arrows against an unrelated snapshot.
  */
 export function lineupPowerMovement(
   current: LineupPowerSnapshot,
   prior: LineupPowerSnapshot,
 ): Record<string, number | null> {
-  const comparable = current.horizon === prior.horizon && current.snapshotId !== prior.snapshotId;
+  const comparable = current.horizon === prior.horizon
+    && current.priorSnapshotId !== null
+    && current.priorSnapshotId === prior.snapshotId;
   const currentRanks = lineupPowerRanks(current);
   const priorRanks = lineupPowerRanks(prior);
   const movement: Record<string, number | null> = {};

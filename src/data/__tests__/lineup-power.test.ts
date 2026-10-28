@@ -88,7 +88,7 @@ describe("team assembly and coverage", () => {
     const team = buildLineupPowerTeam(teamEvidence("1", twelve));
     expect(team.coverage).toBe("unavailable");
     expect(team.projectedCountedPoints).toBeNull();
-    expect(team.slotsProjected).toBe(11); // contributions counted, capped at the legal 11
+    expect(team.slotsProjected).toBe(0); // malformed lineup: no legal 11 exists, so nothing counts
   });
 });
 
@@ -105,6 +105,16 @@ describe("snapshot assembly", () => {
     expect(snap.priorSnapshotId).toBeNull();
     expect(snap.teams[0].projectedCountedPoints).toBe(220);
     expect(snap.teams[9].projectedCountedPoints).toBe(319);
+  });
+
+  it("invalid 12-starter representation: producer output for an over-long lineup passes isLineupPowerSnapshot", () => {
+    const teams = tenTeams();
+    teams[4] = teamEvidence("5", [...eleven(5000), slot("5999")]); // 12 starters: malformed evidence
+    const snap = buildLineupPowerSnapshot(leagueOf(teams), null);
+    expect(isLineupPowerSnapshot(snap)).toBe(true);
+    expect(snap.teams.find(t => t.rosterId === "5")).toEqual({
+      rosterId: "5", projectedCountedPoints: null, coverage: "unavailable", slotsProjected: 0,
+    });
   });
 
   it("is deterministic: identical evidence yields the identical content-addressed snapshot", () => {

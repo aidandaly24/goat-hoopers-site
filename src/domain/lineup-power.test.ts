@@ -6,6 +6,7 @@ import {
 
 const ID_A = `lp1:${"a".repeat(64)}`;
 const ID_B = `lp1:${"b".repeat(64)}`;
+const ID_C = `lp1:${"c".repeat(64)}`;
 
 const team = (rosterId: string, over: Partial<LineupPowerTeam> = {}): LineupPowerTeam => ({
   rosterId, projectedCountedPoints: 200, coverage: "complete", slotsProjected: 11, ...over,
@@ -45,6 +46,14 @@ describe("isLineupPowerSnapshot", () => {
     const noTotal = snapshot();
     noTotal.teams[0] = team("1", { projectedCountedPoints: null });
     expect(isLineupPowerSnapshot(noTotal)).toBe(false);
+  });
+
+  it("coverage enum validation: rejects values outside the contract enum, however well-formed the rest", () => {
+    for (const bad of ["unknown", null, 42]) {
+      const s = snapshot();
+      s.teams[0] = team("1", { coverage: bad as never });
+      expect(isLineupPowerSnapshot(s)).toBe(false);
+    }
   });
 
   it("rejects malformed identity, horizon, week and duplicate teams", () => {
@@ -91,6 +100,19 @@ describe("lineupPowerMovement", () => {
     const movement = lineupPowerMovement(current, prior);
     expect(movement["10"]).toBe(9); // was rank 10, now rank 1
     expect(movement["1"]).toBe(-9); // was rank 1, now rank 10
+  });
+
+  it("movement prior-chain validation: a missing or mismatched prior chain yields null movement everywhere", () => {
+    const prior = snapshot({ snapshotId: ID_B, week: 2 });
+    // First snapshot: priorSnapshotId is null, so no prior is comparable,
+    // even a well-formed one from the week before.
+    const first = snapshot();
+    expect(Object.values(lineupPowerMovement(first, prior)).every(m => m === null)).toBe(true);
+    // Chained to a different snapshot than the one supplied: the chain,
+    // not mere ID inequality, decides comparability.
+    const chained = snapshot({ priorSnapshotId: ID_B });
+    const unrelated = snapshot({ snapshotId: ID_C, week: 2 });
+    expect(Object.values(lineupPowerMovement(chained, unrelated)).every(m => m === null)).toBe(true);
   });
 
   it("movement is null when either snapshot leaves the team unranked, and for a snapshot against itself", () => {
