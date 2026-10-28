@@ -94,9 +94,9 @@ and each image's capture source are explicit in artifacts.json.
 
 The expanded-navigation regression is reproduced at b445b581: the disclosure
 became a separate grid item and reduced the arena to zero height (750→0px
-desktop,523→0px phone). The QA entry now groups the unchanged SiteHeader and
+desktop, 523→0px phone). The QA entry now groups the unchanged SiteHeader and
 its disclosure sibling into one header grid item. verify-menu.mjs exercises
-eight expanded/closed states across public/member,1440/390/320, both themes,
+eight expanded/closed states across public/member, 1440/390/320, both themes,
 200% text, still and reduced-motion modes. It checks stage dimensions, natural
 menu flow, no horizontal overflow, renderer count, Escape/focus restoration,
 reader activation afterward and repeat open/close. Shared header and scene
@@ -106,5 +106,14 @@ Compact/large-text court areas use the persistent named destination list and
 hide optional floating map markers before they crowd the introduction. The
 same six actions remain real 44px-or-larger controls. Escape also scrolls the
 restored header trigger into view locally: the enlarged-text disclosure could
-otherwise restore focus to a trigger849px above the viewport after scrolling.
+otherwise restore focus to a trigger 849px above the viewport after scrolling.
 No shared-header behavior or scene/camera file is edited.
+
+The latest evidence refresh re-runs the complete 18-case interaction matrix,
+the eight menu states and four themed action-contrast cases at one runtime
+source. All 17 prior hub JPEG filenames are refreshed; 16 additional menu/arena
+viewport captures are under review/menu. Each menu case also verifies the title
+in actual pixels, using an analysis crop while leaving the delivered viewport
+JPEG untouched. Capture source and hashes are bound in review/artifacts.json.
+Repeated matchup headings, desktop standings ellipses and the enlarged-text
+reader toolbar remain nonblocking design-polish notes for joint review.
