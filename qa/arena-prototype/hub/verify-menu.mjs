@@ -79,7 +79,15 @@ try {
     await trigger.click(); await p.locator("#site-navigation-panel").waitFor({ state: "visible" });
     await trigger.click(); await p.locator("#site-navigation-panel").waitFor({ state: "hidden" });
     assert((await read()).stage >= closed.minimumStage - 1);
-    results.push({ state, closed, expanded, restored, visited, screenshot: name, foregroundTitlePixelVerified: true });
+    await trigger.click(); await p.locator("#site-navigation-panel").waitFor({ state: "visible" });
+    await Promise.all([p.waitForNavigation({ waitUntil: "networkidle" }), p.getByRole("link", { name: "Home", exact: true }).click()]);
+    await p.locator(".hub-stage").waitFor();
+    assert.equal(await p.locator("#site-navigation-panel").isVisible(), false);
+    // Text enlargement is a test-driver setting and resets on document load.
+    if (state.text) await p.evaluate(() => document.documentElement.style.fontSize = "200%");
+    await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
+    const afterHome = await read(); assert(Math.abs(afterHome.stage - closed.stage) <= 1);
+    results.push({ state, closed, expanded, restored, afterHome, visited, screenshot: name, foregroundTitlePixelVerified: true });
     console.log("PASS menu state", JSON.stringify(state), `${closed.stage}→${expanded.stage}→${restored.stage}px; reader/focus/reopen intact`);
     await context.close();
   }
