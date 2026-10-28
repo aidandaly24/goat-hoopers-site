@@ -36,9 +36,9 @@
     text-transform:uppercase;
   }
   .chip p{
-    margin:5px 0 0; font-size:11.5px; line-height:1.5; color:var(--muted);
+    margin:5px 0 0; font-size:12.5px; line-height:1.5; color:var(--muted);
   }
-  .chip p .status{ display:block; margin-top:3px; color:var(--amber); font-size:11px; }
+  .chip p .status{ display:block; margin-top:3px; color:var(--amber); font-size:11.5px; }
 
   .hint{
     position:fixed; left:14px; bottom:max(86px, env(safe-area-inset-bottom)); z-index:10;
@@ -59,7 +59,7 @@
     min-height:44px; padding:8px 14px; cursor:pointer;
     background:var(--panel); color:var(--paper);
     border:1px solid var(--panel-line);
-    font-family:Georgia, "Times New Roman", serif; font-size:12px; font-weight:700;
+    font-family:Georgia, "Times New Roman", serif; font-size:13px; font-weight:700;
     letter-spacing:.1em; text-transform:uppercase;
   }
   .zonebar button:hover{ border-color:var(--orange); }
@@ -89,7 +89,7 @@
   .sheet .note{
     display:inline-block; margin:0 0 16px; padding:5px 9px;
     border:1px solid var(--panel-line); color:var(--amber);
-    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase;
   }
   .sheet .back{
     display:block; min-height:48px; padding:12px 18px; cursor:pointer;
@@ -107,12 +107,22 @@
   .fallback{
     position:fixed; inset:0; z-index:40; display:none;
     align-items:center; justify-content:center; padding:24px; background:var(--bg);
+    pointer-events:none; /* the note must never trap the page: the zone row stays clickable */
   }
   .fallback.show{ display:flex; }
   .fallback .card{
+    position:relative;
     background:var(--panel); border:1px solid var(--panel-line); border-top:3px solid var(--orange);
-    padding:22px; max-width:420px;
+    padding:22px; max-width:420px; pointer-events:auto;
   }
+  .fallback .close{
+    position:absolute; top:6px; right:6px; width:44px; height:44px; cursor:pointer;
+    background:transparent; border:0; color:var(--paper); font-size:22px; line-height:1;
+  }
+  .fallback .close:focus-visible{ outline:2px solid var(--orange); outline-offset:1px; }
+  /* With WebGL dead, the DOM navigation is the only path — keep it above the note. */
+  body.no-webgl .zonebar{ z-index:50; }
+  body.no-webgl .sheet{ z-index:60; }
   .fallback h2{
     margin:0 0 8px; font-family:Georgia, "Times New Roman", serif; font-size:17px;
     letter-spacing:.12em; text-transform:uppercase; color:var(--paper);
@@ -144,7 +154,7 @@
 <nav class="zonebar" aria-label="Court zones">
   <button type="button" data-zone="ai-decides" aria-pressed="false">AI Decides</button>
   <button type="button" data-zone="studs-chuds" aria-pressed="false">Studs &amp; Chuds</button>
-  <button type="button" data-zone="stats" aria-pressed="false">Stats</button>
+  <button type="button" data-zone="stats" aria-pressed="false">League Stats</button>
   <button type="button" data-zone="your-team" aria-pressed="false">Your Team</button>
   <button type="button" data-zone="arcade" aria-pressed="false">Arcade</button>
 </nav>
@@ -159,8 +169,9 @@
 
 <div class="fallback" id="fallback">
   <div class="card">
+    <button type="button" class="close" id="fallback-close" aria-label="Dismiss this note">&times;</button>
     <h2>The court needs WebGL</h2>
-    <p>This home-court mockup is a 3D scene, and your browser could not start WebGL, so the court cannot be drawn. Try a recent version of Chrome, Safari, Firefox or Edge — the league&rsquo;s regular pages still work without 3D.</p>
+    <p>This home-court mockup is a 3D scene, and your browser could not start WebGL, so the court cannot be drawn. The zone buttons below still open every section&rsquo;s panel. Or try a recent version of Chrome, Safari, Firefox or Edge — the league&rsquo;s regular pages still work without 3D.</p>
   </div>
 </div>
 
@@ -183,6 +194,90 @@
 </script>
 
 <script>
+  // ---------- DOM navigation layer (P2-B) ----------
+  // The zone row and placeholder panels are bound HERE, in plain DOM code
+  // that runs before the 3D module is even requested. If the CDN import is
+  // blocked or WebGL context creation fails, the court cannot draw — but
+  // every zone's panel still opens, because none of this depends on the
+  // renderer. The 3D module, when it does load, only adds camera flights
+  // through window.__hubFlyTo / window.__hubFlyHome.
+  var ZONE_PANELS = {
+    'ai-decides': {
+      title: 'AI Decides',
+      desc: 'The scoreboard is where the league\u2019s AI matchup verdicts and pick explanations will live.'
+    },
+    'studs-chuds': {
+      title: 'Studs & Chuds',
+      desc: 'The baseline boards are where each week\u2019s top performers (studs) and bottom performers (chuds) will be posted.'
+    },
+    'stats': {
+      title: 'League Stats',
+      desc: 'The stats table is where league standings, leaderboards and box-score numbers will plug in.'
+    },
+    'your-team': {
+      title: 'Your Team',
+      desc: 'Your bench is where your roster, team value and next matchup will live.'
+    },
+    'arcade': {
+      title: 'Arcade',
+      desc: 'The far hoop is the arcade door — the free-throw game will launch from here.'
+    }
+  };
+  window.__zonePanels = ZONE_PANELS;
+  (function(){
+    var sheet = document.getElementById('sheet');
+    var sheetTitle = document.getElementById('sheet-title');
+    var sheetDesc = document.getElementById('sheet-desc');
+    var zoneButtons = Array.prototype.slice.call(document.querySelectorAll('.zonebar button'));
+    var currentZone = null;
+    function markButtons(){
+      for (var i = 0; i < zoneButtons.length; i++) {
+        var b = zoneButtons[i];
+        b.setAttribute('aria-pressed', b.getAttribute('data-zone') === currentZone ? 'true' : 'false');
+      }
+    }
+    function openPanel(id){
+      var p = ZONE_PANELS[id];
+      if (!p) return;
+      sheetTitle.textContent = p.title;
+      sheetDesc.textContent = p.desc;
+      sheet.classList.add('open');
+      sheet.setAttribute('aria-hidden', 'false');
+    }
+    function closePanel(){
+      sheet.classList.remove('open');
+      sheet.setAttribute('aria-hidden', 'true');
+    }
+    function selectZone(id){
+      if (!ZONE_PANELS[id]) return;
+      currentZone = id;
+      markButtons();
+      openPanel(id);
+      if (typeof window.__hubFlyTo === 'function') window.__hubFlyTo(id);
+    }
+    function goHome(){
+      currentZone = null;
+      markButtons();
+      closePanel();
+      if (typeof window.__hubFlyHome === 'function') window.__hubFlyHome();
+    }
+    for (var i = 0; i < zoneButtons.length; i++) {
+      (function(b){
+        b.addEventListener('click', function(){ selectZone(b.getAttribute('data-zone')); });
+      })(zoneButtons[i]);
+    }
+    document.getElementById('sheet-back').addEventListener('click', goHome);
+    document.getElementById('sheet-close').addEventListener('click', goHome);
+    var fbClose = document.getElementById('fallback-close');
+    if (fbClose) fbClose.addEventListener('click', function(){
+      document.getElementById('fallback').classList.remove('show');
+    });
+    // Debug/automation hook — same interface the 3D module used to own.
+    window.__hub = { zones: Object.keys(ZONE_PANELS), goTo: selectZone, goHome: goHome };
+  })();
+</script>
+
+<script>
 (async function(){
 let THREE, OrbitControls;
 try {
@@ -201,16 +296,25 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matc
 const app = document.getElementById('app');
 let renderer = null;
 try {
-  renderer = new THREE.WebGLRenderer({ antialias:true, preserveDrawingBuffer:true });
+  renderer = new THREE.WebGLRenderer({ antialias:true, preserveDrawingBuffer:true, powerPreference:'high-performance' });
 } catch (e) {
   document.getElementById('fallback').classList.add('show');
-  setStatus('WebGL unavailable — see the note on screen.');
+  document.body.classList.add('no-webgl');
+  setStatus('WebGL unavailable — the zone buttons below still open every panel.');
   return;
 }
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// Pixel budget: a phone's native DPR (3 on current iPhones) quadruples the
+// fragment work for a flat-shaded scene that cannot show the difference.
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+// The scene is static, so shadow maps are baked once (needsUpdate below,
+// and once more after the catalog assets land) instead of re-rendered on
+// every frame — that was three extra scene passes per frame. The two small
+// swaying trims (hoop nets, scoreboard cards) keep animating; only their
+// shadows are baked, which is invisible at night-game scale.
+renderer.shadowMap.autoUpdate = false;
 renderer.toneMapping = THREE.NoToneMapping; // Polyfork colors are authored for no tone mapping
 app.appendChild(renderer.domElement);
 
@@ -231,37 +335,47 @@ controls.minDistance = 3;
 controls.maxDistance = 55;
 controls.maxPolarAngle = 1.45;
 controls.autoRotateSpeed = -0.55;
-controls.autoRotate = !reducedMotion;
+controls.autoRotate = false; // the bounded intro starts once the full scene is up (end of this script)
+// Intro rotation (P2-A): after the scene is ready the overview turns slowly
+// for INTRO_MS, then parks for good. Any interaction ends it sooner, and
+// returning to full court does NOT restart it — the resting state of this
+// page is a still court that renders only on demand.
+const INTRO_MS = 6000;
+let introDeadline = 0;
 
 // ---------- zones ----------
+// Panel text lives in the DOM layer (window.__zonePanels) so the panels work
+// with no renderer at all; here it is only re-read for the in-scene labels.
+const PANELS = window.__zonePanels || {};
+const panelOf = id => PANELS[id] || { title: id, desc: '' };
 const ZONES = {
   'ai-decides': {
-    title: 'AI Decides',
-    desc: 'The scoreboard is where the league\u2019s AI matchup verdicts and pick explanations will live.',
+    title: panelOf('ai-decides').title,
+    desc: panelOf('ai-decides').desc,
     focus: new THREE.Vector3(0, 2.6, -19.5),
     cam:   new THREE.Vector3(0, 4.6, -11.9)
   },
   'studs-chuds': {
-    title: 'Studs & Chuds',
-    desc: 'The baseline boards are where each week\u2019s top performers (studs) and bottom performers (chuds) will be posted.',
+    title: panelOf('studs-chuds').title,
+    desc: panelOf('studs-chuds').desc,
     focus: new THREE.Vector3(0, 1.7, -15.3),
     cam:   new THREE.Vector3(0, 2.7, -3.6)
   },
   'stats': {
-    title: 'Stats',
-    desc: 'The stats table is where league standings, leaderboards and box-score numbers will plug in.',
+    title: panelOf('stats').title,
+    desc: panelOf('stats').desc,
     focus: new THREE.Vector3(2.6, 0.9, 12.4),
     cam:   new THREE.Vector3(6.4, 2.5, 7.6)
   },
   'your-team': {
-    title: 'Your Team',
-    desc: 'Your bench is where your roster, team value and next matchup will live.',
+    title: panelOf('your-team').title,
+    desc: panelOf('your-team').desc,
     focus: new THREE.Vector3(-8.6, 0.8, -0.4),
     cam:   new THREE.Vector3(-3.4, 2.6, 3.0)
   },
   'arcade': {
-    title: 'Arcade',
-    desc: 'The far hoop is the arcade door — the free-throw game will launch from here.',
+    title: panelOf('arcade').title,
+    desc: panelOf('arcade').desc,
     focus: new THREE.Vector3(0, 2.7, -13.8),
     cam:   new THREE.Vector3(4.6, 3.3, -7.8)
   }
@@ -337,21 +451,26 @@ for (const [bx, bz] of [[1.1, -2.5], [7.3, 6.3]]) {
 
 // ---------- floating zone labels (canvas sprites) ----------
 function makeLabelSprite(text){
-  const c = document.createElement('canvas'); c.width = 640; c.height = 160;
+  const c = document.createElement('canvas'); c.width = 768; c.height = 192;
   const g = c.getContext('2d');
-  g.fillStyle = 'rgba(14,19,25,0.94)'; g.fillRect(0, 0, 640, 160);
-  g.strokeStyle = '#26303c'; g.lineWidth = 4; g.strokeRect(2, 2, 636, 156);
-  g.fillStyle = '#e8703a'; g.fillRect(0, 146, 640, 10);
+  g.fillStyle = 'rgba(14,19,25,0.94)'; g.fillRect(0, 0, 768, 192);
+  g.strokeStyle = '#26303c'; g.lineWidth = 4; g.strokeRect(2, 2, 764, 188);
+  g.fillStyle = '#e8703a'; g.fillRect(0, 178, 768, 10);
   g.fillStyle = '#f2ede3';
-  g.font = '700 56px Georgia, serif';
+  g.font = '700 64px Georgia, serif';
   g.textAlign = 'center'; g.textBaseline = 'middle';
-  try { g.letterSpacing = '6px'; } catch (e) {}
-  g.fillText(text.toUpperCase(), 320, 74);
+  try { g.letterSpacing = '7px'; } catch (e) {}
+  g.fillText(text.toUpperCase(), 384, 90);
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
   const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map:tex, transparent:true, depthWrite:false }));
-  const w = Math.max(2.2, text.length * 0.20);
+  const w = Math.max(2.4, text.length * 0.21);
   sp.scale.set(w, w * 0.25, 1);
+  // Base size for the overview distance LOD in the render loop: far labels
+  // grow toward a constant screen size so they stay legible from the
+  // overview camera; near labels barely change.
+  sp.userData.baseW = w;
+  sp.userData.baseH = w * 0.25;
   return sp;
 }
 
@@ -373,11 +492,15 @@ function addZoneDressing(id, labelPos, hitSize, hitPos){
   scene.add(hit);
   hitTargets.push(hit);
 }
-addZoneDressing('ai-decides',  new THREE.Vector3(0, 5.7, -19.5),    [4.6, 5.6, 2.2], new THREE.Vector3(0, 2.6, -19.5));
-addZoneDressing('studs-chuds', new THREE.Vector3(0, 3.35, -15.3),    [13.5, 3.6, 2.2], new THREE.Vector3(0, 1.8, -15.3));
+// Label anchors are staggered at the far end (scoreboard left and high,
+// arcade right, boards low-center) so the three far labels do not stack
+// into one unreadable cluster from the overview camera. Hit boxes stay on
+// the installations themselves.
+addZoneDressing('ai-decides',  new THREE.Vector3(-2.6, 6.0, -19.5),  [4.6, 5.6, 2.2], new THREE.Vector3(0, 2.6, -19.5));
+addZoneDressing('studs-chuds', new THREE.Vector3(0, 3.3, -15.3),    [13.5, 3.6, 2.2], new THREE.Vector3(0, 1.8, -15.3));
 addZoneDressing('stats',       new THREE.Vector3(2.6, 2.3, 12.4),   [3.4, 2.6, 3.0], new THREE.Vector3(2.6, 1.0, 12.4));
 addZoneDressing('your-team',   new THREE.Vector3(-8.6, 2.6, 0),     [3.2, 2.8, 10.5], new THREE.Vector3(-8.6, 1.1, 0));
-addZoneDressing('arcade',      new THREE.Vector3(0, 4.8, -13.8),    [3.6, 4.6, 2.6], new THREE.Vector3(0, 2.4, -13.8));
+addZoneDressing('arcade',      new THREE.Vector3(2.8, 5.05, -13.8), [3.6, 4.6, 2.6], new THREE.Vector3(0, 2.4, -13.8));
 
 // ---------- STUDS & CHUDS billboards (hand-made, canvas textures) ----------
 function makeBoardTexture(word){
@@ -471,8 +594,24 @@ function ensureLoop(){
 function loop(ts){
   rafId = null;
   let keepGoing = false;
+  // Bounded intro (P2-A): once the intro window closes, rotation stops and
+  // the court parks — no perpetual loop at the overview.
+  if (controls.autoRotate && introDeadline && ts >= introDeadline) {
+    controls.autoRotate = false;
+    settleControls();
+  }
   if (flight) { stepFlight(ts); keepGoing = true; }
   controls.update();
+  // Label LOD: keep far-end labels legible from the overview without
+  // inflating near ones. Runs only while the loop runs (flights, intro,
+  // interaction), so a parked court still renders nothing.
+  for (const id of ZONE_IDS) {
+    const label = zoneLabels[id];
+    if (!label || !label.visible || !label.userData.baseW) continue;
+    const d = camera.position.distanceTo(label.position);
+    const f = Math.min(1.6, Math.max(0.9, d / 26));
+    label.scale.set(label.userData.baseW * f, label.userData.baseH * f, 1);
+  }
   const t = ts / 1000;
   for (const o of tickers) { try { o.userData.tick(t); } catch (e) {} }
   renderer.render(scene, camera);
@@ -486,7 +625,7 @@ function renderOnce(){ ensureLoop(); }
 
 controls.addEventListener('start', () => {
   interacting = true;
-  if (controls.autoRotate) controls.autoRotate = false; // stays off until back at overview
+  if (controls.autoRotate) { controls.autoRotate = false; introDeadline = 0; } // intro never resumes
   ensureLoop();
 });
 controls.addEventListener('end', () => {
@@ -496,6 +635,17 @@ controls.addEventListener('end', () => {
 });
 controls.addEventListener('change', ensureLoop);
 
+// OrbitControls damping keeps a decaying tail of rotation deltas after
+// autoRotate (or a flick) ends; while that tail decays, update() keeps
+// dispatching 'change', which would keep this render loop — and the camera
+// creep — alive for ~a minute at slow frame rates. Settling runs update()
+// until it reports no change: the remaining tail (under a degree) lands in
+// a single frame and the camera is then truly still, so the loop can park.
+function settleControls(){
+  let guard = 0;
+  while (controls.update() && guard++ < 240) {}
+}
+
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
@@ -504,7 +654,11 @@ window.addEventListener('resize', () => {
 });
 
 // ---------- camera flights ----------
-const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+// Smootherstep (6t^5 - 15t^4 + 10t^3): velocity is zero at both ends and
+// continuous in between. The old easeOutCubic started at maximum velocity —
+// a visible jolt the moment a flight began — and the tween is driven by the
+// rAF timestamp, so there are no fixed steps and no per-frame allocations.
+const easeFlight = t => t * t * t * (t * (t * 6 - 15) + 10);
 function flyTo(toPos, toTarget, done){
   if (reducedMotion) {
     flight = null;
@@ -529,7 +683,7 @@ function flyTo(toPos, toTarget, done){
 function stepFlight(ts){
   const f = flight; if (!f) return;
   const k = Math.min(1, (ts - f.start) / f.dur);
-  const e = easeOutCubic(k);
+  const e = easeFlight(k);
   camera.position.lerpVectors(f.fromPos, f.toPos, e);
   controls.target.lerpVectors(f.fromTarget, f.toTarget, e);
   if (k >= 1) {
@@ -539,70 +693,65 @@ function stepFlight(ts){
   }
 }
 
-// ---------- panel + navigation state ----------
-const sheet = document.getElementById('sheet');
-const sheetTitle = document.getElementById('sheet-title');
-const sheetDesc = document.getElementById('sheet-desc');
-const zoneButtons = Array.from(document.querySelectorAll('.zonebar button'));
-let currentZone = null;
-
-function markButtons(){
-  for (const b of zoneButtons) b.setAttribute('aria-pressed', b.dataset.zone === currentZone ? 'true' : 'false');
-}
-function openPanel(id){
-  sheetTitle.textContent = ZONES[id].title;
-  sheetDesc.textContent = ZONES[id].desc;
-  sheet.classList.add('open');
-  sheet.setAttribute('aria-hidden', 'false');
-}
-function closePanel(){
-  sheet.classList.remove('open');
-  sheet.setAttribute('aria-hidden', 'true');
-}
-function goTo(id){
+// ---------- camera hooks for the DOM navigation layer ----------
+// Panels, buttons and aria state are owned by the DOM layer in the plain
+// script above, because they must keep working with no renderer at all.
+// This module only adds the camera: the DOM layer calls these hooks after
+// it updates the panel.
+window.__hubFlyTo = (id) => {
   const z = ZONES[id];
   if (!z) return;
-  currentZone = id;
-  markButtons();
-  controls.autoRotate = false;
+  if (controls.autoRotate || introDeadline > 0) settleControls(); // kill the intro's damping tail before flying
+  controls.autoRotate = false; introDeadline = 0;
   // While zoomed in, only the active zone's label stays up — the rest
   // would sit between the camera and the subject.
   for (const k of ZONE_IDS) if (zoneLabels[k]) zoneLabels[k].visible = (k === id);
-  openPanel(id);
   flyTo(z.cam, z.focus, null);
-}
-function goHome(){
-  currentZone = null;
-  markButtons();
+};
+window.__hubFlyHome = () => {
+  if (controls.autoRotate || introDeadline > 0) settleControls();
+  controls.autoRotate = false; introDeadline = 0;
   for (const k of ZONE_IDS) if (zoneLabels[k]) zoneLabels[k].visible = true;
-  closePanel();
-  flyTo(OVERVIEW_POS, OVERVIEW_TARGET, () => {
-    if (!reducedMotion && !currentZone) controls.autoRotate = true;
-    renderOnce();
-  });
-  if (reducedMotion) { /* auto-rotate stays off */ }
-}
-for (const b of zoneButtons) b.addEventListener('click', () => goTo(b.dataset.zone));
-document.getElementById('sheet-back').addEventListener('click', goHome);
-document.getElementById('sheet-close').addEventListener('click', goHome);
+  flyTo(OVERVIEW_POS, OVERVIEW_TARGET, () => { renderOnce(); });
+  // No auto-rotate restart here: the intro is a one-shot (P2-A).
+};
 
-// Tap detection: a tap is a pointerup within ~8px of the pointerdown,
-// so orbiting drags never trigger a zone.
+// Tap detection: a tap is a single-pointer press whose MAXIMUM travel
+// stays within ~8px — not just its net displacement. (The first cut only
+// compared pointerup against pointerdown, so a drag that wandered out and
+// came back could still navigate; the Dot caught that in review.)
+// Multi-touch gestures and cancelled presses never navigate.
 const raycaster = new THREE.Raycaster();
 const ndc = new THREE.Vector2();
-let downX = 0, downY = 0;
-renderer.domElement.addEventListener('pointerdown', e => { downX = e.clientX; downY = e.clientY; });
-renderer.domElement.addEventListener('pointerup', e => {
-  if (Math.hypot(e.clientX - downX, e.clientY - downY) > 8) return;
-  ndc.set((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1);
-  raycaster.setFromCamera(ndc, camera);
-  const hits = raycaster.intersectObjects(hitTargets, false).filter(h => h.object.visible);
-  if (hits.length && hits[0].object.userData.zoneId) goTo(hits[0].object.userData.zoneId);
+let tapId = null, tapX = 0, tapY = 0, tapMax = 0, activePointers = 0;
+const tapEl = renderer.domElement;
+tapEl.addEventListener('pointerdown', e => {
+  activePointers++;
+  if (tapId === null) { tapId = e.pointerId; tapX = e.clientX; tapY = e.clientY; tapMax = 0; }
 });
+tapEl.addEventListener('pointermove', e => {
+  if (e.pointerId === tapId) {
+    tapMax = Math.max(tapMax, Math.hypot(e.clientX - tapX, e.clientY - tapY));
+  }
+});
+function endTap(e, cancelled){
+  if (e.pointerId === tapId) {
+    const wasOnlyPointer = activePointers === 1;
+    const net = Math.hypot(e.clientX - tapX, e.clientY - tapY);
+    tapId = null;
+    if (!cancelled && wasOnlyPointer && tapMax <= 8 && net <= 8) {
+      ndc.set((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1);
+      raycaster.setFromCamera(ndc, camera);
+      const hits = raycaster.intersectObjects(hitTargets, false).filter(h => h.object.visible);
+      if (hits.length && hits[0].object.userData.zoneId) window.__hub.goTo(hits[0].object.userData.zoneId);
+    }
+  }
+  activePointers = Math.max(0, activePointers - 1);
+}
+tapEl.addEventListener('pointerup', e => endTap(e, false));
+tapEl.addEventListener('pointercancel', e => endTap(e, true));
 
-// Debug hook for automated screenshots
-window.__hub = { zones: ZONE_IDS.slice(), goTo, goHome };
-
+renderer.shadowMap.needsUpdate = true; // bake the base scene's shadow maps once
 renderOnce();
 window.__hubReady = true;
 setStatus('Court is up — rolling the equipment out…');
@@ -705,6 +854,7 @@ if (mMerge && typeof mMerge.mergeAssets === 'function' && statics.length) {
 }
 if (!mergedOk) statics.forEach(o => scene.add(o));
 
+renderer.shadowMap.needsUpdate = true; // re-bake once with the full scene (stage lights + assets)
 renderOnce();
 try {
   const info = renderer.info.render;
@@ -713,6 +863,14 @@ try {
 setStatus(skipped.length
   ? 'Night game — some pieces skipped: ' + skipped.join(', ')
   : 'Night game at the blacktop — tap a zone to fly in.');
+
+// Bounded intro (P2-A): one slow turn of the court now that everything is
+// on it, then the page parks — renders stop until the next interaction.
+if (!reducedMotion) {
+  controls.autoRotate = true;
+  introDeadline = performance.now() + INTRO_MS;
+  ensureLoop();
+}
 })();
 </script>
 </body>

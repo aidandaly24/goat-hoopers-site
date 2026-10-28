@@ -19,6 +19,17 @@ actual scene (its environment cannot open the artifact).
   mirror, because this VM has no direct CDN egress — every module URL
   confirmed HTTP 200 and the identical code rendered locally. The hosted
   artifact is its first true hosted render.
+- **v2 pass (2026-10-28, smoothness + review fixes):** re-measured
+  headlessly at 390×844 and 1440×900 with the same scripted
+  tap-flight/park protocol before and after. Per rendered frame the GL
+  work dropped from 60.8 calls / 106,228 triangles to 20.7 calls /
+  36,455 triangles at phone size (63.7 / 106,190 → 26.7 / 36,536 on
+  desktop): the three shadow maps are baked once at load instead of
+  re-rendered every frame, and the pixel ratio is capped at 1.75.
+  Absolute frame times on this VM are software-raster bound (a
+  one-cube control page runs at 1.5 fps under SwiftShader on 2 vCPUs),
+  so the transferable evidence is per-frame work and loop behavior,
+  not this rig's fps.
 
 ## Zone map
 
@@ -26,33 +37,53 @@ actual scene (its environment cannot open the artifact).
 |---|---|
 | AI Decides (`ai-decides`) | The catalog scoreboard (`match-scoreboard-58f51e`) at the far baseline |
 | Studs & Chuds (`studs-chuds`) | Hand-made billboards |
-| League stats (`stats`) | Plinth by the near hoop |
+| League Stats (`stats`) | Plinth by the near hoop |
 | Your Team (`your-team`) | The west benches |
 | Arcade (`arcade`) | The far hoop |
 
 ## Interaction model
 
-- **Tap vs drag:** a press that moves ~8px or less is a tap; anything
-  more is an orbit drag, so dragging the camera never triggers
-  navigation.
+- **Tap vs drag:** a press whose pointer travels ≤8px at its furthest
+  point (not just where it ends) is a tap; anything more — or a
+  cancelled/second pointer — is an orbit drag, so dragging the camera
+  never triggers navigation, even if the pointer returns to its start.
 - **Camera flights:** tapping a zone (in-scene or via the zone row)
-  flies the camera to that zone's framing with an ease-out flight;
-  **Back to full court** returns to the overview.
+  flies the camera to that zone's framing with a velocity-continuous
+  smootherstep flight (no ease-out jolt at departure); **Back to full
+  court** returns to the overview.
 - **Zone row:** five buttons under the canvas give every zone a plain
-  non-3D target — the 3D layer is never the only path.
-- **Reduced motion:** instant cuts instead of flights, and no idle
-  auto-rotate.
-- **WebGL fallback:** if WebGL is unavailable, the page shows a fallback
-  message instead of a black canvas.
+  non-3D target — the 3D layer is never the only path. The row and the
+  panels are bound before, and independently of, the 3D renderer: with
+  WebGL forced to fail, or the 3D module import blocked outright, all
+  five buttons still open their panels (verified headlessly both ways).
+- **Intro, then parked:** on load the court makes one slow 6-second
+  intro rotation and then stops for good — returning home does not
+  restart it. A settle step drains OrbitControls' damping tail so the
+  render loop truly halts instead of creeping on 'change' events.
+- **Reduced motion:** instant cuts instead of flights, and no intro
+  rotation.
+- **WebGL fallback:** if WebGL is unavailable, a dismissible note
+  explains the situation without blocking the page; the zone row and
+  panels stay fully usable (see above).
 
 ## Rendering posture
 
-- **Event-driven rendering:** the scene renders on interaction and state
-  change, not in a perpetual animation loop. Measured in the build
-  audit: 122 draw calls over 2.5s parked, vs ~8,100 for a naive
-  always-render loop at the same scene.
+- **Event-driven rendering:** after the bounded intro, the scene
+  renders on interaction and state change only — no perpetual
+  animation loop. Measured with the v2 protocol: the loop halts ~1.5s
+  after the intro window closes, with 0 animation-frame registrations
+  over 2.5s parked at both the overview and inside a zone, at both
+  viewports. (The earlier build never parked at the overview at all —
+  its idle auto-rotate kept the loop alive indefinitely.) In-zone
+  parked registrations went from 2–3 strays per 2.5s to 0.
+- **Baked shadows:** the night look keeps all three shadow-casting
+  lights, but their shadow maps render once at load
+  (`shadowMap.autoUpdate = false`) instead of every frame. The only
+  cost: the scoreboard cards' and hoop nets' gentle sway no longer
+  moves their shadows — imperceptible at night scale.
 - Budgets are design inputs: the whole scene stays under a 150k-triangle
-  cap (~38.6k actual) so a phone GPU holds it comfortably.
+  cap (~38.6k actual in the main pass) so a phone GPU holds it
+  comfortably.
 
 ## Honest placeholders
 
