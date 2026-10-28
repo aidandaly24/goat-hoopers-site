@@ -1,7 +1,8 @@
 # Current homepage — editorial redesign study
 
 An isolated, offline review of the **current real homepage**, following Aidan's
-October 28 decision to park the arena alternative. The arena draft #267 remains
+October 28 direction to compare the current-home design with Muse's separate
+3D scene work in parallel. The older arena draft #267 remains
 preserved at `98d67bfc402a173c82ff8cfa20bfd6245c21626a`, unmerged. This study
 starts from main `3e536e8c6deb8684ea3a00739be2e71409fa805d` and modifies only
 `qa/homepage-redesign/`. No production source, route, schema, root configuration,
@@ -66,6 +67,26 @@ Opening copy map after independent review6459136388:
 - The QA sample-data warning remains visible in a compact review-controls
   disclosure. No photo/portal is mounted by the new feature; decorative footer
   image and aria-hidden montage lettering remain suppressed by QA presentation.
+- Muse's c2ec178 review6459241852 also informed the lighter pending-score
+  treatment (known zero stays numeric), removal of the duplicate inner standings
+  heading, and suppression of the redundant “Your roster” caption under the
+  first portrait. Stale AI qualification stays visible with disclosures closed.
+
+The latest user request also permits an authentic court image/game language in
+the regular-page option. After inspecting the original `public/courtside/arena.jpg`,
+the actual free-throw preview and the existing game material roles, the opening
+uses a shallow crop of the original GOAT court below the matchup facts. Its
+caption explicitly calls it an illustration; the accompanying real Play free
+throw link uses the existing destination. Text/controls sit on paper rather
+than a busy photo. This is a bounded image, with no renderer or scene work; Muse
+owns the immersive 3D option separately. The source file is reused unchanged.
+
+Further read-only craft references: [Rauno's contrasting aesthetics](https://rauno.me/craft/contrasting-aesthetics)
+supports an intentional contrast between athletic court material and readable
+UI; [interaction design](https://rauno.me/craft/interaction-design) and
+[Emil's design engineering guidance](https://github.com/emilkowalski/skills/blob/main/skills/emil-design-eng/SKILL.md)
+inform immediate familiar controls and restrained motion. These are selective
+design inputs, not installed skills or wholesale landing-page templates.
 
 The original c2ec178 screenshots remain recoverable at that immutable commit.
 Current screenshot filenames are updated in place after each reviewed revision.
@@ -110,6 +131,7 @@ node_modules/.bin/vite --config qa/homepage-redesign/vite.config.mts
 # http://127.0.0.1:4197/?view=member
 # Add &style=baseline for the unchanged production component with identical data.
 # Add &edition=missing for the editorial-unavailable state.
+# Add &ai=missing or &ai=stale to inspect saved-result qualification.
 node_modules/.bin/eslint qa/homepage-redesign --no-error-on-unmatched-pattern
 node_modules/.bin/tsc --noEmit -p qa/homepage-redesign/tsconfig.json
 node_modules/.bin/vite build --config qa/homepage-redesign/vite.config.mts
@@ -126,7 +148,7 @@ anchors retain actual source hrefs; destination pages are not reimplemented here
 
 ## Evidence and limits
 
-`review/verification.json` records the source revision and 20 actual Chromium
+`review/verification.json` records the source revision and 24 actual Chromium
 scenarios: exact unchanged lower-page inventory and retention of every source
 destination in public/member and missing-editorial states; explicit deduplicated
 opening facts/status/disclosure checks; search, both sort controls, keyboard
@@ -137,7 +159,9 @@ no page errors, no remote resource requests. More content is visible as it grows
 no height clamp or clipping is used to make reflow pass.
 Normal 390px checks also record the actual personal-desk and roster-heading
 document offsets, with regression ceilings of750px/1200px respectively; 200%
-text remains independently checked without those normal-density limits.
+text remains independently checked without those normal-density limits. Four
+additional public/member stale/missing-AI cases check visible qualification and
+the zero-versus-Pending distinction with context/provenance disclosures closed.
 `contrast.json` measures actual text/ancestor-background pairs in the changed
 matchup, roster, faces and member-desk regions in both themes and widths. It
 resolves the avatar's identical-stop accent gradient; image content is excluded.

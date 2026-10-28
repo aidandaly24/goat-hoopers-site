@@ -1,4 +1,6 @@
+/* eslint-disable @next/next/no-img-element -- Approved local court art, bounded and direct. */
 import type { ComponentProps } from "react";
+import Link from "next/link";
 import { CourtsideFeature as OriginalFeature, MemberTeamActions } from "@/surfaces/season-hub/CourtsideFeature";
 import { TipCountdown } from "@/surfaces/season-hub/TipCountdown";
 import { deriveWeekPairs, memberPair, savedPickFor, championTeamIdOf, hasPairScores, recordLine } from "@/surfaces/season-hub/weekPairs";
@@ -58,9 +60,9 @@ function CurrentFeature({ edition, entries, rosterCounts, preseason, checkedAt, 
       <div id="clubhouse-court" className="matchup-overview" data-matchup-spread data-league-desk={!summary || undefined}>
         {pair ? <>
           <h1 id="game-title" className="matchup-title">
-            <a href={`/teams/${pair.home.id}`}>{pair.home.name}</a>
+            <Link href={`/teams/${pair.home.id}`} prefetch={false}>{pair.home.name}</Link>
             <span className="sr-only"> versus </span>
-            <a href={`/teams/${pair.away.id}`}>{pair.away.name}</a>
+            <Link href={`/teams/${pair.away.id}`} prefetch={false}>{pair.away.name}</Link>
           </h1>
           <div className="pair-facts">
             {[pair.home, pair.away].map((team, index) => {
@@ -72,15 +74,19 @@ function CurrentFeature({ edition, entries, rosterCounts, preseason, checkedAt, 
                 <div className="pair-manager"><TeamAvatar name={team.name} avatar={team.avatar} isChampion={team.id === championTeamId} /><span>{team.managerName}</span></div>
                 <p className="pair-record">{record.label} <strong>{record.text ?? "Unavailable"}</strong></p>
                 {preseason && entry?.previousSeason?.finish && <p className="pair-record">{entry.previousSeason.season} finish: {entry.previousSeason.finish}{entry.previousSeason.ownerNote ? " · previous manager" : ""}</p>}
-                <p className="pair-score gh-num">{points === null ? <span>Pending</span> : points.toFixed(1)}</p>
+                <p className={`pair-score gh-num${!hasPairScores(pair) ? " is-pending" : ""}`}>{points === null ? <span>Pending</span> : points.toFixed(1)}</p>
                 <p className="pair-score-label">{points === null ? "Score unavailable" : "Fantasy points"}</p>
                 {!summary && <p className="pair-model">AI win probability <strong>{probability === undefined ? "Unavailable" : pct(probability)}</strong></p>}
               </div>;
             })}
           </div>
+          <figure className="court-cut">
+            <img src="/courtside/arena.jpg" alt="" width="1440" height="810" />
+            <figcaption><span>Our GOAT court · illustration</span><Link href="/arcade/free-throw" prefetch={false}>Play free throw</Link></figcaption>
+          </figure>
         </> : <><h1 id="game-title">{edition.game.title}</h1><p>{edition.game.note}</p><p>{edition.game.context}</p></>}
         {!summary && <div className="public-model" data-desk-ai>
-          <p>{AI_PROBABILITY_LABEL}</p>
+          <p>{AI_PROBABILITY_LABEL}{aiWeekly?.status === "stale" ? " · Past-week saved picks" : " · Saved result"}</p>
           {result ? <details><summary>Saved result & provenance</summary><p>{aiWeekly?.status === "stale" ? "Saved comparison / past-week saved picks" : "Saved result"}{stamp ? ` · Saved ${stamp}` : ""} · {result.model}</p><p>Model choice: {choiceName(result.choice)}.</p></details> : <p>No saved AI preview for this pairing yet.</p>}
         </div>}
         <p id="matchup-context" className="sr-only">{summary ? "Your " : ""}Week {week} pairing. {status}</p>
@@ -95,12 +101,12 @@ function CurrentFeature({ edition, entries, rosterCounts, preseason, checkedAt, 
         </dl>
         <div className="personal-ai" data-desk-ai>
           <p>Your AI win probability <strong>{ownProbability === null ? "Unavailable" : pct(ownProbability)}</strong></p>
-          <small>{AI_PROBABILITY_LABEL}</small>
+          <small>{AI_PROBABILITY_LABEL}{ai?.status === "stale" ? ` · Stale · saved Week ${ai.week}` : " · Saved result"}</small>
           {ai && ownResult ? <details><summary>Saved result & provenance</summary><p>{ai.label}{ai.status === "stale" ? ` · Stale · saved Week ${ai.week}` : ""}{stamp ? ` · Saved ${stamp}` : ""} · Model choice: {choiceName(ownResult.choice)}</p></details> : <p>No saved AI result for your matchup yet — the full slate is down the page.</p>}
         </div>
       </aside>}
     </div>
     {aiWeekly?.sourceCompatibility && <p data-ai-source-compatibility={aiWeekly.sourceCompatibility.status}>{aiWeekly.sourceCompatibility.message}</p>}
-    <a className="week-index-link" href="#ai-decides">{summary ? `Week ${week} matchups` : "Explore this week · All five matchups"}</a>
+    <Link className="week-index-link" href="#ai-decides" prefetch={false}>{summary ? `Week ${week} matchups` : "Explore this week · All five matchups"}</Link>
   </div>;
 }

@@ -121,6 +121,17 @@ try {
     results.push({ view, theme, size, ...layout, themeToggle: true, compactMenuEscape: size !== "desktop", noHorizontalOverflow: true, allFacesVisible: true });
     await context.close();
   }
+  for (const view of ["public", "member"]) for (const state of ["stale", "missing"]) {
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
+    await page.goto(`${origin}/?view=${view}&ai=${state}`); await page.waitForSelector("[data-qa-feature]"); await settle(page);
+    const visible = await page.locator("[data-qa-feature]").innerText();
+    if (state === "stale") assert.match(visible, view === "member" ? /Stale.*saved Week 3/ : /Past-week saved picks/);
+    else assert.match(visible, /Unavailable/);
+    assert.match(visible, /scores pending/); assert.match(visible, /0\.0/); assert.match(visible, /Pending/);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), 390);
+    results.push({ view, aiState: state, visibleQualification: true, zeroPendingDistinct: true });
+    await page.close();
+  }
   assert.deepEqual(errors, []); assert.deepEqual(remote, [], "Offline fixture requested a remote resource");
   const receipt = { sourceHead: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
     method: "Actual Chromium production-component fixture with synthetic props; native QA anchors, not Next App Router", browser: browser.version(),

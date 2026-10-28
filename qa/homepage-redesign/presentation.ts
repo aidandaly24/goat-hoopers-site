@@ -43,7 +43,7 @@ ${s} .${roster.meta}, ${s} .${roster.rank} { font-size: var(--gh-text-sm); }
 ${s} .${stage.stage} { height: auto; border: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gh-s4); }
 ${s} .${stage.backdrop} { display: none; }
 ${s} .${stage.portrait} { position: static; inset: auto; width: 100%; height: calc(var(--gh-s16) + var(--gh-s8)); transform: none; }
-${s} .${stage.caption} { position: static; padding: 0; background: transparent; font-size: var(--gh-text-sm); text-transform: none; letter-spacing: 0; grid-column: 1 / -1; }
+${s} .${stage.caption} { display: none; }
 ${s} .${stage.names} { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: none; gap: var(--gh-s4); margin-top: var(--gh-s4); }
 ${s} .${stage.names} li { grid-area: auto; text-align: left; }
 ${s} .${stage.names} a { font-size: var(--gh-text-md); padding-block: var(--gh-s3); }
@@ -92,6 +92,7 @@ ${c("team-identity")} h3 { font-size: var(--gh-text-md); overflow-wrap: anywhere
 ${c("team-record")} strong { font-size: var(--gh-s6); }
 ${c("roster-detail")} { background: var(--gh-bg); }
 ${c("league-section")} { padding-block: var(--gh-s16); background: var(--gh-bg); }
+${c("live-grid")} > div:first-child .${heading.wrap} { display: none; }
 ${s} .${card.card} { border: 0; background: transparent; box-shadow: none; padding: 0; }
 ${s} .${standings.row} { border: 0; border-bottom: 1px solid var(--gh-border); border-radius: 0; background: transparent; padding-block: var(--gh-s4); }
 ${s} .${standings.name}, ${s} .${standings.manager} { white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; }

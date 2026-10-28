@@ -6,7 +6,7 @@ import type { PlayerGuideSources } from "@/domain/team-player-guide";
 
 /** Dated approved identities/editorial; ALL current scores/prices/form are
  * synthetic. No production loader, session, fetch, database or saved AI run. */
-export function homepageFixture(member: boolean, missingEdition: boolean) {
+export function homepageFixture(member: boolean, missingEdition: boolean, aiState: "ready" | "stale" | "missing" = "ready") {
   const fixture = personalizedFixture();
   const { home, market, weekly, news, teams } = fixture;
   for (const team of teams) {
@@ -60,8 +60,10 @@ export function homepageFixture(member: boolean, missingEdition: boolean) {
       players: roster.slice(0, 5).map((player, index) => ({ playerId: player.id,
         fantasyPoints: 45 - index * 6, gamesPlayed: 3, injuryNote: null })) },
   };
-  const personal = buildPersonalizedHome(member ? { kind: "member", teamId: "1" } : { kind: "signed_out" }, home, weekly, market, news, sources);
-  return { home, weekly, personal, faces: buildHomeFaces(home, market), archive: structuredClone(weeklyEditions) };
+  if (aiState === "stale") weekly.status = "stale";
+  const visibleWeekly = aiState === "missing" ? undefined : weekly;
+  const personal = buildPersonalizedHome(member ? { kind: "member", teamId: "1" } : { kind: "signed_out" }, home, visibleWeekly, market, news, sources);
+  return { home, weekly: visibleWeekly, personal, faces: buildHomeFaces(home, market), archive: structuredClone(weeklyEditions) };
 }
 
 export const portraits: Record<string, string> = Object.fromEntries(

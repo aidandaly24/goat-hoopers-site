@@ -21,7 +21,8 @@ function Review() {
   const [member, setMember] = useState(query.get("view") === "member");
   const [missing, setMissing] = useState(query.get("edition") === "missing");
   const baseline = query.get("style") === "baseline";
-  const data = useMemo(() => homepageFixture(member, missing), [member, missing]);
+  const aiState = query.get("ai") === "stale" ? "stale" : query.get("ai") === "missing" ? "missing" : "ready";
+  const data = useMemo(() => homepageFixture(member, missing, aiState), [member, missing, aiState]);
   return <>
     {!baseline && <style>{presentation}</style>}
     <details className="review-toolbar" aria-label="Prototype controls">
