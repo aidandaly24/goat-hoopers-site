@@ -8,6 +8,8 @@ import {
   getLeagueNewsEdition,
   getHomePlayerGuideSources,
   getRosterSnapshotHistory,
+  getHomeLineupPowerSource,
+  buildHomeLineupPower,
 } from "@/data/league";
 import { headers } from "next/headers";
 import { getCurrentUser } from "@/app/actions";
@@ -30,9 +32,10 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [data, aiData, viewer] = await Promise.all([getCourtsideHomeData(), getAiDecidesData(),
+  const [data, aiData, viewer, powerSource] = await Promise.all([getCourtsideHomeData(), getAiDecidesData(),
     loadHomeViewer({ member: getCurrentUser, account: async () => friendsAuthEnabled()
       ? getVerifiedAccount(await headers()) : null, hasMembership: hasHomeMembership }),
+    getHomeLineupPowerSource(),
   ]);
   // React.cache reuses the root ticker's existing request-local market result
   // for every visitor, so the league faces strip costs no additional refresh,
@@ -67,6 +70,7 @@ export default async function Home() {
       faces={faces}
       teamHistory={teamHistory}
       weeklyRecap={weeklyContext.recap}
+      lineupPower={buildHomeLineupPower(data, powerSource)}
     />
   );
 }

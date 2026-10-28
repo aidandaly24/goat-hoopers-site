@@ -1454,10 +1454,18 @@ evidence); otherwise the team is `unavailable` with a null total — a
 partial sum is never emitted, so no team is estimated into a rank. The
 next week's public matchup leg does not exist at production time, so
 the live loader carries no locked/final slot values; the builder
-honors them if a future source can prove them. No persistence, route
-or surface consumes the snapshot yet — the homepage `HomePowerRankings`
-wiring is a deliberate follow-up; until then the compact
-Power-unavailable state stands.
+honors them if a future source can prove them. No persistence is added.
+`data/home-lineup-power.ts` consumes the producer with the same injected state
+read, captures season/leg provenance, validates the snapshot and joins all ten
+already-loaded team identities via the `domain/home-lineup-power.ts` envelope.
+The thin homepage loads this public source in parallel and passes it to
+`season-hub/HomePowerRankings`: legal full-11 projections use the shared rank
+helper; prior-season fallback and missing totals remain explicit, ties share a
+rank, and no stored prior means no movement. Source TTLs stay in Sleeper; no DB,
+publisher, polling or player-directory load is introduced. The recap composition
+renders Power once on live pages and ignores it in archives. The consumer is
+reusable by a future arena reader; no arena files are changed. See
+`docs/home-lineup-power.md` for provenance, test cases and review dependencies.
 
 `src/surfaces/ai-decides/AiDecides.tsx` owns the editable frontend and its native
 team dialog. The thin `/ai-decides` page loads cached AI data, slim team identities

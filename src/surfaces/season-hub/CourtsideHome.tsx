@@ -19,6 +19,7 @@ import { StudChud } from "./StudChud";
 import { WeeklyLeagueRecap } from "./WeeklyLeagueRecap";
 import { HomePowerRankings } from "./HomePowerRankings";
 import type { HomeWeeklyRecap } from "@/domain/home-weekly-recap";
+import type { HomeLineupPower } from "@/domain/home-lineup-power";
 import { AiDecidesSection } from "./AiDecidesSection";
 import { Reveal } from "./Reveal";
 import { WEEK_ONE_TIP_OFF_ISO, openingPhase } from "@/domain/season-opening";
@@ -47,6 +48,7 @@ type Props = {
    * server-side; when present it replaces the repricing trend line. */
   teamHistory?: TeamValueHistoryEnvelope | null;
   weeklyRecap?: HomeWeeklyRecap;
+  lineupPower?: HomeLineupPower;
 };
 
 function Sources({ edition }: { edition: WeeklyEdition }) {
@@ -92,11 +94,12 @@ export function CourtsideHome({
   faces,
   teamHistory,
   weeklyRecap,
+  lineupPower,
 }: Props) {
   const { edition, hub } = data;
   const completedWeek = !archived && weeklyRecap ? <>
     <WeeklyLeagueRecap recap={weeklyRecap} />
-    <HomePowerRankings />
+    <HomePowerRankings data={lineupPower} />
   </> : null;
   const preseason =
     hub?.season.status === "pre_season" || hub?.season.status === "pre_draft";
