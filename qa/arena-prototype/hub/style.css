@@ -16,7 +16,7 @@ body:has(.hub-shell) { background: var(--gh-scene-hover); }
 .hub-intro > p:not(.hub-kicker) { margin: 0; font-size: var(--gh-text-sm); color: var(--gh-scene-muted); }
 .hub-intro .hub-compact-hint { display: none; margin-top: var(--gh-s2); }
 @container (height < 32rem) {
- .hub-pin { display: none; }
+ .hub-pins .hub-pin { display: none; }
  .hub-intro .hub-compact-hint { display: block; }
 }
 .hub-review { display: flex; flex-wrap: wrap; gap: var(--gh-s2); padding-block: var(--gh-s2); }
