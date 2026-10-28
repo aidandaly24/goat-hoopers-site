@@ -1570,3 +1570,6 @@ export async function getHomePlayerGuideSources(
     completedWeek: null,
   };
 }
+
+// Public homepage composition facade; the producer remains in its own module.
+export { getHomeLineupPowerSource, buildHomeLineupPower } from "./home-lineup-power";

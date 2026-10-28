@@ -8,6 +8,8 @@ import {
   getLeagueNewsEdition,
   getHomePlayerGuideSources,
   getRosterSnapshotHistory,
+  getHomeLineupPowerSource,
+  buildHomeLineupPower,
 } from "@/data/league";
 import { headers } from "next/headers";
 import { getCurrentUser } from "@/app/actions";
@@ -16,6 +18,8 @@ import { getVerifiedAccount } from "@/data/friends-auth/runtime";
 import { hasHomeMembership, loadHomeViewer } from "@/data/home-viewer";
 import { buildHomeFaces, buildPersonalizedHome } from "@/data/personalized-home";
 import { getTeamValueHistory } from "@/data/team-value-history";
+import { buildHomeWeeklyContext } from "@/data/home-weekly-context";
+import { WEEKLY_EVIDENCE_RECEIPTS } from "@/data/weekly-player-evidence";
 import { CourtsideHome } from "@/surfaces/season-hub/CourtsideHome";
 import type { Metadata } from "next";
 
@@ -28,9 +32,10 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [data, aiData, viewer] = await Promise.all([getCourtsideHomeData(), getAiDecidesData(),
+  const [data, aiData, viewer, powerSource] = await Promise.all([getCourtsideHomeData(), getAiDecidesData(),
     loadHomeViewer({ member: getCurrentUser, account: async () => friendsAuthEnabled()
       ? getVerifiedAccount(await headers()) : null, hasMembership: hasHomeMembership }),
+    getHomeLineupPowerSource(),
   ]);
   // React.cache reuses the root ticker's existing request-local market result
   // for every visitor, so the league faces strip costs no additional refresh,
@@ -50,7 +55,8 @@ export default async function Home() {
     getRosterSnapshotHistory(viewerRosterIds).catch(() => null),
     getTeamValueHistory(viewer.teamId).catch(() => null),
   ]) : [null, null, null, null];
-  const personal = buildPersonalizedHome(viewer, data, aiData.weekly, market, news, guideSources, snapshotHistory);
+  const weeklyContext = buildHomeWeeklyContext(data, WEEKLY_EVIDENCE_RECEIPTS, viewer.kind === "member" ? viewer.teamId : null, guideSources);
+  const personal = buildPersonalizedHome(viewer, data, aiData.weekly, market, news, weeklyContext.guideSources, snapshotHistory);
   const faces = buildHomeFaces(data, market);
   // One surface: the edition itself is personalized in place.
   return (
@@ -63,6 +69,8 @@ export default async function Home() {
       personal={personal}
       faces={faces}
       teamHistory={teamHistory}
+      weeklyRecap={weeklyContext.recap}
+      lineupPower={buildHomeLineupPower(data, powerSource)}
     />
   );
 }
