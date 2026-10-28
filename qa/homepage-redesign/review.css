@@ -1,0 +1,41 @@
+@font-face { font-family: "Inter"; src: url("/design-preview/neutral-courtside/assets/inter.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("/design-preview/neutral-courtside/assets/geist-mono.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+:root { --font-body: "Inter"; --font-mono: "Geist Mono"; }
+.review-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--gh-s4); padding: var(--gh-s3) var(--gh-s6); background: var(--gh-bg-hover); border-bottom: 1px solid var(--gh-border); color: var(--gh-text); font-size: var(--gh-text-sm); }
+.review-toolbar > div:first-child { display: grid; gap: var(--gh-s1); }
+.review-toolbar span { color: var(--gh-text-dim); font-size: var(--gh-text-xs); }
+.review-controls { display: flex; align-items: center; flex-wrap: wrap; gap: var(--gh-s4); }
+.review-controls label, .review-controls a { display: inline-flex; align-items: center; gap: var(--gh-s2); min-height: var(--gh-target-touch); }
+.review-controls a { color: var(--gh-accent); }
+.review-receipt { margin: 0 auto; max-width: 78rem; padding: var(--gh-s6) var(--gh-s4); color: var(--gh-text-dim); font-size: var(--gh-text-sm); }
+.editorial-study, .baseline-home { min-width: 0; }
+.matchup-spread { color: var(--gh-text); background: var(--gh-bg-hover); padding: var(--gh-s6); }
+.spread-heading { display: flex; gap: var(--gh-s4); flex-wrap: wrap; justify-content: space-between; padding-bottom: var(--gh-s6); color: var(--gh-text-dim); font-size: var(--gh-text-sm); }
+.spread-heading > :first-child { color: var(--gh-accent); font-weight: 700; }
+.spread-teams { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); }
+.spread-side { min-width: 0; padding-right: var(--gh-s6); }
+.spread-side + .spread-side { border-left: 1px solid var(--gh-control); padding-right: 0; padding-left: var(--gh-s6); }
+.spread-identity { display: flex; align-items: center; gap: var(--gh-s3); color: var(--gh-text-dim); font-size: var(--gh-text-sm); margin-bottom: var(--gh-s3); }
+.spread-team-name { display: flex; align-items: start; min-height: 2.3em; font-size: clamp(var(--gh-s6), 2.2vw, var(--gh-s8)); line-height: 1.15; font-weight: 750; letter-spacing: -.04em; overflow-wrap: anywhere; text-wrap: balance; }
+.spread-record { color: var(--gh-text-dim); font-size: var(--gh-text-sm); margin-top: var(--gh-s3) !important; }
+.spread-score { margin-top: var(--gh-s4) !important; font-size: clamp(var(--gh-s8), 4vw, var(--gh-s12)); font-weight: 650; letter-spacing: -.06em; overflow-wrap: anywhere; }
+.spread-score > span { font-family: var(--gh-font-body); font-size: .65em; letter-spacing: -.04em; }
+.spread-score-label { font-size: var(--gh-text-sm); color: var(--gh-text-dim); }
+.spread-anchor { display: flex; align-items: center; min-height: var(--gh-target-touch); gap: var(--gh-s2); margin-top: var(--gh-s6); padding-top: var(--gh-s4); border-top: 1px solid var(--gh-control); }
+.spread-anchor img { width: var(--gh-s16) !important; height: var(--gh-s16) !important; object-fit: contain !important; transform: none !important; flex-shrink: 0; }
+.spread-anchor > span { display: grid; min-width: 0; gap: var(--gh-s1); font-size: var(--gh-text-sm); overflow-wrap: anywhere; }
+.spread-anchor small { font-size: var(--gh-text-xs); color: var(--gh-text-dim); }
+.spread-source { margin-top: var(--gh-s6) !important; padding-top: var(--gh-s4); border-top: 1px solid var(--gh-control); color: var(--gh-text-dim); font-size: var(--gh-text-xs); }
+@media(max-width:40rem) {
+  .review-toolbar { padding-inline: var(--gh-s4); }
+  .review-controls { gap: var(--gh-s3); }
+  .matchup-spread { padding: var(--gh-s4); }
+  .spread-heading { padding-bottom: var(--gh-s4); }
+  .spread-side { padding-right: var(--gh-s3); }
+  .spread-side + .spread-side { padding-left: var(--gh-s3); }
+  .spread-team-name { font-size: var(--gh-text-lg); min-height: 3.5em; }
+  .spread-identity { flex-wrap: wrap; gap: var(--gh-s2); }
+  .spread-anchor { flex-wrap: wrap; }
+  .spread-score { font-size: var(--gh-s8); }
+}
+@media(prefers-reduced-motion:reduce) { .editorial-study *, .review-toolbar * { animation: none !important; transition: none !important; } }
