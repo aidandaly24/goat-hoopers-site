@@ -108,7 +108,7 @@ function HomeCourt() {
   const matchup = summary?.matchup ?? data?.home.directory[0]?.currentMatchup;
   const positions = fallback ? initialAnchors : anchors;
   return <div className="hub-shell" data-mode={fallback ? "still" : mode} data-member={member}>
-    <SiteHeader user={member ? { displayName: "Aidan · sample", teamId: "1", avatar: null } : null} logoutAction={async () => setMember(false)} />
+    <div className="hub-header"><SiteHeader user={member ? { displayName: "Aidan · sample", teamId: "1", avatar: null } : null} logoutAction={async () => setMember(false)} /></div>
     <Link className="hub-skip" href="#arena-directory">Skip to arena destinations</Link>
     <main className="hub-stage" id="main-content" tabIndex={-1} aria-labelledby="hub-title" data-reader-open={Boolean(place)}>
       <div ref={host} className="hub-court" aria-hidden="true" />

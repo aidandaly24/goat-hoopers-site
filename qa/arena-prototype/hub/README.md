@@ -61,6 +61,7 @@ Validation commands (with the local app running):
 
 ```sh
 node qa/arena-prototype/hub/verify.mjs
+node qa/arena-prototype/hub/verify-menu.mjs
 node node_modules/typescript/bin/tsc --noEmit -p qa/arena-prototype/tsconfig.json
 node node_modules/eslint/bin/eslint.js qa/arena-prototype/hub
 node node_modules/vite/bin/vite.js build --config qa/arena-prototype/vite.config.mts
@@ -90,3 +91,13 @@ readers at 1440/390 in both themes now measure secondary-label contrast
 returns to the arena. Action-contrast receipts and recaptured affected views
 are stored beside the base 18-case interaction receipt. Runtime source IDs
 and each image's capture source are explicit in artifacts.json.
+
+The expanded-navigation regression is reproduced at b445b581: the disclosure
+became a separate grid item and reduced the arena to zero height (750→0px
+desktop,523→0px phone). The QA entry now groups the unchanged SiteHeader and
+its disclosure sibling into one header grid item. verify-menu.mjs exercises
+eight expanded/closed states across public/member,1440/390/320, both themes,
+200% text, still and reduced-motion modes. It checks stage dimensions, natural
+menu flow, no horizontal overflow, renderer count, Escape/focus restoration,
+reader activation afterward and repeat open/close. Shared header and scene
+files are unchanged. Older overview captures do not prove this menu state.
