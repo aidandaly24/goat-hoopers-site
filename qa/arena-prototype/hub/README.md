@@ -117,3 +117,12 @@ in actual pixels, using an analysis crop while leaving the delivered viewport
 JPEG untouched. Capture source and hashes are bound in review/artifacts.json.
 Repeated matchup headings, desktop standings ellipses and the enlarged-text
 reader toolbar remain nonblocking design-polish notes for joint review.
+
+Muse's precise menu-closure criteria are enforced: expanding navigation adds
+normal document flow while preserving the closed-menu court dimensions. The
+track uses measured compact chrome, destination-directory and footer heights;
+the disclosure itself is excluded from that budget. The eight cases preserve
+750/523/516/832px respectively across open/close, rather than merely staying
+nonzero. Tab reaches real panel links; toggle, Escape and Home activation all
+restore the closed layout. Receipts include these actual traversal results.
+The current runtime source is 6d98c17; 325c0a5 adds only the menu-test extension.

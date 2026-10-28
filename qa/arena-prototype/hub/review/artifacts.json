@@ -1,205 +1,241 @@
 {
-  "runtimeSource": "558433973bee42129e0b7417ac8989285d319fcc",
-  "capture": "Unretouched native viewport JPEGs. Expanded menu and scrolled arena views are separate states, not full-content captures. All files recaptured at this runtime source.",
-  "checks": "18 interaction + 8 menu states + 4 themed contrast cases; menu title pixel checks use separate diagnostic crops only.",
+  "runtimeSource": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+  "interactionReceipt": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+  "menuAndThemeReceipt": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+  "sourceDelta": "325c0a5 changes only the menu verification script; all runtime source is identical to6d98c17.",
+  "capture": "All current native viewport JPEGs are unretouched; menu and arena views show separate scroll states.",
+  "checks": "18 interaction +8 menu states +4 themed contrast cases; exact stage height retained; keyboard traversal, Home activation, Escape and visible focus checked.",
   "images": [
     {
       "name": "matchup-actions-dark-1440.jpg",
       "bytes": 137826,
       "sha256": "602ad3fb53cf28120ecefe9a4eca96e80a9b34ed11d444f56bc973d947900dd7",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "matchup-actions-dark-390.jpg",
       "bytes": 45294,
       "sha256": "0cd27229c94a774e6f4b9f364a75d1c7bd0861ddcb159c2ab1ca859c15cbbdd9",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "matchup-actions-light-1440.jpg",
       "bytes": 137022,
       "sha256": "55a044f9a8c0542557364ca07ad082f997b1211cd4323b8ac199244dea4b6fa9",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "matchup-actions-light-390.jpg",
       "bytes": 44479,
       "sha256": "7c3983ac587d852b485cd3ac5b3ad627e993aa4d27eca2e2422d1fcdf330ad03",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "member-desktop-overview.jpg",
       "bytes": 171310,
       "sha256": "4deddd732529b10fad231f3dafdb6ca2525d0f7a12b6efccadfeb5ac7ae8fa43",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "member-desktop-team.jpg",
       "bytes": 131121,
       "sha256": "54825913e8af4dd615075e6c5bf7d4cfa9d7f4fd21704fefc5ba87b4930d24ee",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "member-light-1440-overview.jpg",
       "bytes": 170483,
       "sha256": "a5c3802b3dc07589c0a4dfeae49835b3c908dfb3920c2f9768193a24cfa767e9",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "member-light-1440-table.jpg",
       "bytes": 138240,
       "sha256": "faaf43c130021d43d1e373bc07ef7906ca745879ef5a59592bd4647cc5b4cefd",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "member-light-390-overview.jpg",
       "bytes": 52908,
       "sha256": "947c666c698e1d7ba37fc70fdfe66079229e63de3cfa4aac9ef6d6f80ffd5435",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "member-light-390-table.jpg",
       "bytes": 44389,
       "sha256": "98fcd72b5297dbb2a1e399f106cdf0ab6017552919bf3b47f4a867815b66e07e",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "member-phone-overview.jpg",
       "bytes": 52762,
       "sha256": "daeb5725606d70235d7100e97a878479ac8355221493862a37f2ec0ef2b358ec",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "member-phone-reader.jpg",
       "bytes": 55587,
       "sha256": "177205ac2ec778ac42133f72e5683000aad91f01f0030ea10bab5ddcab53822b",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-1440-member-light-arena.jpg",
-      "bytes": 171276,
-      "sha256": "1b27a9b09a9326efd237aed0f354fe22063a15d8ee9370983dbcfccf34e512b0",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 164565,
+      "sha256": "7b17a08818729d8cffc3436d7f4f10f938d1dbc64b5934a287decfb944e2e70e",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-1440-member-light-expanded.jpg",
-      "bytes": 171276,
-      "sha256": "1b27a9b09a9326efd237aed0f354fe22063a15d8ee9370983dbcfccf34e512b0",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 164565,
+      "sha256": "7b17a08818729d8cffc3436d7f4f10f938d1dbc64b5934a287decfb944e2e70e",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-1440-public-dark-arena.jpg",
-      "bytes": 173752,
-      "sha256": "bda85ce3fe7d3c0ef7638e1d5ff55d688c0ec9f21f8c4a2883b9a615de4af16b",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 165758,
+      "sha256": "f7931d6bb0d28f2ed1e05faa4ba8916e8c9640f12a62a5a18d9e78d5cb49dbd2",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-1440-public-dark-expanded.jpg",
-      "bytes": 173752,
-      "sha256": "bda85ce3fe7d3c0ef7638e1d5ff55d688c0ec9f21f8c4a2883b9a615de4af16b",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 165758,
+      "sha256": "f7931d6bb0d28f2ed1e05faa4ba8916e8c9640f12a62a5a18d9e78d5cb49dbd2",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-320-member-dark-arena.jpg",
-      "bytes": 38801,
-      "sha256": "9209dfa25b9d8e7fe36ff937c004c660ff174f6129b8e247fc413c9b2486dd03",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 39370,
+      "sha256": "b6241457241d03830072c5a237d26215e03e517ad7ffa0e9e4349fb9e87dc22c",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-320-member-dark-expanded.jpg",
-      "bytes": 38677,
-      "sha256": "2d75d33360f9df706904a458d267231aa02d2d1cbb1fbb189d636f2fc60dbc8c",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 38250,
+      "sha256": "bdba477cfdc8d60e84c7811754a39838e4bb5d78898676ca80dab2e85c7558dc",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-390-member-dark-200-arena.jpg",
       "bytes": 48253,
       "sha256": "1f7f86a43e144f010e277bd93268c57d8db60758001eeb8034c5483ef190c004",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-390-member-dark-200-expanded.jpg",
-      "bytes": 21767,
-      "sha256": "86a1df3721cb7639901e2fc28934cad6e17879f7b70254aa6f8203357c2c32b6",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 22993,
+      "sha256": "421e5c9556337251696bd717ed5e71fbcfa6026ce7084439f2ac236804eba132",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-390-member-light-arena.jpg",
-      "bytes": 41479,
-      "sha256": "c72b7a54bb162593f9050d0054058f4e7e711907e5ef97670e93b6433cad270d",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 44770,
+      "sha256": "523accaf4be7b4e1d69206b3cef45e15b3ce7c3e518ac2575895547468275eca",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-390-member-light-expanded.jpg",
-      "bytes": 41745,
-      "sha256": "b7f41441044f776ebdb4224b44026521398f6b98d9024ff04a3bb3a17f4c3bcd",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 43982,
+      "sha256": "79e7fd28831e86f92bad8d7a7ccc05cd7b866bdaccfa5990da6135186310745c",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-390-member-light-still-arena.jpg",
-      "bytes": 40396,
-      "sha256": "3aaaf2ad3cc9b770afa1334bba17afd564c45991643ddfef771ef3983acefe72",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 46093,
+      "sha256": "393226bbe01124a1a0e68bb01ec2768b92fe74063d28de7d9f84d4d40019bbf1",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-390-member-light-still-expanded.jpg",
-      "bytes": 39132,
-      "sha256": "fba328a989032b7757c3f0f1bef9a2bddf74bd7313d93c329a6a4a1e929f3ebf",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 41811,
+      "sha256": "c3992c344d675822e8ddc3e9c80303bcfda066e2fe97ce66d2090d4f7872fd14",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-390-public-dark-arena.jpg",
-      "bytes": 43578,
-      "sha256": "7562af0938788a9c60aee9d9b9b8ac61f35128f4b049895edd4388a8704c7a43",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 45531,
+      "sha256": "12da46aeb364d7e26f45c080b6465c4c0a52b5d48c05be06e8017e9b93218a50",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-390-public-dark-expanded.jpg",
-      "bytes": 42907,
-      "sha256": "6370de9bd59e75062281ca0b9da7f4ba8bc003b8f40ad9aecc94ed121c4c027f",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 44919,
+      "sha256": "292435812feeb801b4f3b2a9a77c58468ceb3773c3779d448b265532a925604c",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-390-public-dark-reduced-arena.jpg",
-      "bytes": 42352,
-      "sha256": "c25b78a3a7db69fe41840b8af015e77d65fe11b70ec0fa9fd14a34568e4ccb83",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 46882,
+      "sha256": "6a48deb95ea9c7e110fbace167da60be242e28841c1a987093d70d507f39f2ed",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "menu/menu-390-public-dark-reduced-expanded.jpg",
-      "bytes": 40672,
-      "sha256": "2f06756477eb5208858084bd3a0b291af3e57e6d23ec575db3360d2391b4718d",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "bytes": 43030,
+      "sha256": "4b1231c64a1ad799638857eafd09df30a2221dab11aa7181cb4ea30ea19e1629",
+      "capturedAtRevision": "325c0a5e7e8837c4ce026f449d5509f589f74862",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "phone-200-percent-reader.jpg",
       "bytes": 36256,
       "sha256": "fefd9f1f5448823e2eeedcaa756512d3063c55f6cb998f834ced31873fde5aa4",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "public-desktop-matchup.jpg",
       "bytes": 157040,
       "sha256": "d4fa8e3f1a3a8b041a59493e19a1d1e80d5d2c1ef02612e687b3065c56d86b0d",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "public-desktop-overview.jpg",
       "bytes": 173334,
       "sha256": "1dd99b0cc4b5e5b3f3fd04e6303cda9df2071a09dc66213e5b73681b165a43cc",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "public-phone-overview.jpg",
       "bytes": 54218,
       "sha256": "b596cc7dcf34c2130797e2da013ae74066592e4f63901e2474589c950dc90017",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     },
     {
       "name": "public-phone-reader.jpg",
       "bytes": 52222,
       "sha256": "af5a1737ea603fd2b762f4f82dff239729abc055a30ee932847683d279a3c789",
-      "capturedRuntimeSource": "558433973bee42129e0b7417ac8989285d319fcc"
+      "capturedAtRevision": "6d98c17a4e92afbd27a41dff9c22590aeed141aa",
+      "runtimeEquivalentTo": "6d98c17a4e92afbd27a41dff9c22590aeed141aa"
     }
   ]
 }
