@@ -1,0 +1,189 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 9462,
+  "bytes": 882759,
+  "jpegQuality": 65,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 8000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 9000,
+      "scrollY": 8462,
+      "cropTop": 538,
+      "height": 462
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 9000,
+      "scrollY": 8462,
+      "cropTop": 538,
+      "width": 1440,
+      "height": 462,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Week 3On the court.",
+      "y": 235
+    },
+    {
+      "text": "Ten teams.One playground.",
+      "y": 958
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 1277
+    },
+    {
+      "text": "AI Decides",
+      "y": 1865
+    },
+    {
+      "text": "The next chapter",
+      "y": 3211
+    },
+    {
+      "text": "Faces of the league",
+      "y": 4120
+    },
+    {
+      "text": "The clubhouse",
+      "y": 4928
+    },
+    {
+      "text": "Standings",
+      "y": 6963
+    },
+    {
+      "text": "Stocks",
+      "y": 8000
+    },
+    {
+      "text": "Trade analyzer",
+      "y": 8000
+    },
+    {
+      "text": "Arcade",
+      "y": 8000
+    },
+    {
+      "text": "Weekly archive",
+      "y": 8637
+    }
+  ],
+  "footer": {
+    "text": "One league. Full source context.OFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Fixture benchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b · source checked 12 Nov 2026, 12:00 UTC. This is a static QA design preview, not a live or authenticated league service.Complete source fixture and provenanceThe complete common inventory includes approved dated identities, synthetic current data, both archive editions, model and prompt metadata, inputs and source URLs. Unavailable snapshots remain null.Read the complete fixture JSON{\n  \"benchmark\": \"64b9971f88ad1f73f5bd00ac0fdef9019909561b\",\n  \"warning\": \"OFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.\",\n  \"view\": \"public\",\n  \"aiState\": \"ready\",\n  \"checkedAt\": \"2026-11-12T12:00:00Z\",\n  \"edition\": {\n    \"id\": \"2026-W41\",\n    \"season\": \"2026\",\n    \"title\": \"The next chapter\",\n    \"dateLabel\": \"Oct 5–11, 2026\",\n    \"startsAt\": \"2026-10-05T00:00:00Z\",\n    \"endsAt\": \"2026-10-12T00:00:00Z\",\n    \"status\": \"draft\",\n    \"publishedAt\": null,\n    \"game\": {\n      \"title\": \"Reaves Dropper gets the champ.\",\n      \"note\": \"Opening-week watch\",\n      \"leagueWeek\": 1,\n      \"teamIds\": [\n        \"1\",\n        \"2\"\n      ],\n      \"state\": \"upcoming\",\n      \"scores\": null,\n      \"context\": \"A 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\",\n      \"selectionReason\": \"Proposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\"\n    },\n    \"playerSpotlights\": [\n      {\n        \"role\": \"player-of-week\",\n        \"playerId\": \"1658\",\n        \"name\": \"Nikola Jokić\",\n        \"position\": \"C\",\n        \"teamId\": \"5\",\n        \"periodLabel\": \"Last season’s standard\",\n        \"headline\": \"Somebody unplug this man.\",\n        \"opinion\": \"Three columns. One headache. The champ gets to call it good management.\",\n        \"stats\": [\n          {\n            \"value\": \"27.7\",\n            \"label\": \"PPG\"\n          },\n          {\n            \"value\": \"12.9\",\n            \"label\": \"RPG\"\n          },\n          {\n            \"value\": \"10.7\",\n            \"label\": \"APG\"\n          }\n        ],\n        \"statPeriod\": \"2025–26 NBA averages\",\n        \"selectionReason\": \"Opening-edition sample opinion, using last season’s NBA averages. This is not a played 2026 fantasy-week award. Current roster ownership is verified; the pick is editorial, not a computed MVP ranking.\",\n        \"source\": {\n          \"label\": \"NBA.com · Jokić\",\n          \"url\": \"https://www.nba.com/player/203999/nikola-jokic\",\n          \"checkedAt\": \"2026-10-08\"\n        }\n      },\n      {\n        \"role\": \"underperformer\",\n        \"playerId\": \"1511\",\n        \"name\": \"Joel Embiid\",\n        \"position\": \"C\",\n        \"teamId\": \"1\",\n        \"periodLabel\": \"Last-season lookback\",\n        \"headline\": \"We wanted more on the glass.\",\n        \"opinion\": \"Points: accepted. Rebounds: the group chat has questions.\",\n        \"stats\": [\n          {\n            \"value\": \"26.9\",\n            \"label\": \"PPG\"\n          },\n          {\n            \"value\": \"7.7\",\n            \"label\": \"RPG\"\n          },\n          {\n            \"value\": \"3.9\",\n            \"label\": \"APG\"\n          }\n        ],\n        \"statPeriod\": \"2025–26 NBA averages\",\n        \"selectionReason\": \"A sample last-season criticism of rebounding output, not a verified worst-player ranking, injury judgment or current-week result. The opinion is subjective. The ownership link is the current roster, not a claim about who held him throughout 2025.\",\n        \"source\": {\n          \"label\": \"NBA.com · Embiid\",\n          \"url\": \"https://www.nba.com/stats/player/203954/traditional\",\n          \"checkedAt\": \"2026-10-08\"\n        }\n      },\n      {\n        \"role\": \"one-to-watch\",\n        \"playerId\": \"4866\",\n        \"name\": \"AJ Dybantsa\",\n        \"position\": \"PF\",\n        \"teamId\": \"8\",\n        \"periodLabel\": \"Next week · preseason\",\n        \"headline\": \"No. 1 pick. No free pass.\",\n        \"opinion\": \"NeuralNets took him first. We’re watching minutes, not the mixtape.\",\n        \"stats\": [\n          {\n            \"value\": \"25.5\",\n            \"label\": \"PPG\"\n          },\n          {\n            \"value\": \"6.8\",\n            \"label\": \"RPG\"\n          },\n          {\n            \"value\": \"3.7\",\n            \"label\": \"APG\"\n          }\n        ],\n        \"statPeriod\": \"2025–26 college · BYU\",\n        \"selectionReason\": \"The league’s actual No. 1 rookie selection. This is a proposed next-week preseason watch, not a playing-time guarantee or forecast. The shown averages are college data, not NBA or fantasy points.\",\n        \"source\": {\n          \"label\": \"NBA.com · draft profile\",\n          \"url\": \"https://www.nba.com/draft/2026/prospects/aj-dybantsa\",\n          \"checkedAt\": \"2026-10-08\"\n        }\n      }\n    ],\n    \"happenings\": [\n      {\n        \"title\": \"Lonzo hits the wire\",\n        \"text\": \"Lebron Theme Team dropped Lonzo Ball.\",\n        \"href\": \"https://goathoopers.com/player/1798\",\n        \"dateLabel\": \"Oct 7\"\n      },\n      {\n        \"title\": \"Two moves from NeuralNets\",\n        \"text\": \"Malik Monk and Nikola Jović were dropped from the roster.\",\n        \"href\": \"https://goathoopers.com/teams/8\",\n        \"dateLabel\": \"Oct 6\"\n      },\n      {\n        \"title\": \"Risacher released\",\n        \"text\": \"T Halibooty dropped Zaccharie Risacher.\",\n        \"href\": \"https://goathoopers.com/player/2737\",\n        \"dateLabel\": \"Oct 6\"\n      }\n    ],\n    \"sources\": [\n      {\n        \"label\": \"Sleeper · opening-week pairings\",\n        \"url\": \"https://api.sleeper.app/v1/league/1387473752807190528/matchups/1\",\n        \"checkedAt\": \"2026-10-08\"\n      },\n      {\n        \"label\": \"Sleeper · NBA preseason state\",\n        \"url\": \"https://api.sleeper.app/v1/state/nba\",\n        \"checkedAt\": \"2026-10-08\"\n      },\n      {\n        \"label\": \"Sleeper · our rookie draft\",\n        \"url\": \"https://api.sleeper.app/v1/draft/1387473752819785728/picks\",\n        \"checkedAt\": \"2026-10-08\"\n      },\n      {\n        \"label\": \"Sleeper · league moves\",\n        \"url\": \"https://api.sleeper.app/v1/league/1387473752807190528/transactions/1\",\n        \"checkedAt\": \"2026-10-08\"\n      },\n      {\n        \"label\": \"Verified 2025 league archive\",\n        \"url\": \"https://goathoopers.com/history\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    ]\n  },\n  \"weekly\": {\n    \"leagueId\": \"1387473752807190528\",\n    \"season\": \"2026\",\n    \"week\": 3,\n    \"status\": \"ready\",\n    \"message\": \"Synthetic saved slate\",\n    \"generatedAt\": \"2026-11-10T12:00:00Z\",\n    \"snapshot\": null,\n    \"matchups\": [\n      {\n        \"matchupId\": \"0\",\n        \"teamIds\": [\n          \"1\",\n          \"2\"\n        ],\n        \"status\": \"ready\",\n        \"message\": \"Synthetic pick\",\n        \"evidence\": [\n          \"Synthetic input evidence; no real result.\"\n        ],\n        \"baseline\": null,\n        \"result\": {\n          \"model\": \"fixture-model\",\n          \"promptVersion\": \"fixture-prompt\",\n          \"choice\": \"2\",\n          \"confidence\": 0.2,\n          \"probabilities\": [\n            {\n              \"choice\": \"2\",\n              \"probability\": 0.35\n            },\n            {\n              \"choice\": \"1\",\n              \"probability\": 0.65\n            }\n          ],\n          \"evidence\": [],\n          \"probabilityLabel\": \"Model probability — not calibrated sports odds\",\n          \"snapshot\": null\n        }\n      },\n      {\n        \"matchupId\": \"1\",\n        \"teamIds\": [\n          \"3\",\n          \"4\"\n        ],\n        \"status\": \"ready\",\n        \"message\": \"Synthetic pick\",\n        \"evidence\": [\n          \"Synthetic input evidence; no real result.\"\n        ],\n        \"baseline\": null,\n        \"result\": {\n          \"model\": \"fixture-model\",\n          \"promptVersion\": \"fixture-prompt\",\n          \"choice\": \"4\",\n          \"confidence\": 0.2,\n          \"probabilities\": [\n            {\n              \"choice\": \"4\",\n              \"probability\": 0.35\n            },\n            {\n              \"choice\": \"3\",\n              \"probability\": 0.65\n            }\n          ],\n          \"evidence\": [],\n          \"probabilityLabel\": \"Model probability — not calibrated sports odds\",\n          \"snapshot\": null\n        }\n      },\n      {\n        \"matchupId\": \"2\",\n        \"teamIds\": [\n          \"5\",\n          \"6\"\n        ],\n        \"status\": \"ready\",\n        \"message\": \"Synthetic pick\",\n        \"evidence\": [\n          \"Synthetic input evidence; no real result.\"\n        ],\n        \"baseline\": null,\n        \"result\": {\n          \"model\": \"fixture-model\",\n          \"promptVersion\": \"fixture-prompt\",\n          \"choice\": \"6\",\n          \"confidence\": 0.2,\n          \"probabilities\": [\n            {\n              \"choice\": \"6\",\n              \"probability\": 0.35\n            },\n            {\n              \"choice\": \"5\",\n              \"probability\": 0.65\n            }\n          ],\n          \"evidence\": [],\n          \"probabilityLabel\": \"Model probability — not calibrated sports odds\",\n          \"snapshot\": null\n        }\n      },\n      {\n        \"matchupId\": \"3\",\n        \"teamIds\": [\n          \"7\",\n          \"8\"\n        ],\n        \"status\": \"ready\",\n        \"message\": \"Synthetic pick\",\n        \"evidence\": [\n          \"Synthetic input evidence; no real result.\"\n        ],\n        \"baseline\": null,\n        \"result\": {\n          \"model\": \"fixture-model\",\n          \"promptVersion\": \"fixture-prompt\",\n          \"choice\": \"8\",\n          \"confidence\": 0.2,\n          \"probabilities\": [\n            {\n              \"choice\": \"8\",\n              \"probability\": 0.35\n            },\n            {\n              \"choice\": \"7\",\n              \"probability\": 0.65\n            }\n          ],\n          \"evidence\": [],\n          \"probabilityLabel\": \"Model probability — not calibrated sports odds\",\n          \"snapshot\": null\n        }\n      },\n      {\n        \"matchupId\": \"4\",\n        \"teamIds\": [\n          \"9\",\n          \"10\"\n        ],\n        \"status\": \"ready\",\n        \"message\": \"Synthetic pick\",\n        \"evidence\": [\n          \"Synthetic input evidence; no real result.\"\n        ],\n        \"baseline\": null,\n        \"result\": {\n          \"model\": \"fixture-model\",\n          \"promptVersion\": \"fixture-prompt\",\n          \"choice\": \"10\",\n          \"confidence\": 0.2,\n          \"probabilities\": [\n            {\n              \"choice\": \"10\",\n              \"probability\": 0.35\n            },\n            {\n              \"choice\": \"9\",\n              \"probability\": 0.65\n            }\n          ],\n          \"evidence\": [],\n          \"probabilityLabel\": \"Model probability — not calibrated sports odds\",\n          \"snapshot\": null\n        }\n      }\n    ]\n  },\n  \"missing\": {\n    \"power\": \"Lineup Power unavailable: no producer snapshot connected in this mock.\",\n    \"history\": \"Recorded team-value history unavailable; no line is invented.\",\n    \"recap\": \"Completed-week fixture only; these are synthetic recorded performers, not current official Week 2 awards.\"\n  }\n}More around the leagueAI DecidesTeamsTransactionsWeekly archiveTrade analyzerDraftSign inClaim your teamSaved AI states: Ready · Stale · MissingOriginal HTML/SVG playground court by this theme. Bungee by David Jonathan Ross and DM Sans are local official fonts under SIL OFL 1.1. Existing GOAT marks and game/player assets are retained unchanged.Back to the top",
+    "y": 8995
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "b7f9da4bcc8db1b93b6aa8a7f95adc8c0577c36294ef506f4512561b2ac5ff85",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

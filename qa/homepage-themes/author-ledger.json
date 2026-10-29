@@ -29,7 +29,16 @@
           "path": "directions/02/index.html",
           "sha256": "e95c05048474d14043ccbbb8f608b648d31c9e93960c67f5bfe6be6829e2aadf"
         }
-      ]
+      ],
+      "qaRework": {
+        "folder": "rework/02",
+        "runtimeFiles": [
+          {
+            "path": "rework/02/index.html",
+            "sha256": "39bdb41603254aebeedf00aae42dbe522e996127e469d649c59786de8c68e76b"
+          }
+        ]
+      }
     },
     {
       "direction": "03",
@@ -43,7 +52,16 @@
           "path": "directions/03/index.html",
           "sha256": "2e41c9101d01834c56746827596ee7a71d3df676b617c5f5adf8664c20f5ff45"
         }
-      ]
+      ],
+      "qaRework": {
+        "folder": "rework/03",
+        "runtimeFiles": [
+          {
+            "path": "rework/03/index.html",
+            "sha256": "13098dd6014959b46877a4aeaf1d5704a1489062297ed7f9667d09ecfdc42ad3"
+          }
+        ]
+      }
     },
     {
       "direction": "04",
@@ -115,7 +133,24 @@
           "path": "directions/07/varsity.js",
           "sha256": "e355cf5790a3bfe68bbf961126d5f5b975778c26b5696cc9b9dcf8e816923e22"
         }
-      ]
+      ],
+      "qaRework": {
+        "folder": "rework/07",
+        "runtimeFiles": [
+          {
+            "path": "rework/07/index.html",
+            "sha256": "5fce1d64ff8e2ee84b66311b8b735284b1140978474eed19e283c5c384f1efb9"
+          },
+          {
+            "path": "rework/07/varsity.css",
+            "sha256": "79a5d14f8a2bc1fdf6d41ed9c8d0bb30145b3f9929bea8b4d2b09183e7d7924a"
+          },
+          {
+            "path": "rework/07/varsity.js",
+            "sha256": "e355cf5790a3bfe68bbf961126d5f5b975778c26b5696cc9b9dcf8e816923e22"
+          }
+        ]
+      }
     },
     {
       "direction": "08",
@@ -137,7 +172,24 @@
           "path": "directions/08/style.css",
           "sha256": "7a621f0028c49cfb9077835bd95231d138e9214c564f97b198fa3ca8a22b064b"
         }
-      ]
+      ],
+      "qaRework": {
+        "folder": "rework/08",
+        "runtimeFiles": [
+          {
+            "path": "rework/08/index.html",
+            "sha256": "127deb0f2a7a5a7df079488a0756f6bc53061d2202d9d182b69a4e4857ce7032"
+          },
+          {
+            "path": "rework/08/page.js",
+            "sha256": "8234c7b77f7105d84b3e436acd016620a4add5ac09e74be64e876d4db206a832"
+          },
+          {
+            "path": "rework/08/style.css",
+            "sha256": "1722731a196d85dcba2c0b2858e8902cced7d9712aa4b4693ddf97d3e89da7cb"
+          }
+        ]
+      }
     },
     {
       "direction": "09",
@@ -159,7 +211,24 @@
           "path": "directions/09/playground.js",
           "sha256": "4c5b5216118ed8e397aabf0ad0085f03027fe7ba59beac6a239954a4c8a9d168"
         }
-      ]
+      ],
+      "qaRework": {
+        "folder": "rework/09",
+        "runtimeFiles": [
+          {
+            "path": "rework/09/index.html",
+            "sha256": "9ba2d0c846ebd1bf9ecf834384d0f7c48bdba2830dea19053bc4b3c6989aac3e"
+          },
+          {
+            "path": "rework/09/playground.css",
+            "sha256": "bf2082705c44f4bee8c0c2c8000997c60962934326fc4a6e2a69bb8ba7b247be"
+          },
+          {
+            "path": "rework/09/playground.js",
+            "sha256": "4c5b5216118ed8e397aabf0ad0085f03027fe7ba59beac6a239954a4c8a9d168"
+          }
+        ]
+      }
     },
     {
       "direction": "10",
@@ -337,7 +406,24 @@
           "path": "directions/17/workspace.js",
           "sha256": "2fc014c06e12198052bfc1c5c175fc7a4f163fda104f40d9afbd6fe3316463c0"
         }
-      ]
+      ],
+      "qaRework": {
+        "folder": "rework/17",
+        "runtimeFiles": [
+          {
+            "path": "rework/17/index.html",
+            "sha256": "db3a2cd79d9b869c4465470a1de87185027abe8d80a22a0803f10ac7fc834f0a"
+          },
+          {
+            "path": "rework/17/workspace.css",
+            "sha256": "cf8e0c86d1984fd6c9d572a593073b12c3f05287aff6a5a712d890bcd3b035b4"
+          },
+          {
+            "path": "rework/17/workspace.js",
+            "sha256": "9fa2f6fb0c5df620fe53e0ba5d4adfab4f90602129495d2c81315a1961c9352f"
+          }
+        ]
+      }
     },
     {
       "direction": "18",
@@ -404,7 +490,24 @@
           "path": "directions/20/index.html",
           "sha256": "e7f7b2197e7f66de2a23204c088ea17b74da463eab4294bf48700e7243c98881"
         }
-      ]
+      ],
+      "qaRework": {
+        "folder": "rework/20",
+        "runtimeFiles": [
+          {
+            "path": "rework/20/club.css",
+            "sha256": "0d340f82597ea2f1f65b5394dbbb5b6cfe74a98f1f6179215e96436c416e472a"
+          },
+          {
+            "path": "rework/20/club.js",
+            "sha256": "c773f198ffed88b6506a9a4cacb3afe74dcc91f6eb98bbad7d8cb39c8524be53"
+          },
+          {
+            "path": "rework/20/index.html",
+            "sha256": "e7f7b2197e7f66de2a23204c088ea17b74da463eab4294bf48700e7243c98881"
+          }
+        ]
+      }
     }
   ],
   "firstRoundStatus": "Divergence; no shortlist selected",
@@ -457,5 +560,19 @@
     "routeTruthRework": [
       "03"
     ]
+  },
+  "firstRoundFreeze": "71066c571810551758fd26fe88f2d0bbe51edf2b",
+  "latestValidation": {
+    "themes": 20,
+    "completeCurrentViews": 80,
+    "qaCorrections": 7,
+    "extraFullCaptures": 28,
+    "qaCasesPassed": 70,
+    "qaCasesTotal": 70,
+    "latestCasesPassed": 200,
+    "latestCasesTotal": 200,
+    "nativeFormat": "JPEG; each full image under900KB",
+    "parentVisualReview": "pending",
+    "userTasteSignal": "pending; no large refinement round"
   }
 }

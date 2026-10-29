@@ -28,6 +28,6 @@ Open `/qa/homepage-themes/index.html` when the gallery is assembled. Each page i
 
 All current records, scores, prices, form, news, moves and AI are synthetic. Dated approved identities, full rosters and editorial remain labelled with their periods. Static mocks do not establish real authentication, production Next routing/data, physical-device or spoken-screen-reader acceptance.
 
-Portable image galleries will be divided into files below 10 MiB. Individually committed complete JPEGs and a clear index provide a supported delivery path if this executor's Library batch discovery remains unavailable. Native desktop/phone full-page images, including actual footer and section order, are the deliverable; contact sheets only aid browsing.
+The primary deliverable is native full-page JPEGs with [a clear complete-image index](IMAGE-INDEX.md), avoiding a large HTML download on iOS. Every full JPEG and contact sheet is below 900 KB. [delivery-primary.json](evidence/delivery-primary.json) gives the ordered 42-file member desktop/phone delivery set; public views remain in the full index. These committed images also provide a supported parent delivery path if this executor's Library discovery remains unavailable. Native desktop/phone full-page images, including actual footer and section order, are the deliverable; contact sheets only aid browsing.
 
 Production routes/components/configuration, databases, credentials, dependencies, #271/#272, Muse's Week 2/3D lane and recap/Power are untouched. No merge, deployment or release approval.
