@@ -1,0 +1,2955 @@
+{
+  "id": "08",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/08/home.js",
+      "bytes": 23788,
+      "sha256": "e6fcc953ac4d2ed56cbf2cc25486a2c30a9e800a7c8fd7d03901d5becbdfaaed"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/08/index.html",
+      "bytes": 2679,
+      "sha256": "e67ec123051eb96e0cd4f269ee2db89a08ebaa2f91f475ac3ac32b8d72265639"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/08/style.css",
+      "bytes": 26053,
+      "sha256": "0c805e44c71b70d35dea6cbb282ee0e1a0f624d5dbf5398dcd6788f4917895af"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/08/review/member-desktop-full.jpg",
+        "bytes": 783608,
+        "sha256": "2c764a3b6bce84bddeddca98e67f2623a07d5386c24af9678388cd5fefc29559",
+        "width": 1440,
+        "height": 8157,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 957,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/member-desktop-top.jpg",
+          "bytes": 95692,
+          "sha256": "5b1e9313777613d83c94e5ab9f97dcd269cd29f2567449f52d5f89376af03801",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3578,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/member-desktop-middle.jpg",
+          "bytes": 95882,
+          "sha256": "0fc9ae8cdd504ab7a9cf69617d5a40494d17d082751d86e4238336ac13b5995d",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 7157,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/member-desktop-bottom.jpg",
+          "bytes": 88278,
+          "sha256": "8a0ff0b527537c19d30bec8b7e942fc18a99c68b601a3a3386c6d046116afec2",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Two sides. One week.",
+          "top": 194.609375
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 397.5625
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 397.5625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 809.0625
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 809.0625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 1388.640625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 1388.640625
+        },
+        {
+          "level": "H3",
+          "text": "27 players, one side.",
+          "top": 1467.046875
+        },
+        {
+          "level": "H2",
+          "text": "Form to watch. A week to learn from.",
+          "top": 2124.515625
+        },
+        {
+          "level": "H3",
+          "text": "On form",
+          "top": 2204.890625
+        },
+        {
+          "level": "H3",
+          "text": "Completed Week 2",
+          "top": 2204.890625
+        },
+        {
+          "level": "H2",
+          "text": "The whole week, head to head.",
+          "top": 2806.671875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 2985.65625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 2985.65625
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 3231.625
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 3231.625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 3477.59375
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 3477.59375
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 3723.5625
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 3723.5625
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 3969.53125
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 3969.53125
+        },
+        {
+          "level": "H2",
+          "text": "A place in the table. A move on the wire.",
+          "top": 4409.71875
+        },
+        {
+          "level": "H3",
+          "text": "Recent league moves",
+          "top": 4490.09375
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 5014.53125
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 5739.625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 5950.609375
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 6169.21875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 6169.21875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 6635.828125
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 7155.4375
+        },
+        {
+          "level": "H2",
+          "text": "Set the roster. Settle it on court.",
+          "top": 7759.875
+        },
+        {
+          "level": "H3",
+          "text": "The roster workbench",
+          "top": 7840.25
+        },
+        {
+          "level": "H3",
+          "text": "Free-throw practice",
+          "top": 7840.25
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/08/review/member-phone-full.jpg",
+        "bytes": 655617,
+        "sha256": "b56d6dac5f44a5d28d565c5801ee63ec671159e8706756b99503efd8a8b9e368",
+        "width": 390,
+        "height": 12731,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 131,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/member-phone-top.jpg",
+          "bytes": 43102,
+          "sha256": "8193a38a88011dd4239b1a0c2d2b641b7aef3ac16753116326b2ba64c7c58feb",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5943,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/member-phone-middle.jpg",
+          "bytes": 42371,
+          "sha256": "83f72414cd06fb05ed6b136e7b043ae28f11eb9572d2c9a8596e57d0f015cd9a",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 11887,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/member-phone-bottom.jpg",
+          "bytes": 36331,
+          "sha256": "5dd542de27870000f4719986c503a1caae541779a19d825cb7760e23e6560f1d",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Two sides. One week.",
+          "top": 203.65625
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 549.28125
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 549.28125
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 1122.078125
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 1122.078125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 1866.015625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 1866.015625
+        },
+        {
+          "level": "H3",
+          "text": "27 players, one side.",
+          "top": 1944.421875
+        },
+        {
+          "level": "H2",
+          "text": "Form to watch. A week to learn from.",
+          "top": 2965.171875
+        },
+        {
+          "level": "H3",
+          "text": "On form",
+          "top": 3060.828125
+        },
+        {
+          "level": "H3",
+          "text": "Completed Week 2",
+          "top": 3595.609375
+        },
+        {
+          "level": "H2",
+          "text": "The whole week, head to head.",
+          "top": 4192.828125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 4369.484375
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 4369.484375
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 4786.6875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 4786.6875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 5203.890625
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 5203.890625
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 5621.09375
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 5621.09375
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 6038.296875
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 6038.296875
+        },
+        {
+          "level": "H2",
+          "text": "A place in the table. A move on the wire.",
+          "top": 6652.9375
+        },
+        {
+          "level": "H3",
+          "text": "Recent league moves",
+          "top": 7941.34375
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 8561.265625
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 8938.46875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 9152.90625
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 9674.390625
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 10174.59375
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 10650.796875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 11225.609375
+        },
+        {
+          "level": "H2",
+          "text": "Set the roster. Settle it on court.",
+          "top": 11970.65625
+        },
+        {
+          "level": "H3",
+          "text": "The roster workbench",
+          "top": 12066.3125
+        },
+        {
+          "level": "H3",
+          "text": "Free-throw practice",
+          "top": 12259.4375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/08/review/public-desktop-full.jpg",
+        "bytes": 735774,
+        "sha256": "5c8665f24ee42b573498a68587aef35a425cd7a77e95504ed00d9339bbf93e6f",
+        "width": 1440,
+        "height": 7843,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 643,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/public-desktop-top.jpg",
+          "bytes": 94582,
+          "sha256": "f8c41ef2e637dab6f801656a714931d6c8dbb6a429a97608abe38ac1e83e4e66",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3421,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/public-desktop-middle.jpg",
+          "bytes": 99291,
+          "sha256": "1f90f516b737c9665f1cef03542f6e2b197f00eadaa5e98c6aa20f62fb1cc9f5",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 6843,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/public-desktop-bottom.jpg",
+          "bytes": 89817,
+          "sha256": "4184d60d5a4d6ed1e1487d6e2c24058f68e76ed4b43b0c3fccf7a4985ae1d17a",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Two sides. One week.",
+          "top": 194.609375
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 397.5625
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 397.5625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 809.0625
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 809.0625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 1388.640625
+        },
+        {
+          "level": "H3",
+          "text": "24 players, one side.",
+          "top": 1467.046875
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 1388.640625
+        },
+        {
+          "level": "H3",
+          "text": "27 players, one side.",
+          "top": 1467.046875
+        },
+        {
+          "level": "H2",
+          "text": "The names behind the numbers.",
+          "top": 2076.828125
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 2157.203125
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 2157.203125
+        },
+        {
+          "level": "H2",
+          "text": "The whole week, head to head.",
+          "top": 2491.9375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 2670.921875
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 2670.921875
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 2916.890625
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 2916.890625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 3162.859375
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 3162.859375
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 3408.828125
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 3408.828125
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 3654.796875
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 3654.796875
+        },
+        {
+          "level": "H2",
+          "text": "A place in the table. A move on the wire.",
+          "top": 4094.984375
+        },
+        {
+          "level": "H3",
+          "text": "Recent league moves",
+          "top": 4175.359375
+        },
+        {
+          "level": "H3",
+          "text": "Follow the league",
+          "top": 4699.796875
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 5424.890625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 5635.875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 5854.484375
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 5854.484375
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 6321.09375
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 6840.703125
+        },
+        {
+          "level": "H2",
+          "text": "Set the roster. Settle it on court.",
+          "top": 7445.140625
+        },
+        {
+          "level": "H3",
+          "text": "The roster workbench",
+          "top": 7525.515625
+        },
+        {
+          "level": "H3",
+          "text": "Free-throw practice",
+          "top": 7525.515625
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/08/review/public-phone-full.jpg",
+        "bytes": 606137,
+        "sha256": "32305b851d0e7bbecc4ccd4c7d6400b0b25312ce53873501b771f8e25ec71542",
+        "width": 390,
+        "height": 11913,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1113,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/public-phone-top.jpg",
+          "bytes": 41792,
+          "sha256": "510b16ab938697794466090e3388e811cd21fb9f56d8edcd3dfe25f5c08446fe",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5534,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/public-phone-middle.jpg",
+          "bytes": 40651,
+          "sha256": "9d6ebf90130a44b8d8b4c3723c849de8f6f2d6cd22116a53fceb1afa9b4f1cb9",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 11069,
+          "path": "qa/homepage-structures/homepage-corrections/08/review/public-phone-bottom.jpg",
+          "bytes": 36121,
+          "sha256": "f6a842a5662e75bc7d161bc42fc4c503dc30371882d7afd4f9cad282540c3d18",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Two sides. One week.",
+          "top": 203.65625
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 549.28125
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 549.28125
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 1122.078125
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 1122.078125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 1866.015625
+        },
+        {
+          "level": "H3",
+          "text": "24 players, one side.",
+          "top": 1944.421875
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 1866.015625
+        },
+        {
+          "level": "H3",
+          "text": "27 players, one side.",
+          "top": 1944.421875
+        },
+        {
+          "level": "H2",
+          "text": "The names behind the numbers.",
+          "top": 2724.59375
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 2820.25
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 3030.375
+        },
+        {
+          "level": "H2",
+          "text": "The whole week, head to head.",
+          "top": 3413.109375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 3589.765625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 3589.765625
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 4006.96875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 4006.96875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 4424.171875
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 4424.171875
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 4841.375
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 4841.375
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 5258.578125
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 5258.578125
+        },
+        {
+          "level": "H2",
+          "text": "A place in the table. A move on the wire.",
+          "top": 5873.21875
+        },
+        {
+          "level": "H3",
+          "text": "Recent league moves",
+          "top": 7161.625
+        },
+        {
+          "level": "H3",
+          "text": "Follow the league",
+          "top": 7781.546875
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 8068.28125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 8282.71875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 8804.203125
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 9304.40625
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 9780.609375
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 10355.421875
+        },
+        {
+          "level": "H2",
+          "text": "Set the roster. Settle it on court.",
+          "top": 11100.46875
+        },
+        {
+          "level": "H3",
+          "text": "The roster workbench",
+          "top": 11196.125
+        },
+        {
+          "level": "H3",
+          "text": "Free-throw practice",
+          "top": 11389.25
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 8157,
+        "textCharacters": 7851,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Two sides. One week.",
+            "top": 194.609375
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 397.5625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 397.5625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 809.0625
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 809.0625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1388.640625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 1388.640625
+          },
+          {
+            "level": "H3",
+            "text": "27 players, one side.",
+            "top": 1467.046875
+          },
+          {
+            "level": "H2",
+            "text": "Form to watch. A week to learn from.",
+            "top": 2124.515625
+          },
+          {
+            "level": "H3",
+            "text": "On form",
+            "top": 2204.890625
+          },
+          {
+            "level": "H3",
+            "text": "Completed Week 2",
+            "top": 2204.890625
+          },
+          {
+            "level": "H2",
+            "text": "The whole week, head to head.",
+            "top": 2806.671875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2985.65625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2985.65625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 3231.625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 3231.625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 3477.59375
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 3477.59375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 3723.5625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 3723.5625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 3969.53125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 3969.53125
+          },
+          {
+            "level": "H2",
+            "text": "A place in the table. A move on the wire.",
+            "top": 4409.71875
+          },
+          {
+            "level": "H3",
+            "text": "Recent league moves",
+            "top": 4490.09375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 5014.53125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 5739.625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 5950.609375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 6169.21875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 6169.21875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 6635.828125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 7155.4375
+          },
+          {
+            "level": "H2",
+            "text": "Set the roster. Settle it on court.",
+            "top": 7759.875
+          },
+          {
+            "level": "H3",
+            "text": "The roster workbench",
+            "top": 7840.25
+          },
+          {
+            "level": "H3",
+            "text": "Free-throw practice",
+            "top": 7840.25
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 12731,
+        "textCharacters": 7770,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Two sides. One week.",
+            "top": 203.65625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 549.28125
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 549.28125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 1122.078125
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 1122.078125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1866.015625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 1866.015625
+          },
+          {
+            "level": "H3",
+            "text": "27 players, one side.",
+            "top": 1944.421875
+          },
+          {
+            "level": "H2",
+            "text": "Form to watch. A week to learn from.",
+            "top": 2965.171875
+          },
+          {
+            "level": "H3",
+            "text": "On form",
+            "top": 3060.828125
+          },
+          {
+            "level": "H3",
+            "text": "Completed Week 2",
+            "top": 3595.609375
+          },
+          {
+            "level": "H2",
+            "text": "The whole week, head to head.",
+            "top": 4192.828125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 4369.484375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 4369.484375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 4786.6875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 4786.6875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 5203.890625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 5203.890625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 5621.09375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 5621.09375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 6038.296875
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 6038.296875
+          },
+          {
+            "level": "H2",
+            "text": "A place in the table. A move on the wire.",
+            "top": 6652.9375
+          },
+          {
+            "level": "H3",
+            "text": "Recent league moves",
+            "top": 7941.34375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 8561.265625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 8938.46875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 9152.90625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 9674.390625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 10174.59375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 10650.796875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 11225.609375
+          },
+          {
+            "level": "H2",
+            "text": "Set the roster. Settle it on court.",
+            "top": 11970.65625
+          },
+          {
+            "level": "H3",
+            "text": "The roster workbench",
+            "top": 12066.3125
+          },
+          {
+            "level": "H3",
+            "text": "Free-throw practice",
+            "top": 12259.4375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 39927,
+        "textCharacters": 7760,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Two sides. One week.",
+            "top": 508.125
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1417.875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 2210.375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 3118.59375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 3528.703125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 5747.90625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 7407.75
+          },
+          {
+            "level": "H3",
+            "text": "27 players, one side.",
+            "top": 7564.53125
+          },
+          {
+            "level": "H2",
+            "text": "Form to watch. A week to learn from.",
+            "top": 9046.4375
+          },
+          {
+            "level": "H3",
+            "text": "On form",
+            "top": 9381.125
+          },
+          {
+            "level": "H3",
+            "text": "Completed Week 2",
+            "top": 10763.171875
+          },
+          {
+            "level": "H2",
+            "text": "The whole week, head to head.",
+            "top": 12698.578125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 13266.59375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 13715.828125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 14624
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 15073.234375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 15923.171875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 16372.40625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 17222.34375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 17613.34375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 18463.28125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 18912.515625
+          },
+          {
+            "level": "H2",
+            "text": "A place in the table. A move on the wire.",
+            "top": 20330.953125
+          },
+          {
+            "level": "H3",
+            "text": "Recent league moves",
+            "top": 26430.015625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 28238.984375
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 29318.03125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 30052.75
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 31761.703125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 33092.390625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 34375.078125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 35784.953125
+          },
+          {
+            "level": "H2",
+            "text": "Set the roster. Settle it on court.",
+            "top": 37971.171875
+          },
+          {
+            "level": "H3",
+            "text": "The roster workbench",
+            "top": 38234.1875
+          },
+          {
+            "level": "H3",
+            "text": "Free-throw practice",
+            "top": 38988.15625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 15811,
+        "textCharacters": 7760,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Two sides. One week.",
+            "top": 211.65625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 626.078125
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 626.078125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 1187.34375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 1187.34375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1979.28125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2735.34375
+          },
+          {
+            "level": "H3",
+            "text": "27 players, one side.",
+            "top": 2813.75
+          },
+          {
+            "level": "H2",
+            "text": "Form to watch. A week to learn from.",
+            "top": 3498.578125
+          },
+          {
+            "level": "H3",
+            "text": "On form",
+            "top": 3594.234375
+          },
+          {
+            "level": "H3",
+            "text": "Completed Week 2",
+            "top": 4150.625
+          },
+          {
+            "level": "H2",
+            "text": "The whole week, head to head.",
+            "top": 4793.453125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 4994.109375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 4994.109375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 5435.3125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 5435.3125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 5876.515625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 5876.515625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 6317.71875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 6317.71875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 6758.921875
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 6758.921875
+          },
+          {
+            "level": "H2",
+            "text": "A place in the table. A move on the wire.",
+            "top": 7419.171875
+          },
+          {
+            "level": "H3",
+            "text": "Recent league moves",
+            "top": 10242.953125
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 10862.875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 11354.15625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 11614.203125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 12260.6875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 12861.890625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 13439.09375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 14035.515625
+          },
+          {
+            "level": "H2",
+            "text": "Set the roster. Settle it on court.",
+            "top": 14915.5625
+          },
+          {
+            "level": "H3",
+            "text": "The roster workbench",
+            "top": 15011.21875
+          },
+          {
+            "level": "H3",
+            "text": "Free-throw practice",
+            "top": 15383.84375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 46667,
+        "textCharacters": 7760,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Two sides. One week.",
+            "top": 523.5625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1703.6875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 2496.1875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 3447.59375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 3857.703125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 6314.015625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 8252.234375
+          },
+          {
+            "level": "H3",
+            "text": "27 players, one side.",
+            "top": 8450.609375
+          },
+          {
+            "level": "H2",
+            "text": "Form to watch. A week to learn from.",
+            "top": 10254.078125
+          },
+          {
+            "level": "H3",
+            "text": "On form",
+            "top": 10660.4375
+          },
+          {
+            "level": "H3",
+            "text": "Completed Week 2",
+            "top": 12320.859375
+          },
+          {
+            "level": "H2",
+            "text": "The whole week, head to head.",
+            "top": 14611.390625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 15299.078125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 15796.3125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 16886.859375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 17442.328125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 18532.875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 19088.34375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 20178.890625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 20676.125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 21708.4375
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 22263.90625
+          },
+          {
+            "level": "H2",
+            "text": "A place in the table. A move on the wire.",
+            "top": 23966.140625
+          },
+          {
+            "level": "H3",
+            "text": "Recent league moves",
+            "top": 30425.140625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 32384.8125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 33651.65625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 34429.5625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 36627.75
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 38345.578125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 40098.59375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 41930.796875
+          },
+          {
+            "level": "H2",
+            "text": "Set the roster. Settle it on court.",
+            "top": 44453.234375
+          },
+          {
+            "level": "H3",
+            "text": "The roster workbench",
+            "top": 44787.921875
+          },
+          {
+            "level": "H3",
+            "text": "Free-throw practice",
+            "top": 45637.890625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 7843,
+        "textCharacters": 7137,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Two sides. One week.",
+            "top": 194.609375
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 397.5625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 397.5625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 809.0625
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 809.0625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1388.640625
+          },
+          {
+            "level": "H3",
+            "text": "24 players, one side.",
+            "top": 1467.046875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 1388.640625
+          },
+          {
+            "level": "H3",
+            "text": "27 players, one side.",
+            "top": 1467.046875
+          },
+          {
+            "level": "H2",
+            "text": "The names behind the numbers.",
+            "top": 2076.828125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 2157.203125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 2157.203125
+          },
+          {
+            "level": "H2",
+            "text": "The whole week, head to head.",
+            "top": 2491.9375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2670.921875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2670.921875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 2916.890625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 2916.890625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 3162.859375
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 3162.859375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 3408.828125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 3408.828125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 3654.796875
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 3654.796875
+          },
+          {
+            "level": "H2",
+            "text": "A place in the table. A move on the wire.",
+            "top": 4094.984375
+          },
+          {
+            "level": "H3",
+            "text": "Recent league moves",
+            "top": 4175.359375
+          },
+          {
+            "level": "H3",
+            "text": "Follow the league",
+            "top": 4699.796875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 5424.890625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 5635.875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 5854.484375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 5854.484375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 6321.09375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 6840.703125
+          },
+          {
+            "level": "H2",
+            "text": "Set the roster. Settle it on court.",
+            "top": 7445.140625
+          },
+          {
+            "level": "H3",
+            "text": "The roster workbench",
+            "top": 7525.515625
+          },
+          {
+            "level": "H3",
+            "text": "Free-throw practice",
+            "top": 7525.515625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 11913,
+        "textCharacters": 7056,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Two sides. One week.",
+            "top": 203.65625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 549.28125
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 549.28125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 1122.078125
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 1122.078125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1866.015625
+          },
+          {
+            "level": "H3",
+            "text": "24 players, one side.",
+            "top": 1944.421875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 1866.015625
+          },
+          {
+            "level": "H3",
+            "text": "27 players, one side.",
+            "top": 1944.421875
+          },
+          {
+            "level": "H2",
+            "text": "The names behind the numbers.",
+            "top": 2724.59375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 2820.25
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 3030.375
+          },
+          {
+            "level": "H2",
+            "text": "The whole week, head to head.",
+            "top": 3413.109375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 3589.765625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3589.765625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 4006.96875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 4006.96875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 4424.171875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 4424.171875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 4841.375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 4841.375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 5258.578125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 5258.578125
+          },
+          {
+            "level": "H2",
+            "text": "A place in the table. A move on the wire.",
+            "top": 5873.21875
+          },
+          {
+            "level": "H3",
+            "text": "Recent league moves",
+            "top": 7161.625
+          },
+          {
+            "level": "H3",
+            "text": "Follow the league",
+            "top": 7781.546875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 8068.28125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 8282.71875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 8804.203125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 9304.40625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 9780.609375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 10355.421875
+          },
+          {
+            "level": "H2",
+            "text": "Set the roster. Settle it on court.",
+            "top": 11100.46875
+          },
+          {
+            "level": "H3",
+            "text": "The roster workbench",
+            "top": 11196.125
+          },
+          {
+            "level": "H3",
+            "text": "Free-throw practice",
+            "top": 11389.25
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 37429,
+        "textCharacters": 7046,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Two sides. One week.",
+            "top": 464.9375
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1326.6875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 2119.1875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 3027.40625
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 3437.515625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 5656.71875
+          },
+          {
+            "level": "H3",
+            "text": "24 players, one side.",
+            "top": 5813.5
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 6830.90625
+          },
+          {
+            "level": "H3",
+            "text": "27 players, one side.",
+            "top": 6987.6875
+          },
+          {
+            "level": "H2",
+            "text": "The names behind the numbers.",
+            "top": 8426.40625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 8689.421875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 9406.890625
+          },
+          {
+            "level": "H2",
+            "text": "The whole week, head to head.",
+            "top": 10460.3125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 11028.328125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 11477.5625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 12385.734375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 12834.96875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 13684.90625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 14134.140625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 14984.078125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 15375.078125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 16225.015625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 16674.25
+          },
+          {
+            "level": "H2",
+            "text": "A place in the table. A move on the wire.",
+            "top": 18092.6875
+          },
+          {
+            "level": "H3",
+            "text": "Recent league moves",
+            "top": 24143.75
+          },
+          {
+            "level": "H3",
+            "text": "Follow the league",
+            "top": 25952.71875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 26819.5625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 27554.28125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 29263.234375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 30593.921875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 31876.609375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 33286.484375
+          },
+          {
+            "level": "H2",
+            "text": "Set the roster. Settle it on court.",
+            "top": 35472.703125
+          },
+          {
+            "level": "H3",
+            "text": "The roster workbench",
+            "top": 35735.71875
+          },
+          {
+            "level": "H3",
+            "text": "Free-throw practice",
+            "top": 36489.6875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 14933,
+        "textCharacters": 7046,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Two sides. One week.",
+            "top": 211.65625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 626.078125
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 626.078125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 1187.34375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 1187.34375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1979.28125
+          },
+          {
+            "level": "H3",
+            "text": "24 players, one side.",
+            "top": 2057.6875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2575.46875
+          },
+          {
+            "level": "H3",
+            "text": "27 players, one side.",
+            "top": 2653.875
+          },
+          {
+            "level": "H2",
+            "text": "The names behind the numbers.",
+            "top": 3338.703125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 3434.359375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 3668.484375
+          },
+          {
+            "level": "H2",
+            "text": "The whole week, head to head.",
+            "top": 4075.21875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 4275.875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 4275.875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 4717.078125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 4717.078125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 5158.28125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 5158.28125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 5599.484375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 5599.484375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 6040.6875
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 6040.6875
+          },
+          {
+            "level": "H2",
+            "text": "A place in the table. A move on the wire.",
+            "top": 6700.9375
+          },
+          {
+            "level": "H3",
+            "text": "Recent league moves",
+            "top": 9524.71875
+          },
+          {
+            "level": "H3",
+            "text": "Follow the league",
+            "top": 10144.640625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 10476.984375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 10737.03125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 11383.515625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 11984.71875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 12561.921875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 13158.34375
+          },
+          {
+            "level": "H2",
+            "text": "Set the roster. Settle it on court.",
+            "top": 14038.390625
+          },
+          {
+            "level": "H3",
+            "text": "The roster workbench",
+            "top": 14134.046875
+          },
+          {
+            "level": "H3",
+            "text": "Free-throw practice",
+            "top": 14506.671875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 43861,
+        "textCharacters": 7046,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Two sides. One week.",
+            "top": 523.5625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1655.6875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 2448.1875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 3399.59375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 3809.703125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 6266.015625
+          },
+          {
+            "level": "H3",
+            "text": "24 players, one side.",
+            "top": 6422.796875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 7584.203125
+          },
+          {
+            "level": "H3",
+            "text": "27 players, one side.",
+            "top": 7782.578125
+          },
+          {
+            "level": "H2",
+            "text": "The names behind the numbers.",
+            "top": 9542.859375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 9949.21875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 10820.921875
+          },
+          {
+            "level": "H2",
+            "text": "The whole week, head to head.",
+            "top": 12066.34375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 12754.03125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 13251.265625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 14341.8125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 14897.28125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 15987.828125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 16543.296875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 17633.84375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 18131.078125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 19163.390625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 19718.859375
+          },
+          {
+            "level": "H2",
+            "text": "A place in the table. A move on the wire.",
+            "top": 21421.09375
+          },
+          {
+            "level": "H3",
+            "text": "Recent league moves",
+            "top": 27832.09375
+          },
+          {
+            "level": "H3",
+            "text": "Follow the league",
+            "top": 29791.765625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 30845.796875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 31623.703125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 33821.890625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 35539.71875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 37292.734375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 39124.9375
+          },
+          {
+            "level": "H2",
+            "text": "Set the roster. Settle it on court.",
+            "top": 41647.375
+          },
+          {
+            "level": "H3",
+            "text": "The roster workbench",
+            "top": 41982.0625
+          },
+          {
+            "level": "H3",
+            "text": "Free-throw practice",
+            "top": 42832.03125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

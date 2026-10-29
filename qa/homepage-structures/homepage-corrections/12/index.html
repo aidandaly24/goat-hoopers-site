@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>GOAT · League constellation</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#home">Skip to league home</a>
+  <header class="masthead">
+    <a href="/" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-white.svg" width="165" height="40" alt="GOAT Hoopers"></a>
+    <nav aria-label="Site"><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a><a id="mode" href="?view=public">Public view</a></nav>
+  </header>
+  <main id="home" tabindex="-1">
+    <div class="opening">
+      <p class="eyebrow">GOAT Hoopers · 2026 season</p>
+      <h1>League constellation</h1>
+      <p class="intro">Ten franchises. Five connections. Keep the matchup in view, then follow the people shaping the league.</p>
+      <p class="fixture"><strong>Synthetic preview</strong> · fixture Nov 12, 2026, 12:00 UTC · actual review date Oct 29, 2026. Current records, scores, values, form, news and AI are offline examples.</p>
+      <nav class="home-links" aria-label="On this homepage"><a href="#comparison-title">Matchup</a><a href="#league-title">League</a><a href="#editorial-title">Dated stories</a><a href="/trade-analyzer">Trade analyzer</a></nav>
+    </div>
+    <section aria-labelledby="comparison-title" class="comparison-section">
+      <div class="section-heading"><div><p class="eyebrow">Current fixture · Week 3</p><h2 id="comparison-title" tabindex="-1">The connection in focus</h2></div><p>Both franchises stay open. Pin a third from the league below.</p></div>
+      <div id="comparison"></div>
+    </section>
+    <div class="league-space">
+      <section aria-labelledby="league-title" class="league-territory"><div class="section-heading"><div><p class="eyebrow">All ten franchises · synthetic current standings</p><h2 id="league-title" tabindex="-1">Across the league</h2></div></div><div id="league"></div></section>
+      <section aria-labelledby="connections-title" class="connections-territory"><p class="eyebrow">Current Week 3 · all scores incomplete</p><h2 id="connections-title">Five matchup connections</h2><p>Saved model output is synthetic. The returned choice, probability and independent confidence stay separate.</p><div id="connections"></div><a class="destination" href="/ai-decides">Open AI Decides →</a></section>
+    </div>
+    <div id="member"></div>
+    <section class="editorial-territory" aria-labelledby="editorial-title"><div class="section-heading"><div><p class="eyebrow">Dated editorial · separate from current Week 3</p><h2 id="editorial-title">Stories with a home</h2></div><nav id="edition-nav" aria-label="Dated editions"></nav></div><div id="edition"></div></section>
+    <section class="wire-territory" aria-labelledby="wire-title"><div><p class="eyebrow">Current fixture · Nov 12</p><h2 id="wire-title">The league wire</h2><p>Three sample moves, with the limits of each record in view.</p><a class="destination" href="/transactions">All transactions →</a></div><div id="wire"></div></section>
+    <section class="ending" aria-labelledby="play-title"><img src="/public/arcade/free-throw-preview.jpg" width="540" height="304" loading="lazy" alt="Free Throw practice court"><div><p class="eyebrow">Away from the matchup</p><h2 id="play-title">Take it to the line.</h2><p>Free Throw practice is a playable destination. Take a few shots, then come back to the league.</p><a class="primary-link" href="/arcade/free-throw">Play Free Throw →</a><nav aria-label="Keep exploring"><a href="/teams">Team profiles</a><a href="/weekly">Weekly archive</a><a href="/draft">Draft board</a></nav><button data-return>Return to the comparison ↑</button></div></section>
+  </main>
+  <footer><a href="/">GOAT HOOPERS</a><p>League home · local design preview</p><details><summary>Fixture and source boundaries</summary><p>Explicit local fixture import only. Public/member query views demonstrate presentation, not authentication. No live requests, model generation or publication. Current roster ownership is separate from historical statistics; dated editorial drafts are not newly published weekly awards. Unsupplied transaction legs remain unknown. Lineup Power and recorded team-value history have no connected producer.</p></details></footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

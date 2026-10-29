@@ -1,0 +1,18 @@
+{
+  "id": "19",
+  "status": "frozen-local-only",
+  "readyAttribute": "document.documentElement.dataset.homepageReady='19'",
+  "route": "http://localhost:4207/qa/homepage-structures/homepage-corrections/19/index.html",
+  "source": {
+    "index.html": "bb0f8d8cc4a7d1adbb1b707f53966ae083ae2fc3afcd35f68101cc118bbfdbfd",
+    "style.css": "64ba6d797c552931bbadec651a8a9265f0f944b7043d3804a29d19f7415e8755",
+    "app.js": "1351d30a516746fe5cb12428112a1a1e61baee715fa3412df44b3d82c0bdfd0e"
+  },
+  "evidence": [
+    "CONTENT-MAP.md",
+    "CHECKS.json",
+    "check.mjs"
+  ],
+  "remainingBlockers": [],
+  "limits": "Static Chromium fixture only; root owns full final captures and gallery. No publication approval."
+}

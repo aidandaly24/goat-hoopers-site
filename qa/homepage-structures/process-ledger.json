@@ -4,7 +4,7 @@
     272,
     273
   ],
-  "stage": "User likes many ideas but rejected sparse feature/navigation demos as complete homepages. One representative16 corrected to a full visible homepage locally for parent inspection; other19 preserved pending that gate. No new publication.",
+  "stage": "All20 complete initial homepages locally implemented, frozen, captured and packaged. Parent accepted16 desktop completeness before expansion; final full set and independent parent phone pixels remain pending. No publication.",
   "authors": [
     {
       "id": "01",
@@ -164,7 +164,7 @@
     "11": "10/10",
     "12": "10/10",
     "13": "10/10",
-    "14": "8/10;390px200% root text470\u2013474pxoverflow in bothmodes, later QArequired",
+    "14": "8/10;390px200% root text470–474pxoverflow in bothmodes, later QArequired",
     "15": "10/10",
     "16": "10/10",
     "17": "10/10",
@@ -298,7 +298,7 @@
       "reviews/corrected-c.md"
     ]
   },
-  "artBlindnessNote": "Independent first architectural submissions remained blind. Art05 accidentally saw brief metadata for01\u201303 while finding JSON schema; no other author source, layout or pixels were inspected, and this limited exposure was explicitly reported.",
+  "artBlindnessNote": "Independent first architectural submissions remained blind. Art05 accidentally saw brief metadata for01–03 while finding JSON schema; no other author source, layout or pixels were inspected, and this limited exposure was explicitly reported.",
   "reviewCapacity": "Art critics A/B resumed same contexts/model once after transient selected-model capacity failure; their partial evidence preserved. No model override or duplicate critic.",
   "preservedBenchmark": 271,
   "artPairGate": {
@@ -338,5 +338,15 @@
     "parentReview": "pending",
     "other19": "preserved, not yet corrected",
     "publication": "local only; no external writes attempted"
+  },
+  "completeHomepageCorrections": {
+    "path": "homepage-corrections/FINAL-VERIFICATION.json",
+    "progress": "homepage-corrections/round-progress.json",
+    "directions": 20,
+    "freshCorrectionAuthors": 19,
+    "rootPilot": 1,
+    "fullCaptures": 80,
+    "publication": "local only; no externalwrites attempted",
+    "parentReviewLimit": "16desktop composition/detail only; remaining19and parentphone pixelreviewpending"
   }
 }

@@ -1,0 +1,3115 @@
+{
+  "id": "06",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/06/app.js",
+      "bytes": 22974,
+      "sha256": "fd8ba2867d83963cb468a1bb415373a72646774d6bec750450cc103ba4fbb8e4"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/06/index.html",
+      "bytes": 3982,
+      "sha256": "9607572a3606f540625fd8da34346610d2672c99fe61753496e173afffafdf52"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/06/style.css",
+      "bytes": 21064,
+      "sha256": "934239e6f16d34f9d26c69d92839ac71e0730fe47a35607e6d90d16695152ca1"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/06/tokens.css",
+      "bytes": 1784,
+      "sha256": "85f6a2be1169bf7fe68fee034f38193a06793950c550cb7b2f980a23797b405d"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/06/review/member-desktop-full.jpg",
+        "bytes": 822041,
+        "sha256": "9552d02d021385d8f63e14f8c0b1f5f1ea18234fd4109e1247f815571903d08b",
+        "width": 1440,
+        "height": 9880,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 880,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/member-desktop-top.jpg",
+          "bytes": 89290,
+          "sha256": "56a794673efc863a17d5929028d03761b21c3ba6d570a98b7bb6a1a6e643a6e4",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 4440,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/member-desktop-middle.jpg",
+          "bytes": 89863,
+          "sha256": "5ae3b152fbc655bbb6793a0fe8c9d323b8f99a4b87cc13881b984addf2f63d49",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 8880,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/member-desktop-bottom.jpg",
+          "bytes": 74627,
+          "sha256": "4a1d83600ea332144d069273624962ef98ed6a3cce0910fc82c5dab9bdab46ed",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Week 3, still in play.",
+          "top": 434.390625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 626.390625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 626.390625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 590.390625
+        },
+        {
+          "level": "H3",
+          "text": "Around the matchups",
+          "top": 992.546875
+        },
+        {
+          "level": "H2",
+          "text": "The whole league, in order.",
+          "top": 1404.140625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves DropperYour team",
+          "top": 1663.453125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 1898.96875
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 2117.96875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 2336.96875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 2555.96875
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 2774.96875
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 2993.96875
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 3212.96875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 3431.96875
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 3650.96875
+        },
+        {
+          "level": "H2",
+          "text": "The roster, in two different measures.",
+          "top": 4113.96875
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch",
+          "top": 4191.28125
+        },
+        {
+          "level": "H2",
+          "text": "At the transaction desk.",
+          "top": 4983.671875
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 5044.984375
+        },
+        {
+          "level": "H2",
+          "text": "What the model actually returned.",
+          "top": 5477.984375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper / Ware the Hoes At?",
+          "top": 5587.296875
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back / The Fun Guys",
+          "top": 5587.296875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster / Huff n’ Puff",
+          "top": 5914.890625
+        },
+        {
+          "level": "H3",
+          "text": "papichooter / NeuralNets",
+          "top": 5914.890625
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team / T Halibooty",
+          "top": 6242.484375
+        },
+        {
+          "level": "H2",
+          "text": "Week 2, with the receipts.",
+          "top": 6751.078125
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 7626.390625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 7735.703125
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 8096.296875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 8096.296875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 8096.296875
+        },
+        {
+          "level": "H3",
+          "text": "Oct 7 · Lonzo hits the wire",
+          "top": 8508.484375
+        },
+        {
+          "level": "H3",
+          "text": "Oct 6 · Two moves from NeuralNets",
+          "top": 8508.484375
+        },
+        {
+          "level": "H3",
+          "text": "Oct 6 · Risacher released",
+          "top": 8508.484375
+        },
+        {
+          "level": "H2",
+          "text": "The title everybody’s chasing",
+          "top": 8899.359375
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 9008.671875
+        },
+        {
+          "level": "H3",
+          "text": "Franchise history · A rebuild to follow",
+          "top": 9213.265625
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/06/review/member-phone-full.jpg",
+        "bytes": 789308,
+        "sha256": "a27a11eb2133407c436bcc8bc6fd5ec74bdeb5e3c0c8143f655c8d60690f1cca",
+        "width": 390,
+        "height": 15942,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 14400,
+            "height": 1542,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/member-phone-top.jpg",
+          "bytes": 40539,
+          "sha256": "2594e372cb03a8452534754c48091569f62d407466919bb0672ddd372e9b9f1a",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 7549,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/member-phone-middle.jpg",
+          "bytes": 51784,
+          "sha256": "a6c0215c7725b182779566d7c3e0d7b2991f8403a22a45b1a4123af5675c9030",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 15098,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/member-phone-bottom.jpg",
+          "bytes": 31477,
+          "sha256": "d1284bb78ae0fca9aa8e8ff83e9ea6630c51c2febf4c5b8299fb046729d91f53",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Week 3, still in play.",
+          "top": 411.1875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 549.375
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 724.15625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 1159.9375
+        },
+        {
+          "level": "H3",
+          "text": "Around the matchups",
+          "top": 1443.53125
+        },
+        {
+          "level": "H2",
+          "text": "The whole league, in order.",
+          "top": 2259.125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves DropperYour team",
+          "top": 2726.3125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 3086.1875
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 3427.1875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 3768.1875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 4109.1875
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 4450.1875
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 4791.1875
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 5132.1875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 5497.1875
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 5838.1875
+        },
+        {
+          "level": "H2",
+          "text": "The roster, in two different measures.",
+          "top": 6494.1875
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch",
+          "top": 7409.75
+        },
+        {
+          "level": "H2",
+          "text": "At the transaction desk.",
+          "top": 8181.34375
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 8611.53125
+        },
+        {
+          "level": "H2",
+          "text": "What the model actually returned.",
+          "top": 8951.125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper / Ware the Hoes At?",
+          "top": 9099.5
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back / The Fun Guys",
+          "top": 9466.6875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster / Huff n’ Puff",
+          "top": 9809.875
+        },
+        {
+          "level": "H3",
+          "text": "papichooter / NeuralNets",
+          "top": 10129.46875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team / T Halibooty",
+          "top": 10449.0625
+        },
+        {
+          "level": "H2",
+          "text": "Week 2, with the receipts.",
+          "top": 11020.65625
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 12038.84375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 12133.03125
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 12556.625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 13012.21875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 13467.8125
+        },
+        {
+          "level": "H3",
+          "text": "Oct 7 · Lonzo hits the wire",
+          "top": 13887.40625
+        },
+        {
+          "level": "H3",
+          "text": "Oct 6 · Two moves from NeuralNets",
+          "top": 14030.28125
+        },
+        {
+          "level": "H3",
+          "text": "Oct 6 · Risacher released",
+          "top": 14197.15625
+        },
+        {
+          "level": "H2",
+          "text": "The title everybody’s chasing",
+          "top": 14560.03125
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 14684.40625
+        },
+        {
+          "level": "H3",
+          "text": "Franchise history · A rebuild to follow",
+          "top": 14999.59375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/06/review/public-desktop-full.jpg",
+        "bytes": 683344,
+        "sha256": "b57ce76d09af1f1b5f4ae46617aa927d32fc20ef6178a9e2db6e66fb341ebf6b",
+        "width": 1440,
+        "height": 8119,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 919,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/public-desktop-top.jpg",
+          "bytes": 90195,
+          "sha256": "77e6a09f28ac5285ecd814bdaa38e30b838ba9b3dcf17b5ba692333af2e5ab6b",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3559,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/public-desktop-middle.jpg",
+          "bytes": 76702,
+          "sha256": "de3cbcc81881243d1304b9adb1e1976d45a2f28dc42ad12590cc6cc4c5c8923b",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 7119,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/public-desktop-bottom.jpg",
+          "bytes": 74686,
+          "sha256": "6f3c0bf9e729f1aa19cab0ce0b948d116e5388cf779cf14dbdfbb3167e7280fc",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Week 3, still in play.",
+          "top": 434.390625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 626.390625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 626.390625
+        },
+        {
+          "level": "H3",
+          "text": "Ten teams to follow.",
+          "top": 590.390625
+        },
+        {
+          "level": "H3",
+          "text": "Around the matchups",
+          "top": 992.546875
+        },
+        {
+          "level": "H2",
+          "text": "The whole league, in order.",
+          "top": 1404.140625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 1663.453125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 1882.453125
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 2101.453125
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 2320.453125
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 2539.453125
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 2758.453125
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 2977.453125
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 3196.453125
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 3415.453125
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 3634.453125
+        },
+        {
+          "level": "H2",
+          "text": "At the transaction desk.",
+          "top": 4097.453125
+        },
+        {
+          "level": "H3",
+          "text": "Between matchups",
+          "top": 4158.765625
+        },
+        {
+          "level": "H2",
+          "text": "What the model actually returned.",
+          "top": 4591.765625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper / Ware the Hoes At?",
+          "top": 4701.078125
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back / The Fun Guys",
+          "top": 4701.078125
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster / Huff n’ Puff",
+          "top": 5028.671875
+        },
+        {
+          "level": "H3",
+          "text": "papichooter / NeuralNets",
+          "top": 5028.671875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team / T Halibooty",
+          "top": 5356.265625
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 5864.859375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 5974.171875
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 6334.765625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 6334.765625
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 6334.765625
+        },
+        {
+          "level": "H3",
+          "text": "Oct 7 · Lonzo hits the wire",
+          "top": 6746.953125
+        },
+        {
+          "level": "H3",
+          "text": "Oct 6 · Two moves from NeuralNets",
+          "top": 6746.953125
+        },
+        {
+          "level": "H3",
+          "text": "Oct 6 · Risacher released",
+          "top": 6746.953125
+        },
+        {
+          "level": "H2",
+          "text": "The title everybody’s chasing",
+          "top": 7137.828125
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 7247.140625
+        },
+        {
+          "level": "H3",
+          "text": "Franchise history · A rebuild to follow",
+          "top": 7451.734375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/06/review/public-phone-full.jpg",
+        "bytes": 647101,
+        "sha256": "64f8a98d464c01f4d3d7f42e517afc388c4a50454048d1f0c0bc85b06860fe23",
+        "width": 390,
+        "height": 13146,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 546,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/public-phone-top.jpg",
+          "bytes": 40521,
+          "sha256": "da7a6c84080998ec85319b08326d0d7ff4d0ce905cc06043a9148027647fa923",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 6151,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/public-phone-middle.jpg",
+          "bytes": 52314,
+          "sha256": "86c15a58c3f2a5bfca79f103a4208af537470b818a4ee84c7a87e45958f276d8",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 12302,
+          "path": "qa/homepage-structures/homepage-corrections/06/review/public-phone-bottom.jpg",
+          "bytes": 31477,
+          "sha256": "d1284bb78ae0fca9aa8e8ff83e9ea6630c51c2febf4c5b8299fb046729d91f53",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Week 3, still in play.",
+          "top": 411.1875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 549.375
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 724.15625
+        },
+        {
+          "level": "H3",
+          "text": "Ten teams to follow.",
+          "top": 1159.9375
+        },
+        {
+          "level": "H3",
+          "text": "Around the matchups",
+          "top": 1419.53125
+        },
+        {
+          "level": "H2",
+          "text": "The whole league, in order.",
+          "top": 2235.125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 2702.3125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 3043.3125
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 3384.3125
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 3725.3125
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 4066.3125
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 4407.3125
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 4748.3125
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 5089.3125
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 5454.3125
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 5795.3125
+        },
+        {
+          "level": "H2",
+          "text": "At the transaction desk.",
+          "top": 6451.3125
+        },
+        {
+          "level": "H3",
+          "text": "Between matchups",
+          "top": 6881.5
+        },
+        {
+          "level": "H2",
+          "text": "What the model actually returned.",
+          "top": 7173.09375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper / Ware the Hoes At?",
+          "top": 7321.46875
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back / The Fun Guys",
+          "top": 7688.65625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster / Huff n’ Puff",
+          "top": 8031.84375
+        },
+        {
+          "level": "H3",
+          "text": "papichooter / NeuralNets",
+          "top": 8351.4375
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team / T Halibooty",
+          "top": 8671.03125
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 9242.625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 9336.8125
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 9760.40625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 10216
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 10671.59375
+        },
+        {
+          "level": "H3",
+          "text": "Oct 7 · Lonzo hits the wire",
+          "top": 11091.1875
+        },
+        {
+          "level": "H3",
+          "text": "Oct 6 · Two moves from NeuralNets",
+          "top": 11234.0625
+        },
+        {
+          "level": "H3",
+          "text": "Oct 6 · Risacher released",
+          "top": 11400.9375
+        },
+        {
+          "level": "H2",
+          "text": "The title everybody’s chasing",
+          "top": 11763.8125
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 11888.1875
+        },
+        {
+          "level": "H3",
+          "text": "Franchise history · A rebuild to follow",
+          "top": 12203.375
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 9880,
+        "textCharacters": 9066,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, still in play.",
+            "top": 434.390625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 626.390625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 626.390625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 590.390625
+          },
+          {
+            "level": "H3",
+            "text": "Around the matchups",
+            "top": 992.546875
+          },
+          {
+            "level": "H2",
+            "text": "The whole league, in order.",
+            "top": 1404.140625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves DropperYour team",
+            "top": 1663.453125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 1898.96875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 2117.96875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 2336.96875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 2555.96875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 2774.96875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 2993.96875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 3212.96875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 3431.96875
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 3650.96875
+          },
+          {
+            "level": "H2",
+            "text": "The roster, in two different measures.",
+            "top": 4113.96875
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 4191.28125
+          },
+          {
+            "level": "H2",
+            "text": "At the transaction desk.",
+            "top": 4983.671875
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 5044.984375
+          },
+          {
+            "level": "H2",
+            "text": "What the model actually returned.",
+            "top": 5477.984375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper / Ware the Hoes At?",
+            "top": 5587.296875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back / The Fun Guys",
+            "top": 5587.296875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster / Huff n’ Puff",
+            "top": 5914.890625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter / NeuralNets",
+            "top": 5914.890625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team / T Halibooty",
+            "top": 6242.484375
+          },
+          {
+            "level": "H2",
+            "text": "Week 2, with the receipts.",
+            "top": 6751.078125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 7626.390625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 7735.703125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 8096.296875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 8096.296875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 8096.296875
+          },
+          {
+            "level": "H3",
+            "text": "Oct 7 · Lonzo hits the wire",
+            "top": 8508.484375
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Two moves from NeuralNets",
+            "top": 8508.484375
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Risacher released",
+            "top": 8508.484375
+          },
+          {
+            "level": "H2",
+            "text": "The title everybody’s chasing",
+            "top": 8899.359375
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 9008.671875
+          },
+          {
+            "level": "H3",
+            "text": "Franchise history · A rebuild to follow",
+            "top": 9213.265625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 15942,
+        "textCharacters": 9056,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, still in play.",
+            "top": 411.1875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 549.375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 724.15625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1159.9375
+          },
+          {
+            "level": "H3",
+            "text": "Around the matchups",
+            "top": 1443.53125
+          },
+          {
+            "level": "H2",
+            "text": "The whole league, in order.",
+            "top": 2259.125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves DropperYour team",
+            "top": 2726.3125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3086.1875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 3427.1875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 3768.1875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 4109.1875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 4450.1875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 4791.1875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 5132.1875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 5497.1875
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 5838.1875
+          },
+          {
+            "level": "H2",
+            "text": "The roster, in two different measures.",
+            "top": 6494.1875
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 7409.75
+          },
+          {
+            "level": "H2",
+            "text": "At the transaction desk.",
+            "top": 8181.34375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 8611.53125
+          },
+          {
+            "level": "H2",
+            "text": "What the model actually returned.",
+            "top": 8951.125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper / Ware the Hoes At?",
+            "top": 9099.5
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back / The Fun Guys",
+            "top": 9466.6875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster / Huff n’ Puff",
+            "top": 9809.875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter / NeuralNets",
+            "top": 10129.46875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team / T Halibooty",
+            "top": 10449.0625
+          },
+          {
+            "level": "H2",
+            "text": "Week 2, with the receipts.",
+            "top": 11020.65625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 12038.84375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 12133.03125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 12556.625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 13012.21875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 13467.8125
+          },
+          {
+            "level": "H3",
+            "text": "Oct 7 · Lonzo hits the wire",
+            "top": 13887.40625
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Two moves from NeuralNets",
+            "top": 14030.28125
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Risacher released",
+            "top": 14197.15625
+          },
+          {
+            "level": "H2",
+            "text": "The title everybody’s chasing",
+            "top": 14560.03125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 14684.40625
+          },
+          {
+            "level": "H3",
+            "text": "Franchise history · A rebuild to follow",
+            "top": 14999.59375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 50861,
+        "textCharacters": 9056,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, still in play.",
+            "top": 1371.15625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1707.96875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2247.921875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 3690.453125
+          },
+          {
+            "level": "H3",
+            "text": "Around the matchups",
+            "top": 4497.640625
+          },
+          {
+            "level": "H2",
+            "text": "The whole league, in order.",
+            "top": 6296.015625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves DropperYour team",
+            "top": 7638.234375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 9047.484375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 10293.234375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 11634.171875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 12920.734375
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 14206.484375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 15357.859375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 16501.234375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 17796.609375
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 19129.546875
+          },
+          {
+            "level": "H2",
+            "text": "The roster, in two different measures.",
+            "top": 21613.484375
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 24471.46875
+          },
+          {
+            "level": "H2",
+            "text": "At the transaction desk.",
+            "top": 27574.65625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 29227.875
+          },
+          {
+            "level": "H2",
+            "text": "What the model actually returned.",
+            "top": 30243.0625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper / Ware the Hoes At?",
+            "top": 30804.6875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back / The Fun Guys",
+            "top": 31840.625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster / Huff n’ Puff",
+            "top": 32828.5625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter / NeuralNets",
+            "top": 33808.5
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team / T Halibooty",
+            "top": 34685.25
+          },
+          {
+            "level": "H2",
+            "text": "Week 2, with the receipts.",
+            "top": 36505.1875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 39408.375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 39705.1875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 41125.9375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 42609.0625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 44035.375
+          },
+          {
+            "level": "H3",
+            "text": "Oct 7 · Lonzo hits the wire",
+            "top": 45245.6875
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Two moves from NeuralNets",
+            "top": 45617.1875
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Risacher released",
+            "top": 46084.6875
+          },
+          {
+            "level": "H2",
+            "text": "The title everybody’s chasing",
+            "top": 47048.1875
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 47453.40625
+          },
+          {
+            "level": "H3",
+            "text": "Franchise history · A rebuild to follow",
+            "top": 48513.34375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 17570,
+        "textCharacters": 9056,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, still in play.",
+            "top": 482.375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 620.5625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 795.34375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1255.125
+          },
+          {
+            "level": "H3",
+            "text": "Around the matchups",
+            "top": 1562.71875
+          },
+          {
+            "level": "H2",
+            "text": "The whole league, in order.",
+            "top": 2402.3125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves DropperYour team",
+            "top": 2923.6875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3307.5625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 3672.5625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 4040.75
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 4405.75
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 4773.9375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 5138.9375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 5479.9375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 5844.9375
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 6189.125
+          },
+          {
+            "level": "H2",
+            "text": "The roster, in two different measures.",
+            "top": 6989.125
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 8048.6875
+          },
+          {
+            "level": "H2",
+            "text": "At the transaction desk.",
+            "top": 8940.28125
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 9544.65625
+          },
+          {
+            "level": "H2",
+            "text": "What the model actually returned.",
+            "top": 9932.25
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper / Ware the Hoes At?",
+            "top": 10104.625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back / The Fun Guys",
+            "top": 10471.8125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster / Huff n’ Puff",
+            "top": 10839
+          },
+          {
+            "level": "H3",
+            "text": "papichooter / NeuralNets",
+            "top": 11206.1875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team / T Halibooty",
+            "top": 11549.78125
+          },
+          {
+            "level": "H2",
+            "text": "Week 2, with the receipts.",
+            "top": 12216.96875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 13360.53125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 13454.71875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 13925.90625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 14429.5
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 14908.6875
+          },
+          {
+            "level": "H3",
+            "text": "Oct 7 · Lonzo hits the wire",
+            "top": 15328.28125
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Two moves from NeuralNets",
+            "top": 15495.15625
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Risacher released",
+            "top": 15662.03125
+          },
+          {
+            "level": "H2",
+            "text": "The title everybody’s chasing",
+            "top": 16048.90625
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 16197.28125
+          },
+          {
+            "level": "H3",
+            "text": "Franchise history · A rebuild to follow",
+            "top": 16560.46875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 74331,
+        "textCharacters": 9056,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, still in play.",
+            "top": 1523.15625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1968.375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2881.09375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 4840.390625
+          },
+          {
+            "level": "H3",
+            "text": "Around the matchups",
+            "top": 5886.765625
+          },
+          {
+            "level": "H2",
+            "text": "The whole league, in order.",
+            "top": 8413.140625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves DropperYour team",
+            "top": 10007.765625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 12456.453125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 14800.515625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 17383.765625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 19729.453125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 22026.328125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 24325.640625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 26480.140625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 28779.453125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 30978.703125
+          },
+          {
+            "level": "H2",
+            "text": "The roster, in two different measures.",
+            "top": 34803.390625
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 38832.984375
+          },
+          {
+            "level": "H2",
+            "text": "At the transaction desk.",
+            "top": 44527.359375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 46516.578125
+          },
+          {
+            "level": "H2",
+            "text": "What the model actually returned.",
+            "top": 47674.953125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper / Ware the Hoes At?",
+            "top": 48332.578125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back / The Fun Guys",
+            "top": 49575.703125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster / Huff n’ Puff",
+            "top": 50810.828125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter / NeuralNets",
+            "top": 51997.953125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team / T Halibooty",
+            "top": 53130.703125
+          },
+          {
+            "level": "H2",
+            "text": "Week 2, with the receipts.",
+            "top": 55309.828125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 59425.421875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 59770.234375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 61813.359375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 63822.046875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 65829.921875
+          },
+          {
+            "level": "H3",
+            "text": "Oct 7 · Lonzo hits the wire",
+            "top": 67477.796875
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Two moves from NeuralNets",
+            "top": 67897.296875
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Risacher released",
+            "top": 68402.546875
+          },
+          {
+            "level": "H2",
+            "text": "The title everybody’s chasing",
+            "top": 69594.171875
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 70059.796875
+          },
+          {
+            "level": "H3",
+            "text": "Franchise history · A rebuild to follow",
+            "top": 71358.109375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 8119,
+        "textCharacters": 7366,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, still in play.",
+            "top": 434.390625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 626.390625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 626.390625
+          },
+          {
+            "level": "H3",
+            "text": "Ten teams to follow.",
+            "top": 590.390625
+          },
+          {
+            "level": "H3",
+            "text": "Around the matchups",
+            "top": 992.546875
+          },
+          {
+            "level": "H2",
+            "text": "The whole league, in order.",
+            "top": 1404.140625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1663.453125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 1882.453125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 2101.453125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 2320.453125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 2539.453125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 2758.453125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 2977.453125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 3196.453125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 3415.453125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 3634.453125
+          },
+          {
+            "level": "H2",
+            "text": "At the transaction desk.",
+            "top": 4097.453125
+          },
+          {
+            "level": "H3",
+            "text": "Between matchups",
+            "top": 4158.765625
+          },
+          {
+            "level": "H2",
+            "text": "What the model actually returned.",
+            "top": 4591.765625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper / Ware the Hoes At?",
+            "top": 4701.078125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back / The Fun Guys",
+            "top": 4701.078125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster / Huff n’ Puff",
+            "top": 5028.671875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter / NeuralNets",
+            "top": 5028.671875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team / T Halibooty",
+            "top": 5356.265625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 5864.859375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 5974.171875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 6334.765625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 6334.765625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 6334.765625
+          },
+          {
+            "level": "H3",
+            "text": "Oct 7 · Lonzo hits the wire",
+            "top": 6746.953125
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Two moves from NeuralNets",
+            "top": 6746.953125
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Risacher released",
+            "top": 6746.953125
+          },
+          {
+            "level": "H2",
+            "text": "The title everybody’s chasing",
+            "top": 7137.828125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 7247.140625
+          },
+          {
+            "level": "H3",
+            "text": "Franchise history · A rebuild to follow",
+            "top": 7451.734375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 13146,
+        "textCharacters": 7356,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, still in play.",
+            "top": 411.1875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 549.375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 724.15625
+          },
+          {
+            "level": "H3",
+            "text": "Ten teams to follow.",
+            "top": 1159.9375
+          },
+          {
+            "level": "H3",
+            "text": "Around the matchups",
+            "top": 1419.53125
+          },
+          {
+            "level": "H2",
+            "text": "The whole league, in order.",
+            "top": 2235.125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2702.3125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3043.3125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 3384.3125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 3725.3125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 4066.3125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 4407.3125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 4748.3125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 5089.3125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 5454.3125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 5795.3125
+          },
+          {
+            "level": "H2",
+            "text": "At the transaction desk.",
+            "top": 6451.3125
+          },
+          {
+            "level": "H3",
+            "text": "Between matchups",
+            "top": 6881.5
+          },
+          {
+            "level": "H2",
+            "text": "What the model actually returned.",
+            "top": 7173.09375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper / Ware the Hoes At?",
+            "top": 7321.46875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back / The Fun Guys",
+            "top": 7688.65625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster / Huff n’ Puff",
+            "top": 8031.84375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter / NeuralNets",
+            "top": 8351.4375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team / T Halibooty",
+            "top": 8671.03125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 9242.625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 9336.8125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 9760.40625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 10216
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 10671.59375
+          },
+          {
+            "level": "H3",
+            "text": "Oct 7 · Lonzo hits the wire",
+            "top": 11091.1875
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Two moves from NeuralNets",
+            "top": 11234.0625
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Risacher released",
+            "top": 11400.9375
+          },
+          {
+            "level": "H2",
+            "text": "The title everybody’s chasing",
+            "top": 11763.8125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 11888.1875
+          },
+          {
+            "level": "H3",
+            "text": "Franchise history · A rebuild to follow",
+            "top": 12203.375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 41775,
+        "textCharacters": 7356,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, still in play.",
+            "top": 1371.15625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1707.96875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2247.921875
+          },
+          {
+            "level": "H3",
+            "text": "Ten teams to follow.",
+            "top": 3690.453125
+          },
+          {
+            "level": "H3",
+            "text": "Around the matchups",
+            "top": 4640.828125
+          },
+          {
+            "level": "H2",
+            "text": "The whole league, in order.",
+            "top": 6439.203125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 7781.421875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 9115.171875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 10360.921875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 11701.859375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 12988.421875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 14274.171875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 15425.546875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 16568.921875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 17864.296875
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 19197.234375
+          },
+          {
+            "level": "H2",
+            "text": "At the transaction desk.",
+            "top": 21681.171875
+          },
+          {
+            "level": "H3",
+            "text": "Between matchups",
+            "top": 23334.390625
+          },
+          {
+            "level": "H2",
+            "text": "What the model actually returned.",
+            "top": 24108.765625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper / Ware the Hoes At?",
+            "top": 24670.390625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back / The Fun Guys",
+            "top": 25706.328125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster / Huff n’ Puff",
+            "top": 26694.265625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter / NeuralNets",
+            "top": 27674.203125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team / T Halibooty",
+            "top": 28550.953125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 30322.890625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 30619.703125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 32040.453125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 33523.578125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 34949.890625
+          },
+          {
+            "level": "H3",
+            "text": "Oct 7 · Lonzo hits the wire",
+            "top": 36160.203125
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Two moves from NeuralNets",
+            "top": 36531.703125
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Risacher released",
+            "top": 36999.203125
+          },
+          {
+            "level": "H2",
+            "text": "The title everybody’s chasing",
+            "top": 37962.703125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 38367.921875
+          },
+          {
+            "level": "H3",
+            "text": "Franchise history · A rebuild to follow",
+            "top": 39427.859375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 14337,
+        "textCharacters": 7356,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, still in play.",
+            "top": 482.375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 620.5625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 795.34375
+          },
+          {
+            "level": "H3",
+            "text": "Ten teams to follow.",
+            "top": 1255.125
+          },
+          {
+            "level": "H3",
+            "text": "Around the matchups",
+            "top": 1562.71875
+          },
+          {
+            "level": "H2",
+            "text": "The whole league, in order.",
+            "top": 2402.3125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2923.6875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3288.6875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 3653.6875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 4021.875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 4386.875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 4755.0625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 5120.0625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 5461.0625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 5826.0625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 6170.25
+          },
+          {
+            "level": "H2",
+            "text": "At the transaction desk.",
+            "top": 6970.25
+          },
+          {
+            "level": "H3",
+            "text": "Between matchups",
+            "top": 7574.625
+          },
+          {
+            "level": "H2",
+            "text": "What the model actually returned.",
+            "top": 7866.21875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper / Ware the Hoes At?",
+            "top": 8038.59375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back / The Fun Guys",
+            "top": 8405.78125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster / Huff n’ Puff",
+            "top": 8772.96875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter / NeuralNets",
+            "top": 9140.15625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team / T Halibooty",
+            "top": 9483.75
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 10126.9375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 10221.125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 10692.3125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 11195.90625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 11675.09375
+          },
+          {
+            "level": "H3",
+            "text": "Oct 7 · Lonzo hits the wire",
+            "top": 12094.6875
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Two moves from NeuralNets",
+            "top": 12261.5625
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Risacher released",
+            "top": 12428.4375
+          },
+          {
+            "level": "H2",
+            "text": "The title everybody’s chasing",
+            "top": 12815.3125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 12963.6875
+          },
+          {
+            "level": "H3",
+            "text": "Franchise history · A rebuild to follow",
+            "top": 13326.875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 60149,
+        "textCharacters": 7356,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, still in play.",
+            "top": 1523.15625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1968.375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2881.09375
+          },
+          {
+            "level": "H3",
+            "text": "Ten teams to follow.",
+            "top": 4888.390625
+          },
+          {
+            "level": "H3",
+            "text": "Around the matchups",
+            "top": 5982.765625
+          },
+          {
+            "level": "H2",
+            "text": "The whole league, in order.",
+            "top": 8509.140625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 10103.765625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 12401.453125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 14745.515625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 17328.765625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 19674.453125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 21971.328125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 24270.640625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 26425.140625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 28724.453125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 30923.703125
+          },
+          {
+            "level": "H2",
+            "text": "At the transaction desk.",
+            "top": 34700.390625
+          },
+          {
+            "level": "H3",
+            "text": "Between matchups",
+            "top": 36689.609375
+          },
+          {
+            "level": "H2",
+            "text": "What the model actually returned.",
+            "top": 37607.984375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper / Ware the Hoes At?",
+            "top": 38265.609375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back / The Fun Guys",
+            "top": 39508.734375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster / Huff n’ Puff",
+            "top": 40743.859375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter / NeuralNets",
+            "top": 41930.984375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team / T Halibooty",
+            "top": 43063.734375
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 45242.859375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 45587.671875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 47630.796875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 49639.484375
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 51647.359375
+          },
+          {
+            "level": "H3",
+            "text": "Oct 7 · Lonzo hits the wire",
+            "top": 53295.234375
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Two moves from NeuralNets",
+            "top": 53714.734375
+          },
+          {
+            "level": "H3",
+            "text": "Oct 6 · Risacher released",
+            "top": 54219.984375
+          },
+          {
+            "level": "H2",
+            "text": "The title everybody’s chasing",
+            "top": 55411.609375
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 55877.234375
+          },
+          {
+            "level": "H3",
+            "text": "Franchise history · A rebuild to follow",
+            "top": 57175.546875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

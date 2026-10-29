@@ -1,0 +1,2465 @@
+{
+  "id": "07",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/07/index.html",
+      "bytes": 2993,
+      "sha256": "60e43100da0e09e43c65f30bb7d8bb0cc25c69f2a93180de30675c23672c47a2"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/07/room.css",
+      "bytes": 22918,
+      "sha256": "5cb8155a371f8579ce2f67168d9c1acc097de2ed4ab0e9bfa826965a8946d4cd"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/07/room.js",
+      "bytes": 23057,
+      "sha256": "ead98bbead8fc8a4de3be0cb78ee9fa244e8d20f98e465b8bda657d470b988ec"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/07/review/member-desktop-full.jpg",
+        "bytes": 798429,
+        "sha256": "f6aaa8dd9476f0d0c73d15cc53b6b29cf258e625f6e7cb9879eb45159a7d37e0",
+        "width": 1440,
+        "height": 6027,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 6027,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/member-desktop-top.jpg",
+          "bytes": 140085,
+          "sha256": "6e635ca8900564ed2d170a640ca57276899d4cbdf49d752af1a0563f89e235be",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2513,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/member-desktop-middle.jpg",
+          "bytes": 145696,
+          "sha256": "cbf148ccf3ed128dc90edca30f039ca99f252fb75e84a146150a40c730d06b20",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 5027,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/member-desktop-bottom.jpg",
+          "bytes": 77794,
+          "sha256": "8360ee8933111bd1fc1024bd570061624fb1302d5cf109f740a16146e0df51f7",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The clubhouse.",
+          "top": 121
+        },
+        {
+          "level": "H2",
+          "text": "Week 3",
+          "top": 349
+        },
+        {
+          "level": "H2",
+          "text": "The ten franchises.",
+          "top": 325
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 538.59375
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 538.59375
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 815.59375
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 815.59375
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 1092.59375
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 1092.59375
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 1369.59375
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 1369.59375
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 1646.59375
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 1646.59375
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 2094.796875
+        },
+        {
+          "level": "H3",
+          "text": "Current modeled FAAB total",
+          "top": 2211.796875
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch",
+          "top": 2211.796875
+        },
+        {
+          "level": "H3",
+          "text": "The completed-week notebook",
+          "top": 2771.1875
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 3235.96875
+        },
+        {
+          "level": "H2",
+          "text": "Weekly editions.",
+          "top": 2086.796875
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 2263.390625
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 2722.984375
+        },
+        {
+          "level": "H2",
+          "text": "Three notes left on the bench.",
+          "top": 3773.5625
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 3923.15625
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 3923.15625
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 3923.15625
+        },
+        {
+          "level": "H2",
+          "text": "Standings & recent moves.",
+          "top": 4393.15625
+        },
+        {
+          "level": "H3",
+          "text": "Week 3 transaction wire",
+          "top": 5185.75
+        },
+        {
+          "level": "H2",
+          "text": "Meet you on court.",
+          "top": 4385.15625
+        },
+        {
+          "level": "H3",
+          "text": "Free throw practice",
+          "top": 4655.3125
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/07/review/member-phone-full.jpg",
+        "bytes": 757006,
+        "sha256": "486a455161b8ae3129b4c116d5e081c4274b7d4241daf15d2c79bf46f0179294",
+        "width": 390,
+        "height": 14223,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 1623,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/member-phone-top.jpg",
+          "bytes": 49616,
+          "sha256": "0a36b5682ff37304c5d3ad969b6c231cfc8803a5240daf6c53d69e64cbb422c9",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 6689,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/member-phone-middle.jpg",
+          "bytes": 43636,
+          "sha256": "0851dbb22f076b8b0ed1d450de77a17c447f1656633cdb7be8424002d58e3800",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 13379,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/member-phone-bottom.jpg",
+          "bytes": 32972,
+          "sha256": "d53743d59178568066036cea9bb53fb5ed74b19f8213f18862c083c06b40c881",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The clubhouse.",
+          "top": 173
+        },
+        {
+          "level": "H2",
+          "text": "Week 3",
+          "top": 477
+        },
+        {
+          "level": "H2",
+          "text": "The ten franchises.",
+          "top": 2301.796875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 2672.390625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 2957.390625
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 3242.390625
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 3527.390625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 3833.390625
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 4118.390625
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 4403.390625
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 4688.390625
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 4973.390625
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 5258.390625
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 5620.390625
+        },
+        {
+          "level": "H3",
+          "text": "Current modeled FAAB total",
+          "top": 5766.984375
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch",
+          "top": 6338.375
+        },
+        {
+          "level": "H3",
+          "text": "The completed-week notebook",
+          "top": 6821.96875
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 7782.9375
+        },
+        {
+          "level": "H2",
+          "text": "Weekly editions.",
+          "top": 8325.53125
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 8523.125
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 9046.3125
+        },
+        {
+          "level": "H2",
+          "text": "Three notes left on the bench.",
+          "top": 9643.5
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 9847.6875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 10283.6875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 10719.6875
+        },
+        {
+          "level": "H2",
+          "text": "Standings & recent moves.",
+          "top": 11173.6875
+        },
+        {
+          "level": "H3",
+          "text": "Week 3 transaction wire",
+          "top": 12280.875
+        },
+        {
+          "level": "H2",
+          "text": "Meet you on court.",
+          "top": 13177.875
+        },
+        {
+          "level": "H3",
+          "text": "Free throw practice",
+          "top": 13412.125
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/07/review/public-desktop-full.jpg",
+        "bytes": 731432,
+        "sha256": "b612a1c6ad6047f01a3e26e4bae3940e133d75fe7d619bb6428f9f6d84bd46b4",
+        "width": 1440,
+        "height": 5531,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 5531,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/public-desktop-top.jpg",
+          "bytes": 139544,
+          "sha256": "48ef5d9046e9c7073304a741e76cd21cbd9eb7be545d6e0358b961642986cfd1",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2265,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/public-desktop-middle.jpg",
+          "bytes": 142061,
+          "sha256": "e57d23d6ce421802c05af5390c0660e94d8b9045f524500a8aaabcdbb34b0c72",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 4531,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/public-desktop-bottom.jpg",
+          "bytes": 77977,
+          "sha256": "1c5509fbc3281e587a6788d3af1d328284f1f99c5f4250282212005a5e272e5e",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The clubhouse.",
+          "top": 121
+        },
+        {
+          "level": "H2",
+          "text": "Week 3",
+          "top": 349
+        },
+        {
+          "level": "H2",
+          "text": "The ten franchises.",
+          "top": 325
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 538.59375
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 538.59375
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 815.59375
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 815.59375
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 1092.59375
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 1092.59375
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 1369.59375
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 1369.59375
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 1646.59375
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 1646.59375
+        },
+        {
+          "level": "H2",
+          "text": "Around our league.",
+          "top": 2094.796875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 2358.796875
+        },
+        {
+          "level": "H3",
+          "text": "From the October noticeboard",
+          "top": 2594.390625
+        },
+        {
+          "level": "H2",
+          "text": "Weekly editions.",
+          "top": 2086.796875
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 2263.390625
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 2722.984375
+        },
+        {
+          "level": "H2",
+          "text": "Three notes left on the bench.",
+          "top": 3277.578125
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 3427.171875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 3427.171875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 3427.171875
+        },
+        {
+          "level": "H2",
+          "text": "Standings & recent moves.",
+          "top": 3897.171875
+        },
+        {
+          "level": "H3",
+          "text": "Week 3 transaction wire",
+          "top": 4689.765625
+        },
+        {
+          "level": "H2",
+          "text": "Meet you on court.",
+          "top": 3889.171875
+        },
+        {
+          "level": "H3",
+          "text": "Free throw practice",
+          "top": 4159.328125
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/07/review/public-phone-full.jpg",
+        "bytes": 689561,
+        "sha256": "e82e0cfde84fd82a3275f41a76826e484625097e1c788e6e28d49633fd591dd9",
+        "width": 390,
+        "height": 12826,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 226,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/public-phone-top.jpg",
+          "bytes": 49600,
+          "sha256": "341aface326d6df72ef1f43b9a2303b6f46278669e69482ddc5cc314c34dadd9",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5991,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/public-phone-middle.jpg",
+          "bytes": 56263,
+          "sha256": "02edda520ab5cf93590c1edc37eb1bda854025b5ad06117fa0c9c90337600388",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 11982,
+          "path": "qa/homepage-structures/homepage-corrections/07/review/public-phone-bottom.jpg",
+          "bytes": 33206,
+          "sha256": "4b8e115d9b0421a50c2d85bc4ceddff40660ad9eb38bd3260014acc39aa43fd0",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The clubhouse.",
+          "top": 173
+        },
+        {
+          "level": "H2",
+          "text": "Week 3",
+          "top": 477
+        },
+        {
+          "level": "H2",
+          "text": "The ten franchises.",
+          "top": 2301.796875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 2672.390625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 2957.390625
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 3242.390625
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 3527.390625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 3833.390625
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 4118.390625
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 4403.390625
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 4688.390625
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 4973.390625
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 5258.390625
+        },
+        {
+          "level": "H2",
+          "text": "Around our league.",
+          "top": 5620.390625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 6003.984375
+        },
+        {
+          "level": "H3",
+          "text": "From the October noticeboard",
+          "top": 6353.578125
+        },
+        {
+          "level": "H2",
+          "text": "Weekly editions.",
+          "top": 6928.171875
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 7125.765625
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 7648.953125
+        },
+        {
+          "level": "H2",
+          "text": "Three notes left on the bench.",
+          "top": 8246.140625
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 8450.328125
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 8886.328125
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 9322.328125
+        },
+        {
+          "level": "H2",
+          "text": "Standings & recent moves.",
+          "top": 9776.328125
+        },
+        {
+          "level": "H3",
+          "text": "Week 3 transaction wire",
+          "top": 10883.515625
+        },
+        {
+          "level": "H2",
+          "text": "Meet you on court.",
+          "top": 11780.515625
+        },
+        {
+          "level": "H3",
+          "text": "Free throw practice",
+          "top": 12014.765625
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 6027,
+        "textCharacters": 8477,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The clubhouse.",
+            "top": 121
+          },
+          {
+            "level": "H2",
+            "text": "Week 3",
+            "top": 349
+          },
+          {
+            "level": "H2",
+            "text": "The ten franchises.",
+            "top": 325
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 538.59375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 538.59375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 815.59375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 815.59375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 1092.59375
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 1092.59375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 1369.59375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 1369.59375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 1646.59375
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 1646.59375
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2094.796875
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled FAAB total",
+            "top": 2211.796875
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 2211.796875
+          },
+          {
+            "level": "H3",
+            "text": "The completed-week notebook",
+            "top": 2771.1875
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 3235.96875
+          },
+          {
+            "level": "H2",
+            "text": "Weekly editions.",
+            "top": 2086.796875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 2263.390625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 2722.984375
+          },
+          {
+            "level": "H2",
+            "text": "Three notes left on the bench.",
+            "top": 3773.5625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 3923.15625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 3923.15625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 3923.15625
+          },
+          {
+            "level": "H2",
+            "text": "Standings & recent moves.",
+            "top": 4393.15625
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 transaction wire",
+            "top": 5185.75
+          },
+          {
+            "level": "H2",
+            "text": "Meet you on court.",
+            "top": 4385.15625
+          },
+          {
+            "level": "H3",
+            "text": "Free throw practice",
+            "top": 4655.3125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 14223,
+        "textCharacters": 8477,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The clubhouse.",
+            "top": 173
+          },
+          {
+            "level": "H2",
+            "text": "Week 3",
+            "top": 477
+          },
+          {
+            "level": "H2",
+            "text": "The ten franchises.",
+            "top": 2301.796875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2672.390625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2957.390625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 3242.390625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 3527.390625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 3833.390625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 4118.390625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 4403.390625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 4688.390625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 4973.390625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 5258.390625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 5620.390625
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled FAAB total",
+            "top": 5766.984375
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 6338.375
+          },
+          {
+            "level": "H3",
+            "text": "The completed-week notebook",
+            "top": 6821.96875
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 7782.9375
+          },
+          {
+            "level": "H2",
+            "text": "Weekly editions.",
+            "top": 8325.53125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 8523.125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 9046.3125
+          },
+          {
+            "level": "H2",
+            "text": "Three notes left on the bench.",
+            "top": 9643.5
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 9847.6875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 10283.6875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 10719.6875
+          },
+          {
+            "level": "H2",
+            "text": "Standings & recent moves.",
+            "top": 11173.6875
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 transaction wire",
+            "top": 12280.875
+          },
+          {
+            "level": "H2",
+            "text": "Meet you on court.",
+            "top": 13177.875
+          },
+          {
+            "level": "H3",
+            "text": "Free throw practice",
+            "top": 13412.125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 40574,
+        "textCharacters": 8477,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The clubhouse.",
+            "top": 478
+          },
+          {
+            "level": "H2",
+            "text": "Week 3",
+            "top": 1528.375
+          },
+          {
+            "level": "H2",
+            "text": "The ten franchises.",
+            "top": 6600.265625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 7663.640625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 8524.015625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 9384.390625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 10244.765625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 11061.953125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 11922.328125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 12739.515625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 13556.703125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 14415.890625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 15276.265625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 16138.453125
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled FAAB total",
+            "top": 16540.828125
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 18340.390625
+          },
+          {
+            "level": "H3",
+            "text": "The completed-week notebook",
+            "top": 19854.578125
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 22563.734375
+          },
+          {
+            "level": "H2",
+            "text": "Weekly editions.",
+            "top": 24163.921875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 24694.296875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 26431.859375
+          },
+          {
+            "level": "H2",
+            "text": "Three notes left on the bench.",
+            "top": 28107.421875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 28919.171875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 30238.171875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 31365.171875
+          },
+          {
+            "level": "H2",
+            "text": "Standings & recent moves.",
+            "top": 32402.171875
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 transaction wire",
+            "top": 35595.734375
+          },
+          {
+            "level": "H2",
+            "text": "Meet you on court.",
+            "top": 38257.734375
+          },
+          {
+            "level": "H3",
+            "text": "Free throw practice",
+            "top": 38656.9375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 15150,
+        "textCharacters": 8477,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The clubhouse.",
+            "top": 217
+          },
+          {
+            "level": "H2",
+            "text": "Week 3",
+            "top": 586
+          },
+          {
+            "level": "H2",
+            "text": "The ten franchises.",
+            "top": 2431.796875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2802.390625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3108.390625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 3414.390625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 3732.578125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 4038.578125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 4323.578125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 4629.578125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 4914.578125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 5220.578125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 5517.765625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 5900.765625
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled FAAB total",
+            "top": 6047.359375
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 6639.75
+          },
+          {
+            "level": "H3",
+            "text": "The completed-week notebook",
+            "top": 7228.34375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 8273.90625
+          },
+          {
+            "level": "H2",
+            "text": "Weekly editions.",
+            "top": 8927.5
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 9125.09375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 9711.28125
+          },
+          {
+            "level": "H2",
+            "text": "Three notes left on the bench.",
+            "top": 10372.0625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 10597.25
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 11057.25
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 11493.25
+          },
+          {
+            "level": "H2",
+            "text": "Standings & recent moves.",
+            "top": 11995.25
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 transaction wire",
+            "top": 13126.4375
+          },
+          {
+            "level": "H2",
+            "text": "Meet you on court.",
+            "top": 14107.4375
+          },
+          {
+            "level": "H3",
+            "text": "Free throw practice",
+            "top": 14349.625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 47023,
+        "textCharacters": 8477,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The clubhouse.",
+            "top": 651.59375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3",
+            "top": 1737.96875
+          },
+          {
+            "level": "H2",
+            "text": "The ten franchises.",
+            "top": 7510.625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 8641.1875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 9627.5625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 10613.9375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 11643.5
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 12587.875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 13575.4375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 14518.625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 15421
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 16364.1875
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 17267.75
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 18297.9375
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled FAAB total",
+            "top": 18788.3125
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 20721.0625
+          },
+          {
+            "level": "H3",
+            "text": "The completed-week notebook",
+            "top": 22404.4375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 25784.359375
+          },
+          {
+            "level": "H2",
+            "text": "Weekly editions.",
+            "top": 27556.734375
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 28171.109375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 30119.859375
+          },
+          {
+            "level": "H2",
+            "text": "Three notes left on the bench.",
+            "top": 32058.796875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 33057.734375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 34502.734375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 35905.734375
+          },
+          {
+            "level": "H2",
+            "text": "Standings & recent moves.",
+            "top": 37266.734375
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 transaction wire",
+            "top": 41073.484375
+          },
+          {
+            "level": "H2",
+            "text": "Meet you on court.",
+            "top": 44359.484375
+          },
+          {
+            "level": "H3",
+            "text": "Free throw practice",
+            "top": 44799.046875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 5531,
+        "textCharacters": 7521,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The clubhouse.",
+            "top": 121
+          },
+          {
+            "level": "H2",
+            "text": "Week 3",
+            "top": 349
+          },
+          {
+            "level": "H2",
+            "text": "The ten franchises.",
+            "top": 325
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 538.59375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 538.59375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 815.59375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 815.59375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 1092.59375
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 1092.59375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 1369.59375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 1369.59375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 1646.59375
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 1646.59375
+          },
+          {
+            "level": "H2",
+            "text": "Around our league.",
+            "top": 2094.796875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 2358.796875
+          },
+          {
+            "level": "H3",
+            "text": "From the October noticeboard",
+            "top": 2594.390625
+          },
+          {
+            "level": "H2",
+            "text": "Weekly editions.",
+            "top": 2086.796875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 2263.390625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 2722.984375
+          },
+          {
+            "level": "H2",
+            "text": "Three notes left on the bench.",
+            "top": 3277.578125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 3427.171875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 3427.171875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 3427.171875
+          },
+          {
+            "level": "H2",
+            "text": "Standings & recent moves.",
+            "top": 3897.171875
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 transaction wire",
+            "top": 4689.765625
+          },
+          {
+            "level": "H2",
+            "text": "Meet you on court.",
+            "top": 3889.171875
+          },
+          {
+            "level": "H3",
+            "text": "Free throw practice",
+            "top": 4159.328125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 12826,
+        "textCharacters": 7521,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The clubhouse.",
+            "top": 173
+          },
+          {
+            "level": "H2",
+            "text": "Week 3",
+            "top": 477
+          },
+          {
+            "level": "H2",
+            "text": "The ten franchises.",
+            "top": 2301.796875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2672.390625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2957.390625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 3242.390625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 3527.390625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 3833.390625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 4118.390625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 4403.390625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 4688.390625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 4973.390625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 5258.390625
+          },
+          {
+            "level": "H2",
+            "text": "Around our league.",
+            "top": 5620.390625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 6003.984375
+          },
+          {
+            "level": "H3",
+            "text": "From the October noticeboard",
+            "top": 6353.578125
+          },
+          {
+            "level": "H2",
+            "text": "Weekly editions.",
+            "top": 6928.171875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 7125.765625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 7648.953125
+          },
+          {
+            "level": "H2",
+            "text": "Three notes left on the bench.",
+            "top": 8246.140625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 8450.328125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 8886.328125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 9322.328125
+          },
+          {
+            "level": "H2",
+            "text": "Standings & recent moves.",
+            "top": 9776.328125
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 transaction wire",
+            "top": 10883.515625
+          },
+          {
+            "level": "H2",
+            "text": "Meet you on court.",
+            "top": 11780.515625
+          },
+          {
+            "level": "H3",
+            "text": "Free throw practice",
+            "top": 12014.765625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 36679,
+        "textCharacters": 7521,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The clubhouse.",
+            "top": 478
+          },
+          {
+            "level": "H2",
+            "text": "Week 3",
+            "top": 1486.375
+          },
+          {
+            "level": "H2",
+            "text": "The ten franchises.",
+            "top": 6558.265625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 7621.640625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 8482.015625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 9342.390625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 10202.765625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 11019.953125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 11880.328125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 12697.515625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 13514.703125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 14373.890625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 15234.265625
+          },
+          {
+            "level": "H2",
+            "text": "Around our league.",
+            "top": 16096.453125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 17539.828125
+          },
+          {
+            "level": "H3",
+            "text": "From the October noticeboard",
+            "top": 18645.203125
+          },
+          {
+            "level": "H2",
+            "text": "Weekly editions.",
+            "top": 20268.578125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 20798.953125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 22536.515625
+          },
+          {
+            "level": "H2",
+            "text": "Three notes left on the bench.",
+            "top": 24212.078125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 25023.828125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 26342.828125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 27469.828125
+          },
+          {
+            "level": "H2",
+            "text": "Standings & recent moves.",
+            "top": 28506.828125
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 transaction wire",
+            "top": 31700.390625
+          },
+          {
+            "level": "H2",
+            "text": "Meet you on court.",
+            "top": 34362.390625
+          },
+          {
+            "level": "H3",
+            "text": "Free throw practice",
+            "top": 34761.59375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 13703,
+        "textCharacters": 7521,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The clubhouse.",
+            "top": 217
+          },
+          {
+            "level": "H2",
+            "text": "Week 3",
+            "top": 586
+          },
+          {
+            "level": "H2",
+            "text": "The ten franchises.",
+            "top": 2431.796875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2802.390625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3108.390625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 3414.390625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 3732.578125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 4038.578125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 4323.578125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 4629.578125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 4914.578125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 5220.578125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 5517.765625
+          },
+          {
+            "level": "H2",
+            "text": "Around our league.",
+            "top": 5900.765625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 6398.953125
+          },
+          {
+            "level": "H3",
+            "text": "From the October noticeboard",
+            "top": 6815.140625
+          },
+          {
+            "level": "H2",
+            "text": "Weekly editions.",
+            "top": 7480.328125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 7677.921875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 8264.109375
+          },
+          {
+            "level": "H2",
+            "text": "Three notes left on the bench.",
+            "top": 8924.890625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 9150.078125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 9610.078125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 10046.078125
+          },
+          {
+            "level": "H2",
+            "text": "Standings & recent moves.",
+            "top": 10548.078125
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 transaction wire",
+            "top": 11679.265625
+          },
+          {
+            "level": "H2",
+            "text": "Meet you on court.",
+            "top": 12660.265625
+          },
+          {
+            "level": "H3",
+            "text": "Free throw practice",
+            "top": 12902.453125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 42984,
+        "textCharacters": 7521,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The clubhouse.",
+            "top": 651.59375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3",
+            "top": 1737.96875
+          },
+          {
+            "level": "H2",
+            "text": "The ten franchises.",
+            "top": 7510.625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 8641.1875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 9585.5625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 10571.9375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 11601.5
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 12545.875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 13533.4375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 14476.625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 15379
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 16322.1875
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 17225.75
+          },
+          {
+            "level": "H2",
+            "text": "Around our league.",
+            "top": 18255.9375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 20108.5
+          },
+          {
+            "level": "H3",
+            "text": "From the October noticeboard",
+            "top": 21533.0625
+          },
+          {
+            "level": "H2",
+            "text": "Weekly editions.",
+            "top": 23565.625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 24180
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 26128.75
+          },
+          {
+            "level": "H2",
+            "text": "Three notes left on the bench.",
+            "top": 28067.6875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 29066.625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 30511.625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 31914.625
+          },
+          {
+            "level": "H2",
+            "text": "Standings & recent moves.",
+            "top": 33275.625
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 transaction wire",
+            "top": 37034.375
+          },
+          {
+            "level": "H2",
+            "text": "Meet you on court.",
+            "top": 40320.375
+          },
+          {
+            "level": "H3",
+            "text": "Free throw practice",
+            "top": 40759.9375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

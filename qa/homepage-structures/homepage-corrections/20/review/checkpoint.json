@@ -1,0 +1,985 @@
+{
+  "id": "20",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/20/index.html",
+      "bytes": 1292,
+      "sha256": "5478d738fb4039dac974212036f361017714ff118fc4afa4327a7fec4715ae7f"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/20/matchbook.js",
+      "bytes": 41750,
+      "sha256": "6c740256c5cd859b825f73cb42891d79286df780295d454cd34304affb553776"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/20/style.css",
+      "bytes": 33119,
+      "sha256": "60b742db6fa6992e65e67ecd42baa7a04939527ee61d4c7b8776003ac0c53867"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/20/review/member-desktop-full.jpg",
+        "bytes": 641483,
+        "sha256": "02c5f205d5b1f72b4efd7d4d2540e64e1545086a0ab18a927c9cb7d1cea7120f",
+        "width": 1440,
+        "height": 7553,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 7553,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/member-desktop-top.jpg",
+          "bytes": 108043,
+          "sha256": "ab0834db831af82255e255caa855827205e683453493a58fc0a5d54065b7cac7",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3276,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/member-desktop-middle.jpg",
+          "bytes": 88396,
+          "sha256": "149433caac2f65b4d53b362f8cf8f6c1e40994cf221fc2d1b2bf7825fa93917e",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 6553,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/member-desktop-bottom.jpg",
+          "bytes": 53914,
+          "sha256": "5667e15d5cc3d85c7c1b4e801ba63ec32f6ff463d93aefce236a51925dc6bf02",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Your Week 3 matchup",
+          "top": 183
+        },
+        {
+          "level": "H2",
+          "text": "What matters from here?",
+          "top": 150
+        },
+        {
+          "level": "H3",
+          "text": "I want to inspect my players.",
+          "top": 676.984375
+        },
+        {
+          "level": "H3",
+          "text": "I want to compare the teams.",
+          "top": 1426.34375
+        },
+        {
+          "level": "H3",
+          "text": "I want to know this league.",
+          "top": 2545.109375
+        },
+        {
+          "level": "H3",
+          "text": "I want to read the league.",
+          "top": 3978.46875
+        },
+        {
+          "level": "H3",
+          "text": "I want to explore or play.",
+          "top": 5928.8125
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/20/review/member-phone-full.jpg",
+        "bytes": 599142,
+        "sha256": "2e69cb5def8aa5c2856e697a1486f241b2a472c5939730fd2e3626e88028011e",
+        "width": 390,
+        "height": 11993,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1193,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/member-phone-top.jpg",
+          "bytes": 47808,
+          "sha256": "50432902eb0ce9e34c0ad9db8df358a2736350d5fd8128907689953d72151071",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5574,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/member-phone-middle.jpg",
+          "bytes": 40577,
+          "sha256": "eb8feaa3c0bd29af663b935b6f6ee4f393abd58449bfadb5eb2a9e84043873c8",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 11149,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/member-phone-bottom.jpg",
+          "bytes": 37258,
+          "sha256": "cd373dc9c5ce2c9f9b09ef9e421156338383d1c99b1c48027ffa0138fa823ba2",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Your Week 3 matchup",
+          "top": 123.0625
+        },
+        {
+          "level": "H2",
+          "text": "What matters from here?",
+          "top": 514.25
+        },
+        {
+          "level": "H3",
+          "text": "I want to inspect my players.",
+          "top": 947
+        },
+        {
+          "level": "H3",
+          "text": "I want to compare the teams.",
+          "top": 2414.46875
+        },
+        {
+          "level": "H3",
+          "text": "I want to know this league.",
+          "top": 4406.109375
+        },
+        {
+          "level": "H3",
+          "text": "I want to read the league.",
+          "top": 6481.640625
+        },
+        {
+          "level": "H3",
+          "text": "I want to explore or play.",
+          "top": 9365.421875
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/20/review/public-desktop-full.jpg",
+        "bytes": 583209,
+        "sha256": "c60b294bb354da0c9b7d7b86cf5a073a5a8eaaf47fa4238ef112bc237436119a",
+        "width": 1440,
+        "height": 7021,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 7021,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/public-desktop-top.jpg",
+          "bytes": 94120,
+          "sha256": "98d9883ee778dc6b0272876f2facfca624dcaf12071483d7cfd3e8955cb13107",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3010,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/public-desktop-middle.jpg",
+          "bytes": 88476,
+          "sha256": "69cade5052c29b7438cb7c7a34c021302ed0eba0c1363ab243d56abe7f72f472",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 6021,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/public-desktop-bottom.jpg",
+          "bytes": 69850,
+          "sha256": "745ee3441d239ff205c8d2da663bc956a06e1cb579a7becab612f8e52560a2d5",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Featured Week 3 matchup",
+          "top": 183
+        },
+        {
+          "level": "H2",
+          "text": "What matters from here?",
+          "top": 150
+        },
+        {
+          "level": "H3",
+          "text": "I want to inspect these players.",
+          "top": 717.78125
+        },
+        {
+          "level": "H3",
+          "text": "I want to compare the teams.",
+          "top": 1164.953125
+        },
+        {
+          "level": "H3",
+          "text": "I want to know this league.",
+          "top": 2283.71875
+        },
+        {
+          "level": "H3",
+          "text": "I want to read the league.",
+          "top": 3717.078125
+        },
+        {
+          "level": "H3",
+          "text": "I want to explore or play.",
+          "top": 5667.421875
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/20/review/public-phone-full.jpg",
+        "bytes": 546450,
+        "sha256": "e700211379f7f8c8ec99361317295897afa82904f967e5dea8eb942934fd6524",
+        "width": 390,
+        "height": 10904,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 104,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/public-phone-top.jpg",
+          "bytes": 47402,
+          "sha256": "ad6bba9fcc2166a434008ba4c2a2eb5fa83589aaed6a5efdc55ebc62b9009bfb",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5030,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/public-phone-middle.jpg",
+          "bytes": 45356,
+          "sha256": "a50f3485259a5b8651a9fcc6b5f12c55ee34f067c1b3714b82c6dda76b5158d5",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 10060,
+          "path": "qa/homepage-structures/homepage-corrections/20/review/public-phone-bottom.jpg",
+          "bytes": 39746,
+          "sha256": "e632d4531d3f313adce5f01de1c29c289e7e791c4f21c0f194b955cc8ecd7c8e",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Featured Week 3 matchup",
+          "top": 123.0625
+        },
+        {
+          "level": "H2",
+          "text": "What matters from here?",
+          "top": 514.25
+        },
+        {
+          "level": "H3",
+          "text": "I want to inspect these players.",
+          "top": 947
+        },
+        {
+          "level": "H3",
+          "text": "I want to compare the teams.",
+          "top": 1596.09375
+        },
+        {
+          "level": "H3",
+          "text": "I want to know this league.",
+          "top": 3587.734375
+        },
+        {
+          "level": "H3",
+          "text": "I want to read the league.",
+          "top": 5663.265625
+        },
+        {
+          "level": "H3",
+          "text": "I want to explore or play.",
+          "top": 8547.046875
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 7553,
+        "textCharacters": 7397,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Your Week 3 matchup",
+            "top": 183
+          },
+          {
+            "level": "H2",
+            "text": "What matters from here?",
+            "top": 150
+          },
+          {
+            "level": "H3",
+            "text": "I want to inspect my players.",
+            "top": 676.984375
+          },
+          {
+            "level": "H3",
+            "text": "I want to compare the teams.",
+            "top": 1426.34375
+          },
+          {
+            "level": "H3",
+            "text": "I want to know this league.",
+            "top": 2545.109375
+          },
+          {
+            "level": "H3",
+            "text": "I want to read the league.",
+            "top": 3978.46875
+          },
+          {
+            "level": "H3",
+            "text": "I want to explore or play.",
+            "top": 5928.8125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 11993,
+        "textCharacters": 7387,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Your Week 3 matchup",
+            "top": 123.0625
+          },
+          {
+            "level": "H2",
+            "text": "What matters from here?",
+            "top": 514.25
+          },
+          {
+            "level": "H3",
+            "text": "I want to inspect my players.",
+            "top": 947
+          },
+          {
+            "level": "H3",
+            "text": "I want to compare the teams.",
+            "top": 2414.46875
+          },
+          {
+            "level": "H3",
+            "text": "I want to know this league.",
+            "top": 4406.109375
+          },
+          {
+            "level": "H3",
+            "text": "I want to read the league.",
+            "top": 6481.640625
+          },
+          {
+            "level": "H3",
+            "text": "I want to explore or play.",
+            "top": 9365.421875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 37380,
+        "textCharacters": 7387,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Your Week 3 matchup",
+            "top": 466.34375
+          },
+          {
+            "level": "H2",
+            "text": "What matters from here?",
+            "top": 1978.65625
+          },
+          {
+            "level": "H3",
+            "text": "I want to inspect my players.",
+            "top": 3423.28125
+          },
+          {
+            "level": "H3",
+            "text": "I want to compare the teams.",
+            "top": 8368.734375
+          },
+          {
+            "level": "H3",
+            "text": "I want to know this league.",
+            "top": 13699.15625
+          },
+          {
+            "level": "H3",
+            "text": "I want to read the league.",
+            "top": 18755.328125
+          },
+          {
+            "level": "H3",
+            "text": "I want to explore or play.",
+            "top": 29707.4375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 13331,
+        "textCharacters": 7387,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Your Week 3 matchup",
+            "top": 175.0625
+          },
+          {
+            "level": "H2",
+            "text": "What matters from here?",
+            "top": 591.84375
+          },
+          {
+            "level": "H3",
+            "text": "I want to inspect my players.",
+            "top": 1075.78125
+          },
+          {
+            "level": "H3",
+            "text": "I want to compare the teams.",
+            "top": 2717.96875
+          },
+          {
+            "level": "H3",
+            "text": "I want to know this league.",
+            "top": 4873.390625
+          },
+          {
+            "level": "H3",
+            "text": "I want to read the league.",
+            "top": 7118.84375
+          },
+          {
+            "level": "H3",
+            "text": "I want to explore or play.",
+            "top": 10482.0625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 48796,
+        "textCharacters": 7387,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Your Week 3 matchup",
+            "top": 541.34375
+          },
+          {
+            "level": "H2",
+            "text": "What matters from here?",
+            "top": 2928.84375
+          },
+          {
+            "level": "H3",
+            "text": "I want to inspect my players.",
+            "top": 4630.21875
+          },
+          {
+            "level": "H3",
+            "text": "I want to compare the teams.",
+            "top": 11010.625
+          },
+          {
+            "level": "H3",
+            "text": "I want to know this league.",
+            "top": 17849.625
+          },
+          {
+            "level": "H3",
+            "text": "I want to read the league.",
+            "top": 25090.078125
+          },
+          {
+            "level": "H3",
+            "text": "I want to explore or play.",
+            "top": 39336.296875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 7021,
+        "textCharacters": 6567,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Featured Week 3 matchup",
+            "top": 183
+          },
+          {
+            "level": "H2",
+            "text": "What matters from here?",
+            "top": 150
+          },
+          {
+            "level": "H3",
+            "text": "I want to inspect these players.",
+            "top": 717.78125
+          },
+          {
+            "level": "H3",
+            "text": "I want to compare the teams.",
+            "top": 1164.953125
+          },
+          {
+            "level": "H3",
+            "text": "I want to know this league.",
+            "top": 2283.71875
+          },
+          {
+            "level": "H3",
+            "text": "I want to read the league.",
+            "top": 3717.078125
+          },
+          {
+            "level": "H3",
+            "text": "I want to explore or play.",
+            "top": 5667.421875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 10904,
+        "textCharacters": 6557,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Featured Week 3 matchup",
+            "top": 123.0625
+          },
+          {
+            "level": "H2",
+            "text": "What matters from here?",
+            "top": 514.25
+          },
+          {
+            "level": "H3",
+            "text": "I want to inspect these players.",
+            "top": 947
+          },
+          {
+            "level": "H3",
+            "text": "I want to compare the teams.",
+            "top": 1596.09375
+          },
+          {
+            "level": "H3",
+            "text": "I want to know this league.",
+            "top": 3587.734375
+          },
+          {
+            "level": "H3",
+            "text": "I want to read the league.",
+            "top": 5663.265625
+          },
+          {
+            "level": "H3",
+            "text": "I want to explore or play.",
+            "top": 8547.046875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 33867,
+        "textCharacters": 6557,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Featured Week 3 matchup",
+            "top": 466.34375
+          },
+          {
+            "level": "H2",
+            "text": "What matters from here?",
+            "top": 1994.65625
+          },
+          {
+            "level": "H3",
+            "text": "I want to inspect these players.",
+            "top": 3439.28125
+          },
+          {
+            "level": "H3",
+            "text": "I want to compare the teams.",
+            "top": 5715.3125
+          },
+          {
+            "level": "H3",
+            "text": "I want to know this league.",
+            "top": 11045.734375
+          },
+          {
+            "level": "H3",
+            "text": "I want to read the league.",
+            "top": 16101.90625
+          },
+          {
+            "level": "H3",
+            "text": "I want to explore or play.",
+            "top": 27054.015625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 12189,
+        "textCharacters": 6557,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Featured Week 3 matchup",
+            "top": 175.0625
+          },
+          {
+            "level": "H2",
+            "text": "What matters from here?",
+            "top": 621.84375
+          },
+          {
+            "level": "H3",
+            "text": "I want to inspect these players.",
+            "top": 1105.78125
+          },
+          {
+            "level": "H3",
+            "text": "I want to compare the teams.",
+            "top": 1879.65625
+          },
+          {
+            "level": "H3",
+            "text": "I want to know this league.",
+            "top": 4035.078125
+          },
+          {
+            "level": "H3",
+            "text": "I want to read the league.",
+            "top": 6280.53125
+          },
+          {
+            "level": "H3",
+            "text": "I want to explore or play.",
+            "top": 9643.75
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 44002,
+        "textCharacters": 6557,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Featured Week 3 matchup",
+            "top": 499.34375
+          },
+          {
+            "level": "H2",
+            "text": "What matters from here?",
+            "top": 2842.84375
+          },
+          {
+            "level": "H3",
+            "text": "I want to inspect these players.",
+            "top": 4544.21875
+          },
+          {
+            "level": "H3",
+            "text": "I want to compare the teams.",
+            "top": 7326.5625
+          },
+          {
+            "level": "H3",
+            "text": "I want to know this league.",
+            "top": 14165.5625
+          },
+          {
+            "level": "H3",
+            "text": "I want to read the league.",
+            "top": 21406.015625
+          },
+          {
+            "level": "H3",
+            "text": "I want to explore or play.",
+            "top": 35652.234375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

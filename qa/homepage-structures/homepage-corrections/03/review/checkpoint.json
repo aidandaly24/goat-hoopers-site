@@ -1,0 +1,2040 @@
+{
+  "id": "03",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/03/homepage.css",
+      "bytes": 31663,
+      "sha256": "5a73d48d47304c9b82486b759d18e7af67bd61794036d96ebfde9a5b708b0c89"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/03/homepage.js",
+      "bytes": 23164,
+      "sha256": "eba7dd024b3ecbf39687d5907cbe23079e187e186258d8600031c0e356435a60"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/03/index.html",
+      "bytes": 2222,
+      "sha256": "47cf4866c92278db4090d36be87e756b0811c413570e226ec7d2cb6fac4e1aba"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/03/review/member-desktop-full.jpg",
+        "bytes": 869520,
+        "sha256": "5c59c6bc05892c234015b56d32f503a813b855926c807b36c0a10f060acf522b",
+        "width": 1440,
+        "height": 9369,
+        "quality": 84,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 369,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/member-desktop-top.jpg",
+          "bytes": 123692,
+          "sha256": "120b4081c3037364e9800c40c01687482297cb987d7805953fbf32cc29cfbdce",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 4184,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/member-desktop-middle.jpg",
+          "bytes": 99471,
+          "sha256": "335a9319ae7163205dd0aaeca7e35d3d91618305001f73eb0f0f8571fed97a5b",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 8369,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/member-desktop-bottom.jpg",
+          "bytes": 91415,
+          "sha256": "cd93aad87c3f7824570b6087c8d6d86a350a2b0cbd6229088437508a8b824be7",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The weekin play.",
+          "top": 198.5625
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 635.390625
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 790.390625
+        },
+        {
+          "level": "H2",
+          "text": "Every gameis still open.",
+          "top": 599.09375
+        },
+        {
+          "level": "H2",
+          "text": "Five pairings. One slate.",
+          "top": 1092.046875
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 1759.515625
+        },
+        {
+          "level": "H2",
+          "text": "A closerlook.",
+          "top": 2525.125
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch",
+          "top": 2762.5
+        },
+        {
+          "level": "H3",
+          "text": "What the scores say",
+          "top": 2734.5
+        },
+        {
+          "level": "H3",
+          "text": "Keep an eye on it.",
+          "top": 3298.84375
+        },
+        {
+          "level": "H2",
+          "text": "Ten franchises.All accounted for.",
+          "top": 3649.625
+        },
+        {
+          "level": "H3",
+          "text": "The move ledger",
+          "top": 3848.59375
+        },
+        {
+          "level": "H3",
+          "text": "Know the opposition.",
+          "top": 4638.28125
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter.",
+          "top": 5961.09375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 6066.6875
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 6849.21875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 6529.21875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 6871.34375
+        },
+        {
+          "level": "H2",
+          "text": "Beforethis week.",
+          "top": 7448.78125
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 7674.5625
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 7855.15625
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 7452.78125
+        },
+        {
+          "level": "H2",
+          "text": "Take a fewfree throws.",
+          "top": 8295.9375
+        },
+        {
+          "level": "H3",
+          "text": "Where next?",
+          "top": 8732.3125
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/03/review/member-phone-full.jpg",
+        "bytes": 871476,
+        "sha256": "a7a86a29962827ef5c22a7175e4cfbfacfcbdd918b5fd13a3dba433ba0234981",
+        "width": 390,
+        "height": 16118,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 14400,
+            "height": 1718,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/member-phone-top.jpg",
+          "bytes": 45076,
+          "sha256": "c36808d2f74912f338480fed406b3c72ebc5c24c5c9905183c20b90aa2ce8280",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 7637,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/member-phone-middle.jpg",
+          "bytes": 48691,
+          "sha256": "7b42defdb95c5dda53f04ce888fb27cd03fce06ee1b4786ca69aa0f96e426918",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 15274,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/member-phone-bottom.jpg",
+          "bytes": 42879,
+          "sha256": "7fdb4b1b52f60064edf20937d2ea9382ac927639f373b2eda79ad072f66341e9",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The weekin play.",
+          "top": 239.1875
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 825.359375
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 953.546875
+        },
+        {
+          "level": "H2",
+          "text": "Every gameis still open.",
+          "top": 1191.828125
+        },
+        {
+          "level": "H2",
+          "text": "Five pairings. One slate.",
+          "top": 1614.59375
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 3242.078125
+        },
+        {
+          "level": "H2",
+          "text": "A closerlook.",
+          "top": 4379.59375
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch",
+          "top": 4665.25
+        },
+        {
+          "level": "H3",
+          "text": "What the scores say",
+          "top": 5098.71875
+        },
+        {
+          "level": "H3",
+          "text": "Keep an eye on it.",
+          "top": 5998.9375
+        },
+        {
+          "level": "H2",
+          "text": "Ten franchises.All accounted for.",
+          "top": 6628.625
+        },
+        {
+          "level": "H3",
+          "text": "The move ledger",
+          "top": 7791.125
+        },
+        {
+          "level": "H3",
+          "text": "Know the opposition.",
+          "top": 8350.625
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter.",
+          "top": 10580.53125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 10740.53125
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 11874.765625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 12383.0625
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 12829.484375
+        },
+        {
+          "level": "H2",
+          "text": "Beforethis week.",
+          "top": 13364.09375
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 13549.09375
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 13729.6875
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 14025.46875
+        },
+        {
+          "level": "H2",
+          "text": "Take a fewfree throws.",
+          "top": 14681.828125
+        },
+        {
+          "level": "H3",
+          "text": "Where next?",
+          "top": 15284.546875
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/03/review/public-desktop-full.jpg",
+        "bytes": 821425,
+        "sha256": "518ef6c1818b5a045cac8a7913dc5835a3e0edd8ea64143460427d724bb14932",
+        "width": 1440,
+        "height": 7465,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 7465,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/public-desktop-top.jpg",
+          "bytes": 124950,
+          "sha256": "e7c36a81e4e71f1ab6efc40e5e74c02234706f6e087825c180d41d28da43ca2f",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3232,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/public-desktop-middle.jpg",
+          "bytes": 102049,
+          "sha256": "875fa8b757376da2141dcb5861ac2c42c7af692a710a0b5ee1f1316c3dbe9533",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 6465,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/public-desktop-bottom.jpg",
+          "bytes": 91388,
+          "sha256": "8fd76558278ffddf3fe7018b1137ef89eb146d45c7a396e0f471a15dc5c8bfec",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The weekin play.",
+          "top": 198.5625
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 635.390625
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 790.390625
+        },
+        {
+          "level": "H2",
+          "text": "Every gameis still open.",
+          "top": 599.09375
+        },
+        {
+          "level": "H2",
+          "text": "Five pairings. One slate.",
+          "top": 1092.046875
+        },
+        {
+          "level": "H2",
+          "text": "Ten franchises.All accounted for.",
+          "top": 1745.328125
+        },
+        {
+          "level": "H3",
+          "text": "The move ledger",
+          "top": 1944.296875
+        },
+        {
+          "level": "H3",
+          "text": "Know the opposition.",
+          "top": 2733.984375
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter.",
+          "top": 4056.796875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 4162.390625
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 4944.921875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 4624.921875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 4967.046875
+        },
+        {
+          "level": "H2",
+          "text": "Beforethis week.",
+          "top": 5544.484375
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 5770.265625
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 5950.859375
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 5548.484375
+        },
+        {
+          "level": "H2",
+          "text": "Take a fewfree throws.",
+          "top": 6391.640625
+        },
+        {
+          "level": "H3",
+          "text": "Where next?",
+          "top": 6828.015625
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/03/review/public-phone-full.jpg",
+        "bytes": 667578,
+        "sha256": "a06a1a329567f451b5c4c4fdf1674ab5aa128001e9fac03f1179c32ecc781779",
+        "width": 390,
+        "height": 12679,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 79,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/public-phone-top.jpg",
+          "bytes": 48918,
+          "sha256": "ba207b71503de0799cfaf8d6e43281b27a5244d249923a98724684069b12b025",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5917,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/public-phone-middle.jpg",
+          "bytes": 44850,
+          "sha256": "7d72d14a2c2fb1b59f5b758dfbaf9a94bce78b9b7601315e36fc9bc0336ec79d",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 11835,
+          "path": "qa/homepage-structures/homepage-corrections/03/review/public-phone-bottom.jpg",
+          "bytes": 42757,
+          "sha256": "92be929f09862d059bae1b66cac049945d48c8d96d2caf849856ccffdbccba59",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The weekin play.",
+          "top": 239.1875
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 803.359375
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 931.546875
+        },
+        {
+          "level": "H2",
+          "text": "Every gameis still open.",
+          "top": 1169.828125
+        },
+        {
+          "level": "H2",
+          "text": "Five pairings. One slate.",
+          "top": 1592.59375
+        },
+        {
+          "level": "H2",
+          "text": "Ten franchises.All accounted for.",
+          "top": 3189.890625
+        },
+        {
+          "level": "H3",
+          "text": "The move ledger",
+          "top": 4352.390625
+        },
+        {
+          "level": "H3",
+          "text": "Know the opposition.",
+          "top": 4911.890625
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter.",
+          "top": 7141.796875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 7301.796875
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 8436.03125
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 8944.328125
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 9390.75
+        },
+        {
+          "level": "H2",
+          "text": "Beforethis week.",
+          "top": 9925.359375
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 10110.359375
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 10290.953125
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 10586.734375
+        },
+        {
+          "level": "H2",
+          "text": "Take a fewfree throws.",
+          "top": 11243.09375
+        },
+        {
+          "level": "H3",
+          "text": "Where next?",
+          "top": 11845.8125
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 9369,
+        "textCharacters": 10096,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The weekin play.",
+            "top": 198.5625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 635.390625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 790.390625
+          },
+          {
+            "level": "H2",
+            "text": "Every gameis still open.",
+            "top": 599.09375
+          },
+          {
+            "level": "H2",
+            "text": "Five pairings. One slate.",
+            "top": 1092.046875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1759.515625
+          },
+          {
+            "level": "H2",
+            "text": "A closerlook.",
+            "top": 2525.125
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 2762.5
+          },
+          {
+            "level": "H3",
+            "text": "What the scores say",
+            "top": 2734.5
+          },
+          {
+            "level": "H3",
+            "text": "Keep an eye on it.",
+            "top": 3298.84375
+          },
+          {
+            "level": "H2",
+            "text": "Ten franchises.All accounted for.",
+            "top": 3649.625
+          },
+          {
+            "level": "H3",
+            "text": "The move ledger",
+            "top": 3848.59375
+          },
+          {
+            "level": "H3",
+            "text": "Know the opposition.",
+            "top": 4638.28125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter.",
+            "top": 5961.09375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 6066.6875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 6849.21875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 6529.21875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 6871.34375
+          },
+          {
+            "level": "H2",
+            "text": "Beforethis week.",
+            "top": 7448.78125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 7674.5625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 7855.15625
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 7452.78125
+          },
+          {
+            "level": "H2",
+            "text": "Take a fewfree throws.",
+            "top": 8295.9375
+          },
+          {
+            "level": "H3",
+            "text": "Where next?",
+            "top": 8732.3125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 16118,
+        "textCharacters": 10012,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The weekin play.",
+            "top": 239.1875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 825.359375
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 953.546875
+          },
+          {
+            "level": "H2",
+            "text": "Every gameis still open.",
+            "top": 1191.828125
+          },
+          {
+            "level": "H2",
+            "text": "Five pairings. One slate.",
+            "top": 1614.59375
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 3242.078125
+          },
+          {
+            "level": "H2",
+            "text": "A closerlook.",
+            "top": 4379.59375
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 4665.25
+          },
+          {
+            "level": "H3",
+            "text": "What the scores say",
+            "top": 5098.71875
+          },
+          {
+            "level": "H3",
+            "text": "Keep an eye on it.",
+            "top": 5998.9375
+          },
+          {
+            "level": "H2",
+            "text": "Ten franchises.All accounted for.",
+            "top": 6628.625
+          },
+          {
+            "level": "H3",
+            "text": "The move ledger",
+            "top": 7791.125
+          },
+          {
+            "level": "H3",
+            "text": "Know the opposition.",
+            "top": 8350.625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter.",
+            "top": 10580.53125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 10740.53125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 11874.765625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 12383.0625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 12829.484375
+          },
+          {
+            "level": "H2",
+            "text": "Beforethis week.",
+            "top": 13364.09375
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 13549.09375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 13729.6875
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 14025.46875
+          },
+          {
+            "level": "H2",
+            "text": "Take a fewfree throws.",
+            "top": 14681.828125
+          },
+          {
+            "level": "H3",
+            "text": "Where next?",
+            "top": 15284.546875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 53199,
+        "textCharacters": 10012,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The weekin play.",
+            "top": 774.78125
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2528.21875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 3115.59375
+          },
+          {
+            "level": "H2",
+            "text": "Every gameis still open.",
+            "top": 4025.171875
+          },
+          {
+            "level": "H2",
+            "text": "Five pairings. One slate.",
+            "top": 5478.5
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 10016.484375
+          },
+          {
+            "level": "H2",
+            "text": "A closerlook.",
+            "top": 13675.09375
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 14662.625
+          },
+          {
+            "level": "H3",
+            "text": "What the scores say",
+            "top": 19420.796875
+          },
+          {
+            "level": "H3",
+            "text": "Keep an eye on it.",
+            "top": 22483.875
+          },
+          {
+            "level": "H2",
+            "text": "Ten franchises.All accounted for.",
+            "top": 24313.28125
+          },
+          {
+            "level": "H3",
+            "text": "The move ledger",
+            "top": 27503.453125
+          },
+          {
+            "level": "H3",
+            "text": "Know the opposition.",
+            "top": 29265.09375
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter.",
+            "top": 36972.65625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 37564.65625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 41060.75
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 42937.3125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 43915.96875
+          },
+          {
+            "level": "H2",
+            "text": "Beforethis week.",
+            "top": 45179.40625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 45957.40625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 46508.78125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 47461.515625
+          },
+          {
+            "level": "H2",
+            "text": "Take a fewfree throws.",
+            "top": 49481.28125
+          },
+          {
+            "level": "H3",
+            "text": "Where next?",
+            "top": 50948.375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 17383,
+        "textCharacters": 10012,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The weekin play.",
+            "top": 305.375
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 882.796875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 1005.390625
+          },
+          {
+            "level": "H2",
+            "text": "Every gameis still open.",
+            "top": 1251.984375
+          },
+          {
+            "level": "H2",
+            "text": "Five pairings. One slate.",
+            "top": 1718.25
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 3449.09375
+          },
+          {
+            "level": "H2",
+            "text": "A closerlook.",
+            "top": 4734.328125
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 5019.984375
+          },
+          {
+            "level": "H3",
+            "text": "What the scores say",
+            "top": 5525.453125
+          },
+          {
+            "level": "H3",
+            "text": "Keep an eye on it.",
+            "top": 6484.171875
+          },
+          {
+            "level": "H2",
+            "text": "Ten franchises.All accounted for.",
+            "top": 7209.453125
+          },
+          {
+            "level": "H3",
+            "text": "The move ledger",
+            "top": 8478.328125
+          },
+          {
+            "level": "H3",
+            "text": "Know the opposition.",
+            "top": 9091.828125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter.",
+            "top": 11439.921875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 11579.515625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 12804.203125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 13359.5
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 13805.921875
+          },
+          {
+            "level": "H2",
+            "text": "Beforethis week.",
+            "top": 14358.53125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 14611.53125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 14792.125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 15157.6875
+          },
+          {
+            "level": "H2",
+            "text": "Take a fewfree throws.",
+            "top": 15881.046875
+          },
+          {
+            "level": "H3",
+            "text": "Where next?",
+            "top": 16533.1875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 64259,
+        "textCharacters": 10012,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The weekin play.",
+            "top": 832.765625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2794.5625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 3433.921875
+          },
+          {
+            "level": "H2",
+            "text": "Every gameis still open.",
+            "top": 4518.671875
+          },
+          {
+            "level": "H2",
+            "text": "Five pairings. One slate.",
+            "top": 6654.75
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 12583.40625
+          },
+          {
+            "level": "H2",
+            "text": "A closerlook.",
+            "top": 16344.9375
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 17572.640625
+          },
+          {
+            "level": "H3",
+            "text": "What the scores say",
+            "top": 23117.4375
+          },
+          {
+            "level": "H3",
+            "text": "Keep an eye on it.",
+            "top": 27254.140625
+          },
+          {
+            "level": "H2",
+            "text": "Ten franchises.All accounted for.",
+            "top": 29758.546875
+          },
+          {
+            "level": "H3",
+            "text": "The move ledger",
+            "top": 33685.5
+          },
+          {
+            "level": "H3",
+            "text": "Know the opposition.",
+            "top": 35621.140625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter.",
+            "top": 44882.640625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 45393.015625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 49963.765625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 52290.3125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 53610.65625
+          },
+          {
+            "level": "H2",
+            "text": "Beforethis week.",
+            "top": 55214.03125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 56034.03125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 56585.40625
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 57688.53125
+          },
+          {
+            "level": "H2",
+            "text": "Take a fewfree throws.",
+            "top": 59933.484375
+          },
+          {
+            "level": "H3",
+            "text": "Where next?",
+            "top": 61661.984375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 7465,
+        "textCharacters": 7692,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The weekin play.",
+            "top": 198.5625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 635.390625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 790.390625
+          },
+          {
+            "level": "H2",
+            "text": "Every gameis still open.",
+            "top": 599.09375
+          },
+          {
+            "level": "H2",
+            "text": "Five pairings. One slate.",
+            "top": 1092.046875
+          },
+          {
+            "level": "H2",
+            "text": "Ten franchises.All accounted for.",
+            "top": 1745.328125
+          },
+          {
+            "level": "H3",
+            "text": "The move ledger",
+            "top": 1944.296875
+          },
+          {
+            "level": "H3",
+            "text": "Know the opposition.",
+            "top": 2733.984375
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter.",
+            "top": 4056.796875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 4162.390625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 4944.921875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 4624.921875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 4967.046875
+          },
+          {
+            "level": "H2",
+            "text": "Beforethis week.",
+            "top": 5544.484375
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 5770.265625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 5950.859375
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 5548.484375
+          },
+          {
+            "level": "H2",
+            "text": "Take a fewfree throws.",
+            "top": 6391.640625
+          },
+          {
+            "level": "H3",
+            "text": "Where next?",
+            "top": 6828.015625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 12679,
+        "textCharacters": 7608,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The weekin play.",
+            "top": 239.1875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 803.359375
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 931.546875
+          },
+          {
+            "level": "H2",
+            "text": "Every gameis still open.",
+            "top": 1169.828125
+          },
+          {
+            "level": "H2",
+            "text": "Five pairings. One slate.",
+            "top": 1592.59375
+          },
+          {
+            "level": "H2",
+            "text": "Ten franchises.All accounted for.",
+            "top": 3189.890625
+          },
+          {
+            "level": "H3",
+            "text": "The move ledger",
+            "top": 4352.390625
+          },
+          {
+            "level": "H3",
+            "text": "Know the opposition.",
+            "top": 4911.890625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter.",
+            "top": 7141.796875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 7301.796875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 8436.03125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 8944.328125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 9390.75
+          },
+          {
+            "level": "H2",
+            "text": "Beforethis week.",
+            "top": 9925.359375
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 10110.359375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 10290.953125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 10586.734375
+          },
+          {
+            "level": "H2",
+            "text": "Take a fewfree throws.",
+            "top": 11243.09375
+          },
+          {
+            "level": "H3",
+            "text": "Where next?",
+            "top": 11845.8125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 38698,
+        "textCharacters": 7608,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The weekin play.",
+            "top": 774.78125
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2447.625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 3035
+          },
+          {
+            "level": "H2",
+            "text": "Every gameis still open.",
+            "top": 3944.578125
+          },
+          {
+            "level": "H2",
+            "text": "Five pairings. One slate.",
+            "top": 5397.90625
+          },
+          {
+            "level": "H2",
+            "text": "Ten franchises.All accounted for.",
+            "top": 9842.5
+          },
+          {
+            "level": "H3",
+            "text": "The move ledger",
+            "top": 13002.671875
+          },
+          {
+            "level": "H3",
+            "text": "Know the opposition.",
+            "top": 14764.3125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter.",
+            "top": 22471.875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 23063.875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 26559.96875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 28436.53125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 29415.1875
+          },
+          {
+            "level": "H2",
+            "text": "Beforethis week.",
+            "top": 30678.625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 31456.625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 32008
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 32960.734375
+          },
+          {
+            "level": "H2",
+            "text": "Take a fewfree throws.",
+            "top": 34980.5
+          },
+          {
+            "level": "H3",
+            "text": "Where next?",
+            "top": 36447.59375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 13571,
+        "textCharacters": 7608,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The weekin play.",
+            "top": 305.375
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 860.796875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 983.390625
+          },
+          {
+            "level": "H2",
+            "text": "Every gameis still open.",
+            "top": 1229.984375
+          },
+          {
+            "level": "H2",
+            "text": "Five pairings. One slate.",
+            "top": 1696.25
+          },
+          {
+            "level": "H2",
+            "text": "Ten franchises.All accounted for.",
+            "top": 3396.90625
+          },
+          {
+            "level": "H3",
+            "text": "The move ledger",
+            "top": 4665.78125
+          },
+          {
+            "level": "H3",
+            "text": "Know the opposition.",
+            "top": 5279.28125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter.",
+            "top": 7627.375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 7766.96875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 8991.65625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 9546.953125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 9993.375
+          },
+          {
+            "level": "H2",
+            "text": "Beforethis week.",
+            "top": 10545.984375
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 10798.984375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 10979.578125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 11345.140625
+          },
+          {
+            "level": "H2",
+            "text": "Take a fewfree throws.",
+            "top": 12068.5
+          },
+          {
+            "level": "H3",
+            "text": "Where next?",
+            "top": 12720.640625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 46851,
+        "textCharacters": 7608,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The weekin play.",
+            "top": 832.765625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2721.75
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 3361.109375
+          },
+          {
+            "level": "H2",
+            "text": "Every gameis still open.",
+            "top": 4445.859375
+          },
+          {
+            "level": "H2",
+            "text": "Five pairings. One slate.",
+            "top": 6581.9375
+          },
+          {
+            "level": "H2",
+            "text": "Ten franchises.All accounted for.",
+            "top": 12380.8125
+          },
+          {
+            "level": "H3",
+            "text": "The move ledger",
+            "top": 16277.765625
+          },
+          {
+            "level": "H3",
+            "text": "Know the opposition.",
+            "top": 18213.40625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter.",
+            "top": 27474.90625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 27985.28125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 32556.03125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 34882.578125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 36202.921875
+          },
+          {
+            "level": "H2",
+            "text": "Beforethis week.",
+            "top": 37806.296875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 38626.296875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 39177.671875
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 40280.796875
+          },
+          {
+            "level": "H2",
+            "text": "Take a fewfree throws.",
+            "top": 42525.75
+          },
+          {
+            "level": "H3",
+            "text": "Where next?",
+            "top": 44254.25
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

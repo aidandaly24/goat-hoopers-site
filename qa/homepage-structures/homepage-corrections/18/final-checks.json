@@ -1,0 +1,106 @@
+{
+  "method": "Three targeted checks after Pending line-wrap correction; actual image decode; computed rendered contrast",
+  "reflow": [
+    {
+      "width": 390,
+      "root": "16px",
+      "documentWidth": 390,
+      "pending": {
+        "text": "Pending",
+        "height": 26.875,
+        "lineHeight": 26.88,
+        "singleLine": true
+      },
+      "portraits": true,
+      "internal": 0
+    },
+    {
+      "width": 320,
+      "root": "16px",
+      "documentWidth": 320,
+      "pending": {
+        "text": "Pending",
+        "height": 26.875,
+        "lineHeight": 26.88,
+        "singleLine": true
+      },
+      "portraits": true,
+      "internal": 0
+    },
+    {
+      "width": 320,
+      "root": "32px",
+      "documentWidth": 320,
+      "pending": {
+        "text": "Pending",
+        "height": 53.75,
+        "lineHeight": 53.76,
+        "singleLine": true
+      },
+      "portraits": true,
+      "internal": 0
+    }
+  ],
+  "contrast": [
+    {
+      "selector": "header .identity",
+      "foreground": "rgb(255, 247, 240)",
+      "background": "rgb(21, 63, 70)",
+      "ratio": 10.82
+    },
+    {
+      "selector": "#provenance>summary",
+      "foreground": "rgb(64, 53, 126)",
+      "background": "rgb(231, 225, 250)",
+      "ratio": 8.16
+    },
+    {
+      "selector": ".pair-identity.identity-peach h3",
+      "foreground": "rgb(132, 63, 44)",
+      "background": "rgb(246, 201, 180)",
+      "ratio": 5.11
+    },
+    {
+      "selector": ".pair-identity.identity-peach p",
+      "foreground": "rgb(132, 63, 44)",
+      "background": "rgb(246, 201, 180)",
+      "ratio": 5.11
+    },
+    {
+      "selector": ".pair-identity.identity-lavender p",
+      "foreground": "rgb(73, 59, 133)",
+      "background": "rgb(231, 225, 250)",
+      "ratio": 7.36
+    },
+    {
+      "selector": ".model-note p",
+      "foreground": "rgb(64, 53, 126)",
+      "background": "rgb(231, 225, 250)",
+      "ratio": 8.16
+    },
+    {
+      "selector": ".take-source",
+      "foreground": "rgb(72, 86, 94)",
+      "background": "rgb(255, 242, 233)",
+      "ratio": 6.91
+    },
+    {
+      "selector": ".comparison-window tbody th",
+      "foreground": "rgb(255, 247, 240)",
+      "background": "rgb(21, 63, 70)",
+      "ratio": 10.82
+    },
+    {
+      "selector": ".cell-scope",
+      "foreground": "rgb(72, 86, 94)",
+      "background": "rgb(255, 240, 229)",
+      "ratio": 6.81
+    },
+    {
+      "selector": "button[aria-pressed=true]",
+      "foreground": "rgb(255, 253, 251)",
+      "background": "rgb(64, 53, 126)",
+      "ratio": 10.2
+    }
+  ]
+}

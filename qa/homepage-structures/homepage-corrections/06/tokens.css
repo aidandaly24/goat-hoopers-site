@@ -1,0 +1,62 @@
+@font-face {
+  font-family: "Wire Reading";
+  src: url("../../assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Wire Dates";
+  src: url("../../assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+:root {
+  color-scheme: light;
+  --font-reading: "Wire Reading", system-ui, sans-serif;
+  --font-heading: var(--font-reading);
+  --font-number: var(--font-reading);
+  --font-date: "Wire Dates", ui-monospace, monospace;
+  --weight-reading: 400;
+  --weight-medium: 500;
+  --weight-emphasis: 600;
+  --weight-brand: 700;
+  --text-body: 1rem;
+  --text-page-title: clamp(2.5rem, 6vw, 5rem);
+  --text-event-title: clamp(1.6rem, 2.7vw, 2.4rem);
+  --text-subtitle: 1.25rem;
+  --text-brand: 1.5rem;
+  --text-identity: 1.8rem;
+  --text-score: 1.8rem;
+  --text-date: 1.5rem;
+  --text-total: clamp(2rem, 8vw, 4rem);
+  --text-stat: 1.5rem;
+  --text-toggle: 1.5rem;
+  --text-small: .875rem;
+  --color-canvas: #dfebc5;
+  --color-rail: #ffffff;
+  --color-text: #153f2b;
+  --color-secondary: #3a5540;
+  --color-timeline: #637d56;
+  --color-control: #48643d;
+  --color-feedback: #cbdcaf;
+  --color-focus: #153f2b;
+  --color-selected: #153f2b;
+  --color-on-selected: #ffffff;
+  --color-image-base: #ffffff;
+  --space-detail: .25rem;
+  --space-related: .75rem;
+  --space-copy: 1rem;
+  --space-group: 1.5rem;
+  --space-section: 3rem;
+  --space-chapter: 4.5rem;
+  --page-width: 84rem;
+  --date-column: 6rem;
+  --column-gap: 2.5rem;
+  --page-gutter: clamp(1rem, 4vw, 3.5rem);
+  --rail-width: 3.5rem;
+  --spine-position: calc(37.037037% + 1.166667rem);
+  font-family: var(--font-reading);
+  font-size: 16px;
+}

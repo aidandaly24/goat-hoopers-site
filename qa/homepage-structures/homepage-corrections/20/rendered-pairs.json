@@ -1,0 +1,73 @@
+{
+  "method": "Computed rendered opaque foreground over resolved ancestor background; Chromium 390 CSS px, initial member homepage.",
+  "contrast": [
+    {
+      "s": ".home-lead",
+      "fg": "rgb(255, 248, 237)",
+      "bg": "rgb(40, 22, 55)",
+      "ratio": 15.793184064496009
+    },
+    {
+      "s": ".caption",
+      "fg": "rgb(212, 196, 219)",
+      "bg": "rgb(40, 22, 55)",
+      "ratio": 10.092635071434595
+    },
+    {
+      "s": ".intent",
+      "fg": "rgb(112, 222, 210)",
+      "bg": "rgb(40, 22, 55)",
+      "ratio": 10.370230134259728
+    },
+    {
+      "s": ".home-ai .probabilities>div:first-child strong",
+      "fg": "rgb(255, 115, 181)",
+      "bg": "rgb(40, 22, 55)",
+      "ratio": 6.643261098951535
+    },
+    {
+      "s": ".identity",
+      "fg": "rgb(112, 222, 210)",
+      "bg": "rgb(40, 22, 55)",
+      "ratio": 10.370230134259728
+    }
+  ],
+  "targets": [
+    {
+      "s": "#open-index",
+      "heights": [
+        46.0625
+      ]
+    },
+    {
+      "s": "#provenance summary",
+      "heights": [
+        44
+      ]
+    },
+    {
+      "s": ".identity",
+      "heights": [
+        44
+      ]
+    },
+    {
+      "s": ".intent",
+      "heights": [
+        44,
+        62.375,
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "s": ".origin-actions a",
+      "heights": [
+        44,
+        44,
+        44
+      ]
+    }
+  ]
+}

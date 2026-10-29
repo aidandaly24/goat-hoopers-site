@@ -1,0 +1,1830 @@
+{
+  "id": "14",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/14/app.js",
+      "bytes": 19425,
+      "sha256": "00dac3dcfe771f4d77a901e3e2757b2dc82a7e85324f04e93d9d5ad181e53d7c"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/14/index.html",
+      "bytes": 2580,
+      "sha256": "c32ab6d869c3e5e6b950fb0be9aeebec813a01a34b907ab6f77878f06227530c"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/14/style.css",
+      "bytes": 13386,
+      "sha256": "903ad02240bdb4129d79ac04732136d02e3762c55b31f47c1b303f7c20da62b0"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/14/review/member-desktop-full.jpg",
+        "bytes": 680627,
+        "sha256": "6ab25d14dd28f1a3c90884a431d22287d9df56b42b6fa1142ee69e5ff26d11d0",
+        "width": 1440,
+        "height": 4941,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 4941,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/member-desktop-top.jpg",
+          "bytes": 192335,
+          "sha256": "7c68886d4b164d01727a4d32ed00f14a198732e82031f1891359510de0d28152",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 1970,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/member-desktop-middle.jpg",
+          "bytes": 142768,
+          "sha256": "22fee912caf3909d0092b3d1f06b7cf74917191379fc83317e0c81bb068c294c",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 3941,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/member-desktop-bottom.jpg",
+          "bytes": 64898,
+          "sha256": "9ba3f97600ee70597669002bc4f9858b4b8f76a53ef154fd9608dcf90729b18c",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Your team",
+          "top": 248.515625
+        },
+        {
+          "level": "H1",
+          "text": "Reaves Dropper",
+          "top": 378.71875
+        },
+        {
+          "level": "H3",
+          "text": "Your roster value",
+          "top": 1006.59375
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 1642.25
+        },
+        {
+          "level": "H2",
+          "text": "League action",
+          "top": 248.515625
+        },
+        {
+          "level": "H3",
+          "text": "Week 3, across the league",
+          "top": 362.421875
+        },
+        {
+          "level": "H3",
+          "text": "The ten-team ledger",
+          "top": 2102.8125
+        },
+        {
+          "level": "H3",
+          "text": "On the wire",
+          "top": 4110.375
+        },
+        {
+          "level": "H3",
+          "text": "Still unconnected",
+          "top": 4556.65625
+        },
+        {
+          "level": "H2",
+          "text": "Scouting",
+          "top": 248.515625
+        },
+        {
+          "level": "H3",
+          "text": "On form · in-season EMA fantasy points per game",
+          "top": 374.90625
+        },
+        {
+          "level": "H3",
+          "text": "The completed week",
+          "top": 949.671875
+        },
+        {
+          "level": "H3",
+          "text": "Three dated takes",
+          "top": 1804.125
+        },
+        {
+          "level": "H3",
+          "text": "Lineup Power",
+          "top": 3201.65625
+        },
+        {
+          "level": "H2",
+          "text": "Culture",
+          "top": 248.515625
+        },
+        {
+          "level": "H3",
+          "text": "The league has a memory.",
+          "top": 350.90625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 667.46875
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 1746.03125
+        },
+        {
+          "level": "H3",
+          "text": "Take a shot.",
+          "top": 2523.890625
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/14/review/member-phone-full.jpg",
+        "bytes": 621420,
+        "sha256": "88e49f51918cc4bc0df2b53ab2ca5e31bbcde104bccb227d5b542d6a5b54c303",
+        "width": 390,
+        "height": 13017,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 417,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/member-phone-top.jpg",
+          "bytes": 36280,
+          "sha256": "739809b3a3b6464fd0b6d4138e210b24633013072c5ac8c79b3bd6e2d5d5e3b4",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 6086,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/member-phone-middle.jpg",
+          "bytes": 40130,
+          "sha256": "9bc3f7197b65a1ced077385842260c517ba414fb1b5385cfbbd2d0fb2ed7db52",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 12173,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/member-phone-bottom.jpg",
+          "bytes": 31379,
+          "sha256": "914c8ce840fc5353f526effd281549b6d366f1a47a5e3fb65eab23eab999b355",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Your team",
+          "top": 331.15625
+        },
+        {
+          "level": "H1",
+          "text": "Reaves Dropper",
+          "top": 453.03125
+        },
+        {
+          "level": "H3",
+          "text": "Your roster value",
+          "top": 1118.640625
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 1805.703125
+        },
+        {
+          "level": "H2",
+          "text": "League action",
+          "top": 2282.359375
+        },
+        {
+          "level": "H3",
+          "text": "Week 3, across the league",
+          "top": 2388.65625
+        },
+        {
+          "level": "H3",
+          "text": "The ten-team ledger",
+          "top": 4241.078125
+        },
+        {
+          "level": "H3",
+          "text": "On the wire",
+          "top": 6392.703125
+        },
+        {
+          "level": "H3",
+          "text": "Still unconnected",
+          "top": 6862.984375
+        },
+        {
+          "level": "H2",
+          "text": "Scouting",
+          "top": 7064.546875
+        },
+        {
+          "level": "H3",
+          "text": "On form · in-season EMA fantasy points per game",
+          "top": 7152.84375
+        },
+        {
+          "level": "H3",
+          "text": "The completed week",
+          "top": 7751.859375
+        },
+        {
+          "level": "H3",
+          "text": "Three dated takes",
+          "top": 8697.9375
+        },
+        {
+          "level": "H3",
+          "text": "Lineup Power",
+          "top": 10096.15625
+        },
+        {
+          "level": "H2",
+          "text": "Culture",
+          "top": 10297.71875
+        },
+        {
+          "level": "H3",
+          "text": "The league has a memory.",
+          "top": 10393.703125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 10636.265625
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 11612.265625
+        },
+        {
+          "level": "H3",
+          "text": "Take a shot.",
+          "top": 12300.125
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/14/review/public-desktop-full.jpg",
+        "bytes": 610725,
+        "sha256": "f50c07dc3cd8550b2306c6e36248b814f66e217d6ad295e60481c940dd874c97",
+        "width": 1440,
+        "height": 4941,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 4941,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/public-desktop-top.jpg",
+          "bytes": 195153,
+          "sha256": "c5bb406074cf1e9e11e42da09e3d40b9e16b6344dbe40bed5bab60b558fdf67f",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 1970,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/public-desktop-middle.jpg",
+          "bytes": 93961,
+          "sha256": "1bdd7c8580baaf171837786fa993dab7d2d872939610537f7baf8c8791463c96",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 3941,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/public-desktop-bottom.jpg",
+          "bytes": 64898,
+          "sha256": "9ba3f97600ee70597669002bc4f9858b4b8f76a53ef154fd9608dcf90729b18c",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "The week",
+          "top": 248.515625
+        },
+        {
+          "level": "H1",
+          "text": "Follow the week.",
+          "top": 378.71875
+        },
+        {
+          "level": "H3",
+          "text": "Find your way in.",
+          "top": 1037.859375
+        },
+        {
+          "level": "H3",
+          "text": "Work the next decision.",
+          "top": 1409.84375
+        },
+        {
+          "level": "H3",
+          "text": "Keep the story straight.",
+          "top": 1617.828125
+        },
+        {
+          "level": "H2",
+          "text": "League action",
+          "top": 248.515625
+        },
+        {
+          "level": "H3",
+          "text": "Week 3, across the league",
+          "top": 362.421875
+        },
+        {
+          "level": "H3",
+          "text": "The ten-team ledger",
+          "top": 2102.8125
+        },
+        {
+          "level": "H3",
+          "text": "On the wire",
+          "top": 4110.375
+        },
+        {
+          "level": "H3",
+          "text": "Still unconnected",
+          "top": 4556.65625
+        },
+        {
+          "level": "H2",
+          "text": "Scouting",
+          "top": 248.515625
+        },
+        {
+          "level": "H3",
+          "text": "Read the sample.",
+          "top": 374.90625
+        },
+        {
+          "level": "H3",
+          "text": "Three dated takes",
+          "top": 585.265625
+        },
+        {
+          "level": "H3",
+          "text": "Lineup Power",
+          "top": 1982.796875
+        },
+        {
+          "level": "H2",
+          "text": "Culture",
+          "top": 248.515625
+        },
+        {
+          "level": "H3",
+          "text": "The league has a memory.",
+          "top": 350.90625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 667.46875
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 1746.03125
+        },
+        {
+          "level": "H3",
+          "text": "Take a shot.",
+          "top": 2523.890625
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/14/review/public-phone-full.jpg",
+        "bytes": 554663,
+        "sha256": "6d5226c4ec0eab243ef32b1fa17bf0d254d59103b0c974da0e1d0b62ac782a2c",
+        "width": 390,
+        "height": 11245,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 445,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/public-phone-top.jpg",
+          "bytes": 42561,
+          "sha256": "a6dd06d511da2616b8e23fac531996704d146e60bc764dcdee02a6dd24c20ca7",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5200,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/public-phone-middle.jpg",
+          "bytes": 31330,
+          "sha256": "f5ab968ab55b6739dbf6225615546c763bad950270bf4148ffc8b88c78386f90",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 10401,
+          "path": "qa/homepage-structures/homepage-corrections/14/review/public-phone-bottom.jpg",
+          "bytes": 33725,
+          "sha256": "488936d29e8f4f6a97801c918b139e2601c55c2b8487db34a7c76cc65d8696e3",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "The week",
+          "top": 331.15625
+        },
+        {
+          "level": "H1",
+          "text": "Follow the week.",
+          "top": 453.03125
+        },
+        {
+          "level": "H3",
+          "text": "Find your way in.",
+          "top": 1086.484375
+        },
+        {
+          "level": "H3",
+          "text": "Work the next decision.",
+          "top": 1410.46875
+        },
+        {
+          "level": "H3",
+          "text": "Keep the story straight.",
+          "top": 1618.453125
+        },
+        {
+          "level": "H2",
+          "text": "League action",
+          "top": 1845.640625
+        },
+        {
+          "level": "H3",
+          "text": "Week 3, across the league",
+          "top": 1951.9375
+        },
+        {
+          "level": "H3",
+          "text": "The ten-team ledger",
+          "top": 3804.359375
+        },
+        {
+          "level": "H3",
+          "text": "On the wire",
+          "top": 5955.984375
+        },
+        {
+          "level": "H3",
+          "text": "Still unconnected",
+          "top": 6426.265625
+        },
+        {
+          "level": "H2",
+          "text": "Scouting",
+          "top": 6627.828125
+        },
+        {
+          "level": "H3",
+          "text": "Read the sample.",
+          "top": 6716.125
+        },
+        {
+          "level": "H3",
+          "text": "Three dated takes",
+          "top": 6926.484375
+        },
+        {
+          "level": "H3",
+          "text": "Lineup Power",
+          "top": 8324.703125
+        },
+        {
+          "level": "H2",
+          "text": "Culture",
+          "top": 8526.265625
+        },
+        {
+          "level": "H3",
+          "text": "The league has a memory.",
+          "top": 8622.25
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 8864.8125
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 9840.8125
+        },
+        {
+          "level": "H3",
+          "text": "Take a shot.",
+          "top": 10528.671875
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 4941,
+        "textCharacters": 7864,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Your team",
+            "top": 248.515625
+          },
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 378.71875
+          },
+          {
+            "level": "H3",
+            "text": "Your roster value",
+            "top": 1006.59375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 1642.25
+          },
+          {
+            "level": "H2",
+            "text": "League action",
+            "top": 248.515625
+          },
+          {
+            "level": "H3",
+            "text": "Week 3, across the league",
+            "top": 362.421875
+          },
+          {
+            "level": "H3",
+            "text": "The ten-team ledger",
+            "top": 2102.8125
+          },
+          {
+            "level": "H3",
+            "text": "On the wire",
+            "top": 4110.375
+          },
+          {
+            "level": "H3",
+            "text": "Still unconnected",
+            "top": 4556.65625
+          },
+          {
+            "level": "H2",
+            "text": "Scouting",
+            "top": 248.515625
+          },
+          {
+            "level": "H3",
+            "text": "On form · in-season EMA fantasy points per game",
+            "top": 374.90625
+          },
+          {
+            "level": "H3",
+            "text": "The completed week",
+            "top": 949.671875
+          },
+          {
+            "level": "H3",
+            "text": "Three dated takes",
+            "top": 1804.125
+          },
+          {
+            "level": "H3",
+            "text": "Lineup Power",
+            "top": 3201.65625
+          },
+          {
+            "level": "H2",
+            "text": "Culture",
+            "top": 248.515625
+          },
+          {
+            "level": "H3",
+            "text": "The league has a memory.",
+            "top": 350.90625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 667.46875
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 1746.03125
+          },
+          {
+            "level": "H3",
+            "text": "Take a shot.",
+            "top": 2523.890625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 13017,
+        "textCharacters": 7864,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Your team",
+            "top": 331.15625
+          },
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 453.03125
+          },
+          {
+            "level": "H3",
+            "text": "Your roster value",
+            "top": 1118.640625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 1805.703125
+          },
+          {
+            "level": "H2",
+            "text": "League action",
+            "top": 2282.359375
+          },
+          {
+            "level": "H3",
+            "text": "Week 3, across the league",
+            "top": 2388.65625
+          },
+          {
+            "level": "H3",
+            "text": "The ten-team ledger",
+            "top": 4241.078125
+          },
+          {
+            "level": "H3",
+            "text": "On the wire",
+            "top": 6392.703125
+          },
+          {
+            "level": "H3",
+            "text": "Still unconnected",
+            "top": 6862.984375
+          },
+          {
+            "level": "H2",
+            "text": "Scouting",
+            "top": 7064.546875
+          },
+          {
+            "level": "H3",
+            "text": "On form · in-season EMA fantasy points per game",
+            "top": 7152.84375
+          },
+          {
+            "level": "H3",
+            "text": "The completed week",
+            "top": 7751.859375
+          },
+          {
+            "level": "H3",
+            "text": "Three dated takes",
+            "top": 8697.9375
+          },
+          {
+            "level": "H3",
+            "text": "Lineup Power",
+            "top": 10096.15625
+          },
+          {
+            "level": "H2",
+            "text": "Culture",
+            "top": 10297.71875
+          },
+          {
+            "level": "H3",
+            "text": "The league has a memory.",
+            "top": 10393.703125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 10636.265625
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 11612.265625
+          },
+          {
+            "level": "H3",
+            "text": "Take a shot.",
+            "top": 12300.125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 31031,
+        "textCharacters": 7864,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Your team",
+            "top": 584.3125
+          },
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 876.125
+          },
+          {
+            "level": "H3",
+            "text": "Your roster value",
+            "top": 2369.53125
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 3958.078125
+          },
+          {
+            "level": "H2",
+            "text": "League action",
+            "top": 5133.890625
+          },
+          {
+            "level": "H3",
+            "text": "Week 3, across the league",
+            "top": 5453.953125
+          },
+          {
+            "level": "H3",
+            "text": "The ten-team ledger",
+            "top": 10187.90625
+          },
+          {
+            "level": "H3",
+            "text": "On the wire",
+            "top": 14548.03125
+          },
+          {
+            "level": "H3",
+            "text": "Still unconnected",
+            "top": 15774.296875
+          },
+          {
+            "level": "H2",
+            "text": "Scouting",
+            "top": 16313.40625
+          },
+          {
+            "level": "H3",
+            "text": "On form · in-season EMA fantasy points per game",
+            "top": 16586.03125
+          },
+          {
+            "level": "H3",
+            "text": "The completed week",
+            "top": 18177.03125
+          },
+          {
+            "level": "H3",
+            "text": "Three dated takes",
+            "top": 20517.578125
+          },
+          {
+            "level": "H3",
+            "text": "Lineup Power",
+            "top": 24079.71875
+          },
+          {
+            "level": "H2",
+            "text": "Culture",
+            "top": 24531.671875
+          },
+          {
+            "level": "H3",
+            "text": "The league has a memory.",
+            "top": 24771.65625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 25482.984375
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 27861.328125
+          },
+          {
+            "level": "H3",
+            "text": "Take a shot.",
+            "top": 29659.515625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 13936,
+        "textCharacters": 7864,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Your team",
+            "top": 331.15625
+          },
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 453.03125
+          },
+          {
+            "level": "H3",
+            "text": "Your roster value",
+            "top": 1135.953125
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 1839.125
+          },
+          {
+            "level": "H2",
+            "text": "League action",
+            "top": 2361.34375
+          },
+          {
+            "level": "H3",
+            "text": "Week 3, across the league",
+            "top": 2467.640625
+          },
+          {
+            "level": "H3",
+            "text": "The ten-team ledger",
+            "top": 4496.8125
+          },
+          {
+            "level": "H3",
+            "text": "On the wire",
+            "top": 6718
+          },
+          {
+            "level": "H3",
+            "text": "Still unconnected",
+            "top": 7236.28125
+          },
+          {
+            "level": "H2",
+            "text": "Scouting",
+            "top": 7459.40625
+          },
+          {
+            "level": "H3",
+            "text": "On form · in-season EMA fantasy points per game",
+            "top": 7571.703125
+          },
+          {
+            "level": "H3",
+            "text": "The completed week",
+            "top": 8287.46875
+          },
+          {
+            "level": "H3",
+            "text": "Three dated takes",
+            "top": 9279.921875
+          },
+          {
+            "level": "H3",
+            "text": "Lineup Power",
+            "top": 10796.59375
+          },
+          {
+            "level": "H2",
+            "text": "Culture",
+            "top": 10998.15625
+          },
+          {
+            "level": "H3",
+            "text": "The league has a memory.",
+            "top": 11094.140625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 11360.703125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 12430.265625
+          },
+          {
+            "level": "H3",
+            "text": "Take a shot.",
+            "top": 13186.125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 36128,
+        "textCharacters": 7864,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Your team",
+            "top": 672.3125
+          },
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 964.125
+          },
+          {
+            "level": "H3",
+            "text": "Your roster value",
+            "top": 2675.9375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 4678.859375
+          },
+          {
+            "level": "H2",
+            "text": "League action",
+            "top": 6132.25
+          },
+          {
+            "level": "H3",
+            "text": "Week 3, across the league",
+            "top": 6452.3125
+          },
+          {
+            "level": "H3",
+            "text": "The ten-team ledger",
+            "top": 11602.96875
+          },
+          {
+            "level": "H3",
+            "text": "On the wire",
+            "top": 16611.765625
+          },
+          {
+            "level": "H3",
+            "text": "Still unconnected",
+            "top": 18119.59375
+          },
+          {
+            "level": "H2",
+            "text": "Scouting",
+            "top": 18804.28125
+          },
+          {
+            "level": "H3",
+            "text": "On form · in-season EMA fantasy points per game",
+            "top": 19076.90625
+          },
+          {
+            "level": "H3",
+            "text": "The completed week",
+            "top": 20899.859375
+          },
+          {
+            "level": "H3",
+            "text": "Three dated takes",
+            "top": 24053.15625
+          },
+          {
+            "level": "H3",
+            "text": "Lineup Power",
+            "top": 28400.609375
+          },
+          {
+            "level": "H2",
+            "text": "Culture",
+            "top": 28898.953125
+          },
+          {
+            "level": "H3",
+            "text": "The league has a memory.",
+            "top": 29138.9375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 29895.0625
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 32650.96875
+          },
+          {
+            "level": "H3",
+            "text": "Take a shot.",
+            "top": 34585.15625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 4941,
+        "textCharacters": 6766,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "The week",
+            "top": 248.515625
+          },
+          {
+            "level": "H1",
+            "text": "Follow the week.",
+            "top": 378.71875
+          },
+          {
+            "level": "H3",
+            "text": "Find your way in.",
+            "top": 1037.859375
+          },
+          {
+            "level": "H3",
+            "text": "Work the next decision.",
+            "top": 1409.84375
+          },
+          {
+            "level": "H3",
+            "text": "Keep the story straight.",
+            "top": 1617.828125
+          },
+          {
+            "level": "H2",
+            "text": "League action",
+            "top": 248.515625
+          },
+          {
+            "level": "H3",
+            "text": "Week 3, across the league",
+            "top": 362.421875
+          },
+          {
+            "level": "H3",
+            "text": "The ten-team ledger",
+            "top": 2102.8125
+          },
+          {
+            "level": "H3",
+            "text": "On the wire",
+            "top": 4110.375
+          },
+          {
+            "level": "H3",
+            "text": "Still unconnected",
+            "top": 4556.65625
+          },
+          {
+            "level": "H2",
+            "text": "Scouting",
+            "top": 248.515625
+          },
+          {
+            "level": "H3",
+            "text": "Read the sample.",
+            "top": 374.90625
+          },
+          {
+            "level": "H3",
+            "text": "Three dated takes",
+            "top": 585.265625
+          },
+          {
+            "level": "H3",
+            "text": "Lineup Power",
+            "top": 1982.796875
+          },
+          {
+            "level": "H2",
+            "text": "Culture",
+            "top": 248.515625
+          },
+          {
+            "level": "H3",
+            "text": "The league has a memory.",
+            "top": 350.90625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 667.46875
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 1746.03125
+          },
+          {
+            "level": "H3",
+            "text": "Take a shot.",
+            "top": 2523.890625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 11245,
+        "textCharacters": 6766,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "The week",
+            "top": 331.15625
+          },
+          {
+            "level": "H1",
+            "text": "Follow the week.",
+            "top": 453.03125
+          },
+          {
+            "level": "H3",
+            "text": "Find your way in.",
+            "top": 1086.484375
+          },
+          {
+            "level": "H3",
+            "text": "Work the next decision.",
+            "top": 1410.46875
+          },
+          {
+            "level": "H3",
+            "text": "Keep the story straight.",
+            "top": 1618.453125
+          },
+          {
+            "level": "H2",
+            "text": "League action",
+            "top": 1845.640625
+          },
+          {
+            "level": "H3",
+            "text": "Week 3, across the league",
+            "top": 1951.9375
+          },
+          {
+            "level": "H3",
+            "text": "The ten-team ledger",
+            "top": 3804.359375
+          },
+          {
+            "level": "H3",
+            "text": "On the wire",
+            "top": 5955.984375
+          },
+          {
+            "level": "H3",
+            "text": "Still unconnected",
+            "top": 6426.265625
+          },
+          {
+            "level": "H2",
+            "text": "Scouting",
+            "top": 6627.828125
+          },
+          {
+            "level": "H3",
+            "text": "Read the sample.",
+            "top": 6716.125
+          },
+          {
+            "level": "H3",
+            "text": "Three dated takes",
+            "top": 6926.484375
+          },
+          {
+            "level": "H3",
+            "text": "Lineup Power",
+            "top": 8324.703125
+          },
+          {
+            "level": "H2",
+            "text": "Culture",
+            "top": 8526.265625
+          },
+          {
+            "level": "H3",
+            "text": "The league has a memory.",
+            "top": 8622.25
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 8864.8125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 9840.8125
+          },
+          {
+            "level": "H3",
+            "text": "Take a shot.",
+            "top": 10528.671875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 27307,
+        "textCharacters": 6766,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "The week",
+            "top": 584.3125
+          },
+          {
+            "level": "H1",
+            "text": "Follow the week.",
+            "top": 876.125
+          },
+          {
+            "level": "H3",
+            "text": "Find your way in.",
+            "top": 2390.75
+          },
+          {
+            "level": "H3",
+            "text": "Work the next decision.",
+            "top": 3413.046875
+          },
+          {
+            "level": "H3",
+            "text": "Keep the story straight.",
+            "top": 3989.015625
+          },
+          {
+            "level": "H2",
+            "text": "League action",
+            "top": 4683.359375
+          },
+          {
+            "level": "H3",
+            "text": "Week 3, across the league",
+            "top": 5003.421875
+          },
+          {
+            "level": "H3",
+            "text": "The ten-team ledger",
+            "top": 9737.375
+          },
+          {
+            "level": "H3",
+            "text": "On the wire",
+            "top": 14097.5
+          },
+          {
+            "level": "H3",
+            "text": "Still unconnected",
+            "top": 15323.765625
+          },
+          {
+            "level": "H2",
+            "text": "Scouting",
+            "top": 15862.875
+          },
+          {
+            "level": "H3",
+            "text": "Read the sample.",
+            "top": 16135.5
+          },
+          {
+            "level": "H3",
+            "text": "Three dated takes",
+            "top": 16793.046875
+          },
+          {
+            "level": "H3",
+            "text": "Lineup Power",
+            "top": 20355.1875
+          },
+          {
+            "level": "H2",
+            "text": "Culture",
+            "top": 20807.140625
+          },
+          {
+            "level": "H3",
+            "text": "The league has a memory.",
+            "top": 21047.125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 21758.453125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 24136.796875
+          },
+          {
+            "level": "H3",
+            "text": "Take a shot.",
+            "top": 25934.984375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 12105,
+        "textCharacters": 6766,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "The week",
+            "top": 331.15625
+          },
+          {
+            "level": "H1",
+            "text": "Follow the week.",
+            "top": 453.03125
+          },
+          {
+            "level": "H3",
+            "text": "Find your way in.",
+            "top": 1149.359375
+          },
+          {
+            "level": "H3",
+            "text": "Work the next decision.",
+            "top": 1521.34375
+          },
+          {
+            "level": "H3",
+            "text": "Keep the story straight.",
+            "top": 1753.328125
+          },
+          {
+            "level": "H2",
+            "text": "League action",
+            "top": 2004.515625
+          },
+          {
+            "level": "H3",
+            "text": "Week 3, across the league",
+            "top": 2110.8125
+          },
+          {
+            "level": "H3",
+            "text": "The ten-team ledger",
+            "top": 4139.984375
+          },
+          {
+            "level": "H3",
+            "text": "On the wire",
+            "top": 6361.171875
+          },
+          {
+            "level": "H3",
+            "text": "Still unconnected",
+            "top": 6879.453125
+          },
+          {
+            "level": "H2",
+            "text": "Scouting",
+            "top": 7102.578125
+          },
+          {
+            "level": "H3",
+            "text": "Read the sample.",
+            "top": 7214.875
+          },
+          {
+            "level": "H3",
+            "text": "Three dated takes",
+            "top": 7449.234375
+          },
+          {
+            "level": "H3",
+            "text": "Lineup Power",
+            "top": 8965.90625
+          },
+          {
+            "level": "H2",
+            "text": "Culture",
+            "top": 9167.46875
+          },
+          {
+            "level": "H3",
+            "text": "The league has a memory.",
+            "top": 9263.453125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 9530.015625
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 10599.578125
+          },
+          {
+            "level": "H3",
+            "text": "Take a shot.",
+            "top": 11355.4375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 31247,
+        "textCharacters": 6766,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "The week",
+            "top": 672.3125
+          },
+          {
+            "level": "H1",
+            "text": "Follow the week.",
+            "top": 964.125
+          },
+          {
+            "level": "H3",
+            "text": "Find your way in.",
+            "top": 2835.15625
+          },
+          {
+            "level": "H3",
+            "text": "Work the next decision.",
+            "top": 4054.25
+          },
+          {
+            "level": "H3",
+            "text": "Keep the story straight.",
+            "top": 4726.21875
+          },
+          {
+            "level": "H2",
+            "text": "League action",
+            "top": 5468.5625
+          },
+          {
+            "level": "H3",
+            "text": "Week 3, across the league",
+            "top": 5788.625
+          },
+          {
+            "level": "H3",
+            "text": "The ten-team ledger",
+            "top": 10939.28125
+          },
+          {
+            "level": "H3",
+            "text": "On the wire",
+            "top": 15948.078125
+          },
+          {
+            "level": "H3",
+            "text": "Still unconnected",
+            "top": 17455.90625
+          },
+          {
+            "level": "H2",
+            "text": "Scouting",
+            "top": 18140.59375
+          },
+          {
+            "level": "H3",
+            "text": "Read the sample.",
+            "top": 18413.21875
+          },
+          {
+            "level": "H3",
+            "text": "Three dated takes",
+            "top": 19171.5625
+          },
+          {
+            "level": "H3",
+            "text": "Lineup Power",
+            "top": 23519.015625
+          },
+          {
+            "level": "H2",
+            "text": "Culture",
+            "top": 24017.359375
+          },
+          {
+            "level": "H3",
+            "text": "The league has a memory.",
+            "top": 24257.34375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 25013.46875
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 27769.375
+          },
+          {
+            "level": "H3",
+            "text": "Take a shot.",
+            "top": 29703.5625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

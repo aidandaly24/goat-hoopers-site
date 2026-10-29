@@ -1,0 +1,2245 @@
+{
+  "id": "05",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/05/homepage.css",
+      "bytes": 20136,
+      "sha256": "c99cbddc9d6eea71e88263e6c78bde251e5999c056051efb7e2dd685cae6bd24"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/05/homepage.js",
+      "bytes": 44008,
+      "sha256": "8b8f9062fa244ea0bf86f1b51b8bb7292092043f1089fc4e3595f1eed4e579e8"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/05/index.html",
+      "bytes": 1333,
+      "sha256": "7ba26e65f4e22da6a08397b5a7948343ca37e39716d6b915dc7dd24eec9ad27f"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/05/tokens.css",
+      "bytes": 932,
+      "sha256": "88c1fdd8aed2c58f20b67d236a41c64a6597fdee0785ed0019318a97c4d0dacd"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/05/review/member-desktop-full.jpg",
+        "bytes": 826057,
+        "sha256": "b00725a853356e933ca7f0aed64c7fc042aae19e14c519aa04c82096686b0466",
+        "width": 1440,
+        "height": 7207,
+        "quality": 84,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 7207,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/member-desktop-top.jpg",
+          "bytes": 121007,
+          "sha256": "20e9e040e65c778749da8295d5b3de53ef6b9626da2345e793394ae7788e9cd3",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3103,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/member-desktop-middle.jpg",
+          "bytes": 148568,
+          "sha256": "935439ae111a8fa2f73deb787c0adc938b706ecaf7a3023916600b2d434ddfa0",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 6207,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/member-desktop-bottom.jpg",
+          "bytes": 92092,
+          "sha256": "9e20e12162c03a8a39ec9916c376f30d79bafd54ddb11958d7388d8e550e70ab",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Reaves Dropper",
+          "top": 159.578125
+        },
+        {
+          "level": "H2",
+          "text": "From the weekly notebook",
+          "top": 938.140625
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 1050.28125
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 1130.28125
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 1507.8125
+        },
+        {
+          "level": "H3",
+          "text": "Lonzo hits the wire.",
+          "top": 1832.953125
+        },
+        {
+          "level": "H2",
+          "text": "35%",
+          "top": 2176.09375
+        },
+        {
+          "level": "H2",
+          "text": "38 / 37 / 36.",
+          "top": 3364.140625
+        },
+        {
+          "level": "H3",
+          "text": "Damian Lillard",
+          "top": 3332.5625
+        },
+        {
+          "level": "H3",
+          "text": "Tobias Harris",
+          "top": 3462.6875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 3592.8125
+        },
+        {
+          "level": "H3",
+          "text": "Your best",
+          "top": 3791.328125
+        },
+        {
+          "level": "H3",
+          "text": "The rough week",
+          "top": 3791.328125
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire.",
+          "top": 3778.9375
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams.228 names.",
+          "top": 4216.953125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 4498.203125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 4498.203125
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 4673.859375
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 4673.859375
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 4849.515625
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 4849.515625
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 5025.171875
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 5025.171875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 5222.515625
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 5222.515625
+        },
+        {
+          "level": "H3",
+          "text": "Current league wire.",
+          "top": 5480.546875
+        },
+        {
+          "level": "H2",
+          "text": "326.0 /251.5",
+          "top": 5846.390625
+        },
+        {
+          "level": "H3",
+          "text": "Two dated editions.",
+          "top": 5842
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/05/review/member-phone-full.jpg",
+        "bytes": 806680,
+        "sha256": "59148d534ea30bd9a7d0a3218fabf5e2fec353e4480a64c065d4952dbe9a7911",
+        "width": 390,
+        "height": 11438,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 638,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/member-phone-top.jpg",
+          "bytes": 54879,
+          "sha256": "1e170fbc86d22c41a7ce5c9fb583a3762a7858df81140d609871cd5c670fcec1",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5297,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/member-phone-middle.jpg",
+          "bytes": 58031,
+          "sha256": "8d19a9969c4546b7ac8d8de2328b6da00b5881e456872ffa5707c14e04e17c03",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 10594,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/member-phone-bottom.jpg",
+          "bytes": 48354,
+          "sha256": "d3d7cc0cdea93cc87142dd07d2ed9f112c16c3d31f3323ca634626a9ba174f8e",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Reaves Dropper",
+          "top": 154.765625
+        },
+        {
+          "level": "H2",
+          "text": "From the weekly notebook",
+          "top": 1269.34375
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 1430.78125
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 1943.734375
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 2283.671875
+        },
+        {
+          "level": "H3",
+          "text": "Lonzo hits the wire.",
+          "top": 2592.03125
+        },
+        {
+          "level": "H2",
+          "text": "35%",
+          "top": 3012.765625
+        },
+        {
+          "level": "H2",
+          "text": "38 / 37 / 36.",
+          "top": 4640.734375
+        },
+        {
+          "level": "H3",
+          "text": "Damian Lillard",
+          "top": 4828.671875
+        },
+        {
+          "level": "H3",
+          "text": "Tobias Harris",
+          "top": 4956.15625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 5083.640625
+        },
+        {
+          "level": "H3",
+          "text": "Your best",
+          "top": 5291.90625
+        },
+        {
+          "level": "H3",
+          "text": "The rough week",
+          "top": 5504.140625
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire.",
+          "top": 5920.8125
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams.228 names.",
+          "top": 6331.515625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 6640.375
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 6856.984375
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 7073.59375
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 7290.203125
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 7528.5
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 7766.796875
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 7983.40625
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 8200.015625
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 8460
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 8676.609375
+        },
+        {
+          "level": "H3",
+          "text": "Current league wire.",
+          "top": 9056.65625
+        },
+        {
+          "level": "H2",
+          "text": "326.0 /251.5",
+          "top": 9510.75
+        },
+        {
+          "level": "H3",
+          "text": "Two dated editions.",
+          "top": 9879.859375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/05/review/public-desktop-full.jpg",
+        "bytes": 889516,
+        "sha256": "7b7efaf22c4402ca7feb9b2dba60f6f176644a11a879363101129003b2d35d9d",
+        "width": 1440,
+        "height": 6312,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 6312,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/public-desktop-top.jpg",
+          "bytes": 122842,
+          "sha256": "f2f73b9cafffe4c97e5fd4dc01fcdbb35e0ed1bc63316c39623e5c846bd242df",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2656,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/public-desktop-middle.jpg",
+          "bytes": 111492,
+          "sha256": "4a837a06f5489d0a778c823448679168c7a08cdc284fac95ee7269d8d849f49b",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 5312,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/public-desktop-bottom.jpg",
+          "bytes": 107945,
+          "sha256": "80e85a82cc1762df722165c9c695f595a57ef43492165fab778486e6145eb122",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Reaves Dropper",
+          "top": 159.578125
+        },
+        {
+          "level": "H2",
+          "text": "Names behindthe matchup.",
+          "top": 207.578125
+        },
+        {
+          "level": "H2",
+          "text": "From the weekly notebook",
+          "top": 941.8125
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 1053.953125
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 1133.953125
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 1511.484375
+        },
+        {
+          "level": "H3",
+          "text": "Lonzo hits the wire.",
+          "top": 1836.625
+        },
+        {
+          "level": "H2",
+          "text": "35%",
+          "top": 2179.765625
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams.228 names.",
+          "top": 3367.8125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 3649.0625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 3649.0625
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 3824.71875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 3824.71875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 4000.375
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 4000.375
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 4176.03125
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 4176.03125
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 4373.375
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 4373.375
+        },
+        {
+          "level": "H3",
+          "text": "Current league wire.",
+          "top": 4631.40625
+        },
+        {
+          "level": "H2",
+          "text": "326.0 /251.5",
+          "top": 4997.25
+        },
+        {
+          "level": "H3",
+          "text": "Two dated editions.",
+          "top": 4992.859375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/05/review/public-phone-full.jpg",
+        "bytes": 691917,
+        "sha256": "d29e70192a9261d848d829ff96ae10d2df375eb63a9a4b939fa23f6a9d142d88",
+        "width": 390,
+        "height": 9843,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 843,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/public-phone-top.jpg",
+          "bytes": 52243,
+          "sha256": "9130087ca2f8a293635f14be907148066fe15b1b708edd228a0515be9412f272",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 4499,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/public-phone-middle.jpg",
+          "bytes": 58429,
+          "sha256": "5a729ef2bc80a3b4d7469ca8094cd0021df9aebfb69d30b4eef87777ec600aa1",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 8999,
+          "path": "qa/homepage-structures/homepage-corrections/05/review/public-phone-bottom.jpg",
+          "bytes": 46598,
+          "sha256": "52dcedc8ca493e709de8f30a41326049f3c5604bcb76daf32830413fe544cb11",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Reaves Dropper",
+          "top": 154.765625
+        },
+        {
+          "level": "H2",
+          "text": "Names behindthe matchup.",
+          "top": 719
+        },
+        {
+          "level": "H2",
+          "text": "From the weekly notebook",
+          "top": 1364.921875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 1526.359375
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 2039.3125
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 2379.25
+        },
+        {
+          "level": "H3",
+          "text": "Lonzo hits the wire.",
+          "top": 2687.609375
+        },
+        {
+          "level": "H2",
+          "text": "35%",
+          "top": 3108.34375
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams.228 names.",
+          "top": 4736.3125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 5045.171875
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 5261.78125
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 5478.390625
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 5695
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 5933.296875
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 6171.59375
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 6388.203125
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 6604.8125
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 6864.796875
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 7081.40625
+        },
+        {
+          "level": "H3",
+          "text": "Current league wire.",
+          "top": 7461.453125
+        },
+        {
+          "level": "H2",
+          "text": "326.0 /251.5",
+          "top": 7915.546875
+        },
+        {
+          "level": "H3",
+          "text": "Two dated editions.",
+          "top": 8284.65625
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 7207,
+        "textCharacters": 7736,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 159.578125
+          },
+          {
+            "level": "H2",
+            "text": "From the weekly notebook",
+            "top": 938.140625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 1050.28125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 1130.28125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 1507.8125
+          },
+          {
+            "level": "H3",
+            "text": "Lonzo hits the wire.",
+            "top": 1832.953125
+          },
+          {
+            "level": "H2",
+            "text": "35%",
+            "top": 2176.09375
+          },
+          {
+            "level": "H2",
+            "text": "38 / 37 / 36.",
+            "top": 3364.140625
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 3332.5625
+          },
+          {
+            "level": "H3",
+            "text": "Tobias Harris",
+            "top": 3462.6875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 3592.8125
+          },
+          {
+            "level": "H3",
+            "text": "Your best",
+            "top": 3791.328125
+          },
+          {
+            "level": "H3",
+            "text": "The rough week",
+            "top": 3791.328125
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire.",
+            "top": 3778.9375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams.228 names.",
+            "top": 4216.953125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 4498.203125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 4498.203125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 4673.859375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 4673.859375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 4849.515625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 4849.515625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 5025.171875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 5025.171875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 5222.515625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 5222.515625
+          },
+          {
+            "level": "H3",
+            "text": "Current league wire.",
+            "top": 5480.546875
+          },
+          {
+            "level": "H2",
+            "text": "326.0 /251.5",
+            "top": 5846.390625
+          },
+          {
+            "level": "H3",
+            "text": "Two dated editions.",
+            "top": 5842
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 11438,
+        "textCharacters": 7736,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 154.765625
+          },
+          {
+            "level": "H2",
+            "text": "From the weekly notebook",
+            "top": 1269.34375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 1430.78125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 1943.734375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 2283.671875
+          },
+          {
+            "level": "H3",
+            "text": "Lonzo hits the wire.",
+            "top": 2592.03125
+          },
+          {
+            "level": "H2",
+            "text": "35%",
+            "top": 3012.765625
+          },
+          {
+            "level": "H2",
+            "text": "38 / 37 / 36.",
+            "top": 4640.734375
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 4828.671875
+          },
+          {
+            "level": "H3",
+            "text": "Tobias Harris",
+            "top": 4956.15625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 5083.640625
+          },
+          {
+            "level": "H3",
+            "text": "Your best",
+            "top": 5291.90625
+          },
+          {
+            "level": "H3",
+            "text": "The rough week",
+            "top": 5504.140625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire.",
+            "top": 5920.8125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams.228 names.",
+            "top": 6331.515625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 6640.375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 6856.984375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 7073.59375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 7290.203125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 7528.5
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 7766.796875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 7983.40625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 8200.015625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 8460
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 8676.609375
+          },
+          {
+            "level": "H3",
+            "text": "Current league wire.",
+            "top": 9056.65625
+          },
+          {
+            "level": "H2",
+            "text": "326.0 /251.5",
+            "top": 9510.75
+          },
+          {
+            "level": "H3",
+            "text": "Two dated editions.",
+            "top": 9879.859375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 34931,
+        "textCharacters": 7736,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 429.03125
+          },
+          {
+            "level": "H2",
+            "text": "From the weekly notebook",
+            "top": 3572.453125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 4115.96875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 5779.1875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 7072.28125
+          },
+          {
+            "level": "H3",
+            "text": "Lonzo hits the wire.",
+            "top": 8136.34375
+          },
+          {
+            "level": "H2",
+            "text": "35%",
+            "top": 9491.25
+          },
+          {
+            "level": "H2",
+            "text": "38 / 37 / 36.",
+            "top": 15066.703125
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 15673.046875
+          },
+          {
+            "level": "H3",
+            "text": "Tobias Harris",
+            "top": 16116.578125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 16492.921875
+          },
+          {
+            "level": "H3",
+            "text": "Your best",
+            "top": 17112.453125
+          },
+          {
+            "level": "H3",
+            "text": "The rough week",
+            "top": 17566.640625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire.",
+            "top": 18744.703125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams.228 names.",
+            "top": 19966.96875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 21028.359375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 21692.140625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 22355.921875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 23136.046875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 23756.4375
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 24493.171875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 25156.953125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 25777.34375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 26658.078125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 27351.421875
+          },
+          {
+            "level": "H3",
+            "text": "Current league wire.",
+            "top": 28560.109375
+          },
+          {
+            "level": "H2",
+            "text": "326.0 /251.5",
+            "top": 29954.734375
+          },
+          {
+            "level": "H3",
+            "text": "Two dated editions.",
+            "top": 30874.59375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 12625,
+        "textCharacters": 7736,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 154.765625
+          },
+          {
+            "level": "H2",
+            "text": "From the weekly notebook",
+            "top": 1299.125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 1460.5625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 1997.84375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 2359.46875
+          },
+          {
+            "level": "H3",
+            "text": "Lonzo hits the wire.",
+            "top": 2714.3125
+          },
+          {
+            "level": "H2",
+            "text": "35%",
+            "top": 3159.84375
+          },
+          {
+            "level": "H2",
+            "text": "38 / 37 / 36.",
+            "top": 4995.6875
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 5199.671875
+          },
+          {
+            "level": "H3",
+            "text": "Tobias Harris",
+            "top": 5351.953125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 5504.234375
+          },
+          {
+            "level": "H3",
+            "text": "Your best",
+            "top": 5737.296875
+          },
+          {
+            "level": "H3",
+            "text": "The rough week",
+            "top": 5949.53125
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire.",
+            "top": 6415.171875
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams.228 names.",
+            "top": 6875.46875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 7238.34375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 7476.640625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 7736.625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 8025.578125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 8263.875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 8523.859375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 8783.84375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 9022.140625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 9325.5
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 9563.796875
+          },
+          {
+            "level": "H3",
+            "text": "Current league wire.",
+            "top": 9987.21875
+          },
+          {
+            "level": "H2",
+            "text": "326.0 /251.5",
+            "top": 10490.90625
+          },
+          {
+            "level": "H3",
+            "text": "Two dated editions.",
+            "top": 10881.1875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 42774,
+        "textCharacters": 7736,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 429.03125
+          },
+          {
+            "level": "H2",
+            "text": "From the weekly notebook",
+            "top": 4479.1875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 5022.703125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 7057.515625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 8527.78125
+          },
+          {
+            "level": "H3",
+            "text": "Lonzo hits the wire.",
+            "top": 9777.8125
+          },
+          {
+            "level": "H2",
+            "text": "35%",
+            "top": 11408.90625
+          },
+          {
+            "level": "H2",
+            "text": "38 / 37 / 36.",
+            "top": 17761.109375
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 18596.234375
+          },
+          {
+            "level": "H3",
+            "text": "Tobias Harris",
+            "top": 19089.359375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 19582.484375
+          },
+          {
+            "level": "H3",
+            "text": "Your best",
+            "top": 20359.59375
+          },
+          {
+            "level": "H3",
+            "text": "The rough week",
+            "top": 20813.78125
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire.",
+            "top": 22236.078125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams.228 names.",
+            "top": 23861.09375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 25286.296875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 26153.203125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 27093.0625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 28076.3125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 28899.828125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 29926.46875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 30720.421875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 31470.984375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 32568.671875
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 33348.796875
+          },
+          {
+            "level": "H3",
+            "text": "Current league wire.",
+            "top": 34977.5625
+          },
+          {
+            "level": "H2",
+            "text": "326.0 /251.5",
+            "top": 36597.765625
+          },
+          {
+            "level": "H3",
+            "text": "Two dated editions.",
+            "top": 37719.078125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 6312,
+        "textCharacters": 6288,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 159.578125
+          },
+          {
+            "level": "H2",
+            "text": "Names behindthe matchup.",
+            "top": 207.578125
+          },
+          {
+            "level": "H2",
+            "text": "From the weekly notebook",
+            "top": 941.8125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 1053.953125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 1133.953125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 1511.484375
+          },
+          {
+            "level": "H3",
+            "text": "Lonzo hits the wire.",
+            "top": 1836.625
+          },
+          {
+            "level": "H2",
+            "text": "35%",
+            "top": 2179.765625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams.228 names.",
+            "top": 3367.8125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 3649.0625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3649.0625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 3824.71875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 3824.71875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 4000.375
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 4000.375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 4176.03125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 4176.03125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 4373.375
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 4373.375
+          },
+          {
+            "level": "H3",
+            "text": "Current league wire.",
+            "top": 4631.40625
+          },
+          {
+            "level": "H2",
+            "text": "326.0 /251.5",
+            "top": 4997.25
+          },
+          {
+            "level": "H3",
+            "text": "Two dated editions.",
+            "top": 4992.859375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 9843,
+        "textCharacters": 6288,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 154.765625
+          },
+          {
+            "level": "H2",
+            "text": "Names behindthe matchup.",
+            "top": 719
+          },
+          {
+            "level": "H2",
+            "text": "From the weekly notebook",
+            "top": 1364.921875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 1526.359375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 2039.3125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 2379.25
+          },
+          {
+            "level": "H3",
+            "text": "Lonzo hits the wire.",
+            "top": 2687.609375
+          },
+          {
+            "level": "H2",
+            "text": "35%",
+            "top": 3108.34375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams.228 names.",
+            "top": 4736.3125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 5045.171875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 5261.78125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 5478.390625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 5695
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 5933.296875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 6171.59375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 6388.203125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 6604.8125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 6864.796875
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 7081.40625
+          },
+          {
+            "level": "H3",
+            "text": "Current league wire.",
+            "top": 7461.453125
+          },
+          {
+            "level": "H2",
+            "text": "326.0 /251.5",
+            "top": 7915.546875
+          },
+          {
+            "level": "H3",
+            "text": "Two dated editions.",
+            "top": 8284.65625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 30144,
+        "textCharacters": 6288,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 429.03125
+          },
+          {
+            "level": "H2",
+            "text": "Names behindthe matchup.",
+            "top": 1896.3125
+          },
+          {
+            "level": "H2",
+            "text": "From the weekly notebook",
+            "top": 3781.875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 4325.390625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 5988.609375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 7281.703125
+          },
+          {
+            "level": "H3",
+            "text": "Lonzo hits the wire.",
+            "top": 8345.765625
+          },
+          {
+            "level": "H2",
+            "text": "35%",
+            "top": 9700.671875
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams.228 names.",
+            "top": 15276.125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 16337.515625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 16957.90625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 17621.6875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 18401.8125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 19022.203125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 19758.9375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 20422.71875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 21043.109375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 21923.84375
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 22617.1875
+          },
+          {
+            "level": "H3",
+            "text": "Current league wire.",
+            "top": 23825.875
+          },
+          {
+            "level": "H2",
+            "text": "326.0 /251.5",
+            "top": 25220.5
+          },
+          {
+            "level": "H3",
+            "text": "Two dated editions.",
+            "top": 26140.359375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 10823,
+        "textCharacters": 6288,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 175.15625
+          },
+          {
+            "level": "H2",
+            "text": "Names behindthe matchup.",
+            "top": 755.3125
+          },
+          {
+            "level": "H2",
+            "text": "From the weekly notebook",
+            "top": 1422.921875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 1584.359375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 2121.640625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 2483.265625
+          },
+          {
+            "level": "H3",
+            "text": "Lonzo hits the wire.",
+            "top": 2838.109375
+          },
+          {
+            "level": "H2",
+            "text": "35%",
+            "top": 3283.640625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams.228 names.",
+            "top": 5119.484375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 5482.359375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 5720.65625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 5980.640625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 6269.59375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 6507.890625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 6767.875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 7027.859375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 7266.15625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 7569.515625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 7807.8125
+          },
+          {
+            "level": "H3",
+            "text": "Current league wire.",
+            "top": 8231.234375
+          },
+          {
+            "level": "H2",
+            "text": "326.0 /251.5",
+            "top": 8734.921875
+          },
+          {
+            "level": "H3",
+            "text": "Two dated editions.",
+            "top": 9125.203125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 36817,
+        "textCharacters": 6288,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Reaves Dropper",
+            "top": 469.828125
+          },
+          {
+            "level": "H2",
+            "text": "Names behindthe matchup.",
+            "top": 2411.84375
+          },
+          {
+            "level": "H2",
+            "text": "From the weekly notebook",
+            "top": 4771.34375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 5314.859375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 7349.671875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 8819.9375
+          },
+          {
+            "level": "H3",
+            "text": "Lonzo hits the wire.",
+            "top": 10069.96875
+          },
+          {
+            "level": "H2",
+            "text": "35%",
+            "top": 11701.0625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams.228 names.",
+            "top": 18053.265625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 19478.46875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 20301.984375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 21241.84375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 22225.09375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 23048.609375
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 24075.25
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 24869.203125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 25619.765625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 26717.453125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 27497.578125
+          },
+          {
+            "level": "H3",
+            "text": "Current league wire.",
+            "top": 29126.34375
+          },
+          {
+            "level": "H2",
+            "text": "326.0 /251.5",
+            "top": 30746.546875
+          },
+          {
+            "level": "H3",
+            "text": "Two dated editions.",
+            "top": 31867.859375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

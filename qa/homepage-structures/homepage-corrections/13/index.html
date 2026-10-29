@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex">
+  <title>GOAT Hoopers — Varsity folio</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#folio">Skip to the folio</a>
+  <header class="masthead" id="cover">
+    <a class="brand" href="/" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-white.svg" alt="GOAT Hoopers"></a>
+    <p class="concept"><strong>Synthetic concept</strong><span>Offline league edition</span></p>
+    <div class="edition-tools"><span id="edition-name"></span><a id="compare" href="?view=public">Public edition</a><a href="/stocks#player-board">Stocks</a></div>
+  </header>
+  <nav class="contents" aria-label="Folio contents"><span>Open programme</span><a href="#week">This week</a><a href="#club">Club desk</a><a href="#league">The league</a><a href="#stories">Dated stories</a><a href="#next">Next play</a></nav>
+  <main id="folio" tabindex="-1" aria-label="Varsity folio">
+    <h1 class="sr-only">GOAT Hoopers Varsity folio</h1>
+    <p class="edition-line">Nov 12, 2026 fixture; not today (Oct 29, 2026).</p>
+    <div id="leaves"></div>
+  </main>
+  <footer><a class="end-title" href="#cover">Back to the cover</a><p>GOAT Hoopers. Ten friends. One league.</p><p class="small">Offline design fixture; no live providers, authentication or model generation. Switching editions compares local fixtures. Existing destination applications are separate.</p><div class="link-line"><a href="/weekly">Weekly archive</a><a href="/history">League history</a><a href="/teams">All teams</a></div></footer>
+  <p id="announcer" class="sr-only" role="status" aria-live="polite"></p>
+  <noscript><p>This local folio needs JavaScript to read its supplied offline fixture.</p></noscript>
+  <script type="module" src="./folio.js"></script>
+</body>
+</html>

@@ -1,0 +1,2585 @@
+{
+  "id": "02",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/02/app.js",
+      "bytes": 21151,
+      "sha256": "af5f39fc459474ba8bc217f8f693c1b996e92cb2607cccfeae2c47a2ee0e686f"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/02/index.html",
+      "bytes": 2565,
+      "sha256": "f31401c6d5119129ebe86481c2f7d8ca9cb06f91bb212db522a7a1a0ef485296"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/02/style.css",
+      "bytes": 20730,
+      "sha256": "2a8c3a0060c82c1c4fbddbb5e567eb055c83d17690fc15da52232a075bb2189e"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/02/review/member-desktop-full.jpg",
+        "bytes": 840123,
+        "sha256": "94220d67f7d66ed71f3d72be8748aec1da1c5710993cdf7dd696dbda37a7ba9e",
+        "width": 1440,
+        "height": 8512,
+        "quality": 87,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1312,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/member-desktop-top.jpg",
+          "bytes": 112648,
+          "sha256": "720272d50eed03bce85bf0f77de1944a6888112c33a459a1bada1d53c142a616",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3756,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/member-desktop-middle.jpg",
+          "bytes": 93376,
+          "sha256": "aa51880605bd336b87eb95863846e9b0090e68b54dfaa934d13c12fc67384252",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 7512,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/member-desktop-bottom.jpg",
+          "bytes": 83949,
+          "sha256": "efca8853d562960b972a783b6c31d3f449ce3cfa587a4244eeaa5f53f973d7e8",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Read the floor.",
+          "top": 113.6875
+        },
+        {
+          "level": "H2",
+          "text": "The week, across the floor.",
+          "top": 1170.171875
+        },
+        {
+          "level": "H3",
+          "text": "Saved AI slate",
+          "top": 1356.5625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper vs Ware the Hoes At?",
+          "top": 1528.84375
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back vs The Fun Guys",
+          "top": 1781.390625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+          "top": 1781.390625
+        },
+        {
+          "level": "H3",
+          "text": "papichooter vs NeuralNets",
+          "top": 2055.625
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team vs T Halibooty",
+          "top": 2055.625
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 2501.859375
+        },
+        {
+          "level": "H3",
+          "text": "Highest modeled values",
+          "top": 2861.9375
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch",
+          "top": 3194.1875
+        },
+        {
+          "level": "H3",
+          "text": "Best / rough completed week",
+          "top": 3194.1875
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 3839.21875
+        },
+        {
+          "level": "H2",
+          "text": "The current order.",
+          "top": 2501.859375
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 4159.671875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 4330.953125
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 4741.109375
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 4558.3125
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 4978.765625
+        },
+        {
+          "level": "H3",
+          "text": "Around that edition",
+          "top": 5410.53125
+        },
+        {
+          "level": "H2",
+          "text": "Moves at the margin.",
+          "top": 5704.40625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 5842
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 5842
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 5842
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One league.",
+          "top": 6215.34375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 6453.734375
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 6453.734375
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 6453.734375
+        },
+        {
+          "level": "H2",
+          "text": "Keep the receipts.",
+          "top": 7758.671875
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 7758.671875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 8018.328125
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/02/review/member-phone-full.jpg",
+        "bytes": 846311,
+        "sha256": "dbb0f82aef4c20b6f7582168fbc7d46f54614d0a87af68d05f4665df890bc1dd",
+        "width": 390,
+        "height": 16218,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 14400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 16200,
+            "height": 18,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/member-phone-top.jpg",
+          "bytes": 48748,
+          "sha256": "62c96b43cf11992fadcbd8b608ccc0b375fa9a7f7cc520464d9a407ba61c3e73",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 7687,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/member-phone-middle.jpg",
+          "bytes": 31901,
+          "sha256": "49fd47d121dfa6cd164e21788b3407b3b40535a546fed366a81553f450a084a5",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 15374,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/member-phone-bottom.jpg",
+          "bytes": 42403,
+          "sha256": "da9b4ac3c366c09e9492fad7ab9cf32f48e8d8f95d7f9ece773debab9af8eb7f",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Read the floor.",
+          "top": 157.6875
+        },
+        {
+          "level": "H2",
+          "text": "The week, across the floor.",
+          "top": 1589.96875
+        },
+        {
+          "level": "H3",
+          "text": "Saved AI slate",
+          "top": 1910.34375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper vs Ware the Hoes At?",
+          "top": 2113.109375
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back vs The Fun Guys",
+          "top": 2582.5
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+          "top": 3003.90625
+        },
+        {
+          "level": "H3",
+          "text": "papichooter vs NeuralNets",
+          "top": 3425.3125
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team vs T Halibooty",
+          "top": 3846.71875
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 4392.125
+        },
+        {
+          "level": "H3",
+          "text": "Highest modeled values",
+          "top": 4759.15625
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch",
+          "top": 5237.796875
+        },
+        {
+          "level": "H3",
+          "text": "Best / rough completed week",
+          "top": 5682.390625
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 6497.546875
+        },
+        {
+          "level": "H2",
+          "text": "The current order.",
+          "top": 6903.0625
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 8697.46875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 8881.046875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 9379.1875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 9919.234375
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 10454.484375
+        },
+        {
+          "level": "H3",
+          "text": "Around that edition",
+          "top": 10886.25
+        },
+        {
+          "level": "H2",
+          "text": "Moves at the margin.",
+          "top": 11414.6875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 11564.578125
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 11756.921875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 11949.265625
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One league.",
+          "top": 12407.40625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 12557.296875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 12828.46875
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 13099.640625
+        },
+        {
+          "level": "H2",
+          "text": "Keep the receipts.",
+          "top": 15043.46875
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 15363.046875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 15622.703125
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/02/review/public-desktop-full.jpg",
+        "bytes": 841618,
+        "sha256": "9c3db0b3b4afe5d117983ed910abece6699744e8ee96a4a87fe04d4595dd3e07",
+        "width": 1440,
+        "height": 7955,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 755,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/public-desktop-top.jpg",
+          "bytes": 113000,
+          "sha256": "be4ce006c10deeee7f6a6290bb46f6b9b9cd608afce2446d16a197574853463b",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3477,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/public-desktop-middle.jpg",
+          "bytes": 98628,
+          "sha256": "f7b4383dea2d09eccc4d61a605cceb314f317b2a92c8e5599fe8e66dd4e5d590",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 6955,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/public-desktop-bottom.jpg",
+          "bytes": 82650,
+          "sha256": "b5c3b8068a12abad847b1b67b1e677784ca29f44b1c3644a0a642dc93266eba4",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Read the floor.",
+          "top": 113.6875
+        },
+        {
+          "level": "H2",
+          "text": "The week, across the floor.",
+          "top": 1170.171875
+        },
+        {
+          "level": "H3",
+          "text": "Saved AI slate",
+          "top": 1356.5625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper vs Ware the Hoes At?",
+          "top": 1528.84375
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back vs The Fun Guys",
+          "top": 1781.390625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+          "top": 1781.390625
+        },
+        {
+          "level": "H3",
+          "text": "papichooter vs NeuralNets",
+          "top": 2055.625
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team vs T Halibooty",
+          "top": 2055.625
+        },
+        {
+          "level": "H2",
+          "text": "The names behind the teams.",
+          "top": 2501.859375
+        },
+        {
+          "level": "H2",
+          "text": "The current order.",
+          "top": 2501.859375
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 3603.453125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 3774.734375
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 4184.890625
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 4002.09375
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 4422.546875
+        },
+        {
+          "level": "H3",
+          "text": "Around that edition",
+          "top": 4854.3125
+        },
+        {
+          "level": "H2",
+          "text": "Moves at the margin.",
+          "top": 5148.1875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 5285.78125
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 5285.78125
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 5285.78125
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One league.",
+          "top": 5659.125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 5897.515625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 5897.515625
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 5897.515625
+        },
+        {
+          "level": "H2",
+          "text": "Keep the receipts.",
+          "top": 7202.453125
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 7202.453125
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 7462.109375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/02/review/public-phone-full.jpg",
+        "bytes": 744713,
+        "sha256": "b64e735656034e2c48e6cfb6a07730d4d53d12db8b1b64bc1e251a6d8539a227",
+        "width": 390,
+        "height": 14298,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 1698,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/public-phone-top.jpg",
+          "bytes": 48627,
+          "sha256": "ef4d6c9022c824a2e1fe91bb11e3e5e312e4a5613d8552bf99880e82b1f73551",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 6727,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/public-phone-middle.jpg",
+          "bytes": 54405,
+          "sha256": "08a96c4bdae00392f88ccecda58aafc8991a3bf128d1602e66d7f5eab3d929b5",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 13454,
+          "path": "qa/homepage-structures/homepage-corrections/02/review/public-phone-bottom.jpg",
+          "bytes": 42842,
+          "sha256": "f88ac1fda8c7b63851ff9644e961cfe69d3568d2bccd0899d81e264637d155a1",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Read the floor.",
+          "top": 157.6875
+        },
+        {
+          "level": "H2",
+          "text": "The week, across the floor.",
+          "top": 1589.96875
+        },
+        {
+          "level": "H3",
+          "text": "Saved AI slate",
+          "top": 1910.34375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper vs Ware the Hoes At?",
+          "top": 2113.109375
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back vs The Fun Guys",
+          "top": 2582.5
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+          "top": 3003.90625
+        },
+        {
+          "level": "H3",
+          "text": "papichooter vs NeuralNets",
+          "top": 3425.3125
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team vs T Halibooty",
+          "top": 3846.71875
+        },
+        {
+          "level": "H2",
+          "text": "The names behind the teams.",
+          "top": 4392.125
+        },
+        {
+          "level": "H2",
+          "text": "The current order.",
+          "top": 5057.75
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 6829.46875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 7013.046875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 7511.1875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 8051.234375
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 8586.484375
+        },
+        {
+          "level": "H3",
+          "text": "Around that edition",
+          "top": 9018.25
+        },
+        {
+          "level": "H2",
+          "text": "Moves at the margin.",
+          "top": 9546.6875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 9696.578125
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 9888.921875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 10081.265625
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One league.",
+          "top": 10539.40625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 10689.296875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 10960.46875
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 11231.640625
+        },
+        {
+          "level": "H2",
+          "text": "Keep the receipts.",
+          "top": 13175.46875
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 13495.046875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 13754.703125
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 8512,
+        "textCharacters": 9100,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Read the floor.",
+            "top": 113.6875
+          },
+          {
+            "level": "H2",
+            "text": "The week, across the floor.",
+            "top": 1170.171875
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI slate",
+            "top": 1356.5625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper vs Ware the Hoes At?",
+            "top": 1528.84375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back vs The Fun Guys",
+            "top": 1781.390625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+            "top": 1781.390625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter vs NeuralNets",
+            "top": 2055.625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team vs T Halibooty",
+            "top": 2055.625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2501.859375
+          },
+          {
+            "level": "H3",
+            "text": "Highest modeled values",
+            "top": 2861.9375
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 3194.1875
+          },
+          {
+            "level": "H3",
+            "text": "Best / rough completed week",
+            "top": 3194.1875
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 3839.21875
+          },
+          {
+            "level": "H2",
+            "text": "The current order.",
+            "top": 2501.859375
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 4159.671875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 4330.953125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 4741.109375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 4558.3125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 4978.765625
+          },
+          {
+            "level": "H3",
+            "text": "Around that edition",
+            "top": 5410.53125
+          },
+          {
+            "level": "H2",
+            "text": "Moves at the margin.",
+            "top": 5704.40625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 5842
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 5842
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 5842
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 6215.34375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 6453.734375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 6453.734375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 6453.734375
+          },
+          {
+            "level": "H2",
+            "text": "Keep the receipts.",
+            "top": 7758.671875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 7758.671875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 8018.328125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 16218,
+        "textCharacters": 9086,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Read the floor.",
+            "top": 157.6875
+          },
+          {
+            "level": "H2",
+            "text": "The week, across the floor.",
+            "top": 1589.96875
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI slate",
+            "top": 1910.34375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper vs Ware the Hoes At?",
+            "top": 2113.109375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back vs The Fun Guys",
+            "top": 2582.5
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+            "top": 3003.90625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter vs NeuralNets",
+            "top": 3425.3125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team vs T Halibooty",
+            "top": 3846.71875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 4392.125
+          },
+          {
+            "level": "H3",
+            "text": "Highest modeled values",
+            "top": 4759.15625
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 5237.796875
+          },
+          {
+            "level": "H3",
+            "text": "Best / rough completed week",
+            "top": 5682.390625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 6497.546875
+          },
+          {
+            "level": "H2",
+            "text": "The current order.",
+            "top": 6903.0625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 8697.46875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 8881.046875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 9379.1875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 9919.234375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 10454.484375
+          },
+          {
+            "level": "H3",
+            "text": "Around that edition",
+            "top": 10886.25
+          },
+          {
+            "level": "H2",
+            "text": "Moves at the margin.",
+            "top": 11414.6875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 11564.578125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 11756.921875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 11949.265625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 12407.40625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 12557.296875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 12828.46875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 13099.640625
+          },
+          {
+            "level": "H2",
+            "text": "Keep the receipts.",
+            "top": 15043.46875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 15363.046875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 15622.703125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 43872,
+        "textCharacters": 9086,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Read the floor.",
+            "top": 337.765625
+          },
+          {
+            "level": "H2",
+            "text": "The week, across the floor.",
+            "top": 4990.34375
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI slate",
+            "top": 6169.734375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper vs Ware the Hoes At?",
+            "top": 6760.265625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back vs The Fun Guys",
+            "top": 8112.53125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+            "top": 9386.1875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter vs NeuralNets",
+            "top": 10616.453125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team vs T Halibooty",
+            "top": 11789.125
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 13324.171875
+          },
+          {
+            "level": "H3",
+            "text": "Highest modeled values",
+            "top": 14550.890625
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 15806.9375
+          },
+          {
+            "level": "H3",
+            "text": "Best / rough completed week",
+            "top": 17006.171875
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 19226.234375
+          },
+          {
+            "level": "H2",
+            "text": "The current order.",
+            "top": 20421.6875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 24503.515625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 25177.3125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 26337.421875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 27748.78125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 29081.71875
+          },
+          {
+            "level": "H3",
+            "text": "Around that edition",
+            "top": 30290.078125
+          },
+          {
+            "level": "H2",
+            "text": "Moves at the margin.",
+            "top": 31621.265625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 32140.890625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 32711.609375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 33232.734375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 34336.21875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 34989.84375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 35599.1875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 36309.515625
+          },
+          {
+            "level": "H2",
+            "text": "Keep the receipts.",
+            "top": 40589.796875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 41429.59375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 42127.71875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 17243,
+        "textCharacters": 9086,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Read the floor.",
+            "top": 149.6875
+          },
+          {
+            "level": "H2",
+            "text": "The week, across the floor.",
+            "top": 1628.453125
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI slate",
+            "top": 2030.8125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper vs Ware the Hoes At?",
+            "top": 2255.265625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back vs The Fun Guys",
+            "top": 2749.453125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+            "top": 3199.65625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter vs NeuralNets",
+            "top": 3649.859375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team vs T Halibooty",
+            "top": 4071.265625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 4645.46875
+          },
+          {
+            "level": "H3",
+            "text": "Highest modeled values",
+            "top": 5058.984375
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 5559.3125
+          },
+          {
+            "level": "H3",
+            "text": "Best / rough completed week",
+            "top": 6068.96875
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 6992.5625
+          },
+          {
+            "level": "H2",
+            "text": "The current order.",
+            "top": 7447.671875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 9263.765625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 9493.828125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 10016.765625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 10620
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 11188.84375
+          },
+          {
+            "level": "H3",
+            "text": "Around that edition",
+            "top": 11620.609375
+          },
+          {
+            "level": "H2",
+            "text": "Moves at the margin.",
+            "top": 12198.640625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 12348.53125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 12565.671875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 12782.8125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 13240.953125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 13415.640625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 13686.8125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 13979.671875
+          },
+          {
+            "level": "H2",
+            "text": "Keep the receipts.",
+            "top": 15945.1875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 16289.5625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 16570.90625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 51412,
+        "textCharacters": 9086,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Read the floor.",
+            "top": 413.96875
+          },
+          {
+            "level": "H2",
+            "text": "The week, across the floor.",
+            "top": 5898.28125
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI slate",
+            "top": 7127.265625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper vs Ware the Hoes At?",
+            "top": 7868.375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back vs The Fun Guys",
+            "top": 9456.203125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+            "top": 10923.828125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter vs NeuralNets",
+            "top": 12333.859375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team vs T Halibooty",
+            "top": 13642.90625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 15314.328125
+          },
+          {
+            "level": "H3",
+            "text": "Highest modeled values",
+            "top": 16909.390625
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 18415.203125
+          },
+          {
+            "level": "H3",
+            "text": "Best / rough completed week",
+            "top": 19721.625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 22433.1875
+          },
+          {
+            "level": "H2",
+            "text": "The current order.",
+            "top": 23816.40625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 28533.375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 29349.75
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 30822.21875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 32576.765625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 34073.46875
+          },
+          {
+            "level": "H3",
+            "text": "Around that edition",
+            "top": 35469.390625
+          },
+          {
+            "level": "H2",
+            "text": "Moves at the margin.",
+            "top": 37222.40625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 37912.25
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 38627.34375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 39284.84375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 40582.09375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 41455.53125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 42209.25
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 43006.359375
+          },
+          {
+            "level": "H2",
+            "text": "Keep the receipts.",
+            "top": 47739.15625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 48721.53125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 49520.640625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 7955,
+        "textCharacters": 7752,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Read the floor.",
+            "top": 113.6875
+          },
+          {
+            "level": "H2",
+            "text": "The week, across the floor.",
+            "top": 1170.171875
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI slate",
+            "top": 1356.5625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper vs Ware the Hoes At?",
+            "top": 1528.84375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back vs The Fun Guys",
+            "top": 1781.390625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+            "top": 1781.390625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter vs NeuralNets",
+            "top": 2055.625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team vs T Halibooty",
+            "top": 2055.625
+          },
+          {
+            "level": "H2",
+            "text": "The names behind the teams.",
+            "top": 2501.859375
+          },
+          {
+            "level": "H2",
+            "text": "The current order.",
+            "top": 2501.859375
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 3603.453125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 3774.734375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 4184.890625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 4002.09375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 4422.546875
+          },
+          {
+            "level": "H3",
+            "text": "Around that edition",
+            "top": 4854.3125
+          },
+          {
+            "level": "H2",
+            "text": "Moves at the margin.",
+            "top": 5148.1875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 5285.78125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 5285.78125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 5285.78125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 5659.125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 5897.515625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 5897.515625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 5897.515625
+          },
+          {
+            "level": "H2",
+            "text": "Keep the receipts.",
+            "top": 7202.453125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 7202.453125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 7462.109375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 14298,
+        "textCharacters": 7738,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Read the floor.",
+            "top": 157.6875
+          },
+          {
+            "level": "H2",
+            "text": "The week, across the floor.",
+            "top": 1589.96875
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI slate",
+            "top": 1910.34375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper vs Ware the Hoes At?",
+            "top": 2113.109375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back vs The Fun Guys",
+            "top": 2582.5
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+            "top": 3003.90625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter vs NeuralNets",
+            "top": 3425.3125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team vs T Halibooty",
+            "top": 3846.71875
+          },
+          {
+            "level": "H2",
+            "text": "The names behind the teams.",
+            "top": 4392.125
+          },
+          {
+            "level": "H2",
+            "text": "The current order.",
+            "top": 5057.75
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 6829.46875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 7013.046875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 7511.1875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 8051.234375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 8586.484375
+          },
+          {
+            "level": "H3",
+            "text": "Around that edition",
+            "top": 9018.25
+          },
+          {
+            "level": "H2",
+            "text": "Moves at the margin.",
+            "top": 9546.6875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 9696.578125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 9888.921875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 10081.265625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 10539.40625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 10689.296875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 10960.46875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 11231.640625
+          },
+          {
+            "level": "H2",
+            "text": "Keep the receipts.",
+            "top": 13175.46875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 13495.046875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 13754.703125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 38722,
+        "textCharacters": 7738,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Read the floor.",
+            "top": 403.359375
+          },
+          {
+            "level": "H2",
+            "text": "The week, across the floor.",
+            "top": 5058.921875
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI slate",
+            "top": 6238.3125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper vs Ware the Hoes At?",
+            "top": 6828.84375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back vs The Fun Guys",
+            "top": 8181.109375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+            "top": 9454.765625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter vs NeuralNets",
+            "top": 10685.03125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team vs T Halibooty",
+            "top": 11857.703125
+          },
+          {
+            "level": "H2",
+            "text": "The names behind the teams.",
+            "top": 13392.75
+          },
+          {
+            "level": "H2",
+            "text": "The current order.",
+            "top": 15435.84375
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 19473.28125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 20147.078125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 21307.1875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 22718.546875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 24051.484375
+          },
+          {
+            "level": "H3",
+            "text": "Around that edition",
+            "top": 25259.84375
+          },
+          {
+            "level": "H2",
+            "text": "Moves at the margin.",
+            "top": 26591.03125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 27110.65625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 27681.375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 28202.5
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 29305.984375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 29959.609375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 30568.953125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 31279.28125
+          },
+          {
+            "level": "H2",
+            "text": "Keep the receipts.",
+            "top": 35559.5625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 36399.359375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 37097.484375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 15089,
+        "textCharacters": 7738,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Read the floor.",
+            "top": 149.6875
+          },
+          {
+            "level": "H2",
+            "text": "The week, across the floor.",
+            "top": 1625.640625
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI slate",
+            "top": 2028
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper vs Ware the Hoes At?",
+            "top": 2252.453125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back vs The Fun Guys",
+            "top": 2746.640625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+            "top": 3196.84375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter vs NeuralNets",
+            "top": 3647.046875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team vs T Halibooty",
+            "top": 4068.453125
+          },
+          {
+            "level": "H2",
+            "text": "The names behind the teams.",
+            "top": 4642.65625
+          },
+          {
+            "level": "H2",
+            "text": "The current order.",
+            "top": 5368.578125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 7161.984375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 7392.046875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 7914.984375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 8518.21875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 9087.0625
+          },
+          {
+            "level": "H3",
+            "text": "Around that edition",
+            "top": 9518.828125
+          },
+          {
+            "level": "H2",
+            "text": "Moves at the margin.",
+            "top": 10096.859375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 10246.75
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 10463.890625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 10681.03125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 11139.171875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 11313.859375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 11585.03125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 11877.890625
+          },
+          {
+            "level": "H2",
+            "text": "Keep the receipts.",
+            "top": 13843.40625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 14187.78125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 14469.125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 45184,
+        "textCharacters": 7738,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Read the floor.",
+            "top": 413.96875
+          },
+          {
+            "level": "H2",
+            "text": "The week, across the floor.",
+            "top": 5909.046875
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI slate",
+            "top": 7138.03125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper vs Ware the Hoes At?",
+            "top": 7879.140625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back vs The Fun Guys",
+            "top": 9466.96875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster vs Huff n’ Puff",
+            "top": 10934.59375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter vs NeuralNets",
+            "top": 12344.625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team vs T Halibooty",
+            "top": 13653.671875
+          },
+          {
+            "level": "H2",
+            "text": "The names behind the teams.",
+            "top": 15325.09375
+          },
+          {
+            "level": "H2",
+            "text": "The current order.",
+            "top": 17752.53125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 22425.109375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 23241.484375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 24713.953125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 26468.5
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 27965.203125
+          },
+          {
+            "level": "H3",
+            "text": "Around that edition",
+            "top": 29361.125
+          },
+          {
+            "level": "H2",
+            "text": "Moves at the margin.",
+            "top": 31114.140625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 31803.984375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 32519.078125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 33176.578125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 34473.828125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 35347.265625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 36100.984375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 36898.09375
+          },
+          {
+            "level": "H2",
+            "text": "Keep the receipts.",
+            "top": 41630.890625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 42613.265625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 43412.375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

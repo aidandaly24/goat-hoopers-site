@@ -1,0 +1,2030 @@
+{
+  "id": "18",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/18/index.html",
+      "bytes": 5503,
+      "sha256": "724c7d6cd79cbc69c6603dbc2201f1e62b609c0fac1141b654116c2575b31264"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/18/lab.css",
+      "bytes": 29752,
+      "sha256": "eca7048823dcbd48322abbbe2d786927df9a93227f518a0da746b5118da12a69"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/18/lab.js",
+      "bytes": 35256,
+      "sha256": "101bed92a62af6db8a319e8fe0bf524fd9567eb98be400f465370185dd75d392"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/18/review/member-desktop-full.jpg",
+        "bytes": 828997,
+        "sha256": "bfb28e4cd70f77765c24d56dae0d1d5d60bf7c542d5fd7852957f0655c4565b5",
+        "width": 1440,
+        "height": 7751,
+        "quality": 84,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 551,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/member-desktop-top.jpg",
+          "bytes": 133919,
+          "sha256": "e23df825f7fed5dfce9e74e5abc37231e2cd2b82ee78c78df1c59d90e1960e7a",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3375,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/member-desktop-middle.jpg",
+          "bytes": 123781,
+          "sha256": "0aac3ef144097cc984fd6f701b6cdcebd8256a2e3d55c740f275d65e863f86cb",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 6751,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/member-desktop-bottom.jpg",
+          "bytes": 144203,
+          "sha256": "a8bdadd44c8185be2bdcabb847e69aca5bb11154557d2ef56ef87d9849b7500c",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Every claimneeds a source.",
+          "top": 150.796875
+        },
+        {
+          "level": "H2",
+          "text": "This week, under review.",
+          "top": 413.953125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 564.34375
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 564.34375
+        },
+        {
+          "level": "H3",
+          "text": "Saved model opinion",
+          "top": 515.546875
+        },
+        {
+          "level": "H3",
+          "text": "The rest of the Week 3 slate",
+          "top": 939.78125
+        },
+        {
+          "level": "H2",
+          "text": "Your roster notebook.",
+          "top": 1708.703125
+        },
+        {
+          "level": "H3",
+          "text": "Modeled roster value",
+          "top": 1788.296875
+        },
+        {
+          "level": "H3",
+          "text": "Completed points / small cohort",
+          "top": 1788.296875
+        },
+        {
+          "level": "H3",
+          "text": "Form watch / EMA FP/G",
+          "top": 2403.671875
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 1788.296875
+        },
+        {
+          "level": "H2",
+          "text": "Three takes. Different evidence.",
+          "top": 2818.875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 3016.46875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 3016.46875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 3016.46875
+        },
+        {
+          "level": "H2",
+          "text": "Player comparison",
+          "top": 3491.296875
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One league.",
+          "top": 4779.796875
+        },
+        {
+          "level": "H3",
+          "text": "Latest league moves",
+          "top": 4859.390625
+        },
+        {
+          "level": "H3",
+          "text": "Evidence gaps",
+          "top": 5438.421875
+        },
+        {
+          "level": "H2",
+          "text": "Evidence has a date.",
+          "top": 6509.65625
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 6646.046875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 6646.046875
+        },
+        {
+          "level": "H3",
+          "text": "From the October wire",
+          "top": 7080.25
+        },
+        {
+          "level": "H2",
+          "text": "Take the next question deeper.",
+          "top": 7351.109375
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/18/review/member-phone-full.jpg",
+        "bytes": 830650,
+        "sha256": "e7b7573c431ee82154b8a3db6e38b71595c2a9704abedb70daa3769dafb15e3f",
+        "width": 390,
+        "height": 15337,
+        "quality": 87,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 14400,
+            "height": 937,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/member-phone-top.jpg",
+          "bytes": 55892,
+          "sha256": "42746e92a1380601c4b483ffc77c874afa5bf16544acf1667702c4c6b66af9e9",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 7246,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/member-phone-middle.jpg",
+          "bytes": 43825,
+          "sha256": "817c4f464c31dc321ab5970be9e4272a1d83ad43b94e01f2241ef20e2cab13e5",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 14493,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/member-phone-bottom.jpg",
+          "bytes": 46462,
+          "sha256": "817b54774ccc62dbe2acdba9b9fe6dbabfeb7833b40a01f005be1ae49e45dde9",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Every claimneeds a source.",
+          "top": 140.796875
+        },
+        {
+          "level": "H2",
+          "text": "This week, under review.",
+          "top": 521.1875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 705.40625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 705.40625
+        },
+        {
+          "level": "H3",
+          "text": "Saved model opinion",
+          "top": 1143.0625
+        },
+        {
+          "level": "H3",
+          "text": "The rest of the Week 3 slate",
+          "top": 1587.09375
+        },
+        {
+          "level": "H2",
+          "text": "Your roster notebook.",
+          "top": 2993.015625
+        },
+        {
+          "level": "H3",
+          "text": "Modeled roster value",
+          "top": 3102.4375
+        },
+        {
+          "level": "H3",
+          "text": "Completed points / small cohort",
+          "top": 3721.015625
+        },
+        {
+          "level": "H3",
+          "text": "Form watch / EMA FP/G",
+          "top": 4635.390625
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 5009.390625
+        },
+        {
+          "level": "H2",
+          "text": "Three takes. Different evidence.",
+          "top": 5457.390625
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 5737.109375
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 6232.6875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 6728.265625
+        },
+        {
+          "level": "H2",
+          "text": "Player comparison",
+          "top": 7151.265625
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One league.",
+          "top": 9983.609375
+        },
+        {
+          "level": "H3",
+          "text": "Latest league moves",
+          "top": 11776.484375
+        },
+        {
+          "level": "H3",
+          "text": "Evidence gaps",
+          "top": 12380.3125
+        },
+        {
+          "level": "H2",
+          "text": "Evidence has a date.",
+          "top": 12651.96875
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 12818.1875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 13384.359375
+        },
+        {
+          "level": "H3",
+          "text": "From the October wire",
+          "top": 13886.375
+        },
+        {
+          "level": "H2",
+          "text": "Take the next question deeper.",
+          "top": 14346.8125
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/18/review/public-desktop-full.jpg",
+        "bytes": 837085,
+        "sha256": "eb3a52dcb1f6c4c6a0fef68573b1af81359445b8ee0c31beac0639c6738c925a",
+        "width": 1440,
+        "height": 6565,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 6565,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/public-desktop-top.jpg",
+          "bytes": 133968,
+          "sha256": "110324db6c78fd09504b0198362834bc54745a7ed6a5d58922181cd18f1bc5e3",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2782,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/public-desktop-middle.jpg",
+          "bytes": 123606,
+          "sha256": "85214583c780cbd09b45585ed53cedf44c7ce9b9f1353bf69e7f402987a4ef9c",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 5565,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/public-desktop-bottom.jpg",
+          "bytes": 144397,
+          "sha256": "b0acdefd17c6e6451882767c9e2b5449c4c39d743c6b03bf62d0edb0abd2d27e",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Every claimneeds a source.",
+          "top": 150.796875
+        },
+        {
+          "level": "H2",
+          "text": "This week, under review.",
+          "top": 413.953125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 564.34375
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 564.34375
+        },
+        {
+          "level": "H3",
+          "text": "Saved model opinion",
+          "top": 515.546875
+        },
+        {
+          "level": "H3",
+          "text": "The rest of the Week 3 slate",
+          "top": 939.78125
+        },
+        {
+          "level": "H2",
+          "text": "Three takes. Different evidence.",
+          "top": 1682.703125
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 1880.296875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 1880.296875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 1880.296875
+        },
+        {
+          "level": "H2",
+          "text": "Player comparison",
+          "top": 2355.125
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One league.",
+          "top": 3594.03125
+        },
+        {
+          "level": "H3",
+          "text": "Latest league moves",
+          "top": 3673.625
+        },
+        {
+          "level": "H3",
+          "text": "Evidence gaps",
+          "top": 4252.65625
+        },
+        {
+          "level": "H2",
+          "text": "Evidence has a date.",
+          "top": 5323.890625
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 5460.28125
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 5460.28125
+        },
+        {
+          "level": "H3",
+          "text": "From the October wire",
+          "top": 5894.484375
+        },
+        {
+          "level": "H2",
+          "text": "Take the next question deeper.",
+          "top": 6165.34375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/18/review/public-phone-full.jpg",
+        "bytes": 760351,
+        "sha256": "05900494fa29bc57a90279707117455cf5f53d708e6b42b5947005ffe486f253",
+        "width": 390,
+        "height": 12524,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1724,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/public-phone-top.jpg",
+          "bytes": 55356,
+          "sha256": "859fbffc028ba5b8e842d15dd39a8fbfd5907d383503e4e50d1a15c7cd82dcbd",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5840,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/public-phone-middle.jpg",
+          "bytes": 47932,
+          "sha256": "857c54a196867571a27c1d0a83c40b5b41e0f768679276988d11f9ece8a78eae",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 11680,
+          "path": "qa/homepage-structures/homepage-corrections/18/review/public-phone-bottom.jpg",
+          "bytes": 48059,
+          "sha256": "d5a43cccc532f52612279f9b318045d04cefcdcf45422a3400befd2d23e717d0",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Every claimneeds a source.",
+          "top": 140.796875
+        },
+        {
+          "level": "H2",
+          "text": "This week, under review.",
+          "top": 521.1875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 730.203125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 730.203125
+        },
+        {
+          "level": "H3",
+          "text": "Saved model opinion",
+          "top": 1143.0625
+        },
+        {
+          "level": "H3",
+          "text": "The rest of the Week 3 slate",
+          "top": 1587.09375
+        },
+        {
+          "level": "H2",
+          "text": "Three takes. Different evidence.",
+          "top": 2967.015625
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 3246.734375
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 3742.3125
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 4237.890625
+        },
+        {
+          "level": "H2",
+          "text": "Player comparison",
+          "top": 4660.890625
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One league.",
+          "top": 7170.09375
+        },
+        {
+          "level": "H3",
+          "text": "Latest league moves",
+          "top": 8962.96875
+        },
+        {
+          "level": "H3",
+          "text": "Evidence gaps",
+          "top": 9566.796875
+        },
+        {
+          "level": "H2",
+          "text": "Evidence has a date.",
+          "top": 9838.453125
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 10004.671875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 10570.84375
+        },
+        {
+          "level": "H3",
+          "text": "From the October wire",
+          "top": 11072.859375
+        },
+        {
+          "level": "H2",
+          "text": "Take the next question deeper.",
+          "top": 11533.296875
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 7751,
+        "textCharacters": 10604,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Every claimneeds a source.",
+            "top": 150.796875
+          },
+          {
+            "level": "H2",
+            "text": "This week, under review.",
+            "top": 413.953125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 564.34375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 564.34375
+          },
+          {
+            "level": "H3",
+            "text": "Saved model opinion",
+            "top": 515.546875
+          },
+          {
+            "level": "H3",
+            "text": "The rest of the Week 3 slate",
+            "top": 939.78125
+          },
+          {
+            "level": "H2",
+            "text": "Your roster notebook.",
+            "top": 1708.703125
+          },
+          {
+            "level": "H3",
+            "text": "Modeled roster value",
+            "top": 1788.296875
+          },
+          {
+            "level": "H3",
+            "text": "Completed points / small cohort",
+            "top": 1788.296875
+          },
+          {
+            "level": "H3",
+            "text": "Form watch / EMA FP/G",
+            "top": 2403.671875
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 1788.296875
+          },
+          {
+            "level": "H2",
+            "text": "Three takes. Different evidence.",
+            "top": 2818.875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 3016.46875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 3016.46875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 3016.46875
+          },
+          {
+            "level": "H2",
+            "text": "Player comparison",
+            "top": 3491.296875
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 4779.796875
+          },
+          {
+            "level": "H3",
+            "text": "Latest league moves",
+            "top": 4859.390625
+          },
+          {
+            "level": "H3",
+            "text": "Evidence gaps",
+            "top": 5438.421875
+          },
+          {
+            "level": "H2",
+            "text": "Evidence has a date.",
+            "top": 6509.65625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 6646.046875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 6646.046875
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 7080.25
+          },
+          {
+            "level": "H2",
+            "text": "Take the next question deeper.",
+            "top": 7351.109375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 15337,
+        "textCharacters": 10665,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Every claimneeds a source.",
+            "top": 140.796875
+          },
+          {
+            "level": "H2",
+            "text": "This week, under review.",
+            "top": 521.1875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 705.40625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 705.40625
+          },
+          {
+            "level": "H3",
+            "text": "Saved model opinion",
+            "top": 1143.0625
+          },
+          {
+            "level": "H3",
+            "text": "The rest of the Week 3 slate",
+            "top": 1587.09375
+          },
+          {
+            "level": "H2",
+            "text": "Your roster notebook.",
+            "top": 2993.015625
+          },
+          {
+            "level": "H3",
+            "text": "Modeled roster value",
+            "top": 3102.4375
+          },
+          {
+            "level": "H3",
+            "text": "Completed points / small cohort",
+            "top": 3721.015625
+          },
+          {
+            "level": "H3",
+            "text": "Form watch / EMA FP/G",
+            "top": 4635.390625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 5009.390625
+          },
+          {
+            "level": "H2",
+            "text": "Three takes. Different evidence.",
+            "top": 5457.390625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 5737.109375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 6232.6875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 6728.265625
+          },
+          {
+            "level": "H2",
+            "text": "Player comparison",
+            "top": 7151.265625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 9983.609375
+          },
+          {
+            "level": "H3",
+            "text": "Latest league moves",
+            "top": 11776.484375
+          },
+          {
+            "level": "H3",
+            "text": "Evidence gaps",
+            "top": 12380.3125
+          },
+          {
+            "level": "H2",
+            "text": "Evidence has a date.",
+            "top": 12651.96875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 12818.1875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 13384.359375
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 13886.375
+          },
+          {
+            "level": "H2",
+            "text": "Take the next question deeper.",
+            "top": 14346.8125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 55041,
+        "textCharacters": 10665,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Every claimneeds a source.",
+            "top": 473.84375
+          },
+          {
+            "level": "H2",
+            "text": "This week, under review.",
+            "top": 1559.375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2179.875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2179.875
+          },
+          {
+            "level": "H3",
+            "text": "Saved model opinion",
+            "top": 3943.9375
+          },
+          {
+            "level": "H3",
+            "text": "The rest of the Week 3 slate",
+            "top": 5404.984375
+          },
+          {
+            "level": "H2",
+            "text": "Your roster notebook.",
+            "top": 10087.640625
+          },
+          {
+            "level": "H3",
+            "text": "Modeled roster value",
+            "top": 10461.359375
+          },
+          {
+            "level": "H3",
+            "text": "Completed points / small cohort",
+            "top": 12323.9375
+          },
+          {
+            "level": "H3",
+            "text": "Form watch / EMA FP/G",
+            "top": 14648.734375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 16044.546875
+          },
+          {
+            "level": "H2",
+            "text": "Three takes. Different evidence.",
+            "top": 17299.984375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 18111.546875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 19814.640625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 21412.34375
+          },
+          {
+            "level": "H2",
+            "text": "Player comparison",
+            "top": 22710
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 31219.3125
+          },
+          {
+            "level": "H3",
+            "text": "Latest league moves",
+            "top": 43441.65625
+          },
+          {
+            "level": "H3",
+            "text": "Evidence gaps",
+            "top": 45393.5625
+          },
+          {
+            "level": "H2",
+            "text": "Evidence has a date.",
+            "top": 46232.4375
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 46818.9375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 48934.875
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 50693.40625
+          },
+          {
+            "level": "H2",
+            "text": "Take the next question deeper.",
+            "top": 52100.375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 17340,
+        "textCharacters": 10665,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Every claimneeds a source.",
+            "top": 164.390625
+          },
+          {
+            "level": "H2",
+            "text": "This week, under review.",
+            "top": 586.78125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 795.796875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 795.796875
+          },
+          {
+            "level": "H3",
+            "text": "Saved model opinion",
+            "top": 1355.921875
+          },
+          {
+            "level": "H3",
+            "text": "The rest of the Week 3 slate",
+            "top": 1824.75
+          },
+          {
+            "level": "H2",
+            "text": "Your roster notebook.",
+            "top": 3376.359375
+          },
+          {
+            "level": "H3",
+            "text": "Modeled roster value",
+            "top": 3485.78125
+          },
+          {
+            "level": "H3",
+            "text": "Completed points / small cohort",
+            "top": 4129.15625
+          },
+          {
+            "level": "H3",
+            "text": "Form watch / EMA FP/G",
+            "top": 5068.328125
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 5541.515625
+          },
+          {
+            "level": "H2",
+            "text": "Three takes. Different evidence.",
+            "top": 6039.109375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 6343.625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 6944.515625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 7492.71875
+          },
+          {
+            "level": "H2",
+            "text": "Player comparison",
+            "top": 7940.515625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 10970.03125
+          },
+          {
+            "level": "H3",
+            "text": "Latest league moves",
+            "top": 13407.625
+          },
+          {
+            "level": "H3",
+            "text": "Evidence gaps",
+            "top": 14061.046875
+          },
+          {
+            "level": "H2",
+            "text": "Evidence has a date.",
+            "top": 14357.5
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 14548.515625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 15238.671875
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 15790.28125
+          },
+          {
+            "level": "H2",
+            "text": "Take the next question deeper.",
+            "top": 16325.109375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 92705,
+        "textCharacters": 10665,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Every claimneeds a source.",
+            "top": 728.96875
+          },
+          {
+            "level": "H2",
+            "text": "This week, under review.",
+            "top": 2123.28125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2849.046875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2849.046875
+          },
+          {
+            "level": "H3",
+            "text": "Saved model opinion",
+            "top": 5189.359375
+          },
+          {
+            "level": "H3",
+            "text": "The rest of the Week 3 slate",
+            "top": 7208.09375
+          },
+          {
+            "level": "H2",
+            "text": "Your roster notebook.",
+            "top": 13221.9375
+          },
+          {
+            "level": "H3",
+            "text": "Modeled roster value",
+            "top": 13595.65625
+          },
+          {
+            "level": "H3",
+            "text": "Completed points / small cohort",
+            "top": 15993.453125
+          },
+          {
+            "level": "H3",
+            "text": "Form watch / EMA FP/G",
+            "top": 18969.046875
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 20668.5
+          },
+          {
+            "level": "H2",
+            "text": "Three takes. Different evidence.",
+            "top": 22171.90625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 23349.109375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 25306.375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 27275.921875
+          },
+          {
+            "level": "H2",
+            "text": "Player comparison",
+            "top": 28728.4375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 39717.515625
+          },
+          {
+            "level": "H3",
+            "text": "Latest league moves",
+            "top": 77982.65625
+          },
+          {
+            "level": "H3",
+            "text": "Evidence gaps",
+            "top": 80232.125
+          },
+          {
+            "level": "H2",
+            "text": "Evidence has a date.",
+            "top": 81219.78125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 81905.46875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 84814.265625
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 87303.265625
+          },
+          {
+            "level": "H2",
+            "text": "Take the next question deeper.",
+            "top": 89206.171875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 6565,
+        "textCharacters": 8467,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Every claimneeds a source.",
+            "top": 150.796875
+          },
+          {
+            "level": "H2",
+            "text": "This week, under review.",
+            "top": 413.953125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 564.34375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 564.34375
+          },
+          {
+            "level": "H3",
+            "text": "Saved model opinion",
+            "top": 515.546875
+          },
+          {
+            "level": "H3",
+            "text": "The rest of the Week 3 slate",
+            "top": 939.78125
+          },
+          {
+            "level": "H2",
+            "text": "Three takes. Different evidence.",
+            "top": 1682.703125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 1880.296875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 1880.296875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 1880.296875
+          },
+          {
+            "level": "H2",
+            "text": "Player comparison",
+            "top": 2355.125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 3594.03125
+          },
+          {
+            "level": "H3",
+            "text": "Latest league moves",
+            "top": 3673.625
+          },
+          {
+            "level": "H3",
+            "text": "Evidence gaps",
+            "top": 4252.65625
+          },
+          {
+            "level": "H2",
+            "text": "Evidence has a date.",
+            "top": 5323.890625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 5460.28125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 5460.28125
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 5894.484375
+          },
+          {
+            "level": "H2",
+            "text": "Take the next question deeper.",
+            "top": 6165.34375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 12524,
+        "textCharacters": 8520,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Every claimneeds a source.",
+            "top": 140.796875
+          },
+          {
+            "level": "H2",
+            "text": "This week, under review.",
+            "top": 521.1875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 730.203125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 730.203125
+          },
+          {
+            "level": "H3",
+            "text": "Saved model opinion",
+            "top": 1143.0625
+          },
+          {
+            "level": "H3",
+            "text": "The rest of the Week 3 slate",
+            "top": 1587.09375
+          },
+          {
+            "level": "H2",
+            "text": "Three takes. Different evidence.",
+            "top": 2967.015625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 3246.734375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 3742.3125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 4237.890625
+          },
+          {
+            "level": "H2",
+            "text": "Player comparison",
+            "top": 4660.890625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 7170.09375
+          },
+          {
+            "level": "H3",
+            "text": "Latest league moves",
+            "top": 8962.96875
+          },
+          {
+            "level": "H3",
+            "text": "Evidence gaps",
+            "top": 9566.796875
+          },
+          {
+            "level": "H2",
+            "text": "Evidence has a date.",
+            "top": 9838.453125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 10004.671875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 10570.84375
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 11072.859375
+          },
+          {
+            "level": "H2",
+            "text": "Take the next question deeper.",
+            "top": 11533.296875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 45756,
+        "textCharacters": 8520,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Every claimneeds a source.",
+            "top": 473.84375
+          },
+          {
+            "level": "H2",
+            "text": "This week, under review.",
+            "top": 1559.375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2179.875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2179.875
+          },
+          {
+            "level": "H3",
+            "text": "Saved model opinion",
+            "top": 3844.75
+          },
+          {
+            "level": "H3",
+            "text": "The rest of the Week 3 slate",
+            "top": 5305.796875
+          },
+          {
+            "level": "H2",
+            "text": "Three takes. Different evidence.",
+            "top": 9938.453125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 10750.015625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 12453.109375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 14050.8125
+          },
+          {
+            "level": "H2",
+            "text": "Player comparison",
+            "top": 15348.46875
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 22579.546875
+          },
+          {
+            "level": "H3",
+            "text": "Latest league moves",
+            "top": 34157.171875
+          },
+          {
+            "level": "H3",
+            "text": "Evidence gaps",
+            "top": 36109.078125
+          },
+          {
+            "level": "H2",
+            "text": "Evidence has a date.",
+            "top": 36947.953125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 37534.453125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 39650.390625
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 41408.921875
+          },
+          {
+            "level": "H2",
+            "text": "Take the next question deeper.",
+            "top": 42815.890625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 14236,
+        "textCharacters": 8520,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Every claimneeds a source.",
+            "top": 164.390625
+          },
+          {
+            "level": "H2",
+            "text": "This week, under review.",
+            "top": 586.78125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 795.796875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 795.796875
+          },
+          {
+            "level": "H3",
+            "text": "Saved model opinion",
+            "top": 1331.125
+          },
+          {
+            "level": "H3",
+            "text": "The rest of the Week 3 slate",
+            "top": 1799.953125
+          },
+          {
+            "level": "H2",
+            "text": "Three takes. Different evidence.",
+            "top": 3325.5625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 3630.078125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 4230.96875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 4779.171875
+          },
+          {
+            "level": "H2",
+            "text": "Player comparison",
+            "top": 5226.96875
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 7890.140625
+          },
+          {
+            "level": "H3",
+            "text": "Latest league moves",
+            "top": 10302.9375
+          },
+          {
+            "level": "H3",
+            "text": "Evidence gaps",
+            "top": 10956.359375
+          },
+          {
+            "level": "H2",
+            "text": "Evidence has a date.",
+            "top": 11252.8125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 11443.828125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 12133.984375
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 12685.59375
+          },
+          {
+            "level": "H2",
+            "text": "Take the next question deeper.",
+            "top": 13220.421875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 81498,
+        "textCharacters": 8520,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Every claimneeds a source.",
+            "top": 728.96875
+          },
+          {
+            "level": "H2",
+            "text": "This week, under review.",
+            "top": 2123.28125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2898.640625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2898.640625
+          },
+          {
+            "level": "H3",
+            "text": "Saved model opinion",
+            "top": 5090.171875
+          },
+          {
+            "level": "H3",
+            "text": "The rest of the Week 3 slate",
+            "top": 7108.90625
+          },
+          {
+            "level": "H2",
+            "text": "Three takes. Different evidence.",
+            "top": 13072.75
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 14249.953125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 16207.21875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 18176.765625
+          },
+          {
+            "level": "H2",
+            "text": "Player comparison",
+            "top": 19629.28125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One league.",
+            "top": 29156.140625
+          },
+          {
+            "level": "H3",
+            "text": "Latest league moves",
+            "top": 66776.5625
+          },
+          {
+            "level": "H3",
+            "text": "Evidence gaps",
+            "top": 69026.03125
+          },
+          {
+            "level": "H2",
+            "text": "Evidence has a date.",
+            "top": 70013.6875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 70699.375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 73608.171875
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 76097.171875
+          },
+          {
+            "level": "H2",
+            "text": "Take the next question deeper.",
+            "top": 78000.078125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

@@ -1,0 +1,1905 @@
+{
+  "id": "13",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/13/folio.js",
+      "bytes": 21301,
+      "sha256": "359586704cd3afe755a6959db34370354c15082b6cfa73ee9db441e6861156a3"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/13/index.html",
+      "bytes": 2007,
+      "sha256": "077ec5a6811e7354011c3e588e67cbb3b0b8789ca611e0d28b2f743de4d19fab"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/13/style.css",
+      "bytes": 17041,
+      "sha256": "6993f954b16c8ac19bbe3f124666b954d92aa30284919eacbe98a908ed7528f8"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/13/tokens.css",
+      "bytes": 1673,
+      "sha256": "36d293bd30ab6455054287b45c57f2746d128bb832bffbf532f513d99572e2de"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/13/review/member-desktop-full.jpg",
+        "bytes": 834720,
+        "sha256": "f050c461e7494384482e4ef8ea0fe8f1e14c25dd68e38b6564dd06fb2c380d30",
+        "width": 1440,
+        "height": 6563,
+        "quality": 87,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 6563,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/member-desktop-top.jpg",
+          "bytes": 155042,
+          "sha256": "9f70a297fcfc786b64696b847e83df4f14ffbfb4b990ea2fc7d443777056d2e2",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2781,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/member-desktop-middle.jpg",
+          "bytes": 98335,
+          "sha256": "2e986ddfa12ed9888f1c0261d76dac9ca4bb21e685e6b56c4589d8f62146193e",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 5563,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/member-desktop-bottom.jpg",
+          "bytes": 134961,
+          "sha256": "fe5dd2c273187ca98d1752f8de2a7cc70e108a749144e6515ced04d5201fa538",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+          "top": 183.953125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 363.953125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 363.953125
+        },
+        {
+          "level": "H3",
+          "text": "Five picks, as returned",
+          "top": 328.953125
+        },
+        {
+          "level": "H2",
+          "text": "Your club, in the marginsCurrent modeled value beside the scouting notebookUnfold notes",
+          "top": 1269.890625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 1484.28125
+        },
+        {
+          "level": "H3",
+          "text": "Scouting notebook",
+          "top": 1449.890625
+        },
+        {
+          "level": "H3",
+          "text": "Best & rough, completed Week 2",
+          "top": 1725.03125
+        },
+        {
+          "level": "H3",
+          "text": "On your wire",
+          "top": 2122.734375
+        },
+        {
+          "level": "H2",
+          "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+          "top": 2413.09375
+        },
+        {
+          "level": "H3",
+          "text": "The table is open.",
+          "top": 2531.09375
+        },
+        {
+          "level": "H2",
+          "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+          "top": 3997.78125
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 4234.171875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 4234.171875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 4509.75
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 4785.328125
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 5156.546875
+        },
+        {
+          "level": "H2",
+          "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+          "top": 5398.9375
+        },
+        {
+          "level": "H3",
+          "text": "What is the next move worth?",
+          "top": 5589.328125
+        },
+        {
+          "level": "H3",
+          "text": "Take a few shots.",
+          "top": 5889.40625
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/13/review/member-phone-full.jpg",
+        "bytes": 811104,
+        "sha256": "faf74f81767ede304e370eced3e89ca1dac866a45e944ea71d96f3db79b2d7bb",
+        "width": 390,
+        "height": 13326,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 726,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/member-phone-top.jpg",
+          "bytes": 59162,
+          "sha256": "cba3013ad263ec0153d22d56a857db9f15048172d9b75f20d60fef10b83e29ee",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 6241,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/member-phone-middle.jpg",
+          "bytes": 32809,
+          "sha256": "dba920c811263fe4209abe1084d4f9f7a48bbd231cbc6254bca7d041139fcc96",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 12482,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/member-phone-bottom.jpg",
+          "bytes": 54216,
+          "sha256": "0d4b76d7f57234355a35e089b280702a41c5cad6b3aa436fb33b412405719053",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+          "top": 250.359375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 435.21875
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 589.59375
+        },
+        {
+          "level": "H3",
+          "text": "Five picks, as returned",
+          "top": 1046.359375
+        },
+        {
+          "level": "H2",
+          "text": "Your club, in the marginsCurrent modeled value beside the scouting notebookUnfold notes",
+          "top": 2229.46875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 2437.046875
+        },
+        {
+          "level": "H3",
+          "text": "Scouting notebook",
+          "top": 3334.140625
+        },
+        {
+          "level": "H3",
+          "text": "Best & rough, completed Week 2",
+          "top": 3733.28125
+        },
+        {
+          "level": "H3",
+          "text": "On your wire",
+          "top": 4592.6875
+        },
+        {
+          "level": "H2",
+          "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+          "top": 4959.046875
+        },
+        {
+          "level": "H3",
+          "text": "The table is open.",
+          "top": 5103.90625
+        },
+        {
+          "level": "H2",
+          "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+          "top": 8365.40625
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 8591.796875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 9666.734375
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 10049.703125
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 10432.671875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 10863.640625
+        },
+        {
+          "level": "H2",
+          "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+          "top": 11390.828125
+        },
+        {
+          "level": "H3",
+          "text": "What is the next move worth?",
+          "top": 11577.21875
+        },
+        {
+          "level": "H3",
+          "text": "Take a few shots.",
+          "top": 12579.59375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/13/review/public-desktop-full.jpg",
+        "bytes": 839691,
+        "sha256": "373b4b16d4eb1d366dd5617a2b572e5c0c4439b569bf51052a7d3daf0c4125d1",
+        "width": 1440,
+        "height": 6159,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 6159,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/public-desktop-top.jpg",
+          "bytes": 154801,
+          "sha256": "1df9271fff48008ab043001bc26fd8389f2de227a35f7d7cd2eb71675afb0776",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2579,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/public-desktop-middle.jpg",
+          "bytes": 98328,
+          "sha256": "80c969ee8ab8bf09831c5638203de26ce7aefa7db3d585138cc2d3f1e260e05f",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 5159,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/public-desktop-bottom.jpg",
+          "bytes": 135214,
+          "sha256": "eb4dba412797e6353b2d7d5c2af251d2a22f05841df63df58e838b3b33790ed2",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+          "top": 183.953125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 363.953125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 363.953125
+        },
+        {
+          "level": "H3",
+          "text": "Five picks, as returned",
+          "top": 328.953125
+        },
+        {
+          "level": "H2",
+          "text": "Across the ten clubsA few roster anchors, then every club on the next leafUnfold notes",
+          "top": 1269.890625
+        },
+        {
+          "level": "H3",
+          "text": "Names you know.Clubs worth following.",
+          "top": 1484.28125
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 1449.890625
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 1592.28125
+        },
+        {
+          "level": "H3",
+          "text": "Giannis Antetokounmpo",
+          "top": 1734.671875
+        },
+        {
+          "level": "H2",
+          "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+          "top": 2009.0625
+        },
+        {
+          "level": "H3",
+          "text": "The table is open.",
+          "top": 2127.0625
+        },
+        {
+          "level": "H2",
+          "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+          "top": 3593.75
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 3830.140625
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 3830.140625
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 4105.71875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 4381.296875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 4752.515625
+        },
+        {
+          "level": "H2",
+          "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+          "top": 4994.90625
+        },
+        {
+          "level": "H3",
+          "text": "What is the next move worth?",
+          "top": 5185.296875
+        },
+        {
+          "level": "H3",
+          "text": "Take a few shots.",
+          "top": 5485.375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/13/review/public-phone-full.jpg",
+        "bytes": 732044,
+        "sha256": "dc799119a7d4a4a34fbb1e76bb8b4ab6c6ba9758bc06430c78888dc6140c6eda",
+        "width": 390,
+        "height": 11882,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1082,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/public-phone-top.jpg",
+          "bytes": 59320,
+          "sha256": "2c386ea9c426b22c242ebb7fd750ad93d6dca95c6b7ca7f13231e304e749a4df",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5519,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/public-phone-middle.jpg",
+          "bytes": 31751,
+          "sha256": "c14c5e224dc5af195d2909823f37a8e62bc75b5ace2f3849ffeed562cd6f9c28",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 11038,
+          "path": "qa/homepage-structures/homepage-corrections/13/review/public-phone-bottom.jpg",
+          "bytes": 53482,
+          "sha256": "79d761d182718f5f864c932b86b361d02898fa603d872aa148dcb65afd58186c",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+          "top": 250.359375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 435.21875
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 589.59375
+        },
+        {
+          "level": "H3",
+          "text": "Five picks, as returned",
+          "top": 1046.359375
+        },
+        {
+          "level": "H2",
+          "text": "Across the ten clubsA few roster anchors, then every club on the next leafUnfold notes",
+          "top": 2229.46875
+        },
+        {
+          "level": "H3",
+          "text": "Names you know.Clubs worth following.",
+          "top": 2437.046875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 2765.828125
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 2943.421875
+        },
+        {
+          "level": "H3",
+          "text": "Giannis Antetokounmpo",
+          "top": 3121.015625
+        },
+        {
+          "level": "H2",
+          "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+          "top": 3515.390625
+        },
+        {
+          "level": "H3",
+          "text": "The table is open.",
+          "top": 3660.25
+        },
+        {
+          "level": "H2",
+          "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+          "top": 6921.75
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 7148.140625
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 8223.078125
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 8606.046875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 8989.015625
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 9419.984375
+        },
+        {
+          "level": "H2",
+          "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+          "top": 9947.171875
+        },
+        {
+          "level": "H3",
+          "text": "What is the next move worth?",
+          "top": 10133.5625
+        },
+        {
+          "level": "H3",
+          "text": "Take a few shots.",
+          "top": 11135.9375
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 6563,
+        "textCharacters": 7984,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+            "top": 183.953125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 363.953125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 363.953125
+          },
+          {
+            "level": "H3",
+            "text": "Five picks, as returned",
+            "top": 328.953125
+          },
+          {
+            "level": "H2",
+            "text": "Your club, in the marginsCurrent modeled value beside the scouting notebookUnfold notes",
+            "top": 1269.890625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1484.28125
+          },
+          {
+            "level": "H3",
+            "text": "Scouting notebook",
+            "top": 1449.890625
+          },
+          {
+            "level": "H3",
+            "text": "Best & rough, completed Week 2",
+            "top": 1725.03125
+          },
+          {
+            "level": "H3",
+            "text": "On your wire",
+            "top": 2122.734375
+          },
+          {
+            "level": "H2",
+            "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+            "top": 2413.09375
+          },
+          {
+            "level": "H3",
+            "text": "The table is open.",
+            "top": 2531.09375
+          },
+          {
+            "level": "H2",
+            "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+            "top": 3997.78125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 4234.171875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 4234.171875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 4509.75
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 4785.328125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 5156.546875
+          },
+          {
+            "level": "H2",
+            "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+            "top": 5398.9375
+          },
+          {
+            "level": "H3",
+            "text": "What is the next move worth?",
+            "top": 5589.328125
+          },
+          {
+            "level": "H3",
+            "text": "Take a few shots.",
+            "top": 5889.40625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 13326,
+        "textCharacters": 7951,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+            "top": 250.359375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 435.21875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 589.59375
+          },
+          {
+            "level": "H3",
+            "text": "Five picks, as returned",
+            "top": 1046.359375
+          },
+          {
+            "level": "H2",
+            "text": "Your club, in the marginsCurrent modeled value beside the scouting notebookUnfold notes",
+            "top": 2229.46875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2437.046875
+          },
+          {
+            "level": "H3",
+            "text": "Scouting notebook",
+            "top": 3334.140625
+          },
+          {
+            "level": "H3",
+            "text": "Best & rough, completed Week 2",
+            "top": 3733.28125
+          },
+          {
+            "level": "H3",
+            "text": "On your wire",
+            "top": 4592.6875
+          },
+          {
+            "level": "H2",
+            "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+            "top": 4959.046875
+          },
+          {
+            "level": "H3",
+            "text": "The table is open.",
+            "top": 5103.90625
+          },
+          {
+            "level": "H2",
+            "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+            "top": 8365.40625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 8591.796875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 9666.734375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 10049.703125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 10432.671875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 10863.640625
+          },
+          {
+            "level": "H2",
+            "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+            "top": 11390.828125
+          },
+          {
+            "level": "H3",
+            "text": "What is the next move worth?",
+            "top": 11577.21875
+          },
+          {
+            "level": "H3",
+            "text": "Take a few shots.",
+            "top": 12579.59375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 39408,
+        "textCharacters": 7951,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+            "top": 1004.765625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1652.78125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2159
+          },
+          {
+            "level": "H3",
+            "text": "Five picks, as returned",
+            "top": 3916.046875
+          },
+          {
+            "level": "H2",
+            "text": "Your club, in the marginsCurrent modeled value beside the scouting notebookUnfold notes",
+            "top": 7872.25
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 8663.0625
+          },
+          {
+            "level": "H3",
+            "text": "Scouting notebook",
+            "top": 11224.0625
+          },
+          {
+            "level": "H3",
+            "text": "Best & rough, completed Week 2",
+            "top": 12483.15625
+          },
+          {
+            "level": "H3",
+            "text": "On your wire",
+            "top": 14626.25
+          },
+          {
+            "level": "H2",
+            "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+            "top": 15768.53125
+          },
+          {
+            "level": "H3",
+            "text": "The table is open.",
+            "top": 16333.34375
+          },
+          {
+            "level": "H2",
+            "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+            "top": 24162.390625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 24892
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 28165.328125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 29487.171875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 30870.453125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 32178.859375
+          },
+          {
+            "level": "H2",
+            "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+            "top": 33682.703125
+          },
+          {
+            "level": "H3",
+            "text": "What is the next move worth?",
+            "top": 34251.90625
+          },
+          {
+            "level": "H3",
+            "text": "Take a few shots.",
+            "top": 37071.859375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 14440,
+        "textCharacters": 7951,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+            "top": 274.359375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 487.546875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 692.90625
+          },
+          {
+            "level": "H3",
+            "text": "Five picks, as returned",
+            "top": 1233.03125
+          },
+          {
+            "level": "H2",
+            "text": "Your club, in the marginsCurrent modeled value beside the scouting notebookUnfold notes",
+            "top": 2606.515625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2814.09375
+          },
+          {
+            "level": "H3",
+            "text": "Scouting notebook",
+            "top": 3711.1875
+          },
+          {
+            "level": "H3",
+            "text": "Best & rough, completed Week 2",
+            "top": 4134.328125
+          },
+          {
+            "level": "H3",
+            "text": "On your wire",
+            "top": 5017.734375
+          },
+          {
+            "level": "H2",
+            "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+            "top": 5462.46875
+          },
+          {
+            "level": "H3",
+            "text": "The table is open.",
+            "top": 5635.65625
+          },
+          {
+            "level": "H2",
+            "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+            "top": 8993.15625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 9243.546875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 10410.484375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 10848.15625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 11261.828125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 11692.796875
+          },
+          {
+            "level": "H2",
+            "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+            "top": 12243.984375
+          },
+          {
+            "level": "H3",
+            "text": "What is the next move worth?",
+            "top": 12451.5625
+          },
+          {
+            "level": "H3",
+            "text": "Take a few shots.",
+            "top": 13596.953125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 50301,
+        "textCharacters": 7951,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+            "top": 2300.765625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 3195.578125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3700.09375
+          },
+          {
+            "level": "H3",
+            "text": "Five picks, as returned",
+            "top": 5688.4375
+          },
+          {
+            "level": "H2",
+            "text": "Your club, in the marginsCurrent modeled value beside the scouting notebookUnfold notes",
+            "top": 10815.796875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 11763.8125
+          },
+          {
+            "level": "H3",
+            "text": "Scouting notebook",
+            "top": 15188.8125
+          },
+          {
+            "level": "H3",
+            "text": "Best & rough, completed Week 2",
+            "top": 16783.90625
+          },
+          {
+            "level": "H3",
+            "text": "On your wire",
+            "top": 19216.90625
+          },
+          {
+            "level": "H2",
+            "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+            "top": 20512.78125
+          },
+          {
+            "level": "H3",
+            "text": "The table is open.",
+            "top": 21231.59375
+          },
+          {
+            "level": "H2",
+            "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+            "top": 31268.640625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 32216.65625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 36535.078125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 38202.53125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 39835.421875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 41406.875
+          },
+          {
+            "level": "H2",
+            "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+            "top": 43208.3125
+          },
+          {
+            "level": "H3",
+            "text": "What is the next move worth?",
+            "top": 43931.515625
+          },
+          {
+            "level": "H3",
+            "text": "Take a few shots.",
+            "top": 47405.203125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 6159,
+        "textCharacters": 7043,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+            "top": 183.953125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 363.953125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 363.953125
+          },
+          {
+            "level": "H3",
+            "text": "Five picks, as returned",
+            "top": 328.953125
+          },
+          {
+            "level": "H2",
+            "text": "Across the ten clubsA few roster anchors, then every club on the next leafUnfold notes",
+            "top": 1269.890625
+          },
+          {
+            "level": "H3",
+            "text": "Names you know.Clubs worth following.",
+            "top": 1484.28125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 1449.890625
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 1592.28125
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 1734.671875
+          },
+          {
+            "level": "H2",
+            "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+            "top": 2009.0625
+          },
+          {
+            "level": "H3",
+            "text": "The table is open.",
+            "top": 2127.0625
+          },
+          {
+            "level": "H2",
+            "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+            "top": 3593.75
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 3830.140625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 3830.140625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 4105.71875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 4381.296875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 4752.515625
+          },
+          {
+            "level": "H2",
+            "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+            "top": 4994.90625
+          },
+          {
+            "level": "H3",
+            "text": "What is the next move worth?",
+            "top": 5185.296875
+          },
+          {
+            "level": "H3",
+            "text": "Take a few shots.",
+            "top": 5485.375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 11882,
+        "textCharacters": 7010,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+            "top": 250.359375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 435.21875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 589.59375
+          },
+          {
+            "level": "H3",
+            "text": "Five picks, as returned",
+            "top": 1046.359375
+          },
+          {
+            "level": "H2",
+            "text": "Across the ten clubsA few roster anchors, then every club on the next leafUnfold notes",
+            "top": 2229.46875
+          },
+          {
+            "level": "H3",
+            "text": "Names you know.Clubs worth following.",
+            "top": 2437.046875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 2765.828125
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 2943.421875
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 3121.015625
+          },
+          {
+            "level": "H2",
+            "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+            "top": 3515.390625
+          },
+          {
+            "level": "H3",
+            "text": "The table is open.",
+            "top": 3660.25
+          },
+          {
+            "level": "H2",
+            "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+            "top": 6921.75
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 7148.140625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 8223.078125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 8606.046875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 8989.015625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 9419.984375
+          },
+          {
+            "level": "H2",
+            "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+            "top": 9947.171875
+          },
+          {
+            "level": "H3",
+            "text": "What is the next move worth?",
+            "top": 10133.5625
+          },
+          {
+            "level": "H3",
+            "text": "Take a few shots.",
+            "top": 11135.9375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 35973,
+        "textCharacters": 7010,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+            "top": 1052.765625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1700.78125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2207
+          },
+          {
+            "level": "H3",
+            "text": "Five picks, as returned",
+            "top": 3964.046875
+          },
+          {
+            "level": "H2",
+            "text": "Across the ten clubsA few roster anchors, then every club on the next leafUnfold notes",
+            "top": 7920.25
+          },
+          {
+            "level": "H3",
+            "text": "Names you know.Clubs worth following.",
+            "top": 8553.859375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 9676.96875
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 10313.6875
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 10960
+          },
+          {
+            "level": "H2",
+            "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+            "top": 12252.65625
+          },
+          {
+            "level": "H3",
+            "text": "The table is open.",
+            "top": 12817.46875
+          },
+          {
+            "level": "H2",
+            "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+            "top": 20646.515625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 21376.125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 24649.453125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 25971.296875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 27354.578125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 28662.984375
+          },
+          {
+            "level": "H2",
+            "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+            "top": 30166.828125
+          },
+          {
+            "level": "H3",
+            "text": "What is the next move worth?",
+            "top": 30736.03125
+          },
+          {
+            "level": "H3",
+            "text": "Take a few shots.",
+            "top": 33555.984375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 13217,
+        "textCharacters": 7010,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+            "top": 274.359375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 487.546875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 692.90625
+          },
+          {
+            "level": "H3",
+            "text": "Five picks, as returned",
+            "top": 1233.03125
+          },
+          {
+            "level": "H2",
+            "text": "Across the ten clubsA few roster anchors, then every club on the next leafUnfold notes",
+            "top": 2606.515625
+          },
+          {
+            "level": "H3",
+            "text": "Names you know.Clubs worth following.",
+            "top": 2814.09375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 3258.0625
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 3526.84375
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 3795.625
+          },
+          {
+            "level": "H2",
+            "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+            "top": 4190
+          },
+          {
+            "level": "H3",
+            "text": "The table is open.",
+            "top": 4363.1875
+          },
+          {
+            "level": "H2",
+            "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+            "top": 7720.6875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 7971.078125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 9138.015625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 9575.6875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 9989.359375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 10420.328125
+          },
+          {
+            "level": "H2",
+            "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+            "top": 10971.515625
+          },
+          {
+            "level": "H3",
+            "text": "What is the next move worth?",
+            "top": 11179.09375
+          },
+          {
+            "level": "H3",
+            "text": "Take a few shots.",
+            "top": 12324.484375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 45581,
+        "textCharacters": 7010,
+        "headings": [
+          {
+            "level": "H2",
+            "text": "Week 3, in progressThe pairing. The picks. Nothing called final.Unfold notes",
+            "top": 2300.765625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 3195.578125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3700.09375
+          },
+          {
+            "level": "H3",
+            "text": "Five picks, as returned",
+            "top": 5608.46875
+          },
+          {
+            "level": "H2",
+            "text": "Across the ten clubsA few roster anchors, then every club on the next leafUnfold notes",
+            "top": 10735.828125
+          },
+          {
+            "level": "H3",
+            "text": "Names you know.Clubs worth following.",
+            "top": 11680.640625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 13235.734375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 13901.25
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 14614.765625
+          },
+          {
+            "level": "H2",
+            "text": "A league, indexedTen clubs and the table, with room for every nameUnfold notes",
+            "top": 15792.234375
+          },
+          {
+            "level": "H3",
+            "text": "The table is open.",
+            "top": 16511.046875
+          },
+          {
+            "level": "H2",
+            "text": "Pages from the seasonOctober drafts. A good week, a rough one, a watch.Unfold notes",
+            "top": 26548.09375
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 27496.109375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 31814.53125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 33481.984375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 35114.875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 36686.328125
+          },
+          {
+            "level": "H2",
+            "text": "Beyond this bookA price to inspect, a game to play, a page to keepUnfold notes",
+            "top": 38487.765625
+          },
+          {
+            "level": "H3",
+            "text": "What is the next move worth?",
+            "top": 39210.96875
+          },
+          {
+            "level": "H3",
+            "text": "Take a few shots.",
+            "top": 42684.65625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

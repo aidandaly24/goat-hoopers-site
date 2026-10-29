@@ -1,0 +1,1910 @@
+{
+  "id": "17",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/17/index.html",
+      "bytes": 3945,
+      "sha256": "decde43f1ab333985df9d8f75a9f3a068684a02b502889ead3435e9445bab6a9"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/17/ledger.css",
+      "bytes": 20552,
+      "sha256": "5d9f6f3dcdaf203bdbaf1e9e2b5f17b8f2f8aa185fa533cc139dadb014b48ed0"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/17/ledger.js",
+      "bytes": 27826,
+      "sha256": "1d0f4a72161275cce9ad48c3e786a093c481c27c1949864b1c08f3f4cf951f38"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/17/review/member-desktop-full.jpg",
+        "bytes": 869784,
+        "sha256": "6169144d82ee1eab372ebbc4c82f95ebd076bd20999cc92a1661b2a81437933b",
+        "width": 1440,
+        "height": 6490,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 6490,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/member-desktop-top.jpg",
+          "bytes": 145817,
+          "sha256": "d834b0e7fb245cd0c03f9b8e027a99a52e3ecfad77b233f71bcb8ca6c385a26b",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2745,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/member-desktop-middle.jpg",
+          "bytes": 111124,
+          "sha256": "8d6ec667ac5b7c5aa3bf06216504b0b93fb9a0cb6de7a7e9447195c018c5a493",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 5490,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/member-desktop-bottom.jpg",
+          "bytes": 121363,
+          "sha256": "21f4a126a04d4092b8eef54a151d32a0d8bf9b098fa61b4a0be9019b2acac2a9",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "League ledger",
+          "top": 100.5625
+        },
+        {
+          "level": "H2",
+          "text": "GOAT Hoopers · league home",
+          "top": 218.5625
+        },
+        {
+          "level": "H2",
+          "text": "Your Week 3 account",
+          "top": 218.5625
+        },
+        {
+          "level": "H2",
+          "text": "Week 3 · running scores",
+          "top": 737.5625
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper · member account",
+          "top": 1710.5625
+        },
+        {
+          "level": "H3",
+          "text": "Current modeled value",
+          "top": 1774.5625
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch · observed form",
+          "top": 1774.5625
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 2490.0625
+        },
+        {
+          "level": "H2",
+          "text": "Franchise register",
+          "top": 2612.0625
+        },
+        {
+          "level": "H2",
+          "text": "Dated editions · the October file",
+          "top": 4116.0625
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 4202.0625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 4202.0625
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 4532.6875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 4627.1875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 4532.6875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 4627.1875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 4532.6875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 4627.1875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 5038.6875
+        },
+        {
+          "level": "H2",
+          "text": "Moves · current fixture",
+          "top": 5257.46875
+        },
+        {
+          "level": "H2",
+          "text": "Keep working",
+          "top": 5670.46875
+        },
+        {
+          "level": "H2",
+          "text": "End of the account",
+          "top": 6224.640625
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/17/review/member-phone-full.jpg",
+        "bytes": 820639,
+        "sha256": "df35e172b6a1a350ad4865180ad12e49407daf709c917034932f6bc7dc6c20e3",
+        "width": 390,
+        "height": 16192,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 14400,
+            "height": 1792,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/member-phone-top.jpg",
+          "bytes": 54446,
+          "sha256": "ec05989d62bc00cc2027ed99889210c5cd1455300ff91b24152001ca7f71477f",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 7674,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/member-phone-middle.jpg",
+          "bytes": 33440,
+          "sha256": "8c536d1b9af3db8629248302e65c309e6ddab0fa56baf762aad935f66e5ca288",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 15348,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/member-phone-bottom.jpg",
+          "bytes": 52056,
+          "sha256": "c97dd51e57bdb6a49a02d9de2ea18df298441a2ee9f8fe93def8d124b9f70820",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "League ledger",
+          "top": 89.265625
+        },
+        {
+          "level": "H2",
+          "text": "GOAT Hoopers · league home",
+          "top": 314.265625
+        },
+        {
+          "level": "H2",
+          "text": "Your Week 3 account",
+          "top": 648.265625
+        },
+        {
+          "level": "H2",
+          "text": "Week 3 · running scores",
+          "top": 1343.265625
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper · member account",
+          "top": 4301.265625
+        },
+        {
+          "level": "H3",
+          "text": "Current modeled value",
+          "top": 4451.265625
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch · observed form",
+          "top": 5322.765625
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 6603.21875
+        },
+        {
+          "level": "H2",
+          "text": "Franchise register",
+          "top": 6913.71875
+        },
+        {
+          "level": "H2",
+          "text": "Dated editions · the October file",
+          "top": 11072.71875
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 11219.71875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 11378.21875
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 11814.40625
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 11908.90625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 12312.40625
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 12406.90625
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 12786.40625
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 12880.90625
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 13292.40625
+        },
+        {
+          "level": "H2",
+          "text": "Moves · current fixture",
+          "top": 13714.46875
+        },
+        {
+          "level": "H2",
+          "text": "Keep working",
+          "top": 14668.46875
+        },
+        {
+          "level": "H2",
+          "text": "End of the account",
+          "top": 15826.8125
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/17/review/public-desktop-full.jpg",
+        "bytes": 744632,
+        "sha256": "025b6ad499ea22800ab450cd771c9f6d8bdf706a9026fd1bc9fee3c3784ac095",
+        "width": 1440,
+        "height": 5508,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 5508,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/public-desktop-top.jpg",
+          "bytes": 155971,
+          "sha256": "1dc46fe211467e0605cd798a1615ceb90584e74dad1a243b84d80eeb12379edd",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2254,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/public-desktop-middle.jpg",
+          "bytes": 111916,
+          "sha256": "caea63e076182d6a6772d5aa8597b6482acc13f239c091dcf6c9e24a2805efbc",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 4508,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/public-desktop-bottom.jpg",
+          "bytes": 121574,
+          "sha256": "01211483007f2bc50c388a1e9ba0f11e1d7007b321210eaa8789ffcd938131ae",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "League ledger",
+          "top": 100.5625
+        },
+        {
+          "level": "H2",
+          "text": "GOAT Hoopers · league home",
+          "top": 218.5625
+        },
+        {
+          "level": "H2",
+          "text": "Week 3 · first pairing",
+          "top": 218.5625
+        },
+        {
+          "level": "H2",
+          "text": "Week 3 · running scores",
+          "top": 681.5625
+        },
+        {
+          "level": "H2",
+          "text": "Franchise register",
+          "top": 1630.5625
+        },
+        {
+          "level": "H2",
+          "text": "Dated editions · the October file",
+          "top": 3134.5625
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 3220.5625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 3220.5625
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 3551.1875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 3645.6875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 3551.1875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 3645.6875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 3551.1875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 3645.6875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 4057.1875
+        },
+        {
+          "level": "H2",
+          "text": "Moves · current fixture",
+          "top": 4275.96875
+        },
+        {
+          "level": "H2",
+          "text": "Keep working",
+          "top": 4688.96875
+        },
+        {
+          "level": "H2",
+          "text": "End of the account",
+          "top": 5243.140625
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/17/review/public-phone-full.jpg",
+        "bytes": 689881,
+        "sha256": "3631e70050ef85aaf1d76e86f903e0b7d744cca893bd3b66f8f7653cfc66fd59",
+        "width": 390,
+        "height": 13499,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 899,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/public-phone-top.jpg",
+          "bytes": 54527,
+          "sha256": "6d2fe5f1b301ab74543a8adcc25f3c1a9f77f0aaa5d4d9a5345db96d5e329378",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 6327,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/public-phone-middle.jpg",
+          "bytes": 33019,
+          "sha256": "e855365640a0296b06fbe7928963da5b1aa7b67d87ae7e2093217a4a59fdbe1b",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 12655,
+          "path": "qa/homepage-structures/homepage-corrections/17/review/public-phone-bottom.jpg",
+          "bytes": 52517,
+          "sha256": "9e69c12f8409d4213affb2150c6cc73fa7b9c50f17a76922ca3babba9b1b4213",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "League ledger",
+          "top": 89.265625
+        },
+        {
+          "level": "H2",
+          "text": "GOAT Hoopers · league home",
+          "top": 314.265625
+        },
+        {
+          "level": "H2",
+          "text": "Week 3 · first pairing",
+          "top": 648.265625
+        },
+        {
+          "level": "H2",
+          "text": "Week 3 · running scores",
+          "top": 1287.265625
+        },
+        {
+          "level": "H2",
+          "text": "Franchise register",
+          "top": 4221.265625
+        },
+        {
+          "level": "H2",
+          "text": "Dated editions · the October file",
+          "top": 8380.265625
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 8527.265625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 8685.765625
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 9121.953125
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 9216.453125
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 9619.953125
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 9714.453125
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 10093.953125
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 10188.453125
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 10599.953125
+        },
+        {
+          "level": "H2",
+          "text": "Moves · current fixture",
+          "top": 11022.015625
+        },
+        {
+          "level": "H2",
+          "text": "Keep working",
+          "top": 11976.015625
+        },
+        {
+          "level": "H2",
+          "text": "End of the account",
+          "top": 13134.359375
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 6490,
+        "textCharacters": 9208,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "League ledger",
+            "top": 100.5625
+          },
+          {
+            "level": "H2",
+            "text": "GOAT Hoopers · league home",
+            "top": 218.5625
+          },
+          {
+            "level": "H2",
+            "text": "Your Week 3 account",
+            "top": 218.5625
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · running scores",
+            "top": 737.5625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper · member account",
+            "top": 1710.5625
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled value",
+            "top": 1774.5625
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch · observed form",
+            "top": 1774.5625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 2490.0625
+          },
+          {
+            "level": "H2",
+            "text": "Franchise register",
+            "top": 2612.0625
+          },
+          {
+            "level": "H2",
+            "text": "Dated editions · the October file",
+            "top": 4116.0625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 4202.0625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 4202.0625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 4532.6875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 4627.1875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 4532.6875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 4627.1875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 4532.6875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 4627.1875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 5038.6875
+          },
+          {
+            "level": "H2",
+            "text": "Moves · current fixture",
+            "top": 5257.46875
+          },
+          {
+            "level": "H2",
+            "text": "Keep working",
+            "top": 5670.46875
+          },
+          {
+            "level": "H2",
+            "text": "End of the account",
+            "top": 6224.640625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 16192,
+        "textCharacters": 8775,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "League ledger",
+            "top": 89.265625
+          },
+          {
+            "level": "H2",
+            "text": "GOAT Hoopers · league home",
+            "top": 314.265625
+          },
+          {
+            "level": "H2",
+            "text": "Your Week 3 account",
+            "top": 648.265625
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · running scores",
+            "top": 1343.265625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper · member account",
+            "top": 4301.265625
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled value",
+            "top": 4451.265625
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch · observed form",
+            "top": 5322.765625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 6603.21875
+          },
+          {
+            "level": "H2",
+            "text": "Franchise register",
+            "top": 6913.71875
+          },
+          {
+            "level": "H2",
+            "text": "Dated editions · the October file",
+            "top": 11072.71875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 11219.71875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 11378.21875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 11814.40625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 11908.90625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 12312.40625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 12406.90625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 12786.40625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 12880.90625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 13292.40625
+          },
+          {
+            "level": "H2",
+            "text": "Moves · current fixture",
+            "top": 13714.46875
+          },
+          {
+            "level": "H2",
+            "text": "Keep working",
+            "top": 14668.46875
+          },
+          {
+            "level": "H2",
+            "text": "End of the account",
+            "top": 15826.8125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 52649,
+        "textCharacters": 8775,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "League ledger",
+            "top": 280
+          },
+          {
+            "level": "H2",
+            "text": "GOAT Hoopers · league home",
+            "top": 1142
+          },
+          {
+            "level": "H2",
+            "text": "Your Week 3 account",
+            "top": 2339
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · running scores",
+            "top": 4841
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper · member account",
+            "top": 13680
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled value",
+            "top": 14224
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch · observed form",
+            "top": 16697
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 20628.359375
+          },
+          {
+            "level": "H2",
+            "text": "Franchise register",
+            "top": 21537.359375
+          },
+          {
+            "level": "H2",
+            "text": "Dated editions · the October file",
+            "top": 34407.359375
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 34991.359375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 35449.359375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 37210.671875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 37588.671875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 39015.671875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 39345.671875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 40772.671875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 41102.671875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 42593.671875
+          },
+          {
+            "level": "H2",
+            "text": "Moves · current fixture",
+            "top": 44029.84375
+          },
+          {
+            "level": "H2",
+            "text": "Keep working",
+            "top": 47480.84375
+          },
+          {
+            "level": "H2",
+            "text": "End of the account",
+            "top": 51125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 18535,
+        "textCharacters": 8775,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "League ledger",
+            "top": 76
+          },
+          {
+            "level": "H2",
+            "text": "GOAT Hoopers · league home",
+            "top": 325
+          },
+          {
+            "level": "H2",
+            "text": "Your Week 3 account",
+            "top": 708
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · running scores",
+            "top": 1543
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper · member account",
+            "top": 4919
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled value",
+            "top": 5069
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch · observed form",
+            "top": 6036.5
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 7464.234375
+          },
+          {
+            "level": "H2",
+            "text": "Franchise register",
+            "top": 7774.734375
+          },
+          {
+            "level": "H2",
+            "text": "Dated editions · the October file",
+            "top": 12729.734375
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 12925.734375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 13084.234375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 13595.703125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 13690.203125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 14141.703125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 14236.203125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 14686.203125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 14780.703125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 15240.203125
+          },
+          {
+            "level": "H2",
+            "text": "Moves · current fixture",
+            "top": 15735.15625
+          },
+          {
+            "level": "H2",
+            "text": "Keep working",
+            "top": 16837.15625
+          },
+          {
+            "level": "H2",
+            "text": "End of the account",
+            "top": 18093.890625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 57344,
+        "textCharacters": 8775,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "League ledger",
+            "top": 264
+          },
+          {
+            "level": "H2",
+            "text": "GOAT Hoopers · league home",
+            "top": 1270
+          },
+          {
+            "level": "H2",
+            "text": "Your Week 3 account",
+            "top": 2615
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · running scores",
+            "top": 5213
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper · member account",
+            "top": 15588
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled value",
+            "top": 16180
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch · observed form",
+            "top": 18802
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 23167.15625
+          },
+          {
+            "level": "H2",
+            "text": "Franchise register",
+            "top": 24313.15625
+          },
+          {
+            "level": "H2",
+            "text": "Dated editions · the October file",
+            "top": 37457.15625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 38139.15625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 38597.15625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 40509.0625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 40887.0625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 42455.0625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 42833.0625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 44401.0625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 44824.0625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 46456.0625
+          },
+          {
+            "level": "H2",
+            "text": "Moves · current fixture",
+            "top": 48093.828125
+          },
+          {
+            "level": "H2",
+            "text": "Keep working",
+            "top": 51658.828125
+          },
+          {
+            "level": "H2",
+            "text": "End of the account",
+            "top": 55772.171875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 5508,
+        "textCharacters": 7697,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "League ledger",
+            "top": 100.5625
+          },
+          {
+            "level": "H2",
+            "text": "GOAT Hoopers · league home",
+            "top": 218.5625
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · first pairing",
+            "top": 218.5625
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · running scores",
+            "top": 681.5625
+          },
+          {
+            "level": "H2",
+            "text": "Franchise register",
+            "top": 1630.5625
+          },
+          {
+            "level": "H2",
+            "text": "Dated editions · the October file",
+            "top": 3134.5625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 3220.5625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 3220.5625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 3551.1875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 3645.6875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 3551.1875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 3645.6875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 3551.1875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 3645.6875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 4057.1875
+          },
+          {
+            "level": "H2",
+            "text": "Moves · current fixture",
+            "top": 4275.96875
+          },
+          {
+            "level": "H2",
+            "text": "Keep working",
+            "top": 4688.96875
+          },
+          {
+            "level": "H2",
+            "text": "End of the account",
+            "top": 5243.140625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 13499,
+        "textCharacters": 7371,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "League ledger",
+            "top": 89.265625
+          },
+          {
+            "level": "H2",
+            "text": "GOAT Hoopers · league home",
+            "top": 314.265625
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · first pairing",
+            "top": 648.265625
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · running scores",
+            "top": 1287.265625
+          },
+          {
+            "level": "H2",
+            "text": "Franchise register",
+            "top": 4221.265625
+          },
+          {
+            "level": "H2",
+            "text": "Dated editions · the October file",
+            "top": 8380.265625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 8527.265625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 8685.765625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 9121.953125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 9216.453125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 9619.953125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 9714.453125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 10093.953125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 10188.453125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 10599.953125
+          },
+          {
+            "level": "H2",
+            "text": "Moves · current fixture",
+            "top": 11022.015625
+          },
+          {
+            "level": "H2",
+            "text": "Keep working",
+            "top": 11976.015625
+          },
+          {
+            "level": "H2",
+            "text": "End of the account",
+            "top": 13134.359375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 44368,
+        "textCharacters": 7371,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "League ledger",
+            "top": 280
+          },
+          {
+            "level": "H2",
+            "text": "GOAT Hoopers · league home",
+            "top": 1142
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · first pairing",
+            "top": 2339
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · running scores",
+            "top": 4617
+          },
+          {
+            "level": "H2",
+            "text": "Franchise register",
+            "top": 13408
+          },
+          {
+            "level": "H2",
+            "text": "Dated editions · the October file",
+            "top": 26126
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 26710
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 27168
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 28929.3125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 29307.3125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 30734.3125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 31064.3125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 32491.3125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 32821.3125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 34312.3125
+          },
+          {
+            "level": "H2",
+            "text": "Moves · current fixture",
+            "top": 35748.484375
+          },
+          {
+            "level": "H2",
+            "text": "Keep working",
+            "top": 39199.484375
+          },
+          {
+            "level": "H2",
+            "text": "End of the account",
+            "top": 42843.640625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 15599,
+        "textCharacters": 7371,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "League ledger",
+            "top": 76
+          },
+          {
+            "level": "H2",
+            "text": "GOAT Hoopers · league home",
+            "top": 325
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · first pairing",
+            "top": 708
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · running scores",
+            "top": 1487
+          },
+          {
+            "level": "H2",
+            "text": "Franchise register",
+            "top": 4839
+          },
+          {
+            "level": "H2",
+            "text": "Dated editions · the October file",
+            "top": 9794
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 9990
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 10148.5
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 10659.96875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 10754.46875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 11205.96875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 11300.46875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 11750.46875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 11844.96875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 12304.46875
+          },
+          {
+            "level": "H2",
+            "text": "Moves · current fixture",
+            "top": 12799.421875
+          },
+          {
+            "level": "H2",
+            "text": "Keep working",
+            "top": 13901.421875
+          },
+          {
+            "level": "H2",
+            "text": "End of the account",
+            "top": 15158.15625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 48195,
+        "textCharacters": 7371,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "League ledger",
+            "top": 264
+          },
+          {
+            "level": "H2",
+            "text": "GOAT Hoopers · league home",
+            "top": 1270
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · first pairing",
+            "top": 2615
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 · running scores",
+            "top": 4989
+          },
+          {
+            "level": "H2",
+            "text": "Franchise register",
+            "top": 15316
+          },
+          {
+            "level": "H2",
+            "text": "Dated editions · the October file",
+            "top": 28308
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 28990
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 29448
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 31359.90625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 31737.90625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 33305.90625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 33683.90625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 35251.90625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 35674.90625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 37306.90625
+          },
+          {
+            "level": "H2",
+            "text": "Moves · current fixture",
+            "top": 38944.671875
+          },
+          {
+            "level": "H2",
+            "text": "Keep working",
+            "top": 42509.671875
+          },
+          {
+            "level": "H2",
+            "text": "End of the account",
+            "top": 46623.015625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

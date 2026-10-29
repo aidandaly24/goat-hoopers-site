@@ -1,0 +1,174 @@
+{
+  "stage": "Complete initial homepage correction set; local only; final user/parent review and native delivery pending",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "actualAuthors": {
+    "originalIndependentArchitectureAuthors": 20,
+    "freshCorrectionAuthors": 19,
+    "rootPilot": 1,
+    "note": "Counts are different phases; not claimed as20new correction agents. Each correction author read only its own original plus a common facts/constraints brief; no common presentation renderer was supplied."
+  },
+  "homepages": 20,
+  "completeInitialDocumentCaptures": 80,
+  "uniqueFullImageHashes": 80,
+  "nativeReadingCheckpoints": 240,
+  "rootChecks": {
+    "passed": 204,
+    "total": 204,
+    "breakdown": "200 public/member render/reflow cases across20sources, including1440/390/320 and200%root text;4additional retained16pilot keyboard/AI/standalone cases. New19sources each10cases; pilot source unchanged."
+  },
+  "standaloneBootCases": {
+    "passed": 40,
+    "total": 40,
+    "remoteDependencies": 0,
+    "path": "../portable/homepage-corrections/verification.json"
+  },
+  "standaloneLocalLinkCases": {
+    "passed": 40,
+    "total": 40,
+    "path": "../portable/homepage-corrections/local-link-audit.json"
+  },
+  "semanticSmokeCases": {
+    "passed": 40,
+    "total": 40,
+    "path": "semantic-checks.json",
+    "scope": "Landmark/heading counts, duplicate IDs, visible control names and image alt presence; not WCAG/AT certification."
+  },
+  "visualInspection": {
+    "root": "Member desktop entire compositions; public desktop composition overviews; public/member phone top/middle/footer native checkpoints. Complete mobile geometry additionally inspected for10/19/20; pilot16original root review preserved. Targeted10enlarged-text and18footer defects fixed/rechecked. Original high-resolution captures retained.",
+    "parent": "Only16desktop complete composition and middle/footer detail confirmed substantial. Parent has not independently reviewed phone pixels or remaining19finalfullpages.",
+    "Muse": "No fresh approval of corrected full set; old feature-study comments do not approve these captures.",
+    "scope": "Qualitative inspection, not a statistical ranking or final design selection."
+  },
+  "artifactBounds": {
+    "fullJpegMaxBytes": 889516,
+    "documentHeightRange": [
+      3938,
+      16218
+    ],
+    "zipCount": 20,
+    "zipMaxBytes": 5579972,
+    "zipCapBytes": 10485760,
+    "portableHtmlMaxBytes": 3779795
+  },
+  "preservation": "Old grayscale/polished sources and images unchanged; #271benchmark/previousrejectedresearch preserved.16original runtime/captures/reviewZIP unchanged; its standalone packaging rebuilt with valid local/self/production links.",
+  "limits": [
+    "Synthetic future-dated fixture, clearly labelled; not live league/auth/data/AI.",
+    "Headless Linux Chromium; no physical iPhone, screen-reader, full contrast/conformance or production performance acceptance.",
+    "Managed browser blocksfile://; portable copies checked onlocalhostwith zero dependentHTTPrequests; direct offline file opening unverified.",
+    "No merge/deploy, productionroutes/config/database/credentials/MuseWeek2or3Dchanges.",
+    "No further refinement/shortlist selected; several intentionally dense/long studies need a user taste signal."
+  ],
+  "deliveryBlocker": {
+    "status": "technical failure before preparation; known0writes; no native IDs",
+    "action": "Official Library prepared upload helper discovery",
+    "target": "Private artifact delivery to parent/user",
+    "reason": "library upload failed: hosted apps tools/list request failed: network",
+    "fallback": "No callable native cloud task file attachment/upload tool exists in this executor. Manual base64 attempts stopped perparent. Source files and20ZIPs remain local; no unrelated service/publication workaround."
+  },
+  "publicationHolds": {
+    "current": "Local only. No external writes attempted in this correction pass.",
+    "priorDenied": [
+      {
+        "action": "DraftPR creation",
+        "target": "dot/qa-homepage-structures -> dot/editorial-home-prototype",
+        "status": "denied, confirmed no execution",
+        "reason": "Automaticapprovalreview found insufficient explicit authorization for externalrepositorypublication."
+      },
+      {
+        "action": "Issue190 checkpoint/reviewcomment",
+        "target": "aidandaly24/goat-hoopers-site#190",
+        "status": "denied,confirmed not posted",
+        "reason": "Automaticapprovalreview found insufficient explicit authorization for detailedexternalstatuspublication."
+      }
+    ]
+  },
+  "integrityErrors": [],
+  "directions": [
+    {
+      "id": "01",
+      "report": "01/review/checkpoint.json"
+    },
+    {
+      "id": "02",
+      "report": "02/review/checkpoint.json"
+    },
+    {
+      "id": "03",
+      "report": "03/review/checkpoint.json"
+    },
+    {
+      "id": "04",
+      "report": "04/review/checkpoint.json"
+    },
+    {
+      "id": "05",
+      "report": "05/review/checkpoint.json"
+    },
+    {
+      "id": "06",
+      "report": "06/review/checkpoint.json"
+    },
+    {
+      "id": "07",
+      "report": "07/review/checkpoint.json"
+    },
+    {
+      "id": "08",
+      "report": "08/review/checkpoint.json"
+    },
+    {
+      "id": "09",
+      "report": "09/review/checkpoint.json"
+    },
+    {
+      "id": "10",
+      "report": "10/review/checkpoint.json"
+    },
+    {
+      "id": "11",
+      "report": "11/review/checkpoint.json"
+    },
+    {
+      "id": "12",
+      "report": "12/review/checkpoint.json"
+    },
+    {
+      "id": "13",
+      "report": "13/review/checkpoint.json"
+    },
+    {
+      "id": "14",
+      "report": "14/review/checkpoint.json"
+    },
+    {
+      "id": "15",
+      "report": "15/review/checkpoint.json"
+    },
+    {
+      "id": "16",
+      "report": "16/review/checkpoint.json"
+    },
+    {
+      "id": "17",
+      "report": "17/review/checkpoint.json"
+    },
+    {
+      "id": "18",
+      "report": "18/review/checkpoint.json"
+    },
+    {
+      "id": "19",
+      "report": "19/review/checkpoint.json"
+    },
+    {
+      "id": "20",
+      "report": "20/review/checkpoint.json"
+    }
+  ],
+  "scopeCheck": {
+    "changedTracked": 6,
+    "newFiles": 542,
+    "allPathsWithin": "qa/homepage-structures/",
+    "outOfScope": []
+  }
+}

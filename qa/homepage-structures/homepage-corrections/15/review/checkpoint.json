@@ -1,0 +1,1530 @@
+{
+  "id": "15",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/15/app.js",
+      "bytes": 21952,
+      "sha256": "48085bf81faa540cbd1f4b72423a0672b26e374eeb4ebe9e3a12413a78b33dc2"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/15/index.html",
+      "bytes": 1441,
+      "sha256": "b1ea9bcc4ac4d4f876854543c4508b0f79e67141d893d45f03f6adb36652f39e"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/15/style.css",
+      "bytes": 21966,
+      "sha256": "e33e2ddb1ec3f253bca35aaf08ccbc345cd8f3edd3b1a6e92ae721d7f3334c24"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/15/review/member-desktop-full.jpg",
+        "bytes": 595837,
+        "sha256": "68d65e4b4e1ec4cbcd0617cef714e941653853c2f37eeaf596df5aee9da9f2b2",
+        "width": 1440,
+        "height": 6434,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 6434,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/member-desktop-top.jpg",
+          "bytes": 113200,
+          "sha256": "fdf2a2940e96554e9727d6227428eaa473b41886e64cef75d9f512d2d75ea7b4",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2717,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/member-desktop-middle.jpg",
+          "bytes": 69254,
+          "sha256": "24b1bac3613040bda102a4ed31467570795105d7b2a8d8bd7f6a4ada9f9ecd59",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 5434,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/member-desktop-bottom.jpg",
+          "bytes": 82284,
+          "sha256": "e0129f8888d3f5c6d734ce02f66b31b74ce46eee5bede24c960817b3a7eb9ffd",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week planner",
+          "top": 157.234375
+        },
+        {
+          "level": "H2",
+          "text": "Week 3 pairings",
+          "top": 524.625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 656.015625
+        },
+        {
+          "level": "H3",
+          "text": "Scouting watch",
+          "top": 1253.609375
+        },
+        {
+          "level": "H3",
+          "text": "Team wire",
+          "top": 1685.609375
+        },
+        {
+          "level": "H3",
+          "text": "Recorded moves",
+          "top": 2396.015625
+        },
+        {
+          "level": "H3",
+          "text": "The league book",
+          "top": 2758.015625
+        },
+        {
+          "level": "H2",
+          "text": "What the last week left us",
+          "top": 3777.015625
+        },
+        {
+          "level": "H3",
+          "text": "Best & rough week",
+          "top": 3895.40625
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 4501.40625
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 4820.796875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 4820.796875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 4820.796875
+        },
+        {
+          "level": "H3",
+          "text": "From this edition",
+          "top": 5193.796875
+        },
+        {
+          "level": "H2",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 5599.796875
+        },
+        {
+          "level": "H3",
+          "text": "From this edition",
+          "top": 5811.1875
+        },
+        {
+          "level": "H2",
+          "text": "Keep the week moving.",
+          "top": 6067.1875
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/15/review/member-phone-full.jpg",
+        "bytes": 509937,
+        "sha256": "273ccc42f97309dbd2624845b1235f276e62fd034c50ab67bee4ce058d3be43d",
+        "width": 390,
+        "height": 10468,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1468,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/member-phone-top.jpg",
+          "bytes": 48765,
+          "sha256": "04cdca2c33d9bf02009487ffec8ae901aa930d1966b694e1b358254c537df74c",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 4812,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/member-phone-middle.jpg",
+          "bytes": 33160,
+          "sha256": "ccb14ca13681cfc89a6bb722af3d5ac72e8123377ee9522f13acc38391e64f3b",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 9624,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/member-phone-bottom.jpg",
+          "bytes": 38109,
+          "sha256": "bb6f6badfc1b7f2a91d084de84c9e631cabb5d048d8f9cab51f0d641fe723db7",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week planner",
+          "top": 145.34375
+        },
+        {
+          "level": "H2",
+          "text": "Week 3 pairings",
+          "top": 576.734375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 2530.328125
+        },
+        {
+          "level": "H3",
+          "text": "Scouting watch",
+          "top": 3139.921875
+        },
+        {
+          "level": "H3",
+          "text": "Team wire",
+          "top": 3592.921875
+        },
+        {
+          "level": "H3",
+          "text": "Recorded moves",
+          "top": 3820.515625
+        },
+        {
+          "level": "H3",
+          "text": "The league book",
+          "top": 4253.515625
+        },
+        {
+          "level": "H2",
+          "text": "What the last week left us",
+          "top": 5677.703125
+        },
+        {
+          "level": "H3",
+          "text": "Best & rough week",
+          "top": 5839.296875
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 6856.484375
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 7443.671875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 7834.671875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 8225.671875
+        },
+        {
+          "level": "H3",
+          "text": "From this edition",
+          "top": 8590.671875
+        },
+        {
+          "level": "H2",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 9191.859375
+        },
+        {
+          "level": "H3",
+          "text": "From this edition",
+          "top": 9620.046875
+        },
+        {
+          "level": "H2",
+          "text": "Keep the week moving.",
+          "top": 9913.046875
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/15/review/public-desktop-full.jpg",
+        "bytes": 484860,
+        "sha256": "7c17a551f0f8a8ad8f2349504e19f5f9336a661b163cb632a13a6099711998c5",
+        "width": 1440,
+        "height": 5778,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 5778,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/public-desktop-top.jpg",
+          "bytes": 102891,
+          "sha256": "857e0ffecf60a15620f16ae22679d8e75662afa6f0475cff76c90aea9b913066",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2389,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/public-desktop-middle.jpg",
+          "bytes": 73928,
+          "sha256": "cc14e4b4cf2c785a12af181803219384773d259a664e7f40eda4e41e44ff61fd",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 4778,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/public-desktop-bottom.jpg",
+          "bytes": 83344,
+          "sha256": "6edd13f8095077f679eb70b992b80e62126ab1dddc3e0034244ed564441e5f95",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week planner",
+          "top": 157.234375
+        },
+        {
+          "level": "H2",
+          "text": "Week 3 pairings",
+          "top": 505.421875
+        },
+        {
+          "level": "H3",
+          "text": "Ten teams. One league.",
+          "top": 636.8125
+        },
+        {
+          "level": "H3",
+          "text": "Recorded moves",
+          "top": 2374.8125
+        },
+        {
+          "level": "H3",
+          "text": "The league book",
+          "top": 2736.8125
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 3845.8125
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 4165.203125
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 4165.203125
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 4165.203125
+        },
+        {
+          "level": "H3",
+          "text": "From this edition",
+          "top": 4538.203125
+        },
+        {
+          "level": "H2",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 4944.203125
+        },
+        {
+          "level": "H3",
+          "text": "From this edition",
+          "top": 5155.59375
+        },
+        {
+          "level": "H2",
+          "text": "Keep the week moving.",
+          "top": 5411.59375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/15/review/public-phone-full.jpg",
+        "bytes": 399341,
+        "sha256": "ad7a4a942be5071efa93653ff67a60ca6406ce86c54d713595cb4ad0a4eeff0c",
+        "width": 390,
+        "height": 8426,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1226,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/public-phone-top.jpg",
+          "bytes": 46032,
+          "sha256": "190395ac626a47a7e6c4ba225df4a9992cc8b94a1798b198ea437d9973f8ffa4",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3791,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/public-phone-middle.jpg",
+          "bytes": 35553,
+          "sha256": "bf25e40ae4d880a9c117d9f89e83843311096e720d6da348176511135a7f8449",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 7582,
+          "path": "qa/homepage-structures/homepage-corrections/15/review/public-phone-bottom.jpg",
+          "bytes": 38925,
+          "sha256": "b2e58a48e4bffe15df183b2332db6b9e5023e4e4ae9a4bc14ded8a25e7c8eebc",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week planner",
+          "top": 154.84375
+        },
+        {
+          "level": "H2",
+          "text": "Week 3 pairings",
+          "top": 595.734375
+        },
+        {
+          "level": "H3",
+          "text": "Ten teams. One league.",
+          "top": 2547.328125
+        },
+        {
+          "level": "H3",
+          "text": "Recorded moves",
+          "top": 2846.921875
+        },
+        {
+          "level": "H3",
+          "text": "The league book",
+          "top": 3279.921875
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 4815.109375
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 5402.296875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 5793.296875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 6184.296875
+        },
+        {
+          "level": "H3",
+          "text": "From this edition",
+          "top": 6549.296875
+        },
+        {
+          "level": "H2",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 7150.484375
+        },
+        {
+          "level": "H3",
+          "text": "From this edition",
+          "top": 7578.671875
+        },
+        {
+          "level": "H2",
+          "text": "Keep the week moving.",
+          "top": 7871.671875
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 6434,
+        "textCharacters": 7134,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week planner",
+            "top": 157.234375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 pairings",
+            "top": 524.625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 656.015625
+          },
+          {
+            "level": "H3",
+            "text": "Scouting watch",
+            "top": 1253.609375
+          },
+          {
+            "level": "H3",
+            "text": "Team wire",
+            "top": 1685.609375
+          },
+          {
+            "level": "H3",
+            "text": "Recorded moves",
+            "top": 2396.015625
+          },
+          {
+            "level": "H3",
+            "text": "The league book",
+            "top": 2758.015625
+          },
+          {
+            "level": "H2",
+            "text": "What the last week left us",
+            "top": 3777.015625
+          },
+          {
+            "level": "H3",
+            "text": "Best & rough week",
+            "top": 3895.40625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 4501.40625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 4820.796875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 4820.796875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 4820.796875
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 5193.796875
+          },
+          {
+            "level": "H2",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 5599.796875
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 5811.1875
+          },
+          {
+            "level": "H2",
+            "text": "Keep the week moving.",
+            "top": 6067.1875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 10468,
+        "textCharacters": 7065,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week planner",
+            "top": 145.34375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 pairings",
+            "top": 576.734375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2530.328125
+          },
+          {
+            "level": "H3",
+            "text": "Scouting watch",
+            "top": 3139.921875
+          },
+          {
+            "level": "H3",
+            "text": "Team wire",
+            "top": 3592.921875
+          },
+          {
+            "level": "H3",
+            "text": "Recorded moves",
+            "top": 3820.515625
+          },
+          {
+            "level": "H3",
+            "text": "The league book",
+            "top": 4253.515625
+          },
+          {
+            "level": "H2",
+            "text": "What the last week left us",
+            "top": 5677.703125
+          },
+          {
+            "level": "H3",
+            "text": "Best & rough week",
+            "top": 5839.296875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 6856.484375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 7443.671875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 7834.671875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 8225.671875
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 8590.671875
+          },
+          {
+            "level": "H2",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 9191.859375
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 9620.046875
+          },
+          {
+            "level": "H2",
+            "text": "Keep the week moving.",
+            "top": 9913.046875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 35890,
+        "textCharacters": 7065,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week planner",
+            "top": 417.109375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 pairings",
+            "top": 1886.296875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 9286.671875
+          },
+          {
+            "level": "H3",
+            "text": "Scouting watch",
+            "top": 11519.046875
+          },
+          {
+            "level": "H3",
+            "text": "Team wire",
+            "top": 12860.046875
+          },
+          {
+            "level": "H3",
+            "text": "Recorded moves",
+            "top": 13495.234375
+          },
+          {
+            "level": "H3",
+            "text": "The league book",
+            "top": 14900.234375
+          },
+          {
+            "level": "H2",
+            "text": "What the last week left us",
+            "top": 20337.234375
+          },
+          {
+            "level": "H3",
+            "text": "Best & rough week",
+            "top": 20986.796875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 23828.796875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 25812.546875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 26897.546875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 27886.546875
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 28836.546875
+          },
+          {
+            "level": "H2",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 32077.546875
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 33457.484375
+          },
+          {
+            "level": "H2",
+            "text": "Keep the week moving.",
+            "top": 34219.484375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 11735,
+        "textCharacters": 7065,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week planner",
+            "top": 142.546875
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 pairings",
+            "top": 678.515625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2822.109375
+          },
+          {
+            "level": "H3",
+            "text": "Scouting watch",
+            "top": 3548.703125
+          },
+          {
+            "level": "H3",
+            "text": "Team wire",
+            "top": 4022.703125
+          },
+          {
+            "level": "H3",
+            "text": "Recorded moves",
+            "top": 4316.296875
+          },
+          {
+            "level": "H3",
+            "text": "The league book",
+            "top": 4892.296875
+          },
+          {
+            "level": "H2",
+            "text": "What the last week left us",
+            "top": 6337.484375
+          },
+          {
+            "level": "H3",
+            "text": "Best & rough week",
+            "top": 6556.671875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 7618.859375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 8260.046875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 8675.046875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 9090.046875
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 9455.046875
+          },
+          {
+            "level": "H2",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 10202.234375
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 10694.015625
+          },
+          {
+            "level": "H2",
+            "text": "Keep the week moving.",
+            "top": 11067.015625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 49723,
+        "textCharacters": 7065,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week planner",
+            "top": 459.109375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 pairings",
+            "top": 2458.6875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 15757.0625
+          },
+          {
+            "level": "H3",
+            "text": "Scouting watch",
+            "top": 18131.4375
+          },
+          {
+            "level": "H3",
+            "text": "Team wire",
+            "top": 19802.4375
+          },
+          {
+            "level": "H3",
+            "text": "Recorded moves",
+            "top": 20684.8125
+          },
+          {
+            "level": "H3",
+            "text": "The league book",
+            "top": 22281.8125
+          },
+          {
+            "level": "H2",
+            "text": "What the last week left us",
+            "top": 30988.8125
+          },
+          {
+            "level": "H3",
+            "text": "Best & rough week",
+            "top": 31782.375
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 35842.375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 38162.125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 39469.125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 40686.125
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 41810.125
+          },
+          {
+            "level": "H2",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 45381.125
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 46978.25
+          },
+          {
+            "level": "H2",
+            "text": "Keep the week moving.",
+            "top": 47836.25
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 5778,
+        "textCharacters": 5499,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week planner",
+            "top": 157.234375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 pairings",
+            "top": 505.421875
+          },
+          {
+            "level": "H3",
+            "text": "Ten teams. One league.",
+            "top": 636.8125
+          },
+          {
+            "level": "H3",
+            "text": "Recorded moves",
+            "top": 2374.8125
+          },
+          {
+            "level": "H3",
+            "text": "The league book",
+            "top": 2736.8125
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 3845.8125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 4165.203125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 4165.203125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 4165.203125
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 4538.203125
+          },
+          {
+            "level": "H2",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 4944.203125
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 5155.59375
+          },
+          {
+            "level": "H2",
+            "text": "Keep the week moving.",
+            "top": 5411.59375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 8426,
+        "textCharacters": 5449,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week planner",
+            "top": 154.84375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 pairings",
+            "top": 595.734375
+          },
+          {
+            "level": "H3",
+            "text": "Ten teams. One league.",
+            "top": 2547.328125
+          },
+          {
+            "level": "H3",
+            "text": "Recorded moves",
+            "top": 2846.921875
+          },
+          {
+            "level": "H3",
+            "text": "The league book",
+            "top": 3279.921875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 4815.109375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 5402.296875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 5793.296875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 6184.296875
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 6549.296875
+          },
+          {
+            "level": "H2",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 7150.484375
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 7578.671875
+          },
+          {
+            "level": "H2",
+            "text": "Keep the week moving.",
+            "top": 7871.671875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 29288,
+        "textCharacters": 5449,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week planner",
+            "top": 417.109375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 pairings",
+            "top": 1886.296875
+          },
+          {
+            "level": "H3",
+            "text": "Ten teams. One league.",
+            "top": 9284.671875
+          },
+          {
+            "level": "H3",
+            "text": "Recorded moves",
+            "top": 10121.046875
+          },
+          {
+            "level": "H3",
+            "text": "The league book",
+            "top": 11526.046875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 17227.046875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 19210.796875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 20295.796875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 21284.796875
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 22234.796875
+          },
+          {
+            "level": "H2",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 25475.796875
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 26855.734375
+          },
+          {
+            "level": "H2",
+            "text": "Keep the week moving.",
+            "top": 27617.734375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 9423,
+        "textCharacters": 5449,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week planner",
+            "top": 142.546875
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 pairings",
+            "top": 678.515625
+          },
+          {
+            "level": "H3",
+            "text": "Ten teams. One league.",
+            "top": 2820.109375
+          },
+          {
+            "level": "H3",
+            "text": "Recorded moves",
+            "top": 3153.296875
+          },
+          {
+            "level": "H3",
+            "text": "The league book",
+            "top": 3729.296875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 5306.484375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 5947.671875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 6362.671875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 6777.671875
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 7142.671875
+          },
+          {
+            "level": "H2",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 7889.859375
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 8381.640625
+          },
+          {
+            "level": "H2",
+            "text": "Keep the week moving.",
+            "top": 8754.640625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 41612,
+        "textCharacters": 5449,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week planner",
+            "top": 459.109375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3 pairings",
+            "top": 2458.6875
+          },
+          {
+            "level": "H3",
+            "text": "Ten teams. One league.",
+            "top": 15755.0625
+          },
+          {
+            "level": "H3",
+            "text": "Recorded moves",
+            "top": 16863.8125
+          },
+          {
+            "level": "H3",
+            "text": "The league book",
+            "top": 18460.8125
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 27731.8125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 30051.5625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 31358.5625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 32575.5625
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 33699.5625
+          },
+          {
+            "level": "H2",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 37270.5625
+          },
+          {
+            "level": "H3",
+            "text": "From this edition",
+            "top": 38867.6875
+          },
+          {
+            "level": "H2",
+            "text": "Keep the week moving.",
+            "top": 39725.6875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

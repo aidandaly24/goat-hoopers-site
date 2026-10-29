@@ -1,0 +1,3845 @@
+{
+  "id": "10",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/10/bench.css",
+      "bytes": 35246,
+      "sha256": "70db2c5e0392ace23b73c0344e3c940c76faba3b7f7261ea6d2cbdd58e58c9ec"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/10/bench.js",
+      "bytes": 34158,
+      "sha256": "5ff8b50727d52c461945ee2faf85e69353215c90dabab13bb4bd8634a0ced60c"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/10/index.html",
+      "bytes": 409,
+      "sha256": "d6a5be108cdc8a5ed43b267ed6aa6b59dda280d1bab9e7fcf0eb4014eec2db1a"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/10/review/member-desktop-full.jpg",
+        "bytes": 841542,
+        "sha256": "e4d3577a6a7d782583f519fd440bd080f63fcdadab602e487fbcfa2786e3192c",
+        "width": 1440,
+        "height": 8590,
+        "quality": 87,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1390,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/member-desktop-top.jpg",
+          "bytes": 121874,
+          "sha256": "fe2eaf131a750abf248932885ca25eabd8e5ef67cc7d30dbb73707e62bad190b",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3795,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/member-desktop-middle.jpg",
+          "bytes": 94554,
+          "sha256": "d555713d4a9dc2910b762b142d146f8de869467c85e814c4d45ba699fd7b798a",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 7590,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/member-desktop-bottom.jpg",
+          "bytes": 82623,
+          "sha256": "7af212f6f92f8f4295a087cc269149d5666e3da29d4d77f5cdd0ba2c204aacd5",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The league,at work.",
+          "top": 203.71875
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 600.46875
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 700.65625
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 235.71875
+        },
+        {
+          "level": "H3",
+          "text": "Three highest supplied values",
+          "top": 570.015625
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One table.",
+          "top": 1419.21875
+        },
+        {
+          "level": "H2",
+          "text": "What moved?",
+          "top": 1419.21875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 1543.09375
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 1716.09375
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 1889.09375
+        },
+        {
+          "level": "H3",
+          "text": "On your team wire",
+          "top": 2013.09375
+        },
+        {
+          "level": "H2",
+          "text": "Put a package together.",
+          "top": 2714.09375
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 3098.28125
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 3227.28125
+        },
+        {
+          "level": "H3",
+          "text": "Anthony Edwards",
+          "top": 3352.28125
+        },
+        {
+          "level": "H3",
+          "text": "Alperen Şengün",
+          "top": 3473.28125
+        },
+        {
+          "level": "H3",
+          "text": "Damian Lillard",
+          "top": 3594.28125
+        },
+        {
+          "level": "H3",
+          "text": "Tobias Harris",
+          "top": 3715.28125
+        },
+        {
+          "level": "H2",
+          "text": "Trade packages",
+          "top": 2690.09375
+        },
+        {
+          "level": "H3",
+          "text": "Package A",
+          "top": 2772.96875
+        },
+        {
+          "level": "H3",
+          "text": "Package B",
+          "top": 2772.96875
+        },
+        {
+          "level": "H3",
+          "text": "Retained evidence",
+          "top": 3234.0625
+        },
+        {
+          "level": "H2",
+          "text": "Form before the offer.",
+          "top": 4120.28125
+        },
+        {
+          "level": "H3",
+          "text": "Completed source week",
+          "top": 4453.546875
+        },
+        {
+          "level": "H3",
+          "text": "Damian Lillard",
+          "top": 4567.140625
+        },
+        {
+          "level": "H3",
+          "text": "Derrick White",
+          "top": 4567.140625
+        },
+        {
+          "level": "H2",
+          "text": "Read the whole slate.",
+          "top": 4957.140625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper0.0",
+          "top": 5133.015625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?Pending",
+          "top": 5185.015625
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back105.5",
+          "top": 5375.625
+        },
+        {
+          "level": "H3",
+          "text": "The Fun GuysPending",
+          "top": 5427.625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster105.5",
+          "top": 5618.234375
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ PuffPending",
+          "top": 5670.234375
+        },
+        {
+          "level": "H3",
+          "text": "papichooter105.5",
+          "top": 5860.84375
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNetsPending",
+          "top": 5912.84375
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team105.5",
+          "top": 6103.453125
+        },
+        {
+          "level": "H3",
+          "text": "T HalibootyPending",
+          "top": 6155.453125
+        },
+        {
+          "level": "H2",
+          "text": "The room had opinions.",
+          "top": 6470.0625
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 6640.9375
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 6752.9375
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 6640.9375
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 6764.9375
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 6640.9375
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 6764.9375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 7318.421875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 7318.421875
+        },
+        {
+          "level": "H3",
+          "text": "From the October wire",
+          "top": 7653.40625
+        },
+        {
+          "level": "H2",
+          "text": "Put a few shots up.",
+          "top": 8038.53125
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/10/review/member-phone-full.jpg",
+        "bytes": 837678,
+        "sha256": "abc3984b3652039630fd86b1c6d0a5d9e8ff0dad4516e1f6a71b1f219fe90d7e",
+        "width": 390,
+        "height": 15774,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 14400,
+            "height": 1374,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/member-phone-top.jpg",
+          "bytes": 48948,
+          "sha256": "c78589fce62cfa2141eaa753351a7e4cf2f5584737c4c39559427bf7718571aa",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 7465,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/member-phone-middle.jpg",
+          "bytes": 46743,
+          "sha256": "5318c4f5f664d99c7beafef088b5b231465297ca8873075189378576726cab8e",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 14930,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/member-phone-bottom.jpg",
+          "bytes": 39616,
+          "sha256": "aad49f74c03c13955e86327dbf944dafddb3e6af29ba11114a260fa79da6720d",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The league,at work.",
+          "top": 233
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 628.46875
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 714.265625
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 1216.0625
+        },
+        {
+          "level": "H3",
+          "text": "Three highest supplied values",
+          "top": 1526.703125
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One table.",
+          "top": 2641.515625
+        },
+        {
+          "level": "H2",
+          "text": "What moved?",
+          "top": 4043.390625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 4167.265625
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 4340.265625
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 4513.265625
+        },
+        {
+          "level": "H3",
+          "text": "On your team wire",
+          "top": 4637.265625
+        },
+        {
+          "level": "H2",
+          "text": "Put a package together.",
+          "top": 4975.859375
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 5389.65625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 5562.65625
+        },
+        {
+          "level": "H3",
+          "text": "Anthony Edwards",
+          "top": 5735.65625
+        },
+        {
+          "level": "H3",
+          "text": "Alperen Şengün",
+          "top": 5908.65625
+        },
+        {
+          "level": "H3",
+          "text": "Damian Lillard",
+          "top": 6081.65625
+        },
+        {
+          "level": "H3",
+          "text": "Tobias Harris",
+          "top": 6254.65625
+        },
+        {
+          "level": "H2",
+          "text": "Trade packages",
+          "top": 6650.65625
+        },
+        {
+          "level": "H3",
+          "text": "Package A",
+          "top": 6781.53125
+        },
+        {
+          "level": "H3",
+          "text": "Package B",
+          "top": 6781.53125
+        },
+        {
+          "level": "H3",
+          "text": "Retained evidence",
+          "top": 7249.515625
+        },
+        {
+          "level": "H2",
+          "text": "Form before the offer.",
+          "top": 7628.109375
+        },
+        {
+          "level": "H3",
+          "text": "Completed source week",
+          "top": 8259.8125
+        },
+        {
+          "level": "H3",
+          "text": "Damian Lillard",
+          "top": 8421.40625
+        },
+        {
+          "level": "H3",
+          "text": "Derrick White",
+          "top": 8421.40625
+        },
+        {
+          "level": "H2",
+          "text": "Read the whole slate.",
+          "top": 8875.40625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper0.0",
+          "top": 9171.28125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?Pending",
+          "top": 9223.28125
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back105.5",
+          "top": 9577.890625
+        },
+        {
+          "level": "H3",
+          "text": "The Fun GuysPending",
+          "top": 9629.890625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster105.5",
+          "top": 9984.5
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ PuffPending",
+          "top": 10036.5
+        },
+        {
+          "level": "H3",
+          "text": "papichooter105.5",
+          "top": 10391.109375
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNetsPending",
+          "top": 10443.109375
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team105.5",
+          "top": 10797.71875
+        },
+        {
+          "level": "H3",
+          "text": "T HalibootyPending",
+          "top": 10849.71875
+        },
+        {
+          "level": "H2",
+          "text": "The room had opinions.",
+          "top": 11280.328125
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 11547.203125
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 11671.203125
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 12164.6875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 12288.6875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 12806.171875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 12930.171875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 13447.65625
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 13870.25
+        },
+        {
+          "level": "H3",
+          "text": "From the October wire",
+          "top": 14292.84375
+        },
+        {
+          "level": "H2",
+          "text": "Put a few shots up.",
+          "top": 14758.4375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/10/review/public-desktop-full.jpg",
+        "bytes": 870442,
+        "sha256": "1e699ad0adc550b0f7d78cd31faeaa5d22ebf5ebe0309d512e0672516e938d65",
+        "width": 1440,
+        "height": 8397,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1197,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/public-desktop-top.jpg",
+          "bytes": 123889,
+          "sha256": "9f291bf316bca1d30b49b8c760ab6f77eba0a9656a2ef0a50c7bbbcd9d364d46",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3698,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/public-desktop-middle.jpg",
+          "bytes": 72214,
+          "sha256": "6bc59bdb6bd95fa40f6e992352d2d97a6bd93712fe77cd34a322ff07569fb59a",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 7397,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/public-desktop-bottom.jpg",
+          "bytes": 81994,
+          "sha256": "b8ac34c754674059fa66ca4c6baabee138e117a1844c4609cc6c19874654cc95",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The league,at work.",
+          "top": 203.71875
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 600.46875
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 700.65625
+        },
+        {
+          "level": "H2",
+          "text": "Know the quote.",
+          "top": 235.71875
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One table.",
+          "top": 1363.453125
+        },
+        {
+          "level": "H2",
+          "text": "What moved?",
+          "top": 1363.453125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 1487.328125
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 1660.328125
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 1833.328125
+        },
+        {
+          "level": "H2",
+          "text": "Put a package together.",
+          "top": 2658.328125
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 3042.515625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 3171.515625
+        },
+        {
+          "level": "H3",
+          "text": "Ace Bailey",
+          "top": 3296.515625
+        },
+        {
+          "level": "H3",
+          "text": "Alperen Şengün",
+          "top": 3417.515625
+        },
+        {
+          "level": "H3",
+          "text": "Anthony Black",
+          "top": 3538.515625
+        },
+        {
+          "level": "H3",
+          "text": "Anthony Edwards",
+          "top": 3659.515625
+        },
+        {
+          "level": "H2",
+          "text": "Trade packages",
+          "top": 2634.328125
+        },
+        {
+          "level": "H3",
+          "text": "Package A",
+          "top": 2717.203125
+        },
+        {
+          "level": "H3",
+          "text": "Package B",
+          "top": 2717.203125
+        },
+        {
+          "level": "H3",
+          "text": "Retained evidence",
+          "top": 3178.296875
+        },
+        {
+          "level": "H2",
+          "text": "Three different places to start.",
+          "top": 4064.515625
+        },
+        {
+          "level": "H3",
+          "text": "Stephen Curry",
+          "top": 4183.390625
+        },
+        {
+          "level": "H3",
+          "text": "Luka Dončić",
+          "top": 4317.984375
+        },
+        {
+          "level": "H3",
+          "text": "Giannis Antetokounmpo",
+          "top": 4452.578125
+        },
+        {
+          "level": "H2",
+          "text": "Read the whole slate.",
+          "top": 4764.171875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper0.0",
+          "top": 4940.046875
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?Pending",
+          "top": 4992.046875
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back105.5",
+          "top": 5182.65625
+        },
+        {
+          "level": "H3",
+          "text": "The Fun GuysPending",
+          "top": 5234.65625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster105.5",
+          "top": 5425.265625
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ PuffPending",
+          "top": 5477.265625
+        },
+        {
+          "level": "H3",
+          "text": "papichooter105.5",
+          "top": 5667.875
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNetsPending",
+          "top": 5719.875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team105.5",
+          "top": 5910.484375
+        },
+        {
+          "level": "H3",
+          "text": "T HalibootyPending",
+          "top": 5962.484375
+        },
+        {
+          "level": "H2",
+          "text": "The room had opinions.",
+          "top": 6277.09375
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 6447.96875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 6559.96875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 6447.96875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 6571.96875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 6447.96875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 6571.96875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 7125.453125
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 7125.453125
+        },
+        {
+          "level": "H3",
+          "text": "From the October wire",
+          "top": 7460.4375
+        },
+        {
+          "level": "H2",
+          "text": "Put a few shots up.",
+          "top": 7845.5625
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/10/review/public-phone-full.jpg",
+        "bytes": 791663,
+        "sha256": "6831963d0dbcc1e413625f23b030da35ef9506617e6395d009202dff77c03765",
+        "width": 390,
+        "height": 15217,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 14400,
+            "height": 817,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/public-phone-top.jpg",
+          "bytes": 48070,
+          "sha256": "4db565180459105dc44fbf1227a5f9e1f8598ab24db9c9f276eb947a073a91cb",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 7186,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/public-phone-middle.jpg",
+          "bytes": 50584,
+          "sha256": "34e80242781c0fad8c747480aa4b7f0191f3b7230dbfd07421e65bbb11df5b58",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 14373,
+          "path": "qa/homepage-structures/homepage-corrections/10/review/public-phone-bottom.jpg",
+          "bytes": 38928,
+          "sha256": "f02f474c29eaea52272b0e594652d6d991ef2d1f1084ac1015ac5dd25c531189",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "The league,at work.",
+          "top": 233
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 652.46875
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 738.265625
+        },
+        {
+          "level": "H2",
+          "text": "Know the quote.",
+          "top": 1240.0625
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. One table.",
+          "top": 2557.921875
+        },
+        {
+          "level": "H2",
+          "text": "What moved?",
+          "top": 3959.796875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 4083.671875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 4256.671875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 4429.671875
+        },
+        {
+          "level": "H2",
+          "text": "Put a package together.",
+          "top": 4702.671875
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 5116.46875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 5289.46875
+        },
+        {
+          "level": "H3",
+          "text": "Ace Bailey",
+          "top": 5462.46875
+        },
+        {
+          "level": "H3",
+          "text": "Alperen Şengün",
+          "top": 5663.46875
+        },
+        {
+          "level": "H3",
+          "text": "Anthony Black",
+          "top": 5836.46875
+        },
+        {
+          "level": "H3",
+          "text": "Anthony Edwards",
+          "top": 6037.46875
+        },
+        {
+          "level": "H2",
+          "text": "Trade packages",
+          "top": 6433.46875
+        },
+        {
+          "level": "H3",
+          "text": "Package A",
+          "top": 6564.34375
+        },
+        {
+          "level": "H3",
+          "text": "Package B",
+          "top": 6564.34375
+        },
+        {
+          "level": "H3",
+          "text": "Retained evidence",
+          "top": 7032.328125
+        },
+        {
+          "level": "H2",
+          "text": "Three different places to start.",
+          "top": 7410.921875
+        },
+        {
+          "level": "H3",
+          "text": "Stephen Curry",
+          "top": 7553.796875
+        },
+        {
+          "level": "H3",
+          "text": "Luka Dončić",
+          "top": 7760.390625
+        },
+        {
+          "level": "H3",
+          "text": "Giannis Antetokounmpo",
+          "top": 7966.984375
+        },
+        {
+          "level": "H2",
+          "text": "Read the whole slate.",
+          "top": 8318.578125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper0.0",
+          "top": 8614.453125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?Pending",
+          "top": 8666.453125
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back105.5",
+          "top": 9021.0625
+        },
+        {
+          "level": "H3",
+          "text": "The Fun GuysPending",
+          "top": 9073.0625
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster105.5",
+          "top": 9427.671875
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ PuffPending",
+          "top": 9479.671875
+        },
+        {
+          "level": "H3",
+          "text": "papichooter105.5",
+          "top": 9834.28125
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNetsPending",
+          "top": 9886.28125
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team105.5",
+          "top": 10240.890625
+        },
+        {
+          "level": "H3",
+          "text": "T HalibootyPending",
+          "top": 10292.890625
+        },
+        {
+          "level": "H2",
+          "text": "The room had opinions.",
+          "top": 10723.5
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 10990.375
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 11114.375
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 11607.859375
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 11731.859375
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 12249.34375
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 12373.34375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 12890.828125
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 13313.421875
+        },
+        {
+          "level": "H3",
+          "text": "From the October wire",
+          "top": 13736.015625
+        },
+        {
+          "level": "H2",
+          "text": "Put a few shots up.",
+          "top": 14201.609375
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 8590,
+        "textCharacters": 10787,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The league,at work.",
+            "top": 203.71875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 600.46875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 700.65625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 235.71875
+          },
+          {
+            "level": "H3",
+            "text": "Three highest supplied values",
+            "top": 570.015625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One table.",
+            "top": 1419.21875
+          },
+          {
+            "level": "H2",
+            "text": "What moved?",
+            "top": 1419.21875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 1543.09375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 1716.09375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 1889.09375
+          },
+          {
+            "level": "H3",
+            "text": "On your team wire",
+            "top": 2013.09375
+          },
+          {
+            "level": "H2",
+            "text": "Put a package together.",
+            "top": 2714.09375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 3098.28125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 3227.28125
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Edwards",
+            "top": 3352.28125
+          },
+          {
+            "level": "H3",
+            "text": "Alperen Şengün",
+            "top": 3473.28125
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 3594.28125
+          },
+          {
+            "level": "H3",
+            "text": "Tobias Harris",
+            "top": 3715.28125
+          },
+          {
+            "level": "H2",
+            "text": "Trade packages",
+            "top": 2690.09375
+          },
+          {
+            "level": "H3",
+            "text": "Package A",
+            "top": 2772.96875
+          },
+          {
+            "level": "H3",
+            "text": "Package B",
+            "top": 2772.96875
+          },
+          {
+            "level": "H3",
+            "text": "Retained evidence",
+            "top": 3234.0625
+          },
+          {
+            "level": "H2",
+            "text": "Form before the offer.",
+            "top": 4120.28125
+          },
+          {
+            "level": "H3",
+            "text": "Completed source week",
+            "top": 4453.546875
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 4567.140625
+          },
+          {
+            "level": "H3",
+            "text": "Derrick White",
+            "top": 4567.140625
+          },
+          {
+            "level": "H2",
+            "text": "Read the whole slate.",
+            "top": 4957.140625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper0.0",
+            "top": 5133.015625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?Pending",
+            "top": 5185.015625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back105.5",
+            "top": 5375.625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun GuysPending",
+            "top": 5427.625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster105.5",
+            "top": 5618.234375
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ PuffPending",
+            "top": 5670.234375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter105.5",
+            "top": 5860.84375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNetsPending",
+            "top": 5912.84375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team105.5",
+            "top": 6103.453125
+          },
+          {
+            "level": "H3",
+            "text": "T HalibootyPending",
+            "top": 6155.453125
+          },
+          {
+            "level": "H2",
+            "text": "The room had opinions.",
+            "top": 6470.0625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 6640.9375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 6752.9375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 6640.9375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 6764.9375
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 6640.9375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 6764.9375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 7318.421875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 7318.421875
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 7653.40625
+          },
+          {
+            "level": "H2",
+            "text": "Put a few shots up.",
+            "top": 8038.53125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 15774,
+        "textCharacters": 10712,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The league,at work.",
+            "top": 233
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 628.46875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 714.265625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1216.0625
+          },
+          {
+            "level": "H3",
+            "text": "Three highest supplied values",
+            "top": 1526.703125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One table.",
+            "top": 2641.515625
+          },
+          {
+            "level": "H2",
+            "text": "What moved?",
+            "top": 4043.390625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 4167.265625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 4340.265625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 4513.265625
+          },
+          {
+            "level": "H3",
+            "text": "On your team wire",
+            "top": 4637.265625
+          },
+          {
+            "level": "H2",
+            "text": "Put a package together.",
+            "top": 4975.859375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 5389.65625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 5562.65625
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Edwards",
+            "top": 5735.65625
+          },
+          {
+            "level": "H3",
+            "text": "Alperen Şengün",
+            "top": 5908.65625
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 6081.65625
+          },
+          {
+            "level": "H3",
+            "text": "Tobias Harris",
+            "top": 6254.65625
+          },
+          {
+            "level": "H2",
+            "text": "Trade packages",
+            "top": 6650.65625
+          },
+          {
+            "level": "H3",
+            "text": "Package A",
+            "top": 6781.53125
+          },
+          {
+            "level": "H3",
+            "text": "Package B",
+            "top": 6781.53125
+          },
+          {
+            "level": "H3",
+            "text": "Retained evidence",
+            "top": 7249.515625
+          },
+          {
+            "level": "H2",
+            "text": "Form before the offer.",
+            "top": 7628.109375
+          },
+          {
+            "level": "H3",
+            "text": "Completed source week",
+            "top": 8259.8125
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 8421.40625
+          },
+          {
+            "level": "H3",
+            "text": "Derrick White",
+            "top": 8421.40625
+          },
+          {
+            "level": "H2",
+            "text": "Read the whole slate.",
+            "top": 8875.40625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper0.0",
+            "top": 9171.28125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?Pending",
+            "top": 9223.28125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back105.5",
+            "top": 9577.890625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun GuysPending",
+            "top": 9629.890625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster105.5",
+            "top": 9984.5
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ PuffPending",
+            "top": 10036.5
+          },
+          {
+            "level": "H3",
+            "text": "papichooter105.5",
+            "top": 10391.109375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNetsPending",
+            "top": 10443.109375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team105.5",
+            "top": 10797.71875
+          },
+          {
+            "level": "H3",
+            "text": "T HalibootyPending",
+            "top": 10849.71875
+          },
+          {
+            "level": "H2",
+            "text": "The room had opinions.",
+            "top": 11280.328125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 11547.203125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 11671.203125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 12164.6875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 12288.6875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 12806.171875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 12930.171875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 13447.65625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 13870.25
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 14292.84375
+          },
+          {
+            "level": "H2",
+            "text": "Put a few shots up.",
+            "top": 14758.4375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 56305,
+        "textCharacters": 10712,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The league,at work.",
+            "top": 929
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2259.875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 2537.0625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 4284.4375
+          },
+          {
+            "level": "H3",
+            "text": "Three highest supplied values",
+            "top": 5449
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One table.",
+            "top": 9613.3125
+          },
+          {
+            "level": "H2",
+            "text": "What moved?",
+            "top": 18451.8125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 18794.5625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 19325.125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 19855.6875
+          },
+          {
+            "level": "H3",
+            "text": "On your team wire",
+            "top": 20241.25
+          },
+          {
+            "level": "H2",
+            "text": "Put a package together.",
+            "top": 21141.4375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 22457.625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 23075.625
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Edwards",
+            "top": 23693.625
+          },
+          {
+            "level": "H3",
+            "text": "Alperen Şengün",
+            "top": 24207.625
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 24721.625
+          },
+          {
+            "level": "H3",
+            "text": "Tobias Harris",
+            "top": 25235.625
+          },
+          {
+            "level": "H2",
+            "text": "Trade packages",
+            "top": 26548.625
+          },
+          {
+            "level": "H3",
+            "text": "Package A",
+            "top": 26906.375
+          },
+          {
+            "level": "H3",
+            "text": "Package B",
+            "top": 27883.359375
+          },
+          {
+            "level": "H3",
+            "text": "Retained evidence",
+            "top": 28819.34375
+          },
+          {
+            "level": "H2",
+            "text": "Form before the offer.",
+            "top": 30063.53125
+          },
+          {
+            "level": "H3",
+            "text": "Completed source week",
+            "top": 31904.59375
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 32462.96875
+          },
+          {
+            "level": "H3",
+            "text": "Derrick White",
+            "top": 32510.96875
+          },
+          {
+            "level": "H2",
+            "text": "Read the whole slate.",
+            "top": 33944.96875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper0.0",
+            "top": 34781.46875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?Pending",
+            "top": 34885.46875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back105.5",
+            "top": 36142.59375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun GuysPending",
+            "top": 36288.15625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster105.5",
+            "top": 37460.53125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ PuffPending",
+            "top": 37606.09375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter105.5",
+            "top": 38778.46875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNetsPending",
+            "top": 38882.46875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team105.5",
+            "top": 40054.84375
+          },
+          {
+            "level": "H3",
+            "text": "T HalibootyPending",
+            "top": 40200.40625
+          },
+          {
+            "level": "H2",
+            "text": "The room had opinions.",
+            "top": 41662.34375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 42489.84375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 42929.84375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 44730.46875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 45122.46875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 46923.09375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 47267.09375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 49013.96875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 50381.34375
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 51775.90625
+          },
+          {
+            "level": "H2",
+            "text": "Put a few shots up.",
+            "top": 53302.28125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 18961,
+        "textCharacters": 10712,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The league,at work.",
+            "top": 333
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 762.8125
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 872.609375
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1451.203125
+          },
+          {
+            "level": "H3",
+            "text": "Three highest supplied values",
+            "top": 1809.84375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One table.",
+            "top": 3110.25
+          },
+          {
+            "level": "H2",
+            "text": "What moved?",
+            "top": 5172.125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 5320
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 5517
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 5714
+          },
+          {
+            "level": "H3",
+            "text": "On your team wire",
+            "top": 5862
+          },
+          {
+            "level": "H2",
+            "text": "Put a package together.",
+            "top": 6252.59375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 6754.390625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 6984.390625
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Edwards",
+            "top": 7214.390625
+          },
+          {
+            "level": "H3",
+            "text": "Alperen Şengün",
+            "top": 7444.390625
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 7674.390625
+          },
+          {
+            "level": "H3",
+            "text": "Tobias Harris",
+            "top": 7904.390625
+          },
+          {
+            "level": "H2",
+            "text": "Trade packages",
+            "top": 8409.390625
+          },
+          {
+            "level": "H3",
+            "text": "Package A",
+            "top": 8564.265625
+          },
+          {
+            "level": "H3",
+            "text": "Package B",
+            "top": 9000.453125
+          },
+          {
+            "level": "H3",
+            "text": "Retained evidence",
+            "top": 9415.640625
+          },
+          {
+            "level": "H2",
+            "text": "Form before the offer.",
+            "top": 9870.234375
+          },
+          {
+            "level": "H3",
+            "text": "Completed source week",
+            "top": 10597.9375
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 10735.53125
+          },
+          {
+            "level": "H3",
+            "text": "Derrick White",
+            "top": 10876.53125
+          },
+          {
+            "level": "H2",
+            "text": "Read the whole slate.",
+            "top": 11354.53125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper0.0",
+            "top": 11650.40625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?Pending",
+            "top": 11702.40625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back105.5",
+            "top": 12132.015625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun GuysPending",
+            "top": 12184.015625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster105.5",
+            "top": 12586.625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ PuffPending",
+            "top": 12638.625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter105.5",
+            "top": 13041.234375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNetsPending",
+            "top": 13093.234375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team105.5",
+            "top": 13471.84375
+          },
+          {
+            "level": "H3",
+            "text": "T HalibootyPending",
+            "top": 13523.84375
+          },
+          {
+            "level": "H2",
+            "text": "The room had opinions.",
+            "top": 14026.453125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 14317.328125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 14465.328125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 15057.6875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 15181.6875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 15774.046875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 15898.046875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 16463.53125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 16910.125
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 17350.71875
+          },
+          {
+            "level": "H2",
+            "text": "Put a few shots up.",
+            "top": 17840.3125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 62495,
+        "textCharacters": 10712,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The league,at work.",
+            "top": 1113
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2585.140625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 3014.921875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 5317.484375
+          },
+          {
+            "level": "H3",
+            "text": "Three highest supplied values",
+            "top": 6931.328125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One table.",
+            "top": 11194.828125
+          },
+          {
+            "level": "H2",
+            "text": "What moved?",
+            "top": 16543.328125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 16987.828125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 17614.390625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 18240.953125
+          },
+          {
+            "level": "H3",
+            "text": "On your team wire",
+            "top": 18765.703125
+          },
+          {
+            "level": "H2",
+            "text": "Put a package together.",
+            "top": 19943.078125
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 21396.859375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 22022.859375
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Edwards",
+            "top": 22640.859375
+          },
+          {
+            "level": "H3",
+            "text": "Alperen Şengün",
+            "top": 23258.859375
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 23876.859375
+          },
+          {
+            "level": "H3",
+            "text": "Tobias Harris",
+            "top": 24494.859375
+          },
+          {
+            "level": "H2",
+            "text": "Trade packages",
+            "top": 26007.859375
+          },
+          {
+            "level": "H3",
+            "text": "Package A",
+            "top": 26467.359375
+          },
+          {
+            "level": "H3",
+            "text": "Package B",
+            "top": 27522.75
+          },
+          {
+            "level": "H3",
+            "text": "Retained evidence",
+            "top": 28593.140625
+          },
+          {
+            "level": "H2",
+            "text": "Form before the offer.",
+            "top": 30202.515625
+          },
+          {
+            "level": "H3",
+            "text": "Completed source week",
+            "top": 32373.578125
+          },
+          {
+            "level": "H3",
+            "text": "Damian Lillard",
+            "top": 32931.953125
+          },
+          {
+            "level": "H3",
+            "text": "Derrick White",
+            "top": 33308.953125
+          },
+          {
+            "level": "H2",
+            "text": "Read the whole slate.",
+            "top": 35030.953125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper0.0",
+            "top": 36053.453125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?Pending",
+            "top": 36157.453125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back105.5",
+            "top": 37650.953125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun GuysPending",
+            "top": 37839.703125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster105.5",
+            "top": 39246.828125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ PuffPending",
+            "top": 39435.578125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter105.5",
+            "top": 40799.515625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNetsPending",
+            "top": 40903.515625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team105.5",
+            "top": 42219.453125
+          },
+          {
+            "level": "H3",
+            "text": "T HalibootyPending",
+            "top": 42365.015625
+          },
+          {
+            "level": "H2",
+            "text": "The room had opinions.",
+            "top": 44068.140625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 45183.390625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 45767.390625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 47987.203125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 48564.765625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 50653.390625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 51182.953125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 53231.578125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 54938.140625
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 56500.703125
+          },
+          {
+            "level": "H2",
+            "text": "Put a few shots up.",
+            "top": 58891.078125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 8397,
+        "textCharacters": 10250,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The league,at work.",
+            "top": 203.71875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 600.46875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 700.65625
+          },
+          {
+            "level": "H2",
+            "text": "Know the quote.",
+            "top": 235.71875
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One table.",
+            "top": 1363.453125
+          },
+          {
+            "level": "H2",
+            "text": "What moved?",
+            "top": 1363.453125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 1487.328125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 1660.328125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 1833.328125
+          },
+          {
+            "level": "H2",
+            "text": "Put a package together.",
+            "top": 2658.328125
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 3042.515625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 3171.515625
+          },
+          {
+            "level": "H3",
+            "text": "Ace Bailey",
+            "top": 3296.515625
+          },
+          {
+            "level": "H3",
+            "text": "Alperen Şengün",
+            "top": 3417.515625
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Black",
+            "top": 3538.515625
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Edwards",
+            "top": 3659.515625
+          },
+          {
+            "level": "H2",
+            "text": "Trade packages",
+            "top": 2634.328125
+          },
+          {
+            "level": "H3",
+            "text": "Package A",
+            "top": 2717.203125
+          },
+          {
+            "level": "H3",
+            "text": "Package B",
+            "top": 2717.203125
+          },
+          {
+            "level": "H3",
+            "text": "Retained evidence",
+            "top": 3178.296875
+          },
+          {
+            "level": "H2",
+            "text": "Three different places to start.",
+            "top": 4064.515625
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 4183.390625
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 4317.984375
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 4452.578125
+          },
+          {
+            "level": "H2",
+            "text": "Read the whole slate.",
+            "top": 4764.171875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper0.0",
+            "top": 4940.046875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?Pending",
+            "top": 4992.046875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back105.5",
+            "top": 5182.65625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun GuysPending",
+            "top": 5234.65625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster105.5",
+            "top": 5425.265625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ PuffPending",
+            "top": 5477.265625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter105.5",
+            "top": 5667.875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNetsPending",
+            "top": 5719.875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team105.5",
+            "top": 5910.484375
+          },
+          {
+            "level": "H3",
+            "text": "T HalibootyPending",
+            "top": 5962.484375
+          },
+          {
+            "level": "H2",
+            "text": "The room had opinions.",
+            "top": 6277.09375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 6447.96875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 6559.96875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 6447.96875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 6571.96875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 6447.96875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 6571.96875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 7125.453125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 7125.453125
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 7460.4375
+          },
+          {
+            "level": "H2",
+            "text": "Put a few shots up.",
+            "top": 7845.5625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 15217,
+        "textCharacters": 10175,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The league,at work.",
+            "top": 233
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 652.46875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 738.265625
+          },
+          {
+            "level": "H2",
+            "text": "Know the quote.",
+            "top": 1240.0625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One table.",
+            "top": 2557.921875
+          },
+          {
+            "level": "H2",
+            "text": "What moved?",
+            "top": 3959.796875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 4083.671875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 4256.671875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 4429.671875
+          },
+          {
+            "level": "H2",
+            "text": "Put a package together.",
+            "top": 4702.671875
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 5116.46875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 5289.46875
+          },
+          {
+            "level": "H3",
+            "text": "Ace Bailey",
+            "top": 5462.46875
+          },
+          {
+            "level": "H3",
+            "text": "Alperen Şengün",
+            "top": 5663.46875
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Black",
+            "top": 5836.46875
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Edwards",
+            "top": 6037.46875
+          },
+          {
+            "level": "H2",
+            "text": "Trade packages",
+            "top": 6433.46875
+          },
+          {
+            "level": "H3",
+            "text": "Package A",
+            "top": 6564.34375
+          },
+          {
+            "level": "H3",
+            "text": "Package B",
+            "top": 6564.34375
+          },
+          {
+            "level": "H3",
+            "text": "Retained evidence",
+            "top": 7032.328125
+          },
+          {
+            "level": "H2",
+            "text": "Three different places to start.",
+            "top": 7410.921875
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 7553.796875
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 7760.390625
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 7966.984375
+          },
+          {
+            "level": "H2",
+            "text": "Read the whole slate.",
+            "top": 8318.578125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper0.0",
+            "top": 8614.453125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?Pending",
+            "top": 8666.453125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back105.5",
+            "top": 9021.0625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun GuysPending",
+            "top": 9073.0625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster105.5",
+            "top": 9427.671875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ PuffPending",
+            "top": 9479.671875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter105.5",
+            "top": 9834.28125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNetsPending",
+            "top": 9886.28125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team105.5",
+            "top": 10240.890625
+          },
+          {
+            "level": "H3",
+            "text": "T HalibootyPending",
+            "top": 10292.890625
+          },
+          {
+            "level": "H2",
+            "text": "The room had opinions.",
+            "top": 10723.5
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 10990.375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 11114.375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 11607.859375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 11731.859375
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 12249.34375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 12373.34375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 12890.828125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 13313.421875
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 13736.015625
+          },
+          {
+            "level": "H2",
+            "text": "Put a few shots up.",
+            "top": 14201.609375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 55611,
+        "textCharacters": 10175,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The league,at work.",
+            "top": 929
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2259.875
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 2537.0625
+          },
+          {
+            "level": "H2",
+            "text": "Know the quote.",
+            "top": 4284.4375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One table.",
+            "top": 8873.75
+          },
+          {
+            "level": "H2",
+            "text": "What moved?",
+            "top": 17712.25
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 18055
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 18585.5625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 19116.125
+          },
+          {
+            "level": "H2",
+            "text": "Put a package together.",
+            "top": 19910.6875
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 21226.875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 21844.875
+          },
+          {
+            "level": "H3",
+            "text": "Ace Bailey",
+            "top": 22462.875
+          },
+          {
+            "level": "H3",
+            "text": "Alperen Şengün",
+            "top": 22976.875
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Black",
+            "top": 23490.875
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Edwards",
+            "top": 24004.875
+          },
+          {
+            "level": "H2",
+            "text": "Trade packages",
+            "top": 25317.875
+          },
+          {
+            "level": "H3",
+            "text": "Package A",
+            "top": 25675.625
+          },
+          {
+            "level": "H3",
+            "text": "Package B",
+            "top": 26652.609375
+          },
+          {
+            "level": "H3",
+            "text": "Retained evidence",
+            "top": 27588.59375
+          },
+          {
+            "level": "H2",
+            "text": "Three different places to start.",
+            "top": 28832.78125
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 29268.28125
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 30583.84375
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 31664.21875
+          },
+          {
+            "level": "H2",
+            "text": "Read the whole slate.",
+            "top": 33355.15625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper0.0",
+            "top": 34191.65625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?Pending",
+            "top": 34295.65625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back105.5",
+            "top": 35552.78125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun GuysPending",
+            "top": 35698.34375
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster105.5",
+            "top": 36870.71875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ PuffPending",
+            "top": 37016.28125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter105.5",
+            "top": 38188.65625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNetsPending",
+            "top": 38292.65625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team105.5",
+            "top": 39465.03125
+          },
+          {
+            "level": "H3",
+            "text": "T HalibootyPending",
+            "top": 39610.59375
+          },
+          {
+            "level": "H2",
+            "text": "The room had opinions.",
+            "top": 41072.53125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 41900.03125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 42340.03125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 44140.65625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 44532.65625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 46333.28125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 46677.28125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 48424.15625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 49791.53125
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 51186.09375
+          },
+          {
+            "level": "H2",
+            "text": "Put a few shots up.",
+            "top": 52712.46875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 18178,
+        "textCharacters": 10175,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The league,at work.",
+            "top": 333
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 762.8125
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 872.609375
+          },
+          {
+            "level": "H2",
+            "text": "Know the quote.",
+            "top": 1451.203125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One table.",
+            "top": 2953.0625
+          },
+          {
+            "level": "H2",
+            "text": "What moved?",
+            "top": 5014.9375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 5162.8125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 5359.8125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 5556.8125
+          },
+          {
+            "level": "H2",
+            "text": "Put a package together.",
+            "top": 5853.8125
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 6355.609375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 6585.609375
+          },
+          {
+            "level": "H3",
+            "text": "Ace Bailey",
+            "top": 6815.609375
+          },
+          {
+            "level": "H3",
+            "text": "Alperen Şengün",
+            "top": 7045.609375
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Black",
+            "top": 7275.609375
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Edwards",
+            "top": 7505.609375
+          },
+          {
+            "level": "H2",
+            "text": "Trade packages",
+            "top": 8010.609375
+          },
+          {
+            "level": "H3",
+            "text": "Package A",
+            "top": 8165.484375
+          },
+          {
+            "level": "H3",
+            "text": "Package B",
+            "top": 8601.671875
+          },
+          {
+            "level": "H3",
+            "text": "Retained evidence",
+            "top": 9016.859375
+          },
+          {
+            "level": "H2",
+            "text": "Three different places to start.",
+            "top": 9495.453125
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 9665.203125
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 9919.796875
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 10150.390625
+          },
+          {
+            "level": "H2",
+            "text": "Read the whole slate.",
+            "top": 10571.578125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper0.0",
+            "top": 10867.453125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?Pending",
+            "top": 10919.453125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back105.5",
+            "top": 11349.0625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun GuysPending",
+            "top": 11401.0625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster105.5",
+            "top": 11803.671875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ PuffPending",
+            "top": 11855.671875
+          },
+          {
+            "level": "H3",
+            "text": "papichooter105.5",
+            "top": 12258.28125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNetsPending",
+            "top": 12310.28125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team105.5",
+            "top": 12688.890625
+          },
+          {
+            "level": "H3",
+            "text": "T HalibootyPending",
+            "top": 12740.890625
+          },
+          {
+            "level": "H2",
+            "text": "The room had opinions.",
+            "top": 13243.5
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 13534.375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 13682.375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 14274.734375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 14398.734375
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 14991.09375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 15115.09375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 15680.578125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 16127.171875
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 16567.765625
+          },
+          {
+            "level": "H2",
+            "text": "Put a few shots up.",
+            "top": 17057.359375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 65832,
+        "textCharacters": 10175,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "The league,at work.",
+            "top": 1113
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2633.140625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 3062.921875
+          },
+          {
+            "level": "H2",
+            "text": "Know the quote.",
+            "top": 5365.484375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. One table.",
+            "top": 10884.078125
+          },
+          {
+            "level": "H2",
+            "text": "What moved?",
+            "top": 16232.578125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 16677.078125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 17303.640625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 17930.203125
+          },
+          {
+            "level": "H2",
+            "text": "Put a package together.",
+            "top": 18905.953125
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 20359.734375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 20985.734375
+          },
+          {
+            "level": "H3",
+            "text": "Ace Bailey",
+            "top": 21603.734375
+          },
+          {
+            "level": "H3",
+            "text": "Alperen Şengün",
+            "top": 22278.734375
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Black",
+            "top": 22945.734375
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Edwards",
+            "top": 23620.734375
+          },
+          {
+            "level": "H2",
+            "text": "Trade packages",
+            "top": 25182.734375
+          },
+          {
+            "level": "H3",
+            "text": "Package A",
+            "top": 25642.234375
+          },
+          {
+            "level": "H3",
+            "text": "Package B",
+            "top": 26697.625
+          },
+          {
+            "level": "H3",
+            "text": "Retained evidence",
+            "top": 27768.015625
+          },
+          {
+            "level": "H2",
+            "text": "Three different places to start.",
+            "top": 29425.390625
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 30064.390625
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 32807.515625
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 35219.453125
+          },
+          {
+            "level": "H2",
+            "text": "Read the whole slate.",
+            "top": 38472.328125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper0.0",
+            "top": 39494.828125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?Pending",
+            "top": 39598.828125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back105.5",
+            "top": 41092.328125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun GuysPending",
+            "top": 41281.078125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster105.5",
+            "top": 42688.203125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ PuffPending",
+            "top": 42876.953125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter105.5",
+            "top": 44240.890625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNetsPending",
+            "top": 44344.890625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team105.5",
+            "top": 45660.828125
+          },
+          {
+            "level": "H3",
+            "text": "T HalibootyPending",
+            "top": 45806.390625
+          },
+          {
+            "level": "H2",
+            "text": "The room had opinions.",
+            "top": 47509.515625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 48624.765625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 49208.765625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 51428.578125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 52006.140625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 54094.765625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 54624.328125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 56672.953125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 58379.515625
+          },
+          {
+            "level": "H3",
+            "text": "From the October wire",
+            "top": 59942.078125
+          },
+          {
+            "level": "H2",
+            "text": "Put a few shots up.",
+            "top": 62332.453125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GOAT Hoopers — The broadcast front page</title>
+  <meta name="description" content="A complete synthetic GOAT Hoopers broadcast front page with league scores, programme, analysis, news and team reference.">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#homepage">Skip to homepage</a>
+  <header class="masthead">
+    <a href="/" class="identity" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers"></a>
+    <nav class="primary-nav" aria-label="Primary"><a href="/" aria-current="page">Home</a><a href="/intel">News</a><a href="/history">History</a><a href="/arcade">Arcade</a></nav>
+    <a class="stocks-shortcut" href="/stocks#player-board">Stocks</a>
+    <details class="site-menu"><summary>Menu</summary><nav aria-label="More destinations"><a href="/">Home</a><a href="/intel">News</a><a href="/history">History</a><a href="/arcade">Arcade</a><a href="/ai-decides">AI Decides</a><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/draft">Draft</a><a href="/trade-analyzer">Trade analyzer</a><a href="/weekly">Weekly archive</a><a id="account" href="/login">Log in</a><a id="compare" href="?view=public">View public edition</a></nav></details>
+  </header>
+  <div class="fixture-line"><details class="fixture-provenance"><summary>Synthetic concept · 12 Nov 2026 fixture</summary><p>Offline design concept. Current scores, records, saved model picks, prices, form, news and moves are synthetic examples. Dated approved identities and editorial keep their own source periods. No live broadcast. Fixture view switching is not authentication.</p></details></div>
+  <div class="control-room">
+    <div class="broadcast-controls">
+      <nav class="source-slate" aria-label="Homepage sources"><p class="slate-label">Sources</p><div id="sources"></div><label class="mobile-source" for="source-picker">Source</label><select id="source-picker" class="mobile-source"></select><button class="mobile-source source-go" aria-label="Go to selected source" data-source-go>Go</button></nav>
+      <button class="rail-toggle" aria-expanded="false" aria-controls="phone-games"><span>Week 3 · 0.0 / Pending</span><span>5 games +</span></button>
+    </div>
+    <div id="phone-games" class="phone-games" hidden></div>
+    <main id="homepage" tabindex="-1"></main>
+  </div>
+  <footer><strong>GOAT Hoopers · Synthetic broadcast concept</strong><a href="/weekly">Weekly archive</a><a href="/ai-decides">AI Decides</a><a href="/trade-analyzer">Trade analyzer</a><a href="#homepage">Back to top</a></footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

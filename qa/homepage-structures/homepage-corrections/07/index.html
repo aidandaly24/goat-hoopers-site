@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>GOAT Hoopers · The clubhouse</title>
+  <link rel="stylesheet" href="./room.css">
+</head>
+<body>
+  <a class="skip" href="#clubhouse">Skip to clubhouse</a>
+  <header class="entry">
+    <a class="brand" href="#clubhouse"><b>GOAT</b><span>HOOPERS<br>CLUBHOUSE</span></a>
+    <span class="fixture-label">Synthetic · Nov 12, 2026 fixture</span>
+    <nav aria-label="League destinations"><a href="/stocks#player-board">Stocks</a><a href="/teams">Teams</a><a href="/arcade">Arcade</a><a id="view-toggle"></a></nav>
+  </header>
+  <main id="clubhouse" tabindex="-1">
+    <div class="room-caption"><div><p class="eyebrow">GOAT Hoopers · 2026</p><h1>The clubhouse.</h1><p id="viewer"></p></div><nav aria-label="Around the clubhouse"><a href="#score-wall">Score wall</a><a href="#team-lockers">Lockers</a><a href="#bench">The bench</a><a href="#press-desk">Archive shelf</a></nav></div>
+    <p class="fixture-note">Offline concept. Current records, scores, prices, form, news and model calls are synthetic. Nov 12 is the fixture date, not today.</p>
+    <div class="room-stage">
+      <svg class="room-set" viewBox="0 0 1440 1600" preserveAspectRatio="none" aria-hidden="true"><polygon class="side-wall" points="0,0 45,38 45,690 0,760"/><polygon class="back-wall" points="45,0 1440,0 1440,690 45,690"/><polygon class="floor" points="45,690 1440,690 1440,1600 0,1600 0,760"/><path d="M45 38V690L0 760M45 690H1440M280 690L100 1600M760 690L820 1600M1210 690L1440 1400"/></svg>
+      <div class="wall-row">
+        <section class="score-wall" id="score-wall" aria-labelledby="score-title"></section>
+        <section class="locker-wall" id="team-lockers" aria-labelledby="locker-title"></section>
+      </div>
+      <div class="foreground">
+        <section class="bench" id="bench" aria-labelledby="bench-title"></section>
+        <section class="press-desk" id="press-desk" aria-labelledby="press-title"></section>
+      </div>
+      <section class="scouting-sheet" id="scouting" aria-labelledby="scout-title"></section>
+      <div class="floor-row">
+        <section class="ledger" id="ledger" aria-labelledby="ledger-title"></section>
+        <section class="games-crate" id="games" aria-labelledby="games-title"></section>
+      </div>
+    </div>
+    <details class="provenance" id="provenance"><summary>Fixture, dates &amp; source boundaries</summary><div id="fixture-detail"></div></details>
+  </main>
+  <footer><a href="/intel">News &amp; intel</a><a href="/ai-decides">AI Decides</a><a href="/transactions">Transactions</a><a href="/trade-analyzer">Trade analyzer</a><a href="/history">History</a><a href="/weekly">Weekly archive</a><a href="#clubhouse">Back to the clubhouse</a><span>GOAT Hoopers · a local design study</span></footer>
+  <script type="module" src="./room.js"></script>
+</body>
+</html>

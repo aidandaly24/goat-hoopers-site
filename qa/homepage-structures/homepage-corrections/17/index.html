@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>GOAT · League ledger</title>
+  <link rel="preload" href="/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./ledger.css">
+</head>
+<body>
+  <a class="skip" href="#home">Skip to league home</a>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="GOAT Hoopers Home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-white.svg" alt="GOAT Hoopers" width="155" height="42"></a>
+    <a class="stocks-link" href="/stocks#player-board">Stocks</a>
+    <details class="site-navigation" open><summary>Menu</summary><nav aria-label="Site"><a href="/" aria-current="page">Home</a><a href="/intel">News</a><a href="/history">History</a><a href="/arcade">Arcade</a><a href="/ai-decides">AI Decides</a><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/trade-analyzer">Trade analyzer</a><a href="/weekly">Weekly archive</a><span id="account-link"></span></nav></details>
+  </header>
+  <main id="home" tabindex="-1">
+    <div class="ledger-title"><h1>League ledger</h1><p class="edition-label"><span>2026 season</span><strong>Week 3</strong></p></div>
+    <p class="fixture-line"><strong>Synthetic concept.</strong> Snapshot Nov 12, 2026; review date Oct 29, 2026. Current scores, records, prices, form, moves and AI are sample data.</p>
+    <div id="opening"></div>
+    <nav class="category-index" aria-label="Jump to ledger section" id="category-index"></nav>
+    <label class="phone-index">Sheet<select id="category-select" aria-label="Jump to ledger section"></select></label>
+    <section id="matchups" class="home-section" aria-labelledby="matchups-heading"></section>
+    <section id="member" class="home-section" aria-labelledby="member-heading"></section>
+    <section id="league" class="home-section" aria-labelledby="league-heading">
+      <div class="section-heading"><h2 id="league-heading">Franchise register</h2><p>Ten current managers. Standings and points for are synthetic; 2025 records retain their original owners.</p></div>
+      <div class="sheet-controls">
+        <label class="search-label">Find team, manager or player<input id="search" type="search" placeholder="Try Embiid or NeuralNets" autocomplete="off"></label>
+        <label>Order<select id="sort"><option value="rank">Standing: highest first</option><option value="name">Name: A–Z</option><option value="pf">Points for: highest first</option><option value="roster">Roster size: largest first</option></select></label>
+        <button id="clear" type="button">Reset register</button>
+      </div>
+      <div class="field-strip"><label>Extra fields<select id="fields"><option value="faces">Faces & FAAB</option><option value="week">Opponent & score</option><option value="all">All fields</option></select></label><span id="result-count" role="status" aria-live="polite"></span></div>
+      <div id="sheet" tabindex="-1"></div>
+    </section>
+    <section id="editorial" class="home-section" aria-labelledby="editorial-heading"></section>
+    <section id="moves" class="home-section" aria-labelledby="moves-heading"></section>
+    <section id="tools" class="home-section" aria-labelledby="tools-heading"></section>
+    <footer><h2>End of the account</h2><p>GOAT Hoopers · Offline synthetic concept. Modeled FAAB is a valuation unit, not a transaction. Null means Pending; known zero stays 0.0. October drafts keep their own dates and publication status.</p><p id="footer-links"></p><a href="#home">Back to league home</a></footer>
+  </main>
+  <script type="module" src="./ledger.js"></script>
+</body>
+</html>

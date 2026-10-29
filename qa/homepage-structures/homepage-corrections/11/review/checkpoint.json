@@ -1,0 +1,2375 @@
+{
+  "id": "11",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/11/app.js",
+      "bytes": 31058,
+      "sha256": "3970b10170fa7c40e76a23388c08848546d1bf3a0a6fcc7698e7f78d6dea009c"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/11/index.html",
+      "bytes": 4238,
+      "sha256": "6023e2f7b928ebbccf1ce2c4100bfe13110d7cde1d5823080d16cc5bea8f8294"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/11/style.css",
+      "bytes": 18848,
+      "sha256": "12a7ebc3fe3a4df4d116d9470b9b6a6fe6bc89654ecb62bd349066cbf12d700e"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/11/review/member-desktop-full.jpg",
+        "bytes": 707432,
+        "sha256": "9d36282dd9c9111309db10df9f0733c95d08dba1ed49753bb517f117c7a11890",
+        "width": 1440,
+        "height": 7667,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 467,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/member-desktop-top.jpg",
+          "bytes": 89052,
+          "sha256": "0ee99f97dfe79f3133cc5c3b4d2182be43bd4a3a76bf6afc63df7fd129401736",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3333,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/member-desktop-middle.jpg",
+          "bytes": 84734,
+          "sha256": "1847dcf36b018a7074116c625c3ef870ec598e4b73174e42cd2752c752a87092",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 6667,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/member-desktop-bottom.jpg",
+          "bytes": 74561,
+          "sha256": "59b7bb0370dd2050c2edcf68be6d1c2f317e9c2c6b346846bf1893968238c403",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Find your next move.",
+          "top": 183.1875
+        },
+        {
+          "level": "H2",
+          "text": "Already on the table",
+          "top": 574.859375
+        },
+        {
+          "level": "H2",
+          "text": "How’s our week looking?",
+          "top": 700.453125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 712.453125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 712.453125
+        },
+        {
+          "level": "H3",
+          "text": "What did the saved model return?",
+          "top": 1055.421875
+        },
+        {
+          "level": "H2",
+          "text": "What are you carrying?",
+          "top": 1600.59375
+        },
+        {
+          "level": "H3",
+          "text": "Who’s worth a closer look?",
+          "top": 2018.5625
+        },
+        {
+          "level": "H3",
+          "text": "And the completed week?",
+          "top": 2018.5625
+        },
+        {
+          "level": "H2",
+          "text": "Where does everyone stand?",
+          "top": 2898.421875
+        },
+        {
+          "level": "H3",
+          "text": "Current standings",
+          "top": 2861.625
+        },
+        {
+          "level": "H3",
+          "text": "Elsewhere in Week 3",
+          "top": 2861.625
+        },
+        {
+          "level": "H2",
+          "text": "What changed around here?",
+          "top": 4351.0625
+        },
+        {
+          "level": "H3",
+          "text": "Three moves on the league wire",
+          "top": 4314.265625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 4355.5625
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 4539.75
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 4698.640625
+        },
+        {
+          "level": "H3",
+          "text": "Your team headlines",
+          "top": 4314.265625
+        },
+        {
+          "level": "H3",
+          "text": "Looking for a trade?",
+          "top": 4606.75
+        },
+        {
+          "level": "H2",
+          "text": "What are we still talking about?",
+          "top": 5048.625
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 5230.40625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 5683.921875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 5683.921875
+        },
+        {
+          "level": "H2",
+          "text": "Another chapter?",
+          "top": 6234.1875
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 6234.1875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 6534.359375
+        },
+        {
+          "level": "H3",
+          "text": "Got a minute at the line?",
+          "top": 6822.53125
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/11/review/member-phone-full.jpg",
+        "bytes": 641580,
+        "sha256": "648b64850a64a43cb8018c208b2a0dd4952e0cf7f61e035c4623a9e910f25692",
+        "width": 390,
+        "height": 12658,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 58,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/member-phone-top.jpg",
+          "bytes": 42086,
+          "sha256": "c8f33125f7cb458594386c6a53e5cfc12962784e05d86dc27416dda18a3a68a6",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5907,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/member-phone-middle.jpg",
+          "bytes": 41341,
+          "sha256": "8471e8e3b8f45e7be4998cc771f18e3cdcedbd93c4470d8fc98fabe6c51e1705",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 11814,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/member-phone-bottom.jpg",
+          "bytes": 41304,
+          "sha256": "3c33b8d0edbc6387d8a4032a22b489aba76522ba7a355b37abc06caa872cad5d",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Find your next move.",
+          "top": 194.78125
+        },
+        {
+          "level": "H2",
+          "text": "Already on the table",
+          "top": 575.15625
+        },
+        {
+          "level": "H2",
+          "text": "How’s our week looking?",
+          "top": 712.75
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 891.9375
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 891.9375
+        },
+        {
+          "level": "H3",
+          "text": "What did the saved model return?",
+          "top": 1296.703125
+        },
+        {
+          "level": "H2",
+          "text": "What are you carrying?",
+          "top": 1947.65625
+        },
+        {
+          "level": "H3",
+          "text": "Who’s worth a closer look?",
+          "top": 2762.40625
+        },
+        {
+          "level": "H3",
+          "text": "And the completed week?",
+          "top": 3304.46875
+        },
+        {
+          "level": "H2",
+          "text": "Where does everyone stand?",
+          "top": 4148.328125
+        },
+        {
+          "level": "H3",
+          "text": "Current standings",
+          "top": 4363.515625
+        },
+        {
+          "level": "H3",
+          "text": "Elsewhere in Week 3",
+          "top": 5564.765625
+        },
+        {
+          "level": "H2",
+          "text": "What changed around here?",
+          "top": 7041.203125
+        },
+        {
+          "level": "H3",
+          "text": "Three moves on the league wire",
+          "top": 7256.390625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 7297.6875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 7481.875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 7666.0625
+        },
+        {
+          "level": "H3",
+          "text": "Your team headlines",
+          "top": 7882.25
+        },
+        {
+          "level": "H3",
+          "text": "Looking for a trade?",
+          "top": 8174.734375
+        },
+        {
+          "level": "H2",
+          "text": "What are we still talking about?",
+          "top": 8455.421875
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 8907.28125
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 9403.75
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 9857.015625
+        },
+        {
+          "level": "H2",
+          "text": "Another chapter?",
+          "top": 10371.28125
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 10586.46875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 10961.03125
+        },
+        {
+          "level": "H3",
+          "text": "Got a minute at the line?",
+          "top": 11306.1875
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/11/review/public-desktop-full.jpg",
+        "bytes": 666022,
+        "sha256": "4c4509014d9545ade8d41a11933525e08f5bf96e9b534233d1c5cae10e95547d",
+        "width": 1440,
+        "height": 7121,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 7121,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/public-desktop-top.jpg",
+          "bytes": 89575,
+          "sha256": "a448cb656a3c4fb00d50ac0a996281d786e08ceba0b10f86bca4eac811b20c09",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3060,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/public-desktop-middle.jpg",
+          "bytes": 109634,
+          "sha256": "e7700c20b272a333127c8c6396cbaf520677e3a494ee35f283ea50f310b17af2",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 6121,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/public-desktop-bottom.jpg",
+          "bytes": 73233,
+          "sha256": "696902c088ee144d477c75d6af24530b2448d30cfd2b35ecd736a7d366b15155",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Find your next move.",
+          "top": 183.1875
+        },
+        {
+          "level": "H2",
+          "text": "Already on the table",
+          "top": 574.859375
+        },
+        {
+          "level": "H2",
+          "text": "How’s our week looking?",
+          "top": 700.453125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 712.453125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 712.453125
+        },
+        {
+          "level": "H3",
+          "text": "What did the saved model return?",
+          "top": 1055.421875
+        },
+        {
+          "level": "H2",
+          "text": "Who sets the bar?",
+          "top": 1600.59375
+        },
+        {
+          "level": "H3",
+          "text": "A face and a modeled value",
+          "top": 1563.796875
+        },
+        {
+          "level": "H2",
+          "text": "Where does everyone stand?",
+          "top": 2352.4375
+        },
+        {
+          "level": "H3",
+          "text": "Current standings",
+          "top": 2315.640625
+        },
+        {
+          "level": "H3",
+          "text": "Elsewhere in Week 3",
+          "top": 2315.640625
+        },
+        {
+          "level": "H2",
+          "text": "What changed around here?",
+          "top": 3805.078125
+        },
+        {
+          "level": "H3",
+          "text": "Three moves on the league wire",
+          "top": 3768.28125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 3809.578125
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 3993.765625
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 4152.65625
+        },
+        {
+          "level": "H3",
+          "text": "Keep the question specific.",
+          "top": 3768.28125
+        },
+        {
+          "level": "H3",
+          "text": "Looking for a trade?",
+          "top": 4025.5625
+        },
+        {
+          "level": "H2",
+          "text": "What are we still talking about?",
+          "top": 4502.640625
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 4684.421875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 5137.9375
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 5137.9375
+        },
+        {
+          "level": "H2",
+          "text": "Another chapter?",
+          "top": 5688.203125
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 5688.203125
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 5988.375
+        },
+        {
+          "level": "H3",
+          "text": "Got a minute at the line?",
+          "top": 6276.546875
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/11/review/public-phone-full.jpg",
+        "bytes": 606035,
+        "sha256": "ad99dfe31972f781aae086f4c101caa17c6bb493927dc97a54eff28ef53bb746",
+        "width": 390,
+        "height": 11802,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1002,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/public-phone-top.jpg",
+          "bytes": 42194,
+          "sha256": "4b046faf11ffe84fa725c53e39aaa9a93599f24d4ad775088d2a8a77c80ad40d",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5479,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/public-phone-middle.jpg",
+          "bytes": 38659,
+          "sha256": "c2c47cc697d0c472491ddf979ade58dcfa4b1f0132f9e6b324de3a9feea865d2",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 10958,
+          "path": "qa/homepage-structures/homepage-corrections/11/review/public-phone-bottom.jpg",
+          "bytes": 42516,
+          "sha256": "c2b26a983954cbc65bd1a2b693dad4ac5697a66cd22fa74484c03263fc0af8cb",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Find your next move.",
+          "top": 194.78125
+        },
+        {
+          "level": "H2",
+          "text": "Already on the table",
+          "top": 575.15625
+        },
+        {
+          "level": "H2",
+          "text": "How’s our week looking?",
+          "top": 712.75
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 891.9375
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 891.9375
+        },
+        {
+          "level": "H3",
+          "text": "What did the saved model return?",
+          "top": 1296.703125
+        },
+        {
+          "level": "H2",
+          "text": "Who sets the bar?",
+          "top": 1947.65625
+        },
+        {
+          "level": "H3",
+          "text": "A face and a modeled value",
+          "top": 2126.046875
+        },
+        {
+          "level": "H2",
+          "text": "Where does everyone stand?",
+          "top": 3379.4375
+        },
+        {
+          "level": "H3",
+          "text": "Current standings",
+          "top": 3594.625
+        },
+        {
+          "level": "H3",
+          "text": "Elsewhere in Week 3",
+          "top": 4795.875
+        },
+        {
+          "level": "H2",
+          "text": "What changed around here?",
+          "top": 6272.3125
+        },
+        {
+          "level": "H3",
+          "text": "Three moves on the league wire",
+          "top": 6487.5
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 6528.796875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 6712.984375
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 6897.171875
+        },
+        {
+          "level": "H3",
+          "text": "Keep the question specific.",
+          "top": 7113.359375
+        },
+        {
+          "level": "H3",
+          "text": "Looking for a trade?",
+          "top": 7370.640625
+        },
+        {
+          "level": "H2",
+          "text": "What are we still talking about?",
+          "top": 7651.328125
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 8103.1875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 8599.65625
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 9052.921875
+        },
+        {
+          "level": "H2",
+          "text": "Another chapter?",
+          "top": 9567.1875
+        },
+        {
+          "level": "H3",
+          "text": "The next chapter",
+          "top": 9782.375
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 10156.9375
+        },
+        {
+          "level": "H3",
+          "text": "Got a minute at the line?",
+          "top": 10502.09375
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 7667,
+        "textCharacters": 7549,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Find your next move.",
+            "top": 183.1875
+          },
+          {
+            "level": "H2",
+            "text": "Already on the table",
+            "top": 574.859375
+          },
+          {
+            "level": "H2",
+            "text": "How’s our week looking?",
+            "top": 700.453125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 712.453125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 712.453125
+          },
+          {
+            "level": "H3",
+            "text": "What did the saved model return?",
+            "top": 1055.421875
+          },
+          {
+            "level": "H2",
+            "text": "What are you carrying?",
+            "top": 1600.59375
+          },
+          {
+            "level": "H3",
+            "text": "Who’s worth a closer look?",
+            "top": 2018.5625
+          },
+          {
+            "level": "H3",
+            "text": "And the completed week?",
+            "top": 2018.5625
+          },
+          {
+            "level": "H2",
+            "text": "Where does everyone stand?",
+            "top": 2898.421875
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 2861.625
+          },
+          {
+            "level": "H3",
+            "text": "Elsewhere in Week 3",
+            "top": 2861.625
+          },
+          {
+            "level": "H2",
+            "text": "What changed around here?",
+            "top": 4351.0625
+          },
+          {
+            "level": "H3",
+            "text": "Three moves on the league wire",
+            "top": 4314.265625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 4355.5625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 4539.75
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 4698.640625
+          },
+          {
+            "level": "H3",
+            "text": "Your team headlines",
+            "top": 4314.265625
+          },
+          {
+            "level": "H3",
+            "text": "Looking for a trade?",
+            "top": 4606.75
+          },
+          {
+            "level": "H2",
+            "text": "What are we still talking about?",
+            "top": 5048.625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 5230.40625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 5683.921875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 5683.921875
+          },
+          {
+            "level": "H2",
+            "text": "Another chapter?",
+            "top": 6234.1875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 6234.1875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 6534.359375
+          },
+          {
+            "level": "H3",
+            "text": "Got a minute at the line?",
+            "top": 6822.53125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 12658,
+        "textCharacters": 7549,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Find your next move.",
+            "top": 194.78125
+          },
+          {
+            "level": "H2",
+            "text": "Already on the table",
+            "top": 575.15625
+          },
+          {
+            "level": "H2",
+            "text": "How’s our week looking?",
+            "top": 712.75
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 891.9375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 891.9375
+          },
+          {
+            "level": "H3",
+            "text": "What did the saved model return?",
+            "top": 1296.703125
+          },
+          {
+            "level": "H2",
+            "text": "What are you carrying?",
+            "top": 1947.65625
+          },
+          {
+            "level": "H3",
+            "text": "Who’s worth a closer look?",
+            "top": 2762.40625
+          },
+          {
+            "level": "H3",
+            "text": "And the completed week?",
+            "top": 3304.46875
+          },
+          {
+            "level": "H2",
+            "text": "Where does everyone stand?",
+            "top": 4148.328125
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 4363.515625
+          },
+          {
+            "level": "H3",
+            "text": "Elsewhere in Week 3",
+            "top": 5564.765625
+          },
+          {
+            "level": "H2",
+            "text": "What changed around here?",
+            "top": 7041.203125
+          },
+          {
+            "level": "H3",
+            "text": "Three moves on the league wire",
+            "top": 7256.390625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 7297.6875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 7481.875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 7666.0625
+          },
+          {
+            "level": "H3",
+            "text": "Your team headlines",
+            "top": 7882.25
+          },
+          {
+            "level": "H3",
+            "text": "Looking for a trade?",
+            "top": 8174.734375
+          },
+          {
+            "level": "H2",
+            "text": "What are we still talking about?",
+            "top": 8455.421875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 8907.28125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 9403.75
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 9857.015625
+          },
+          {
+            "level": "H2",
+            "text": "Another chapter?",
+            "top": 10371.28125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 10586.46875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 10961.03125
+          },
+          {
+            "level": "H3",
+            "text": "Got a minute at the line?",
+            "top": 11306.1875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 38734,
+        "textCharacters": 7549,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Find your next move.",
+            "top": 585.5625
+          },
+          {
+            "level": "H2",
+            "text": "Already on the table",
+            "top": 1719.109375
+          },
+          {
+            "level": "H2",
+            "text": "How’s our week looking?",
+            "top": 2043.890625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2525.453125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3035.796875
+          },
+          {
+            "level": "H3",
+            "text": "What did the saved model return?",
+            "top": 3902.90625
+          },
+          {
+            "level": "H2",
+            "text": "What are you carrying?",
+            "top": 5855.3125
+          },
+          {
+            "level": "H3",
+            "text": "Who’s worth a closer look?",
+            "top": 8769.125
+          },
+          {
+            "level": "H3",
+            "text": "And the completed week?",
+            "top": 10284.5625
+          },
+          {
+            "level": "H2",
+            "text": "Where does everyone stand?",
+            "top": 12270.78125
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 13054.71875
+          },
+          {
+            "level": "H3",
+            "text": "Elsewhere in Week 3",
+            "top": 17299.46875
+          },
+          {
+            "level": "H2",
+            "text": "What changed around here?",
+            "top": 21537.78125
+          },
+          {
+            "level": "H3",
+            "text": "Three moves on the league wire",
+            "top": 22272.125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 22455.90625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 23085.4375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 23664.375
+          },
+          {
+            "level": "H3",
+            "text": "Your team headlines",
+            "top": 24357.90625
+          },
+          {
+            "level": "H3",
+            "text": "Looking for a trade?",
+            "top": 25214.21875
+          },
+          {
+            "level": "H2",
+            "text": "What are we still talking about?",
+            "top": 26015.5625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 27580.78125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 29151.25
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 30579.3125
+          },
+          {
+            "level": "H2",
+            "text": "Another chapter?",
+            "top": 32070.78125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 32830.71875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 34183.375
+          },
+          {
+            "level": "H3",
+            "text": "Got a minute at the line?",
+            "top": 35346.046875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 14153,
+        "textCharacters": 7549,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Find your next move.",
+            "top": 194.78125
+          },
+          {
+            "level": "H2",
+            "text": "Already on the table",
+            "top": 599.953125
+          },
+          {
+            "level": "H2",
+            "text": "How’s our week looking?",
+            "top": 737.546875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 916.734375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 1094.71875
+          },
+          {
+            "level": "H3",
+            "text": "What did the saved model return?",
+            "top": 1429.484375
+          },
+          {
+            "level": "H2",
+            "text": "What are you carrying?",
+            "top": 2130.03125
+          },
+          {
+            "level": "H3",
+            "text": "Who’s worth a closer look?",
+            "top": 3019.171875
+          },
+          {
+            "level": "H3",
+            "text": "And the completed week?",
+            "top": 3586.03125
+          },
+          {
+            "level": "H2",
+            "text": "Where does everyone stand?",
+            "top": 4454.6875
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 4669.875
+          },
+          {
+            "level": "H3",
+            "text": "Elsewhere in Week 3",
+            "top": 6245.484375
+          },
+          {
+            "level": "H2",
+            "text": "What changed around here?",
+            "top": 7867.109375
+          },
+          {
+            "level": "H3",
+            "text": "Three moves on the league wire",
+            "top": 8082.296875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 8148.890625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 8357.875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 8566.859375
+          },
+          {
+            "level": "H3",
+            "text": "Your team headlines",
+            "top": 8832.640625
+          },
+          {
+            "level": "H3",
+            "text": "Looking for a trade?",
+            "top": 9180.3125
+          },
+          {
+            "level": "H2",
+            "text": "What are we still talking about?",
+            "top": 9485.796875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 9996.546875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 10542.609375
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 11049.46875
+          },
+          {
+            "level": "H2",
+            "text": "Another chapter?",
+            "top": 11563.734375
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 11778.921875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 12227.875
+          },
+          {
+            "level": "H3",
+            "text": "Got a minute at the line?",
+            "top": 12622.625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 46834,
+        "textCharacters": 7549,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Find your next move.",
+            "top": 807.140625
+          },
+          {
+            "level": "H2",
+            "text": "Already on the table",
+            "top": 2183.46875
+          },
+          {
+            "level": "H2",
+            "text": "How’s our week looking?",
+            "top": 2556.25
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 3234.59375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3744.9375
+          },
+          {
+            "level": "H3",
+            "text": "What did the saved model return?",
+            "top": 4711.234375
+          },
+          {
+            "level": "H2",
+            "text": "What are you carrying?",
+            "top": 7079.984375
+          },
+          {
+            "level": "H3",
+            "text": "Who’s worth a closer look?",
+            "top": 11381.765625
+          },
+          {
+            "level": "H3",
+            "text": "And the completed week?",
+            "top": 13147.171875
+          },
+          {
+            "level": "H2",
+            "text": "Where does everyone stand?",
+            "top": 15579.734375
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 16486.859375
+          },
+          {
+            "level": "H3",
+            "text": "Elsewhere in Week 3",
+            "top": 21013.234375
+          },
+          {
+            "level": "H2",
+            "text": "What changed around here?",
+            "top": 25942.296875
+          },
+          {
+            "level": "H3",
+            "text": "Three moves on the league wire",
+            "top": 26750.234375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 26984.609375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 27814.515625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 28593.828125
+          },
+          {
+            "level": "H3",
+            "text": "Your team headlines",
+            "top": 29537.328125
+          },
+          {
+            "level": "H3",
+            "text": "Looking for a trade?",
+            "top": 30592.015625
+          },
+          {
+            "level": "H2",
+            "text": "What are we still talking about?",
+            "top": 31492.546875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 33466.109375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 35494.140625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 37128.578125
+          },
+          {
+            "level": "H2",
+            "text": "Another chapter?",
+            "top": 38877.015625
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 39760.140625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 41410.359375
+          },
+          {
+            "level": "H3",
+            "text": "Got a minute at the line?",
+            "top": 42754.203125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 7121,
+        "textCharacters": 6982,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Find your next move.",
+            "top": 183.1875
+          },
+          {
+            "level": "H2",
+            "text": "Already on the table",
+            "top": 574.859375
+          },
+          {
+            "level": "H2",
+            "text": "How’s our week looking?",
+            "top": 700.453125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 712.453125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 712.453125
+          },
+          {
+            "level": "H3",
+            "text": "What did the saved model return?",
+            "top": 1055.421875
+          },
+          {
+            "level": "H2",
+            "text": "Who sets the bar?",
+            "top": 1600.59375
+          },
+          {
+            "level": "H3",
+            "text": "A face and a modeled value",
+            "top": 1563.796875
+          },
+          {
+            "level": "H2",
+            "text": "Where does everyone stand?",
+            "top": 2352.4375
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 2315.640625
+          },
+          {
+            "level": "H3",
+            "text": "Elsewhere in Week 3",
+            "top": 2315.640625
+          },
+          {
+            "level": "H2",
+            "text": "What changed around here?",
+            "top": 3805.078125
+          },
+          {
+            "level": "H3",
+            "text": "Three moves on the league wire",
+            "top": 3768.28125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 3809.578125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 3993.765625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 4152.65625
+          },
+          {
+            "level": "H3",
+            "text": "Keep the question specific.",
+            "top": 3768.28125
+          },
+          {
+            "level": "H3",
+            "text": "Looking for a trade?",
+            "top": 4025.5625
+          },
+          {
+            "level": "H2",
+            "text": "What are we still talking about?",
+            "top": 4502.640625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 4684.421875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 5137.9375
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 5137.9375
+          },
+          {
+            "level": "H2",
+            "text": "Another chapter?",
+            "top": 5688.203125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 5688.203125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 5988.375
+          },
+          {
+            "level": "H3",
+            "text": "Got a minute at the line?",
+            "top": 6276.546875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 11802,
+        "textCharacters": 6982,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Find your next move.",
+            "top": 194.78125
+          },
+          {
+            "level": "H2",
+            "text": "Already on the table",
+            "top": 575.15625
+          },
+          {
+            "level": "H2",
+            "text": "How’s our week looking?",
+            "top": 712.75
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 891.9375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 891.9375
+          },
+          {
+            "level": "H3",
+            "text": "What did the saved model return?",
+            "top": 1296.703125
+          },
+          {
+            "level": "H2",
+            "text": "Who sets the bar?",
+            "top": 1947.65625
+          },
+          {
+            "level": "H3",
+            "text": "A face and a modeled value",
+            "top": 2126.046875
+          },
+          {
+            "level": "H2",
+            "text": "Where does everyone stand?",
+            "top": 3379.4375
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 3594.625
+          },
+          {
+            "level": "H3",
+            "text": "Elsewhere in Week 3",
+            "top": 4795.875
+          },
+          {
+            "level": "H2",
+            "text": "What changed around here?",
+            "top": 6272.3125
+          },
+          {
+            "level": "H3",
+            "text": "Three moves on the league wire",
+            "top": 6487.5
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 6528.796875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 6712.984375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 6897.171875
+          },
+          {
+            "level": "H3",
+            "text": "Keep the question specific.",
+            "top": 7113.359375
+          },
+          {
+            "level": "H3",
+            "text": "Looking for a trade?",
+            "top": 7370.640625
+          },
+          {
+            "level": "H2",
+            "text": "What are we still talking about?",
+            "top": 7651.328125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 8103.1875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 8599.65625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 9052.921875
+          },
+          {
+            "level": "H2",
+            "text": "Another chapter?",
+            "top": 9567.1875
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 9782.375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 10156.9375
+          },
+          {
+            "level": "H3",
+            "text": "Got a minute at the line?",
+            "top": 10502.09375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 36778,
+        "textCharacters": 6982,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Find your next move.",
+            "top": 585.5625
+          },
+          {
+            "level": "H2",
+            "text": "Already on the table",
+            "top": 1719.109375
+          },
+          {
+            "level": "H2",
+            "text": "How’s our week looking?",
+            "top": 2043.890625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2525.453125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3035.796875
+          },
+          {
+            "level": "H3",
+            "text": "What did the saved model return?",
+            "top": 3902.90625
+          },
+          {
+            "level": "H2",
+            "text": "Who sets the bar?",
+            "top": 5855.3125
+          },
+          {
+            "level": "H3",
+            "text": "A face and a modeled value",
+            "top": 6442.46875
+          },
+          {
+            "level": "H2",
+            "text": "Where does everyone stand?",
+            "top": 10429.03125
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 11212.96875
+          },
+          {
+            "level": "H3",
+            "text": "Elsewhere in Week 3",
+            "top": 15358.53125
+          },
+          {
+            "level": "H2",
+            "text": "What changed around here?",
+            "top": 19596.84375
+          },
+          {
+            "level": "H3",
+            "text": "Three moves on the league wire",
+            "top": 20331.1875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 20514.96875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 21144.5
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 21723.4375
+          },
+          {
+            "level": "H3",
+            "text": "Keep the question specific.",
+            "top": 22416.96875
+          },
+          {
+            "level": "H3",
+            "text": "Looking for a trade?",
+            "top": 23274.28125
+          },
+          {
+            "level": "H2",
+            "text": "What are we still talking about?",
+            "top": 24075.625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 25640.84375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 27211.3125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 28639.375
+          },
+          {
+            "level": "H2",
+            "text": "Another chapter?",
+            "top": 30130.84375
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 30890.78125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 32243.4375
+          },
+          {
+            "level": "H3",
+            "text": "Got a minute at the line?",
+            "top": 33406.109375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 13267,
+        "textCharacters": 6982,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Find your next move.",
+            "top": 194.78125
+          },
+          {
+            "level": "H2",
+            "text": "Already on the table",
+            "top": 599.953125
+          },
+          {
+            "level": "H2",
+            "text": "How’s our week looking?",
+            "top": 737.546875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 916.734375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 1094.71875
+          },
+          {
+            "level": "H3",
+            "text": "What did the saved model return?",
+            "top": 1429.484375
+          },
+          {
+            "level": "H2",
+            "text": "Who sets the bar?",
+            "top": 2130.03125
+          },
+          {
+            "level": "H3",
+            "text": "A face and a modeled value",
+            "top": 2308.421875
+          },
+          {
+            "level": "H2",
+            "text": "Where does everyone stand?",
+            "top": 3661.5
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 3876.6875
+          },
+          {
+            "level": "H3",
+            "text": "Elsewhere in Week 3",
+            "top": 5452.296875
+          },
+          {
+            "level": "H2",
+            "text": "What changed around here?",
+            "top": 7073.921875
+          },
+          {
+            "level": "H3",
+            "text": "Three moves on the league wire",
+            "top": 7289.109375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 7355.703125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 7564.6875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 7773.671875
+          },
+          {
+            "level": "H3",
+            "text": "Keep the question specific.",
+            "top": 8039.453125
+          },
+          {
+            "level": "H3",
+            "text": "Looking for a trade?",
+            "top": 8346.828125
+          },
+          {
+            "level": "H2",
+            "text": "What are we still talking about?",
+            "top": 8652.3125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 9163.0625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 9709.125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 10215.984375
+          },
+          {
+            "level": "H2",
+            "text": "Another chapter?",
+            "top": 10730.25
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 10945.4375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 11394.390625
+          },
+          {
+            "level": "H3",
+            "text": "Got a minute at the line?",
+            "top": 11789.140625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 44391,
+        "textCharacters": 6982,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Find your next move.",
+            "top": 856.734375
+          },
+          {
+            "level": "H2",
+            "text": "Already on the table",
+            "top": 2233.0625
+          },
+          {
+            "level": "H2",
+            "text": "How’s our week looking?",
+            "top": 2605.84375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 3284.1875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 3794.53125
+          },
+          {
+            "level": "H3",
+            "text": "What did the saved model return?",
+            "top": 4760.828125
+          },
+          {
+            "level": "H2",
+            "text": "Who sets the bar?",
+            "top": 7079.984375
+          },
+          {
+            "level": "H3",
+            "text": "A face and a modeled value",
+            "top": 7839.921875
+          },
+          {
+            "level": "H2",
+            "text": "Where does everyone stand?",
+            "top": 13366.484375
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 14273.609375
+          },
+          {
+            "level": "H3",
+            "text": "Elsewhere in Week 3",
+            "top": 18750.390625
+          },
+          {
+            "level": "H2",
+            "text": "What changed around here?",
+            "top": 23679.453125
+          },
+          {
+            "level": "H3",
+            "text": "Three moves on the league wire",
+            "top": 24487.390625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 24721.765625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 25551.671875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 26330.984375
+          },
+          {
+            "level": "H3",
+            "text": "Keep the question specific.",
+            "top": 27274.484375
+          },
+          {
+            "level": "H3",
+            "text": "Looking for a trade?",
+            "top": 28280.578125
+          },
+          {
+            "level": "H2",
+            "text": "What are we still talking about?",
+            "top": 29181.109375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 31154.671875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 33182.703125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 34817.140625
+          },
+          {
+            "level": "H2",
+            "text": "Another chapter?",
+            "top": 36565.578125
+          },
+          {
+            "level": "H3",
+            "text": "The next chapter",
+            "top": 37448.703125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 39098.921875
+          },
+          {
+            "level": "H3",
+            "text": "Got a minute at the line?",
+            "top": 40442.765625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

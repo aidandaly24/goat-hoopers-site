@@ -1,0 +1,1565 @@
+{
+  "id": "19",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/19/app.js",
+      "bytes": 39011,
+      "sha256": "1351d30a516746fe5cb12428112a1a1e61baee715fa3412df44b3d82c0bdfd0e"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/19/index.html",
+      "bytes": 2075,
+      "sha256": "bb0f8d8cc4a7d1adbb1b707f53966ae083ae2fc3afcd35f68101cc118bbfdbfd"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/19/style.css",
+      "bytes": 32450,
+      "sha256": "64ba6d797c552931bbadec651a8a9265f0f944b7043d3804a29d19f7415e8755"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/19/review/member-desktop-full.jpg",
+        "bytes": 631042,
+        "sha256": "a2917ac3ff954cf4cefcb66e4e8887c46bdcfb06dde448d598261395cdfe2768",
+        "width": 1440,
+        "height": 5362,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 5362,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/member-desktop-top.jpg",
+          "bytes": 131618,
+          "sha256": "b3d762cd8edba3436a1ac5514eab8afd1296d0fea4af37379719f7ca519045bb",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2181,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/member-desktop-middle.jpg",
+          "bytes": 111622,
+          "sha256": "74b0e55c841ae9bb944ceaddc13cb92e8617305f00e172960a51b5e45517b62e",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 4362,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/member-desktop-bottom.jpg",
+          "bytes": 99481,
+          "sha256": "6664b598c5a35c541a7cea36c8a32422c10443ab1d7a8d69b34401430730f9fa",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Franchise yearbook",
+          "top": 163.8125
+        },
+        {
+          "level": "H2",
+          "text": "Week 3, face to face.",
+          "top": 335.765625
+        },
+        {
+          "level": "H3",
+          "text": "Saved AI view",
+          "top": 888.328125
+        },
+        {
+          "level": "H2",
+          "text": "The league picture",
+          "top": 1166.71875
+        },
+        {
+          "level": "H3",
+          "text": "Standing order",
+          "top": 1275.3125
+        },
+        {
+          "level": "H3",
+          "text": "Week 3 pairings",
+          "top": 1275.3125
+        },
+        {
+          "level": "H2",
+          "text": "Your page in the book",
+          "top": 2530.171875
+        },
+        {
+          "level": "H3",
+          "text": "Current modeled roster value",
+          "top": 2617.359375
+        },
+        {
+          "level": "H3",
+          "text": "Three names for your notebook",
+          "top": 2617.359375
+        },
+        {
+          "level": "H2",
+          "text": "The names in the margins",
+          "top": 3352.15625
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 3633.546875
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 3633.546875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 3633.546875
+        },
+        {
+          "level": "H3",
+          "text": "From that edition’s wire",
+          "top": 3895.171875
+        },
+        {
+          "level": "H2",
+          "text": "Next move. Next chapter.",
+          "top": 4174.359375
+        },
+        {
+          "level": "H3",
+          "text": "League ledger",
+          "top": 4261.546875
+        },
+        {
+          "level": "H3",
+          "text": "Earlier pages",
+          "top": 4261.546875
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/19/review/member-phone-full.jpg",
+        "bytes": 527725,
+        "sha256": "27cd27b9d5c6dba29b0478b3461540038b2b81548a127e142bc033bae4822000",
+        "width": 390,
+        "height": 9242,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 242,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/member-phone-top.jpg",
+          "bytes": 50657,
+          "sha256": "7e383f6f90fdc9d2a4618821746db872c5a3bea6020ce846d1cf9ad56415e1b1",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 4199,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/member-phone-middle.jpg",
+          "bytes": 45866,
+          "sha256": "b6ddcbb9d1b6a2cac960e1596690cd5a5d53f74eb055540d0676c7d9a2bd198d",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 8398,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/member-phone-bottom.jpg",
+          "bytes": 36786,
+          "sha256": "313dcca00d5d0aa5e01baefba3a41b94655ea9de4ae1f4f592259797c68e487b",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Franchise yearbook",
+          "top": 124.796875
+        },
+        {
+          "level": "H2",
+          "text": "Week 3, face to face.",
+          "top": 329.03125
+        },
+        {
+          "level": "H3",
+          "text": "Saved AI view",
+          "top": 1257.796875
+        },
+        {
+          "level": "H2",
+          "text": "The league picture",
+          "top": 1617.578125
+        },
+        {
+          "level": "H3",
+          "text": "Standing order",
+          "top": 1735.359375
+        },
+        {
+          "level": "H3",
+          "text": "Week 3 pairings",
+          "top": 2974.90625
+        },
+        {
+          "level": "H2",
+          "text": "Your page in the book",
+          "top": 4038.828125
+        },
+        {
+          "level": "H3",
+          "text": "Current modeled roster value",
+          "top": 4131.8125
+        },
+        {
+          "level": "H3",
+          "text": "Three names for your notebook",
+          "top": 4829.375
+        },
+        {
+          "level": "H2",
+          "text": "The names in the margins",
+          "top": 5449.125
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 5699.703125
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 6090.28125
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 6480.859375
+        },
+        {
+          "level": "H3",
+          "text": "From that edition’s wire",
+          "top": 6763.640625
+        },
+        {
+          "level": "H2",
+          "text": "Next move. Next chapter.",
+          "top": 7247.40625
+        },
+        {
+          "level": "H3",
+          "text": "League ledger",
+          "top": 7365.1875
+        },
+        {
+          "level": "H3",
+          "text": "Earlier pages",
+          "top": 8014.546875
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/19/review/public-desktop-full.jpg",
+        "bytes": 515247,
+        "sha256": "b9e38d219c697f0a4514c159ea6958e84a4d0567543895e7d0c00d38a87b12ce",
+        "width": 1440,
+        "height": 4478,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 4478,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/public-desktop-top.jpg",
+          "bytes": 130503,
+          "sha256": "818471546207c7c4c2ba359bdebd57146060af6145b03928aad0441bd193fd4f",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 1739,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/public-desktop-middle.jpg",
+          "bytes": 91448,
+          "sha256": "e1a287b40a241fc5a9ceec001b30f60850a03dd58630506a03e3dbf32776d399",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 3478,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/public-desktop-bottom.jpg",
+          "bytes": 102272,
+          "sha256": "00d85ae1d8504c8616950a8147a3c996d3257b6c61b14c84acda32eb031ef924",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Franchise yearbook",
+          "top": 163.8125
+        },
+        {
+          "level": "H2",
+          "text": "Week 3, face to face.",
+          "top": 335.765625
+        },
+        {
+          "level": "H3",
+          "text": "Saved AI view",
+          "top": 888.328125
+        },
+        {
+          "level": "H2",
+          "text": "The league picture",
+          "top": 1166.71875
+        },
+        {
+          "level": "H3",
+          "text": "Standing order",
+          "top": 1275.3125
+        },
+        {
+          "level": "H3",
+          "text": "Week 3 pairings",
+          "top": 1275.3125
+        },
+        {
+          "level": "H2",
+          "text": "The names in the margins",
+          "top": 2530.171875
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 2811.5625
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 2811.5625
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 2811.5625
+        },
+        {
+          "level": "H3",
+          "text": "From that edition’s wire",
+          "top": 3073.1875
+        },
+        {
+          "level": "H2",
+          "text": "Next move. Next chapter.",
+          "top": 3352.375
+        },
+        {
+          "level": "H3",
+          "text": "League ledger",
+          "top": 3439.5625
+        },
+        {
+          "level": "H3",
+          "text": "Earlier pages",
+          "top": 3439.5625
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/19/review/public-phone-full.jpg",
+        "bytes": 422191,
+        "sha256": "4653466a840ba5a32d2c0f467aaa60746bc8c268eee5070bf9cd1b586d076a1a",
+        "width": 390,
+        "height": 7745,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 545,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/public-phone-top.jpg",
+          "bytes": 49298,
+          "sha256": "3ef51c51a5aff8322570748579d936100914e79edaee83041688759f4f619992",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3450,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/public-phone-middle.jpg",
+          "bytes": 47904,
+          "sha256": "a69d840450bb224eb925cf0fba12f40a5f3acdb87cc34f6a10825633945163a1",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 6901,
+          "path": "qa/homepage-structures/homepage-corrections/19/review/public-phone-bottom.jpg",
+          "bytes": 36983,
+          "sha256": "0423d39c2da87d957be0a74263ec20d5fe7f9e8bb87d382f2f93f3abb941b6e6",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Franchise yearbook",
+          "top": 124.796875
+        },
+        {
+          "level": "H2",
+          "text": "Week 3, face to face.",
+          "top": 329.03125
+        },
+        {
+          "level": "H3",
+          "text": "Saved AI view",
+          "top": 1257.796875
+        },
+        {
+          "level": "H2",
+          "text": "The league picture",
+          "top": 1617.578125
+        },
+        {
+          "level": "H3",
+          "text": "Standing order",
+          "top": 1735.359375
+        },
+        {
+          "level": "H3",
+          "text": "Week 3 pairings",
+          "top": 2974.90625
+        },
+        {
+          "level": "H2",
+          "text": "The names in the margins",
+          "top": 4038.828125
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 4289.40625
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 4679.984375
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 5070.5625
+        },
+        {
+          "level": "H3",
+          "text": "From that edition’s wire",
+          "top": 5353.34375
+        },
+        {
+          "level": "H2",
+          "text": "Next move. Next chapter.",
+          "top": 5837.109375
+        },
+        {
+          "level": "H3",
+          "text": "League ledger",
+          "top": 5954.890625
+        },
+        {
+          "level": "H3",
+          "text": "Earlier pages",
+          "top": 6517.859375
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 5362,
+        "textCharacters": 6303,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Franchise yearbook",
+            "top": 163.8125
+          },
+          {
+            "level": "H2",
+            "text": "Week 3, face to face.",
+            "top": 335.765625
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI view",
+            "top": 888.328125
+          },
+          {
+            "level": "H2",
+            "text": "The league picture",
+            "top": 1166.71875
+          },
+          {
+            "level": "H3",
+            "text": "Standing order",
+            "top": 1275.3125
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 pairings",
+            "top": 1275.3125
+          },
+          {
+            "level": "H2",
+            "text": "Your page in the book",
+            "top": 2530.171875
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled roster value",
+            "top": 2617.359375
+          },
+          {
+            "level": "H3",
+            "text": "Three names for your notebook",
+            "top": 2617.359375
+          },
+          {
+            "level": "H2",
+            "text": "The names in the margins",
+            "top": 3352.15625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 3633.546875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 3633.546875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 3633.546875
+          },
+          {
+            "level": "H3",
+            "text": "From that edition’s wire",
+            "top": 3895.171875
+          },
+          {
+            "level": "H2",
+            "text": "Next move. Next chapter.",
+            "top": 4174.359375
+          },
+          {
+            "level": "H3",
+            "text": "League ledger",
+            "top": 4261.546875
+          },
+          {
+            "level": "H3",
+            "text": "Earlier pages",
+            "top": 4261.546875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 9242,
+        "textCharacters": 6304,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Franchise yearbook",
+            "top": 124.796875
+          },
+          {
+            "level": "H2",
+            "text": "Week 3, face to face.",
+            "top": 329.03125
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI view",
+            "top": 1257.796875
+          },
+          {
+            "level": "H2",
+            "text": "The league picture",
+            "top": 1617.578125
+          },
+          {
+            "level": "H3",
+            "text": "Standing order",
+            "top": 1735.359375
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 pairings",
+            "top": 2974.90625
+          },
+          {
+            "level": "H2",
+            "text": "Your page in the book",
+            "top": 4038.828125
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled roster value",
+            "top": 4131.8125
+          },
+          {
+            "level": "H3",
+            "text": "Three names for your notebook",
+            "top": 4829.375
+          },
+          {
+            "level": "H2",
+            "text": "The names in the margins",
+            "top": 5449.125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 5699.703125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 6090.28125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 6480.859375
+          },
+          {
+            "level": "H3",
+            "text": "From that edition’s wire",
+            "top": 6763.640625
+          },
+          {
+            "level": "H2",
+            "text": "Next move. Next chapter.",
+            "top": 7247.40625
+          },
+          {
+            "level": "H3",
+            "text": "League ledger",
+            "top": 7365.1875
+          },
+          {
+            "level": "H3",
+            "text": "Earlier pages",
+            "top": 8014.546875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 29240,
+        "textCharacters": 6304,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Franchise yearbook",
+            "top": 463.25
+          },
+          {
+            "level": "H2",
+            "text": "Week 3, face to face.",
+            "top": 1114.375
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI view",
+            "top": 4384.46875
+          },
+          {
+            "level": "H2",
+            "text": "The league picture",
+            "top": 5345.59375
+          },
+          {
+            "level": "H3",
+            "text": "Standing order",
+            "top": 5744.75
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 pairings",
+            "top": 9663.75
+          },
+          {
+            "level": "H2",
+            "text": "Your page in the book",
+            "top": 12821.65625
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled roster value",
+            "top": 13171.21875
+          },
+          {
+            "level": "H3",
+            "text": "Three names for your notebook",
+            "top": 15388.625
+          },
+          {
+            "level": "H2",
+            "text": "The names in the margins",
+            "top": 17618
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 18420.3125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 19602
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 20734.09375
+          },
+          {
+            "level": "H3",
+            "text": "From that edition’s wire",
+            "top": 21553.625
+          },
+          {
+            "level": "H2",
+            "text": "Next move. Next chapter.",
+            "top": 23120.6875
+          },
+          {
+            "level": "H3",
+            "text": "League ledger",
+            "top": 23534.640625
+          },
+          {
+            "level": "H3",
+            "text": "Earlier pages",
+            "top": 25711.640625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 10389,
+        "textCharacters": 6304,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Franchise yearbook",
+            "top": 198.59375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3, face to face.",
+            "top": 419.53125
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI view",
+            "top": 1560.671875
+          },
+          {
+            "level": "H2",
+            "text": "The league picture",
+            "top": 1920.453125
+          },
+          {
+            "level": "H3",
+            "text": "Standing order",
+            "top": 2063.03125
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 pairings",
+            "top": 3374.546875
+          },
+          {
+            "level": "H2",
+            "text": "Your page in the book",
+            "top": 4463.265625
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled roster value",
+            "top": 4581.046875
+          },
+          {
+            "level": "H3",
+            "text": "Three names for your notebook",
+            "top": 5303.40625
+          },
+          {
+            "level": "H2",
+            "text": "The names in the margins",
+            "top": 6049.34375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 6356.90625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 6825.875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 7270.046875
+          },
+          {
+            "level": "H3",
+            "text": "From that edition’s wire",
+            "top": 7577.625
+          },
+          {
+            "level": "H2",
+            "text": "Next move. Next chapter.",
+            "top": 8110.984375
+          },
+          {
+            "level": "H3",
+            "text": "League ledger",
+            "top": 8260.953125
+          },
+          {
+            "level": "H3",
+            "text": "Earlier pages",
+            "top": 9059.09375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 35717,
+        "textCharacters": 6304,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Franchise yearbook",
+            "top": 556.234375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3, face to face.",
+            "top": 1306.546875
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI view",
+            "top": 5030.015625
+          },
+          {
+            "level": "H2",
+            "text": "The league picture",
+            "top": 6090.328125
+          },
+          {
+            "level": "H3",
+            "text": "Standing order",
+            "top": 6603.46875
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 pairings",
+            "top": 11965.09375
+          },
+          {
+            "level": "H2",
+            "text": "Your page in the book",
+            "top": 16020.09375
+          },
+          {
+            "level": "H3",
+            "text": "Current modeled roster value",
+            "top": 16434.046875
+          },
+          {
+            "level": "H3",
+            "text": "Three names for your notebook",
+            "top": 18854.234375
+          },
+          {
+            "level": "H2",
+            "text": "The names in the margins",
+            "top": 21683.140625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 22812.609375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 24341.453125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 25721.515625
+          },
+          {
+            "level": "H3",
+            "text": "From that edition’s wire",
+            "top": 26697.828125
+          },
+          {
+            "level": "H2",
+            "text": "Next move. Next chapter.",
+            "top": 28562.453125
+          },
+          {
+            "level": "H3",
+            "text": "League ledger",
+            "top": 29090.390625
+          },
+          {
+            "level": "H3",
+            "text": "Earlier pages",
+            "top": 31713.734375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 4478,
+        "textCharacters": 4910,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Franchise yearbook",
+            "top": 163.8125
+          },
+          {
+            "level": "H2",
+            "text": "Week 3, face to face.",
+            "top": 335.765625
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI view",
+            "top": 888.328125
+          },
+          {
+            "level": "H2",
+            "text": "The league picture",
+            "top": 1166.71875
+          },
+          {
+            "level": "H3",
+            "text": "Standing order",
+            "top": 1275.3125
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 pairings",
+            "top": 1275.3125
+          },
+          {
+            "level": "H2",
+            "text": "The names in the margins",
+            "top": 2530.171875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 2811.5625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 2811.5625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 2811.5625
+          },
+          {
+            "level": "H3",
+            "text": "From that edition’s wire",
+            "top": 3073.1875
+          },
+          {
+            "level": "H2",
+            "text": "Next move. Next chapter.",
+            "top": 3352.375
+          },
+          {
+            "level": "H3",
+            "text": "League ledger",
+            "top": 3439.5625
+          },
+          {
+            "level": "H3",
+            "text": "Earlier pages",
+            "top": 3439.5625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 7745,
+        "textCharacters": 4911,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Franchise yearbook",
+            "top": 124.796875
+          },
+          {
+            "level": "H2",
+            "text": "Week 3, face to face.",
+            "top": 329.03125
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI view",
+            "top": 1257.796875
+          },
+          {
+            "level": "H2",
+            "text": "The league picture",
+            "top": 1617.578125
+          },
+          {
+            "level": "H3",
+            "text": "Standing order",
+            "top": 1735.359375
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 pairings",
+            "top": 2974.90625
+          },
+          {
+            "level": "H2",
+            "text": "The names in the margins",
+            "top": 4038.828125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 4289.40625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 4679.984375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 5070.5625
+          },
+          {
+            "level": "H3",
+            "text": "From that edition’s wire",
+            "top": 5353.34375
+          },
+          {
+            "level": "H2",
+            "text": "Next move. Next chapter.",
+            "top": 5837.109375
+          },
+          {
+            "level": "H3",
+            "text": "League ledger",
+            "top": 5954.890625
+          },
+          {
+            "level": "H3",
+            "text": "Earlier pages",
+            "top": 6517.859375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 24023,
+        "textCharacters": 4911,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Franchise yearbook",
+            "top": 463.25
+          },
+          {
+            "level": "H2",
+            "text": "Week 3, face to face.",
+            "top": 1114.375
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI view",
+            "top": 4334.875
+          },
+          {
+            "level": "H2",
+            "text": "The league picture",
+            "top": 5296
+          },
+          {
+            "level": "H3",
+            "text": "Standing order",
+            "top": 5695.15625
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 pairings",
+            "top": 9614.15625
+          },
+          {
+            "level": "H2",
+            "text": "The names in the margins",
+            "top": 12772.0625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 13574.375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 14756.0625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 15888.15625
+          },
+          {
+            "level": "H3",
+            "text": "From that edition’s wire",
+            "top": 16707.6875
+          },
+          {
+            "level": "H2",
+            "text": "Next move. Next chapter.",
+            "top": 18274.75
+          },
+          {
+            "level": "H3",
+            "text": "League ledger",
+            "top": 18688.703125
+          },
+          {
+            "level": "H3",
+            "text": "Earlier pages",
+            "top": 20494.546875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 8667,
+        "textCharacters": 4911,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Franchise yearbook",
+            "top": 173.796875
+          },
+          {
+            "level": "H2",
+            "text": "Week 3, face to face.",
+            "top": 394.734375
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI view",
+            "top": 1535.875
+          },
+          {
+            "level": "H2",
+            "text": "The league picture",
+            "top": 1895.65625
+          },
+          {
+            "level": "H3",
+            "text": "Standing order",
+            "top": 2038.234375
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 pairings",
+            "top": 3349.75
+          },
+          {
+            "level": "H2",
+            "text": "The names in the margins",
+            "top": 4438.46875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 4746.03125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 5215
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 5659.171875
+          },
+          {
+            "level": "H3",
+            "text": "From that edition’s wire",
+            "top": 5966.75
+          },
+          {
+            "level": "H2",
+            "text": "Next move. Next chapter.",
+            "top": 6500.109375
+          },
+          {
+            "level": "H3",
+            "text": "League ledger",
+            "top": 6650.078125
+          },
+          {
+            "level": "H3",
+            "text": "Earlier pages",
+            "top": 7337.03125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 29534,
+        "textCharacters": 4911,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Franchise yearbook",
+            "top": 556.234375
+          },
+          {
+            "level": "H2",
+            "text": "Week 3, face to face.",
+            "top": 1306.546875
+          },
+          {
+            "level": "H3",
+            "text": "Saved AI view",
+            "top": 4980.421875
+          },
+          {
+            "level": "H2",
+            "text": "The league picture",
+            "top": 6040.734375
+          },
+          {
+            "level": "H3",
+            "text": "Standing order",
+            "top": 6553.875
+          },
+          {
+            "level": "H3",
+            "text": "Week 3 pairings",
+            "top": 11915.5
+          },
+          {
+            "level": "H2",
+            "text": "The names in the margins",
+            "top": 15970.5
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 17099.96875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 18628.8125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 20008.875
+          },
+          {
+            "level": "H3",
+            "text": "From that edition’s wire",
+            "top": 20985.1875
+          },
+          {
+            "level": "H2",
+            "text": "Next move. Next chapter.",
+            "top": 22849.8125
+          },
+          {
+            "level": "H3",
+            "text": "League ledger",
+            "top": 23377.75
+          },
+          {
+            "level": "H3",
+            "text": "Earlier pages",
+            "top": 25530.75
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

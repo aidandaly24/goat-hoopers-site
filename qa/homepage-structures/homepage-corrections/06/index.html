@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>GOAT Hoopers · League wire</title>
+  <meta name="description" content="A dated GOAT Hoopers league homepage: matchups, stories, team register and saved picks.">
+  <link rel="stylesheet" href="./tokens.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#wire">Skip to league wire</a>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="GOAT Hoopers home">GOAT <span>HOOPERS</span></a>
+    <nav class="primary" aria-label="Main navigation"><a href="/" aria-current="page">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a></nav>
+    <details class="tools"><summary><span class="desktop-label">League tools</span><span class="phone-label">Menu</span></summary><nav aria-label="League tools"><a class="phone-label" href="/">Home</a><a class="phone-label" href="/intel">News</a><a class="phone-label" href="/history">History</a><a class="phone-label" href="/arcade">Arcade</a><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/draft">Draft</a><a href="/ai-decides">AI Decides</a><a href="/trade-analyzer">Trade analyzer</a><a href="/weekly">Weekly archive</a><a href="/arcade/free-throw">Play Free Throw</a></nav></details>
+  </header>
+  <div class="intro">
+    <div><p class="eyebrow">GOAT Hoopers / 2026 season</p><h1>League wire</h1></div>
+    <div class="edition-links"><a id="member-action" href="/team">My team</a><a id="edition-switch" href="?view=public">Public edition</a><a id="register-jump" href="#register">Find a team or player</a></div>
+  </div>
+  <div class="provenance"><details><summary>Synthetic concept · checked 12 Nov 2026</summary><p>The November scores, records, modeled prices, form, moves and saved AI are synthetic fixture data. November 12 is the fixture check, not today. The October draft stories retain their original periods and source dates. This local page makes no live requests.</p></details></div>
+  <main id="wire" tabindex="-1">
+    <details class="filter-disclosure"><summary>Narrow the wire</summary><form id="filters"><fieldset><legend>Follow</legend><div class="scope-buttons"><button type="button" data-scope="all" aria-pressed="true">Everything</button><button type="button" data-scope="league" aria-pressed="false">League</button><button id="personal-filter" type="button" data-scope="personal" aria-pressed="false">My team</button><button type="button" data-scope="market" aria-pressed="false">Market</button></div></fieldset><label>Source period<select id="source-period"><option value="all">All supplied dates</option><option value="nov12">Nov 12 · checked snapshot</option><option value="nov10">Nov 10 · saved AI</option><option value="week2">Nov 2–9 · completed Week 2</option><option value="october">Sep / Oct · dated drafts</option></select></label></form></details>
+    <div class="filter-status"><p id="view-status" role="status" aria-live="polite"></p><button id="reset-log" type="button" hidden>Return to complete wire</button></div>
+    <div id="thread" class="thread"></div>
+  </main>
+  <footer><div><strong>GOAT Hoopers</strong><p>Ten teams. A weekly habit.</p><p>Local synthetic league concept. Source dates stay attached to their stories; no automatic refresh.</p></div><nav aria-label="Explore the league"><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/stocks#player-board">Player Stocks</a><a href="/trade-analyzer">Trade analyzer</a><a href="/ai-decides">AI Decides</a><a href="/weekly">Weekly archive</a><a href="/history">History</a><a href="/arcade/free-throw">Play Free Throw</a></nav><p id="footer-source"></p><a href="#wire">Back to the wire</a></footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Parallel Dispatch — GOAT Hoopers</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#channels">Skip to dispatches</a>
+  <header class="masthead">
+    <a class="identity" href="./index.html" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-white.svg" alt="GOAT Hoopers"></a>
+    <nav class="primary" aria-label="Site"><a href="./index.html" aria-current="page">Home</a><a href="/news">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a></nav>
+    <a class="phone-stocks" href="/stocks#player-board">Stocks</a>
+    <button type="button" id="route-toggle" aria-expanded="false" aria-controls="route-list">More</button>
+  </header>
+  <nav id="route-list" aria-label="All destinations" hidden><a href="/news">News</a><a href="/ai-decides">AI Decides</a><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/trade-analyzer">Trade analyzer</a><a href="/intel">Intel</a><a href="/draft">Draft</a><a href="/weekly">Weekly archive</a><a href="/history">History</a><a href="/arcade">Arcade</a></nav>
+  <div class="edition-line"><p><strong>Synthetic concept</strong> · Nov 12, 2026 fixture · Week 3</p><a id="edition-switch" href="?view=public">Public edition</a></div>
+  <details class="concept-provenance"><summary>About this offline edition</summary><div><p>The fixture is dated November 12, 2026; the review date is October 29, 2026. Current records, scores, modeled prices, form, news and AI are synthetic.</p><p>October archive drafts retain their own dates and source periods. No live provider, model generation or publishing runs here.</p><p id="full-provenance"></p></div></details>
+  <nav class="channel-index" aria-label="Jump to an open dispatch"></nav>
+  <main id="channels" class="channels" tabindex="-1"></main>
+  <footer class="site-ending"><p>Four dispatches. One league.</p><nav aria-label="Continue from home"><a href="/stocks#player-board">Stocks</a><a href="/trade-analyzer">Trade analyzer</a><a href="/weekly">Weekly archive</a><a href="#channels">Back to the dispatches</a></nav><small>Local design fixture. Current synthetic material and dated archive drafts remain separate.</small></footer>
+  <div class="sr-only" id="announcement" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1795 @@
+{
+  "id": "09",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/09/app.js",
+      "bytes": 18523,
+      "sha256": "f83a31e97061867c12f6c1f93afe7649452ec2a17cafdea3849de2f1613729a1"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/09/index.html",
+      "bytes": 5286,
+      "sha256": "20662580d7761a553934821516ae50cc05618226b1e32ececa2bdedacaefde3e"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/09/style.css",
+      "bytes": 18631,
+      "sha256": "1e13c2e79fd53395ce718ebde43bb4bda0d24bc7a90839f3e37e0b1a09aec921"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/09/review/member-desktop-full.jpg",
+        "bytes": 681095,
+        "sha256": "1065b7ad49585078d1b12a669a668909c86e4c34e25318f6a55353378232cb00",
+        "width": 1440,
+        "height": 5729,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 5729,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/member-desktop-top.jpg",
+          "bytes": 121707,
+          "sha256": "fb1998d48af5b3514385a0599622791b7dcd1e376e105ea844f75f987be56b4e",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2364,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/member-desktop-middle.jpg",
+          "bytes": 109061,
+          "sha256": "5603f84637b9b2d984ae6555152ceee3f05146df0ae8676f5569f9a4d62d5703",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 4729,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/member-desktop-bottom.jpg",
+          "bytes": 110081,
+          "sha256": "5bb0f3892735dd94d3cf339870356224929d3c174aca848fcfef02400a5a6e74",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week 3",
+          "top": 287
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 525.75
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 644.546875
+        },
+        {
+          "level": "H2",
+          "text": "Five pairs, one saved slate.",
+          "top": 1139.34375
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 351
+        },
+        {
+          "level": "H3",
+          "text": "On form",
+          "top": 1048.625
+        },
+        {
+          "level": "H3",
+          "text": "Week 2: the finished sample",
+          "top": 1460.734375
+        },
+        {
+          "level": "H3",
+          "text": "From your team wire",
+          "top": 2034.84375
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. The whole field.",
+          "top": 2485.140625
+        },
+        {
+          "level": "H2",
+          "text": "A move, with limits.",
+          "top": 3326.9375
+        },
+        {
+          "level": "H2",
+          "text": "Different dates. Keep the context.",
+          "top": 3687.734375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 3852.53125
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 3916.53125
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 4603.640625
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 4603.640625
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 4603.640625
+        },
+        {
+          "level": "H3",
+          "text": "The October wire",
+          "top": 4958.75
+        },
+        {
+          "level": "H2",
+          "text": "Take the next route.",
+          "top": 5322.859375
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/09/review/member-phone-full.jpg",
+        "bytes": 634028,
+        "sha256": "6de5778ae9b7d531180d5be2f6c5e95e9d6754f8caf7412d22219139a9a3e86a",
+        "width": 390,
+        "height": 12904,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 304,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/member-phone-top.jpg",
+          "bytes": 44092,
+          "sha256": "3cf9b20b02aae08a1f273108f9b9f105de641a9d62f7ec1fee39774bb22722e8",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 6030,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/member-phone-middle.jpg",
+          "bytes": 37230,
+          "sha256": "62c811bbf738be0d649f3c16d3a013642d8089683ceb6a64f1169a586d471b78",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 12060,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/member-phone-bottom.jpg",
+          "bytes": 39576,
+          "sha256": "668daf5a24c701a456e6fd27afcb9db0da93c8c23109abd2a0fee0f40c9ae420",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week 3",
+          "top": 349
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 525.265625
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 616.65625
+        },
+        {
+          "level": "H2",
+          "text": "Five pairs, one saved slate.",
+          "top": 1189.046875
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 2795.515625
+        },
+        {
+          "level": "H3",
+          "text": "On form",
+          "top": 3664.40625
+        },
+        {
+          "level": "H3",
+          "text": "Week 2: the finished sample",
+          "top": 4334.796875
+        },
+        {
+          "level": "H3",
+          "text": "From your team wire",
+          "top": 5335.1875
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. The whole field.",
+          "top": 5726.578125
+        },
+        {
+          "level": "H2",
+          "text": "A move, with limits.",
+          "top": 7913.046875
+        },
+        {
+          "level": "H2",
+          "text": "Different dates. Keep the context.",
+          "top": 8573.78125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 8809.25
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 9343.03125
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 10185.8125
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 10635.59375
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 11085.375
+        },
+        {
+          "level": "H3",
+          "text": "The October wire",
+          "top": 11434.15625
+        },
+        {
+          "level": "H2",
+          "text": "Take the next route.",
+          "top": 12160.546875
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/09/review/public-desktop-full.jpg",
+        "bytes": 622234,
+        "sha256": "4109ee5aae8c99d6e1e74ea40ab66ddbb8280159c52788ee0ad8b6a0e2a4929d",
+        "width": 1440,
+        "height": 5729,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 5729,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/public-desktop-top.jpg",
+          "bytes": 125534,
+          "sha256": "4bbb96e576ca20ffd9a4b2f1cf434545a055855c6eb3f715262721f5cdefc495",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2364,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/public-desktop-middle.jpg",
+          "bytes": 108633,
+          "sha256": "826c892488ca22ad3f00ce3fc4501afe91327d0c5034d49f47b61f520614c23a",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 4729,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/public-desktop-bottom.jpg",
+          "bytes": 110081,
+          "sha256": "5bb0f3892735dd94d3cf339870356224929d3c174aca848fcfef02400a5a6e74",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week 3",
+          "top": 287
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 525.75
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 644.546875
+        },
+        {
+          "level": "H2",
+          "text": "Five pairs, one saved slate.",
+          "top": 1139.34375
+        },
+        {
+          "level": "H2",
+          "text": "Know the two sides.",
+          "top": 351
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 474.796875
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 634.390625
+        },
+        {
+          "level": "H3",
+          "text": "A draft pick to follow",
+          "top": 883.984375
+        },
+        {
+          "level": "H3",
+          "text": "Find your franchise.",
+          "top": 1163.09375
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. The whole field.",
+          "top": 2485.140625
+        },
+        {
+          "level": "H2",
+          "text": "A move, with limits.",
+          "top": 3326.9375
+        },
+        {
+          "level": "H2",
+          "text": "Different dates. Keep the context.",
+          "top": 3687.734375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 3852.53125
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 3916.53125
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 4603.640625
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 4603.640625
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 4603.640625
+        },
+        {
+          "level": "H3",
+          "text": "The October wire",
+          "top": 4958.75
+        },
+        {
+          "level": "H2",
+          "text": "Take the next route.",
+          "top": 5322.859375
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/09/review/public-phone-full.jpg",
+        "bytes": 571162,
+        "sha256": "33069c93629afa8fc11ab2708936dc3c807e06def287e63453445be21adb53d2",
+        "width": 390,
+        "height": 11242,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 442,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/public-phone-top.jpg",
+          "bytes": 43618,
+          "sha256": "183b131023a1110551772693d605400bee2fb8546fa592d0d4b725c88e74c862",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5199,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/public-phone-middle.jpg",
+          "bytes": 35053,
+          "sha256": "77147b3c73e06a303c56fed7c291abe7d82d4d8c719bf1cbeb4c05682bd8a29e",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 10398,
+          "path": "qa/homepage-structures/homepage-corrections/09/review/public-phone-bottom.jpg",
+          "bytes": 39027,
+          "sha256": "2e24577b72da6f8ec90538e7110f7229fa2d7339a9fd77f964e68f39cddc5b11",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week 3",
+          "top": 349
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 525.265625
+        },
+        {
+          "level": "H2",
+          "text": "Ware the Hoes At?",
+          "top": 616.65625
+        },
+        {
+          "level": "H2",
+          "text": "Five pairs, one saved slate.",
+          "top": 1189.046875
+        },
+        {
+          "level": "H2",
+          "text": "Know the two sides.",
+          "top": 2795.515625
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 2938.25
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 3139.25
+        },
+        {
+          "level": "H3",
+          "text": "A draft pick to follow",
+          "top": 3451.25
+        },
+        {
+          "level": "H3",
+          "text": "Find your franchise.",
+          "top": 3786.640625
+        },
+        {
+          "level": "H2",
+          "text": "Ten teams. The whole field.",
+          "top": 4064.03125
+        },
+        {
+          "level": "H2",
+          "text": "A move, with limits.",
+          "top": 6250.5
+        },
+        {
+          "level": "H2",
+          "text": "Different dates. Keep the context.",
+          "top": 6911.234375
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 7146.703125
+        },
+        {
+          "level": "H3",
+          "text": "The first crown belongs to vannweinkauf.",
+          "top": 7680.484375
+        },
+        {
+          "level": "H3",
+          "text": "Somebody unplug this man.",
+          "top": 8523.265625
+        },
+        {
+          "level": "H3",
+          "text": "We wanted more on the glass.",
+          "top": 8973.046875
+        },
+        {
+          "level": "H3",
+          "text": "No. 1 pick. No free pass.",
+          "top": 9422.828125
+        },
+        {
+          "level": "H3",
+          "text": "The October wire",
+          "top": 9771.609375
+        },
+        {
+          "level": "H2",
+          "text": "Take the next route.",
+          "top": 10498
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 5729,
+        "textCharacters": 7696,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3",
+            "top": 287
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 525.75
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 644.546875
+          },
+          {
+            "level": "H2",
+            "text": "Five pairs, one saved slate.",
+            "top": 1139.34375
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 351
+          },
+          {
+            "level": "H3",
+            "text": "On form",
+            "top": 1048.625
+          },
+          {
+            "level": "H3",
+            "text": "Week 2: the finished sample",
+            "top": 1460.734375
+          },
+          {
+            "level": "H3",
+            "text": "From your team wire",
+            "top": 2034.84375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. The whole field.",
+            "top": 2485.140625
+          },
+          {
+            "level": "H2",
+            "text": "A move, with limits.",
+            "top": 3326.9375
+          },
+          {
+            "level": "H2",
+            "text": "Different dates. Keep the context.",
+            "top": 3687.734375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 3852.53125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 3916.53125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 4603.640625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 4603.640625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 4603.640625
+          },
+          {
+            "level": "H3",
+            "text": "The October wire",
+            "top": 4958.75
+          },
+          {
+            "level": "H2",
+            "text": "Take the next route.",
+            "top": 5322.859375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 12904,
+        "textCharacters": 7666,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3",
+            "top": 349
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 525.265625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 616.65625
+          },
+          {
+            "level": "H2",
+            "text": "Five pairs, one saved slate.",
+            "top": 1189.046875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2795.515625
+          },
+          {
+            "level": "H3",
+            "text": "On form",
+            "top": 3664.40625
+          },
+          {
+            "level": "H3",
+            "text": "Week 2: the finished sample",
+            "top": 4334.796875
+          },
+          {
+            "level": "H3",
+            "text": "From your team wire",
+            "top": 5335.1875
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. The whole field.",
+            "top": 5726.578125
+          },
+          {
+            "level": "H2",
+            "text": "A move, with limits.",
+            "top": 7913.046875
+          },
+          {
+            "level": "H2",
+            "text": "Different dates. Keep the context.",
+            "top": 8573.78125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 8809.25
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 9343.03125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 10185.8125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 10635.59375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 11085.375
+          },
+          {
+            "level": "H3",
+            "text": "The October wire",
+            "top": 11434.15625
+          },
+          {
+            "level": "H2",
+            "text": "Take the next route.",
+            "top": 12160.546875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 38026,
+        "textCharacters": 7666,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3",
+            "top": 1197.5625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1723.65625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 2079.28125
+          },
+          {
+            "level": "H2",
+            "text": "Five pairs, one saved slate.",
+            "top": 3818.90625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 8379.3125
+          },
+          {
+            "level": "H3",
+            "text": "On form",
+            "top": 11036.875
+          },
+          {
+            "level": "H3",
+            "text": "Week 2: the finished sample",
+            "top": 12836.6875
+          },
+          {
+            "level": "H3",
+            "text": "From your team wire",
+            "top": 15390.125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. The whole field.",
+            "top": 16415.75
+          },
+          {
+            "level": "H2",
+            "text": "A move, with limits.",
+            "top": 22592.15625
+          },
+          {
+            "level": "H2",
+            "text": "Different dates. Keep the context.",
+            "top": 24791.5625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 25605.96875
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 27319.40625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 29957.46875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 31378.5
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 32847.53125
+          },
+          {
+            "level": "H3",
+            "text": "The October wire",
+            "top": 33939.75
+          },
+          {
+            "level": "H2",
+            "text": "Take the next route.",
+            "top": 35764.375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 13718,
+        "textCharacters": 7666,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3",
+            "top": 401
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 577.265625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 689.65625
+          },
+          {
+            "level": "H2",
+            "text": "Five pairs, one saved slate.",
+            "top": 1306.046875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 3023.515625
+          },
+          {
+            "level": "H3",
+            "text": "On form",
+            "top": 3892.40625
+          },
+          {
+            "level": "H3",
+            "text": "Week 2: the finished sample",
+            "top": 4583.796875
+          },
+          {
+            "level": "H3",
+            "text": "From your team wire",
+            "top": 5649.578125
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. The whole field.",
+            "top": 6048.96875
+          },
+          {
+            "level": "H2",
+            "text": "A move, with limits.",
+            "top": 8277.4375
+          },
+          {
+            "level": "H2",
+            "text": "Different dates. Keep the context.",
+            "top": 9046.171875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 9305.640625
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 9920.421875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 10808.203125
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 11306.375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 11780.546875
+          },
+          {
+            "level": "H3",
+            "text": "The October wire",
+            "top": 12129.328125
+          },
+          {
+            "level": "H2",
+            "text": "Take the next route.",
+            "top": 12903.71875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 48019,
+        "textCharacters": 7666,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3",
+            "top": 1239.5625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1813.65625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 2350.90625
+          },
+          {
+            "level": "H2",
+            "text": "Five pairs, one saved slate.",
+            "top": 4704.15625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 10038.5
+          },
+          {
+            "level": "H3",
+            "text": "On form",
+            "top": 14067.53125
+          },
+          {
+            "level": "H3",
+            "text": "Week 2: the finished sample",
+            "top": 16303.34375
+          },
+          {
+            "level": "H3",
+            "text": "From your team wire",
+            "top": 19567.59375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. The whole field.",
+            "top": 21044.84375
+          },
+          {
+            "level": "H2",
+            "text": "A move, with limits.",
+            "top": 29356.1875
+          },
+          {
+            "level": "H2",
+            "text": "Different dates. Keep the context.",
+            "top": 32061.0625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 33074.9375
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 35179.1875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 38428.0625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 40347.890625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 42038.921875
+          },
+          {
+            "level": "H3",
+            "text": "The October wire",
+            "top": 43311.953125
+          },
+          {
+            "level": "H2",
+            "text": "Take the next route.",
+            "top": 45477.390625
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 5729,
+        "textCharacters": 6926,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3",
+            "top": 287
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 525.75
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 644.546875
+          },
+          {
+            "level": "H2",
+            "text": "Five pairs, one saved slate.",
+            "top": 1139.34375
+          },
+          {
+            "level": "H2",
+            "text": "Know the two sides.",
+            "top": 351
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 474.796875
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 634.390625
+          },
+          {
+            "level": "H3",
+            "text": "A draft pick to follow",
+            "top": 883.984375
+          },
+          {
+            "level": "H3",
+            "text": "Find your franchise.",
+            "top": 1163.09375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. The whole field.",
+            "top": 2485.140625
+          },
+          {
+            "level": "H2",
+            "text": "A move, with limits.",
+            "top": 3326.9375
+          },
+          {
+            "level": "H2",
+            "text": "Different dates. Keep the context.",
+            "top": 3687.734375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 3852.53125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 3916.53125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 4603.640625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 4603.640625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 4603.640625
+          },
+          {
+            "level": "H3",
+            "text": "The October wire",
+            "top": 4958.75
+          },
+          {
+            "level": "H2",
+            "text": "Take the next route.",
+            "top": 5322.859375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 11242,
+        "textCharacters": 6896,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3",
+            "top": 349
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 525.265625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 616.65625
+          },
+          {
+            "level": "H2",
+            "text": "Five pairs, one saved slate.",
+            "top": 1189.046875
+          },
+          {
+            "level": "H2",
+            "text": "Know the two sides.",
+            "top": 2795.515625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 2938.25
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 3139.25
+          },
+          {
+            "level": "H3",
+            "text": "A draft pick to follow",
+            "top": 3451.25
+          },
+          {
+            "level": "H3",
+            "text": "Find your franchise.",
+            "top": 3786.640625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. The whole field.",
+            "top": 4064.03125
+          },
+          {
+            "level": "H2",
+            "text": "A move, with limits.",
+            "top": 6250.5
+          },
+          {
+            "level": "H2",
+            "text": "Different dates. Keep the context.",
+            "top": 6911.234375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 7146.703125
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 7680.484375
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 8523.265625
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 8973.046875
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 9422.828125
+          },
+          {
+            "level": "H3",
+            "text": "The October wire",
+            "top": 9771.609375
+          },
+          {
+            "level": "H2",
+            "text": "Take the next route.",
+            "top": 10498
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 33982,
+        "textCharacters": 6896,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3",
+            "top": 1197.5625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1723.65625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 2037.28125
+          },
+          {
+            "level": "H2",
+            "text": "Five pairs, one saved slate.",
+            "top": 3776.90625
+          },
+          {
+            "level": "H2",
+            "text": "Know the two sides.",
+            "top": 8337.3125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 9012.25
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 9645.25
+          },
+          {
+            "level": "H3",
+            "text": "A draft pick to follow",
+            "top": 10494.625
+          },
+          {
+            "level": "H3",
+            "text": "Find your franchise.",
+            "top": 11528.25
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. The whole field.",
+            "top": 12413.875
+          },
+          {
+            "level": "H2",
+            "text": "A move, with limits.",
+            "top": 18548.28125
+          },
+          {
+            "level": "H2",
+            "text": "Different dates. Keep the context.",
+            "top": 20747.6875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 21562.09375
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 23275.53125
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 25913.59375
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 27334.625
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 28803.65625
+          },
+          {
+            "level": "H3",
+            "text": "The October wire",
+            "top": 29895.875
+          },
+          {
+            "level": "H2",
+            "text": "Take the next route.",
+            "top": 31720.5
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 12065,
+        "textCharacters": 6896,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3",
+            "top": 401
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 577.265625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 668.65625
+          },
+          {
+            "level": "H2",
+            "text": "Five pairs, one saved slate.",
+            "top": 1285.046875
+          },
+          {
+            "level": "H2",
+            "text": "Know the two sides.",
+            "top": 3002.515625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 3175.984375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 3400.984375
+          },
+          {
+            "level": "H3",
+            "text": "A draft pick to follow",
+            "top": 3759.171875
+          },
+          {
+            "level": "H3",
+            "text": "Find your franchise.",
+            "top": 4139.5625
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. The whole field.",
+            "top": 4416.953125
+          },
+          {
+            "level": "H2",
+            "text": "A move, with limits.",
+            "top": 6624.421875
+          },
+          {
+            "level": "H2",
+            "text": "Different dates. Keep the context.",
+            "top": 7393.15625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 7652.625
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 8267.40625
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 9155.1875
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 9653.359375
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 10127.53125
+          },
+          {
+            "level": "H3",
+            "text": "The October wire",
+            "top": 10476.3125
+          },
+          {
+            "level": "H2",
+            "text": "Take the next route.",
+            "top": 11250.703125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 42134,
+        "textCharacters": 6896,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3",
+            "top": 1281.5625
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1855.65625
+          },
+          {
+            "level": "H2",
+            "text": "Ware the Hoes At?",
+            "top": 2308.90625
+          },
+          {
+            "level": "H2",
+            "text": "Five pairs, one saved slate.",
+            "top": 4662.15625
+          },
+          {
+            "level": "H2",
+            "text": "Know the two sides.",
+            "top": 9996.5
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 10876.90625
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 11576.28125
+          },
+          {
+            "level": "H3",
+            "text": "A draft pick to follow",
+            "top": 12649.65625
+          },
+          {
+            "level": "H3",
+            "text": "Find your franchise.",
+            "top": 13986.09375
+          },
+          {
+            "level": "H2",
+            "text": "Ten teams. The whole field.",
+            "top": 15202.53125
+          },
+          {
+            "level": "H2",
+            "text": "A move, with limits.",
+            "top": 23471.875
+          },
+          {
+            "level": "H2",
+            "text": "Different dates. Keep the context.",
+            "top": 26176.75
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 27190.625
+          },
+          {
+            "level": "H3",
+            "text": "The first crown belongs to vannweinkauf.",
+            "top": 29294.875
+          },
+          {
+            "level": "H3",
+            "text": "Somebody unplug this man.",
+            "top": 32543.75
+          },
+          {
+            "level": "H3",
+            "text": "We wanted more on the glass.",
+            "top": 34463.578125
+          },
+          {
+            "level": "H3",
+            "text": "No. 1 pick. No free pass.",
+            "top": 36154.609375
+          },
+          {
+            "level": "H3",
+            "text": "The October wire",
+            "top": 37427.640625
+          },
+          {
+            "level": "H2",
+            "text": "Take the next route.",
+            "top": 39593.078125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}

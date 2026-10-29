@@ -1,0 +1,32 @@
+{
+  "concept": "01 — The open almanac",
+  "status": "Frozen local homepage correction, 2026-10-29; root capture/review pending",
+  "entry": "index.html",
+  "readyMarker": "document.documentElement.dataset.homepageReady === '01'",
+  "source": "../../data.js",
+  "editions": {
+    "member": "Default or ?view=member; supplied synthetic Reaves Dropper identity and personal page",
+    "public": "?view=public; no personal page or private team facts; league season context and sign-in action",
+    "staleAI": "?ai=stale; stale status visible, supplied saved choices inspectable",
+    "missingAI": "?ai=missing; all five score pairings remain, no choice/probability inferred"
+  },
+  "visibleOnInitialRender": [
+    {"area":"Masthead and open contents", "content":"Local GOAT mark, league almanac identity, compact synthetic label, direct Stocks and member My team / public Sign in, five (member) or four (public) section anchors, fixture date and warning"},
+    {"id":"opening", "content":"Week 3 headline, current pairing with team/manager/record, known 0.0 versus Pending, incomplete status, score and AI destinations. Member marginal identity, rank, My team and full-roster links; public marginal ten-club/six-place/Week-20 context"},
+    {"id":"notebook", "content":"Explicitly dated unpublished Oct 5–11 draft; three distinct editorial takes with approved portraits, names, teams, metric periods and opinions; dated Week 1 opening-game context and archive destination"},
+    {"id":"this-week", "content":"All five current pairings and incomplete scores; all five supplied saved model choices with independent confidence (unless missing); current model-status qualifier; ten-club standings with rank, linked club, manager, W–L, PF and roster count, plus playoff context and unavailable Lineup Power"},
+    {"id":"your-page", "edition":"member", "content":"Modeled roster total and pricing coverage, calculation time/basis and rank; highest three modeled player values; full roster/Stocks links; unavailable recorded history; three distinct form/weekly lists with points, GP, period and eligibility caveats; two clearly synthetic personal news headlines"},
+    {"id":"back-pages", "content":"Three dated October league moves, 2025 title story and historical final score, previous-manager franchise note, weekly archive links; actual free-throw preview and Play destination; Stocks/trade/news/draft tools"},
+    {"area":"Footer", "content":"Almanac identity, back-to-opening link, eleven ordinary league destinations, full fixture provenance and date, explicit unpublished editorial and unavailable producer states, edition comparison"}
+  ],
+  "optionalEnhancements": [
+    "Three native Why this pick disclosures retain editorial selection reasons, supplied source URLs and checked dates",
+    "Five native saved-pick evidence disclosures retain both returned probabilities, independent confidence, exact choice ID, model/prompt, saved time, unavailable input snapshot/baseline and supplied evidence",
+    "One native Week 3 sample move log with the three synthetic move summaries; no invented add/drop player legs",
+    "One native footer editorial-source reference list"
+  ],
+  "composition": "Continuous white reading canvas with unequal Lora editorial measures, DM Sans operational rows, marginal context, small vermilion reading links; desktop columns become the same natural document flow on phones",
+  "contentPolicy": "Curated homepage with profile/roster destinations; no raw 228-player directory or hidden core reader. Current synthetic data, October draft and 2025 final stay visibly distinct.",
+  "navigation": "Ordinary anchors and routes; no tabs, drawers, modal reader, sticky content frame, inner scrolling or application-state replacement",
+  "motion": "No authored animation; native disclosure is immediate and preserves context. Reduced-motion view retains all content and controls."
+}

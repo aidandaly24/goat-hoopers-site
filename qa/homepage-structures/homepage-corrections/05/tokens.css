@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Fact Anton";
+  src: url("/qa/homepage-structures/assets/fonts/anton/Anton-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fact DM Sans";
+  src: url("/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf") format("truetype");
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Three paint roles: field, legible ink, and the saved-return marker. */
+  --color-field: #f4f322;
+  --color-ink: #14140f;
+  --color-return: #ee4c92;
+  --font-display: "Fact Anton", Impact, sans-serif;
+  --font-reading: "Fact DM Sans", Arial, sans-serif;
+  --text-base: 16px;
+  --space-tight: .5rem;
+  --space-small: 1rem;
+  --space-medium: 2rem;
+  --space-large: 3.5rem;
+  --space-edge: clamp(1rem, 2.8vw, 3rem);
+  --motion-zoom-duration: 180ms;
+  --motion-zoom-ease: cubic-bezier(.23, 1, .32, 1);
+}

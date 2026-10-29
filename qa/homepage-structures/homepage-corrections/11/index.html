@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GOAT Hoopers — Query commons</title>
+  <link rel="preload" href="/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#commons">Skip to the league commons</a>
+  <header class="masthead frame">
+    <a class="brand" href="/" aria-label="GOAT Hoopers home">GOAT<span>Hoopers</span></a>
+    <nav aria-label="Primary"><a href="#commons" aria-current="page">Commons</a><a href="/stocks#player-board">Stocks</a><button type="button" id="search-trigger">Search</button><a href="#destinations">Tools</a></nav>
+    <a class="edition-switch" id="edition-switch" href="?view=public">View public edition</a>
+  </header>
+  <main class="frame" id="main">
+    <div class="context"><p><strong>Synthetic concept</strong> · Fixture 12 Nov 2026 · Review 29 Oct 2026</p><p id="edition-label"></p></div>
+    <section class="query-intro" aria-labelledby="page-title">
+      <h1 id="page-title">Find your next move.</h1>
+      <p class="intro">A league commons with a few answers already on the table.</p>
+      <form id="search-form" role="search">
+        <label for="query">Ask about a player, team or league task</label>
+        <div class="query-line"><input id="query" type="search" placeholder="Who’s on your mind?" autocomplete="off" spellcheck="false" aria-describedby="query-help"><button id="clear-query" type="button" hidden>Clear</button><button type="submit" class="find">Find</button></div>
+        <p id="query-help">Local search across <span id="search-coverage"></span>. Try <button type="button" data-query="Reaves">Reaves</button> or <button type="button" data-query="Embiid">Embiid</button>.</p>
+      </form>
+    </section>
+    <section id="search-results" class="search-results" aria-labelledby="result-heading" hidden>
+      <div class="search-toolbar"><h2 id="result-heading">Local results</h2><p id="result-count" role="status" aria-live="polite"></p><button type="button" id="return-home">Return to the commons</button></div>
+      <div class="index-controls"><div class="filters" role="group" aria-label="Result type"><button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="player" aria-pressed="false">Players</button><button type="button" data-filter="team" aria-pressed="false">Teams</button><button type="button" data-filter="task" aria-pressed="false">Tasks</button></div><label for="result-sort">Order <select id="result-sort"><option value="relevance">Best match</option><option value="name">Name A–Z</option></select></label></div>
+      <div id="results"></div><button id="more-results" type="button" hidden>Show 12 more results</button>
+    </section>
+    <div id="commons" tabindex="-1"></div>
+  </main>
+  <footer class="frame" id="destinations"><div class="footer-heading"><h2>Where to next?</h2><p>The question can stay open. The league keeps going.</p></div><nav aria-label="League destinations" id="destination-links"></nav><div class="footer-note"><p>Offline design fixture. Current records, scores, values, form, headlines, moves and saved model results are synthetic. The November fixture is future-dated relative to this October review. Public/member editions compare fixtures and do not authenticate.</p><details><summary>Source and scope notes</summary><p>All league facts come from the existing local data.js fixture. Search runs locally and generates no AI. October editorial retains draft status and its own dates. Destination links preserve real application paths; this static study does not establish live routing, authentication, publication or provider availability.</p></details><a id="edition-switch-footer" href="?view=public">View public edition</a><a href="#page-title">Back to the top</a></div></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

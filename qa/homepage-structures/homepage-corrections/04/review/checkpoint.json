@@ -1,0 +1,3945 @@
+{
+  "id": "04",
+  "sourceBase": "e59fa1bd16873e3c3cf4da0d7cb36516361792ca",
+  "scope": "Full visible homepage correction, actual initial document. No state-selection API required to see primary home content. Concept-specific completeness and craft require pixel inspection; mechanical checks alone are insufficient.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/04/app.js",
+      "bytes": 27208,
+      "sha256": "bd6ee75a4ef50f72650d14e0dfd31d69562305e9e23214b7754da8499202b4ed"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/04/index.html",
+      "bytes": 2820,
+      "sha256": "3af73c437eeeb19fca6b3b34097e105ec7fab14e2351e25112274114ae76a48f"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/04/style.css",
+      "bytes": 22448,
+      "sha256": "ea0bedbe8960d5cd730661b919802442edddebc0d7695e6e0839077177995446"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/04/review/member-desktop-full.jpg",
+        "bytes": 771037,
+        "sha256": "560124005430433677d524e5976b4b4f557b18b2f16bae5672ccd08baa3e592c",
+        "width": 1440,
+        "height": 7867,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 667,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/member-desktop-top.jpg",
+          "bytes": 109869,
+          "sha256": "88a3884ef1964e1a2088262b678e9f006643c83869d8f1f3d5d4d3d3d04722ab",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 3433,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/member-desktop-middle.jpg",
+          "bytes": 104876,
+          "sha256": "b634092433215d6373ec482045b129e224072bcc508b2432b1362df9730d573e",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 6867,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/member-desktop-bottom.jpg",
+          "bytes": 101018,
+          "sha256": "869ea112397d8885e6ed8d3058a3109e3740eef1798bd5edfccd8a9eee19fc3e",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week 3. On program.",
+          "top": 214.734375
+        },
+        {
+          "level": "H2",
+          "text": "Your matchup",
+          "top": 322.328125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 451.921875
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 451.921875
+        },
+        {
+          "level": "H2",
+          "text": "Saved model decision",
+          "top": 815.796875
+        },
+        {
+          "level": "H2",
+          "text": "Three moves on the wire.",
+          "top": 1470.828125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 1582.6875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 1582.6875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 1582.6875
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 1970.1875
+        },
+        {
+          "level": "H3",
+          "text": "Highest modeled values",
+          "top": 1935.6875
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 2317.078125
+        },
+        {
+          "level": "H2",
+          "text": "Watch the form. Read the sample.",
+          "top": 2779.171875
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch",
+          "top": 2848.53125
+        },
+        {
+          "level": "H3",
+          "text": "Completed-week best & rough",
+          "top": 2848.53125
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 3784.515625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 3943.484375
+        },
+        {
+          "level": "H3",
+          "text": "The programme",
+          "top": 3904.984375
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 4342.875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 4342.875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 4342.875
+        },
+        {
+          "level": "H3",
+          "text": "Around the league · Oct 5–11, 2026",
+          "top": 4813.265625
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 4871.765625
+        },
+        {
+          "level": "H2",
+          "text": "The table. The teams. Every roster.",
+          "top": 5557.265625
+        },
+        {
+          "level": "H3",
+          "text": "Current standings",
+          "top": 5706.625
+        },
+        {
+          "level": "H3",
+          "text": "On the home desk",
+          "top": 5706.625
+        },
+        {
+          "level": "H3",
+          "text": "Find any roster",
+          "top": 6989.625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 7275.625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 7275.625
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 7415.71875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 7415.71875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 7555.8125
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 7555.8125
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 7695.90625
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 7695.90625
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 7858.5
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 7858.5
+        },
+        {
+          "level": "H3",
+          "text": "Franchise anchors",
+          "top": 8062.59375
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 8156.59375
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 8156.59375
+        },
+        {
+          "level": "H3",
+          "text": "Shai Gilgeous-Alexander",
+          "top": 8259.6875
+        },
+        {
+          "level": "H3",
+          "text": "Jalen Brunson",
+          "top": 8259.6875
+        },
+        {
+          "level": "H3",
+          "text": "Stephen Curry",
+          "top": 8362.78125
+        },
+        {
+          "level": "H3",
+          "text": "Donovan Mitchell",
+          "top": 8362.78125
+        },
+        {
+          "level": "H3",
+          "text": "Luka Dončić",
+          "top": 8465.875
+        },
+        {
+          "level": "H3",
+          "text": "Giannis Antetokounmpo",
+          "top": 8465.875
+        },
+        {
+          "level": "H3",
+          "text": "LeBron James",
+          "top": 8568.96875
+        },
+        {
+          "level": "H3",
+          "text": "Anthony Davis",
+          "top": 8568.96875
+        },
+        {
+          "level": "H2",
+          "text": "Take it to the next court.",
+          "top": 7113.125
+        },
+        {
+          "level": "H3",
+          "text": "Free Throw practice",
+          "top": 7428.875
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/04/review/member-phone-full.jpg",
+        "bytes": 643275,
+        "sha256": "4857ddc3b0f1b507c7449dfd700cfd03ac7ae9e73d8d0823f68881e02dff162a",
+        "width": 390,
+        "height": 12838,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 10800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 12600,
+            "height": 238,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/member-phone-top.jpg",
+          "bytes": 43331,
+          "sha256": "8ee032f47bed30ebc6137f845287ed2b92262c26ff022e613d26cf068e303fad",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 5997,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/member-phone-middle.jpg",
+          "bytes": 39330,
+          "sha256": "3608edb16d894887cf322059231a8389b69956f14ef916e204f1d724ac37aeaf",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 11994,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/member-phone-bottom.jpg",
+          "bytes": 39957,
+          "sha256": "1c76b283fa21871c45a096d2319416b462c926e8bea59e6d7c5d07d11a2f375d",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week 3. On program.",
+          "top": 282.671875
+        },
+        {
+          "level": "H2",
+          "text": "Your matchup",
+          "top": 414.0625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 543.65625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 543.65625
+        },
+        {
+          "level": "H2",
+          "text": "Saved model decision",
+          "top": 907.15625
+        },
+        {
+          "level": "H2",
+          "text": "Three moves on the wire.",
+          "top": 1387.046875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 1491.34375
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 1729.84375
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 1968.34375
+        },
+        {
+          "level": "H2",
+          "text": "Reaves Dropper",
+          "top": 2323.84375
+        },
+        {
+          "level": "H3",
+          "text": "Highest modeled values",
+          "top": 2855.234375
+        },
+        {
+          "level": "H3",
+          "text": "Your team wire",
+          "top": 3236.625
+        },
+        {
+          "level": "H2",
+          "text": "Watch the form. Read the sample.",
+          "top": 3714.71875
+        },
+        {
+          "level": "H3",
+          "text": "Players to watch",
+          "top": 3814.3125
+        },
+        {
+          "level": "H3",
+          "text": "Completed-week best & rough",
+          "top": 4390.703125
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 5341.1875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 5549.875
+        },
+        {
+          "level": "H3",
+          "text": "The programme",
+          "top": 5887.46875
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 6320.359375
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 6821.046875
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 7321.734375
+        },
+        {
+          "level": "H3",
+          "text": "Around the league · Oct 5–11, 2026",
+          "top": 7787.125
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 8219.015625
+        },
+        {
+          "level": "H2",
+          "text": "The table. The teams. Every roster.",
+          "top": 9040.515625
+        },
+        {
+          "level": "H3",
+          "text": "Current standings",
+          "top": 9244.109375
+        },
+        {
+          "level": "H3",
+          "text": "On the home desk",
+          "top": 10418.109375
+        },
+        {
+          "level": "H3",
+          "text": "Find any roster",
+          "top": 11367.90625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 11653.90625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 11794
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 11934.09375
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 12074.1875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 12214.28125
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 12354.375
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 12494.46875
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 12634.5625
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 12819.65625
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 12959.75
+        },
+        {
+          "level": "H3",
+          "text": "Franchise anchors",
+          "top": 13163.84375
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 13281.84375
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 13438.9375
+        },
+        {
+          "level": "H3",
+          "text": "Shai Gilgeous-Alexander",
+          "top": 13596.03125
+        },
+        {
+          "level": "H3",
+          "text": "Jalen Brunson",
+          "top": 13753.125
+        },
+        {
+          "level": "H3",
+          "text": "Stephen Curry",
+          "top": 13910.21875
+        },
+        {
+          "level": "H3",
+          "text": "Donovan Mitchell",
+          "top": 14067.3125
+        },
+        {
+          "level": "H3",
+          "text": "Luka Dončić",
+          "top": 14224.40625
+        },
+        {
+          "level": "H3",
+          "text": "Giannis Antetokounmpo",
+          "top": 14381.5
+        },
+        {
+          "level": "H3",
+          "text": "LeBron James",
+          "top": 14538.59375
+        },
+        {
+          "level": "H3",
+          "text": "Anthony Davis",
+          "top": 14695.6875
+        },
+        {
+          "level": "H2",
+          "text": "Take it to the next court.",
+          "top": 11459.40625
+        },
+        {
+          "level": "H3",
+          "text": "Free Throw practice",
+          "top": 12419.578125
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/04/review/public-desktop-full.jpg",
+        "bytes": 645283,
+        "sha256": "04c368cbe84855aee558c61d6ab36583ccaa14bdcdd2b34bf5f32955caeb3302",
+        "width": 1440,
+        "height": 6459,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 6459,
+            "method": "native fullPage"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/public-desktop-top.jpg",
+          "bytes": 109620,
+          "sha256": "1a63f15fcbffc173f8ddc7780a3d1f6b2d34f39a2992d4a4a04413941eb74c74",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 2729,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/public-desktop-middle.jpg",
+          "bytes": 135700,
+          "sha256": "7d07f23cee42bb6715caa6799d04256f91f71ec21949236ae700bb3ded4f9e6b",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 5459,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/public-desktop-bottom.jpg",
+          "bytes": 100314,
+          "sha256": "31643fa4c383c3ab5f9536c28a259f30e8657e3ec7a79c44541194d17180b169",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week 3. On program.",
+          "top": 214.734375
+        },
+        {
+          "level": "H2",
+          "text": "Selected matchup",
+          "top": 322.328125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 451.921875
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 451.921875
+        },
+        {
+          "level": "H2",
+          "text": "Saved model decision",
+          "top": 815.796875
+        },
+        {
+          "level": "H2",
+          "text": "Three moves on the wire.",
+          "top": 1470.828125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 1582.6875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 1582.6875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 1582.6875
+        },
+        {
+          "level": "H2",
+          "text": "A face for every franchise.",
+          "top": 1970.1875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 1951.6875
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 2054.78125
+        },
+        {
+          "level": "H3",
+          "text": "Shai Gilgeous-Alexander",
+          "top": 2157.875
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 2376.46875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 2535.4375
+        },
+        {
+          "level": "H3",
+          "text": "The programme",
+          "top": 2496.9375
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 2934.828125
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 2934.828125
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 2934.828125
+        },
+        {
+          "level": "H3",
+          "text": "Around the league · Oct 5–11, 2026",
+          "top": 3405.21875
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 3463.71875
+        },
+        {
+          "level": "H2",
+          "text": "The table. The teams. Every roster.",
+          "top": 4149.21875
+        },
+        {
+          "level": "H3",
+          "text": "Current standings",
+          "top": 4298.578125
+        },
+        {
+          "level": "H3",
+          "text": "On the home desk",
+          "top": 4298.578125
+        },
+        {
+          "level": "H3",
+          "text": "Find any roster",
+          "top": 5581.578125
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 5867.578125
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 5867.578125
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 6007.671875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 6007.671875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 6147.765625
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 6147.765625
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 6287.859375
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 6287.859375
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 6450.453125
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 6450.453125
+        },
+        {
+          "level": "H3",
+          "text": "Franchise anchors",
+          "top": 6654.546875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 6748.546875
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 6748.546875
+        },
+        {
+          "level": "H3",
+          "text": "Shai Gilgeous-Alexander",
+          "top": 6851.640625
+        },
+        {
+          "level": "H3",
+          "text": "Jalen Brunson",
+          "top": 6851.640625
+        },
+        {
+          "level": "H3",
+          "text": "Stephen Curry",
+          "top": 6954.734375
+        },
+        {
+          "level": "H3",
+          "text": "Donovan Mitchell",
+          "top": 6954.734375
+        },
+        {
+          "level": "H3",
+          "text": "Luka Dončić",
+          "top": 7057.828125
+        },
+        {
+          "level": "H3",
+          "text": "Giannis Antetokounmpo",
+          "top": 7057.828125
+        },
+        {
+          "level": "H3",
+          "text": "LeBron James",
+          "top": 7160.921875
+        },
+        {
+          "level": "H3",
+          "text": "Anthony Davis",
+          "top": 7160.921875
+        },
+        {
+          "level": "H2",
+          "text": "Take it to the next court.",
+          "top": 5705.078125
+        },
+        {
+          "level": "H3",
+          "text": "Free Throw practice",
+          "top": 6020.828125
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/04/review/public-phone-full.jpg",
+        "bytes": 528731,
+        "sha256": "4d363b0c61e8e1024dcc9483f712d4537e99752cd051a53c78b01f973e6b3a27",
+        "width": 390,
+        "height": 10783,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 1800,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 3600,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 5400,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 7200,
+            "height": 1800,
+            "method": "bounded CDP document clip"
+          },
+          {
+            "y": 9000,
+            "height": 1783,
+            "method": "bounded CDP document clip"
+          }
+        ],
+        "method": "Entire actual in-flow browser document. No authored CSS alteration or hidden-reader montage."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "actualOffset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/public-phone-top.jpg",
+          "bytes": 45460,
+          "sha256": "0d28e49c5279fa63c78bc0b7464f721eb4f68951441c29eae4a045ad667a878b",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "actualOffset": 4969,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/public-phone-middle.jpg",
+          "bytes": 35097,
+          "sha256": "945227edfadf06f2f43893455db93fc89cb56f648b6fff9797946f478359f702",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "actualOffset": 9939,
+          "path": "qa/homepage-structures/homepage-corrections/04/review/public-phone-bottom.jpg",
+          "bytes": 39957,
+          "sha256": "1c76b283fa21871c45a096d2319416b462c926e8bea59e6d7c5d07d11a2f375d",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Week 3. On program.",
+          "top": 282.671875
+        },
+        {
+          "level": "H2",
+          "text": "Selected matchup",
+          "top": 414.0625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 543.65625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 543.65625
+        },
+        {
+          "level": "H2",
+          "text": "Saved model decision",
+          "top": 945.03125
+        },
+        {
+          "level": "H2",
+          "text": "Three moves on the wire.",
+          "top": 1424.921875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper made a sample roster move.",
+          "top": 1529.21875
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys made a sample roster move.",
+          "top": 1767.71875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team made a sample roster move.",
+          "top": 2006.21875
+        },
+        {
+          "level": "H2",
+          "text": "A face for every franchise.",
+          "top": 2361.71875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 2731.515625
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 2888.609375
+        },
+        {
+          "level": "H3",
+          "text": "Shai Gilgeous-Alexander",
+          "top": 3045.703125
+        },
+        {
+          "level": "H2",
+          "text": "The next chapter",
+          "top": 3286.296875
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper gets the champ.",
+          "top": 3494.984375
+        },
+        {
+          "level": "H3",
+          "text": "The programme",
+          "top": 3832.578125
+        },
+        {
+          "level": "H3",
+          "text": "Nikola Jokić",
+          "top": 4265.46875
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 4766.15625
+        },
+        {
+          "level": "H3",
+          "text": "AJ Dybantsa",
+          "top": 5266.84375
+        },
+        {
+          "level": "H3",
+          "text": "Around the league · Oct 5–11, 2026",
+          "top": 5732.234375
+        },
+        {
+          "level": "H3",
+          "text": "The title everybody’s chasing",
+          "top": 6164.125
+        },
+        {
+          "level": "H2",
+          "text": "The table. The teams. Every roster.",
+          "top": 6985.625
+        },
+        {
+          "level": "H3",
+          "text": "Current standings",
+          "top": 7189.21875
+        },
+        {
+          "level": "H3",
+          "text": "On the home desk",
+          "top": 8363.21875
+        },
+        {
+          "level": "H3",
+          "text": "Find any roster",
+          "top": 9313.015625
+        },
+        {
+          "level": "H3",
+          "text": "Reaves Dropper",
+          "top": 9599.015625
+        },
+        {
+          "level": "H3",
+          "text": "Ware the Hoes At?",
+          "top": 9739.109375
+        },
+        {
+          "level": "H3",
+          "text": "Stephon Castle’s Back",
+          "top": 9879.203125
+        },
+        {
+          "level": "H3",
+          "text": "The Fun Guys",
+          "top": 10019.296875
+        },
+        {
+          "level": "H3",
+          "text": "Josh Diddy’s Roster",
+          "top": 10159.390625
+        },
+        {
+          "level": "H3",
+          "text": "Huff n’ Puff",
+          "top": 10299.484375
+        },
+        {
+          "level": "H3",
+          "text": "papichooter",
+          "top": 10439.578125
+        },
+        {
+          "level": "H3",
+          "text": "NeuralNets",
+          "top": 10579.671875
+        },
+        {
+          "level": "H3",
+          "text": "Lebron Theme Team",
+          "top": 10764.765625
+        },
+        {
+          "level": "H3",
+          "text": "T Halibooty",
+          "top": 10904.859375
+        },
+        {
+          "level": "H3",
+          "text": "Franchise anchors",
+          "top": 11108.953125
+        },
+        {
+          "level": "H3",
+          "text": "Joel Embiid",
+          "top": 11226.953125
+        },
+        {
+          "level": "H3",
+          "text": "Domantas Sabonis",
+          "top": 11384.046875
+        },
+        {
+          "level": "H3",
+          "text": "Shai Gilgeous-Alexander",
+          "top": 11541.140625
+        },
+        {
+          "level": "H3",
+          "text": "Jalen Brunson",
+          "top": 11698.234375
+        },
+        {
+          "level": "H3",
+          "text": "Stephen Curry",
+          "top": 11855.328125
+        },
+        {
+          "level": "H3",
+          "text": "Donovan Mitchell",
+          "top": 12012.421875
+        },
+        {
+          "level": "H3",
+          "text": "Luka Dončić",
+          "top": 12169.515625
+        },
+        {
+          "level": "H3",
+          "text": "Giannis Antetokounmpo",
+          "top": 12326.609375
+        },
+        {
+          "level": "H3",
+          "text": "LeBron James",
+          "top": 12483.703125
+        },
+        {
+          "level": "H3",
+          "text": "Anthony Davis",
+          "top": 12640.796875
+        },
+        {
+          "level": "H2",
+          "text": "Take it to the next court.",
+          "top": 9404.515625
+        },
+        {
+          "level": "H3",
+          "text": "Free Throw practice",
+          "top": 10364.6875
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 7867,
+        "textCharacters": 7784,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3. On program.",
+            "top": 214.734375
+          },
+          {
+            "level": "H2",
+            "text": "Your matchup",
+            "top": 322.328125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 451.921875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 451.921875
+          },
+          {
+            "level": "H2",
+            "text": "Saved model decision",
+            "top": 815.796875
+          },
+          {
+            "level": "H2",
+            "text": "Three moves on the wire.",
+            "top": 1470.828125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 1582.6875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 1582.6875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 1582.6875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 1970.1875
+          },
+          {
+            "level": "H3",
+            "text": "Highest modeled values",
+            "top": 1935.6875
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 2317.078125
+          },
+          {
+            "level": "H2",
+            "text": "Watch the form. Read the sample.",
+            "top": 2779.171875
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 2848.53125
+          },
+          {
+            "level": "H3",
+            "text": "Completed-week best & rough",
+            "top": 2848.53125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 3784.515625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 3943.484375
+          },
+          {
+            "level": "H3",
+            "text": "The programme",
+            "top": 3904.984375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 4342.875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 4342.875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 4342.875
+          },
+          {
+            "level": "H3",
+            "text": "Around the league · Oct 5–11, 2026",
+            "top": 4813.265625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 4871.765625
+          },
+          {
+            "level": "H2",
+            "text": "The table. The teams. Every roster.",
+            "top": 5557.265625
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 5706.625
+          },
+          {
+            "level": "H3",
+            "text": "On the home desk",
+            "top": 5706.625
+          },
+          {
+            "level": "H3",
+            "text": "Find any roster",
+            "top": 6989.625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 7275.625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 7275.625
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 7415.71875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 7415.71875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 7555.8125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 7555.8125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 7695.90625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 7695.90625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 7858.5
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 7858.5
+          },
+          {
+            "level": "H3",
+            "text": "Franchise anchors",
+            "top": 8062.59375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 8156.59375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 8156.59375
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 8259.6875
+          },
+          {
+            "level": "H3",
+            "text": "Jalen Brunson",
+            "top": 8259.6875
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 8362.78125
+          },
+          {
+            "level": "H3",
+            "text": "Donovan Mitchell",
+            "top": 8362.78125
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 8465.875
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 8465.875
+          },
+          {
+            "level": "H3",
+            "text": "LeBron James",
+            "top": 8568.96875
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Davis",
+            "top": 8568.96875
+          },
+          {
+            "level": "H2",
+            "text": "Take it to the next court.",
+            "top": 7113.125
+          },
+          {
+            "level": "H3",
+            "text": "Free Throw practice",
+            "top": 7428.875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 12838,
+        "textCharacters": 7355,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3. On program.",
+            "top": 282.671875
+          },
+          {
+            "level": "H2",
+            "text": "Your matchup",
+            "top": 414.0625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 543.65625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 543.65625
+          },
+          {
+            "level": "H2",
+            "text": "Saved model decision",
+            "top": 907.15625
+          },
+          {
+            "level": "H2",
+            "text": "Three moves on the wire.",
+            "top": 1387.046875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 1491.34375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 1729.84375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 1968.34375
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2323.84375
+          },
+          {
+            "level": "H3",
+            "text": "Highest modeled values",
+            "top": 2855.234375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 3236.625
+          },
+          {
+            "level": "H2",
+            "text": "Watch the form. Read the sample.",
+            "top": 3714.71875
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 3814.3125
+          },
+          {
+            "level": "H3",
+            "text": "Completed-week best & rough",
+            "top": 4390.703125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 5341.1875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 5549.875
+          },
+          {
+            "level": "H3",
+            "text": "The programme",
+            "top": 5887.46875
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 6320.359375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 6821.046875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 7321.734375
+          },
+          {
+            "level": "H3",
+            "text": "Around the league · Oct 5–11, 2026",
+            "top": 7787.125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 8219.015625
+          },
+          {
+            "level": "H2",
+            "text": "The table. The teams. Every roster.",
+            "top": 9040.515625
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 9244.109375
+          },
+          {
+            "level": "H3",
+            "text": "On the home desk",
+            "top": 10418.109375
+          },
+          {
+            "level": "H3",
+            "text": "Find any roster",
+            "top": 11367.90625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 11653.90625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 11794
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 11934.09375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 12074.1875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 12214.28125
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 12354.375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 12494.46875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 12634.5625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 12819.65625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 12959.75
+          },
+          {
+            "level": "H3",
+            "text": "Franchise anchors",
+            "top": 13163.84375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 13281.84375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 13438.9375
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 13596.03125
+          },
+          {
+            "level": "H3",
+            "text": "Jalen Brunson",
+            "top": 13753.125
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 13910.21875
+          },
+          {
+            "level": "H3",
+            "text": "Donovan Mitchell",
+            "top": 14067.3125
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 14224.40625
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 14381.5
+          },
+          {
+            "level": "H3",
+            "text": "LeBron James",
+            "top": 14538.59375
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Davis",
+            "top": 14695.6875
+          },
+          {
+            "level": "H2",
+            "text": "Take it to the next court.",
+            "top": 11459.40625
+          },
+          {
+            "level": "H3",
+            "text": "Free Throw practice",
+            "top": 12419.578125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 42426,
+        "textCharacters": 7355,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3. On program.",
+            "top": 706.171875
+          },
+          {
+            "level": "H2",
+            "text": "Your matchup",
+            "top": 1215.5625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1546.75
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 1546.75
+          },
+          {
+            "level": "H2",
+            "text": "Saved model decision",
+            "top": 2858.3125
+          },
+          {
+            "level": "H2",
+            "text": "Three moves on the wire.",
+            "top": 4196.6875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 4525.875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 5195.875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 5865.875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 6844.875
+          },
+          {
+            "level": "H3",
+            "text": "Highest modeled values",
+            "top": 8514.4375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 10246.375
+          },
+          {
+            "level": "H2",
+            "text": "Watch the form. Read the sample.",
+            "top": 11491.9375
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 11766.71875
+          },
+          {
+            "level": "H3",
+            "text": "Completed-week best & rough",
+            "top": 14929.25
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 17885.8125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 18484.59375
+          },
+          {
+            "level": "H3",
+            "text": "The programme",
+            "top": 19622.15625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 20725.53125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 22145.109375
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 23516.6875
+          },
+          {
+            "level": "H3",
+            "text": "Around the league · Oct 5–11, 2026",
+            "top": 24900.0625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 26245.4375
+          },
+          {
+            "level": "H2",
+            "text": "The table. The teams. Every roster.",
+            "top": 29279.4375
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 29906.21875
+          },
+          {
+            "level": "H3",
+            "text": "On the home desk",
+            "top": 36455.21875
+          },
+          {
+            "level": "H3",
+            "text": "Find any roster",
+            "top": 39024.78125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 39867.78125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 40236.96875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 40650.34375
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 41063.71875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 41432.90625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 41846.28125
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 42215.46875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 42584.65625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 43178.84375
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 43592.21875
+          },
+          {
+            "level": "H3",
+            "text": "Franchise anchors",
+            "top": 44089.40625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 44521.40625
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 44835.59375
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 45193.96875
+          },
+          {
+            "level": "H3",
+            "text": "Jalen Brunson",
+            "top": 45642.34375
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 45956.53125
+          },
+          {
+            "level": "H3",
+            "text": "Donovan Mitchell",
+            "top": 46360.71875
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 46719.09375
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 47033.28125
+          },
+          {
+            "level": "H3",
+            "text": "LeBron James",
+            "top": 47435.84375
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Davis",
+            "top": 47795.03125
+          },
+          {
+            "level": "H2",
+            "text": "Take it to the next court.",
+            "top": 39206.78125
+          },
+          {
+            "level": "H3",
+            "text": "Free Throw practice",
+            "top": 41210.34375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 14262,
+        "textCharacters": 7382,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3. On program.",
+            "top": 279.5
+          },
+          {
+            "level": "H2",
+            "text": "Your matchup",
+            "top": 461.28125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 590.875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 590.875
+          },
+          {
+            "level": "H2",
+            "text": "Saved model decision",
+            "top": 997.5625
+          },
+          {
+            "level": "H2",
+            "text": "Three moves on the wire.",
+            "top": 1501.453125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 1643.546875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 1882.046875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 2120.546875
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 2476.046875
+          },
+          {
+            "level": "H3",
+            "text": "Highest modeled values",
+            "top": 3055.4375
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 3508.828125
+          },
+          {
+            "level": "H2",
+            "text": "Watch the form. Read the sample.",
+            "top": 4034.515625
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 4134.109375
+          },
+          {
+            "level": "H3",
+            "text": "Completed-week best & rough",
+            "top": 4806.5
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 5806.984375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 6015.671875
+          },
+          {
+            "level": "H3",
+            "text": "The programme",
+            "top": 6418.859375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 6851.75
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 7376.4375
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 7905.125
+          },
+          {
+            "level": "H3",
+            "text": "Around the league · Oct 5–11, 2026",
+            "top": 8370.515625
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 8898.90625
+          },
+          {
+            "level": "H2",
+            "text": "The table. The teams. Every roster.",
+            "top": 9922.40625
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 10126
+          },
+          {
+            "level": "H3",
+            "text": "On the home desk",
+            "top": 11684
+          },
+          {
+            "level": "H3",
+            "text": "Find any roster",
+            "top": 12721.59375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 13124.59375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 13264.6875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 13404.78125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 13544.875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 13684.96875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 13825.0625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 13965.15625
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 14105.25
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 14312.84375
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 14452.9375
+          },
+          {
+            "level": "H3",
+            "text": "Franchise anchors",
+            "top": 14657.03125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 14799.03125
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 14956.125
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 15113.21875
+          },
+          {
+            "level": "H3",
+            "text": "Jalen Brunson",
+            "top": 15270.3125
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 15427.40625
+          },
+          {
+            "level": "H3",
+            "text": "Donovan Mitchell",
+            "top": 15607
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 15764.09375
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 15921.1875
+          },
+          {
+            "level": "H3",
+            "text": "LeBron James",
+            "top": 16078.28125
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Davis",
+            "top": 16235.375
+          },
+          {
+            "level": "H2",
+            "text": "Take it to the next court.",
+            "top": 12813.09375
+          },
+          {
+            "level": "H3",
+            "text": "Free Throw practice",
+            "top": 13795.6875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 51057,
+        "textCharacters": 7382,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3. On program.",
+            "top": 942
+          },
+          {
+            "level": "H2",
+            "text": "Your matchup",
+            "top": 1597.1875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2043.5625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2043.5625
+          },
+          {
+            "level": "H2",
+            "text": "Saved model decision",
+            "top": 3317.359375
+          },
+          {
+            "level": "H2",
+            "text": "Three moves on the wire.",
+            "top": 5103.921875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 5508.703125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 6330.703125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 7100.703125
+          },
+          {
+            "level": "H2",
+            "text": "Reaves Dropper",
+            "top": 8275.703125
+          },
+          {
+            "level": "H3",
+            "text": "Highest modeled values",
+            "top": 10089.265625
+          },
+          {
+            "level": "H3",
+            "text": "Your team wire",
+            "top": 13164.734375
+          },
+          {
+            "level": "H2",
+            "text": "Watch the form. Read the sample.",
+            "top": 14558.296875
+          },
+          {
+            "level": "H3",
+            "text": "Players to watch",
+            "top": 14908.671875
+          },
+          {
+            "level": "H3",
+            "text": "Completed-week best & rough",
+            "top": 20613.921875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 24289.859375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 24981.03125
+          },
+          {
+            "level": "H3",
+            "text": "The programme",
+            "top": 26441.78125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 27686.15625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 29557.921875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 31151.296875
+          },
+          {
+            "level": "H3",
+            "text": "Around the league · Oct 5–11, 2026",
+            "top": 32655.46875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 34329.625
+          },
+          {
+            "level": "H2",
+            "text": "The table. The teams. Every roster.",
+            "top": 38663.625
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 39489.59375
+          },
+          {
+            "level": "H3",
+            "text": "On the home desk",
+            "top": 44137.59375
+          },
+          {
+            "level": "H3",
+            "text": "Find any roster",
+            "top": 47234.75
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 48177.75
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 48681.125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 49139.5
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 49642.0625
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 50100.4375
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 50603
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 51062.1875
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 51520.5625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 52249.75
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 52707.3125
+          },
+          {
+            "level": "H3",
+            "text": "Franchise anchors",
+            "top": 53294.5
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 53774.5
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 54178.6875
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 54582.0625
+          },
+          {
+            "level": "H3",
+            "text": "Jalen Brunson",
+            "top": 55119.625
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 55478
+          },
+          {
+            "level": "H3",
+            "text": "Donovan Mitchell",
+            "top": 56016.375
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 56419.75
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 56823.125
+          },
+          {
+            "level": "H3",
+            "text": "LeBron James",
+            "top": 57270.6875
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Davis",
+            "top": 57674.0625
+          },
+          {
+            "level": "H2",
+            "text": "Take it to the next court.",
+            "top": 47416.75
+          },
+          {
+            "level": "H3",
+            "text": "Free Throw practice",
+            "top": 49696.53125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "height": 6459,
+        "textCharacters": 6310,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3. On program.",
+            "top": 214.734375
+          },
+          {
+            "level": "H2",
+            "text": "Selected matchup",
+            "top": 322.328125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 451.921875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 451.921875
+          },
+          {
+            "level": "H2",
+            "text": "Saved model decision",
+            "top": 815.796875
+          },
+          {
+            "level": "H2",
+            "text": "Three moves on the wire.",
+            "top": 1470.828125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 1582.6875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 1582.6875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 1582.6875
+          },
+          {
+            "level": "H2",
+            "text": "A face for every franchise.",
+            "top": 1970.1875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 1951.6875
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 2054.78125
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 2157.875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 2376.46875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 2535.4375
+          },
+          {
+            "level": "H3",
+            "text": "The programme",
+            "top": 2496.9375
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 2934.828125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 2934.828125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 2934.828125
+          },
+          {
+            "level": "H3",
+            "text": "Around the league · Oct 5–11, 2026",
+            "top": 3405.21875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 3463.71875
+          },
+          {
+            "level": "H2",
+            "text": "The table. The teams. Every roster.",
+            "top": 4149.21875
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 4298.578125
+          },
+          {
+            "level": "H3",
+            "text": "On the home desk",
+            "top": 4298.578125
+          },
+          {
+            "level": "H3",
+            "text": "Find any roster",
+            "top": 5581.578125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 5867.578125
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 5867.578125
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 6007.671875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 6007.671875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 6147.765625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 6147.765625
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 6287.859375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 6287.859375
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 6450.453125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 6450.453125
+          },
+          {
+            "level": "H3",
+            "text": "Franchise anchors",
+            "top": 6654.546875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 6748.546875
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 6748.546875
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 6851.640625
+          },
+          {
+            "level": "H3",
+            "text": "Jalen Brunson",
+            "top": 6851.640625
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 6954.734375
+          },
+          {
+            "level": "H3",
+            "text": "Donovan Mitchell",
+            "top": 6954.734375
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 7057.828125
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 7057.828125
+          },
+          {
+            "level": "H3",
+            "text": "LeBron James",
+            "top": 7160.921875
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Davis",
+            "top": 7160.921875
+          },
+          {
+            "level": "H2",
+            "text": "Take it to the next court.",
+            "top": 5705.078125
+          },
+          {
+            "level": "H3",
+            "text": "Free Throw practice",
+            "top": 6020.828125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 10783,
+        "textCharacters": 5881,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3. On program.",
+            "top": 282.671875
+          },
+          {
+            "level": "H2",
+            "text": "Selected matchup",
+            "top": 414.0625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 543.65625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 543.65625
+          },
+          {
+            "level": "H2",
+            "text": "Saved model decision",
+            "top": 945.03125
+          },
+          {
+            "level": "H2",
+            "text": "Three moves on the wire.",
+            "top": 1424.921875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 1529.21875
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 1767.71875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 2006.21875
+          },
+          {
+            "level": "H2",
+            "text": "A face for every franchise.",
+            "top": 2361.71875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 2731.515625
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 2888.609375
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 3045.703125
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 3286.296875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 3494.984375
+          },
+          {
+            "level": "H3",
+            "text": "The programme",
+            "top": 3832.578125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 4265.46875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 4766.15625
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 5266.84375
+          },
+          {
+            "level": "H3",
+            "text": "Around the league · Oct 5–11, 2026",
+            "top": 5732.234375
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 6164.125
+          },
+          {
+            "level": "H2",
+            "text": "The table. The teams. Every roster.",
+            "top": 6985.625
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 7189.21875
+          },
+          {
+            "level": "H3",
+            "text": "On the home desk",
+            "top": 8363.21875
+          },
+          {
+            "level": "H3",
+            "text": "Find any roster",
+            "top": 9313.015625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 9599.015625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 9739.109375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 9879.203125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 10019.296875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 10159.390625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 10299.484375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 10439.578125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 10579.671875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 10764.765625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 10904.859375
+          },
+          {
+            "level": "H3",
+            "text": "Franchise anchors",
+            "top": 11108.953125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 11226.953125
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 11384.046875
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 11541.140625
+          },
+          {
+            "level": "H3",
+            "text": "Jalen Brunson",
+            "top": 11698.234375
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 11855.328125
+          },
+          {
+            "level": "H3",
+            "text": "Donovan Mitchell",
+            "top": 12012.421875
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 12169.515625
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 12326.609375
+          },
+          {
+            "level": "H3",
+            "text": "LeBron James",
+            "top": 12483.703125
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Davis",
+            "top": 12640.796875
+          },
+          {
+            "level": "H2",
+            "text": "Take it to the next court.",
+            "top": 9404.515625
+          },
+          {
+            "level": "H3",
+            "text": "Free Throw practice",
+            "top": 10364.6875
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "height": 33891,
+        "textCharacters": 5881,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3. On program.",
+            "top": 706.171875
+          },
+          {
+            "level": "H2",
+            "text": "Selected matchup",
+            "top": 1215.5625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 1613.9375
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 1613.9375
+          },
+          {
+            "level": "H2",
+            "text": "Saved model decision",
+            "top": 2925.5
+          },
+          {
+            "level": "H2",
+            "text": "Three moves on the wire.",
+            "top": 4263.875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 4593.0625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 5263.0625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 5933.0625
+          },
+          {
+            "level": "H2",
+            "text": "A face for every franchise.",
+            "top": 6912.0625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 8066.84375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 8381.03125
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 8739.40625
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 9398.78125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 9997.5625
+          },
+          {
+            "level": "H3",
+            "text": "The programme",
+            "top": 11135.125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 12238.5
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 13658.078125
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 15029.65625
+          },
+          {
+            "level": "H3",
+            "text": "Around the league · Oct 5–11, 2026",
+            "top": 16413.03125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 17758.40625
+          },
+          {
+            "level": "H2",
+            "text": "The table. The teams. Every roster.",
+            "top": 20792.40625
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 21419.1875
+          },
+          {
+            "level": "H3",
+            "text": "On the home desk",
+            "top": 27920.1875
+          },
+          {
+            "level": "H3",
+            "text": "Find any roster",
+            "top": 30489.75
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 31332.75
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 31701.9375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 32115.3125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 32528.6875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 32897.875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 33311.25
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 33680.4375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 34049.625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 34643.8125
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 35057.1875
+          },
+          {
+            "level": "H3",
+            "text": "Franchise anchors",
+            "top": 35554.375
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 35986.375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 36300.5625
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 36658.9375
+          },
+          {
+            "level": "H3",
+            "text": "Jalen Brunson",
+            "top": 37107.3125
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 37421.5
+          },
+          {
+            "level": "H3",
+            "text": "Donovan Mitchell",
+            "top": 37825.6875
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 38184.0625
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 38498.25
+          },
+          {
+            "level": "H3",
+            "text": "LeBron James",
+            "top": 38900.8125
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Davis",
+            "top": 39260
+          },
+          {
+            "level": "H2",
+            "text": "Take it to the next court.",
+            "top": 30671.75
+          },
+          {
+            "level": "H3",
+            "text": "Free Throw practice",
+            "top": 32675.3125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 11914,
+        "textCharacters": 5908,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3. On program.",
+            "top": 279.5
+          },
+          {
+            "level": "H2",
+            "text": "Selected matchup",
+            "top": 461.28125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 590.875
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 590.875
+          },
+          {
+            "level": "H2",
+            "text": "Saved model decision",
+            "top": 994.921875
+          },
+          {
+            "level": "H2",
+            "text": "Three moves on the wire.",
+            "top": 1498.8125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 1640.90625
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 1879.40625
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 2117.90625
+          },
+          {
+            "level": "H2",
+            "text": "A face for every franchise.",
+            "top": 2473.40625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 2905
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 3062.09375
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 3219.1875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 3459.78125
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 3668.46875
+          },
+          {
+            "level": "H3",
+            "text": "The programme",
+            "top": 4071.65625
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 4504.546875
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 5029.234375
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 5557.921875
+          },
+          {
+            "level": "H3",
+            "text": "Around the league · Oct 5–11, 2026",
+            "top": 6023.3125
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 6551.703125
+          },
+          {
+            "level": "H2",
+            "text": "The table. The teams. Every roster.",
+            "top": 7575.203125
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 7778.796875
+          },
+          {
+            "level": "H3",
+            "text": "On the home desk",
+            "top": 9336.796875
+          },
+          {
+            "level": "H3",
+            "text": "Find any roster",
+            "top": 10374.390625
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 10777.390625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 10917.484375
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 11057.578125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 11197.671875
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 11337.765625
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 11477.859375
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 11617.953125
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 11758.046875
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 11965.640625
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 12105.734375
+          },
+          {
+            "level": "H3",
+            "text": "Franchise anchors",
+            "top": 12309.828125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 12451.828125
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 12608.921875
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 12766.015625
+          },
+          {
+            "level": "H3",
+            "text": "Jalen Brunson",
+            "top": 12923.109375
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 13080.203125
+          },
+          {
+            "level": "H3",
+            "text": "Donovan Mitchell",
+            "top": 13259.796875
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 13416.890625
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 13573.984375
+          },
+          {
+            "level": "H3",
+            "text": "LeBron James",
+            "top": 13731.078125
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Davis",
+            "top": 13888.171875
+          },
+          {
+            "level": "H2",
+            "text": "Take it to the next court.",
+            "top": 10465.890625
+          },
+          {
+            "level": "H3",
+            "text": "Free Throw practice",
+            "top": 11448.484375
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observation": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "height": 37897,
+        "textCharacters": 5908,
+        "headings": [
+          {
+            "level": "H1",
+            "text": "Week 3. On program.",
+            "top": 942
+          },
+          {
+            "level": "H2",
+            "text": "Selected matchup",
+            "top": 1597.1875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 2043.5625
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 2043.5625
+          },
+          {
+            "level": "H2",
+            "text": "Saved model decision",
+            "top": 3317.359375
+          },
+          {
+            "level": "H2",
+            "text": "Three moves on the wire.",
+            "top": 5103.921875
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper made a sample roster move.",
+            "top": 5508.703125
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys made a sample roster move.",
+            "top": 6330.703125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team made a sample roster move.",
+            "top": 7100.703125
+          },
+          {
+            "level": "H2",
+            "text": "A face for every franchise.",
+            "top": 8275.703125
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 9622.484375
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 10026.671875
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 10430.046875
+          },
+          {
+            "level": "H2",
+            "text": "The next chapter",
+            "top": 11178.609375
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper gets the champ.",
+            "top": 11869.78125
+          },
+          {
+            "level": "H3",
+            "text": "The programme",
+            "top": 13330.53125
+          },
+          {
+            "level": "H3",
+            "text": "Nikola Jokić",
+            "top": 14574.90625
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 16446.671875
+          },
+          {
+            "level": "H3",
+            "text": "AJ Dybantsa",
+            "top": 18040.046875
+          },
+          {
+            "level": "H3",
+            "text": "Around the league · Oct 5–11, 2026",
+            "top": 19544.21875
+          },
+          {
+            "level": "H3",
+            "text": "The title everybody’s chasing",
+            "top": 21218.375
+          },
+          {
+            "level": "H2",
+            "text": "The table. The teams. Every roster.",
+            "top": 25552.375
+          },
+          {
+            "level": "H3",
+            "text": "Current standings",
+            "top": 26378.34375
+          },
+          {
+            "level": "H3",
+            "text": "On the home desk",
+            "top": 30978.34375
+          },
+          {
+            "level": "H3",
+            "text": "Find any roster",
+            "top": 34075.5
+          },
+          {
+            "level": "H3",
+            "text": "Reaves Dropper",
+            "top": 35018.5
+          },
+          {
+            "level": "H3",
+            "text": "Ware the Hoes At?",
+            "top": 35521.875
+          },
+          {
+            "level": "H3",
+            "text": "Stephon Castle’s Back",
+            "top": 35980.25
+          },
+          {
+            "level": "H3",
+            "text": "The Fun Guys",
+            "top": 36482.8125
+          },
+          {
+            "level": "H3",
+            "text": "Josh Diddy’s Roster",
+            "top": 36941.1875
+          },
+          {
+            "level": "H3",
+            "text": "Huff n’ Puff",
+            "top": 37443.75
+          },
+          {
+            "level": "H3",
+            "text": "papichooter",
+            "top": 37902.9375
+          },
+          {
+            "level": "H3",
+            "text": "NeuralNets",
+            "top": 38361.3125
+          },
+          {
+            "level": "H3",
+            "text": "Lebron Theme Team",
+            "top": 39090.5
+          },
+          {
+            "level": "H3",
+            "text": "T Halibooty",
+            "top": 39548.0625
+          },
+          {
+            "level": "H3",
+            "text": "Franchise anchors",
+            "top": 40135.25
+          },
+          {
+            "level": "H3",
+            "text": "Joel Embiid",
+            "top": 40615.25
+          },
+          {
+            "level": "H3",
+            "text": "Domantas Sabonis",
+            "top": 41019.4375
+          },
+          {
+            "level": "H3",
+            "text": "Shai Gilgeous-Alexander",
+            "top": 41422.8125
+          },
+          {
+            "level": "H3",
+            "text": "Jalen Brunson",
+            "top": 41960.375
+          },
+          {
+            "level": "H3",
+            "text": "Stephen Curry",
+            "top": 42318.75
+          },
+          {
+            "level": "H3",
+            "text": "Donovan Mitchell",
+            "top": 42857.125
+          },
+          {
+            "level": "H3",
+            "text": "Luka Dončić",
+            "top": 43260.5
+          },
+          {
+            "level": "H3",
+            "text": "Giannis Antetokounmpo",
+            "top": 43663.875
+          },
+          {
+            "level": "H3",
+            "text": "LeBron James",
+            "top": 44111.4375
+          },
+          {
+            "level": "H3",
+            "text": "Anthony Davis",
+            "top": 44514.8125
+          },
+          {
+            "level": "H2",
+            "text": "Take it to the next court.",
+            "top": 34257.5
+          },
+          {
+            "level": "H3",
+            "text": "Free Throw practice",
+            "top": 36537.28125
+          }
+        ],
+        "footerVisible": true,
+        "primaryContentWindows": [],
+        "overflowing": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "limits": "Synthetic fixture; headless Linux Chromium. Not AT, physical phone, live data/auth/destination integration or production performance acceptance. Local only."
+}
