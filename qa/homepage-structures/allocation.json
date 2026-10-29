@@ -1,0 +1,102 @@
+[
+  {
+    "id": "01",
+    "name": "Continuous spread",
+    "structure": "An unboxed continuous editorial spread: prose, large facts, flowing columns and marginal personal annotations share a single reading canvas. Avoid a two-column hero followed by numbered sections. Native vertical reading with an editorial contents index; wide type/columns collapse into a deliberately re-composed linear phone essay. No card slabs."
+  },
+  {
+    "id": "02",
+    "name": "Court positions",
+    "structure": "A full-bleed flat 2D basketball court is the information map. Actual matchup, player values, standings and editorial are anchored to distinct court positions, not placed in a dashboard below. Choose a zone to open a readable adjacent field-notes foldout. Phone shows the whole useful court with labelled targets and an inline detail region; no 3D/WebGL or Muse assets."
+  },
+  {
+    "id": "03",
+    "name": "Horizontal chapters",
+    "structure": "A horizontal chapter-based league publication with genuinely side-by-side, full-width destinations and explicit Previous/Next and direct chapter links. Native horizontal viewport movement, not a row of small cards above a long vertical dashboard. Chapters have different internal composition; phone navigates whole chapters with tap/swipe/keyboard equivalents. Allow readable vertical overflow inside each chapter."
+  },
+  {
+    "id": "04",
+    "name": "Broadcast switcher",
+    "structure": "A compact broadcast control room: a large focused program window, a narrow source slate and a persistent score rail. Choosing a source changes the program. The meaningful central view is a scoreboard/recap/personal field view, not an array of equal tiles. Mobile turns the slate into a source selector above one program. Keep all text readable, no auto crawl or fake live claims."
+  },
+  {
+    "id": "05",
+    "name": "Typographic field poster",
+    "structure": "A single flowing typographic poster where large actual team names, the known zero score, numbers, roster names and editorial claims form the layout itself. Data is composed in text paths, offsets and interleaved bands, not enclosed widgets. On phone use purposeful oversized word breaks and data paragraphs without clipping or microscopic labels. Index links jump to actual text regions."
+  },
+  {
+    "id": "06",
+    "name": "Chronological league feed",
+    "structure": "A chronological league log: one visible time spine, dated events, completed-week evidence and current matchup annotations integrated by time. Filter by league/personal/market and source date. Different-width event entries flow around the spine, without bordered feed cards. Keep fixture Nov12 separate from Oct samples; phone uses a left spine. No invented dates or fake activity."
+  },
+  {
+    "id": "07",
+    "name": "Clubhouse theatre",
+    "structure": "A lightweight CSS/SVG 2.5D clubhouse stage with a foreground bench, angled back wall and named working information stations in spatial layers. Information is readable HTML, not textures. Entering a station expands it in the stage, with direct station list, close/back/focus. Distinct from a flat court map: side-on stage depth and room transitions. No WebGL/3D libs, no Muse scene/GLB files."
+  },
+  {
+    "id": "08",
+    "name": "Head to head",
+    "structure": "A true split-screen confrontation: own team and opponent each own one half, with a central scoring seam and synchronized comparative reading. Team facts, players and saved choice align across the seam. League-wide views replace the comparison with an explicitly different full-width reader. Phone gives a legible two-sided score then side tabs, preserving context. Not one matchup hero above a normal dashboard."
+  },
+  {
+    "id": "09",
+    "name": "Season journey",
+    "structure": "The season is a navigable route diagram, with dated archive editions and current-week junctions as real stops. A route path traverses the spatial canvas, each stop revealing relevant information beside it. Future/unknown stretches are unavailable, never fabricated milestones. Phone uses a vertical winding route, not a timeline feed; explicit stop list provides keyboard navigation. Avoid circles containing generic card grids."
+  },
+  {
+    "id": "10",
+    "name": "Focused desk",
+    "structure": "A focused task workspace: one persistent narrow task/navigation rail and a single large working document, with a small contextual inspector only when needed. Default is an actionable personal/league task, not overview widgets. Tasks replace the working document; keyboard paths and back history work. Phone has one compact task picker and full-height working document. It should feel like a useful tool, not a dashboard."
+  },
+  {
+    "id": "11",
+    "name": "Command index",
+    "structure": "A search-first homepage made of a giant usable query field and an open typographic action index, then direct mixed team/player/action results in the same canvas. Empty search already has useful current facts and concrete task paths. Selecting a result expands an inline contextual answer; search is local, no AI or provider. Mobile keeps query/results at the center. Distinct from task-rail workspace: no persistent sidebar or pane grid."
+  },
+  {
+    "id": "12",
+    "name": "Orbital league",
+    "structure": "The ten teams form a readable orbital league diagram around a central current matchup; actual pair links and orbit positions drive navigation. Choose a team to inspect an integrated radial shelf with their players/value/record; league tools live on named orbit axes. Phone uses a smaller legible orbit plus linear selected detail, not tiny labels. No decorative orbit animation, no scatterplot dashboard or generic donut chart."
+  },
+  {
+    "id": "13",
+    "name": "Folding atlas",
+    "structure": "A folding atlas of full-width, unequal-height chapter spines. Opening a spine unfolds a large integrated spread in-place and collapses the prior spread, with visible contextual neighbours. This is navigation through an accordion book, not ten independent rounded cards. Default chapter is useful; keyboard/Escape/back restore. Phone retains strong spine shapes with a single readable unfolded chapter."
+  },
+  {
+    "id": "14",
+    "name": "Parallel channels",
+    "structure": "Four unequal vertical running channels, each a continuous unboxed thread (your team, league action, scouting, culture), with independent reading positions on desktop. Cross-links deliberately relate items across channels. Phone selects a channel with a visible all-channel index and remembers position. Avoid small bordered cards or a fixed central focus pane; the simultaneous parallel streams are the architecture."
+  },
+  {
+    "id": "15",
+    "name": "Week planner",
+    "structure": "A practical date/week planner as the homepage: current fixture week and dated editions occupy an actual schedule matrix with distinct all-day editorial lane and five matchup lanes. Selecting a scheduled item opens an attached agenda, not a dashboard sidebar on every section. Use only supplied dates/weeks, with explicit gaps. Phone is an agenda/calendar toggle with clear date context. No invented games or due dates."
+  },
+  {
+    "id": "16",
+    "name": "Player filmstrip",
+    "structure": "A continuous edge-to-edge photographic player filmstrip and readable bench dossier, using real approved transparent portraits as the entry into ten franchises. Selected portrait expands a wide attached textual dossier; keyboard previous/next and direct team index work. Desktop creates a real asymmetric panorama rather than equal cards; phone uses one portrait and dossier with adjacent-team affordances. League-wide information has its own expanded reading mode."
+  },
+  {
+    "id": "17",
+    "name": "League ledger",
+    "structure": "A ledger-first, whole-page working data sheet: team and matchup rows, meaningful aligned columns, expandable inline subrows for rosters/personal evidence/editorial. No hero and no cards. Category index and sort/filter operate on the sheet itself. Desktop dense but readable; phone changes to labelled row records with a persistent column/field chooser. Distinguish nulls/zero and keep narrative source reading comfortable."
+  },
+  {
+    "id": "18",
+    "name": "Guided scroll story",
+    "structure": "A narrative journey with a persistent visual score/data stage and a parallel scrolling evidence story. Reading a chapter updates the still stage to explain that actual content, never hides text or locks scrolling. Stage and text are one continuous experience, not stacked panels. Phone has a compact stage with immediate chapter jumps; reduced motion keeps same facts. Different from horizontal chapters and continuous editorial: the synchronized stage is essential."
+  },
+  {
+    "id": "19",
+    "name": "Franchise index",
+    "structure": "An alphabetic and numeric franchise field guide: a large open directory built from hanging team names, staggered approved portrait cutouts and precise locator marks. A\u2013Z/rank index and roster search are primary; activating a franchise inserts a full-width in-flow dossier that pushes the index apart. Personal bookmark jumps to your actual franchise. No equal-card gallery, no sidebar workspace, no conventional hero."
+  },
+  {
+    "id": "20",
+    "name": "Branching matchbook",
+    "structure": "An authored branching matchbook: useful current matchup facts lead to explicit natural-language choices (inspect my players, compare teams, read the league, inspect prices). Choosing a branch expands a connected large-type decision path with readable actual evidence; breadcrumbs/back restore the parent and retain context. No chatbot typing, fabricated AI, search or task rail. Phone uses a vertical connected decision path; all destinations also accessible directly."
+  }
+]

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GOAT — Broadcast switcher · Structure 04</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#program">Skip to program</a>
+  <header class="masthead">
+    <a href="/" class="identity" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers"></a>
+    <nav aria-label="Site navigation"><a href="/" aria-current="page">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a><details class="more"><summary>More</summary><div><a href="/ai-decides">AI Decides</a><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/trade-analyzer">Trade analyzer</a><a href="/weekly">Weekly archive</a></div></details></nav>
+  </header>
+  <div class="fixture-line"><strong>STRUCTURE 04 / SYNTHETIC FIXTURE</strong><span>Current examples dated Nov 12, 2026. No live broadcast.</span><a id="compare" href="?view=public">View public edition</a></div>
+  <div class="control-room">
+    <nav class="source-slate" aria-label="Program sources"><div class="slate-label">SOURCE SELECT</div><div id="sources"></div><label class="mobile-source" for="source-picker">Choose program</label><select id="source-picker" class="mobile-source"></select><p class="slate-note">One source on program.<br>Scores remain in view.</p></nav>
+    <aside class="score-rail" aria-label="Week 3 score rail"><button class="rail-toggle" aria-expanded="false" aria-controls="rail-body"><span>WEEK 3 · FIVE GAMES</span><span>Open score rail +</span></button><div id="rail-body" class="rail-body"></div></aside>
+    <main id="program" tabindex="-1" aria-label="Selected program"><div id="program-content"></div></main>
+  </div>
+  <footer><strong>GOAT Hoopers · 10 teams</strong><p>Offline architectural study. Current scores, records, model picks, values, form, news and moves are synthetic. Approved identities and dated editorial remain attributed. Fixture view switching is not authentication.</p><a href="/weekly">Weekly archive</a><a href="/ai-decides">AI Decides</a><a href="/trade-analyzer">Trade analyzer</a></footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

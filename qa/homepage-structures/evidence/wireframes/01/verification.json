@@ -1,0 +1,660 @@
+{
+  "id": "01",
+  "stage": "wireframe",
+  "passed": 8,
+  "total": 10,
+  "results": [
+    {
+      "view": "member",
+      "test": "390",
+      "pass": true,
+      "errors": [],
+      "bad": [],
+      "observations": [
+        {
+          "state": "default",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "roster",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "test": "320",
+      "pass": true,
+      "errors": [],
+      "bad": [],
+      "observations": [
+        {
+          "state": "default",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "roster",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "test": "text200",
+      "pass": false,
+      "errors": [],
+      "bad": [
+        {
+          "state": "default",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nMember edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare public edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nYour pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nYOUR PENCILLED NOTE\n\nReaves Dropper\naidandaly20 · 24 roster players\n\n$1095.25\n\nModeled FAAB subtotal · 24/24 priced\n\nUnfold your roster ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nA PERSONAL ANNOTATION · SYNTHETIC MEMBER EDITION\n\nYour roster, in the margin.\n\nFor Reaves Dropper, managed by aidandaly20. 24 players; standing 1 of 10. Your team · Manage roster context\n\nA quote, not a cash balance.\nRecorded history remains a separate question.\n\n$1095.25\n\nModeled FAAB roster subtotal · in-season pricing basis. 24 priced / 24 roster; 0 unpriced. Coverage complete.\n\nValue rank 2 of 10. Quote time 2026-11-12 12:00:00 UTC; team checked 2026-11-12 12:00:00 UTC.\n\nJoel Embiid · C · +4.2%\n$137.50\nAnthony Edwards · SG · +4.2%\n$124.50\nAlperen Şengün · C · +4.2%\n$108.25\n\nTHE MISSING LINE\n\nHistory unavailable.\n\nRecorded team-value history unavailable; no line is invented.\n\nVisit league history\n\nLineup Power unavailable: no producer snapsho",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nMember edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare public edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nYour pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nYOUR PENCILLED NOTE\n\nReaves Dropper\naidandaly20 · 24 roster players\n\n$1095.25\n\nModeled FAAB subtotal · 24/24 priced\n\nUnfold your roster ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\nSaved timestamp\n2026-11-10 12:00:00 UTC\nModel / prompt\nfixture-model / fixture-prompt\nReturned choice ID\n2 (Ware the Hoes At?)\nInput snapshot\nUnavailable — neither the returned result nor the slate carries a saved input snapshot.\nInput evidence\nSynthetic input evidence; no real result.\nReturned evidence\nNone supplied.\nBaseline\nNot supplied.\nStatus\nready · Synthetic pick\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nA PERSONAL ANNOTATION · SYNTHETIC MEMBER EDITION\n\nYour roster, in the margin.\n\nFor Reaves Dropper, managed by aidandaly20. 24 players; standing 1 of 10. Your team · Manage roster context\n\nA quote, not a cash balance.\nRecorded history remains a separate question.\n\n$1095.25\n\nModeled FAAB roster subtotal · in-season pricing basis. 24 priced / 24 roster; 0 unpriced. Coverage complete",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "roster",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nMember edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare public edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nYour pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nYOUR PENCILLED NOTE\n\nReaves Dropper\naidandaly20 · 24 roster players\n\n$1095.25\n\nModeled FAAB subtotal · 24/24 priced\n\nUnfold your roster ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nA PERSONAL ANNOTATION · SYNTHETIC MEMBER EDITION\n\nYour roster, in the margin.\n\nFor Reaves Dropper, managed by aidandaly20. 24 players; standing 1 of 10. Your team · Manage roster context\n\nA quote, not a cash balance.\nRecorded history remains a separate question.\n\n$1095.25\n\nModeled FAAB roster subtotal · in-season pricing basis. 24 priced / 24 roster; 0 unpriced. Coverage complete.\n\nValue rank 2 of 10. Quote time 2026-11-12 12:00:00 UTC; team checked 2026-11-12 12:00:00 UTC.\n\nJoel Embiid · C · +4.2%\n$137.50\nAnthony Edwards · SG · +4.2%\n$124.50\nAlperen Şengün · C · +4.2%\n$108.25\n\nTHE MISSING LINE\n\nHistory unavailable.\n\nRecorded team-value history unavailable; no line is invented.\n\nVisit league history\n\nLineup Power unavailable: no producer snapsho",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nMember edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare public edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nYour pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nYOUR PENCILLED NOTE\n\nReaves Dropper\naidandaly20 · 24 roster players\n\n$1095.25\n\nModeled FAAB subtotal · 24/24 priced\n\nUnfold your roster ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nA PERSONAL ANNOTATION · SYNTHETIC MEMBER EDITION\n\nYour roster, in the margin.\n\nFor Reaves Dropper, managed by aidandaly20. 24 players; standing 1 of 10. Your team · Manage roster context\n\nA quote, not a cash balance.\nRecorded history remains a separate question.\n\n$1095.25\n\nModeled FAAB roster subtotal · in-season pricing basis. 24 priced / 24 roster; 0 unpriced. Coverage complete.\n\nValue rank 2 of 10. Quote time 2026-11-12 12:00:00 UTC; team checked 2026-11-12 12:00:00 UTC.\n\nJoel Embiid · C · +4.2%\n$137.50\nAnthony Edwards · SG · +4.2%\n$124.50\nAlperen Şengün · C · +4.2%\n$108.25\n\nTHE MISSING LINE\n\nHistory unavailable.\n\nRecorded team-value history unavailable; no line is invented.\n\nVisit league history\n\nLineup Power unavailable: no producer snapsho",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nMember edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare public edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nYour pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nYOUR PENCILLED NOTE\n\nReaves Dropper\naidandaly20 · 24 roster players\n\n$1095.25\n\nModeled FAAB subtotal · 24/24 priced\n\nUnfold your roster ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nA PERSONAL ANNOTATION · SYNTHETIC MEMBER EDITION\n\nYour roster, in the margin.\n\nFor Reaves Dropper, managed by aidandaly20. 24 players; standing 1 of 10. Your team · Manage roster context\n\nA quote, not a cash balance.\nRecorded history remains a separate question.\n\n$1095.25\n\nModeled FAAB roster subtotal · in-season pricing basis. 24 priced / 24 roster; 0 unpriced. Coverage complete.\n\nValue rank 2 of 10. Quote time 2026-11-12 12:00:00 UTC; team checked 2026-11-12 12:00:00 UTC.\n\nJoel Embiid · C · +4.2%\n$137.50\nAnthony Edwards · SG · +4.2%\n$124.50\nAlperen Şengün · C · +4.2%\n$108.25\n\nTHE MISSING LINE\n\nHistory unavailable.\n\nRecorded team-value history unavailable; no line is invented.\n\nVisit league history\n\nLineup Power unavailable: no producer snapsho",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nMember edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare public edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nYour pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nYOUR PENCILLED NOTE\n\nReaves Dropper\naidandaly20 · 24 roster players\n\n$1095.25\n\nModeled FAAB subtotal · 24/24 priced\n\nUnfold your roster ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nA PERSONAL ANNOTATION · SYNTHETIC MEMBER EDITION\n\nYour roster, in the margin.\n\nFor Reaves Dropper, managed by aidandaly20. 24 players; standing 1 of 10. Your team · Manage roster context\n\nA quote, not a cash balance.\nRecorded history remains a separate question.\n\n$1095.25\n\nModeled FAAB roster subtotal · in-season pricing basis. 24 priced / 24 roster; 0 unpriced. Coverage complete.\n\nValue rank 2 of 10. Quote time 2026-11-12 12:00:00 UTC; team checked 2026-11-12 12:00:00 UTC.\n\nJoel Embiid · C · +4.2%\n$137.50\nAnthony Edwards · SG · +4.2%\n$124.50\nAlperen Şengün · C · +4.2%\n$108.25\n\nTHE MISSING LINE\n\nHistory unavailable.\n\nRecorded team-value history unavailable; no line is invented.\n\nVisit league history\n\nLineup Power unavailable: no producer snapsho",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nMember edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare public edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nYour pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nYOUR PENCILLED NOTE\n\nReaves Dropper\naidandaly20 · 24 roster players\n\n$1095.25\n\nModeled FAAB subtotal · 24/24 priced\n\nUnfold your roster ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nA PERSONAL ANNOTATION · SYNTHETIC MEMBER EDITION\n\nYour roster, in the margin.\n\nFor Reaves Dropper, managed by aidandaly20. 24 players; standing 1 of 10. Your team · Manage roster context\n\nA quote, not a cash balance.\nRecorded history remains a separate question.\n\n$1095.25\n\nModeled FAAB roster subtotal · in-season pricing basis. 24 priced / 24 roster; 0 unpriced. Coverage complete.\n\nValue rank 2 of 10. Quote time 2026-11-12 12:00:00 UTC; team checked 2026-11-12 12:00:00 UTC.\n\nJoel Embiid · C · +4.2%\n$137.50\nAnthony Edwards · SG · +4.2%\n$124.50\nAlperen Şengün · C · +4.2%\n$108.25\n\nTHE MISSING LINE\n\nHistory unavailable.\n\nRecorded team-value history unavailable; no line is invented.\n\nVisit league history\n\nLineup Power unavailable: no producer snapsho",
+          "unlabelledButtons": 0
+        }
+      ],
+      "observations": [
+        {
+          "state": "default",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "roster",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "test": "stale",
+      "pass": true,
+      "errors": [],
+      "bad": [],
+      "observations": [
+        {
+          "state": "default",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "roster",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "test": "missing",
+      "pass": true,
+      "errors": [],
+      "bad": [],
+      "observations": [
+        {
+          "state": "default",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "roster",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "test": "390",
+      "pass": true,
+      "errors": [],
+      "bad": [],
+      "observations": [
+        {
+          "state": "default",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "test": "320",
+      "pass": true,
+      "errors": [],
+      "bad": [],
+      "observations": [
+        {
+          "state": "default",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 320,
+          "scrollWidth": 320,
+          "font": "16px",
+          "unlabelledButtons": 0
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "test": "text200",
+      "pass": false,
+      "errors": [],
+      "bad": [
+        {
+          "state": "default",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nPublic edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare member edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nFeatured current pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nA LEAGUE IN VIEW\n\n10 clubs\n\n228 unique player references. The whole league is reachable from the club index.\n\nFind a club or player ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nDATED EDITORIAL · OCT 5–11, 2026\n\nThe next chapter.\n\nSample draft 2026-W41; unpublished. This October edition is separate from the synthetic November Week 3 above.\n\nReaves Dropper gets the champ.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nOpening-week watch · Week 1 · upcoming. Reaves Dropper / Josh Diddy’s Roster.\n\nWhy this game was selected\n\nLAST SEASON’S STANDARD\n\nSomebody unplug this man.\n\nNikola Jokić · C · Josh Diddy’s Roster\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG / 12.9 RPG / 10.7 APG\n\n2025–26 NBA averages\n\nEditorial basis & source\n\nLAST-SEASON LOOKBACK\n\nWe wanted more ",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nPublic edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare member edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nFeatured current pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nA LEAGUE IN VIEW\n\n10 clubs\n\n228 unique player references. The whole league is reachable from the club index.\n\nFind a club or player ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\nSaved timestamp\n2026-11-10 12:00:00 UTC\nModel / prompt\nfixture-model / fixture-prompt\nReturned choice ID\n2 (Ware the Hoes At?)\nInput snapshot\nUnavailable — neither the returned result nor the slate carries a saved input snapshot.\nInput evidence\nSynthetic input evidence; no real result.\nReturned evidence\nNone supplied.\nBaseline\nNot supplied.\nStatus\nready · Synthetic pick\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nDATED EDITORIAL · OCT 5–11, 2026\n\nThe next chapter.\n\nSample draft 2026-W41; unpublished. This October edition is separate from the synthetic November Week 3 above.\n\nReaves Dropper gets the champ.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nOpening-week wa",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nPublic edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare member edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nFeatured current pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nA LEAGUE IN VIEW\n\n10 clubs\n\n228 unique player references. The whole league is reachable from the club index.\n\nFind a club or player ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nDATED EDITORIAL · OCT 5–11, 2026\n\nThe next chapter.\n\nSample draft 2026-W41; unpublished. This October edition is separate from the synthetic November Week 3 above.\n\nReaves Dropper gets the champ.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nOpening-week watch · Week 1 · upcoming. Reaves Dropper / Josh Diddy’s Roster.\n\nWhy this game was selected\n\nLAST SEASON’S STANDARD\n\nSomebody unplug this man.\n\nNikola Jokić · C · Josh Diddy’s Roster\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG / 12.9 RPG / 10.7 APG\n\n2025–26 NBA averages\n\nEditorial basis & source\n\nLAST-SEASON LOOKBACK\n\nWe wanted more ",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nPublic edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare member edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nFeatured current pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nA LEAGUE IN VIEW\n\n10 clubs\n\n228 unique player references. The whole league is reachable from the club index.\n\nFind a club or player ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nDATED EDITORIAL · OCT 5–11, 2026\n\nThe next chapter.\n\nSample draft 2026-W41; unpublished. This October edition is separate from the synthetic November Week 3 above.\n\nReaves Dropper gets the champ.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nOpening-week watch · Week 1 · upcoming. Reaves Dropper / Josh Diddy’s Roster.\n\nWhy this game was selected\n\nLAST SEASON’S STANDARD\n\nSomebody unplug this man.\n\nNikola Jokić · C · Josh Diddy’s Roster\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG / 12.9 RPG / 10.7 APG\n\n2025–26 NBA averages\n\nEditorial basis & source\n\nLAST-SEASON LOOKBACK\n\nWe wanted more ",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nPublic edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare member edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nFeatured current pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nA LEAGUE IN VIEW\n\n10 clubs\n\n228 unique player references. The whole league is reachable from the club index.\n\nFind a club or player ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nDATED EDITORIAL · OCT 5–11, 2026\n\nThe next chapter.\n\nSample draft 2026-W41; unpublished. This October edition is separate from the synthetic November Week 3 above.\n\nReaves Dropper gets the champ.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nOpening-week watch · Week 1 · upcoming. Reaves Dropper / Josh Diddy’s Roster.\n\nWhy this game was selected\n\nLAST SEASON’S STANDARD\n\nSomebody unplug this man.\n\nNikola Jokić · C · Josh Diddy’s Roster\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG / 12.9 RPG / 10.7 APG\n\n2025–26 NBA averages\n\nEditorial basis & source\n\nLAST-SEASON LOOKBACK\n\nWe wanted more ",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "text": "Skip to the spread\n\nThe continuous spread\nPublic edition\n\nHome\nNews\nStocks\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\n\nOffline / synthetic. Current records, scores, values, form, news, moves and model picks are examples. Fixture as-of: 2026-11-12 12:00:00 UTC. Dated October editorial is a separate draft. Compare member edition.\n\nIn this spread\n\nCURRENT PLAY · 2026 · WEEK 3 · SYNTHETIC\n\nThe week is unfinished.\n\nReaves Dropper\n\naidandaly20\n1–0 · current synthetic record\n\n0.0\n\nagainst\n\nWare the Hoes At?\n\nAedan23\n1–0 · current synthetic record\n\nPending\n\nFeatured current pairing\nIncomplete · no final result.\n\nA known 0.0 on one side; a score still pending on the other. The saved pick is another piece of evidence, not a result.\n\nRead all five saved model picks ↓ · Open AI Decides ↗\n\nA LEAGUE IN VIEW\n\n10 clubs\n\n228 unique player references. The whole league is reachable from the club index.\n\nFind a club or player ↓\n\nTHE MACHINE’S MARGINALIA · SYNTHETIC\n\nA choice, with its footnotes.\n\nThe returned choice is preserved even where its listed probability is lower. Confidence is an independent field. Try AI Decides ↗\n\nSaved synthetic slate. Season 2026, Week 3. Saved 2026-11-10 12:00:00 UTC. Model probability is not calibrated sports odds.\n\nReaves Dropper\nagainst Ware the Hoes At?\n\nWeek 3 · 0.0 / Pending · incomplete\n\nReturned choice Ware the Hoes At?\n\nIndependent confidence: 20%\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\nRead model note 1\n\nStephon Castle’s Back\nagainst The Fun Guys\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice The Fun Guys\n\nIndependent confidence: 20%\n\nThe Fun Guys: 35%\nStephon Castle’s Back: 65%\nRead model note 2\n\nJosh Diddy’s Roster\nagainst Huff n’ Puff\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice Huff n’ Puff\n\nIndependent confidence: 20%\n\nHuff n’ Puff: 35%\nJosh Diddy’s Roster: 65%\nRead model note 3\n\npapichooter\nagainst NeuralNets\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice NeuralNets\n\nIndependent confidence: 20%\n\nNeuralNets: 35%\npapichooter: 65%\nRead model note 4\n\nLebron Theme Team\nagainst T Halibooty\n\nWeek 3 · 105.5 / Pending · incomplete\n\nReturned choice T Halibooty\n\nIndependent confidence: 20%\n\nT Halibooty: 35%\nLebron Theme Team: 65%\nRead model note 5\n\nDATED EDITORIAL · OCT 5–11, 2026\n\nThe next chapter.\n\nSample draft 2026-W41; unpublished. This October edition is separate from the synthetic November Week 3 above.\n\nReaves Dropper gets the champ.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nOpening-week watch · Week 1 · upcoming. Reaves Dropper / Josh Diddy’s Roster.\n\nWhy this game was selected\n\nLAST SEASON’S STANDARD\n\nSomebody unplug this man.\n\nNikola Jokić · C · Josh Diddy’s Roster\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG / 12.9 RPG / 10.7 APG\n\n2025–26 NBA averages\n\nEditorial basis & source\n\nLAST-SEASON LOOKBACK\n\nWe wanted more ",
+          "unlabelledButtons": 0
+        }
+      ],
+      "observations": [
+        {
+          "state": "default",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 390,
+          "scrollWidth": 428,
+          "font": "32px",
+          "unlabelledButtons": 0
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "test": "stale",
+      "pass": true,
+      "errors": [],
+      "bad": [],
+      "observations": [
+        {
+          "state": "default",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "test": "missing",
+      "pass": true,
+      "errors": [],
+      "bad": [],
+      "observations": [
+        {
+          "state": "default",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "model-notes",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "editorial",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "directory",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "search",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        },
+        {
+          "state": "archive",
+          "width": 390,
+          "scrollWidth": 390,
+          "font": "16px",
+          "unlabelledButtons": 0
+        }
+      ]
+    }
+  ],
+  "limits": "Mechanical viewport/root-text and advertised-state checks only. No final complete inventory, screen-reader, real auth/routes, physical device or universal accessibility acceptance."
+}

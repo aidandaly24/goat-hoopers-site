@@ -1,0 +1,225 @@
+:root { color-scheme: light; font: 100%/1.5 Arial, Helvetica, sans-serif; color: #171717; background: #f5f5f3; --rule: #8b8b87; }
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; }
+body { margin: 0; }
+button, input, select { font: inherit; color: inherit; }
+a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+button, summary, select { cursor: pointer; }
+:focus-visible { outline: 3px solid #171717; outline-offset: 4px; }
+img { max-width: 100%; filter: grayscale(1); }
+[hidden] { display: none !important; }
+button { background: transparent; border: 0; border-bottom: 1px solid; padding: .65rem .25rem; text-align: left; }
+.skip { position: fixed; z-index: 10; top: .5rem; left: .5rem; background: white; padding: 1rem; transform: translateY(-180%); }
+.skip:focus { transform: none; }
+.page { max-width: 100rem; margin: auto; padding: 1.5rem 3.4vw 3rem; }
+.masthead { display: flex; gap: 2rem; justify-content: space-between; align-items: end; padding: 0 0 1.2rem; border-bottom: 3px double #171717; }
+.brand { display: block; width: 19rem; max-width: 60%; }
+.brand img { display: block; width: 100%; }
+.issue { margin: 0; text-align: right; font-size: 1rem; }
+.issue strong { font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-size: 1.45rem; }
+.global-nav { display: flex; flex-wrap: wrap; gap: 0 1.4rem; padding: .35rem 0; border-bottom: 1px solid var(--rule); }
+.global-nav a { padding: .55rem 0; min-height: 44px; text-decoration: none; }
+.global-nav a[aria-current] { font-weight: 700; text-decoration: underline; }
+.fixture-note { font-size: 1rem; margin: .7rem 0 .9rem; max-width: 75rem; color: #414141; }
+.contents { display: block; border-bottom: 1px solid var(--rule); padding: .35rem 0 .85rem; }
+.contents > summary { min-height: 44px; align-content: center; font-weight: 700; }
+.contents[open] > summary { display: inline-block; margin: 0 1.5rem .4rem 0; }
+.contents nav { display: inline-flex; vertical-align: top; flex-wrap: wrap; column-gap: 1.5rem; }
+.contents nav a { min-height: 44px; display: flex; align-items: center; }
+section { scroll-margin-top: 1rem; }
+h1, h2, h3, p { margin-top: 0; }
+h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
+h1 { font-size: clamp(4rem, 8.7vw, 8.8rem); line-height: .98; letter-spacing: -.065em; margin: .25rem 0 1.8rem; max-width: 100%; }
+h2 { font-size: clamp(2.6rem, 4.6vw, 4.7rem); line-height: 1.06; letter-spacing: -.045em; margin-bottom: 1.5rem; }
+h3 { font-size: 2rem; line-height: 1.15; letter-spacing: -.025em; margin-bottom: .7rem; }
+.kicker { font-size: 1rem; letter-spacing: .07em; text-transform: uppercase; margin: 0 0 .65rem; }
+.muted { color: #4b4b4b; }
+.opening { padding: 2.3rem 0 3.3rem; }
+.matchup { display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 2rem; padding: 0 0 1.1rem; }
+.side { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1rem; align-items: end; }
+.side:last-child { text-align: right; }
+.team-name { font: 2.3rem/1.08 Georgia, 'Times New Roman', serif; letter-spacing: -.025em; margin: 0; }
+.team-name a { text-decoration: none; }
+.team-meta { margin: .65rem 0 0; }
+.score { font-size: clamp(3.5rem, 6.5vw, 6.5rem); line-height: 1; font-weight: 400; letter-spacing: -.07em; margin: 0; }
+.score.pending { font: italic clamp(2.2rem, 4vw, 4rem)/1.1 Georgia, serif; letter-spacing: -.04em; }
+.versus { align-self: center; font-family: Georgia, serif; font-style: italic; }
+.opening-tail { border-top: 1px solid var(--rule); padding-top: 1.1rem; display: grid; grid-template-columns: 2fr 5fr 3fr; gap: 2.5rem; }
+.opening-tail p { margin-bottom: .8rem; }
+.running-label { font-style: italic; font-family: Georgia, serif; }
+.lede { font: 1.7rem/1.35 Georgia, serif; }
+.marginal { border-left: 1px solid var(--rule); padding-left: 1.2rem; }
+.marginal p { margin-bottom: .6rem; }
+.big-fact { font: 2.8rem/1.05 Georgia, serif; letter-spacing: -.04em; display: block; margin: .4rem 0 .6rem; }
+.chapter { padding-top: 2.5rem; margin-top: 1.5rem; }
+.model-chapter, .league-chapter { border-top: 1px solid #171717; }
+.personal-chapter { margin-left: 8%; }
+.editorial-chapter { margin-top: 3rem; }
+.chapter-head { display: flex; justify-content: space-between; align-items: baseline; gap: 2rem; }
+.chapter-head > p { max-width: 27rem; }
+.model-rows { margin: 0; padding: 0; list-style: none; }
+.model-row { border-top: 1px solid #aaa; padding: 1rem 0 1.25rem; display: grid; grid-template-columns: 1.4fr 1fr 1.25fr; gap: 1rem 2rem; }
+.model-pair { font: 1.5rem/1.25 Georgia, serif; margin: 0 0 .5rem; }
+.model-choice { margin: 0; font-size: 1rem; }
+.model-choice strong { display: block; font: 1.7rem/1.15 Georgia, serif; margin-top: .2rem; }
+.probabilities { margin: 0; padding-left: 1.1rem; }
+.probabilities li { padding-left: .1rem; }
+.model-row details { grid-column: 3; }
+summary { padding: .65rem 0; min-height: 44px; }
+.detail-copy { font-size: 1rem; margin-top: .6rem; overflow-wrap: anywhere; }
+.detail-copy dl { margin: 0; }
+.detail-copy dt { font-weight: 700; margin-top: .6rem; }
+.detail-copy dd { margin-left: 0; }
+.empty-note { font: 1.7rem/1.4 Georgia, serif; max-width: 48rem; padding: 1.5rem 0; }
+.personal-sheet { display: grid; grid-template-columns: 1fr 2.2fr 1.3fr; gap: 2.5rem; align-items: start; }
+.personal-sheet .valuation { font: 4rem/1 Georgia, serif; letter-spacing: -.045em; margin: .6rem 0; }
+.top-values { list-style: none; margin: 0; padding: 0; }
+.top-values li { display: flex; justify-content: space-between; gap: 1rem; padding: .35rem 0; }
+.wide-fold { margin-top: 1.5rem; }
+.wide-fold > summary { font: 1.5rem/1.4 Georgia, serif; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: .9rem 0; }
+.roster-values { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0 2rem; padding: 1rem 0 0; list-style: none; margin: 0; }
+.roster-values li { padding: .5rem 0; display: flex; justify-content: space-between; gap: .7rem; align-items: baseline; }
+.roster-values small { display: block; font-size: 1rem; }
+.value { white-space: nowrap; }
+.guide-columns { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.5rem; margin-top: 2rem; }
+.guide-columns ol { padding-left: 1.2rem; }
+.guide-columns li { padding-bottom: .65rem; }
+.inline-wire { column-count: 2; column-gap: 2.5rem; margin-top: 1.7rem; }
+.inline-wire p { break-inside: avoid; }
+.editorial { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; }
+.edition-intro { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; }
+.edition-intro .lede { max-width: 49rem; }
+.story { min-width: 0; }
+.story:first-of-type h3 { font-size: 2.8rem; }
+.story img { width: 6.5rem; height: 6.5rem; object-fit: contain; float: left; margin: 0 1rem .5rem 0; mix-blend-mode: multiply; }
+.story .stats { font: 1.5rem/1.35 Georgia, serif; clear: both; margin: 1rem 0 .5rem; }
+.story .source { font-size: 1rem; }
+.story details { clear: both; }
+.edition-wire { column-count: 2; column-gap: 3rem; margin-top: 2rem; }
+.edition-wire p { break-inside: avoid; }
+.faces { display: flex; flex-wrap: wrap; gap: 1.5rem 2rem; margin: 1rem 0 2.2rem; }
+.face { flex: 1 1 12.5rem; max-width: 23rem; display: grid; grid-template-columns: 3.4rem 1fr; gap: .7rem; align-items: start; }
+.face img { width: 3.4rem; height: 4rem; object-fit: contain; mix-blend-mode: multiply; }
+.face p { margin: 0; }
+.face strong { font: 1.25rem/1.2 Georgia, serif; }
+.face span { display: block; }
+.search-line { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem 2rem; border-bottom: 1px solid var(--rule); padding-bottom: 1.2rem; }
+.search-line label { display: block; }
+input[type=search] { width: 27rem; max-width: 100%; border: 0; background: transparent; border-bottom: 1px solid #171717; border-radius: 0; padding: .6rem 0; }
+select { border: 0; border-bottom: 1px solid #171717; border-radius: 0; background: transparent; padding: .6rem .2rem; min-height: 44px; max-width: 100%; }
+#result-count { margin: 0 0 .6rem; }
+.team-index { list-style: none; padding: 0; margin: 0; }
+.team-line { padding: .8rem 0; border-bottom: 1px solid #aaa; }
+.team-line-head { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; align-items: baseline; }
+.team-line h3 { font-size: 1.8rem; margin-bottom: .35rem; }
+.team-line p { margin-bottom: .3rem; }
+.team-line > details { margin-top: .3rem; }
+.player-list { columns: 3; column-gap: 2rem; list-style: none; padding: .6rem 0; margin: 0; }
+.player-list li { break-inside: avoid; padding: .45rem 0; }
+.player-list li small { display: block; font-size: 1rem; }
+.prior { margin: .6rem 0; }
+.standings-wrap { margin-top: 2rem; }
+.standings { border-collapse: collapse; width: 100%; }
+.standings th, .standings td { text-align: right; padding: .75rem .5rem; border-bottom: 1px solid #aaa; }
+.standings th:nth-child(2), .standings td:nth-child(2) { text-align: left; }
+.standings th:first-child, .standings td:first-child { text-align: left; padding-left: 0; }
+.standings caption { text-align: left; font: 1.8rem/1.3 Georgia, serif; margin: 0 0 1rem; }
+.endmatter { display: grid; grid-template-columns: 1.6fr 1fr; gap: 4rem; }
+.archive-entry { border-top: 1px solid var(--rule); padding: 1.1rem 0; }
+.archive-entry h3 { margin-bottom: .4rem; }
+.archive-entry p { margin-bottom: .55rem; }
+.source-list { padding-left: 1.1rem; }
+.source-list li { padding: .35rem 0; overflow-wrap: anywhere; }
+.paths { font: 1.65rem/1.4 Georgia, serif; }
+.paths a { display: inline-block; margin: .3rem .8rem .3rem 0; }
+.footer { margin-top: 3rem; border-top: 3px double #171717; padding: 1.1rem 0 0; }
+.footer p { margin: .5rem 0; }
+@media (max-width: 64rem) {
+  .page { padding-inline: 4vw; }
+  .opening-tail { grid-template-columns: 1fr 2fr; gap: 1.5rem; }
+  .opening-tail .marginal { grid-column: 2; }
+  .side { grid-template-columns: 1fr; }
+  .score { margin-top: .6rem; }
+  .personal-sheet { grid-template-columns: 1fr 2fr; }
+  .personal-sheet > :last-child { grid-column: 2; }
+  .model-row { grid-template-columns: 1.4fr 1fr; }
+  .model-row details { grid-column: 1 / -1; }
+  .editorial { gap: 1.5rem; }
+  .guide-columns { gap: 1.5rem; }
+}
+@media (max-width: 44rem) {
+  .page { padding: 1rem 1rem 2rem; }
+  .masthead { gap: 1rem; align-items: start; }
+  .brand { max-width: 65%; width: 13rem; padding-top: .2rem; }
+  .issue { font-size: 1rem; }
+  .issue strong { font-size: 1rem; }
+  .issue .study-label { display: none; }
+  .global-nav { gap: 0 1.1rem; }
+  .fixture-note { margin-bottom: .6rem; }
+  .contents[open] > summary { display: block; }
+  .contents nav { display: flex; gap: 0 1.1rem; }
+  .opening { padding: 1.6rem 0 1.8rem; }
+  h1 { font-size: clamp(3.2rem, 15vw, 6rem); margin-bottom: 1.6rem; letter-spacing: -.055em; }
+  h2 { font-size: 2.7rem; }
+  .matchup { grid-template-columns: 1fr; gap: .8rem; padding-bottom: 1.4rem; }
+  .side, .side:last-child { grid-template-columns: minmax(0,1fr) auto; text-align: left; gap: 1rem; align-items: center; }
+  .team-name { font-size: 1.65rem; }
+  .team-meta { margin-top: .45rem; }
+  .score { margin: 0; font-size: 3.4rem; }
+  .score.pending { font-size: 2.1rem; }
+  .versus { font-size: 1rem; margin-left: .2rem; }
+  .opening-tail { display: block; }
+  .opening-tail .running-label { margin-bottom: .65rem; }
+  .lede { font-size: 1.5rem; }
+  .marginal { border-left: 0; padding: .9rem 0 0; margin-top: 1rem; border-top: 1px dashed #777; }
+  .marginal .big-fact { display: inline; font-size: 1.8rem; margin-right: .3rem; }
+  .chapter { padding-top: 1.8rem; margin-top: 1rem; }
+  .personal-chapter { margin-left: 0; }
+  .chapter-head, .personal-sheet, .guide-columns, .editorial, .edition-intro, .endmatter { display: block; }
+  .chapter-head > p { margin-bottom: 1.5rem; }
+  .model-row { grid-template-columns: 1fr; gap: .7rem; }
+  .model-row details { grid-column: 1; }
+  .model-row .probabilities { padding-left: 1.15rem; }
+  .model-choice strong { display: inline; font-size: 1.35rem; }
+  .personal-sheet > div, .guide-columns > div { margin-bottom: 1.8rem; }
+  .personal-sheet .valuation { font-size: 3.3rem; }
+  .roster-values { grid-template-columns: 1fr; }
+  .inline-wire, .edition-wire { column-count: 1; }
+  .story { margin-top: 2rem; }
+  .story:first-of-type h3 { font-size: 2.2rem; }
+  .faces { gap: 1.2rem 1rem; }
+  .face { flex-basis: 100%; max-width: none; grid-template-columns: 3rem 1fr; }
+  .face span { display: inline; }
+  .face span::before { content: ' · '; }
+  .search-line { display: block; }
+  .search-line > div { margin-bottom: 1rem; }
+  input[type=search] { width: 100%; }
+  .team-line-head { grid-template-columns: 1fr; gap: .3rem; }
+  .player-list { columns: 1; }
+  .standings th, .standings td { padding: .65rem .25rem; }
+  .standings th:nth-child(4), .standings td:nth-child(4) { padding-right: 0; }
+  .endmatter > div { margin-top: 2rem; }
+  a, button, summary { overflow-wrap: anywhere; }
+  .page a { display: inline-block; min-height: 44px; align-content: center; max-width: 100%; }
+  .global-nav a, .contents a, .paths a, .comparison-link { min-height: 44px; align-content: center; }
+  .team-line h3 a, .face strong a, .roster-values a, .player-list a { display: inline-block; min-height: 44px; align-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; } }
+
+@media (max-width: 22rem) {
+  h1, h2, h3, p, li, dt, dd { overflow-wrap: anywhere; }
+  .side, .side:last-child { grid-template-columns: minmax(0,1fr); }
+  .score { justify-self: end; }
+  h1 { font-size: clamp(2rem, 15vw, 6rem); }
+  .personal-sheet .valuation { font-size: clamp(1.6rem, 14vw, 3.3rem); }
+  .standings, .standings tbody { display: block; }
+  .standings thead { display: none; }
+  .standings caption { display: block; }
+  .standings tr { display: grid; grid-template-columns: 2.2rem minmax(0,1fr); gap: 0 .6rem; border-bottom: 1px solid #aaa; padding: .65rem 0; }
+  .standings td { display: block; text-align: left; border: 0; padding: .2rem 0; overflow-wrap: anywhere; }
+  .standings td:first-child { grid-row: 1 / 4; }
+  .standings td:not(:first-child) { grid-column: 2; }
+  .standings td:nth-child(3)::before { content: 'W–L '; }
+  .standings td:nth-child(4)::before { content: 'PF '; }
+}

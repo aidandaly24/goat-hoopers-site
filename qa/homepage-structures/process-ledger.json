@@ -1,0 +1,93 @@
+{
+  "base": "64b9971f88ad1f73f5bd00ac0fdef9019909561b",
+  "rejectedResearch": [
+    271,
+    272,
+    273
+  ],
+  "stage": "grayscale authoring; independent gate pending",
+  "authors": [
+    {
+      "id": "01",
+      "task": "/root/arch01",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "02",
+      "task": "/root/arch02",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "03",
+      "task": "/root/arch03",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "04",
+      "task": "/root/arch04",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "05",
+      "task": "/root/arch05",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "06",
+      "task": "/root/arch06",
+      "fork": "none",
+      "status": "frozen first source",
+      "capacityInterruption": "resumed same agent/current model once; own partials preserved"
+    },
+    {
+      "id": "07",
+      "task": "/root/arch07",
+      "fork": "none",
+      "status": "running"
+    },
+    {
+      "id": "08",
+      "task": "/root/arch08",
+      "fork": "none",
+      "status": "running"
+    },
+    {
+      "id": "09",
+      "task": "/root/arch09",
+      "fork": "none",
+      "status": "running"
+    },
+    {
+      "id": "10",
+      "task": "/root/arch10",
+      "fork": "none",
+      "status": "running"
+    },
+    {
+      "id": "11",
+      "task": "/root/arch11",
+      "fork": "none",
+      "status": "running"
+    },
+    {
+      "id": "12",
+      "task": "/root/arch12",
+      "fork": "none",
+      "status": "running"
+    }
+  ],
+  "independentReview": "not started",
+  "release": "none; production/Muse/benchmark unchanged",
+  "rootChecks": {
+    "01": "8/10; root390px200% overflow428px in both editions, correction pending after first-source preservation",
+    "02": "10/10",
+    "04": "10/10",
+    "03": "0/10: initial source absolute hidden standings-header overflow reproduced after state change; table positioning probe fixes; captured first source preserved",
+    "06": "10/10"
+  }
+}
