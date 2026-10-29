@@ -1,0 +1,325 @@
+{
+  "sourceChange": "Removed indentation on three otherwise blank CSS lines only. No rules/markup/JS changed.",
+  "sources": [
+    {
+      "file": "qa/homepage-20/iterations/18/index.html",
+      "before": "442bad4cf6fbc18c874800e738474ecb9d73f3e49797d0d6caad7588d24f63b6",
+      "after": "2967fe770232ca4d0de9dfc6078e99c35ddfb2955cd26f392438906b5c090a77"
+    },
+    {
+      "file": "qa/homepage-20/repairs/06/index.html",
+      "before": "02a0b36583a10837a77de8e5ab47f8da8912b92dd69d53ed68c79d3035276665",
+      "after": "da1101cdc768681111aa1e5039e23fc4de5d601ab2c0d36816062a15fbb60716"
+    },
+    {
+      "file": "qa/homepage-20/repairs/18/index.html",
+      "before": "0fb1bc74c0fff4256ba0eea5c0dc37ab750b98f1d196b4c675eee62199705672",
+      "after": "2ac97dca7e1bf8f4f1092458f9f03605367f5d9bfd340f2def3c47bb89874f2b"
+    }
+  ],
+  "imageComparisons": [
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-public-desktop-bottom.jpg",
+      "sha256": "3bbd0c8f115a2a48f928dab70534e8226726fad3f8c7e5ef295d6e35308428b2",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-member-phone-top.jpg",
+      "sha256": "a4f48e6342e218c6576d9f14d50de06349e7ea0dcc2c865deda091da4c58656a",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-member-phone-bottom.jpg",
+      "sha256": "0b5dace715f3ac9220477a9eba1034a7a638f256faf3e3347629134a40361725",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-member-desktop-middle.jpg",
+      "sha256": "c585f31643e29e5595690c78080ccf93a79b23d2642e853b2b88f11c614e5d78",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-public-phone-checkpoints.jpg",
+      "sha256": "4a5a59da919bad429545533d93e870db79e2015e254385afa2a430c0982c6a85",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-public-phone-top.jpg",
+      "sha256": "e43411842e6c5fb4a25788add21f965e741fa22a7f87d61a9c04351a001f0260",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-public-desktop-checkpoints.jpg",
+      "sha256": "ef8dc5d7a2214c9f195d2e12dd667e8b088da5a90c0abb0959fb6d9189a979c4",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-member-phone-checkpoints.jpg",
+      "sha256": "64bd7577361059e94b5f80184a0f9d97749864f0a2bb2e23311d5248579f1e24",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-public-phone-middle.jpg",
+      "sha256": "9aafd06882a4f15ed1d0219bb196fec084d01844249eff8a0242f3a9cd2e2010",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-public-phone-bottom.jpg",
+      "sha256": "fff33f1e4db98bace2f1bd36766113eb066871a150f5b5bb1287a216cd31b630",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-public-desktop.jpg",
+      "sha256": "f673bbf619e8fe7404f3f53515085fb110d32925a86f36df399ef4dcaf052c7c",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-public-desktop-top.jpg",
+      "sha256": "f0929f1d43dd28278b0c0b2385ed4e16af0be7eb4cc7974f54316164d52f7080",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-member-desktop-bottom.jpg",
+      "sha256": "99d4a5d0299a9ef595fd8b7a534db73911d8a2d0e406d44fb7a29d0606476cb8",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-public-desktop-middle.jpg",
+      "sha256": "7e4e5bf55502a1838f1c2a9735ff26e591b5dc2755ffc5896720956684cdc730",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-member-desktop-checkpoints.jpg",
+      "sha256": "918fc4feb5c54bf4fcd2a80ded97b6cbaf0d3d7364cf59c167fc28c623b544dd",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-member-phone.jpg",
+      "sha256": "744ea6dcbf2732358d5b4dd7e826533ed03ed6629443deff29524f73576cda8c",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-public-phone.jpg",
+      "sha256": "3060af1c01335cbcb3da24ac5ddc505050993d1635baf09fdc16310660c30460",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-member-phone-middle.jpg",
+      "sha256": "3857e885f71da4ba475b0e3c09f3fc64ffc91a1380b2da4f69b48a731fd6ba9e",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-member-desktop.jpg",
+      "sha256": "0de83bf79d800f6a4637e3b193adcab4de544f44a8877aed92fc0bbcc04096cb",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/iteration-18-member-desktop-top.jpg",
+      "sha256": "0ab75f2344eb67c71bab6594d4c7f49bf108c63fa1f32bb4395736a0f41d47bf",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-member-phone-middle.jpg",
+      "sha256": "4a08823118558adcc46041ef155c2403c662dadb4997bc6bdf7b1092d5ab53d7",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-member-phone-bottom.jpg",
+      "sha256": "e1b00736c9eecd45ec6609e3618206d527b2a9821d7e1cf369a2fe725765876b",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-public-phone.jpg",
+      "sha256": "aa1d7093b183434528be6be8a3a5a8e9e1dfca4de5dbaaa673ea9119fb436158",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-public-phone-middle.jpg",
+      "sha256": "15dcb39656784a2b17fd7d4e2c38108789139153ec9b79694a1058aa7ded90bd",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-member-desktop-checkpoints.jpg",
+      "sha256": "caa1408073590e1528ceb84c87fa896217d767b3d3683b3a56fe7fe35bf219f6",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-member-phone-top.jpg",
+      "sha256": "1b9c11d0f8be8aa1eaa8efd7db7cb586a6021493fd7add1a840476153c28bd8e",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-member-desktop-top.jpg",
+      "sha256": "84919efbdfde3d72d8307c1b53763722f9c6a3d6d8848420c22e1cdb85698aad",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-member-desktop.jpg",
+      "sha256": "21817edc80621aa44d8ed183918277414b79931cfb64702581c132f59107024e",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-member-desktop-middle.jpg",
+      "sha256": "ee682da72740a3d38edbccd03877400bc107a2946efbfe4ad16b2e1f2b7a9617",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-member-phone-checkpoints.jpg",
+      "sha256": "9e68e3a4d438a2f3bdf39c4707ec8db76d4755a048fef4c5052505052efd85b9",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-public-phone-checkpoints.jpg",
+      "sha256": "f679fbe27726d9b6936873fa86f7af48d3b60732b6f773ead1b316e0ce17ab14",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-public-desktop-checkpoints.jpg",
+      "sha256": "9e6f668d1de7b5f7b0f58d413f05a67089faf04312c36516132a66517e28b191",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-member-phone.jpg",
+      "sha256": "bb04abb975d400c484910eb07ffb9b48842546790ad50cad70a1c1c6eacb0ab7",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-public-phone-top.jpg",
+      "sha256": "cc81b58f94a9554f37ef339c1f832f51fae23fb8a391060303145c90a90e17bd",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-member-desktop-bottom.jpg",
+      "sha256": "0e7e7d92896d589cd5a6828c65e5877e4e0a8c9bddddc79f6ba9c98c53f507bb",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-public-desktop-middle.jpg",
+      "sha256": "056dfc93ec4b27b2b1548c820950fdf3d1490a64216f5ed156c77195985a89d9",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-public-desktop.jpg",
+      "sha256": "7ce31450877a30932a177e4cda4bccf2b0d2bad6f8ea5206612e9867f8739660",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-public-phone-bottom.jpg",
+      "sha256": "353ff1b4ff70e0a58f12d78b2fe1bb2adca9ebbbd3deb0ec66ffab6533f38536",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-public-desktop-top.jpg",
+      "sha256": "14ed902f6d5d40c0bca4b18126a7a870f36ac066b15f32c2e45971cb8d5c9742",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-06-public-desktop-bottom.jpg",
+      "sha256": "d164a1f61ee5f46fa45b24d86dae18c391f8951880d37d3405c4bf28ffbff6af",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-member-desktop-top.jpg",
+      "sha256": "bfcd43ff0374b54232527ba9f9dad28fdd2034bdaf7c4016b6ad5f14db32d943",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-public-desktop.jpg",
+      "sha256": "2767d9875d81f0cc50bf66dbc498cd9ff71d904f2157a7b3d639f5190f349da4",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-member-phone-checkpoints.jpg",
+      "sha256": "d19b2d3dfbe4ea7e9f98afb9b55e522249676abd537d0f7924b344f72dd6e25c",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-public-desktop-middle.jpg",
+      "sha256": "66e50e84e25fc76ff49c7c6c9d0d95eb3278b886d98e860bb8fd9e2033f97a04",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-public-phone.jpg",
+      "sha256": "ba19d29d38cf0afb6d0aef6fe56d2e4ee893e834b40a371468074e6db27025c9",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-public-phone-middle.jpg",
+      "sha256": "75c5cb4bad56d005c00e93a21b59f1bc1701eabf9643b5f54a5185d187466da8",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-member-desktop.jpg",
+      "sha256": "8f7b3d8c9ba303590f977236a65f076e038147dcbfe7ba2bdd938e1959e52cb7",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-public-desktop-checkpoints.jpg",
+      "sha256": "38d29386381de0574bf6465a2104aa18f1ebe798d0e019eba3d8a8625e607602",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-member-desktop-middle.jpg",
+      "sha256": "61e91e98cd14d052f835509fda6466be59659318968a2d46edf8bbf070a4249e",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-member-phone.jpg",
+      "sha256": "27a8b6ee792640761ab501e94cf2d69c68a5457ab85b675ae78710be175b1633",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-member-desktop-bottom.jpg",
+      "sha256": "4867d8e87cbb8444623e20174ea43d5c4feb8d273be699a2e9237529a910a151",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-public-phone-checkpoints.jpg",
+      "sha256": "88b09e8596f242f0cdc15e2d539cfabd047ac7cec23c4cacff8c357e6ca098ab",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-member-phone-top.jpg",
+      "sha256": "fdceb02b35869ab5ce8e4b5c3733e7f708e95dc1ea2193b6ee27db6ca46a8677",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-public-desktop-bottom.jpg",
+      "sha256": "5ec7deb042d0231d957996c8f62170b3c57a1175c03da58a8da356fe06c9b077",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-member-desktop-checkpoints.jpg",
+      "sha256": "486ee47f6968f01b7420f227cd473def0448b622d39eca6a452ed2d3a5abf2b2",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-public-desktop-top.jpg",
+      "sha256": "bdd68c7fffaf719ef2ea618b0a6bb6fd001eff85e08bb2768b5f8c957f5cfdb7",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-public-phone-top.jpg",
+      "sha256": "da4b17ede2c82e525c136fcd8af8bf03a3bac63b83e77d687400b8ca2f89526c",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-member-phone-bottom.jpg",
+      "sha256": "aceddb00cfbd8cfc1adc64f98594aac2555374748e9b2017840ab66876548bae",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-member-phone-middle.jpg",
+      "sha256": "9fd535fef6a3aef5210ad590cb7400f4cf88bb495bdeda401ca46fffbab77bd8",
+      "unchanged": true
+    },
+    {
+      "file": "qa/homepage-20/evidence/repair-18-public-phone-bottom.jpg",
+      "sha256": "41eda93017f04984f1a0e5aa74ca68023c6bcf881cf157f744e5d420908ecd96",
+      "unchanged": true
+    }
+  ],
+  "allImageBytesIdentical": true,
+  "freshChecks": "30/30 common cases and 12/12 full captures re-run on normalized files; capture JSON uses current source SHA.",
+  "portableArtifactStillMatches": "All affected screenshot bytes are identical to those embedded in saved gallery."
+}

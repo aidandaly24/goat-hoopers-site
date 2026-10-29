@@ -20,8 +20,9 @@ identities/editorial, every current metric/news/model example synthetic.
 existing tokens, fonts, reset and focus. No shared section renderer is supplied.
 Every author's complete markup, layout and controls are independently authored.
 
-Initial designs remain in `directions/NN/`. Shortlisted iterations will live
-separately in `iterations/NN/`; a gallery will retain both and explain the changes.
+Initial designs remain in `directions/NN/`. Seven narrow-text repairs live separately in `repairs/NN/`. Three shortlisted
+author revisions live in `iterations/NN/`; the gallery retains every first
+submission, repair and iteration. See `REVIEW.md` for evidence and tradeoffs.
 Design preferences/critique are qualitative, not statistical proof.
 
 Run using existing Python and browser dependencies:

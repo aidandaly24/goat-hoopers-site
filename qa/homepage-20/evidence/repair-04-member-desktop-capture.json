@@ -1,0 +1,203 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 10663,
+  "bytes": 863456,
+  "jpegQuality": 81,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 8000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 9000,
+      "scrollY": 9000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 10000,
+      "scrollY": 9663,
+      "cropTop": 337,
+      "height": 663
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 10000,
+      "scrollY": 9663,
+      "cropTop": 337,
+      "width": 1440,
+      "height": 663,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Reaves Dropper",
+      "y": 348
+    },
+    {
+      "text": "Your week",
+      "y": 685
+    },
+    {
+      "text": "Roster value",
+      "y": 899
+    },
+    {
+      "text": "The notebook",
+      "y": 1426
+    },
+    {
+      "text": "Completed week & team wire",
+      "y": 1983
+    },
+    {
+      "text": "Three dated takes",
+      "y": 2743
+    },
+    {
+      "text": "The model’s file",
+      "y": 3657
+    },
+    {
+      "text": "Ten teams. Their highest modeled assets.",
+      "y": 5054
+    },
+    {
+      "text": "Find your people",
+      "y": 5739
+    },
+    {
+      "text": "The standings",
+      "y": 7730
+    },
+    {
+      "text": "Across the league",
+      "y": 8746
+    },
+    {
+      "text": "Weekly archive",
+      "y": 9299
+    },
+    {
+      "text": "Take a few shots.",
+      "y": 9749
+    },
+    {
+      "text": "Sources & limits",
+      "y": 10017
+    }
+  ],
+  "footer": {
+    "text": "NewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveA league of ten. Source links document the dated editorial. All current figures in this review are synthetic; this static mock does not establish live data, authentication or routing.Direction 04 · Personal team dossier · Shared fixture benchmark 64b9971",
+    "y": 10458
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "37da14708454d6b024dac856e96dd740e90a937a573e8b1eac01651d5dd7e6c6",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

@@ -1,0 +1,19 @@
+{
+  "pass": true,
+  "sha256": "d287ca5877c196cd537c3978ed030fb5f5d64825eea7b05fd0c79067bdabc3e5",
+  "bytes": 42218499,
+  "entries": 24,
+  "initial": 20,
+  "iterations": 3,
+  "benchmark": 1,
+  "images": 96,
+  "emptyStateRegression": "PASS: prior image src removed, image hidden, summary/dimensions cleared; normal view restores image",
+  "offlineRequests": 0,
+  "pageErrors": [],
+  "phoneWidth": {
+    "w": 390,
+    "s": 390
+  },
+  "method": "Rendered existing readable self-contained HTML bytes using Playwright setContent; no network resource requests. Managed Chromium denied file:// navigation (ERR_BLOCKED_BY_ADMINISTRATOR), so file-launch behavior was not tested.",
+  "limits": "Screenshot gallery controls only; working mock checks are recorded separately. No file:// policy was disabled or retried."
+}

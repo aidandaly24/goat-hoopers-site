@@ -1,0 +1,181 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 7932,
+  "bytes": 852118,
+  "jpegQuality": 85,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 6932,
+      "cropTop": 68,
+      "height": 932
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 7000,
+      "scrollY": 6932,
+      "cropTop": 68,
+      "width": 1440,
+      "height": 932,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Your matchup / Current score · incomplete",
+      "y": 207
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 253
+    },
+    {
+      "text": "Ware the Hoes At?",
+      "y": 253
+    },
+    {
+      "text": "aidandaly20’s roster",
+      "y": 251
+    },
+    {
+      "text": "From the notebook.",
+      "y": 973
+    },
+    {
+      "text": "The group-chat material.",
+      "y": 1475
+    },
+    {
+      "text": "Your completed-week performers.",
+      "y": 1981
+    },
+    {
+      "text": "Five saved decisions.",
+      "y": 2401
+    },
+    {
+      "text": "The people in this league.",
+      "y": 3401
+    },
+    {
+      "text": "Find your people.",
+      "y": 4160
+    },
+    {
+      "text": "Around the league.",
+      "y": 6038
+    },
+    {
+      "text": "Between matchups.",
+      "y": 6958
+    },
+    {
+      "text": "Keep the receipts.",
+      "y": 7468
+    }
+  ],
+  "footer": {
+    "text": "TeamsTransactionsTrade analyzerWeekly archiveMy teamCompare public viewOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data. This is an independently authored static design, not a live league, authenticated account, backend or prediction service. Links point to the intended application routes; this local static server does not implement those routes.Fixture, editorial sources & limitationsFixture benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Current records, score state, modeled prices, form, wire and saved AI are synthetic. Approved player/team/manager identities and dated editorial are retained. The fixture’s Nov 12 data check is a sample timestamp, not this session’s clock.The Oct 5–11 edition is a stale, unpublished draft. Player statistics retain their stated NBA or college periods, and selection is editorial. No new awards, historical value trend, power ranking or result is inferred.Sleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08Member/public and AI state parameters only select local fixture content; they do not authenticate a person or generate a result.",
+    "y": 7675
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "436a0e6a62f968f6d1e12c7e4e089552453425cb1c02257c61ee60bc5904badd",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}
