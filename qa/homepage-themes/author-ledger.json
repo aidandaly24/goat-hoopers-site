@@ -1,0 +1,153 @@
+{
+  "requestedAuthors": 20,
+  "startedAuthors": 12,
+  "submittedAuthors": 6,
+  "authors": [
+    {
+      "direction": "01",
+      "task": "/root/theme01",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Electric Night Court",
+      "htmlSha256": "7f4e560a3f50fa6c40cefc25c83c3ac9a757709e78029a711fcf0b8b0db40d62",
+      "sourceFiles": [
+        {
+          "path": "directions/01/index.html",
+          "sha256": "7f4e560a3f50fa6c40cefc25c83c3ac9a757709e78029a711fcf0b8b0db40d62"
+        }
+      ]
+    },
+    {
+      "direction": "02",
+      "task": "/root/theme02",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Raw Monochrome",
+      "htmlSha256": "e95c05048474d14043ccbbb8f608b648d31c9e93960c67f5bfe6be6829e2aadf",
+      "sourceFiles": [
+        {
+          "path": "directions/02/index.html",
+          "sha256": "e95c05048474d14043ccbbb8f608b648d31c9e93960c67f5bfe6be6829e2aadf"
+        }
+      ]
+    },
+    {
+      "direction": "03",
+      "task": "/root/theme03",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Broadcast Network",
+      "htmlSha256": "2e41c9101d01834c56746827596ee7a71d3df676b617c5f5adf8664c20f5ff45",
+      "sourceFiles": [
+        {
+          "path": "directions/03/index.html",
+          "sha256": "2e41c9101d01834c56746827596ee7a71d3df676b617c5f5adf8664c20f5ff45"
+        }
+      ]
+    },
+    {
+      "direction": "04",
+      "task": "/root/theme04",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Retro Arcade",
+      "htmlSha256": "4ebcb3af003f5977d7c45c84e2ea13acf1ee00ab59689f31b0f9b4004358cc72",
+      "sourceFiles": [
+        {
+          "path": "directions/04/index.html",
+          "sha256": "4ebcb3af003f5977d7c45c84e2ea13acf1ee00ab59689f31b0f9b4004358cc72"
+        }
+      ]
+    },
+    {
+      "direction": "05",
+      "task": "/root/theme05",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Championship Chrome",
+      "htmlSha256": "2edc6770029a2b52dcd3030c34b01ab9fcd4883e3be4ea1830e281589ef633db",
+      "sourceFiles": [
+        {
+          "path": "directions/05/app.js",
+          "sha256": "f063de14a96dbd41bc51ae117e331cd5b8741927415a1f3de9ff628dfdb6b8b8"
+        },
+        {
+          "path": "directions/05/index.html",
+          "sha256": "2edc6770029a2b52dcd3030c34b01ab9fcd4883e3be4ea1830e281589ef633db"
+        },
+        {
+          "path": "directions/05/styles.css",
+          "sha256": "0c1edc207ff98d58371492b849a05cffdc65a8d6c4774df964c41fc5e36f0618"
+        }
+      ]
+    },
+    {
+      "direction": "06",
+      "task": "/root/theme06",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Asphalt Streetball",
+      "htmlSha256": "539ffbdbeeebdb1ba0d52dc72d67d5a30be0e5c6dd6f8580c72892fe832b09b1",
+      "sourceFiles": [
+        {
+          "path": "directions/06/index.html",
+          "sha256": "539ffbdbeeebdb1ba0d52dc72d67d5a30be0e5c6dd6f8580c72892fe832b09b1"
+        }
+      ]
+    },
+    {
+      "direction": "07",
+      "task": "/root/theme07",
+      "forkTurns": "none",
+      "status": "working",
+      "theme": "Varsity Club"
+    },
+    {
+      "direction": "08",
+      "task": "/root/theme08",
+      "forkTurns": "none",
+      "status": "working",
+      "theme": "Swiss Sport"
+    },
+    {
+      "direction": "09",
+      "task": "/root/theme09",
+      "forkTurns": "none",
+      "status": "working",
+      "theme": "Playground League"
+    },
+    {
+      "direction": "10",
+      "task": "/root/theme10",
+      "forkTurns": "none",
+      "status": "working",
+      "theme": "Court Blueprint"
+    },
+    {
+      "direction": "11",
+      "task": "/root/theme11",
+      "forkTurns": "none",
+      "status": "working",
+      "theme": "Sports Terminal"
+    },
+    {
+      "direction": "12",
+      "task": "/root/theme12",
+      "forkTurns": "none",
+      "status": "working",
+      "theme": "League Zine"
+    }
+  ],
+  "firstRoundStatus": "Divergence; no shortlist selected",
+  "rejectedResearch": {
+    "pr": 272,
+    "head": "b63916322a737b6881b46003e411d718615f0503",
+    "reason": "User rejected visual similarity of palette/style"
+  },
+  "base": "64b9971f88ad1f73f5bd00ac0fdef9019909561b",
+  "commonFactHashes": {
+    "data.js": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86",
+    "inventory.json": "3f802e841bd575fbc0f058f2d788d3c4d4f147fe6d6b12b339aeeb20d387ddec",
+    "font-catalog.json": "94f15d25388b2b8faa3ddc6a8b8c312cd6c361601c57fffffaa692f2222390e1"
+  }
+}

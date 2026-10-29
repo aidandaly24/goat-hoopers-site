@@ -1,0 +1,274 @@
+{
+  "evidence": "Local static browser fixture, Chromium Playwright; not real Next routes or device/screen-reader evidence",
+  "sourceSha256": "e95c05048474d14043ccbbb8f608b648d31c9e93960c67f5bfe6be6829e2aadf",
+  "inventory": {
+    "directory": 10,
+    "rosterLinks": 228,
+    "uniqueRosterLinks": 228,
+    "faces": 10,
+    "savedAI": 5,
+    "memberValues": 24,
+    "standings": 10,
+    "archives": 2,
+    "fonts": true
+  },
+  "matrix": [
+    {
+      "view": "member",
+      "width": 1440,
+      "root": 100,
+      "scrollWidth": 1440,
+      "bodyPx": "16px",
+      "overflowElements": []
+    },
+    {
+      "view": "member",
+      "width": 1440,
+      "root": 200,
+      "scrollWidth": 1440,
+      "bodyPx": "32px",
+      "overflowElements": []
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "root": 100,
+      "scrollWidth": 390,
+      "bodyPx": "16px",
+      "overflowElements": []
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "root": 200,
+      "scrollWidth": 390,
+      "bodyPx": "32px",
+      "overflowElements": []
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "root": 100,
+      "scrollWidth": 320,
+      "bodyPx": "16px",
+      "overflowElements": []
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "root": 200,
+      "scrollWidth": 320,
+      "bodyPx": "32px",
+      "overflowElements": []
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "root": 100,
+      "scrollWidth": 1440,
+      "bodyPx": "16px",
+      "overflowElements": []
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "root": 200,
+      "scrollWidth": 1440,
+      "bodyPx": "32px",
+      "overflowElements": []
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "root": 100,
+      "scrollWidth": 390,
+      "bodyPx": "16px",
+      "overflowElements": []
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "root": 200,
+      "scrollWidth": 390,
+      "bodyPx": "32px",
+      "overflowElements": []
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "root": 100,
+      "scrollWidth": 320,
+      "bodyPx": "16px",
+      "overflowElements": []
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "root": 200,
+      "scrollWidth": 320,
+      "bodyPx": "32px",
+      "overflowElements": []
+    }
+  ],
+  "actions": {
+    "menuEnter": true,
+    "menuEscape": true,
+    "teamSearch": {
+      "count": 1,
+      "id": "8",
+      "expected": "8"
+    },
+    "managerSearch": {
+      "count": 1,
+      "id": "1",
+      "expected": "1"
+    },
+    "playerSearch": {
+      "count": 1,
+      "id": "2",
+      "expected": "2"
+    },
+    "noResults": true,
+    "clear": true,
+    "unmatched": {
+      "rows": 0,
+      "unavailable": [
+        "Unavailable",
+        "Unavailable",
+        "Unavailable",
+        "Unavailable",
+        "Unavailable"
+      ],
+      "pairings": 5
+    },
+    "reducedMotionContent": true
+  },
+  "sortOrders": {
+    "rank": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "name": [
+      "6",
+      "5",
+      "9",
+      "8",
+      "7",
+      "1",
+      "3",
+      "10",
+      "4",
+      "2"
+    ],
+    "players": [
+      "2",
+      "1",
+      "6",
+      "7",
+      "3",
+      "4",
+      "5",
+      "8",
+      "10",
+      "9"
+    ],
+    "pf": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ]
+  },
+  "standingOrders": {
+    "rank": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "wins": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "losses": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "pf": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "name": [
+      "6",
+      "5",
+      "9",
+      "8",
+      "7",
+      "1",
+      "3",
+      "10",
+      "4",
+      "2"
+    ]
+  },
+  "states": [
+    {
+      "ai": "stale",
+      "rows": 5,
+      "status": "STALE / Saved output is out of date",
+      "width": 320
+    },
+    {
+      "ai": "missing",
+      "rows": 0,
+      "status": "Unavailable / No saved AI output",
+      "width": 320
+    }
+  ],
+  "errors": [],
+  "externalRuntimeRequests": []
+}

@@ -1,0 +1,137 @@
+{
+  "kind": "static browser fixture",
+  "checks": {
+    "matrix": [
+      {
+        "view": "member",
+        "width": 1440,
+        "scroll": 1440,
+        "root": "16px",
+        "body": "16px",
+        "h1": "83.2px"
+      },
+      {
+        "view": "member",
+        "width": 390,
+        "scroll": 390,
+        "root": "16px",
+        "body": "16px",
+        "h1": "52.8px"
+      },
+      {
+        "view": "member",
+        "width": 320,
+        "scroll": 320,
+        "root": "16px",
+        "body": "16px",
+        "h1": "52.8px"
+      },
+      {
+        "view": "member",
+        "width": 1440,
+        "scroll": 1440,
+        "root": "32px",
+        "body": "32px",
+        "h1": "166.4px"
+      },
+      {
+        "view": "member",
+        "width": 390,
+        "scroll": 390,
+        "root": "32px",
+        "body": "32px",
+        "h1": "105.6px"
+      },
+      {
+        "view": "member",
+        "width": 320,
+        "scroll": 320,
+        "root": "32px",
+        "body": "32px",
+        "h1": "105.6px"
+      },
+      {
+        "view": "public",
+        "width": 1440,
+        "scroll": 1440,
+        "root": "16px",
+        "body": "16px",
+        "h1": "83.2px"
+      },
+      {
+        "view": "public",
+        "width": 390,
+        "scroll": 390,
+        "root": "16px",
+        "body": "16px",
+        "h1": "52.8px"
+      },
+      {
+        "view": "public",
+        "width": 320,
+        "scroll": 320,
+        "root": "16px",
+        "body": "16px",
+        "h1": "52.8px"
+      },
+      {
+        "view": "public",
+        "width": 1440,
+        "scroll": 1440,
+        "root": "32px",
+        "body": "32px",
+        "h1": "166.4px"
+      },
+      {
+        "view": "public",
+        "width": 390,
+        "scroll": 390,
+        "root": "32px",
+        "body": "32px",
+        "h1": "105.6px"
+      },
+      {
+        "view": "public",
+        "width": 320,
+        "scroll": 320,
+        "root": "32px",
+        "body": "32px",
+        "h1": "105.6px"
+      }
+    ],
+    "assets": {
+      "fonts": [
+        true,
+        true
+      ],
+      "images": 17,
+      "broken": [],
+      "court": {
+        "x": 40,
+        "y": 1394.5,
+        "width": 243,
+        "height": 136.6875,
+        "top": 1394.5,
+        "right": 283,
+        "bottom": 1531.1875,
+        "left": 40
+      }
+    },
+    "inventory": {
+      "teams": 10,
+      "faces": 10,
+      "ai": 5,
+      "values": 24,
+      "rosterLinks": 228,
+      "uniqueRosterLinks": 228,
+      "standings": 10
+    },
+    "errors": [],
+    "badResponses": [],
+    "typography": "Body and h1 computed font sizes double exactly at each tested viewport."
+  },
+  "limitations": [
+    "No production route navigation or gameplay checks",
+    "No physical device or screen-reader pass"
+  ]
+}
