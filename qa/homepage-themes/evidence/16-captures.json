@@ -1,0 +1,932 @@
+{
+  "direction": "16",
+  "title": "GOAT Hoopers — Tunnel Cinema",
+  "htmlSha256": "af4ade2d37ca6c8e0927ff82de6fa8331e103789b2e44124beb861d4c6010276",
+  "sourceFiles": [
+    {
+      "file": "qa/homepage-themes/directions/16/index.html",
+      "sha256": "af4ade2d37ca6c8e0927ff82de6fa8331e103789b2e44124beb861d4c6010276"
+    },
+    {
+      "file": "qa/homepage-themes/directions/16/tunnel.css",
+      "sha256": "259319f55f78d317b06f31451166fc525b6d8c58033e7c5531f1acc22b62eb43"
+    },
+    {
+      "file": "qa/homepage-themes/directions/16/tunnel.js",
+      "sha256": "92155d86e4247f6a2a9cbadb329f21944a89c970bd9b10d86727ead89a22302f"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "file": "qa/homepage-themes/evidence/16-member-desktop.jpg",
+      "inventory": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 3,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1440,
+      "height": 9466,
+      "bytes": 873483,
+      "jpegQuality": 87,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 1000,
+          "scrollY": 1000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 2000,
+          "scrollY": 2000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 3000,
+          "scrollY": 3000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 6000,
+          "scrollY": 6000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 7000,
+          "scrollY": 7000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 8000,
+          "scrollY": 8000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 9000,
+          "scrollY": 8466,
+          "cropTop": 534,
+          "height": 466
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 9000,
+          "scrollY": 8466,
+          "cropTop": 534,
+          "width": 1440,
+          "height": 466,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Featured matchup",
+          "y": 219
+        },
+        {
+          "text": "Reaves Dropper",
+          "y": 479
+        },
+        {
+          "text": "Ware the Hoes At?",
+          "y": 503
+        },
+        {
+          "text": "Reaves Dropper",
+          "y": 888
+        },
+        {
+          "text": "The scouting notebook",
+          "y": 1321
+        },
+        {
+          "text": "From the dated edition",
+          "y": 2363
+        },
+        {
+          "text": "AI Decides",
+          "y": 3363
+        },
+        {
+          "text": "Teams & their leading faces",
+          "y": 4697
+        },
+        {
+          "text": "Standings & league activity",
+          "y": 6858
+        },
+        {
+          "text": "The next move",
+          "y": 8140
+        },
+        {
+          "text": "Earlier editions",
+          "y": 8657
+        }
+      ],
+      "footer": {
+        "text": "Member viewPublic viewOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Fixture, asset and source detailsOffline design fixture based on repository benchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Current scores, records, form, modeled FAAB prices, news, moves and AI examples are synthetic. Approved dated identities and editorial are preserved. Directory checked Nov 12, 2026, 12:00 UTC.All current pairing selection uses directory.currentMatchup. Known zero remains 0.0; null remains Pending; incomplete is not final. Dated NBA/college editorial, current modeled prices and observed fantasy form keep separate periods and bases.Recorded team-value history and Lineup Power are unavailable. No historical chart, live scene, award, model generation or API call is created here. Saved model/prompt/evidence fields are retained per pairing, with missing input snapshots explicitly unavailable.Arena: supplied local arena still, cropped and tinted with CSS. Portraits and selected white GOAT logo are supplied local assets. Free Throw uses the existing game preview. Oswald is locally served from the official Google Fonts distribution under SIL OFL 1.1; Arial/Helvetica is the readable body stack.Sleeper · opening-week pairings2026-W41 · checked 2026-10-08Sleeper · NBA preseason state2026-W41 · checked 2026-10-08Sleeper · our rookie draft2026-W41 · checked 2026-10-08Sleeper · league moves2026-W41 · checked 2026-10-08Verified 2025 league archive2026-W41 · checked 2026-10-08Verified 2025 league archive2026-W40 · checked 2026-10-08Complete supplied dataFont provenance and hashesOswald licenseAI DecidesTeamsTransactionsWeekly archiveHistoryTrade analyzerGOAT Hoopers · Tunnel Cinema · isolated theme 16",
+        "y": 9062
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "c3f246cc494fb59b70ad32d076d18dc0c546de10aaf58f95cf4e84f73bb6cd80",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "file": "qa/homepage-themes/evidence/16-member-phone.jpg",
+      "inventory": {
+        "width": 390,
+        "scrollWidth": 390,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 3,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "height": 17024,
+      "bytes": 871204,
+      "jpegQuality": 91,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 844,
+          "scrollY": 844,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 1688,
+          "scrollY": 1688,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 2532,
+          "scrollY": 2532,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 3376,
+          "scrollY": 3376,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 4220,
+          "scrollY": 4220,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5064,
+          "scrollY": 5064,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5908,
+          "scrollY": 5908,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 6752,
+          "scrollY": 6752,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 9284,
+          "scrollY": 9284,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10128,
+          "scrollY": 10128,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10972,
+          "scrollY": 10972,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 11816,
+          "scrollY": 11816,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 12660,
+          "scrollY": 12660,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 13504,
+          "scrollY": 13504,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 14348,
+          "scrollY": 14348,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 15192,
+          "scrollY": 15192,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 16036,
+          "scrollY": 16036,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 16880,
+          "scrollY": 16180,
+          "cropTop": 700,
+          "height": 144
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 16880,
+          "scrollY": 16180,
+          "cropTop": 700,
+          "width": 390,
+          "height": 144,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Featured matchup",
+          "y": 224
+        },
+        {
+          "text": "Reaves Dropper",
+          "y": 526
+        },
+        {
+          "text": "Ware the Hoes At?",
+          "y": 621
+        },
+        {
+          "text": "Reaves Dropper",
+          "y": 971
+        },
+        {
+          "text": "The scouting notebook",
+          "y": 1946
+        },
+        {
+          "text": "From the dated edition",
+          "y": 3710
+        },
+        {
+          "text": "AI Decides",
+          "y": 5739
+        },
+        {
+          "text": "Teams & their leading faces",
+          "y": 7800
+        },
+        {
+          "text": "Standings & league activity",
+          "y": 12105
+        },
+        {
+          "text": "The next move",
+          "y": 14831
+        },
+        {
+          "text": "Earlier editions",
+          "y": 15849
+        }
+      ],
+      "footer": {
+        "text": "Member viewPublic viewOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Fixture, asset and source detailsOffline design fixture based on repository benchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Current scores, records, form, modeled FAAB prices, news, moves and AI examples are synthetic. Approved dated identities and editorial are preserved. Directory checked Nov 12, 2026, 12:00 UTC.All current pairing selection uses directory.currentMatchup. Known zero remains 0.0; null remains Pending; incomplete is not final. Dated NBA/college editorial, current modeled prices and observed fantasy form keep separate periods and bases.Recorded team-value history and Lineup Power are unavailable. No historical chart, live scene, award, model generation or API call is created here. Saved model/prompt/evidence fields are retained per pairing, with missing input snapshots explicitly unavailable.Arena: supplied local arena still, cropped and tinted with CSS. Portraits and selected white GOAT logo are supplied local assets. Free Throw uses the existing game preview. Oswald is locally served from the official Google Fonts distribution under SIL OFL 1.1; Arial/Helvetica is the readable body stack.Sleeper · opening-week pairings2026-W41 · checked 2026-10-08Sleeper · NBA preseason state2026-W41 · checked 2026-10-08Sleeper · our rookie draft2026-W41 · checked 2026-10-08Sleeper · league moves2026-W41 · checked 2026-10-08Verified 2025 league archive2026-W41 · checked 2026-10-08Verified 2025 league archive2026-W40 · checked 2026-10-08Complete supplied dataFont provenance and hashesOswald licenseAI DecidesTeamsTransactionsWeekly archiveHistoryTrade analyzerGOAT Hoopers · Tunnel Cinema · isolated theme 16",
+        "y": 16271
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "c3f246cc494fb59b70ad32d076d18dc0c546de10aaf58f95cf4e84f73bb6cd80",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "file": "qa/homepage-themes/evidence/16-public-desktop.jpg",
+      "inventory": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 0,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1440,
+      "height": 8785,
+      "bytes": 844537,
+      "jpegQuality": 89,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 1000,
+          "scrollY": 1000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 2000,
+          "scrollY": 2000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 3000,
+          "scrollY": 3000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 6000,
+          "scrollY": 6000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 7000,
+          "scrollY": 7000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 8000,
+          "scrollY": 7785,
+          "cropTop": 215,
+          "height": 785
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 8000,
+          "scrollY": 7785,
+          "cropTop": 215,
+          "width": 1440,
+          "height": 785,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Featured matchup",
+          "y": 219
+        },
+        {
+          "text": "Reaves Dropper",
+          "y": 479
+        },
+        {
+          "text": "Ware the Hoes At?",
+          "y": 503
+        },
+        {
+          "text": "Ten teams. One league.",
+          "y": 888
+        },
+        {
+          "text": "The scouting notebook",
+          "y": 1138
+        },
+        {
+          "text": "From the dated edition",
+          "y": 1700
+        },
+        {
+          "text": "AI Decides",
+          "y": 2700
+        },
+        {
+          "text": "Teams & their leading faces",
+          "y": 4034
+        },
+        {
+          "text": "Standings & league activity",
+          "y": 6195
+        },
+        {
+          "text": "The next move",
+          "y": 7459
+        },
+        {
+          "text": "Earlier editions",
+          "y": 7976
+        }
+      ],
+      "footer": {
+        "text": "Member viewPublic viewOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Fixture, asset and source detailsOffline design fixture based on repository benchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Current scores, records, form, modeled FAAB prices, news, moves and AI examples are synthetic. Approved dated identities and editorial are preserved. Directory checked Nov 12, 2026, 12:00 UTC.All current pairing selection uses directory.currentMatchup. Known zero remains 0.0; null remains Pending; incomplete is not final. Dated NBA/college editorial, current modeled prices and observed fantasy form keep separate periods and bases.Recorded team-value history and Lineup Power are unavailable. No historical chart, live scene, award, model generation or API call is created here. Saved model/prompt/evidence fields are retained per pairing, with missing input snapshots explicitly unavailable.Arena: supplied local arena still, cropped and tinted with CSS. Portraits and selected white GOAT logo are supplied local assets. Free Throw uses the existing game preview. Oswald is locally served from the official Google Fonts distribution under SIL OFL 1.1; Arial/Helvetica is the readable body stack.Sleeper · opening-week pairings2026-W41 · checked 2026-10-08Sleeper · NBA preseason state2026-W41 · checked 2026-10-08Sleeper · our rookie draft2026-W41 · checked 2026-10-08Sleeper · league moves2026-W41 · checked 2026-10-08Verified 2025 league archive2026-W41 · checked 2026-10-08Verified 2025 league archive2026-W40 · checked 2026-10-08Complete supplied dataFont provenance and hashesOswald licenseAI DecidesTeamsTransactionsWeekly archiveHistoryTrade analyzerGOAT Hoopers · Tunnel Cinema · isolated theme 16",
+        "y": 8381
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "28a532292bb6203e79665ba04807e6fbda255aaccb6d96717edf924ffa502063",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "file": "qa/homepage-themes/evidence/16-public-phone.jpg",
+      "inventory": {
+        "width": 390,
+        "scrollWidth": 390,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 0,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "height": 15744,
+      "bytes": 874359,
+      "jpegQuality": 93,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 844,
+          "scrollY": 844,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 1688,
+          "scrollY": 1688,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 2532,
+          "scrollY": 2532,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 3376,
+          "scrollY": 3376,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 4220,
+          "scrollY": 4220,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5064,
+          "scrollY": 5064,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5908,
+          "scrollY": 5908,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 6752,
+          "scrollY": 6752,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 9284,
+          "scrollY": 9284,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10128,
+          "scrollY": 10128,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10972,
+          "scrollY": 10972,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 11816,
+          "scrollY": 11816,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 12660,
+          "scrollY": 12660,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 13504,
+          "scrollY": 13504,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 14348,
+          "scrollY": 14348,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 15192,
+          "scrollY": 14900,
+          "cropTop": 292,
+          "height": 552
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 15192,
+          "scrollY": 14900,
+          "cropTop": 292,
+          "width": 390,
+          "height": 552,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Featured matchup",
+          "y": 224
+        },
+        {
+          "text": "Reaves Dropper",
+          "y": 526
+        },
+        {
+          "text": "Ware the Hoes At?",
+          "y": 621
+        },
+        {
+          "text": "Ten teams. One league.",
+          "y": 971
+        },
+        {
+          "text": "The scouting notebook",
+          "y": 1483
+        },
+        {
+          "text": "From the dated edition",
+          "y": 2448
+        },
+        {
+          "text": "AI Decides",
+          "y": 4477
+        },
+        {
+          "text": "Teams & their leading faces",
+          "y": 6538
+        },
+        {
+          "text": "Standings & league activity",
+          "y": 10843
+        },
+        {
+          "text": "The next move",
+          "y": 13551
+        },
+        {
+          "text": "Earlier editions",
+          "y": 14568
+        }
+      ],
+      "footer": {
+        "text": "Member viewPublic viewOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Fixture, asset and source detailsOffline design fixture based on repository benchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Current scores, records, form, modeled FAAB prices, news, moves and AI examples are synthetic. Approved dated identities and editorial are preserved. Directory checked Nov 12, 2026, 12:00 UTC.All current pairing selection uses directory.currentMatchup. Known zero remains 0.0; null remains Pending; incomplete is not final. Dated NBA/college editorial, current modeled prices and observed fantasy form keep separate periods and bases.Recorded team-value history and Lineup Power are unavailable. No historical chart, live scene, award, model generation or API call is created here. Saved model/prompt/evidence fields are retained per pairing, with missing input snapshots explicitly unavailable.Arena: supplied local arena still, cropped and tinted with CSS. Portraits and selected white GOAT logo are supplied local assets. Free Throw uses the existing game preview. Oswald is locally served from the official Google Fonts distribution under SIL OFL 1.1; Arial/Helvetica is the readable body stack.Sleeper · opening-week pairings2026-W41 · checked 2026-10-08Sleeper · NBA preseason state2026-W41 · checked 2026-10-08Sleeper · our rookie draft2026-W41 · checked 2026-10-08Sleeper · league moves2026-W41 · checked 2026-10-08Verified 2025 league archive2026-W41 · checked 2026-10-08Verified 2025 league archive2026-W40 · checked 2026-10-08Complete supplied dataFont provenance and hashesOswald licenseAI DecidesTeamsTransactionsWeekly archiveHistoryTrade analyzerGOAT Hoopers · Tunnel Cinema · isolated theme 16",
+        "y": 14991
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "28a532292bb6203e79665ba04807e6fbda255aaccb6d96717edf924ffa502063",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    }
+  ],
+  "failures": []
+}

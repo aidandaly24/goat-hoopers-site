@@ -1,0 +1,157 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 7289,
+  "bytes": 879863,
+  "jpegQuality": 88,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 6289,
+      "cropTop": 711,
+      "height": 289
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 7000,
+      "scrollY": 6289,
+      "cropTop": 711,
+      "width": 1440,
+      "height": 289,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Week 03",
+      "y": 277
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 851
+    },
+    {
+      "text": "Dated edition",
+      "y": 1266
+    },
+    {
+      "text": "AI Decides",
+      "y": 2103
+    },
+    {
+      "text": "Club register",
+      "y": 3270
+    },
+    {
+      "text": "League ledger",
+      "y": 5182
+    },
+    {
+      "text": "Tools & back issues",
+      "y": 6314
+    }
+  ],
+  "footer": {
+    "text": "Industrial Gym / Direction 19Offline visual study · public viewSynthetic design fixture. OFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Known 0.0 stays distinct from Pending. Dated sample opinion stays separate from current results. No recorded value-history series or Power producer is connected.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerComplete fixture provenance, assets & state checksFixture benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Check time Nov 12, 2026, 12:00 UTC. Complete supplied fixture (JSON) · Theme design & checks.Saved AI state: ready. Compare stale output or missing output. Sources open as ordinary links; this page makes no runtime API requests.Local supplied assets: arena photograph, free-throw preview, selected GOAT logo, approved player portraits. Local display font: Barlow Condensed · SIL Open Font License.Sleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08NBA.com · Jokić · checked 2026-10-08NBA.com · Embiid · checked 2026-10-08NBA.com · draft profile · checked 2026-10-08All profile, Stocks, game and archive links point to real application routes. This isolated static fixture does not authenticate, load those applications or certify their live behavior.",
+    "y": 7002
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "6562bba89e2dd46058cbd819884a80f85c6377ac72b77e8a65a94328f33b159c",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

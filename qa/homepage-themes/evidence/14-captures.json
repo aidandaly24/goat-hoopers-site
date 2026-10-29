@@ -1,0 +1,900 @@
+{
+  "direction": "14",
+  "title": "GOAT Hoopers · Hardwood Clubhouse",
+  "htmlSha256": "2f66aab3ba9e1fdf9566d68e5ff718e46a3047b2a6bcff17195c72eda1d05dbb",
+  "sourceFiles": [
+    {
+      "file": "qa/homepage-themes/directions/14/clubhouse.css",
+      "sha256": "bd82aff838fa213a25aede9668a8d2a9be39173cb60021bf79b78ed8389bb34b"
+    },
+    {
+      "file": "qa/homepage-themes/directions/14/clubhouse.js",
+      "sha256": "287f62ab0cb16743b8880281886114968fc277a7b4bb8df8dc98885706ad9682"
+    },
+    {
+      "file": "qa/homepage-themes/directions/14/index.html",
+      "sha256": "2f66aab3ba9e1fdf9566d68e5ff718e46a3047b2a6bcff17195c72eda1d05dbb"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "file": "qa/homepage-themes/evidence/14-member-desktop.jpg",
+      "inventory": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 5,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1440,
+      "height": 8772,
+      "bytes": 887501,
+      "jpegQuality": 80,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 1000,
+          "scrollY": 1000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 2000,
+          "scrollY": 2000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 3000,
+          "scrollY": 3000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 6000,
+          "scrollY": 6000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 7000,
+          "scrollY": 7000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 8000,
+          "scrollY": 7772,
+          "cropTop": 228,
+          "height": 772
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 8000,
+          "scrollY": 7772,
+          "cropTop": 228,
+          "width": 1440,
+          "height": 772,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Reaves Dropper",
+          "y": 215
+        },
+        {
+          "text": "Week 3 · Featured matchup",
+          "y": 341
+        },
+        {
+          "text": "Current modeled FAAB value",
+          "y": 789
+        },
+        {
+          "text": "Keep an eye on the floor",
+          "y": 1245
+        },
+        {
+          "text": "Best & rough week",
+          "y": 1781
+        },
+        {
+          "text": "From your roster",
+          "y": 1781
+        },
+        {
+          "text": "The next chapter",
+          "y": 2363
+        },
+        {
+          "text": "The model’s saved calls",
+          "y": 3167
+        },
+        {
+          "text": "Teams & the players behind them",
+          "y": 4435
+        },
+        {
+          "text": "Standings & league activity",
+          "y": 6888
+        },
+        {
+          "text": "Make your next move",
+          "y": 7734
+        },
+        {
+          "text": "Sources & fixture notes",
+          "y": 8633
+        }
+      ],
+      "footer": {
+        "text": "Hardwood ClubhouseIsolated homepage direction 14Member view · Public viewOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerMy teamView rosterSources & fixture notesCurrent data, modeled values, completed-week examples, news, moves and saved AI are synthetic. Approved identities and dated sample editorial retain their supplied sources. Known 0.0, Pending and Unavailable have distinct meanings.Dated edition sources, assets & complete fixture provenanceSleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08Local original arena, game preview, selected GOAT logo and approved portrait map from the fixture. Lora is locally served under the SIL Open Font License 1.1; font license. No generated photo or invented historical series.Fixture source benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Current fixture checked 12 Nov 2026, 12:00 UTC. Saved input snapshots and league-stat/Power producers are unavailable.Complete source inventory (JSON) · Stale AI example · Missing AI exampleRead the complete dated sample edition{\n  \"id\": \"2026-W41\",\n  \"season\": \"2026\",\n  \"title\": \"The next chapter\",\n  \"dateLabel\": \"Oct 5–11, 2026\",\n  \"startsAt\": \"2026-10-05T00:00:00Z\",\n  \"endsAt\": \"2026-10-12T00:00:00Z\",\n  \"status\": \"draft\",\n  \"publishedAt\": null,\n  \"game\": {\n    \"title\": \"Reaves Dropper gets the champ.\",\n    \"note\": \"Opening-week watch\",\n    \"leagueWeek\": 1,\n    \"teamIds\": [\n      \"1\",\n      \"2\"\n    ],\n    \"state\": \"upcoming\",\n    \"scores\": null,\n    \"context\": \"A 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\",\n    \"selectionReason\": \"Proposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\"\n  },\n  \"playerSpotlights\": [\n    {\n      \"role\": \"player-of-week\",\n      \"playerId\": \"1658\",\n      \"name\": \"Nikola Jokić\",\n      \"position\": \"C\",\n      \"teamId\": \"5\",\n      \"periodLabel\": \"Last season’s standard\",\n      \"headline\": \"Somebody unplug this man.\",\n      \"opinion\": \"Three columns. One headache. The champ gets to call it good management.\",\n      \"stats\": [\n        {\n          \"value\": \"27.7\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"12.9\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"10.7\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 NBA averages\",\n      \"selectionReason\": \"Opening-edition sample opinion, using last season’s NBA averages. This is not a played 2026 fantasy-week award. Current roster ownership is verified; the pick is editorial, not a computed MVP ranking.\",\n      \"source\": {\n        \"label\": \"NBA.com · Jokić\",\n        \"url\": \"https://www.nba.com/player/203999/nikola-jokic\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    },\n    {\n      \"role\": \"underperformer\",\n      \"playerId\": \"1511\",\n      \"name\": \"Joel Embiid\",\n      \"position\": \"C\",\n      \"teamId\": \"1\",\n      \"periodLabel\": \"Last-season lookback\",\n      \"headline\": \"We wanted more on the glass.\",\n      \"opinion\": \"Points: accepted. Rebounds: the group chat has questions.\",\n      \"stats\": [\n        {\n          \"value\": \"26.9\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"7.7\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"3.9\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 NBA averages\",\n      \"selectionReason\": \"A sample last-season criticism of rebounding output, not a verified worst-player ranking, injury judgment or current-week result. The opinion is subjective. The ownership link is the current roster, not a claim about who held him throughout 2025.\",\n      \"source\": {\n        \"label\": \"NBA.com · Embiid\",\n        \"url\": \"https://www.nba.com/stats/player/203954/traditional\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    },\n    {\n      \"role\": \"one-to-watch\",\n      \"playerId\": \"4866\",\n      \"name\": \"AJ Dybantsa\",\n      \"position\": \"PF\",\n      \"teamId\": \"8\",\n      \"periodLabel\": \"Next week · preseason\",\n      \"headline\": \"No. 1 pick. No free pass.\",\n      \"opinion\": \"NeuralNets took him first. We’re watching minutes, not the mixtape.\",\n      \"stats\": [\n        {\n          \"value\": \"25.5\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"6.8\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"3.7\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 college · BYU\",\n      \"selectionReason\": \"The league’s actual No. 1 rookie selection. This is a proposed next-week preseason watch, not a playing-time guarantee or forecast. The shown averages are college data, not NBA or fantasy points.\",\n      \"source\": {\n        \"label\": \"NBA.com · draft profile\",\n        \"url\": \"https://www.nba.com/draft/2026/prospects/aj-dybantsa\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    }\n  ],\n  \"happenings\": [\n    {\n      \"title\": \"Lonzo hits the wire\",\n      \"text\": \"Lebron Theme Team dropped Lonzo Ball.\",\n      \"href\": \"https://goathoopers.com/player/1798\",\n      \"dateLabel\": \"Oct 7\"\n    },\n    {\n      \"title\": \"Two moves from NeuralNets\",\n      \"text\": \"Malik Monk and Nikola Jović were dropped from the roster.\",\n      \"href\": \"https://goathoopers.com/teams/8\",\n      \"dateLabel\": \"Oct 6\"\n    },\n    {\n      \"title\": \"Risacher released\",\n      \"text\": \"T Halibooty dropped Zaccharie Risacher.\",\n      \"href\": \"https://goathoopers.com/player/2737\",\n      \"dateLabel\": \"Oct 6\"\n    }\n  ],\n  \"sources\": [\n    {\n      \"label\": \"Sleeper · opening-week pairings\",\n      \"url\": \"https://api.sleeper.app/v1/league/1387473752807190528/matchups/1\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · NBA preseason state\",\n      \"url\": \"https://api.sleeper.app/v1/state/nba\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · our rookie draft\",\n      \"url\": \"https://api.sleeper.app/v1/draft/1387473752819785728/picks\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · league moves\",\n      \"url\": \"https://api.sleeper.app/v1/league/1387473752807190528/transactions/1\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Verified 2025 league archive\",\n      \"url\": \"https://goathoopers.com/history\",\n      \"checkedAt\": \"2026-10-08\"\n    }\n  ]\n}",
+        "y": 8430
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "ca67681e4281dbf237c991edd7bd1ddef583ca6680d5ecc9acc0ba298be2d845",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "file": "qa/homepage-themes/evidence/14-member-phone.jpg",
+      "inventory": {
+        "width": 390,
+        "scrollWidth": 390,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 5,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "height": 16706,
+      "bytes": 856004,
+      "jpegQuality": 87,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 844,
+          "scrollY": 844,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 1688,
+          "scrollY": 1688,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 2532,
+          "scrollY": 2532,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 3376,
+          "scrollY": 3376,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 4220,
+          "scrollY": 4220,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5064,
+          "scrollY": 5064,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5908,
+          "scrollY": 5908,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 6752,
+          "scrollY": 6752,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 9284,
+          "scrollY": 9284,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10128,
+          "scrollY": 10128,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10972,
+          "scrollY": 10972,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 11816,
+          "scrollY": 11816,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 12660,
+          "scrollY": 12660,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 13504,
+          "scrollY": 13504,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 14348,
+          "scrollY": 14348,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 15192,
+          "scrollY": 15192,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 16036,
+          "scrollY": 15862,
+          "cropTop": 174,
+          "height": 670
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 16036,
+          "scrollY": 15862,
+          "cropTop": 174,
+          "width": 390,
+          "height": 670,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Reaves Dropper",
+          "y": 227
+        },
+        {
+          "text": "Week 3 · Featured matchup",
+          "y": 571
+        },
+        {
+          "text": "Current modeled FAAB value",
+          "y": 977
+        },
+        {
+          "text": "Keep an eye on the floor",
+          "y": 1669
+        },
+        {
+          "text": "Best & rough week",
+          "y": 3111
+        },
+        {
+          "text": "From your roster",
+          "y": 4074
+        },
+        {
+          "text": "The next chapter",
+          "y": 4574
+        },
+        {
+          "text": "The model’s saved calls",
+          "y": 6613
+        },
+        {
+          "text": "Teams & the players behind them",
+          "y": 8830
+        },
+        {
+          "text": "Standings & league activity",
+          "y": 13385
+        },
+        {
+          "text": "Make your next move",
+          "y": 14963
+        },
+        {
+          "text": "Sources & fixture notes",
+          "y": 16484
+        }
+      ],
+      "footer": {
+        "text": "Hardwood ClubhouseIsolated homepage direction 14Member view · Public viewOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerMy teamView rosterSources & fixture notesCurrent data, modeled values, completed-week examples, news, moves and saved AI are synthetic. Approved identities and dated sample editorial retain their supplied sources. Known 0.0, Pending and Unavailable have distinct meanings.Dated edition sources, assets & complete fixture provenanceSleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08Local original arena, game preview, selected GOAT logo and approved portrait map from the fixture. Lora is locally served under the SIL Open Font License 1.1; font license. No generated photo or invented historical series.Fixture source benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Current fixture checked 12 Nov 2026, 12:00 UTC. Saved input snapshots and league-stat/Power producers are unavailable.Complete source inventory (JSON) · Stale AI example · Missing AI exampleRead the complete dated sample edition{\n  \"id\": \"2026-W41\",\n  \"season\": \"2026\",\n  \"title\": \"The next chapter\",\n  \"dateLabel\": \"Oct 5–11, 2026\",\n  \"startsAt\": \"2026-10-05T00:00:00Z\",\n  \"endsAt\": \"2026-10-12T00:00:00Z\",\n  \"status\": \"draft\",\n  \"publishedAt\": null,\n  \"game\": {\n    \"title\": \"Reaves Dropper gets the champ.\",\n    \"note\": \"Opening-week watch\",\n    \"leagueWeek\": 1,\n    \"teamIds\": [\n      \"1\",\n      \"2\"\n    ],\n    \"state\": \"upcoming\",\n    \"scores\": null,\n    \"context\": \"A 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\",\n    \"selectionReason\": \"Proposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\"\n  },\n  \"playerSpotlights\": [\n    {\n      \"role\": \"player-of-week\",\n      \"playerId\": \"1658\",\n      \"name\": \"Nikola Jokić\",\n      \"position\": \"C\",\n      \"teamId\": \"5\",\n      \"periodLabel\": \"Last season’s standard\",\n      \"headline\": \"Somebody unplug this man.\",\n      \"opinion\": \"Three columns. One headache. The champ gets to call it good management.\",\n      \"stats\": [\n        {\n          \"value\": \"27.7\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"12.9\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"10.7\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 NBA averages\",\n      \"selectionReason\": \"Opening-edition sample opinion, using last season’s NBA averages. This is not a played 2026 fantasy-week award. Current roster ownership is verified; the pick is editorial, not a computed MVP ranking.\",\n      \"source\": {\n        \"label\": \"NBA.com · Jokić\",\n        \"url\": \"https://www.nba.com/player/203999/nikola-jokic\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    },\n    {\n      \"role\": \"underperformer\",\n      \"playerId\": \"1511\",\n      \"name\": \"Joel Embiid\",\n      \"position\": \"C\",\n      \"teamId\": \"1\",\n      \"periodLabel\": \"Last-season lookback\",\n      \"headline\": \"We wanted more on the glass.\",\n      \"opinion\": \"Points: accepted. Rebounds: the group chat has questions.\",\n      \"stats\": [\n        {\n          \"value\": \"26.9\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"7.7\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"3.9\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 NBA averages\",\n      \"selectionReason\": \"A sample last-season criticism of rebounding output, not a verified worst-player ranking, injury judgment or current-week result. The opinion is subjective. The ownership link is the current roster, not a claim about who held him throughout 2025.\",\n      \"source\": {\n        \"label\": \"NBA.com · Embiid\",\n        \"url\": \"https://www.nba.com/stats/player/203954/traditional\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    },\n    {\n      \"role\": \"one-to-watch\",\n      \"playerId\": \"4866\",\n      \"name\": \"AJ Dybantsa\",\n      \"position\": \"PF\",\n      \"teamId\": \"8\",\n      \"periodLabel\": \"Next week · preseason\",\n      \"headline\": \"No. 1 pick. No free pass.\",\n      \"opinion\": \"NeuralNets took him first. We’re watching minutes, not the mixtape.\",\n      \"stats\": [\n        {\n          \"value\": \"25.5\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"6.8\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"3.7\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 college · BYU\",\n      \"selectionReason\": \"The league’s actual No. 1 rookie selection. This is a proposed next-week preseason watch, not a playing-time guarantee or forecast. The shown averages are college data, not NBA or fantasy points.\",\n      \"source\": {\n        \"label\": \"NBA.com · draft profile\",\n        \"url\": \"https://www.nba.com/draft/2026/prospects/aj-dybantsa\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    }\n  ],\n  \"happenings\": [\n    {\n      \"title\": \"Lonzo hits the wire\",\n      \"text\": \"Lebron Theme Team dropped Lonzo Ball.\",\n      \"href\": \"https://goathoopers.com/player/1798\",\n      \"dateLabel\": \"Oct 7\"\n    },\n    {\n      \"title\": \"Two moves from NeuralNets\",\n      \"text\": \"Malik Monk and Nikola Jović were dropped from the roster.\",\n      \"href\": \"https://goathoopers.com/teams/8\",\n      \"dateLabel\": \"Oct 6\"\n    },\n    {\n      \"title\": \"Risacher released\",\n      \"text\": \"T Halibooty dropped Zaccharie Risacher.\",\n      \"href\": \"https://goathoopers.com/player/2737\",\n      \"dateLabel\": \"Oct 6\"\n    }\n  ],\n  \"sources\": [\n    {\n      \"label\": \"Sleeper · opening-week pairings\",\n      \"url\": \"https://api.sleeper.app/v1/league/1387473752807190528/matchups/1\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · NBA preseason state\",\n      \"url\": \"https://api.sleeper.app/v1/state/nba\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · our rookie draft\",\n      \"url\": \"https://api.sleeper.app/v1/draft/1387473752819785728/picks\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · league moves\",\n      \"url\": \"https://api.sleeper.app/v1/league/1387473752807190528/transactions/1\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Verified 2025 league archive\",\n      \"url\": \"https://goathoopers.com/history\",\n      \"checkedAt\": \"2026-10-08\"\n    }\n  ]\n}",
+        "y": 16064
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "ca67681e4281dbf237c991edd7bd1ddef583ca6680d5ecc9acc0ba298be2d845",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "file": "qa/homepage-themes/evidence/14-public-desktop.jpg",
+      "inventory": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 0,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1440,
+      "height": 7744,
+      "bytes": 882480,
+      "jpegQuality": 85,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 1000,
+          "scrollY": 1000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 2000,
+          "scrollY": 2000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 3000,
+          "scrollY": 3000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 6000,
+          "scrollY": 6000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 7000,
+          "scrollY": 6744,
+          "cropTop": 256,
+          "height": 744
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 7000,
+          "scrollY": 6744,
+          "cropTop": 256,
+          "width": 1440,
+          "height": 744,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "GOAT Hoopers",
+          "y": 215
+        },
+        {
+          "text": "Week 3 · Featured matchup",
+          "y": 341
+        },
+        {
+          "text": "Keep an eye on the floor",
+          "y": 817
+        },
+        {
+          "text": "The next chapter",
+          "y": 1334
+        },
+        {
+          "text": "The model’s saved calls",
+          "y": 2138
+        },
+        {
+          "text": "Teams & the players behind them",
+          "y": 3406
+        },
+        {
+          "text": "Standings & league activity",
+          "y": 5859
+        },
+        {
+          "text": "Make your next move",
+          "y": 6705
+        },
+        {
+          "text": "Sources & fixture notes",
+          "y": 7604
+        }
+      ],
+      "footer": {
+        "text": "Hardwood ClubhouseIsolated homepage direction 14Member view · Public viewOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerSources & fixture notesCurrent data, modeled values, completed-week examples, news, moves and saved AI are synthetic. Approved identities and dated sample editorial retain their supplied sources. Known 0.0, Pending and Unavailable have distinct meanings.Dated edition sources, assets & complete fixture provenanceSleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08Local original arena, game preview, selected GOAT logo and approved portrait map from the fixture. Lora is locally served under the SIL Open Font License 1.1; font license. No generated photo or invented historical series.Fixture source benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Current fixture checked 12 Nov 2026, 12:00 UTC. Saved input snapshots and league-stat/Power producers are unavailable.Complete source inventory (JSON) · Stale AI example · Missing AI exampleRead the complete dated sample edition{\n  \"id\": \"2026-W41\",\n  \"season\": \"2026\",\n  \"title\": \"The next chapter\",\n  \"dateLabel\": \"Oct 5–11, 2026\",\n  \"startsAt\": \"2026-10-05T00:00:00Z\",\n  \"endsAt\": \"2026-10-12T00:00:00Z\",\n  \"status\": \"draft\",\n  \"publishedAt\": null,\n  \"game\": {\n    \"title\": \"Reaves Dropper gets the champ.\",\n    \"note\": \"Opening-week watch\",\n    \"leagueWeek\": 1,\n    \"teamIds\": [\n      \"1\",\n      \"2\"\n    ],\n    \"state\": \"upcoming\",\n    \"scores\": null,\n    \"context\": \"A 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\",\n    \"selectionReason\": \"Proposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\"\n  },\n  \"playerSpotlights\": [\n    {\n      \"role\": \"player-of-week\",\n      \"playerId\": \"1658\",\n      \"name\": \"Nikola Jokić\",\n      \"position\": \"C\",\n      \"teamId\": \"5\",\n      \"periodLabel\": \"Last season’s standard\",\n      \"headline\": \"Somebody unplug this man.\",\n      \"opinion\": \"Three columns. One headache. The champ gets to call it good management.\",\n      \"stats\": [\n        {\n          \"value\": \"27.7\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"12.9\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"10.7\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 NBA averages\",\n      \"selectionReason\": \"Opening-edition sample opinion, using last season’s NBA averages. This is not a played 2026 fantasy-week award. Current roster ownership is verified; the pick is editorial, not a computed MVP ranking.\",\n      \"source\": {\n        \"label\": \"NBA.com · Jokić\",\n        \"url\": \"https://www.nba.com/player/203999/nikola-jokic\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    },\n    {\n      \"role\": \"underperformer\",\n      \"playerId\": \"1511\",\n      \"name\": \"Joel Embiid\",\n      \"position\": \"C\",\n      \"teamId\": \"1\",\n      \"periodLabel\": \"Last-season lookback\",\n      \"headline\": \"We wanted more on the glass.\",\n      \"opinion\": \"Points: accepted. Rebounds: the group chat has questions.\",\n      \"stats\": [\n        {\n          \"value\": \"26.9\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"7.7\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"3.9\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 NBA averages\",\n      \"selectionReason\": \"A sample last-season criticism of rebounding output, not a verified worst-player ranking, injury judgment or current-week result. The opinion is subjective. The ownership link is the current roster, not a claim about who held him throughout 2025.\",\n      \"source\": {\n        \"label\": \"NBA.com · Embiid\",\n        \"url\": \"https://www.nba.com/stats/player/203954/traditional\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    },\n    {\n      \"role\": \"one-to-watch\",\n      \"playerId\": \"4866\",\n      \"name\": \"AJ Dybantsa\",\n      \"position\": \"PF\",\n      \"teamId\": \"8\",\n      \"periodLabel\": \"Next week · preseason\",\n      \"headline\": \"No. 1 pick. No free pass.\",\n      \"opinion\": \"NeuralNets took him first. We’re watching minutes, not the mixtape.\",\n      \"stats\": [\n        {\n          \"value\": \"25.5\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"6.8\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"3.7\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 college · BYU\",\n      \"selectionReason\": \"The league’s actual No. 1 rookie selection. This is a proposed next-week preseason watch, not a playing-time guarantee or forecast. The shown averages are college data, not NBA or fantasy points.\",\n      \"source\": {\n        \"label\": \"NBA.com · draft profile\",\n        \"url\": \"https://www.nba.com/draft/2026/prospects/aj-dybantsa\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    }\n  ],\n  \"happenings\": [\n    {\n      \"title\": \"Lonzo hits the wire\",\n      \"text\": \"Lebron Theme Team dropped Lonzo Ball.\",\n      \"href\": \"https://goathoopers.com/player/1798\",\n      \"dateLabel\": \"Oct 7\"\n    },\n    {\n      \"title\": \"Two moves from NeuralNets\",\n      \"text\": \"Malik Monk and Nikola Jović were dropped from the roster.\",\n      \"href\": \"https://goathoopers.com/teams/8\",\n      \"dateLabel\": \"Oct 6\"\n    },\n    {\n      \"title\": \"Risacher released\",\n      \"text\": \"T Halibooty dropped Zaccharie Risacher.\",\n      \"href\": \"https://goathoopers.com/player/2737\",\n      \"dateLabel\": \"Oct 6\"\n    }\n  ],\n  \"sources\": [\n    {\n      \"label\": \"Sleeper · opening-week pairings\",\n      \"url\": \"https://api.sleeper.app/v1/league/1387473752807190528/matchups/1\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · NBA preseason state\",\n      \"url\": \"https://api.sleeper.app/v1/state/nba\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · our rookie draft\",\n      \"url\": \"https://api.sleeper.app/v1/draft/1387473752819785728/picks\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · league moves\",\n      \"url\": \"https://api.sleeper.app/v1/league/1387473752807190528/transactions/1\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Verified 2025 league archive\",\n      \"url\": \"https://goathoopers.com/history\",\n      \"checkedAt\": \"2026-10-08\"\n    }\n  ]\n}",
+        "y": 7401
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "9d00cbe20586d525e0690b689a2f1afe90d85bf6df71f7a25aa8f73a1c674f2f",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "file": "qa/homepage-themes/evidence/14-public-phone.jpg",
+      "inventory": {
+        "width": 390,
+        "scrollWidth": 390,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 0,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "height": 14403,
+      "bytes": 872373,
+      "jpegQuality": 91,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 844,
+          "scrollY": 844,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 1688,
+          "scrollY": 1688,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 2532,
+          "scrollY": 2532,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 3376,
+          "scrollY": 3376,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 4220,
+          "scrollY": 4220,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5064,
+          "scrollY": 5064,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5908,
+          "scrollY": 5908,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 6752,
+          "scrollY": 6752,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 9284,
+          "scrollY": 9284,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10128,
+          "scrollY": 10128,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10972,
+          "scrollY": 10972,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 11816,
+          "scrollY": 11816,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 12660,
+          "scrollY": 12660,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 13504,
+          "scrollY": 13504,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 14348,
+          "scrollY": 13559,
+          "cropTop": 789,
+          "height": 55
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 14348,
+          "scrollY": 13559,
+          "cropTop": 789,
+          "width": 390,
+          "height": 55,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "GOAT Hoopers",
+          "y": 227
+        },
+        {
+          "text": "Week 3 · Featured matchup",
+          "y": 571
+        },
+        {
+          "text": "Keep an eye on the floor",
+          "y": 1010
+        },
+        {
+          "text": "The next chapter",
+          "y": 2335
+        },
+        {
+          "text": "The model’s saved calls",
+          "y": 4375
+        },
+        {
+          "text": "Teams & the players behind them",
+          "y": 6592
+        },
+        {
+          "text": "Standings & league activity",
+          "y": 11146
+        },
+        {
+          "text": "Make your next move",
+          "y": 12706
+        },
+        {
+          "text": "Sources & fixture notes",
+          "y": 14182
+        }
+      ],
+      "footer": {
+        "text": "Hardwood ClubhouseIsolated homepage direction 14Member view · Public viewOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerSources & fixture notesCurrent data, modeled values, completed-week examples, news, moves and saved AI are synthetic. Approved identities and dated sample editorial retain their supplied sources. Known 0.0, Pending and Unavailable have distinct meanings.Dated edition sources, assets & complete fixture provenanceSleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08Local original arena, game preview, selected GOAT logo and approved portrait map from the fixture. Lora is locally served under the SIL Open Font License 1.1; font license. No generated photo or invented historical series.Fixture source benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Current fixture checked 12 Nov 2026, 12:00 UTC. Saved input snapshots and league-stat/Power producers are unavailable.Complete source inventory (JSON) · Stale AI example · Missing AI exampleRead the complete dated sample edition{\n  \"id\": \"2026-W41\",\n  \"season\": \"2026\",\n  \"title\": \"The next chapter\",\n  \"dateLabel\": \"Oct 5–11, 2026\",\n  \"startsAt\": \"2026-10-05T00:00:00Z\",\n  \"endsAt\": \"2026-10-12T00:00:00Z\",\n  \"status\": \"draft\",\n  \"publishedAt\": null,\n  \"game\": {\n    \"title\": \"Reaves Dropper gets the champ.\",\n    \"note\": \"Opening-week watch\",\n    \"leagueWeek\": 1,\n    \"teamIds\": [\n      \"1\",\n      \"2\"\n    ],\n    \"state\": \"upcoming\",\n    \"scores\": null,\n    \"context\": \"A 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\",\n    \"selectionReason\": \"Proposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\"\n  },\n  \"playerSpotlights\": [\n    {\n      \"role\": \"player-of-week\",\n      \"playerId\": \"1658\",\n      \"name\": \"Nikola Jokić\",\n      \"position\": \"C\",\n      \"teamId\": \"5\",\n      \"periodLabel\": \"Last season’s standard\",\n      \"headline\": \"Somebody unplug this man.\",\n      \"opinion\": \"Three columns. One headache. The champ gets to call it good management.\",\n      \"stats\": [\n        {\n          \"value\": \"27.7\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"12.9\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"10.7\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 NBA averages\",\n      \"selectionReason\": \"Opening-edition sample opinion, using last season’s NBA averages. This is not a played 2026 fantasy-week award. Current roster ownership is verified; the pick is editorial, not a computed MVP ranking.\",\n      \"source\": {\n        \"label\": \"NBA.com · Jokić\",\n        \"url\": \"https://www.nba.com/player/203999/nikola-jokic\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    },\n    {\n      \"role\": \"underperformer\",\n      \"playerId\": \"1511\",\n      \"name\": \"Joel Embiid\",\n      \"position\": \"C\",\n      \"teamId\": \"1\",\n      \"periodLabel\": \"Last-season lookback\",\n      \"headline\": \"We wanted more on the glass.\",\n      \"opinion\": \"Points: accepted. Rebounds: the group chat has questions.\",\n      \"stats\": [\n        {\n          \"value\": \"26.9\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"7.7\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"3.9\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 NBA averages\",\n      \"selectionReason\": \"A sample last-season criticism of rebounding output, not a verified worst-player ranking, injury judgment or current-week result. The opinion is subjective. The ownership link is the current roster, not a claim about who held him throughout 2025.\",\n      \"source\": {\n        \"label\": \"NBA.com · Embiid\",\n        \"url\": \"https://www.nba.com/stats/player/203954/traditional\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    },\n    {\n      \"role\": \"one-to-watch\",\n      \"playerId\": \"4866\",\n      \"name\": \"AJ Dybantsa\",\n      \"position\": \"PF\",\n      \"teamId\": \"8\",\n      \"periodLabel\": \"Next week · preseason\",\n      \"headline\": \"No. 1 pick. No free pass.\",\n      \"opinion\": \"NeuralNets took him first. We’re watching minutes, not the mixtape.\",\n      \"stats\": [\n        {\n          \"value\": \"25.5\",\n          \"label\": \"PPG\"\n        },\n        {\n          \"value\": \"6.8\",\n          \"label\": \"RPG\"\n        },\n        {\n          \"value\": \"3.7\",\n          \"label\": \"APG\"\n        }\n      ],\n      \"statPeriod\": \"2025–26 college · BYU\",\n      \"selectionReason\": \"The league’s actual No. 1 rookie selection. This is a proposed next-week preseason watch, not a playing-time guarantee or forecast. The shown averages are college data, not NBA or fantasy points.\",\n      \"source\": {\n        \"label\": \"NBA.com · draft profile\",\n        \"url\": \"https://www.nba.com/draft/2026/prospects/aj-dybantsa\",\n        \"checkedAt\": \"2026-10-08\"\n      }\n    }\n  ],\n  \"happenings\": [\n    {\n      \"title\": \"Lonzo hits the wire\",\n      \"text\": \"Lebron Theme Team dropped Lonzo Ball.\",\n      \"href\": \"https://goathoopers.com/player/1798\",\n      \"dateLabel\": \"Oct 7\"\n    },\n    {\n      \"title\": \"Two moves from NeuralNets\",\n      \"text\": \"Malik Monk and Nikola Jović were dropped from the roster.\",\n      \"href\": \"https://goathoopers.com/teams/8\",\n      \"dateLabel\": \"Oct 6\"\n    },\n    {\n      \"title\": \"Risacher released\",\n      \"text\": \"T Halibooty dropped Zaccharie Risacher.\",\n      \"href\": \"https://goathoopers.com/player/2737\",\n      \"dateLabel\": \"Oct 6\"\n    }\n  ],\n  \"sources\": [\n    {\n      \"label\": \"Sleeper · opening-week pairings\",\n      \"url\": \"https://api.sleeper.app/v1/league/1387473752807190528/matchups/1\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · NBA preseason state\",\n      \"url\": \"https://api.sleeper.app/v1/state/nba\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · our rookie draft\",\n      \"url\": \"https://api.sleeper.app/v1/draft/1387473752819785728/picks\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Sleeper · league moves\",\n      \"url\": \"https://api.sleeper.app/v1/league/1387473752807190528/transactions/1\",\n      \"checkedAt\": \"2026-10-08\"\n    },\n    {\n      \"label\": \"Verified 2025 league archive\",\n      \"url\": \"https://goathoopers.com/history\",\n      \"checkedAt\": \"2026-10-08\"\n    }\n  ]\n}",
+        "y": 13807
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "9d00cbe20586d525e0690b689a2f1afe90d85bf6df71f7a25aa8f73a1c674f2f",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,940 @@
+{
+  "direction": "12",
+  "title": "GOAT Hoopers — League Zine",
+  "htmlSha256": "816aecdf779719206b0b0866cf291668d0ae4616660df6422d2ac76dd3f5677c",
+  "sourceFiles": [
+    {
+      "file": "qa/homepage-themes/directions/12/index.html",
+      "sha256": "816aecdf779719206b0b0866cf291668d0ae4616660df6422d2ac76dd3f5677c"
+    },
+    {
+      "file": "qa/homepage-themes/directions/12/zine.css",
+      "sha256": "6c63da4b3db5f90e3505d22c9fe7aaee797de8de58ff2dcb39c51d9fcc4f1431"
+    },
+    {
+      "file": "qa/homepage-themes/directions/12/zine.js",
+      "sha256": "2533e85d34512964f4dc278ec4a58b8b8184c9214b614e622d11820f2cfbf4ad"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "file": "qa/homepage-themes/evidence/12-member-desktop.jpg",
+      "inventory": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 4,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1440,
+      "height": 10350,
+      "bytes": 887312,
+      "jpegQuality": 39,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 1000,
+          "scrollY": 1000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 2000,
+          "scrollY": 2000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 3000,
+          "scrollY": 3000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 6000,
+          "scrollY": 6000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 7000,
+          "scrollY": 7000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 8000,
+          "scrollY": 8000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 9000,
+          "scrollY": 9000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 10000,
+          "scrollY": 9350,
+          "cropTop": 650,
+          "height": 350
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 10000,
+          "scrollY": 9350,
+          "cropTop": 650,
+          "width": 1440,
+          "height": 350,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "WEEK 03",
+          "y": 184
+        },
+        {
+          "text": "Your featured matchup · Week 3",
+          "y": 415
+        },
+        {
+          "text": "Reaves Dropper",
+          "y": 941
+        },
+        {
+          "text": "Scouting notebook",
+          "y": 1406
+        },
+        {
+          "text": "From the edition",
+          "y": 2482
+        },
+        {
+          "text": "AI Decides",
+          "y": 3736
+        },
+        {
+          "text": "The league directory",
+          "y": 5187
+        },
+        {
+          "text": "League ledger",
+          "y": 8091
+        },
+        {
+          "text": "Off the clipboard",
+          "y": 8950
+        },
+        {
+          "text": "Back issues",
+          "y": 9678
+        }
+      ],
+      "footer": {
+        "text": "GOAT HoopersLeague ZineAn isolated homepage direction.Lemon / ink / hot pink.Member/public fixtures, local assets only.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerFixture warning, asset provenance & limitationsOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Fixture benchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. This preview reads the supplied local inventory; it does not call Sleeper, pricing, AI or other services. Current records, scores, prices, form, team news, moves, standings and AI are synthetic. Approved dated team/player identities and draft editorial are retained.Directory checked 2026-11-12T12:00:00Z. Modeled team value computed 12 Nov 2026, 12:00 UTC on an in-season basis. Dated editorial source receipts remain in the edition and archive disclosures.The arena, free-throw preview, selected unchanged black/white GOAT logos and player portraits use the local approved asset paths from inventory.json. Anton is loaded locally from the official Google Fonts catalog, under SIL OFL 1.1. Body text uses the system Arial/Helvetica stack. Images are recolored by CSS only; no replacement player imagery or quotes are generated.Lineup Power unavailable: no producer snapshot connected in this mock. Recorded team-value history unavailable; no line is invented. AI input and publication snapshots are unavailable in this fixture. No inferred chart, ranking, odds or official awards are introduced.This is static QA. Destination links retain application routes; that application and its authenticated flows are outside this local fixture server.",
+        "y": 10068
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "53462abae6b4caa3941d09a1c179cee5f2fc0a23ded126284f25f31ad2dd220e",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "file": "qa/homepage-themes/evidence/12-member-phone.jpg",
+      "inventory": {
+        "width": 390,
+        "scrollWidth": 390,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 4,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "height": 18376,
+      "bytes": 884276,
+      "jpegQuality": 58,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 844,
+          "scrollY": 844,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 1688,
+          "scrollY": 1688,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 2532,
+          "scrollY": 2532,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 3376,
+          "scrollY": 3376,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 4220,
+          "scrollY": 4220,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5064,
+          "scrollY": 5064,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5908,
+          "scrollY": 5908,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 6752,
+          "scrollY": 6752,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 9284,
+          "scrollY": 9284,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10128,
+          "scrollY": 10128,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10972,
+          "scrollY": 10972,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 11816,
+          "scrollY": 11816,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 12660,
+          "scrollY": 12660,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 13504,
+          "scrollY": 13504,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 14348,
+          "scrollY": 14348,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 15192,
+          "scrollY": 15192,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 16036,
+          "scrollY": 16036,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 16880,
+          "scrollY": 16880,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 17724,
+          "scrollY": 17532,
+          "cropTop": 192,
+          "height": 652
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 9284,
+          "scrollY": 9284,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 17724,
+          "scrollY": 17532,
+          "cropTop": 192,
+          "width": 390,
+          "height": 652,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "WEEK 03",
+          "y": 228
+        },
+        {
+          "text": "Your featured matchup · Week 3",
+          "y": 383
+        },
+        {
+          "text": "Reaves Dropper",
+          "y": 1114
+        },
+        {
+          "text": "Scouting notebook",
+          "y": 1901
+        },
+        {
+          "text": "From the edition",
+          "y": 4417
+        },
+        {
+          "text": "AI Decides",
+          "y": 6936
+        },
+        {
+          "text": "The league directory",
+          "y": 9267
+        },
+        {
+          "text": "League ledger",
+          "y": 13712
+        },
+        {
+          "text": "Off the clipboard",
+          "y": 16113
+        },
+        {
+          "text": "Back issues",
+          "y": 17171
+        }
+      ],
+      "footer": {
+        "text": "GOAT HoopersLeague ZineAn isolated homepage direction.Lemon / ink / hot pink.Member/public fixtures, local assets only.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerFixture warning, asset provenance & limitationsOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Fixture benchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. This preview reads the supplied local inventory; it does not call Sleeper, pricing, AI or other services. Current records, scores, prices, form, team news, moves, standings and AI are synthetic. Approved dated team/player identities and draft editorial are retained.Directory checked 2026-11-12T12:00:00Z. Modeled team value computed 12 Nov 2026, 12:00 UTC on an in-season basis. Dated editorial source receipts remain in the edition and archive disclosures.The arena, free-throw preview, selected unchanged black/white GOAT logos and player portraits use the local approved asset paths from inventory.json. Anton is loaded locally from the official Google Fonts catalog, under SIL OFL 1.1. Body text uses the system Arial/Helvetica stack. Images are recolored by CSS only; no replacement player imagery or quotes are generated.Lineup Power unavailable: no producer snapshot connected in this mock. Recorded team-value history unavailable; no line is invented. AI input and publication snapshots are unavailable in this fixture. No inferred chart, ranking, odds or official awards are introduced.This is static QA. Destination links retain application routes; that application and its authenticated flows are outside this local fixture server.",
+        "y": 17843
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "53462abae6b4caa3941d09a1c179cee5f2fc0a23ded126284f25f31ad2dd220e",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "file": "qa/homepage-themes/evidence/12-public-desktop.jpg",
+      "inventory": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 0,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1440,
+      "height": 9707,
+      "bytes": 884394,
+      "jpegQuality": 42,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 1000,
+          "scrollY": 1000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 2000,
+          "scrollY": 2000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 3000,
+          "scrollY": 3000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 6000,
+          "scrollY": 6000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 7000,
+          "scrollY": 7000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 8000,
+          "scrollY": 8000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 9000,
+          "scrollY": 8707,
+          "cropTop": 293,
+          "height": 707
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 9000,
+          "scrollY": 8707,
+          "cropTop": 293,
+          "width": 1440,
+          "height": 707,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "WEEK 03",
+          "y": 184
+        },
+        {
+          "text": "Featured matchup · Week 3",
+          "y": 415
+        },
+        {
+          "text": "10 teams.One league.",
+          "y": 929
+        },
+        {
+          "text": "Scouting notebook",
+          "y": 1232
+        },
+        {
+          "text": "From the edition",
+          "y": 1857
+        },
+        {
+          "text": "AI Decides",
+          "y": 3111
+        },
+        {
+          "text": "The league directory",
+          "y": 4563
+        },
+        {
+          "text": "League ledger",
+          "y": 7466
+        },
+        {
+          "text": "Off the clipboard",
+          "y": 8307
+        },
+        {
+          "text": "Back issues",
+          "y": 9035
+        }
+      ],
+      "footer": {
+        "text": "GOAT HoopersLeague ZineAn isolated homepage direction.Lemon / ink / hot pink.Member/public fixtures, local assets only.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerFixture warning, asset provenance & limitationsOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Fixture benchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. This preview reads the supplied local inventory; it does not call Sleeper, pricing, AI or other services. Current records, scores, prices, form, team news, moves, standings and AI are synthetic. Approved dated team/player identities and draft editorial are retained.Directory checked 2026-11-12T12:00:00Z.  Dated editorial source receipts remain in the edition and archive disclosures.The arena, free-throw preview, selected unchanged black/white GOAT logos and player portraits use the local approved asset paths from inventory.json. Anton is loaded locally from the official Google Fonts catalog, under SIL OFL 1.1. Body text uses the system Arial/Helvetica stack. Images are recolored by CSS only; no replacement player imagery or quotes are generated.Lineup Power unavailable: no producer snapshot connected in this mock. Recorded team-value history unavailable; no line is invented. AI input and publication snapshots are unavailable in this fixture. No inferred chart, ranking, odds or official awards are introduced.This is static QA. Destination links retain application routes; that application and its authenticated flows are outside this local fixture server.",
+        "y": 9425
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "cce919e4d4b4e62a5f2a18d8955d97725e76d6049b41628a2a508541e81aed4f",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "file": "qa/homepage-themes/evidence/12-public-phone.jpg",
+      "inventory": {
+        "width": 390,
+        "scrollWidth": 390,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 0,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "height": 16650,
+      "bytes": 877020,
+      "jpegQuality": 64,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 844,
+          "scrollY": 844,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 1688,
+          "scrollY": 1688,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 2532,
+          "scrollY": 2532,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 3376,
+          "scrollY": 3376,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 4220,
+          "scrollY": 4220,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5064,
+          "scrollY": 5064,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5908,
+          "scrollY": 5908,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 6752,
+          "scrollY": 6752,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 9284,
+          "scrollY": 9284,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10128,
+          "scrollY": 10128,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10972,
+          "scrollY": 10972,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 11816,
+          "scrollY": 11816,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 12660,
+          "scrollY": 12660,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 13504,
+          "scrollY": 13504,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 14348,
+          "scrollY": 14348,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 15192,
+          "scrollY": 15192,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 16036,
+          "scrollY": 15806,
+          "cropTop": 230,
+          "height": 614
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 16036,
+          "scrollY": 15806,
+          "cropTop": 230,
+          "width": 390,
+          "height": 614,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "WEEK 03",
+          "y": 228
+        },
+        {
+          "text": "Featured matchup · Week 3",
+          "y": 383
+        },
+        {
+          "text": "10 teams.One league.",
+          "y": 1104
+        },
+        {
+          "text": "Scouting notebook",
+          "y": 1678
+        },
+        {
+          "text": "From the edition",
+          "y": 2952
+        },
+        {
+          "text": "AI Decides",
+          "y": 5252
+        },
+        {
+          "text": "The league directory",
+          "y": 7583
+        },
+        {
+          "text": "League ledger",
+          "y": 12028
+        },
+        {
+          "text": "Off the clipboard",
+          "y": 14387
+        },
+        {
+          "text": "Back issues",
+          "y": 15445
+        }
+      ],
+      "footer": {
+        "text": "GOAT HoopersLeague ZineAn isolated homepage direction.Lemon / ink / hot pink.Member/public fixtures, local assets only.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerFixture warning, asset provenance & limitationsOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Fixture benchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. This preview reads the supplied local inventory; it does not call Sleeper, pricing, AI or other services. Current records, scores, prices, form, team news, moves, standings and AI are synthetic. Approved dated team/player identities and draft editorial are retained.Directory checked 2026-11-12T12:00:00Z.  Dated editorial source receipts remain in the edition and archive disclosures.The arena, free-throw preview, selected unchanged black/white GOAT logos and player portraits use the local approved asset paths from inventory.json. Anton is loaded locally from the official Google Fonts catalog, under SIL OFL 1.1. Body text uses the system Arial/Helvetica stack. Images are recolored by CSS only; no replacement player imagery or quotes are generated.Lineup Power unavailable: no producer snapshot connected in this mock. Recorded team-value history unavailable; no line is invented. AI input and publication snapshots are unavailable in this fixture. No inferred chart, ranking, odds or official awards are introduced.This is static QA. Destination links retain application routes; that application and its authenticated flows are outside this local fixture server.",
+        "y": 16118
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "cce919e4d4b4e62a5f2a18d8955d97725e76d6049b41628a2a508541e81aed4f",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    }
+  ],
+  "failures": []
+}

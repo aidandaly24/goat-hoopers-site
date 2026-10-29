@@ -1,0 +1,235 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "width": 390,
+  "height": 13817,
+  "bytes": 881219,
+  "jpegQuality": 81,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 844,
+      "scrollY": 844,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 1688,
+      "scrollY": 1688,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 2532,
+      "scrollY": 2532,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 3376,
+      "scrollY": 3376,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 4220,
+      "scrollY": 4220,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 5064,
+      "scrollY": 5064,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 5908,
+      "scrollY": 5908,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 6752,
+      "scrollY": 6752,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 7596,
+      "scrollY": 7596,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 8440,
+      "scrollY": 8440,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 9284,
+      "scrollY": 9284,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 10128,
+      "scrollY": 10128,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 10972,
+      "scrollY": 10972,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 11816,
+      "scrollY": 11816,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 12660,
+      "scrollY": 12660,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 13504,
+      "scrollY": 12973,
+      "cropTop": 531,
+      "height": 313
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 390,
+      "height": 844,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 6752,
+      "scrollY": 6752,
+      "cropTop": 0,
+      "width": 390,
+      "height": 844,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 13504,
+      "scrollY": 12973,
+      "cropTop": 531,
+      "width": 390,
+      "height": 313,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Reaves Dropper",
+      "y": 325
+    },
+    {
+      "text": "Your matchup",
+      "y": 465
+    },
+    {
+      "text": "Your roster value",
+      "y": 2007
+    },
+    {
+      "text": "The market desk",
+      "y": 2581
+    },
+    {
+      "text": "After the final whistle",
+      "y": 2828
+    },
+    {
+      "text": "The weekly read",
+      "y": 952
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 3185
+    },
+    {
+      "text": "Your completed-week report",
+      "y": 3980
+    },
+    {
+      "text": "AI Decides / Saved matchup desk",
+      "y": 5238
+    },
+    {
+      "text": "Team & player finder",
+      "y": 7078
+    },
+    {
+      "text": "League standings",
+      "y": 10742
+    },
+    {
+      "text": "Around the league",
+      "y": 12190
+    },
+    {
+      "text": "Weekly edition archive",
+      "y": 13006
+    }
+  ],
+  "footer": {
+    "text": "HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerFixture warning, dates & complete sourcesOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Current directory checked 2026-11-12 12:00:00 UTC. The supplied fixture date may be later than the preview system clock. Scores retain known zero and unknown values. No current final, official award, live feed or value-history series is inferred.Member values use in-season modeled FAAB pricing, computed 2026-11-12 12:00:00 UTC. Form uses observed-game EMA; completed Week 2 totals use their printed source period. Editorial uses the Oct 5–11, 2026 draft and its dated sources.Editorial source checks:Sleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08NBA.com · Jokić · checked 2026-10-08 · 2025–26 NBA averagesNBA.com · Embiid · checked 2026-10-08 · 2025–26 NBA averagesNBA.com · draft profile · checked 2026-10-08 · 2025–26 college · BYUImages: supplied local GOAT logo, arena, game preview and approved player portraits. No generated player imagery. Verdana/Arial and Courier system font stacks require no downloaded font.Complete offline fixture and provenance (JSON) · Theme design & QA notesBenchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561bGOAT HOOPERS · Sports Web 2000 · Offline design preview · Member view · Member comparison / Public comparison",
+    "y": 13395
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "54893f742270e55502bc8ac50b663b7286175f2d0153c2319fd9143ad97bca9a",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

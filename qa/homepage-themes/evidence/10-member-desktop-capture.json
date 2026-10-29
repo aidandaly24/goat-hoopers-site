@@ -1,0 +1,191 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 10022,
+  "bytes": 889604,
+  "jpegQuality": 58,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 8000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 9000,
+      "scrollY": 9000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 10000,
+      "scrollY": 9022,
+      "cropTop": 978,
+      "height": 22
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 10000,
+      "scrollY": 9022,
+      "cropTop": 978,
+      "width": 1440,
+      "height": 22,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "The league, drawn out.",
+      "y": 205
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 334
+    },
+    {
+      "text": "Your matchup",
+      "y": 992
+    },
+    {
+      "text": "Roster value",
+      "y": 1263
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 1566
+    },
+    {
+      "text": "Dated edition",
+      "y": 2825
+    },
+    {
+      "text": "AI Decides",
+      "y": 3769
+    },
+    {
+      "text": "League directory",
+      "y": 5099
+    },
+    {
+      "text": "League standing",
+      "y": 7648
+    },
+    {
+      "text": "League tools",
+      "y": 9149
+    },
+    {
+      "text": "Drawing notes / sources",
+      "y": 9809
+    }
+  ],
+  "footer": {
+    "text": "GOAT HOOPERSCOURT BLUEPRINT / QA DIRECTION 10HistoryTeamsWeekly archiveBack to drawing",
+    "y": 9928
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "267ee419e76fac84159b4b8427abae05a2f603460b34c6925626404289fa1b8e",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}
