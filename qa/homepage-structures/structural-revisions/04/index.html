@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GOAT — Broadcast switcher · Structural revision 04</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#program">Skip to program</a>
+  <header class="masthead">
+    <a href="/" class="identity" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers"></a>
+    <details class="site-menu"><summary>Menu</summary><nav aria-label="Site navigation"><a href="/" aria-current="page">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a><a href="/ai-decides">AI Decides</a><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/trade-analyzer">Trade analyzer</a><a href="/weekly">Weekly archive</a><a id="compare" href="?view=public">View public edition</a></nav></details>
+  </header>
+  <div class="fixture-line"><details class="fixture-provenance"><summary>Synthetic concept</summary><div><p>Offline structural study. Current scores, records, model picks, prices, form, news and moves are synthetic examples dated November 12, 2026. Dated approved identities and editorial remain attributed. No live broadcast. Fixture view switching is not authentication.</p></div></details></div>
+  <div class="control-room">
+    <div class="broadcast-controls">
+    <nav class="source-slate" aria-label="Program sources"><div class="slate-label">Sources</div><div id="sources"></div><label class="mobile-source" for="source-picker">Source</label><select id="source-picker" class="mobile-source"></select></nav>
+    <aside class="score-rail" aria-label="Week 3 score rail"><button class="rail-toggle" aria-expanded="false" aria-controls="rail-body"><span>Week 3 · 0.0 / Pending</span><span>5 games +</span></button><div id="rail-body" class="rail-body"></div></aside>
+    </div>
+    <main id="program" tabindex="-1" aria-label="Selected program"><div id="program-content"></div></main>
+  </div>
+  <footer><strong>GOAT Hoopers · Synthetic concept</strong><a href="/weekly">Weekly archive</a><a href="/ai-decides">AI Decides</a><a href="/trade-analyzer">Trade analyzer</a></footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

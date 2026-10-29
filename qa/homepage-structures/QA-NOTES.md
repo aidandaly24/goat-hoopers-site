@@ -12,3 +12,11 @@ First sources/captures stay preserved; these are not final acceptance.
 -16 omits W40's franchise-change happening locally; revised composition must retain it.
 -20 lacks local team/player search. 'Not search-first' is not permission to omit the existing directory action.
 -09 first advertised API capture is archive-40, while actual boot is current junction. State labels are correct; contact is a first-selected-state index, not a verified boot index. Explicit entry-state capture is pending.
+
+## Corrected-source evidence
+
+- All20 corrected shared mechanical cases pass200/200, at390/320 androot200%, public/member and missing/stale variants. This does not erase original186/200 failures or establish design/AT/device acceptance.
+- Actual boot and API states are separate. The corrected set has594 selected API views plus80 actual boot views. Interior readers are separate documented strips; gallery links them rather than claim one viewport proves full content.
+-03 reading-strip helper initially disturbed native horizontal chapter context while cropping. Capturer now reads stable post-scroll geometry and uses native viewport crops for panes that already fit onscreen; no authored CSS/layout changed to obtain images.30 corrected03 strips completed. This was capture infrastructure diagnosis, not a claimed production UI fix.
+-18 independent keyboard follow-pins path left focus on BODY after hiding its trigger. Corrected followPlayers transition focuses visible team-mode. Author12 exact keyboard cases, two reduced-motion cases and90 reflow cases passed; independent reviewers confirmed visible team-mode focus on both widths at the same matrix.js hash. Root18 refreshed captures, interior strips and10/10 checks pass.10 one-off collapsed-note observation failed to reproduce in14 targeted checks; no speculative change made.
+- Existing local16 font families match their original official-source SHA256 and byte counts; OFL text and source metadata preserved under assets/fonts. This is asset reuse, not a skill/global font install.

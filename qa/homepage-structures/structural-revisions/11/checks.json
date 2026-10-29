@@ -1,0 +1,199 @@
+{
+  "date": "2026-10-29",
+  "scope": "Local structural revision 11; bounded craft QA",
+  "browser": "Installed Chromium through Playwright",
+  "responsive": [
+    {
+      "width": 1440,
+      "state": "default",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "week",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "roster",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "search",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "directory",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "predictions",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "edition",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "league",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 390,
+      "state": "default",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "week",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "roster",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "search",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "directory",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "predictions",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "edition",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "league",
+      "scrollWidth": 390
+    },
+    {
+      "width": 320,
+      "state": "default",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "week",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "roster",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "search",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "directory",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "predictions",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "edition",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "league",
+      "scrollWidth": 320
+    }
+  ],
+  "interactions": [
+    "Real empty \u2192 submitted mixed search \u2192 inline answer \u2192 Change search \u2192 browser Back \u2192 Forward \u2192 Back to results \u2192 empty, with query/focus restoration",
+    "Composed no-match state returns to useful empty query",
+    {
+      "playerFilterCount": 228,
+      "sort": "Name A\u2013Z",
+      "firstName": "Aaron Gordon",
+      "pagination": 50
+    },
+    {
+      "directoryTeams": 10,
+      "rosterReferences": 228,
+      "querySortDisclosureBack": true
+    },
+    {
+      "memberRosterValues": 24,
+      "modeledTotal": "$1095.25",
+      "coverage": "24 priced / 0 unpriced"
+    },
+    "Known zero / Pending / Incomplete remain distinct",
+    {
+      "savedPicks": 5,
+      "firstReturnedChoice": "Ware the Hoes At?",
+      "choiceProbability": 35,
+      "otherProbability": 65,
+      "confidence": 20,
+      "provenance": true
+    },
+    "Escape closes answer and restores trigger focus",
+    "Three source-period spotlights use coherent archive 1/5 narrative",
+    {
+      "destinations": [
+        "/",
+        "/intel",
+        "/stocks#player-board",
+        "/history",
+        "/arcade",
+        "/ai-decides",
+        "/teams",
+        "/transactions",
+        "/trade-analyzer",
+        "/weekly",
+        "/arcade/free-throw",
+        "/team",
+        "/teams/1#team-roster"
+      ],
+      "phoneSearchFocus": true
+    },
+    "Public personal-task/action omission and ready/stale/missing AI retained in both fixtures",
+    "Live reduced-motion preference retains reader and controls"
+  ],
+  "errors": [],
+  "text200": {
+    "width": 320,
+    "states": 8,
+    "passed": true
+  },
+  "phoneDefaultTargets44": true,
+  "noDecorativeOrdinals": true,
+  "originalFrozenSourcesUnchanged": {
+    "index.html": true,
+    "style.css": true,
+    "app.js": true,
+    "STRUCTURE.md": true
+  },
+  "status": "passed",
+  "finalSourceHashes": {
+    "index.html": "e4a7312a4c775ff7451e639630e84cbc900a86924a8bf4e692f92fd9d7286dd8",
+    "style.css": "9be4c5a5353823ab6c06d2d2b1060be946ad1de208e0338fcfe6f5b7d3d4459a",
+    "app.js": "d9f10cee44f775721923c516cb694bbd1f4b3858bd975d879aba6a78fea3b8f3",
+    "STRUCTURE.md": "2945bb6b95e9e51f304e59e04c8f4eb8aa1a4e49f72101b77d277de357e83341"
+  }
+}

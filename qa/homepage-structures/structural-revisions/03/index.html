@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GOAT Hoopers — horizontal chapters</title>
+  <link rel="stylesheet" href="./study.css">
+</head>
+<body>
+  <a class="skip" href="#reader">Skip to chapter</a>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="GOAT Hoopers Home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers"></a>
+    <nav class="site-links" aria-label="Site"><a href="/">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a></nav>
+    <details id="concept-provenance" class="concept-provenance">
+      <summary>Synthetic concept</summary>
+      <div class="concept-details">
+        <p><strong>Offline design fixture</strong></p>
+        <p>Current records, scores, prices, form, news, moves and AI are synthetic. Fixture dated 12 Nov 2026; this is not live league data.</p>
+        <p>Dated approved identities and editorial are preserved. The October drafts and historical final retain their own source periods.</p>
+        <p><a id="comparison" class="comparison" href="?view=public">Public edition</a></p>
+        <button type="button" id="close-provenance">Close provenance</button>
+      </div>
+    </details>
+  </header>
+  <main id="reader" class="reader" tabindex="0" aria-label="League publication chapters. Use Left and Right arrow keys to change chapter."></main>
+  <nav class="chapter-nav" aria-label="Chapter navigation">
+    <button id="previous" type="button" aria-label="Previous chapter">← <span>Previous</span></button>
+    <div id="chapter-links" class="chapter-links"></div>
+    <label class="chapter-picker"><span class="sr-only">Chapter</span><select id="chapter-select" aria-label="Choose chapter"></select></label>
+    <button id="next" type="button" aria-label="Next chapter"><span>Next</span> →</button>
+  </nav>
+  <p id="announcement" class="sr-only" aria-live="polite"></p>
+  <script type="module" src="./study.js"></script>
+</body>
+</html>

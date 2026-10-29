@@ -1,14 +1,48 @@
 {
-  "pass": true,
-  "studies": 20,
-  "reader": "evidence/wireframes/03/member-phone-01-team-pane-0.jpg",
-  "checks": [
-    "full reader selection03",
-    "four desktop/one phone channel strips14",
-    "empty public state clears stale image",
-    "phone390 controls",
-    "native/fit toggle"
-  ],
+  "scope": "Latest dual-round gallery, Chromium390 local-server checks, not final design acceptance",
   "errors": [],
-  "limits": "QA evidence gallery only, not final concept acceptance."
+  "results": [
+    {
+      "round": "wireframes",
+      "count": 20,
+      "src": "evidence/wireframes/01/member-desktop-00-default.jpg",
+      "notes": "wireframes/01/STRUCTURE.md"
+    },
+    {
+      "round": "structural-revisions",
+      "count": 20,
+      "src": "evidence/structural-revisions/01/member-desktop-entry.jpg",
+      "notes": "structural-revisions/01/STRUCTURE.md"
+    },
+    {
+      "round": "wireframes",
+      "count": 20,
+      "src": "evidence/wireframes/01/member-desktop-00-default.jpg",
+      "notes": "wireframes/01/STRUCTURE.md"
+    },
+    {
+      "round": "structural-revisions",
+      "count": 20,
+      "src": "evidence/structural-revisions/01/member-desktop-entry.jpg",
+      "notes": "structural-revisions/01/STRUCTURE.md"
+    },
+    {
+      "test": "09 actual boot",
+      "label": "Actual initial load",
+      "src": "evidence/structural-revisions/09/member-phone-entry.jpg"
+    },
+    {
+      "test": "unavailable public state clears image",
+      "src": null,
+      "empty": true
+    },
+    {
+      "test": "separate reader available",
+      "options": [
+        "Active document",
+        "Native viewport",
+        "Complete reader 1"
+      ]
+    }
+  ]
 }

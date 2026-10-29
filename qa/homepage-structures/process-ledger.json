@@ -5,128 +5,128 @@
     272,
     273
   ],
-  "stage": "20 first structures frozen; strict190-pair geometry gate and separate N reworks in progress; no full art",
+  "stage": "Corrected20 grayscale structural gate complete; all190 pairs D/R with related families explicit. Root200/200 mechanical checks, current-source-bound captures/portable bundles. Full-art phase commencing; no shortlist or release approval.",
   "authors": [
     {
       "id": "01",
       "task": "/root/arch01",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "02",
       "task": "/root/arch02",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "03",
       "task": "/root/arch03",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "04",
       "task": "/root/arch04",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "05",
       "task": "/root/arch05",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "06",
       "task": "/root/arch06",
       "fork": "none",
-      "status": "frozen first source",
+      "status": "first and corrected grayscale source frozen; full art not started",
       "capacityInterruption": "resumed same agent/current model once; own partials preserved"
     },
     {
       "id": "07",
       "task": "/root/arch07",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "08",
       "task": "/root/arch08",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "09",
       "task": "/root/arch09",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "10",
       "task": "/root/arch10",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "11",
       "task": "/root/arch11",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "12",
       "task": "/root/arch12",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "13",
       "task": "/root/arch13",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "14",
       "task": "/root/arch14",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "15",
       "task": "/root/arch15",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "16",
       "task": "/root/arch16",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "17",
       "task": "/root/arch17",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "18",
       "task": "/root/arch18",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "19",
       "task": "/root/arch19",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     },
     {
       "id": "20",
       "task": "/root/arch20",
       "fork": "none",
-      "status": "frozen first source"
+      "status": "first and corrected grayscale source frozen; full art not started"
     }
   ],
   "independentReview": "Three fresh critics completing190first-round pairs; early21-pair gate rejects01/05 and02/07. Separate grayscale revisions05/07 started; no full artwork.",
@@ -253,5 +253,30 @@
     "N": 34,
     "uninspected": 0,
     "meaning": "Qualitative independent raw judgments, not statistical proof; abstraction disagreements preserved and blind ten-pair adjudication available. No accepted20 or shortlist claim."
+  },
+  "correctedMechanical": {
+    "passed": 200,
+    "total": 200,
+    "path": "evidence/structural-revisions/root-verification-summary.json"
+  },
+  "fonts": {
+    "families": 16,
+    "verifiedAgainstExistingOfficialSourceManifest": true,
+    "path": "assets/fonts/catalog.json"
+  },
+  "correctedGate": {
+    "scope": "Three independent corrected grayscale structural reviews, not user taste, final visual art or statistical proof",
+    "pairs": 190,
+    "verdicts": {
+      "D": 144,
+      "R": 46
+    },
+    "firstReviewDisagreementsPreserved": true,
+    "confirmedDefect": "18 keyboard follow-pins focus fixed and independently rechecked at1440/390 by all3; root updated18 evidence",
+    "reviewFiles": [
+      "reviews/corrected-a.md",
+      "reviews/corrected-b.md",
+      "reviews/corrected-c.md"
+    ]
   }
 }

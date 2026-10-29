@@ -1,0 +1,380 @@
+[
+  {
+    "idA": "01",
+    "idB": "03",
+    "verdict": "D",
+    "reason": "Desktop:01 is one continuously flowing article with anchor jumps and inline notes;03 replaces a viewport chapter through a fixed bottom pager. Phone:01 keeps document flow, while03 retains the chapter select and Previous/Next dock with an independently scrolling active chapter."
+  },
+  {
+    "idA": "01",
+    "idB": "06",
+    "verdict": "R",
+    "reason": "Shared family:long reading documents. Desktop:01 groups an editorial spread into article/margin sections;06 organizes actual observations around a dated spine with scope and source-period filtering. Phone:01 becomes continuous article sections;06 keeps date markers and a filtered dated register, so its grouping and navigation remain chronological."
+  },
+  {
+    "idA": "01",
+    "idB": "09",
+    "verdict": "R",
+    "reason": "Shared family:in-flow reading and local disclosure. Desktop:01 has one authored article sequence with section anchors;09 has two retained current/team roots and independently nested evidence branches plus an open-branch index. Phone:01 remains a linear spread;09 preserves nested branches and branch-jump context rather than replacing them with article anchors."
+  },
+  {
+    "idA": "01",
+    "idB": "12",
+    "verdict": "D",
+    "reason": "Desktop:01 is an article and margins traversed by anchors;12 is a connected matchup with two independently controlled team nodes and an optional third retained node. Phone:01 flows through sections;12 exposes A/Connection/B/C jumps and independently chosen roster fields, preserving entity context across navigation."
+  },
+  {
+    "idA": "01",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "Desktop:01 is continuous editorial reading;15 is a date-by-evidence-lane calendar with details attached to the selected cell. Phone:01 remains the full reading stream;15 defaults to a period-filtered agenda and has a separate Calendar mode. The relationship between items is temporal coordinates rather than article order."
+  },
+  {
+    "idA": "01",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "Desktop:01 arranges prose, score and notes in one continuous spread;18 pins selected identities into a field-by-identity comparison matrix. Phone:01 stacks article sections, while18 groups every pinned identity under each measure, keeping quote, completed points and form directly comparable."
+  },
+  {
+    "idA": "02",
+    "idB": "03",
+    "verdict": "D",
+    "reason": "Desktop:02 keeps a six-position court navigator beside one selected field-note reader;03 uses a full-width chapter stage and bottom paging controls with different chapter compositions. Phone:02 keeps the court overview above its selected reader and a Back to court action;03 keeps the chapter-select dock and replaces the active page."
+  },
+  {
+    "idA": "02",
+    "idB": "06",
+    "verdict": "D",
+    "reason": "Desktop:02 selects content by position on a persistent court map;06 filters dated observations in a chronological stream. Phone:02 retains an overview-to-reader jump and return to court;06 retains a date spine, scope filters and source-period selection. Their primary entry and item relationships differ."
+  },
+  {
+    "idA": "02",
+    "idB": "09",
+    "verdict": "D",
+    "reason": "Desktop:02 replaces one generic field-note region from a persistent spatial navigator;09 expands several nested evidence branches concurrently at their own origins across current/team roots. Phone:02 navigates court then reader;09 keeps in-flow nested branches with an open-branch index. Shared disclosures do not erase these differences."
+  },
+  {
+    "idA": "02",
+    "idB": "12",
+    "verdict": "D",
+    "reason": "Desktop:02 is a positional navigator feeding one replaceable reader;12 displays two separately controlled team contexts around a connection and can add a third alongside. Phone:02 jumps from court to one reader;12 jumps among retained A/connection/B/C contexts and keeps each node’s selected field."
+  },
+  {
+    "idA": "02",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "Desktop:02 maps six topics to court positions with a side reader;15 maps evidence lanes against dated columns and attaches a detail agenda to its selected item. Phone:02 keeps the court overview;15 becomes a selected-period agenda with optional calendar. Spatial topic selection and temporal item selection are different architectures."
+  },
+  {
+    "idA": "02",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "Desktop:02 preserves a map while replacing one content reader;18 preserves selected identities while measures form comparison rows. Phone:02 presents one selected field-note document after the court;18 keeps all pinned names together beneath each measure. Map selection does not function as comparison-column selection."
+  },
+  {
+    "idA": "03",
+    "idB": "04",
+    "verdict": "R",
+    "reason": "Shared family:selected reading surfaces with persistent navigation. Desktop:03 pages an entire viewport chapter from a bottom dock;04 keeps a narrow source rail and a separate five-game score rail while replacing only the central program. Phone:03 retains a chapter pager;04 retains a source select and expandable live-score strip across source changes."
+  },
+  {
+    "idA": "03",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "Desktop:03 replaces the active chapter, including its composition;07 keeps score wall, independent lockers, roster bench and archive shelf in the same working room. Phone:03 uses a chapter-select dock;07 keeps a station document and sticky score/locker context, with multiple station disclosures open together."
+  },
+  {
+    "idA": "03",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "Desktop:03 is chapter reading;10 is a mutable two-package planning tray beside a player shelf and evidence notebook. Phone:03 replaces chapter content through its dock;10 keeps package totals in a sticky tray while users add players and retain evidence. The core state is a working selection rather than a page position."
+  },
+  {
+    "idA": "03",
+    "idB": "13",
+    "verdict": "R",
+    "reason": "Shared family:chapter-based reading with broad two-leaf content. Desktop:03 replaces a bounded viewport chapter using the bottom pager;13 unfolds a chapter in the document while preserving the other unequal chapter spines and fold/neighbor controls. Phone:03 remains a paged interior reader;13 is a vertically unfolded book with reachable spines."
+  },
+  {
+    "idA": "03",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "Desktop:03 chooses one authored chapter;16 keeps a user-composed collection and permits pinning, reordering, removal and addition of independent material. Phone:03 replaces its active chapter;16 preserves the chosen composition order and all retained pieces. A piece promotion changes the working document, not the chapter index."
+  },
+  {
+    "idA": "03",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop:03 starts in a paged matchup spread;19 starts with an alphabetic franchise field and inserts a selected dossier beneath its franchise. Phone:03 has a chapter-select dock and single active chapter;19 retains alphabet/filter discovery and an in-flow dossier, with a separate notebook navigation model."
+  },
+  {
+    "idA": "04",
+    "idB": "06",
+    "verdict": "D",
+    "reason": "Desktop:04 keeps source/program/score columns and swaps the program;06 reads filtered observations along a date spine. Phone:04 retains source selection plus score context during replacement;06 retains period/scope filters and dated entries. A chronological stream is not a source console with a persistent scoreboard."
+  },
+  {
+    "idA": "04",
+    "idB": "09",
+    "verdict": "D",
+    "reason": "Desktop:04 selects one central program while navigation and score rails persist;09 independently opens several evidence branches under two retained roots. Phone:04 replaces a selected source beneath compact console controls;09 keeps nested disclosures in the document and an open-branch index. Context retention operates at different levels."
+  },
+  {
+    "idA": "04",
+    "idB": "12",
+    "verdict": "D",
+    "reason": "Desktop:04 has one selected source program plus a persistent score rail;12 controls each connected team node independently and adds a third context without replacing the pair. Phone:04 changes source from a select;12 retains A/B/C contexts and uses connection/context jumps, including simultaneous full rosters."
+  },
+  {
+    "idA": "04",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "Desktop:04 is a source console with persistent score context;15 is a period-by-lane calendar with an attached detail agenda. Phone:04 retains a source selector and score strip;15 uses a period selector and Agenda/Calendar transformation. Selected source replacement and selected temporal item attachment are distinct."
+  },
+  {
+    "idA": "04",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "Desktop:04 replaces one source program beside persistent scores;18 constructs an identity comparison matrix whose columns can be added and removed. Phone:04 reads the selected program;18 regroups every pinned identity under each measure. The matrix preserves comparison scope rather than a console’s selected score."
+  },
+  {
+    "idA": "05",
+    "idB": "06",
+    "verdict": "D",
+    "reason": "Desktop:05 enters actual facts from an asymmetric text wall and replaces the semantic layer;06 filters a date-ordered stream. Phone:05 retains an irregular two-dimensional fact/name arrangement and contextual Zoom out;06 retains dated rows and scope/period filters. There is no shared continuous reading architecture."
+  },
+  {
+    "idA": "05",
+    "idB": "09",
+    "verdict": "D",
+    "reason": "Desktop:05 replaces its spatial fact layer on semantic entry and records a breadcrumb trail;09 keeps two roots and expands local nested branches in place. Phone:05 uses contextual Zoom out and a two-column name field;09 preserves branch indentation and concurrent opened evidence. Both have depth, but only09 accumulates open branches in its document."
+  },
+  {
+    "idA": "05",
+    "idB": "12",
+    "verdict": "D",
+    "reason": "Desktop:05 moves from selected fact to a full-width semantic layer;12 retains two independently controlled team nodes and an optional third around their connection. Phone:05 preserves the fact/name wall and Zoom out;12 exposes A/Connection/B/C jumps with each team’s retained selected field."
+  },
+  {
+    "idA": "05",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "Desktop:05 is an irregular populated fact wall with fact-specific drill-in layers;15 is a time-column/evidence-lane calendar with attached item detail. Phone:05 retains spatial fact relationships and contextual Zoom out;15 becomes a period-filtered agenda with optional calendar. Their entry coordinates and return models differ."
+  },
+  {
+    "idA": "05",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "Desktop:05 selects one actual fact and replaces the whole working layer;18 adds identities as comparison columns while keeping measures as rows. Phone:05 retains a two-column semantic name field and fact trail;18 places all pinned names together within each field. Semantic zoom and comparison accumulation differ."
+  },
+  {
+    "idA": "06",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "Desktop:06 is a date-ordered observation stream with filters;07 has simultaneously working score, locker, bench and archive stations. Phone:06 retains a chronological spine and filtered register;07 retains separate station mechanisms with sticky matchup context. Changing a shelf folder does not filter the room’s other stations."
+  },
+  {
+    "idA": "06",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "Desktop:06 is chronological reading with scope/period filters;10 is a selectable player shelf beside mutable A/B packages and retained evidence. Phone:06 keeps dated entries;10 keeps package totals fixed while editing and consulting notes. Its state records chosen players, not time-filtered observations."
+  },
+  {
+    "idA": "06",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "Desktop:06 keeps a chronological stream and filters entries;13 unfolds one broad chapter among visible book spines. Phone:06 keeps date markers and filters;13 retains a vertical chapter book with Fold/neighbor controls. Their hierarchy is time and observation versus chapter and spread."
+  },
+  {
+    "idA": "06",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "Desktop:06 orders source observations along a date spine;16 lets the user keep, pin and reorder independent material in a composition. Phone:06 keeps date-ordered entries;16 preserves user-defined piece order and addition/removal controls. Reordering retained content changes a composition rather than a chronological filter."
+  },
+  {
+    "idA": "06",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop:06 begins with a dated league log;19 begins with an alphabetic franchise field and inserts a selected dossier locally. Phone:06 retains dated entries and period filters;19 retains alphabet/search/order discovery and a franchise dossier with its own pages. Time and entity index are different primary structures."
+  },
+  {
+    "idA": "07",
+    "idB": "09",
+    "verdict": "R",
+    "reason": "Shared family:concurrent local evidence rather than a replaceable generic reader. Desktop:07 assigns distinct mechanisms to score wall, two-door roster cabinet, bench and shelf;09 nests evidence under current/team roots with a branch index. Phone:07 keeps station jumps and sticky matchup context;09 retains nested branch indentation and open-branch navigation."
+  },
+  {
+    "idA": "07",
+    "idB": "12",
+    "verdict": "R",
+    "reason": "Shared family:multiple retained franchise contexts. Desktop:07 opens independent roster doors inside a room alongside score, bench and archive mechanisms;12 centers a matchup connection between independently tabbed team nodes and an optional third node. Phone:07 retains station/score navigation;12 retains A/Connection/B/C jumps and node-specific fields."
+  },
+  {
+    "idA": "07",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "Desktop:07 is a concurrent working room with independently open lockers and shelf;15 is a temporal grid whose selected cell attaches an agenda. Phone:07 remains station-based with sticky matchup context;15 becomes a period agenda and optional calendar. Its items do not behave like independent station workspaces."
+  },
+  {
+    "idA": "07",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "Desktop:07 keeps distinct room stations and complete rosters in independent doors;18 keeps selected identities in a measure-by-identity matrix. Phone:07 stacks stations with score/locker jumps;18 groups all pinned identities within each field. Separate station mechanisms are not comparison columns."
+  },
+  {
+    "idA": "08",
+    "idB": "09",
+    "verdict": "D",
+    "reason": "Desktop:08 is a symmetric head-to-head comparison whose measure switch changes both sides together;09 expands independent nested branches under retained current/team roots. Phone:08 uses side and measure selectors;09 keeps concurrent local branches and a branch index. Selection replaces a comparison view in08 but accumulates local evidence in09."
+  },
+  {
+    "idA": "08",
+    "idB": "12",
+    "verdict": "R",
+    "reason": "Shared family:head-to-head team context. Desktop:08 aligns both sides to one shared measure switch;12 gives each team its own independent field controls around the connection and can retain a third team. Phone:08 shows one chosen side’s field;12 keeps full A/B/C contexts reachable through context jumps, including independently opened rosters."
+  },
+  {
+    "idA": "08",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "Desktop:08 aligns two teams around a shared comparison axis;15 aligns dated columns with evidence lanes and attaches selected-item detail. Phone:08 uses side/measure switches;15 uses period filtering and Agenda/Calendar mode. Team comparison and temporal planning retain different context and item relationships."
+  },
+  {
+    "idA": "08",
+    "idB": "18",
+    "verdict": "R",
+    "reason": "Shared family:comparison organized by measures. Desktop:08 compares the selected current pair symmetrically and switches a shared measure page;18 allows a variable pinned identity set across simultaneous field rows. Phone:08 uses a side toggle;18 lists every pinned identity under each field, so comparison remains simultaneous rather than alternating sides."
+  },
+  {
+    "idA": "09",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "Desktop:09 opens nested evidence branches under fixed roots;10 mutates A/B player packages beside a quote shelf and retains selected notebook references in the tray. Phone:09 retains local branches;10 retains fixed package totals while editing and consulting evidence. Opening evidence and constructing a working selection have different state and geometry."
+  },
+  {
+    "idA": "09",
+    "idB": "13",
+    "verdict": "R",
+    "reason": "Shared family:document-based evidence disclosure. Desktop:09 permits multiple nested branches open simultaneously at current/team/dated origins;13 unfolds one major chapter among persistent unequal spines. Phone:09 preserves branch depth and branch-index navigation;13 preserves fold/neighbor chapter controls and a single unfolded spread. Native disclosure alone does not make them duplicates."
+  },
+  {
+    "idA": "09",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "Desktop:09 expands fixed evidence routes locally;16 lets the user add, pin, reorder and remove independent material in a retained composition. Phone:09 keeps nested branch hierarchy;16 keeps user-defined piece order and arrangement controls. Its working document can be recomposed rather than merely unfolded."
+  },
+  {
+    "idA": "09",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop:09 starts with two evidence roots and local nested branches;19 starts with alphabetic franchises and inserts a selected dossier in the index. Phone:09 retains an open-branch index and nesting;19 retains letters/search/order and a separate league notebook. Evidence-route depth and franchise discovery differ."
+  },
+  {
+    "idA": "10",
+    "idB": "12",
+    "verdict": "R",
+    "reason": "Shared family:retained comparative workspaces. Desktop:10 constructs mutable A/B player packages and arithmetic totals beside a quote shelf;12 retains independent team fields around a matchup connection and optional third node. Phone:10 keeps totals in a persistent tray;12 uses A/Connection/B/C context jumps and keeps independently selected roster views."
+  },
+  {
+    "idA": "10",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "Desktop:10 edits player packages beside a quote shelf and notebook;15 selects evidence in a dated calendar and attaches its agenda. Phone:10 keeps working totals fixed while editing;15 keeps a period selector and Agenda/Calendar mode. Mutable package membership and temporal item navigation are distinct primary tasks."
+  },
+  {
+    "idA": "10",
+    "idB": "18",
+    "verdict": "R",
+    "reason": "Shared family:user-selected comparative work. Desktop:10 builds two trade-planning packages with membership changes, totals and retained notes;18 pins individual identities as matrix columns across distinct source measures. Phone:10 keeps A/B totals in a sticky tray;18 groups all pinned names under each field without package arithmetic."
+  },
+  {
+    "idA": "11",
+    "idB": "12",
+    "verdict": "D",
+    "reason": "Desktop:11 starts with a query and mixed team/player/task result rows that expand in place;12 starts with a connected pair of independently controlled team contexts and optional third. Phone:11 retains search/results;12 retains A/connection/B/C context navigation. Search result revelation is not independent linked-node comparison."
+  },
+  {
+    "idA": "11",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "Desktop:11 is query-first discovery across mixed entity/task results;15 is a calendar organized by source periods and evidence lanes. Phone:11 keeps query/category/order controls;15 uses period selection and agenda/calendar transformation. Their entry tasks, grouping and detail attachment differ."
+  },
+  {
+    "idA": "11",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "Desktop:11 reveals mixed search results in result rows;18 pins selected identities as matrix columns across measures. Phone:11 keeps result rows and query controls;18 groups all selected identities within each field. Query matches determine result membership in11, while explicit pins determine comparison scope in18."
+  },
+  {
+    "idA": "12",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "Desktop:12 retains two or three independently controlled team nodes around a connection;13 unfolds one chapter in a book of persistent spines. Phone:12 retains A/Connection/B/C context jumps and node fields;13 retains Fold/neighbor controls and a long active chapter. Concurrent entity context and exclusive chapter context differ."
+  },
+  {
+    "idA": "12",
+    "idB": "16",
+    "verdict": "R",
+    "reason": "Shared family:multiple retained entity/evidence contexts. Desktop:12 fixes contexts around a matchup connection with optional third team and per-node fields;16 allows arbitrary material addition, removal, pinning and ordering across the whole composition. Phone:12 exposes context jumps;16 preserves the user’s chosen piece order and arrangement actions."
+  },
+  {
+    "idA": "12",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop:12 starts with linked independent team nodes and an optional third;19 starts with an alphabetic franchise field and inserts one selected dossier at its origin. Phone:12 retains A/B/C contexts and connection jumps;19 retains alphabet/search/order discovery and one dossier with its own pages."
+  },
+  {
+    "idA": "13",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "Desktop:13 unfolds broad chapters among book spines;15 uses a source-period/evidence-lane calendar with an item-attached agenda. Phone:13 remains an unfolded vertical chapter book;15 becomes a selected-period agenda with optional calendar. Foldable chapter hierarchy and temporal coordinates are structurally different."
+  },
+  {
+    "idA": "13",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "Desktop:13 unfolds a single authored chapter among persistent spines;18 builds a comparison matrix from a variable pinned identity set. Phone:13 retains chapter fold/neighbor navigation;18 groups all pinned identities beneath each source field. Its comparison context is unrelated to chapter replacement."
+  },
+  {
+    "idA": "14",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "Desktop:14 keeps four independently scrolling thematic channels and cross-passage returns;15 uses dated calendar columns and evidence lanes with an attached agenda. Phone:14 selects one named channel while retaining its reading position;15 switches agenda/calendar around a selected period. Parallel reading context differs from temporal item context."
+  },
+  {
+    "idA": "14",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "Desktop:14 has four independent semantic reading channels with cross-links;18 uses chosen identities as columns and common measures as rows. Phone:14 replaces the selected channel while preserving offsets;18 groups all pinned names inside every field. Shared rectangular columns are insufficient to erase their different hierarchy and navigation."
+  },
+  {
+    "idA": "15",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "Desktop:15 navigates dated evidence in a calendar and attached agenda;16 builds and rearranges a collection of retained independent materials. Phone:15 projects a chosen period into an agenda;16 keeps the user’s saved item order and pin/add/remove controls. Calendar coordinates do not behave like a mutable composition."
+  },
+  {
+    "idA": "15",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop:15 indexes evidence by source period and lane;19 indexes franchises alphabetically with local dossier insertion. Phone:15 becomes a period agenda and optional calendar;19 keeps alphabet/search/order discovery and an in-flow franchise dossier. Time-based and entity-based navigation remain different after reflow."
+  },
+  {
+    "idA": "16",
+    "idB": "18",
+    "verdict": "R",
+    "reason": "Shared family:user-retained collections. Desktop:16 composes arbitrary score, franchise and evidence pieces with order/pin/remove controls;18 retains identities in fixed comparison-field rows. Phone:16 preserves chosen piece sequence;18 groups every pinned identity beneath each field. Pinning is shared, but the retained units and spatial relationships differ."
+  },
+  {
+    "idA": "17",
+    "idB": "18",
+    "verdict": "R",
+    "reason": "Shared family:structured data reading. Desktop:17 keeps fixed league or matchup records as rows and expands local subrows;18 makes selected identities variable columns across source-measure rows. Phone:17 projects chosen record fields and expands a roster beneath its team;18 groups all pinned identities within each measure. Different semantic axes and reveal survive reflow."
+  },
+  {
+    "idA": "18",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop:18 builds a field-by-pinned-identity comparison matrix;19 uses an alphabetic franchise field with in-flow single-dossier insertion and a separate notebook. Phone:18 keeps selected identities together inside each field;19 keeps letters/search/order and a franchise dossier. Comparison accumulation and entity discovery are distinct."
+  }
+]

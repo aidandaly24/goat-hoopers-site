@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>GOAT Hoopers — Compare the evidence</title><link rel="stylesheet" href="./matrix.css"></head>
+<body>
+<a class="skip" href="#working-title">Skip to comparisons</a>
+<header>
+  <a class="identity" href="./index.html">GOAT <span>Hoopers</span></a>
+  <a class="stock-link" href="/stocks#player-board">Stocks</a>
+  <details id="site-links"><summary>Explore</summary><nav aria-label="All destinations" id="destinations"></nav></details>
+</header>
+<main>
+  <div class="title-line"><div><p class="eyebrow">Evidence, in relation</p><h1 id="working-title" tabindex="-1">Compare the evidence.</h1></div><details id="provenance"><summary>Synthetic concept</summary><div id="provenance-copy"></div></details></div>
+  <p class="lead">Pin names to compare fields and periods. Follow a team to connect its records.</p>
+  <section class="workbench" aria-labelledby="comparison-title">
+    <div class="mode-line" role="group" aria-label="Comparison context"><button id="player-mode" aria-pressed="true">Compare players</button><button id="team-mode" aria-pressed="false">Follow a team</button></div>
+    <details id="pin-chooser"><summary>Change pinned names</summary><form id="pin-form" class="pin-controls"><label for="identity-search">Find a name<input id="identity-search" type="search" placeholder="Player or team"></label><label for="identity-select" id="identity-select-label">Add player<select id="identity-select"></select></label><button type="submit" id="pin-button">Pin comparison</button></form><button id="follow-pins">Follow these players’ teams</button></details>
+    <div class="matrix-intro"><h2 id="comparison-title">Player comparison</h2><p id="selection-status" aria-live="polite" role="status"></p></div>
+    <div class="comparison-window" tabindex="0" role="region" aria-label="Comparison table; scroll for all evidence"><table id="comparison-table"></table></div>
+    <p class="method">Fields stay separate: prices are modeled FAAB; completed points are counted fantasy points; form is EMA FP per game; NBA and college averages keep their own period.</p>
+    <div class="record-actions"><button id="show-transcript">Read this comparison as text</button><button id="show-records">Browse all source records</button><a id="edition-link" href="?view=public">Compare public edition</a></div>
+  </section>
+  <details id="transcript"><summary>Comparison transcript</summary><div id="transcript-content"></div></details>
+  <details id="source-register"><summary>All source records</summary><p>Open records in place. Pin a player or team to bring it into the comparison above.</p><button id="return-comparison">Return to comparison</button><div class="source-window" id="source-window"></div></details>
+</main>
+<footer><a href="/trade-analyzer">Trade analyzer</a><a href="/arcade/free-throw">Play free throws</a><a href="/weekly">Weekly archive</a><button id="footer-provenance">Fixture provenance</button></footer>
+<script type="module" src="./matrix.js"></script>
+</body></html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GOAT Hoopers — Parallel channels</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#channels">Skip to channels</a>
+  <header class="masthead">
+    <a class="identity" href="./index.html" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers"></a>
+    <nav class="primary" aria-label="Site"><a href="./index.html" aria-current="page">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a></nav>
+    <a class="phone-stocks" href="/stocks#player-board">Stocks</a>
+    <button type="button" id="route-toggle" aria-expanded="false" aria-controls="route-list">More</button>
+  </header>
+  <nav id="route-list" aria-label="All destinations" hidden><a href="./index.html" data-home>Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a><a href="/ai-decides">AI Decides</a><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/trade-analyzer">Trade analyzer</a><a href="/weekly">Weekly archive</a><a href="/arcade/free-throw">Free throw</a><a id="edition-switch" href="?view=public">Public edition</a></nav>
+  <details class="concept-provenance"><summary>Synthetic concept</summary><div><p>Offline design fixture, checked Nov 12, 2026. Current records, scores, prices, form, news and AI are synthetic.</p><p>Dated October editorial is preserved with its source periods. The fixture date is not today; drafts are not current published news. No live provider or AI generation runs here.</p><p id="full-provenance"></p></div></details>
+  <nav class="channel-index" aria-label="Choose a reading channel"></nav>
+  <main id="channels" class="channels" tabindex="-1"></main>
+  <div class="sr-only" id="announcement" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

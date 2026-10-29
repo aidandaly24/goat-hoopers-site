@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GOAT · League log</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#journal">Skip to league log</a>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="GOAT Hoopers home">GOAT <span>HOOPERS</span></a>
+    <nav class="primary" aria-label="Main navigation">
+      <a href="/" aria-current="page">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a>
+    </nav>
+    <details class="tools"><summary><span class="desktop-label">League tools</span><span class="phone-label">Menu</span></summary><nav aria-label="League tools"><a class="phone-label" href="/">Home</a><a class="phone-label" href="/intel">News</a><a class="phone-label" href="/history">History</a><a class="phone-label" href="/arcade">Arcade</a><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/ai-decides">AI Decides</a><a href="/trade-analyzer">Trade analyzer</a><a href="/weekly">Weekly archive</a><a href="/arcade/free-throw">Play Free Throw</a></nav></details>
+  </header>
+  <div class="page-intro">
+    <h1>League log</h1>
+    <a id="edition-switch" href="?view=public">Public view</a>
+  </div>
+  <details class="fixture"><summary>Synthetic concept</summary><p>Current scores, records, modeled prices, news, form, moves and AI are synthetic. November 12 is the fixture date, not today. Dated approved identities and editorial keep their source periods.</p></details>
+  <main id="journal" tabindex="-1">
+    <form class="log-controls" id="filters">
+      <fieldset><legend>Follow the log</legend><div class="scope-buttons"><button type="button" data-scope="all" aria-pressed="true">Everything</button><button type="button" data-scope="league" aria-pressed="false">League</button><button type="button" data-scope="personal" aria-pressed="false" id="personal-filter">My team</button><button type="button" data-scope="market" aria-pressed="false">Market</button></div></fieldset>
+      <label class="date-label">Source period<select id="source-period"><option value="all">All supplied dates</option><option value="nov12">Nov 12 · checked snapshot</option><option value="nov10">Nov 10 · saved AI</option><option value="week2">Nov 2–9 · completed Week 2</option><option value="october">Sep / Oct · dated drafts</option></select></label>
+      <button type="button" id="index-button" class="index-button">Team / player index</button>
+    </form>
+    <div class="view-line"><p id="view-status" role="status" aria-live="polite"></p><button type="button" id="reset-log">Reset log</button></div>
+    <div id="thread" class="thread"></div>
+  </main>
+  <footer><strong>GOAT Hoopers / League journal</strong><p>Local factual fixture; no live refresh. Model values are FAAB denominated, not cash or available FAAB. Dated editorial retains its own period and source.</p><nav aria-label="Explore"><a href="/stocks#player-board">Player Stocks</a><a href="/trade-analyzer">Trade analyzer</a><a href="/arcade/free-throw">Free Throw</a><a href="/ai-decides">AI Decides</a><a href="/weekly">Weekly archive</a></nav><p id="footer-source"></p></footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

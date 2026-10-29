@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GOAT Hoopers — Find your next move</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#query">Skip to search</a>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="GOAT Hoopers home">GOAT<span>Hoopers</span></a>
+    <nav aria-label="Primary"><a href="/" aria-current="page">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><button type="button" id="search-trigger">Search</button><button type="button" id="tools-trigger">Tools</button></nav>
+    <a class="comparison" id="comparison" href="?view=public">View public edition</a>
+  </header>
+
+  <main id="main">
+    <div class="context-line"><p id="edition-label">GOAT Hoopers</p><details class="provenance"><summary>Synthetic concept</summary><p>Offline design fixture. Current records, scores, modeled prices, form, news, moves and AI are synthetic. Fixture checked Nov 12, 2026; that is not today’s date. October editorial is a dated draft/lookback, separate from current Week 3. Search is local, with no AI generation. Public/member switches compare fixtures; they do not authenticate.</p></details></div>
+    <h1>Find your next move.</h1>
+    <form class="search" role="search" id="search-form">
+      <label for="query" class="sr-only">Search players, teams or tasks</label>
+      <div class="query-line"><input id="query" type="search" autocomplete="off" spellcheck="false" placeholder="Player, team, or task…" aria-describedby="query-help"><button id="clear-query" type="button" hidden>Clear</button><button type="submit" class="find">Find</button></div>
+      <p id="query-help">Try <button type="button" data-query="Reaves">Reaves</button>, <button type="button" data-query="Embiid">Embiid</button>, or <button type="button" data-query="this week">this week</button>.</p>
+    </form>
+    <div class="index-controls">
+      <div class="filters" role="group" aria-label="Result type"><button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="team" aria-pressed="false">Teams</button><button type="button" data-filter="player" aria-pressed="false">Players</button><button type="button" data-filter="task" aria-pressed="false">Tasks</button></div>
+      <label class="sort-label" for="result-sort">Order <select id="result-sort"><option value="relevance">Best match</option><option value="name">Name A–Z</option></select></label>
+    </div>
+    <div class="index-caption"><h2 id="result-heading">At a glance</h2><p id="result-count" role="status" aria-live="polite"></p></div>
+    <div id="results"></div>
+    <button id="more-results" type="button" hidden>Show more results</button>
+    
+  </main>
+  <footer><p>October drafts and historical finals retain their original source periods.</p><p><a id="comparison-footer" href="?view=public">View public edition</a><a href="/weekly">Weekly archive</a><a href="/history">League history</a><a href="/trade-analyzer">Trade analyzer</a></p></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

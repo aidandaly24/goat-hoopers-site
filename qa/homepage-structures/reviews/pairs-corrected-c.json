@@ -1,0 +1,380 @@
+[
+  {
+    "idA": "01",
+    "idB": "04",
+    "verdict": "D",
+    "reason": "Desktop: 01 uses a continuous full-width editorial flow with margin columns and anchor navigation; 04 uses a narrow source rail, large changing program, and separate persistent five-game score column. Navigation/context: 01 keeps all main sections in the document; native disclosures reveal detail, whereas 04 replaces the program while keeping league score context. Phone: 01 one continuous reading document with collapsed contents and in-place search/disclosures; 04 source select and compact five-game context bar stay above the changing program."
+  },
+  {
+    "idA": "01",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "Desktop: 01 uses a continuous full-width editorial flow with margin columns and anchor navigation; 07 uses a fixed room stations: score wall, two-column roster cabinet, foreground bench and archive shelf. Navigation/context: 01 keeps all main sections in the document; native disclosures reveal detail, whereas 07 opens several locker rosters concurrently without replacing the other stations. Phone: 01 one continuous reading document with collapsed contents and in-place search/disclosures; 07 retains a score/context bar and station jumps; lockers expand within their own cabinet."
+  },
+  {
+    "idA": "01",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "Desktop: 01 uses a continuous full-width editorial flow with margin columns and anchor navigation; 10 uses a quote shelf/evidence notebook beside a persistent two-package working tray. Navigation/context: 01 keeps all main sections in the document; native disclosures reveal detail, whereas 10 adding/moving players changes package membership and quoted totals while evidence remains consultable. Phone: 01 one continuous reading document with collapsed contents and in-place search/disclosures; 10 prioritizes the two-package tray, uses a persistent total/edit strip, and links to shelf/notebook."
+  },
+  {
+    "idA": "01",
+    "idB": "13",
+    "verdict": "R",
+    "reason": "Both organize broad league reading into editorial spreads. 01 keeps the whole long document and jumps to anchors; 13 changes the expanded body and leaves other topics as folded spines. On phone, 01 is continuous anchor reading while 13 preserves a fold/unfold chapter model. That is a real reveal/context distinction."
+  },
+  {
+    "idA": "01",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "Desktop: 01 uses a continuous full-width editorial flow with margin columns and anchor navigation; 16 uses a retained heterogeneous league material arranged in a mutable multi-column composition. Navigation/context: 01 keeps all main sections in the document; native disclosures reveal detail, whereas 16 actual keyboard ordering and adding material preserve prior blocks; local order survives reload. Phone: 01 one continuous reading document with collapsed contents and in-place search/disclosures; 16 uses the same user-selected reading order in a continuous composition with arrangement controls."
+  },
+  {
+    "idA": "01",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop: 01 uses a continuous full-width editorial flow with margin columns and anchor navigation; 19 uses a alphabetic franchise index of large identity rows with a selected in-flow dossier. Navigation/context: 01 keeps all main sections in the document; native disclosures reveal detail, whereas 19 opens or replaces a dossier directly under its franchise row; notebook is a separate league view. Phone: 01 one continuous reading document with collapsed contents and in-place search/disclosures; 19 retains the letter/search locator, in-flow dossier and compact Teams/Notebook/My team controls."
+  },
+  {
+    "idA": "02",
+    "idB": "04",
+    "verdict": "R",
+    "reason": "Both retain a navigator beside a selected reader. 02 devotes most desktop space to a spatial overview containing six live fact destinations; 04 has a thin source rail plus an independent five-game context column that survives program changes. Phone 02 retains the court and returns to it; 04 uses source selection plus persistent score context. Related reader family, materially different geometry and retained context."
+  },
+  {
+    "idA": "02",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "Desktop: 02 uses a large six-position court navigator beside one selected field reader; 07 uses a fixed room stations: score wall, two-column roster cabinet, foreground bench and archive shelf. Navigation/context: 02 changes the selected reader while the broad spatial overview remains, whereas 07 opens several locker rosters concurrently without replacing the other stations. Phone: 02 preserves the compact court above the selected inline reader and offers Back to court; 07 retains a score/context bar and station jumps; lockers expand within their own cabinet."
+  },
+  {
+    "idA": "02",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "Desktop: 02 uses a large six-position court navigator beside one selected field reader; 10 uses a quote shelf/evidence notebook beside a persistent two-package working tray. Navigation/context: 02 changes the selected reader while the broad spatial overview remains, whereas 10 adding/moving players changes package membership and quoted totals while evidence remains consultable. Phone: 02 preserves the compact court above the selected inline reader and offers Back to court; 10 prioritizes the two-package tray, uses a persistent total/edit strip, and links to shelf/notebook."
+  },
+  {
+    "idA": "02",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "Desktop: 02 uses a large six-position court navigator beside one selected field reader; 13 uses a broad folded chapter spines surrounding one expanded two-column spread. Navigation/context: 02 changes the selected reader while the broad spatial overview remains, whereas 13 opening a new spread folds the previous one; closed chapter identities remain available. Phone: 02 preserves the compact court above the selected inline reader and offers Back to court; 13 retains folded chapter spines and a single expanded vertical spread with previous/next controls."
+  },
+  {
+    "idA": "02",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "Desktop: 02 uses a large six-position court navigator beside one selected field reader; 16 uses a retained heterogeneous league material arranged in a mutable multi-column composition. Navigation/context: 02 changes the selected reader while the broad spatial overview remains, whereas 16 actual keyboard ordering and adding material preserve prior blocks; local order survives reload. Phone: 02 preserves the compact court above the selected inline reader and offers Back to court; 16 uses the same user-selected reading order in a continuous composition with arrangement controls."
+  },
+  {
+    "idA": "02",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop: 02 uses a large six-position court navigator beside one selected field reader; 19 uses a alphabetic franchise index of large identity rows with a selected in-flow dossier. Navigation/context: 02 changes the selected reader while the broad spatial overview remains, whereas 19 opens or replaces a dossier directly under its franchise row; notebook is a separate league view. Phone: 02 preserves the compact court above the selected inline reader and offers Back to court; 19 retains the letter/search locator, in-flow dossier and compact Teams/Notebook/My team controls."
+  },
+  {
+    "idA": "03",
+    "idB": "05",
+    "verdict": "D",
+    "reason": "Desktop: 03 uses a viewport chapter spread with two reading regions and a fixed bottom chapter index; 05 uses a staggered semantic facts with unequal spatial weight and no repeated panel list. Navigation/context: 03 moves among chapters; the week spread has selectable score/slate context, whereas 05 enters a fact-specific full layer, then deeper entity layers with a breadcrumb/Zoom out path. Phone: 03 uses a fixed chapter picker and an internally scrollable active chapter; 05 keeps an offset two-column fact field; deeper layers replace it inside the scrollable canvas."
+  },
+  {
+    "idA": "03",
+    "idB": "08",
+    "verdict": "D",
+    "reason": "Desktop: 03 uses a viewport chapter spread with two reading regions and a fixed bottom chapter index; 08 uses a bilateral team comparison organized around a central field-label spine. Navigation/context: 03 moves among chapters; the week spread has selectable score/slate context, whereas 08 changes comparison subject or pairing while retaining the two teams as the frame. Phone: 03 uses a fixed chapter picker and an internally scrollable active chapter; 08 keeps the pair header, selects one side, and changes comparison subject with a select."
+  },
+  {
+    "idA": "03",
+    "idB": "11",
+    "verdict": "D",
+    "reason": "Desktop: 03 uses a viewport chapter spread with two reading regions and a fixed bottom chapter index; 11 uses a large search field over ranked team/player/task action rows with in-flow readers. Navigation/context: 03 moves among chapters; the week spread has selectable score/slate context, whereas 11 query/filter changes the action set; opening a hit expands its specific reader under the hit. Phone: 03 uses a fixed chapter picker and an internally scrollable active chapter; 11 retains query/results and the in-flow expanded reader, with a vertical search/results layout."
+  },
+  {
+    "idA": "03",
+    "idB": "14",
+    "verdict": "R",
+    "reason": "Both use adjacent desktop reading regions and retain reading controls. 03 moves an indexed chapter spread with a fixed bottom chapter bar; 14 keeps four independently scrolling subject columns visible simultaneously and uses cross-channel returns. Phone 03 has a chapter picker, while 14 has persistent channel selection and individual channel positions. This changes the relationship between views."
+  },
+  {
+    "idA": "03",
+    "idB": "17",
+    "verdict": "D",
+    "reason": "Desktop: 03 uses a viewport chapter spread with two reading regions and a fixed bottom chapter index; 17 uses a semantic team/matchup ledger with shared field columns and expandable full-width subrows. Navigation/context: 03 moves among chapters; the week spread has selectable score/slate context, whereas 17 changes sheets, sorts/filters rows and opens detail under the corresponding row. Phone: 03 uses a fixed chapter picker and an internally scrollable active chapter; 17 uses Sheet and Fields selectors to retain row identity while changing its visible field group."
+  },
+  {
+    "idA": "03",
+    "idB": "20",
+    "verdict": "D",
+    "reason": "Desktop: 03 uses a viewport chapter spread with two reading regions and a fixed bottom chapter index; 20 uses a persistent current-matchup origin beside a branching question/answer reading region. Navigation/context: 03 moves among chapters; the week spread has selectable score/slate context, whereas 20 replaces the active branch, retains the origin, and supplies decision-path navigation. Phone: 03 uses a fixed chapter picker and an internally scrollable active chapter; 20 compresses the origin facts and follows one active decision path with breadcrumbs/back."
+  },
+  {
+    "idA": "04",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "Desktop: 04 uses a narrow source rail, large changing program, and separate persistent five-game score column; 07 uses a fixed room stations: score wall, two-column roster cabinet, foreground bench and archive shelf. Navigation/context: 04 replaces the program while keeping league score context, whereas 07 opens several locker rosters concurrently without replacing the other stations. Phone: 04 source select and compact five-game context bar stay above the changing program; 07 retains a score/context bar and station jumps; lockers expand within their own cabinet."
+  },
+  {
+    "idA": "04",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "Desktop: 04 uses a narrow source rail, large changing program, and separate persistent five-game score column; 10 uses a quote shelf/evidence notebook beside a persistent two-package working tray. Navigation/context: 04 replaces the program while keeping league score context, whereas 10 adding/moving players changes package membership and quoted totals while evidence remains consultable. Phone: 04 source select and compact five-game context bar stay above the changing program; 10 prioritizes the two-package tray, uses a persistent total/edit strip, and links to shelf/notebook."
+  },
+  {
+    "idA": "04",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "Desktop: 04 uses a narrow source rail, large changing program, and separate persistent five-game score column; 13 uses a broad folded chapter spines surrounding one expanded two-column spread. Navigation/context: 04 replaces the program while keeping league score context, whereas 13 opening a new spread folds the previous one; closed chapter identities remain available. Phone: 04 source select and compact five-game context bar stay above the changing program; 13 retains folded chapter spines and a single expanded vertical spread with previous/next controls."
+  },
+  {
+    "idA": "04",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "Desktop: 04 uses a narrow source rail, large changing program, and separate persistent five-game score column; 16 uses a retained heterogeneous league material arranged in a mutable multi-column composition. Navigation/context: 04 replaces the program while keeping league score context, whereas 16 actual keyboard ordering and adding material preserve prior blocks; local order survives reload. Phone: 04 source select and compact five-game context bar stay above the changing program; 16 uses the same user-selected reading order in a continuous composition with arrangement controls."
+  },
+  {
+    "idA": "04",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop: 04 uses a narrow source rail, large changing program, and separate persistent five-game score column; 19 uses a alphabetic franchise index of large identity rows with a selected in-flow dossier. Navigation/context: 04 replaces the program while keeping league score context, whereas 19 opens or replaces a dossier directly under its franchise row; notebook is a separate league view. Phone: 04 source select and compact five-game context bar stay above the changing program; 19 retains the letter/search locator, in-flow dossier and compact Teams/Notebook/My team controls."
+  },
+  {
+    "idA": "05",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "Desktop: 05 uses a staggered semantic facts with unequal spatial weight and no repeated panel list; 07 uses a fixed room stations: score wall, two-column roster cabinet, foreground bench and archive shelf. Navigation/context: 05 enters a fact-specific full layer, then deeper entity layers with a breadcrumb/Zoom out path, whereas 07 opens several locker rosters concurrently without replacing the other stations. Phone: 05 keeps an offset two-column fact field; deeper layers replace it inside the scrollable canvas; 07 retains a score/context bar and station jumps; lockers expand within their own cabinet."
+  },
+  {
+    "idA": "05",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "Desktop: 05 uses a staggered semantic facts with unequal spatial weight and no repeated panel list; 10 uses a quote shelf/evidence notebook beside a persistent two-package working tray. Navigation/context: 05 enters a fact-specific full layer, then deeper entity layers with a breadcrumb/Zoom out path, whereas 10 adding/moving players changes package membership and quoted totals while evidence remains consultable. Phone: 05 keeps an offset two-column fact field; deeper layers replace it inside the scrollable canvas; 10 prioritizes the two-package tray, uses a persistent total/edit strip, and links to shelf/notebook."
+  },
+  {
+    "idA": "05",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "Desktop: 05 uses a staggered semantic facts with unequal spatial weight and no repeated panel list; 13 uses a broad folded chapter spines surrounding one expanded two-column spread. Navigation/context: 05 enters a fact-specific full layer, then deeper entity layers with a breadcrumb/Zoom out path, whereas 13 opening a new spread folds the previous one; closed chapter identities remain available. Phone: 05 keeps an offset two-column fact field; deeper layers replace it inside the scrollable canvas; 13 retains folded chapter spines and a single expanded vertical spread with previous/next controls."
+  },
+  {
+    "idA": "05",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "Desktop: 05 uses a staggered semantic facts with unequal spatial weight and no repeated panel list; 16 uses a retained heterogeneous league material arranged in a mutable multi-column composition. Navigation/context: 05 enters a fact-specific full layer, then deeper entity layers with a breadcrumb/Zoom out path, whereas 16 actual keyboard ordering and adding material preserve prior blocks; local order survives reload. Phone: 05 keeps an offset two-column fact field; deeper layers replace it inside the scrollable canvas; 16 uses the same user-selected reading order in a continuous composition with arrangement controls."
+  },
+  {
+    "idA": "05",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop: 05 uses a staggered semantic facts with unequal spatial weight and no repeated panel list; 19 uses a alphabetic franchise index of large identity rows with a selected in-flow dossier. Navigation/context: 05 enters a fact-specific full layer, then deeper entity layers with a breadcrumb/Zoom out path, whereas 19 opens or replaces a dossier directly under its franchise row; notebook is a separate league view. Phone: 05 keeps an offset two-column fact field; deeper layers replace it inside the scrollable canvas; 19 retains the letter/search locator, in-flow dossier and compact Teams/Notebook/My team controls."
+  },
+  {
+    "idA": "06",
+    "idB": "08",
+    "verdict": "D",
+    "reason": "Desktop: 06 uses a dated event spine with left context and right evidence, filtered as a chronological log; 08 uses a bilateral team comparison organized around a central field-label spine. Navigation/context: 06 filters event membership by topic/source period rather than replacing a generic dashboard, whereas 08 changes comparison subject or pairing while retaining the two teams as the frame. Phone: 06 keeps dates attached to events in a single chronology with topic/period controls; 08 keeps the pair header, selects one side, and changes comparison subject with a select."
+  },
+  {
+    "idA": "06",
+    "idB": "11",
+    "verdict": "D",
+    "reason": "Desktop: 06 uses a dated event spine with left context and right evidence, filtered as a chronological log; 11 uses a large search field over ranked team/player/task action rows with in-flow readers. Navigation/context: 06 filters event membership by topic/source period rather than replacing a generic dashboard, whereas 11 query/filter changes the action set; opening a hit expands its specific reader under the hit. Phone: 06 keeps dates attached to events in a single chronology with topic/period controls; 11 retains query/results and the in-flow expanded reader, with a vertical search/results layout."
+  },
+  {
+    "idA": "06",
+    "idB": "14",
+    "verdict": "D",
+    "reason": "Desktop: 06 uses a dated event spine with left context and right evidence, filtered as a chronological log; 14 uses a four simultaneous subject columns with independent vertical readers. Navigation/context: 06 filters event membership by topic/source period rather than replacing a generic dashboard, whereas 14 cross-links move the related reader while preserving other columns and read positions. Phone: 06 keeps dates attached to events in a single chronology with topic/period controls; 14 uses four channel buttons and one channel viewport, preserving each channel position."
+  },
+  {
+    "idA": "06",
+    "idB": "17",
+    "verdict": "D",
+    "reason": "Desktop: 06 uses a dated event spine with left context and right evidence, filtered as a chronological log; 17 uses a semantic team/matchup ledger with shared field columns and expandable full-width subrows. Navigation/context: 06 filters event membership by topic/source period rather than replacing a generic dashboard, whereas 17 changes sheets, sorts/filters rows and opens detail under the corresponding row. Phone: 06 keeps dates attached to events in a single chronology with topic/period controls; 17 uses Sheet and Fields selectors to retain row identity while changing its visible field group."
+  },
+  {
+    "idA": "06",
+    "idB": "20",
+    "verdict": "D",
+    "reason": "Desktop: 06 uses a dated event spine with left context and right evidence, filtered as a chronological log; 20 uses a persistent current-matchup origin beside a branching question/answer reading region. Navigation/context: 06 filters event membership by topic/source period rather than replacing a generic dashboard, whereas 20 replaces the active branch, retains the origin, and supplies decision-path navigation. Phone: 06 keeps dates attached to events in a single chronology with topic/period controls; 20 compresses the origin facts and follows one active decision path with breadcrumbs/back."
+  },
+  {
+    "idA": "07",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "Desktop: 07 uses a fixed room stations: score wall, two-column roster cabinet, foreground bench and archive shelf; 10 uses a quote shelf/evidence notebook beside a persistent two-package working tray. Navigation/context: 07 opens several locker rosters concurrently without replacing the other stations, whereas 10 adding/moving players changes package membership and quoted totals while evidence remains consultable. Phone: 07 retains a score/context bar and station jumps; lockers expand within their own cabinet; 10 prioritizes the two-package tray, uses a persistent total/edit strip, and links to shelf/notebook."
+  },
+  {
+    "idA": "07",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "Desktop: 07 uses a fixed room stations: score wall, two-column roster cabinet, foreground bench and archive shelf; 13 uses a broad folded chapter spines surrounding one expanded two-column spread. Navigation/context: 07 opens several locker rosters concurrently without replacing the other stations, whereas 13 opening a new spread folds the previous one; closed chapter identities remain available. Phone: 07 retains a score/context bar and station jumps; lockers expand within their own cabinet; 13 retains folded chapter spines and a single expanded vertical spread with previous/next controls."
+  },
+  {
+    "idA": "07",
+    "idB": "16",
+    "verdict": "R",
+    "reason": "Both retain several pieces of information concurrently. 07 has fixed score/cabinet/bench/archive stations and opens multiple roster doors inside the cabinet. 16 actually changes composition order, pins/removes/adds material and saves the order locally. On phone 07 keeps score context and station jumps; 16 follows the user-arranged order. The observed behavior goes beyond a new room/canvas metaphor."
+  },
+  {
+    "idA": "07",
+    "idB": "19",
+    "verdict": "R",
+    "reason": "Both allow a franchise roster to open in context. 07 retains multiple open lockers beside fixed score, personal bench and archive stations. 19 is an alphabetic identity index with one selected dossier inserted below the relevant row and a separate notebook. Phone 07 retains the score/station relationship and cabinet; 19 retains locator plus dossier. These are substantive context/reveal differences."
+  },
+  {
+    "idA": "08",
+    "idB": "10",
+    "verdict": "R",
+    "reason": "Both expose a bilateral comparison. 08 compares two actual teams by shared fields and changes subject within the same paired frame. 10 builds arbitrary player packages and updates membership/totals while consulting a separate notebook. Phone 08 chooses a side under a persistent pair header; 10 keeps both package totals in an edit strip. The entry task and editable state differ."
+  },
+  {
+    "idA": "08",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "Desktop: 08 uses a bilateral team comparison organized around a central field-label spine; 13 uses a broad folded chapter spines surrounding one expanded two-column spread. Navigation/context: 08 changes comparison subject or pairing while retaining the two teams as the frame, whereas 13 opening a new spread folds the previous one; closed chapter identities remain available. Phone: 08 keeps the pair header, selects one side, and changes comparison subject with a select; 13 retains folded chapter spines and a single expanded vertical spread with previous/next controls."
+  },
+  {
+    "idA": "08",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "Desktop: 08 uses a bilateral team comparison organized around a central field-label spine; 16 uses a retained heterogeneous league material arranged in a mutable multi-column composition. Navigation/context: 08 changes comparison subject or pairing while retaining the two teams as the frame, whereas 16 actual keyboard ordering and adding material preserve prior blocks; local order survives reload. Phone: 08 keeps the pair header, selects one side, and changes comparison subject with a select; 16 uses the same user-selected reading order in a continuous composition with arrangement controls."
+  },
+  {
+    "idA": "08",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop: 08 uses a bilateral team comparison organized around a central field-label spine; 19 uses a alphabetic franchise index of large identity rows with a selected in-flow dossier. Navigation/context: 08 changes comparison subject or pairing while retaining the two teams as the frame, whereas 19 opens or replaces a dossier directly under its franchise row; notebook is a separate league view. Phone: 08 keeps the pair header, selects one side, and changes comparison subject with a select; 19 retains the letter/search locator, in-flow dossier and compact Teams/Notebook/My team controls."
+  },
+  {
+    "idA": "09",
+    "idB": "11",
+    "verdict": "D",
+    "reason": "Desktop: 09 uses a parallel current/team evidence arms with independently expandable downstream branches; 11 uses a large search field over ranked team/player/task action rows with in-flow readers. Navigation/context: 09 retains multiple open branches; its branch index navigates to retained content, whereas 11 query/filter changes the action set; opening a hit expands its specific reader under the hit. Phone: 09 keeps the open branch document and Branches index instead of reducing it to one active reader; 11 retains query/results and the in-flow expanded reader, with a vertical search/results layout."
+  },
+  {
+    "idA": "09",
+    "idB": "14",
+    "verdict": "R",
+    "reason": "Both support parallel evidence reading. 09 is an expandable branch document: opening form and league register retains other open branches in normal flow. 14 uses four bounded, independently scrolling topic readers and cross-channel return positions. Phone 09 retains several branches in the document; 14 shows one selected channel viewport. They do not collapse to the same phone navigation."
+  },
+  {
+    "idA": "09",
+    "idB": "17",
+    "verdict": "D",
+    "reason": "Desktop: 09 uses a parallel current/team evidence arms with independently expandable downstream branches; 17 uses a semantic team/matchup ledger with shared field columns and expandable full-width subrows. Navigation/context: 09 retains multiple open branches; its branch index navigates to retained content, whereas 17 changes sheets, sorts/filters rows and opens detail under the corresponding row. Phone: 09 keeps the open branch document and Branches index instead of reducing it to one active reader; 17 uses Sheet and Fields selectors to retain row identity while changing its visible field group."
+  },
+  {
+    "idA": "09",
+    "idB": "20",
+    "verdict": "R",
+    "reason": "Both use branch decisions. 09 lets several branches remain expanded together and its index jumps among them. 20 replaces the active right-hand decision region while retaining a compact current-matchup origin and a decision path. Phone 09 preserves the multi-open branch document, whereas 20 follows a single active path. Persistence is the structural distinction."
+  },
+  {
+    "idA": "10",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "Desktop: 10 uses a quote shelf/evidence notebook beside a persistent two-package working tray; 13 uses a broad folded chapter spines surrounding one expanded two-column spread. Navigation/context: 10 adding/moving players changes package membership and quoted totals while evidence remains consultable, whereas 13 opening a new spread folds the previous one; closed chapter identities remain available. Phone: 10 prioritizes the two-package tray, uses a persistent total/edit strip, and links to shelf/notebook; 13 retains folded chapter spines and a single expanded vertical spread with previous/next controls."
+  },
+  {
+    "idA": "10",
+    "idB": "16",
+    "verdict": "R",
+    "reason": "Both preserve a working set while adding material. 10 edits player membership in two quote packages, recomputes package totals, and consults evidence beside the tray. 16 edits the order/pinning/membership of information blocks themselves. Phone 10 keeps dual totals/edit access while visiting shelf/notebook; 16 retains the saved reading order. The working objects and navigation differ."
+  },
+  {
+    "idA": "10",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop: 10 uses a quote shelf/evidence notebook beside a persistent two-package working tray; 19 uses a alphabetic franchise index of large identity rows with a selected in-flow dossier. Navigation/context: 10 adding/moving players changes package membership and quoted totals while evidence remains consultable, whereas 19 opens or replaces a dossier directly under its franchise row; notebook is a separate league view. Phone: 10 prioritizes the two-package tray, uses a persistent total/edit strip, and links to shelf/notebook; 19 retains the letter/search locator, in-flow dossier and compact Teams/Notebook/My team controls."
+  },
+  {
+    "idA": "11",
+    "idB": "13",
+    "verdict": "R",
+    "reason": "Both can retain closed entry headings around one expanded in-flow reader. 11 derives a mixed action/entity result set from query and filters; its selected hit expands below that result. 13 uses a fixed folded chapter sequence and exchanges the whole expanded spread. Phone 11 remains a query/result task surface; 13 remains a folded reading book. This is more than title or section-order variation."
+  },
+  {
+    "idA": "11",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "Desktop: 11 uses a large search field over ranked team/player/task action rows with in-flow readers; 16 uses a retained heterogeneous league material arranged in a mutable multi-column composition. Navigation/context: 11 query/filter changes the action set; opening a hit expands its specific reader under the hit, whereas 16 actual keyboard ordering and adding material preserve prior blocks; local order survives reload. Phone: 11 retains query/results and the in-flow expanded reader, with a vertical search/results layout; 16 uses the same user-selected reading order in a continuous composition with arrangement controls."
+  },
+  {
+    "idA": "11",
+    "idB": "19",
+    "verdict": "R",
+    "reason": "Both support finding an entity and opening an inline reader. 11 begins with a global player/team/task query and ranked action results; 19 begins with a complete alphabetic franchise field and inserts a franchise dossier under its identity row. On phone the former retains query/results and the latter letter locator plus dossier/navigation. Related find-and-read family, meaningful entry and information-scope differences."
+  },
+  {
+    "idA": "12",
+    "idB": "14",
+    "verdict": "D",
+    "reason": "Desktop: 12 uses a two independently usable team contexts flanking a matchup/ownership bridge, with optional third context; 14 uses a four simultaneous subject columns with independent vertical readers. Navigation/context: 12 opening Team A roster or pinning a third retains the other team contexts and their fields, whereas 14 cross-links move the related reader while preserving other columns and read positions. Phone: 12 keeps A/Connection/B/C jumps over retained contexts; they remain in the document; 14 uses four channel buttons and one channel viewport, preserving each channel position."
+  },
+  {
+    "idA": "12",
+    "idB": "17",
+    "verdict": "D",
+    "reason": "Desktop: 12 uses a two independently usable team contexts flanking a matchup/ownership bridge, with optional third context; 17 uses a semantic team/matchup ledger with shared field columns and expandable full-width subrows. Navigation/context: 12 opening Team A roster or pinning a third retains the other team contexts and their fields, whereas 17 changes sheets, sorts/filters rows and opens detail under the corresponding row. Phone: 12 keeps A/Connection/B/C jumps over retained contexts; they remain in the document; 17 uses Sheet and Fields selectors to retain row identity while changing its visible field group."
+  },
+  {
+    "idA": "12",
+    "idB": "20",
+    "verdict": "D",
+    "reason": "Desktop: 12 uses a two independently usable team contexts flanking a matchup/ownership bridge, with optional third context; 20 uses a persistent current-matchup origin beside a branching question/answer reading region. Navigation/context: 12 opening Team A roster or pinning a third retains the other team contexts and their fields, whereas 20 replaces the active branch, retains the origin, and supplies decision-path navigation. Phone: 12 keeps A/Connection/B/C jumps over retained contexts; they remain in the document; 20 compresses the origin facts and follows one active decision path with breadcrumbs/back."
+  },
+  {
+    "idA": "13",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "Desktop: 13 uses a broad folded chapter spines surrounding one expanded two-column spread; 16 uses a retained heterogeneous league material arranged in a mutable multi-column composition. Navigation/context: 13 opening a new spread folds the previous one; closed chapter identities remain available, whereas 16 actual keyboard ordering and adding material preserve prior blocks; local order survives reload. Phone: 13 retains folded chapter spines and a single expanded vertical spread with previous/next controls; 16 uses the same user-selected reading order in a continuous composition with arrangement controls."
+  },
+  {
+    "idA": "13",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop: 13 uses a broad folded chapter spines surrounding one expanded two-column spread; 19 uses a alphabetic franchise index of large identity rows with a selected in-flow dossier. Navigation/context: 13 opening a new spread folds the previous one; closed chapter identities remain available, whereas 19 opens or replaces a dossier directly under its franchise row; notebook is a separate league view. Phone: 13 retains folded chapter spines and a single expanded vertical spread with previous/next controls; 19 retains the letter/search locator, in-flow dossier and compact Teams/Notebook/My team controls."
+  },
+  {
+    "idA": "14",
+    "idB": "16",
+    "verdict": "R",
+    "reason": "Both can keep multiple information regions visible on desktop. 14 fixes four subject channels with independent scroll/return positions. 16 lets users change the composition itself through real ordering, pinning, adding and removal. Phone 14 selects one preserved channel viewport; 16 presents the retained composition in its saved order. The responsive model and user control of geometry differ."
+  },
+  {
+    "idA": "14",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop: 14 uses a four simultaneous subject columns with independent vertical readers; 19 uses a alphabetic franchise index of large identity rows with a selected in-flow dossier. Navigation/context: 14 cross-links move the related reader while preserving other columns and read positions, whereas 19 opens or replaces a dossier directly under its franchise row; notebook is a separate league view. Phone: 14 uses four channel buttons and one channel viewport, preserving each channel position; 19 retains the letter/search locator, in-flow dossier and compact Teams/Notebook/My team controls."
+  },
+  {
+    "idA": "15",
+    "idB": "17",
+    "verdict": "D",
+    "reason": "Desktop: 15 uses a source-period by content-lane calendar grid with explicit gaps and in-place agenda expansion; 17 uses a semantic team/matchup ledger with shared field columns and expandable full-width subrows. Navigation/context: 15 selects source period or a calendar item to open its agenda within the grid, whereas 17 changes sheets, sorts/filters rows and opens detail under the corresponding row. Phone: 15 transforms to a selected-period agenda with an optional Calendar mode; 17 uses Sheet and Fields selectors to retain row identity while changing its visible field group."
+  },
+  {
+    "idA": "15",
+    "idB": "20",
+    "verdict": "D",
+    "reason": "Desktop: 15 uses a source-period by content-lane calendar grid with explicit gaps and in-place agenda expansion; 20 uses a persistent current-matchup origin beside a branching question/answer reading region. Navigation/context: 15 selects source period or a calendar item to open its agenda within the grid, whereas 20 replaces the active branch, retains the origin, and supplies decision-path navigation. Phone: 15 transforms to a selected-period agenda with an optional Calendar mode; 20 compresses the origin facts and follows one active decision path with breadcrumbs/back."
+  },
+  {
+    "idA": "16",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Desktop: 16 uses a retained heterogeneous league material arranged in a mutable multi-column composition; 19 uses a alphabetic franchise index of large identity rows with a selected in-flow dossier. Navigation/context: 16 actual keyboard ordering and adding material preserve prior blocks; local order survives reload, whereas 19 opens or replaces a dossier directly under its franchise row; notebook is a separate league view. Phone: 16 uses the same user-selected reading order in a continuous composition with arrangement controls; 19 retains the letter/search locator, in-flow dossier and compact Teams/Notebook/My team controls."
+  },
+  {
+    "idA": "17",
+    "idB": "19",
+    "verdict": "R",
+    "reason": "Both are team indexes with in-flow expansion. 17 is a semantic multi-field ledger whose rows support cross-team field comparison, sheet changes and full-width subrows. 19 is an alphabetic identity field with a selected franchise dossier and separate notebook. Phone 17 changes field groups through a Fields control; 19 keeps alphabet/search locator and dossier. The difference is not only row typography."
+  },
+  {
+    "idA": "18",
+    "idB": "20",
+    "verdict": "D",
+    "reason": "Desktop: 18 uses a identity-by-measure matrix with pinned player columns and distinct source-period rows; 20 uses a persistent current-matchup origin beside a branching question/answer reading region. Navigation/context: 18 adds identities to the comparison, follows their teams, and keeps a source register inline, whereas 20 replaces the active branch, retains the origin, and supplies decision-path navigation. Phone: 18 transposes each field into a group containing all pinned names rather than one card per entity; 20 compresses the origin facts and follows one active decision path with breadcrumbs/back."
+  }
+]

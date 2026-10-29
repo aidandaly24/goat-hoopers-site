@@ -1,0 +1,2976 @@
+{
+  "reviewer": "corrected-c",
+  "reviewedAt": "2026-10-29T16:18:10.315397+00:00",
+  "assignment": "qa/homepage-structures/reviews/assignment-3.json",
+  "scope": "Corrected structural-revisions/01..20 only; no author/rating report read before first pixel observations. Member query. Native viewport desktop1440x1000 / phone390x844, reduced motion. Pointer clicks, keyboard Enter, native select changes, input, wheel and reload. No goatStudy.activate used for live checks.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/structural-revisions/01/STRUCTURE.md",
+      "sha256": "df2baac63bce5741fbf696410bf58d3370c5000c704f8bb0d5ca61c7730ab2a7"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/01/app.js",
+      "sha256": "3eff2ced72491256434d280bd6e9105ecf47432c604d3372c7138edf14f5a62b"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/01/index.html",
+      "sha256": "cef2e85c8c3879bb3b853513163bdc694f689dbc9da438422392ec516177e474"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/01/style.css",
+      "sha256": "6a19c23c454046dccd88d15f1539336704f2c7e4e49b85ca0417eb583a081afe"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/02/STRUCTURE.md",
+      "sha256": "9571380591db05f0b887f6a229cc9f0da82b62715e7975beeac05d45a690fd72"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/02/app.js",
+      "sha256": "f0102a4908e7af8dca255708f3a7f51f89f32f639238f6cb2b1d99962492ac21"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/02/index.html",
+      "sha256": "ca32fea6f270e333bd338ccd756027cd8ebbf8b5242f2792c55a9e7b46534378"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/02/style.css",
+      "sha256": "f5818461228b50dd8bf278769b2a867a084f3323c6acf4e5dcd32e77084eac0e"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/03/STRUCTURE.md",
+      "sha256": "50fcbbcab7017cf4b75a3fdaa829afa7571454868c41af86a0452613b9fc1c05"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/03/index.html",
+      "sha256": "89baa6726d70db8a839f125f92b5bbd43131f4b1ec29e9127c5f022487428c7a"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/03/study.css",
+      "sha256": "c9d59db804aaf698948985d94c9fa6312962c04b9729d74810c6d37fda2412d6"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/03/study.js",
+      "sha256": "a7fdf65d03ef84c515abec0377d94ca0df85c1bd9a6bd4128820418e8408428d"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/04/STRUCTURE.md",
+      "sha256": "256e5009a55d68813c2147d3549421368ccbbdf67fea075ae2a65b5995657735"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/04/app.js",
+      "sha256": "77b5c71cf7cbf19b6531e72f027369292f916058ea635b830d9bf18789e66ceb"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/04/index.html",
+      "sha256": "736ac2eb64a83d88bfd0cbc1acd5f4201a0a408de39bf99fa0c582608c1e3626"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/04/style.css",
+      "sha256": "62119d2e128f4396dc22e0b68717f9aa5201276c9bfdffcc48406b4ff59225fa"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/05/STRUCTURE.md",
+      "sha256": "422919d1f83a9ecfb72c8bf85c41b427548559d9bda243501dc1fc131c73e7ee"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/05/index.html",
+      "sha256": "9f92a64904413f8a363c4580e56ca2c4714d1a061b0c020e1e1428f0a1485fb8"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/05/wall.css",
+      "sha256": "839a082a5b80c727a9836812478ca7c1d0375d31d83253b063892279d8eb38c9"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/05/wall.js",
+      "sha256": "752d67305a05e265392919365bea2f4043661f8b7a28525c14ef3270fe2ddafc"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/06/STRUCTURE.md",
+      "sha256": "67b4e6f78b4d8a40bbcda1d0896dd3a699734cbe9faf5fe044dc59b64f612cfb"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/06/app.js",
+      "sha256": "8daab21268d9a676ceb9a5d0fa7e0ffc2f11938129f7d53051a4897adaeb4b43"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/06/index.html",
+      "sha256": "78d525376a7f6d0204058900786f8c556f77dab7083708ed1a64f29b6b2728df"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/06/style.css",
+      "sha256": "71cefdd52ea5c39dd683318262fbfe71852a9a727488500c910fae3b8ac46e3a"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/07/STRUCTURE.md",
+      "sha256": "2d3586f9e8a392b59159625db2c89291ce656d5d97327771e5edf06c6f2a57cd"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/07/index.html",
+      "sha256": "be32f6b34eb3d7ae9b680873dd514953e1859e728aef66f6f30a6bedd2a10490"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/07/room.css",
+      "sha256": "961216ecd36e44e76299eeca05127074f5f22f87a72c26f9ee56b408e2302198"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/07/room.js",
+      "sha256": "4183db826961e3d409acdc47ec25f5b5c8f6d99a38cadae0c5a4e19f63f794ee"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/08/STRUCTURE.md",
+      "sha256": "e7fc10d2adbd8713281d6987ded333863c3004e4b38720564bf39ab7d6db69ff"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/08/index.html",
+      "sha256": "74f835c3e4502c94c8030e8dc3feff871d21d19bd6a57a398881efb4d0425594"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/08/study.js",
+      "sha256": "95b5ae9d8e97def2091fa10710741c7fe8ee1c9303f61c491331a43b7401ead6"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/08/style.css",
+      "sha256": "d2ba94758da31e1c226da2af03953fcc5bda56630dbf3598ffb9c8b124d7c4dd"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/09/STRUCTURE.md",
+      "sha256": "e2d2b3d80c07e9e22d138812fb9e9e3718a1ecba63b410ca2a2fb6cc8d112ba6"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/09/app.js",
+      "sha256": "8659c7d56785bf0e34900d5b04631b0f1f803b2248684b380489f576ae0288a0"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/09/index.html",
+      "sha256": "c32cd3719ae4b977ce4ad9e50b061cf9d3b26eb1b8c5b37e08244ea3d8a05a47"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/09/style.css",
+      "sha256": "269faac2a1e373488bd237e539652a79f61e1df7e388691d4b1ed448d34679fe"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/10/STRUCTURE.md",
+      "sha256": "b19e0605eb02afceaef8c9be718f57ff207f45c059c3ddd6e96176ed04542088"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/10/bench.css",
+      "sha256": "a0c2f4af803bb645b9659c4f244d79d79505d02b86f607ec2c2005e7fa46962c"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/10/bench.js",
+      "sha256": "db77958b7792adb9d011f4cd714f87cc1a8c28d4a120b5cd6da0f6862ae9a1ae"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/10/index.html",
+      "sha256": "dcac7e2a0a44d70b035e4bd5322a230b2d9acc7cc374459331e3f76029b57235"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/11/STRUCTURE.md",
+      "sha256": "2945bb6b95e9e51f304e59e04c8f4eb8aa1a4e49f72101b77d277de357e83341"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/11/app.js",
+      "sha256": "d9f10cee44f775721923c516cb694bbd1f4b3858bd975d879aba6a78fea3b8f3"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/11/index.html",
+      "sha256": "e4a7312a4c775ff7451e639630e84cbc900a86924a8bf4e692f92fd9d7286dd8"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/11/style.css",
+      "sha256": "9be4c5a5353823ab6c06d2d2b1060be946ad1de208e0338fcfe6f5b7d3d4459a"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/12/STRUCTURE.md",
+      "sha256": "f93a517ccf8b330d5b0c2a5c7a011f6daa3e939e62f172ed08cc70dd93d36826"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/12/app.js",
+      "sha256": "fcc706ff3c928a985649dace71d9065538ef602c50c0262e79753ab93aa1224e"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/12/index.html",
+      "sha256": "8aa49266dfe9fc6685ff194b9cc7125181c27a778acdf9724931ea6c17d6e81d"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/12/style.css",
+      "sha256": "73f72a04d799a1ae0ca2fb926ac98602cf18b10af0776dbe198991a3f90d6a83"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/13/STRUCTURE.md",
+      "sha256": "c7a40e5dc26f2ba58ac9f65d1c631f3ea4efda79b06eb5cbe585d0a057d317cb"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/13/atlas.js",
+      "sha256": "632a067bb20a7499e368220b351496f8152f26ee13b6667eb70e01e36cf1ac17"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/13/index.html",
+      "sha256": "f50144c62ffe6abcc2f6f18dad5b494ea98068afcc56187ca3f2c38806e7ddbc"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/13/style.css",
+      "sha256": "d21c9489fa2903ead6893b368daeaef27c1f72655ade124bb5f5b6f660ee0ca3"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/14/STRUCTURE.md",
+      "sha256": "8e4584c4bcfb63ffbeef804472f55c6a5e313cebbfd348e86d65c3370e6bbef9"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/14/app.js",
+      "sha256": "652b8dd757fa404856890e9a1f8adf93df0fa3c2023589347a2806e6439e70fd"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/14/index.html",
+      "sha256": "df6849927614131c34ad4b735b9466940158bdbba8832fdede62687591d430e3"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/14/style.css",
+      "sha256": "cdcb97263d5b9c348474359382e376097e582ee2a042de45f9572c5627a74e53"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/15/STRUCTURE.md",
+      "sha256": "603ec16dd30fe5b55622b51fccfe983fc9cb38b4667013db4f99a8979f08874a"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/15/app.js",
+      "sha256": "1ce98ce4c28fdc46394daa0a38d4a055ca90f438d08046dfd10cce96715eb4e7"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/15/index.html",
+      "sha256": "aa715a450d99d8cd03430821e2aa4e535aaceddd0b27dcdec1b320539b20c653"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/15/style.css",
+      "sha256": "67bece4563269c01b6e4b775348e65225971a748e4eb9e0e239620375ac224ec"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/16/STRUCTURE.md",
+      "sha256": "c705682e84f7b384e5d351bf3d8b64a08a6b7e1677e25a2677e4aadf4cb3c6da"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/16/canvas.css",
+      "sha256": "760d6680da8ae61745be7cacbd29d2a62298d231a69f660a49fd7ce26273469e"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/16/canvas.js",
+      "sha256": "cda93e15cd76b525ec85d8ad601518cd02bd38e7b857a721c0b32d82e49454df"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/16/index.html",
+      "sha256": "b68a9cc229fbc144f1d30bcef1cd909b25907958c9d5381a7555595801ad1fd0"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/17/STRUCTURE.md",
+      "sha256": "a0ddfe9aea00a3190cf8403bb218d5013b8464bb80f0dda9f6e95d557a3ace71"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/17/index.html",
+      "sha256": "e4d70746cd534dd532f09c198984158e617c6cfddf9d801f70d3ebe632de20d2"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/17/ledger.css",
+      "sha256": "94707c165828369db714c9778703199fb91b6bcd64b764c69c6ab8647d68957f"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/17/ledger.js",
+      "sha256": "a3414e4aa494808c79ada9c9cda800f49ced4f3755652a6be1098e0696bd127d"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/18/STRUCTURE.md",
+      "sha256": "6a7879adeee87f9d91a4cbfe5f56f2d9c3a6bcafbfcd2677ae9bf88223f8ab88"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/18/index.html",
+      "sha256": "ad91f1058f970aa0c9699ae757c00e0e75596e48b73b01e2e8de26a3bbb621fb"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/18/matrix.css",
+      "sha256": "3888ed29a76b47b04819aa202bfe98d201626b8a48b33070a3adb1075c28e58b"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/18/matrix.js",
+      "sha256": "1cbc75d683a2ef385bd274cf0465787d8ea255a52fe4c3392ebe1e4c4698a5b0"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/19/STRUCTURE.md",
+      "sha256": "9fbcd0b0fcf17b96ccba3ce68e9dd65dec6c722dcbfb6b6e8d42f3fced04a77d"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/19/app.js",
+      "sha256": "d662c5a47c7d4ff2312e8f98f82191fbb53e1c9b530a0596ea04703d985a7a1a"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/19/index.html",
+      "sha256": "554f17452a916edae6f0a81197328e085224f515acadc2edaed8ce67a7bf02fe"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/19/style.css",
+      "sha256": "97da75ddcfce522abb6ded50f6ce518587b7270e36bd5d2ba967606b8f23096d"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/20/STRUCTURE.md",
+      "sha256": "b477920b5999f2a508bf930df4c97e44f7fbaa749026382a7fbc55ebd872bca5"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/20/index.html",
+      "sha256": "7bf12caf15c68d258c8efb1bff652d31aca98a9db4c2e5fdeddae4fe9000a801"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/20/matchbook.js",
+      "sha256": "dc95f28f1d5f4684d76efff9839730843f397e0887fdb13daa91e8430da39750"
+    },
+    {
+      "path": "qa/homepage-structures/structural-revisions/20/style.css",
+      "sha256": "158b960f7116c9462f0875efdc32edd251c1765068d58a9bda4e514dbaba045d"
+    }
+  ],
+  "initial": [
+    {
+      "id": "01",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 7843
+    },
+    {
+      "id": "01",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 15713
+    },
+    {
+      "id": "02",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 2076
+    },
+    {
+      "id": "02",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 2854
+    },
+    {
+      "id": "03",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "id": "03",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "04",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1576
+    },
+    {
+      "id": "04",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 1279
+    },
+    {
+      "id": "05",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "id": "05",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "06",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 7868
+    },
+    {
+      "id": "06",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 10802
+    },
+    {
+      "id": "07",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1840
+    },
+    {
+      "id": "07",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 3800
+    },
+    {
+      "id": "08",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1270
+    },
+    {
+      "id": "08",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 1442
+    },
+    {
+      "id": "09",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1865
+    },
+    {
+      "id": "09",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 3458
+    },
+    {
+      "id": "10",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 2570
+    },
+    {
+      "id": "10",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 3975
+    },
+    {
+      "id": "11",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1987
+    },
+    {
+      "id": "11",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 2426
+    },
+    {
+      "id": "12",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1804
+    },
+    {
+      "id": "12",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 3425
+    },
+    {
+      "id": "13",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1425
+    },
+    {
+      "id": "13",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 2439
+    },
+    {
+      "id": "14",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "id": "14",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "15",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1792
+    },
+    {
+      "id": "15",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 1791
+    },
+    {
+      "id": "16",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 2195
+    },
+    {
+      "id": "16",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 3732
+    },
+    {
+      "id": "17",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1998
+    },
+    {
+      "id": "17",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 3841
+    },
+    {
+      "id": "18",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1372
+    },
+    {
+      "id": "18",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 1525
+    },
+    {
+      "id": "19",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 3122
+    },
+    {
+      "id": "19",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 3457
+    },
+    {
+      "id": "20",
+      "device": "desktop",
+      "errors": [],
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "id": "20",
+      "device": "phone",
+      "errors": [],
+      "width": 390,
+      "height": 1174
+    }
+  ],
+  "live": [
+    {
+      "id": "01",
+      "device": "desktop",
+      "state": "model-notes",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 8226,
+      "scrollY": 1016,
+      "focus": "<summary>Read model note 1</summary>",
+      "open": [
+        {
+          "id": "contents",
+          "label": "Read or explore"
+        },
+        {
+          "id": "model-note-0",
+          "label": "Read model note 1"
+        },
+        {
+          "id": "faces-fold",
+          "label": "Meet the ten representative players"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "01",
+      "device": "desktop",
+      "state": "directory-search",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 6957,
+      "scrollY": 4883,
+      "focus": "<summary>Read Reaves Dropper’s 24-player roster</summary>",
+      "open": [
+        {
+          "id": "contents",
+          "label": "Read or explore"
+        },
+        {
+          "id": "model-note-0",
+          "label": "Read model note 1"
+        },
+        {
+          "id": "faces-fold",
+          "label": "Meet the ten representative players"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "01",
+      "device": "phone",
+      "state": "model-notes",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 16585,
+      "scrollY": 1714,
+      "focus": "<summary>Read model note 1</summary>",
+      "open": [
+        {
+          "id": "contents",
+          "label": "Read or explore"
+        },
+        {
+          "id": "model-note-0",
+          "label": "Read model note 1"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "01",
+      "device": "phone",
+      "state": "directory-search",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 14022,
+      "scrollY": 9854,
+      "focus": "<summary>Read Reaves Dropper’s 24-player roster</summary>",
+      "open": [
+        {
+          "id": "contents",
+          "label": "Read or explore"
+        },
+        {
+          "id": "model-note-0",
+          "label": "Read model note 1"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "02",
+      "device": "desktop",
+      "state": "your-team",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 3087,
+      "scrollY": 0,
+      "focus": "<h2 id=\"notes-title\" tabindex=\"-1\">Reaves Dropper</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "02",
+      "device": "desktop",
+      "state": "league",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1572,
+      "scrollY": 0,
+      "focus": "<h2 id=\"notes-title\" tabindex=\"-1\">Teams &amp; players</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "02",
+      "device": "phone",
+      "state": "your-team",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 4073,
+      "scrollY": 710,
+      "focus": "<h2 id=\"notes-title\" tabindex=\"-1\">Reaves Dropper</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "02",
+      "device": "phone",
+      "state": "league",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 2475,
+      "scrollY": 710,
+      "focus": "<h2 id=\"notes-title\" tabindex=\"-1\">Teams &amp; players</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "03",
+      "device": "desktop",
+      "state": "club",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1000,
+      "scrollY": 0,
+      "focus": "<button type=\"button\" data-go=\"team\" aria-current=\"page\"><span class=\"chapter-number\">02</span>My club</button>",
+      "open": [
+        {
+          "id": "",
+          "label": "All 24 roster values"
+        },
+        {
+          "id": "",
+          "label": "Editorial selection"
+        }
+      ],
+      "panes": [
+        {
+          "id": "",
+          "cls": "concept-details",
+          "h": 598,
+          "sh": 1016,
+          "top": 0
+        },
+        {
+          "id": "chapter-week",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 1544,
+          "top": 0
+        },
+        {
+          "id": "chapter-team",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 2163,
+          "top": 0
+        },
+        {
+          "id": "chapter-scout",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 908,
+          "top": 0
+        },
+        {
+          "id": "chapter-league",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 1720,
+          "top": 0
+        },
+        {
+          "id": "chapter-edition",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 1268,
+          "top": 0
+        },
+        {
+          "id": "chapter-tools",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 1024,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "device": "desktop",
+      "state": "league",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1000,
+      "scrollY": 0,
+      "focus": "<button type=\"button\" data-go=\"league\" aria-current=\"page\"><span class=\"chapter-number\">04</span>League index</button>",
+      "open": [
+        {
+          "id": "",
+          "label": "All 24 roster values"
+        },
+        {
+          "id": "",
+          "label": "Editorial selection"
+        }
+      ],
+      "panes": [
+        {
+          "id": "",
+          "cls": "concept-details",
+          "h": 598,
+          "sh": 1016,
+          "top": 0
+        },
+        {
+          "id": "chapter-week",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 1544,
+          "top": 0
+        },
+        {
+          "id": "chapter-team",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 2163,
+          "top": 0
+        },
+        {
+          "id": "chapter-scout",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 908,
+          "top": 0
+        },
+        {
+          "id": "chapter-league",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 1720,
+          "top": 0
+        },
+        {
+          "id": "chapter-edition",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 1268,
+          "top": 0
+        },
+        {
+          "id": "chapter-tools",
+          "cls": "chapter",
+          "h": 853,
+          "sh": 1024,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "device": "phone",
+      "state": "club",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "focus": "<body data-study-ready=\"03\">\n  <a class=\"skip\" href=\"#reader\">Skip to chapter</a>\n  <header class=\"masthead\">\n    <a class=\"brand\" href=\"/\" aria-label=\"GOAT Hoopers Home\"><img src=\"/public/courtside/GOAT-HOOPERS-horizontal-black.svg\" alt=\"GOAT Hoopers\"></a>\n    <nav class=\"site-links\" aria-label=\"Site\"><a href=\"/\">Home</a><a href=\"/intel\">News</a><a href=\"/stocks#player-board\">Stocks</a><a href=\"/history\">History</a><a href=\"/arcade\">Arcade</a></nav>\n    <details id=\"concept-provenance\" class=\"c",
+      "open": [
+        {
+          "id": "",
+          "label": "All 24 roster values"
+        },
+        {
+          "id": "",
+          "label": "Editorial selection"
+        }
+      ],
+      "panes": [
+        {
+          "id": "",
+          "cls": "concept-details",
+          "h": 504,
+          "sh": 1016,
+          "top": 0
+        },
+        {
+          "id": "chapter-week",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 2291,
+          "top": 0
+        },
+        {
+          "id": "chapter-team",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 2950,
+          "top": 0
+        },
+        {
+          "id": "chapter-scout",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 2925,
+          "top": 0
+        },
+        {
+          "id": "chapter-league",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 2841,
+          "top": 0
+        },
+        {
+          "id": "chapter-edition",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 2680,
+          "top": 0
+        },
+        {
+          "id": "chapter-archive",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 1440,
+          "top": 0
+        },
+        {
+          "id": "chapter-tools",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 1978,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "device": "phone",
+      "state": "league",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "focus": "<body data-study-ready=\"03\">\n  <a class=\"skip\" href=\"#reader\">Skip to chapter</a>\n  <header class=\"masthead\">\n    <a class=\"brand\" href=\"/\" aria-label=\"GOAT Hoopers Home\"><img src=\"/public/courtside/GOAT-HOOPERS-horizontal-black.svg\" alt=\"GOAT Hoopers\"></a>\n    <nav class=\"site-links\" aria-label=\"Site\"><a href=\"/\">Home</a><a href=\"/intel\">News</a><a href=\"/stocks#player-board\">Stocks</a><a href=\"/history\">History</a><a href=\"/arcade\">Arcade</a></nav>\n    <details id=\"concept-provenance\" class=\"c",
+      "open": [
+        {
+          "id": "",
+          "label": "All 24 roster values"
+        },
+        {
+          "id": "",
+          "label": "Editorial selection"
+        }
+      ],
+      "panes": [
+        {
+          "id": "",
+          "cls": "concept-details",
+          "h": 504,
+          "sh": 1016,
+          "top": 0
+        },
+        {
+          "id": "chapter-week",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 2291,
+          "top": 0
+        },
+        {
+          "id": "chapter-team",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 2950,
+          "top": 0
+        },
+        {
+          "id": "chapter-scout",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 2925,
+          "top": 0
+        },
+        {
+          "id": "chapter-league",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 2841,
+          "top": 0
+        },
+        {
+          "id": "chapter-edition",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 2680,
+          "top": 0
+        },
+        {
+          "id": "chapter-archive",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 1440,
+          "top": 0
+        },
+        {
+          "id": "chapter-tools",
+          "cls": "chapter",
+          "h": 732,
+          "sh": 1978,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "device": "desktop",
+      "state": "my-team",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1628,
+      "scrollY": 126,
+      "focus": "<main id=\"program\" tabindex=\"-1\" aria-label=\"Selected program\"><div id=\"program-content\"><h1>Reaves Dropper</h1><p>aidandaly20 · 1–0 · Standing #1/10 · 24 roster players</p><div class=\"program-actions\"><a href=\"/team\">Open My team →</a><a href=\"/teams/1#team-roster\">View team roster</a><button data-view=\"matchup\">Your matchup</button></div><div class=\"value-headline\">$1095.25</div><p><strong>Modeled FAAB priced subtotal · complete roster coverage</strong><br>24/24 priced · 0 unpriced · in-season",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "04",
+      "device": "desktop",
+      "state": "edition",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 2747,
+      "scrollY": 126,
+      "focus": "<main id=\"program\" tabindex=\"-1\" aria-label=\"Selected program\"><div id=\"program-content\"><div class=\"archive-switch\" aria-label=\"Choose dated edition\"><button data-edition=\"0\" aria-current=\"true\">Oct 5–11, 2026</button><button data-edition=\"1\" aria-current=\"false\">Sep 28–Oct 4, 2026</button></div><p class=\"date-label\">Oct 5–11, 2026 · draft · 2026-W41</p><h1>The next chapter</h1><p class=\"intro\">Dated archive sample. This is not the synthetic current Week 3 scoreboard; publication timestamp is n",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "04",
+      "device": "phone",
+      "state": "my-team",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 1911,
+      "scrollY": 106,
+      "focus": "<main id=\"program\" tabindex=\"-1\" aria-label=\"Selected program\"><div id=\"program-content\"><h1>Reaves Dropper</h1><p>aidandaly20 · 1–0 · Standing #1/10 · 24 roster players</p><div class=\"program-actions\"><a href=\"/team\">Open My team →</a><a href=\"/teams/1#team-roster\">View team roster</a><button data-view=\"matchup\">Your matchup</button></div><div class=\"value-headline\">$1095.25</div><p><strong>Modeled FAAB priced subtotal · complete roster coverage</strong><br>24/24 priced · 0 unpriced · in-season",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "04",
+      "device": "phone",
+      "state": "edition",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 3067,
+      "scrollY": 106,
+      "focus": "<main id=\"program\" tabindex=\"-1\" aria-label=\"Selected program\"><div id=\"program-content\"><div class=\"archive-switch\" aria-label=\"Choose dated edition\"><button data-edition=\"0\" aria-current=\"true\">Oct 5–11, 2026</button><button data-edition=\"1\" aria-current=\"false\">Sep 28–Oct 4, 2026</button></div><p class=\"date-label\">Oct 5–11, 2026 · draft · 2026-W41</p><h1>The next chapter</h1><p class=\"intro\">Dated archive sample. This is not the synthetic current Week 3 scoreboard; publication timestamp is n",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "05",
+      "device": "desktop",
+      "state": "known-zero",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1000,
+      "scrollY": 0,
+      "focus": "<h1 tabindex=\"-1\"><button class=\"team-word\" data-enter=\"{&quot;kind&quot;:&quot;team&quot;,&quot;id&quot;:&quot;1&quot;}\" data-origin=\"pair-home\">Reaves Dropper</button></h1>",
+      "open": [],
+      "panes": [
+        {
+          "id": "provenance-content",
+          "cls": "",
+          "h": 646,
+          "sh": 6428,
+          "top": 0
+        },
+        {
+          "id": "route-links",
+          "cls": "",
+          "h": 646,
+          "sh": 2652,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "device": "desktop",
+      "state": "name-field",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1000,
+      "scrollY": 0,
+      "focus": "<h1 class=\"origin-word\" tabindex=\"-1\">NeuralNets.<br>papichooter. 228 names.</h1>",
+      "open": [],
+      "panes": [
+        {
+          "id": "provenance-content",
+          "cls": "",
+          "h": 646,
+          "sh": 6428,
+          "top": 0
+        },
+        {
+          "id": "route-links",
+          "cls": "",
+          "h": 646,
+          "sh": 2652,
+          "top": 0
+        },
+        {
+          "id": "canvas",
+          "cls": "canvas",
+          "h": 839,
+          "sh": 1568,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "device": "phone",
+      "state": "known-zero",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "focus": "<h1 tabindex=\"-1\"><button class=\"team-word\" data-enter=\"{&quot;kind&quot;:&quot;team&quot;,&quot;id&quot;:&quot;1&quot;}\" data-origin=\"pair-home\">Reaves Dropper</button></h1>",
+      "open": [],
+      "panes": [
+        {
+          "id": "provenance-content",
+          "cls": "",
+          "h": 545,
+          "sh": 2137,
+          "top": 0
+        },
+        {
+          "id": "route-links",
+          "cls": "",
+          "h": 545,
+          "sh": 2636,
+          "top": 0
+        },
+        {
+          "id": "canvas",
+          "cls": "canvas",
+          "h": 691,
+          "sh": 766,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "device": "phone",
+      "state": "name-field",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "focus": "<h1 class=\"origin-word\" tabindex=\"-1\">NeuralNets.<br>papichooter. 228 names.</h1>",
+      "open": [],
+      "panes": [
+        {
+          "id": "provenance-content",
+          "cls": "",
+          "h": 545,
+          "sh": 2137,
+          "top": 0
+        },
+        {
+          "id": "route-links",
+          "cls": "",
+          "h": 545,
+          "sh": 2636,
+          "top": 0
+        },
+        {
+          "id": "canvas",
+          "cls": "canvas",
+          "h": 691,
+          "sh": 2605,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "device": "desktop",
+      "state": "market-filter",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1473,
+      "scrollY": 0,
+      "focus": "<button type=\"button\" data-scope=\"market\" aria-pressed=\"true\">Market</button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "06",
+      "device": "desktop",
+      "state": "league-filter",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 6036,
+      "scrollY": 0,
+      "focus": "<button type=\"button\" data-scope=\"league\" aria-pressed=\"true\">League</button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "06",
+      "device": "phone",
+      "state": "market-filter",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 2216,
+      "scrollY": 0,
+      "focus": "<button type=\"button\" data-scope=\"market\" aria-pressed=\"true\">Market</button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "06",
+      "device": "phone",
+      "state": "league-filter",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 7934,
+      "scrollY": 0,
+      "focus": "<button type=\"button\" data-scope=\"league\" aria-pressed=\"true\">League</button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "07",
+      "device": "desktop",
+      "state": "pair-lockers",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1892,
+      "scrollY": 203,
+      "focus": "<h2 id=\"locker-title\" class=\"station-anchor\" tabindex=\"-1\">Open more than one door.</h2>",
+      "open": [
+        {
+          "id": "door-1",
+          "label": "Reaves Dropperaidandaly20 · 1–0 · 24 players"
+        },
+        {
+          "id": "door-2",
+          "label": "Ware the Hoes At?Aedan23 · 1–0 · 27 players"
+        }
+      ],
+      "panes": [
+        {
+          "id": "",
+          "cls": "slate-roll",
+          "h": 368,
+          "sh": 1318,
+          "top": 0
+        },
+        {
+          "id": "cabinet",
+          "cls": "locker-cabinet",
+          "h": 320,
+          "sh": 2428,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "work-roll",
+          "h": 496,
+          "sh": 1812,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "work-roll",
+          "h": 496,
+          "sh": 1180,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "archive-roll",
+          "h": 560,
+          "sh": 1961,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "ledger-roll",
+          "h": 464,
+          "sh": 522,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "device": "desktop",
+      "state": "alternate-locker",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1892,
+      "scrollY": 203,
+      "focus": "<summary><img src=\"/public/courtside/portraits/player-1957.png\" alt=\"\"><span><strong>Stephon Castle’s Back</strong><small>TommyDieselfuel · 1–0 · 22 players</small></span></summary>",
+      "open": [
+        {
+          "id": "door-1",
+          "label": "Reaves Dropperaidandaly20 · 1–0 · 24 players"
+        },
+        {
+          "id": "door-2",
+          "label": "Ware the Hoes At?Aedan23 · 1–0 · 27 players"
+        },
+        {
+          "id": "door-3",
+          "label": "Stephon Castle’s BackTommyDieselfuel · 1–0 · 22 players"
+        }
+      ],
+      "panes": [
+        {
+          "id": "",
+          "cls": "slate-roll",
+          "h": 368,
+          "sh": 1318,
+          "top": 0
+        },
+        {
+          "id": "cabinet",
+          "cls": "locker-cabinet",
+          "h": 320,
+          "sh": 4112,
+          "top": 2108
+        },
+        {
+          "id": "",
+          "cls": "work-roll",
+          "h": 496,
+          "sh": 1812,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "work-roll",
+          "h": 496,
+          "sh": 1180,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "archive-roll",
+          "h": 560,
+          "sh": 1961,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "ledger-roll",
+          "h": 464,
+          "sh": 522,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "device": "phone",
+      "state": "pair-lockers",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 3868,
+      "scrollY": 842,
+      "focus": "<h2 id=\"locker-title\" class=\"station-anchor\" tabindex=\"-1\">Open more than one door.</h2>",
+      "open": [
+        {
+          "id": "door-1",
+          "label": "Reaves Dropperaidandaly20 · 1–0 · 24 players"
+        },
+        {
+          "id": "door-2",
+          "label": "Ware the Hoes At?Aedan23 · 1–0 · 27 players"
+        }
+      ],
+      "panes": [
+        {
+          "id": "",
+          "cls": "slate-roll",
+          "h": 480,
+          "sh": 1411,
+          "top": 0
+        },
+        {
+          "id": "cabinet",
+          "cls": "locker-cabinet",
+          "h": 480,
+          "sh": 4770,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "work-roll",
+          "h": 544,
+          "sh": 1803,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "work-roll",
+          "h": 544,
+          "sh": 1359,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "archive-roll",
+          "h": 576,
+          "sh": 2141,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "ledger-roll",
+          "h": 512,
+          "sh": 521,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "device": "phone",
+      "state": "alternate-locker",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 3868,
+      "scrollY": 894,
+      "focus": "<summary><img src=\"/public/courtside/portraits/player-1957.png\" alt=\"\"><span><strong>Stephon Castle’s Back</strong><small>TommyDieselfuel · 1–0 · 22 players</small></span></summary>",
+      "open": [
+        {
+          "id": "door-1",
+          "label": "Reaves Dropperaidandaly20 · 1–0 · 24 players"
+        },
+        {
+          "id": "door-2",
+          "label": "Ware the Hoes At?Aedan23 · 1–0 · 27 players"
+        },
+        {
+          "id": "door-3",
+          "label": "Stephon Castle’s BackTommyDieselfuel · 1–0 · 22 players"
+        }
+      ],
+      "panes": [
+        {
+          "id": "",
+          "cls": "slate-roll",
+          "h": 480,
+          "sh": 1411,
+          "top": 0
+        },
+        {
+          "id": "cabinet",
+          "cls": "locker-cabinet",
+          "h": 480,
+          "sh": 6454,
+          "top": 4264
+        },
+        {
+          "id": "",
+          "cls": "work-roll",
+          "h": 544,
+          "sh": 1803,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "work-roll",
+          "h": 544,
+          "sh": 1359,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "archive-roll",
+          "h": 576,
+          "sh": 2141,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "ledger-roll",
+          "h": 512,
+          "sh": 521,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "device": "desktop",
+      "state": "values",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 2652,
+      "scrollY": 129,
+      "focus": "<h1 tabindex=\"-1\"><a class=\"\" href=\"/teams/1\">Reaves Dropper</a></h1>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "08",
+      "device": "desktop",
+      "state": "opponent",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 2064,
+      "scrollY": 129,
+      "focus": "<select id=\"pair-selector\"><option value=\"0\">Reaves Dropper vs Ware the Hoes At?</option><option value=\"1\" selected=\"\">Stephon Castle’s Back vs The Fun Guys</option><option value=\"2\">Josh Diddy’s Roster vs Huff n’ Puff</option><option value=\"3\">papichooter vs NeuralNets</option><option value=\"4\">Lebron Theme Team vs T Halibooty</option></select>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "08",
+      "device": "phone",
+      "state": "values",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 3841,
+      "scrollY": 0,
+      "focus": "<select id=\"comparison-view\"><option value=\"comparison\">Comparison</option><option value=\"rosters\" selected=\"\">Players &amp; value</option><option value=\"scouting\">Form &amp; wire</option></select>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "08",
+      "device": "phone",
+      "state": "opponent",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 3187,
+      "scrollY": 0,
+      "focus": "<button data-side=\"right\" aria-pressed=\"true\">Opponent side</button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "09",
+      "device": "desktop",
+      "state": "form-branch",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 2790,
+      "scrollY": 61,
+      "focus": "<summary><span><b>Form &amp; completed-week evidence</b><small>Watch samples / completed Week 2 kept separate</small></span></summary>",
+      "open": [
+        {
+          "id": "branch-picks",
+          "label": "Saved model routeWeek 3 · five returned choices"
+        },
+        {
+          "id": "branch-values",
+          "label": "Modeled roster valueCurrent quote · not a FAAB balance"
+        },
+        {
+          "id": "branch-form",
+          "label": "Form & completed-week evidenceWatch samples / completed Week 2 kept separate"
+        },
+        {
+          "id": "",
+          "label": "Your best · 3 shown"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "09",
+      "device": "desktop",
+      "state": "register-branch",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 4977,
+      "scrollY": 1744,
+      "focus": "<summary><span><b>League register</b><small>Search 10 teams and 228 player references · standings</small></span></summary>",
+      "open": [
+        {
+          "id": "branch-picks",
+          "label": "Saved model routeWeek 3 · five returned choices"
+        },
+        {
+          "id": "branch-values",
+          "label": "Modeled roster valueCurrent quote · not a FAAB balance"
+        },
+        {
+          "id": "branch-form",
+          "label": "Form & completed-week evidenceWatch samples / completed Week 2 kept separate"
+        },
+        {
+          "id": "",
+          "label": "Your best · 3 shown"
+        },
+        {
+          "id": "branch-league",
+          "label": "League registerSearch 10 teams and 228 player references · standings"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "09",
+      "device": "phone",
+      "state": "form-branch",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 4684,
+      "scrollY": 1960,
+      "focus": "<summary><span><b>Form &amp; completed-week evidence</b><small>Watch samples / completed Week 2 kept separate</small></span></summary>",
+      "open": [
+        {
+          "id": "branch-picks",
+          "label": "Saved model routeWeek 3 · five returned choices"
+        },
+        {
+          "id": "branch-values",
+          "label": "Modeled roster valueCurrent quote · not a FAAB balance"
+        },
+        {
+          "id": "branch-form",
+          "label": "Form & completed-week evidenceWatch samples / completed Week 2 kept separate"
+        },
+        {
+          "id": "",
+          "label": "Your best · 3 shown"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "09",
+      "device": "phone",
+      "state": "register-branch",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 9149,
+      "scrollY": 3410,
+      "focus": "<summary><span><b>League register</b><small>Search 10 teams and 228 player references · standings</small></span></summary>",
+      "open": [
+        {
+          "id": "branch-picks",
+          "label": "Saved model routeWeek 3 · five returned choices"
+        },
+        {
+          "id": "branch-values",
+          "label": "Modeled roster valueCurrent quote · not a FAAB balance"
+        },
+        {
+          "id": "branch-form",
+          "label": "Form & completed-week evidenceWatch samples / completed Week 2 kept separate"
+        },
+        {
+          "id": "",
+          "label": "Your best · 3 shown"
+        },
+        {
+          "id": "branch-league",
+          "label": "League registerSearch 10 teams and 228 player references · standings"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "10",
+      "device": "desktop",
+      "state": "added-player",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 2597,
+      "scrollY": 0,
+      "focus": "<button type=\"button\" data-add=\"2133\" data-to=\"a\" data-focus=\"add-a-2133\" aria-pressed=\"true\">Remove A</button>",
+      "open": [],
+      "panes": [
+        {
+          "id": "",
+          "cls": "plan-sticky",
+          "h": 968,
+          "sh": 1179,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "device": "desktop",
+      "state": "evidence",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 4083,
+      "scrollY": 1597,
+      "focus": "<summary>Current matchup / saved models</summary>",
+      "open": [
+        {
+          "id": "note-week",
+          "label": "Current matchup / saved models"
+        }
+      ],
+      "panes": [
+        {
+          "id": "",
+          "cls": "plan-sticky",
+          "h": 968,
+          "sh": 1179,
+          "top": 211
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "device": "phone",
+      "state": "added-player",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 4285,
+      "scrollY": 1616,
+      "focus": "<button type=\"button\" data-add=\"2133\" data-to=\"a\" data-focus=\"add-a-2133\" aria-pressed=\"true\">Remove A</button>",
+      "open": [],
+      "panes": [
+        {
+          "id": "",
+          "cls": "drop",
+          "h": 762,
+          "sh": 1320,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "device": "phone",
+      "state": "evidence",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 5836,
+      "scrollY": 3441,
+      "focus": "<summary>Current matchup / saved models</summary>",
+      "open": [
+        {
+          "id": "note-week",
+          "label": "Current matchup / saved models"
+        }
+      ],
+      "panes": [
+        {
+          "id": "",
+          "cls": "drop",
+          "h": 762,
+          "sh": 1320,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "device": "desktop",
+      "state": "search-embiid",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1000,
+      "scrollY": 0,
+      "focus": "<button class=\"result-toggle\" type=\"button\" data-result-id=\"player-1511\" id=\"trigger-player-1511\" aria-expanded=\"false\" aria-controls=\"answer-player-1511\"><span class=\"result-title\">Joel Embiid</span><span class=\"result-fact\">C · PHI · Reaves Dropper · $137.50 modeled FAAB</span><span class=\"open-word\">Open</span></button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "11",
+      "device": "desktop",
+      "state": "player-reader",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1942,
+      "scrollY": 0,
+      "focus": "<button class=\"result-toggle\" type=\"button\" data-result-id=\"player-1511\" id=\"trigger-player-1511\" aria-expanded=\"true\" aria-controls=\"answer-player-1511\"><span class=\"result-title\">Joel Embiid</span><span class=\"result-fact\">C · PHI · Reaves Dropper · $137.50 modeled FAAB</span><span class=\"open-word\">Close</span></button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "11",
+      "device": "phone",
+      "state": "search-embiid",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 1148,
+      "scrollY": 0,
+      "focus": "<button class=\"result-toggle\" type=\"button\" data-result-id=\"player-1511\" id=\"trigger-player-1511\" aria-expanded=\"false\" aria-controls=\"answer-player-1511\"><span class=\"result-title\">Joel Embiid</span><span class=\"result-fact\">C · PHI · Reaves Dropper · $137.50 modeled FAAB</span><span class=\"open-word\">Open</span></button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "11",
+      "device": "phone",
+      "state": "player-reader",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 2181,
+      "scrollY": 0,
+      "focus": "<button class=\"result-toggle\" type=\"button\" data-result-id=\"player-1511\" id=\"trigger-player-1511\" aria-expanded=\"true\" aria-controls=\"answer-player-1511\"><span class=\"result-title\">Joel Embiid</span><span class=\"result-fact\">C · PHI · Reaves Dropper · $137.50 modeled FAAB</span><span class=\"open-word\">Close</span></button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "12",
+      "device": "desktop",
+      "state": "a-roster",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 4090,
+      "scrollY": 463,
+      "focus": "<article class=\"entity left\" id=\"entity-1\" data-context=\"roster\" tabindex=\"-1\" style=\"scroll-margin-top: var(--context-clearance,1rem);\"><span class=\"entity-tag\">Team A / home · #1 · Your team</span><div class=\"entity-head\"><img src=\"/public/courtside/portraits/player-1511.png\" width=\"70\" height=\"70\" alt=\"\"><h2>Reaves Dropper</h2></div><div class=\"entity-record\"><span>aidandaly20</span><span>Current 1–0</span><span>24 players</span><span>Standing 1/10</span></div><div class=\"entity-links\"><a hre",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "12",
+      "device": "desktop",
+      "state": "third-context",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 4372,
+      "scrollY": 745,
+      "focus": "<article class=\"entity third\" id=\"entity-3\" data-context=\"summary\" tabindex=\"-1\" style=\"scroll-margin-top: var(--context-clearance,1rem);\"><span class=\"entity-tag\">Pinned alongside · #3</span><div class=\"entity-head\"><img src=\"/public/courtside/portraits/player-1957.png\" width=\"70\" height=\"70\" alt=\"\"><h2>Stephon Castle’s Back</h2></div><div class=\"entity-record\"><span>TommyDieselfuel</span><span>Current 1–0</span><span>22 players</span></div><div class=\"entity-links\"><a href=\"/teams/3\">Stephon C",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "12",
+      "device": "phone",
+      "state": "a-roster",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 6132,
+      "scrollY": 703,
+      "focus": "<article class=\"entity left\" id=\"entity-1\" data-context=\"roster\" tabindex=\"-1\" style=\"scroll-margin-top: var(--context-clearance,1rem);\"><span class=\"entity-tag\">Team A / home · #1 · Your team</span><div class=\"entity-head\"><img src=\"/public/courtside/portraits/player-1511.png\" width=\"70\" height=\"70\" alt=\"\"><h2>Reaves Dropper</h2></div><div class=\"entity-record\"><span>aidandaly20</span><span>Current 1–0</span><span>24 players</span><span>Standing 1/10</span></div><div class=\"entity-links\"><a hre",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "12",
+      "device": "phone",
+      "state": "third-context",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 7054,
+      "scrollY": 5276,
+      "focus": "<article class=\"entity third\" id=\"entity-3\" data-context=\"summary\" tabindex=\"-1\" style=\"scroll-margin-top: var(--context-clearance,1rem);\"><span class=\"entity-tag\">Pinned alongside · #3</span><div class=\"entity-head\"><img src=\"/public/courtside/portraits/player-1957.png\" width=\"70\" height=\"70\" alt=\"\"><h2>Stephon Castle’s Back</h2></div><div class=\"entity-record\"><span>TommyDieselfuel</span><span>Current 1–0</span><span>22 players</span></div><div class=\"entity-links\"><a href=\"/teams/3\">Stephon C",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "13",
+      "device": "desktop",
+      "state": "club-open",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 2038,
+      "scrollY": 161,
+      "focus": "<button class=\"spine\" id=\"spine-club\" aria-expanded=\"true\" aria-controls=\"spread-club\" data-spine=\"club\"><span class=\"chapter-number\">02</span><span class=\"chapter-title\">Your club, in the margins</span><span class=\"chapter-subtitle\">A modeled quote, roster, scouting and team wire</span><span class=\"spine-action\">Fold</span></button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "13",
+      "device": "desktop",
+      "state": "stories-open",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1997,
+      "scrollY": 359,
+      "focus": "<button class=\"spine\" id=\"spine-stories\" aria-expanded=\"true\" aria-controls=\"spread-stories\" data-spine=\"stories\"><span class=\"chapter-number\">04</span><span class=\"chapter-title\">Pages from the season</span><span class=\"chapter-subtitle\">Dated editorial, the wire and two archived editions</span><span class=\"spine-action\">Fold</span></button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "13",
+      "device": "phone",
+      "state": "club-open",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 3996,
+      "scrollY": 230,
+      "focus": "<button class=\"spine\" id=\"spine-club\" aria-expanded=\"true\" aria-controls=\"spread-club\" data-spine=\"club\"><span class=\"chapter-number\">02</span><span class=\"chapter-title\">Your club, in the margins</span><span class=\"chapter-subtitle\">A modeled quote, roster, scouting and team wire</span><span class=\"spine-action\">Fold</span></button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "13",
+      "device": "phone",
+      "state": "stories-open",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 3791,
+      "scrollY": 524,
+      "focus": "<button class=\"spine\" id=\"spine-stories\" aria-expanded=\"true\" aria-controls=\"spread-stories\" data-spine=\"stories\"><span class=\"chapter-number\">04</span><span class=\"chapter-title\">Pages from the season</span><span class=\"chapter-subtitle\">Dated editorial, the wire and two archived editions</span><span class=\"spine-action\">Fold</span></button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "14",
+      "device": "desktop",
+      "state": "scouting-channel",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1000,
+      "scrollY": 0,
+      "focus": "<section class=\"passage\" id=\"watch\" tabindex=\"-1\"><span class=\"eyebrow\">Your form watch · synthetic</span><h3>On form · in-season EMA fantasy points per game</h3><ul class=\"watch-list\"><li><a href=\"/player/1444\">Damian Lillard</a><strong>38.0</strong><small>8 observed games · EMA fantasy points per game · availability unknown</small></li><li><a href=\"/player/1487\">Tobias Harris</a><strong>37.0</strong><small>8 observed games · EMA fantasy points per game · availability unknown</small></li><li><a",
+      "open": [],
+      "panes": [
+        {
+          "id": "reader-team",
+          "cls": "scroll",
+          "h": 791,
+          "sh": 2068,
+          "top": 789
+        },
+        {
+          "id": "reader-league",
+          "cls": "scroll",
+          "h": 783,
+          "sh": 6576,
+          "top": 0
+        },
+        {
+          "id": "reader-scouting",
+          "cls": "scroll",
+          "h": 791,
+          "sh": 5606,
+          "top": 106
+        },
+        {
+          "id": "reader-culture",
+          "cls": "scroll",
+          "h": 785,
+          "sh": 2209,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "device": "desktop",
+      "state": "culture-channel",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1000,
+      "scrollY": 0,
+      "focus": "<section class=\"passage\" id=\"watch\" tabindex=\"-1\"><span class=\"eyebrow\">Your form watch · synthetic</span><h3>On form · in-season EMA fantasy points per game</h3><ul class=\"watch-list\"><li><a href=\"/player/1444\">Damian Lillard</a><strong>38.0</strong><small>8 observed games · EMA fantasy points per game · availability unknown</small></li><li><a href=\"/player/1487\">Tobias Harris</a><strong>37.0</strong><small>8 observed games · EMA fantasy points per game · availability unknown</small></li><li><a",
+      "open": [],
+      "panes": [
+        {
+          "id": "reader-team",
+          "cls": "scroll",
+          "h": 791,
+          "sh": 2068,
+          "top": 789
+        },
+        {
+          "id": "reader-league",
+          "cls": "scroll",
+          "h": 783,
+          "sh": 6576,
+          "top": 0
+        },
+        {
+          "id": "reader-scouting",
+          "cls": "scroll",
+          "h": 791,
+          "sh": 5606,
+          "top": 106
+        },
+        {
+          "id": "reader-culture",
+          "cls": "scroll",
+          "h": 785,
+          "sh": 2209,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "device": "phone",
+      "state": "scouting-channel",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "focus": "<div class=\"scroll\" id=\"reader-scouting\" tabindex=\"0\" role=\"region\" aria-label=\"Scouting reading stream\"><div class=\"return-path\"></div><div id=\"content-scouting\"><section class=\"passage\" id=\"watch\"><span class=\"eyebrow\">Your form watch · synthetic</span><h3>On form · in-season EMA fantasy points per game</h3><ul class=\"watch-list\"><li><a href=\"/player/1444\">Damian Lillard</a><strong>38.0</strong><small>8 observed games · EMA fantasy points per game · availability unknown</small></li><li><a href",
+      "open": [],
+      "panes": [
+        {
+          "id": "reader-scouting",
+          "cls": "scroll",
+          "h": 642,
+          "sh": 6201,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "device": "phone",
+      "state": "culture-channel",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "focus": "<div class=\"scroll\" id=\"reader-culture\" tabindex=\"0\" role=\"region\" aria-label=\"Culture reading stream\"><div class=\"return-path\"></div><div id=\"content-culture\"><section class=\"passage\" id=\"culture-start\"><h3 class=\"culture-title\">The league has a memory.</h3><p>These October drafts belong to their dates. The current Week 3 scores run in the next channel.</p><button class=\"cross\" type=\"button\" data-cross=\"league\" data-target=\"ai-slate\">Read the current week instead</button><div class=\"archive-pic",
+      "open": [],
+      "panes": [
+        {
+          "id": "reader-culture",
+          "cls": "scroll",
+          "h": 642,
+          "sh": 1868,
+          "top": 0
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "device": "desktop",
+      "state": "completed-week",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1792,
+      "scrollY": 0,
+      "focus": "<select id=\"period\"><option value=\"2026-W40\">Sep 28–Oct 4, 2026 · editorial</option><option value=\"2026-W41\">Oct 5–11, 2026 · editorial</option><option value=\"completed\" selected=\"\">Nov 2–9, 2026 · completed Week 2</option><option value=\"current\">Week 3 · as of Nov 12</option></select>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "15",
+      "device": "desktop",
+      "state": "edition-reader",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 3282,
+      "scrollY": 0,
+      "focus": "<h2 tabindex=\"-1\" data-agenda-title=\"\">The next chapter</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "15",
+      "device": "phone",
+      "state": "completed-week",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 1042,
+      "scrollY": 0,
+      "focus": "<select id=\"period\"><option value=\"2026-W40\">Sep 28–Oct 4, 2026 · editorial</option><option value=\"2026-W41\">Oct 5–11, 2026 · editorial</option><option value=\"completed\" selected=\"\">Nov 2–9, 2026 · completed Week 2</option><option value=\"current\">Week 3 · as of Nov 12</option></select>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "15",
+      "device": "phone",
+      "state": "edition-reader",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 3096,
+      "scrollY": 0,
+      "focus": "<h2 tabindex=\"-1\" data-agenda-title=\"\">The next chapter</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "16",
+      "device": "desktop",
+      "state": "reordered",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 2528,
+      "scrollY": 2,
+      "focus": "<button type=\"button\" data-action=\"later\" data-id=\"game-0\" tabindex=\"0\">Move later</button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "16",
+      "device": "desktop",
+      "state": "added-material",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 2823,
+      "scrollY": 1619,
+      "focus": "<h2 id=\"title-club-3\" tabindex=\"-1\"><a href=\"/teams/3\">Stephon Castle’s Back</a></h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "16",
+      "device": "phone",
+      "state": "reordered",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 4565,
+      "scrollY": 923,
+      "focus": "<button type=\"button\" data-action=\"later\" data-id=\"game-0\" tabindex=\"0\">Move later</button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "16",
+      "device": "phone",
+      "state": "added-material",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 5194,
+      "scrollY": 4072,
+      "focus": "<h2 id=\"title-club-3\" tabindex=\"-1\"><a href=\"/teams/3\">Stephon Castle’s Back</a></h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "17",
+      "device": "desktop",
+      "state": "roster-subrow",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 3856,
+      "scrollY": 0,
+      "focus": "<button type=\"button\" data-toggle=\"team-1\" data-kind=\"roster\" aria-expanded=\"true\" aria-controls=\"detail-team-1\">Roster</button>",
+      "open": [
+        {
+          "id": "",
+          "label": "Site links"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "17",
+      "device": "desktop",
+      "state": "matchup-sheet",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1425,
+      "scrollY": 0,
+      "focus": "<button type=\"button\" data-category=\"matchups\" aria-current=\"page\">Matchups</button>",
+      "open": [
+        {
+          "id": "",
+          "label": "Site links"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "17",
+      "device": "phone",
+      "state": "roster-subrow",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 8256,
+      "scrollY": 0,
+      "focus": "<button type=\"button\" data-toggle=\"team-1\" data-kind=\"roster\" aria-expanded=\"true\" aria-controls=\"detail-team-1\">Roster</button>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "17",
+      "device": "phone",
+      "state": "matchup-sheet",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 3519,
+      "scrollY": 0,
+      "focus": "<body data-fields=\"week\" data-study-state=\"matchups\" data-study-ready=\"17\">\n  <a class=\"skip\" href=\"#sheet\">Skip to league sheet</a>\n  <header class=\"masthead\">\n    <a class=\"brand\" href=\"/\" aria-label=\"GOAT Hoopers Home\"><img src=\"/public/courtside/GOAT-HOOPERS-horizontal-black.svg\" alt=\"GOAT Hoopers\"></a>\n    <a class=\"stocks-link\" href=\"/stocks#player-board\">Stocks</a>\n    <details class=\"site-navigation\"><summary>Site links</summary><nav aria-label=\"Site\"><a href=\"/\" aria-current=\"page\">Home",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "19",
+      "device": "desktop",
+      "state": "first-dossier",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 3913,
+      "scrollY": 630,
+      "focus": "<h2 tabindex=\"-1\">Huff n’ Puff</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "19",
+      "device": "desktop",
+      "state": "second-dossier",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 3913,
+      "scrollY": 902,
+      "focus": "<h2 tabindex=\"-1\">Josh Diddy’s Roster</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "19",
+      "device": "phone",
+      "state": "first-dossier",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 4763,
+      "scrollY": 750,
+      "focus": "<h2 tabindex=\"-1\">Huff n’ Puff</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "19",
+      "device": "phone",
+      "state": "second-dossier",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 4763,
+      "scrollY": 1020,
+      "focus": "<h2 tabindex=\"-1\">Josh Diddy’s Roster</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "20",
+      "device": "desktop",
+      "state": "players-branch",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 1422,
+      "scrollY": 260,
+      "focus": "<h2 id=\"step-heading\" tabindex=\"-1\">Your team, before the next decision.</h2>",
+      "open": [
+        {
+          "id": "",
+          "label": "Managers, records & saved AI"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "20",
+      "device": "desktop",
+      "state": "prices-branch",
+      "actionError": null,
+      "errors": [],
+      "width": 1440,
+      "height": 3465,
+      "scrollY": 397,
+      "focus": "<h2 id=\"step-heading\" tabindex=\"-1\">What the roster is priced at.</h2>",
+      "open": [
+        {
+          "id": "",
+          "label": "Managers, records & saved AI"
+        }
+      ],
+      "panes": []
+    },
+    {
+      "id": "20",
+      "device": "phone",
+      "state": "players-branch",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 1706,
+      "scrollY": 321,
+      "focus": "<h2 id=\"step-heading\" tabindex=\"-1\">Your team, before the next decision.</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "20",
+      "device": "phone",
+      "state": "prices-branch",
+      "actionError": null,
+      "errors": [],
+      "width": 390,
+      "height": 3575,
+      "scrollY": 461,
+      "focus": "<h2 id=\"step-heading\" tabindex=\"-1\">What the roster is priced at.</h2>",
+      "open": [],
+      "panes": []
+    },
+    {
+      "id": "18",
+      "device": "desktop",
+      "state": "third-player",
+      "errors": [],
+      "width": 1440,
+      "height": 1540,
+      "focus": "pin-button",
+      "note": "Keyboard pin AJ Dybantsa adds third player."
+    },
+    {
+      "id": "18",
+      "device": "desktop",
+      "state": "follow-pins",
+      "errors": [],
+      "width": 1440,
+      "height": 1477,
+      "focus": "team-mode",
+      "note": "Exact keyboard Follow these players teams transition.",
+      "nextFocus": "<summary>Change pinned names</summary>"
+    },
+    {
+      "id": "18",
+      "device": "desktop",
+      "state": "source-register",
+      "errors": [],
+      "width": 1440,
+      "height": 1849,
+      "focus": "",
+      "note": "Keyboard source register retains comparison above."
+    },
+    {
+      "id": "18",
+      "device": "phone",
+      "state": "third-player",
+      "errors": [],
+      "width": 390,
+      "height": 1747,
+      "focus": "pin-button",
+      "note": "Keyboard pin AJ Dybantsa adds third player."
+    },
+    {
+      "id": "18",
+      "device": "phone",
+      "state": "follow-pins",
+      "errors": [],
+      "width": 390,
+      "height": 1708,
+      "focus": "team-mode",
+      "note": "Exact keyboard Follow these players teams transition.",
+      "nextFocus": "<summary>Change pinned names</summary>"
+    },
+    {
+      "id": "18",
+      "device": "phone",
+      "state": "source-register",
+      "errors": [],
+      "width": 390,
+      "height": 2230,
+      "focus": "",
+      "note": "Keyboard source register retains comparison above."
+    }
+  ],
+  "extra": [
+    {
+      "id": "14",
+      "device": "desktop",
+      "state": "culture-scroll",
+      "width": 1440,
+      "height": 1000,
+      "focus": "<body data-study-ready=\"14\">\n  <a class=\"skip\" href=\"#channels\">Skip to channels</a>\n  <header class=\"masthead\">\n    <a class=\"identity\" href=\"./index.html?view=member\" aria-label=\"GOAT Hoopers home\"><img src=\"/public/courtside/GOAT-HOOPERS-horizontal-black.svg\" alt=\"GOAT Hoopers\"></a>\n    <nav clas",
+      "open": [],
+      "panes": [
+        {
+          "id": "reader-team",
+          "cls": "scroll",
+          "h": 791,
+          "sh": 2068,
+          "top": 0
+        },
+        {
+          "id": "reader-league",
+          "cls": "scroll",
+          "h": 783,
+          "sh": 6576,
+          "top": 0
+        },
+        {
+          "id": "reader-scouting",
+          "cls": "scroll",
+          "h": 791,
+          "sh": 5500,
+          "top": 0
+        },
+        {
+          "id": "reader-culture",
+          "cls": "scroll",
+          "h": 785,
+          "sh": 2209,
+          "top": 1100
+        }
+      ],
+      "note": "Native mouse wheel moved only culture reader; other columns retained."
+    },
+    {
+      "id": "14",
+      "device": "desktop",
+      "state": "historical-final",
+      "width": 1440,
+      "height": 1000,
+      "focus": "<button type=\"button\" data-archive=\"1\" aria-pressed=\"true\">The title everybody’s chasing<span>Sep 28–Oct 4, 2026 · draft</span></button>",
+      "open": [],
+      "panes": [
+        {
+          "id": "reader-team",
+          "cls": "scroll",
+          "h": 791,
+          "sh": 2068,
+          "top": 0
+        },
+        {
+          "id": "reader-league",
+          "cls": "scroll",
+          "h": 783,
+          "sh": 6576,
+          "top": 0
+        },
+        {
+          "id": "reader-scouting",
+          "cls": "scroll",
+          "h": 791,
+          "sh": 5500,
+          "top": 0
+        },
+        {
+          "id": "reader-culture",
+          "cls": "scroll",
+          "h": 785,
+          "sh": 2101,
+          "top": 0
+        }
+      ],
+      "note": "Pointer selected second dated archive inside culture column."
+    },
+    {
+      "id": "07",
+      "device": "phone",
+      "state": "locker-scroll",
+      "width": 390,
+      "height": 3868,
+      "focus": "<h2 id=\"locker-title\" class=\"station-anchor\" tabindex=\"-1\">Open more than one door.</h2>",
+      "open": [
+        "door-1",
+        "door-2"
+      ],
+      "panes": [
+        {
+          "id": "",
+          "cls": "slate-roll",
+          "h": 480,
+          "sh": 1411,
+          "top": 0
+        },
+        {
+          "id": "cabinet",
+          "cls": "locker-cabinet",
+          "h": 480,
+          "sh": 4770,
+          "top": 1445
+        },
+        {
+          "id": "",
+          "cls": "work-roll",
+          "h": 544,
+          "sh": 1803,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "work-roll",
+          "h": 544,
+          "sh": 1359,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "archive-roll",
+          "h": 576,
+          "sh": 2141,
+          "top": 0
+        },
+        {
+          "id": "",
+          "cls": "ledger-roll",
+          "h": 512,
+          "sh": 521,
+          "top": 0
+        }
+      ],
+      "note": "Native wheel traverses roster within bounded locker interior."
+    },
+    {
+      "id": "05",
+      "device": "phone",
+      "state": "team-depth",
+      "width": 390,
+      "height": 844,
+      "focus": "<h1 class=\"team-giant\" tabindex=\"-1\">Reaves Dropper.</h1>",
+      "open": [],
+      "panes": [
+        {
+          "id": "provenance-content",
+          "cls": "",
+          "h": 545,
+          "sh": 2137,
+          "top": 0
+        },
+        {
+          "id": "route-links",
+          "cls": "",
+          "h": 545,
+          "sh": 2636,
+          "top": 0
+        },
+        {
+          "id": "canvas",
+          "cls": "canvas",
+          "h": 691,
+          "sh": 1770,
+          "top": 0
+        }
+      ],
+      "note": "Name wall enters full 24-name team layer; breadcrumb depth increases."
+    },
+    {
+      "id": "05",
+      "device": "phone",
+      "state": "zoom-return",
+      "width": 390,
+      "height": 844,
+      "focus": "<button class=\"\" data-enter=\"{&quot;kind&quot;:&quot;team&quot;,&quot;id&quot;:&quot;1&quot;}\" data-origin=\"league-team-1\">Reaves Dropper</button>",
+      "open": [],
+      "panes": [
+        {
+          "id": "provenance-content",
+          "cls": "",
+          "h": 545,
+          "sh": 2137,
+          "top": 0
+        },
+        {
+          "id": "route-links",
+          "cls": "",
+          "h": 545,
+          "sh": 2636,
+          "top": 0
+        },
+        {
+          "id": "canvas",
+          "cls": "canvas",
+          "h": 691,
+          "sh": 2605,
+          "top": 0
+        }
+      ],
+      "note": "Pointer zoom-out restores league layer."
+    },
+    {
+      "id": "16",
+      "device": "phone",
+      "state": "reload-order",
+      "width": 390,
+      "height": 3732,
+      "focus": "<body data-study-ready=\"16\">\n<a class=\"skip\" href=\"#canvas\">Skip to your composition</a>\n<header class=\"site-header\"><a href=\"/\" class=\"brand\" aria-label=\"GOAT Hoopers home\"><img src=\"/public/courtside/GOAT-HOOPERS-horizontal-black.svg\" width=\"140\" height=\"40\" alt=\"GOAT Hoopers\"></a><details class=\"",
+      "open": [],
+      "panes": [],
+      "note": "{\"before\":[\"club-1\",\"game-0\",\"club-2\",\"value\",\"form\",\"wire\"],\"after\":[\"club-1\",\"game-0\",\"club-2\",\"value\",\"form\",\"wire\"],\"retained\":true}"
+    },
+    {
+      "id": "12",
+      "device": "phone",
+      "state": "ownership-trace",
+      "width": 390,
+      "height": 6432,
+      "focus": "<section class=\"bridge\" id=\"bridge\" tabindex=\"-1\" aria-label=\"Selected matchup connection\" style=\"scroll-margin-top: var(--context-clearance,1rem);\"><div class=\"bridge-core\"><span class=\"eyebrow\">WEEK 3 / CONNECTION 1</span><h3>#1 Reaves Dropper<span class=\"vs\"> × </span>#2 Ware the Hoes At?</h3><p ",
+      "open": [],
+      "panes": [],
+      "note": "Keyboard trace attaches ownership evidence to connection while Team A roster remains."
+    },
+    {
+      "id": "19",
+      "device": "phone",
+      "state": "dossier-roster",
+      "width": 390,
+      "height": 5449,
+      "focus": "<button data-dossier-tab=\"roster\" aria-pressed=\"true\">Roster</button>",
+      "open": [],
+      "panes": [],
+      "note": "Keyboard roster tab expands full selected franchise roster in flow."
+    }
+  ],
+  "study18FrozenRecheck": {
+    "reviewedAt": "2026-10-29T16:12:02.627Z",
+    "source": [
+      {
+        "path": "/workspace/goat-homepage-structures/qa/homepage-structures/structural-revisions/18/index.html",
+        "sha256": "ad91f1058f970aa0c9699ae757c00e0e75596e48b73b01e2e8de26a3bbb621fb"
+      },
+      {
+        "path": "/workspace/goat-homepage-structures/qa/homepage-structures/structural-revisions/18/matrix.css",
+        "sha256": "3888ed29a76b47b04819aa202bfe98d201626b8a48b33070a3adb1075c28e58b"
+      },
+      {
+        "path": "/workspace/goat-homepage-structures/qa/homepage-structures/structural-revisions/18/matrix.js",
+        "sha256": "1cbc75d683a2ef385bd274cf0465787d8ea255a52fe4c3392ebe1e4c4698a5b0"
+      },
+      {
+        "path": "/workspace/goat-homepage-structures/qa/homepage-structures/structural-revisions/18/STRUCTURE.md",
+        "sha256": "6a7879adeee87f9d91a4cbfe5f56f2d9c3a6bcafbfcd2677ae9bf88223f8ab88"
+      }
+    ],
+    "records": [
+      {
+        "id": "18",
+        "device": "desktop",
+        "state": "initial",
+        "note": "Frozen source recheck initial.",
+        "errors": [],
+        "width": 1440,
+        "height": 1372,
+        "text": "Skip to comparisons\nGOAT\nHoopers\nStocks\nExplore\n\nEvidence, in relation\n\nCompare the evidence.\nSynthetic concept\n\nPin names to compare fields and periods. Follow a team to connect its records.\n\nCompare players\nFollow a team\nChange pinned names\nPlayer comparison\n\n2 players pinned · 4 fields have supplied records for every column\n\nSame player identities across distinct measures and periods. On phones, each field lists all pinned names together.\nField / source period\t\n\nJoel Embiid\n\nReaves Dropper · C PHI\n\nRemove\n\t\n\nDamian Lillard\n\nReaves Dropper · PG POR\n\nRemove\n\nCurrent quote\nModeled FAAB. Never fantasy points or a traded balance.\n\t\n\n$137.50\n\nin-season basis · 2026-11-12T12:00:00.000Z\n\t\n\n$74.00\n\nin-season basis · 2026-11-12T12:00:00.000Z\n\nCompleted points\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\n\t\n\n33 FP\n\n3 GP · best and rough list. 5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\n\t\n\n45 FP\n\n3 GP · best list. 5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\n\nForm watch\nOn form · in-season EMA fantasy points per game\n\t\n\n36 EMA FP/G\n\n8 observed games. EMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable. Availability status unknown\n\t\n\n38 EMA FP/G\n\n8 observed games. EMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable. Availability status unknown\n\nDated NBA averages\n2025–26 NBA averages only. PPG / RPG / APG.\n\t\n\n26.9 PPG / 7.7 RPG / 3.9 APG\n\n2025–26 NBA averages; NBA.com · Embiid, checked 2026-10-08.\n\t\n\nNo supplied NBA-average editorial record.\n\n\nDated college averages\n2025–26 college · BYU only. Kept apart from NBA and fantasy points.\n\t\n\nNo supplied college-average editorial record.\n\n\t\n\nNo supplied college-average editorial record.\n\n\nCurrent team\nCurrent directory identity; not historical ownership.\n\t\nReaves Dropper\nC · PHI\n\t\nReaves Dropper\nPG · POR\n\nDated opinion\nEditorial selection and date; not a computed award.\n\t\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\nLast-season lookback · Oct 5–11, 2026 · draft / unpublished\n\nSelection and source\n\t\n\nNo supplied dated opinion for this player.\n\nFields stay separate: prices are modeled FAAB; completed points are counted fantasy points; form is EMA FP per game; NBA and college averages keep their own period.\n\nRead this comparison as text\nBrowse all source records\nCompare public edition\nComparison transcript\nAll source records\nTrade analyzer\nPlay free throws\nWeekly archive\nFixture provenance",
+        "focus": "",
+        "columns": [
+          "Field / source period",
+          "Joel EmbiidReaves Dropper · C PHIRemove",
+          "Damian LillardReaves Dropper · PG PORRemove"
+        ]
+      },
+      {
+        "id": "18",
+        "device": "desktop",
+        "state": "third-player",
+        "note": "Keyboard pin AJ Dybantsa adds third player.",
+        "errors": [],
+        "width": 1440,
+        "height": 1540,
+        "text": "Skip to comparisons\nGOAT\nHoopers\nStocks\nExplore\n\nEvidence, in relation\n\nCompare the evidence.\nSynthetic concept\n\nPin names to compare fields and periods. Follow a team to connect its records.\n\nCompare players\nFollow a team\nChange pinned names\nFind a name\nAdd player\nAaron Gordon · Josh Diddy’s Roster · PF DEN\nAaron Nesmith · T Halibooty · SF IND\nAce Bailey · Ware the Hoes At? · SF UTA\nAday Mara · papichooter · C OKC\nAJ Green · Huff n’ Puff · SG MIL\nAjay Mitchell · Stephon Castle’s Back · PG OKC\nAlex Sarr · Lebron Theme Team · C WAS\nAllen Graves · The Fun Guys · PF TOR\nAlperen Şengün · Reaves Dropper · C HOU\nAmen Thompson · Huff n’ Puff · SG HOU\nAndrew Nembhard · Stephon Castle’s Back · PG IND\nAndrew Wiggins · Lebron Theme Team · SF MIA\nAnthony Black · Ware the Hoes At? · SG ORL\nAnthony Davis · T Halibooty · C WAS\nAnthony Edwards · Reaves Dropper · SG MIN\nAusar Thompson · papichooter · SG DET\nAustin Reaves · Reaves Dropper · SG LAL\nAyo Dosunmu · papichooter · SG MIN\nBaba Miller · The Fun Guys · SF LAC\nBam Adebayo · T Halibooty · C MIA\nBennett Stirtz · Ware the Hoes At? · PG OKC\nBilal Coulibaly · T Halibooty · SF WAS\nBrandin Podziemski · Stephon Castle’s Back · PG GSW\nBrandon Ingram · Josh Diddy’s Roster · SF LAC\nBrandon Miller · Reaves Dropper · SF CHA\nBrayden Burries · Josh Diddy’s Roster · PG MIL\nBruce Thornton · Reaves Dropper · PG HOU\nCade Cunningham · Huff n’ Puff · PG DET\nCaleb Love · The Fun Guys · PG PHI\nCaleb Wilson · T Halibooty · PF CHI\nCam Spencer · Huff n’ Puff · SG MEM\nCameron Boozer · Lebron Theme Team · C MEM\nCameron Carr · T Halibooty · PG LAL\nCameron Johnson · Lebron Theme Team · SF DEN\nCarter Bryant · Huff n’ Puff · PF SAS\nCedric Coward · papichooter · SG MEM\nChet Holmgren · papichooter · C OKC\nChris Cenac · T Halibooty · C BOS\nChristian Anderson · Lebron Theme Team · PG CHA\nChristian Braun · Ware the Hoes At? · SG DEN\nCJ McCollum · Lebron Theme Team · PG ATL\nCoby White · The Fun Guys · PG CHA\nCody Williams · Ware the Hoes At? · SG MIN\nCollin Gillespie · T Halibooty · PG PHX\nCollin Murray-Boyles · Lebron Theme Team · C TOR\nCollin Sexton · NeuralNets · SG LAL\nCooper Flagg · Lebron Theme Team · SG DAL\nDailyn Swain · NeuralNets · PF CHI\nDaniel Gafford · NeuralNets · C DAL\nDaniss Jenkins · Reaves Dropper · PG DET\nDanny Wolf · Reaves Dropper · PF BKN\nDarius Acuff · Stephon Castle’s Back · PG SAC\nDarius Garland · papichooter · PG LAC\nDarryn Peterson · NeuralNets · PG UTA\nDavion Mitchell · Josh Diddy’s Roster · PG MIA\nDay'Ron Sharpe · Josh Diddy’s Roster · C BKN\nDe'Aaron Fox · Huff n’ Puff · PG SAS\nDeandre Ayton · T Halibooty · C WAS\nDejounte Murray · Josh Diddy’s Roster · PG NOP\nDeMar DeRozan · papichooter · SF DEN\nDeni Avdija · papichooter · PF POR\nDereck Lively · Lebron Theme Team · C DAL\nDerik Queen · Reaves Dropper · C NOP\nDerrick White · Reaves Dropper · SG BOS\nDesmond Bane · The Fun Guys · SG ORL\nDevin Booker · T Halibooty · SG PHX\nDevin Vassell · Reaves Dropper · SF SAS\nDillon Brooks · Stephon Castle’s Back · SF PHX\nDomantas Sabonis · Ware the Hoes At? · C SAC\nDonovan Clingan · Reaves Dropper · C POR\nDonovan Mitchell · Huff n’ Puff · SG CLE\nDonte DiVincenzo · Lebron Theme Team · SG MIN\nDraymond Green · Josh Diddy’s Roster · PF GSW\nDylan Harper · Lebron Theme Team · SG SAS\nDyson Daniels · NeuralNets · SG ATL\nEbuka Okorie · Huff n’ Puff · PG DET\nEgor Dëmin · Josh Diddy’s Roster · SG BKN\nEvan Mobley · Ware the Hoes At? · C CLE\nFranz Wagner · Stephon Castle’s Back · SF ORL\nFred VanVleet · Josh Diddy’s Roster · PG HOU\nGiannis Antetokounmpo · NeuralNets · PF MIA\nGrayson Allen · Reaves Dropper · SF CHA\nHannes Steinbach · Huff n’ Puff · C CHA\nHenri Veesaar · Huff n’ Puff · C ATL\nHerbert Jones · Huff n’ Puff · PF NOP\nImmanuel Quickley · Reaves Dropper · PG TOR\nIsaiah Collier · Ware the Hoes At? · PG UTA\nIsaiah Hartenstein · Lebron Theme Team · C OKC\nIsaiah Stewart · Stephon Castle’s Back · C MEM\nIvica Zubac · NeuralNets · C IND\nJa Morant · Lebron Theme Team · PG POR\nJabari Smith · Lebron Theme Team · PF HOU\nJaden McDaniels · NeuralNets · SF MIN\nJaime Jaquez · T Halibooty · PF MIL\nJakob Poeltl · papichooter · C TOR\nJalen Brunson · The Fun Guys · PG NYK\nJalen Duren · papichooter · C DET\nJalen Green · Josh Diddy’s Roster · SG PHX\nJalen Johnson · Josh Diddy’s Roster · PF ATL\nJalen Smith · Ware the Hoes At? · C CHI\nJalen Suggs · T Halibooty · PG ORL\nJalen Williams · The Fun Guys · PF OKC\nJamal Murray · T Halibooty · PG DEN\nJames Harden · Josh Diddy’s Roster · PG CLE\nJarace Walker · Ware the Hoes At? · PF IND\nJared McCain · papichooter · SG OKC\nJaren Jackson · Huff n’ Puff · C UTA\nJarrett Allen · Huff n’ Puff · C CLE\nJase Richardson · Huff n’ Puff · PG ORL\nJaylen Brown · T Halibooty · SF PHI\nJaylen Wells · Ware the Hoes At? · SF MEM\nJayson Tatum · Josh Diddy’s Roster · SF BOS\nJeremiah Fears · Ware the Hoes At? · PG NOP\nJimmy Butler · Huff n’ Puff · SF GSW\nJohn Collins · Stephon Castle’s Back · PF DET\nJonathan Kuminga · papichooter · PF MIN\nJosh Giddey · Josh Diddy’s Roster · PG CHI\nJosh Hart · Lebron Theme Team · SG NYK\nJoshua Jefferson · Huff n’ Puff · PF BKN\nJrue Holiday · Josh Diddy’s Roster · PG POR\nJulius Randle · papichooter · PF BKN\nJusuf Nurkić · T Halibooty · C UTA\nKarim Lopez · Josh Diddy’s Roster · PF MEM\nKarl-Anthony Towns · Josh Diddy’s Roster · C NYK\nKasparas Jakučionis · Ware the Hoes At? · PG MIL\nKawhi Leonard · The Fun Guys · SF TOR\nKeaton Wagler · NeuralNets · PG LAC\nKeegan Murray · The Fun Guys · PF SAC\nKel'el Ware · Ware the Hoes At? · C MIL\nKelly Oubre · Lebron Theme Team · PF IND\nKevin Durant · NeuralNets · SF HOU\nKevin Porter · papichooter · PG MIL\nKeyonte George · The Fun Guys · PG UTA\nKhaman Maluach · The Fun Guys · C PHX\nKingston Flemings · Stephon Castle’s Back · PG ATL\nKoa Peat · Josh Diddy’s Roster · PF PHX\nKon Knueppel · Ware the Hoes At? · SG CHA\nKristaps Porziņģis · NeuralNets · C GSW\nKyle Filipowski · Stephon Castle’s Back · C UTA\nKyle Kuzma · Stephon Castle’s Back · PF MIL\nKyrie Irving · Ware the Hoes At? · PG DAL\nKyshawn George · T Halibooty · SF WAS\nLabaron Philon · Reaves Dropper · PG PHI\nLaMelo Ball · NeuralNets · PG MIN\nLauri Markkanen · NeuralNets · PF UTA\nLeBron James · Lebron Theme Team · PF PHI\nLiam McNeeley · NeuralNets · SF CHA\nLuka Dončić · papichooter · PG LAL\nMark Williams · Ware the Hoes At? · C PHX\nMatas Buzelis · NeuralNets · PF CHI\nMax Christie · Reaves Dropper · SG DAL\nMaxime Raynaud · Josh Diddy’s Roster · C SAC\nMeleek Thomas · Lebron Theme Team · SG CLE\nMichael Porter · The Fun Guys · SF BKN\nMikal Bridges · T Halibooty · SF NYK\nMikel Brown · Ware the Hoes At? · PG BKN\nMiles Bridges · The Fun Guys · PF PHX\nMitchell Robinson · Huff n’ Puff · C BOS\nMohamed Diawara · Huff n’ Puff · SF NYK\nMorez Johnson · papichooter · C DAL\nMoussa Diabaté · The Fun Guys · C CHA\nMyles Turner · Reaves Dropper · C MIL\nNate Ament · Ware the Hoes At? · PF MIL\nNaz Reid · Stephon Castle’s Back · C CHA\nNeemias Queta · T Halibooty · C BOS\nNic Claxton · The Fun Guys · C CHI\nNickeil Alexander-Walker · The Fun Guys · SG ATL\nNikola Jokić · Josh Diddy’s Roster · C DEN\nNique Clifford · T Halibooty · SG SAC\nNolan Traore · Reaves Dropper · PG BKN\nNorman Powell · NeuralNets · SF CHI\nOG Anunoby · Huff n’ Puff · PF NYK\nOnyeka Okongwu · NeuralNets · C ATL\nP.J. Washington · Ware the Hoes At? · PF DAL\nPaolo Banchero · Ware the Hoes At? · PF ORL\nPascal Siakam · Huff n’ Puff · PF IND\nPaul George · papichooter · SF BOS\nPayton Pritchard · Reaves Dropper · PG BOS\nPeyton Watson · Reaves Dropper · SF CLE\nPrecious Achiuwa · The Fun Guys · PF SAC\nQuentin Grimes · papichooter · PG LAL\nRasheer Fleming · NeuralNets · PF PHX\nReed Sheppard · T Halibooty · PG HOU\nRJ Barrett · Stephon Castle’s Back · SF TOR\nRonald Holland · Huff n’ Puff · PF DET\nRudy Gobert · NeuralNets · C MIN\nRyan Conwell · papichooter · SG MIA\nRyan Kalkbrenner · Stephon Castle’s Back · C CHA\nRyan Nembhard · NeuralNets · PG DEN\nRyan Rollins · Lebron Theme Team · PG MIL\nSaddiq Bey · papichooter · SF NOP\nSam Hauser · Huff n’ Puff · PF BOS\nSandro Mamukelashvili · Huff n’ Puff · C LAL\nSanti Aldama · Reaves Dropper · PF DAL\nScoot Henderson · papichooter · PG POR\nScottie Barnes · Stephon Castle’s Back · PF TOR\nShaedon Sharpe · Ware the Hoes At? · SG POR\nShai Gilgeous-Alexander · Stephon Castle’s Back · PG OKC\nSion James · papichooter · SF CHA\nStephen Curry · Josh Diddy’s Roster · PG GSW\nStephon Castle · Stephon Castle’s Back · SG SAS\nTari Eason · Lebron Theme Team · SG HOU\nTobias Harris · Reaves Dropper · PF SAS\nToumani Camara · Stephon Castle’s Back · SF POR\nTrae Young · Lebron Theme Team · PG WAS\nTre Johnson · T Halibooty · SG WAS\nTre Jones · The Fun Guys · SG CHI\nTrey Murphy · Ware the Hoes At? · SG NOP\nTristan da Silva · Ware the Hoes At? · SF ORL\nTy Jerome · The Fun Guys · PG MEM\nTyler Herro · NeuralNets · SG MIL\nTyrese Haliburton · papichooter · PG IND\nTyrese Maxey · The Fun Guys · PG PHI\nVictor Wembanyama · The Fun Guys · C SAS\nVJ Edgecombe · Ware the Hoes At? · SG PHI\nWalker Kessler · T Halibooty · C LAL\nWalter Clayton · Stephon Castle’s Back · PG MEM\nWendell Carter · Ware the Hoes At? · C ORL\nYang Hansen · Stephon Castle’s Back · C POR\nYanic Konan Niederhäuser · Ware the Hoes At? · C LAC\nYaxel Lendeborg · Reaves Dropper · PF GSW\nZach Edey · Stephon Castle’s Back · C MEM\nZach LaVine · Josh Diddy’s Roster · SG SAC\nZion Williamson · The Fun Guys · PF NOP\nZuby Ejiofor · Stephon Castle’s Back · C ATL\nPin comparison\nFollow these players’ teams\nPlayer comparison\n\nAJ Dybantsa added to the comparison above.\n\nSame player identities across distinct measures and periods. On phones, each field lists all pinned names together.\nField / source period\t\n\nJoel Embiid\n\nReaves Dropper · C PHI\n\nRemove\n\t\n\nDamian Lillard\n\nReaves Dropper · PG POR\n\nRemove\n\t\n\nAJ Dybantsa\n\nNeuralNets · PF WAS\n\nRemove\n\nCurrent quote\nModeled FAAB. Never fantasy points or a traded balance.\n\t\n\n$137.50\n\nin-season basis · 2026-11-12T12:00:00.000Z\n\t\n\n$74.00\n\nin-season basis · 2026-11-12T12:00:00.000Z\n\t\n\nNo supplied current quote for this player. This does not mean $0 or a proven unpriced record.\n\n\nCompleted points\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\n\t\n\n33 FP\n\n3 GP · best and rough list. 5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\n\t\n\n45 FP\n\n3 GP · best list. 5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\n\t\n\nNo counted completed-week player record supplied in this cohort.\n\n\nForm watch\nOn form · in-season EMA fantasy points per game\n\t\n\n36 EMA FP/G\n\n8 observed games. EMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable. Availability status unknown\n\t\n\n38 EMA FP/G\n\n8 observed games. EMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable. Availability status unknown\n\t\n\nNo form-watch row supplied.\n\n\nDated NBA averages\n2025–26 NBA averages only. PPG / RPG / APG.\n\t\n\n26.9 PPG / 7.7 RPG / 3.9 APG\n\n2025–26 NBA averages; NBA.com · Embiid, checked 2026-10-08.\n\t\n\nNo supplied NBA-average editorial record.\n\n\t\n\nNo supplied NBA-average editorial record.\n\n\nDated college averages\n2025–26 college · BYU only. Kept apart from NBA and fantasy points.\n\t\n\nNo supplied college-average editorial record.\n\n\t\n\nNo supplied college-average editorial record.\n\n\t\n\n25.5 PPG / 6.8 RPG / 3.7 APG\n\n2025–26 college · BYU; NBA.com · draft profile, checked 2026-10-08.\n\nCurrent team\nCurrent directory identity; not historical ownership.\n\t\nReaves Dropper\nC · PHI\n\t\nReaves Dropper\nPG · POR\n\t\nNeuralNets\nPF · WAS\n\nDated opinion\nEditorial selection and date; not a computed award.\n\t\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\nLast-season lookback · Oct 5–11, 2026 · draft / unpublished\n\nSelection and source\n\t\n\nNo supplied dated opinion for this player.\n\n\t\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\nNext week · preseason · Oct 5–11, 2026 · draft / unpublished\n\nSelection and source\n\nFields stay separate: prices are modeled FAAB; completed points are counted fantasy points; form is EMA FP per game; NBA and college averages keep their own period.\n\nRead this comparison as text\nBrowse all source records\nCompare public edition\nComparison transcript\nAll source records\nTrade analyzer\nPlay free throws\nWeekly archive\nFixture provenance",
+        "focus": "pin-button",
+        "columns": [
+          "Field / source period",
+          "Joel EmbiidReaves Dropper · C PHIRemove",
+          "Damian LillardReaves Dropper · PG PORRemove",
+          "AJ DybantsaNeuralNets · PF WASRemove"
+        ]
+      },
+      {
+        "id": "18",
+        "device": "desktop",
+        "state": "follow-pins",
+        "note": "Exact keyboard Follow these players teams transition.",
+        "errors": [],
+        "width": 1440,
+        "height": 1477,
+        "text": "Skip to comparisons\nGOAT\nHoopers\nStocks\nExplore\n\nEvidence, in relation\n\nCompare the evidence.\nSynthetic concept\n\nPin names to compare fields and periods. Follow a team to connect its records.\n\nCompare players\nFollow a team\nChange pinned names\nFind a name\nAdd team\nHuff n’ Puff · GriffinHealy\nJosh Diddy’s Roster · vannweinkauf\nLebron Theme Team · lordlx\npapichooter · papichooter\nStephon Castle’s Back · TommyDieselfuel\nT Halibooty · TyreseHalibooty\nThe Fun Guys · philbiag\nWare the Hoes At? · Aedan23\nPin comparison\nFranchise relationships\n\n2 teams pinned · 6 fields have supplied records for every column\n\nTeam identities connect current opponents, picks, roster evidence and dated editions. On phones, each field lists all pinned names together.\nField / source period\t\n\nReaves Dropper\n\naidandaly20 · 24 players\n\nRemove\nCompare roster players\n\t\n\nNeuralNets\n\nNeuralNets · 22 players\n\nRemove\nCompare roster players\n\nCurrent pairing\nCurrent Week 3 fixture; incomplete, never final.\n\t\n\nvs Ware the Hoes At?\n\n0.0 / opponent Pending\n\nWeek 3 · incomplete\n\n\t\n\nvs papichooter\n\nPending / opponent 105.5\n\nWeek 3 · incomplete\n\n\nCurrent standing\nCurrent fixture rank, W/L, PF. PF = source hundredths / 100.\n\t\n\n#1 · 1 W / 0 L\n\n320.50 PF · aidandaly20\n\t\n\n#8 · 1 W / 0 L\n\n282.00 PF · NeuralNets\n\nSaved model opinion\nWeek 3 · 2026-11-10T12:00:00Z · ready. Probability and confidence stay separate.\n\t\n\nWare the Hoes At? is the returned choice.\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\n\nIndependent confidence: 20%.\n\nSaved source\n\t\n\nNeuralNets is the returned choice.\n\nNeuralNets: 35%\npapichooter: 65%\n\nIndependent confidence: 20%.\n\nSaved source\n\nCurrent quote: roster subtotal\nModeled FAAB subtotal for the member’s roster only; no other totals inferred.\n\t\n\n$1095.25\n\n24 priced / 0 unpriced; in-season basis; 2026-11-12T12:00:00.000Z.\n\t\n\nNo supplied roster subtotal for this team.\n\n\nCurrent quote: supplied face\nOne player’s modeled FAAB value. This is not a roster total.\n\t\nJoel Embiid\n\n$137.50\n\nC · face projection\n\n\t\nGiannis Antetokounmpo\n\n$140.75\n\nPF · face projection\n\n\nCompleted player points\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\n\t\n\nDamian Lillard: 45 FP / 3 GP · best.\n\nTobias Harris: 39 FP / 3 GP · best.\n\nJoel Embiid: 33 FP / 3 GP · best and rough.\n\nDerrick White: 21 FP / 3 GP · rough.\n\nMyles Turner: 27 FP / 3 GP · rough.\n\n\t\n\nNo supplied completed-player cohort for this team.\n\n\nDated edition appearances\nOriginal archive bounds and game states; not current pairings.\n\t\n\nThe next chapter\nOct 5–11, 2026 · draft / unpublished\nReaves Dropper vs Josh Diddy’s Roster: Upcoming / Pending\nOpening-week watch\n\n\t\n\nNo supplied dated game appearance.\n\n\nDated player opinions\nOnly opinions whose supplied current team is this franchise; no historical ownership inferred.\n\t\n\nJoel Embiid: We wanted more on the glass.\n2025–26 NBA averages · checked 2026-10-08\n\n\t\n\nAJ Dybantsa: No. 1 pick. No free pass.\n2025–26 college · BYU · checked 2026-10-08\n\n\nPrevious-season attribution\n2025 history, distinct from current manager/record.\n\t\n\n16–5 · finish 4\n\nNo previous-manager qualification supplied.\n\t\n\n1–20 · finish 10\n\nUnder the previous manager as QBs Gremlins.\n\nFields stay separate: prices are modeled FAAB; completed points are counted fantasy points; form is EMA FP per game; NBA and college averages keep their own period.\n\nRead this comparison as text\nBrowse all source records\nCompare public edition\nComparison transcript\nAll source records\nTrade analyzer\nPlay free throws\nWeekly archive\nFixture provenance",
+        "focus": "team-mode",
+        "columns": [
+          "Field / source period",
+          "Reaves Dropperaidandaly20 · 24 playersRemoveCompare roster players",
+          "NeuralNetsNeuralNets · 22 playersRemoveCompare roster players"
+        ],
+        "nextFocus": "<summary>Change pinned names</summary>"
+      },
+      {
+        "id": "18",
+        "device": "desktop",
+        "state": "source-register",
+        "note": "Keyboard source register retains comparison above.",
+        "errors": [],
+        "width": 1440,
+        "height": 1849,
+        "text": "Skip to comparisons\nGOAT\nHoopers\nStocks\nExplore\n\nEvidence, in relation\n\nCompare the evidence.\nSynthetic concept\n\nPin names to compare fields and periods. Follow a team to connect its records.\n\nCompare players\nFollow a team\nChange pinned names\nFind a name\nAdd team\nHuff n’ Puff · GriffinHealy\nJosh Diddy’s Roster · vannweinkauf\nLebron Theme Team · lordlx\npapichooter · papichooter\nStephon Castle’s Back · TommyDieselfuel\nT Halibooty · TyreseHalibooty\nThe Fun Guys · philbiag\nWare the Hoes At? · Aedan23\nPin comparison\nFranchise relationships\n\n2 teams pinned · 6 fields have supplied records for every column\n\nTeam identities connect current opponents, picks, roster evidence and dated editions. On phones, each field lists all pinned names together.\nField / source period\t\n\nReaves Dropper\n\naidandaly20 · 24 players\n\nRemove\nCompare roster players\n\t\n\nNeuralNets\n\nNeuralNets · 22 players\n\nRemove\nCompare roster players\n\nCurrent pairing\nCurrent Week 3 fixture; incomplete, never final.\n\t\n\nvs Ware the Hoes At?\n\n0.0 / opponent Pending\n\nWeek 3 · incomplete\n\n\t\n\nvs papichooter\n\nPending / opponent 105.5\n\nWeek 3 · incomplete\n\n\nCurrent standing\nCurrent fixture rank, W/L, PF. PF = source hundredths / 100.\n\t\n\n#1 · 1 W / 0 L\n\n320.50 PF · aidandaly20\n\t\n\n#8 · 1 W / 0 L\n\n282.00 PF · NeuralNets\n\nSaved model opinion\nWeek 3 · 2026-11-10T12:00:00Z · ready. Probability and confidence stay separate.\n\t\n\nWare the Hoes At? is the returned choice.\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\n\nIndependent confidence: 20%.\n\nSaved source\n\t\n\nNeuralNets is the returned choice.\n\nNeuralNets: 35%\npapichooter: 65%\n\nIndependent confidence: 20%.\n\nSaved source\n\nCurrent quote: roster subtotal\nModeled FAAB subtotal for the member’s roster only; no other totals inferred.\n\t\n\n$1095.25\n\n24 priced / 0 unpriced; in-season basis; 2026-11-12T12:00:00.000Z.\n\t\n\nNo supplied roster subtotal for this team.\n\n\nCurrent quote: supplied face\nOne player’s modeled FAAB value. This is not a roster total.\n\t\nJoel Embiid\n\n$137.50\n\nC · face projection\n\n\t\nGiannis Antetokounmpo\n\n$140.75\n\nPF · face projection\n\n\nCompleted player points\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\n\t\n\nDamian Lillard: 45 FP / 3 GP · best.\n\nTobias Harris: 39 FP / 3 GP · best.\n\nJoel Embiid: 33 FP / 3 GP · best and rough.\n\nDerrick White: 21 FP / 3 GP · rough.\n\nMyles Turner: 27 FP / 3 GP · rough.\n\n\t\n\nNo supplied completed-player cohort for this team.\n\n\nDated edition appearances\nOriginal archive bounds and game states; not current pairings.\n\t\n\nThe next chapter\nOct 5–11, 2026 · draft / unpublished\nReaves Dropper vs Josh Diddy’s Roster: Upcoming / Pending\nOpening-week watch\n\n\t\n\nNo supplied dated game appearance.\n\n\nDated player opinions\nOnly opinions whose supplied current team is this franchise; no historical ownership inferred.\n\t\n\nJoel Embiid: We wanted more on the glass.\n2025–26 NBA averages · checked 2026-10-08\n\n\t\n\nAJ Dybantsa: No. 1 pick. No free pass.\n2025–26 college · BYU · checked 2026-10-08\n\n\nPrevious-season attribution\n2025 history, distinct from current manager/record.\n\t\n\n16–5 · finish 4\n\nNo previous-manager qualification supplied.\n\t\n\n1–20 · finish 10\n\nUnder the previous manager as QBs Gremlins.\n\nFields stay separate: prices are modeled FAAB; completed points are counted fantasy points; form is EMA FP per game; NBA and college averages keep their own period.\n\nRead this comparison as text\nBrowse all source records\nCompare public edition\nComparison transcript\nAll source records\n\nOpen records in place. Pin a player or team to bring it into the comparison above.\n\nReturn to comparison\n\nAJ Dybantsa added to the comparison above.\n\nCurrent pairing and all five saved model rows\nTen teams, ten faces, all 228 roster references\nYour team: valuation, form, completed points and wire\nTwo dated editions and three player opinions\nLeague moves and unavailable history / Power\nTrade analyzer\nPlay free throws\nWeekly archive\nFixture provenance",
+        "focus": "",
+        "columns": [
+          "Field / source period",
+          "Reaves Dropperaidandaly20 · 24 playersRemoveCompare roster players",
+          "NeuralNetsNeuralNets · 22 playersRemoveCompare roster players"
+        ]
+      },
+      {
+        "id": "18",
+        "device": "phone",
+        "state": "initial",
+        "note": "Frozen source recheck initial.",
+        "errors": [],
+        "width": 390,
+        "height": 1525,
+        "text": "Skip to comparisons\nGOAT\nHoopers\nStocks\nExplore\nCompare the evidence.\nSynthetic concept\n\nPin names to compare fields and periods. Follow a team to connect its records.\n\nCompare players\nFollow a team\nChange pinned names\nPlayer comparison\n\n2 players pinned · 4 fields have supplied records for every column\n\nSame player identities across distinct measures and periods. On phones, each field lists all pinned names together.\n\nJoel Embiid\n\nReaves Dropper · C PHI\n\nRemove\n\nDamian Lillard\n\nReaves Dropper · PG POR\n\nRemove\nCurrent quote\nModeled FAAB. Never fantasy points or a traded balance.\nJoel Embiid\n\n$137.50\n\nin-season basis · 2026-11-12T12:00:00.000Z\nDamian Lillard\n\n$74.00\n\nin-season basis · 2026-11-12T12:00:00.000Z\nCompleted points\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\nJoel Embiid\n\n33 FP\n\n3 GP · best and rough list. 5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\nDamian Lillard\n\n45 FP\n\n3 GP · best list. 5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\nForm watch\nOn form · in-season EMA fantasy points per game\nJoel Embiid\n\n36 EMA FP/G\n\n8 observed games. EMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable. Availability status unknown\nDamian Lillard\n\n38 EMA FP/G\n\n8 observed games. EMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable. Availability status unknown\nDated NBA averages\n2025–26 NBA averages only. PPG / RPG / APG.\nJoel Embiid\n\n26.9 PPG / 7.7 RPG / 3.9 APG\n\n2025–26 NBA averages; NBA.com · Embiid, checked 2026-10-08.\nDamian Lillard\n\nNo supplied NBA-average editorial record.\n\nDated college averages\n2025–26 college · BYU only. Kept apart from NBA and fantasy points.\nJoel Embiid\n\nNo supplied college-average editorial record.\n\nDamian Lillard\n\nNo supplied college-average editorial record.\n\nCurrent team\nCurrent directory identity; not historical ownership.\nJoel Embiid\nReaves Dropper\nC · PHI\nDamian Lillard\nReaves Dropper\nPG · POR\nDated opinion\nEditorial selection and date; not a computed award.\nJoel Embiid\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\nLast-season lookback · Oct 5–11, 2026 · draft / unpublished\n\nSelection and source\nDamian Lillard\n\nNo supplied dated opinion for this player.\n\nFields stay separate: prices are modeled FAAB; completed points are counted fantasy points; form is EMA FP per game; NBA and college averages keep their own period.\n\nRead this comparison as text\nBrowse all source records\nCompare public edition\nComparison transcript\nAll source records\nTrade analyzer\nPlay free throws\nWeekly archive\nFixture provenance",
+        "focus": "",
+        "columns": [
+          "Field / source period",
+          "Joel EmbiidReaves Dropper · C PHIRemove",
+          "Damian LillardReaves Dropper · PG PORRemove"
+        ]
+      },
+      {
+        "id": "18",
+        "device": "phone",
+        "state": "third-player",
+        "note": "Keyboard pin AJ Dybantsa adds third player.",
+        "errors": [],
+        "width": 390,
+        "height": 1747,
+        "text": "Skip to comparisons\nGOAT\nHoopers\nStocks\nExplore\nCompare the evidence.\nSynthetic concept\n\nPin names to compare fields and periods. Follow a team to connect its records.\n\nCompare players\nFollow a team\nChange pinned names\nFind a name\nAdd player\nAaron Gordon · Josh Diddy’s Roster · PF DEN\nAaron Nesmith · T Halibooty · SF IND\nAce Bailey · Ware the Hoes At? · SF UTA\nAday Mara · papichooter · C OKC\nAJ Green · Huff n’ Puff · SG MIL\nAjay Mitchell · Stephon Castle’s Back · PG OKC\nAlex Sarr · Lebron Theme Team · C WAS\nAllen Graves · The Fun Guys · PF TOR\nAlperen Şengün · Reaves Dropper · C HOU\nAmen Thompson · Huff n’ Puff · SG HOU\nAndrew Nembhard · Stephon Castle’s Back · PG IND\nAndrew Wiggins · Lebron Theme Team · SF MIA\nAnthony Black · Ware the Hoes At? · SG ORL\nAnthony Davis · T Halibooty · C WAS\nAnthony Edwards · Reaves Dropper · SG MIN\nAusar Thompson · papichooter · SG DET\nAustin Reaves · Reaves Dropper · SG LAL\nAyo Dosunmu · papichooter · SG MIN\nBaba Miller · The Fun Guys · SF LAC\nBam Adebayo · T Halibooty · C MIA\nBennett Stirtz · Ware the Hoes At? · PG OKC\nBilal Coulibaly · T Halibooty · SF WAS\nBrandin Podziemski · Stephon Castle’s Back · PG GSW\nBrandon Ingram · Josh Diddy’s Roster · SF LAC\nBrandon Miller · Reaves Dropper · SF CHA\nBrayden Burries · Josh Diddy’s Roster · PG MIL\nBruce Thornton · Reaves Dropper · PG HOU\nCade Cunningham · Huff n’ Puff · PG DET\nCaleb Love · The Fun Guys · PG PHI\nCaleb Wilson · T Halibooty · PF CHI\nCam Spencer · Huff n’ Puff · SG MEM\nCameron Boozer · Lebron Theme Team · C MEM\nCameron Carr · T Halibooty · PG LAL\nCameron Johnson · Lebron Theme Team · SF DEN\nCarter Bryant · Huff n’ Puff · PF SAS\nCedric Coward · papichooter · SG MEM\nChet Holmgren · papichooter · C OKC\nChris Cenac · T Halibooty · C BOS\nChristian Anderson · Lebron Theme Team · PG CHA\nChristian Braun · Ware the Hoes At? · SG DEN\nCJ McCollum · Lebron Theme Team · PG ATL\nCoby White · The Fun Guys · PG CHA\nCody Williams · Ware the Hoes At? · SG MIN\nCollin Gillespie · T Halibooty · PG PHX\nCollin Murray-Boyles · Lebron Theme Team · C TOR\nCollin Sexton · NeuralNets · SG LAL\nCooper Flagg · Lebron Theme Team · SG DAL\nDailyn Swain · NeuralNets · PF CHI\nDaniel Gafford · NeuralNets · C DAL\nDaniss Jenkins · Reaves Dropper · PG DET\nDanny Wolf · Reaves Dropper · PF BKN\nDarius Acuff · Stephon Castle’s Back · PG SAC\nDarius Garland · papichooter · PG LAC\nDarryn Peterson · NeuralNets · PG UTA\nDavion Mitchell · Josh Diddy’s Roster · PG MIA\nDay'Ron Sharpe · Josh Diddy’s Roster · C BKN\nDe'Aaron Fox · Huff n’ Puff · PG SAS\nDeandre Ayton · T Halibooty · C WAS\nDejounte Murray · Josh Diddy’s Roster · PG NOP\nDeMar DeRozan · papichooter · SF DEN\nDeni Avdija · papichooter · PF POR\nDereck Lively · Lebron Theme Team · C DAL\nDerik Queen · Reaves Dropper · C NOP\nDerrick White · Reaves Dropper · SG BOS\nDesmond Bane · The Fun Guys · SG ORL\nDevin Booker · T Halibooty · SG PHX\nDevin Vassell · Reaves Dropper · SF SAS\nDillon Brooks · Stephon Castle’s Back · SF PHX\nDomantas Sabonis · Ware the Hoes At? · C SAC\nDonovan Clingan · Reaves Dropper · C POR\nDonovan Mitchell · Huff n’ Puff · SG CLE\nDonte DiVincenzo · Lebron Theme Team · SG MIN\nDraymond Green · Josh Diddy’s Roster · PF GSW\nDylan Harper · Lebron Theme Team · SG SAS\nDyson Daniels · NeuralNets · SG ATL\nEbuka Okorie · Huff n’ Puff · PG DET\nEgor Dëmin · Josh Diddy’s Roster · SG BKN\nEvan Mobley · Ware the Hoes At? · C CLE\nFranz Wagner · Stephon Castle’s Back · SF ORL\nFred VanVleet · Josh Diddy’s Roster · PG HOU\nGiannis Antetokounmpo · NeuralNets · PF MIA\nGrayson Allen · Reaves Dropper · SF CHA\nHannes Steinbach · Huff n’ Puff · C CHA\nHenri Veesaar · Huff n’ Puff · C ATL\nHerbert Jones · Huff n’ Puff · PF NOP\nImmanuel Quickley · Reaves Dropper · PG TOR\nIsaiah Collier · Ware the Hoes At? · PG UTA\nIsaiah Hartenstein · Lebron Theme Team · C OKC\nIsaiah Stewart · Stephon Castle’s Back · C MEM\nIvica Zubac · NeuralNets · C IND\nJa Morant · Lebron Theme Team · PG POR\nJabari Smith · Lebron Theme Team · PF HOU\nJaden McDaniels · NeuralNets · SF MIN\nJaime Jaquez · T Halibooty · PF MIL\nJakob Poeltl · papichooter · C TOR\nJalen Brunson · The Fun Guys · PG NYK\nJalen Duren · papichooter · C DET\nJalen Green · Josh Diddy’s Roster · SG PHX\nJalen Johnson · Josh Diddy’s Roster · PF ATL\nJalen Smith · Ware the Hoes At? · C CHI\nJalen Suggs · T Halibooty · PG ORL\nJalen Williams · The Fun Guys · PF OKC\nJamal Murray · T Halibooty · PG DEN\nJames Harden · Josh Diddy’s Roster · PG CLE\nJarace Walker · Ware the Hoes At? · PF IND\nJared McCain · papichooter · SG OKC\nJaren Jackson · Huff n’ Puff · C UTA\nJarrett Allen · Huff n’ Puff · C CLE\nJase Richardson · Huff n’ Puff · PG ORL\nJaylen Brown · T Halibooty · SF PHI\nJaylen Wells · Ware the Hoes At? · SF MEM\nJayson Tatum · Josh Diddy’s Roster · SF BOS\nJeremiah Fears · Ware the Hoes At? · PG NOP\nJimmy Butler · Huff n’ Puff · SF GSW\nJohn Collins · Stephon Castle’s Back · PF DET\nJonathan Kuminga · papichooter · PF MIN\nJosh Giddey · Josh Diddy’s Roster · PG CHI\nJosh Hart · Lebron Theme Team · SG NYK\nJoshua Jefferson · Huff n’ Puff · PF BKN\nJrue Holiday · Josh Diddy’s Roster · PG POR\nJulius Randle · papichooter · PF BKN\nJusuf Nurkić · T Halibooty · C UTA\nKarim Lopez · Josh Diddy’s Roster · PF MEM\nKarl-Anthony Towns · Josh Diddy’s Roster · C NYK\nKasparas Jakučionis · Ware the Hoes At? · PG MIL\nKawhi Leonard · The Fun Guys · SF TOR\nKeaton Wagler · NeuralNets · PG LAC\nKeegan Murray · The Fun Guys · PF SAC\nKel'el Ware · Ware the Hoes At? · C MIL\nKelly Oubre · Lebron Theme Team · PF IND\nKevin Durant · NeuralNets · SF HOU\nKevin Porter · papichooter · PG MIL\nKeyonte George · The Fun Guys · PG UTA\nKhaman Maluach · The Fun Guys · C PHX\nKingston Flemings · Stephon Castle’s Back · PG ATL\nKoa Peat · Josh Diddy’s Roster · PF PHX\nKon Knueppel · Ware the Hoes At? · SG CHA\nKristaps Porziņģis · NeuralNets · C GSW\nKyle Filipowski · Stephon Castle’s Back · C UTA\nKyle Kuzma · Stephon Castle’s Back · PF MIL\nKyrie Irving · Ware the Hoes At? · PG DAL\nKyshawn George · T Halibooty · SF WAS\nLabaron Philon · Reaves Dropper · PG PHI\nLaMelo Ball · NeuralNets · PG MIN\nLauri Markkanen · NeuralNets · PF UTA\nLeBron James · Lebron Theme Team · PF PHI\nLiam McNeeley · NeuralNets · SF CHA\nLuka Dončić · papichooter · PG LAL\nMark Williams · Ware the Hoes At? · C PHX\nMatas Buzelis · NeuralNets · PF CHI\nMax Christie · Reaves Dropper · SG DAL\nMaxime Raynaud · Josh Diddy’s Roster · C SAC\nMeleek Thomas · Lebron Theme Team · SG CLE\nMichael Porter · The Fun Guys · SF BKN\nMikal Bridges · T Halibooty · SF NYK\nMikel Brown · Ware the Hoes At? · PG BKN\nMiles Bridges · The Fun Guys · PF PHX\nMitchell Robinson · Huff n’ Puff · C BOS\nMohamed Diawara · Huff n’ Puff · SF NYK\nMorez Johnson · papichooter · C DAL\nMoussa Diabaté · The Fun Guys · C CHA\nMyles Turner · Reaves Dropper · C MIL\nNate Ament · Ware the Hoes At? · PF MIL\nNaz Reid · Stephon Castle’s Back · C CHA\nNeemias Queta · T Halibooty · C BOS\nNic Claxton · The Fun Guys · C CHI\nNickeil Alexander-Walker · The Fun Guys · SG ATL\nNikola Jokić · Josh Diddy’s Roster · C DEN\nNique Clifford · T Halibooty · SG SAC\nNolan Traore · Reaves Dropper · PG BKN\nNorman Powell · NeuralNets · SF CHI\nOG Anunoby · Huff n’ Puff · PF NYK\nOnyeka Okongwu · NeuralNets · C ATL\nP.J. Washington · Ware the Hoes At? · PF DAL\nPaolo Banchero · Ware the Hoes At? · PF ORL\nPascal Siakam · Huff n’ Puff · PF IND\nPaul George · papichooter · SF BOS\nPayton Pritchard · Reaves Dropper · PG BOS\nPeyton Watson · Reaves Dropper · SF CLE\nPrecious Achiuwa · The Fun Guys · PF SAC\nQuentin Grimes · papichooter · PG LAL\nRasheer Fleming · NeuralNets · PF PHX\nReed Sheppard · T Halibooty · PG HOU\nRJ Barrett · Stephon Castle’s Back · SF TOR\nRonald Holland · Huff n’ Puff · PF DET\nRudy Gobert · NeuralNets · C MIN\nRyan Conwell · papichooter · SG MIA\nRyan Kalkbrenner · Stephon Castle’s Back · C CHA\nRyan Nembhard · NeuralNets · PG DEN\nRyan Rollins · Lebron Theme Team · PG MIL\nSaddiq Bey · papichooter · SF NOP\nSam Hauser · Huff n’ Puff · PF BOS\nSandro Mamukelashvili · Huff n’ Puff · C LAL\nSanti Aldama · Reaves Dropper · PF DAL\nScoot Henderson · papichooter · PG POR\nScottie Barnes · Stephon Castle’s Back · PF TOR\nShaedon Sharpe · Ware the Hoes At? · SG POR\nShai Gilgeous-Alexander · Stephon Castle’s Back · PG OKC\nSion James · papichooter · SF CHA\nStephen Curry · Josh Diddy’s Roster · PG GSW\nStephon Castle · Stephon Castle’s Back · SG SAS\nTari Eason · Lebron Theme Team · SG HOU\nTobias Harris · Reaves Dropper · PF SAS\nToumani Camara · Stephon Castle’s Back · SF POR\nTrae Young · Lebron Theme Team · PG WAS\nTre Johnson · T Halibooty · SG WAS\nTre Jones · The Fun Guys · SG CHI\nTrey Murphy · Ware the Hoes At? · SG NOP\nTristan da Silva · Ware the Hoes At? · SF ORL\nTy Jerome · The Fun Guys · PG MEM\nTyler Herro · NeuralNets · SG MIL\nTyrese Haliburton · papichooter · PG IND\nTyrese Maxey · The Fun Guys · PG PHI\nVictor Wembanyama · The Fun Guys · C SAS\nVJ Edgecombe · Ware the Hoes At? · SG PHI\nWalker Kessler · T Halibooty · C LAL\nWalter Clayton · Stephon Castle’s Back · PG MEM\nWendell Carter · Ware the Hoes At? · C ORL\nYang Hansen · Stephon Castle’s Back · C POR\nYanic Konan Niederhäuser · Ware the Hoes At? · C LAC\nYaxel Lendeborg · Reaves Dropper · PF GSW\nZach Edey · Stephon Castle’s Back · C MEM\nZach LaVine · Josh Diddy’s Roster · SG SAC\nZion Williamson · The Fun Guys · PF NOP\nZuby Ejiofor · Stephon Castle’s Back · C ATL\nPin comparison\nFollow these players’ teams\nPlayer comparison\n\nAJ Dybantsa added to the comparison above.\n\nSame player identities across distinct measures and periods. On phones, each field lists all pinned names together.\n\nJoel Embiid\n\nReaves Dropper · C PHI\n\nRemove\n\nDamian Lillard\n\nReaves Dropper · PG POR\n\nRemove\n\nAJ Dybantsa\n\nNeuralNets · PF WAS\n\nRemove\nCurrent quote\nModeled FAAB. Never fantasy points or a traded balance.\nJoel Embiid\n\n$137.50\n\nin-season basis · 2026-11-12T12:00:00.000Z\nDamian Lillard\n\n$74.00\n\nin-season basis · 2026-11-12T12:00:00.000Z\nAJ Dybantsa\n\nNo supplied current quote for this player. This does not mean $0 or a proven unpriced record.\n\nCompleted points\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\nJoel Embiid\n\n33 FP\n\n3 GP · best and rough list. 5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\nDamian Lillard\n\n45 FP\n\n3 GP · best list. 5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\nAJ Dybantsa\n\nNo counted completed-week player record supplied in this cohort.\n\nForm watch\nOn form · in-season EMA fantasy points per game\nJoel Embiid\n\n36 EMA FP/G\n\n8 observed games. EMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable. Availability status unknown\nDamian Lillard\n\n38 EMA FP/G\n\n8 observed games. EMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable. Availability status unknown\nAJ Dybantsa\n\nNo form-watch row supplied.\n\nDated NBA averages\n2025–26 NBA averages only. PPG / RPG / APG.\nJoel Embiid\n\n26.9 PPG / 7.7 RPG / 3.9 APG\n\n2025–26 NBA averages; NBA.com · Embiid, checked 2026-10-08.\nDamian Lillard\n\nNo supplied NBA-average editorial record.\n\nAJ Dybantsa\n\nNo supplied NBA-average editorial record.\n\nDated college averages\n2025–26 college · BYU only. Kept apart from NBA and fantasy points.\nJoel Embiid\n\nNo supplied college-average editorial record.\n\nDamian Lillard\n\nNo supplied college-average editorial record.\n\nAJ Dybantsa\n\n25.5 PPG / 6.8 RPG / 3.7 APG\n\n2025–26 college · BYU; NBA.com · draft profile, checked 2026-10-08.\nCurrent team\nCurrent directory identity; not historical ownership.\nJoel Embiid\nReaves Dropper\nC · PHI\nDamian Lillard\nReaves Dropper\nPG · POR\nAJ Dybantsa\nNeuralNets\nPF · WAS\nDated opinion\nEditorial selection and date; not a computed award.\nJoel Embiid\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\nLast-season lookback · Oct 5–11, 2026 · draft / unpublished\n\nSelection and source\nDamian Lillard\n\nNo supplied dated opinion for this player.\n\nAJ Dybantsa\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\nNext week · preseason · Oct 5–11, 2026 · draft / unpublished\n\nSelection and source\n\nFields stay separate: prices are modeled FAAB; completed points are counted fantasy points; form is EMA FP per game; NBA and college averages keep their own period.\n\nRead this comparison as text\nBrowse all source records\nCompare public edition\nComparison transcript\nAll source records\nTrade analyzer\nPlay free throws\nWeekly archive\nFixture provenance",
+        "focus": "pin-button",
+        "columns": [
+          "Field / source period",
+          "Joel EmbiidReaves Dropper · C PHIRemove",
+          "Damian LillardReaves Dropper · PG PORRemove",
+          "AJ DybantsaNeuralNets · PF WASRemove"
+        ]
+      },
+      {
+        "id": "18",
+        "device": "phone",
+        "state": "follow-pins",
+        "note": "Exact keyboard Follow these players teams transition.",
+        "errors": [],
+        "width": 390,
+        "height": 1708,
+        "text": "Skip to comparisons\nGOAT\nHoopers\nStocks\nExplore\nCompare the evidence.\nSynthetic concept\n\nPin names to compare fields and periods. Follow a team to connect its records.\n\nCompare players\nFollow a team\nChange pinned names\nFind a name\nAdd team\nHuff n’ Puff · GriffinHealy\nJosh Diddy’s Roster · vannweinkauf\nLebron Theme Team · lordlx\npapichooter · papichooter\nStephon Castle’s Back · TommyDieselfuel\nT Halibooty · TyreseHalibooty\nThe Fun Guys · philbiag\nWare the Hoes At? · Aedan23\nPin comparison\nFranchise relationships\n\n2 teams pinned · 6 fields have supplied records for every column\n\nTeam identities connect current opponents, picks, roster evidence and dated editions. On phones, each field lists all pinned names together.\n\nReaves Dropper\n\naidandaly20 · 24 players\n\nRemove\nCompare roster players\n\nNeuralNets\n\nNeuralNets · 22 players\n\nRemove\nCompare roster players\nCurrent pairing\nCurrent Week 3 fixture; incomplete, never final.\nReaves Dropper\n\nvs Ware the Hoes At?\n\n0.0 / opponent Pending\n\nWeek 3 · incomplete\n\nNeuralNets\n\nvs papichooter\n\nPending / opponent 105.5\n\nWeek 3 · incomplete\n\nCurrent standing\nCurrent fixture rank, W/L, PF. PF = source hundredths / 100.\nReaves Dropper\n\n#1 · 1 W / 0 L\n\n320.50 PF · aidandaly20\nNeuralNets\n\n#8 · 1 W / 0 L\n\n282.00 PF · NeuralNets\nSaved model opinion\nWeek 3 · 2026-11-10T12:00:00Z · ready. Probability and confidence stay separate.\nReaves Dropper\n\nWare the Hoes At? is the returned choice.\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\n\nIndependent confidence: 20%.\n\nSaved source\nNeuralNets\n\nNeuralNets is the returned choice.\n\nNeuralNets: 35%\npapichooter: 65%\n\nIndependent confidence: 20%.\n\nSaved source\nCurrent quote: roster subtotal\nModeled FAAB subtotal for the member’s roster only; no other totals inferred.\nReaves Dropper\n\n$1095.25\n\n24 priced / 0 unpriced; in-season basis; 2026-11-12T12:00:00.000Z.\nNeuralNets\n\nNo supplied roster subtotal for this team.\n\nCurrent quote: supplied face\nOne player’s modeled FAAB value. This is not a roster total.\nReaves Dropper\nJoel Embiid\n\n$137.50\n\nC · face projection\n\nNeuralNets\nGiannis Antetokounmpo\n\n$140.75\n\nPF · face projection\n\nCompleted player points\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\nReaves Dropper\n\nDamian Lillard: 45 FP / 3 GP · best.\n\nTobias Harris: 39 FP / 3 GP · best.\n\nJoel Embiid: 33 FP / 3 GP · best and rough.\n\nDerrick White: 21 FP / 3 GP · rough.\n\nMyles Turner: 27 FP / 3 GP · rough.\n\nNeuralNets\n\nNo supplied completed-player cohort for this team.\n\nDated edition appearances\nOriginal archive bounds and game states; not current pairings.\nReaves Dropper\n\nThe next chapter\nOct 5–11, 2026 · draft / unpublished\nReaves Dropper vs Josh Diddy’s Roster: Upcoming / Pending\nOpening-week watch\n\nNeuralNets\n\nNo supplied dated game appearance.\n\nDated player opinions\nOnly opinions whose supplied current team is this franchise; no historical ownership inferred.\nReaves Dropper\n\nJoel Embiid: We wanted more on the glass.\n2025–26 NBA averages · checked 2026-10-08\n\nNeuralNets\n\nAJ Dybantsa: No. 1 pick. No free pass.\n2025–26 college · BYU · checked 2026-10-08\n\nPrevious-season attribution\n2025 history, distinct from current manager/record.\nReaves Dropper\n\n16–5 · finish 4\n\nNo previous-manager qualification supplied.\nNeuralNets\n\n1–20 · finish 10\n\nUnder the previous manager as QBs Gremlins.\n\nFields stay separate: prices are modeled FAAB; completed points are counted fantasy points; form is EMA FP per game; NBA and college averages keep their own period.\n\nRead this comparison as text\nBrowse all source records\nCompare public edition\nComparison transcript\nAll source records\nTrade analyzer\nPlay free throws\nWeekly archive\nFixture provenance",
+        "focus": "team-mode",
+        "columns": [
+          "Field / source period",
+          "Reaves Dropperaidandaly20 · 24 playersRemoveCompare roster players",
+          "NeuralNetsNeuralNets · 22 playersRemoveCompare roster players"
+        ],
+        "nextFocus": "<summary>Change pinned names</summary>"
+      },
+      {
+        "id": "18",
+        "device": "phone",
+        "state": "source-register",
+        "note": "Keyboard source register retains comparison above.",
+        "errors": [],
+        "width": 390,
+        "height": 2230,
+        "text": "Skip to comparisons\nGOAT\nHoopers\nStocks\nExplore\nCompare the evidence.\nSynthetic concept\n\nPin names to compare fields and periods. Follow a team to connect its records.\n\nCompare players\nFollow a team\nChange pinned names\nFind a name\nAdd team\nHuff n’ Puff · GriffinHealy\nJosh Diddy’s Roster · vannweinkauf\nLebron Theme Team · lordlx\npapichooter · papichooter\nStephon Castle’s Back · TommyDieselfuel\nT Halibooty · TyreseHalibooty\nThe Fun Guys · philbiag\nWare the Hoes At? · Aedan23\nPin comparison\nFranchise relationships\n\n2 teams pinned · 6 fields have supplied records for every column\n\nTeam identities connect current opponents, picks, roster evidence and dated editions. On phones, each field lists all pinned names together.\n\nReaves Dropper\n\naidandaly20 · 24 players\n\nRemove\nCompare roster players\n\nNeuralNets\n\nNeuralNets · 22 players\n\nRemove\nCompare roster players\nCurrent pairing\nCurrent Week 3 fixture; incomplete, never final.\nReaves Dropper\n\nvs Ware the Hoes At?\n\n0.0 / opponent Pending\n\nWeek 3 · incomplete\n\nNeuralNets\n\nvs papichooter\n\nPending / opponent 105.5\n\nWeek 3 · incomplete\n\nCurrent standing\nCurrent fixture rank, W/L, PF. PF = source hundredths / 100.\nReaves Dropper\n\n#1 · 1 W / 0 L\n\n320.50 PF · aidandaly20\nNeuralNets\n\n#8 · 1 W / 0 L\n\n282.00 PF · NeuralNets\nSaved model opinion\nWeek 3 · 2026-11-10T12:00:00Z · ready. Probability and confidence stay separate.\nReaves Dropper\n\nWare the Hoes At? is the returned choice.\n\nWare the Hoes At?: 35%\nReaves Dropper: 65%\n\nIndependent confidence: 20%.\n\nSaved source\nNeuralNets\n\nNeuralNets is the returned choice.\n\nNeuralNets: 35%\npapichooter: 65%\n\nIndependent confidence: 20%.\n\nSaved source\nCurrent quote: roster subtotal\nModeled FAAB subtotal for the member’s roster only; no other totals inferred.\nReaves Dropper\n\n$1095.25\n\n24 priced / 0 unpriced; in-season basis; 2026-11-12T12:00:00.000Z.\nNeuralNets\n\nNo supplied roster subtotal for this team.\n\nCurrent quote: supplied face\nOne player’s modeled FAAB value. This is not a roster total.\nReaves Dropper\nJoel Embiid\n\n$137.50\n\nC · face projection\n\nNeuralNets\nGiannis Antetokounmpo\n\n$140.75\n\nPF · face projection\n\nCompleted player points\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\nReaves Dropper\n\nDamian Lillard: 45 FP / 3 GP · best.\n\nTobias Harris: 39 FP / 3 GP · best.\n\nJoel Embiid: 33 FP / 3 GP · best and rough.\n\nDerrick White: 21 FP / 3 GP · rough.\n\nMyles Turner: 27 FP / 3 GP · rough.\n\nNeuralNets\n\nNo supplied completed-player cohort for this team.\n\nDated edition appearances\nOriginal archive bounds and game states; not current pairings.\nReaves Dropper\n\nThe next chapter\nOct 5–11, 2026 · draft / unpublished\nReaves Dropper vs Josh Diddy’s Roster: Upcoming / Pending\nOpening-week watch\n\nNeuralNets\n\nNo supplied dated game appearance.\n\nDated player opinions\nOnly opinions whose supplied current team is this franchise; no historical ownership inferred.\nReaves Dropper\n\nJoel Embiid: We wanted more on the glass.\n2025–26 NBA averages · checked 2026-10-08\n\nNeuralNets\n\nAJ Dybantsa: No. 1 pick. No free pass.\n2025–26 college · BYU · checked 2026-10-08\n\nPrevious-season attribution\n2025 history, distinct from current manager/record.\nReaves Dropper\n\n16–5 · finish 4\n\nNo previous-manager qualification supplied.\nNeuralNets\n\n1–20 · finish 10\n\nUnder the previous manager as QBs Gremlins.\n\nFields stay separate: prices are modeled FAAB; completed points are counted fantasy points; form is EMA FP per game; NBA and college averages keep their own period.\n\nRead this comparison as text\nBrowse all source records\nCompare public edition\nComparison transcript\nAll source records\n\nOpen records in place. Pin a player or team to bring it into the comparison above.\n\nReturn to comparison\n\nAJ Dybantsa added to the comparison above.\n\nCurrent pairing and all five saved model rows\nTen teams, ten faces, all 228 roster references\nYour team: valuation, form, completed points and wire\nTwo dated editions and three player opinions\nLeague moves and unavailable history / Power\nTrade analyzer\nPlay free throws\nWeekly archive\nFixture provenance",
+        "focus": "",
+        "columns": [
+          "Field / source period",
+          "Reaves Dropperaidandaly20 · 24 playersRemoveCompare roster players",
+          "NeuralNetsNeuralNets · 22 playersRemoveCompare roster players"
+        ]
+      }
+    ]
+  },
+  "evidenceImages": [
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/05-desktop-initial.jpg",
+      "sha256": "259d2e4d9b5b6afeeb65ab3368f9a65d4dc571376c9ced6a6d0a8965caa0d4df",
+      "bytes": 100103
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/05-phone-team-depth.jpg",
+      "sha256": "3ebe0cad462243e35b4afa099dd3548c04bdfe96916c478c5f8d610909c4251f",
+      "bytes": 52334
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/07-desktop-pair-lockers.jpg",
+      "sha256": "a61edbd405e819f97435d00b9f06a96c6b5c8f41013d2c607b97f6bea1d40d2c",
+      "bytes": 176644
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/07-phone-pair-lockers.jpg",
+      "sha256": "05b40c13220ba6f33c3f9448a8575a245d9c0f39f11bcb1624b60b22df7f2678",
+      "bytes": 54464
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/09-desktop-form-branch.jpg",
+      "sha256": "51506098b36492fb716262dd8bd8bc434868691e22bc5ba8875651b98dac0b40",
+      "bytes": 146470
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/09-phone-register-branch.jpg",
+      "sha256": "c6e5b3f98d203905cff4c14da7d224159f1a8a3fde27126da68033da50a61e02",
+      "bytes": 52296
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/10-desktop-evidence.jpg",
+      "sha256": "a1c46fe197cdbab1f510caae4243e02a9dc315783e9a055a7146a7d8062f38cd",
+      "bytes": 139546
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/10-phone-added-player.jpg",
+      "sha256": "398d9c14dfd8ad7e7c47d840636111dd5fef3b5ca338a8680ba8baada676fa92",
+      "bytes": 50795
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/12-desktop-third-context.jpg",
+      "sha256": "7fe18a49ce2bbb08fa60b8cd58a3afca6252294be8cd1783623d11251d144610",
+      "bytes": 148234
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/12-phone-third-context.jpg",
+      "sha256": "53fcca672a8f69d13042149abe0a8be7ce1c67ed7f2ded65983c7ef1cd97f4cd",
+      "bytes": 47038
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/13-desktop-club-open.jpg",
+      "sha256": "818647cf8c2ec5a50946535035ff0783c1565e850ee97d719f2c4759c9c511ca",
+      "bytes": 160587
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/13-phone-stories-open.jpg",
+      "sha256": "359898265e9636d4980e48db84ac6d014240cc0e86e7e92365e9b2adb293b869",
+      "bytes": 57671
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/14-desktop-historical-final.jpg",
+      "sha256": "d942ea355162fecf55085e1da844dcf7837213770c679d64e9ef1882a3aec2a6",
+      "bytes": 233125
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/14-phone-culture-channel.jpg",
+      "sha256": "42b5c57228121602c16d1ffb096d7ff3cfb3e60d44f5f2281693090b7e95c758",
+      "bytes": 62749
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/16-desktop-reordered.jpg",
+      "sha256": "ddcd70ecae7f0d8ab7d2e2a7103ad68de66fac6301488a4e6b4b06de68ba44de",
+      "bytes": 146045
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/16-phone-reload-order.jpg",
+      "sha256": "957f358f03a5ec3dde1c82e6e01670b5e14800e54bd1023626013abacbc681f6",
+      "bytes": 47243
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/18-desktop-third-player.jpg",
+      "sha256": "ad38d0e48a428d59b432c77442f2fc5e6dce8414d265bab3263f877204c09931",
+      "bytes": 132633
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/18-phone-follow-pins.jpg",
+      "sha256": "d1c8d63f50b9cbcf9c0e0e1c1792b6d30c8597ad5a4b06ba114f70badb7ed07f",
+      "bytes": 50713
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/19-desktop-first-dossier.jpg",
+      "sha256": "98166f80fade491c9fd85ae85c96ba7b47f2e74d3c18237712dc59a706c8b1c8",
+      "bytes": 106745
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/19-phone-dossier-roster.jpg",
+      "sha256": "c169604f75df49143ec0bc680670ab2e9e57f59a61b25933930b75d9a0bb2b0c",
+      "bytes": 37426
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/20-desktop-players-branch.jpg",
+      "sha256": "2b47412ee1ad2ff31823dde029609b325a0090c869d66371352b357f4fb51438",
+      "bytes": 126777
+    },
+    {
+      "path": "qa/homepage-structures/reviews/corrected-c-evidence/20-phone-prices-branch.jpg",
+      "sha256": "1232b4c252edacf79900682fdc83ac865481edb0fa81ffdd19869e89c2d85965",
+      "bytes": 41366
+    }
+  ],
+  "scratch": "Full initial document captures, native viewport images and detailed raw browser records retained at /tmp/corrected-c. Failed first-attempt selectors were corrected; their failures were automation targeting errors, not attributed product defects.",
+  "limits": [
+    "Only the selected substantive states were directly exercised per study, not all advertised API states.",
+    "Public/stale/missing variants, 320px/200% text, screen readers, physical devices and production routes not independently retested in this review.",
+    "Final content per-field parity/art/motion audit remains required."
+  ]
+}

@@ -1,0 +1,622 @@
+[
+  {
+    "width": 1440,
+    "step": 0,
+    "hash": "",
+    "current": "01This week",
+    "select": "week",
+    "reader": {
+      "left": 0,
+      "width": 1440
+    },
+    "panels": [
+      {
+        "id": "chapter-week",
+        "inert": false,
+        "left": 0,
+        "w": 1440,
+        "offset": 0
+      },
+      {
+        "id": "chapter-team",
+        "inert": true,
+        "left": 1440,
+        "w": 1440,
+        "offset": 1440
+      },
+      {
+        "id": "chapter-scout",
+        "inert": true,
+        "left": 2880,
+        "w": 1440,
+        "offset": 2880
+      },
+      {
+        "id": "chapter-league",
+        "inert": true,
+        "left": 4320,
+        "w": 1440,
+        "offset": 4320
+      },
+      {
+        "id": "chapter-edition",
+        "inert": true,
+        "left": 5760,
+        "w": 1440,
+        "offset": 5760
+      },
+      {
+        "id": "chapter-archive",
+        "inert": true,
+        "left": 7200,
+        "w": 1440,
+        "offset": 7200
+      },
+      {
+        "id": "chapter-tools",
+        "inert": true,
+        "left": 8640,
+        "w": 1440,
+        "offset": 8640
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "step": 1,
+    "hash": "#chapter-team",
+    "current": "02My club",
+    "select": "team",
+    "reader": {
+      "left": 1440,
+      "width": 1440
+    },
+    "panels": [
+      {
+        "id": "chapter-week",
+        "inert": true,
+        "left": -1440,
+        "w": 1440,
+        "offset": 0
+      },
+      {
+        "id": "chapter-team",
+        "inert": false,
+        "left": 0,
+        "w": 1440,
+        "offset": 1440
+      },
+      {
+        "id": "chapter-scout",
+        "inert": true,
+        "left": 1440,
+        "w": 1440,
+        "offset": 2880
+      },
+      {
+        "id": "chapter-league",
+        "inert": true,
+        "left": 2880,
+        "w": 1440,
+        "offset": 4320
+      },
+      {
+        "id": "chapter-edition",
+        "inert": true,
+        "left": 4320,
+        "w": 1440,
+        "offset": 5760
+      },
+      {
+        "id": "chapter-archive",
+        "inert": true,
+        "left": 5760,
+        "w": 1440,
+        "offset": 7200
+      },
+      {
+        "id": "chapter-tools",
+        "inert": true,
+        "left": 7200,
+        "w": 1440,
+        "offset": 8640
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "step": 2,
+    "hash": "#chapter-scout",
+    "current": "03Scoutbook",
+    "select": "scout",
+    "reader": {
+      "left": 2880,
+      "width": 1440
+    },
+    "panels": [
+      {
+        "id": "chapter-week",
+        "inert": true,
+        "left": -2880,
+        "w": 1440,
+        "offset": 0
+      },
+      {
+        "id": "chapter-team",
+        "inert": true,
+        "left": -1440,
+        "w": 1440,
+        "offset": 1440
+      },
+      {
+        "id": "chapter-scout",
+        "inert": false,
+        "left": 0,
+        "w": 1440,
+        "offset": 2880
+      },
+      {
+        "id": "chapter-league",
+        "inert": true,
+        "left": 1440,
+        "w": 1440,
+        "offset": 4320
+      },
+      {
+        "id": "chapter-edition",
+        "inert": true,
+        "left": 2880,
+        "w": 1440,
+        "offset": 5760
+      },
+      {
+        "id": "chapter-archive",
+        "inert": true,
+        "left": 4320,
+        "w": 1440,
+        "offset": 7200
+      },
+      {
+        "id": "chapter-tools",
+        "inert": true,
+        "left": 5760,
+        "w": 1440,
+        "offset": 8640
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "step": 3,
+    "hash": "#chapter-league",
+    "current": "04League index",
+    "select": "league",
+    "reader": {
+      "left": 4320,
+      "width": 1440
+    },
+    "panels": [
+      {
+        "id": "chapter-week",
+        "inert": true,
+        "left": -4320,
+        "w": 1440,
+        "offset": 0
+      },
+      {
+        "id": "chapter-team",
+        "inert": true,
+        "left": -2880,
+        "w": 1440,
+        "offset": 1440
+      },
+      {
+        "id": "chapter-scout",
+        "inert": true,
+        "left": -1440,
+        "w": 1440,
+        "offset": 2880
+      },
+      {
+        "id": "chapter-league",
+        "inert": false,
+        "left": 0,
+        "w": 1440,
+        "offset": 4320
+      },
+      {
+        "id": "chapter-edition",
+        "inert": true,
+        "left": 1440,
+        "w": 1440,
+        "offset": 5760
+      },
+      {
+        "id": "chapter-archive",
+        "inert": true,
+        "left": 2880,
+        "w": 1440,
+        "offset": 7200
+      },
+      {
+        "id": "chapter-tools",
+        "inert": true,
+        "left": 4320,
+        "w": 1440,
+        "offset": 8640
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "step": 4,
+    "hash": "#chapter-edition",
+    "current": "05The edition",
+    "select": "edition",
+    "reader": {
+      "left": 5760,
+      "width": 1440
+    },
+    "panels": [
+      {
+        "id": "chapter-week",
+        "inert": true,
+        "left": -5760,
+        "w": 1440,
+        "offset": 0
+      },
+      {
+        "id": "chapter-team",
+        "inert": true,
+        "left": -4320,
+        "w": 1440,
+        "offset": 1440
+      },
+      {
+        "id": "chapter-scout",
+        "inert": true,
+        "left": -2880,
+        "w": 1440,
+        "offset": 2880
+      },
+      {
+        "id": "chapter-league",
+        "inert": true,
+        "left": -1440,
+        "w": 1440,
+        "offset": 4320
+      },
+      {
+        "id": "chapter-edition",
+        "inert": false,
+        "left": 0,
+        "w": 1440,
+        "offset": 5760
+      },
+      {
+        "id": "chapter-archive",
+        "inert": true,
+        "left": 1440,
+        "w": 1440,
+        "offset": 7200
+      },
+      {
+        "id": "chapter-tools",
+        "inert": true,
+        "left": 2880,
+        "w": 1440,
+        "offset": 8640
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "step": 0,
+    "hash": "",
+    "current": "01This week",
+    "select": "week",
+    "reader": {
+      "left": 0,
+      "width": 390
+    },
+    "panels": [
+      {
+        "id": "chapter-week",
+        "inert": false,
+        "left": 0,
+        "w": 390,
+        "offset": 0
+      },
+      {
+        "id": "chapter-team",
+        "inert": true,
+        "left": 390,
+        "w": 390,
+        "offset": 390
+      },
+      {
+        "id": "chapter-scout",
+        "inert": true,
+        "left": 780,
+        "w": 390,
+        "offset": 780
+      },
+      {
+        "id": "chapter-league",
+        "inert": true,
+        "left": 1170,
+        "w": 390,
+        "offset": 1170
+      },
+      {
+        "id": "chapter-edition",
+        "inert": true,
+        "left": 1560,
+        "w": 390,
+        "offset": 1560
+      },
+      {
+        "id": "chapter-archive",
+        "inert": true,
+        "left": 1950,
+        "w": 390,
+        "offset": 1950
+      },
+      {
+        "id": "chapter-tools",
+        "inert": true,
+        "left": 2340,
+        "w": 390,
+        "offset": 2340
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "step": 1,
+    "hash": "#chapter-team",
+    "current": "02My club",
+    "select": "team",
+    "reader": {
+      "left": 390,
+      "width": 390
+    },
+    "panels": [
+      {
+        "id": "chapter-week",
+        "inert": true,
+        "left": -390,
+        "w": 390,
+        "offset": 0
+      },
+      {
+        "id": "chapter-team",
+        "inert": false,
+        "left": 0,
+        "w": 390,
+        "offset": 390
+      },
+      {
+        "id": "chapter-scout",
+        "inert": true,
+        "left": 390,
+        "w": 390,
+        "offset": 780
+      },
+      {
+        "id": "chapter-league",
+        "inert": true,
+        "left": 780,
+        "w": 390,
+        "offset": 1170
+      },
+      {
+        "id": "chapter-edition",
+        "inert": true,
+        "left": 1170,
+        "w": 390,
+        "offset": 1560
+      },
+      {
+        "id": "chapter-archive",
+        "inert": true,
+        "left": 1560,
+        "w": 390,
+        "offset": 1950
+      },
+      {
+        "id": "chapter-tools",
+        "inert": true,
+        "left": 1950,
+        "w": 390,
+        "offset": 2340
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "step": 2,
+    "hash": "#chapter-scout",
+    "current": "03Scoutbook",
+    "select": "scout",
+    "reader": {
+      "left": 780,
+      "width": 390
+    },
+    "panels": [
+      {
+        "id": "chapter-week",
+        "inert": true,
+        "left": -780,
+        "w": 390,
+        "offset": 0
+      },
+      {
+        "id": "chapter-team",
+        "inert": true,
+        "left": -390,
+        "w": 390,
+        "offset": 390
+      },
+      {
+        "id": "chapter-scout",
+        "inert": false,
+        "left": 0,
+        "w": 390,
+        "offset": 780
+      },
+      {
+        "id": "chapter-league",
+        "inert": true,
+        "left": 390,
+        "w": 390,
+        "offset": 1170
+      },
+      {
+        "id": "chapter-edition",
+        "inert": true,
+        "left": 780,
+        "w": 390,
+        "offset": 1560
+      },
+      {
+        "id": "chapter-archive",
+        "inert": true,
+        "left": 1170,
+        "w": 390,
+        "offset": 1950
+      },
+      {
+        "id": "chapter-tools",
+        "inert": true,
+        "left": 1560,
+        "w": 390,
+        "offset": 2340
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "step": 3,
+    "hash": "#chapter-league",
+    "current": "04League index",
+    "select": "league",
+    "reader": {
+      "left": 1170,
+      "width": 390
+    },
+    "panels": [
+      {
+        "id": "chapter-week",
+        "inert": true,
+        "left": -1170,
+        "w": 390,
+        "offset": 0
+      },
+      {
+        "id": "chapter-team",
+        "inert": true,
+        "left": -780,
+        "w": 390,
+        "offset": 390
+      },
+      {
+        "id": "chapter-scout",
+        "inert": true,
+        "left": -390,
+        "w": 390,
+        "offset": 780
+      },
+      {
+        "id": "chapter-league",
+        "inert": false,
+        "left": 0,
+        "w": 390,
+        "offset": 1170
+      },
+      {
+        "id": "chapter-edition",
+        "inert": true,
+        "left": 390,
+        "w": 390,
+        "offset": 1560
+      },
+      {
+        "id": "chapter-archive",
+        "inert": true,
+        "left": 780,
+        "w": 390,
+        "offset": 1950
+      },
+      {
+        "id": "chapter-tools",
+        "inert": true,
+        "left": 1170,
+        "w": 390,
+        "offset": 2340
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "step": 4,
+    "hash": "#chapter-edition",
+    "current": "05The edition",
+    "select": "edition",
+    "reader": {
+      "left": 1560,
+      "width": 390
+    },
+    "panels": [
+      {
+        "id": "chapter-week",
+        "inert": true,
+        "left": -1560,
+        "w": 390,
+        "offset": 0
+      },
+      {
+        "id": "chapter-team",
+        "inert": true,
+        "left": -1170,
+        "w": 390,
+        "offset": 390
+      },
+      {
+        "id": "chapter-scout",
+        "inert": true,
+        "left": -780,
+        "w": 390,
+        "offset": 780
+      },
+      {
+        "id": "chapter-league",
+        "inert": true,
+        "left": -390,
+        "w": 390,
+        "offset": 1170
+      },
+      {
+        "id": "chapter-edition",
+        "inert": false,
+        "left": 0,
+        "w": 390,
+        "offset": 1560
+      },
+      {
+        "id": "chapter-archive",
+        "inert": true,
+        "left": 390,
+        "w": 390,
+        "offset": 1950
+      },
+      {
+        "id": "chapter-tools",
+        "inert": true,
+        "left": 780,
+        "w": 390,
+        "offset": 2340
+      }
+    ]
+  }
+]
