@@ -1,0 +1,234 @@
+{
+  "requestedAuthors": 20,
+  "currentlyStartedAuthors": 20,
+  "benchmark": "64b9971f88ad1f73f5bd00ac0fdef9019909561b",
+  "blindInitialProtocol": "All authors instructed not to inspect other directions/prior screenshots; same inventory/requirements; instruction boundary, not OS filesystem isolation",
+  "authors": [
+    {
+      "direction": "01",
+      "startingHypothesis": "Courtside newspaper",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock01",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "d34087fec7098fe670bb64711140fbd13e800f65aae37ed0d32a9ed9f5926542",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen."
+    },
+    {
+      "direction": "02",
+      "startingHypothesis": "Coach clipboard",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock02",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "e5f3d74f27fc83d48180b0b50b4158322e03d015152b916477a76719b0468960",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen."
+    },
+    {
+      "direction": "03",
+      "startingHypothesis": "League almanac",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock03",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "ba45dea4706426553a6b237fb814805a8718c21bf179333b70a73a6684c7e836",
+      "authorChecks": "Reported1440/390/320,200% text, public/member, search/sort, keyboard menu, stale/missing AI,10 teams/10 faces/228 player links/24 values; no page errors.",
+      "rootAuditNote": "Initial root audit 8/10 specific cases. Original source frozen. Separate enlargement repair: 10/10 cases; 4 new full captures."
+    },
+    {
+      "direction": "04",
+      "startingHypothesis": "Personal team dossier",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock04",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "5ca42b09bd113eb78fddc4229c6b7875c731016765d0a97acc5f136f98dc2b40",
+      "rootAuditNote": "Initial root audit 8/10 specific cases. Original source frozen. Separate enlargement repair: 10/10 cases; 4 new full captures."
+    },
+    {
+      "direction": "05",
+      "startingHypothesis": "Broadcast rundown",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock05",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "403955f32a6edbdfd48775778b10eedb8e7bc1140b72b428f9f0e9eb2ad337b3",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen."
+    },
+    {
+      "direction": "06",
+      "startingHypothesis": "People of the league",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock06",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "d706fc8f1aae753e9b27f3cf205b75c90c11f471624156aed76f87ea1bd849cb",
+      "rootAuditNote": "Initial root audit 8/10 specific cases. Original source frozen. Separate enlargement repair: 10/10 cases; 4 new full captures."
+    },
+    {
+      "direction": "07",
+      "startingHypothesis": "Schedule board",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock07",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "f1eb269acc6ba41bb38001b3d27536158ddb7ca3e465fabe02040ce84f225c46",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen. Separate iteration: 10/10 common cases; 4 full captures; targeted controls/state case per edition.",
+      "iterationHtmlSha256": "1c320a838eb70c81820c1bdc2de38d670b1ca5dd838e228b4a9d520581733dfb",
+      "iterationPath": "iterations/07"
+    },
+    {
+      "direction": "08",
+      "startingHypothesis": "Clubhouse noticeboard",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock08",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "cf3926cbd8beeb8352634dc5f3bc759b24b344b8102f5c7490bbe246331871d7",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen."
+    },
+    {
+      "direction": "09",
+      "startingHypothesis": "Stats exchange",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock09",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "0858053f8e61c57484c69a68fbc29315d7fd82cdc9388c1dac483da85402fe68",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen."
+    },
+    {
+      "direction": "10",
+      "startingHypothesis": "Court atlas",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock10",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "286475acfcfcf919c3aefd0d18fa4cba5d1c90f062fc906d6d0eede35174bd03",
+      "rootAuditNote": "Initial root audit 8/10 specific cases. Original source frozen. Separate enlargement repair: 10/10 cases; 4 new full captures."
+    },
+    {
+      "direction": "11",
+      "startingHypothesis": "League magazine",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock11",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "49d76252afa01a0d453bd6ce6e7ddafd9e6f95610d0de2aae785d1447c9078f0",
+      "rootAuditNote": "Initial root audit 8/10 specific cases. Original source frozen. Separate enlargement repair: 10/10 cases; 4 new full captures."
+    },
+    {
+      "direction": "12",
+      "startingHypothesis": "Pocket programme",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock12",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "7b85b816aaf6312e32ac0d9ea5773ebc9451f886abe561a9fddacef5aacef18c",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen."
+    },
+    {
+      "direction": "13",
+      "startingHypothesis": "Commissioner letter",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock13",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "ce4fc7cc34904c9b9fe5246cbca05ca2be2cae9ebeaa640a0a79d85eaa01ad7d",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen."
+    },
+    {
+      "direction": "14",
+      "startingHypothesis": "Franchise wall",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock14",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "5b92cf1309c5e351bde1b5593dcee9db2fe8c449bdb19ed6cf50defcfd369768",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen."
+    },
+    {
+      "direction": "15",
+      "startingHypothesis": "Split studio",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock15",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "03c90dbd242cc109168eda596962f013cdaa2feb82febfd065d59bc65f156ae0",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen."
+    },
+    {
+      "direction": "16",
+      "startingHypothesis": "Two editions",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock16",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "3265e24909b626087c2741f39d46a4f5bd8e89e7158ab45df46e3c255ce1c958",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen. Separate iteration: 10/10 common cases; 4 full captures; targeted controls/state case per edition.",
+      "iterationHtmlSha256": "548194cbf937f413572fd95edba56759b826a32cb4ddd2ef1bf0650363564106",
+      "iterationPath": "iterations/16"
+    },
+    {
+      "direction": "17",
+      "startingHypothesis": "Sports broadsheet",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock17",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "121d4c49a861ffb4c7d4bde1b74027a9b3027a138383a929e58854b8a2d84a0f",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen."
+    },
+    {
+      "direction": "18",
+      "startingHypothesis": "Night practice / paper",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock18",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "88c0f5f4c89e3b3cd44dc3a1458802860df9986b6c04c0e3d359ac9a7985fa32",
+      "rootAuditNote": "Initial root audit 8/10 specific cases. Original source frozen. Separate enlargement repair: 10/10 cases; 4 new full captures. Separate iteration: 10/10 common cases; 4 full captures; targeted controls/state case per edition.",
+      "iterationHtmlSha256": "2967fe770232ca4d0de9dfc6078e99c35ddfb2955cd26f392438906b5c090a77",
+      "iterationPath": "iterations/18"
+    },
+    {
+      "direction": "19",
+      "startingHypothesis": "Timeline edition",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock19",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "d82f558d902e77e8fdf816fff62ba36bdf87575b4cb5426d3e5ac5eb99e2a730",
+      "rootAuditNote": "Initial root audit 8/10 specific cases. Original source frozen. Separate enlargement repair: 10/10 cases; 4 new full captures."
+    },
+    {
+      "direction": "20",
+      "startingHypothesis": "Quiet league index",
+      "freshContextRequested": true,
+      "forkTurns": "none",
+      "actualAgentTask": "/root/mock20",
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "8f3b7d3b291b51209fc0b391563578c5c45c9d18f6dd72368d9af92351dfed76",
+      "rootAuditNote": "Initial root audit 10/10 specific cases. Original source frozen."
+    }
+  ],
+  "submittedAuthors": 20,
+  "blindFirstRoundClosed": true,
+  "commonSourceHashes": {
+    "inventory.json": "3f802e841bd575fbc0f058f2d788d3c4d4f147fe6d6b12b339aeeb20d387ddec",
+    "data.js": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86",
+    "base.css": "c0f37424497adc0e9dab374df0420e060994a65d98d7918aab809dd14a57cb2b",
+    "BRIEF.md": "f746953f97cf6f0ff0ad3f17b7462ce34aaffdb479528528526ed094a15452e5"
+  },
+  "reviewers": [
+    "/root/mock05",
+    "/root/mock08",
+    "/root/mock12"
+  ],
+  "selectedForIteration": [
+    "07",
+    "16",
+    "18"
+  ],
+  "selectionNature": "Qualitative structural diversity; no statistical proof or final user approval."
+}

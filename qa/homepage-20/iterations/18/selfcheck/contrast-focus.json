@@ -1,0 +1,96 @@
+{
+  "contrast": [
+    {
+      "selector": ".night-top",
+      "foreground": "rgb(155, 168, 188)",
+      "background": "rgb(10, 14, 26)",
+      "ratio": 8
+    },
+    {
+      "selector": ".matchup h1",
+      "foreground": "rgb(155, 168, 188)",
+      "background": "rgb(10, 14, 26)",
+      "ratio": 8
+    },
+    {
+      "selector": ".score-row .manager",
+      "foreground": "rgb(155, 168, 188)",
+      "background": "rgb(10, 14, 26)",
+      "ratio": 8
+    },
+    {
+      "selector": ".score.pending",
+      "foreground": "rgb(155, 168, 188)",
+      "background": "rgb(10, 14, 26)",
+      "ratio": 8
+    },
+    {
+      "selector": ".score-state",
+      "foreground": "rgb(155, 168, 188)",
+      "background": "rgb(10, 14, 26)",
+      "ratio": 8
+    },
+    {
+      "selector": ".night-bottom",
+      "foreground": "rgb(155, 168, 188)",
+      "background": "rgb(10, 14, 26)",
+      "ratio": 8
+    },
+    {
+      "selector": ".court-caption p.small",
+      "foreground": "rgb(155, 168, 188)",
+      "background": "rgb(17, 24, 39)",
+      "ratio": 7.37
+    },
+    {
+      "selector": "#practice-note",
+      "foreground": "rgb(155, 168, 188)",
+      "background": "rgb(17, 24, 39)",
+      "ratio": 7.37
+    },
+    {
+      "selector": ".court-caption .eyebrow",
+      "foreground": "rgb(242, 245, 250)",
+      "background": "rgb(17, 24, 39)",
+      "ratio": 16.23
+    }
+  ],
+  "focus": [
+    {
+      "mode": "member",
+      "dark": {
+        "outline": "rgb(232, 161, 60)",
+        "style": "solid",
+        "width": "2px",
+        "focusVisible": true
+      },
+      "light": {
+        "text": "Arcade",
+        "outline": "rgb(52, 91, 119)",
+        "style": "solid",
+        "width": "2px",
+        "focusVisible": true,
+        "top": 590.609375,
+        "headerBottom": 69
+      }
+    },
+    {
+      "mode": "public",
+      "dark": {
+        "outline": "rgb(232, 161, 60)",
+        "style": "solid",
+        "width": "2px",
+        "focusVisible": true
+      },
+      "light": {
+        "text": "Compare member desk",
+        "outline": "rgb(52, 91, 119)",
+        "style": "solid",
+        "width": "2px",
+        "focusVisible": true,
+        "top": 584.609375,
+        "headerBottom": 69
+      }
+    }
+  ]
+}

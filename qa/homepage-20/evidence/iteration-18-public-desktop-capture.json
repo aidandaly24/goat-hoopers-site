@@ -1,0 +1,171 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 6406,
+  "bytes": 868236,
+  "jpegQuality": 91,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 5406,
+      "cropTop": 594,
+      "height": 406
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 6000,
+      "scrollY": 5406,
+      "cropTop": 594,
+      "width": 1440,
+      "height": 406,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "This week on the court",
+      "y": 203
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 253
+    },
+    {
+      "text": "Ware the Hoes At?",
+      "y": 350
+    },
+    {
+      "text": "League desk",
+      "y": 656
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 920
+    },
+    {
+      "text": "The next chapter",
+      "y": 1427
+    },
+    {
+      "text": "Around the league",
+      "y": 1983
+    },
+    {
+      "text": "The model’s call",
+      "y": 2312
+    },
+    {
+      "text": "The team book",
+      "y": 2977
+    },
+    {
+      "text": "League table",
+      "y": 2977
+    },
+    {
+      "text": "Between matchups",
+      "y": 5504
+    },
+    {
+      "text": "The weekly archive",
+      "y": 5812
+    }
+  ],
+  "footer": {
+    "text": "HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsTrade AnalyzerWeekly archiveDraftOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data. Static HTML design only: comparison links switch fixtures and do not establish authentication. Destination links retain app routes.Fixture provenance and limitsSource benchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Actual dated roster identities, local portraits and approved editorial are retained. Current scores, records, prices, player form, news and saved predictions are synthetic. Edition 2026-W41 ended Oct 12, 2026 and remains a stale, unpublished sample. The Week 3 matchup uses the current directory rather than the dated editorial pairing. No recorded value-history series or power ranking is supplied.Member viewPublic view",
+    "y": 6074
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "7ba4f4b42eacec28fa24045014b65523bf83d3f4a1ea8bca7ec07ca6c69fd5ca",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

@@ -1,0 +1,171 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 4833,
+  "bytes": 848109,
+  "jpegQuality": 92,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 3833,
+      "cropTop": 167,
+      "height": 833
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 4000,
+      "scrollY": 3833,
+      "cropTop": 167,
+      "width": 1440,
+      "height": 833,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Week 3 working desk",
+      "y": 178
+    },
+    {
+      "text": "Featured matchup",
+      "y": 319
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 341
+    },
+    {
+      "text": "AI Decides",
+      "y": 796
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 796
+    },
+    {
+      "text": "Three takes from the notebook",
+      "y": 1624
+    },
+    {
+      "text": "Your last completed source week",
+      "y": 2069
+    },
+    {
+      "text": "Your team wire",
+      "y": 2045
+    },
+    {
+      "text": "Around the league",
+      "y": 2458
+    },
+    {
+      "text": "Transactions",
+      "y": 2458
+    },
+    {
+      "text": "Faces of the league",
+      "y": 2781
+    },
+    {
+      "text": "Clubhouse directory",
+      "y": 3142
+    },
+    {
+      "text": "Standings",
+      "y": 3142
+    },
+    {
+      "text": "Off the scoresheet",
+      "y": 3995
+    },
+    {
+      "text": "Weekly archive",
+      "y": 4430
+    }
+  ],
+  "footer": {
+    "text": "An independent homepage study for ten friends and their league. Approved identities and dated editorial come from the offline benchmark fixture. Synthetic records, prices and model results demonstrate layout only. No recorded value history or Power ranking is invented.Fixture & source explanationBenchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. OFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data. All data is supplied locally; this page requests no league, pricing or AI service. Saved AI inputs and their timestamp are unavailable. Editorial sources are linked under Around the league and each dated player take.StocksTransactionsHistoryWeekly archivePublic preview",
+    "y": 4585
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "3e6531825661ac9d1cf5c86b2f9f0af7b255b06879ae023dfc9dbbeb7667a0d4",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

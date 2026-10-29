@@ -1,0 +1,211 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "width": 390,
+  "height": 10227,
+  "bytes": 794383,
+  "jpegQuality": 95,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 844,
+      "scrollY": 844,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 1688,
+      "scrollY": 1688,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 2532,
+      "scrollY": 2532,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 3376,
+      "scrollY": 3376,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 4220,
+      "scrollY": 4220,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 5064,
+      "scrollY": 5064,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 5908,
+      "scrollY": 5908,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 6752,
+      "scrollY": 6752,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 7596,
+      "scrollY": 7596,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 8440,
+      "scrollY": 8440,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 9284,
+      "scrollY": 9284,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 10128,
+      "scrollY": 9383,
+      "cropTop": 745,
+      "height": 99
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 390,
+      "height": 844,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 5064,
+      "scrollY": 5064,
+      "cropTop": 0,
+      "width": 390,
+      "height": 844,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 10128,
+      "scrollY": 9383,
+      "cropTop": 745,
+      "width": 390,
+      "height": 99,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Week 3 working desk",
+      "y": 194
+    },
+    {
+      "text": "Featured matchup",
+      "y": 428
+    },
+    {
+      "text": "Know the league.Find your next move.",
+      "y": 902
+    },
+    {
+      "text": "AI Decides",
+      "y": 1257
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 2325
+    },
+    {
+      "text": "Three takes from the notebook",
+      "y": 2961
+    },
+    {
+      "text": "Around the league",
+      "y": 4130
+    },
+    {
+      "text": "Transactions",
+      "y": 4659
+    },
+    {
+      "text": "Faces of the league",
+      "y": 4981
+    },
+    {
+      "text": "Clubhouse directory",
+      "y": 5902
+    },
+    {
+      "text": "Standings",
+      "y": 8000
+    },
+    {
+      "text": "Off the scoresheet",
+      "y": 9157
+    },
+    {
+      "text": "Weekly archive",
+      "y": 9533
+    }
+  ],
+  "footer": {
+    "text": "An independent homepage study for ten friends and their league. Approved identities and dated editorial come from the offline benchmark fixture. Synthetic records, prices and model results demonstrate layout only. No recorded value history or Power ranking is invented.Fixture & source explanationBenchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. OFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data. All data is supplied locally; this page requests no league, pricing or AI service. Saved AI inputs and their timestamp are unavailable. Editorial sources are linked under Around the league and each dated player take.StocksTransactionsHistoryWeekly archiveMember preview",
+    "y": 9845
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "a43b67e842105327dbdbf8f2163de6589ae0f0058cc7910a3159546a2f9c45c4",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}
