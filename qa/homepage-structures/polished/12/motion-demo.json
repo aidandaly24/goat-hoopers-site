@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "startState": "default",
+  "description": "Real comparison actions. Run each path at normal and reduced motion. The newly pinned team has one 180ms pointer position cue; keyboard and reduced motion are immediate, with identical content and focus.",
+  "desktop": [
+    {"action":"click","selector":"#roster-trigger-1"},
+    {"action":"click","selector":"#roster-trigger-2"},
+    {"action":"click","selector":"#satellite-8"},
+    {"action":"wait","waitMs":220},
+    {"action":"click","selector":"#roster-trigger-8"},
+    {"action":"click","selector":"[data-remove-third]"}
+  ],
+  "phone": [
+    {"action":"click","selector":"[data-jump=\"other-teams-top\"]"},
+    {"action":"click","selector":"#satellite-8"},
+    {"action":"wait","waitMs":220},
+    {"action":"click","selector":"[data-jump=\"entity-1\"]"},
+    {"action":"press","selector":"#roster-trigger-1","key":"Enter"},
+    {"action":"click","selector":"[data-jump=\"bridge\"]"}
+  ]
+}

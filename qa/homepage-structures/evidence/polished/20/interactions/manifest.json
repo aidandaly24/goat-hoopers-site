@@ -1,0 +1,205 @@
+{
+  "id": "20",
+  "phase": "polished",
+  "planPath": "qa/homepage-structures/polished/20/motion-demo.json",
+  "planSha256": "dd47f17a33fc53afe4b24d63093bad87ca6e98e63e6b30b8cb8f2c9b8127d536",
+  "records": [
+    {
+      "device": "desktop",
+      "reducedMotion": "no-preference",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "qa/homepage-structures/evidence/polished/20/interactions/desktop-no-preference.mp4",
+      "bytes": 168980,
+      "sha256": "0faa13336ded1cf482d3525e16a98a9549dc8b0c2578211852aa4ae78daa9a7f",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/20/interactions/a26f06550efa96ddd671648c3e265041.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": ".choice[data-node='players']",
+          "waitMs": 240,
+          "atMs": 604,
+          "afterMs": 962,
+          "activeId": "step-heading"
+        },
+        {
+          "action": "click",
+          "selector": ".choice[data-node='form']",
+          "waitMs": 240,
+          "atMs": 968,
+          "afterMs": 1292,
+          "activeId": "step-heading"
+        },
+        {
+          "action": "click",
+          "selector": "#back-path",
+          "waitMs": 240,
+          "atMs": 1295,
+          "afterMs": 1639,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#back-path",
+          "waitMs": 240,
+          "atMs": 1641,
+          "afterMs": 1945,
+          "activeId": null
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "desktop",
+      "reducedMotion": "reduce",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "qa/homepage-structures/evidence/polished/20/interactions/desktop-reduce.mp4",
+      "bytes": 155054,
+      "sha256": "971eb59daf8ee095fdefa719cec3e5e5493ee09177e0cfcbafe0602acf1907d1",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/20/interactions/8976a6db5f94c97a315a7bd4028e8290.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": ".choice[data-node='players']",
+          "waitMs": 240,
+          "atMs": 601,
+          "afterMs": 988,
+          "activeId": "step-heading"
+        },
+        {
+          "action": "click",
+          "selector": ".choice[data-node='form']",
+          "waitMs": 240,
+          "atMs": 997,
+          "afterMs": 1331,
+          "activeId": "step-heading"
+        },
+        {
+          "action": "click",
+          "selector": "#back-path",
+          "waitMs": 240,
+          "atMs": 1333,
+          "afterMs": 1619,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#back-path",
+          "waitMs": 240,
+          "atMs": 1623,
+          "afterMs": 1918,
+          "activeId": null
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "phone",
+      "reducedMotion": "no-preference",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "qa/homepage-structures/evidence/polished/20/interactions/phone-no-preference.mp4",
+      "bytes": 129003,
+      "sha256": "6ba994d085964075ddd6d0c4c932b909ddd3e2b3ea90c0cd1796b0f089bfd322",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/20/interactions/44efdf3985ac3ab30132e14fe0515610.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": ".choice[data-node='players']",
+          "waitMs": 240,
+          "atMs": 600,
+          "afterMs": 921,
+          "activeId": "step-heading"
+        },
+        {
+          "action": "press",
+          "selector": ".choice[data-node='form']",
+          "key": "Enter",
+          "waitMs": 240,
+          "atMs": 925,
+          "afterMs": 1214,
+          "activeId": "step-heading"
+        },
+        {
+          "action": "click",
+          "selector": "#back-path",
+          "waitMs": 240,
+          "atMs": 1217,
+          "afterMs": 1499,
+          "activeId": null
+        },
+        {
+          "action": "press",
+          "selector": "#back-path",
+          "key": "Enter",
+          "waitMs": 240,
+          "atMs": 1509,
+          "afterMs": 1789,
+          "activeId": null
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "phone",
+      "reducedMotion": "reduce",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "qa/homepage-structures/evidence/polished/20/interactions/phone-reduce.mp4",
+      "bytes": 147348,
+      "sha256": "be84ceb6a72cde2f7ea656dec4c21fbbdd43e8efeb950c7967ddcb7554e2ea27",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/20/interactions/d9a8a6d5a7526e52a25e75309a9fe8fa.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": ".choice[data-node='players']",
+          "waitMs": 240,
+          "atMs": 601,
+          "afterMs": 894,
+          "activeId": "step-heading"
+        },
+        {
+          "action": "press",
+          "selector": ".choice[data-node='form']",
+          "key": "Enter",
+          "waitMs": 240,
+          "atMs": 898,
+          "afterMs": 1210,
+          "activeId": "step-heading"
+        },
+        {
+          "action": "click",
+          "selector": "#back-path",
+          "waitMs": 240,
+          "atMs": 1212,
+          "afterMs": 1490,
+          "activeId": null
+        },
+        {
+          "action": "press",
+          "selector": "#back-path",
+          "key": "Enter",
+          "waitMs": 240,
+          "atMs": 1495,
+          "afterMs": 1815,
+          "activeId": null
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    }
+  ],
+  "limit": "Headless Linux Chromium interaction evidence, not physical-phone smoothness, screen-reader or cross-browser certification. An instant change may intentionally remain instant in both recordings."
+}

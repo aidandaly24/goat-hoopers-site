@@ -1,0 +1,421 @@
+{
+  "id": "09",
+  "phase": "polished",
+  "planPath": "qa/homepage-structures/polished/09/motion-demo.json",
+  "planSha256": "59dd161d8bdc9e7f91c970cc7a393fa5f1182eecbfd8ed5b43be0b7a2e83cf6e",
+  "records": [
+    {
+      "device": "desktop",
+      "reducedMotion": "no-preference",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "qa/homepage-structures/evidence/polished/09/interactions/desktop-no-preference.mp4",
+      "bytes": 280658,
+      "sha256": "82bac5ae0821956525626a5b613b169c1317b5b1682ed96e9f69ed6a77af7a5a",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/09/interactions/d37f2cbd22623e29c79a276fd8c7e2b4.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#branch-archive-41 > summary",
+          "atMs": 600,
+          "afterMs": 1157,
+          "activeId": null
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 1164,
+          "afterMs": 1405,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#branch-archive-40 > summary",
+          "atMs": 1410,
+          "afterMs": 2017,
+          "activeId": null
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 2020,
+          "afterMs": 2261,
+          "activeId": null
+        },
+        {
+          "action": "press",
+          "selector": "#branch-archive-41 > summary",
+          "key": "Enter",
+          "atMs": 2262,
+          "afterMs": 2803,
+          "activeId": null
+        },
+        {
+          "action": "press",
+          "selector": "#branch-archive-41 > summary",
+          "key": "Enter",
+          "atMs": 2806,
+          "afterMs": 3335,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index > summary",
+          "atMs": 3337,
+          "afterMs": 3860,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index [data-jump='league']",
+          "atMs": 3861,
+          "afterMs": 4417,
+          "activeId": null
+        },
+        {
+          "action": "fill",
+          "selector": "#league-search",
+          "value": "Embiid",
+          "atMs": 4421,
+          "afterMs": 4949,
+          "activeId": "league-search"
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 4951,
+          "afterMs": 5192,
+          "activeId": "league-search"
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index > summary",
+          "atMs": 5199,
+          "afterMs": 5730,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index [data-jump='current']",
+          "atMs": 5732,
+          "afterMs": 6279,
+          "activeId": "current-title"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "desktop",
+      "reducedMotion": "reduce",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "qa/homepage-structures/evidence/polished/09/interactions/desktop-reduce.mp4",
+      "bytes": 279848,
+      "sha256": "21452e1b05a05ecdd2965c22df54f2da4fb0830fc98413b4ea0d109e2f2d3ac6",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/09/interactions/db6c49d293f367e34c785ee948e2f24d.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#branch-archive-41 > summary",
+          "atMs": 600,
+          "afterMs": 1143,
+          "activeId": null
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 1145,
+          "afterMs": 1386,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#branch-archive-40 > summary",
+          "atMs": 1389,
+          "afterMs": 1938,
+          "activeId": null
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 1940,
+          "afterMs": 2180,
+          "activeId": null
+        },
+        {
+          "action": "press",
+          "selector": "#branch-archive-41 > summary",
+          "key": "Enter",
+          "atMs": 2186,
+          "afterMs": 2723,
+          "activeId": null
+        },
+        {
+          "action": "press",
+          "selector": "#branch-archive-41 > summary",
+          "key": "Enter",
+          "atMs": 2726,
+          "afterMs": 3253,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index > summary",
+          "atMs": 3255,
+          "afterMs": 3785,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index [data-jump='league']",
+          "atMs": 3787,
+          "afterMs": 4335,
+          "activeId": null
+        },
+        {
+          "action": "fill",
+          "selector": "#league-search",
+          "value": "Embiid",
+          "atMs": 4340,
+          "afterMs": 4858,
+          "activeId": "league-search"
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 4860,
+          "afterMs": 5100,
+          "activeId": "league-search"
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index > summary",
+          "atMs": 5102,
+          "afterMs": 5645,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index [data-jump='current']",
+          "atMs": 5647,
+          "afterMs": 6183,
+          "activeId": "current-title"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "phone",
+      "reducedMotion": "no-preference",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "qa/homepage-structures/evidence/polished/09/interactions/phone-no-preference.mp4",
+      "bytes": 219926,
+      "sha256": "24137f7d0925af74d1485495991bd3d901746079c90d7ef3e3cb40eed6048145",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/09/interactions/d5efc2c0f8f7fd67bf84d4e3ab379161.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#branch-archive-41 > summary",
+          "atMs": 600,
+          "afterMs": 1136,
+          "activeId": null
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 1138,
+          "afterMs": 1378,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#branch-archive-40 > summary",
+          "atMs": 1383,
+          "afterMs": 1912,
+          "activeId": null
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 1913,
+          "afterMs": 2154,
+          "activeId": null
+        },
+        {
+          "action": "press",
+          "selector": "#branch-archive-41 > summary",
+          "key": "Enter",
+          "atMs": 2155,
+          "afterMs": 2698,
+          "activeId": null
+        },
+        {
+          "action": "press",
+          "selector": "#branch-archive-41 > summary",
+          "key": "Enter",
+          "atMs": 2701,
+          "afterMs": 3231,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index > summary",
+          "atMs": 3233,
+          "afterMs": 3755,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index [data-jump='league']",
+          "atMs": 3757,
+          "afterMs": 4303,
+          "activeId": null
+        },
+        {
+          "action": "fill",
+          "selector": "#league-search",
+          "value": "Embiid",
+          "atMs": 4306,
+          "afterMs": 4822,
+          "activeId": "league-search"
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 4826,
+          "afterMs": 5068,
+          "activeId": "league-search"
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index > summary",
+          "atMs": 5118,
+          "afterMs": 5634,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index [data-jump='current']",
+          "atMs": 5639,
+          "afterMs": 6188,
+          "activeId": "current-title"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "phone",
+      "reducedMotion": "reduce",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "qa/homepage-structures/evidence/polished/09/interactions/phone-reduce.mp4",
+      "bytes": 228459,
+      "sha256": "5e8c60ada07910d0821ab5312e9efc3cf2ab83de1bbec843db6ef92ed2f32332",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/09/interactions/3f76e5d4dc2ffa7ac68ae8f43bcde3f1.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#branch-archive-41 > summary",
+          "atMs": 601,
+          "afterMs": 1132,
+          "activeId": null
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 1138,
+          "afterMs": 1379,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#branch-archive-40 > summary",
+          "atMs": 1381,
+          "afterMs": 1920,
+          "activeId": null
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 1922,
+          "afterMs": 2163,
+          "activeId": null
+        },
+        {
+          "action": "press",
+          "selector": "#branch-archive-41 > summary",
+          "key": "Enter",
+          "atMs": 2165,
+          "afterMs": 2707,
+          "activeId": null
+        },
+        {
+          "action": "press",
+          "selector": "#branch-archive-41 > summary",
+          "key": "Enter",
+          "atMs": 2713,
+          "afterMs": 3241,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index > summary",
+          "atMs": 3242,
+          "afterMs": 3775,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index [data-jump='league']",
+          "atMs": 3777,
+          "afterMs": 4325,
+          "activeId": null
+        },
+        {
+          "action": "fill",
+          "selector": "#league-search",
+          "value": "Embiid",
+          "atMs": 4328,
+          "afterMs": 4844,
+          "activeId": "league-search"
+        },
+        {
+          "action": "wait",
+          "waitMs": 240,
+          "atMs": 4847,
+          "afterMs": 5092,
+          "activeId": "league-search"
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index > summary",
+          "atMs": 5094,
+          "afterMs": 5625,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".branch-index [data-jump='current']",
+          "atMs": 5628,
+          "afterMs": 6169,
+          "activeId": "current-title"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    }
+  ],
+  "limit": "Headless Linux Chromium interaction evidence, not physical-phone smoothness, screen-reader or cross-browser certification. An instant change may intentionally remain instant in both recordings."
+}

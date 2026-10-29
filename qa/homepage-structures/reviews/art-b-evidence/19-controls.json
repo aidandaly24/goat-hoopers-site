@@ -1,0 +1,352 @@
+{
+  "states": [
+    {
+      "id": "index",
+      "label": "Alphabetic franchise field"
+    },
+    {
+      "id": "own-dossier",
+      "label": "In-flow franchise overview"
+    },
+    {
+      "id": "roster-search",
+      "label": "Lillard roster locator"
+    },
+    {
+      "id": "slate",
+      "label": "Five saved AI rows and scores"
+    },
+    {
+      "id": "standings",
+      "label": "Ten standing rows"
+    },
+    {
+      "id": "edition",
+      "label": "Dated editorial notebook"
+    },
+    {
+      "id": "archive",
+      "label": "Two dated archive entries"
+    },
+    {
+      "id": "team-form",
+      "label": "Member scouting and team wire"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "header-note",
+      "text": "League notebook",
+      "data": {
+        "view": "slate"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "bookmark",
+      "cls": "bookmark",
+      "text": "My franchise",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Read the saved slate",
+      "data": {
+        "view": "slate"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "A–Z",
+      "data": {
+        "letter": "all"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "H",
+      "data": {
+        "letter": "H"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "J",
+      "data": {
+        "letter": "J"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "L",
+      "data": {
+        "letter": "L"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "N",
+      "data": {
+        "letter": "N"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "P",
+      "data": {
+        "letter": "P"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "R",
+      "data": {
+        "letter": "R"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "S",
+      "data": {
+        "letter": "S"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "T",
+      "data": {
+        "letter": "T"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "W",
+      "data": {
+        "letter": "W"
+      }
+    },
+    {
+      "tag": "INPUT",
+      "id": "roster-search",
+      "cls": "",
+      "text": "",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "phone-initial",
+      "cls": "",
+      "text": "A–Z · allHJLNPRSTW",
+      "data": {},
+      "options": [
+        [
+          "all",
+          "A–Z · all"
+        ],
+        [
+          "H",
+          "H"
+        ],
+        [
+          "J",
+          "J"
+        ],
+        [
+          "L",
+          "L"
+        ],
+        [
+          "N",
+          "N"
+        ],
+        [
+          "P",
+          "P"
+        ],
+        [
+          "R",
+          "R"
+        ],
+        [
+          "S",
+          "S"
+        ],
+        [
+          "T",
+          "T"
+        ],
+        [
+          "W",
+          "W"
+        ]
+      ]
+    },
+    {
+      "tag": "SELECT",
+      "id": "team-sort",
+      "cls": "",
+      "text": "Team A–Z\nStanding rank\nRoster size",
+      "data": {},
+      "options": [
+        [
+          "alpha",
+          "Team A–Z"
+        ],
+        [
+          "rank",
+          "Standing rank"
+        ],
+        [
+          "roster",
+          "Roster size"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-name",
+      "text": "Huff n’ Puff",
+      "data": {
+        "team": "6"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-name",
+      "text": "Josh Diddy’s Roster",
+      "data": {
+        "team": "5"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-name",
+      "text": "Lebron Theme Team",
+      "data": {
+        "team": "9"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-name",
+      "text": "NeuralNets",
+      "data": {
+        "team": "8"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-name",
+      "text": "papichooter",
+      "data": {
+        "team": "7"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-name",
+      "text": "Reaves Dropper",
+      "data": {
+        "team": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-name",
+      "text": "Stephon Castle’s Back",
+      "data": {
+        "team": "3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-name",
+      "text": "T Halibooty",
+      "data": {
+        "team": "10"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-name",
+      "text": "The Fun Guys",
+      "data": {
+        "team": "4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-name",
+      "text": "Ware the Hoes At?",
+      "data": {
+        "team": "2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Teams",
+      "data": {
+        "view": "index"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "phone-search",
+      "cls": "",
+      "text": "Find player",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Notebook",
+      "data": {
+        "view": "slate"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "phone-bookmark",
+      "cls": "",
+      "text": "My team",
+      "data": {}
+    }
+  ]
+}

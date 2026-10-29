@@ -1,0 +1,33 @@
+[
+  {
+    "id": "19",
+    "severity": "minor",
+    "selector": ".standings th:first-child",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "steps": [
+      "Load member fixture",
+      "Pointer-click Read the saved slate / Notebook",
+      "Pointer-click Standings"
+    ],
+    "expected": "Rank remains on one line",
+    "actual": "Rank breaks into Ran and k; no data loss or document overflow",
+    "evidence": [
+      "19-phone-rank-wrap-live.jpg",
+      "19-rank-wrap.json"
+    ],
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/19/app.js",
+        "sha256": "c9d0e2e0c61039a312977589240afaa042585f5fcd6fdfc6eed2c07e9caa058c"
+      },
+      {
+        "path": "qa/homepage-structures/polished/19/style.css",
+        "sha256": "aa4ad57ba4de5511ee280cb770a3fd5c5bdd5dadcfbf7013550a5164db48635e"
+      }
+    ],
+    "disposition": "Owner assigned targeted fix; replacement review pending"
+  }
+]

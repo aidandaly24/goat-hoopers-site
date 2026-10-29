@@ -1,0 +1,2041 @@
+{
+  "id": "11",
+  "phase": "polished",
+  "scope": "Nearest opaque ancestor text contrast candidates, source-state geometry, loaded font/resources; complex image/opacity areas skipped and require pixel review. Not a complete WCAG, AT, performance or cross-browser audit.",
+  "rows": [
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 145,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 43
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 221,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "default",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 145,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 43
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 221,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "week",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 185,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 43
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 221,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "roster",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 272,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 43
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 221,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "search",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 249,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 43
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 221,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "directory",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 982,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 43
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 221,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "predictions",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 267,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 43
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 221,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "edition",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 255,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 43
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 221,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "league",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 324,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 43
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 20
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 30
+        }
+      ],
+      "localDomContentLoadedMs": 221,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 131,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 282,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "default",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 131,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 282,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "week",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 171,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 282,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "roster",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 322,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 282,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "search",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 247,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 282,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "directory",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 968,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 282,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "predictions",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 253,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 282,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "edition",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 241,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 282,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "league",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 310,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 33
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 7
+        }
+      ],
+      "localDomContentLoadedMs": 282,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 145,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 192,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "default",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 145,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 192,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "week",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 185,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 192,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "roster",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 272,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 192,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "search",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 249,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 192,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "directory",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 982,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 192,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "predictions",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 267,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 192,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "edition",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 255,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 192,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "league",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 324,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 40
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 192,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 131,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 55
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        }
+      ],
+      "localDomContentLoadedMs": 311,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "default",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 131,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 55
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        }
+      ],
+      "localDomContentLoadedMs": 311,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "week",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 171,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 55
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        }
+      ],
+      "localDomContentLoadedMs": 311,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "roster",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 322,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 55
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        }
+      ],
+      "localDomContentLoadedMs": 311,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "search",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 247,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 55
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        }
+      ],
+      "localDomContentLoadedMs": 311,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "directory",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 968,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 55
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        }
+      ],
+      "localDomContentLoadedMs": 311,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "predictions",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 253,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 55
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        }
+      ],
+      "localDomContentLoadedMs": 311,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "edition",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 241,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 55
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        }
+      ],
+      "localDomContentLoadedMs": 311,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "league",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 310,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Grotesk",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 55
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
+          "bytes": 136976,
+          "encodedBytes": 136676,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/style.css",
+          "bytes": 19939,
+          "encodedBytes": 19639,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/11/app.js",
+          "bytes": 30228,
+          "encodedBytes": 29928,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 31
+        }
+      ],
+      "localDomContentLoadedMs": 311,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    }
+  ]
+}

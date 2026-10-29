@@ -1,0 +1,106 @@
+{
+  "states": [
+    {
+      "id": "comparison",
+      "label": "Comparison"
+    },
+    {
+      "id": "rosters",
+      "label": "Players & value"
+    },
+    {
+      "id": "scouting",
+      "label": "Form & wire"
+    },
+    {
+      "id": "league",
+      "label": "Teams & players"
+    },
+    {
+      "id": "standings",
+      "label": "Standings"
+    },
+    {
+      "id": "picks",
+      "label": "Saved AI picks"
+    },
+    {
+      "id": "edition",
+      "label": "Weekly edition"
+    },
+    {
+      "id": "tools",
+      "label": "Transactions & tools"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "SELECT",
+      "id": "pair-selector",
+      "cls": "",
+      "text": "Reaves Dropper vs Ware the Hoes At?\nStephon Castle’s Back vs The Fun Guys\nJosh Diddy’s Roster v",
+      "data": {},
+      "options": [
+        [
+          "0",
+          "Reaves Dropper vs Ware the Hoes At?"
+        ],
+        [
+          "1",
+          "Stephon Castle’s Back vs The Fun Guys"
+        ],
+        [
+          "2",
+          "Josh Diddy’s Roster vs Huff n’ Puff"
+        ],
+        [
+          "3",
+          "papichooter vs NeuralNets"
+        ],
+        [
+          "4",
+          "Lebron Theme Team vs T Halibooty"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Your side",
+      "data": {
+        "side": "left"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Opponent side",
+      "data": {
+        "side": "right"
+      }
+    },
+    {
+      "tag": "SELECT",
+      "id": "comparison-view",
+      "cls": "",
+      "text": "ComparisonPlayers & valueForm & wire",
+      "data": {},
+      "options": [
+        [
+          "comparison",
+          "Comparison"
+        ],
+        [
+          "rosters",
+          "Players & value"
+        ],
+        [
+          "scouting",
+          "Form & wire"
+        ]
+      ]
+    }
+  ]
+}

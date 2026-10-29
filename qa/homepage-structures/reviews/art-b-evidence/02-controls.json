@@ -1,0 +1,100 @@
+{
+  "states": [
+    {
+      "id": "matchup",
+      "label": "Week 3"
+    },
+    {
+      "id": "roster",
+      "label": "Your team"
+    },
+    {
+      "id": "standings",
+      "label": "Standings"
+    },
+    {
+      "id": "edition",
+      "label": "Weekly edition"
+    },
+    {
+      "id": "league",
+      "label": "Teams & players"
+    },
+    {
+      "id": "wire",
+      "label": "League wire"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "zone zone-matchup",
+      "text": "Week 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes",
+      "data": {
+        "zone": "matchup"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "zone zone-roster",
+      "text": "Your team\n$1095.25 modeled FAAB\nLeft wing field notes",
+      "data": {
+        "zone": "roster"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "zone zone-standings",
+      "text": "Standings\nReaves Dropper leads · 1–0\nRight wing field notes",
+      "data": {
+        "zone": "standings"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "zone zone-edition",
+      "text": "Weekly edition\nThe next chapter\nLeft baseline field notes",
+      "data": {
+        "zone": "edition"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "zone zone-league",
+      "text": "Teams & players\n10 teams · 228 players\nRight baseline field notes",
+      "data": {
+        "zone": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "zone zone-wire",
+      "text": "League wire\n3 roster moves\nSideline field notes",
+      "data": {
+        "zone": "wire"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "close-notes",
+      "cls": "",
+      "text": "Back to court",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Back to court",
+      "data": {
+        "return": ""
+      }
+    }
+  ]
+}

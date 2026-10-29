@@ -1,0 +1,514 @@
+[
+  {
+    "idA": "01",
+    "idB": "02",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "01 is a continuously readable almanac with marginal context;02 uses court positions to replace a selected notes sheet. Serif essay headings and open white space differ from compressed sports labels, diagram lines and a tightly ruled notes column.",
+    "phoneNote": "01 stacks a long score essay;02 preserves the court map above notes, then returns focus to the chosen zone."
+  },
+  {
+    "idA": "01",
+    "idB": "05",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "01 exposes successive editorial sections in document order;05 enters a fact from a spatial word wall and keeps a zoom trail. Quiet serif spreads and small portraits differ from oversized condensed fact words, irregular placement and almost image-free poster composition.",
+    "phoneNote": "01 is a long single reading column;05 retains scattered fact placement and a persistent Zoom out path."
+  },
+  {
+    "idA": "01",
+    "idB": "08",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "01 organizes an open publication;08 keeps an opposing-team axis while switching comparison, player and scouting fields. Serif text with wide margins differs from tall compressed team names, large score numerals and portrait-backed opposing panels.",
+    "phoneNote": "01 reads both teams sequentially;08 keeps a two-column score context and gives explicit Your side/Opponent side controls for the body."
+  },
+  {
+    "idA": "01",
+    "idB": "11",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both use generous space, restrained rules and text-led rows. Their information architecture differs:01 is an authored continuous edition with anchors;11 ranks queryable actions and inserts answers beneath selected results. Serif editorial hierarchy differs from rounded sans search prompts.",
+    "phoneNote": "01 needs reading or an anchor jump;11 puts query/filter controls before expandable result rows, retaining its search context."
+  },
+  {
+    "idA": "01",
+    "idB": "14",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "01 places chapters one after another in a complete document;14 retains four independent reading streams with cross-channel returns. Large serif openings and sparse margins differ from compact sans columns, small linked passages and deliberately unequal field widths.",
+    "phoneNote": "01 remains a continuous page;14 becomes four channel controls over one separately scrolling reader, preserving each reading position."
+  },
+  {
+    "idA": "01",
+    "idB": "17",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both are light, text-heavy and ruled, but01 is a narrative spread with marginal statistics;17 is a sortable multi-sheet ledger with row-local folds and explicit columns. Serif publication type differs from the ledger’s heavy title and monospaced data rhythm.",
+    "phoneNote": "17 adds Sheet and Fields selects and compresses table rows into team records;01 keeps its publication hierarchy and native disclosures."
+  },
+  {
+    "idA": "01",
+    "idB": "20",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "01 provides a complete editorial reading order;20 asks an intent, opens a child branch and retains the current-match root plus parent path. Serif paper spreads and occasional portraits differ from large rounded intent text, line connectors and pixel score accents.",
+    "phoneNote": "01 is a long essay;20 compresses the current root before a question tree and restores the originating choice on Back."
+  },
+  {
+    "idA": "02",
+    "idB": "05",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "Both invite entry through visible facts, but02 retains a fixed court landmark map alongside the active sheet;05 replaces the wall with a deeper semantic fact view. Court-line imagery and narrow field notes differ from freely placed oversized typographic nodes.",
+    "phoneNote": "02 places a complete court before selected notes;05 retains the word field and a zoom breadcrumb instead of a separate map."
+  },
+  {
+    "idA": "02",
+    "idB": "08",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both use compressed sports headings and prominent scores.02 is a six-zone navigation diagram with one notes area;08 is a symmetric home/away comparison with a stable central axis, paired fields and player portraits. Those are different composition and navigation constraints.",
+    "phoneNote": "02 is map then notes;08 retains a paired scoreboard and switches the readable side of the comparison below it."
+  },
+  {
+    "idA": "02",
+    "idB": "11",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "02 uses six spatial landmarks to select field notes;11 searches and filters mixed teams, players and tasks, expanding the result in place. Court illustration, narrow type and dense notes differ from a sparse wide search prompt and plain ranked action rows.",
+    "phoneNote": "02 makes a large court the first control;11 begins with query/filter tools and immediately available action summaries."
+  },
+  {
+    "idA": "02",
+    "idB": "14",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "02 retains one court map and one selected notes sheet;14 displays four independently scrolling topic streams together. Diagrammed sports space and compressed notes differ from newspaper-like sans columns, dense linked prose and distinct channel widths.",
+    "phoneNote": "02 uses court-to-note selection;14 uses Team/League/Scout/Culture controls and restores each reader’s position."
+  },
+  {
+    "idA": "02",
+    "idB": "17",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "02’s primary unit is a court zone with an active notes sheet;17’s is a sortable record in one of several ledger sheets. Spatial line drawing and narrow sports headings differ from a broad monochrome table, monospaced labels and small face/value cells.",
+    "phoneNote": "02 keeps the court landmark map;17 presents Sheet/Fields selects followed by record folds, with no spatial court navigation."
+  },
+  {
+    "idA": "02",
+    "idB": "20",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "02 is a retained overview map with a selected note;20 is a branching sequence with a retained matchup origin and ancestor context. Court illustration and compact sports notes differ from large sentence choices, connector rules and a spacious question-led composition.",
+    "phoneNote": "02 puts map geometry first;20 puts a compressed current status before branch choices and explicit parent return."
+  },
+  {
+    "idA": "03",
+    "idB": "06",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "03 replaces one chapter reader inside a fixed frame;06 filters a continuous descending source-date log. Tall condensed scoreboard/editorial type and strong full-field panels differ from a restrained sans ledger with alternating desktop entries and a central date spine.",
+    "phoneNote": "03 has a permanent chapter select and inner scrolling;06 keeps normal document flow with scope/date filters above a dated stream."
+  },
+  {
+    "idA": "03",
+    "idB": "09",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "03 shows one chapter at a time with a global reader footer;09 retains multiple evidence branches open together and records their junctions in navigation history. Bold condensed panels and large score hierarchy differ from fine branch rules, modest text and typewriter-style numbers.",
+    "phoneNote": "03 changes a fixed reader;09 stacks retained disclosures beneath an orange branch index and returns to the current junction without closing them."
+  },
+  {
+    "idA": "03",
+    "idB": "12",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both create a dark sports workspace with prominent current scores.03 is a chapter sequence with a paired score/picks spread;12 keeps two independent team entities around a connection and can pin a third. Narrow editorial type differs from technical display numerals, satellite faces and smaller entity cards.",
+    "phoneNote": "03 retains chapter controls at the bottom;12 retains A/Connection/B/pinned context links above a team-card sequence."
+  },
+  {
+    "idA": "03",
+    "idB": "15",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "03’s chapters replace the active reading surface;15 indexes supplied periods as calendar columns and attaches an agenda to a selected item. Large condensed sports spreads differ from small date numerals, ruled calendar lanes and quiet sans event summaries.",
+    "phoneNote": "03 uses a fixed chapter reader;15 defaults to a dated agenda with a purposeful Calendar alternative and close-to-event return."
+  },
+  {
+    "idA": "03",
+    "idB": "18",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "03 is an editorial chapter reader;18 aligns pinned identities against named evidence fields and source periods, with separate source/transcript windows. Tall sports type, portraits and strong spreads differ from rounded matrix labels, explicit cell boundaries and alternating identity columns.",
+    "phoneNote": "03 reads one chapter stream;18 repeats player names under full-width field headers inside a scrollable comparison window."
+  },
+  {
+    "idA": "04",
+    "idB": "05",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "04 retains a source rail and score rail around one program;05 drills into words from a spatial fact wall. Broadcast-like source strips, narrow sports text and conventional score blocks differ from irregular poster typography, oversized standalone facts and a zoom trail.",
+    "phoneNote": "04 has a Source select and expandable game rail;05 keeps fact positions and a persistent Zoom out control."
+  },
+  {
+    "idA": "04",
+    "idB": "08",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "The closest overlap here is the paired-score block, compressed sports type and large known-zero/Pending contrast.04 surrounds a replaceable program with source and five-game rails;08 organizes the entire view by an opposing-team axis with paired fields and explicit side selection.",
+    "phoneNote": "Both retain paired score context, but04 offers Source plus a game rail/Next game, while08 offers matchup, read-field and Your/Opponent side controls."
+  },
+  {
+    "idA": "04",
+    "idB": "11",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "04 changes a program from a permanent source rail while keeping league games visible;11 searches mixed actions and expands answers inside ranked results. Dense broadcast framing and compressed score typography differ from an airy rounded search page with restrained row separators.",
+    "phoneNote": "04 retains Source and score chrome;11 retains query/filter context and local Back to results controls."
+  },
+  {
+    "idA": "04",
+    "idB": "14",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both use compact information columns, but04’s left rail chooses a single program while the right rail retains games;14’s four content columns are independently readable and cross-linked. Broadcast score emphasis differs from a denser editorial passage hierarchy and channel-specific reading surfaces.",
+    "phoneNote": "04 uses a Source select and game rail;14 uses four section controls over a position-preserving inner reader."
+  },
+  {
+    "idA": "04",
+    "idB": "17",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both support categorical selection and compact utility data.04 retains score context beside a replaceable program;17 changes ledger sheets containing searchable records with inline folds and sortable columns. Narrow sports score type differs from monospaced tabular rhythm and broad ruled team rows.",
+    "phoneNote": "04 retains a score strip and program selector;17 exposes Sheet, search, order and Fields before team records."
+  },
+  {
+    "idA": "04",
+    "idB": "20",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "04 is a three-part source/program/score workspace;20 is an intent path with current origin and ancestor summaries. Dense broadcast rails and large score blocks differ from open sentence choices, sparse connectors and a large question-led reading area.",
+    "phoneNote": "04 preserves Source and game controls;20 compresses the origin and uses breadcrumbs plus a parent Back path."
+  },
+  {
+    "idA": "05",
+    "idB": "08",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both give scores and percentages emphatic compressed typography.05 treats facts as spatial entries with deeper zoom views;08 keeps an opposing-team comparison axis and changes paired data fields. Freely arranged words differ from aligned team panels, repeated dividers and representative portraits.",
+    "phoneNote": "05 keeps irregular poster placement;08 keeps a paired score header with explicit readable-side controls."
+  },
+  {
+    "idA": "05",
+    "idB": "11",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "05 drills into a fact word and keeps a zoom trail;11 accepts a query and opens a relevant result beneath its ranked row. Oversized condensed poster text and asymmetry differ from a wide rounded search prompt, small summaries and restrained horizontal rhythm.",
+    "phoneNote": "05 exposes a fact field;11 exposes query/type/order controls and expandable action rows."
+  },
+  {
+    "idA": "05",
+    "idB": "14",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "The vivid fields do not make these the same architecture or art direction.05 uses isolated oversized typographic facts as navigation;14 retains four dense editorial streams with cross-links. Extreme scale and irregular word placement differ from compact sans columns and linked reading passages.",
+    "phoneNote": "05 remains a spatial word field;14 becomes four channel controls over one separately scrolling stream."
+  },
+  {
+    "idA": "05",
+    "idB": "17",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "05 enters facts through a zooming word wall;17 filters sortable ledger records and unfolds row detail. Huge condensed words with irregular placement and little imagery differ from a flat monospaced table, repeated rows and small face/value cells.",
+    "phoneNote": "05 keeps its fact field and zoom path;17 substitutes sheet/field selectors for table columns and uses record-local folds."
+  },
+  {
+    "idA": "05",
+    "idB": "20",
+    "structuralVerdict": "R",
+    "visualSimilarity": "low",
+    "reason": "Both belong to a drill-down navigation family with an explicit way back.05 begins from spatial fact words and zooms into their receipt;20 begins from sentence intents and retains the current root plus ancestor summaries. Condensed poster facts and rounded connector-led choices are visually far apart.",
+    "phoneNote": "Both keep a return path, but05 preserves the irregular fact wall while20 stacks a compact origin above a linear intent tree. Keep those entry models distinct."
+  },
+  {
+    "idA": "06",
+    "idB": "09",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both are restrained, text-led evidence surfaces with fine rules and modest images.06 orders entries by source date and filters that stream;09 lets several evidence branches remain open around current/team junctions. A date spine differs from branching rules and retained disclosures.",
+    "phoneNote": "06 is a scope-filtered dated stream;09 is a branch index with concurrently open sections and a current-junction return."
+  },
+  {
+    "idA": "06",
+    "idB": "12",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "06 filters source-dated log entries;12 compares independent team entities around a connection and can add a third. Small sans chronological facts and a date spine differ from satellite faces, technical score lettering and retained entity cards.",
+    "phoneNote": "06 retains date/filter controls;12 retains A/Connection/B/pinned links and independent team-detail choices."
+  },
+  {
+    "idA": "06",
+    "idB": "15",
+    "structuralVerdict": "R",
+    "visualSimilarity": "some",
+    "reason": "Both organize material by supplied source period.06 is a descending log with an alternating desktop date spine;15 uses dated calendar columns and opens an attached agenda. Quiet sans labels and ruled data give some visual kinship, while the temporal geometry and interaction differ.",
+    "phoneNote": "06 becomes one dated stream;15 offers Agenda/Calendar and attaches selected detail to an event. Preserve that difference instead of replacing both with the same card feed."
+  },
+  {
+    "idA": "06",
+    "idB": "18",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "06 presents facts as date-ordered events;18 compares pinned identities by field, preserving periods within each measure. An airy alternating timeline and small portraits differ from a dense bordered matrix with full field headers and alternating identity cells.",
+    "phoneNote": "06 scrolls a dated document;18 scrolls a field-led comparison window and a separate source register."
+  },
+  {
+    "idA": "07",
+    "idB": "08",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both use dark score surfaces and player faces, but07 is a room of independently open lockers, bench rolls and archive folders;08 is a persistent opposing-team comparison. Framed paper surfaces, serif room headings and wall illustration differ from tall sports type and aligned paired panels.",
+    "phoneNote": "07 stacks room stations with multi-open locker detail;08 keeps a two-column score context and explicit side-reading controls."
+  },
+  {
+    "idA": "07",
+    "idB": "11",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "07 keeps multiple physical-station disclosures open together, with score context and room-action history;11 expands answers within queryable ranked results. Illustrated wall depth, framed portraits and serif headings differ from a sparse flat search page and text-only action rows.",
+    "phoneNote": "07 retains room navigation and nested rolls;11 retains search/filter controls and answer-to-result focus return."
+  },
+  {
+    "idA": "07",
+    "idB": "14",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "07 distributes material across a room of independent doors, bench rolls and folders;14 distributes it across four independently scrolling channels. Framed illustrated surfaces and serif station names differ from flat compact sans reading columns and cross-passage links.",
+    "phoneNote": "07 remains a stack of room stations;14 has four channel controls and one active position-preserving reading stream."
+  },
+  {
+    "idA": "07",
+    "idB": "17",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "Searchable roster disclosures are a shared primitive, not proof of duplication.07 places them in a multi-open cabinet alongside other room stations;17 places record folds inside sortable ledger sheets. Illustrated frames and serif room hierarchy differ from flat monospaced data rows.",
+    "phoneNote": "07 retains lockers plus room context;17 uses Sheet/Fields selects and clean row-local records."
+  },
+  {
+    "idA": "07",
+    "idB": "20",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "07 permits several room stations to remain open with physical context and undo history;20 follows one intent branch with root and ancestors retained. Illustrated wall geometry, framed faces and paper rolls differ from spacious sentence choices, thin connectors and minimal imagery.",
+    "phoneNote": "07 stacks stations and their disclosures;20 stacks a compact current root above the selected branch and parent path."
+  },
+  {
+    "idA": "08",
+    "idB": "11",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "08 is a symmetric team comparison with stable scores and paired measures;11 is a queryable action index with inline answers. Tall compressed team labels, portraits and large numerals differ from rounded search typography, sparse row summaries and minimal imagery.",
+    "phoneNote": "08 retains paired scores and side controls;11 retains query/filter context and result-local return."
+  },
+  {
+    "idA": "08",
+    "idB": "14",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "08 makes opposition the page’s organizing axis;14 makes four topics independent reading streams with cross-channel returns. Large compressed score/team typography and representative portraits differ from smaller dense editorial passages and four unequal columns.",
+    "phoneNote": "08 keeps a paired scoreboard and readable-side control;14 switches one stream using four channel controls."
+  },
+  {
+    "idA": "08",
+    "idB": "17",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "08 retains opposing teams while changing comparison fields;17 searches and sorts all-league records in selectable ledger sheets. Emphatic sports numerals, face imagery and paired panels differ from monospaced table rhythm and repeated light ruled rows.",
+    "phoneNote": "08 offers matchup/read/side controls;17 offers Sheet, search, order and Fields over row-local disclosures."
+  },
+  {
+    "idA": "08",
+    "idB": "20",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "08 is a persistent head-to-head comparison with paired field alignment;20 is a branching intent navigator with matchup origin and ancestor context. Condensed sports headings, portraits and repeated score dividers differ from large rounded sentence choices and open connector-led space.",
+    "phoneNote": "08 retains two score columns;20 compresses its current status above a linear choice path."
+  },
+  {
+    "idA": "09",
+    "idB": "12",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "Both retain context, but09 retains open evidence disclosures around current/team junctions;12 retains independently selected team entities around a matchup connection and optional third pin. Fine report-like branch rules and small text differ from satellite faces and dark entity-card composition.",
+    "phoneNote": "09 stacks retained branches under a branch index;12 keeps A/Connection/B/pinned landmarks over independent team cards."
+  },
+  {
+    "idA": "09",
+    "idB": "15",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both use light surfaces, fine rules and modest text hierarchy.09 opens evidence branches concurrently with junction history;15 selects supplied dated items from a calendar and attaches an agenda. Branch connectors and paired current context differ from columnar period lanes and date-led events.",
+    "phoneNote": "09 keeps an open-branch index;15 uses a source-period select and Agenda/Calendar controls."
+  },
+  {
+    "idA": "09",
+    "idB": "18",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both make units and evidence explicit in restrained ruled layouts.09 retains multiple branches beside current/team junctions;18 aligns pinned identities across field rows and offers a separate source register. Fine branch lines and typewriter numbers differ from broad field headers and colored identity cells.",
+    "phoneNote": "09 stacks disclosures with a junction return;18 repeats player labels under field headers inside a bounded comparison pane."
+  },
+  {
+    "idA": "10",
+    "idB": "11",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "10 builds two mutable player packages and retains evidence beside that working selection;11 ranks searchable tasks and expands an answer inside a result. Dense quote rows, package totals and small action buttons differ from a generous search prompt and sparse action summaries.",
+    "phoneNote": "10 opens on the editable tray and retains a subtotal rail;11 opens on search and result rows with local returns."
+  },
+  {
+    "idA": "10",
+    "idB": "14",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "10’s retained context is a mutable pair of trade packages;14’s retained context is four independent reading positions with cross-channel links. Quote-list/tray alignment and compact transaction controls differ from editorial passage columns and channel-specific visual hierarchy.",
+    "phoneNote": "10 retains package arithmetic in a bottom rail;14 retains four topic controls and a selected inner reading stream."
+  },
+  {
+    "idA": "10",
+    "idB": "17",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both use compact financial/record labels and repeated utility rows.10’s rows add players to two retained editable packages;17’s rows sort league records and unfold detail within selected sheets. A pale side tray and quote list differ from a broad monospaced ledger table.",
+    "phoneNote": "10 prioritizes an editable two-package tray and persistent subtotals;17 prioritizes Sheet/Fields selection and row-local disclosure."
+  },
+  {
+    "idA": "10",
+    "idB": "20",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "10 keeps working packages while adding, moving and removing players;20 navigates an intent hierarchy while retaining current origin and ancestor context. Dense quotes, small buttons and two-package totals differ from large sentence choices, connector rules and open reading space.",
+    "phoneNote": "10 starts with editable packages and a subtotal rail;20 starts with a compact matchup root and a question tree."
+  },
+  {
+    "idA": "11",
+    "idB": "14",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "11 discovers tasks through a query and ranked inline answers;14 distributes content across four independently scrolling channels linked by related passages. Sparse rounded search typography and open rows differ from compact editorial passages and unequal dense columns.",
+    "phoneNote": "11 keeps query/filter context above results;14 keeps four channel controls above a position-preserving reader."
+  },
+  {
+    "idA": "11",
+    "idB": "17",
+    "structuralVerdict": "R",
+    "visualSimilarity": "some",
+    "reason": "Both are searchable row indexes with inline disclosure.11 mixes tasks, teams and players in ranked query results;17 separates ledger sheets and exposes sortable record columns. Airy rounded prompts and short summaries differ from heavier titles, monospaced data and broad table rows.",
+    "phoneNote": "Both have filter chrome before rows, but11 has query/type controls and local answers;17 has Sheet/Fields selectors and record folds. Avoid making their phone rows visually identical in later refinement."
+  },
+  {
+    "idA": "11",
+    "idB": "20",
+    "structuralVerdict": "R",
+    "visualSimilarity": "some",
+    "reason": "Both offer human-language next actions with a large prompt and roomy rows.11 accepts an open query, ranks mixed results and expands answers in place;20 follows explicit child choices, retaining origin and parent context. Their discovery model is related without being a superficial color change.",
+    "phoneNote": "11 retains search/type/order above results;20 compresses current status above a deterministic choice tree and parent Back path. Preserve those controls and differing row density."
+  },
+  {
+    "idA": "12",
+    "idB": "15",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "12 retains independent team entities and a connection, with an optional third comparison pin;15 organizes supplied periods into calendar lanes and attached agendas. Technical display numerals and satellite portraits differ from understated date labels and ruled event columns.",
+    "phoneNote": "12 retains entity/connection landmarks;15 defaults to a dated agenda and offers Calendar as a purposeful alternative."
+  },
+  {
+    "idA": "12",
+    "idB": "18",
+    "structuralVerdict": "R",
+    "visualSimilarity": "low",
+    "reason": "Both support retaining identities for comparison.12 keeps team entities around a relationship and adds a third independent card;18 aligns pinned players/teams against explicit measure/source rows. Satellite portrait geometry and technical type differ from a bordered field matrix and rounded utility labels.",
+    "phoneNote": "12 stacks A/Connection/B/pinned contexts with independent entity detail;18 groups repeated identities beneath field headers in a comparison pane. Preserve that distinction; shared pinning alone does not establish duplication."
+  },
+  {
+    "idA": "13",
+    "idB": "14",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both have an editorial chapter vocabulary and distinct reading fields.13 unfolds one book spread from unequal spines and supports fold/next/previous navigation;14 retains four concurrent channel streams and passage-level return links. Serif folio titles and broad paper spreads differ from compact sans columns.",
+    "phoneNote": "13 stacks foldable spines and the selected spread;14 uses four channel controls over a single independently scrolling reader."
+  },
+  {
+    "idA": "13",
+    "idB": "17",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "13 unfolds chapter spreads from book spines;17 selects ledger sheets and unfolds record rows within sortable tables. Serif folio headings, broad cream/navy paper fields and large opening space differ from a flat monospaced ledger and repeated ruled rows.",
+    "phoneNote": "13 keeps fold/next/previous and spine controls;17 replaces desktop table columns with Sheet/Fields selectors."
+  },
+  {
+    "idA": "13",
+    "idB": "20",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "13 is an accordion book with one expanded spread and neighboring chapter spines;20 follows a child-choice path with root and ancestor summaries retained. Serif chapter titles and framed paper spreads differ from rounded sentence choices, pixel accents and branch connectors.",
+    "phoneNote": "13 stacks unequal foldable spines;20 stacks a compact current origin above its question tree and explicit parent return."
+  },
+  {
+    "idA": "14",
+    "idB": "17",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both can display compact utility information, but14 keeps four independent streams and related-passage returns;17 keeps one ledger sheet with searchable sortable rows and local record folds. Editorial column rhythm and differing reading-field widths differ from a uniform monospaced table.",
+    "phoneNote": "14 offers four channel controls and restores scroll position;17 offers Sheet/Fields selects over record rows."
+  },
+  {
+    "idA": "14",
+    "idB": "20",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "14’s primary structure is parallel streams linked by cross-references;20’s is a navigable intent tree with retained root and ancestry. Dense linked sans columns and compact headlines differ from large open sentence choices, sparse connector rules and minimal imagery.",
+    "phoneNote": "14 switches one position-preserving inner stream;20 follows a document branch with a compact current status and parent Back path."
+  },
+  {
+    "idA": "15",
+    "idB": "18",
+    "structuralVerdict": "D",
+    "visualSimilarity": "some",
+    "reason": "Both are carefully ruled data workspaces with restrained sans labels.15 uses source-period calendar columns and selected attached agendas;18 uses identity columns against measure rows and separate source windows. Date/event hierarchy differs from repeated field/value cells and pin controls.",
+    "phoneNote": "15 has Agenda/Calendar plus source period;18 has Compare/Follow and a field-led scrollable comparison, not a date agenda."
+  },
+  {
+    "idA": "16",
+    "idB": "17",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "16 lets independent materials be added, moved and pinned into a retained canvas;17 selects ledger sheets containing sortable records. Tall open headings, arena imagery and large portrait cutouts differ from monospaced rows, small faces and flat table geometry.",
+    "phoneNote": "16 preserves arrangement controls and image-led materials;17 preserves Sheet/Fields selectors and record-local folds."
+  },
+  {
+    "idA": "16",
+    "idB": "20",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "16 retains user-arranged independent pieces and supports moving/pinning them;20 follows intent children with root and parent context. Arena imagery, large portrait cutouts and tall condensed titles differ from a mostly typographic connector tree with rounded sentence choices.",
+    "phoneNote": "16 remains an image-led editable canvas;20 compresses current status before a branch path and restores the originating choice on Back."
+  },
+  {
+    "idA": "17",
+    "idB": "20",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "17 filters, sorts and unfolds records inside ledger sheets;20 follows a question tree with current origin and ancestor summaries. Heavy title plus monospaced table rhythm and small portraits differ from large rounded intent text, sparse connectors and minimal imagery.",
+    "phoneNote": "17 exposes Sheet/search/order/Fields before team records;20 exposes compact status and intent choices with parent navigation."
+  },
+  {
+    "idA": "19",
+    "idB": "20",
+    "structuralVerdict": "D",
+    "visualSimilarity": "low",
+    "reason": "19 is an alphabetic identity field opening an in-flow franchise dossier and a separate league notebook;20 is an intent tree retaining current origin and parent context. Giant compressed franchise names, rank numerals and portrait cutouts differ from rounded choices and thin branch lines.",
+    "phoneNote": "19 keeps search/initial/order tools and a persistent Teams/Find player/Notebook/My team rail;20 keeps compact origin, breadcrumbs and parent Back."
+  }
+]

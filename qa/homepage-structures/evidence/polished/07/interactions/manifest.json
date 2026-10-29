@@ -1,0 +1,313 @@
+{
+  "id": "07",
+  "phase": "polished",
+  "planPath": "qa/homepage-structures/polished/07/motion-demo.json",
+  "planSha256": "8e00ca02ef88f1c805908a52cb5eef1255b1a682a93d3070fc37d0672cba54db",
+  "records": [
+    {
+      "device": "desktop",
+      "reducedMotion": "no-preference",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "qa/homepage-structures/evidence/polished/07/interactions/desktop-no-preference.mp4",
+      "bytes": 147771,
+      "sha256": "6f97448447accd0766bcf804049de50ffbbd1505aac26324b5f085f527259b67",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/07/interactions/1b8bd6b1a1b3bb996dd69d272e0492b4.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#score-wall [data-compare]",
+          "waitMs": 100,
+          "atMs": 601,
+          "afterMs": 812,
+          "activeId": "locker-title"
+        },
+        {
+          "action": "click",
+          "selector": "#door-1 > summary",
+          "waitMs": 100,
+          "atMs": 818,
+          "afterMs": 1011,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#door-1 > summary",
+          "waitMs": 240,
+          "atMs": 1019,
+          "afterMs": 1370,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#saved-slate > summary",
+          "waitMs": 100,
+          "atMs": 1372,
+          "afterMs": 1551,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#value-leaf > summary",
+          "waitMs": 100,
+          "atMs": 1552,
+          "afterMs": 1754,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "[data-edition=\"1\"]",
+          "waitMs": 100,
+          "atMs": 1757,
+          "afterMs": 1958,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "[data-close=\"archive-folder\"]",
+          "waitMs": 100,
+          "atMs": 1960,
+          "afterMs": 2160,
+          "activeId": null
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "desktop",
+      "reducedMotion": "reduce",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "qa/homepage-structures/evidence/polished/07/interactions/desktop-reduce.mp4",
+      "bytes": 144295,
+      "sha256": "7fec077733c400776b9d59086451c416f6b25bfb158bc91c1110aa0dbd3fceee",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/07/interactions/f8a37000be9221263f455884188169d0.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#score-wall [data-compare]",
+          "waitMs": 100,
+          "atMs": 603,
+          "afterMs": 823,
+          "activeId": "locker-title"
+        },
+        {
+          "action": "click",
+          "selector": "#door-1 > summary",
+          "waitMs": 100,
+          "atMs": 846,
+          "afterMs": 1055,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#door-1 > summary",
+          "waitMs": 240,
+          "atMs": 1061,
+          "afterMs": 1380,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#saved-slate > summary",
+          "waitMs": 100,
+          "atMs": 1383,
+          "afterMs": 1573,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#value-leaf > summary",
+          "waitMs": 100,
+          "atMs": 1582,
+          "afterMs": 1789,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "[data-edition=\"1\"]",
+          "waitMs": 100,
+          "atMs": 1805,
+          "afterMs": 2006,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "[data-close=\"archive-folder\"]",
+          "waitMs": 100,
+          "atMs": 2013,
+          "afterMs": 2203,
+          "activeId": null
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "phone",
+      "reducedMotion": "no-preference",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "qa/homepage-structures/evidence/polished/07/interactions/phone-no-preference.mp4",
+      "bytes": 119963,
+      "sha256": "5ad6eb91636e717fc98a30f187c0c896699ec050a9d418036f3fe5918d68cb8c",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/07/interactions/df96d74b8837bf5673ef55fcf52d712c.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#saved-slate > summary",
+          "waitMs": 100,
+          "atMs": 600,
+          "afterMs": 799,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#score-wall [data-compare]",
+          "waitMs": 100,
+          "atMs": 809,
+          "afterMs": 1005,
+          "activeId": "locker-title"
+        },
+        {
+          "action": "click",
+          "selector": "#door-1 > summary",
+          "waitMs": 100,
+          "atMs": 1017,
+          "afterMs": 1209,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#door-1 > summary",
+          "waitMs": 240,
+          "atMs": 1212,
+          "afterMs": 1537,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".pair-jumps [data-door-jump=\"2\"]",
+          "waitMs": 100,
+          "atMs": 1542,
+          "afterMs": 1705,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#value-leaf > summary",
+          "waitMs": 100,
+          "atMs": 1708,
+          "afterMs": 1901,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "[data-edition=\"1\"]",
+          "waitMs": 100,
+          "atMs": 1906,
+          "afterMs": 2094,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "[data-close=\"archive-folder\"]",
+          "waitMs": 100,
+          "atMs": 2095,
+          "afterMs": 2270,
+          "activeId": null
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "phone",
+      "reducedMotion": "reduce",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "qa/homepage-structures/evidence/polished/07/interactions/phone-reduce.mp4",
+      "bytes": 128719,
+      "sha256": "eb5d04a368400398d7e8f3c6a89545a1902e7a4f4d7ae9585e6c34a5ac0e4bdb",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/07/interactions/8f0cc59c260d80e1be7fe113d5773f3c.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#saved-slate > summary",
+          "waitMs": 100,
+          "atMs": 601,
+          "afterMs": 765,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#score-wall [data-compare]",
+          "waitMs": 100,
+          "atMs": 768,
+          "afterMs": 956,
+          "activeId": "locker-title"
+        },
+        {
+          "action": "click",
+          "selector": "#door-1 > summary",
+          "waitMs": 100,
+          "atMs": 961,
+          "afterMs": 1171,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#door-1 > summary",
+          "waitMs": 240,
+          "atMs": 1176,
+          "afterMs": 1481,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": ".pair-jumps [data-door-jump=\"2\"]",
+          "waitMs": 100,
+          "atMs": 1489,
+          "afterMs": 1672,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "#value-leaf > summary",
+          "waitMs": 100,
+          "atMs": 1682,
+          "afterMs": 1895,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "[data-edition=\"1\"]",
+          "waitMs": 100,
+          "atMs": 1900,
+          "afterMs": 2093,
+          "activeId": null
+        },
+        {
+          "action": "click",
+          "selector": "[data-close=\"archive-folder\"]",
+          "waitMs": 100,
+          "atMs": 2101,
+          "afterMs": 2354,
+          "activeId": null
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    }
+  ],
+  "limit": "Headless Linux Chromium interaction evidence, not physical-phone smoothness, screen-reader or cross-browser certification. An instant change may intentionally remain instant in both recordings."
+}

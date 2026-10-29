@@ -1,0 +1,62 @@
+{
+  "states": [
+    {
+      "id": "default",
+      "label": "Opening continuous spread"
+    },
+    {
+      "id": "model-notes",
+      "label": "Five picks with returned-choice provenance"
+    },
+    {
+      "id": "roster",
+      "label": "Member margin with all 24 values"
+    },
+    {
+      "id": "editorial",
+      "label": "Dated draft and three source-labelled opinions"
+    },
+    {
+      "id": "directory",
+      "label": "Club index with reachable complete roster"
+    },
+    {
+      "id": "search",
+      "label": "Player search in the flowing index"
+    },
+    {
+      "id": "archive",
+      "label": "Earlier edition unfolded in place"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "INPUT",
+      "id": "directory-search",
+      "cls": "",
+      "text": "",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "directory-sort",
+      "cls": "",
+      "text": "Team name A–Z\nCurrent points for\nRoster size",
+      "data": {},
+      "options": [
+        [
+          "name",
+          "Team name A–Z"
+        ],
+        [
+          "points",
+          "Current points for"
+        ],
+        [
+          "roster",
+          "Roster size"
+        ]
+      ]
+    }
+  ]
+}

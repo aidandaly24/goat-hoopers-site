@@ -1,0 +1,2587 @@
+{
+  "id": "01",
+  "phase": "polished",
+  "scope": "Nearest opaque ancestor text contrast candidates, source-state geometry, loaded font/resources; complex image/opacity areas skipped and require pixel review. Not a complete WCAG, AT, performance or cross-browser audit.",
+  "rows": [
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 12
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 434
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 635,
+          "encodedBytes": 335,
+          "durationMs": 20
+        }
+      ],
+      "localDomContentLoadedMs": 443,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "default",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 12
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 434
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 635,
+          "encodedBytes": 335,
+          "durationMs": 20
+        }
+      ],
+      "localDomContentLoadedMs": 443,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "model-notes",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 12
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 434
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 635,
+          "encodedBytes": 335,
+          "durationMs": 20
+        }
+      ],
+      "localDomContentLoadedMs": 443,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "roster",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 12
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 434
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 635,
+          "encodedBytes": 335,
+          "durationMs": 20
+        }
+      ],
+      "localDomContentLoadedMs": 443,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "editorial",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 12
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 434
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 635,
+          "encodedBytes": 335,
+          "durationMs": 20
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 44
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 74
+        }
+      ],
+      "localDomContentLoadedMs": 443,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "directory",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 12
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 434
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 635,
+          "encodedBytes": 335,
+          "durationMs": 20
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 44
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 90
+        }
+      ],
+      "localDomContentLoadedMs": 443,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "search",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 937,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 12
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 434
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 635,
+          "encodedBytes": 335,
+          "durationMs": 20
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 44
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 90
+        }
+      ],
+      "localDomContentLoadedMs": 443,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "archive",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 91
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 12
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 434
+        },
+        {
+          "name": "/favicon.ico",
+          "bytes": 635,
+          "encodedBytes": 335,
+          "durationMs": 20
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 44
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 90
+        }
+      ],
+      "localDomContentLoadedMs": 443,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 92
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 297
+        }
+      ],
+      "localDomContentLoadedMs": 467,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "default",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 92
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 297
+        }
+      ],
+      "localDomContentLoadedMs": 467,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "model-notes",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 92
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 297
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 19
+        }
+      ],
+      "localDomContentLoadedMs": 467,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "editorial",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 92
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 297
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 63
+        }
+      ],
+      "localDomContentLoadedMs": 467,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "directory",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 92
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 297
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 73
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 67
+        }
+      ],
+      "localDomContentLoadedMs": 467,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "search",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 704,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 92
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 297
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 73
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 67
+        }
+      ],
+      "localDomContentLoadedMs": 467,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "archive",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 92
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 297
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 63
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 73
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 74
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 67
+        }
+      ],
+      "localDomContentLoadedMs": 467,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 49
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 414
+        }
+      ],
+      "localDomContentLoadedMs": 387,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "default",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 49
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 414
+        }
+      ],
+      "localDomContentLoadedMs": 387,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "model-notes",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 49
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 414
+        }
+      ],
+      "localDomContentLoadedMs": 387,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "roster",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 49
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 414
+        }
+      ],
+      "localDomContentLoadedMs": 387,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "editorial",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 49
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 414
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 387,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "directory",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 49
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 414
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 387,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "search",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 937,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 49
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 414
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 387,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "archive",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1682,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 44
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 49
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 414
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 387,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 64
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 124
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 325
+        }
+      ],
+      "localDomContentLoadedMs": 440,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "default",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 64
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 124
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 325
+        }
+      ],
+      "localDomContentLoadedMs": 440,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "model-notes",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 64
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 124
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 325
+        }
+      ],
+      "localDomContentLoadedMs": 440,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "editorial",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 64
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 124
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 325
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 20
+        }
+      ],
+      "localDomContentLoadedMs": 440,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "directory",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 64
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 124
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 325
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 20
+        }
+      ],
+      "localDomContentLoadedMs": 440,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "search",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 704,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 64
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 124
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 325
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 20
+        }
+      ],
+      "localDomContentLoadedMs": 440,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "archive",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1449,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Almanac Lora",
+          "status": "loaded"
+        },
+        {
+          "family": "Almanac DM Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/01/style.css",
+          "bytes": 17680,
+          "encodedBytes": 17380,
+          "durationMs": 75
+        },
+        {
+          "name": "/qa/homepage-structures/polished/01/app.js",
+          "bytes": 22953,
+          "encodedBytes": 22653,
+          "durationMs": 64
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 124
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/lora/Lora%5Bwght%5D.ttf",
+          "bytes": 212496,
+          "encodedBytes": 212196,
+          "durationMs": 325
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 20
+        }
+      ],
+      "localDomContentLoadedMs": 440,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    }
+  ]
+}

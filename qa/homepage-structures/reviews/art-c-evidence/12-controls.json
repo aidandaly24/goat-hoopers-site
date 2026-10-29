@@ -1,0 +1,396 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "default",
+        "label": "Current matchup comparison"
+      },
+      {
+        "id": "rosters",
+        "label": "Both linked roster contexts open"
+      },
+      {
+        "id": "triad",
+        "label": "Third team pinned alongside"
+      },
+      {
+        "id": "values",
+        "label": "Member values alongside opponent roster"
+      },
+      {
+        "id": "scouting",
+        "label": "Member scouting alongside opponent roster"
+      },
+      {
+        "id": "index",
+        "label": "Search all ten ownership contexts"
+      },
+      {
+        "id": "picks",
+        "label": "Five actual decision connections"
+      },
+      {
+        "id": "editorial",
+        "label": "Dated weekly ownership stories"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to working orbit",
+      "href": "#workspace",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Matchup",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "League directory",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Saved AI picks",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Weekly archive",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 6,
+      "tag": "SELECT",
+      "id": "view-select",
+      "text": "MatchupLeague directorySaved AI picksWeekly archive",
+      "href": null,
+      "select": [
+        [
+          "orbit",
+          "Matchup"
+        ],
+        [
+          "index",
+          "League directory"
+        ],
+        [
+          "picks",
+          "Saved AI picks"
+        ],
+        [
+          "editorial",
+          "Weekly archive"
+        ]
+      ],
+      "visible": false
+    },
+    {
+      "i": 7,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "A / Home",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Connection",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 9,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "B / Away",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 10,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "My values",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Reset comparison ↶",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 12,
+      "tag": "BUTTON",
+      "id": "satellite-3",
+      "text": "Stephon Castle’s Back",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "BUTTON",
+      "id": "satellite-4",
+      "text": "The Fun Guys",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "BUTTON",
+      "id": "satellite-5",
+      "text": "Josh Diddy’s Roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "BUTTON",
+      "id": "satellite-6",
+      "text": "Huff n’ Puff",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Context",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "BUTTON",
+      "id": "roster-trigger-1",
+      "text": "Roster 24",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Values",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Scouting",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 20,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Team wire",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open all 24 players →",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 22,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "2025 · 16–5",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 23,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved choice: Ware the Hoes At? · 35% Confidence 20%",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 24,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 25,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add a team to compare →",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 26,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Context",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 27,
+      "tag": "BUTTON",
+      "id": "roster-trigger-2",
+      "text": "Roster 27",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 28,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open all 27 players →",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 29,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "2025 · 12–9",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 30,
+      "tag": "BUTTON",
+      "id": "satellite-7",
+      "text": "papichooter",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 31,
+      "tag": "BUTTON",
+      "id": "satellite-8",
+      "text": "NeuralNets",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 32,
+      "tag": "BUTTON",
+      "id": "satellite-9",
+      "text": "Lebron Theme Team",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 33,
+      "tag": "BUTTON",
+      "id": "satellite-10",
+      "text": "T Halibooty",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 34,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Reaves Dropper × Ware the Hoes At?",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 35,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Stephon Castle’s Back × The Fun Guys",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 36,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Josh Diddy’s Roster × Huff n’ Puff",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 37,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "papichooter × NeuralNets",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 38,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Lebron Theme Team × T Halibooty",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 39,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Reset comparison ↶",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 40,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "League destinations and source notes",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 41,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Recent league moves / synthetic",
+      "href": null,
+      "visible": true
+    }
+  ],
+  "scrolls": []
+}

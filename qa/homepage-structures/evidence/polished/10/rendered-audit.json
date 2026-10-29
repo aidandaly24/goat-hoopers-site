@@ -1,0 +1,2731 @@
+{
+  "id": "10",
+  "phase": "polished",
+  "scope": "Nearest opaque ancestor text contrast candidates, source-state geometry, loaded font/resources; complex image/opacity areas skipped and require pixel review. Not a complete WCAG, AT, performance or cross-browser audit.",
+  "rows": [
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1711,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 93
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 100
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 15
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 398
+        }
+      ],
+      "localDomContentLoadedMs": 480,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "bench",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1711,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 93
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 100
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 15
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 398
+        }
+      ],
+      "localDomContentLoadedMs": 480,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "built-package",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1766,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 93
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 100
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 15
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 398
+        }
+      ],
+      "localDomContentLoadedMs": 480,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "quote-evidence",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1711,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 93
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 100
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 15
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 398
+        }
+      ],
+      "localDomContentLoadedMs": 480,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "unpriced",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1737,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 93
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 100
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 15
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 398
+        }
+      ],
+      "localDomContentLoadedMs": 480,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "current-week",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1714,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 93
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 100
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 15
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 398
+        }
+      ],
+      "localDomContentLoadedMs": 480,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "roster-audit",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1714,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 93
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 100
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 15
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 398
+        }
+      ],
+      "localDomContentLoadedMs": 480,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "league-records",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1714,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 93
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 100
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 15
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 398
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 7
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 44
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 56
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 82
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 82
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 82
+        }
+      ],
+      "localDomContentLoadedMs": 480,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "dated-notes",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1714,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 93
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 100
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 33
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 15
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 398
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 7
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 44
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 56
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 82
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 82
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 82
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 26
+        }
+      ],
+      "localDomContentLoadedMs": 480,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1519,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 181
+        }
+      ],
+      "localDomContentLoadedMs": 560,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "bench",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1519,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 181
+        }
+      ],
+      "localDomContentLoadedMs": 560,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "built-package",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1548,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 181
+        }
+      ],
+      "localDomContentLoadedMs": 560,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "quote-evidence",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1519,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 181
+        }
+      ],
+      "localDomContentLoadedMs": 560,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "unpriced",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1545,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 181
+        }
+      ],
+      "localDomContentLoadedMs": 560,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "current-week",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1522,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 181
+        }
+      ],
+      "localDomContentLoadedMs": 560,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "roster-audit",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1522,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 181
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 30
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 39
+        }
+      ],
+      "localDomContentLoadedMs": 560,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "league-records",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1522,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 181
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 30
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 39
+        }
+      ],
+      "localDomContentLoadedMs": 560,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "dated-notes",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1522,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 78
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 181
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 30
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 29
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 29
+        }
+      ],
+      "localDomContentLoadedMs": 560,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1711,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 95
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 97
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 3
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 210
+        }
+      ],
+      "localDomContentLoadedMs": 670,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "bench",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1711,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 95
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 97
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 3
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 210
+        }
+      ],
+      "localDomContentLoadedMs": 670,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "built-package",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1766,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 95
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 97
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 3
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 210
+        }
+      ],
+      "localDomContentLoadedMs": 670,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "quote-evidence",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1711,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 95
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 97
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 3
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 210
+        }
+      ],
+      "localDomContentLoadedMs": 670,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "unpriced",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1737,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 95
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 97
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 3
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 210
+        }
+      ],
+      "localDomContentLoadedMs": 670,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "current-week",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1714,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 95
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 97
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 3
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 210
+        }
+      ],
+      "localDomContentLoadedMs": 670,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "roster-audit",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1714,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 95
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 97
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 3
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 210
+        }
+      ],
+      "localDomContentLoadedMs": 670,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "league-records",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1714,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 95
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 97
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 3
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 210
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 28
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 31
+        }
+      ],
+      "localDomContentLoadedMs": 670,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "dated-notes",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1714,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 95
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 84
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 97
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 3
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 210
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 28
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 3
+        }
+      ],
+      "localDomContentLoadedMs": 670,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1519,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 57
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 103
+        }
+      ],
+      "localDomContentLoadedMs": 510,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "bench",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1519,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 57
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 103
+        }
+      ],
+      "localDomContentLoadedMs": 510,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "built-package",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1548,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 57
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 103
+        }
+      ],
+      "localDomContentLoadedMs": 510,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "quote-evidence",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1519,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 57
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 103
+        }
+      ],
+      "localDomContentLoadedMs": 510,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "unpriced",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1545,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 57
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 103
+        }
+      ],
+      "localDomContentLoadedMs": 510,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "current-week",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1522,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 57
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 103
+        }
+      ],
+      "localDomContentLoadedMs": 510,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "roster-audit",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1522,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 57
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 103
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 42
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 43
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 43
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 43
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 62
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 62
+        }
+      ],
+      "localDomContentLoadedMs": 510,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "league-records",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1522,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 57
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 103
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 42
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 43
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 43
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 43
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 62
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 62
+        }
+      ],
+      "localDomContentLoadedMs": 510,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "dated-notes",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1522,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.css",
+          "bytes": 18678,
+          "encodedBytes": 18378,
+          "durationMs": 57
+        },
+        {
+          "name": "/qa/homepage-structures/polished/10/bench.js",
+          "bytes": 30437,
+          "encodedBytes": 30137,
+          "durationMs": 56
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 13
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+          "bytes": 135880,
+          "encodedBytes": 135580,
+          "durationMs": 103
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 42
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 43
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 43
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 43
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 62
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 62
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 7
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 7
+        }
+      ],
+      "localDomContentLoadedMs": 510,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    }
+  ]
+}

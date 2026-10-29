@@ -1,0 +1,115 @@
+{
+  "states": [
+    {
+      "id": "default",
+      "label": "Semantic text wall"
+    },
+    {
+      "id": "matchup",
+      "label": "Enter the known zero"
+    },
+    {
+      "id": "picks",
+      "label": "Five returned words"
+    },
+    {
+      "id": "roster",
+      "label": "Enter the modeled total"
+    },
+    {
+      "id": "league",
+      "label": "Ten-team name wall"
+    },
+    {
+      "id": "team",
+      "label": "Enter all24 roster names"
+    },
+    {
+      "id": "edition",
+      "label": "Three dated claims"
+    },
+    {
+      "id": "archive",
+      "label": "Enter the recorded final"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "home-button",
+      "cls": "goat",
+      "text": "GOAT\nHOOPERS",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "word word-pair",
+      "text": "Reaves Dropper\n0.0\nWeek 3. Ware the Hoes At? Pending\nIncomplete",
+      "data": {
+        "enter": "{\"kind\":\"pair\",\"id\":\"1\"}",
+        "origin": "wall-pair"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "word word-value",
+      "text": "$1095.25\n24 roster names\nModeled FAAB. Fixture rank 2/10",
+      "data": {
+        "enter": "{\"kind\":\"value\"}",
+        "origin": "wall-value"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "word word-picks",
+      "text": "35%\nReturned away choice\nOther 65%. Confidence 20%",
+      "data": {
+        "enter": "{\"kind\":\"returns\"}",
+        "origin": "wall-returns"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "word word-wire",
+      "text": "Lonzo hits\nthe wire.\nDated October headline\nEnter its source period",
+      "data": {
+        "enter": "{\"kind\":\"wire\"}",
+        "origin": "wall-wire"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "word word-league",
+      "text": "NeuralNets\npapichooter\n228 names.\n10 teams. enter the name field",
+      "data": {
+        "enter": "{\"kind\":\"league\"}",
+        "origin": "wall-league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "word word-story",
+      "text": "Somebody\nunplug this man.\nJokić / dated opinion. Oct 5–11 draft",
+      "data": {
+        "enter": "{\"kind\":\"story\",\"id\":\"1658\"}",
+        "origin": "wall-story"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "word word-archive",
+      "text": "326.0 / 251.5\n2025 final. enter the dated archive",
+      "data": {
+        "enter": "{\"kind\":\"archive\"}",
+        "origin": "wall-archive"
+      }
+    }
+  ]
+}

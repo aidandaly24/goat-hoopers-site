@@ -1,0 +1,26 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "selector": "#next",
+      "waitMs": 500
+    },
+    {
+      "action": "press",
+      "selector": "#next",
+      "key": "Enter",
+      "waitMs": 500
+    },
+    {
+      "action": "click",
+      "selector": "#previous",
+      "waitMs": 500
+    },
+    {
+      "action": "press",
+      "selector": "#previous",
+      "key": "Enter",
+      "waitMs": 500
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "id": "02",
+  "phase": "polished",
+  "method": "Actual browser document scroll top/middle/bottom at native viewport sizes, unchanged source/layout. Constrained documents can have equal offsets; their complete independent readers remain separate pane strips.",
+  "records": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "location": "top",
+      "requestedOffset": 0,
+      "documentHeight": 2048,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/member-desktop-top.jpg",
+      "bytes": 123463,
+      "sha256": "762c4602d71050bb5f4e82c757f9ae28501b98e491e56fb3115be51a047d4734",
+      "actualOffset": 0,
+      "headings": [
+        "The court",
+        "Week 3",
+        "Reaves Dropper",
+        "Ware the Hoes At?",
+        "Saved AI picks",
+        "Reaves Dropper / Ware the Hoes At?",
+        "Stephon Castle’s Back / The Fun Guys"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "location": "middle",
+      "requestedOffset": 524,
+      "documentHeight": 2048,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/member-desktop-middle.jpg",
+      "bytes": 133729,
+      "sha256": "24a4d2d350c325c5587bd6da861b1682a075a6799427134a276f356d4378e774",
+      "actualOffset": 524,
+      "headings": [
+        "The court",
+        "Reaves Dropper / Ware the Hoes At?",
+        "Stephon Castle’s Back / The Fun Guys",
+        "Josh Diddy’s Roster / Huff n’ Puff",
+        "papichooter / NeuralNets"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "location": "bottom",
+      "requestedOffset": 1048,
+      "documentHeight": 2048,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/member-desktop-bottom.jpg",
+      "bytes": 118417,
+      "sha256": "b5e19a47d740803d2c31b30b36c9b4d21c0d7d635071343f5dd901d409a765ae",
+      "actualOffset": 1048,
+      "headings": [
+        "The court",
+        "Josh Diddy’s Roster / Huff n’ Puff",
+        "papichooter / NeuralNets",
+        "Lebron Theme Team / T Halibooty"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "location": "top",
+      "requestedOffset": 0,
+      "documentHeight": 2856,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/member-phone-top.jpg",
+      "bytes": 44428,
+      "sha256": "65df13315df013fa676414a539a7a835cb1b97baa2ec4c8e38ca58c38f948587",
+      "actualOffset": 0,
+      "headings": [
+        "The court",
+        "Week 3"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "location": "middle",
+      "requestedOffset": 1006,
+      "documentHeight": 2856,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/member-phone-middle.jpg",
+      "bytes": 51948,
+      "sha256": "b99c74b2434313d8e9003ed4511379263cf3fcf1f86b5c43cc01d759120970da",
+      "actualOffset": 1006,
+      "headings": [
+        "Ware the Hoes At?",
+        "Saved AI picks",
+        "Reaves Dropper / Ware the Hoes At?",
+        "Stephon Castle’s Back / The Fun Guys",
+        "Josh Diddy’s Roster / Huff n’ Puff"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "location": "bottom",
+      "requestedOffset": 2012,
+      "documentHeight": 2856,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/member-phone-bottom.jpg",
+      "bytes": 43682,
+      "sha256": "82c386410ba25c33ebec5e729da7ff0c64b782d5a2bd6f6e9c3faf9aceacc175",
+      "actualOffset": 2012,
+      "headings": [
+        "papichooter / NeuralNets",
+        "Lebron Theme Team / T Halibooty"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "location": "top",
+      "requestedOffset": 0,
+      "documentHeight": 2048,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/public-desktop-top.jpg",
+      "bytes": 124087,
+      "sha256": "b0c444d6b7c8ff184e25485f048bd3773586a946811d1f985be0f1653394c972",
+      "actualOffset": 0,
+      "headings": [
+        "The court",
+        "Week 3",
+        "Reaves Dropper",
+        "Ware the Hoes At?",
+        "Saved AI picks",
+        "Reaves Dropper / Ware the Hoes At?",
+        "Stephon Castle’s Back / The Fun Guys"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "location": "middle",
+      "requestedOffset": 524,
+      "documentHeight": 2048,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/public-desktop-middle.jpg",
+      "bytes": 135184,
+      "sha256": "8905d0563f641566bc148a8ffbec40103e1f5acb4f8c00f3384ae45a05e3eb47",
+      "actualOffset": 524,
+      "headings": [
+        "The court",
+        "Reaves Dropper / Ware the Hoes At?",
+        "Stephon Castle’s Back / The Fun Guys",
+        "Josh Diddy’s Roster / Huff n’ Puff",
+        "papichooter / NeuralNets"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "location": "bottom",
+      "requestedOffset": 1048,
+      "documentHeight": 2048,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/public-desktop-bottom.jpg",
+      "bytes": 119840,
+      "sha256": "08fc61967ec56ea3c7dc58b187313e6c90e7fac26461ae472caa6f64c9c78d89",
+      "actualOffset": 1048,
+      "headings": [
+        "The court",
+        "Josh Diddy’s Roster / Huff n’ Puff",
+        "papichooter / NeuralNets",
+        "Lebron Theme Team / T Halibooty"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "location": "top",
+      "requestedOffset": 0,
+      "documentHeight": 2856,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/public-phone-top.jpg",
+      "bytes": 45636,
+      "sha256": "a5f854877845f60028e96e2aa3071edad933ca434ff55fd0ccc3b0654535e903",
+      "actualOffset": 0,
+      "headings": [
+        "The court",
+        "Week 3"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "location": "middle",
+      "requestedOffset": 1006,
+      "documentHeight": 2856,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/public-phone-middle.jpg",
+      "bytes": 51030,
+      "sha256": "bac80a9cbddd6f6685905478dc6f79d6252e0285abdb24f018ab7819e0cf4919",
+      "actualOffset": 1006,
+      "headings": [
+        "Ware the Hoes At?",
+        "Saved AI picks",
+        "Reaves Dropper / Ware the Hoes At?",
+        "Stephon Castle’s Back / The Fun Guys",
+        "Josh Diddy’s Roster / Huff n’ Puff"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "location": "bottom",
+      "requestedOffset": 2012,
+      "documentHeight": 2856,
+      "path": "qa/homepage-structures/evidence/polished/02/reading-checkpoints/public-phone-bottom.jpg",
+      "bytes": 43682,
+      "sha256": "82c386410ba25c33ebec5e729da7ff0c64b782d5a2bd6f6e9c3faf9aceacc175",
+      "actualOffset": 2012,
+      "headings": [
+        "papichooter / NeuralNets",
+        "Lebron Theme Team / T Halibooty"
+      ],
+      "footer": "Weekly archive\nLeague history"
+    }
+  ]
+}

@@ -1,0 +1,1018 @@
+[
+  {
+    "id": "18",
+    "device": "desktop",
+    "motion": "no-preference",
+    "errors": [],
+    "actions": [
+      {
+        "label": "follow-team",
+        "method": "pointer",
+        "selector": "#team-mode",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Follow a team",
+          "id": "team-mode"
+        },
+        "animations": [],
+        "file": "18-desktop-no-preference-live-0-follow-team.jpg",
+        "hash": "",
+        "focus": "<button id=\"team-mode\" aria-pressed=\"true\">Follow a team</button>",
+        "scrollY": 0,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "comparison-transcript",
+        "method": "keyboard",
+        "selector": "#show-transcript",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Read this comparison as text",
+          "id": "show-transcript"
+        },
+        "animations": [],
+        "file": "18-desktop-no-preference-live-1-comparison-transcript.jpg",
+        "hash": "",
+        "focus": "<summary>Comparison transcript</summary>",
+        "scrollY": 1083,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships",
+          "Current pairing",
+          "Current standing",
+          "Saved model opinion",
+          "Current quote: roster subtotal",
+          "Current quote: supplied face",
+          "Completed player points",
+          "Dated edition appearances",
+          "Dated player opinions",
+          "Previous-season attribution"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          },
+          {
+            "id": "transcript",
+            "tag": "DETAILS",
+            "text": "Comparison transcriptFranchise relationships: Reaves Dropper; Ware the Hoes At?. 5 fields have suppl"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "source-records",
+        "method": "keyboard",
+        "selector": "#show-records",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Browse all source records",
+          "id": "show-records"
+        },
+        "animations": [],
+        "file": "18-desktop-no-preference-live-2-source-records.jpg",
+        "hash": "",
+        "focus": "<summary>All source records</summary>",
+        "scrollY": 1456,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships",
+          "Current pairing",
+          "Current standing",
+          "Saved model opinion",
+          "Current quote: roster subtotal",
+          "Current quote: supplied face",
+          "Completed player points",
+          "Dated edition appearances",
+          "Dated player opinions",
+          "Previous-season attribution"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          },
+          {
+            "id": "transcript",
+            "tag": "DETAILS",
+            "text": "Comparison transcriptFranchise relationships: Reaves Dropper; Ware the Hoes At?. 5 fields have suppl"
+          },
+          {
+            "id": "source-register",
+            "tag": "DETAILS",
+            "text": "All source recordsOpen records in place. Pin a player or team to bring it into the comparison above."
+          }
+        ],
+        "overflow": false
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "device": "desktop",
+    "motion": "reduce",
+    "errors": [],
+    "actions": [
+      {
+        "label": "follow-team",
+        "method": "pointer",
+        "selector": "#team-mode",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Follow a team",
+          "id": "team-mode"
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<button id=\"team-mode\" aria-pressed=\"true\">Follow a team</button>",
+        "scrollY": 0,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "comparison-transcript",
+        "method": "keyboard",
+        "selector": "#show-transcript",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Read this comparison as text",
+          "id": "show-transcript"
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<summary>Comparison transcript</summary>",
+        "scrollY": 1083,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships",
+          "Current pairing",
+          "Current standing",
+          "Saved model opinion",
+          "Current quote: roster subtotal",
+          "Current quote: supplied face",
+          "Completed player points",
+          "Dated edition appearances",
+          "Dated player opinions",
+          "Previous-season attribution"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          },
+          {
+            "id": "transcript",
+            "tag": "DETAILS",
+            "text": "Comparison transcriptFranchise relationships: Reaves Dropper; Ware the Hoes At?. 5 fields have suppl"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "source-records",
+        "method": "keyboard",
+        "selector": "#show-records",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Browse all source records",
+          "id": "show-records"
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<summary>All source records</summary>",
+        "scrollY": 1456,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships",
+          "Current pairing",
+          "Current standing",
+          "Saved model opinion",
+          "Current quote: roster subtotal",
+          "Current quote: supplied face",
+          "Completed player points",
+          "Dated edition appearances",
+          "Dated player opinions",
+          "Previous-season attribution"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          },
+          {
+            "id": "transcript",
+            "tag": "DETAILS",
+            "text": "Comparison transcriptFranchise relationships: Reaves Dropper; Ware the Hoes At?. 5 fields have suppl"
+          },
+          {
+            "id": "source-register",
+            "tag": "DETAILS",
+            "text": "All source recordsOpen records in place. Pin a player or team to bring it into the comparison above."
+          }
+        ],
+        "overflow": false
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "device": "phone",
+    "motion": "no-preference",
+    "errors": [],
+    "actions": [
+      {
+        "label": "follow-team",
+        "method": "pointer",
+        "selector": "#team-mode",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Follow a team",
+          "id": "team-mode"
+        },
+        "animations": [],
+        "file": "18-phone-no-preference-live-0-follow-team.jpg",
+        "hash": "",
+        "focus": "<button id=\"team-mode\" aria-pressed=\"true\">Follow a team</button>",
+        "scrollY": 0,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "comparison-transcript",
+        "method": "keyboard",
+        "selector": "#show-transcript",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Read this comparison as text",
+          "id": "show-transcript"
+        },
+        "animations": [],
+        "file": "18-phone-no-preference-live-1-comparison-transcript.jpg",
+        "hash": "",
+        "focus": "<summary>Comparison transcript</summary>",
+        "scrollY": 1288,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships",
+          "Current pairing",
+          "Current standing",
+          "Saved model opinion",
+          "Current quote: roster subtotal",
+          "Current quote: supplied face",
+          "Completed player points",
+          "Dated edition appearances",
+          "Dated player opinions",
+          "Previous-season attribution"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          },
+          {
+            "id": "transcript",
+            "tag": "DETAILS",
+            "text": "Comparison transcriptFranchise relationships: Reaves Dropper; Ware the Hoes At?. 5 fields have suppl"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "source-records",
+        "method": "keyboard",
+        "selector": "#show-records",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Browse all source records",
+          "id": "show-records"
+        },
+        "animations": [],
+        "file": "18-phone-no-preference-live-2-source-records.jpg",
+        "hash": "",
+        "focus": "<summary>All source records</summary>",
+        "scrollY": 1825,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships",
+          "Current pairing",
+          "Current standing",
+          "Saved model opinion",
+          "Current quote: roster subtotal",
+          "Current quote: supplied face",
+          "Completed player points",
+          "Dated edition appearances",
+          "Dated player opinions",
+          "Previous-season attribution"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          },
+          {
+            "id": "transcript",
+            "tag": "DETAILS",
+            "text": "Comparison transcriptFranchise relationships: Reaves Dropper; Ware the Hoes At?. 5 fields have suppl"
+          },
+          {
+            "id": "source-register",
+            "tag": "DETAILS",
+            "text": "All source recordsOpen records in place. Pin a player or team to bring it into the comparison above."
+          }
+        ],
+        "overflow": false
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "device": "phone",
+    "motion": "reduce",
+    "errors": [],
+    "actions": [
+      {
+        "label": "follow-team",
+        "method": "pointer",
+        "selector": "#team-mode",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Follow a team",
+          "id": "team-mode"
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<button id=\"team-mode\" aria-pressed=\"true\">Follow a team</button>",
+        "scrollY": 0,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "comparison-transcript",
+        "method": "keyboard",
+        "selector": "#show-transcript",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Read this comparison as text",
+          "id": "show-transcript"
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<summary>Comparison transcript</summary>",
+        "scrollY": 1288,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships",
+          "Current pairing",
+          "Current standing",
+          "Saved model opinion",
+          "Current quote: roster subtotal",
+          "Current quote: supplied face",
+          "Completed player points",
+          "Dated edition appearances",
+          "Dated player opinions",
+          "Previous-season attribution"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          },
+          {
+            "id": "transcript",
+            "tag": "DETAILS",
+            "text": "Comparison transcriptFranchise relationships: Reaves Dropper; Ware the Hoes At?. 5 fields have suppl"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "source-records",
+        "method": "keyboard",
+        "selector": "#show-records",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Browse all source records",
+          "id": "show-records"
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<summary>All source records</summary>",
+        "scrollY": 1825,
+        "headings": [
+          "Compare the evidence.",
+          "Franchise relationships",
+          "Current pairing",
+          "Current standing",
+          "Saved model opinion",
+          "Current quote: roster subtotal",
+          "Current quote: supplied face",
+          "Completed player points",
+          "Dated edition appearances",
+          "Dated player opinions",
+          "Previous-season attribution"
+        ],
+        "selected": [
+          {
+            "id": "team-mode",
+            "tag": "BUTTON",
+            "text": "Follow a team"
+          },
+          {
+            "id": "transcript",
+            "tag": "DETAILS",
+            "text": "Comparison transcriptFranchise relationships: Reaves Dropper; Ware the Hoes At?. 5 fields have suppl"
+          },
+          {
+            "id": "source-register",
+            "tag": "DETAILS",
+            "text": "All source recordsOpen records in place. Pin a player or team to bring it into the comparison above."
+          }
+        ],
+        "overflow": false
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "device": "desktop",
+    "motion": "no-preference",
+    "errors": [],
+    "actions": [
+      {
+        "label": "open-franchise",
+        "method": "pointer",
+        "selector": ".team-name[data-team=\"1\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Reaves Dropper",
+          "id": ""
+        },
+        "animations": [
+          {
+            "target": "dossier",
+            "keyframes": [
+              {},
+              {}
+            ],
+            "duration": 180
+          }
+        ],
+        "file": "19-desktop-no-preference-live-0-open-franchise.jpg",
+        "hash": "",
+        "focus": "<h2 tabindex=\"-1\">Reaves Dropper</h2>",
+        "scrollY": 2930,
+        "headings": [
+          "2026 leagueFranchise yearbook",
+          "Reaves Dropper",
+          "Week 3 · Incomplete",
+          "Saved AI view",
+          "Your modeled roster value"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "A–Z"
+          },
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Overview"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "roster-tab",
+        "method": "keyboard",
+        "selector": "button[data-dossier-tab=\"roster\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Roster",
+          "id": ""
+        },
+        "animations": [],
+        "file": "19-desktop-no-preference-live-1-roster-tab.jpg",
+        "hash": "",
+        "focus": "<button data-dossier-tab=\"roster\" aria-pressed=\"true\">Roster</button>",
+        "scrollY": 2930,
+        "headings": [
+          "2026 leagueFranchise yearbook",
+          "Reaves Dropper",
+          "24 roster references"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "A–Z"
+          },
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Roster"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "escape-dossier",
+        "file": "19-desktop-no-preference-live-2-return-index.jpg",
+        "hash": "",
+        "focus": "<button class=\"team-name\" data-team=\"1\" aria-expanded=\"false\" aria-controls=\"dossier-1\">Reaves Dropper</button>",
+        "scrollY": 2189,
+        "headings": [
+          "2026 leagueFranchise yearbook"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "A–Z"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "notebook-slate",
+        "method": "keyboard",
+        "selector": "[data-view=\"slate\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "League notebook",
+          "id": ""
+        },
+        "animations": [],
+        "file": "19-desktop-no-preference-live-3-notebook-slate.jpg",
+        "hash": "",
+        "focus": "<main id=\"main\" tabindex=\"-1\"><section class=\"notebook\"><div class=\"notebook-head\"><h1>Week 3 slate</h1><button data-view=\"index\">Return to index</button></div><nav class=\"notebook-nav\" aria-label=\"Notebook pages\"><button data-view=\"slate\" aria-pressed=\"true\">Week 3 + AI</button>",
+        "scrollY": 0,
+        "headings": [
+          "Week 3 slate",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Week 3 + AI"
+          }
+        ],
+        "overflow": false
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "device": "desktop",
+    "motion": "reduce",
+    "errors": [],
+    "actions": [
+      {
+        "label": "open-franchise",
+        "method": "pointer",
+        "selector": ".team-name[data-team=\"1\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Reaves Dropper",
+          "id": ""
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<h2 tabindex=\"-1\">Reaves Dropper</h2>",
+        "scrollY": 2930,
+        "headings": [
+          "2026 leagueFranchise yearbook",
+          "Reaves Dropper",
+          "Week 3 · Incomplete",
+          "Saved AI view",
+          "Your modeled roster value"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "A–Z"
+          },
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Overview"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "roster-tab",
+        "method": "keyboard",
+        "selector": "button[data-dossier-tab=\"roster\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Roster",
+          "id": ""
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<button data-dossier-tab=\"roster\" aria-pressed=\"true\">Roster</button>",
+        "scrollY": 2930,
+        "headings": [
+          "2026 leagueFranchise yearbook",
+          "Reaves Dropper",
+          "24 roster references"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "A–Z"
+          },
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Roster"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "escape-dossier",
+        "file": null,
+        "hash": "",
+        "focus": "<button class=\"team-name\" data-team=\"1\" aria-expanded=\"false\" aria-controls=\"dossier-1\">Reaves Dropper</button>",
+        "scrollY": 2189,
+        "headings": [
+          "2026 leagueFranchise yearbook"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "A–Z"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "notebook-slate",
+        "method": "keyboard",
+        "selector": "[data-view=\"slate\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "League notebook",
+          "id": ""
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<main id=\"main\" tabindex=\"-1\"><section class=\"notebook\"><div class=\"notebook-head\"><h1>Week 3 slate</h1><button data-view=\"index\">Return to index</button></div><nav class=\"notebook-nav\" aria-label=\"Notebook pages\"><button data-view=\"slate\" aria-pressed=\"true\">Week 3 + AI</button>",
+        "scrollY": 0,
+        "headings": [
+          "Week 3 slate",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Week 3 + AI"
+          }
+        ],
+        "overflow": false
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "device": "phone",
+    "motion": "no-preference",
+    "errors": [],
+    "actions": [
+      {
+        "label": "open-franchise",
+        "method": "pointer",
+        "selector": ".team-name[data-team=\"1\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Reaves Dropper",
+          "id": ""
+        },
+        "animations": [
+          {
+            "target": "dossier",
+            "keyframes": [
+              {},
+              {}
+            ],
+            "duration": 180
+          }
+        ],
+        "file": "19-phone-no-preference-live-0-open-franchise.jpg",
+        "hash": "",
+        "focus": "<h2 tabindex=\"-1\">Reaves Dropper</h2>",
+        "scrollY": 2725,
+        "headings": [
+          "2026 leagueFranchise yearbook",
+          "Reaves Dropper",
+          "Week 3 · Incomplete",
+          "Saved AI view",
+          "Your modeled roster value"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Overview"
+          },
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Teams"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "roster-tab",
+        "method": "keyboard",
+        "selector": "button[data-dossier-tab=\"roster\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Roster",
+          "id": ""
+        },
+        "animations": [],
+        "file": "19-phone-no-preference-live-1-roster-tab.jpg",
+        "hash": "",
+        "focus": "<button data-dossier-tab=\"roster\" aria-pressed=\"true\">Roster</button>",
+        "scrollY": 2725,
+        "headings": [
+          "2026 leagueFranchise yearbook",
+          "Reaves Dropper",
+          "24 roster references"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Roster"
+          },
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Teams"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "escape-dossier",
+        "file": "19-phone-no-preference-live-2-return-index.jpg",
+        "hash": "",
+        "focus": "<button class=\"team-name\" data-team=\"1\" aria-expanded=\"false\" aria-controls=\"dossier-1\">Reaves Dropper</button>",
+        "scrollY": 2002,
+        "headings": [
+          "2026 leagueFranchise yearbook"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Teams"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "notebook-slate",
+        "method": "keyboard",
+        "selector": "[data-view=\"slate\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Read the saved slate",
+          "id": ""
+        },
+        "animations": [],
+        "file": "19-phone-no-preference-live-3-notebook-slate.jpg",
+        "hash": "",
+        "focus": "<main id=\"main\" tabindex=\"-1\"><section class=\"notebook\"><div class=\"notebook-head\"><h1>Week 3 slate</h1><button data-view=\"index\">Return to index</button></div><nav class=\"notebook-nav\" aria-label=\"Notebook pages\"><button data-view=\"slate\" aria-pressed=\"true\">Week 3 + AI</button>",
+        "scrollY": 0,
+        "headings": [
+          "Week 3 slate",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Week 3 + AI"
+          },
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Notebook"
+          }
+        ],
+        "overflow": false
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "device": "phone",
+    "motion": "reduce",
+    "errors": [],
+    "actions": [
+      {
+        "label": "open-franchise",
+        "method": "pointer",
+        "selector": ".team-name[data-team=\"1\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Reaves Dropper",
+          "id": ""
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<h2 tabindex=\"-1\">Reaves Dropper</h2>",
+        "scrollY": 2725,
+        "headings": [
+          "2026 leagueFranchise yearbook",
+          "Reaves Dropper",
+          "Week 3 · Incomplete",
+          "Saved AI view",
+          "Your modeled roster value"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Overview"
+          },
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Teams"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "roster-tab",
+        "method": "keyboard",
+        "selector": "button[data-dossier-tab=\"roster\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Roster",
+          "id": ""
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<button data-dossier-tab=\"roster\" aria-pressed=\"true\">Roster</button>",
+        "scrollY": 2725,
+        "headings": [
+          "2026 leagueFranchise yearbook",
+          "Reaves Dropper",
+          "24 roster references"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Roster"
+          },
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Teams"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "escape-dossier",
+        "file": null,
+        "hash": "",
+        "focus": "<button class=\"team-name\" data-team=\"1\" aria-expanded=\"false\" aria-controls=\"dossier-1\">Reaves Dropper</button>",
+        "scrollY": 2002,
+        "headings": [
+          "2026 leagueFranchise yearbook"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Teams"
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "label": "notebook-slate",
+        "method": "keyboard",
+        "selector": "[data-view=\"slate\"]",
+        "before": {
+          "tag": "BUTTON",
+          "text": "Read the saved slate",
+          "id": ""
+        },
+        "animations": [],
+        "file": null,
+        "hash": "",
+        "focus": "<main id=\"main\" tabindex=\"-1\"><section class=\"notebook\"><div class=\"notebook-head\"><h1>Week 3 slate</h1><button data-view=\"index\">Return to index</button></div><nav class=\"notebook-nav\" aria-label=\"Notebook pages\"><button data-view=\"slate\" aria-pressed=\"true\">Week 3 + AI</button>",
+        "scrollY": 0,
+        "headings": [
+          "Week 3 slate",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete",
+          "Incomplete"
+        ],
+        "selected": [
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Week 3 + AI"
+          },
+          {
+            "id": "",
+            "tag": "BUTTON",
+            "text": "Notebook"
+          }
+        ],
+        "overflow": false
+      }
+    ]
+  }
+]

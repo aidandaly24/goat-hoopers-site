@@ -1,0 +1,196 @@
+{
+  "states": [
+    {
+      "id": "home",
+      "label": "Branching entry"
+    },
+    {
+      "id": "players",
+      "label": "Players and next choices"
+    },
+    {
+      "id": "form",
+      "label": "Form and completed-week evidence"
+    },
+    {
+      "id": "prices",
+      "label": "All modeled values"
+    },
+    {
+      "id": "compare",
+      "label": "Five pairings and saved AI"
+    },
+    {
+      "id": "league",
+      "label": "Standings and ten-team directory"
+    },
+    {
+      "id": "read",
+      "label": "Dated editorial and archive"
+    },
+    {
+      "id": "tools",
+      "label": "Tools, transactions and game"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "open-index",
+      "cls": "",
+      "text": "Open anywhere",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "This week",
+      "data": {
+        "node": "home",
+        "direct": "true"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "My players",
+      "data": {
+        "node": "players",
+        "direct": "true"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Form & completed week",
+      "data": {
+        "node": "form",
+        "direct": "true"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Modeled prices",
+      "data": {
+        "node": "prices",
+        "direct": "true"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "My team wire",
+      "data": {
+        "node": "teamwire",
+        "direct": "true"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Compare the matchups",
+      "data": {
+        "node": "compare",
+        "direct": "true"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Know the league",
+      "data": {
+        "node": "league",
+        "direct": "true"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Read the league",
+      "data": {
+        "node": "read",
+        "direct": "true"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Explore & play",
+      "data": {
+        "node": "tools",
+        "direct": "true"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Read the saved evidence",
+      "data": {
+        "node": "compare"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "choice",
+      "text": "I want to inspect my players.\n24 players, form, completed-week points and modeled value.",
+      "data": {
+        "node": "players"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "choice",
+      "text": "I want to compare the teams.\nFive current pairings and the actual saved model returns.",
+      "data": {
+        "node": "compare"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "choice",
+      "text": "I want to know this league.\nTen identities, standings, opponents and complete rosters.",
+      "data": {
+        "node": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "choice",
+      "text": "I want to read the league.\nDated editorial, player spotlights and the edition archive.",
+      "data": {
+        "node": "read"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "choice",
+      "text": "I want to explore or play.\nStocks, trades, transactions, history and the Arcade.",
+      "data": {
+        "node": "tools"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "show-provenance",
+      "cls": "",
+      "text": "Fixture provenance",
+      "data": {}
+    }
+  ]
+}

@@ -1,0 +1,3955 @@
+{
+  "id": "19",
+  "phase": "polished",
+  "scope": "Nearest opaque ancestor text contrast candidates, source-state geometry, loaded font/resources; complex image/opacity areas skipped and require pixel review. Not a complete WCAG, AT, performance or cross-browser audit.",
+  "rows": [
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 273,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 36
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 28
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 9
+        }
+      ],
+      "localDomContentLoadedMs": 186,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "index",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 273,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 36
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 28
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 9
+        }
+      ],
+      "localDomContentLoadedMs": 186,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "own-dossier",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 484,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 36
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 28
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 10
+        }
+      ],
+      "localDomContentLoadedMs": 186,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "roster-search",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 113,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 36
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 28
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 10
+        }
+      ],
+      "localDomContentLoadedMs": 186,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "slate",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 275,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 36
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 28
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 10
+        }
+      ],
+      "localDomContentLoadedMs": 186,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "standings",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 142,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 36
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 28
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 10
+        }
+      ],
+      "localDomContentLoadedMs": 186,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "edition",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 150,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 36
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 28
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 186,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "archive",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 83,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 36
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 28
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 186,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "team-form",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 192,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 36
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 28
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 186,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 271,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 13
+        }
+      ],
+      "localDomContentLoadedMs": 118,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "index",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 271,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 13
+        }
+      ],
+      "localDomContentLoadedMs": 118,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "own-dossier",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 342,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 118,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "roster-search",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 111,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 118,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "slate",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 273,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 118,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "standings",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 140,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 118,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "edition",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 148,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 118,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "archive",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 81,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 118,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "team-form",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 99,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 118,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 273,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 27
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 28
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 4
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 5
+        }
+      ],
+      "localDomContentLoadedMs": 176,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "index",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 273,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 27
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 28
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 4
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 5
+        }
+      ],
+      "localDomContentLoadedMs": 176,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "own-dossier",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 484,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 27
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 28
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 4
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 176,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "roster-search",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 113,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 27
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 28
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 4
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 176,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "slate",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 275,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 27
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 28
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 4
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 176,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "standings",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 142,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 27
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 28
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 4
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 176,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "edition",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 150,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 27
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 28
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 4
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        }
+      ],
+      "localDomContentLoadedMs": 176,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "archive",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 83,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 27
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 28
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 4
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        }
+      ],
+      "localDomContentLoadedMs": 176,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "team-form",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 192,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 27
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 27
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 28
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 4
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 47
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        }
+      ],
+      "localDomContentLoadedMs": 176,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 271,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 5
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 32
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "index",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 271,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 5
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 32
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "own-dossier",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 342,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 5
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 32
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "roster-search",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 111,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 5
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 32
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "slate",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 273,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 5
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 32
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "standings",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 140,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 5
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 32
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "edition",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 148,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 5
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 32
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "archive",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 81,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 5
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 32
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "team-form",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 99,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Yearbook Identity",
+          "status": "loaded"
+        },
+        {
+          "family": "Yearbook Entry",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/19/style.css",
+          "bytes": 20683,
+          "encodedBytes": 20383,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/polished/19/app.js",
+          "bytes": 29643,
+          "encodedBytes": 29343,
+          "durationMs": 14
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 5
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+          "bytes": 61700,
+          "encodedBytes": 61400,
+          "durationMs": 32
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 6
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    }
+  ]
+}

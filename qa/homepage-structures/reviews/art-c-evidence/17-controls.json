@@ -1,0 +1,292 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "default",
+        "label": "League ledger / all teams"
+      },
+      {
+        "id": "league",
+        "label": "All ten team rows"
+      },
+      {
+        "id": "roster",
+        "label": "Full roster subrow"
+      },
+      {
+        "id": "matchups",
+        "label": "Five pairs and saved AI receipt"
+      },
+      {
+        "id": "evidence",
+        "label": "Personal form and evidence"
+      },
+      {
+        "id": "editorial",
+        "label": "Dated edition and source subrows"
+      },
+      {
+        "id": "moves",
+        "label": "Moves and route register"
+      },
+      {
+        "id": "search",
+        "label": "Local player search"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to league sheet",
+      "href": "#sheet",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Menu",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 2,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "League",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Matchups",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "My evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 6,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Dated editions",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 7,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Moves & tools",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "SELECT",
+      "id": "category-select",
+      "text": "LeagueMatchupsMy evidenceDated editionsMoves & tools",
+      "href": null,
+      "select": [
+        [
+          "league",
+          "League"
+        ],
+        [
+          "matchups",
+          "Matchups"
+        ],
+        [
+          "evidence",
+          "My evidence"
+        ],
+        [
+          "editorial",
+          "Dated editions"
+        ],
+        [
+          "moves",
+          "Moves & tools"
+        ]
+      ],
+      "visible": false
+    },
+    {
+      "i": 9,
+      "tag": "INPUT",
+      "id": "search",
+      "text": "Try Embiid or NeuralNets",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 10,
+      "tag": "SELECT",
+      "id": "sort",
+      "text": "Standing: highest first Name: A–Z Points for: highest first Roster size: largest first",
+      "href": null,
+      "select": [
+        [
+          "rank",
+          "Standing: highest first"
+        ],
+        [
+          "name",
+          "Name: A–Z"
+        ],
+        [
+          "pf",
+          "Points for: highest first"
+        ],
+        [
+          "roster",
+          "Roster size: largest first"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "BUTTON",
+      "id": "clear",
+      "text": "Reset",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 12,
+      "tag": "SELECT",
+      "id": "fields",
+      "text": "Opponent & scoreRecord & points forFaces & FAABAll fields",
+      "href": null,
+      "select": [
+        [
+          "week",
+          "Opponent & score"
+        ],
+        [
+          "standings",
+          "Record & points for"
+        ],
+        [
+          "faces",
+          "Faces & FAAB"
+        ],
+        [
+          "all",
+          "All fields"
+        ]
+      ],
+      "visible": false
+    },
+    {
+      "i": 13,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Your brief",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 20,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 22,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 23,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Roster",
+      "href": null,
+      "visible": true
+    }
+  ],
+  "scrolls": []
+}

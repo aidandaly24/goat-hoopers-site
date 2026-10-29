@@ -1,0 +1,240 @@
+[
+  {
+    "id": "03",
+    "width": 1440,
+    "action": "Native chapter control to My club, keyboard Previous to first chapter boundary",
+    "previousDisabled": true,
+    "hash": "#chapter-week",
+    "focus": {
+      "tag": "BUTTON",
+      "id": "next",
+      "text": "Next →",
+      "disabled": false,
+      "visible": true,
+      "rect": {
+        "x": 1332.109375,
+        "y": 945.609375,
+        "width": 83.890625,
+        "height": 44,
+        "top": 945.609375,
+        "right": 1416,
+        "bottom": 989.609375,
+        "left": 1332.109375
+      }
+    },
+    "overflow": false,
+    "file": "03-1440-targeted-final.jpg"
+  },
+  {
+    "id": "03",
+    "width": 390,
+    "action": "Native chapter control to My club, keyboard Previous to first chapter boundary",
+    "previousDisabled": true,
+    "hash": "#chapter-week",
+    "focus": {
+      "tag": "BUTTON",
+      "id": "next",
+      "text": "Next →",
+      "disabled": false,
+      "visible": true,
+      "rect": {
+        "x": 335.609375,
+        "y": 790,
+        "width": 44,
+        "height": 44,
+        "top": 790,
+        "right": 379.609375,
+        "bottom": 834,
+        "left": 335.609375
+      }
+    },
+    "overflow": false,
+    "file": "03-390-targeted-final.jpg"
+  },
+  {
+    "id": "04",
+    "width": 1440,
+    "action": "Keyboard Enter on Next game, replacing selected matchup and its trigger",
+    "text": "Week 3 matchup\nWeek 3 · Game 2 of 5\nIncomplete\nStephon Castle’s Back\n\nTommyDieselfuel\n1–0 current record\n\n105.5\n\nFantasy points\n\nThe Fun Guys\n\nphilbiag\n1–0 current record\n\nPending\n\nNot supplied\n\nNext game →\nAI Decides →\nMy team\nSaved model decision\nThe Fun Guys\nReturned choice\n35%\nStephon Castle’s B",
+    "focus": {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Next game →",
+      "disabled": false,
+      "visible": true,
+      "rect": {
+        "x": 212,
+        "y": 674.5625,
+        "width": 131.03125,
+        "height": 48,
+        "top": 674.5625,
+        "right": 343.03125,
+        "bottom": 722.5625,
+        "left": 212
+      }
+    },
+    "overflow": false,
+    "file": "04-1440-targeted-final.jpg"
+  },
+  {
+    "id": "04",
+    "width": 390,
+    "action": "Keyboard Enter on Next game, replacing selected matchup and its trigger",
+    "text": "Week 3 matchup\nWeek 3 · Game 2 of 5\nIncomplete\nStephon Castle’s Back\n\nTommyDieselfuel\n1–0 current record\n\n105.5\n\nFantasy points\n\nThe Fun Guys\n\nphilbiag\n1–0 current record\n\nPending\n\nNot supplied\n\nNext game →\nAI Decides →\nMy team\nSaved model decision\nThe Fun Guys\nReturned choice\n35%\nStephon Castle’s B",
+    "focus": {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Next game →",
+      "disabled": false,
+      "visible": true,
+      "rect": {
+        "x": 16,
+        "y": 693.140625,
+        "width": 131.03125,
+        "height": 48,
+        "top": 693.140625,
+        "right": 147.03125,
+        "bottom": 741.140625,
+        "left": 16
+      }
+    },
+    "overflow": false,
+    "file": "04-390-targeted-final.jpg"
+  },
+  {
+    "id": "07",
+    "width": 1440,
+    "action": "Open paired lockers with pointer, keyboard Undo to boundary",
+    "undoDisabled": true,
+    "focus": {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open this pair’s two lockers",
+      "disabled": false,
+      "visible": true,
+      "rect": {
+        "x": 117.59375,
+        "y": 624.78125,
+        "width": 387.25,
+        "height": 44,
+        "top": 624.78125,
+        "right": 504.84375,
+        "bottom": 668.78125,
+        "left": 117.59375
+      }
+    },
+    "overflow": false,
+    "file": "07-1440-targeted-final.jpg"
+  },
+  {
+    "id": "07",
+    "width": 390,
+    "action": "Open paired lockers with pointer, keyboard Undo to boundary",
+    "undoDisabled": true,
+    "focus": {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open this pair’s two lockers",
+      "disabled": false,
+      "visible": true,
+      "rect": {
+        "x": 48.909698486328125,
+        "y": 674.3443603515625,
+        "width": 303.421875,
+        "height": 44,
+        "top": 674.3443603515625,
+        "right": 352.3315734863281,
+        "bottom": 718.3443603515625,
+        "left": 48.909698486328125
+      }
+    },
+    "overflow": false,
+    "file": "07-390-targeted-final.jpg"
+  },
+  {
+    "id": "08",
+    "width": 1440,
+    "error": "locator.click: Timeout 3500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#standings\"]').filter({ visible: true }).first()\u001b[22m\n"
+  },
+  {
+    "id": "08",
+    "width": 390,
+    "error": "locator.click: Timeout 3500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#standings\"]').filter({ visible: true }).first()\u001b[22m\n"
+  },
+  {
+    "id": "19",
+    "width": 1440,
+    "action": "Pointer Notebook then Standings",
+    "rankHeader": {
+      "text": "#",
+      "label": "Rank",
+      "rect": {
+        "x": 72,
+        "y": 383.765625,
+        "width": 155.515625,
+        "height": 49.296875,
+        "top": 383.765625,
+        "right": 227.515625,
+        "bottom": 433.0625,
+        "left": 72
+      }
+    },
+    "focus": {
+      "tag": "MAIN",
+      "id": "main",
+      "text": "Standing orderReturn to indexWeek 3 + AIStandingsDated storiesArchiveLeague tools2026 current fixture · synthetic rank, ",
+      "disabled": false,
+      "visible": true,
+      "rect": {
+        "x": 0,
+        "y": 103.015625,
+        "width": 1440,
+        "height": 1390.109375,
+        "top": 103.015625,
+        "right": 1440,
+        "bottom": 1493.125,
+        "left": 0
+      }
+    },
+    "overflow": false,
+    "file": "19-1440-targeted-final.jpg"
+  },
+  {
+    "id": "19",
+    "width": 390,
+    "action": "Pointer Notebook then Standings",
+    "rankHeader": {
+      "text": "#",
+      "label": "Rank",
+      "rect": {
+        "x": 16,
+        "y": 448.78125,
+        "width": 30.578125,
+        "height": 49.296875,
+        "top": 448.78125,
+        "right": 46.578125,
+        "bottom": 498.078125,
+        "left": 16
+      }
+    },
+    "focus": {
+      "tag": "MAIN",
+      "id": "main",
+      "text": "Standing orderReturn to indexWeek 3 + AIStandingsDated storiesArchiveLeague tools2026 current fixture · synthetic rank, ",
+      "disabled": false,
+      "visible": true,
+      "rect": {
+        "x": 0,
+        "y": 72,
+        "width": 390,
+        "height": 1494.9375,
+        "top": 72,
+        "right": 390,
+        "bottom": 1566.9375,
+        "left": 0
+      }
+    },
+    "overflow": false,
+    "file": "19-390-targeted-final.jpg"
+  }
+]

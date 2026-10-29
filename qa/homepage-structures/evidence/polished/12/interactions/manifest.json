@@ -1,0 +1,243 @@
+{
+  "id": "12",
+  "phase": "polished",
+  "planPath": "qa/homepage-structures/polished/12/motion-demo.json",
+  "planSha256": "67f4110144c6163edcaf6aefd03cadaa62c2f729cfb5b5c701099429658268b2",
+  "records": [
+    {
+      "device": "desktop",
+      "reducedMotion": "no-preference",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "qa/homepage-structures/evidence/polished/12/interactions/desktop-no-preference.mp4",
+      "bytes": 142374,
+      "sha256": "ba762d282a38385dd7d9118002fa9c17ca26f2b178bfe8740a41d645e8a0a938",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/12/interactions/c960dc4b9d6097cc8b8268c99749f40a.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#roster-trigger-1",
+          "atMs": 603,
+          "afterMs": 1155,
+          "activeId": "entity-1"
+        },
+        {
+          "action": "click",
+          "selector": "#roster-trigger-2",
+          "atMs": 1158,
+          "afterMs": 1739,
+          "activeId": "entity-2"
+        },
+        {
+          "action": "click",
+          "selector": "#satellite-8",
+          "atMs": 1746,
+          "afterMs": 2339,
+          "activeId": "entity-8"
+        },
+        {
+          "action": "wait",
+          "waitMs": 220,
+          "atMs": 2346,
+          "afterMs": 2567,
+          "activeId": "entity-8"
+        },
+        {
+          "action": "click",
+          "selector": "#roster-trigger-8",
+          "atMs": 2571,
+          "afterMs": 3131,
+          "activeId": "entity-8"
+        },
+        {
+          "action": "click",
+          "selector": "[data-remove-third]",
+          "atMs": 3135,
+          "afterMs": 3717,
+          "activeId": "satellite-8"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "desktop",
+      "reducedMotion": "reduce",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "qa/homepage-structures/evidence/polished/12/interactions/desktop-reduce.mp4",
+      "bytes": 137120,
+      "sha256": "16dc9858004a6d2c0e16406909d331f006a3a194c3007eca7fa8eb9b81c88700",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/12/interactions/7583a460c10c3f801ace61259fb77041.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#roster-trigger-1",
+          "atMs": 601,
+          "afterMs": 1156,
+          "activeId": "entity-1"
+        },
+        {
+          "action": "click",
+          "selector": "#roster-trigger-2",
+          "atMs": 1165,
+          "afterMs": 1744,
+          "activeId": "entity-2"
+        },
+        {
+          "action": "click",
+          "selector": "#satellite-8",
+          "atMs": 1752,
+          "afterMs": 2337,
+          "activeId": "entity-8"
+        },
+        {
+          "action": "wait",
+          "waitMs": 220,
+          "atMs": 2339,
+          "afterMs": 2560,
+          "activeId": "entity-8"
+        },
+        {
+          "action": "click",
+          "selector": "#roster-trigger-8",
+          "atMs": 2562,
+          "afterMs": 3106,
+          "activeId": "entity-8"
+        },
+        {
+          "action": "click",
+          "selector": "[data-remove-third]",
+          "atMs": 3108,
+          "afterMs": 3680,
+          "activeId": "satellite-8"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "phone",
+      "reducedMotion": "no-preference",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "qa/homepage-structures/evidence/polished/12/interactions/phone-no-preference.mp4",
+      "bytes": 115057,
+      "sha256": "02511aa054aed92b7434bf7c4e6e0a65fc2feca1e2a9bf8209c820cdaa091e71",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/12/interactions/5bcf125362d8aeb0bbc77e6b25c2bfaa.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "[data-jump=\"other-teams-top\"]",
+          "atMs": 601,
+          "afterMs": 1136,
+          "activeId": "other-teams-top"
+        },
+        {
+          "action": "click",
+          "selector": "#satellite-8",
+          "atMs": 1139,
+          "afterMs": 1684,
+          "activeId": "entity-8"
+        },
+        {
+          "action": "wait",
+          "waitMs": 220,
+          "atMs": 1689,
+          "afterMs": 1909,
+          "activeId": "entity-8"
+        },
+        {
+          "action": "click",
+          "selector": "[data-jump=\"entity-1\"]",
+          "atMs": 1918,
+          "afterMs": 2481,
+          "activeId": "entity-1"
+        },
+        {
+          "action": "press",
+          "selector": "#roster-trigger-1",
+          "key": "Enter",
+          "atMs": 2483,
+          "afterMs": 3046,
+          "activeId": "entity-1"
+        },
+        {
+          "action": "click",
+          "selector": "[data-jump=\"bridge\"]",
+          "atMs": 3051,
+          "afterMs": 3579,
+          "activeId": "bridge"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "phone",
+      "reducedMotion": "reduce",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "qa/homepage-structures/evidence/polished/12/interactions/phone-reduce.mp4",
+      "bytes": 106079,
+      "sha256": "6747c90e373f455970b2d115700f10410137de3699b7937a845762159537f5f8",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/12/interactions/a29143b5bc72643bbc3d91fbc0d7c8c4.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "[data-jump=\"other-teams-top\"]",
+          "atMs": 600,
+          "afterMs": 1138,
+          "activeId": "other-teams-top"
+        },
+        {
+          "action": "click",
+          "selector": "#satellite-8",
+          "atMs": 1156,
+          "afterMs": 1813,
+          "activeId": "entity-8"
+        },
+        {
+          "action": "wait",
+          "waitMs": 220,
+          "atMs": 1822,
+          "afterMs": 2045,
+          "activeId": "entity-8"
+        },
+        {
+          "action": "click",
+          "selector": "[data-jump=\"entity-1\"]",
+          "atMs": 2050,
+          "afterMs": 2576,
+          "activeId": "entity-1"
+        },
+        {
+          "action": "press",
+          "selector": "#roster-trigger-1",
+          "key": "Enter",
+          "atMs": 2578,
+          "afterMs": 3119,
+          "activeId": "entity-1"
+        },
+        {
+          "action": "click",
+          "selector": "[data-jump=\"bridge\"]",
+          "atMs": 3124,
+          "afterMs": 3657,
+          "activeId": "bridge"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    }
+  ],
+  "limit": "Headless Linux Chromium interaction evidence, not physical-phone smoothness, screen-reader or cross-browser certification. An instant change may intentionally remain instant in both recordings."
+}

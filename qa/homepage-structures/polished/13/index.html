@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GOAT Hoopers — Varsity folio</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#atlas">Skip to the atlas</a>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-white.svg" alt="GOAT Hoopers"></a>
+    <details class="concept"><summary>Synthetic concept</summary><div class="concept-provenance"><p>Offline design fixture. All current records, scores, prices, form, news, moves and AI are synthetic. Dated approved identities and editorial are preserved. This is not live league data.</p><p>Current fixture checked <time id="fixture-checked"></time>; that is not actual today. October editorial is a dated draft, and completed Week 2 statistics have their own source period. No live provider or model generation runs here. Recorded value history and Lineup Power have no connected producer.</p><p>Public/member comparison changes only a local fixture; it is not an authentication boundary.</p></div></details>
+    <div class="edition-tools"><span id="edition-name"></span><a id="compare" href="?view=public">Public edition</a><details class="site-menu"><summary>Destinations</summary><nav aria-label="Site"><a href="/">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a><a href="/arcade/free-throw">Free throw</a><a href="/ai-decides">AI Decides</a><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/trade-analyzer">Trade analyzer</a><a href="/weekly">Weekly archive</a><button data-open="tools">Open the destinations chapter</button></nav></details></div>
+  </header>
+  <main id="atlas" tabindex="-1" aria-label="Varsity folio">
+    <h1 class="sr-only">GOAT Hoopers Varsity folio</h1>
+    <nav class="fore-edge" aria-label="Fore-edge chapter navigation"><div id="neighbour-spines"></div><button id="back-spread" disabled>Previous spread</button><button id="fold-book" data-close>Fold book</button></nav>
+    <div id="chapters"></div>
+  </main>
+  <footer><p><strong>GOAT Hoopers.</strong> Synthetic concept. No live providers or model generation. Current fixture checked Nov 12, 2026; this is not today's league state.</p><a href="/weekly">Weekly archive</a><a href="/history">League history</a><a href="/transactions">Transactions</a></footer>
+  <p id="announcer" class="sr-only" role="status" aria-live="polite"></p>
+  <script type="module" src="./atlas.js"></script>
+</body>
+</html>

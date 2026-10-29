@@ -1,0 +1,274 @@
+{
+  "states": [
+    {
+      "id": "week",
+      "label": "Current Week 3 and five AI picks"
+    },
+    {
+      "id": "club",
+      "label": "Member quote and scouting"
+    },
+    {
+      "id": "league",
+      "label": "Searchable complete league index"
+    },
+    {
+      "id": "stories",
+      "label": "Dated draft and three player spotlights"
+    },
+    {
+      "id": "archive",
+      "label": "Historical final archive"
+    },
+    {
+      "id": "tools",
+      "label": "Route index and honest unavailable states"
+    },
+    {
+      "id": "closed",
+      "label": "All five unequal chapter spines"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "",
+      "data": {
+        "open": "tools"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Next: Your club",
+      "data": {
+        "open": "club"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "back-spread",
+      "cls": "",
+      "text": "Previous spread",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "fold-book",
+      "cls": "",
+      "text": "Fold book",
+      "data": {
+        "close": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "spine-week",
+      "cls": "spine",
+      "text": "Week 3, in progress\nThe current pairing and five saved model picks\nFold",
+      "data": {
+        "spine": "week"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Find another club",
+      "data": {
+        "open": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Read the dated edition",
+      "data": {
+        "open": "stories"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Open Your club, in the margins",
+      "data": {
+        "open": "club"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Close spread",
+      "data": {
+        "close": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "spine-club",
+      "cls": "spine",
+      "text": "Your club, in the margins\nA modeled quote, roster, scouting and team wire\nUnfold",
+      "data": {
+        "spine": "club"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Open A league, indexed",
+      "data": {
+        "open": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Close spread",
+      "data": {
+        "close": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "spine-league",
+      "cls": "spine",
+      "text": "A league, indexed\nTen clubs; every roster; useful standings\nUnfold",
+      "data": {
+        "spine": "league"
+      }
+    },
+    {
+      "tag": "INPUT",
+      "id": "league-search",
+      "cls": "",
+      "text": "",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "league-sort",
+      "cls": "",
+      "text": "Current standingTeam name A–ZRoster count, most first",
+      "data": {},
+      "options": [
+        [
+          "rank",
+          "Current standing"
+        ],
+        [
+          "name",
+          "Team name A–Z"
+        ],
+        [
+          "players",
+          "Roster count, most first"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "clear-search",
+      "cls": "",
+      "text": "Clear",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Open Pages from the season",
+      "data": {
+        "open": "stories"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Close spread",
+      "data": {
+        "close": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "spine-stories",
+      "cls": "spine",
+      "text": "Pages from the season\nDated editorial, the wire and two archived editions\nUnfold",
+      "data": {
+        "spine": "stories"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Oct 5–11, 2026; The next chapter",
+      "data": {
+        "archive": "0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Sep 28–Oct 4, 2026; The title everybody’s chasing",
+      "data": {
+        "archive": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Open Beyond this book",
+      "data": {
+        "open": "tools"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Close spread",
+      "data": {
+        "close": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "spine-tools",
+      "cls": "spine",
+      "text": "Beyond this book\nNews, Stocks, History, Arcade and the league tools\nUnfold",
+      "data": {
+        "spine": "tools"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Open Week 3, in progress",
+      "data": {
+        "open": "week"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Close spread",
+      "data": {
+        "close": ""
+      }
+    }
+  ]
+}

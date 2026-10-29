@@ -1,0 +1,354 @@
+[
+  {
+    "id": "02",
+    "view": "public",
+    "ai": "ready",
+    "width": 1440,
+    "hashes": {
+      "qa/homepage-structures/polished/02/ART.md": "4881a2f39025e3b9eeb30215a7e431f16fbd5ae2044417e3390177aa81fc062c",
+      "qa/homepage-structures/polished/02/STRUCTURE.md": "e9d7c8b9c23cbbf995cffcf47b7db01480462be6d852789a8af93471694e92d3",
+      "qa/homepage-structures/polished/02/app.js": "ec10fe0cd6e92b9313cbd5466ec0228bd1334864c1e1d6cf0d386b4d1dcfd1f1",
+      "qa/homepage-structures/polished/02/index.html": "ecdcb4d4a6259c5e8e0fe81d1bf56c1dcdfb6607c4624ba0a3009e52ee62669a",
+      "qa/homepage-structures/polished/02/style.css": "e36a73d39b0e6ae2209cdc27a0d0295cb3ab20a556fdb00af7cb885cd3f7b987"
+    },
+    "errors": [],
+    "initial": {
+      "text": "Skip to the court\nGOAT\nHoopers\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nCentre circle\nBack to court\nWeek 3\nIncomplete scoring, 2026. Checked 2026-11-12 12:00:00 UTC\nReaves Dropper\n0.0\n\naidandaly20 · 1–0 current record\n\nWare the Hoes At?\nPending\n\nAedan23 · 1–0 current record\n\nAI Decides\nCompare teams\nSaved AI picks\n\nSynthetic model output. Generated 2026-11-10 12:00:00 UTC.\n\nReaves Dropper / Ware the Hoes At?\n\nReturned choice: Ware the Hoes At? (35%)\n\nWare the Hoes At?\n35%\nReaves Dropper\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nStephon Castle’s Back / The Fun Guys\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: The Fun Guys (35%)\n\nThe Fun Guys\n35%\nStephon Castle’s Back\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nJosh Diddy’s Roster / Huff n’ Puff\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: Huff n’ Puff (35%)\n\nHuff n’ Puff\n35%\nJosh Diddy’s Roster\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\npapichooter / NeuralNets\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: NeuralNets (35%)\n\nNeuralNets\n35%\npapichooter\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nLebron Theme Team / T Halibooty\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: T Halibooty (35%)\n\nT Halibooty\n35%\nLebron Theme Team\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nBack to court\nWeekly archive\nLeague history",
+      "ownRoutes": 0,
+      "headings": [
+        "The court",
+        "Week 3"
+      ],
+      "overflow": false,
+      "states": [
+        {
+          "id": "matchup",
+          "label": "Week 3"
+        },
+        {
+          "id": "roster",
+          "label": "Faces & values"
+        },
+        {
+          "id": "standings",
+          "label": "Standings"
+        },
+        {
+          "id": "edition",
+          "label": "Weekly edition"
+        },
+        {
+          "id": "league",
+          "label": "Teams & players"
+        },
+        {
+          "id": "wire",
+          "label": "League wire"
+        }
+      ]
+    },
+    "states": [
+      {
+        "id": "matchup",
+        "text": "Skip to the court\nGOAT\nHoopers\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nCentre circle\nBack to court\nWeek 3\nIncomplete scoring, 2026. Checked 2026-11-12 12:00:00 UTC\nReaves Dropper\n0.0\n\naidandaly20 · 1–0 current record\n\nWare the Hoes At?\nPending\n\nAedan23 · 1–0 current record\n\nAI Decides\nCompare teams\nSaved AI picks\n\nSynthetic model output. Generated 2026-11-10 12:00:00 UTC.\n\nReaves Dropper / Ware the Hoes At?\n\nReturned choice: Ware the Hoes At? (35%)\n\nWare the Hoes At?\n35%\nReaves Dropper\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nStephon Castle’s Back / The Fun Guys\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: The Fun Guys (35%)\n\nThe Fun Guys\n35%\nStephon Castle’s Back\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nJosh Diddy’s Roster / Huff n’ Puff\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: Huff n’ Puff (35%)\n\nHuff n’ Puff\n35%\nJosh Diddy’s Roster\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\npapichooter / NeuralNets\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: NeuralNets (35%)\n\nNeuralNets\n35%\npapichooter\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nLebron Theme Team / T Halibooty\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: T Halibooty (35%)\n\nT Halibooty\n35%\nLebron Theme Team\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      },
+      {
+        "id": "roster",
+        "text": "Skip to the court\nGOAT\nHoopers\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nLeft wing\nBack to court\nFaces & values\n\nEach franchise’s top player by supplied modeled value. A price is a model, not a transaction or form score.\n\nJoel Embiid\nC · Reaves Dropper\n$137.50\nDomantas Sabonis\nC · Ware the Hoes At?\n$140.75\nShai Gilgeous-Alexander\nPG · Stephon Castle’s Back\n$134.25\nJalen Brunson\nPG · The Fun Guys\n$137.50\nStephen Curry\nPG · Josh Diddy’s Roster · defending champion\n$140.75\nDonovan Mitchell\nSG · Huff n’ Puff\n$131.00\nLuka Dončić\nPG · papichooter\n$131.00\nGiannis Antetokounmpo\nPF · NeuralNets\n$140.75\nLeBron James\nPF · Lebron Theme Team\n$144.00\nAnthony Davis\nC · T Halibooty\n$144.00\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nRecorded team-value history unavailable; no line is invented.\n\nExplore Stocks\nAnalyze a trade\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      },
+      {
+        "id": "standings",
+        "text": "Skip to the court\nGOAT\nHoopers\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nRight wing\nBack to court\nStandings\n\nCurrent season. PF is fantasy points.\n\nAll ten teams, rank, current win-loss record and Points For\nRank\tTeam / manager\tW–L\tPF\n1\tReaves Dropper\naidandaly20\n\t1–0\t320.5\n2\tWare the Hoes At?\nAedan23\n\t1–0\t315.0\n3\tStephon Castle’s Back\nTommyDieselfuel\n\t1–0\t309.5\n4\tThe Fun Guys\nphilbiag\n\t1–0\t304.0\n5\tJosh Diddy’s Roster\nvannweinkauf\n\t1–0\t298.5\n6\tHuff n’ Puff\nGriffinHealy\n\t1–0\t293.0\n7\tpapichooter\npapichooter\n\t1–0\t287.5\n8\tNeuralNets\nNeuralNets\n\t1–0\t282.0\n9\tLebron Theme Team\nlordlx\n\t1–0\t276.5\n10\tT Halibooty\nTyreseHalibooty\n\t1–0\t271.0\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\n6 playoff places · playoffs begin Week 20. No projection is inferred.\n\nPrior-season history\nTeam profiles\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      },
+      {
+        "id": "edition",
+        "text": "Skip to the court\nGOAT\nHoopers\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nLeft baseline\nBack to court\nThe next chapter\n\nOct 5–11, 2026 · draft edition · dated editorial, separate from the current Week 3 fixture.\n\nReaves Dropper gets the champ.\n\nOpening-week watch · Week 1 · upcoming · No scores\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nEditorial game selection\nThree player spotlights\n\nLast season’s standard · player-of-week\n\nSomebody unplug this man.\n\nNikola Jokić · C · Josh Diddy’s Roster\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7\nPPG\n12.9\nRPG\n10.7\nAPG\n\n2025–26 NBA averages\n\nWhy this pick / source\n\nLast-season lookback · underperformer\n\nWe wanted more on the glass.\n\nJoel Embiid · C · Reaves Dropper\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9\nPPG\n7.7\nRPG\n3.9\nAPG\n\n2025–26 NBA averages\n\nWhy this pick / source\n\nNext week · preseason · one-to-watch\n\nNo. 1 pick. No free pass.\n\nAJ Dybantsa · PF · NeuralNets\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5\nPPG\n6.8\nRPG\n3.7\nAPG\n\n2025–26 college · BYU\n\nWhy this pick / source\nAround that edition\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · dated editorial\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · dated editorial\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · dated editorial\nEdition sources, with checked dates\nBrowse the dated archive\nThe next chapter\nOct 5–11, 2026 · draft\nThe title everybody’s chasing\nSep 28–Oct 4, 2026 · draft\nAll weekly editions\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      },
+      {
+        "id": "league",
+        "text": "Skip to the court\nGOAT\nHoopers\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nRight baseline\nBack to court\nTeams & players\nTeam, manager or player\nSort teams\nStanding\nTeam name\nRoster count\n\n10 of 10 teams · 228 player references shown (228 unique in the full directory).\n\nReaves Dropper\naidandaly20 · 1–0 current · 24 players\nWeek 3: vs Ware the Hoes At? · 0.0 / Pending incomplete\nWare the Hoes At?\nAedan23 · 1–0 current · 27 players\nWeek 3: vs Reaves Dropper · 0.0 / Pending incomplete\nStephon Castle’s Back\nTommyDieselfuel · 1–0 current · 22 players\nWeek 3: vs The Fun Guys · 105.5 / Pending incomplete\nThe Fun Guys\nphilbiag · 1–0 current · 22 players\nWeek 3: vs Stephon Castle’s Back · 105.5 / Pending incomplete\nJosh Diddy’s Roster\nvannweinkauf · 1–0 current · 22 players\nWeek 3: vs Huff n’ Puff · 105.5 / Pending incomplete\nHuff n’ Puff\nGriffinHealy · 1–0 current · 23 players\nWeek 3: vs Josh Diddy’s Roster · 105.5 / Pending incomplete\npapichooter\npapichooter · 1–0 current · 23 players\nWeek 3: vs NeuralNets · 105.5 / Pending incomplete\nNeuralNets\nNeuralNets · 1–0 current · 22 players\nWeek 3: vs papichooter · 105.5 / Pending incomplete\n2025: 1–20 · Under the previous manager as QBs Gremlins.\nLebron Theme Team\nlordlx · 1–0 current · 21 players\nWeek 3: vs T Halibooty · 105.5 / Pending incomplete\nT Halibooty\nTyreseHalibooty · 1–0 current · 22 players\nWeek 3: vs Lebron Theme Team · 105.5 / Pending incomplete\nAll team profiles\nAll transactions\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      },
+      {
+        "id": "wire",
+        "text": "Skip to the court\nGOAT\nHoopers\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nSideline\nBack to court\nLeague wire\n\nRecent league moves, dated story sources and the tools to act on them.\n\nRecent synthetic moves\n\nReaves Dropper made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\n\nThe Fun Guys made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\n\nLebron Theme Team made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\nTransactions\nNews & intel\nMake your next move\nStocks player board\nTrade analyzer\nAI Decides\nArcade\nPlay Free Throw\nDated editorial happenings\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · Oct 5–11, 2026, draft\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · Oct 5–11, 2026, draft\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · Oct 5–11, 2026, draft\nSource register\nData boundaries\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nRecorded team-value history unavailable; no line is invented.\n\nFixture checked 2026-11-12 12:00:00 UTC. OFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.\n\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      }
+    ],
+    "result": "completed"
+  },
+  {
+    "id": "02",
+    "view": "public",
+    "ai": "ready",
+    "width": 390,
+    "hashes": {
+      "qa/homepage-structures/polished/02/ART.md": "4881a2f39025e3b9eeb30215a7e431f16fbd5ae2044417e3390177aa81fc062c",
+      "qa/homepage-structures/polished/02/STRUCTURE.md": "e9d7c8b9c23cbbf995cffcf47b7db01480462be6d852789a8af93471694e92d3",
+      "qa/homepage-structures/polished/02/app.js": "ec10fe0cd6e92b9313cbd5466ec0228bd1334864c1e1d6cf0d386b4d1dcfd1f1",
+      "qa/homepage-structures/polished/02/index.html": "ecdcb4d4a6259c5e8e0fe81d1bf56c1dcdfb6607c4624ba0a3009e52ee62669a",
+      "qa/homepage-structures/polished/02/style.css": "e36a73d39b0e6ae2209cdc27a0d0295cb3ab20a556fdb00af7cb885cd3f7b987"
+    },
+    "errors": [],
+    "initial": {
+      "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nCentre circle\nBack to court\nWeek 3\nIncomplete scoring, 2026. Checked 2026-11-12 12:00:00 UTC\nReaves Dropper\n0.0\n\naidandaly20 · 1–0 current record\n\nWare the Hoes At?\nPending\n\nAedan23 · 1–0 current record\n\nAI Decides\nCompare teams\nSaved AI picks\n\nSynthetic model output. Generated 2026-11-10 12:00:00 UTC.\n\nReaves Dropper / Ware the Hoes At?\n\nReturned choice: Ware the Hoes At? (35%)\n\nWare the Hoes At?\n35%\nReaves Dropper\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nStephon Castle’s Back / The Fun Guys\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: The Fun Guys (35%)\n\nThe Fun Guys\n35%\nStephon Castle’s Back\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nJosh Diddy’s Roster / Huff n’ Puff\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: Huff n’ Puff (35%)\n\nHuff n’ Puff\n35%\nJosh Diddy’s Roster\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\npapichooter / NeuralNets\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: NeuralNets (35%)\n\nNeuralNets\n35%\npapichooter\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nLebron Theme Team / T Halibooty\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: T Halibooty (35%)\n\nT Halibooty\n35%\nLebron Theme Team\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nBack to court\nWeekly archive\nLeague history",
+      "ownRoutes": 0,
+      "headings": [
+        "The court",
+        "Week 3"
+      ],
+      "overflow": false,
+      "states": [
+        {
+          "id": "matchup",
+          "label": "Week 3"
+        },
+        {
+          "id": "roster",
+          "label": "Faces & values"
+        },
+        {
+          "id": "standings",
+          "label": "Standings"
+        },
+        {
+          "id": "edition",
+          "label": "Weekly edition"
+        },
+        {
+          "id": "league",
+          "label": "Teams & players"
+        },
+        {
+          "id": "wire",
+          "label": "League wire"
+        }
+      ]
+    },
+    "states": [
+      {
+        "id": "matchup",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nCentre circle\nBack to court\nWeek 3\nIncomplete scoring, 2026. Checked 2026-11-12 12:00:00 UTC\nReaves Dropper\n0.0\n\naidandaly20 · 1–0 current record\n\nWare the Hoes At?\nPending\n\nAedan23 · 1–0 current record\n\nAI Decides\nCompare teams\nSaved AI picks\n\nSynthetic model output. Generated 2026-11-10 12:00:00 UTC.\n\nReaves Dropper / Ware the Hoes At?\n\nReturned choice: Ware the Hoes At? (35%)\n\nWare the Hoes At?\n35%\nReaves Dropper\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nStephon Castle’s Back / The Fun Guys\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: The Fun Guys (35%)\n\nThe Fun Guys\n35%\nStephon Castle’s Back\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nJosh Diddy’s Roster / Huff n’ Puff\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: Huff n’ Puff (35%)\n\nHuff n’ Puff\n35%\nJosh Diddy’s Roster\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\npapichooter / NeuralNets\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: NeuralNets (35%)\n\nNeuralNets\n35%\npapichooter\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nLebron Theme Team / T Halibooty\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: T Halibooty (35%)\n\nT Halibooty\n35%\nLebron Theme Team\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      },
+      {
+        "id": "roster",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nLeft wing\nBack to court\nFaces & values\n\nEach franchise’s top player by supplied modeled value. A price is a model, not a transaction or form score.\n\nJoel Embiid\nC · Reaves Dropper\n$137.50\nDomantas Sabonis\nC · Ware the Hoes At?\n$140.75\nShai Gilgeous-Alexander\nPG · Stephon Castle’s Back\n$134.25\nJalen Brunson\nPG · The Fun Guys\n$137.50\nStephen Curry\nPG · Josh Diddy’s Roster · defending champion\n$140.75\nDonovan Mitchell\nSG · Huff n’ Puff\n$131.00\nLuka Dončić\nPG · papichooter\n$131.00\nGiannis Antetokounmpo\nPF · NeuralNets\n$140.75\nLeBron James\nPF · Lebron Theme Team\n$144.00\nAnthony Davis\nC · T Halibooty\n$144.00\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nRecorded team-value history unavailable; no line is invented.\n\nExplore Stocks\nAnalyze a trade\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      },
+      {
+        "id": "standings",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nRight wing\nBack to court\nStandings\n\nCurrent season. PF is fantasy points.\n\nAll ten teams, rank, current win-loss record and Points For\nRank\tTeam / manager\tW–L\tPF\n1\tReaves Dropper\naidandaly20\n\t1–0\t320.5\n2\tWare the Hoes At?\nAedan23\n\t1–0\t315.0\n3\tStephon Castle’s Back\nTommyDieselfuel\n\t1–0\t309.5\n4\tThe Fun Guys\nphilbiag\n\t1–0\t304.0\n5\tJosh Diddy’s Roster\nvannweinkauf\n\t1–0\t298.5\n6\tHuff n’ Puff\nGriffinHealy\n\t1–0\t293.0\n7\tpapichooter\npapichooter\n\t1–0\t287.5\n8\tNeuralNets\nNeuralNets\n\t1–0\t282.0\n9\tLebron Theme Team\nlordlx\n\t1–0\t276.5\n10\tT Halibooty\nTyreseHalibooty\n\t1–0\t271.0\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\n6 playoff places · playoffs begin Week 20. No projection is inferred.\n\nPrior-season history\nTeam profiles\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      },
+      {
+        "id": "edition",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nLeft baseline\nBack to court\nThe next chapter\n\nOct 5–11, 2026 · draft edition · dated editorial, separate from the current Week 3 fixture.\n\nReaves Dropper gets the champ.\n\nOpening-week watch · Week 1 · upcoming · No scores\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nEditorial game selection\nThree player spotlights\n\nLast season’s standard · player-of-week\n\nSomebody unplug this man.\n\nNikola Jokić · C · Josh Diddy’s Roster\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7\nPPG\n12.9\nRPG\n10.7\nAPG\n\n2025–26 NBA averages\n\nWhy this pick / source\n\nLast-season lookback · underperformer\n\nWe wanted more on the glass.\n\nJoel Embiid · C · Reaves Dropper\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9\nPPG\n7.7\nRPG\n3.9\nAPG\n\n2025–26 NBA averages\n\nWhy this pick / source\n\nNext week · preseason · one-to-watch\n\nNo. 1 pick. No free pass.\n\nAJ Dybantsa · PF · NeuralNets\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5\nPPG\n6.8\nRPG\n3.7\nAPG\n\n2025–26 college · BYU\n\nWhy this pick / source\nAround that edition\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · dated editorial\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · dated editorial\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · dated editorial\nEdition sources, with checked dates\nBrowse the dated archive\nThe next chapter\nOct 5–11, 2026 · draft\nThe title everybody’s chasing\nSep 28–Oct 4, 2026 · draft\nAll weekly editions\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      },
+      {
+        "id": "league",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nRight baseline\nBack to court\nTeams & players\nTeam, manager or player\nSort teams\nStanding\nTeam name\nRoster count\n\n10 of 10 teams · 228 player references shown (228 unique in the full directory).\n\nReaves Dropper\naidandaly20 · 1–0 current · 24 players\nWeek 3: vs Ware the Hoes At? · 0.0 / Pending incomplete\nWare the Hoes At?\nAedan23 · 1–0 current · 27 players\nWeek 3: vs Reaves Dropper · 0.0 / Pending incomplete\nStephon Castle’s Back\nTommyDieselfuel · 1–0 current · 22 players\nWeek 3: vs The Fun Guys · 105.5 / Pending incomplete\nThe Fun Guys\nphilbiag · 1–0 current · 22 players\nWeek 3: vs Stephon Castle’s Back · 105.5 / Pending incomplete\nJosh Diddy’s Roster\nvannweinkauf · 1–0 current · 22 players\nWeek 3: vs Huff n’ Puff · 105.5 / Pending incomplete\nHuff n’ Puff\nGriffinHealy · 1–0 current · 23 players\nWeek 3: vs Josh Diddy’s Roster · 105.5 / Pending incomplete\npapichooter\npapichooter · 1–0 current · 23 players\nWeek 3: vs NeuralNets · 105.5 / Pending incomplete\nNeuralNets\nNeuralNets · 1–0 current · 22 players\nWeek 3: vs papichooter · 105.5 / Pending incomplete\n2025: 1–20 · Under the previous manager as QBs Gremlins.\nLebron Theme Team\nlordlx · 1–0 current · 21 players\nWeek 3: vs T Halibooty · 105.5 / Pending incomplete\nT Halibooty\nTyreseHalibooty · 1–0 current · 22 players\nWeek 3: vs Lebron Theme Team · 105.5 / Pending incomplete\nAll team profiles\nAll transactions\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      },
+      {
+        "id": "wire",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nFaces & values\n10 franchise players · modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nSideline\nBack to court\nLeague wire\n\nRecent league moves, dated story sources and the tools to act on them.\n\nRecent synthetic moves\n\nReaves Dropper made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\n\nThe Fun Guys made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\n\nLebron Theme Team made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\nTransactions\nNews & intel\nMake your next move\nStocks player board\nTrade analyzer\nAI Decides\nArcade\nPlay Free Throw\nDated editorial happenings\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · Oct 5–11, 2026, draft\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · Oct 5–11, 2026, draft\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · Oct 5–11, 2026, draft\nSource register\nData boundaries\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nRecorded team-value history unavailable; no line is invented.\n\nFixture checked 2026-11-12 12:00:00 UTC. OFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.\n\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 0,
+        "overflow": false
+      }
+    ],
+    "result": "completed"
+  },
+  {
+    "id": "02",
+    "view": "member",
+    "ai": "stale",
+    "width": 390,
+    "hashes": {
+      "qa/homepage-structures/polished/02/ART.md": "4881a2f39025e3b9eeb30215a7e431f16fbd5ae2044417e3390177aa81fc062c",
+      "qa/homepage-structures/polished/02/STRUCTURE.md": "e9d7c8b9c23cbbf995cffcf47b7db01480462be6d852789a8af93471694e92d3",
+      "qa/homepage-structures/polished/02/app.js": "ec10fe0cd6e92b9313cbd5466ec0228bd1334864c1e1d6cf0d386b4d1dcfd1f1",
+      "qa/homepage-structures/polished/02/index.html": "ecdcb4d4a6259c5e8e0fe81d1bf56c1dcdfb6607c4624ba0a3009e52ee62669a",
+      "qa/homepage-structures/polished/02/style.css": "e36a73d39b0e6ae2209cdc27a0d0295cb3ab20a556fdb00af7cb885cd3f7b987"
+    },
+    "errors": [],
+    "initial": {
+      "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nCentre circle\nBack to court\nWeek 3\nIncomplete scoring, 2026. Checked 2026-11-12 12:00:00 UTC\nReaves Dropper\n0.0\n\naidandaly20 · 1–0 current record\n\nWare the Hoes At?\nPending\n\nAedan23 · 1–0 current record\n\nAI Decides\nCompare teams\nYour team\nSaved AI picks\n\nStale saved slate. Historical output retained; it is not a current pick. Generated 2026-11-10 12:00:00 UTC.\n\nReaves Dropper / Ware the Hoes At?\n\nReturned choice: Ware the Hoes At? (35%)\n\nWare the Hoes At?\n35%\nReaves Dropper\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nStephon Castle’s Back / The Fun Guys\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: The Fun Guys (35%)\n\nThe Fun Guys\n35%\nStephon Castle’s Back\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nJosh Diddy’s Roster / Huff n’ Puff\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: Huff n’ Puff (35%)\n\nHuff n’ Puff\n35%\nJosh Diddy’s Roster\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\npapichooter / NeuralNets\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: NeuralNets (35%)\n\nNeuralNets\n35%\npapichooter\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nLebron Theme Team / T Halibooty\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: T Halibooty (35%)\n\nT Halibooty\n35%\nLebron Theme Team\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nBack to court\nWeekly archive\nLeague history",
+      "ownRoutes": 2,
+      "headings": [
+        "The court",
+        "Week 3"
+      ],
+      "overflow": false,
+      "states": [
+        {
+          "id": "matchup",
+          "label": "Week 3"
+        },
+        {
+          "id": "roster",
+          "label": "Your team"
+        },
+        {
+          "id": "standings",
+          "label": "Standings"
+        },
+        {
+          "id": "edition",
+          "label": "Weekly edition"
+        },
+        {
+          "id": "league",
+          "label": "Teams & players"
+        },
+        {
+          "id": "wire",
+          "label": "League wire"
+        }
+      ]
+    },
+    "states": [
+      {
+        "id": "matchup",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nCentre circle\nBack to court\nWeek 3\nIncomplete scoring, 2026. Checked 2026-11-12 12:00:00 UTC\nReaves Dropper\n0.0\n\naidandaly20 · 1–0 current record\n\nWare the Hoes At?\nPending\n\nAedan23 · 1–0 current record\n\nAI Decides\nCompare teams\nYour team\nSaved AI picks\n\nStale saved slate. Historical output retained; it is not a current pick. Generated 2026-11-10 12:00:00 UTC.\n\nReaves Dropper / Ware the Hoes At?\n\nReturned choice: Ware the Hoes At? (35%)\n\nWare the Hoes At?\n35%\nReaves Dropper\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nStephon Castle’s Back / The Fun Guys\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: The Fun Guys (35%)\n\nThe Fun Guys\n35%\nStephon Castle’s Back\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nJosh Diddy’s Roster / Huff n’ Puff\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: Huff n’ Puff (35%)\n\nHuff n’ Puff\n35%\nJosh Diddy’s Roster\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\npapichooter / NeuralNets\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: NeuralNets (35%)\n\nNeuralNets\n35%\npapichooter\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nLebron Theme Team / T Halibooty\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nReturned choice: T Halibooty (35%)\n\nT Halibooty\n35%\nLebron Theme Team\n65%\n\nIndependent confidence: 20%. Model probability — not calibrated sports odds.\n\nModel, input & evidence\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 2,
+        "overflow": false
+      },
+      {
+        "id": "roster",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nLeft wing\nBack to court\nReaves Dropper\n\nManaged by aidandaly20. 24 players, standing 1 of 10, record 1–0.\n\nManage your team\nFull team roster\nStocks\nCurrent modeled FAAB total\n\n$1095.25\n\n24 priced / 24 rostered · 0 unpriced\n\nin-season pricing basis · computed 2026-11-12 12:00:00 UTC. Supplied model value rank 2 of 10.\n\nTop three modeled values\nJoel Embiid $137.50\nC · known historical change +4.2% (price, not form)\nAnthony Edwards $124.50\nSG · known historical change +4.2% (price, not form)\nAlperen Şengün $108.25\nC · known historical change +4.2% (price, not form)\nAll 24 roster values\n\nRecorded team-value history unavailable; no line is invented.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nScouting: players to watch\n\nOn form · in-season EMA fantasy points per game\n\nEMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable.\n\nDamian Lillard\n8 observed games · Availability status unknown\n38 EMA FP/G\nTobias Harris\n8 observed games · Availability status unknown\n37 EMA FP/G\nJoel Embiid\n8 observed games · Availability status unknown\n36 EMA FP/G\nBest / rough completed week\n\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive). Actual recorded fantasy points for current roster players with verified participation in the completed source week. Completed-week fixture only; these are synthetic recorded performers, not current official Week 2 awards.\n\n5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred. 5 unique shown / 5 eligible; original selections 3 best and 3 rough.\n\nDamian Lillard\nBest · 3 GP · Recorded weekly fantasy points\n45 FP\nTobias Harris\nBest · 3 GP · Recorded weekly fantasy points\n39 FP\nJoel Embiid\nBest + Rough · shared selection listed once · 3 GP · Recorded weekly fantasy points\n33 FP\nMyles Turner\nRough · 3 GP · Recorded weekly fantasy points\n27 FP\nDerrick White\nRough · 3 GP · Recorded weekly fantasy points\n21 FP\nYour team wire\n\nDamian Lillard: a roster update to follow\nSample team wire · 2026-11-12 12:00:00 UTC · synthetic\n\nTobias Harris: a roster update to follow\nSample team wire · 2026-11-12 12:00:00 UTC · synthetic\n\nYour recent moves\n\nReaves Dropper made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\nFaces of the ten teams\n\nEach franchise’s top player by supplied modeled value. A price is a model, not a transaction or form score.\n\nJoel Embiid\nC · Reaves Dropper\n$137.50\nDomantas Sabonis\nC · Ware the Hoes At?\n$140.75\nShai Gilgeous-Alexander\nPG · Stephon Castle’s Back\n$134.25\nJalen Brunson\nPG · The Fun Guys\n$137.50\nStephen Curry\nPG · Josh Diddy’s Roster · defending champion\n$140.75\nDonovan Mitchell\nSG · Huff n’ Puff\n$131.00\nLuka Dončić\nPG · papichooter\n$131.00\nGiannis Antetokounmpo\nPF · NeuralNets\n$140.75\nLeBron James\nPF · Lebron Theme Team\n$144.00\nAnthony Davis\nC · T Halibooty\n$144.00\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 2,
+        "overflow": false
+      },
+      {
+        "id": "standings",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nRight wing\nBack to court\nStandings\n\nCurrent season. PF is fantasy points.\n\nAll ten teams, rank, current win-loss record and Points For\nRank\tTeam / manager\tW–L\tPF\n1\tReaves Dropper\naidandaly20\n\t1–0\t320.5\n2\tWare the Hoes At?\nAedan23\n\t1–0\t315.0\n3\tStephon Castle’s Back\nTommyDieselfuel\n\t1–0\t309.5\n4\tThe Fun Guys\nphilbiag\n\t1–0\t304.0\n5\tJosh Diddy’s Roster\nvannweinkauf\n\t1–0\t298.5\n6\tHuff n’ Puff\nGriffinHealy\n\t1–0\t293.0\n7\tpapichooter\npapichooter\n\t1–0\t287.5\n8\tNeuralNets\nNeuralNets\n\t1–0\t282.0\n9\tLebron Theme Team\nlordlx\n\t1–0\t276.5\n10\tT Halibooty\nTyreseHalibooty\n\t1–0\t271.0\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\n6 playoff places · playoffs begin Week 20. No projection is inferred.\n\nPrior-season history\nTeam profiles\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 1,
+        "overflow": false
+      },
+      {
+        "id": "edition",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nLeft baseline\nBack to court\nThe next chapter\n\nOct 5–11, 2026 · draft edition · dated editorial, separate from the current Week 3 fixture.\n\nReaves Dropper gets the champ.\n\nOpening-week watch · Week 1 · upcoming · No scores\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nEditorial game selection\nThree player spotlights\n\nLast season’s standard · player-of-week\n\nSomebody unplug this man.\n\nNikola Jokić · C · Josh Diddy’s Roster\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7\nPPG\n12.9\nRPG\n10.7\nAPG\n\n2025–26 NBA averages\n\nWhy this pick / source\n\nLast-season lookback · underperformer\n\nWe wanted more on the glass.\n\nJoel Embiid · C · Reaves Dropper\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9\nPPG\n7.7\nRPG\n3.9\nAPG\n\n2025–26 NBA averages\n\nWhy this pick / source\n\nNext week · preseason · one-to-watch\n\nNo. 1 pick. No free pass.\n\nAJ Dybantsa · PF · NeuralNets\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5\nPPG\n6.8\nRPG\n3.7\nAPG\n\n2025–26 college · BYU\n\nWhy this pick / source\nAround that edition\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · dated editorial\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · dated editorial\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · dated editorial\nEdition sources, with checked dates\nBrowse the dated archive\nThe next chapter\nOct 5–11, 2026 · draft\nThe title everybody’s chasing\nSep 28–Oct 4, 2026 · draft\nAll weekly editions\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 1,
+        "overflow": false
+      },
+      {
+        "id": "league",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nRight baseline\nBack to court\nTeams & players\nTeam, manager or player\nSort teams\nStanding\nTeam name\nRoster count\n\n10 of 10 teams · 228 player references shown (228 unique in the full directory).\n\nReaves Dropper\naidandaly20 · 1–0 current · 24 players\nWeek 3: vs Ware the Hoes At? · 0.0 / Pending incomplete\nWare the Hoes At?\nAedan23 · 1–0 current · 27 players\nWeek 3: vs Reaves Dropper · 0.0 / Pending incomplete\nStephon Castle’s Back\nTommyDieselfuel · 1–0 current · 22 players\nWeek 3: vs The Fun Guys · 105.5 / Pending incomplete\nThe Fun Guys\nphilbiag · 1–0 current · 22 players\nWeek 3: vs Stephon Castle’s Back · 105.5 / Pending incomplete\nJosh Diddy’s Roster\nvannweinkauf · 1–0 current · 22 players\nWeek 3: vs Huff n’ Puff · 105.5 / Pending incomplete\nHuff n’ Puff\nGriffinHealy · 1–0 current · 23 players\nWeek 3: vs Josh Diddy’s Roster · 105.5 / Pending incomplete\npapichooter\npapichooter · 1–0 current · 23 players\nWeek 3: vs NeuralNets · 105.5 / Pending incomplete\nNeuralNets\nNeuralNets · 1–0 current · 22 players\nWeek 3: vs papichooter · 105.5 / Pending incomplete\n2025: 1–20 · Under the previous manager as QBs Gremlins.\nLebron Theme Team\nlordlx · 1–0 current · 21 players\nWeek 3: vs T Halibooty · 105.5 / Pending incomplete\nT Halibooty\nTyreseHalibooty · 1–0 current · 22 players\nWeek 3: vs Lebron Theme Team · 105.5 / Pending incomplete\nAll team profiles\nAll transactions\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 1,
+        "overflow": false
+      },
+      {
+        "id": "wire",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nSideline\nBack to court\nLeague wire\n\nRecent league moves, dated story sources and the tools to act on them.\n\nRecent synthetic moves\n\nReaves Dropper made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\n\nThe Fun Guys made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\n\nLebron Theme Team made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\nTransactions\nNews & intel\nMake your next move\nStocks player board\nTrade analyzer\nAI Decides\nArcade\nPlay Free Throw\nDated editorial happenings\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · Oct 5–11, 2026, draft\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · Oct 5–11, 2026, draft\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · Oct 5–11, 2026, draft\nSource register\nData boundaries\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nRecorded team-value history unavailable; no line is invented.\n\nFixture checked 2026-11-12 12:00:00 UTC. OFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.\n\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 1,
+        "overflow": false
+      }
+    ],
+    "result": "completed"
+  },
+  {
+    "id": "02",
+    "view": "member",
+    "ai": "missing",
+    "width": 390,
+    "hashes": {
+      "qa/homepage-structures/polished/02/ART.md": "4881a2f39025e3b9eeb30215a7e431f16fbd5ae2044417e3390177aa81fc062c",
+      "qa/homepage-structures/polished/02/STRUCTURE.md": "e9d7c8b9c23cbbf995cffcf47b7db01480462be6d852789a8af93471694e92d3",
+      "qa/homepage-structures/polished/02/app.js": "ec10fe0cd6e92b9313cbd5466ec0228bd1334864c1e1d6cf0d386b4d1dcfd1f1",
+      "qa/homepage-structures/polished/02/index.html": "ecdcb4d4a6259c5e8e0fe81d1bf56c1dcdfb6607c4624ba0a3009e52ee62669a",
+      "qa/homepage-structures/polished/02/style.css": "e36a73d39b0e6ae2209cdc27a0d0295cb3ab20a556fdb00af7cb885cd3f7b987"
+    },
+    "errors": [],
+    "initial": {
+      "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nCentre circle\nBack to court\nWeek 3\nIncomplete scoring, 2026. Checked 2026-11-12 12:00:00 UTC\nReaves Dropper\n0.0\n\naidandaly20 · 1–0 current record\n\nWare the Hoes At?\nPending\n\nAedan23 · 1–0 current record\n\nAI Decides\nCompare teams\nYour team\nSaved AI picks\n\nSaved AI unavailable. No model result is supplied for this state.\n\nReaves Dropper / Ware the Hoes At?\n\nSaved pick unavailable · no probabilities or confidence invented.\n\nStephon Castle’s Back / The Fun Guys\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nSaved pick unavailable · no probabilities or confidence invented.\n\nJosh Diddy’s Roster / Huff n’ Puff\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nSaved pick unavailable · no probabilities or confidence invented.\n\npapichooter / NeuralNets\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nSaved pick unavailable · no probabilities or confidence invented.\n\nLebron Theme Team / T Halibooty\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nSaved pick unavailable · no probabilities or confidence invented.\n\nBack to court\nWeekly archive\nLeague history",
+      "ownRoutes": 2,
+      "headings": [
+        "The court",
+        "Week 3"
+      ],
+      "overflow": false,
+      "states": [
+        {
+          "id": "matchup",
+          "label": "Week 3"
+        },
+        {
+          "id": "roster",
+          "label": "Your team"
+        },
+        {
+          "id": "standings",
+          "label": "Standings"
+        },
+        {
+          "id": "edition",
+          "label": "Weekly edition"
+        },
+        {
+          "id": "league",
+          "label": "Teams & players"
+        },
+        {
+          "id": "wire",
+          "label": "League wire"
+        }
+      ]
+    },
+    "states": [
+      {
+        "id": "matchup",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nCentre circle\nBack to court\nWeek 3\nIncomplete scoring, 2026. Checked 2026-11-12 12:00:00 UTC\nReaves Dropper\n0.0\n\naidandaly20 · 1–0 current record\n\nWare the Hoes At?\nPending\n\nAedan23 · 1–0 current record\n\nAI Decides\nCompare teams\nYour team\nSaved AI picks\n\nSaved AI unavailable. No model result is supplied for this state.\n\nReaves Dropper / Ware the Hoes At?\n\nSaved pick unavailable · no probabilities or confidence invented.\n\nStephon Castle’s Back / The Fun Guys\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nSaved pick unavailable · no probabilities or confidence invented.\n\nJosh Diddy’s Roster / Huff n’ Puff\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nSaved pick unavailable · no probabilities or confidence invented.\n\npapichooter / NeuralNets\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nSaved pick unavailable · no probabilities or confidence invented.\n\nLebron Theme Team / T Halibooty\n\nWeek 3 · 1–0 / 1–0 · 105.5 / Pending · incomplete\n\nSaved pick unavailable · no probabilities or confidence invented.\n\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 2,
+        "overflow": false
+      },
+      {
+        "id": "roster",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nLeft wing\nBack to court\nReaves Dropper\n\nManaged by aidandaly20. 24 players, standing 1 of 10, record 1–0.\n\nManage your team\nFull team roster\nStocks\nCurrent modeled FAAB total\n\n$1095.25\n\n24 priced / 24 rostered · 0 unpriced\n\nin-season pricing basis · computed 2026-11-12 12:00:00 UTC. Supplied model value rank 2 of 10.\n\nTop three modeled values\nJoel Embiid $137.50\nC · known historical change +4.2% (price, not form)\nAnthony Edwards $124.50\nSG · known historical change +4.2% (price, not form)\nAlperen Şengün $108.25\nC · known historical change +4.2% (price, not form)\nAll 24 roster values\n\nRecorded team-value history unavailable; no line is invented.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nScouting: players to watch\n\nOn form · in-season EMA fantasy points per game\n\nEMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable.\n\nDamian Lillard\n8 observed games · Availability status unknown\n38 EMA FP/G\nTobias Harris\n8 observed games · Availability status unknown\n37 EMA FP/G\nJoel Embiid\n8 observed games · Availability status unknown\n36 EMA FP/G\nBest / rough completed week\n\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive). Actual recorded fantasy points for current roster players with verified participation in the completed source week. Completed-week fixture only; these are synthetic recorded performers, not current official Week 2 awards.\n\n5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred. 5 unique shown / 5 eligible; original selections 3 best and 3 rough.\n\nDamian Lillard\nBest · 3 GP · Recorded weekly fantasy points\n45 FP\nTobias Harris\nBest · 3 GP · Recorded weekly fantasy points\n39 FP\nJoel Embiid\nBest + Rough · shared selection listed once · 3 GP · Recorded weekly fantasy points\n33 FP\nMyles Turner\nRough · 3 GP · Recorded weekly fantasy points\n27 FP\nDerrick White\nRough · 3 GP · Recorded weekly fantasy points\n21 FP\nYour team wire\n\nDamian Lillard: a roster update to follow\nSample team wire · 2026-11-12 12:00:00 UTC · synthetic\n\nTobias Harris: a roster update to follow\nSample team wire · 2026-11-12 12:00:00 UTC · synthetic\n\nYour recent moves\n\nReaves Dropper made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\nFaces of the ten teams\n\nEach franchise’s top player by supplied modeled value. A price is a model, not a transaction or form score.\n\nJoel Embiid\nC · Reaves Dropper\n$137.50\nDomantas Sabonis\nC · Ware the Hoes At?\n$140.75\nShai Gilgeous-Alexander\nPG · Stephon Castle’s Back\n$134.25\nJalen Brunson\nPG · The Fun Guys\n$137.50\nStephen Curry\nPG · Josh Diddy’s Roster · defending champion\n$140.75\nDonovan Mitchell\nSG · Huff n’ Puff\n$131.00\nLuka Dončić\nPG · papichooter\n$131.00\nGiannis Antetokounmpo\nPF · NeuralNets\n$140.75\nLeBron James\nPF · Lebron Theme Team\n$144.00\nAnthony Davis\nC · T Halibooty\n$144.00\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 2,
+        "overflow": false
+      },
+      {
+        "id": "standings",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nRight wing\nBack to court\nStandings\n\nCurrent season. PF is fantasy points.\n\nAll ten teams, rank, current win-loss record and Points For\nRank\tTeam / manager\tW–L\tPF\n1\tReaves Dropper\naidandaly20\n\t1–0\t320.5\n2\tWare the Hoes At?\nAedan23\n\t1–0\t315.0\n3\tStephon Castle’s Back\nTommyDieselfuel\n\t1–0\t309.5\n4\tThe Fun Guys\nphilbiag\n\t1–0\t304.0\n5\tJosh Diddy’s Roster\nvannweinkauf\n\t1–0\t298.5\n6\tHuff n’ Puff\nGriffinHealy\n\t1–0\t293.0\n7\tpapichooter\npapichooter\n\t1–0\t287.5\n8\tNeuralNets\nNeuralNets\n\t1–0\t282.0\n9\tLebron Theme Team\nlordlx\n\t1–0\t276.5\n10\tT Halibooty\nTyreseHalibooty\n\t1–0\t271.0\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\n6 playoff places · playoffs begin Week 20. No projection is inferred.\n\nPrior-season history\nTeam profiles\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 1,
+        "overflow": false
+      },
+      {
+        "id": "edition",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nLeft baseline\nBack to court\nThe next chapter\n\nOct 5–11, 2026 · draft edition · dated editorial, separate from the current Week 3 fixture.\n\nReaves Dropper gets the champ.\n\nOpening-week watch · Week 1 · upcoming · No scores\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nEditorial game selection\nThree player spotlights\n\nLast season’s standard · player-of-week\n\nSomebody unplug this man.\n\nNikola Jokić · C · Josh Diddy’s Roster\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7\nPPG\n12.9\nRPG\n10.7\nAPG\n\n2025–26 NBA averages\n\nWhy this pick / source\n\nLast-season lookback · underperformer\n\nWe wanted more on the glass.\n\nJoel Embiid · C · Reaves Dropper\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9\nPPG\n7.7\nRPG\n3.9\nAPG\n\n2025–26 NBA averages\n\nWhy this pick / source\n\nNext week · preseason · one-to-watch\n\nNo. 1 pick. No free pass.\n\nAJ Dybantsa · PF · NeuralNets\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5\nPPG\n6.8\nRPG\n3.7\nAPG\n\n2025–26 college · BYU\n\nWhy this pick / source\nAround that edition\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · dated editorial\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · dated editorial\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · dated editorial\nEdition sources, with checked dates\nBrowse the dated archive\nThe next chapter\nOct 5–11, 2026 · draft\nThe title everybody’s chasing\nSep 28–Oct 4, 2026 · draft\nAll weekly editions\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 1,
+        "overflow": false
+      },
+      {
+        "id": "league",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nRight baseline\nBack to court\nTeams & players\nTeam, manager or player\nSort teams\nStanding\nTeam name\nRoster count\n\n10 of 10 teams · 228 player references shown (228 unique in the full directory).\n\nReaves Dropper\naidandaly20 · 1–0 current · 24 players\nWeek 3: vs Ware the Hoes At? · 0.0 / Pending incomplete\nWare the Hoes At?\nAedan23 · 1–0 current · 27 players\nWeek 3: vs Reaves Dropper · 0.0 / Pending incomplete\nStephon Castle’s Back\nTommyDieselfuel · 1–0 current · 22 players\nWeek 3: vs The Fun Guys · 105.5 / Pending incomplete\nThe Fun Guys\nphilbiag · 1–0 current · 22 players\nWeek 3: vs Stephon Castle’s Back · 105.5 / Pending incomplete\nJosh Diddy’s Roster\nvannweinkauf · 1–0 current · 22 players\nWeek 3: vs Huff n’ Puff · 105.5 / Pending incomplete\nHuff n’ Puff\nGriffinHealy · 1–0 current · 23 players\nWeek 3: vs Josh Diddy’s Roster · 105.5 / Pending incomplete\npapichooter\npapichooter · 1–0 current · 23 players\nWeek 3: vs NeuralNets · 105.5 / Pending incomplete\nNeuralNets\nNeuralNets · 1–0 current · 22 players\nWeek 3: vs papichooter · 105.5 / Pending incomplete\n2025: 1–20 · Under the previous manager as QBs Gremlins.\nLebron Theme Team\nlordlx · 1–0 current · 21 players\nWeek 3: vs T Halibooty · 105.5 / Pending incomplete\nT Halibooty\nTyreseHalibooty · 1–0 current · 22 players\nWeek 3: vs Lebron Theme Team · 105.5 / Pending incomplete\nAll team profiles\nAll transactions\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 1,
+        "overflow": false
+      },
+      {
+        "id": "wire",
+        "text": "Skip to the court\nGOAT\nStocks\nExplore\nThe court\nSynthetic concept\nWeek 3\nReaves Dropper\nvs Ware the Hoes At?\n0.0\n/ Pending\nIncomplete\nCentre circle field notes\nYour team\n$1095.25 modeled FAAB\nLeft wing field notes\nStandings\nReaves Dropper leads · 1–0\nRight wing field notes\nWeekly edition\nThe next chapter\nLeft baseline field notes\nTeams & players\n10 teams · 228 players\nRight baseline field notes\nLeague wire\n3 roster moves\nSideline field notes\n\nChoose a position for field notes.\n\nSideline\nBack to court\nLeague wire\n\nRecent league moves, dated story sources and the tools to act on them.\n\nRecent synthetic moves\n\nReaves Dropper made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\n\nThe Fun Guys made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\n\nLebron Theme Team made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC · synthetic\nNo player-level add supplied; no player-level drop supplied.\nTransactions\nNews & intel\nMake your next move\nStocks player board\nTrade analyzer\nAI Decides\nArcade\nPlay Free Throw\nDated editorial happenings\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · Oct 5–11, 2026, draft\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · Oct 5–11, 2026, draft\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · Oct 5–11, 2026, draft\nSource register\nData boundaries\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nRecorded team-value history unavailable; no line is invented.\n\nFixture checked 2026-11-12 12:00:00 UTC. OFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.\n\nBack to court\nWeekly archive\nLeague history",
+        "ownRoutes": 1,
+        "overflow": false
+      }
+    ],
+    "result": "completed"
+  }
+]

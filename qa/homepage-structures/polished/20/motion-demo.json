@@ -1,0 +1,14 @@
+{
+  "desktop": [
+    {"action":"click","selector":".choice[data-node='players']","waitMs":240},
+    {"action":"click","selector":".choice[data-node='form']","waitMs":240},
+    {"action":"click","selector":"#back-path","waitMs":240},
+    {"action":"click","selector":"#back-path","waitMs":240}
+  ],
+  "phone": [
+    {"action":"click","selector":".choice[data-node='players']","waitMs":240},
+    {"action":"press","selector":".choice[data-node='form']","key":"Enter","waitMs":240},
+    {"action":"click","selector":"#back-path","waitMs":240},
+    {"action":"press","selector":"#back-path","key":"Enter","waitMs":240}
+  ]
+}

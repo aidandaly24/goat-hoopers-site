@@ -1,0 +1,430 @@
+{
+  "states": [
+    {
+      "id": "default",
+      "label": "This week: score reader & saved slate"
+    },
+    {
+      "id": "team",
+      "label": "My club: values and complete roster"
+    },
+    {
+      "id": "scout",
+      "label": "Scoutbook: form, completed week & team wire"
+    },
+    {
+      "id": "league",
+      "label": "League index: searchable roster reader"
+    },
+    {
+      "id": "standings",
+      "label": "League index: standings"
+    },
+    {
+      "id": "edition",
+      "label": "Dated October editorial spread"
+    },
+    {
+      "id": "archive",
+      "label": "Archive: historical final"
+    },
+    {
+      "id": "tools",
+      "label": "Play & league tools"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "close-provenance",
+      "cls": "",
+      "text": "",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "match-select",
+      "text": "Reaves Dropper / Ware the Hoes At?",
+      "data": {
+        "match": "0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "match-select",
+      "text": "Stephon Castle’s Back / The Fun Guys",
+      "data": {
+        "match": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "match-select",
+      "text": "Josh Diddy’s Roster / Huff n’ Puff",
+      "data": {
+        "match": "2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "match-select",
+      "text": "papichooter / NeuralNets",
+      "data": {
+        "match": "3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "match-select",
+      "text": "Lebron Theme Team / T Halibooty",
+      "data": {
+        "match": "4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Data provenance",
+      "data": {
+        "openProvenance": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Data provenance",
+      "data": {
+        "openProvenance": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Data provenance",
+      "data": {
+        "openProvenance": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "tab-directory",
+      "cls": "",
+      "text": "Directory",
+      "data": {
+        "league": "directory"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "tab-standings",
+      "cls": "",
+      "text": "Standings",
+      "data": {
+        "league": "standings"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "tab-faces",
+      "cls": "",
+      "text": "Faces",
+      "data": {
+        "league": "faces"
+      }
+    },
+    {
+      "tag": "INPUT",
+      "id": "directory-search",
+      "cls": "",
+      "text": "",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "directory-sort",
+      "cls": "",
+      "text": "Points for\nTeam name\nRoster size",
+      "data": {},
+      "options": [
+        [
+          "standing",
+          "Points for"
+        ],
+        [
+          "name",
+          "Team name"
+        ],
+        [
+          "size",
+          "Roster size"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-choice",
+      "text": "01\nReaves Dropper\naidandaly20 · 1–0\nW3 vs Ware the Hoes At?\n24\nplayers",
+      "data": {
+        "team": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-choice",
+      "text": "02\nWare the Hoes At?\nAedan23 · 1–0\nW3 vs Reaves Dropper\n27\nplayers",
+      "data": {
+        "team": "2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-choice",
+      "text": "03\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nW3 vs The Fun Guys\n22\nplayers",
+      "data": {
+        "team": "3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-choice",
+      "text": "04\nThe Fun Guys\nphilbiag · 1–0\nW3 vs Stephon Castle’s Back\n22\nplayers",
+      "data": {
+        "team": "4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-choice",
+      "text": "05\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nW3 vs Huff n’ Puff\n22\nplayers",
+      "data": {
+        "team": "5"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-choice",
+      "text": "06\nHuff n’ Puff\nGriffinHealy · 1–0\nW3 vs Josh Diddy’s Roster\n23\nplayers",
+      "data": {
+        "team": "6"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-choice",
+      "text": "07\npapichooter\npapichooter · 1–0\nW3 vs NeuralNets\n23\nplayers",
+      "data": {
+        "team": "7"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-choice",
+      "text": "08\nNeuralNets\nNeuralNets · 1–0\nW3 vs papichooter\n22\nplayers",
+      "data": {
+        "team": "8"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-choice",
+      "text": "09\nLebron Theme Team\nlordlx · 1–0\nW3 vs T Halibooty\n21\nplayers",
+      "data": {
+        "team": "9"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "team-choice",
+      "text": "10\nT Halibooty\nTyreseHalibooty · 1–0\nW3 vs Lebron Theme Team\n22\nplayers",
+      "data": {
+        "team": "10"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Data provenance",
+      "data": {
+        "openProvenance": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Data provenance",
+      "data": {
+        "openProvenance": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Oct 5–11, 2026 · draft\nThe next chapter",
+      "data": {
+        "archive": "0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Sep 28–Oct 4, 2026 · draft\nThe title everybody’s chasing",
+      "data": {
+        "archive": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Data provenance",
+      "data": {
+        "openProvenance": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Data provenance",
+      "data": {
+        "openProvenance": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "previous",
+      "cls": "",
+      "text": "← Previous",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "This week",
+      "data": {
+        "go": "week"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "My club",
+      "data": {
+        "go": "team"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Scoutbook",
+      "data": {
+        "go": "scout"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "League index",
+      "data": {
+        "go": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "The edition",
+      "data": {
+        "go": "edition"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Archive",
+      "data": {
+        "go": "archive"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Play & tools",
+      "data": {
+        "go": "tools"
+      }
+    },
+    {
+      "tag": "SELECT",
+      "id": "chapter-select",
+      "cls": "",
+      "text": "This weekMy clubScoutbookLeague indexThe editionArchivePlay & tools",
+      "data": {},
+      "options": [
+        [
+          "week",
+          "This week"
+        ],
+        [
+          "team",
+          "My club"
+        ],
+        [
+          "scout",
+          "Scoutbook"
+        ],
+        [
+          "league",
+          "League index"
+        ],
+        [
+          "edition",
+          "The edition"
+        ],
+        [
+          "archive",
+          "Archive"
+        ],
+        [
+          "tools",
+          "Play & tools"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "next",
+      "cls": "",
+      "text": "Next →",
+      "data": {}
+    }
+  ]
+}

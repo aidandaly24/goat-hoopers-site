@@ -1,0 +1,170 @@
+{
+  "scope": "Current frozen20 independent full-art designs, exact source/capture/bundle/gallery bytes. All changes QA-only. Commit SHA is supplied by git/parent after this manifest is committed. No production acceptance implied.",
+  "counts": {
+    "openingDocuments": 80,
+    "stateDocuments": 594,
+    "readingCheckpoints": 240,
+    "readerStrips": 438,
+    "interactionClips": 40,
+    "standaloneFiles": 20,
+    "pairedGalleryFiles": 10
+  },
+  "rootChecks": {
+    "passed": 200,
+    "total": 200,
+    "studies": [
+      {
+        "id": "01",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "02",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "03",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "04",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "05",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "06",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "07",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "08",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "09",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "10",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "11",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "12",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "13",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "14",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "15",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "16",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "17",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "18",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "19",
+        "passed": 10,
+        "total": 10
+      },
+      {
+        "id": "20",
+        "passed": 10,
+        "total": 10
+      }
+    ]
+  },
+  "standaloneRuntime": {
+    "passed": 40,
+    "total": 40,
+    "dependentHTTPRequests": 0
+  },
+  "pairedGalleryChecks": {
+    "passed": 80,
+    "total": 80,
+    "realEmptyState": {
+      "id": "01",
+      "state": "roster",
+      "view": "public",
+      "device": "desktop",
+      "cleared": true,
+      "visible": true
+    }
+  },
+  "independentArtPairs": {
+    "total": 190,
+    "unique": 190,
+    "structuralVerdicts": {
+      "D": 153,
+      "R": 37
+    },
+    "visualSimilarity": {
+      "low": 118,
+      "some": 72
+    },
+    "limit": "Qualitative bounded review, not statistical proof or user approval. CriticB consolidated narrative incomplete; raw observations, all pairs and targeted rechecks preserved."
+  },
+  "hashedUniqueFiles": 2324,
+  "mismatches": [],
+  "library": {
+    "folder_id": "6ae388ab191c8191845148cec2ea26d4",
+    "folderCreated": true,
+    "filesSaved": 0,
+    "outcome": "Upload helper failed at hosted apps tools/list discovery with network error before preparing uploads; no file writes occurred. No retry/direct fallback attempted. Exact154-file source map is DELIVERY-FILES.json.",
+    "libraryFileIds": []
+  },
+  "remaining": {
+    "freshMuseReview": "pending; latest issue190 comment denied and confirmed not posted",
+    "draftPR": "denied and confirmed not created",
+    "parentExactHeadReview": "pending after commit/push",
+    "userTasteSignal": "pending; no shortlist chosen"
+  },
+  "limits": [
+    "Synthetic metrics/views; no live data/auth test",
+    "Headless Linux Chromium, no physical phone/AT/browser matrix",
+    "No production performance acceptance",
+    "file:// blocked by browser administrator; standalone localhost no-dependency runtime verified",
+    "No merge/deploy/formal PR approval"
+  ]
+}

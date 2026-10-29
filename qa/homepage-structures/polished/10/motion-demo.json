@@ -1,0 +1,13 @@
+{
+  "label": "Add and move a supplied player quote",
+  "view": "member",
+  "startState": "bench",
+  "steps": [
+    {"action": "click", "selector": "[data-add=\"2133\"][data-to=\"a\"]"},
+    {"action": "wait", "ms": 180},
+    {"action": "click", "selector": "[data-move=\"2133\"]"},
+    {"action": "wait", "ms": 180}
+  ],
+  "keyboardEquivalent": "Focus the same Add A control and press Enter, then focus Move to B and press Enter. Membership and totals update immediately; no animation runs.",
+  "reducedEquivalent": "Use the same controls with prefers-reduced-motion enabled; the entity and totals change immediately."
+}

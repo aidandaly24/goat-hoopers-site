@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GOAT Hoopers — Fact poster</title>
+  <link rel="stylesheet" href="./tokens.css">
+  <link rel="stylesheet" href="./wall.css">
+</head>
+<body>
+  <a class="skip" href="#canvas">Skip to the text wall</a>
+  <div class="shell">
+    <header class="mast">
+      <button class="goat" id="home-button" aria-label="GOAT Hoopers Home — zoom out to wall">GOAT<span>HOOPERS</span></button>
+      <details class="provenance" id="provenance"><summary>Synthetic concept</summary><div id="provenance-content"></div></details>
+      <details class="destinations" id="destinations"><summary>Go</summary><nav aria-label="Product destinations" id="route-links"></nav></details>
+    </header>
+    <nav class="depth" id="depth" aria-label="Zoom path"></nav>
+    <main class="canvas" id="canvas" tabindex="-1" aria-live="off"></main>
+    <footer class="footer"><span>Fixture dated 12 Nov 2026</span><span id="edition-link"></span></footer>
+  </div>
+  <script type="module" src="./wall.js"></script>
+</body>
+</html>

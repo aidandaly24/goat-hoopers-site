@@ -1,0 +1,552 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "default",
+        "label": "Current junction with two retained evidence branches"
+      },
+      {
+        "id": "model-and-team",
+        "label": "Model source plus team form retained together"
+      },
+      {
+        "id": "team-evidence",
+        "label": "Values, form and team wire concurrently open"
+      },
+      {
+        "id": "league-and-current",
+        "label": "Local roster search with current branches retained"
+      },
+      {
+        "id": "dated-draft",
+        "label": "Dated opening draft expanded at its own origin"
+      },
+      {
+        "id": "two-editions",
+        "label": "Both dated editions retained with current context"
+      },
+      {
+        "id": "tools",
+        "label": "Working tools and synthetic moves expanded locally"
+      },
+      {
+        "id": "unavailable",
+        "label": "Unavailable continuation without invented outcomes"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to current junction",
+      "href": "#current-title",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Destinations",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Branches (2 open)",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#current",
+      "visible": false
+    },
+    {
+      "i": 5,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-picks",
+      "visible": false
+    },
+    {
+      "i": 6,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#team-arm",
+      "visible": false
+    },
+    {
+      "i": 7,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-league",
+      "visible": false
+    },
+    {
+      "i": 8,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-archive-41",
+      "visible": false
+    },
+    {
+      "i": 9,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-archive-40",
+      "visible": false
+    },
+    {
+      "i": 10,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-tools",
+      "visible": false
+    },
+    {
+      "i": 11,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-beyond",
+      "visible": false
+    },
+    {
+      "i": 12,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved model choices Week 3; five returned choices",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Reaves Dropper / Ware the Hoes At? Returned Ware the Hoes At? 35% Reaves Dropper 65%; Conf",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Stephon Castle’s Back / The Fun Guys Returned The Fun Guys 35% Stephon Castle’s Back 65%; ",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Josh Diddy’s Roster / Huff n’ Puff Returned Huff n’ Puff 35% Josh Diddy’s Roster 65%; Conf",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "papichooter / NeuralNets Returned NeuralNets 35% papichooter 65%; Confidence 20%",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Lebron Theme Team / T Halibooty Returned T Halibooty 35% Lebron Theme Team 65%; Confidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Modeled roster value Current quote; not a FAAB balance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "All 24 roster values",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 20,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Form & completed-week evidence Watch samples / completed Week 2 kept separate",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 22,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 23,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Team news & moves Supplied synthetic team updates",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 24,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-current",
+      "visible": false
+    },
+    {
+      "i": 25,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "League register Search 10 teams and 228 player references; standings",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 26,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 27,
+      "tag": "INPUT",
+      "id": "league-search",
+      "text": "Try Embiid or NeuralNets",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 28,
+      "tag": "SELECT",
+      "id": "league-sort",
+      "text": "",
+      "href": null,
+      "select": [
+        [
+          "rank",
+          "Standing"
+        ],
+        [
+          "name",
+          "Team name A–Z"
+        ],
+        [
+          "roster",
+          "Roster size"
+        ]
+      ],
+      "visible": false
+    },
+    {
+      "i": 29,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 30,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 31,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 32,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 33,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 34,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 35,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 36,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 37,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 38,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 39,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-current",
+      "visible": false
+    },
+    {
+      "i": 40,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "The next chapter Oct 5–11, 2026; unpublished sample draft",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 41,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 42,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 43,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 44,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 45,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 46,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-archive-41",
+      "visible": false
+    },
+    {
+      "i": 47,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-archive-40",
+      "visible": false
+    },
+    {
+      "i": 48,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-current",
+      "visible": false
+    },
+    {
+      "i": 49,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "The title everybody’s chasing Sep 28–Oct 4, 2026; unpublished sample draft",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 50,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 51,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 52,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-archive-41",
+      "visible": false
+    },
+    {
+      "i": 53,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-archive-40",
+      "visible": false
+    },
+    {
+      "i": 54,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-current",
+      "visible": false
+    },
+    {
+      "i": 55,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Working tools & league moves Stocks; trade analyzer; Free Throw; transaction record",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 56,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-league",
+      "visible": false
+    },
+    {
+      "i": 57,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-current",
+      "visible": false
+    },
+    {
+      "i": 58,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "No supplied continuation Recorded value history and Lineup Power unavailable",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 59,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-current",
+      "visible": false
+    },
+    {
+      "i": 60,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#branch-archive-40",
+      "visible": false
+    },
+    {
+      "i": 61,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Back to the current junction",
+      "href": null,
+      "visible": true
+    }
+  ],
+  "scrolls": []
+}

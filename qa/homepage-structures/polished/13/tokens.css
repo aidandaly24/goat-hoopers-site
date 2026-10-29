@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'Folio Contents';
+  src: url('../../assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf') format('truetype');
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Folio Chapter';
+  src: url('../../assets/fonts/graduate/Graduate-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --font-body: 'Folio Contents', sans-serif;
+  --font-heading: var(--font-body);
+  --font-chapter: 'Folio Chapter', serif;
+  --paint-navy: #102c4c;
+  --paint-gold: #f4c34e;
+  --paint-white: #ffffff;
+  --paint-muted-on-white: #40566e;
+  --paint-muted-on-navy: #d8e2ee;
+  --paint-line-on-white: #667d94;
+  --color-ink: var(--paint-navy);
+  --color-muted: var(--paint-muted-on-white);
+  --color-page: var(--paint-white);
+  --color-paper: var(--paint-white);
+  --color-spine: var(--paint-gold);
+  --color-spine-alternate: var(--paint-navy);
+  --color-active: var(--paint-navy);
+  --color-inverse: var(--paint-white);
+  --color-rule: var(--paint-line-on-white);
+  --color-control: var(--paint-white);
+  --color-focus: var(--paint-navy);
+  --space-detail: .25rem;
+  --space-control: .5rem;
+  --space-related: 1rem;
+  --space-paragraph: 1.5rem;
+  --space-section: 2rem;
+  --space-leaf: 3rem;
+  --space-binding: 5.5rem;
+  --space-page-edge: 3.5vw;
+  --type-body: 1rem;
+  --type-subheading: 1.5rem;
+  --type-title: clamp(1.8rem, 3.3vw, 3rem);
+  --type-chapter: clamp(1.75rem, 3.2vw, 3rem);
+  --type-score: clamp(2.5rem, 5vw, 4.5rem);
+  --type-quote: clamp(2.5rem, 5.5vw, 4.5rem);
+  font: 16px/1.5 var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-page);
+}

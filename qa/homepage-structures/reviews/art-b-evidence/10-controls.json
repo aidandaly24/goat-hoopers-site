@@ -1,0 +1,481 @@
+{
+  "states": [
+    {
+      "id": "bench",
+      "label": "Two-package quote bench"
+    },
+    {
+      "id": "built-package",
+      "label": "Multi-player working packages"
+    },
+    {
+      "id": "quote-evidence",
+      "label": "Quote evidence in retained package"
+    },
+    {
+      "id": "unpriced",
+      "label": "Partial pricing and coverage"
+    },
+    {
+      "id": "current-week",
+      "label": "Saved matchup evidence retained beside packages"
+    },
+    {
+      "id": "roster-audit",
+      "label": "Own roster evidence beside packages"
+    },
+    {
+      "id": "league-records",
+      "label": "All-team records and rosters"
+    },
+    {
+      "id": "dated-notes",
+      "label": "Dated editorial with retained working selection"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "INPUT",
+      "id": "player-search",
+      "cls": "",
+      "text": "",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "source-team",
+      "cls": "",
+      "text": "Current pairing\nAll 228 players\nReaves Dropper\nWare the Hoes At?\nStephon Castle’s Back\nThe Fun ",
+      "data": {},
+      "options": [
+        [
+          "pair",
+          "Current pairing"
+        ],
+        [
+          "all",
+          "All 228 players"
+        ],
+        [
+          "1",
+          "Reaves Dropper"
+        ],
+        [
+          "2",
+          "Ware the Hoes At?"
+        ],
+        [
+          "3",
+          "Stephon Castle’s Back"
+        ],
+        [
+          "4",
+          "The Fun Guys"
+        ],
+        [
+          "5",
+          "Josh Diddy’s Roster"
+        ],
+        [
+          "6",
+          "Huff n’ Puff"
+        ],
+        [
+          "7",
+          "papichooter"
+        ],
+        [
+          "8",
+          "NeuralNets"
+        ],
+        [
+          "9",
+          "Lebron Theme Team"
+        ],
+        [
+          "10",
+          "T Halibooty"
+        ]
+      ]
+    },
+    {
+      "tag": "SELECT",
+      "id": "source-sort",
+      "cls": "",
+      "text": "Quoted value\nPlayer A–Z\nTeam A–Z",
+      "data": {},
+      "options": [
+        [
+          "price",
+          "Quoted value"
+        ],
+        [
+          "name",
+          "Player A–Z"
+        ],
+        [
+          "team",
+          "Team A–Z"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move A",
+      "data": {
+        "add": "1739",
+        "to": "a",
+        "focus": "add-a-1739"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Remove B",
+      "data": {
+        "add": "1739",
+        "to": "b",
+        "focus": "add-b-1739"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Remove A",
+      "data": {
+        "add": "1511",
+        "to": "a",
+        "focus": "add-a-1511"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move B",
+      "data": {
+        "add": "1511",
+        "to": "b",
+        "focus": "add-b-1511"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add A",
+      "data": {
+        "add": "2133",
+        "to": "a",
+        "focus": "add-a-2133"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add B",
+      "data": {
+        "add": "2133",
+        "to": "b",
+        "focus": "add-b-2133"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add A",
+      "data": {
+        "add": "2308",
+        "to": "a",
+        "focus": "add-a-2308"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add B",
+      "data": {
+        "add": "2308",
+        "to": "b",
+        "focus": "add-b-2308"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add A",
+      "data": {
+        "add": "1444",
+        "to": "a",
+        "focus": "add-a-1444"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add B",
+      "data": {
+        "add": "1444",
+        "to": "b",
+        "focus": "add-b-1444"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add A",
+      "data": {
+        "add": "1487",
+        "to": "a",
+        "focus": "add-a-1487"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add B",
+      "data": {
+        "add": "1487",
+        "to": "b",
+        "focus": "add-b-1487"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add A",
+      "data": {
+        "add": "1595",
+        "to": "a",
+        "focus": "add-a-1595"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add B",
+      "data": {
+        "add": "1595",
+        "to": "b",
+        "focus": "add-b-1595"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add A",
+      "data": {
+        "add": "1830",
+        "to": "a",
+        "focus": "add-a-1830"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add B",
+      "data": {
+        "add": "1830",
+        "to": "b",
+        "focus": "add-b-1830"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add A",
+      "data": {
+        "add": "1959",
+        "to": "a",
+        "focus": "add-a-1959"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add B",
+      "data": {
+        "add": "1959",
+        "to": "b",
+        "focus": "add-b-1959"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add A",
+      "data": {
+        "add": "2142",
+        "to": "a",
+        "focus": "add-a-2142"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add B",
+      "data": {
+        "add": "2142",
+        "to": "b",
+        "focus": "add-b-2142"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Previous 10",
+      "data": {
+        "page": "-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Next 10",
+      "data": {
+        "page": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Reset filters",
+      "data": {
+        "resetFilter": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "retain",
+      "text": "",
+      "data": {
+        "pin": "week",
+        "focus": "pin-week"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "retain",
+      "text": "",
+      "data": {
+        "pin": "own",
+        "focus": "pin-own"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "retain",
+      "text": "",
+      "data": {
+        "pin": "league",
+        "focus": "pin-league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "retain",
+      "text": "",
+      "data": {
+        "pin": "dated",
+        "focus": "pin-dated"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "retain",
+      "text": "",
+      "data": {
+        "pin": "tools",
+        "focus": "pin-tools"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Back",
+      "data": {
+        "undo": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move to B",
+      "data": {
+        "move": "1511",
+        "to": "b",
+        "focus": "move-1511"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Remove",
+      "data": {
+        "remove": "1511",
+        "focus": "remove-1511"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move to A",
+      "data": {
+        "move": "1739",
+        "to": "a",
+        "focus": "move-1739"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Remove",
+      "data": {
+        "remove": "1739",
+        "focus": "remove-1739"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Clear packages",
+      "data": {
+        "clear": "",
+        "focus": "clear"
+      }
+    }
+  ]
+}

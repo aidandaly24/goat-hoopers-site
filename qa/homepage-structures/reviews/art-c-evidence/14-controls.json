@@ -1,0 +1,609 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "default",
+        "label": "Four parallel channels"
+      },
+      {
+        "id": "league",
+        "label": "Saved slate, including returned 35% choice"
+      },
+      {
+        "id": "directory",
+        "label": "Searchable full clubhouse directory"
+      },
+      {
+        "id": "scouting",
+        "label": "Form and completed-week notebook"
+      },
+      {
+        "id": "culture",
+        "label": "Dated October editorial"
+      },
+      {
+        "id": "archive",
+        "label": "Historical final archive"
+      },
+      {
+        "id": "value",
+        "label": "Full member valuation / public current pair"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to channels",
+      "href": "#channels",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "BUTTON",
+      "id": "route-toggle",
+      "text": "More",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Your teamTeam",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 4,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "League actionLeague",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "ScoutingScout",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 6,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "CultureCulture",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 7,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Why the saved model picked the opponent",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "All 24 roster values",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 9,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read form separately from modeled value",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 10,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Follow the rest of the league’s moves",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Model receipt and evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 12,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare the actual pairing context",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open Ware the Hoes At?’s roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Model receipt and evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open The Fun Guys’s roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Model receipt and evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open Huff n’ Puff’s roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Model receipt and evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open NeuralNets’s roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 20,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Model receipt and evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open T Halibooty’s roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 22,
+      "tag": "INPUT",
+      "id": "search",
+      "text": "Try Embiid, NeuralNets or PG",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 23,
+      "tag": "SELECT",
+      "id": "sort",
+      "text": "Standing Team name A–Z Roster size, most first",
+      "href": null,
+      "select": [
+        [
+          "rank",
+          "Standing"
+        ],
+        [
+          "name",
+          "Team name A–Z"
+        ],
+        [
+          "roster",
+          "Roster size, most first"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 24,
+      "tag": "BUTTON",
+      "id": "clear-search",
+      "text": "Clear search",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 25,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Roster, all 24 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 26,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare this team’s modeled-value anchor",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 27,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Roster, all 27 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 28,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare this team’s modeled-value anchor",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 29,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Roster, all 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 30,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare this team’s modeled-value anchor",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 31,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Roster, all 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 32,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare this team’s modeled-value anchor",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 33,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Roster, all 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 34,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare this team’s modeled-value anchor",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 35,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Roster, all 23 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 36,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare this team’s modeled-value anchor",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 37,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Roster, all 23 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 38,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare this team’s modeled-value anchor",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 39,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Roster, all 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 40,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare this team’s modeled-value anchor",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 41,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Roster, all 21 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 42,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare this team’s modeled-value anchor",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 43,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Roster, all 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 44,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare this team’s modeled-value anchor",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 45,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read Lineup Power availability",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 46,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Return to your roster value",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 47,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Find the linked team, Josh Diddy’s Roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 48,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Find the linked team, Reaves Dropper",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 49,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare Embiid’s current modeled value",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 50,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Find the linked team, NeuralNets",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 51,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read this roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 52,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read this roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 53,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read this roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 54,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read this roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 55,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read this roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 56,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read this roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 57,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read this roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 58,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read this roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 59,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read this roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 60,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read this roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 61,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read the current week instead",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 62,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "The next chapter Oct 5–11, 2026, draft",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 63,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "The title everybody’s chasing Sep 28–Oct 4, 2026, draft",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 64,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read the three takes in this edition",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 65,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Edition sources",
+      "href": null,
+      "visible": true
+    }
+  ],
+  "scrolls": [
+    {
+      "tag": "DIV",
+      "id": "reader-team",
+      "class": "scroll",
+      "client": 684,
+      "scroll": 2123
+    },
+    {
+      "tag": "DIV",
+      "id": "reader-league",
+      "class": "scroll",
+      "client": 667,
+      "scroll": 6603
+    },
+    {
+      "tag": "DIV",
+      "id": "reader-scouting",
+      "class": "scroll",
+      "client": 654,
+      "scroll": 5684
+    },
+    {
+      "tag": "DIV",
+      "id": "reader-culture",
+      "class": "scroll",
+      "client": 654,
+      "scroll": 2414
+    }
+  ]
+}

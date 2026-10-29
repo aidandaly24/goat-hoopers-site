@@ -1,0 +1,279 @@
+{
+  "states": [
+    {
+      "id": "default",
+      "label": "Week planner overview"
+    },
+    {
+      "id": "matchup",
+      "label": "Current matchup attached agenda"
+    },
+    {
+      "id": "edition",
+      "label": "Dated October editorial agenda"
+    },
+    {
+      "id": "archive",
+      "label": "Historical final archive agenda"
+    },
+    {
+      "id": "completed",
+      "label": "Completed Week 2 source agenda"
+    },
+    {
+      "id": "team",
+      "label": "Member team notebook"
+    },
+    {
+      "id": "league",
+      "label": "Searchable league book"
+    },
+    {
+      "id": "tools",
+      "label": "Tools and unavailable sources"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Week planner",
+      "data": {
+        "view": "planner"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "League book",
+      "data": {
+        "view": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "My team notebook",
+      "data": {
+        "view": "team"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Tools & references",
+      "data": {
+        "view": "tools"
+      }
+    },
+    {
+      "tag": "SELECT",
+      "id": "period",
+      "cls": "",
+      "text": "Sep 28–Oct 4, 2026 · editorial\nOct 5–11, 2026 · editorial\nNov 2–9, 2026 · completed Week 2\nWeek",
+      "data": {},
+      "options": [
+        [
+          "2026-W40",
+          "Sep 28–Oct 4, 2026 · editorial"
+        ],
+        [
+          "2026-W41",
+          "Oct 5–11, 2026 · editorial"
+        ],
+        [
+          "completed",
+          "Nov 2–9, 2026 · completed Week 2"
+        ],
+        [
+          "current",
+          "Week 3 · as of Nov 12"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Agenda",
+      "data": {
+        "phone": "agenda"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Calendar",
+      "data": {
+        "phone": "calendar"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "event",
+      "text": "draft · all-day\nThe title everybody’s chasing",
+      "data": {
+        "item": "edition:2026-W40"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "event",
+      "text": "draft · all-day\nThe next chapter",
+      "data": {
+        "item": "edition:2026-W41"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "event",
+      "text": "Completed Week 2\nBest & rough week\n5 verified participants",
+      "data": {
+        "item": "recap"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "event",
+      "text": "Nov 12 source check\nTeam wire & league moves\nNews and recorded moves",
+      "data": {
+        "item": "wire"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "event",
+      "text": "Your pairing · Incomplete\nReaves Dropper / Ware the Hoes At?\n0.0 / Pending",
+      "data": {
+        "item": "match:0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "event",
+      "text": "Incomplete\nStephon Castle’s Back / The Fun Guys\n105.5 / Pending",
+      "data": {
+        "item": "match:1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "event",
+      "text": "Incomplete\nJosh Diddy’s Roster / Huff n’ Puff\n105.5 / Pending",
+      "data": {
+        "item": "match:2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "event",
+      "text": "Incomplete\npapichooter / NeuralNets\n105.5 / Pending",
+      "data": {
+        "item": "match:3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "event",
+      "text": "Incomplete\nLebron Theme Team / T Halibooty\n105.5 / Pending",
+      "data": {
+        "item": "match:4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Your matchupReaves Dropper / Ware the Hoes At?0.0 / Pending · incomplete · Returned choice: War",
+      "data": {
+        "item": "match:0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "MatchupStephon Castle’s Back / The Fun Guys105.5 / Pending · incomplete · Returned choice: The ",
+      "data": {
+        "item": "match:1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "MatchupJosh Diddy’s Roster / Huff n’ Puff105.5 / Pending · incomplete · Returned choice: Huff n",
+      "data": {
+        "item": "match:2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Matchuppapichooter / NeuralNets105.5 / Pending · incomplete · Returned choice: NeuralNets 35% ·",
+      "data": {
+        "item": "match:3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "MatchupLebron Theme Team / T Halibooty105.5 / Pending · incomplete · Returned choice: T Haliboo",
+      "data": {
+        "item": "match:4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Source checkTeam wire & league movesNov 12, 2026, 12:00 PM UTC",
+      "data": {
+        "item": "wire"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Open my team notebook",
+      "data": {
+        "view": "team"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Find a team or player",
+      "data": {
+        "view": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Tools, History & Power status",
+      "data": {
+        "view": "tools"
+      }
+    }
+  ]
+}

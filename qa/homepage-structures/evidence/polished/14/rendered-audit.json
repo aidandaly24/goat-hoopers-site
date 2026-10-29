@@ -1,0 +1,1959 @@
+{
+  "id": "14",
+  "phase": "polished",
+  "scope": "Nearest opaque ancestor text contrast candidates, source-state geometry, loaded font/resources; complex image/opacity areas skipped and require pixel review. Not a complete WCAG, AT, performance or cross-browser audit.",
+  "rows": [
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 18
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 107
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 148
+        }
+      ],
+      "localDomContentLoadedMs": 447,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "default",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 18
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 107
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 148
+        }
+      ],
+      "localDomContentLoadedMs": 447,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "league",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 18
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 107
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 148
+        }
+      ],
+      "localDomContentLoadedMs": 447,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "directory",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 18
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 107
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 148
+        }
+      ],
+      "localDomContentLoadedMs": 447,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "scouting",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 18
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 107
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 148
+        }
+      ],
+      "localDomContentLoadedMs": 447,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "culture",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 18
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 107
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 148
+        }
+      ],
+      "localDomContentLoadedMs": 447,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "archive",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1617,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 18
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 107
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 148
+        }
+      ],
+      "localDomContentLoadedMs": 447,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "value",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1617,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 18
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 107
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 148
+        }
+      ],
+      "localDomContentLoadedMs": 447,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 29
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 73
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 115
+        }
+      ],
+      "localDomContentLoadedMs": 468,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "default",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 29
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 73
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 115
+        }
+      ],
+      "localDomContentLoadedMs": 468,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "league",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 29
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 73
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 115
+        }
+      ],
+      "localDomContentLoadedMs": 468,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "directory",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 29
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 73
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 115
+        }
+      ],
+      "localDomContentLoadedMs": 468,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "scouting",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 29
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 73
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 115
+        }
+      ],
+      "localDomContentLoadedMs": 468,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "culture",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 29
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 73
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 115
+        }
+      ],
+      "localDomContentLoadedMs": 468,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "archive",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1447,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 29
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 73
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 115
+        }
+      ],
+      "localDomContentLoadedMs": 468,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "value",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1447,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 29
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 29
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 73
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 115
+        }
+      ],
+      "localDomContentLoadedMs": 468,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 42
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 63
+        }
+      ],
+      "localDomContentLoadedMs": 286,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "default",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 42
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 63
+        }
+      ],
+      "localDomContentLoadedMs": 286,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "league",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 42
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 63
+        }
+      ],
+      "localDomContentLoadedMs": 286,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "directory",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 42
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 63
+        }
+      ],
+      "localDomContentLoadedMs": 286,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "scouting",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 42
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 63
+        }
+      ],
+      "localDomContentLoadedMs": 286,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "culture",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1636,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 42
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 63
+        }
+      ],
+      "localDomContentLoadedMs": 286,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "archive",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1617,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 42
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 63
+        }
+      ],
+      "localDomContentLoadedMs": 286,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "value",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1617,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 22
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 22
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 42
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 63
+        }
+      ],
+      "localDomContentLoadedMs": 286,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 39
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 26
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 203,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "default",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 39
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 26
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 203,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "league",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 39
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 26
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 203,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "directory",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 39
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 26
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 203,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "scouting",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 39
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 26
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 203,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "culture",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1466,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 39
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 26
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 203,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "archive",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1447,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 39
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 26
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 203,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "value",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1447,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Dispatch Archivo",
+          "status": "loaded"
+        },
+        {
+          "family": "Dispatch Sans",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/14/style.css",
+          "bytes": 17728,
+          "encodedBytes": 17428,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 39
+        },
+        {
+          "name": "/qa/homepage-structures/polished/14/app.js",
+          "bytes": 29712,
+          "encodedBytes": 29412,
+          "durationMs": 26
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 11
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+          "bytes": 91288,
+          "encodedBytes": 90988,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 203,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    }
+  ]
+}

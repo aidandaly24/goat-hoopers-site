@@ -1,0 +1,1209 @@
+[
+  {
+    "id": "17",
+    "device": "desktop",
+    "errors": [],
+    "title": "GOAT · League ledger",
+    "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept\nLeague\nMatchups\nMy evidence\nDated editions\nMoves & tools\nFind team, manager or player\nOrder\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset\n10 teams · 228 players\nStandings & matchups\n\nScores are own / opponent. Pending means unknown; 0.0 is a known score.\n\n#\tFranchise / manager\tW–L\tPF\tCurrent opponent / score\tLeague face / value\tDetails\n\n1\n\t\nReaves Dropper\naidandaly20 · your team\n\t\n1–0\n\t\n320.50\n\t\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n\t\nJoel Embiid\nC · $137.50\nModeled FAAB\n\t\n24 players\nRoster\nYour brief\n\n\n2\n\t\nWare the Hoes At?\nAedan23\n\t\n1–0\n\t\n315.00\n\t\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n\t\nDomantas Sabonis\nC · $140.75\nModeled FAAB\n\t\n27 players\nRoster\n\n\n3\n\t\nStephon Castle’s Back\nTommyDieselfuel\n\t\n1–0\n\t\n309.50\n\t\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nShai Gilgeous-Alexander\nPG · $134.25\nModeled FAAB\n\t\n22 players\nRoster\n\n\n4\n\t\nThe Fun Guys\nphilbiag\n\t\n1–0\n\t\n304.00\n\t\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nJalen Brunson\nPG · $137.50\nModeled FAAB\n\t\n22 players\nRoster\n\n\n5\n\t\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\n\t\n1–0\n\t\n298.50\n\t\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nStephen Curry\nPG · $140.75\nModeled FAAB\n\t\n22 players\nRoster\n\n\n6\n\t\nHuff n’ Puff\nGriffinHealy\n\t\n1–0\n\t\n293.00\n\t\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nDonovan Mitchell\nSG · $131.00\nModeled FAAB\n\t\n23 players\nRoster\n\n\n7\n\t\npapichooter\npapichooter\n\t\n1–0\n\t\n287.50\n\t\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nLuka Dončić\nPG · $131.00\nModeled FAAB\n\t\n23 players\nRoster\n\n\n8\n\t\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\n\t\n1–0\n\t\n282.00\n\t\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nGiannis Antetokounmpo\nPF · $140.75\nModeled FAAB\n\t\n22 players\nRoster\n\n\n9\n\t\nLebron Theme Team\nlordlx\n\t\n1–0\n\t\n276.50\n\t\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nLeBron James\nPF · $144.00\nModeled FAAB\n\t\n21 players\nRoster\n\n\n10\n\t\nT Halibooty\nTyreseHalibooty\n\t\n1–0\n\t\n271.00\n\t\nLebron Theme Team\nlordlx · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nAnthony Davis\nC · $144.00\nModeled FAAB\n\t\n22 players\nRoster\n\nGOAT Hoopers · Synthetic concept. Current metrics are not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView public edition\nDated weekly archive\nArcade\nAI Decides",
+    "states": [
+      {
+        "id": "default",
+        "label": "League ledger / all teams"
+      },
+      {
+        "id": "league",
+        "label": "All ten team rows"
+      },
+      {
+        "id": "roster",
+        "label": "Full roster subrow"
+      },
+      {
+        "id": "matchups",
+        "label": "Five pairs and saved AI receipt"
+      },
+      {
+        "id": "evidence",
+        "label": "Personal form and evidence"
+      },
+      {
+        "id": "editorial",
+        "label": "Dated edition and source subrows"
+      },
+      {
+        "id": "moves",
+        "label": "Moves and route register"
+      },
+      {
+        "id": "search",
+        "label": "Local player search"
+      }
+    ],
+    "document": {
+      "width": 1440,
+      "height": 1990
+    },
+    "controls": [
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Skip to league sheet",
+        "label": null,
+        "href": "#sheet"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "",
+        "label": "GOAT Hoopers Home",
+        "href": "/"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Stocks",
+        "label": null,
+        "href": "/stocks#player-board"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Home",
+        "label": null,
+        "href": "/"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "News",
+        "label": null,
+        "href": "/intel"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "History",
+        "label": null,
+        "href": "/history"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Arcade",
+        "label": null,
+        "href": "/arcade"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "AI Decides",
+        "label": null,
+        "href": "/ai-decides"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Teams",
+        "label": null,
+        "href": "/teams"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Transactions",
+        "label": null,
+        "href": "/transactions"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Trade analyzer",
+        "label": null,
+        "href": "/trade-analyzer"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Weekly archive",
+        "label": null,
+        "href": "/weekly"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "My team",
+        "label": null,
+        "href": "/team"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "text": "Synthetic concept",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "League",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Matchups",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "My evidence",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Dated editions",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Moves & tools",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "INPUT",
+        "id": "search",
+        "text": "",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "SELECT",
+        "id": "sort",
+        "text": "Standing: highest firstName: A–ZPoints for: highest firstRoster size: largest first",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "clear",
+        "text": "Reset",
+        "label": "Reset current sheet",
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Reaves Dropper",
+        "label": null,
+        "href": "/teams/1"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Ware the Hoes At?",
+        "label": null,
+        "href": "/teams/2"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Joel Embiid",
+        "label": null,
+        "href": "/player/1511"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Your brief",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Ware the Hoes At?",
+        "label": null,
+        "href": "/teams/2"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Reaves Dropper",
+        "label": null,
+        "href": "/teams/1"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Domantas Sabonis",
+        "label": null,
+        "href": "/player/1739"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Stephon Castle’s Back",
+        "label": null,
+        "href": "/teams/3"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "The Fun Guys",
+        "label": null,
+        "href": "/teams/4"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Shai Gilgeous-Alexander",
+        "label": null,
+        "href": "/player/1957"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "The Fun Guys",
+        "label": null,
+        "href": "/teams/4"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Stephon Castle’s Back",
+        "label": null,
+        "href": "/teams/3"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Jalen Brunson",
+        "label": null,
+        "href": "/player/1967"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Josh Diddy’s Roster",
+        "label": null,
+        "href": "/teams/5"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Huff n’ Puff",
+        "label": null,
+        "href": "/teams/6"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Stephen Curry",
+        "label": null,
+        "href": "/player/1085"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Huff n’ Puff",
+        "label": null,
+        "href": "/teams/6"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Josh Diddy’s Roster",
+        "label": null,
+        "href": "/teams/5"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Donovan Mitchell",
+        "label": null,
+        "href": "/player/1845"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "papichooter",
+        "label": null,
+        "href": "/teams/7"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "NeuralNets",
+        "label": null,
+        "href": "/teams/8"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Luka Dončić",
+        "label": null,
+        "href": "/player/1970"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "NeuralNets",
+        "label": null,
+        "href": "/teams/8"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "papichooter",
+        "label": null,
+        "href": "/teams/7"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Giannis Antetokounmpo",
+        "label": null,
+        "href": "/player/1380"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Lebron Theme Team",
+        "label": null,
+        "href": "/teams/9"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "T Halibooty",
+        "label": null,
+        "href": "/teams/10"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "LeBron James",
+        "label": null,
+        "href": "/player/1362"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "T Halibooty",
+        "label": null,
+        "href": "/teams/10"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Lebron Theme Team",
+        "label": null,
+        "href": "/teams/9"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Anthony Davis",
+        "label": null,
+        "href": "/player/1272"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "View public edition",
+        "label": null,
+        "href": "?view=public"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Dated weekly archive",
+        "label": null,
+        "href": "/weekly"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Arcade",
+        "label": null,
+        "href": "/arcade"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "AI Decides",
+        "label": null,
+        "href": "/ai-decides"
+      }
+    ],
+    "panes": []
+  },
+  {
+    "id": "17",
+    "device": "phone",
+    "errors": [],
+    "title": "GOAT · League ledger",
+    "text": "Skip to league sheet\nStocks\nMenu\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept\nSheet\nLeague\nMatchups\nMy evidence\nDated editions\nMoves & tools\nFind team, manager or player\nOrder\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset\nFields\nOpponent & score\nRecord & points for\nFaces & FAAB\nAll fields\n10 teams · 228 players\nStandings & matchups\nReaves Dropper\naidandaly20 · your team\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n24 players\nRoster\nYour brief\nWare the Hoes At?\nAedan23\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n27 players\nRoster\nStephon Castle’s Back\nTommyDieselfuel\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nThe Fun Guys\nphilbiag\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nHuff n’ Puff\nGriffinHealy\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n23 players\nRoster\npapichooter\npapichooter\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n23 players\nRoster\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nLebron Theme Team\nlordlx\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n21 players\nRoster\nT Halibooty\nTyreseHalibooty\nLebron Theme Team\nlordlx · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\n\nGOAT Hoopers · Synthetic concept. Current metrics are not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView public edition\nDated weekly archive\nArcade\nAI Decides",
+    "states": [
+      {
+        "id": "default",
+        "label": "League ledger / all teams"
+      },
+      {
+        "id": "league",
+        "label": "All ten team rows"
+      },
+      {
+        "id": "roster",
+        "label": "Full roster subrow"
+      },
+      {
+        "id": "matchups",
+        "label": "Five pairs and saved AI receipt"
+      },
+      {
+        "id": "evidence",
+        "label": "Personal form and evidence"
+      },
+      {
+        "id": "editorial",
+        "label": "Dated edition and source subrows"
+      },
+      {
+        "id": "moves",
+        "label": "Moves and route register"
+      },
+      {
+        "id": "search",
+        "label": "Local player search"
+      }
+    ],
+    "document": {
+      "width": 390,
+      "height": 3777
+    },
+    "controls": [
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Skip to league sheet",
+        "label": null,
+        "href": "#sheet"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "",
+        "label": "GOAT Hoopers Home",
+        "href": "/"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Stocks",
+        "label": null,
+        "href": "/stocks#player-board"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "text": "Menu",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "text": "Synthetic concept",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "SELECT",
+        "id": "category-select",
+        "text": "LeagueMatchupsMy evidenceDated editionsMoves & tools",
+        "label": "Choose ledger sheet",
+        "href": null
+      },
+      {
+        "tag": "INPUT",
+        "id": "search",
+        "text": "",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "SELECT",
+        "id": "sort",
+        "text": "Standing: highest firstName: A–ZPoints for: highest firstRoster size: largest first",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "clear",
+        "text": "Reset",
+        "label": "Reset current sheet",
+        "href": null
+      },
+      {
+        "tag": "SELECT",
+        "id": "fields",
+        "text": "Opponent & scoreRecord & points forFaces & FAABAll fields",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Reaves Dropper",
+        "label": null,
+        "href": "/teams/1"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Ware the Hoes At?",
+        "label": null,
+        "href": "/teams/2"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Your brief",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Ware the Hoes At?",
+        "label": null,
+        "href": "/teams/2"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Reaves Dropper",
+        "label": null,
+        "href": "/teams/1"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Stephon Castle’s Back",
+        "label": null,
+        "href": "/teams/3"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "The Fun Guys",
+        "label": null,
+        "href": "/teams/4"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "The Fun Guys",
+        "label": null,
+        "href": "/teams/4"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Stephon Castle’s Back",
+        "label": null,
+        "href": "/teams/3"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Josh Diddy’s Roster",
+        "label": null,
+        "href": "/teams/5"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Huff n’ Puff",
+        "label": null,
+        "href": "/teams/6"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Huff n’ Puff",
+        "label": null,
+        "href": "/teams/6"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Josh Diddy’s Roster",
+        "label": null,
+        "href": "/teams/5"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "papichooter",
+        "label": null,
+        "href": "/teams/7"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "NeuralNets",
+        "label": null,
+        "href": "/teams/8"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "NeuralNets",
+        "label": null,
+        "href": "/teams/8"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "papichooter",
+        "label": null,
+        "href": "/teams/7"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Lebron Theme Team",
+        "label": null,
+        "href": "/teams/9"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "T Halibooty",
+        "label": null,
+        "href": "/teams/10"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "T Halibooty",
+        "label": null,
+        "href": "/teams/10"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Lebron Theme Team",
+        "label": null,
+        "href": "/teams/9"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Roster",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "View public edition",
+        "label": null,
+        "href": "?view=public"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Dated weekly archive",
+        "label": null,
+        "href": "/weekly"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Arcade",
+        "label": null,
+        "href": "/arcade"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "AI Decides",
+        "label": null,
+        "href": "/ai-decides"
+      }
+    ],
+    "panes": []
+  },
+  {
+    "id": "20",
+    "device": "desktop",
+    "errors": [],
+    "title": "GOAT Hoopers — Arcade matchbook",
+    "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nOpen anywhere\n\n2026 season\n\nYour Week 3 matchup\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nMy team\nFull roster\nStocks\nWhat matters from here?\nI want to inspect my players.\n24 players, form, completed-week points and modeled value.\nI want to compare the teams.\nFive current pairings and the actual saved model returns.\nI want to know this league.\nTen identities, standings, opponents and complete rosters.\nI want to read the league.\nDated editorial, player spotlights and the edition archive.\nI want to explore or play.\nStocks, trades, transactions, history and the Arcade.\nGOAT Hoopers\nStocks\nView public concept\nFixture provenance\nThis week opened. This week.",
+    "states": [
+      {
+        "id": "home",
+        "label": "Branching entry"
+      },
+      {
+        "id": "players",
+        "label": "Players and next choices"
+      },
+      {
+        "id": "form",
+        "label": "Form and completed-week evidence"
+      },
+      {
+        "id": "prices",
+        "label": "All modeled values"
+      },
+      {
+        "id": "compare",
+        "label": "Five pairings and saved AI"
+      },
+      {
+        "id": "league",
+        "label": "Standings and ten-team directory"
+      },
+      {
+        "id": "read",
+        "label": "Dated editorial and archive"
+      },
+      {
+        "id": "tools",
+        "label": "Tools, transactions and game"
+      }
+    ],
+    "document": {
+      "width": 1440,
+      "height": 1048
+    },
+    "controls": [
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Skip to matchbook",
+        "label": null,
+        "href": "#matchbook"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "GOAT HOOPERS",
+        "label": "GOAT Hoopers home",
+        "href": "./index.html"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "text": "Synthetic concept",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Read the art, content and verification notes",
+        "label": null,
+        "href": "./ART.md"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "open-index",
+        "text": "Open anywhereBranch index",
+        "label": "Open anywhere, branch index",
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Reaves Dropper",
+        "label": null,
+        "href": "/teams/1"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Ware the Hoes At?",
+        "label": null,
+        "href": "/teams/2"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Read the saved evidence",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "My team",
+        "label": null,
+        "href": "/team"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Full roster",
+        "label": null,
+        "href": "/teams/1#team-roster"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Stocks",
+        "label": null,
+        "href": "/stocks#player-board"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "I want to inspect my players.24 players, form, completed-week points and modeled value.",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "I want to compare the teams.Five current pairings and the actual saved model returns.",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "I want to know this league.Ten identities, standings, opponents and complete rosters.",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "I want to read the league.Dated editorial, player spotlights and the edition archive.",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "I want to explore or play.Stocks, trades, transactions, history and the Arcade.",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Stocks",
+        "label": null,
+        "href": "/stocks#player-board"
+      },
+      {
+        "tag": "A",
+        "id": "comparison-link",
+        "text": "View public concept",
+        "label": null,
+        "href": "?view=public"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "show-provenance",
+        "text": "Fixture provenance",
+        "label": null,
+        "href": null
+      }
+    ],
+    "panes": []
+  },
+  {
+    "id": "20",
+    "device": "phone",
+    "errors": [],
+    "title": "GOAT Hoopers — Arcade matchbook",
+    "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\n2026 season\n\nWeek 3 is incomplete.\n\nReaves Dropper 0.0\nWare the Hoes At? Pending\nNov 12 synthetic fixture · Pending is unknown.\n\nManagers, records & saved AI\nWhat matters from here?\nI want to inspect my players.\n24 players, form, completed-week points and modeled value.\nI want to compare the teams.\nFive current pairings and the actual saved model returns.\nI want to know this league.\nTen identities, standings, opponents and complete rosters.\nI want to read the league.\nDated editorial, player spotlights and the edition archive.\nI want to explore or play.\nStocks, trades, transactions, history and the Arcade.\nGOAT Hoopers\nStocks\nView public concept\nFixture provenance\nThis week opened. This week.",
+    "states": [
+      {
+        "id": "home",
+        "label": "Branching entry"
+      },
+      {
+        "id": "players",
+        "label": "Players and next choices"
+      },
+      {
+        "id": "form",
+        "label": "Form and completed-week evidence"
+      },
+      {
+        "id": "prices",
+        "label": "All modeled values"
+      },
+      {
+        "id": "compare",
+        "label": "Five pairings and saved AI"
+      },
+      {
+        "id": "league",
+        "label": "Standings and ten-team directory"
+      },
+      {
+        "id": "read",
+        "label": "Dated editorial and archive"
+      },
+      {
+        "id": "tools",
+        "label": "Tools, transactions and game"
+      }
+    ],
+    "document": {
+      "width": 390,
+      "height": 1371
+    },
+    "controls": [
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Skip to matchbook",
+        "label": null,
+        "href": "#matchbook"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "GOAT HOOPERS",
+        "label": "GOAT Hoopers home",
+        "href": "./index.html"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "text": "Synthetic concept",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Read the art, content and verification notes",
+        "label": null,
+        "href": "./ART.md"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "open-index",
+        "text": "Open anywhereBranch index",
+        "label": "Open anywhere, branch index",
+        "href": null
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "text": "Managers, records & saved AI",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "I want to inspect my players.24 players, form, completed-week points and modeled value.",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "I want to compare the teams.Five current pairings and the actual saved model returns.",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "I want to know this league.Ten identities, standings, opponents and complete rosters.",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "I want to read the league.Dated editorial, player spotlights and the edition archive.",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "I want to explore or play.Stocks, trades, transactions, history and the Arcade.",
+        "label": null,
+        "href": null
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "text": "Stocks",
+        "label": null,
+        "href": "/stocks#player-board"
+      },
+      {
+        "tag": "A",
+        "id": "comparison-link",
+        "text": "View public concept",
+        "label": null,
+        "href": "?view=public"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "show-provenance",
+        "text": "Fixture provenance",
+        "label": null,
+        "href": null
+      }
+    ],
+    "panes": []
+  }
+]

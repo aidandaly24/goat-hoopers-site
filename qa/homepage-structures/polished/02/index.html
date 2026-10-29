@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GOAT Hoopers — Electric tactics court</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#court">Skip to the court</a>
+  <header class="site-head">
+    <a href="./index.html" class="wordmark" aria-label="GOAT Hoopers home"><strong>GOAT</strong><span>Hoopers</span></a>
+    <nav aria-label="Primary navigation">
+      <a href="/stocks#player-board">Stocks</a>
+      <details class="route-menu"><summary>Explore</summary><div><div id="routes"></div><a id="compare" href="?view=public">Public view</a></div></details>
+    </nav>
+  </header>
+  <main class="arena" id="arena">
+    <section class="court" id="court" aria-label="Court information map">
+      <div class="court-heading">
+        <h1>The court</h1>
+        <details class="concept-note"><summary>Synthetic concept</summary><div>
+          <p>Offline design concept. Current scores, records, prices, form, news, moves and AI are synthetic. The Nov 12, 2026 fixture is not today.</p>
+          <p>Dated editorial retains its original periods, draft status and checked sources. Known zero, Pending, stale and unavailable states are kept distinct. Recorded team-value history and Lineup Power have no connected producer.</p>
+          <p>Local fixture data only; no live provider is called. Member/public is a design comparison, not authentication. Per-row model and editorial provenance remains in the field notes.</p>
+        </div></details>
+      </div>
+      <div class="playing-floor">
+        <svg class="court-lines wide" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="2"><path d="M20 24H980V676H20Z M500 24V676"/><circle cx="500" cy="350" r="100"/><path d="M20 205H190V495H20 M980 205H810V495H980 M190 205a145 145 0 0 1 0 290 M810 205a145 145 0 0 0 0 290 M20 80H70a300 300 0 0 1 0 540H20 M980 80H930a300 300 0 0 0 0 540H980"/><circle cx="65" cy="350" r="18"/><circle cx="935" cy="350" r="18"/></g>
+        </svg>
+        <svg class="court-lines narrow" viewBox="0 0 600 1000" preserveAspectRatio="none" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="2"><path d="M20 20H580V980H20Z M20 500H580"/><circle cx="300" cy="500" r="105"/><path d="M170 20V190H430V20 M170 980V810H430V980 M170 190a130 130 0 0 0 260 0 M170 810a130 130 0 0 1 260 0 M70 20V70a230 230 0 0 0 460 0V20 M70 980V930a230 230 0 0 1 460 0V980"/><circle cx="300" cy="65" r="16"/><circle cx="300" cy="935" r="16"/></g>
+        </svg>
+        <svg class="navigation-link" id="navigation-link" aria-hidden="true"><path id="selection-route"></path><circle id="selection-origin" r="4"></circle><path id="selection-end"></path></svg>
+        <div id="zones"></div>
+      </div>
+      <p class="court-footer">Choose a position for field notes.</p>
+    </section>
+    <aside class="field-notes" id="field-notes" aria-labelledby="notes-title">
+      <div class="foldout-head"><span id="note-position">Centre circle</span><button id="close-notes" type="button">Back to court</button></div>
+      <div id="reader"></div>
+    </aside>
+  </main>
+  <footer class="site-foot"><a href="/weekly">Weekly archive</a><a href="/history">League history</a></footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

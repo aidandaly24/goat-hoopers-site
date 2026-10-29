@@ -1,48 +1,750 @@
 {
-  "scope": "Latest dual-round gallery, Chromium390 local-server checks, not final design acceptance",
-  "errors": [],
+  "method": "Actual localhost browser, all80 paired-gallery selections, native dimensions, no dependent HTTP requests; all three root gallery rounds and a real unavailable edition/state clear.",
   "results": [
     {
-      "round": "wireframes",
-      "count": 20,
-      "src": "evidence/wireframes/01/member-desktop-00-default.jpg",
-      "notes": "wireframes/01/STRUCTURE.md"
+      "file": "qa/homepage-structures/delivery/GOAT-R3-01-02-full-pages.html",
+      "id": "01",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 8444,
+      "pass": true
     },
     {
-      "round": "structural-revisions",
-      "count": 20,
-      "src": "evidence/structural-revisions/01/member-desktop-entry.jpg",
-      "notes": "structural-revisions/01/STRUCTURE.md"
+      "file": "qa/homepage-structures/delivery/GOAT-R3-01-02-full-pages.html",
+      "id": "01",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 16426,
+      "pass": true
     },
     {
-      "round": "wireframes",
-      "count": 20,
-      "src": "evidence/wireframes/01/member-desktop-00-default.jpg",
-      "notes": "wireframes/01/STRUCTURE.md"
+      "file": "qa/homepage-structures/delivery/GOAT-R3-01-02-full-pages.html",
+      "id": "01",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 7181,
+      "pass": true
     },
     {
-      "round": "structural-revisions",
-      "count": 20,
-      "src": "evidence/structural-revisions/01/member-desktop-entry.jpg",
-      "notes": "structural-revisions/01/STRUCTURE.md"
+      "file": "qa/homepage-structures/delivery/GOAT-R3-01-02-full-pages.html",
+      "id": "01",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 13282,
+      "pass": true
     },
     {
-      "test": "09 actual boot",
-      "label": "Actual initial load",
-      "src": "evidence/structural-revisions/09/member-phone-entry.jpg"
+      "file": "qa/homepage-structures/delivery/GOAT-R3-01-02-full-pages.html",
+      "id": "02",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2048,
+      "pass": true
     },
     {
-      "test": "unavailable public state clears image",
-      "src": null,
-      "empty": true
+      "file": "qa/homepage-structures/delivery/GOAT-R3-01-02-full-pages.html",
+      "id": "02",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 2856,
+      "pass": true
     },
     {
-      "test": "separate reader available",
-      "options": [
-        "Active document",
-        "Native viewport",
-        "Complete reader 1"
-      ]
+      "file": "qa/homepage-structures/delivery/GOAT-R3-01-02-full-pages.html",
+      "id": "02",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2048,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-01-02-full-pages.html",
+      "id": "02",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 2856,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-03-04-full-pages.html",
+      "id": "03",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-03-04-full-pages.html",
+      "id": "03",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 844,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-03-04-full-pages.html",
+      "id": "03",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-03-04-full-pages.html",
+      "id": "03",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 844,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-03-04-full-pages.html",
+      "id": "04",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1614,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-03-04-full-pages.html",
+      "id": "04",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 1400,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-03-04-full-pages.html",
+      "id": "04",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1614,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-03-04-full-pages.html",
+      "id": "04",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 1387,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-05-06-full-pages.html",
+      "id": "05",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-05-06-full-pages.html",
+      "id": "05",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 844,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-05-06-full-pages.html",
+      "id": "05",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-05-06-full-pages.html",
+      "id": "05",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 844,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-05-06-full-pages.html",
+      "id": "06",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 8655,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-05-06-full-pages.html",
+      "id": "06",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 10973,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-05-06-full-pages.html",
+      "id": "06",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 6870,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-05-06-full-pages.html",
+      "id": "06",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 8179,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-07-08-full-pages.html",
+      "id": "07",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2113,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-07-08-full-pages.html",
+      "id": "07",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 4337,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-07-08-full-pages.html",
+      "id": "07",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1979,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-07-08-full-pages.html",
+      "id": "07",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 3891,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-07-08-full-pages.html",
+      "id": "08",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1343,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-07-08-full-pages.html",
+      "id": "08",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 1503,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-07-08-full-pages.html",
+      "id": "08",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1343,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-07-08-full-pages.html",
+      "id": "08",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 1503,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-09-10-full-pages.html",
+      "id": "09",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2383,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-09-10-full-pages.html",
+      "id": "09",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 4347,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-09-10-full-pages.html",
+      "id": "09",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2383,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-09-10-full-pages.html",
+      "id": "09",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 4919,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-09-10-full-pages.html",
+      "id": "10",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2716,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-09-10-full-pages.html",
+      "id": "10",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 4320,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-09-10-full-pages.html",
+      "id": "10",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2640,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-09-10-full-pages.html",
+      "id": "10",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 4328,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-11-12-full-pages.html",
+      "id": "11",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2059,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-11-12-full-pages.html",
+      "id": "11",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 2705,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-11-12-full-pages.html",
+      "id": "11",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1855,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-11-12-full-pages.html",
+      "id": "11",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 2393,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-11-12-full-pages.html",
+      "id": "12",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2128,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-11-12-full-pages.html",
+      "id": "12",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 3754,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-11-12-full-pages.html",
+      "id": "12",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2128,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-11-12-full-pages.html",
+      "id": "12",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 3686,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-13-14-full-pages.html",
+      "id": "13",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1524,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-13-14-full-pages.html",
+      "id": "13",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 2582,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-13-14-full-pages.html",
+      "id": "13",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1524,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-13-14-full-pages.html",
+      "id": "13",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 2481,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-13-14-full-pages.html",
+      "id": "14",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-13-14-full-pages.html",
+      "id": "14",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 844,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-13-14-full-pages.html",
+      "id": "14",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-13-14-full-pages.html",
+      "id": "14",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 844,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-15-16-full-pages.html",
+      "id": "15",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2045,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-15-16-full-pages.html",
+      "id": "15",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 2058,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-15-16-full-pages.html",
+      "id": "15",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2021,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-15-16-full-pages.html",
+      "id": "15",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 2006,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-15-16-full-pages.html",
+      "id": "16",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 2561,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-15-16-full-pages.html",
+      "id": "16",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 4629,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-15-16-full-pages.html",
+      "id": "16",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1458,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-15-16-full-pages.html",
+      "id": "16",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 2837,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-17-18-full-pages.html",
+      "id": "17",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1990,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-17-18-full-pages.html",
+      "id": "17",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 3777,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-17-18-full-pages.html",
+      "id": "17",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1990,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-17-18-full-pages.html",
+      "id": "17",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 3777,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-17-18-full-pages.html",
+      "id": "18",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1433,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-17-18-full-pages.html",
+      "id": "18",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 1583,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-17-18-full-pages.html",
+      "id": "18",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1433,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-17-18-full-pages.html",
+      "id": "18",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 1583,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-19-20-full-pages.html",
+      "id": "19",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 4806,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-19-20-full-pages.html",
+      "id": "19",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 4589,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-19-20-full-pages.html",
+      "id": "19",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 4806,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-19-20-full-pages.html",
+      "id": "19",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 4589,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-19-20-full-pages.html",
+      "id": "20",
+      "view": "member",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1048,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-19-20-full-pages.html",
+      "id": "20",
+      "view": "member",
+      "device": "phone",
+      "width": 390,
+      "height": 1371,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-19-20-full-pages.html",
+      "id": "20",
+      "view": "public",
+      "device": "desktop",
+      "width": 1440,
+      "height": 1048,
+      "pass": true
+    },
+    {
+      "file": "qa/homepage-structures/delivery/GOAT-R3-19-20-full-pages.html",
+      "id": "20",
+      "view": "public",
+      "device": "phone",
+      "width": 390,
+      "height": 1371,
+      "pass": true
     }
-  ]
+  ],
+  "rounds": [
+    {
+      "round": "polished",
+      "studies": 20,
+      "image": true
+    },
+    {
+      "round": "structural-revisions",
+      "studies": 20,
+      "image": true
+    },
+    {
+      "round": "wireframes",
+      "studies": 20,
+      "image": true
+    }
+  ],
+  "emptyCheck": {
+    "id": "01",
+    "state": "roster",
+    "view": "public",
+    "device": "desktop",
+    "cleared": true,
+    "visible": true
+  }
 }

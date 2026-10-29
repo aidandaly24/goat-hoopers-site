@@ -1,0 +1,81 @@
+{
+  "desktop": [
+    {
+      "action": "click",
+      "selector": "#score-wall [data-compare]",
+      "waitMs": 100
+    },
+    {
+      "action": "click",
+      "selector": "#door-1 > summary",
+      "waitMs": 100
+    },
+    {
+      "action": "click",
+      "selector": "#door-1 > summary",
+      "waitMs": 240
+    },
+    {
+      "action": "click",
+      "selector": "#saved-slate > summary",
+      "waitMs": 100
+    },
+    {
+      "action": "click",
+      "selector": "#value-leaf > summary",
+      "waitMs": 100
+    },
+    {
+      "action": "click",
+      "selector": "[data-edition=\"1\"]",
+      "waitMs": 100
+    },
+    {
+      "action": "click",
+      "selector": "[data-close=\"archive-folder\"]",
+      "waitMs": 100
+    }
+  ],
+  "phone": [
+    {
+      "action": "click",
+      "selector": "#saved-slate > summary",
+      "waitMs": 100
+    },
+    {
+      "action": "click",
+      "selector": "#score-wall [data-compare]",
+      "waitMs": 100
+    },
+    {
+      "action": "click",
+      "selector": "#door-1 > summary",
+      "waitMs": 100
+    },
+    {
+      "action": "click",
+      "selector": "#door-1 > summary",
+      "waitMs": 240
+    },
+    {
+      "action": "click",
+      "selector": ".pair-jumps [data-door-jump=\"2\"]",
+      "waitMs": 100
+    },
+    {
+      "action": "click",
+      "selector": "#value-leaf > summary",
+      "waitMs": 100
+    },
+    {
+      "action": "click",
+      "selector": "[data-edition=\"1\"]",
+      "waitMs": 100
+    },
+    {
+      "action": "click",
+      "selector": "[data-close=\"archive-folder\"]",
+      "waitMs": 100
+    }
+  ]
+}

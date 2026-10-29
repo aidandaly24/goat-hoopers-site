@@ -1,0 +1,276 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "default",
+        "label": "Useful empty-query index"
+      },
+      {
+        "id": "week",
+        "label": "Current incomplete matchup"
+      },
+      {
+        "id": "roster",
+        "label": "Personal modeled roster value"
+      },
+      {
+        "id": "search",
+        "label": "Mixed team and player search"
+      },
+      {
+        "id": "directory",
+        "label": "Full directory and rosters"
+      },
+      {
+        "id": "predictions",
+        "label": "Five saved choices and provenance"
+      },
+      {
+        "id": "edition",
+        "label": "Dated editorial"
+      },
+      {
+        "id": "league",
+        "label": "Standings and franchise faces"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to search",
+      "href": "#query",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "BUTTON",
+      "id": "search-trigger",
+      "text": "Search",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 2,
+      "tag": "BUTTON",
+      "id": "tools-trigger",
+      "text": "Tools",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "INPUT",
+      "id": "query",
+      "text": "Player, team, or task…",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "clear-query",
+      "text": "Clear",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 6,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Find",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 7,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Reaves",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Embiid",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 9,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "this week",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 10,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "All",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Teams",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 12,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Tasks",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "SELECT",
+      "id": "result-sort",
+      "text": "Best match Name A–Z",
+      "href": null,
+      "select": [
+        [
+          "relevance",
+          "Best match"
+        ],
+        [
+          "name",
+          "Name A–Z"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "BUTTON",
+      "id": "trigger-week",
+      "text": "Your week, as it stands Week 3. Reaves Dropper 0.0 / Ware the Hoes At? Pending. Incomplete",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "BUTTON",
+      "id": "trigger-mine",
+      "text": "Your roster, priced $1095.25 modeled FAAB. 24 of 24 priced. Reaves Dropper. Open",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "BUTTON",
+      "id": "trigger-directory",
+      "text": "Find a team or player 10 teams, 228 unique players. Full rosters. Open",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "BUTTON",
+      "id": "trigger-picks",
+      "text": "Read the five saved picks Week 3. Choice: Ware the Hoes At? at 35%. Confidence 20%. Open",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "BUTTON",
+      "id": "trigger-standings",
+      "text": "See where the league stands 10 current positions. W / L / PF. Open",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 20,
+      "tag": "BUTTON",
+      "id": "trigger-form",
+      "text": "Check your player form Damian Lillard: 38 EMA FP/G over 8 observed games. Open",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "BUTTON",
+      "id": "trigger-edition",
+      "text": "Read the dated league edition Oct 5–11, 2026. Draft with three editorial picks. Open",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 22,
+      "tag": "BUTTON",
+      "id": "trigger-faces",
+      "text": "Meet the franchise faces 10 team anchors by highest modeled player value. Open",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 23,
+      "tag": "BUTTON",
+      "id": "trigger-wire",
+      "text": "Catch up on news and moves 2 team headlines, 3 sample league moves in Week 3. Open",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 24,
+      "tag": "BUTTON",
+      "id": "trigger-archive",
+      "text": "Browse the weekly archive Two dated drafts: Oct 5–11 and Sep 28–Oct 4. Open",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 25,
+      "tag": "BUTTON",
+      "id": "trigger-history",
+      "text": "Check recorded value history Unavailable. No recorded line is supplied. Open",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 26,
+      "tag": "BUTTON",
+      "id": "trigger-tools",
+      "text": "Open a tool or destination Stocks, Trade analyzer, Arcade and Free Throw. Open",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 27,
+      "tag": "BUTTON",
+      "id": "more-results",
+      "text": "Show more results",
+      "href": null,
+      "visible": false
+    }
+  ],
+  "scrolls": []
+}

@@ -1,0 +1,277 @@
+{
+  "id": "18",
+  "phase": "polished",
+  "planPath": "qa/homepage-structures/polished/18/motion-demo.json",
+  "planSha256": "9abd8c989cd40a1581f940c42e47bfdf6bb22843fdfc006a9884af9acf938f29",
+  "records": [
+    {
+      "device": "desktop",
+      "reducedMotion": "no-preference",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "qa/homepage-structures/evidence/polished/18/interactions/desktop-no-preference.mp4",
+      "bytes": 146090,
+      "sha256": "6b0870dca987fed6538d761321c7ca0483ee4e709d9e1fe26c718a3d7685f7ee",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/18/interactions/0a8245a35bc1c527087a268b512ca3d3.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#pin-chooser > summary",
+          "waitMs": 100,
+          "atMs": 603,
+          "afterMs": 796,
+          "activeId": null
+        },
+        {
+          "action": "fill",
+          "selector": "#identity-search",
+          "value": "Dybantsa",
+          "waitMs": 50,
+          "atMs": 800,
+          "afterMs": 948,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "select",
+          "selector": "#identity-select",
+          "value": "4866",
+          "waitMs": 50,
+          "atMs": 952,
+          "afterMs": 1082,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "scroll",
+          "selector": "html",
+          "delta": 300,
+          "waitMs": 60,
+          "atMs": 1084,
+          "afterMs": 1220,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "click",
+          "selector": "#pin-button",
+          "waitMs": 80,
+          "atMs": 1226,
+          "afterMs": 1526,
+          "activeId": "pin-button"
+        },
+        {
+          "action": "click",
+          "selector": "#follow-pins",
+          "waitMs": 100,
+          "atMs": 1536,
+          "afterMs": 2048,
+          "activeId": "team-mode"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "desktop",
+      "reducedMotion": "reduce",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "qa/homepage-structures/evidence/polished/18/interactions/desktop-reduce.mp4",
+      "bytes": 139242,
+      "sha256": "2364772d85cfea67d03a5da0ab7419a0b4261ed3cabfd07a9520ac2e8fdd0dc3",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/18/interactions/a1aeec11f9022ffa56a73a4f0a8ea836.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#pin-chooser > summary",
+          "waitMs": 100,
+          "atMs": 600,
+          "afterMs": 857,
+          "activeId": null
+        },
+        {
+          "action": "fill",
+          "selector": "#identity-search",
+          "value": "Dybantsa",
+          "waitMs": 50,
+          "atMs": 864,
+          "afterMs": 1044,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "select",
+          "selector": "#identity-select",
+          "value": "4866",
+          "waitMs": 50,
+          "atMs": 1048,
+          "afterMs": 1189,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "scroll",
+          "selector": "html",
+          "delta": 300,
+          "waitMs": 60,
+          "atMs": 1199,
+          "afterMs": 1370,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "click",
+          "selector": "#pin-button",
+          "waitMs": 80,
+          "atMs": 1379,
+          "afterMs": 1679,
+          "activeId": "pin-button"
+        },
+        {
+          "action": "click",
+          "selector": "#follow-pins",
+          "waitMs": 100,
+          "atMs": 1681,
+          "afterMs": 1902,
+          "activeId": "team-mode"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "phone",
+      "reducedMotion": "no-preference",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "qa/homepage-structures/evidence/polished/18/interactions/phone-no-preference.mp4",
+      "bytes": 101977,
+      "sha256": "f74396dc56216c9ad4fe9bfd972bb2834a2442d879bc83bd831dfb62336efc10",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/18/interactions/2655f48257ceb5d7bf754cd7168c0de4.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#pin-chooser > summary",
+          "waitMs": 100,
+          "atMs": 601,
+          "afterMs": 813,
+          "activeId": null
+        },
+        {
+          "action": "fill",
+          "selector": "#identity-search",
+          "value": "Dybantsa",
+          "waitMs": 50,
+          "atMs": 820,
+          "afterMs": 996,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "select",
+          "selector": "#identity-select",
+          "value": "4866",
+          "waitMs": 50,
+          "atMs": 1000,
+          "afterMs": 1146,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "scroll",
+          "selector": "html",
+          "delta": 300,
+          "waitMs": 60,
+          "atMs": 1150,
+          "afterMs": 1316,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "click",
+          "selector": "#pin-button",
+          "waitMs": 80,
+          "atMs": 1322,
+          "afterMs": 1641,
+          "activeId": "pin-button"
+        },
+        {
+          "action": "click",
+          "selector": "#follow-pins",
+          "waitMs": 100,
+          "atMs": 1648,
+          "afterMs": 1937,
+          "activeId": "team-mode"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    },
+    {
+      "device": "phone",
+      "reducedMotion": "reduce",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": "qa/homepage-structures/evidence/polished/18/interactions/phone-reduce.mp4",
+      "bytes": 111695,
+      "sha256": "43a01a75ac9cb5f536c0dde674555f3c7587c537d392c79b8dddfcc241aecdce",
+      "raw": "/workspace/goat-homepage-structures/qa/homepage-structures/evidence/polished/18/interactions/8bb940c8cc5925b091d43516991f64f2.webm",
+      "timeline": [
+        {
+          "action": "click",
+          "selector": "#pin-chooser > summary",
+          "waitMs": 100,
+          "atMs": 605,
+          "afterMs": 839,
+          "activeId": null
+        },
+        {
+          "action": "fill",
+          "selector": "#identity-search",
+          "value": "Dybantsa",
+          "waitMs": 50,
+          "atMs": 848,
+          "afterMs": 1076,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "select",
+          "selector": "#identity-select",
+          "value": "4866",
+          "waitMs": 50,
+          "atMs": 1081,
+          "afterMs": 1242,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "scroll",
+          "selector": "html",
+          "delta": 300,
+          "waitMs": 60,
+          "atMs": 1245,
+          "afterMs": 1439,
+          "activeId": "identity-search"
+        },
+        {
+          "action": "click",
+          "selector": "#pin-button",
+          "waitMs": 80,
+          "atMs": 1443,
+          "afterMs": 1725,
+          "activeId": "pin-button"
+        },
+        {
+          "action": "click",
+          "selector": "#follow-pins",
+          "waitMs": 100,
+          "atMs": 1726,
+          "afterMs": 1945,
+          "activeId": "team-mode"
+        }
+      ],
+      "errors": [],
+      "method": "Actual Playwright browser recording, then size-only video encode. No screenshot animation, CSS flattening, autoplay injection or simulation of UI state."
+    }
+  ],
+  "limit": "Headless Linux Chromium interaction evidence, not physical-phone smoothness, screen-reader or cross-browser certification. An instant change may intentionally remain instant in both recordings."
+}

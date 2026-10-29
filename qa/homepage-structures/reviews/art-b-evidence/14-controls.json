@@ -1,0 +1,500 @@
+{
+  "states": [
+    {
+      "id": "default",
+      "label": "Four parallel channels"
+    },
+    {
+      "id": "league",
+      "label": "Saved slate, including returned 35% choice"
+    },
+    {
+      "id": "directory",
+      "label": "Searchable full clubhouse directory"
+    },
+    {
+      "id": "scouting",
+      "label": "Form and completed-week notebook"
+    },
+    {
+      "id": "culture",
+      "label": "Dated October editorial"
+    },
+    {
+      "id": "archive",
+      "label": "Historical final archive"
+    },
+    {
+      "id": "value",
+      "label": "Full member valuation / public current pair"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "route-toggle",
+      "cls": "",
+      "text": "More",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Your teamTeam",
+      "data": {
+        "select": "team"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "League actionLeague",
+      "data": {
+        "select": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "ScoutingScout",
+      "data": {
+        "select": "scouting"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "CultureCulture",
+      "data": {
+        "select": "culture"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Why the saved model picked the opponent",
+      "data": {
+        "cross": "league",
+        "target": "ai-0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read form separately from modeled value",
+      "data": {
+        "cross": "scouting",
+        "target": "watch"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Follow the rest of the league’s moves",
+      "data": {
+        "cross": "league",
+        "target": "moves"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare the actual pairing context",
+      "data": {
+        "cross": "team",
+        "target": "current-pair"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Open Ware the Hoes At?’s roster",
+      "data": {
+        "cross": "league",
+        "target": "club-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Open The Fun Guys’s roster",
+      "data": {
+        "cross": "league",
+        "target": "club-4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Open Huff n’ Puff’s roster",
+      "data": {
+        "cross": "league",
+        "target": "club-6"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Open NeuralNets’s roster",
+      "data": {
+        "cross": "league",
+        "target": "club-8"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Open T Halibooty’s roster",
+      "data": {
+        "cross": "league",
+        "target": "club-10"
+      }
+    },
+    {
+      "tag": "INPUT",
+      "id": "search",
+      "cls": "",
+      "text": "",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "sort",
+      "cls": "",
+      "text": "Standing\nTeam name A–Z\nRoster size, most first",
+      "data": {},
+      "options": [
+        [
+          "rank",
+          "Standing"
+        ],
+        [
+          "name",
+          "Team name A–Z"
+        ],
+        [
+          "roster",
+          "Roster size, most first"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "clear-search",
+      "cls": "",
+      "text": "Clear search",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare this team’s modeled-value anchor",
+      "data": {
+        "cross": "scouting",
+        "target": "face-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare this team’s modeled-value anchor",
+      "data": {
+        "cross": "scouting",
+        "target": "face-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare this team’s modeled-value anchor",
+      "data": {
+        "cross": "scouting",
+        "target": "face-3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare this team’s modeled-value anchor",
+      "data": {
+        "cross": "scouting",
+        "target": "face-4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare this team’s modeled-value anchor",
+      "data": {
+        "cross": "scouting",
+        "target": "face-5"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare this team’s modeled-value anchor",
+      "data": {
+        "cross": "scouting",
+        "target": "face-6"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare this team’s modeled-value anchor",
+      "data": {
+        "cross": "scouting",
+        "target": "face-7"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare this team’s modeled-value anchor",
+      "data": {
+        "cross": "scouting",
+        "target": "face-8"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare this team’s modeled-value anchor",
+      "data": {
+        "cross": "scouting",
+        "target": "face-9"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare this team’s modeled-value anchor",
+      "data": {
+        "cross": "scouting",
+        "target": "face-10"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read Lineup Power availability",
+      "data": {
+        "cross": "scouting",
+        "target": "power"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Return to your roster value",
+      "data": {
+        "cross": "team",
+        "target": "team-value"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Find the linked team, Josh Diddy’s Roster",
+      "data": {
+        "cross": "league",
+        "target": "club-5"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Find the linked team, Reaves Dropper",
+      "data": {
+        "cross": "league",
+        "target": "club-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Compare Embiid’s current modeled value",
+      "data": {
+        "cross": "team",
+        "target": "team-value"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Find the linked team, NeuralNets",
+      "data": {
+        "cross": "league",
+        "target": "club-8"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read this roster",
+      "data": {
+        "cross": "league",
+        "target": "club-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read this roster",
+      "data": {
+        "cross": "league",
+        "target": "club-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read this roster",
+      "data": {
+        "cross": "league",
+        "target": "club-3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read this roster",
+      "data": {
+        "cross": "league",
+        "target": "club-4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read this roster",
+      "data": {
+        "cross": "league",
+        "target": "club-5"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read this roster",
+      "data": {
+        "cross": "league",
+        "target": "club-6"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read this roster",
+      "data": {
+        "cross": "league",
+        "target": "club-7"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read this roster",
+      "data": {
+        "cross": "league",
+        "target": "club-8"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read this roster",
+      "data": {
+        "cross": "league",
+        "target": "club-9"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read this roster",
+      "data": {
+        "cross": "league",
+        "target": "club-10"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read the current week instead",
+      "data": {
+        "cross": "league",
+        "target": "ai-slate"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "The next chapter\nOct 5–11, 2026, draft",
+      "data": {
+        "archive": "0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "The title everybody’s chasing\nSep 28–Oct 4, 2026, draft",
+      "data": {
+        "archive": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "cross",
+      "text": "Read the three takes in this edition",
+      "data": {
+        "cross": "scouting",
+        "target": "editorial-picks"
+      }
+    }
+  ]
+}

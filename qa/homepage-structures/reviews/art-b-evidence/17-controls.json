@@ -1,0 +1,286 @@
+{
+  "states": [
+    {
+      "id": "default",
+      "label": "League ledger / all teams"
+    },
+    {
+      "id": "league",
+      "label": "All ten team rows"
+    },
+    {
+      "id": "roster",
+      "label": "Full roster subrow"
+    },
+    {
+      "id": "matchups",
+      "label": "Five pairs and saved AI receipt"
+    },
+    {
+      "id": "evidence",
+      "label": "Personal form and evidence"
+    },
+    {
+      "id": "editorial",
+      "label": "Dated edition and source subrows"
+    },
+    {
+      "id": "moves",
+      "label": "Moves and route register"
+    },
+    {
+      "id": "search",
+      "label": "Local player search"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "League",
+      "data": {
+        "category": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Matchups",
+      "data": {
+        "category": "matchups"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "My evidence",
+      "data": {
+        "category": "evidence"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Dated editions",
+      "data": {
+        "category": "editorial"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Moves & tools",
+      "data": {
+        "category": "moves"
+      }
+    },
+    {
+      "tag": "SELECT",
+      "id": "category-select",
+      "cls": "",
+      "text": "LeagueMatchupsMy evidenceDated editionsMoves & tools",
+      "data": {},
+      "options": [
+        [
+          "league",
+          "League"
+        ],
+        [
+          "matchups",
+          "Matchups"
+        ],
+        [
+          "evidence",
+          "My evidence"
+        ],
+        [
+          "editorial",
+          "Dated editions"
+        ],
+        [
+          "moves",
+          "Moves & tools"
+        ]
+      ]
+    },
+    {
+      "tag": "INPUT",
+      "id": "search",
+      "cls": "",
+      "text": "",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "sort",
+      "cls": "",
+      "text": "Standing: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first",
+      "data": {},
+      "options": [
+        [
+          "rank",
+          "Standing: highest first"
+        ],
+        [
+          "name",
+          "Name: A–Z"
+        ],
+        [
+          "pf",
+          "Points for: highest first"
+        ],
+        [
+          "roster",
+          "Roster size: largest first"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "clear",
+      "cls": "",
+      "text": "Reset",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "fields",
+      "cls": "",
+      "text": "Opponent & scoreRecord & points forFaces & FAABAll fields",
+      "data": {},
+      "options": [
+        [
+          "week",
+          "Opponent & score"
+        ],
+        [
+          "standings",
+          "Record & points for"
+        ],
+        [
+          "faces",
+          "Faces & FAAB"
+        ],
+        [
+          "all",
+          "All fields"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Roster",
+      "data": {
+        "toggle": "team-1",
+        "kind": "roster"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Your brief",
+      "data": {
+        "toggle": "team-1",
+        "kind": "brief"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Roster",
+      "data": {
+        "toggle": "team-2",
+        "kind": "roster"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Roster",
+      "data": {
+        "toggle": "team-3",
+        "kind": "roster"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Roster",
+      "data": {
+        "toggle": "team-4",
+        "kind": "roster"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Roster",
+      "data": {
+        "toggle": "team-5",
+        "kind": "roster"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Roster",
+      "data": {
+        "toggle": "team-6",
+        "kind": "roster"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Roster",
+      "data": {
+        "toggle": "team-7",
+        "kind": "roster"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Roster",
+      "data": {
+        "toggle": "team-8",
+        "kind": "roster"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Roster",
+      "data": {
+        "toggle": "team-9",
+        "kind": "roster"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Roster",
+      "data": {
+        "toggle": "team-10",
+        "kind": "roster"
+      }
+    }
+  ]
+}

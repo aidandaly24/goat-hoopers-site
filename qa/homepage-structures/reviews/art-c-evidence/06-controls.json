@@ -1,0 +1,318 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "default",
+        "label": "Chronological league log"
+      },
+      {
+        "id": "league",
+        "label": "League-only dated log"
+      },
+      {
+        "id": "personal",
+        "label": "My team through time"
+      },
+      {
+        "id": "week2",
+        "label": "Completed Week 2 evidence"
+      },
+      {
+        "id": "market",
+        "label": "Modeled market observations"
+      },
+      {
+        "id": "ai",
+        "label": "Saved AI at its source date"
+      },
+      {
+        "id": "archive",
+        "label": "Dated September / October issues"
+      },
+      {
+        "id": "directory",
+        "label": "Searchable dated team and player register"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to league wire",
+      "href": "#journal",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "League tools",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Everything",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "League",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "personal-filter",
+      "text": "My team",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 6,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Market",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 7,
+      "tag": "SELECT",
+      "id": "source-period",
+      "text": "All supplied dates Nov 12 · checked snapshot Nov 10 · saved AI Nov 2–9 · completed Week 2 ",
+      "href": null,
+      "select": [
+        [
+          "all",
+          "All supplied dates"
+        ],
+        [
+          "nov12",
+          "Nov 12 · checked snapshot"
+        ],
+        [
+          "nov10",
+          "Nov 10 · saved AI"
+        ],
+        [
+          "week2",
+          "Nov 2–9 · completed Week 2"
+        ],
+        [
+          "october",
+          "Sep / Oct · dated drafts"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "BUTTON",
+      "id": "index-button",
+      "text": "Team / player index",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 9,
+      "tag": "BUTTON",
+      "id": "reset-log",
+      "text": "Reset log",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 10,
+      "tag": "SELECT",
+      "id": "pairing",
+      "text": "Reaves Dropper / Ware the Hoes At? Stephon Castle’s Back / The Fun Guys Josh Diddy’s Roste",
+      "href": null,
+      "select": [
+        [
+          "0",
+          "Reaves Dropper / Ware the Hoes At?"
+        ],
+        [
+          "1",
+          "Stephon Castle’s Back / The Fun Guys"
+        ],
+        [
+          "2",
+          "Josh Diddy’s Roster / Huff n’ Puff"
+        ],
+        [
+          "3",
+          "papichooter / NeuralNets"
+        ],
+        [
+          "4",
+          "Lebron Theme Team / T Halibooty"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved AI for this matchup",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 12,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read the saved slate",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "All 24 roster values",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Search teams and players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "All 10 current standings",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved source and input details",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved source and input details",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved source and input details",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved source and input details",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 20,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved source and input details",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Period and participation coverage",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 22,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Why this dated game was selected",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 23,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Opinion, selection and source",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 24,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Opinion, selection and source",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 25,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Opinion, selection and source",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 26,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Issue sources and dated happenings",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 27,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Why this dated game was selected",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 28,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Issue sources and dated happenings",
+      "href": null,
+      "visible": true
+    }
+  ],
+  "scrolls": []
+}

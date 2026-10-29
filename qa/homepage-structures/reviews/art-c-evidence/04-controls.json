@@ -1,0 +1,280 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "matchup",
+        "label": "Current Week 3 matchup and saved model choice"
+      },
+      {
+        "id": "team",
+        "label": "Member roster value desk"
+      },
+      {
+        "id": "scouting",
+        "label": "Form watch and completed-week best / rough"
+      },
+      {
+        "id": "edition",
+        "label": "Dated weekly editorial with all three spotlights"
+      },
+      {
+        "id": "league",
+        "label": "Full searchable team directory and rosters"
+      },
+      {
+        "id": "standings",
+        "label": "All ten standings and unavailable Power"
+      },
+      {
+        "id": "wire",
+        "label": "Moves and both archive editions"
+      },
+      {
+        "id": "tools",
+        "label": "Actual tool and game destinations"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to program",
+      "href": "#program",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Menu",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "This week",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "My team",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Scouting",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 6,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Weekly edition",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 7,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "League index",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Wire / archive",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 9,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Tools",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 10,
+      "tag": "SELECT",
+      "id": "source-picker",
+      "text": "This weekMy teamScoutingWeekly editionLeague indexWire / archiveTools",
+      "href": null,
+      "select": [
+        [
+          "matchup",
+          "This week"
+        ],
+        [
+          "team",
+          "My team"
+        ],
+        [
+          "scouting",
+          "Scouting"
+        ],
+        [
+          "edition",
+          "Weekly edition"
+        ],
+        [
+          "league",
+          "League index"
+        ],
+        [
+          "wire",
+          "Wire / archive"
+        ],
+        [
+          "tools",
+          "Tools"
+        ]
+      ],
+      "visible": false
+    },
+    {
+      "i": 11,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Week 3 · 0.0 / Pending5 games +",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 12,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Reaves Dropper 0.0 Ware the Hoes At? Pending",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Pick provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Stephon Castle’s Back 105.5 The Fun Guys Pending",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Pick provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Josh Diddy’s Roster 105.5 Huff n’ Puff Pending",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Pick provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "papichooter 105.5 NeuralNets Pending",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Pick provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 20,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Lebron Theme Team 105.5 T Halibooty Pending",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Pick provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 22,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Next game →",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 23,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Inspect saved model / evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 24,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Switch to dated editorial",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 25,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Find a roster",
+      "href": null,
+      "visible": true
+    }
+  ],
+  "scrolls": []
+}

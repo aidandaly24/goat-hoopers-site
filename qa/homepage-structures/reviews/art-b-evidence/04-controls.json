@@ -1,0 +1,210 @@
+{
+  "states": [
+    {
+      "id": "matchup",
+      "label": "Current Week 3 matchup and saved model choice"
+    },
+    {
+      "id": "team",
+      "label": "Member roster value desk"
+    },
+    {
+      "id": "scouting",
+      "label": "Form watch and completed-week best / rough"
+    },
+    {
+      "id": "edition",
+      "label": "Dated weekly editorial with all three spotlights"
+    },
+    {
+      "id": "league",
+      "label": "Full searchable team directory and rosters"
+    },
+    {
+      "id": "standings",
+      "label": "All ten standings and unavailable Power"
+    },
+    {
+      "id": "wire",
+      "label": "Moves and both archive editions"
+    },
+    {
+      "id": "tools",
+      "label": "Actual tool and game destinations"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "This week",
+      "data": {
+        "view": "matchup"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "My team",
+      "data": {
+        "view": "team"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Scouting",
+      "data": {
+        "view": "scouting"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Weekly edition",
+      "data": {
+        "view": "edition"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "League index",
+      "data": {
+        "view": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Wire / archive",
+      "data": {
+        "view": "wire"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Tools",
+      "data": {
+        "view": "tools"
+      }
+    },
+    {
+      "tag": "SELECT",
+      "id": "source-picker",
+      "cls": "mobile-source",
+      "text": "This weekMy teamScoutingWeekly editionLeague indexWire / archiveTools",
+      "data": {},
+      "options": [
+        [
+          "matchup",
+          "This week"
+        ],
+        [
+          "team",
+          "My team"
+        ],
+        [
+          "scouting",
+          "Scouting"
+        ],
+        [
+          "edition",
+          "Weekly edition"
+        ],
+        [
+          "league",
+          "League index"
+        ],
+        [
+          "wire",
+          "Wire / archive"
+        ],
+        [
+          "tools",
+          "Tools"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "rail-select",
+      "text": "Reaves Dropper\n0.0\nWare the Hoes At?\nPending",
+      "data": {
+        "pair": "0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "rail-select",
+      "text": "Stephon Castle’s Back\n105.5\nThe Fun Guys\nPending",
+      "data": {
+        "pair": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "rail-select",
+      "text": "Josh Diddy’s Roster\n105.5\nHuff n’ Puff\nPending",
+      "data": {
+        "pair": "2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "rail-select",
+      "text": "papichooter\n105.5\nNeuralNets\nPending",
+      "data": {
+        "pair": "3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "rail-select",
+      "text": "Lebron Theme Team\n105.5\nT Halibooty\nPending",
+      "data": {
+        "pair": "4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Next game →",
+      "data": {
+        "nextGame": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Switch to dated editorial",
+      "data": {
+        "view": "edition"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Find a roster",
+      "data": {
+        "view": "league"
+      }
+    }
+  ]
+}

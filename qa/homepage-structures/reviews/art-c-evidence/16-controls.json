@@ -1,0 +1,572 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "default",
+        "label": "Default retained scores, two franchises and member evidence"
+      },
+      {
+        "id": "arrange",
+        "label": "Accessible arrangement controls and independent roster"
+      },
+      {
+        "id": "pinned",
+        "label": "Second franchise promoted while prior material remains"
+      },
+      {
+        "id": "three-teams",
+        "label": "Added franchises and their current matchup retained concurrently"
+      },
+      {
+        "id": "picks",
+        "label": "All five current matchups with saved AI on the canvas"
+      },
+      {
+        "id": "league",
+        "label": "Pinned searchable league reference with original composition retained"
+      },
+      {
+        "id": "editorial",
+        "label": "Dated editorial and historical final alongside current context"
+      },
+      {
+        "id": "tools",
+        "label": "Playable game and real destinations kept on the canvas"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to your composition",
+      "href": "#canvas",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "League routes",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "BUTTON",
+      "id": "arrange",
+      "text": "Arrange",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "BUTTON",
+      "id": "add-material",
+      "text": "Add league material",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "restore",
+      "text": "Restore",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 6,
+      "tag": "BUTTON",
+      "id": "close-source",
+      "text": "Close material list",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 7,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Kept: Reaves DropperJoel Embiid · roster + identity",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 8,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Kept: Ware the Hoes At?Domantas Sabonis · roster + identity",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 9,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: Stephon Castle’s BackShai Gilgeous-Alexander · roster + identity",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 10,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: The Fun GuysJalen Brunson · roster + identity",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 11,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: Josh Diddy’s RosterStephen Curry · roster + identity",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 12,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: Huff n’ PuffDonovan Mitchell · roster + identity",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 13,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: papichooterLuka Dončić · roster + identity",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 14,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: NeuralNetsGiannis Antetokounmpo · roster + identity",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 15,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: Lebron Theme TeamLeBron James · roster + identity",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 16,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: T HalibootyAnthony Davis · roster + identity",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 17,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Kept: Reaves Dropper / Ware the Hoes At?Current Week 3 score + saved AI",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 18,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: Stephon Castle’s Back / The Fun GuysCurrent Week 3 score + saved AI",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 19,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: Josh Diddy’s Roster / Huff n’ PuffCurrent Week 3 score + saved AI",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 20,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: papichooter / NeuralNetsCurrent Week 3 score + saved AI",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 21,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: Lebron Theme Team / T HalibootyCurrent Week 3 score + saved AI",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 22,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Kept: Your modeled roster valueAll 24 values, coverage and supplied rank",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 23,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Kept: Your form and completed-week recapEMA watch + best/rough points",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 24,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Kept: Your team wireNews and recent moves",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 25,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: League reference field10 teams, 228 player references, standings",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 26,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: Oct 5–11, 2026 · The next chapterdraft, unpublished · dated editorial",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 27,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: Sep 28–Oct 4, 2026 · The title everybody’s chasingdraft, unpublished · dated editoria",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 28,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add: Play and useful destinationsStocks, trade, routes and missing producers",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 29,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move earlier",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 30,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move later",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 31,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin first",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 32,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove item",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 33,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Locate franchise context",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 34,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Locate franchise context",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 35,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Time, model & evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 36,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move earlier",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 37,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move later",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 38,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin first",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 39,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove item",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 40,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Locate this matchup",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 41,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Open all 24 roster references",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 42,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move earlier",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 43,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move later",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 44,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin first",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 45,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove item",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 46,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Locate this matchup",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 47,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Open all 27 roster references",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 48,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move earlier",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 49,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move later",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 50,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin first",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 51,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove item",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 52,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Inspect all 24 roster values",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 53,
+      "tag": "INPUT",
+      "id": "value-filter",
+      "text": "Player, position or NBA team",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 54,
+      "tag": "SELECT",
+      "id": "value-sort",
+      "text": "",
+      "href": null,
+      "select": [
+        [
+          "value",
+          "Modeled value, high first"
+        ],
+        [
+          "name",
+          "Player name"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 55,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move earlier",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 56,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move later",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 57,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin first",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 58,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove item",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 59,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Completed Week 2 · best & rough",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 60,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Locate the team wire",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 61,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move earlier",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 62,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move later",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 63,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin first",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 64,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove item",
+      "href": null,
+      "visible": false
+    }
+  ],
+  "scrolls": []
+}

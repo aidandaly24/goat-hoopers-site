@@ -1,0 +1,549 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "default",
+        "label": "This week: score reader & saved slate"
+      },
+      {
+        "id": "team",
+        "label": "My club: values and complete roster"
+      },
+      {
+        "id": "scout",
+        "label": "Scoutbook: form, completed week & team wire"
+      },
+      {
+        "id": "league",
+        "label": "League index: searchable roster reader"
+      },
+      {
+        "id": "standings",
+        "label": "League index: standings"
+      },
+      {
+        "id": "edition",
+        "label": "Dated October editorial spread"
+      },
+      {
+        "id": "archive",
+        "label": "Archive: historical final"
+      },
+      {
+        "id": "tools",
+        "label": "Play & league tools"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to chapter",
+      "href": "#reader",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "BUTTON",
+      "id": "close-provenance",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Reaves Dropper / Ware the Hoes At?",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved evidence & provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Stephon Castle’s Back / The Fun Guys",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 6,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved evidence & provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 7,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Josh Diddy’s Roster / Huff n’ Puff",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved evidence & provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 9,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "papichooter / NeuralNets",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 10,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved evidence & provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Lebron Theme Team / T Halibooty",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 12,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved evidence & provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Data provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "All 24 roster values",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Valuation coverage & basis",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Data provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Data provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "BUTTON",
+      "id": "tab-directory",
+      "text": "Directory",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "BUTTON",
+      "id": "tab-standings",
+      "text": "Standings",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 20,
+      "tag": "BUTTON",
+      "id": "tab-faces",
+      "text": "Faces",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "INPUT",
+      "id": "directory-search",
+      "text": "Try Embiid, NeuralNets, PG…",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 22,
+      "tag": "SELECT",
+      "id": "directory-sort",
+      "text": "Points for Team name Roster size",
+      "href": null,
+      "select": [
+        [
+          "standing",
+          "Points for"
+        ],
+        [
+          "name",
+          "Team name"
+        ],
+        [
+          "size",
+          "Roster size"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 23,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "01 Reaves Dropper aidandaly20 · 1–0 W3 vs Ware the Hoes At? 24 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 24,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "02 Ware the Hoes At? Aedan23 · 1–0 W3 vs Reaves Dropper 27 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 25,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "03 Stephon Castle’s Back TommyDieselfuel · 1–0 W3 vs The Fun Guys 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 26,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "04 The Fun Guys philbiag · 1–0 W3 vs Stephon Castle’s Back 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 27,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "05 Josh Diddy’s Roster vannweinkauf · 1–0 W3 vs Huff n’ Puff 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 28,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "06 Huff n’ Puff GriffinHealy · 1–0 W3 vs Josh Diddy’s Roster 23 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 29,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "07 papichooter papichooter · 1–0 W3 vs NeuralNets 23 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 30,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "08 NeuralNets NeuralNets · 1–0 W3 vs papichooter 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 31,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "09 Lebron Theme Team lordlx · 1–0 W3 vs T Halibooty 21 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 32,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "10 T Halibooty TyreseHalibooty · 1–0 W3 vs Lebron Theme Team 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 33,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "2025 franchise record",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 34,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Data provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 35,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Selection & edition provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 36,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Why this pick & source",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 37,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Why this pick & source",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 38,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Why this pick & source",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 39,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Data provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 40,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Oct 5–11, 2026 · draft The next chapter",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 41,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Sep 28–Oct 4, 2026 · draft The title everybody’s chasing",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 42,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Editorial selection",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 43,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Sources, happenings & date bounds",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 44,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Data provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 45,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Data provenance",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 46,
+      "tag": "BUTTON",
+      "id": "previous",
+      "text": "← Previous",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 47,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "This week",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 48,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "My club",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 49,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Scoutbook",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 50,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "League index",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 51,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "The edition",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 52,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Archive",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 53,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Play & tools",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 54,
+      "tag": "SELECT",
+      "id": "chapter-select",
+      "text": "This weekMy clubScoutbookLeague indexThe editionArchivePlay & tools",
+      "href": null,
+      "select": [
+        [
+          "week",
+          "This week"
+        ],
+        [
+          "team",
+          "My club"
+        ],
+        [
+          "scout",
+          "Scoutbook"
+        ],
+        [
+          "league",
+          "League index"
+        ],
+        [
+          "edition",
+          "The edition"
+        ],
+        [
+          "archive",
+          "Archive"
+        ],
+        [
+          "tools",
+          "Play & tools"
+        ]
+      ],
+      "visible": false
+    },
+    {
+      "i": 55,
+      "tag": "BUTTON",
+      "id": "next",
+      "text": "Next →",
+      "href": null,
+      "visible": true
+    }
+  ],
+  "scrolls": [
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "concept-details",
+      "client": 538,
+      "scroll": 944
+    },
+    {
+      "tag": "SECTION",
+      "id": "chapter-week",
+      "class": "chapter",
+      "client": 751,
+      "scroll": 1527
+    }
+  ]
+}

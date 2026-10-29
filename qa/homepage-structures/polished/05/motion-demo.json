@@ -1,0 +1,11 @@
+{
+  "label": "A modeled total enters and returns, then a named value retains its place through a nested visit",
+  "steps": [
+    {"action":"click","selector":"[data-origin=\"wall-value\"]","waitMs":260},
+    {"action":"click","selector":"#zoom-back","waitMs":260},
+    {"action":"click","selector":"[data-origin=\"wall-value\"]","waitMs":260},
+    {"action":"click","selector":"[data-origin=\"value-player-1511\"]","waitMs":120},
+    {"action":"click","selector":"#zoom-back","waitMs":160},
+    {"action":"click","selector":"#zoom-back","waitMs":260}
+  ]
+}

@@ -1,0 +1,674 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "bench",
+        "label": "Two-package quote bench"
+      },
+      {
+        "id": "built-package",
+        "label": "Multi-player working packages"
+      },
+      {
+        "id": "quote-evidence",
+        "label": "Quote evidence in retained package"
+      },
+      {
+        "id": "unpriced",
+        "label": "Partial pricing and coverage"
+      },
+      {
+        "id": "current-week",
+        "label": "Saved matchup evidence retained beside packages"
+      },
+      {
+        "id": "roster-audit",
+        "label": "Own roster evidence beside packages"
+      },
+      {
+        "id": "league-records",
+        "label": "All-team records and rosters"
+      },
+      {
+        "id": "dated-notes",
+        "label": "Dated editorial with retained working selection"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to working packages",
+      "href": "#workbench",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Go to",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "INPUT",
+      "id": "player-search",
+      "text": "Search the selected source",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "SELECT",
+      "id": "source-team",
+      "text": "Current pairing All 228 players Reaves Dropper Ware the Hoes At? Stephon Castle’s Back The",
+      "href": null,
+      "select": [
+        [
+          "pair",
+          "Current pairing"
+        ],
+        [
+          "all",
+          "All 228 players"
+        ],
+        [
+          "1",
+          "Reaves Dropper"
+        ],
+        [
+          "2",
+          "Ware the Hoes At?"
+        ],
+        [
+          "3",
+          "Stephon Castle’s Back"
+        ],
+        [
+          "4",
+          "The Fun Guys"
+        ],
+        [
+          "5",
+          "Josh Diddy’s Roster"
+        ],
+        [
+          "6",
+          "Huff n’ Puff"
+        ],
+        [
+          "7",
+          "papichooter"
+        ],
+        [
+          "8",
+          "NeuralNets"
+        ],
+        [
+          "9",
+          "Lebron Theme Team"
+        ],
+        [
+          "10",
+          "T Halibooty"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "SELECT",
+      "id": "source-sort",
+      "text": "Quoted value Player A–Z Team A–Z",
+      "href": null,
+      "select": [
+        [
+          "price",
+          "Quoted value"
+        ],
+        [
+          "name",
+          "Player A–Z"
+        ],
+        [
+          "team",
+          "Team A–Z"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 6,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move A",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 7,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove B",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove A",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 9,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move B",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 10,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add A",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add B",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 12,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add A",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add B",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add A",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add B",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add A",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add B",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add A",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add B",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 20,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add A",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add B",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 22,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add A",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 23,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add B",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 24,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add A",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 25,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Add B",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 26,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Previous 10",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 27,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Next 10",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 28,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Reset filters",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 29,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved model responses",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 30,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 31,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 32,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 33,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 34,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 35,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 36,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "My roster / values and form",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 37,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 38,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 39,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "League people / records",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 40,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 41,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 42,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 43,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 44,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 45,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 46,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 47,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 48,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 49,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 50,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 51,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Dated editorial / archive",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 52,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 53,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 54,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 55,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 56,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Moves / play / data gaps",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 57,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 58,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Back",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 59,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Managers / current records",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 60,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move to B",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 61,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 62,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Quote evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 63,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Move to A",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 64,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 65,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Quote evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 66,
+      "tag": "A",
+      "id": "",
+      "text": "Add players",
+      "href": "#quote-shelf",
+      "visible": true
+    },
+    {
+      "i": 67,
+      "tag": "A",
+      "id": "",
+      "text": "Consult evidence",
+      "href": "#notes-title",
+      "visible": true
+    },
+    {
+      "i": 68,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Clear packages",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 69,
+      "tag": "A",
+      "id": "",
+      "text": "Edit tray",
+      "href": "#workbench",
+      "visible": false
+    }
+  ],
+  "scrolls": [
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "plan-sticky",
+      "client": 868,
+      "scroll": 1002
+    }
+  ]
+}

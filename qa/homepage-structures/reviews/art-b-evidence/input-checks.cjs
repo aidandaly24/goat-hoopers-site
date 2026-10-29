@@ -1,0 +1,22 @@
+const{chromium}=require('playwright'),fs=require('fs');const cases={
+'01':['#value-fold > summary','#value-fold > summary','Enter'],
+'02':['[data-zone="roster"]','#close-notes','click'],
+'03':['#next','#previous','Enter'],
+'04':['[data-next-game]','[data-next-game]','Enter'],
+'05':['[data-origin="wall-value"]',null,'Escape'],
+'06':['[data-scope="market"]','[data-scope="all"]','Enter'],
+'07':['[data-compare]',null,'Escape'],
+'08':['[data-side="right"]','[data-side="left"]','Enter'],
+'09':['#branch-form > summary','#branch-form > summary','Enter'],
+'10':['[data-add="2133"][data-to="a"]','[data-undo]','Enter'],
+'11':['#trigger-week','#trigger-week','Enter'],
+'12':['#roster-trigger-1',null,'Escape'],
+'13':['#spine-club','#back-spread','Enter'],
+'14':['[data-cross="league"][data-target="ai-0"]','[data-cross="team"][data-target="current-pair"]','Enter'],
+'15':['[data-item="match:0"]',null,'Escape'],
+'16':['#arrange','[data-action="pin"][data-id="club-2"]','Enter'],
+'17':['[data-toggle="team-1"][data-kind="roster"]',null,'Escape'],
+'18':['#show-transcript','#transcript > summary','Enter'],
+'19':['[data-team="1"]',null,'Escape'],
+'20':['.choice[data-node="players"]','#back-path','Enter']};
+(async()=>{const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});let records=[];for(let id of process.argv.slice(2)){for(let width of [1440,390])for(let motion of ['no-preference','reduce']){let c=await b.newContext({viewport:{width,height:width===1440?900:844},reducedMotion:motion}),p=await c.newPage();p.setDefaultTimeout(7000);let rec={id,width,motion};try{await p.goto(`http://localhost:4207/qa/homepage-structures/polished/${id}/`,{waitUntil:'networkidle'});let[a,r,key]=cases[id];if(id==='08'&&width===1440){a='a[href="#rosters"]';r='a[href="#comparison"]'}async function loc(s){let l=p.locator(s);for(let i=0;i<await l.count();i++)if(await l.nth(i).isVisible())return l.nth(i);return l.first()};await(await loc(a)).click();rec.pointer=await p.evaluate(()=>({state:document.body.dataset.studyState,url:location.href,open:[...document.querySelectorAll('details[open]')].map(x=>x.id),animations:document.getAnimations().filter(a=>a.playState==='running').map(a=>({duration:a.effect?.getTiming().duration,prop:a.effect?.getKeyframes().map(x=>Object.keys(x))})),text:document.body.innerText.slice(0,600)}));await p.emulateMedia({reducedMotion:'reduce'});rec.liveReduced=await p.evaluate(()=>({animations:document.getAnimations().filter(a=>a.playState==='running').length}));if(r){let l=await loc(r);if(key==='click')await l.click();else{await l.focus();await p.keyboard.press(key)}}else await p.keyboard.press(key);await p.waitForTimeout(120);rec.after=await p.evaluate(()=>{let a=document.activeElement,r=a.getBoundingClientRect(),s=getComputedStyle(a);return{state:document.body.dataset.studyState,url:location.href,open:[...document.querySelectorAll('details[open]')].map(x=>x.id),focus:{tag:a.tagName,id:a.id,text:a.innerText.slice(0,100),x:r.x,y:r.y,w:r.width,h:r.height,outline:s.outline,color:s.outlineColor,visible:r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth},animations:document.getAnimations().filter(x=>x.playState==='running').length}});rec.result='completed';}catch(e){rec.result='incomplete';rec.error=String(e).slice(0,300);console.log('ERROR',id,width,motion,rec.error)}records.push(rec);fs.writeFileSync('qa/homepage-structures/reviews/art-b-evidence/input-checks.json',JSON.stringify(records,null,2));await c.close()}console.log('input checked',id)}await b.close()})().catch(e=>{console.error(e);process.exit(1)});

@@ -1,0 +1,164 @@
+{
+  "states": [
+    {
+      "id": "default",
+      "label": "Chronological league log"
+    },
+    {
+      "id": "league",
+      "label": "League-only dated log"
+    },
+    {
+      "id": "personal",
+      "label": "My team through time"
+    },
+    {
+      "id": "week2",
+      "label": "Completed Week 2 evidence"
+    },
+    {
+      "id": "market",
+      "label": "Modeled market observations"
+    },
+    {
+      "id": "ai",
+      "label": "Saved AI at its source date"
+    },
+    {
+      "id": "archive",
+      "label": "Dated September / October issues"
+    },
+    {
+      "id": "directory",
+      "label": "Searchable dated team and player register"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Everything",
+      "data": {
+        "scope": "all"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "League",
+      "data": {
+        "scope": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "personal-filter",
+      "cls": "",
+      "text": "My team",
+      "data": {
+        "scope": "personal"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Market",
+      "data": {
+        "scope": "market"
+      }
+    },
+    {
+      "tag": "SELECT",
+      "id": "source-period",
+      "cls": "",
+      "text": "All supplied dates\nNov 12 · checked snapshot\nNov 10 · saved AI\nNov 2–9 · completed Week 2\nSep /",
+      "data": {},
+      "options": [
+        [
+          "all",
+          "All supplied dates"
+        ],
+        [
+          "nov12",
+          "Nov 12 · checked snapshot"
+        ],
+        [
+          "nov10",
+          "Nov 10 · saved AI"
+        ],
+        [
+          "week2",
+          "Nov 2–9 · completed Week 2"
+        ],
+        [
+          "october",
+          "Sep / Oct · dated drafts"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "index-button",
+      "cls": "index-button",
+      "text": "Team / player index",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "reset-log",
+      "cls": "",
+      "text": "Reset log",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "pairing",
+      "cls": "",
+      "text": "Reaves Dropper / Ware the Hoes At?\nStephon Castle’s Back / The Fun Guys\nJosh Diddy’s Roster / H",
+      "data": {},
+      "options": [
+        [
+          "0",
+          "Reaves Dropper / Ware the Hoes At?"
+        ],
+        [
+          "1",
+          "Stephon Castle’s Back / The Fun Guys"
+        ],
+        [
+          "2",
+          "Josh Diddy’s Roster / Huff n’ Puff"
+        ],
+        [
+          "3",
+          "papichooter / NeuralNets"
+        ],
+        [
+          "4",
+          "Lebron Theme Team / T Halibooty"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Read the saved slate",
+      "data": {
+        "jump": "ai"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Search teams and players",
+      "data": {
+        "view": "directory"
+      }
+    }
+  ]
+}

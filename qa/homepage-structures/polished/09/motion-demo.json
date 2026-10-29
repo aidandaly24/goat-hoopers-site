@@ -1,0 +1,17 @@
+{
+  "title": "Open evidence at its origin and retain the other branches",
+  "steps": [
+    {"action":"click","selector":"#branch-archive-41 > summary"},
+    {"action":"wait","waitMs":240},
+    {"action":"click","selector":"#branch-archive-40 > summary"},
+    {"action":"wait","waitMs":240},
+    {"action":"press","selector":"#branch-archive-41 > summary","key":"Enter"},
+    {"action":"press","selector":"#branch-archive-41 > summary","key":"Enter"},
+    {"action":"click","selector":".branch-index > summary"},
+    {"action":"click","selector":".branch-index [data-jump='league']"},
+    {"action":"fill","selector":"#league-search","value":"Embiid"},
+    {"action":"wait","waitMs":240},
+    {"action":"click","selector":".branch-index > summary"},
+    {"action":"click","selector":".branch-index [data-jump='current']"}
+  ]
+}

@@ -1,0 +1,292 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "default",
+        "label": "Week planner overview"
+      },
+      {
+        "id": "matchup",
+        "label": "Current matchup attached agenda"
+      },
+      {
+        "id": "edition",
+        "label": "Dated October editorial agenda"
+      },
+      {
+        "id": "archive",
+        "label": "Historical final archive agenda"
+      },
+      {
+        "id": "completed",
+        "label": "Completed Week 2 source agenda"
+      },
+      {
+        "id": "team",
+        "label": "Member team notebook"
+      },
+      {
+        "id": "league",
+        "label": "Searchable league book"
+      },
+      {
+        "id": "tools",
+        "label": "Tools and unavailable sources"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to planner",
+      "href": "#main",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "All destinations",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Week planner",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "League book",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "My team notebook",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 6,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Tools & references",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 7,
+      "tag": "SELECT",
+      "id": "period",
+      "text": "Sep 28–Oct 4, 2026 · editorial Oct 5–11, 2026 · editorial Nov 2–9, 2026 · completed Week 2",
+      "href": null,
+      "select": [
+        [
+          "2026-W40",
+          "Sep 28–Oct 4, 2026 · editorial"
+        ],
+        [
+          "2026-W41",
+          "Oct 5–11, 2026 · editorial"
+        ],
+        [
+          "completed",
+          "Nov 2–9, 2026 · completed Week 2"
+        ],
+        [
+          "current",
+          "Week 3 · as of Nov 12"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Agenda",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 9,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Calendar",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 10,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "draft · all-day The title everybody’s chasing",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "draft · all-day The next chapter",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 12,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Completed Week 2 Best & rough week 5 verified participants",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Nov 12 source check Team wire & league moves News and recorded moves",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Your pairing · Incomplete Reaves Dropper / Ware the Hoes At? 0.0 / Pending",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Incomplete Stephon Castle’s Back / The Fun Guys 105.5 / Pending",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Incomplete Josh Diddy’s Roster / Huff n’ Puff 105.5 / Pending",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Incomplete papichooter / NeuralNets 105.5 / Pending",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Incomplete Lebron Theme Team / T Halibooty 105.5 / Pending",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Your matchupReaves Dropper / Ware the Hoes At?0.0 / Pending · incomplete · Returned choice",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 20,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "MatchupStephon Castle’s Back / The Fun Guys105.5 / Pending · incomplete · Returned choice:",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 21,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "MatchupJosh Diddy’s Roster / Huff n’ Puff105.5 / Pending · incomplete · Returned choice: H",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 22,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Matchuppapichooter / NeuralNets105.5 / Pending · incomplete · Returned choice: NeuralNets ",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 23,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "MatchupLebron Theme Team / T Halibooty105.5 / Pending · incomplete · Returned choice: T Ha",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 24,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Source checkTeam wire & league movesNov 12, 2026, 12:00 PM UTC",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 25,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open my team notebook",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 26,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Find a team or player",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 27,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Tools, History & Power status",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 28,
+      "tag": "A",
+      "id": "",
+      "text": "Concept provenance",
+      "href": "#concept",
+      "visible": true
+    }
+  ],
+  "scrolls": []
+}

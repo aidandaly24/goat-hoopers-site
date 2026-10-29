@@ -1,0 +1,369 @@
+{
+  "states": [
+    {
+      "id": "default",
+      "label": "Current matchup comparison"
+    },
+    {
+      "id": "rosters",
+      "label": "Both linked roster contexts open"
+    },
+    {
+      "id": "triad",
+      "label": "Third team pinned alongside"
+    },
+    {
+      "id": "values",
+      "label": "Member values alongside opponent roster"
+    },
+    {
+      "id": "scouting",
+      "label": "Member scouting alongside opponent roster"
+    },
+    {
+      "id": "index",
+      "label": "Search all ten ownership contexts"
+    },
+    {
+      "id": "picks",
+      "label": "Five actual decision connections"
+    },
+    {
+      "id": "editorial",
+      "label": "Dated weekly ownership stories"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Matchup",
+      "data": {
+        "view": "orbit"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "League directory",
+      "data": {
+        "view": "index"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Saved AI picks",
+      "data": {
+        "view": "picks"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Weekly archive",
+      "data": {
+        "view": "editorial"
+      }
+    },
+    {
+      "tag": "SELECT",
+      "id": "view-select",
+      "cls": "",
+      "text": "MatchupLeague directorySaved AI picksWeekly archive",
+      "data": {},
+      "options": [
+        [
+          "orbit",
+          "Matchup"
+        ],
+        [
+          "index",
+          "League directory"
+        ],
+        [
+          "picks",
+          "Saved AI picks"
+        ],
+        [
+          "editorial",
+          "Weekly archive"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "A / Home",
+      "data": {
+        "jump": "entity-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Connection",
+      "data": {
+        "jump": "bridge"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "B / Away",
+      "data": {
+        "jump": "entity-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "My values",
+      "data": {
+        "own": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Reset comparison ↶",
+      "data": {
+        "reset": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "satellite-3",
+      "cls": "",
+      "text": "Stephon Castle’s Back",
+      "data": {
+        "pin": "3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "satellite-4",
+      "cls": "",
+      "text": "The Fun Guys",
+      "data": {
+        "pin": "4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "satellite-5",
+      "cls": "",
+      "text": "Josh Diddy’s Roster",
+      "data": {
+        "pin": "5"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "satellite-6",
+      "cls": "",
+      "text": "Huff n’ Puff",
+      "data": {
+        "pin": "6"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Context",
+      "data": {
+        "field": "summary",
+        "owner": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "roster-trigger-1",
+      "cls": "",
+      "text": "Roster 24",
+      "data": {
+        "field": "roster",
+        "owner": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Values",
+      "data": {
+        "field": "value",
+        "owner": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Scouting",
+      "data": {
+        "field": "scout",
+        "owner": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Team wire",
+      "data": {
+        "field": "wire",
+        "owner": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Open all 24 players →",
+      "data": {
+        "field": "roster",
+        "owner": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "phone-only add-team",
+      "text": "Add a team to compare →",
+      "data": {
+        "jump": "other-teams-top"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Context",
+      "data": {
+        "field": "summary",
+        "owner": "2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "roster-trigger-2",
+      "cls": "",
+      "text": "Roster 27",
+      "data": {
+        "field": "roster",
+        "owner": "2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Open all 27 players →",
+      "data": {
+        "field": "roster",
+        "owner": "2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "satellite-7",
+      "cls": "",
+      "text": "papichooter",
+      "data": {
+        "pin": "7"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "satellite-8",
+      "cls": "",
+      "text": "NeuralNets",
+      "data": {
+        "pin": "8"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "satellite-9",
+      "cls": "",
+      "text": "Lebron Theme Team",
+      "data": {
+        "pin": "9"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "satellite-10",
+      "cls": "",
+      "text": "T Halibooty",
+      "data": {
+        "pin": "10"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Reaves Dropper × Ware the Hoes At?",
+      "data": {
+        "pair": "0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Stephon Castle’s Back × The Fun Guys",
+      "data": {
+        "pair": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Josh Diddy’s Roster × Huff n’ Puff",
+      "data": {
+        "pair": "2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "papichooter × NeuralNets",
+      "data": {
+        "pair": "3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Lebron Theme Team × T Halibooty",
+      "data": {
+        "pair": "4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Reset comparison ↶",
+      "data": {
+        "reset": ""
+      }
+    }
+  ]
+}

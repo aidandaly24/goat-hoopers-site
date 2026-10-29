@@ -1,0 +1,2638 @@
+{
+  "controls": [
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Skip to comparisons"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Explore"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "player-mode",
+      "text": "Compare players"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "team-mode",
+      "text": "Follow a team"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Change pinned names"
+    },
+    {
+      "tag": "INPUT",
+      "id": "identity-search",
+      "text": "Player or team"
+    },
+    {
+      "tag": "SELECT",
+      "id": "identity-select",
+      "text": "",
+      "values": [
+        [
+          "1585",
+          "Aaron Gordon · Josh Diddy’s Roster · PF DEN"
+        ],
+        [
+          "2144",
+          "Aaron Nesmith · T Halibooty · SF IND"
+        ],
+        [
+          "4758",
+          "Ace Bailey · Ware the Hoes At? · SF UTA"
+        ],
+        [
+          "4888",
+          "Aday Mara · papichooter · C OKC"
+        ],
+        [
+          "4866",
+          "AJ Dybantsa · NeuralNets · PF WAS"
+        ],
+        [
+          "2417",
+          "AJ Green · Huff n’ Puff · SG MIL"
+        ],
+        [
+          "2772",
+          "Ajay Mitchell · Stephon Castle’s Back · PG OKC"
+        ],
+        [
+          "2733",
+          "Alex Sarr · Lebron Theme Team · C WAS"
+        ],
+        [
+          "4880",
+          "Allen Graves · The Fun Guys · PF TOR"
+        ],
+        [
+          "2308",
+          "Alperen Şengün · Reaves Dropper · C HOU"
+        ],
+        [
+          "2574",
+          "Amen Thompson · Huff n’ Puff · SG HOU"
+        ],
+        [
+          "2461",
+          "Andrew Nembhard · Stephon Castle’s Back · PG IND"
+        ],
+        [
+          "1525",
+          "Andrew Wiggins · Lebron Theme Team · SF MIA"
+        ],
+        [
+          "2590",
+          "Anthony Black · Ware the Hoes At? · SG ORL"
+        ],
+        [
+          "1272",
+          "Anthony Davis · T Halibooty · C WAS"
+        ],
+        [
+          "2133",
+          "Anthony Edwards · Reaves Dropper · SG MIN"
+        ],
+        [
+          "2566",
+          "Ausar Thompson · papichooter · SG DET"
+        ],
+        [
+          "2316",
+          "Austin Reaves · Reaves Dropper · SG LAL"
+        ],
+        [
+          "2255",
+          "Ayo Dosunmu · papichooter · SG MIN"
+        ],
+        [
+          "4913",
+          "Baba Miller · The Fun Guys · SF LAC"
+        ],
+        [
+          "1846",
+          "Bam Adebayo · T Halibooty · C MIA"
+        ],
+        [
+          "4889",
+          "Bennett Stirtz · Ware the Hoes At? · PG OKC"
+        ],
+        [
+          "2565",
+          "Bilal Coulibaly · T Halibooty · SF WAS"
+        ],
+        [
+          "2564",
+          "Brandin Podziemski · Stephon Castle’s Back · PG GSW"
+        ],
+        [
+          "1698",
+          "Brandon Ingram · Josh Diddy’s Roster · SF LAC"
+        ],
+        [
+          "2568",
+          "Brandon Miller · Reaves Dropper · SF CHA"
+        ],
+        [
+          "4883",
+          "Brayden Burries · Josh Diddy’s Roster · PG MIL"
+        ],
+        [
+          "4904",
+          "Bruce Thornton · Reaves Dropper · PG HOU"
+        ],
+        [
+          "2267",
+          "Cade Cunningham · Huff n’ Puff · PG DET"
+        ],
+        [
+          "4804",
+          "Caleb Love · The Fun Guys · PG PHI"
+        ],
+        [
+          "4862",
+          "Caleb Wilson · T Halibooty · PF CHI"
+        ],
+        [
+          "2752",
+          "Cam Spencer · Huff n’ Puff · SG MEM"
+        ],
+        [
+          "4873",
+          "Cameron Boozer · Lebron Theme Team · C MEM"
+        ],
+        [
+          "4874",
+          "Cameron Carr · T Halibooty · PG LAL"
+        ],
+        [
+          "2091",
+          "Cameron Johnson · Lebron Theme Team · SF DEN"
+        ],
+        [
+          "4753",
+          "Carter Bryant · Huff n’ Puff · PF SAS"
+        ],
+        [
+          "4748",
+          "Cedric Coward · papichooter · SG MEM"
+        ],
+        [
+          "2455",
+          "Chet Holmgren · papichooter · C OKC"
+        ],
+        [
+          "4877",
+          "Chris Cenac · T Halibooty · C BOS"
+        ],
+        [
+          "4868",
+          "Christian Anderson · Lebron Theme Team · PG CHA"
+        ],
+        [
+          "2457",
+          "Christian Braun · Ware the Hoes At? · SG DEN"
+        ],
+        [
+          "1450",
+          "CJ McCollum · Lebron Theme Team · PG ATL"
+        ],
+        [
+          "1998",
+          "Coby White · The Fun Guys · PG CHA"
+        ],
+        [
+          "2725",
+          "Cody Williams · Ware the Hoes At? · SG MIN"
+        ],
+        [
+          "2422",
+          "Collin Gillespie · T Halibooty · PG PHX"
+        ],
+        [
+          "4755",
+          "Collin Murray-Boyles · Lebron Theme Team · C TOR"
+        ],
+        [
+          "1892",
+          "Collin Sexton · NeuralNets · SG LAL"
+        ],
+        [
+          "4760",
+          "Cooper Flagg · Lebron Theme Team · SG DAL"
+        ],
+        [
+          "4863",
+          "Dailyn Swain · NeuralNets · PF CHI"
+        ],
+        [
+          "1997",
+          "Daniel Gafford · NeuralNets · C DAL"
+        ],
+        [
+          "2776",
+          "Daniss Jenkins · Reaves Dropper · PG DET"
+        ],
+        [
+          "4743",
+          "Danny Wolf · Reaves Dropper · PF BKN"
+        ],
+        [
+          "4891",
+          "Darius Acuff · Stephon Castle’s Back · PG SAC"
+        ],
+        [
+          "2007",
+          "Darius Garland · papichooter · PG LAC"
+        ],
+        [
+          "4882",
+          "Darryn Peterson · NeuralNets · PG UTA"
+        ],
+        [
+          "2301",
+          "Davion Mitchell · Josh Diddy’s Roster · PG MIA"
+        ],
+        [
+          "2275",
+          "Day'Ron Sharpe · Josh Diddy’s Roster · C BKN"
+        ],
+        [
+          "1872",
+          "De'Aaron Fox · Huff n’ Puff · PG SAS"
+        ],
+        [
+          "1974",
+          "Deandre Ayton · T Halibooty · C WAS"
+        ],
+        [
+          "1713",
+          "Dejounte Murray · Josh Diddy’s Roster · PG NOP"
+        ],
+        [
+          "1321",
+          "DeMar DeRozan · papichooter · SF DEN"
+        ],
+        [
+          "2181",
+          "Deni Avdija · papichooter · PF POR"
+        ],
+        [
+          "2584",
+          "Dereck Lively · Lebron Theme Team · C DAL"
+        ],
+        [
+          "4751",
+          "Derik Queen · Reaves Dropper · C NOP"
+        ],
+        [
+          "1830",
+          "Derrick White · Reaves Dropper · SG BOS"
+        ],
+        [
+          "2143",
+          "Desmond Bane · The Fun Guys · SG ORL"
+        ],
+        [
+          "1648",
+          "Devin Booker · T Halibooty · SG PHX"
+        ],
+        [
+          "2146",
+          "Devin Vassell · Reaves Dropper · SF SAS"
+        ],
+        [
+          "1792",
+          "Dillon Brooks · Stephon Castle’s Back · SF PHX"
+        ],
+        [
+          "1739",
+          "Domantas Sabonis · Ware the Hoes At? · C SAC"
+        ],
+        [
+          "2728",
+          "Donovan Clingan · Reaves Dropper · C POR"
+        ],
+        [
+          "1845",
+          "Donovan Mitchell · Huff n’ Puff · SG CLE"
+        ],
+        [
+          "1964",
+          "Donte DiVincenzo · Lebron Theme Team · SG MIN"
+        ],
+        [
+          "1082",
+          "Draymond Green · Josh Diddy’s Roster · PF GSW"
+        ],
+        [
+          "4754",
+          "Dylan Harper · Lebron Theme Team · SG SAS"
+        ],
+        [
+          "2449",
+          "Dyson Daniels · NeuralNets · SG ATL"
+        ],
+        [
+          "4867",
+          "Ebuka Okorie · Huff n’ Puff · PG DET"
+        ],
+        [
+          "4744",
+          "Egor Dëmin · Josh Diddy’s Roster · SG BKN"
+        ],
+        [
+          "2259",
+          "Evan Mobley · Ware the Hoes At? · C CLE"
+        ],
+        [
+          "2304",
+          "Franz Wagner · Stephon Castle’s Back · SF ORL"
+        ],
+        [
+          "1717",
+          "Fred VanVleet · Josh Diddy’s Roster · PG HOU"
+        ],
+        [
+          "1380",
+          "Giannis Antetokounmpo · NeuralNets · PF MIA"
+        ],
+        [
+          "1959",
+          "Grayson Allen · Reaves Dropper · SF CHA"
+        ],
+        [
+          "4869",
+          "Hannes Steinbach · Huff n’ Puff · C CHA"
+        ],
+        [
+          "4905",
+          "Henri Veesaar · Huff n’ Puff · C ATL"
+        ],
+        [
+          "2286",
+          "Herbert Jones · Huff n’ Puff · PF NOP"
+        ],
+        [
+          "2157",
+          "Immanuel Quickley · Reaves Dropper · PG TOR"
+        ],
+        [
+          "2724",
+          "Isaiah Collier · Ware the Hoes At? · PG UTA"
+        ],
+        [
+          "1934",
+          "Isaiah Hartenstein · Lebron Theme Team · C OKC"
+        ],
+        [
+          "2159",
+          "Isaiah Stewart · Stephon Castle’s Back · C MEM"
+        ],
+        [
+          "1697",
+          "Ivica Zubac · NeuralNets · C IND"
+        ],
+        [
+          "2040",
+          "Ja Morant · Lebron Theme Team · PG POR"
+        ],
+        [
+          "2445",
+          "Jabari Smith · Lebron Theme Team · PF HOU"
+        ],
+        [
+          "2135",
+          "Jaden McDaniels · NeuralNets · SF MIN"
+        ],
+        [
+          "2583",
+          "Jaime Jaquez · T Halibooty · PF MIL"
+        ],
+        [
+          "1718",
+          "Jakob Poeltl · papichooter · C TOR"
+        ],
+        [
+          "1967",
+          "Jalen Brunson · The Fun Guys · PG NYK"
+        ],
+        [
+          "2438",
+          "Jalen Duren · papichooter · C DET"
+        ],
+        [
+          "2309",
+          "Jalen Green · Josh Diddy’s Roster · SG PHX"
+        ],
+        [
+          "2284",
+          "Jalen Johnson · Josh Diddy’s Roster · PF ATL"
+        ],
+        [
+          "2156",
+          "Jalen Smith · Ware the Hoes At? · C CHI"
+        ],
+        [
+          "2305",
+          "Jalen Suggs · T Halibooty · PG ORL"
+        ],
+        [
+          "2453",
+          "Jalen Williams · The Fun Guys · PF OKC"
+        ],
+        [
+          "1747",
+          "Jamal Murray · T Halibooty · PG DEN"
+        ],
+        [
+          "1240",
+          "James Harden · Josh Diddy’s Roster · PG CLE"
+        ],
+        [
+          "2563",
+          "Jarace Walker · Ware the Hoes At? · PF IND"
+        ],
+        [
+          "2713",
+          "Jared McCain · papichooter · SG OKC"
+        ],
+        [
+          "1924",
+          "Jaren Jackson · Huff n’ Puff · C UTA"
+        ],
+        [
+          "1787",
+          "Jarrett Allen · Huff n’ Puff · C CLE"
+        ],
+        [
+          "4765",
+          "Jase Richardson · Huff n’ Puff · PG ORL"
+        ],
+        [
+          "1711",
+          "Jaylen Brown · T Halibooty · SF PHI"
+        ],
+        [
+          "2753",
+          "Jaylen Wells · Ware the Hoes At? · SF MEM"
+        ],
+        [
+          "1822",
+          "Jayson Tatum · Josh Diddy’s Roster · SF BOS"
+        ],
+        [
+          "4750",
+          "Jeremiah Fears · Ware the Hoes At? · PG NOP"
+        ],
+        [
+          "1000",
+          "Jimmy Butler · Huff n’ Puff · SF GSW"
+        ],
+        [
+          "1809",
+          "John Collins · Stephon Castle’s Back · PF DET"
+        ],
+        [
+          "2306",
+          "Jonathan Kuminga · papichooter · PF MIN"
+        ],
+        [
+          "2313",
+          "Josh Giddey · Josh Diddy’s Roster · PG CHI"
+        ],
+        [
+          "1803",
+          "Josh Hart · Lebron Theme Team · SG NYK"
+        ],
+        [
+          "4870",
+          "Joshua Jefferson · Huff n’ Puff · PF BKN"
+        ],
+        [
+          "1265",
+          "Jrue Holiday · Josh Diddy’s Roster · PG POR"
+        ],
+        [
+          "1535",
+          "Julius Randle · papichooter · PF BKN"
+        ],
+        [
+          "1583",
+          "Jusuf Nurkić · T Halibooty · C UTA"
+        ],
+        [
+          "4872",
+          "Karim Lopez · Josh Diddy’s Roster · PF MEM"
+        ],
+        [
+          "1613",
+          "Karl-Anthony Towns · Josh Diddy’s Roster · C NYK"
+        ],
+        [
+          "4759",
+          "Kasparas Jakučionis · Ware the Hoes At? · PG MIL"
+        ],
+        [
+          "1308",
+          "Kawhi Leonard · The Fun Guys · SF TOR"
+        ],
+        [
+          "4881",
+          "Keaton Wagler · NeuralNets · PG LAC"
+        ],
+        [
+          "2456",
+          "Keegan Murray · The Fun Guys · PF SAC"
+        ],
+        [
+          "2726",
+          "Kel'el Ware · Ware the Hoes At? · C MIL"
+        ],
+        [
+          "1604",
+          "Kelly Oubre · Lebron Theme Team · PF IND"
+        ],
+        [
+          "1433",
+          "Kevin Durant · NeuralNets · SF HOU"
+        ],
+        [
+          "2009",
+          "Kevin Porter · papichooter · PG MIL"
+        ],
+        [
+          "2580",
+          "Keyonte George · The Fun Guys · PG UTA"
+        ],
+        [
+          "4761",
+          "Khaman Maluach · The Fun Guys · C PHX"
+        ],
+        [
+          "4876",
+          "Kingston Flemings · Stephon Castle’s Back · PG ATL"
+        ],
+        [
+          "4887",
+          "Koa Peat · Josh Diddy’s Roster · PF PHX"
+        ],
+        [
+          "4740",
+          "Kon Knueppel · Ware the Hoes At? · SG CHA"
+        ],
+        [
+          "1590",
+          "Kristaps Porziņģis · NeuralNets · C GSW"
+        ],
+        [
+          "2766",
+          "Kyle Filipowski · Stephon Castle’s Back · C UTA"
+        ],
+        [
+          "1799",
+          "Kyle Kuzma · Stephon Castle’s Back · PF MIL"
+        ],
+        [
+          "1054",
+          "Kyrie Irving · Ware the Hoes At? · PG DAL"
+        ],
+        [
+          "2714",
+          "Kyshawn George · T Halibooty · SF WAS"
+        ],
+        [
+          "4865",
+          "Labaron Philon · Reaves Dropper · PG PHI"
+        ],
+        [
+          "2179",
+          "LaMelo Ball · NeuralNets · PG MIN"
+        ],
+        [
+          "1752",
+          "Lauri Markkanen · NeuralNets · PF UTA"
+        ],
+        [
+          "1362",
+          "LeBron James · Lebron Theme Team · PF PHI"
+        ],
+        [
+          "4741",
+          "Liam McNeeley · NeuralNets · SF CHA"
+        ],
+        [
+          "1970",
+          "Luka Dončić · papichooter · PG LAL"
+        ],
+        [
+          "2440",
+          "Mark Williams · Ware the Hoes At? · C PHX"
+        ],
+        [
+          "2835",
+          "Matas Buzelis · NeuralNets · PF CHI"
+        ],
+        [
+          "2468",
+          "Max Christie · Reaves Dropper · SG DAL"
+        ],
+        [
+          "4793",
+          "Maxime Raynaud · Josh Diddy’s Roster · C SAC"
+        ],
+        [
+          "4895",
+          "Meleek Thomas · Lebron Theme Team · SG CLE"
+        ],
+        [
+          "1988",
+          "Michael Porter · The Fun Guys · SF BKN"
+        ],
+        [
+          "1975",
+          "Mikal Bridges · T Halibooty · SF NYK"
+        ],
+        [
+          "4871",
+          "Mikel Brown · Ware the Hoes At? · PG BKN"
+        ],
+        [
+          "1913",
+          "Miles Bridges · The Fun Guys · PF PHX"
+        ],
+        [
+          "1887",
+          "Mitchell Robinson · Huff n’ Puff · C BOS"
+        ],
+        [
+          "4767",
+          "Mohamed Diawara · Huff n’ Puff · SF NYK"
+        ],
+        [
+          "4885",
+          "Morez Johnson · papichooter · C DAL"
+        ],
+        [
+          "2474",
+          "Moussa Diabaté · The Fun Guys · C CHA"
+        ],
+        [
+          "1595",
+          "Myles Turner · Reaves Dropper · C MIL"
+        ],
+        [
+          "4884",
+          "Nate Ament · Ware the Hoes At? · PF MIL"
+        ],
+        [
+          "2036",
+          "Naz Reid · Stephon Castle’s Back · C CHA"
+        ],
+        [
+          "2302",
+          "Neemias Queta · T Halibooty · C BOS"
+        ],
+        [
+          "2032",
+          "Nic Claxton · The Fun Guys · C CHI"
+        ],
+        [
+          "2055",
+          "Nickeil Alexander-Walker · The Fun Guys · SG ATL"
+        ],
+        [
+          "1658",
+          "Nikola Jokić · Josh Diddy’s Roster · C DEN"
+        ],
+        [
+          "4764",
+          "Nique Clifford · T Halibooty · SG SAC"
+        ],
+        [
+          "4742",
+          "Nolan Traore · Reaves Dropper · PG BKN"
+        ],
+        [
+          "1637",
+          "Norman Powell · NeuralNets · SF CHI"
+        ],
+        [
+          "1831",
+          "OG Anunoby · Huff n’ Puff · PF NYK"
+        ],
+        [
+          "2136",
+          "Onyeka Okongwu · NeuralNets · C ATL"
+        ],
+        [
+          "2029",
+          "P.J. Washington · Ware the Hoes At? · PF DAL"
+        ],
+        [
+          "2458",
+          "Paolo Banchero · Ware the Hoes At? · PF ORL"
+        ],
+        [
+          "1716",
+          "Pascal Siakam · Huff n’ Puff · PF IND"
+        ],
+        [
+          "1074",
+          "Paul George · papichooter · SF BOS"
+        ],
+        [
+          "2142",
+          "Payton Pritchard · Reaves Dropper · PG BOS"
+        ],
+        [
+          "2454",
+          "Peyton Watson · Reaves Dropper · SF CLE"
+        ],
+        [
+          "2152",
+          "Precious Achiuwa · The Fun Guys · PF SAC"
+        ],
+        [
+          "2258",
+          "Quentin Grimes · papichooter · PG LAL"
+        ],
+        [
+          "4791",
+          "Rasheer Fleming · NeuralNets · PF PHX"
+        ],
+        [
+          "2719",
+          "Reed Sheppard · T Halibooty · PG HOU"
+        ],
+        [
+          "2001",
+          "RJ Barrett · Stephon Castle’s Back · SF TOR"
+        ],
+        [
+          "2836",
+          "Ronald Holland · Huff n’ Puff · PF DET"
+        ],
+        [
+          "1350",
+          "Rudy Gobert · NeuralNets · C MIN"
+        ],
+        [
+          "4915",
+          "Ryan Conwell · papichooter · SG MIA"
+        ],
+        [
+          "4777",
+          "Ryan Kalkbrenner · Stephon Castle’s Back · C CHA"
+        ],
+        [
+          "4808",
+          "Ryan Nembhard · NeuralNets · PG DEN"
+        ],
+        [
+          "2463",
+          "Ryan Rollins · Lebron Theme Team · PG MIL"
+        ],
+        [
+          "2131",
+          "Saddiq Bey · papichooter · SF NOP"
+        ],
+        [
+          "2329",
+          "Sam Hauser · Huff n’ Puff · PF BOS"
+        ],
+        [
+          "2296",
+          "Sandro Mamukelashvili · Huff n’ Puff · C LAL"
+        ],
+        [
+          "2281",
+          "Santi Aldama · Reaves Dropper · PF DAL"
+        ],
+        [
+          "2620",
+          "Scoot Henderson · papichooter · PG POR"
+        ],
+        [
+          "2289",
+          "Scottie Barnes · Stephon Castle’s Back · PF TOR"
+        ],
+        [
+          "2476",
+          "Shaedon Sharpe · Ware the Hoes At? · SG POR"
+        ],
+        [
+          "1957",
+          "Shai Gilgeous-Alexander · Stephon Castle’s Back · PG OKC"
+        ],
+        [
+          "4778",
+          "Sion James · papichooter · SF CHA"
+        ],
+        [
+          "1085",
+          "Stephen Curry · Josh Diddy’s Roster · PG GSW"
+        ],
+        [
+          "2722",
+          "Stephon Castle · Stephon Castle’s Back · SG SAS"
+        ],
+        [
+          "2447",
+          "Tari Eason · Lebron Theme Team · SG HOU"
+        ],
+        [
+          "1487",
+          "Tobias Harris · Reaves Dropper · PF SAS"
+        ],
+        [
+          "2613",
+          "Toumani Camara · Stephon Castle’s Back · SF POR"
+        ],
+        [
+          "1945",
+          "Trae Young · Lebron Theme Team · PG WAS"
+        ],
+        [
+          "4738",
+          "Tre Johnson · T Halibooty · SG WAS"
+        ],
+        [
+          "2145",
+          "Tre Jones · The Fun Guys · SG CHI"
+        ],
+        [
+          "2285",
+          "Trey Murphy · Ware the Hoes At? · SG NOP"
+        ],
+        [
+          "2711",
+          "Tristan da Silva · Ware the Hoes At? · SF ORL"
+        ],
+        [
+          "2090",
+          "Ty Jerome · The Fun Guys · PG MEM"
+        ],
+        [
+          "2086",
+          "Tyler Herro · NeuralNets · SG MIL"
+        ],
+        [
+          "2161",
+          "Tyrese Haliburton · papichooter · PG IND"
+        ],
+        [
+          "2126",
+          "Tyrese Maxey · The Fun Guys · PG PHI"
+        ],
+        [
+          "2577",
+          "Victor Wembanyama · The Fun Guys · C SAS"
+        ],
+        [
+          "4737",
+          "VJ Edgecombe · Ware the Hoes At? · SG PHI"
+        ],
+        [
+          "2441",
+          "Walker Kessler · T Halibooty · C LAL"
+        ],
+        [
+          "4757",
+          "Walter Clayton · Stephon Castle’s Back · PG MEM"
+        ],
+        [
+          "1883",
+          "Wendell Carter · Ware the Hoes At? · C ORL"
+        ],
+        [
+          "4763",
+          "Yang Hansen · Stephon Castle’s Back · C POR"
+        ],
+        [
+          "4756",
+          "Yanic Konan Niederhäuser · Ware the Hoes At? · C LAC"
+        ],
+        [
+          "4864",
+          "Yaxel Lendeborg · Reaves Dropper · PF GSW"
+        ],
+        [
+          "2718",
+          "Zach Edey · Stephon Castle’s Back · C MEM"
+        ],
+        [
+          "1526",
+          "Zach LaVine · Josh Diddy’s Roster · SG SAC"
+        ],
+        [
+          "2054",
+          "Zion Williamson · The Fun Guys · PF NOP"
+        ],
+        [
+          "4875",
+          "Zuby Ejiofor · Stephon Castle’s Back · C ATL"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "pin-button",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "follow-pins",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Remove"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Selection and source"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "show-transcript",
+      "text": "Read this comparison as text"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "show-records",
+      "text": "Browse all source records"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Comparison transcript"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "All source records"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "return-comparison",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "INPUT",
+      "id": "directory-query",
+      "text": "Name, manager, position or NBA team"
+    },
+    {
+      "tag": "SELECT",
+      "id": "directory-order",
+      "text": "",
+      "values": [
+        [
+          "rank",
+          "Standing, first to tenth"
+        ],
+        [
+          "name",
+          "Team name, A–Z"
+        ],
+        [
+          "roster",
+          "Roster count, largest first"
+        ]
+      ]
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Damian Lillard"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Tobias Harris"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Joel Embiid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Myles Turner"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Derrick White"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Grayson Allen"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Anthony Edwards"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Payton Pritchard"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Devin Vassell"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Immanuel Quickley"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Santi Aldama"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Alperen Şengün"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Austin Reaves"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Peyton Watson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Max Christie"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Brandon Miller"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Donovan Clingan"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Daniss Jenkins"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Nolan Traore"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Danny Wolf"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Derik Queen"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Yaxel Lendeborg"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Labaron Philon"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Bruce Thornton"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kyrie Irving"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Domantas Sabonis"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Wendell Carter"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin P.J. Washington"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jalen Smith"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Evan Mobley"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Trey Murphy"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Mark Williams"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Christian Braun"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Paolo Banchero"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Shaedon Sharpe"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jarace Walker"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Anthony Black"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Tristan da Silva"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Isaiah Collier"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Cody Williams"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kel'el Ware"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jaylen Wells"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin VJ Edgecombe"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kon Knueppel"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jeremiah Fears"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Yanic Konan Niederhäuser"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ace Bailey"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kasparas Jakučionis"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Mikel Brown"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Nate Ament"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Bennett Stirtz"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Dillon Brooks"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kyle Kuzma"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin John Collins"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Shai Gilgeous-Alexander"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin RJ Barrett"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Naz Reid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Isaiah Stewart"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Scottie Barnes"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Franz Wagner"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Andrew Nembhard"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Brandin Podziemski"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Toumani Camara"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Zach Edey"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Stephon Castle"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kyle Filipowski"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ajay Mitchell"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Walter Clayton"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Yang Hansen"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ryan Kalkbrenner"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Zuby Ejiofor"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kingston Flemings"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Darius Acuff"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kawhi Leonard"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Miles Bridges"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jalen Brunson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Michael Porter"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Coby White"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Nic Claxton"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Zion Williamson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Nickeil Alexander-Walker"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ty Jerome"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Tyrese Maxey"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Desmond Bane"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Tre Jones"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Precious Achiuwa"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jalen Williams"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Keegan Murray"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Moussa Diabaté"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Victor Wembanyama"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Keyonte George"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Khaman Maluach"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Caleb Love"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Allen Graves"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Baba Miller"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Draymond Green"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Stephen Curry"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin James Harden"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jrue Holiday"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Zach LaVine"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Aaron Gordon"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Karl-Anthony Towns"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Nikola Jokić"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Brandon Ingram"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Dejounte Murray"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Fred VanVleet"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jayson Tatum"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Day'Ron Sharpe"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jalen Johnson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Davion Mitchell"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jalen Green"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Josh Giddey"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Egor Dëmin"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Maxime Raynaud"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Karim Lopez"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Brayden Burries"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Koa Peat"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jimmy Butler"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Pascal Siakam"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jarrett Allen"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin OG Anunoby"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Donovan Mitchell"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin De'Aaron Fox"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Mitchell Robinson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jaren Jackson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Cade Cunningham"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Herbert Jones"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Sandro Mamukelashvili"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Sam Hauser"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin AJ Green"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Amen Thompson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Cam Spencer"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ronald Holland"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Carter Bryant"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jase Richardson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Mohamed Diawara"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ebuka Okorie"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Hannes Steinbach"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Joshua Jefferson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Henri Veesaar"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Paul George"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin DeMar DeRozan"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Julius Randle"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jakob Poeltl"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Luka Dončić"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Darius Garland"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kevin Porter"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Saddiq Bey"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Tyrese Haliburton"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Deni Avdija"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ayo Dosunmu"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Quentin Grimes"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jonathan Kuminga"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jalen Duren"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Chet Holmgren"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ausar Thompson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Scoot Henderson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jared McCain"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Cedric Coward"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Sion James"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Morez Johnson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Aday Mara"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ryan Conwell"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Rudy Gobert"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Giannis Antetokounmpo"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kevin Durant"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kristaps Porziņģis"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Norman Powell"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ivica Zubac"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Lauri Markkanen"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Collin Sexton"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Daniel Gafford"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Tyler Herro"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jaden McDaniels"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Onyeka Okongwu"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin LaMelo Ball"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Dyson Daniels"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Matas Buzelis"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Liam McNeeley"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Rasheer Fleming"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ryan Nembhard"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Dailyn Swain"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin AJ Dybantsa"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Keaton Wagler"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Darryn Peterson"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin LeBron James"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin CJ McCollum"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Andrew Wiggins"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kelly Oubre"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Josh Hart"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Isaiah Hartenstein"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Trae Young"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Donte DiVincenzo"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ja Morant"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Cameron Johnson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jabari Smith"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Tari Eason"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Ryan Rollins"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Dereck Lively"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Alex Sarr"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Dylan Harper"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Collin Murray-Boyles"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Cooper Flagg"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Christian Anderson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Cameron Boozer"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Meleek Thomas"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Anthony Davis"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jusuf Nurkić"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Devin Booker"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jaylen Brown"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jamal Murray"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Bam Adebayo"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Deandre Ayton"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Mikal Bridges"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Aaron Nesmith"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Neemias Queta"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jalen Suggs"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Collin Gillespie"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Walker Kessler"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Bilal Coulibaly"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Jaime Jaquez"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Kyshawn George"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Reed Sheppard"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Tre Johnson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Nique Clifford"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Caleb Wilson"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Cameron Carr"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Pin Chris Cenac"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "id": "footer-provenance",
+      "text": "Fixture provenance"
+    }
+  ],
+  "states": [
+    {
+      "id": "compare",
+      "label": "Compare players"
+    },
+    {
+      "id": "three-players",
+      "label": "Three identities, different source coverage"
+    },
+    {
+      "id": "teams",
+      "label": "Follow the pinned players’ teams"
+    },
+    {
+      "id": "saved-picks",
+      "label": "Saved pairing evidence"
+    },
+    {
+      "id": "rosters",
+      "label": "Full league record browser"
+    },
+    {
+      "id": "editions",
+      "label": "Dated editorial source records"
+    },
+    {
+      "id": "transcript",
+      "label": "Readable comparison transcript"
+    },
+    {
+      "id": "team-records",
+      "label": "All member valuation and form evidence"
+    }
+  ]
+}

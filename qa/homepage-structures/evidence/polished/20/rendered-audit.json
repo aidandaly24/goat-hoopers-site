@@ -1,0 +1,2317 @@
+{
+  "id": "20",
+  "phase": "polished",
+  "scope": "Nearest opaque ancestor text contrast candidates, source-state geometry, loaded font/resources; complex image/opacity areas skipped and require pixel review. Not a complete WCAG, AT, performance or cross-browser audit.",
+  "rows": [
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 109,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 186
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 185
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 21
+        }
+      ],
+      "localDomContentLoadedMs": 413,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "home",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 109,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 186
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 185
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 21
+        }
+      ],
+      "localDomContentLoadedMs": 413,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "players",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 206,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 186
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 185
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 21
+        }
+      ],
+      "localDomContentLoadedMs": 413,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "form",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 166,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 186
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 185
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 21
+        }
+      ],
+      "localDomContentLoadedMs": 413,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "prices",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 236,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 186
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 185
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 21
+        }
+      ],
+      "localDomContentLoadedMs": 413,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "compare",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 255,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 186
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 185
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 21
+        }
+      ],
+      "localDomContentLoadedMs": 413,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "league",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1089,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 186
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 185
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 12
+        }
+      ],
+      "localDomContentLoadedMs": 413,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "read",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 239,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 186
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 185
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 32
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 37
+        }
+      ],
+      "localDomContentLoadedMs": 413,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "tools",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 135,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 37
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 186
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 185
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 21
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 32
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/arcade/free-throw-preview.jpg",
+          "bytes": 46741,
+          "encodedBytes": 46441,
+          "durationMs": 3
+        }
+      ],
+      "localDomContentLoadedMs": 413,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 105,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 168
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 136
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 42
+        }
+      ],
+      "localDomContentLoadedMs": 322,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "home",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 105,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 168
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 136
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 42
+        }
+      ],
+      "localDomContentLoadedMs": 322,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "players",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 184,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 168
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 136
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 42
+        }
+      ],
+      "localDomContentLoadedMs": 322,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "form",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 103,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 168
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 136
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 42
+        }
+      ],
+      "localDomContentLoadedMs": 322,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "prices",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 170,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 168
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 136
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 42
+        }
+      ],
+      "localDomContentLoadedMs": 322,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "compare",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 251,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 168
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 136
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 42
+        }
+      ],
+      "localDomContentLoadedMs": 322,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "league",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1085,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 168
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 136
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 42
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 11
+        }
+      ],
+      "localDomContentLoadedMs": 322,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "read",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 235,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 168
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 136
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 42
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 23
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 14
+        }
+      ],
+      "localDomContentLoadedMs": 322,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "tools",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 131,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 54
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 168
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 136
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 42
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 23
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/arcade/free-throw-preview.jpg",
+          "bytes": 46741,
+          "encodedBytes": 46441,
+          "durationMs": 6
+        }
+      ],
+      "localDomContentLoadedMs": 322,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 109,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 293
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 527
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 1013
+        }
+      ],
+      "localDomContentLoadedMs": 1458,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "home",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 109,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 293
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 527
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 1013
+        }
+      ],
+      "localDomContentLoadedMs": 1458,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "players",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 206,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 293
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 527
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 1013
+        }
+      ],
+      "localDomContentLoadedMs": 1458,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "form",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 166,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 293
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 527
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 1013
+        }
+      ],
+      "localDomContentLoadedMs": 1458,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "prices",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 236,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 293
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 527
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 1013
+        }
+      ],
+      "localDomContentLoadedMs": 1458,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "compare",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 255,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 293
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 527
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 1013
+        }
+      ],
+      "localDomContentLoadedMs": 1458,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "league",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1089,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 293
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 527
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 1013
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 14
+        }
+      ],
+      "localDomContentLoadedMs": 1458,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "read",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 239,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 293
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 527
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 1013
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 18
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 13
+        }
+      ],
+      "localDomContentLoadedMs": 1458,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "tools",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 135,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 69
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 62
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 293
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 527
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 1013
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 18
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 13
+        },
+        {
+          "name": "/public/arcade/free-throw-preview.jpg",
+          "bytes": 46741,
+          "encodedBytes": 46441,
+          "durationMs": 8
+        }
+      ],
+      "localDomContentLoadedMs": 1458,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 105,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 10
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 139
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 146
+        }
+      ],
+      "localDomContentLoadedMs": 257,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "home",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 105,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 10
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 139
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 146
+        }
+      ],
+      "localDomContentLoadedMs": 257,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "players",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 184,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 10
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 139
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 146
+        }
+      ],
+      "localDomContentLoadedMs": 257,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "form",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 103,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 10
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 139
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 146
+        }
+      ],
+      "localDomContentLoadedMs": 257,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "prices",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 170,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 10
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 139
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 146
+        }
+      ],
+      "localDomContentLoadedMs": 257,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "compare",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 251,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 10
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 139
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 146
+        }
+      ],
+      "localDomContentLoadedMs": 257,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "league",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1085,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 10
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 139
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 146
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 11
+        }
+      ],
+      "localDomContentLoadedMs": 257,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "read",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 235,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 10
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 139
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 146
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 10
+        }
+      ],
+      "localDomContentLoadedMs": 257,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "tools",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 131,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Press Start 2P",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/20/style.css",
+          "bytes": 21942,
+          "encodedBytes": 21642,
+          "durationMs": 35
+        },
+        {
+          "name": "/qa/homepage-structures/polished/20/matchbook.js",
+          "bytes": 33787,
+          "encodedBytes": 33487,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 10
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 139
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+          "bytes": 118504,
+          "encodedBytes": 118204,
+          "durationMs": 146
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 19
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/arcade/free-throw-preview.jpg",
+          "bytes": 46741,
+          "encodedBytes": 46441,
+          "durationMs": 10
+        }
+      ],
+      "localDomContentLoadedMs": 257,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    }
+  ]
+}

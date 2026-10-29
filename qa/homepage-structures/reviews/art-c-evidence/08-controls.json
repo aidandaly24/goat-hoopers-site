@@ -1,0 +1,262 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "comparison",
+        "label": "Comparison"
+      },
+      {
+        "id": "rosters",
+        "label": "Players & value"
+      },
+      {
+        "id": "scouting",
+        "label": "Form & wire"
+      },
+      {
+        "id": "league",
+        "label": "Teams & players"
+      },
+      {
+        "id": "standings",
+        "label": "Standings"
+      },
+      {
+        "id": "picks",
+        "label": "Saved AI picks"
+      },
+      {
+        "id": "edition",
+        "label": "Weekly edition"
+      },
+      {
+        "id": "tools",
+        "label": "Transactions & tools"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to content",
+      "href": "#workspace",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "A",
+      "id": "",
+      "text": "GOAT Hoopers home",
+      "href": "#comparison",
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "A",
+      "id": "",
+      "text": "Head to head",
+      "href": "#comparison",
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "A",
+      "id": "",
+      "text": "League reader",
+      "href": "#league",
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "A",
+      "id": "",
+      "text": "Weekly edition",
+      "href": "#edition",
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Menu",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 6,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#comparison",
+      "visible": false
+    },
+    {
+      "i": 7,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#league",
+      "visible": false
+    },
+    {
+      "i": 8,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#edition",
+      "visible": false
+    },
+    {
+      "i": 9,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#comparison",
+      "visible": true
+    },
+    {
+      "i": 10,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#league",
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "A",
+      "id": "",
+      "text": "",
+      "href": "#tools",
+      "visible": true
+    },
+    {
+      "i": 12,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "SELECT",
+      "id": "pair-selector",
+      "text": "Reaves Dropper vs Ware the Hoes At? Stephon Castle’s Back vs The Fun Guys Josh Diddy’s Ros",
+      "href": null,
+      "select": [
+        [
+          "0",
+          "Reaves Dropper vs Ware the Hoes At?"
+        ],
+        [
+          "1",
+          "Stephon Castle’s Back vs The Fun Guys"
+        ],
+        [
+          "2",
+          "Josh Diddy’s Roster vs Huff n’ Puff"
+        ],
+        [
+          "3",
+          "papichooter vs NeuralNets"
+        ],
+        [
+          "4",
+          "Lebron Theme Team vs T Halibooty"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Your side",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 15,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Opponent side",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 16,
+      "tag": "A",
+      "id": "",
+      "text": "Comparison",
+      "href": "#comparison",
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "A",
+      "id": "",
+      "text": "Players & value",
+      "href": "#rosters",
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "A",
+      "id": "",
+      "text": "Form & wire",
+      "href": "#scouting",
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "SELECT",
+      "id": "comparison-view",
+      "text": "ComparisonPlayers & valueForm & wire",
+      "href": null,
+      "select": [
+        [
+          "comparison",
+          "Comparison"
+        ],
+        [
+          "rosters",
+          "Players & value"
+        ],
+        [
+          "scouting",
+          "Form & wire"
+        ]
+      ],
+      "visible": false
+    },
+    {
+      "i": 20,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Saved pick provenance & evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "A",
+      "id": "",
+      "text": "Compare players",
+      "href": "#rosters",
+      "visible": true
+    },
+    {
+      "i": 22,
+      "tag": "A",
+      "id": "",
+      "text": "Concept provenance",
+      "href": "#concept-provenance",
+      "visible": true
+    }
+  ],
+  "scrolls": []
+}

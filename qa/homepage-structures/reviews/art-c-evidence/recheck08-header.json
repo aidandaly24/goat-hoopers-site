@@ -1,0 +1,101 @@
+{
+  "rows": [
+    {
+      "view": "member",
+      "headers": [
+        {
+          "text": "#",
+          "label": "Rank",
+          "width": 28.625,
+          "height": 48.5
+        },
+        {
+          "text": "Team / manager",
+          "label": null,
+          "width": 161.09375,
+          "height": 48.5
+        },
+        {
+          "text": "W",
+          "label": null,
+          "width": 39.375,
+          "height": 48.5
+        },
+        {
+          "text": "L",
+          "label": null,
+          "width": 39.375,
+          "height": 48.5
+        },
+        {
+          "text": "PF",
+          "label": null,
+          "width": 89.53125,
+          "height": 48.5
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "headers": [
+        {
+          "text": "#",
+          "label": "Rank",
+          "width": 28.625,
+          "height": 48.5
+        },
+        {
+          "text": "Team / manager",
+          "label": null,
+          "width": 161.09375,
+          "height": 48.5
+        },
+        {
+          "text": "W",
+          "label": null,
+          "width": 39.375,
+          "height": 48.5
+        },
+        {
+          "text": "L",
+          "label": null,
+          "width": 39.375,
+          "height": 48.5
+        },
+        {
+          "text": "PF",
+          "label": null,
+          "width": 89.53125,
+          "height": 48.5
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "path": "qa/homepage-structures/polished/08/ART.md",
+      "sha256": "67ced52144dab4818c0de3d8eef7ecc43e10cd450da87a0f6ebc84f38313eed5",
+      "observedSha256": "67ced52144dab4818c0de3d8eef7ecc43e10cd450da87a0f6ebc84f38313eed5"
+    },
+    {
+      "path": "qa/homepage-structures/polished/08/STRUCTURE.md",
+      "sha256": "ea6fea2a79a807b5ba9b271b51199a7d86df328d2f204feb486b758a96ff26f8",
+      "observedSha256": "ea6fea2a79a807b5ba9b271b51199a7d86df328d2f204feb486b758a96ff26f8"
+    },
+    {
+      "path": "qa/homepage-structures/polished/08/index.html",
+      "sha256": "d55caa7406795a2ffa5ca9a95d283b9b32551d73b1bef0fd609c360a6af72f9a",
+      "observedSha256": "d55caa7406795a2ffa5ca9a95d283b9b32551d73b1bef0fd609c360a6af72f9a"
+    },
+    {
+      "path": "qa/homepage-structures/polished/08/study.js",
+      "sha256": "3ced13e6930d35536a159d99342cfc5e4da96e1ccb8a29fcfb11f80f371aa7c7",
+      "observedSha256": "3ced13e6930d35536a159d99342cfc5e4da96e1ccb8a29fcfb11f80f371aa7c7"
+    },
+    {
+      "path": "qa/homepage-structures/polished/08/style.css",
+      "sha256": "93507360ca96ee9590bdf127f0180361a4c29eb1c48f3a0fc8c3037523d233f0",
+      "observedSha256": "93507360ca96ee9590bdf127f0180361a4c29eb1c48f3a0fc8c3037523d233f0"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "states": [
+    {
+      "id": "default",
+      "label": "Current junction with two retained evidence branches"
+    },
+    {
+      "id": "model-and-team",
+      "label": "Model source plus team form retained together"
+    },
+    {
+      "id": "team-evidence",
+      "label": "Values, form and team wire concurrently open"
+    },
+    {
+      "id": "league-and-current",
+      "label": "Local roster search with current branches retained"
+    },
+    {
+      "id": "dated-draft",
+      "label": "Dated opening draft expanded at its own origin"
+    },
+    {
+      "id": "two-editions",
+      "label": "Both dated editions retained with current context"
+    },
+    {
+      "id": "tools",
+      "label": "Working tools and synthetic moves expanded locally"
+    },
+    {
+      "id": "unavailable",
+      "label": "Unavailable continuation without invented outcomes"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "INPUT",
+      "id": "league-search",
+      "cls": "",
+      "text": "",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "league-sort",
+      "cls": "",
+      "text": "",
+      "data": {},
+      "options": [
+        [
+          "rank",
+          "Standing"
+        ],
+        [
+          "name",
+          "Team name A–Z"
+        ],
+        [
+          "roster",
+          "Roster size"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Back to the current junction",
+      "data": {
+        "jump": "current"
+      }
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+@font-face {
+  font-family: "Ledger Records";
+  src: url("/qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ledger Identity";
+  src: url("/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+:root {
+  color-scheme: light;
+  --font-body: "Ledger Records", ui-monospace, monospace;
+  --font-identity: "Ledger Identity", sans-serif;
+  --text-body: 1rem;
+  --leading-record: 1.5;
+  --leading-heading: 1.25;
+  --leading-season: 1.4;
+  --leading-prose: 1.65;
+  --text-title: 2rem;
+  --text-title-compact: 1.75rem;
+  --text-heading: 1.25rem;
+  --text-subheading: 1.125rem;
+  --text-number: 1.5rem;
+  --weight-body: 400;
+  --weight-emphasis: 600;
+  --weight-strong: 700;
+  --color-paper: #ffffff;
+  --color-ink: #111111;
+  --color-muted: #4c4c4c;
+  --color-rule: #888888;
+  --color-reader: #f4f4f4;
+  --color-control: #595959;
+  --color-hover: #eeeeee;
+  --color-header: #111111;
+  --color-header-text: #ffffff;
+  --color-signal: #d00020;
+  --color-track: #d5d5d5;
+  --color-bar: #111111;
+  --color-focus: #d00020;
+  --color-clear: transparent;
+  --space-tight: .125rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --gutter-wide: 2rem;
+  --control-target: 2.75rem;
+  --portrait-size: 2.75rem;
+  --reading-measure: 66ch;
+  --reader-indent: 3.8%;
+  --story-identity-width: 14rem;
+  --match-record-width: 4rem;
+  --sheet-label-width: 3rem;
+  --record-label-width: 6.4rem;
+  --record-label-narrow: 5.3rem;
+  --mini-label-width: 6rem;
+  --focus-clearance: 8rem;
+  --skip-hide: 10rem;
+  --stroke: 1px;
+  --stroke-strong: 2px;
+  --focus-stroke: 3px;
+  --bar-height: 6px;
+  --z-sticky: 2;
+  --z-skip: 10;
+  font-family: var(--font-body);
+  font-size: 100%;
+  font-weight: var(--weight-body);
+  line-height: var(--leading-record);
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: inherit; text-underline-offset: .2em; }
+a:hover { color: var(--color-signal); text-decoration-thickness: var(--stroke-strong); }
+button, input, select, summary { font: inherit; }
+button, a, summary, input, select { -webkit-tap-highlight-color: transparent; }
+button, select, input { color: var(--color-ink); border-radius: 0; }
+button { min-height: var(--control-target); padding: var(--space-2) var(--space-3); cursor: pointer; background: var(--color-clear); border: 0; text-decoration: underline; text-underline-offset: .22em; }
+button:hover, summary:hover { background: var(--color-hover); }
+button[aria-expanded="true"] { color: var(--color-signal); font-weight: var(--weight-strong); text-decoration-thickness: var(--stroke-strong); }
+input, select { border: var(--stroke) solid var(--color-control); background: var(--color-paper); min-height: var(--control-target); }
+button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible { outline: var(--focus-stroke) solid var(--color-focus); outline-offset: var(--space-1); }
+p { margin: var(--space-2) 0 var(--space-4); }
+h1, h2, h3, h4 { line-height: var(--leading-heading); margin: 0 0 var(--space-3); font-weight: var(--weight-emphasis); letter-spacing: normal; }
+h1 { font-family: var(--font-identity); font-size: var(--text-title); font-weight: var(--weight-body); }
+h2 { font-family: var(--font-identity); font-size: var(--text-heading); font-weight: var(--weight-body); }
+h3, h4 { font-size: var(--text-subheading); }
+strong { font-weight: var(--weight-emphasis); }
+.skip { position: absolute; left: var(--space-2); top: -10rem; background: var(--color-paper); padding: var(--space-4); z-index: var(--z-skip); }
+.skip:focus { top: var(--space-2); }
+.masthead { color: var(--color-header-text); background: var(--color-header); display: flex; align-items: center; gap: var(--space-6); padding: var(--space-3) var(--gutter-wide); }
+.brand { display: flex; align-items: center; min-height: var(--control-target); min-width: 155px; }
+.brand img { width: 155px; height: auto; }
+.stocks-link { min-height: var(--control-target); display: flex; align-items: center; font-weight: var(--weight-emphasis); }
+.site-navigation { flex: 1; }
+.site-navigation summary { display: none; }
+.site-navigation nav { display: flex; gap: var(--space-1) var(--space-5); justify-content: flex-end; flex-wrap: wrap; }
+.site-navigation nav > a, .site-navigation nav span > a { min-height: var(--control-target); display: inline-flex; align-items: center; font-size: var(--text-body); }
+main { margin: 0 var(--gutter-wide); }
+.ledger-title { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); margin: var(--space-5) 0 var(--space-1); }
+.ledger-title > div { min-width: 0; }
+.ledger-title h1 { margin: 0; }
+.edition-label { display: flex; flex-direction: column; text-align: right; line-height: var(--leading-season); margin: 0 0 0 auto; }
+.fixture-notice[open] summary { color: var(--color-ink); }
+.fixture-notice { color: var(--color-muted); margin: var(--space-1) 0 var(--space-3); }
+.fixture-notice summary { width: fit-content; cursor: pointer; min-height: var(--control-target); align-content: center; }
+.fixture-notice p { max-width: var(--reading-measure); }
+.category-index { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-6); }
+.category-index button { padding: var(--space-3) 0; text-decoration: none; }
+.category-index button[aria-current="page"] { color: var(--color-signal); font-weight: var(--weight-strong); text-decoration: underline; text-decoration-thickness: var(--stroke-strong); }
+.phone-index { display: none; }
+.sheet-controls { display: flex; gap: var(--space-4); align-items: end; padding: var(--space-3) 0 var(--space-2); }
+.sheet-controls label { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; }
+.search-label { flex: 1; }
+.sheet-controls input { width: 100%; padding: var(--space-2) var(--space-3); }
+.sheet-controls select { padding: var(--space-2) var(--space-3); max-width: 100%; }
+.sheet-controls > button { flex: none; }
+.field-strip { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-2); min-height: var(--control-target); background: var(--color-paper); padding: var(--space-1) 0; }
+.field-strip label { display: none; }
+.field-strip label[hidden] { display: none; }
+#result-count { color: var(--color-muted); }
+.sheet-caption { display: flex; justify-content: space-between; gap: var(--space-6); align-items: start; padding: var(--space-3) 0 var(--space-3); }
+.sheet-caption h2 { margin: 0; }
+.sheet-caption p { color: var(--color-muted); margin: 0; max-width: 48rem; }
+.ledger { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.ledger th { vertical-align: bottom; font-size: var(--text-body); font-weight: var(--weight-strong); text-align: left; padding: var(--space-3) var(--space-3) var(--space-3) 0; border-bottom: var(--stroke-strong) solid var(--color-ink); }
+.ledger td { padding: var(--space-3) var(--space-3) var(--space-3) 0; vertical-align: top; border-bottom: var(--stroke) solid var(--color-rule); overflow-wrap: anywhere; }
+.ledger td:last-child, .ledger th:last-child { padding-right: 0; }
+.cell-value { min-width: 0; }
+.ledger .line-number { width: 4%; font-variant-numeric: tabular-nums; }
+.ledger .team-col { width: 20%; }
+.ledger .record-col { width: 8%; }
+.ledger .pf-col { width: 9%; }
+.ledger .week-col { width: 23%; }
+.ledger .face-col { width: 21%; }
+.ledger .inspect-col { width: 15%; }
+.cell-main { display: block; }
+.cell-secondary { display: block; color: var(--color-muted); margin-top: var(--space-tight); }
+.phone-rank { display: none; }
+.numeric { font-variant-numeric: tabular-nums; }
+.row-actions { display: flex; flex-wrap: wrap; gap: var(--space-tight); }
+.row-actions button { padding: var(--space-2) var(--space-2) var(--space-2) 0; }
+.you { display: block; font-weight: var(--weight-emphasis); margin: var(--space-1) 0; }
+.face { display: flex; gap: var(--space-3); align-items: start; }
+.face img { width: var(--portrait-size); height: var(--portrait-size); object-fit: cover; filter: grayscale(1); background: var(--color-hover); flex: none; }
+.subrow > td { padding: 0 !important; background: var(--color-reader); }
+.foldout { padding: var(--space-5) var(--space-6) var(--space-6); margin-left: var(--reader-indent); }
+.foldout-top { display: flex; align-items: start; justify-content: space-between; gap: var(--space-4); }
+.foldout-top h3 { margin-top: var(--space-2); }
+.readable { max-width: var(--reading-measure); }
+.quiet { color: var(--color-muted); }
+.inline-links { display: flex; gap: var(--space-tight) var(--space-5); flex-wrap: wrap; }
+.inline-links a { min-height: var(--control-target); display: inline-flex; align-items: center; }
+.plain-list { padding: 0; margin: 0; list-style: none; }
+.plain-list li { padding: var(--space-3) 0; }
+.mini-table { border-collapse: collapse; width: 100%; table-layout: fixed; margin: var(--space-2) 0 var(--space-4); }
+.mini-table th, .mini-table td { padding: var(--space-3) var(--space-3) var(--space-3) 0; border-bottom: var(--stroke) solid var(--color-rule); text-align: left; font-size: var(--text-body); vertical-align: top; overflow-wrap: anywhere; background: var(--color-clear); }
+.mini-table th:first-child { width: 38%; }
+.mini-table a { display: inline-block; min-height: var(--control-target); align-content: center; }
+.detail-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+.provenance { margin: 0; max-width: var(--reading-measure); }
+.provenance dt { font-weight: var(--weight-emphasis); margin-top: var(--space-3); }
+.provenance dd { margin: var(--space-1) 0 var(--space-3); overflow-wrap: anywhere; }
+.match-ledger .teams-col { width: 35%; }
+.match-ledger .score-col { width: 14%; }
+.match-ledger .pick-col { width: 21%; }
+.match-ledger .prob-col { width: 18%; }
+.match-ledger .inspect-col { width: 12%; }
+.match-team { display: grid; grid-template-columns: 1fr var(--match-record-width); gap: var(--space-3); margin: var(--space-1) 0; }
+.probability-line { display: flex; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-2); }
+.bar { height: var(--bar-height); background: var(--color-track); margin: var(--space-1) 0 var(--space-3); }
+.bar span { display: block; height: var(--bar-height); background: var(--color-bar); }
+.archive-ledger .date-col { width: 18%; }
+.archive-ledger .title-col { width: 30%; }
+.archive-ledger .subject-col { width: 35%; }
+.archive-ledger .inspect-col { width: 17%; }
+.editorial-intro { padding-bottom: var(--space-2); margin-bottom: var(--space-3); }
+.story-row { display: grid; grid-template-columns: var(--story-identity-width) minmax(0, 76ch); gap: var(--space-8); padding: var(--space-5) 0; }
+.story-row h4 { font-size: var(--text-subheading); margin: var(--space-2) 0; }
+.statline { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); margin: var(--space-3) 0; }
+.statline strong { display: block; font-size: var(--text-number); font-variant-numeric: tabular-nums; }
+.sources { margin-top: var(--space-6); }
+.sources li { padding: var(--space-2) 0; }
+.tools-ledger .date-col, .evidence-ledger .date-col { width: 18%; }
+.tools-ledger .title-col, .evidence-ledger .title-col { width: 27%; }
+.tools-ledger .subject-col, .evidence-ledger .subject-col { width: 40%; }
+.tools-ledger .inspect-col, .evidence-ledger .inspect-col { width: 15%; }
+.empty { padding: var(--space-8) 0; max-width: 60ch; }
+.empty button { margin-right: var(--space-4); }
+footer { padding: var(--space-6) 0 var(--space-8); margin-top: var(--space-4); color: var(--color-muted); max-width: 90rem; }
+footer p { max-width: var(--reading-measure); }
+#footer-links { display: flex; gap: var(--space-tight) var(--space-5); flex-wrap: wrap; }
+#footer-links a { min-height: var(--control-target); display: inline-flex; align-items: center; }
+
+@media (max-width: 70rem) {
+  .masthead { gap: var(--space-4); padding: var(--space-3) var(--space-4); }
+  .brand img { width: 135px; }
+  .brand { min-width: 135px; }
+  .site-navigation nav { gap: 0 var(--space-3); }
+  main { margin: 0 var(--space-4); }
+  .ledger .team-col { width: 21%; }
+  .ledger .week-col { width: 21%; }
+  .ledger .face-col { width: 20%; }
+  .ledger .inspect-col { width: 17%; }
+}
+@media (max-width: 56rem) {
+  .masthead { position: relative; flex-wrap: wrap; }
+  .site-navigation { flex: 0 0 auto; margin-left: auto; }
+  .site-navigation summary { display: list-item; cursor: pointer; min-height: var(--control-target); align-content: center; }
+  .site-navigation:not([open]) nav { display: none; }
+  .site-navigation[open] { flex: 1 0 100%; }
+  .site-navigation[open] summary { width: max-content; margin-left: auto; }
+  .site-navigation[open] nav { justify-content: start; padding-top: var(--space-2); gap: var(--space-1) var(--space-5); }
+  .brand { margin-right: auto; }
+  .category-index { display: none; }
+  .phone-index { display: grid; grid-template-columns: var(--sheet-label-width) minmax(0, 1fr); align-items: center; gap: var(--space-3); padding: var(--space-2) 0; font-weight: var(--weight-emphasis); }
+  .phone-index select { width: 100%; min-width: 0; padding: var(--space-2); font-weight: var(--weight-body); }
+  .ledger-title { margin: var(--space-3) 0 var(--space-1); }
+  .fixture-notice { margin-bottom: var(--space-1); }
+  .sheet-controls { flex-wrap: wrap; padding: var(--space-2) 0; gap: var(--space-2); }
+  .search-label { flex-basis: 100%; }
+  .sheet-controls > label:not(.search-label) { flex: 1; }
+  .sheet-controls > label select { width: 100%; }
+  .field-strip { position: sticky; top: 0; z-index: var(--z-sticky); padding: var(--space-2) 0; }
+  .field-strip label { display: flex; gap: var(--space-2); align-items: center; width: 100%; font-weight: var(--weight-emphasis); }
+  .field-strip label[hidden] { display: none; }
+  .field-strip select { min-width: 0; width: 100%; padding: var(--space-2); font-weight: var(--weight-body); }
+  .sheet-caption { display: block; padding: var(--space-3) 0 var(--space-1); }
+  .sheet-caption p { display: none; }
+  .ledger, .ledger tbody, .ledger tr, .ledger td { display: block; width: 100%; }
+  .ledger colgroup, .ledger thead { display: none; }
+  .ledger .record-row { padding: var(--space-3) 0; border-bottom: var(--stroke) solid var(--color-rule); position: relative; }
+  .ledger .record-row > td { border: 0; padding: var(--space-tight) 0; min-height: 0; }
+  .ledger .record-row > td[data-label]:not(.team-name):not(.actions-cell):not(.line-number) { display: grid; grid-template-columns: var(--record-label-width) minmax(0, 1fr); gap: var(--space-3); }
+  .ledger .record-row > td[data-label]:not(.team-name):not(.actions-cell):not(.line-number)::before { content: attr(data-label); color: var(--color-muted); }
+  .ledger .record-row .line-number { display: none; }
+  .team-name { font-size: var(--text-subheading); font-weight: var(--weight-emphasis); margin-bottom: var(--space-1); }
+  .team-name .cell-secondary { font-size: var(--text-body); font-weight: var(--weight-body); }
+  .phone-rank { display: block; color: var(--color-muted); }
+  .ledger .record-row .actions-cell { margin-top: var(--space-2); padding: 0; }
+  .row-actions { gap: var(--space-2); }
+  .ledger .record-row > td.field-standings, .ledger .record-row > td.field-faces { display: none !important; }
+  body[data-fields="standings"] .ledger .record-row > td.field-week,
+  body[data-fields="faces"] .ledger .record-row > td.field-week { display: none !important; }
+  body[data-fields="standings"] .ledger .record-row > td.field-standings,
+  body[data-fields="faces"] .ledger .record-row > td.field-faces,
+  body[data-fields="all"] .ledger .record-row > td.field-week,
+  body[data-fields="all"] .ledger .record-row > td.field-standings,
+  body[data-fields="all"] .ledger .record-row > td.field-faces { display: grid !important; }
+  .league-ledger .record-row { display: flex; flex-direction: column; }
+  .league-ledger .record-row > .team-name { order: 0; }
+  .league-ledger .record-row > .actions-cell { order: 1; margin: 0 0 var(--space-2); }
+  .league-ledger .record-row > .field-week, .league-ledger .record-row > .field-standings, .league-ledger .record-row > .field-faces { order: 2; }
+  .league-ledger .actions-cell .cell-value { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); flex-wrap: wrap; }
+  .league-ledger .actions-cell .cell-secondary { margin: 0; }
+  .foldout { padding: var(--space-4) var(--space-3); margin: 0; }
+  .foldout-top { gap: var(--space-2); }
+  .foldout-top h3 { max-width: 70%; }
+  .detail-pair { display: block; }
+  .mini-table { display: block; }
+  .mini-table thead { display: none; }
+  .mini-table tbody { display: block; }
+  .mini-table tr { display: block; padding: var(--space-2) 0; border-bottom: var(--stroke) solid var(--color-rule); }
+  .mini-table td { display: grid; grid-template-columns: var(--mini-label-width) minmax(0, 1fr); gap: var(--space-2); border: 0; padding: var(--space-tight) 0; }
+  .mini-table td::before { content: attr(data-label); color: var(--color-muted); }
+  .mini-table td:first-child { display: block; font-weight: var(--weight-emphasis); }
+  .mini-table td:first-child::before { display: none; }
+  .mini-table th:first-child { width: auto; }
+  .story-row { display: block; }
+  .story-row > div:first-child { margin-bottom: var(--space-4); }
+  .archive-ledger .record-row > td.title-cell,
+  .tools-ledger .record-row > td.title-cell,
+  .evidence-ledger .record-row > td.title-cell { font-size: var(--text-subheading); font-weight: var(--weight-emphasis); display: block !important; margin: var(--space-2) 0; }
+  .title-cell::before { display: none !important; }
+  .match-ledger .record-row > td:first-child { display: block !important; }
+  .match-ledger .record-row > td:first-child::before { display: none !important; }
+  .probability-line { display: block; }
+  .match-team { grid-template-columns: 1fr var(--match-record-width); }
+  .bar { max-width: var(--story-identity-width); }
+  .inline-links { gap: 0 var(--space-4); }
+  .ledger a { min-height: var(--control-target); display: inline-flex; align-items: center; }
+  .ledger button, .ledger a { scroll-margin-top: var(--focus-clearance); }
+}
+@media (max-width: 23rem) {
+  main { margin: 0 var(--space-3); }
+  .masthead { padding: var(--space-2) var(--space-3); gap: var(--space-2); }
+  .brand, .brand img { min-width: 0; width: 118px; }
+  .edition-label { max-width: 100%; flex-direction: row; flex-wrap: wrap; gap: var(--space-4); }
+  .ledger .record-row > td[data-label]:not(.team-name):not(.actions-cell):not(.line-number) { grid-template-columns: var(--record-label-narrow) minmax(0, 1fr); }
+  .foldout { padding: var(--space-4) var(--space-3); }
+  .mini-table td { grid-template-columns: var(--record-label-narrow) minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+
+.masthead a:hover, .masthead summary:hover { color: var(--color-header-text); background: var(--color-header); text-decoration-color: var(--color-signal); }
+.masthead a[aria-current="page"] { text-decoration-color: var(--color-signal); text-decoration-thickness: var(--focus-stroke); }
+#sheet { container-type: inline-size; }
+.field-strip { container-type: inline-size; }
+.readable, .provenance { line-height: var(--leading-prose); }
+input::placeholder { color: var(--color-muted); opacity: 1; }
+button:active { color: var(--color-signal); background: var(--color-hover); }
+body[data-fields="week"] .league-ledger th:nth-child(5),
+body[data-fields="standings"] .league-ledger th:nth-child(3),
+body[data-fields="standings"] .league-ledger th:nth-child(4),
+body[data-fields="faces"] .league-ledger th:nth-child(6) { color: var(--color-signal); }
+@media (max-width: 56rem) {
+  h1 { font-size: var(--text-title-compact); }
+  .field-strip select { border-bottom: var(--focus-stroke) solid var(--color-signal); }
+
+}
+@container (max-width: 18rem) {
+  .ledger .record-row > td[data-label]:not(.team-name):not(.actions-cell):not(.line-number),
+  body[data-fields="all"] .ledger .record-row > td.field-week,
+  body[data-fields="all"] .ledger .record-row > td.field-standings,
+  body[data-fields="all"] .ledger .record-row > td.field-faces,
+  body[data-fields="week"] .ledger .record-row > td.field-week,
+  body[data-fields="standings"] .ledger .record-row > td.field-standings,
+  body[data-fields="faces"] .ledger .record-row > td.field-faces { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
+  .mini-table td { display: block; }
+  .mini-table td::before { display: block; }
+  .field-strip label { display: block; }
+  .field-strip select { display: block; margin-top: var(--space-1); }
+  .face { display: block; }
+  .face img { margin-bottom: var(--space-2); }
+}

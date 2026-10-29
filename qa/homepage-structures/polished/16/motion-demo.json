@@ -1,0 +1,23 @@
+{
+  "desktop": [
+    {"action":"click","selector":"#arrange"},
+    {"action":"click","selector":"[data-piece='club-1'] [data-action='earlier']"},
+    {"action":"wait","waitMs":280},
+    {"action":"click","selector":"[data-piece='club-2'] [data-action='pin']"},
+    {"action":"wait","waitMs":280},
+    {"action":"click","selector":"[data-piece='club-2'] [data-action='pin']"},
+    {"action":"click","selector":"#add-material"},
+    {"action":"click","selector":"#material-source [data-add='club-5']"},
+    {"action":"wait","waitMs":280}
+  ],
+  "phone": [
+    {"action":"click","selector":"#arrange"},
+    {"action":"click","selector":"[data-piece='club-1'] [data-action='earlier']"},
+    {"action":"wait","waitMs":280},
+    {"action":"click","selector":"[data-piece='club-2'] [data-action='pin']"},
+    {"action":"wait","waitMs":280},
+    {"action":"click","selector":"#add-material"},
+    {"action":"click","selector":"#material-source [data-add='club-5']"},
+    {"action":"wait","waitMs":280}
+  ]
+}

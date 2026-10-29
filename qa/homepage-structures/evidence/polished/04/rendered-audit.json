@@ -1,0 +1,3065 @@
+{
+  "id": "04",
+  "phase": "polished",
+  "scope": "Nearest opaque ancestor text contrast candidates, source-state geometry, loaded font/resources; complex image/opacity areas skipped and require pixel review. Not a complete WCAG, AT, performance or cross-browser audit.",
+  "rows": [
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 303,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 24
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 23
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 195,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "matchup",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 303,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 24
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 23
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 195,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "team",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 414,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 24
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 23
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 195,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "scouting",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 327,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 24
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 23
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 48
+        }
+      ],
+      "localDomContentLoadedMs": 195,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "edition",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 374,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 24
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 23
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 48
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 3
+        }
+      ],
+      "localDomContentLoadedMs": 195,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "league",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1057,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 24
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 23
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 48
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 3
+        }
+      ],
+      "localDomContentLoadedMs": 195,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "standings",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 338,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 24
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 23
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 48
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 3
+        }
+      ],
+      "localDomContentLoadedMs": 195,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "wire",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 284,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 24
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 23
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 48
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 3
+        }
+      ],
+      "localDomContentLoadedMs": 195,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "tools",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 287,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 24
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 23
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 61
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 48
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 3
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 3
+        }
+      ],
+      "localDomContentLoadedMs": 195,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 300,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 18
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 26
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "matchup",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 300,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 18
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 26
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "team",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 335,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 18
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "edition",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 372,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 18
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "league",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1055,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 18
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "standings",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 336,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 18
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "wire",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 282,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 18
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "tools",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 282,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 18
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 7
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 26
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 10
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 11
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 12
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 151,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 303,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 31
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 31
+        }
+      ],
+      "localDomContentLoadedMs": 130,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "matchup",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 303,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 31
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 31
+        }
+      ],
+      "localDomContentLoadedMs": 130,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "team",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 414,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 31
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 31
+        }
+      ],
+      "localDomContentLoadedMs": 130,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "scouting",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 327,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 31
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 31
+        }
+      ],
+      "localDomContentLoadedMs": 130,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "edition",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 374,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 31
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 5
+        }
+      ],
+      "localDomContentLoadedMs": 130,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "league",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1057,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 31
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 5
+        }
+      ],
+      "localDomContentLoadedMs": 130,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "standings",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 338,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 31
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 5
+        }
+      ],
+      "localDomContentLoadedMs": 130,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "wire",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 284,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 31
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 5
+        }
+      ],
+      "localDomContentLoadedMs": 130,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "tools",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 287,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 16
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 20
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 31
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 31
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 5
+        }
+      ],
+      "localDomContentLoadedMs": 130,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 300,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 34
+        }
+      ],
+      "localDomContentLoadedMs": 110,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "matchup",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 300,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 34
+        }
+      ],
+      "localDomContentLoadedMs": 110,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "team",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 335,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 34
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 8
+        }
+      ],
+      "localDomContentLoadedMs": 110,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "edition",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 372,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 34
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 110,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "league",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1055,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 34
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 110,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "standings",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 336,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 34
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 110,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "wire",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 282,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 34
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 110,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "tools",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 282,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Broadcast body",
+          "status": "loaded"
+        },
+        {
+          "family": "Broadcast display",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/04/style.css",
+          "bytes": 20333,
+          "encodedBytes": 20033,
+          "durationMs": 17
+        },
+        {
+          "name": "/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+          "bytes": 5417,
+          "encodedBytes": 5117,
+          "durationMs": 21
+        },
+        {
+          "name": "/qa/homepage-structures/polished/04/app.js",
+          "bytes": 25703,
+          "encodedBytes": 25403,
+          "durationMs": 19
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 6
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+          "bytes": 102780,
+          "encodedBytes": 102480,
+          "durationMs": 34
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 9
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 14
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 8
+        },
+        {
+          "name": "/public/courtside/portraits/player-1658.png",
+          "bytes": 75811,
+          "encodedBytes": 75511,
+          "durationMs": 5
+        },
+        {
+          "name": "/public/courtside/portraits/player-4866.png",
+          "bytes": 54160,
+          "encodedBytes": 53860,
+          "durationMs": 4
+        }
+      ],
+      "localDomContentLoadedMs": 110,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    }
+  ]
+}

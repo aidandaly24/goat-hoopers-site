@@ -1,0 +1,356 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "default",
+        "label": "Opening continuous spread"
+      },
+      {
+        "id": "model-notes",
+        "label": "Five picks with returned-choice provenance"
+      },
+      {
+        "id": "roster",
+        "label": "Member margin with all 24 values"
+      },
+      {
+        "id": "editorial",
+        "label": "Dated draft and three source-labelled opinions"
+      },
+      {
+        "id": "directory",
+        "label": "Club index with reachable complete roster"
+      },
+      {
+        "id": "search",
+        "label": "Player search in the flowing index"
+      },
+      {
+        "id": "archive",
+        "label": "Earlier edition unfolded in place"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to the spread",
+      "href": "#opening",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read or explore",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "A",
+      "id": "",
+      "text": "Current play",
+      "href": "#opening",
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "A",
+      "id": "",
+      "text": "The model’s notes",
+      "href": "#model-notes",
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "A",
+      "id": "",
+      "text": "Your margin",
+      "href": "#your-margin",
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "A",
+      "id": "",
+      "text": "Dated editorial",
+      "href": "#edition",
+      "visible": true
+    },
+    {
+      "i": 6,
+      "tag": "A",
+      "id": "",
+      "text": "Club & player index",
+      "href": "#league",
+      "visible": true
+    },
+    {
+      "i": 7,
+      "tag": "A",
+      "id": "",
+      "text": "Earlier pages & tools",
+      "href": "#back-pages",
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "About this concept and its sources",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 9,
+      "tag": "A",
+      "id": "",
+      "text": "Read all five saved model picks ↓",
+      "href": "#model-notes",
+      "visible": true
+    },
+    {
+      "i": 10,
+      "tag": "A",
+      "id": "",
+      "text": "Unfold your roster ↓",
+      "href": "#your-margin",
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Model details",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 12,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Model details",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Model details",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Model details",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Model details",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Unfold all 24 modeled roster values",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Why this game was selected",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Editorial basis & source",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Editorial basis & source",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 20,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Editorial basis & source",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Sources for the dated edition",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 22,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Meet the ten representative players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 23,
+      "tag": "INPUT",
+      "id": "directory-search",
+      "text": "Try Embiid, NeuralNets, or PG",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 24,
+      "tag": "SELECT",
+      "id": "directory-sort",
+      "text": "Team name A–Z Current points for Roster size",
+      "href": null,
+      "select": [
+        [
+          "name",
+          "Team name A–Z"
+        ],
+        [
+          "points",
+          "Current points for"
+        ],
+        [
+          "roster",
+          "Roster size"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 25,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read Huff n’ Puff’s 23-player roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 26,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read Josh Diddy’s Roster’s 22-player roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 27,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read Lebron Theme Team’s 21-player roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 28,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read NeuralNets’s 22-player roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 29,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read papichooter’s 23-player roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 30,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read Reaves Dropper’s 24-player roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 31,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read Stephon Castle’s Back’s 22-player roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 32,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read T Halibooty’s 22-player roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 33,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read The Fun Guys’s 22-player roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 34,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read Ware the Hoes At?’s 27-player roster",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 35,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read this dated game in the spread",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 36,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Read this dated game in the spread",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 37,
+      "tag": "A",
+      "id": "",
+      "text": "Back to the contents ↑",
+      "href": "#contents",
+      "visible": true
+    }
+  ],
+  "scrolls": []
+}

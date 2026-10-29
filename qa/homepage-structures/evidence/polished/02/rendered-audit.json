@@ -1,0 +1,2687 @@
+{
+  "id": "02",
+  "phase": "polished",
+  "scope": "Nearest opaque ancestor text contrast candidates, source-state geometry, loaded font/resources; complex image/opacity areas skipped and require pixel review. Not a complete WCAG, AT, performance or cross-browser audit.",
+  "rows": [
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 292,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 292
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 46
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 228
+        }
+      ],
+      "localDomContentLoadedMs": 785,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "matchup",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 292,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 292
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 46
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 228
+        }
+      ],
+      "localDomContentLoadedMs": 785,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "roster",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 387,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 292
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 46
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 228
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 49
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 69
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 785,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "standings",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 190,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 292
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 46
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 228
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 49
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 69
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 785,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "edition",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 276,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 292
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 46
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 228
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 49
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 69
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 785,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "league",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1349,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 292
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 46
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 228
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 49
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 69
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 785,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "wire",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 167,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 65
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 292
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 46
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 228
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 15
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 49
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 50
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 69
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 785,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 288,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 263
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 296
+        }
+      ],
+      "localDomContentLoadedMs": 853,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "matchup",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 288,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 263
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 296
+        }
+      ],
+      "localDomContentLoadedMs": 853,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "roster",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 178,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 263
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 296
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 60
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 60
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 94
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 118
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 94
+        }
+      ],
+      "localDomContentLoadedMs": 853,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "standings",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 187,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 263
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 296
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 60
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 60
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 94
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 118
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 94
+        }
+      ],
+      "localDomContentLoadedMs": 853,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "edition",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 273,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 263
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 296
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 60
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 60
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 94
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 118
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 94
+        }
+      ],
+      "localDomContentLoadedMs": 853,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "league",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1346,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 263
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 296
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 60
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 60
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 94
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 118
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 94
+        }
+      ],
+      "localDomContentLoadedMs": 853,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "wire",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 164,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 103
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 263
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 296
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 60
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 53
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 60
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 94
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 118
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 59
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 94
+        }
+      ],
+      "localDomContentLoadedMs": 853,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 292,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 52
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 239
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 406
+        }
+      ],
+      "localDomContentLoadedMs": 765,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "matchup",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 292,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 52
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 239
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 406
+        }
+      ],
+      "localDomContentLoadedMs": 765,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "roster",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 387,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 52
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 239
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 406
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 66
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 65
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 66
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 95
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 89
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 89
+        }
+      ],
+      "localDomContentLoadedMs": 765,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "standings",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 190,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 52
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 239
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 406
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 66
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 65
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 66
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 95
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 89
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 89
+        }
+      ],
+      "localDomContentLoadedMs": 765,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "edition",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 276,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 52
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 239
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 406
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 66
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 65
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 66
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 95
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 89
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 89
+        }
+      ],
+      "localDomContentLoadedMs": 765,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "league",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1349,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 52
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 239
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 406
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 66
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 65
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 66
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 95
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 89
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 89
+        }
+      ],
+      "localDomContentLoadedMs": 765,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "wire",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 167,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 53
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 52
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 239
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 406
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 39
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 66
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 65
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 66
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 67
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 95
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 89
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 89
+        }
+      ],
+      "localDomContentLoadedMs": 765,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 288,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 296
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 230
+        }
+      ],
+      "localDomContentLoadedMs": 813,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "matchup",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 288,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 296
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 230
+        }
+      ],
+      "localDomContentLoadedMs": 813,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "roster",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 178,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 296
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 230
+        }
+      ],
+      "localDomContentLoadedMs": 813,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "standings",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 187,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 296
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 230
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 124
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 124
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 155
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 155
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 197
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 197
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 197
+        }
+      ],
+      "localDomContentLoadedMs": 813,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "edition",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 273,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 296
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 230
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 124
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 124
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 155
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 155
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 197
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 197
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 197
+        }
+      ],
+      "localDomContentLoadedMs": 813,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "league",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1346,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 296
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 230
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 124
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 124
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 155
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 155
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 197
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 197
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 197
+        }
+      ],
+      "localDomContentLoadedMs": 813,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "wire",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 164,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "Court Oswald",
+          "status": "loaded"
+        },
+        {
+          "family": "Court Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/02/style.css",
+          "bytes": 18449,
+          "encodedBytes": 18149,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/polished/02/app.js",
+          "bytes": 23498,
+          "encodedBytes": 23198,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/oswald/Oswald%5Bwght%5D.ttf",
+          "bytes": 172388,
+          "encodedBytes": 172088,
+          "durationMs": 296
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 32
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 230
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 124
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 125
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 124
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 155
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 155
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 197
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 197
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 197
+        }
+      ],
+      "localDomContentLoadedMs": 813,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "controls": [
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Skip to franchise index",
+      "value": null
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "League notebook",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "bookmark",
+      "text": "My franchise",
+      "value": null
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "GOAT menu",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read the saved slate",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "A–Z",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "H",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "J",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "L",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "N",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "P",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "R",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "S",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "T",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "W",
+      "value": null
+    },
+    {
+      "tag": "INPUT",
+      "id": "roster-search",
+      "text": "e.g. Lillard",
+      "value": null
+    },
+    {
+      "tag": "SELECT",
+      "id": "phone-initial",
+      "text": "A–Z · allHJLNPRSTW",
+      "value": [
+        [
+          "all",
+          "A–Z · all"
+        ],
+        [
+          "H",
+          "H"
+        ],
+        [
+          "J",
+          "J"
+        ],
+        [
+          "L",
+          "L"
+        ],
+        [
+          "N",
+          "N"
+        ],
+        [
+          "P",
+          "P"
+        ],
+        [
+          "R",
+          "R"
+        ],
+        [
+          "S",
+          "S"
+        ],
+        [
+          "T",
+          "T"
+        ],
+        [
+          "W",
+          "W"
+        ]
+      ]
+    },
+    {
+      "tag": "SELECT",
+      "id": "team-sort",
+      "text": "Team A–Z Standing rank Roster size",
+      "value": [
+        [
+          "alpha",
+          "Team A–Z"
+        ],
+        [
+          "rank",
+          "Standing rank"
+        ],
+        [
+          "roster",
+          "Roster size"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Huff n’ Puff",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Josh Diddy’s Roster",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Lebron Theme Team",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "NeuralNets",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "papichooter",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Reaves Dropper",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Stephon Castle’s Back",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "T Halibooty",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "The Fun Guys",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Ware the Hoes At?",
+      "value": null
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Back to the index heading",
+      "value": null
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Provenance & fixture boundaries",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Teams",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "phone-search",
+      "text": "Find player",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Notebook",
+      "value": null
+    },
+    {
+      "tag": "BUTTON",
+      "id": "phone-bookmark",
+      "text": "My team",
+      "value": null
+    }
+  ],
+  "states": [
+    {
+      "id": "index",
+      "label": "Alphabetic franchise field"
+    },
+    {
+      "id": "own-dossier",
+      "label": "In-flow franchise overview"
+    },
+    {
+      "id": "roster-search",
+      "label": "Lillard roster locator"
+    },
+    {
+      "id": "slate",
+      "label": "Five saved AI rows and scores"
+    },
+    {
+      "id": "standings",
+      "label": "Ten standing rows"
+    },
+    {
+      "id": "edition",
+      "label": "Dated editorial notebook"
+    },
+    {
+      "id": "archive",
+      "label": "Two dated archive entries"
+    },
+    {
+      "id": "team-form",
+      "label": "Member scouting and team wire"
+    }
+  ]
+}

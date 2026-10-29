@@ -1,0 +1,586 @@
+[
+  {
+    "study": "03",
+    "category": "keyboard focus",
+    "selector": "#previous",
+    "steps": "Click #next, focus #previous, press Enter to return to This week.",
+    "expected": "A usable chapter/game control or the new heading retains visible focus.",
+    "actual": "The new view renders; document.activeElement is BODY and the keyboard outline is lost.",
+    "sourceHashes": {
+      "qa/homepage-structures/polished/03/ART.md": "4b29a036d37d84ca1d158b2fcd3c843cc847b0ba5bfa3200ff8290a4ac68c084",
+      "qa/homepage-structures/polished/03/STRUCTURE.md": "7dd0ee24ac2e153c7a793140006f7a088c691a65188a51a6b36fdff0c441d069",
+      "qa/homepage-structures/polished/03/index.html": "06349617ce352314c41e47e69569980a7624ab7e1981d88bf72bc071f9d9fd13",
+      "qa/homepage-structures/polished/03/motion-demo.json": "be3770b05d7d07e43356bc18485b16f4a38b219f386beadba96ca29a0202b5e3",
+      "qa/homepage-structures/polished/03/study.css": "079a05a8131f2ca26a7d3d606d0febb95a55f41662e5d9696f76865e1721ce8e",
+      "qa/homepage-structures/polished/03/study.js": "e42835941f111d05e19cacabfea31c83a6574a206311c0c3f1f6e068d2f63a9c"
+    },
+    "cases": [
+      {
+        "id": "03",
+        "width": 1440,
+        "motion": "no-preference",
+        "pointer": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/03/#chapter-team",
+          "open": [
+            "",
+            ""
+          ],
+          "animations": [
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            }
+          ],
+          "text": "Skip to chapter\nHome\nNews\nStocks\nHistory\nArcade\nSynthetic concept\n\nYour pairing\n\nWeek 3\n\nA known score and an unknown score are different states. This fixture pairing is still incomplete.\n\nReaves Dropper\n\naidandaly20 \u00b7 1\u20130\n\nWare the Hoes At?\n\nAedan23 \u00b7 1\u20130\n\n0.0\nPending\n\nIncomplete \u00b7 no final result\n\n0.0 is a known zero. Pending means no score supplied.\n\nOpen AI Decides\nMy team\nSaved decisions\nW3 / 2026\n\nSynthetic saved picks \u00b7 10 Nov 2026, 12:00 UTC.\n\nReaves Dropper / Ware the Hoes At?\n\nReturned choice: Ware the Hoes At? \u00b7 35%\n\nConfidence 20% \u00b7 separate from probability\n\nWare the Hoes At?\n35%\n"
+        },
+        "liveReduced": {
+          "animations": 0
+        },
+        "after": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/03/#chapter-week",
+          "open": [
+            "",
+            ""
+          ],
+          "focus": {
+            "tag": "BODY",
+            "id": "",
+            "text": "Skip to chapter\nHome\nNews\nStocks\nHistory\nArcade\nSynthetic concept\n\nYour pairing\n\nWeek 3\n\nA known sco",
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 900,
+            "outline": "rgb(16, 40, 63) none 3px",
+            "color": "rgb(16, 40, 63)",
+            "visible": true
+          },
+          "animations": 0
+        },
+        "result": "completed"
+      },
+      {
+        "id": "03",
+        "width": 1440,
+        "motion": "reduce",
+        "pointer": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/03/#chapter-team",
+          "open": [
+            "",
+            ""
+          ],
+          "animations": [],
+          "text": "Skip to chapter\nHome\nNews\nStocks\nHistory\nArcade\nSynthetic concept\n\nYour pairing\n\nWeek 3\n\nA known score and an unknown score are different states. This fixture pairing is still incomplete.\n\nReaves Dropper\n\naidandaly20 \u00b7 1\u20130\n\nWare the Hoes At?\n\nAedan23 \u00b7 1\u20130\n\n0.0\nPending\n\nIncomplete \u00b7 no final result\n\n0.0 is a known zero. Pending means no score supplied.\n\nOpen AI Decides\nMy team\nSaved decisions\nW3 / 2026\n\nSynthetic saved picks \u00b7 10 Nov 2026, 12:00 UTC.\n\nReaves Dropper / Ware the Hoes At?\n\nReturned choice: Ware the Hoes At? \u00b7 35%\n\nConfidence 20% \u00b7 separate from probability\n\nWare the Hoes At?\n35%\n"
+        },
+        "liveReduced": {
+          "animations": 0
+        },
+        "after": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/03/#chapter-week",
+          "open": [
+            "",
+            ""
+          ],
+          "focus": {
+            "tag": "BODY",
+            "id": "",
+            "text": "Skip to chapter\nHome\nNews\nStocks\nHistory\nArcade\nSynthetic concept\n\nYour pairing\n\nWeek 3\n\nA known sco",
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 900,
+            "outline": "rgb(16, 40, 63) none 3px",
+            "color": "rgb(16, 40, 63)",
+            "visible": true
+          },
+          "animations": 0
+        },
+        "result": "completed"
+      },
+      {
+        "id": "03",
+        "width": 390,
+        "motion": "no-preference",
+        "pointer": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/03/#chapter-team",
+          "open": [
+            "",
+            ""
+          ],
+          "animations": [
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            },
+            {
+              "duration": 200,
+              "prop": [
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ],
+                [
+                  "offset",
+                  "easing",
+                  "composite",
+                  "transform",
+                  "computedOffset"
+                ]
+              ]
+            }
+          ],
+          "text": "Skip to chapter\nSynthetic concept\n\nYour pairing\n\nWeek 3\n\nA known score and an unknown score are different states. This fixture pairing is still incomplete.\n\nReaves Dropper\n\naidandaly20 \u00b7 1\u20130\n\nWare the Hoes At?\n\nAedan23 \u00b7 1\u20130\n\n0.0\nPending\n\nIncomplete \u00b7 no final result\n\n0.0 is a known zero. Pending means no score supplied.\n\nOpen AI Decides\nMy team\nSaved decisions\nW3 / 2026\n\nSynthetic saved picks \u00b7 10 Nov 2026, 12:00 UTC.\n\nReaves Dropper / Ware the Hoes At?\n\nReturned choice: Ware the Hoes At? \u00b7 35%\n\nConfidence 20% \u00b7 separate from probability\n\nWare the Hoes At?\n35%\nReaves Dropper\n65%\nSaved evidenc"
+        },
+        "liveReduced": {
+          "animations": 0
+        },
+        "after": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/03/#chapter-week",
+          "open": [
+            "",
+            ""
+          ],
+          "focus": {
+            "tag": "BODY",
+            "id": "",
+            "text": "Skip to chapter\nSynthetic concept\n\nYour pairing\n\nWeek 3\n\nA known score and an unknown score are diff",
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844,
+            "outline": "rgb(16, 40, 63) none 3px",
+            "color": "rgb(16, 40, 63)",
+            "visible": true
+          },
+          "animations": 0
+        },
+        "result": "completed"
+      },
+      {
+        "id": "03",
+        "width": 390,
+        "motion": "reduce",
+        "pointer": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/03/#chapter-team",
+          "open": [
+            "",
+            ""
+          ],
+          "animations": [],
+          "text": "Skip to chapter\nSynthetic concept\n\nYour pairing\n\nWeek 3\n\nA known score and an unknown score are different states. This fixture pairing is still incomplete.\n\nReaves Dropper\n\naidandaly20 \u00b7 1\u20130\n\nWare the Hoes At?\n\nAedan23 \u00b7 1\u20130\n\n0.0\nPending\n\nIncomplete \u00b7 no final result\n\n0.0 is a known zero. Pending means no score supplied.\n\nOpen AI Decides\nMy team\nSaved decisions\nW3 / 2026\n\nSynthetic saved picks \u00b7 10 Nov 2026, 12:00 UTC.\n\nReaves Dropper / Ware the Hoes At?\n\nReturned choice: Ware the Hoes At? \u00b7 35%\n\nConfidence 20% \u00b7 separate from probability\n\nWare the Hoes At?\n35%\nReaves Dropper\n65%\nSaved evidenc"
+        },
+        "liveReduced": {
+          "animations": 0
+        },
+        "after": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/03/#chapter-week",
+          "open": [
+            "",
+            ""
+          ],
+          "focus": {
+            "tag": "BODY",
+            "id": "",
+            "text": "Skip to chapter\nSynthetic concept\n\nYour pairing\n\nWeek 3\n\nA known score and an unknown score are diff",
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844,
+            "outline": "rgb(16, 40, 63) none 3px",
+            "color": "rgb(16, 40, 63)",
+            "visible": true
+          },
+          "animations": 0
+        },
+        "result": "completed"
+      }
+    ],
+    "status": "Reported to root; withdrawn from ready while owner fixes."
+  },
+  {
+    "study": "04",
+    "category": "keyboard focus",
+    "selector": "[data-next-game]",
+    "steps": "Click Next game; focus the newly rendered Next game; press Enter.",
+    "expected": "A usable chapter/game control or the new heading retains visible focus.",
+    "actual": "The new view renders; document.activeElement is BODY and the keyboard outline is lost.",
+    "sourceHashes": {
+      "qa/homepage-structures/polished/04/ART.md": "81f55709ed725ae5284398021df6b0163215965f415aa6ebfebeab70e2ff7cae",
+      "qa/homepage-structures/polished/04/app.js": "e3a52939d8e14a372651c0a04757bdb9b089f5c431033111a2941f16655568f2",
+      "qa/homepage-structures/polished/04/index.html": "99dc664b4c5653f03bc87d11f2a14f55282a5b719be66d4d5adfdf3bd3ac4855",
+      "qa/homepage-structures/polished/04/style.css": "c68b1beba3febe2aad55c7e5f609bb73c242560b1f9771160f0a89dd8d8396a3"
+    },
+    "cases": [
+      {
+        "id": "04",
+        "width": 1440,
+        "motion": "no-preference",
+        "pointer": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/04/",
+          "open": [],
+          "animations": [],
+          "text": "Skip to program\nMenu\nSynthetic concept\nSources\nThis week\nMy team\nScouting\nWeekly edition\nLeague index\nWire / archive\nTools\nWeek 3 scores\nIncomplete\n\nPending: no score supplied.\n\nReaves Dropper\n0.0\nWare the Hoes At?\nPending\nSaved model pick\nWare the Hoes At? 35%\nConfidence 20%\nPick provenance\nStephon Castle\u2019s Back\n105.5\nThe Fun Guys\nPending\nSaved decision on program\nPick provenance\nJosh Diddy\u2019s Roster\n105.5\nHuff n\u2019 Puff\nPending\nSaved model pick\nHuff n\u2019 Puff 35%\nConfidence 20%\nPick provenance\npapichooter\n105.5\nNeuralNets\nPending\nSaved model pick\nNeuralNets 35%\nConfidence 20%\nPick provenance\nLebr"
+        },
+        "liveReduced": {
+          "animations": 0
+        },
+        "after": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/04/",
+          "open": [],
+          "focus": {
+            "tag": "BODY",
+            "id": "",
+            "text": "Skip to program\nMenu\nSynthetic concept\nSources\nThis week\nMy team\nScouting\nWeekly edition\nLeague inde",
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1614.234375,
+            "outline": "rgb(16, 19, 28) none 3px",
+            "color": "rgb(16, 19, 28)",
+            "visible": true
+          },
+          "animations": 0
+        },
+        "result": "completed"
+      },
+      {
+        "id": "04",
+        "width": 1440,
+        "motion": "reduce",
+        "pointer": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/04/",
+          "open": [],
+          "animations": [],
+          "text": "Skip to program\nMenu\nSynthetic concept\nSources\nThis week\nMy team\nScouting\nWeekly edition\nLeague index\nWire / archive\nTools\nWeek 3 scores\nIncomplete\n\nPending: no score supplied.\n\nReaves Dropper\n0.0\nWare the Hoes At?\nPending\nSaved model pick\nWare the Hoes At? 35%\nConfidence 20%\nPick provenance\nStephon Castle\u2019s Back\n105.5\nThe Fun Guys\nPending\nSaved decision on program\nPick provenance\nJosh Diddy\u2019s Roster\n105.5\nHuff n\u2019 Puff\nPending\nSaved model pick\nHuff n\u2019 Puff 35%\nConfidence 20%\nPick provenance\npapichooter\n105.5\nNeuralNets\nPending\nSaved model pick\nNeuralNets 35%\nConfidence 20%\nPick provenance\nLebr"
+        },
+        "liveReduced": {
+          "animations": 0
+        },
+        "after": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/04/",
+          "open": [],
+          "focus": {
+            "tag": "BODY",
+            "id": "",
+            "text": "Skip to program\nMenu\nSynthetic concept\nSources\nThis week\nMy team\nScouting\nWeekly edition\nLeague inde",
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1614.234375,
+            "outline": "rgb(16, 19, 28) none 3px",
+            "color": "rgb(16, 19, 28)",
+            "visible": true
+          },
+          "animations": 0
+        },
+        "result": "completed"
+      },
+      {
+        "id": "04",
+        "width": 390,
+        "motion": "no-preference",
+        "pointer": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/04/",
+          "open": [],
+          "animations": [],
+          "text": "Skip to program\nMenu\nSynthetic concept\nSource\nThis week\nMy team\nScouting\nWeekly edition\nLeague index\nWire / archive\nTools\nWeek 3 \u00b7 105.5 / Pending\n5 games +\nWeek 3 matchup\nWeek 3 \u00b7 Game 2 of 5\nIncomplete\nStephon Castle\u2019s Back\n\nTommyDieselfuel\n1\u20130 current record\n\n105.5\n\nFantasy points\n\nThe Fun Guys\n\nphilbiag\n1\u20130 current record\n\nPending\n\nNot supplied\n\nNext game \u2192\nAI Decides \u2192\nMy team\nSaved model decision\nThe Fun Guys\nReturned choice\n35%\nStephon Castle\u2019s Back\n65%\n\nIndependent confidence\n20%\n\nInspect saved model / evidence\nSwitch to dated editorial\nFind a roster\nGOAT Hoopers \u00b7 Synthetic concept\nWe"
+        },
+        "liveReduced": {
+          "animations": 0
+        },
+        "after": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/04/",
+          "open": [],
+          "focus": {
+            "tag": "BODY",
+            "id": "",
+            "text": "Skip to program\nMenu\nSynthetic concept\nSource\nThis week\nMy team\nScouting\nWeekly edition\nLeague index",
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 1396.734375,
+            "outline": "rgb(16, 19, 28) none 3px",
+            "color": "rgb(16, 19, 28)",
+            "visible": true
+          },
+          "animations": 0
+        },
+        "result": "completed"
+      },
+      {
+        "id": "04",
+        "width": 390,
+        "motion": "reduce",
+        "pointer": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/04/",
+          "open": [],
+          "animations": [],
+          "text": "Skip to program\nMenu\nSynthetic concept\nSource\nThis week\nMy team\nScouting\nWeekly edition\nLeague index\nWire / archive\nTools\nWeek 3 \u00b7 105.5 / Pending\n5 games +\nWeek 3 matchup\nWeek 3 \u00b7 Game 2 of 5\nIncomplete\nStephon Castle\u2019s Back\n\nTommyDieselfuel\n1\u20130 current record\n\n105.5\n\nFantasy points\n\nThe Fun Guys\n\nphilbiag\n1\u20130 current record\n\nPending\n\nNot supplied\n\nNext game \u2192\nAI Decides \u2192\nMy team\nSaved model decision\nThe Fun Guys\nReturned choice\n35%\nStephon Castle\u2019s Back\n65%\n\nIndependent confidence\n20%\n\nInspect saved model / evidence\nSwitch to dated editorial\nFind a roster\nGOAT Hoopers \u00b7 Synthetic concept\nWe"
+        },
+        "liveReduced": {
+          "animations": 0
+        },
+        "after": {
+          "url": "http://localhost:4207/qa/homepage-structures/polished/04/",
+          "open": [],
+          "focus": {
+            "tag": "BODY",
+            "id": "",
+            "text": "Skip to program\nMenu\nSynthetic concept\nSource\nThis week\nMy team\nScouting\nWeekly edition\nLeague index",
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 1396.734375,
+            "outline": "rgb(16, 19, 28) none 3px",
+            "color": "rgb(16, 19, 28)",
+            "visible": true
+          },
+          "animations": 0
+        },
+        "result": "completed"
+      }
+    ],
+    "status": "Reported to root; withdrawn from ready while owner fixes."
+  }
+]

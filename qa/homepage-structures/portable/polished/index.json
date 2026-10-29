@@ -1,0 +1,4149 @@
+[
+  {
+    "id": "01",
+    "path": "qa/homepage-structures/portable/polished/01.html",
+    "bytes": 3770287,
+    "sha256": "eb289fb184f2a687947b17de61fdb960990a60c0db830e14ededc56f06cc4702",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/01/index.html",
+        "sha256": "d6c8112a0046688ab4969d59895ae0bc07521bc531728d1fe39ec42defd1ebce"
+      },
+      {
+        "path": "qa/homepage-structures/polished/01/style.css",
+        "sha256": "db7191852b4abdc56e8fc9abc93ee614590a5ba13f7fc2f43083a7fba097247e"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/01/app.js",
+        "sha256": "4fd8a51873fc142c4100154301edd428cb12b8fb7caaf11e9939895da88901cb"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/lora/Lora[wght].ttf",
+        "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7",
+        "bytes": 212196
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "02",
+    "path": "qa/homepage-structures/portable/polished/02.html",
+    "bytes": 3533672,
+    "sha256": "325ebf428b17bcc06713af31bd5f68762f89dc2e357af3867e95ce96a4929bbc",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/02/index.html",
+        "sha256": "ecdcb4d4a6259c5e8e0fe81d1bf56c1dcdfb6607c4624ba0a3009e52ee62669a"
+      },
+      {
+        "path": "qa/homepage-structures/polished/02/style.css",
+        "sha256": "e36a73d39b0e6ae2209cdc27a0d0295cb3ab20a556fdb00af7cb885cd3f7b987"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/02/app.js",
+        "sha256": "ec10fe0cd6e92b9313cbd5466ec0228bd1334864c1e1d6cf0d386b4d1dcfd1f1"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/oswald/Oswald[wght].ttf",
+        "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817",
+        "bytes": 172088
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+        "sha256": "95837e182baeeada83368f7748db28357f0a1b75c6b84ff7065b5edf933c8e18",
+        "bytes": 99356
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "03",
+    "path": "qa/homepage-structures/portable/polished/03.html",
+    "bytes": 3658315,
+    "sha256": "daad69d4669bda772d30a7a65b51ad7dd730024b59b95d7a4c99614ef4ff825b",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/03/index.html",
+        "sha256": "06349617ce352314c41e47e69569980a7624ab7e1981d88bf72bc071f9d9fd13"
+      },
+      {
+        "path": "qa/homepage-structures/polished/03/study.css",
+        "sha256": "079a05a8131f2ca26a7d3d606d0febb95a55f41662e5d9696f76865e1721ce8e"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/03/study.js",
+        "sha256": "6a87b3da00d0e57f8864769ed8bf2d5bad4aa131634b1d24b4b15bc860a5d582"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+        "sha256": "583cec5da3b84bc4dc7c9c72e2a565c94d34e431518b19d7e250b7830ad5f996",
+        "bytes": 102480
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "04",
+    "path": "qa/homepage-structures/portable/polished/04.html",
+    "bytes": 3638887,
+    "sha256": "ea3c4581c2d4f09429998e8def84d26a25266d61a793cdf46d65111276edcaf1",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/04/index.html",
+        "sha256": "99dc664b4c5653f03bc87d11f2a14f55282a5b719be66d4d5adfdf3bd3ac4855"
+      },
+      {
+        "path": "qa/homepage-structures/polished/04/style.css",
+        "sha256": "c68b1beba3febe2aad55c7e5f609bb73c242560b1f9771160f0a89dd8d8396a3"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/04/app.js",
+        "sha256": "531af50da9cd666d224fe1d586f1b7a170a6f53e750031d37b6f8bf3cea4b40a"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+        "sha256": "583cec5da3b84bc4dc7c9c72e2a565c94d34e431518b19d7e250b7830ad5f996",
+        "bytes": 102480
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "05",
+    "path": "qa/homepage-structures/portable/polished/05.html",
+    "bytes": 3737225,
+    "sha256": "3bb184d1588f6453ff9722184bc7fc6985515ccef5ce9168865221338cc70aba",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/05/index.html",
+        "sha256": "55ec5a0cd8ef4de047ccb6514e2ebbba42ca463f5729750cb1c24be9d72f62ef"
+      },
+      {
+        "path": "qa/homepage-structures/polished/05/tokens.css",
+        "sha256": "88c1fdd8aed2c58f20b67d236a41c64a6597fdee0785ed0019318a97c4d0dacd"
+      },
+      {
+        "path": "qa/homepage-structures/polished/05/wall.css",
+        "sha256": "4b52d2e4739d79d9f2b3a30756a2ddabe479f419132b3c92bb401f8070ae7cc4"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/05/wall.js",
+        "sha256": "aee2981fad137d8d09ab475fd840a0c41b90c044340ad3a46c0aa7f2f1af2d93"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/anton/Anton-Regular.ttf",
+        "sha256": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab",
+        "bytes": 170812
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "06",
+    "path": "qa/homepage-structures/portable/polished/06.html",
+    "bytes": 3681471,
+    "sha256": "112b5ce993b6b727537579a5bd5c7fef0146eeb5de871456aa326320e6f3cffa",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/06/index.html",
+        "sha256": "55f815bf01f4174d297c4245cbc36afe697a7fe81c0d3d4d86039799c69a8811"
+      },
+      {
+        "path": "qa/homepage-structures/polished/06/tokens.css",
+        "sha256": "e9d4f8c56d7f7292245a38c9f05226720917ab57e79a4672234b5af348aa702d"
+      },
+      {
+        "path": "qa/homepage-structures/polished/06/style.css",
+        "sha256": "621040ee3c892417f1aea0f74d533914d1791e1d6096d5472b10b14cf3c813b9"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/06/app.js",
+        "sha256": "998f0dfc256045e8b0a5764f023a70f4af59a44625f6f5327681a8f02e088c84"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+        "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46",
+        "bytes": 135580
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "07",
+    "path": "qa/homepage-structures/portable/polished/07.html",
+    "bytes": 3788530,
+    "sha256": "d7e6ecbd70e1c57fd81590c0a20803d5f9b3b555ac9a1a27096a276e37d46314",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/07/index.html",
+        "sha256": "50598f822936cea9720c4571dc504e4fb398a23b2e06041c10b2a1ba98b21f5a"
+      },
+      {
+        "path": "qa/homepage-structures/polished/07/room.css",
+        "sha256": "b5026b6748414ee8793c4d3f0007cbc2aea2b72e03a666fe9d467d77d80c0002"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/07/room.js",
+        "sha256": "74fdfd4dbd636f777d846493c082d276e695786c5dc0dd70198817147d8bcea0"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/lora/Lora[wght].ttf",
+        "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7",
+        "bytes": 212196
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "08",
+    "path": "qa/homepage-structures/portable/polished/08.html",
+    "bytes": 3743652,
+    "sha256": "1512ae08c851489f1d9b814c7a25e4cea30df6ed5731c12560363168f95e9e8c",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/08/index.html",
+        "sha256": "d55caa7406795a2ffa5ca9a95d283b9b32551d73b1bef0fd609c360a6af72f9a"
+      },
+      {
+        "path": "qa/homepage-structures/polished/08/style.css",
+        "sha256": "93507360ca96ee9590bdf127f0180361a4c29eb1c48f3a0fc8c3037523d233f0"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/08/study.js",
+        "sha256": "3ced13e6930d35536a159d99342cfc5e4da96e1ccb8a29fcfb11f80f371aa7c7"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/oswald/Oswald[wght].ttf",
+        "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817",
+        "bytes": 172088
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "09",
+    "path": "qa/homepage-structures/portable/polished/09.html",
+    "bytes": 3636840,
+    "sha256": "c974bac8d09dd3042a0ba59b82f03092e3640e83f7299917d6638211eaa45f39",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/09/index.html",
+        "sha256": "a13435bbd875683afb63bfe85f2b4d50950b19193364b38df08bf72d0c6ec309"
+      },
+      {
+        "path": "qa/homepage-structures/polished/09/style.css",
+        "sha256": "4897c5ad02269d5d7507f63e9b8ca3082e072973a36c7d0da5133e0cd51796d4"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/09/app.js",
+        "sha256": "382ae15b80fae426c2bae816af6413f0dd5fa0de8ff21c0bde11d6f7d0c8f217"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+        "sha256": "95837e182baeeada83368f7748db28357f0a1b75c6b84ff7065b5edf933c8e18",
+        "bytes": 99356
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "10",
+    "path": "qa/homepage-structures/portable/polished/10.html",
+    "bytes": 3676846,
+    "sha256": "5e9580aa9f27475d39ea27527fa55e7906322b40a18a12e536cab184abf11028",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/10/index.html",
+        "sha256": "8dea810907aa5ead2f9f239f9d26a6d2c2d3d77dd5739f48f67524f1bc434649"
+      },
+      {
+        "path": "qa/homepage-structures/polished/10/bench.css",
+        "sha256": "b6eb73e5470f0d84243fd3cb44868a119a123127717f483c92b303065dc6404c"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/10/bench.js",
+        "sha256": "a56965ef77efb3d943fb6599871bb182cba95070f4e2fe938e17cf39671e28f4"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+        "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46",
+        "bytes": 135580
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "11",
+    "path": "qa/homepage-structures/portable/polished/11.html",
+    "bytes": 3682539,
+    "sha256": "f07c3c34bf5d87f71e4675df05b8134fb3cf2a07af702ecb0fc3daa3a258d145",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/11/index.html",
+        "sha256": "cffcb9a75c3d0896b12d801bd4f0a5d9f7f86a4699ea1f2d71bb92bcff664895"
+      },
+      {
+        "path": "qa/homepage-structures/polished/11/style.css",
+        "sha256": "cdce61f34c68c5208157145c0baeb407fd2145f3c3386f659dc67cc34e625df8"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/11/app.js",
+        "sha256": "bef61321b649bad472d7dd4575f384890193e3ce49811d0ddc9802b647d3099d"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk[wght].ttf",
+        "sha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72",
+        "bytes": 136676
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "12",
+    "path": "qa/homepage-structures/portable/polished/12.html",
+    "bytes": 3560037,
+    "sha256": "a7b17c8fe39a06db5d7846dd9bc824f6d2b9ed2f0de42ddd01deb3b6f22aae56",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/12/index.html",
+        "sha256": "760e2442a0135593dcf28b6f5583fd823a7ed43ef0de856619b14af174c71e31"
+      },
+      {
+        "path": "qa/homepage-structures/polished/12/style.css",
+        "sha256": "2c883bbca55279960a63d71db4067e9069c85349582c0f7a1fbe4482634292eb"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/12/app.js",
+        "sha256": "48751e267f194bcded0a1adf49444994925e476a5ff27528ee5ee7abe7d6b1cd"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/orbitron/Orbitron[wght].ttf",
+        "sha256": "f42db2dd16e642258e35782916eceb1dcdbea06fb958d77ad71dc5963587e8fd",
+        "bytes": 38576
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "13",
+    "path": "qa/homepage-structures/portable/polished/13.html",
+    "bytes": 3585997,
+    "sha256": "a7fdc9a93b0401dd0fb048b7817e9564f025223fd05a6b0fc7e5a7509627f1f1",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/13/index.html",
+        "sha256": "db37282add13cc675509e79a04c8c34cea6fdc3c4954d1a3e459dd7220283f99"
+      },
+      {
+        "path": "qa/homepage-structures/polished/13/style.css",
+        "sha256": "4533d897af259c9516a383c99f83c51ce6a250341690550841364616fc899863"
+      },
+      {
+        "path": "qa/homepage-structures/polished/13/tokens.css",
+        "sha256": "36d293bd30ab6455054287b45c57f2746d128bb832bffbf532f513d99572e2de"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/13/atlas.js",
+        "sha256": "ca152d90703e606b09589da0bd4a53b3b41541b150427e0c2eddaa76cacb8b8c"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/graduate/Graduate-Regular.ttf",
+        "sha256": "971222b309851d86f2513f89b510dc52d52ef7798b5f43af2c6f58d43df568e5",
+        "bytes": 59296
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "14",
+    "path": "qa/homepage-structures/portable/polished/14.html",
+    "bytes": 3624310,
+    "sha256": "11369a9a80f7a807f2eebc3147acd6b0f2bbc011dbcec0e1b974af536e851cf4",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/14/index.html",
+        "sha256": "1901cbacc207b09a05fd91bbb395d71b7f937e4641e55d269333501ed36d9fdc"
+      },
+      {
+        "path": "qa/homepage-structures/polished/14/style.css",
+        "sha256": "1dcfb733247319a3e267a381f68517fa26d3c8ed27835a8d99aa3404220f771b"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/14/app.js",
+        "sha256": "ef1b911d6f7d50fb422dac3404cc96d080cdf2077fc304b85991949ee9d0b4a2"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+        "sha256": "dd9a89a019b4849f66ab75455fe7bdf931311042cbb0f0f97acc061539703180",
+        "bytes": 90988
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "15",
+    "path": "qa/homepage-structures/portable/polished/15.html",
+    "bytes": 3502803,
+    "sha256": "482a0d39915964f5c42671be63034629295f8f8b43778401c1af75b61f191b12",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/15/index.html",
+        "sha256": "aa715a450d99d8cd03430821e2aa4e535aaceddd0b27dcdec1b320539b20c653"
+      },
+      {
+        "path": "qa/homepage-structures/polished/15/style.css",
+        "sha256": "a86e30ba1c4e0094e9daeb8e428f0a2dc0c7aca2cffb457a2912b7377fb81ba7"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/15/app.js",
+        "sha256": "beff6e072c0cc95b22a4774b9d01ff30be446b88bf3f20e98eb54472818f121d"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "16",
+    "path": "qa/homepage-structures/portable/polished/16.html",
+    "bytes": 3640785,
+    "sha256": "575585a735ade3369c12e0953c008072afc39177634330a38a1ff5b4bb38391c",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/16/index.html",
+        "sha256": "a9de08706dd596ff172870e8e39c0dbf1d133e0c961f06fa61ac88e48f15c503"
+      },
+      {
+        "path": "qa/homepage-structures/polished/16/canvas.css",
+        "sha256": "4d831b4fa6ed7184214a41c655cccd4a596fcf462f37f1a883c5d2cfc253e217"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/16/canvas.js",
+        "sha256": "cbc7b8b5b9619de521398ea6b34660dafd6ff849321673cfbbada806de88064b"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+        "sha256": "583cec5da3b84bc4dc7c9c72e2a565c94d34e431518b19d7e250b7830ad5f996",
+        "bytes": 102480
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "17",
+    "path": "qa/homepage-structures/portable/polished/17.html",
+    "bytes": 3492226,
+    "sha256": "424d309b66f3d19ebfb46a83e3f1e404626859f8ff5553bce0c16a322f0a486a",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/17/index.html",
+        "sha256": "b5991d19bc78ef179812d1b6c9e4ee85f6c239fb0a4ffe7efcf298c92ca5d378"
+      },
+      {
+        "path": "qa/homepage-structures/polished/17/ledger.css",
+        "sha256": "48c92982dc8a6feeefe773f0d31706712898eb7a0a1287f01eeff3d014452c02"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/17/ledger.js",
+        "sha256": "0cc222378f2da69c5f28ea8c13d6474a28f4e534bab98aa43d484f685fe03551"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+        "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46",
+        "bytes": 135580
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+        "sha256": "dd9a89a019b4849f66ab75455fe7bdf931311042cbb0f0f97acc061539703180",
+        "bytes": 90988
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "18",
+    "path": "qa/homepage-structures/portable/polished/18.html",
+    "bytes": 3692557,
+    "sha256": "3f676575ff4e8401a38e257011c919deb98193d862b4e3c8b889848ef7c5a131",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/18/index.html",
+        "sha256": "7bbcef538297bbd8852c5da8f968a8c02f9d3934e54cfca92c8a6ae07ef97003"
+      },
+      {
+        "path": "qa/homepage-structures/polished/18/matrix.css",
+        "sha256": "128c95d730a3a517266e34b10c9035c62aad1efa260e4faae4f54d6dc6cb2e57"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/18/matrix.js",
+        "sha256": "acddbdc04bf707dea1a0fc353e62b52155f743f147523ec7ec68d2e4bf9e9611"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk[wght].ttf",
+        "sha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72",
+        "bytes": 136676
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "19",
+    "path": "qa/homepage-structures/portable/polished/19.html",
+    "bytes": 3587628,
+    "sha256": "4a937dbf83ec62ef9f52a3ff113f2bd161c6b8bc7b38fdb87c990e868826b53e",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/19/index.html",
+        "sha256": "bf1b16ba61f2c4ca37e1a2edaf1fc92e0ba7516a7313765f2a8ce096d4337b11"
+      },
+      {
+        "path": "qa/homepage-structures/polished/19/style.css",
+        "sha256": "72e3622d7c735ecf48bde581c68b93a4afa9f14eca871d9f353bac7905523cb7"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/19/app.js",
+        "sha256": "b0c4e9356c148a4778ea13b47e8505c81488eb714c4b9d87f8175700723ee59e"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+        "sha256": "08e4623805102d819f58601e46e345648846075e363b2ceb23313c2d1c83ec73",
+        "bytes": 61400
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  },
+  {
+    "id": "20",
+    "path": "qa/homepage-structures/portable/polished/20.html",
+    "bytes": 3661355,
+    "sha256": "3995a9ab1030afd7f72e33290d9e9891162eb6e22edd2f2c1fd66122bc4a045c",
+    "source": [
+      {
+        "path": "qa/homepage-structures/polished/20/index.html",
+        "sha256": "5478d738fb4039dac974212036f361017714ff118fc4afa4327a7fec4715ae7f"
+      },
+      {
+        "path": "qa/homepage-structures/polished/20/style.css",
+        "sha256": "90519a788e0af052bb404cfc88dc0894f380d08f88347bd36f085486df8be6b4"
+      },
+      {
+        "path": "qa/homepage-structures/data.js",
+        "sha256": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86"
+      },
+      {
+        "path": "qa/homepage-structures/polished/20/matchbook.js",
+        "sha256": "b190b9e48e760900bb0bd985261735595b9ffba7d3d7a69f3464eeeb8bd0319e"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+        "bytes": 240164
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/pressstart2p/PressStart2P-Regular.ttf",
+        "sha256": "034c77f1f05ec89421e4a63f0e3a4ca1ecf852cc6d2bf611f126f275728e017d",
+        "bytes": 118204
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb",
+        "bytes": 62900
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe",
+        "bytes": 57909
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411",
+        "bytes": 28190
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45",
+        "bytes": 60668
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+        "bytes": 68824
+      },
+      {
+        "path": "public/courtside/portraits/player-1648.png",
+        "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d",
+        "bytes": 64090
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2",
+        "bytes": 75511
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94",
+        "bytes": 64753
+      },
+      {
+        "path": "public/courtside/portraits/player-1822.png",
+        "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d",
+        "bytes": 66002
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676",
+        "bytes": 63970
+      },
+      {
+        "path": "public/courtside/portraits/player-1846.png",
+        "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716",
+        "bytes": 60917
+      },
+      {
+        "path": "public/courtside/portraits/player-1945.png",
+        "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d",
+        "bytes": 62351
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c",
+        "bytes": 47200
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64",
+        "bytes": 65120
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842",
+        "bytes": 67211
+      },
+      {
+        "path": "public/courtside/portraits/player-2126.png",
+        "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0",
+        "bytes": 75165
+      },
+      {
+        "path": "public/courtside/portraits/player-2133.png",
+        "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+        "bytes": 71681
+      },
+      {
+        "path": "public/courtside/portraits/player-2161.png",
+        "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df",
+        "bytes": 65934
+      },
+      {
+        "path": "public/courtside/portraits/player-2179.png",
+        "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+        "bytes": 68817
+      },
+      {
+        "path": "public/courtside/portraits/player-2259.png",
+        "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a",
+        "bytes": 62805
+      },
+      {
+        "path": "public/courtside/portraits/player-2267.png",
+        "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149",
+        "bytes": 68438
+      },
+      {
+        "path": "public/courtside/portraits/player-2289.png",
+        "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4",
+        "bytes": 67169
+      },
+      {
+        "path": "public/courtside/portraits/player-2304.png",
+        "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6",
+        "bytes": 60394
+      },
+      {
+        "path": "public/courtside/portraits/player-2308.png",
+        "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb",
+        "bytes": 59711
+      },
+      {
+        "path": "public/courtside/portraits/player-2455.png",
+        "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf",
+        "bytes": 58083
+      },
+      {
+        "path": "public/courtside/portraits/player-2458.png",
+        "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2",
+        "bytes": 54022
+      },
+      {
+        "path": "public/courtside/portraits/player-2574.png",
+        "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65",
+        "bytes": 64532
+      },
+      {
+        "path": "public/courtside/portraits/player-2577.png",
+        "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e",
+        "bytes": 63051
+      },
+      {
+        "path": "public/courtside/portraits/player-4760.png",
+        "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af",
+        "bytes": 59589
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+        "bytes": 53860
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+        "bytes": 329398
+      },
+      {
+        "path": "public/arcade/free-throw-preview.jpg",
+        "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c",
+        "bytes": 46441
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+        "bytes": 5117
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+        "bytes": 5117
+      }
+    ],
+    "packaging": "All approved image/font bytes, font notices/provenance and fact module inlined; canonical outbound goathoopers.com URLs; query public/member preserved. No new backend or production route."
+  }
+]

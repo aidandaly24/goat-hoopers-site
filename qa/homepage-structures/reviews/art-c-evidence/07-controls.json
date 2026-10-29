@@ -1,0 +1,675 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "room",
+        "label": "All stations in the room"
+      },
+      {
+        "id": "week",
+        "label": "Five-game working score wall"
+      },
+      {
+        "id": "locker",
+        "label": "Member roster roll at bench"
+      },
+      {
+        "id": "league",
+        "label": "Two physical lockers open"
+      },
+      {
+        "id": "scout",
+        "label": "Scouting leaf open on bench"
+      },
+      {
+        "id": "press",
+        "label": "Older archive folder on shelf"
+      },
+      {
+        "id": "games",
+        "label": "Game crate open"
+      },
+      {
+        "id": "workroom",
+        "label": "Score wall, bench and archive open together"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to clubhouse",
+      "href": "#clubhouse",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "A",
+      "id": "",
+      "text": "GOAT HOOPERS CLUBHOUSE",
+      "href": "#clubhouse",
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "A",
+      "id": "",
+      "text": "Home",
+      "href": "#clubhouse",
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "League links",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "undo",
+      "text": "Back one room action",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 6,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Move around the room",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 7,
+      "tag": "A",
+      "id": "",
+      "text": "At the score wall",
+      "href": "#score-wall",
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "A",
+      "id": "",
+      "text": "Across to the lockers",
+      "href": "#team-lockers",
+      "visible": true
+    },
+    {
+      "i": 9,
+      "tag": "A",
+      "id": "",
+      "text": "Take it to the bench",
+      "href": "#bench",
+      "visible": true
+    },
+    {
+      "i": 10,
+      "tag": "A",
+      "id": "",
+      "text": "Check the archive shelf",
+      "href": "#press-desk",
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "A",
+      "id": "",
+      "text": "Their score",
+      "href": "#score-wall",
+      "visible": false
+    },
+    {
+      "i": 12,
+      "tag": "A",
+      "id": "",
+      "text": "Their lockers",
+      "href": "#team-lockers",
+      "visible": false
+    },
+    {
+      "i": 13,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open this pair’s two lockers",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Five saved model calls",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 20,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 21,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 22,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 23,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 24,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 25,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 26,
+      "tag": "INPUT",
+      "id": "locker-search",
+      "text": "Embiid, NeuralNets…",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 27,
+      "tag": "SELECT",
+      "id": "locker-sort",
+      "text": "Team name A–Z Standing Roster size",
+      "href": null,
+      "select": [
+        [
+          "name",
+          "Team name A–Z"
+        ],
+        [
+          "rank",
+          "Standing"
+        ],
+        [
+          "size",
+          "Roster size"
+        ]
+      ],
+      "visible": true
+    },
+    {
+      "i": 28,
+      "tag": "A",
+      "id": "",
+      "text": "Back to their score",
+      "href": "#score-wall",
+      "visible": true
+    },
+    {
+      "i": 29,
+      "tag": "A",
+      "id": "",
+      "text": "Take notes at the bench",
+      "href": "#bench",
+      "visible": true
+    },
+    {
+      "i": 30,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Huff n’ Puff GriffinHealy · 1–0 · 23 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 31,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 32,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Josh Diddy’s Roster vannweinkauf · 1–0 · 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 33,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 34,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Lebron Theme Team lordlx · 1–0 · 21 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 35,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 36,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "NeuralNets NeuralNets · 1–0 · 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 37,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 38,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "papichooter papichooter · 1–0 · 23 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 39,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 40,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Reaves Dropper aidandaly20 · 1–0 · 24 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 41,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 42,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Stephon Castle’s Back TommyDieselfuel · 1–0 · 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 43,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 44,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "T Halibooty TyreseHalibooty · 1–0 · 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 45,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 46,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "The Fun Guys philbiag · 1–0 · 22 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 47,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 48,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Ware the Hoes At? Aedan23 · 1–0 · 27 players",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 49,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 50,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Unroll all 24 values & basis",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 51,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 52,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Open watch / best / rough notes",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 53,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 54,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Open your team wire",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 55,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 56,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Oct 5–11, 2026",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 57,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Sep 28–Oct 4, 2026",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 58,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Open this edition in its folder",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 59,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 60,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 61,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 62,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 63,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 64,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 65,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Free throw practice",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 66,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 67,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Unfold all ten standings",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 68,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 69,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "League transaction wire",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 70,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 71,
+      "tag": "A",
+      "id": "",
+      "text": "Fixture provenance",
+      "href": "#provenance",
+      "visible": true
+    }
+  ],
+  "scrolls": [
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "slate-roll",
+      "client": 368,
+      "scroll": 1349
+    },
+    {
+      "tag": "DIV",
+      "id": "cabinet",
+      "class": "locker-cabinet",
+      "client": 352,
+      "scroll": 445
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "work-roll",
+      "client": 496,
+      "scroll": 2012
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "work-roll",
+      "client": 496,
+      "scroll": 1272
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "archive-roll",
+      "client": 560,
+      "scroll": 1918
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "class": "ledger-roll",
+      "client": 464,
+      "scroll": 585
+    }
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "states": [
+    {
+      "id": "room",
+      "label": "All stations in the room"
+    },
+    {
+      "id": "week",
+      "label": "Five-game working score wall"
+    },
+    {
+      "id": "locker",
+      "label": "Member roster roll at bench"
+    },
+    {
+      "id": "league",
+      "label": "Two physical lockers open"
+    },
+    {
+      "id": "scout",
+      "label": "Scouting leaf open on bench"
+    },
+    {
+      "id": "press",
+      "label": "Older archive folder on shelf"
+    },
+    {
+      "id": "games",
+      "label": "Game crate open"
+    },
+    {
+      "id": "workroom",
+      "label": "Score wall, bench and archive open together"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "undo",
+      "cls": "",
+      "text": "Back one room action",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "to-lockers",
+      "text": "Open this pair’s two lockers",
+      "data": {
+        "compare": ""
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "game-pair",
+      "text": "",
+      "data": {
+        "game": "0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "game-pair",
+      "text": "",
+      "data": {
+        "game": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "game-pair",
+      "text": "",
+      "data": {
+        "game": "2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "game-pair",
+      "text": "",
+      "data": {
+        "game": "3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "game-pair",
+      "text": "",
+      "data": {
+        "game": "4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "saved-slate"
+      }
+    },
+    {
+      "tag": "INPUT",
+      "id": "locker-search",
+      "cls": "",
+      "text": "",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "locker-sort",
+      "cls": "",
+      "text": "Team name A–Z\nStanding\nRoster size",
+      "data": {},
+      "options": [
+        [
+          "name",
+          "Team name A–Z"
+        ],
+        [
+          "rank",
+          "Standing"
+        ],
+        [
+          "size",
+          "Roster size"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "door-6"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "door-5"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "door-9"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "door-8"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "door-7"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "door-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "door-3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "door-10"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "door-4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "door-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "value-leaf"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "form-leaf"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "wire-leaf"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Oct 5–11, 2026",
+      "data": {
+        "edition": "0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Sep 28–Oct 4, 2026",
+      "data": {
+        "edition": "1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "archive-folder"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "game-lid"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "ledger-leaf"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "local-close",
+      "text": "",
+      "data": {
+        "close": "league-wire"
+      }
+    }
+  ]
+}

@@ -1,0 +1,477 @@
+{
+  "date": "2026-10-29",
+  "scope": "Query commons full-art study 11",
+  "browser": "Installed Chromium / Playwright, local static server",
+  "responsive": [
+    {
+      "width": 1440,
+      "state": "default",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "week",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "roster",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "search",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "directory",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "predictions",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "edition",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "league",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 390,
+      "state": "default",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "week",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "roster",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "search",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "directory",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "predictions",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "edition",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "league",
+      "scrollWidth": 390
+    },
+    {
+      "width": 320,
+      "state": "default",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "week",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "roster",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "search",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "directory",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "predictions",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "edition",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "league",
+      "scrollWidth": 320
+    }
+  ],
+  "interactions": [
+    "Empty \u2192 submitted Reaves search \u2192 Austin Reaves answer \u2192 Change search \u2192 Back \u2192 Forward \u2192 Back to results \u2192 empty; query and focus restore",
+    "No-match return uses real query control",
+    {
+      "playerIndex": 228,
+      "sortFirst": "Aaron Gordon",
+      "showMore": 50
+    },
+    {
+      "directoryTeams": 10,
+      "uniqueRosterReferences": 228,
+      "directoryQuerySortDisclosureBack": true
+    },
+    {
+      "rosterValues": 24,
+      "modeledTotal": "$1095.25",
+      "priced": 24,
+      "unpriced": 0
+    },
+    "Known zero / Pending / Incomplete preserved",
+    {
+      "AI": 5,
+      "returnedChoice": "Ware the Hoes At?",
+      "choicePct": 35,
+      "otherPct": 65,
+      "confidencePct": 20,
+      "provenanceAndEscape": true
+    },
+    "Three complete source-period spotlights use coherent dated archive pairing",
+    {
+      "routes": [
+        "/",
+        "/intel",
+        "/stocks#player-board",
+        "/history",
+        "/arcade",
+        "/ai-decides",
+        "/teams",
+        "/transactions",
+        "/trade-analyzer",
+        "/weekly",
+        "/arcade/free-throw",
+        "/team",
+        "/teams/1#team-roster"
+      ],
+      "phoneSearchFocus": true
+    },
+    "Member/public \u00d7 ready/stale/missing at 1440/390/320; public omits personal tasks/actions",
+    "Pointer/keyboard states immediate, live reduced-motion equivalent with zero animations",
+    "Final short/long name query and answer: Hoes",
+    "Final short/long name query and answer: Stephon Castle\u2019s Back",
+    "Final short/long name query and answer: Shai Gilgeous-Alexander"
+  ],
+  "pageErrors": [],
+  "networkFailures": [],
+  "remoteRuntimeRequests": [],
+  "loadedFonts": [
+    {
+      "family": "DM Sans",
+      "status": "loaded"
+    },
+    {
+      "family": "Space Grotesk",
+      "status": "loaded"
+    }
+  ],
+  "text200": {
+    "width": 320,
+    "states": 8,
+    "passed": true
+  },
+  "images": [
+    {
+      "src": "/public/courtside/portraits/player-1511.png",
+      "loaded": true,
+      "crop": "50% 18%"
+    },
+    {
+      "src": "/public/courtside/portraits/player-1739.png",
+      "loaded": true,
+      "crop": "50% 18%"
+    },
+    {
+      "src": "/public/courtside/portraits/player-1957.png",
+      "loaded": true,
+      "crop": "50% 18%"
+    },
+    {
+      "src": "/public/courtside/portraits/player-1967.png",
+      "loaded": true,
+      "crop": "50% 18%"
+    },
+    {
+      "src": "/public/courtside/portraits/player-1085.png",
+      "loaded": true,
+      "crop": "50% 18%"
+    },
+    {
+      "src": "/public/courtside/portraits/player-1845.png",
+      "loaded": true,
+      "crop": "50% 18%"
+    },
+    {
+      "src": "/public/courtside/portraits/player-1970.png",
+      "loaded": true,
+      "crop": "50% 18%"
+    },
+    {
+      "src": "/public/courtside/portraits/player-1380.png",
+      "loaded": true,
+      "crop": "50% 18%"
+    },
+    {
+      "src": "/public/courtside/portraits/player-1362.png",
+      "loaded": true,
+      "crop": "50% 18%"
+    },
+    {
+      "src": "/public/courtside/portraits/player-1272.png",
+      "loaded": true,
+      "crop": "50% 18%"
+    }
+  ],
+  "defaultPhoneTargets44": true,
+  "activeAnimations": 0,
+  "contrast": [
+    {
+      "foreground": "text",
+      "background": "canvas",
+      "ratio": 9.83,
+      "required": 4.5,
+      "passed": true
+    },
+    {
+      "foreground": "secondary",
+      "background": "canvas",
+      "ratio": 5.8,
+      "required": 4.5,
+      "passed": true
+    },
+    {
+      "foreground": "accent-ink",
+      "background": "canvas",
+      "ratio": 5.44,
+      "required": 4.5,
+      "passed": true
+    },
+    {
+      "foreground": "action-text",
+      "background": "action",
+      "ratio": 5.17,
+      "required": 4.5,
+      "passed": true
+    },
+    {
+      "foreground": "action-text",
+      "background": "action-hover",
+      "ratio": 4.87,
+      "required": 4.5,
+      "passed": true
+    },
+    {
+      "foreground": "action-pressed-text",
+      "background": "action-pressed",
+      "ratio": 6.15,
+      "required": 4.5,
+      "passed": true
+    },
+    {
+      "foreground": "control",
+      "background": "canvas",
+      "ratio": 3.95,
+      "required": 3,
+      "passed": true
+    },
+    {
+      "foreground": "control",
+      "background": "control-surface",
+      "ratio": 4.47,
+      "required": 3,
+      "passed": true
+    },
+    {
+      "foreground": "focus",
+      "background": "action",
+      "ratio": 5.17,
+      "required": 3,
+      "passed": true
+    },
+    {
+      "foreground": "focus",
+      "background": "canvas",
+      "ratio": 9.83,
+      "required": 3,
+      "passed": true
+    },
+    {
+      "foreground": "probability",
+      "background": "probability-track",
+      "ratio": 3.56,
+      "required": 3,
+      "passed": true
+    }
+  ],
+  "semanticAudit": {
+    "colorsOutsideRoot": [],
+    "negativeTracking": false,
+    "gradients": false
+  },
+  "frozenUnchanged": {
+    "wireframes/11": true,
+    "structural-revisions/11": true
+  },
+  "status": "passed",
+  "finalResponsive": [
+    {
+      "width": 1440,
+      "state": "default",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "week",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "roster",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "search",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "directory",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "predictions",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "edition",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "state": "league",
+      "scrollWidth": 1440
+    },
+    {
+      "width": 390,
+      "state": "default",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "week",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "roster",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "search",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "directory",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "predictions",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "edition",
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "state": "league",
+      "scrollWidth": 390
+    },
+    {
+      "width": 320,
+      "state": "default",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "week",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "roster",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "search",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "directory",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "predictions",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "edition",
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "state": "league",
+      "scrollWidth": 320
+    }
+  ],
+  "finalRoot200": true,
+  "finalBack": true,
+  "finalRenderedHover": {
+    "text": "rgb(20, 62, 59)",
+    "background": "rgb(249, 134, 112)",
+    "ratio": 4.87
+  },
+  "finalErrors": [],
+  "finalSourceHashes": {
+    "index.html": "cffcb9a75c3d0896b12d801bd4f0a5d9f7f86a4699ea1f2d71bb92bcff664895",
+    "style.css": "cdce61f34c68c5208157145c0baeb407fd2145f3c3386f659dc67cc34e625df8",
+    "app.js": "bef61321b649bad472d7dd4575f384890193e3ce49811d0ddc9802b647d3099d",
+    "ART.md": "214739d313a6de6beb782f7afbec83e314f8a93d2c486f9c73294f50519b946b"
+  }
+}

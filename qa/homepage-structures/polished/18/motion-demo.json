@@ -1,0 +1,18 @@
+{
+  "desktop": [
+    {"action":"click","selector":"#pin-chooser > summary","waitMs":100},
+    {"action":"fill","selector":"#identity-search","value":"Dybantsa","waitMs":50},
+    {"action":"select","selector":"#identity-select","value":"4866","waitMs":50},
+    {"action":"scroll","selector":"html","delta":300,"waitMs":60},
+    {"action":"click","selector":"#pin-button","waitMs":80},
+    {"action":"click","selector":"#follow-pins","waitMs":100}
+  ],
+  "phone": [
+    {"action":"click","selector":"#pin-chooser > summary","waitMs":100},
+    {"action":"fill","selector":"#identity-search","value":"Dybantsa","waitMs":50},
+    {"action":"select","selector":"#identity-select","value":"4866","waitMs":50},
+    {"action":"scroll","selector":"html","delta":300,"waitMs":60},
+    {"action":"click","selector":"#pin-button","waitMs":80},
+    {"action":"click","selector":"#follow-pins","waitMs":100}
+  ]
+}

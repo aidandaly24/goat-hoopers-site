@@ -1,0 +1,468 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "week",
+        "label": "Current Week 3 and five AI picks"
+      },
+      {
+        "id": "club",
+        "label": "Member quote and scouting"
+      },
+      {
+        "id": "league",
+        "label": "Searchable complete league index"
+      },
+      {
+        "id": "stories",
+        "label": "Dated draft and three player spotlights"
+      },
+      {
+        "id": "archive",
+        "label": "Historical final archive"
+      },
+      {
+        "id": "tools",
+        "label": "Route index and honest unavailable states"
+      },
+      {
+        "id": "closed",
+        "label": "All five unequal chapter spines"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to the atlas",
+      "href": "#atlas",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Destinations",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 4,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Next: Your club",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "back-spread",
+      "text": "Previous spread",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 6,
+      "tag": "BUTTON",
+      "id": "fold-book",
+      "text": "Fold book",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 7,
+      "tag": "BUTTON",
+      "id": "spine-week",
+      "text": "Week 3, in progress The current pairing and five saved model picks Fold",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 8,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Find another club",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 9,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read the dated edition",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 10,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Choice: Ware the Hoes At? 35%; confidence 20%",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 11,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Choice: The Fun Guys 35%; confidence 20%",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 12,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Choice: Huff n’ Puff 35%; confidence 20%",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 13,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Choice: NeuralNets 35%; confidence 20%",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Choice: T Halibooty 35%; confidence 20%",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open Your club, in the margins",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Close spread",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "BUTTON",
+      "id": "spine-club",
+      "text": "Your club, in the margins A modeled quote, roster, scouting and team wire Unfold",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Every roster value; 24 players",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 19,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Completed-week basis",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 20,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open A league, indexed",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 21,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Close spread",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 22,
+      "tag": "BUTTON",
+      "id": "spine-league",
+      "text": "A league, indexed Ten clubs; every roster; useful standings Unfold",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 23,
+      "tag": "INPUT",
+      "id": "league-search",
+      "text": "Try Embiid or NeuralNets",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 24,
+      "tag": "SELECT",
+      "id": "league-sort",
+      "text": "Current standingTeam name A–ZRoster count, most first",
+      "href": null,
+      "select": [
+        [
+          "rank",
+          "Current standing"
+        ],
+        [
+          "name",
+          "Team name A–Z"
+        ],
+        [
+          "players",
+          "Roster count, most first"
+        ]
+      ],
+      "visible": false
+    },
+    {
+      "i": 25,
+      "tag": "BUTTON",
+      "id": "clear-search",
+      "text": "Clear",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 26,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Reaves Dropperaidandaly20; current 1–0Week 3 vs Ware the Hoes At?24 roster playersRoster",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 27,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Ware the Hoes At?Aedan23; current 1–0Week 3 vs Reaves Dropper27 roster playersRoster",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 28,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Stephon Castle’s BackTommyDieselfuel; current 1–0Week 3 vs The Fun Guys22 roster playersRo",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 29,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "The Fun Guysphilbiag; current 1–0Week 3 vs Stephon Castle’s Back22 roster playersRoster",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 30,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Josh Diddy’s Rostervannweinkauf; current 1–0Week 3 vs Huff n’ Puff22 roster playersRoster",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 31,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Huff n’ PuffGriffinHealy; current 1–0Week 3 vs Josh Diddy’s Roster23 roster playersRoster",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 32,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "papichooterpapichooter; current 1–0Week 3 vs NeuralNets23 roster playersRoster",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 33,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "NeuralNetsNeuralNets; current 1–0Week 3 vs papichooter22 roster playersRoster",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 34,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Lebron Theme Teamlordlx; current 1–0Week 3 vs T Halibooty21 roster playersRoster",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 35,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "T HalibootyTyreseHalibooty; current 1–0Week 3 vs Lebron Theme Team22 roster playersRoster",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 36,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Faces of the league; all ten anchors",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 37,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open Pages from the season",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 38,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Close spread",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 39,
+      "tag": "BUTTON",
+      "id": "spine-stories",
+      "text": "Pages from the season Dated editorial, the wire and two archived editions Unfold",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 40,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Oct 5–11, 2026; The next chapter",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 41,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Sep 28–Oct 4, 2026; The title everybody’s chasing",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 42,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Why this game was selected",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 43,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Dated edition sources",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 44,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Selection and source",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 45,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Selection and source",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 46,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Selection and source",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 47,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open Beyond this book",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 48,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Close spread",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 49,
+      "tag": "BUTTON",
+      "id": "spine-tools",
+      "text": "Beyond this book News, Stocks, History, Arcade and the league tools Unfold",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 50,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Open Week 3, in progress",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 51,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Close spread",
+      "href": null,
+      "visible": false
+    }
+  ],
+  "scrolls": []
+}

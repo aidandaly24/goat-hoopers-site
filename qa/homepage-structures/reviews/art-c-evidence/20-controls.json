@@ -1,0 +1,202 @@
+{
+  "study": {
+    "states": [
+      {
+        "id": "home",
+        "label": "Branching entry"
+      },
+      {
+        "id": "players",
+        "label": "Players and next choices"
+      },
+      {
+        "id": "form",
+        "label": "Form and completed-week evidence"
+      },
+      {
+        "id": "prices",
+        "label": "All modeled values"
+      },
+      {
+        "id": "compare",
+        "label": "Five pairings and saved AI"
+      },
+      {
+        "id": "league",
+        "label": "Standings and ten-team directory"
+      },
+      {
+        "id": "read",
+        "label": "Dated editorial and archive"
+      },
+      {
+        "id": "tools",
+        "label": "Tools, transactions and game"
+      }
+    ],
+    "activate": "function"
+  },
+  "controls": [
+    {
+      "i": 0,
+      "tag": "A",
+      "id": "",
+      "text": "Skip to matchbook",
+      "href": "#matchbook",
+      "visible": true
+    },
+    {
+      "i": 1,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Synthetic concept",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 2,
+      "tag": "BUTTON",
+      "id": "open-index",
+      "text": "Open anywhere",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 3,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "This week",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 4,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "My players",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 5,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Form & completed week",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 6,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Modeled prices",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 7,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "My team wire",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 8,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Compare the matchups",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 9,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Know the league",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 10,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read the league",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 11,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Explore & play",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 12,
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Managers, records & saved AI",
+      "href": null,
+      "visible": false
+    },
+    {
+      "i": 13,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "Read the saved evidence",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 14,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "I want to inspect my players. 24 players, form, completed-week points and modeled value.",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 15,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "I want to compare the teams. Five current pairings and the actual saved model returns.",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 16,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "I want to know this league. Ten identities, standings, opponents and complete rosters.",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 17,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "I want to read the league. Dated editorial, player spotlights and the edition archive.",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 18,
+      "tag": "BUTTON",
+      "id": "",
+      "text": "I want to explore or play. Stocks, trades, transactions, history and the Arcade.",
+      "href": null,
+      "visible": true
+    },
+    {
+      "i": 19,
+      "tag": "BUTTON",
+      "id": "show-provenance",
+      "text": "Fixture provenance",
+      "href": null,
+      "visible": true
+    }
+  ],
+  "scrolls": []
+}

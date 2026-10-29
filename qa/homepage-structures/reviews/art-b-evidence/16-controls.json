@@ -1,0 +1,573 @@
+{
+  "states": [
+    {
+      "id": "default",
+      "label": "Default retained scores, two franchises and member evidence"
+    },
+    {
+      "id": "arrange",
+      "label": "Accessible arrangement controls and independent roster"
+    },
+    {
+      "id": "pinned",
+      "label": "Second franchise promoted while prior material remains"
+    },
+    {
+      "id": "three-teams",
+      "label": "Added franchises and their current matchup retained concurrently"
+    },
+    {
+      "id": "picks",
+      "label": "All five current matchups with saved AI on the canvas"
+    },
+    {
+      "id": "league",
+      "label": "Pinned searchable league reference with original composition retained"
+    },
+    {
+      "id": "editorial",
+      "label": "Dated editorial and historical final alongside current context"
+    },
+    {
+      "id": "tools",
+      "label": "Playable game and real destinations kept on the canvas"
+    }
+  ],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "arrange",
+      "cls": "",
+      "text": "Arrange",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "add-material",
+      "cls": "",
+      "text": "Add league material",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "restore",
+      "cls": "",
+      "text": "Restore",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "close-source",
+      "cls": "",
+      "text": "Close material list",
+      "data": {}
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Kept: Reaves DropperJoel Embiid · roster + identity",
+      "data": {
+        "add": "club-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Kept: Ware the Hoes At?Domantas Sabonis · roster + identity",
+      "data": {
+        "add": "club-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: Stephon Castle’s BackShai Gilgeous-Alexander · roster + identity",
+      "data": {
+        "add": "club-3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: The Fun GuysJalen Brunson · roster + identity",
+      "data": {
+        "add": "club-4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: Josh Diddy’s RosterStephen Curry · roster + identity",
+      "data": {
+        "add": "club-5"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: Huff n’ PuffDonovan Mitchell · roster + identity",
+      "data": {
+        "add": "club-6"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: papichooterLuka Dončić · roster + identity",
+      "data": {
+        "add": "club-7"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: NeuralNetsGiannis Antetokounmpo · roster + identity",
+      "data": {
+        "add": "club-8"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: Lebron Theme TeamLeBron James · roster + identity",
+      "data": {
+        "add": "club-9"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: T HalibootyAnthony Davis · roster + identity",
+      "data": {
+        "add": "club-10"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Kept: Reaves Dropper / Ware the Hoes At?Current Week 3 score + saved AI",
+      "data": {
+        "add": "game-0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: Stephon Castle’s Back / The Fun GuysCurrent Week 3 score + saved AI",
+      "data": {
+        "add": "game-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: Josh Diddy’s Roster / Huff n’ PuffCurrent Week 3 score + saved AI",
+      "data": {
+        "add": "game-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: papichooter / NeuralNetsCurrent Week 3 score + saved AI",
+      "data": {
+        "add": "game-3"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: Lebron Theme Team / T HalibootyCurrent Week 3 score + saved AI",
+      "data": {
+        "add": "game-4"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Kept: Your modeled roster valueAll 24 values, coverage and supplied rank",
+      "data": {
+        "add": "value"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Kept: Your form and completed-week recapEMA watch + best/rough points",
+      "data": {
+        "add": "form"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Kept: Your team wireNews and recent moves",
+      "data": {
+        "add": "wire"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: League reference field10 teams, 228 player references, standings",
+      "data": {
+        "add": "league"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: Oct 5–11, 2026 · The next chapterdraft, unpublished · dated editorial",
+      "data": {
+        "add": "edition-0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: Sep 28–Oct 4, 2026 · The title everybody’s chasingdraft, unpublished · dated editorial",
+      "data": {
+        "add": "edition-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Add: Play and useful destinationsStocks, trade, routes and missing producers",
+      "data": {
+        "add": "tools"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move earlier",
+      "data": {
+        "action": "earlier",
+        "id": "game-0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move later",
+      "data": {
+        "action": "later",
+        "id": "game-0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Pin first",
+      "data": {
+        "action": "pin",
+        "id": "game-0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Remove item",
+      "data": {
+        "action": "remove",
+        "id": "game-0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Locate franchise context",
+      "data": {
+        "add": "club-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Locate franchise context",
+      "data": {
+        "add": "club-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move earlier",
+      "data": {
+        "action": "earlier",
+        "id": "club-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move later",
+      "data": {
+        "action": "later",
+        "id": "club-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Pin first",
+      "data": {
+        "action": "pin",
+        "id": "club-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Remove item",
+      "data": {
+        "action": "remove",
+        "id": "club-1"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Locate this matchup",
+      "data": {
+        "add": "game-0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move earlier",
+      "data": {
+        "action": "earlier",
+        "id": "club-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move later",
+      "data": {
+        "action": "later",
+        "id": "club-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Pin first",
+      "data": {
+        "action": "pin",
+        "id": "club-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Remove item",
+      "data": {
+        "action": "remove",
+        "id": "club-2"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Locate this matchup",
+      "data": {
+        "add": "game-0"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move earlier",
+      "data": {
+        "action": "earlier",
+        "id": "value"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move later",
+      "data": {
+        "action": "later",
+        "id": "value"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Pin first",
+      "data": {
+        "action": "pin",
+        "id": "value"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Remove item",
+      "data": {
+        "action": "remove",
+        "id": "value"
+      }
+    },
+    {
+      "tag": "INPUT",
+      "id": "value-filter",
+      "cls": "",
+      "text": "",
+      "data": {}
+    },
+    {
+      "tag": "SELECT",
+      "id": "value-sort",
+      "cls": "",
+      "text": "",
+      "data": {},
+      "options": [
+        [
+          "value",
+          "Modeled value, high first"
+        ],
+        [
+          "name",
+          "Player name"
+        ]
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move earlier",
+      "data": {
+        "action": "earlier",
+        "id": "form"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move later",
+      "data": {
+        "action": "later",
+        "id": "form"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Pin first",
+      "data": {
+        "action": "pin",
+        "id": "form"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Remove item",
+      "data": {
+        "action": "remove",
+        "id": "form"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Locate the team wire",
+      "data": {
+        "add": "wire"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move earlier",
+      "data": {
+        "action": "earlier",
+        "id": "wire"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Move later",
+      "data": {
+        "action": "later",
+        "id": "wire"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Pin first",
+      "data": {
+        "action": "pin",
+        "id": "wire"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "cls": "",
+      "text": "Remove item",
+      "data": {
+        "action": "remove",
+        "id": "wire"
+      }
+    }
+  ]
+}

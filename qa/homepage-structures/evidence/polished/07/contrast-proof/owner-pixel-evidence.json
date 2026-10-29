@@ -1,0 +1,743 @@
+{
+  "scope": "Owner isolated native pixel regions and computed roles; root full/native captures and manual review supplement the nearest-ancestor candidate list. Semantic wall is rendered SVG backdrop, not body background.",
+  "records": [
+    {
+      "kind": "guide",
+      "width": 390,
+      "size": "100%",
+      "color": "rgb(133, 67, 35)",
+      "body": "rgb(226, 207, 173)",
+      "font": "14px",
+      "overflow": 0,
+      "height": 45,
+      "opened": true,
+      "escapeClosed": true
+    },
+    {
+      "kind": "wall",
+      "id": "wall-caption",
+      "width": 390,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-100-wall-caption.png",
+      "fg": "rgb(226, 207, 173)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 47.1875,
+        "y": 412.2197265625,
+        "width": 86.265625,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 1216,
+      "ratio": 4.8
+    },
+    {
+      "kind": "wall",
+      "id": "wall-heading",
+      "width": 390,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-100-wall-heading.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 47.1875,
+        "y": 411.2197265625,
+        "width": 253.25,
+        "height": 36
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 7149,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "wall-note",
+      "width": 390,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-100-wall-note.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 47.1875,
+        "y": 401.8134765625,
+        "width": 115.40625,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 1688,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "search-label",
+      "width": 390,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-100-search-label.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 47.1875,
+        "y": 383.8134765625,
+        "width": 187.890625,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 2727,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "sort-label",
+      "width": 390,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-100-sort-label.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 47.1875,
+        "y": 383.8134765625,
+        "width": 76.96875,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 1114,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "wall-count",
+      "width": 390,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-100-wall-count.png",
+      "fg": "rgb(226, 207, 173)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 47.1875,
+        "y": 401.8134765625,
+        "width": 235.859375,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 3450,
+      "ratio": 4.8
+    },
+    {
+      "kind": "guide",
+      "width": 390,
+      "size": "200%",
+      "color": "rgb(133, 67, 35)",
+      "body": "rgb(226, 207, 173)",
+      "font": "28px",
+      "overflow": 0,
+      "height": 90,
+      "opened": true,
+      "escapeClosed": true
+    },
+    {
+      "kind": "wall",
+      "id": "wall-caption",
+      "width": 390,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-200-wall-caption.png",
+      "fg": "rgb(226, 207, 173)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 51.5,
+        "y": 402.671875,
+        "width": 168.5,
+        "height": 37
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 5036,
+      "ratio": 4.8
+    },
+    {
+      "kind": "wall",
+      "id": "wall-heading",
+      "width": 390,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-200-wall-heading.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 51.5,
+        "y": 368.671875,
+        "width": 203.515625,
+        "height": 71
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 11628,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "wall-note",
+      "width": 390,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-200-wall-note.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 51.5,
+        "y": 361.046875,
+        "width": 224.28125,
+        "height": 37
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 6897,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "search-label",
+      "width": 390,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-200-search-label.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 51.5,
+        "y": 325.046875,
+        "width": 281.6875,
+        "height": 37
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 8650,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "sort-label",
+      "width": 390,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-200-sort-label.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 51.5,
+        "y": 348.046875,
+        "width": 149.109375,
+        "height": 37
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 4535,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "wall-count",
+      "width": 390,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-390-200-wall-count.png",
+      "fg": "rgb(226, 207, 173)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 51.5,
+        "y": 361.046875,
+        "width": 280.265625,
+        "height": 37
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 8687,
+      "ratio": 4.8
+    },
+    {
+      "kind": "guide",
+      "width": 320,
+      "size": "100%",
+      "color": "rgb(133, 67, 35)",
+      "body": "rgb(226, 207, 173)",
+      "font": "14px",
+      "overflow": 0,
+      "height": 45,
+      "opened": true,
+      "escapeClosed": true
+    },
+    {
+      "kind": "wall",
+      "id": "wall-caption",
+      "width": 320,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-100-wall-caption.png",
+      "fg": "rgb(226, 207, 173)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 41.59375,
+        "y": 412.5947265625,
+        "width": 86.265625,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 1216,
+      "ratio": 4.8
+    },
+    {
+      "kind": "wall",
+      "id": "wall-heading",
+      "width": 320,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-100-wall-heading.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 41.59375,
+        "y": 411.5947265625,
+        "width": 253.25,
+        "height": 36
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 7149,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "wall-note",
+      "width": 320,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-100-wall-note.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 41.59375,
+        "y": 402.1884765625,
+        "width": 115.40625,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 1688,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "search-label",
+      "width": 320,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-100-search-label.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 41.59375,
+        "y": 383.1884765625,
+        "width": 187.890625,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 2727,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "sort-label",
+      "width": 320,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-100-sort-label.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 41.59375,
+        "y": 384.1884765625,
+        "width": 76.96875,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 1114,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "wall-count",
+      "width": 320,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-100-wall-count.png",
+      "fg": "rgb(226, 207, 173)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 41.59375,
+        "y": 402.1884765625,
+        "width": 235.859375,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 3450,
+      "ratio": 4.8
+    },
+    {
+      "kind": "guide",
+      "width": 320,
+      "size": "200%",
+      "color": "rgb(133, 67, 35)",
+      "body": "rgb(226, 207, 173)",
+      "font": "28px",
+      "overflow": 0,
+      "height": 132,
+      "opened": true,
+      "escapeClosed": true
+    },
+    {
+      "kind": "wall",
+      "id": "wall-caption",
+      "width": 320,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-200-wall-caption.png",
+      "fg": "rgb(226, 207, 173)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 48,
+        "y": 403.09375,
+        "width": 168.5,
+        "height": 37
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 5043,
+      "ratio": 4.8
+    },
+    {
+      "kind": "wall",
+      "id": "wall-heading",
+      "width": 320,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-200-wall-heading.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 48,
+        "y": 369.09375,
+        "width": 203.515625,
+        "height": 71
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 11548,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "wall-note",
+      "width": 320,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-200-wall-note.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 48,
+        "y": 361.46875,
+        "width": 224.28125,
+        "height": 37
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 6916,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "search-label",
+      "width": 320,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-200-search-label.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 48,
+        "y": 325.46875,
+        "width": 248.625,
+        "height": 37
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 7547,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "sort-label",
+      "width": 320,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-200-sort-label.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 48,
+        "y": 348.46875,
+        "width": 149.109375,
+        "height": 37
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 4568,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "wall-count",
+      "width": 320,
+      "size": "200%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-320-200-wall-count.png",
+      "fg": "rgb(226, 207, 173)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 48,
+        "y": 340.46875,
+        "width": 225.890625,
+        "height": 37
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 6961,
+      "ratio": 4.8
+    },
+    {
+      "kind": "wall",
+      "id": "wall-caption",
+      "width": 1440,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-1440-100-wall-caption.png",
+      "fg": "rgb(226, 207, 173)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 584.84375,
+        "y": 245.79054260253906,
+        "width": 86.265625,
+        "height": 17.999984741210938
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 1027,
+      "ratio": 4.8
+    },
+    {
+      "kind": "wall",
+      "id": "wall-heading",
+      "width": 1440,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-1440-100-wall-heading.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 584.84375,
+        "y": 263.79052734375,
+        "width": 253.25,
+        "height": 36
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 7186,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "wall-note",
+      "width": 1440,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-1440-100-wall-note.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 1198.40625,
+        "y": 258.38427734375,
+        "width": 115.40625,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 1670,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "search-label",
+      "width": 1440,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-1440-100-search-label.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 584.84375,
+        "y": 324.38427734375,
+        "width": 187.890625,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 2727,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "sort-label",
+      "width": 1440,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-1440-100-sort-label.png",
+      "fg": "rgb(255, 241, 216)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 1095.78125,
+        "y": 324.38427734375,
+        "width": 76.96875,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 1115,
+      "ratio": 6.56
+    },
+    {
+      "kind": "wall",
+      "id": "wall-count",
+      "width": 1440,
+      "size": "100%",
+      "path": "qa/homepage-structures/evidence/polished/07/contrast-proof/07-target-1440-100-wall-count.png",
+      "fg": "rgb(226, 207, 173)",
+      "svgFill": "rgb(117, 77, 53)",
+      "box": {
+        "x": 584.84375,
+        "y": 412.38427734375,
+        "width": 372.796875,
+        "height": 18
+      },
+      "nearestOwnBackground": "rgba(0, 0, 0, 0)",
+      "dominantPixelBackground": [
+        117,
+        77,
+        53
+      ],
+      "backgroundPixels": 5397,
+      "ratio": 4.8
+    }
+  ]
+}

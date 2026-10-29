@@ -1,0 +1,2863 @@
+{
+  "id": "09",
+  "phase": "polished",
+  "scope": "Nearest opaque ancestor text contrast candidates, source-state geometry, loaded font/resources; complex image/opacity areas skipped and require pixel review. Not a complete WCAG, AT, performance or cross-browser audit.",
+  "rows": [
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 418
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 122
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 740,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "default",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 418
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 122
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 740,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "model-and-team",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 418
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 122
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 740,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "team-evidence",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 418
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 122
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 740,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "league-and-current",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 418
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 122
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 740,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "dated-draft",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 418
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 122
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 740,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "two-editions",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 418
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 122
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 740,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "tools",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 418
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 122
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 740,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "member",
+      "state": "unavailable",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 34
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 25
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 418
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 122
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 16
+        }
+      ],
+      "localDomContentLoadedMs": 740,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "boot",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 48
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 397
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 161
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 24
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 1009,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "default",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 48
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 397
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 161
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 24
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 1009,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "model-and-team",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 48
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 397
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 161
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 24
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 1009,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "team-evidence",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 48
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 397
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 161
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 24
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 1009,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "league-and-current",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 48
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 397
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 161
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 24
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 1009,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "dated-draft",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 48
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 397
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 161
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 24
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 1009,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "two-editions",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 48
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 397
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 161
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 24
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 1009,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "tools",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 48
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 397
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 161
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 24
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 1009,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "view": "public",
+      "state": "unavailable",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 48
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 51
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 397
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 161
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 24
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 58
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 40
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 57
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 77
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 77
+        }
+      ],
+      "localDomContentLoadedMs": 1009,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 70
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 460
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 265
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 88
+        }
+      ],
+      "localDomContentLoadedMs": 1010,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "default",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 70
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 460
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 265
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 88
+        }
+      ],
+      "localDomContentLoadedMs": 1010,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "model-and-team",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 70
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 460
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 265
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 88
+        }
+      ],
+      "localDomContentLoadedMs": 1010,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "team-evidence",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 70
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 460
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 265
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 88
+        }
+      ],
+      "localDomContentLoadedMs": 1010,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "league-and-current",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 70
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 460
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 265
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 88
+        }
+      ],
+      "localDomContentLoadedMs": 1010,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "dated-draft",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 70
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 460
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 265
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 88
+        }
+      ],
+      "localDomContentLoadedMs": 1010,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "two-editions",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 70
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 460
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 265
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 88
+        }
+      ],
+      "localDomContentLoadedMs": 1010,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "tools",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 70
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 460
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 265
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 88
+        }
+      ],
+      "localDomContentLoadedMs": 1010,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "member",
+      "state": "unavailable",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1775,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 70
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 76
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 460
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 265
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 88
+        }
+      ],
+      "localDomContentLoadedMs": 1010,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "boot",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 85
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 345
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 68
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 37
+        }
+      ],
+      "localDomContentLoadedMs": 846,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "default",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 85
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 345
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 68
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 37
+        }
+      ],
+      "localDomContentLoadedMs": 846,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "model-and-team",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 85
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 345
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 68
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 37
+        }
+      ],
+      "localDomContentLoadedMs": 846,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "team-evidence",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 85
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 345
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 68
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 36
+        }
+      ],
+      "localDomContentLoadedMs": 846,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "league-and-current",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 85
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 345
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 68
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 90
+        }
+      ],
+      "localDomContentLoadedMs": 846,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "dated-draft",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 85
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 345
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 68
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 90
+        }
+      ],
+      "localDomContentLoadedMs": 846,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "two-editions",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 85
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 345
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 68
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 90
+        }
+      ],
+      "localDomContentLoadedMs": 846,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "tools",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 85
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 345
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 68
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 90
+        }
+      ],
+      "localDomContentLoadedMs": 846,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    },
+    {
+      "device": "phone",
+      "view": "public",
+      "state": "unavailable",
+      "width": 390,
+      "scrollWidth": 390,
+      "contrastCandidates": [],
+      "domNodes": 1591,
+      "canvases": 0,
+      "loadedFontFaces": [
+        {
+          "family": "DM Sans",
+          "status": "loaded"
+        },
+        {
+          "family": "Space Mono",
+          "status": "loaded"
+        }
+      ],
+      "resources": [
+        {
+          "name": "/qa/homepage-structures/polished/09/style.css",
+          "bytes": 26451,
+          "encodedBytes": 26151,
+          "durationMs": 79
+        },
+        {
+          "name": "/qa/homepage-structures/polished/09/app.js",
+          "bytes": 27032,
+          "encodedBytes": 26732,
+          "durationMs": 85
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+          "bytes": 240464,
+          "encodedBytes": 240164,
+          "durationMs": 345
+        },
+        {
+          "name": "/qa/homepage-structures/assets/fonts/spacemono/SpaceMono-Regular.ttf",
+          "bytes": 99656,
+          "encodedBytes": 99356,
+          "durationMs": 68
+        },
+        {
+          "name": "/qa/homepage-structures/data.js",
+          "bytes": 105598,
+          "encodedBytes": 105298,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1511.png",
+          "bytes": 69124,
+          "encodedBytes": 68824,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1739.png",
+          "bytes": 65053,
+          "encodedBytes": 64753,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1957.png",
+          "bytes": 47500,
+          "encodedBytes": 47200,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1967.png",
+          "bytes": 65420,
+          "encodedBytes": 65120,
+          "durationMs": 37
+        },
+        {
+          "name": "/public/courtside/portraits/player-1085.png",
+          "bytes": 63200,
+          "encodedBytes": 62900,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1845.png",
+          "bytes": 64270,
+          "encodedBytes": 63970,
+          "durationMs": 36
+        },
+        {
+          "name": "/public/courtside/portraits/player-1380.png",
+          "bytes": 60968,
+          "encodedBytes": 60668,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1970.png",
+          "bytes": 67511,
+          "encodedBytes": 67211,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1362.png",
+          "bytes": 28490,
+          "encodedBytes": 28190,
+          "durationMs": 90
+        },
+        {
+          "name": "/public/courtside/portraits/player-1272.png",
+          "bytes": 58209,
+          "encodedBytes": 57909,
+          "durationMs": 90
+        }
+      ],
+      "localDomContentLoadedMs": 846,
+      "performanceScope": "Single local headless pass during concurrent QA load; payload/DOM observations only, not production or physical-phone speed.",
+      "errors": []
+    }
+  ]
+}
