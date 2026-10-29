@@ -1,0 +1,171 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 6801,
+  "bytes": 866353,
+  "jpegQuality": 84,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 5801,
+      "cropTop": 199,
+      "height": 801
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 6000,
+      "scrollY": 5801,
+      "cropTop": 199,
+      "width": 1440,
+      "height": 801,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Week 3 is stillon the floor.",
+      "y": 358
+    },
+    {
+      "text": "Ten teams.One place to look.",
+      "y": 381
+    },
+    {
+      "text": "The October edition",
+      "y": 1083
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 1634
+    },
+    {
+      "text": "AI Decides",
+      "y": 1142
+    },
+    {
+      "text": "Around the league",
+      "y": 2379
+    },
+    {
+      "text": "The faces of the league",
+      "y": 2598
+    },
+    {
+      "text": "Ten teams. Every roster.",
+      "y": 2924
+    },
+    {
+      "text": "Standings",
+      "y": 4971
+    },
+    {
+      "text": "Off the court",
+      "y": 4971
+    },
+    {
+      "text": "From the weekly archive",
+      "y": 5916
+    },
+    {
+      "text": "Read the fine print.",
+      "y": 6224
+    }
+  ],
+  "footer": {
+    "text": "GOAT HOOPERS.Ten friends. The weekly bulletin.Courtside Newspaper · Direction 01HomeNewsStocksHistoryArcadeTeamsTransactionsDraftAI DecidesTrade analyzerWeekly archiveSources & fixture notesBack to top",
+    "y": 6641
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "cbb658e0aadbfc75eb8ede66f793b93b09e32d39d5f9dc32e1e568582e88e7ca",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

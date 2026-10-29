@@ -1,0 +1,13 @@
+@import url('/src/ui/tokens.css');
+@font-face { font-family:Inter; src:url('/public/design-preview/neutral-courtside/assets/inter.woff2') format('woff2'); font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Geist Mono'; src:url('/public/design-preview/neutral-courtside/assets/geist-mono.woff2') format('woff2'); font-weight:100 900; font-display:swap; }
+:root { --font-body:Inter; --font-mono:'Geist Mono'; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--gh-bg); color:var(--gh-text); font-family:var(--gh-font-body); font-size:16px; line-height:1.5; }
+img { max-width:100%; }
+button,input,select { font:inherit; }
+a { color:inherit; text-underline-offset:.18em; }
+:focus-visible { outline:2px solid var(--gh-focus); outline-offset:4px; }
+[hidden] { display:none !important; }
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; } }

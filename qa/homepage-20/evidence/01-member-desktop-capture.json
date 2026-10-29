@@ -1,0 +1,177 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 7089,
+  "bytes": 880144,
+  "jpegQuality": 83,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 6089,
+      "cropTop": 911,
+      "height": 89
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 7000,
+      "scrollY": 6089,
+      "cropTop": 911,
+      "width": 1440,
+      "height": 89,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Week 3 is stillon the floor.",
+      "y": 358
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 381
+    },
+    {
+      "text": "The October edition",
+      "y": 1102
+    },
+    {
+      "text": "Your scouting notebook",
+      "y": 1653
+    },
+    {
+      "text": "AI Decides",
+      "y": 1161
+    },
+    {
+      "text": "Around the league",
+      "y": 2515
+    },
+    {
+      "text": "The faces of the league",
+      "y": 2885
+    },
+    {
+      "text": "Ten teams. Every roster.",
+      "y": 3212
+    },
+    {
+      "text": "Standings",
+      "y": 5259
+    },
+    {
+      "text": "Off the court",
+      "y": 5259
+    },
+    {
+      "text": "From the weekly archive",
+      "y": 6203
+    },
+    {
+      "text": "Read the fine print.",
+      "y": 6512
+    }
+  ],
+  "footer": {
+    "text": "GOAT HOOPERS.Ten friends. The weekly bulletin.Courtside Newspaper · Direction 01HomeNewsStocksHistoryArcadeTeamsTransactionsDraftAI DecidesTrade analyzerWeekly archiveSources & fixture notesBack to top",
+    "y": 6929
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "801d13d6954567d6b4a1ebf0b3c9fd3017f5ae3dbe2a173b972df449f4ac4bd3",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

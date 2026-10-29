@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>GOAT Hoopers — People of the league</title>
+  <link rel="stylesheet" href="../../base.css">
+  <style>
+    html { scroll-padding-top:8rem; }
+    body { font-size:1rem; }
+    a { text-decoration-thickness:1px; }
+    a:hover { color:var(--gh-accent); }
+    h1,h2,h3,p,figure { margin:0; }
+    h1,h2,h3 { line-height:1.12; letter-spacing:-.04em; }
+    p + p { margin-top:.75rem; }
+    a,button,input,select,summary { touch-action:manipulation; }
+    a,button,summary { -webkit-tap-highlight-color:transparent; }
+    .wrap { width:min(100% - 5rem,80rem); margin-inline:auto; }
+    .skip { position:fixed; top:-6rem; left:1rem; padding:.75rem 1rem; z-index:40; background:var(--gh-bg-raised); }
+    .skip:focus { top:1rem; }
+    .chrome { position:sticky; top:0; background:var(--gh-bg); z-index:20; border-bottom:1px solid var(--gh-border); }
+    .masthead { min-height:5.5rem; display:flex; align-items:center; gap:2rem; }
+    .brand { display:flex; min-height:44px; align-items:center; flex-shrink:0; }
+    .brand img { width:174px; display:block; }
+    .desktop-nav { display:flex; align-items:center; gap:1.25rem; margin-left:auto; flex-wrap:wrap; }
+    .desktop-nav a,.account,.mobile-shortcut { display:flex; align-items:center; min-height:44px; font-size:.875rem; text-decoration:none; font-weight:600; }
+    [aria-current=page] { text-decoration:underline !important; text-underline-offset:.5rem; }
+    .account { border-left:1px solid var(--gh-border); padding-left:1.25rem; color:var(--gh-accent); }
+    .desktop-tools { flex-shrink:0; }
+    .desktop-tools summary { font-size:.875rem; }
+    .desktop-tools nav { position:absolute; right:2.5rem; top:100%; display:grid; background:var(--gh-bg-raised); border:1px solid var(--gh-control); padding:.5rem 1rem; }
+    .desktop-tools nav a { display:flex; align-items:center; min-height:44px; font-size:.875rem; }
+    .mobile-menu,.mobile-shortcut { display:none; }
+    .sample { padding:.65rem 0; font-size:.75rem; color:var(--gh-text-dim); border-bottom:1px solid var(--gh-border); }
+    .sample strong { color:var(--gh-text); margin-right:.65rem; font-weight:800; letter-spacing:.06em; }
+    .edition-meta { display:flex; gap:.5rem 2rem; justify-content:space-between; flex-wrap:wrap; margin-top:2rem; font-size:.75rem; text-transform:uppercase; letter-spacing:.06em; font-weight:700; }
+    .subtle { color:var(--gh-text-dim); }
+    .mono { font-family:var(--gh-font-mono); font-variant-numeric:tabular-nums; letter-spacing:-.04em; }
+    .eyebrow { font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    .lead { display:flex; flex-wrap:wrap; gap:3.5rem; padding:1.75rem 0 2.5rem; }
+    .matchup { min-width:0; flex:1.7 1 28rem; }
+    .matchup h1 { font-size:1.25rem; font-weight:600; letter-spacing:-.03em; margin-bottom:1.5rem; }
+    .pair { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1.75rem; position:relative; }
+    .club { min-width:0; }
+    .club + .club { border-left:1px solid var(--gh-border); padding-left:1.75rem; }
+    .club h2 { font-size:clamp(1.8rem,3vw,2.75rem); font-weight:850; overflow-wrap:anywhere; min-height:2.24em; }
+    .club h2 a { text-decoration:none; }
+    .manager { display:block; font-size:.875rem; color:var(--gh-text-dim); margin:.6rem 0 1rem; overflow-wrap:anywhere; }
+    .manager strong { font-weight:600; }
+    .current { display:flex; align-items:baseline; gap:.75rem; flex-wrap:wrap; margin-bottom:1rem; }
+    .score { font-size:2rem; font-weight:600; }
+    .score.pending { font-family:Inter,sans-serif; font-size:1.35rem; font-weight:650; letter-spacing:-.04em; }
+    .record { font-size:.75rem; color:var(--gh-text-dim); }
+    .headshot { display:block; width:100%; height:100%; object-fit:contain; object-position:center bottom; }
+    .portrait { display:block; flex-shrink:0; width:6.5rem; height:5rem; overflow:hidden; background:var(--gh-bg-hover); }
+    .portrait.failed { display:flex; align-items:center; justify-content:center; padding:.5rem; font-size:.75rem; color:var(--gh-text-dim); text-align:center; }
+    .club-player { display:flex; gap:.75rem; align-items:center; }
+    .club-player .portrait { width:5rem; height:4rem; background:none; }
+    .club-player p { font-size:.75rem; }
+    .club-player a { display:inline-flex; align-items:center; min-height:44px; font-size:.875rem; font-weight:650; line-height:1.3; }
+    .match-note { font-size:.75rem; color:var(--gh-text-dim); margin-top:1rem; }
+    .court { margin-top:1.5rem; }
+    .court img { display:block; width:100%; height:auto; aspect-ratio:3.4; object-fit:cover; object-position:center bottom; }
+    .court figcaption { display:flex; justify-content:space-between; gap:1rem; align-items:center; padding-top:.35rem; font-size:.75rem; color:var(--gh-text-dim); }
+    .court a { display:inline-flex; align-items:center; min-height:44px; font-size:.875rem; font-weight:700; color:var(--gh-accent); }
+    .desk { min-width:0; flex:1 1 20rem; border-top:3px solid var(--gh-text); padding-top:1rem; }
+    .desk h2 { font-size:1.8rem; margin-top:.45rem; }
+    .desk .context { font-size:.875rem; margin:.65rem 0 1rem; }
+    .actions { display:flex; gap:.5rem 1rem; flex-wrap:wrap; align-items:center; }
+    .action { display:inline-flex; justify-content:center; align-items:center; padding:.6rem 1rem; min-height:44px; font-size:.875rem; font-weight:650; text-decoration:none; border:1px solid var(--gh-control); }
+    .action.primary { background:var(--gh-accent); color:var(--gh-on-accent); border-color:var(--gh-accent); }
+    .action:hover { background:var(--gh-bg-hover); color:var(--gh-text); }
+    .action.primary:hover { background:var(--gh-text); color:var(--gh-on-accent); }
+    .quiet-link { display:inline-flex; align-items:center; min-height:44px; font-size:.875rem; font-weight:650; }
+    .value { display:block; font-size:2.5rem; font-weight:650; line-height:1.25; margin-top:.8rem; }
+    .value-label { font-size:.75rem; color:var(--gh-text-dim); }
+    .value-list { list-style:none; margin:.8rem 0 .35rem; padding:0; }
+    .value-list li { display:flex; align-items:center; justify-content:space-between; gap:1rem; font-size:.875rem; }
+    .value-list a { display:inline-flex; align-items:center; min-height:44px; font-weight:600; }
+    details summary { cursor:pointer; min-height:44px; padding:.6rem 0; font-size:.875rem; font-weight:600; }
+    details summary:hover { color:var(--gh-accent); }
+    .provenance { color:var(--gh-text-dim); font-size:.75rem; padding:.25rem 0 1rem; }
+    .provenance p + p { margin-top:.4rem; }
+    .provenance dl { display:grid; grid-template-columns:7rem minmax(0,1fr); gap:.5rem; margin:.5rem 0; }
+    .provenance dt { font-weight:700; }
+    .provenance dd { margin:0; overflow-wrap:anywhere; }
+    .roster-values { list-style:none; margin:0; padding:0; }
+    .roster-values li { display:flex; align-items:center; justify-content:space-between; gap:1rem; border-top:1px solid var(--gh-border); font-size:.875rem; }
+    .roster-values a { display:inline-flex; align-items:center; min-height:44px; }
+    .public-numbers { display:flex; gap:2rem; margin:1.5rem 0; }
+    .public-numbers strong { display:block; font-size:2rem; line-height:1.2; }
+    .public-numbers span { font-size:.75rem; }
+    section.block { padding:2.5rem 0; border-top:1px solid var(--gh-border); }
+    .section-heading { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin-bottom:1.5rem; }
+    .section-heading h2 { font-size:2rem; font-weight:800; }
+    .section-heading p { font-size:.875rem; color:var(--gh-text-dim); margin-top:.5rem; }
+    .notebook { display:grid; grid-template-columns:1.15fr 1fr; gap:4rem; }
+    .notebook h3,.wire h3 { font-size:1.125rem; letter-spacing:-.02em; margin-bottom:.5rem; }
+    .notebook p { font-size:.875rem; color:var(--gh-text-dim); }
+    .watch-list { list-style:none; padding:0; margin:.75rem 0; }
+    .watch-list li { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:1rem; align-items:center; padding:.35rem 0; border-bottom:1px solid var(--gh-border); }
+    .watch-list a { font-size:1.125rem; font-weight:650; display:inline-flex; min-height:44px; align-items:center; }
+    .watch-list small { display:block; font-size:.75rem; color:var(--gh-text-dim); }
+    .watch-list .measure { font-size:1.5rem; text-align:right; }
+    .watch-list .measure small { font-family:Inter,sans-serif; font-size:.75rem; letter-spacing:0; }
+    .short-profile { display:flex; align-items:flex-start; gap:1.25rem; margin-top:1rem; }
+    .short-profile .portrait { width:6rem; height:5rem; }
+    .short-profile h3 { font-size:1.4rem; margin-bottom:.4rem; }
+    .short-profile p { font-size:.875rem; }
+    .story-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr)); gap:2.5rem; }
+    .story { min-width:0; }
+    .story-top { display:flex; align-items:end; gap:.75rem; margin-bottom:1rem; }
+    .story .portrait { width:6rem; height:4.75rem; background:none; }
+    .story-top h3 { font-size:1.35rem; }
+    .story-top .eyebrow { color:var(--gh-text-dim); font-size:.75rem; margin-bottom:.25rem; }
+    .story h4 { margin:0 0 .5rem; font-size:1.125rem; letter-spacing:-.02em; line-height:1.3; }
+    .story > p { font-size:1rem; }
+    .stats { display:flex; gap:1.5rem; margin:1rem 0 .5rem; }
+    .stats strong { display:block; font-size:1.5rem; line-height:1.2; font-weight:600; }
+    .stats span { font-size:.75rem; color:var(--gh-text-dim); }
+    .period { font-size:.75rem !important; color:var(--gh-text-dim); }
+    .form { display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-top:1.25rem; }
+    .form h3 { font-size:1rem; margin-bottom:.5rem; }
+    .form-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:1rem; align-items:center; border-top:1px solid var(--gh-border); font-size:.875rem; }
+    .form-row a { display:inline-flex; align-items:center; min-height:44px; font-weight:600; }
+    .form-row span { white-space:nowrap; font-size:.75rem; }
+    .ai-list { border-top:1px solid var(--gh-control); }
+    .ai-row { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,.95fr); gap:1.5rem; padding:1.25rem 0 .25rem; border-bottom:1px solid var(--gh-border); align-items:start; }
+    .ai-row h3 { font-size:1rem; line-height:1.4; letter-spacing:-.025em; font-weight:650; }
+    .ai-row h3 span { font-weight:400; color:var(--gh-text-dim); }
+    .distribution { display:flex; gap:1rem; justify-content:space-between; font-size:.75rem; }
+    .distribution span:last-child { text-align:right; }
+    .distribution strong { display:block; font-family:var(--gh-font-mono); font-size:1.5rem; font-weight:600; }
+    .split-bar { display:flex; height:5px; background:var(--gh-border); margin-top:.5rem; }
+    .split-bar span { background:var(--gh-accent); }
+    .choice { font-size:.875rem; }
+    .choice strong { display:block; font-weight:700; }
+    .choice p { font-size:.75rem; color:var(--gh-text-dim); margin-top:.4rem; }
+    .ai-row details { grid-column:1 / -1; }
+    .ai-row summary { font-size:.75rem; }
+    .ai-row .provenance { max-width:60rem; }
+    .state { font-size:.75rem; color:var(--gh-text-dim); }
+    .state.stale { color:var(--gh-live); font-weight:700; }
+    .faces { display:grid; grid-template-columns:1fr 1fr; column-gap:3.5rem; }
+    .face { display:grid; grid-template-columns:4.5rem minmax(0,1fr) auto; align-items:center; gap:1rem; min-width:0; padding:1rem 0; border-top:1px solid var(--gh-border); }
+    .face .portrait { width:4.5rem; height:4rem; background:none; }
+    .face h3 { font-size:1.125rem; letter-spacing:-.03em; line-height:1.3; }
+    .face h3 a { display:inline-flex; min-height:44px; align-items:center; }
+    .face p { font-size:.75rem; color:var(--gh-text-dim); margin-top:.15rem; overflow-wrap:anywhere; }
+    .face p a { font-weight:650; }
+    .face .price { align-self:start; padding-top:1rem; text-align:right; font-size:.875rem; font-family:var(--gh-font-mono); }
+    .face .price a { display:inline-flex; min-height:44px; align-items:center; }
+    .face .price span { display:block; font-family:Inter,sans-serif; font-size:.75rem; color:var(--gh-text-dim); }
+    .league-columns { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,1fr); gap:3.5rem; align-items:start; }
+    .controls { display:flex; align-items:end; gap:1rem; margin-bottom:1rem; }
+    .field { flex:1; min-width:0; }
+    .field label { display:block; font-size:.75rem; font-weight:650; margin-bottom:.4rem; }
+    .field input,.field select { width:100%; background:var(--gh-bg-raised); color:var(--gh-text); border:1px solid var(--gh-control); border-radius:0; min-height:44px; padding:.5rem .65rem; font-size:.875rem; }
+    .search-field { flex:1.6; }
+    .result { font-size:.75rem; color:var(--gh-text-dim); margin-bottom:.5rem; }
+    .team { border-top:1px solid var(--gh-border); padding:.8rem 0; }
+    .team-line { display:flex; align-items:baseline; gap:1rem; justify-content:space-between; }
+    .team h3 { font-size:1.25rem; letter-spacing:-.03em; line-height:1.3; }
+    .team h3 a { display:inline-flex; align-items:center; min-height:44px; text-decoration:none; }
+    .team-line .mono { font-size:.875rem; flex-shrink:0; }
+    .team-context { font-size:.875rem; color:var(--gh-text-dim); }
+    .team-context p + p { margin-top:.2rem; }
+    .team summary { font-size:.875rem; }
+    .roster { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:0 1.5rem; }
+    .roster li { display:flex; justify-content:space-between; align-items:center; gap:.75rem; border-top:1px solid var(--gh-border); font-size:.875rem; }
+    .roster a { display:inline-flex; min-height:44px; align-items:center; }
+    .roster small { color:var(--gh-text-dim); font-size:.75rem; }
+    .prior { font-size:.75rem; color:var(--gh-text-dim); margin:.25rem 0 .75rem; }
+    .standings h3 { font-size:1.25rem; margin:0 0 1rem; }
+    table { border-collapse:collapse; width:100%; table-layout:fixed; font-size:.875rem; margin-top:1rem; }
+    th,td { border-bottom:1px solid var(--gh-border); padding:.65rem .2rem; text-align:right; }
+    th { font-size:.75rem; font-weight:650; color:var(--gh-text-dim); }
+    th:first-child,td:first-child { width:2rem; text-align:left; }
+    th:nth-child(2),td:nth-child(2) { text-align:left; width:auto; }
+    th:nth-child(3),td:nth-child(3),th:nth-child(4),td:nth-child(4) { width:2rem; }
+    th:last-child,td:last-child { width:4rem; }
+    td a { display:inline-flex; align-items:center; min-height:44px; font-weight:600; overflow-wrap:anywhere; }
+    .unavailable { padding:1rem 0; border-bottom:1px solid var(--gh-border); }
+    .unavailable h4 { font-size:.875rem; margin:0 0 .35rem; }
+    .unavailable p { font-size:.75rem; color:var(--gh-text-dim); }
+    .wire { display:grid; grid-template-columns:1.2fr 1fr; gap:4rem; }
+    .wire-list { list-style:none; padding:0; margin:0; }
+    .wire-list li { display:grid; grid-template-columns:4rem minmax(0,1fr); gap:1rem; padding:1rem 0; border-top:1px solid var(--gh-border); }
+    .wire-list time { font-family:var(--gh-font-mono); font-size:.75rem; color:var(--gh-text-dim); padding-top:.2rem; }
+    .wire-list h3 { font-size:1.125rem; }
+    .wire-list p { font-size:.875rem; color:var(--gh-text-dim); margin-top:.35rem; }
+    .news-list { list-style:none; margin:0; padding:0; }
+    .news-list li { padding:.75rem 0; border-top:1px solid var(--gh-border); }
+    .news-list a { display:inline-flex; align-items:center; min-height:44px; font-size:.875rem; font-weight:600; }
+    .news-list p { font-size:.75rem; color:var(--gh-text-dim); }
+    .tools { display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:2.5rem; align-items:start; }
+    .game-preview { width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; display:block; margin-bottom:1rem; }
+    .tools h3 { font-size:1.35rem; margin-bottom:.65rem; }
+    .tools p { font-size:.875rem; color:var(--gh-text-dim); }
+    .archive { display:grid; grid-template-columns:1fr 1fr; gap:3rem; }
+    .archive a { display:flex; flex-direction:column; gap:.5rem; padding:.75rem 0; text-decoration:none; min-height:44px; }
+    .archive span { font-size:.75rem; color:var(--gh-text-dim); }
+    .archive strong { font-size:1.5rem; line-height:1.2; letter-spacing:-.04em; }
+    footer { padding:2rem 0 3rem; border-top:3px solid var(--gh-text); }
+    .footer-top { display:flex; align-items:start; justify-content:space-between; gap:2rem; }
+    footer .brand img { width:150px; }
+    .footer-links { display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; }
+    .footer-links a { display:inline-flex; min-height:44px; align-items:center; font-size:.875rem; }
+    footer p { font-size:.75rem; color:var(--gh-text-dim); max-width:65rem; margin-top:1rem; }
+    footer details { margin-top:1rem; }
+    .source-links { display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; }
+    .source-links a { display:inline-flex; align-items:center; min-height:44px; }
+    @media(min-width:70rem) { .story:first-child h4 { font-size:1.5rem; } }
+    @media(max-width:70rem) {
+      .wrap { width:calc(100% - 3rem); }
+      .masthead { gap:1rem; }
+      .desktop-nav { gap:.75rem; }
+      .account { padding-left:.75rem; }
+      .lead,.league-columns { gap:2rem; }
+      .faces { column-gap:2rem; }
+      .face { grid-template-columns:3.5rem minmax(0,1fr); gap:.75rem; }
+      .face .portrait { width:3.5rem; }
+      .face .price { grid-column:2; padding:0; text-align:left; }
+      .face .price span { display:inline; margin-left:.5rem; }
+    }
+    @media(max-width:56rem) {
+      html { scroll-padding-top:6rem; }
+      .masthead { min-height:4.5rem; flex-wrap:wrap; }
+      .brand img { width:150px; }
+      .desktop-nav,.account,.desktop-tools { display:none; }
+      .mobile-shortcut { display:inline-flex; margin-left:auto; }
+      .mobile-menu { display:block; }
+      .mobile-menu summary { font-size:.875rem; min-width:3.5rem; }
+      .mobile-menu[open] { flex-basis:100%; }
+      .mobile-menu[open] summary { margin-left:auto; width:max-content; }
+      .chrome:has(.mobile-menu[open]) { position:relative; }
+      .mobile-menu nav { padding:.5rem 0 1rem; background:var(--gh-bg); display:grid; grid-template-columns:1fr 1fr; }
+      .mobile-menu nav a { display:flex; align-items:center; min-height:44px; font-size:.875rem; text-decoration:none; padding:.25rem .5rem; }
+      .lead { grid-template-columns:1fr; gap:2rem; }
+      .club h2 { font-size:2.5rem; }
+      .desk { max-width:none; }
+      .desk-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+      .notebook { gap:2rem; }
+      .story-grid { grid-template-columns:1fr; gap:1.5rem; }
+      .story { display:grid; grid-template-columns:1fr 1.5fr; gap:0 2rem; }
+      .story-top { grid-row:1 / 5; align-self:start; }
+      .story details { grid-column:2; }
+      .ai-row { grid-template-columns:1fr 1fr; }
+      .choice { grid-column:1 / -1; }
+      .choice strong { display:inline; }
+      .choice p { display:inline; margin-left:.5rem; }
+      .faces { column-gap:2rem; }
+      .league-columns { grid-template-columns:1fr; }
+      .standings { border-top:1px solid var(--gh-border); padding-top:2rem; }
+      .wire { gap:2rem; }
+      .tools { gap:1.5rem; }
+    }
+    @media(max-width:40rem) {
+      .wrap { width:calc(100% - 2rem); }
+      .masthead { gap:1rem; min-height:4.25rem; }
+      .brand img { width:130px; }
+      .sample { font-size:.75rem; padding:.6rem 0; }
+      .sample strong { display:block; margin:0 0 .15rem; }
+      .edition-meta { margin-top:1.25rem; gap:.35rem; font-size:.75rem; }
+      .edition-meta .checked { text-transform:none; letter-spacing:0; font-weight:400; }
+      .lead { padding-top:1.25rem; padding-bottom:2rem; }
+      .matchup h1 { margin-bottom:1rem; font-size:1.125rem; }
+      .pair { gap:1rem; }
+      .club + .club { padding-left:1rem; }
+      .club h2 { font-size:1.65rem; letter-spacing:-.05em; }
+      .manager { font-size:.875rem; margin:.5rem 0; }
+      .manager strong { display:block; }
+      .current { gap:.35rem .5rem; margin-bottom:.5rem; }
+      .score { font-size:1.8rem; }
+      .score.pending { font-size:1.2rem; }
+      .record { font-size:.75rem; }
+      .club-player { flex-direction:column; align-items:start; gap:.25rem; }
+      .club-player .portrait { width:5rem; height:4rem; }
+      .club-player a { font-size:.875rem; }
+      .club-player p { font-size:.75rem; }
+      .court { margin-top:1rem; }
+      .court img { aspect-ratio:2.8; }
+      .court figcaption { gap:.75rem; }
+      .desk-grid { grid-template-columns:1fr; gap:.25rem; }
+      .desk h2 { font-size:1.65rem; }
+      .desk .context { margin-bottom:.75rem; }
+      .value { font-size:2.25rem; }
+      section.block { padding:2rem 0; }
+      .section-heading { display:block; margin-bottom:1.25rem; }
+      .section-heading h2 { font-size:1.75rem; }
+      .section-heading .quiet-link { margin-top:.25rem; }
+      .notebook,.form,.wire,.tools,.archive { grid-template-columns:1fr; gap:1.75rem; }
+      .short-profile { gap:1rem; }
+      .story { display:block; padding-bottom:1.5rem; border-bottom:1px solid var(--gh-border); }
+      .story:last-child { border:0; padding-bottom:0; }
+      .story-top { align-items:center; margin-bottom:.75rem; }
+      .story-top h3 { font-size:1.35rem; }
+      .story .portrait { width:5rem; height:4rem; }
+      .stats { gap:1.75rem; }
+      .ai-row { grid-template-columns:1fr; gap:.85rem; }
+      .ai-row h3 { font-size:1.125rem; }
+      .ai-row .choice { grid-column:auto; }
+      .distribution { gap:.75rem; }
+      .choice p { display:block; margin:.35rem 0 0; }
+      .faces { grid-template-columns:1fr; }
+      .face { grid-template-columns:4rem minmax(0,1fr) auto; gap:.75rem; }
+      .face .portrait { width:4rem; height:4rem; }
+      .face .price { grid-column:auto; text-align:right; font-size:.875rem; padding-top:1rem; }
+      .face .price span { display:block; margin:0; }
+      .controls { align-items:stretch; flex-direction:column; gap:.75rem; }
+      .roster { grid-template-columns:1fr; }
+      .team-line { gap:.5rem; }
+      .team h3 { font-size:1.125rem; }
+      .team-context { font-size:.875rem; }
+      .tools .game-preview { max-height:none; }
+      .archive { gap:.75rem; }
+      .archive strong { font-size:1.35rem; }
+      .footer-top { display:block; }
+      .footer-links { gap:.25rem 1.25rem; margin-top:1rem; }
+      .provenance dl { grid-template-columns:1fr; gap:.2rem; }
+      .provenance dd { margin-bottom:.5rem; }
+    }
+    @media(max-width:23rem) {
+      .masthead { gap:.75rem; }
+      .brand img { width:116px; }
+      .club h2 { font-size:1.5rem; }
+      .face { grid-template-columns:3.5rem minmax(0,1fr); }
+      .face .portrait { width:3.5rem; }
+      .face .price { grid-column:2; text-align:left; padding:0; }
+      .face .price span { display:inline; margin-left:.5rem; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to league content</a>
+<header class="chrome" id="header"></header>
+<div class="sample"><div class="wrap"><strong>OFFLINE DESIGN FIXTURE</strong>Current records, scores, prices, form, news and AI are synthetic. Dated approved identities and editorial are preserved.</div></div>
+<main class="wrap" id="main" tabindex="-1"></main>
+<footer class="wrap" id="footer"></footer>
+<script type="module">
+import {inventory,data,mode,aiState,esc,money} from '../../data.js';
+const member = mode === 'member';
+const summary = member ? data.personal.summary : undefined;
+const {home,weekly,faces,archive} = data;
+const directory = home.directory;
+const edition = home.edition;
+const teamById = id => directory.find(t=>t.identity.id===String(id))?.identity;
+const faceByTeam = id => faces.find(f=>f.team.id===String(id));
+const date = value => value == null ? 'Unavailable' : new Date(value).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'UTC',hour12:false})+' UTC';
+const shortDate = value => new Date(value).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
+const record = t => `${t.wins}–${t.losses}${t.ties ? '–'+t.ties : ''}`;
+const link = (href,label,cls='') => `<a ${cls ? `class="${esc(cls)}"` : ''} href="${esc(href)}">${esc(label)}</a>`;
+const playerLink = (p,cls='') => link('/player/'+p.id,p.name??p.fullName,cls);
+const teamLink = t => link('/teams/'+t.id,t.name);
+const portrait = (p,lazy=true) => `<span class="portrait" aria-label="Portrait of ${esc(p.name??p.fullName)}">${inventory.portraits[p.id] ? `<img class="headshot" src="${inventory.portraits[p.id]}" alt="" ${lazy?'loading="lazy"':''} width="160" height="120">` : `<span>${esc(p.name??p.fullName)}<br>Portrait unavailable</span>`}</span>`;
+const compareLink = target => { const q=new URLSearchParams(location.search); q.set('view',target); return 'index.html?'+q.toString(); };
+const nav = [['Home','#main'],['News','/intel'],['Stocks','/stocks'],['History','/history'],['Arcade','/arcade'],['AI Decides','/ai-decides']];
+const toolsNav = [['Teams','#directory'],['Transactions','/transactions'],['Trade analyzer','/trade-analyzer'],['Weekly archive','/weekly']];
+document.querySelector('#header').innerHTML = `<div class="wrap masthead"><a class="brand" href="#main" aria-label="GOAT Hoopers home"><img src="${inventory.assets.logo}" alt="GOAT Hoopers" width="174" height="44"></a><nav class="desktop-nav" aria-label="Primary">${nav.map(([label,href],i)=>`<a href="${href}" ${i===0?'aria-current="page"':''}>${label}</a>`).join('')}</nav><details class="desktop-tools" id="desktop-tools"><summary>League</summary><nav aria-label="League destinations">${toolsNav.map(([label,href])=>link(href,label)).join('')}</nav></details><a class="account" href="${member?'/team':compareLink('member')}">${member?'My team':'Member preview'}</a><a class="mobile-shortcut" href="/stocks">Stocks</a><details class="mobile-menu" id="mobile-menu"><summary>Menu</summary><nav aria-label="Mobile league navigation">${[...nav.filter(n=>n[0]!=='Stocks'),...toolsNav].map(([label,href])=>link(href,label)).join('')}${member?link('/team','My team'):''}${link(compareLink(member?'public':'member'),member?'Public preview':'Member preview')}</nav></details></div>`;
+
+const chosen = member ? directory.find(t=>t.identity.id===summary.team.id) : directory[0];
+const matchup = chosen.currentMatchup;
+const clubMarkup = (t,score) => { const f=faceByTeam(t.id); return `<article class="club"><h2>${teamLink(t)}</h2><p class="manager">Managed by <strong>${esc(t.managerName)}</strong></p><div class="current"><strong class="score mono ${score===null?'pending':''}">${score===null?'Pending':Number(score).toFixed(1)}</strong><span class="record mono">${record(t)} W–L</span></div>${f?.player?`<div class="club-player">${portrait(f.player,false)}<div><p class="subtle">Top modeled player</p>${playerLink(f.player)}</div></div>`:''}</article>`; };
+function personalDesk() { return `<aside class="desk" data-personal><p class="eyebrow">Your team desk</p><h2>${esc(summary.team.managerName)}’s roster</h2><p class="context">${summary.coverage.roster} players · Standing <strong class="mono">${summary.standing.rank}/${summary.season.totalTeams}</strong> · ${record(summary.team)} W–L</p><div class="actions">${link('/team','My team','action primary')}${link('/teams/'+summary.team.id+'#team-roster','View roster','quiet-link')}</div><div class="desk-grid"><div><strong class="value mono">${money(summary.valuation.total)}</strong><p class="value-label">Total modeled FAAB value · ${summary.valuation.rank.rank} of ${summary.valuation.rank.teams} teams</p><ul class="value-list">${summary.players.map(p=>`<li>${playerLink(p)}<span class="mono">${money(p.value)}</span></li>`).join('')}</ul></div><div><details><summary>All ${summary.rosterValues.length} roster values & basis</summary><div class="provenance"><p>In-season modeled FAAB estimates; these are not executed transactions or actual bids.</p><p>${summary.valuation.priced} priced · ${summary.valuation.unpriced} unpriced · ${summary.coverage.roster} roster players. ${summary.valuation.complete?'Complete priced coverage.':'Partial priced coverage.'}</p><p>Computed ${date(summary.market.updatedAt)}. Team data checked ${date(summary.checkedAt)}.</p><p>${esc(inventory.missing.history)}</p></div><ul class="roster-values" data-roster-values>${summary.rosterValues.map(p=>`<li>${playerLink(p)}<span class="mono">${money(p.value)}</span></li>`).join('')}</ul></details><p class="period">${summary.valuation.priced}/${summary.coverage.roster} priced · ${summary.valuation.unpriced} unpriced<br>Computed ${date(summary.market.updatedAt)}</p><p class="period" style="margin-top:.75rem">Recorded value history unavailable.</p></div></div></aside>`; }
+function publicDesk() { return `<aside class="desk"><p class="eyebrow">The friends behind the teams</p><h2>Meet this league.</h2><p class="context">Start with a manager, a favorite player or the person you’re facing. Every team’s full roster is below.</p><div class="public-numbers"><div><strong class="mono">${directory.length}</strong><span>teams</span></div><div><strong class="mono">${directory.reduce((n,t)=>n+t.players.length,0)}</strong><span>players</span></div><div><strong class="mono">5</strong><span>pairings</span></div></div><div class="actions">${link('#directory','Find a team','action primary')}${link('#people','Meet the players','quiet-link')}</div><p class="period" style="margin-top:1rem">Public league view. Roster value, personal form and team news appear in the ${link(compareLink('member'),'member preview')}.</p></aside>`; }
+
+const lead = `<div class="edition-meta"><span>2026 season · Week ${matchup.week}</span><span class="checked">Fixture checked ${date(home.checkedAt)}</span></div><div class="lead"><section class="matchup" aria-labelledby="matchup-title"><h1 id="matchup-title">${member?'Your matchup':'Featured matchup'} <span class="subtle">/ Current score · incomplete</span></h1><div class="pair">${clubMarkup(matchup.home,matchup.homePoints)}${clubMarkup(matchup.away,matchup.awayPoints)}</div><p class="match-note">${member?'Your current pairing, selected by roster ID.':'First current pairing in the league directory.'} A pending score is unknown; the pairing is not final.</p><figure class="court"><img src="${inventory.assets.court}" alt="The GOAT Hoopers arena and basketball court" width="960" height="540"><figcaption><span>The league’s home court.</span>${link('/arcade','Visit the Arcade')}</figcaption></figure><details><summary>Dated edition context · ${esc(edition.dateLabel)} · stale sample</summary><div class="provenance"><p>“${esc(edition.title)}” is an unpublished draft sample from ${esc(edition.dateLabel)}. It ended ${date(edition.endsAt)} and is not the current Week ${matchup.week} edition.</p><p>Original selection basis: ${esc(edition.game.selectionReason)}</p><p>The edition’s opening-week pairing, context and title describe that dated proposal; current identities and scores above come from the fixture directory.</p></div></details></section>${member?personalDesk():publicDesk()}</div>`;
+
+function scouting() { const watch=summary?.playerGuide.watch; const editorial=edition.playerSpotlights.find(p=>p.role==='one-to-watch'); const owner=directory.find(t=>t.players.some(p=>p.id===editorial.playerId)); return `<section class="block" aria-labelledby="notebook-title"><div class="section-heading"><div><h2 id="notebook-title">From the notebook.</h2><p>${member?'A look at your roster, with the basis kept in view.':'Player context from the league and the dated editorial desk.'}</p></div>${link('/stocks','Open Stocks','quiet-link')}</div><div class="notebook"><div><h3>${member?'Observed form':'A few names to know'}</h3><p>${member?esc(watch.label):'Selected league faces, ordered as they appear in the directory. Values are synthetic modeled FAAB, not observed form.'}</p><ul class="watch-list">${member?watch.rows.map(p=>`<li><div>${playerLink(p)}<small>${esc(p.note)} · ${p.games} observed games</small></div><div class="measure mono">${p.value}<small>EMA FP / game</small></div></li>`).join(''):faces.slice(0,3).map(f=>`<li><div>${playerLink(f.player)}<small>${esc(f.team.name)} · ${esc(f.team.managerName)}</small></div><div class="measure mono">${money(f.player.value)}<small>modeled FAAB</small></div></li>`).join('')}</ul><p class="period">${member?`${summary.playerGuide.season} season · through fixture Week ${summary.playerGuide.currentWeek}. ${esc(watch.message)}`:'Price basis only. Form, availability and schedule evidence are not supplied for these public rows.'}</p></div><div><h3>Editorial one to watch</h3><div class="short-profile">${portrait({id:editorial.playerId,name:editorial.name})}<div><h3>${link('/player/'+editorial.playerId,editorial.name)}</h3><p>${esc(editorial.opinion)}</p><p class="period" style="margin-top:.6rem">Dated sample · ${esc(edition.dateLabel)}<br>Current owner: ${teamLink(owner.identity)}</p></div></div><p class="period" style="margin-top:1rem">Editorial selection, separate from the ${member?'observed-form':'price'} list. ${esc(editorial.statPeriod)}; source checked ${esc(editorial.source.checkedAt)}. Full sample stats and selection notes follow.</p></div></div></section>`; }
+const roles={'player-of-week':'Last season’s standard','underperformer':'Last-season lookback','one-to-watch':'Preseason watch'};
+function spotlights() { return `<section class="block" aria-labelledby="stories-title"><div class="section-heading"><div><h2 id="stories-title">The group-chat material.</h2><p>Dated sample opinions · ${esc(edition.dateLabel)} · not current official weekly awards</p></div>${link('/weekly/'+edition.id,'Read the edition','quiet-link')}</div><div class="story-grid">${edition.playerSpotlights.map(p=>{ const owner=directory.find(t=>t.players.some(q=>q.id===p.playerId));return `<article class="story"><div class="story-top">${portrait({id:p.playerId,name:p.name})}<div><p class="eyebrow">${roles[p.role]}</p><h3>${link('/player/'+p.playerId,p.name)}</h3></div></div><h4>${esc(p.headline)}</h4><p>${esc(p.opinion)}</p><div class="stats">${p.stats.map(s=>`<div><strong class="mono">${esc(s.value)}</strong><span>${esc(s.label)}</span></div>`).join('')}</div><p class="period">${esc(p.statPeriod)}<br>Current owner: ${teamLink(owner.identity)}</p><details><summary>Source & editorial selection</summary><div class="provenance"><p>${esc(p.selectionReason)}</p><p>${link(p.source.url,p.source.label)} · checked ${esc(p.source.checkedAt)}</p><p>Sample edition: ${esc(edition.dateLabel)}. Publication unavailable; draft only.</p></div></details></article>`;}).join('')}</div></section>`; }
+function recap() { const g=summary.playerGuide; const group=(rows,title)=>`<div><h3>${title}</h3>${rows.map(p=>`<div class="form-row">${playerLink(p)}<span class="mono">${p.value} FP · ${p.games} GP</span></div>`).join('')}</div>`; return `<section class="block" data-personal aria-labelledby="form-title"><div class="section-heading"><div><h2 id="form-title">Your completed-week performers.</h2><p>Synthetic recorded fantasy points · ${esc(g.period)}</p></div></div><p class="period">${esc(inventory.missing.recap)} ${esc(g.coverage)}</p><div class="form">${group(g.best,'Best in the available cohort')}${group(g.rough,'Rough in the available cohort')}</div><p class="period" style="margin-top:1rem">${g.eligiblePlayed} current roster players with verified games in this synthetic source week. FP = weekly fantasy points; GP = games played. These small-cohort lists can overlap.</p></section>`; }
+
+const uniquePairs = [...new Map(directory.filter(t=>t.currentMatchup).map(t=>[t.currentMatchup.home.id+'-'+t.currentMatchup.away.id,t.currentMatchup])).values()];
+function aiSection() { return `<section class="block" aria-labelledby="ai-title"><div class="section-heading"><div><h2 id="ai-title">Five saved decisions.</h2><p>Synthetic model probabilities, not calibrated sports odds. Returned choice and confidence are separate signals.</p><p class="state ${aiState==='stale'?'stale':''}">${weekly ? `${aiState==='stale'?'STALE saved slate':'Saved fixture slate'} · Week ${weekly.week} · ${date(weekly.generatedAt)}`:'Unavailable · No saved AI slate supplied.'}</p></div>${link('/ai-decides','Open AI Decides','quiet-link')}</div><div class="ai-list">${uniquePairs.map((m,i)=>{ const pair=weekly?.matchups.find(p=>p.teamIds.length===2&&p.teamIds.includes(m.home.id)&&p.teamIds.includes(m.away.id)); const result=pair?.result;const probs=result?.probabilities; const stale=weekly?.status==='stale'||pair?.status==='stale'; const valid=pair&&weekly.week===m.week; return `<article class="ai-row" ${pair?`data-ai-pair="${esc(pair.matchupId)}"`:''}><div><h3>${teamLink(m.home)} <span>vs</span> ${teamLink(m.away)}</h3><p class="state ${stale?'stale':''}">${!weekly?'Unavailable':!valid?'Unmatched saved pair':stale?'STALE · saved probabilities':result?'Saved fixture result':'Unavailable · no saved result'}</p></div>${valid&&result?`<div><div class="distribution">${[m.home,m.away].map(t=>{const p=probs.find(p=>p.choice===t.id);return `<span>${esc(t.name)}<strong>${p?Math.round(p.probability*100)+'%':'Unavailable'}</strong></span>`;}).join('')}</div><div class="split-bar" aria-hidden="true"><span style="width:${(probs.find(p=>p.choice===m.home.id)?.probability??0)*100}%"></span></div></div><div class="choice">Returned choice:<strong>${esc(teamById(result.choice)?.name??result.choice)}</strong><p>Confidence: ${Math.round(result.confidence*100)}% · separate signal</p></div>`:`<p class="subtle">Model probabilities unavailable.</p><p class="choice">Returned choice and confidence unavailable.</p>`}<details><summary>Saved result & provenance</summary><div class="provenance"><dl><dt>Saved</dt><dd>${date(weekly?.generatedAt)}</dd><dt>League / season</dt><dd>${weekly?`${esc(weekly.leagueId)} / ${esc(weekly.season)} / Week ${weekly.week}`:'Unavailable'}</dd><dt>Roster IDs</dt><dd>${pair?pair.teamIds.map(esc).join(' / '):'Unavailable'}</dd><dt>Returned choice</dt><dd>${result?`${esc(result.choice)} · ${esc(teamById(result.choice)?.name??'Name unavailable')}`:'Unavailable'}</dd><dt>Model</dt><dd>${esc(result?.model??'Unavailable')}</dd><dt>Prompt</dt><dd>${esc(result?.promptVersion??'Unavailable')}</dd><dt>Input snapshot</dt><dd>${result?.snapshot||weekly?.snapshot?'Supplied':'Unavailable'}</dd><dt>Input timestamp</dt><dd>Unavailable</dd><dt>Evidence</dt><dd>${pair?.evidence?.length?pair.evidence.map(esc).join(' '):'Unavailable'}</dd><dt>Result evidence</dt><dd>${result?.evidence?.length?result.evidence.map(esc).join(' '):'Unavailable'}</dd><dt>Baseline</dt><dd>${pair?.baseline?'Supplied':'Unavailable'}</dd></dl><p>Saved in the fixture; official publication is unavailable. ${esc(result?.probabilityLabel??'No saved probability label.')}</p>${!pair&&weekly?'<p>No saved pair matches these current roster IDs.</p>':''}</div></details></article>`;}).join('')}</div></section>`; }
+
+function people() { return `<section class="block" id="people" aria-labelledby="people-title"><div class="section-heading"><div><h2 id="people-title">The people in this league.</h2><p>Every team’s top modeled player. A player portrait identifies the player; managers are named below.</p></div>${link('#directory','Find every roster','quiet-link')}</div><div class="faces">${faces.map(f=>`<article class="face" data-face="${esc(f.team.id)}">${f.player?portrait(f.player):'<span class="portrait failed">Player unavailable</span>'}<div><h3>${f.player?playerLink(f.player):'Top player unavailable'}</h3><p>${teamLink(f.team)}</p><p>${esc(f.team.managerName)}</p></div><div class="price">${f.player?link('/player/'+f.player.id,money(f.player.value)):'Unpriced'}<span>modeled FAAB</span></div></article>`).join('')}</div></section>`; }
+
+function directoryTeam(t) { const m=t.currentMatchup;const opponent=m?(m.home.id===t.identity.id?m.away:m.home):null;const prev=t.previousSeason; return `<article class="team" data-team-id="${esc(t.identity.id)}"><div class="team-line"><h3>${teamLink(t.identity)}</h3><span class="mono">${record(t.currentRecord)} W–L</span></div><div class="team-context"><p>${esc(t.identity.managerName)} · ${t.players.length} roster players</p><p>${opponent?`Week ${m.week} vs ${teamLink(opponent)} · incomplete`:'Current opponent unavailable'}</p></div><details><summary>View ${t.players.length}-player roster</summary>${prev?`<p class="prior">${esc(prev.season)}: ${prev.wins}–${prev.losses} · Finish ${prev.finish}${prev.finish===1?' · Champion':''}. ${esc(prev.ownerNote??'')}</p>`:''}<ul class="roster">${t.players.map(p=>`<li>${playerLink(p)}<small>${esc(p.position)} · ${esc(p.nbaTeam??'—')}</small></li>`).join('')}</ul></details></article>`; }
+function league() { return `<section class="block" id="directory" aria-labelledby="directory-title"><div class="section-heading"><div><h2 id="directory-title">Find your people.</h2><p>Ten managers, every roster. Search a team, manager or player.</p></div><div class="actions">${link('/teams','All team profiles','quiet-link')}${link('/transactions','Transactions','quiet-link')}</div></div><div class="league-columns"><div><div class="controls"><div class="field search-field"><label for="team-search">Search team, manager or player</label><input id="team-search" type="search" autocomplete="off" placeholder="Try Embiid or NeuralNets"></div><div class="field"><label for="team-sort">Sort teams</label><select id="team-sort"><option value="directory">Directory order</option><option value="name">Team A–Z</option><option value="manager">Manager A–Z</option><option value="roster">Roster size: largest</option></select></div></div><p class="result" id="team-count" aria-live="polite">10 teams · 228 player references</p><div id="team-list">${directory.map(directoryTeam).join('')}</div><p id="no-results" hidden>No teams match. Try another team, manager or player.</p></div><aside class="standings" aria-labelledby="standings-title"><h3 id="standings-title">The standings</h3><div class="field"><label for="standings-sort">Sort standings</label><select id="standings-sort"><option value="rank">Rank: first to last</option><option value="points">Points for: highest first</option><option value="name">Team A–Z</option><option value="wins">Wins: highest first</option></select></div><table><caption class="sr-only">Synthetic 2026 standings. PF means points for, scaled from source pointsFor divided by 100.</caption><thead><tr><th scope="col">Rank</th><th scope="col">Team</th><th scope="col">W</th><th scope="col">L</th><th scope="col">PF</th></tr></thead><tbody id="standing-rows"></tbody></table><p class="period" style="margin-top:.5rem">Synthetic standings · PF = source pointsFor ÷ 100.</p><div class="unavailable"><h4>League stats unavailable</h4><p>Points leaders, win streak, active manager, biggest blowout and closest game have no producer values in this fixture.</p></div><div class="unavailable"><h4>Lineup Power unavailable</h4><p>${esc(inventory.missing.power)}</p></div></aside></div></section>`; }
+
+function wire() { const moves = home.hub.transactions; return `<section class="block" aria-labelledby="wire-title"><div class="section-heading"><div><h2 id="wire-title">Around the league.</h2><p>Dated sample happenings and synthetic transaction activity.</p></div>${link('/intel','Open News','quiet-link')}</div><div class="wire"><div><ul class="wire-list">${edition.happenings.map(h=>`<li><time>${esc(h.dateLabel)}</time><div><h3>${link(h.href.replace('https://goathoopers.com',''),h.title)}</h3><p>${esc(h.text)}</p><p class="period">Dated sample · ${esc(edition.dateLabel)}</p></div></li>`).join('')}</ul></div><div>${member?`<h3>Your team wire</h3><ul class="news-list">${summary.news.map(n=>`<li>${link(n.url,n.headline)}<p>${esc(n.outlet.name)} · ${date(n.publishedAt)} · synthetic</p></li>`).join('')}</ul>`:'<h3>Recent league moves</h3>'}<ul class="news-list">${moves.map(m=>`<li><p class="eyebrow">${member&&m.teamIds.includes(summary.team.id)?'Your team’s move':'League transaction'}</p><p style="font-size:.875rem;color:var(--gh-text)">${esc(m.summary)}</p><p>${date(m.createdAt)} · Week ${m.week} · ${esc(m.type.replaceAll('_',' '))} · synthetic<br>Add/drop player detail unavailable.</p>${m.teamIds.map(id=>link('/teams/'+id,teamById(id)?.name??id)).join('')}</li>`).join('')}</ul>${link('/transactions','View transactions','quiet-link')}</div></div></section>`; }
+function tools() { return `<section class="block" aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">Between matchups.</h2></div><div class="tools"><article><a href="/arcade/free-throw" aria-label="Play free-throw practice"><img class="game-preview" src="${inventory.assets.game}" alt="Free-throw practice: the playable outdoor court" width="640" height="360" loading="lazy"></a><h3>Get a few shots up.</h3><p>Free-throw practice in the Arcade. Open the game to play.</p>${link('/arcade/free-throw','Play free-throw practice','quiet-link')}</article><article><h3>Know the price.</h3><p>Browse player stocks and modeled FAAB values, then inspect a player’s pricing basis.</p>${link('/stocks','Open Stocks','quiet-link')}</article><article><h3>Talk a trade.</h3><p>Take a possible deal into the trade analyzer to compare the players.</p>${link('/trade-analyzer','Open trade analyzer','quiet-link')}</article></div></section>`; }
+function archives() { return `<section class="block" aria-labelledby="archive-title"><div class="section-heading"><div><h2 id="archive-title">Keep the receipts.</h2><p>Dated draft editions, preserved with their original periods.</p></div>${link('/weekly','Weekly archive','quiet-link')}</div><div class="archive">${archive.map(a=>`<a href="/weekly/${esc(a.id)}"><span>${esc(a.dateLabel)} · ${esc(a.status)} sample</span><strong>${esc(a.title)}</strong></a>`).join('')}</div></section>`; }
+
+document.querySelector('#main').innerHTML = lead+scouting()+spotlights()+(member?recap():'')+aiSection()+people()+league()+wire()+tools()+archives();
+document.querySelector('#footer').innerHTML = `<div class="footer-top"><a class="brand" href="#main" aria-label="GOAT Hoopers home"><img src="${inventory.assets.logo}" alt="GOAT Hoopers" width="150" height="44" loading="lazy"></a><nav class="footer-links" aria-label="League tools">${toolsNav.map(([l,h])=>link(h,l)).join('')}${member?link('/team','My team'):''}${link(compareLink(member?'public':'member'),member?'Compare public view':'Compare member view')}</nav></div><p>${esc(inventory.warning)} This is an independently authored static design, not a live league, authenticated account, backend or prediction service. Links point to the intended application routes; this local static server does not implement those routes.</p><details><summary>Fixture, editorial sources & limitations</summary><div class="provenance"><p>Fixture benchmark: ${esc(inventory.benchmark)}. Current records, score state, modeled prices, form, wire and saved AI are synthetic. Approved player/team/manager identities and dated editorial are retained. The fixture’s Nov 12 data check is a sample timestamp, not this session’s clock.</p><p>The Oct 5–11 edition is a stale, unpublished draft. Player statistics retain their stated NBA or college periods, and selection is editorial. No new awards, historical value trend, power ranking or result is inferred.</p><div class="source-links">${edition.sources.map(s=>link(s.url,s.label+' · checked '+s.checkedAt)).join('')}</div><p>Member/public and AI state parameters only select local fixture content; they do not authenticate a person or generate a result.</p></div></details>`;
+
+const list=document.querySelector('#team-list');
+const teamElements=new Map([...list.children].map(el=>[el.dataset.teamId,el]));
+function filterTeams() {
+  const query=document.querySelector('#team-search').value.trim().toLocaleLowerCase();
+  const sort=document.querySelector('#team-sort').value;
+  const sorted=[...directory].sort((a,b)=>sort==='name'?a.identity.name.localeCompare(b.identity.name):sort==='manager'?a.identity.managerName.localeCompare(b.identity.managerName):sort==='roster'?b.players.length-a.players.length||a.identity.name.localeCompare(b.identity.name):Number(a.identity.id)-Number(b.identity.id));
+  let count=0,players=0;
+  for(const t of sorted) { const el=teamElements.get(t.identity.id); const matches=[t.identity.name,t.identity.managerName,...t.players.map(p=>p.fullName)].some(s=>s.toLocaleLowerCase().includes(query));el.hidden=!matches;list.append(el); if(matches){count++;players+=t.players.length;} }
+  document.querySelector('#team-count').textContent=`${count} ${count===1?'team':'teams'} · ${players} player references`;
+  document.querySelector('#no-results').hidden=count!==0;
+}
+document.querySelector('#team-search').addEventListener('input',filterTeams);
+document.querySelector('#team-sort').addEventListener('change',filterTeams);
+function sortStandings() { const sort=document.querySelector('#standings-sort').value;const rows=[...home.hub.standings].sort((a,b)=>sort==='points'?b.pointsFor-a.pointsFor||a.rank-b.rank:sort==='name'?a.team.name.localeCompare(b.team.name):sort==='wins'?b.wins-a.wins||a.rank-b.rank:a.rank-b.rank);document.querySelector('#standing-rows').innerHTML=rows.map(r=>`<tr><td class="mono">${r.rank}</td><td>${teamLink(r.team)}</td><td class="mono">${r.wins}</td><td class="mono">${r.losses}</td><td class="mono">${(r.pointsFor/100).toFixed(1)}</td></tr>`).join(''); }
+document.querySelector('#standings-sort').addEventListener('change',sortStandings); sortStandings();
+const menu=document.querySelector('#mobile-menu');
+const desktopTools=document.querySelector('#desktop-tools');
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){for(const disclosure of [menu,desktopTools]){if(disclosure.open){disclosure.open=false;disclosure.querySelector('summary').focus();}}}});
+[menu,desktopTools].forEach(disclosure=>disclosure.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>disclosure.open=false)));
+matchMedia('(min-width:56.01rem)').addEventListener('change',()=>menu.open=false);
+document.querySelectorAll('.headshot').forEach(img=>{const fallback=()=>{const parent=img.parentElement;parent.classList.add('failed');parent.textContent=parent.getAttribute('aria-label').replace('Portrait of ','')+' · portrait unavailable';};img.addEventListener('error',fallback,{once:true});if(img.complete&&!img.naturalWidth)fallback();});
+document.querySelector('#main').dataset.mockReady='06';
+</script>
+</body>
+</html>
