@@ -1,5 +1,7 @@
 # GOAT: twenty independent homepage directions
 
+**Current correction:**the user likes many ideas but correctly found several prior directions too sparse or task-focused to represent complete homepages. Earlier completeness claims below are superseded. [One complete concept16 correction](homepage-corrections/README.md) is ready locally for parent inspection before the other nineteen. Preserve their personalities and varied content priorities. No new external publication.
+
 All20 independently authored architectures now have complete visual treatments and renderable desktop/phone prototypes. This is the broad first art set for user comparison, not a chosen design or a production replacement. No shortlist has been selected. #271 remains the benchmark; rejected #272/#273 and the first/corrected grayscale work remain preserved.
 
 Start with [the gallery](index.html), [the delivery index](DELIVERY.md), or [the complete image/state index](IMAGE-INDEX.md). The gallery defaults to full art and retains both grayscale rounds separately. Native image contacts are navigation indexes; complete public/member documents, independent readers and interaction states are available for every direction.

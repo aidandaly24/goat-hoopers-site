@@ -1,0 +1,1222 @@
+{
+  "sourceBase": "3c507858f7d0450d5a32a837a96446fc557715cb",
+  "scope": "One representative complete-homepage correction, local only. Other19 untouched pending parent visual inspection. No API states required to see the homepage.",
+  "sources": [
+    {
+      "path": "qa/homepage-structures/homepage-corrections/16/index.html",
+      "sha256": "1d8b062c1cd890c2b3dfe68c86dc76eaf188b7053b809ff7c961a620b22ced4b"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/16/homepage.css",
+      "sha256": "c98e3c2d3c940f997c9089113d83bf0657656096114abae882bc974ab148599c"
+    },
+    {
+      "path": "qa/homepage-structures/homepage-corrections/16/homepage.js",
+      "sha256": "257f0b8e522e78df9123c83a94bcd3249b1c279e0d536f28adfa63b5a4954c29"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/16/review/member-desktop-full.jpg",
+        "bytes": 681862,
+        "sha256": "7d46a79340723fe2b5ebae494cd38ea5d890fadb6b964959414d8ea29575fc26",
+        "width": 1440,
+        "height": 6596,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 6596
+          }
+        ],
+        "method": "Actual full in-flow browser document, bounded native/CDP tiles above7600px. No hidden-reader stitching, authored CSS changes or capture-only layout."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "offset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/member-desktop-top.jpg",
+          "bytes": 141920,
+          "sha256": "174f01004a37373b1030db4aacd51a8bb5f9a31c3e76c973080f93b66900ace2",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "offset": 2798,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/member-desktop-middle.jpg",
+          "bytes": 91240,
+          "sha256": "a3bf4bd12aee29c28cd18a3ae7a913eceae81313406a58cded283a9701e79387",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "offset": 5596,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/member-desktop-bottom.jpg",
+          "bytes": 80588,
+          "sha256": "6a0399c228cb8994317302ad60d6ae8632994979ded374abcaa755af31a803fc",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "sections": [
+        {
+          "id": "matchup",
+          "heading": "Your league,in play.",
+          "top": 126,
+          "height": 926.234375,
+          "visible": true
+        },
+        {
+          "id": "desk",
+          "heading": "The Reaves desk.",
+          "top": 1052.234375,
+          "height": 681.015625,
+          "visible": true
+        },
+        {
+          "id": "league",
+          "heading": "Four more games.Nine other opinions.",
+          "top": 1733.25,
+          "height": 1083.796875,
+          "visible": true
+        },
+        {
+          "id": "stories",
+          "heading": "More than a box score.",
+          "top": 2817.046875,
+          "height": 903.046875,
+          "visible": true
+        },
+        {
+          "id": "players",
+          "heading": "The players.The group chat.",
+          "top": 3720.09375,
+          "height": 1407.890625,
+          "visible": true
+        },
+        {
+          "id": "activity",
+          "heading": "Around the wire.",
+          "top": 5127.984375,
+          "height": 544.734375,
+          "visible": true
+        },
+        {
+          "id": "arcade",
+          "heading": "Take itto the line.",
+          "top": 5672.71875,
+          "height": 534.859375,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/16/review/member-phone-full.jpg",
+        "bytes": 458876,
+        "sha256": "872a01513a22315048c9ba8e46f859e4d881e951c6cb153187a10625d6efdce7",
+        "width": 390,
+        "height": 9427,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800
+          },
+          {
+            "y": 1800,
+            "height": 1800
+          },
+          {
+            "y": 3600,
+            "height": 1800
+          },
+          {
+            "y": 5400,
+            "height": 1800
+          },
+          {
+            "y": 7200,
+            "height": 1800
+          },
+          {
+            "y": 9000,
+            "height": 427
+          }
+        ],
+        "method": "Actual full in-flow browser document, bounded native/CDP tiles above7600px. No hidden-reader stitching, authored CSS changes or capture-only layout."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "offset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/member-phone-top.jpg",
+          "bytes": 40628,
+          "sha256": "dcdf253dd427535439e7e7cc92e5ed30dd38daf37f8ed558ff9c6ef9d5d80561",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "offset": 4291,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/member-phone-middle.jpg",
+          "bytes": 43147,
+          "sha256": "c6d61b53b22c2ff5ba6f2ffa8c64b0ca5d74bab291738e11603856fd0a625f38",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "offset": 8583,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/member-phone-bottom.jpg",
+          "bytes": 39617,
+          "sha256": "9319048ab62e6e6f712ede8bda44efbd186813885baeb42e7e5df1769015ade1",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "sections": [
+        {
+          "id": "matchup",
+          "heading": "Your league,in play.",
+          "top": 186.5625,
+          "height": 914.75,
+          "visible": true
+        },
+        {
+          "id": "desk",
+          "heading": "The Reaves desk.",
+          "top": 1101.3125,
+          "height": 1004.40625,
+          "visible": true
+        },
+        {
+          "id": "league",
+          "heading": "Four more games.Nine other opinions.",
+          "top": 2105.71875,
+          "height": 1642.140625,
+          "visible": true
+        },
+        {
+          "id": "stories",
+          "heading": "More than a box score.",
+          "top": 3747.859375,
+          "height": 1386.984375,
+          "visible": true
+        },
+        {
+          "id": "players",
+          "heading": "The players.The group chat.",
+          "top": 5134.84375,
+          "height": 2279.84375,
+          "visible": true
+        },
+        {
+          "id": "activity",
+          "heading": "Around the wire.",
+          "top": 7414.6875,
+          "height": 710.8125,
+          "visible": true
+        },
+        {
+          "id": "arcade",
+          "heading": "Take itto the line.",
+          "top": 8125.5,
+          "height": 611.640625,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/16/review/public-desktop-full.jpg",
+        "bytes": 600120,
+        "sha256": "d605b052729621fc0d9e7a171de35410e95e30e782ae9a21bf50c012c6daab63",
+        "width": 1440,
+        "height": 5957,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 5957
+          }
+        ],
+        "method": "Actual full in-flow browser document, bounded native/CDP tiles above7600px. No hidden-reader stitching, authored CSS changes or capture-only layout."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "offset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/public-desktop-top.jpg",
+          "bytes": 142395,
+          "sha256": "ddb3bff2496ce17307e69fd332a85daf693a7b3184280dd807f4c864b68e0b63",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "offset": 2478,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/public-desktop-middle.jpg",
+          "bytes": 95989,
+          "sha256": "a22aa005baafb56ad8aa556ff30e576875a9774ffa863656a93e676ef2ef7a77",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "offset": 4957,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/public-desktop-bottom.jpg",
+          "bytes": 78905,
+          "sha256": "bb9cf8c96f8a1a5511d9795c8fe1cd522e982877e2c39d4654955a0b33b29618",
+          "width": 1440,
+          "height": 1000,
+          "quality": 90
+        }
+      ],
+      "sections": [
+        {
+          "id": "matchup",
+          "heading": "Your league,in play.",
+          "top": 126,
+          "height": 926.234375,
+          "visible": true
+        },
+        {
+          "id": "desk",
+          "heading": "The crown staysin the conversation.",
+          "top": 1052.234375,
+          "height": 451.625,
+          "visible": true
+        },
+        {
+          "id": "league",
+          "heading": "Four more games.Nine other opinions.",
+          "top": 1503.859375,
+          "height": 1083.796875,
+          "visible": true
+        },
+        {
+          "id": "stories",
+          "heading": "More than a box score.",
+          "top": 2587.65625,
+          "height": 903.046875,
+          "visible": true
+        },
+        {
+          "id": "players",
+          "heading": "The players.The group chat.",
+          "top": 3490.703125,
+          "height": 997.6875,
+          "visible": true
+        },
+        {
+          "id": "activity",
+          "heading": "Around the wire.",
+          "top": 4488.390625,
+          "height": 544.734375,
+          "visible": true
+        },
+        {
+          "id": "arcade",
+          "heading": "Take itto the line.",
+          "top": 5033.125,
+          "height": 534.859375,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "image": {
+        "path": "qa/homepage-structures/homepage-corrections/16/review/public-phone-full.jpg",
+        "bytes": 397465,
+        "sha256": "fcc023fbc20c61f3c214653f3e1cd544c9260c27364b6ef786a324c42c752060",
+        "width": 390,
+        "height": 7973,
+        "quality": 90,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800
+          },
+          {
+            "y": 1800,
+            "height": 1800
+          },
+          {
+            "y": 3600,
+            "height": 1800
+          },
+          {
+            "y": 5400,
+            "height": 1800
+          },
+          {
+            "y": 7200,
+            "height": 773
+          }
+        ],
+        "method": "Actual full in-flow browser document, bounded native/CDP tiles above7600px. No hidden-reader stitching, authored CSS changes or capture-only layout."
+      },
+      "crops": [
+        {
+          "location": "top",
+          "offset": 0,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/public-phone-top.jpg",
+          "bytes": 41009,
+          "sha256": "a8cfd7d5e2b0d540a5398683bd9299caa40a13fcf4bb33a1b34366eb2022516d",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "middle",
+          "offset": 3564,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/public-phone-middle.jpg",
+          "bytes": 46641,
+          "sha256": "183d2e6ec017db38cae53efb105b8ad29c4d7e4b6763c4d9d91df5618d37ec15",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        },
+        {
+          "location": "bottom",
+          "offset": 7129,
+          "path": "qa/homepage-structures/homepage-corrections/16/review/public-phone-bottom.jpg",
+          "bytes": 36949,
+          "sha256": "c5bff779a5414d153c53e497156c6a2e04ecbd2fe665e8f2ff566bc4005f5bb9",
+          "width": 390,
+          "height": 844,
+          "quality": 90
+        }
+      ],
+      "sections": [
+        {
+          "id": "matchup",
+          "heading": "Your league,in play.",
+          "top": 186.5625,
+          "height": 914.75,
+          "visible": true
+        },
+        {
+          "id": "desk",
+          "heading": "The crown staysin the conversation.",
+          "top": 1101.3125,
+          "height": 538.5,
+          "visible": true
+        },
+        {
+          "id": "league",
+          "heading": "Four more games.Nine other opinions.",
+          "top": 1639.8125,
+          "height": 1642.140625,
+          "visible": true
+        },
+        {
+          "id": "stories",
+          "heading": "More than a box score.",
+          "top": 3281.953125,
+          "height": 1386.984375,
+          "visible": true
+        },
+        {
+          "id": "players",
+          "heading": "The players.The group chat.",
+          "top": 4668.9375,
+          "height": 1292.640625,
+          "visible": true
+        },
+        {
+          "id": "activity",
+          "heading": "Around the wire.",
+          "top": 5961.578125,
+          "height": 710.8125,
+          "visible": true
+        },
+        {
+          "id": "arcade",
+          "heading": "Take itto the line.",
+          "top": 6672.390625,
+          "height": 611.640625,
+          "visible": true
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "view": "member",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "observations": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 6596,
+        "sections": [
+          {
+            "id": "matchup",
+            "heading": "Your league,in play.",
+            "top": 126,
+            "height": 926.234375,
+            "visible": true
+          },
+          {
+            "id": "desk",
+            "heading": "The Reaves desk.",
+            "top": 1052.234375,
+            "height": 681.015625,
+            "visible": true
+          },
+          {
+            "id": "league",
+            "heading": "Four more games.Nine other opinions.",
+            "top": 1733.25,
+            "height": 1083.796875,
+            "visible": true
+          },
+          {
+            "id": "stories",
+            "heading": "More than a box score.",
+            "top": 2817.046875,
+            "height": 903.046875,
+            "visible": true
+          },
+          {
+            "id": "players",
+            "heading": "The players.The group chat.",
+            "top": 3720.09375,
+            "height": 1407.890625,
+            "visible": true
+          },
+          {
+            "id": "activity",
+            "heading": "Around the wire.",
+            "top": 5127.984375,
+            "height": 544.734375,
+            "visible": true
+          },
+          {
+            "id": "arcade",
+            "heading": "Take itto the line.",
+            "top": 5672.71875,
+            "height": 534.859375,
+            "visible": true
+          }
+        ],
+        "standings": 10,
+        "otherGames": 4,
+        "editorialPlayers": 3,
+        "stories": 6,
+        "activity": 3,
+        "hiddenMainContent": [],
+        "innerReaders": [],
+        "overflowing": [],
+        "footer": true
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "observations": {
+        "width": 390,
+        "documentWidth": 390,
+        "height": 9427,
+        "sections": [
+          {
+            "id": "matchup",
+            "heading": "Your league,in play.",
+            "top": 186.5625,
+            "height": 914.75,
+            "visible": true
+          },
+          {
+            "id": "desk",
+            "heading": "The Reaves desk.",
+            "top": 1101.3125,
+            "height": 1004.40625,
+            "visible": true
+          },
+          {
+            "id": "league",
+            "heading": "Four more games.Nine other opinions.",
+            "top": 2105.71875,
+            "height": 1642.140625,
+            "visible": true
+          },
+          {
+            "id": "stories",
+            "heading": "More than a box score.",
+            "top": 3747.859375,
+            "height": 1386.984375,
+            "visible": true
+          },
+          {
+            "id": "players",
+            "heading": "The players.The group chat.",
+            "top": 5134.84375,
+            "height": 2279.84375,
+            "visible": true
+          },
+          {
+            "id": "activity",
+            "heading": "Around the wire.",
+            "top": 7414.6875,
+            "height": 710.8125,
+            "visible": true
+          },
+          {
+            "id": "arcade",
+            "heading": "Take itto the line.",
+            "top": 8125.5,
+            "height": 611.640625,
+            "visible": true
+          }
+        ],
+        "standings": 10,
+        "otherGames": 4,
+        "editorialPlayers": 3,
+        "stories": 6,
+        "activity": 3,
+        "hiddenMainContent": [],
+        "innerReaders": [],
+        "overflowing": [],
+        "footer": true
+      }
+    },
+    {
+      "view": "member",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "observations": {
+        "width": 390,
+        "documentWidth": 390,
+        "height": 27206,
+        "sections": [
+          {
+            "id": "matchup",
+            "heading": "Your league,in play.",
+            "top": 414.140625,
+            "height": 2224.9375,
+            "visible": true
+          },
+          {
+            "id": "desk",
+            "heading": "The Reaves desk.",
+            "top": 2639.078125,
+            "height": 2822.640625,
+            "visible": true
+          },
+          {
+            "id": "league",
+            "heading": "Four more games.Nine other opinions.",
+            "top": 5461.71875,
+            "height": 4884.25,
+            "visible": true
+          },
+          {
+            "id": "stories",
+            "heading": "More than a box score.",
+            "top": 10345.96875,
+            "height": 4918.421875,
+            "visible": true
+          },
+          {
+            "id": "players",
+            "heading": "The players.The group chat.",
+            "top": 15264.390625,
+            "height": 7016.1875,
+            "visible": true
+          },
+          {
+            "id": "activity",
+            "heading": "Around the wire.",
+            "top": 22280.578125,
+            "height": 2191.546875,
+            "visible": true
+          },
+          {
+            "id": "arcade",
+            "heading": "Take itto the line.",
+            "top": 24472.125,
+            "height": 1207.046875,
+            "visible": true
+          }
+        ],
+        "standings": 10,
+        "otherGames": 4,
+        "editorialPlayers": 3,
+        "stories": 6,
+        "activity": 3,
+        "hiddenMainContent": [],
+        "innerReaders": [],
+        "overflowing": [],
+        "footer": true
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "observations": {
+        "width": 320,
+        "documentWidth": 320,
+        "height": 10421,
+        "sections": [
+          {
+            "id": "matchup",
+            "heading": "Your league,in play.",
+            "top": 186.5625,
+            "height": 1032.078125,
+            "visible": true
+          },
+          {
+            "id": "desk",
+            "heading": "The Reaves desk.",
+            "top": 1218.640625,
+            "height": 1113.484375,
+            "visible": true
+          },
+          {
+            "id": "league",
+            "heading": "Four more games.Nine other opinions.",
+            "top": 2332.125,
+            "height": 2029.328125,
+            "visible": true
+          },
+          {
+            "id": "stories",
+            "heading": "More than a box score.",
+            "top": 4361.453125,
+            "height": 1651.09375,
+            "visible": true
+          },
+          {
+            "id": "players",
+            "heading": "The players.The group chat.",
+            "top": 6012.546875,
+            "height": 2350.78125,
+            "visible": true
+          },
+          {
+            "id": "activity",
+            "heading": "Around the wire.",
+            "top": 8363.328125,
+            "height": 797.8125,
+            "visible": true
+          },
+          {
+            "id": "arcade",
+            "heading": "Take itto the line.",
+            "top": 9161.140625,
+            "height": 572.546875,
+            "visible": true
+          }
+        ],
+        "standings": 10,
+        "otherGames": 4,
+        "editorialPlayers": 3,
+        "stories": 6,
+        "activity": 3,
+        "hiddenMainContent": [],
+        "innerReaders": [],
+        "overflowing": [],
+        "footer": true
+      }
+    },
+    {
+      "view": "member",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "observations": {
+        "width": 320,
+        "documentWidth": 320,
+        "height": 31787,
+        "sections": [
+          {
+            "id": "matchup",
+            "heading": "Your league,in play.",
+            "top": 482.140625,
+            "height": 2336.140625,
+            "visible": true
+          },
+          {
+            "id": "desk",
+            "heading": "The Reaves desk.",
+            "top": 2818.28125,
+            "height": 3059.78125,
+            "visible": true
+          },
+          {
+            "id": "league",
+            "heading": "Four more games.Nine other opinions.",
+            "top": 5878.0625,
+            "height": 5744.5625,
+            "visible": true
+          },
+          {
+            "id": "stories",
+            "heading": "More than a box score.",
+            "top": 11622.625,
+            "height": 5992.953125,
+            "visible": true
+          },
+          {
+            "id": "players",
+            "heading": "The players.The group chat.",
+            "top": 17615.578125,
+            "height": 8048.625,
+            "visible": true
+          },
+          {
+            "id": "activity",
+            "heading": "Around the wire.",
+            "top": 25664.203125,
+            "height": 2995,
+            "visible": true
+          },
+          {
+            "id": "arcade",
+            "heading": "Take itto the line.",
+            "top": 28659.203125,
+            "height": 1380.859375,
+            "visible": true
+          }
+        ],
+        "standings": 10,
+        "otherGames": 4,
+        "editorialPlayers": 3,
+        "stories": 6,
+        "activity": 3,
+        "hiddenMainContent": [],
+        "innerReaders": [],
+        "overflowing": [],
+        "footer": true
+      }
+    },
+    {
+      "view": "public",
+      "width": 1440,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "observations": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 5957,
+        "sections": [
+          {
+            "id": "matchup",
+            "heading": "Your league,in play.",
+            "top": 126,
+            "height": 926.234375,
+            "visible": true
+          },
+          {
+            "id": "desk",
+            "heading": "The crown staysin the conversation.",
+            "top": 1052.234375,
+            "height": 451.625,
+            "visible": true
+          },
+          {
+            "id": "league",
+            "heading": "Four more games.Nine other opinions.",
+            "top": 1503.859375,
+            "height": 1083.796875,
+            "visible": true
+          },
+          {
+            "id": "stories",
+            "heading": "More than a box score.",
+            "top": 2587.65625,
+            "height": 903.046875,
+            "visible": true
+          },
+          {
+            "id": "players",
+            "heading": "The players.The group chat.",
+            "top": 3490.703125,
+            "height": 997.6875,
+            "visible": true
+          },
+          {
+            "id": "activity",
+            "heading": "Around the wire.",
+            "top": 4488.390625,
+            "height": 544.734375,
+            "visible": true
+          },
+          {
+            "id": "arcade",
+            "heading": "Take itto the line.",
+            "top": 5033.125,
+            "height": 534.859375,
+            "visible": true
+          }
+        ],
+        "standings": 10,
+        "otherGames": 4,
+        "editorialPlayers": 3,
+        "stories": 6,
+        "activity": 3,
+        "hiddenMainContent": [],
+        "innerReaders": [],
+        "overflowing": [],
+        "footer": true
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "observations": {
+        "width": 390,
+        "documentWidth": 390,
+        "height": 7973,
+        "sections": [
+          {
+            "id": "matchup",
+            "heading": "Your league,in play.",
+            "top": 186.5625,
+            "height": 914.75,
+            "visible": true
+          },
+          {
+            "id": "desk",
+            "heading": "The crown staysin the conversation.",
+            "top": 1101.3125,
+            "height": 538.5,
+            "visible": true
+          },
+          {
+            "id": "league",
+            "heading": "Four more games.Nine other opinions.",
+            "top": 1639.8125,
+            "height": 1642.140625,
+            "visible": true
+          },
+          {
+            "id": "stories",
+            "heading": "More than a box score.",
+            "top": 3281.953125,
+            "height": 1386.984375,
+            "visible": true
+          },
+          {
+            "id": "players",
+            "heading": "The players.The group chat.",
+            "top": 4668.9375,
+            "height": 1292.640625,
+            "visible": true
+          },
+          {
+            "id": "activity",
+            "heading": "Around the wire.",
+            "top": 5961.578125,
+            "height": 710.8125,
+            "visible": true
+          },
+          {
+            "id": "arcade",
+            "heading": "Take itto the line.",
+            "top": 6672.390625,
+            "height": 611.640625,
+            "visible": true
+          }
+        ],
+        "standings": 10,
+        "otherGames": 4,
+        "editorialPlayers": 3,
+        "stories": 6,
+        "activity": 3,
+        "hiddenMainContent": [],
+        "innerReaders": [],
+        "overflowing": [],
+        "footer": true
+      }
+    },
+    {
+      "view": "public",
+      "width": 390,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "observations": {
+        "width": 390,
+        "documentWidth": 390,
+        "height": 23681,
+        "sections": [
+          {
+            "id": "matchup",
+            "heading": "Your league,in play.",
+            "top": 414.140625,
+            "height": 2189.09375,
+            "visible": true
+          },
+          {
+            "id": "desk",
+            "heading": "The crown staysin the conversation.",
+            "top": 2603.234375,
+            "height": 1572.953125,
+            "visible": true
+          },
+          {
+            "id": "league",
+            "heading": "Four more games.Nine other opinions.",
+            "top": 4176.1875,
+            "height": 4884.25,
+            "visible": true
+          },
+          {
+            "id": "stories",
+            "heading": "More than a box score.",
+            "top": 9060.4375,
+            "height": 4918.421875,
+            "visible": true
+          },
+          {
+            "id": "players",
+            "heading": "The players.The group chat.",
+            "top": 13978.859375,
+            "height": 4776.546875,
+            "visible": true
+          },
+          {
+            "id": "activity",
+            "heading": "Around the wire.",
+            "top": 18755.40625,
+            "height": 2191.546875,
+            "visible": true
+          },
+          {
+            "id": "arcade",
+            "heading": "Take itto the line.",
+            "top": 20946.953125,
+            "height": 1207.046875,
+            "visible": true
+          }
+        ],
+        "standings": 10,
+        "otherGames": 4,
+        "editorialPlayers": 3,
+        "stories": 6,
+        "activity": 3,
+        "hiddenMainContent": [],
+        "innerReaders": [],
+        "overflowing": [],
+        "footer": true
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 1,
+      "pass": true,
+      "errors": [],
+      "observations": {
+        "width": 320,
+        "documentWidth": 320,
+        "height": 8968,
+        "sections": [
+          {
+            "id": "matchup",
+            "heading": "Your league,in play.",
+            "top": 207.5625,
+            "height": 1064.078125,
+            "visible": true
+          },
+          {
+            "id": "desk",
+            "heading": "The crown staysin the conversation.",
+            "top": 1271.640625,
+            "height": 588.890625,
+            "visible": true
+          },
+          {
+            "id": "league",
+            "heading": "Four more games.Nine other opinions.",
+            "top": 1860.53125,
+            "height": 2029.328125,
+            "visible": true
+          },
+          {
+            "id": "stories",
+            "heading": "More than a box score.",
+            "top": 3889.859375,
+            "height": 1651.09375,
+            "visible": true
+          },
+          {
+            "id": "players",
+            "heading": "The players.The group chat.",
+            "top": 5540.953125,
+            "height": 1369.984375,
+            "visible": true
+          },
+          {
+            "id": "activity",
+            "heading": "Around the wire.",
+            "top": 6910.9375,
+            "height": 797.8125,
+            "visible": true
+          },
+          {
+            "id": "arcade",
+            "heading": "Take itto the line.",
+            "top": 7708.75,
+            "height": 572.546875,
+            "visible": true
+          }
+        ],
+        "standings": 10,
+        "otherGames": 4,
+        "editorialPlayers": 3,
+        "stories": 6,
+        "activity": 3,
+        "hiddenMainContent": [],
+        "innerReaders": [],
+        "overflowing": [],
+        "footer": true
+      }
+    },
+    {
+      "view": "public",
+      "width": 320,
+      "textScale": 2,
+      "pass": true,
+      "errors": [],
+      "observations": {
+        "width": 320,
+        "documentWidth": 320,
+        "height": 27721,
+        "sections": [
+          {
+            "id": "matchup",
+            "heading": "Your league,in play.",
+            "top": 482.140625,
+            "height": 2374.53125,
+            "visible": true
+          },
+          {
+            "id": "desk",
+            "heading": "The crown staysin the conversation.",
+            "top": 2856.671875,
+            "height": 1654.859375,
+            "visible": true
+          },
+          {
+            "id": "league",
+            "heading": "Four more games.Nine other opinions.",
+            "top": 4511.53125,
+            "height": 5744.5625,
+            "visible": true
+          },
+          {
+            "id": "stories",
+            "heading": "More than a box score.",
+            "top": 10256.09375,
+            "height": 5992.953125,
+            "visible": true
+          },
+          {
+            "id": "players",
+            "heading": "The players.The group chat.",
+            "top": 16249.046875,
+            "height": 5349,
+            "visible": true
+          },
+          {
+            "id": "activity",
+            "heading": "Around the wire.",
+            "top": 21598.046875,
+            "height": 2995,
+            "visible": true
+          },
+          {
+            "id": "arcade",
+            "heading": "Take itto the line.",
+            "top": 24593.046875,
+            "height": 1380.859375,
+            "visible": true
+          }
+        ],
+        "standings": 10,
+        "otherGames": 4,
+        "editorialPlayers": 3,
+        "stories": 6,
+        "activity": 3,
+        "hiddenMainContent": [],
+        "innerReaders": [],
+        "overflowing": [],
+        "footer": true
+      }
+    },
+    {
+      "case": "real keyboard reordering and Escape",
+      "pass": true,
+      "pinned": {
+        "first": "desk",
+        "focus": "pin-desk",
+        "sectionCount": 7
+      },
+      "restored": {
+        "first": "matchup",
+        "focus": "pin-desk"
+      },
+      "closed": {
+        "open": false,
+        "focus": "SUMMARY"
+      }
+    },
+    {
+      "case": "stale saved AI",
+      "pass": true,
+      "text": "Stale saved call\n\nWare the Hoes At? 35%\n\nAlternate 65% · confidence 20%. Experimental, not calibrated odds.\nInspect all five calls ↗"
+    },
+    {
+      "case": "missing saved AI",
+      "pass": true,
+      "text": "Saved AI unavailable. Open AI Decides ↗"
+    },
+    {
+      "case": "self-contained playable",
+      "pass": true,
+      "dependentRequests": 0,
+      "errors": []
+    }
+  ],
+  "passed": 14,
+  "total": 14,
+  "limits": "Synthetic fixture. Headless Chromium, not AT, physical phone, live data/auth/routes or production performance. Old rejected captures remain preserved."
+}

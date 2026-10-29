@@ -4,7 +4,7 @@
     272,
     273
   ],
-  "stage": "Complete20 first full-art directions for user comparison; no shortlist or production approval. Root state/reflow, current source/capture hashes,40 standalone cases and190 independent pair records complete. Fresh Muse review pending.",
+  "stage": "User likes many ideas but rejected sparse feature/navigation demos as complete homepages. One representative16 corrected to a full visible homepage locally for parent inspection; other19 preserved pending that gate. No new publication.",
   "authors": [
     {
       "id": "01",
@@ -328,5 +328,15 @@
       "reason": "Automatic approval review found insufficient explicit authorization for detailed external status publication."
     }
   ],
-  "delivery": "DELIVERY.md"
+  "delivery": "DELIVERY.md",
+  "homepageCorrection": {
+    "count": 1,
+    "id": "16",
+    "author": "root targeted correction, preserving original independent author architecture/personality",
+    "sources": "homepage-corrections/16",
+    "checks": "14/14 bounded checks",
+    "parentReview": "pending",
+    "other19": "preserved, not yet corrected",
+    "publication": "local only; no external writes attempted"
+  }
 }
