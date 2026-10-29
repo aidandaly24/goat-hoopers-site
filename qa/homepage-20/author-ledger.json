@@ -165,7 +165,8 @@
       "freshContextRequested": true,
       "forkTurns": "none",
       "actualAgentTask": "/root/mock18",
-      "status": "authoring"
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "88c0f5f4c89e3b3cd44dc3a1458802860df9986b6c04c0e3d359ac9a7985fa32"
     },
     {
       "direction": "19",
@@ -173,7 +174,8 @@
       "freshContextRequested": true,
       "forkTurns": "none",
       "actualAgentTask": "/root/mock19",
-      "status": "authoring"
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "d82f558d902e77e8fdf816fff62ba36bdf87575b4cb5426d3e5ac5eb99e2a730"
     },
     {
       "direction": "20",
@@ -181,7 +183,16 @@
       "freshContextRequested": true,
       "forkTurns": "none",
       "actualAgentTask": "/root/mock20",
-      "status": "authoring"
+      "status": "submitted",
+      "firstSubmissionHtmlSha256": "8f3b7d3b291b51209fc0b391563578c5c45c9d18f6dd72368d9af92351dfed76"
     }
-  ]
+  ],
+  "submittedAuthors": 20,
+  "blindFirstRoundClosed": true,
+  "commonSourceHashes": {
+    "inventory.json": "3f802e841bd575fbc0f058f2d788d3c4d4f147fe6d6b12b339aeeb20d387ddec",
+    "data.js": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86",
+    "base.css": "c0f37424497adc0e9dab374df0420e060994a65d98d7918aab809dd14a57cb2b",
+    "BRIEF.md": "f746953f97cf6f0ff0ad3f17b7462ce34aaffdb479528528526ed094a15452e5"
+  }
 }

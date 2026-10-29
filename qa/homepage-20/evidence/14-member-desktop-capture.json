@@ -1,0 +1,163 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 6712,
+  "bytes": 884751,
+  "jpegQuality": 88,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 5712,
+      "cropTop": 288,
+      "height": 712
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 6000,
+      "scrollY": 5712,
+      "cropTop": 288,
+      "width": 1440,
+      "height": 712,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "The league register.",
+      "y": 205
+    },
+    {
+      "text": "Ten teams. Same court.",
+      "y": 318
+    },
+    {
+      "text": "On our court",
+      "y": 619
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 1906
+    },
+    {
+      "text": "AI Decides",
+      "y": 3371
+    },
+    {
+      "text": "The notebook",
+      "y": 4405
+    },
+    {
+      "text": "The table",
+      "y": 4966
+    },
+    {
+      "text": "League wire",
+      "y": 4966
+    },
+    {
+      "text": "Away from the scorebook",
+      "y": 5763
+    },
+    {
+      "text": "From the weekly archive",
+      "y": 6204
+    }
+  ],
+  "footer": {
+    "text": "NewsStocksHistoryTeamsTransactionsWeekly archiveSources, dates and fixture limitsThis is a static design fixture with dated real identities and approved editorial. All current records, scores, prices, news, form and model outputs are synthetic. No network data is loaded or saved. Historical team-value data and the Power producer are unavailable.Editorial source links are retained for inspection; they are not fetched by this page.Sleeper · opening-week pairingsChecked 2026-10-08Sleeper · NBA preseason stateChecked 2026-10-08Sleeper · our rookie draftChecked 2026-10-08Sleeper · league movesChecked 2026-10-08Verified 2025 league archiveChecked 2026-10-08GOAT HOOPERS · LEAGUE REGISTER / DIRECTION 14 · OFFLINE PREVIEW",
+    "y": 6434
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "ee38392ff409718abb05c8d2b73befab4541150c70c8f347b2749fa7d91d58e1",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

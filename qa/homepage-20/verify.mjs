@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {chromium} from '/opt/codex/cua_node/lib/node_modules/playwright/index.mjs';
 import {readFile,writeFile} from 'node:fs/promises';
-const phase=process.env.GOAT_MOCK_PHASE==='iterations'?'iterations':'directions',prefix=phase==='iterations'?'iteration-':'';
+const phase=['iterations','repairs'].includes(process.env.GOAT_MOCK_PHASE)?process.env.GOAT_MOCK_PHASE:'directions',prefix=phase==='iterations'?'iteration-':phase==='repairs'?'repair-':'';
 const ids=process.argv.slice(2);if(!ids.length)throw new Error('Pass submitted direction IDs');
 const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
 const results=[];

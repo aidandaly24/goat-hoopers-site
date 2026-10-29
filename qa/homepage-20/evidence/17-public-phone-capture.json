@@ -1,0 +1,201 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "width": 390,
+  "height": 11140,
+  "bytes": 845388,
+  "jpegQuality": 93,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 844,
+      "scrollY": 844,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 1688,
+      "scrollY": 1688,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 2532,
+      "scrollY": 2532,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 3376,
+      "scrollY": 3376,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 4220,
+      "scrollY": 4220,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 5064,
+      "scrollY": 5064,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 5908,
+      "scrollY": 5908,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 6752,
+      "scrollY": 6752,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 7596,
+      "scrollY": 7596,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 8440,
+      "scrollY": 8440,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 9284,
+      "scrollY": 9284,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 10128,
+      "scrollY": 10128,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 10972,
+      "scrollY": 10296,
+      "cropTop": 676,
+      "height": 168
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 390,
+      "height": 844,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 5908,
+      "scrollY": 5908,
+      "cropTop": 0,
+      "width": 390,
+      "height": 844,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 10972,
+      "scrollY": 10296,
+      "cropTop": 676,
+      "width": 390,
+      "height": 168,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Reaves Dropper",
+      "y": 257
+    },
+    {
+      "text": "Ware the Hoes At?",
+      "y": 446
+    },
+    {
+      "text": "The dated notebook",
+      "y": 1215
+    },
+    {
+      "text": "AI Decides",
+      "y": 2394
+    },
+    {
+      "text": "Faces of the league",
+      "y": 3974
+    },
+    {
+      "text": "Around the league",
+      "y": 5388
+    },
+    {
+      "text": "The team directory",
+      "y": 6331
+    },
+    {
+      "text": "The league table",
+      "y": 8844
+    },
+    {
+      "text": "Earlier editions",
+      "y": 10269
+    }
+  ],
+  "footer": {
+    "text": "GOAT HoopersA working league bulletin. This static prototype uses dated approved roster identities and editorial with synthetic current data from benchmark 64b9971. It makes no live requests and does not prove authentication or backend behavior.Checked fixture: 12 Nov 2026, 12:00 UTC. Recorded team-value history, Lineup Power and league statistics are unavailable.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerDraftBack to top",
+    "y": 10708
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "42d8af493e213d7263c1b583a53b04eb48c9baeb0299d8f7443918533ab93a41",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

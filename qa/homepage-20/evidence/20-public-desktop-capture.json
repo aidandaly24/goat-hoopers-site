@@ -1,0 +1,177 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 7366,
+  "bytes": 854065,
+  "jpegQuality": 85,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 6366,
+      "cropTop": 634,
+      "height": 366
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 7000,
+      "scrollY": 6366,
+      "cropTop": 634,
+      "width": 1440,
+      "height": 366,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Week 03.",
+      "y": 287
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 482
+    },
+    {
+      "text": "Ware the Hoes At?",
+      "y": 581
+    },
+    {
+      "text": "AI Decides.",
+      "y": 1029
+    },
+    {
+      "text": "From the notebook.",
+      "y": 1419
+    },
+    {
+      "text": "Scouting notes.",
+      "y": 1944
+    },
+    {
+      "text": "Faces of the league.",
+      "y": 2567
+    },
+    {
+      "text": "Around the league.",
+      "y": 2974
+    },
+    {
+      "text": "The team register.",
+      "y": 3535
+    },
+    {
+      "text": "League facts.",
+      "y": 5177
+    },
+    {
+      "text": "Between weeks.",
+      "y": 6037
+    },
+    {
+      "text": "The source record.",
+      "y": 6716
+    }
+  ],
+  "footer": {
+    "text": "A working reference for ten friends and one basketball league. This is a static, offline design preview, with no authentication, saving or live data calls. Route links point to the application’s real destinations; this review server only serves static files.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveGOAT HOOPERS / QUIET LEAGUE INDEXBack to the register",
+    "y": 7102
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "6953fd8836d87d5e8d5205a5d96d18c2d1d2bd487d33b3f111b4f45ad2761ce1",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

@@ -1,0 +1,185 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 7902,
+  "bytes": 888853,
+  "jpegQuality": 83,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 6902,
+      "cropTop": 98,
+      "height": 902
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 7000,
+      "scrollY": 6902,
+      "cropTop": 98,
+      "width": 1440,
+      "height": 902,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Week 03.",
+      "y": 287
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 482
+    },
+    {
+      "text": "Ware the Hoes At?",
+      "y": 581
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 882
+    },
+    {
+      "text": "AI Decides.",
+      "y": 1048
+    },
+    {
+      "text": "Your roster, priced.",
+      "y": 1439
+    },
+    {
+      "text": "From the notebook.",
+      "y": 1956
+    },
+    {
+      "text": "Scouting notes.",
+      "y": 2481
+    },
+    {
+      "text": "Faces of the league.",
+      "y": 3104
+    },
+    {
+      "text": "Around the league.",
+      "y": 3511
+    },
+    {
+      "text": "The team register.",
+      "y": 4071
+    },
+    {
+      "text": "League facts.",
+      "y": 5714
+    },
+    {
+      "text": "Between weeks.",
+      "y": 6573
+    },
+    {
+      "text": "The source record.",
+      "y": 7253
+    }
+  ],
+  "footer": {
+    "text": "A working reference for ten friends and one basketball league. This is a static, offline design preview, with no authentication, saving or live data calls. Route links point to the application’s real destinations; this review server only serves static files.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveMy teamView rosterGOAT HOOPERS / QUIET LEAGUE INDEXBack to the register",
+    "y": 7639
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "b017393b4df0c84d267240b6b0054994f61c11393a61098f94aadfc4d699b5d2",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

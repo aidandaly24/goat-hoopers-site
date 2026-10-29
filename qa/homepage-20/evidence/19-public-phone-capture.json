@@ -1,0 +1,205 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "width": 390,
+  "height": 12756,
+  "bytes": 849661,
+  "jpegQuality": 93,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 844,
+      "scrollY": 844,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 1688,
+      "scrollY": 1688,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 2532,
+      "scrollY": 2532,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 3376,
+      "scrollY": 3376,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 4220,
+      "scrollY": 4220,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 5064,
+      "scrollY": 5064,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 5908,
+      "scrollY": 5908,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 6752,
+      "scrollY": 6752,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 7596,
+      "scrollY": 7596,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 8440,
+      "scrollY": 8440,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 9284,
+      "scrollY": 9284,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 10128,
+      "scrollY": 10128,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 10972,
+      "scrollY": 10972,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 11816,
+      "scrollY": 11816,
+      "cropTop": 0,
+      "height": 844
+    },
+    {
+      "documentY": 12660,
+      "scrollY": 11912,
+      "cropTop": 748,
+      "height": 96
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 390,
+      "height": 844,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 6752,
+      "scrollY": 6752,
+      "cropTop": 0,
+      "width": 390,
+      "height": 844,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 12660,
+      "scrollY": 11912,
+      "cropTop": 748,
+      "width": 390,
+      "height": 96,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Week 3",
+      "y": 307
+    },
+    {
+      "text": "The league edition",
+      "y": 386
+    },
+    {
+      "text": "Week 3 · incomplete",
+      "y": 925
+    },
+    {
+      "text": "The league is open.",
+      "y": 1480
+    },
+    {
+      "text": "AI Decides",
+      "y": 2335
+    },
+    {
+      "text": "The next chapter",
+      "y": 4085
+    },
+    {
+      "text": "Ten teams. Their leading assets.",
+      "y": 6282
+    }
+  ],
+  "footer": {
+    "text": "GOAT HoopersThe league, with its dates attached.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data. Current reference source: Nov 12, 2026, 12:00 PM UTC. Saved AI source: Nov 10, 2026, 12:00 PM UTC. October draft editions are expired samples. This static mock demonstrates layout and local controls; route links do not establish authentication, live data or gameplay.Member fixturePublic fixtureAI readyAI staleAI unavailableBack to edition",
+    "y": 12180
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "606fd0dfec65d818ae0a4da3ae3e5830c8b14ab12b5a844cfcb34c4eaf63bdab",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

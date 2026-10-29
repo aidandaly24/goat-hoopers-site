@@ -1,0 +1,189 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 9057,
+  "bytes": 875672,
+  "jpegQuality": 79,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 8000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 9000,
+      "scrollY": 8057,
+      "cropTop": 943,
+      "height": 57
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 9000,
+      "scrollY": 8057,
+      "cropTop": 943,
+      "width": 1440,
+      "height": 57,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Reaves Dropper gets the champ.",
+      "y": 319
+    },
+    {
+      "text": "Your matchup",
+      "y": 300
+    },
+    {
+      "text": "Good. Rough. Worth watching.",
+      "y": 1337
+    },
+    {
+      "text": "What’s on your roster.",
+      "y": 1985
+    },
+    {
+      "text": "Your team’s week in view.",
+      "y": 2673
+    },
+    {
+      "text": "AI Decides",
+      "y": 3225
+    },
+    {
+      "text": "Ten teams. Ten faces to know.",
+      "y": 4392
+    },
+    {
+      "text": "Find your people.",
+      "y": 4841
+    },
+    {
+      "text": "The table, with its limits.",
+      "y": 6977
+    },
+    {
+      "text": "What moved around here.",
+      "y": 7830
+    },
+    {
+      "text": "See you on the court.",
+      "y": 8398
+    },
+    {
+      "text": "The weekly archive.",
+      "y": 8398
+    }
+  ],
+  "footer": {
+    "text": "GOAT Hoopers / The weekly letterStatic design preview · member fixture. Dated editorial preserved; current scores, records, prices, form, news and AI are synthetic. No authentication, data refresh, saving or AI generation occurs here.Benchmark 64b9971 · fixture checked Nov 12, 2026 · 12:00 UTC.NewsStocksHistoryTeamsTransactionsAI DecidesWeekly archiveArcadeTrade Analyzer",
+    "y": 8888
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "36835865d91f58e3f4272b043a5ff7b4b8e09326a6f46b1baedbce25d67570b4",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

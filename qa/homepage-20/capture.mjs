@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { capturePage } from './capture-page.mjs';
 
 const ids=process.argv.slice(2),folder='qa/homepage-20/evidence';
-const phase=process.env.GOAT_MOCK_PHASE==='iterations'?'iterations':'directions',prefix=phase==='iterations'?'iteration-':'';
+const phase=['iterations','repairs'].includes(process.env.GOAT_MOCK_PHASE)?process.env.GOAT_MOCK_PHASE:'directions',prefix=phase==='iterations'?'iteration-':phase==='repairs'?'repair-':'';
 if(!ids.length)throw new Error('Pass submitted author IDs, e.g.03');
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
 try{
