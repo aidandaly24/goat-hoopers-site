@@ -1,0 +1,175 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 8265,
+  "bytes": 873766,
+  "jpegQuality": 95,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 7265,
+      "cropTop": 735,
+      "height": 265
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 8000,
+      "scrollY": 7265,
+      "cropTop": 735,
+      "width": 1440,
+      "height": 265,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "League week 03",
+      "y": 222
+    },
+    {
+      "text": "The league, at a glance.",
+      "y": 192
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 434
+    },
+    {
+      "text": "Ware the Hoes At?",
+      "y": 533
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 784
+    },
+    {
+      "text": "The next chapter",
+      "y": 1784
+    },
+    {
+      "text": "AI Decides",
+      "y": 2844
+    },
+    {
+      "text": "Ten teams. Full rosters.",
+      "y": 4077
+    },
+    {
+      "text": "Standings & league pulse",
+      "y": 6311
+    },
+    {
+      "text": "Off the court",
+      "y": 7222
+    }
+  ],
+  "footer": {
+    "text": "GOAT Hoopers / Swiss Sport / Direction 08A local, offline design fixture.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerClaim your teamComplete fixture & source explanationOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Current directory and standings checked: 12 Nov 2026, 12:00 UTC. League and player identities, portraits and dated editorial use the approved source fixture. All current scores, records, prices, form, news, moves and saved AI examples are synthetic.Unknown scores remain Pending. Null measures remain Unavailable. The dated Oct 5–11, 2026 editorial is a draft sample, not current official Week 3 content. Model probabilities are not calibrated sports odds; confidence, returned choice and input evidence have separate meanings.Font: local DM Sans, SIL Open Font License 1.1. The original GOAT logo, court, game preview and approved portraits remain local assets. No API calls or generation are performed.Fixture benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b. Read the complete source fixture (JSON). Font provenance and license.Synthetic fixture / 2026 / 10 teams. Known values are never substituted for missing data.",
+    "y": 7976
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "f05e06a880f1eb5e53f5543071ddd9f3b27b2512445c85196e927930964b0be4",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

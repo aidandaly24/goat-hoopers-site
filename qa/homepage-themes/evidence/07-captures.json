@@ -1,0 +1,908 @@
+{
+  "direction": "07",
+  "title": "Varsity Club · GOAT Hoopers",
+  "htmlSha256": "5fce1d64ff8e2ee84b66311b8b735284b1140978474eed19e283c5c384f1efb9",
+  "sourceFiles": [
+    {
+      "file": "qa/homepage-themes/directions/07/index.html",
+      "sha256": "5fce1d64ff8e2ee84b66311b8b735284b1140978474eed19e283c5c384f1efb9"
+    },
+    {
+      "file": "qa/homepage-themes/directions/07/varsity.css",
+      "sha256": "2cd277e97dff22562bf8e2c0c1a2000420895454711d98001d90cd8693185aae"
+    },
+    {
+      "file": "qa/homepage-themes/directions/07/varsity.js",
+      "sha256": "e355cf5790a3bfe68bbf961126d5f5b975778c26b5696cc9b9dcf8e816923e22"
+    }
+  ],
+  "captures": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "file": "qa/homepage-themes/evidence/07-member-desktop.jpg",
+      "inventory": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 4,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1440,
+      "height": 9866,
+      "bytes": 884177,
+      "jpegQuality": 61,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 1000,
+          "scrollY": 1000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 2000,
+          "scrollY": 2000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 3000,
+          "scrollY": 3000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 6000,
+          "scrollY": 6000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 7000,
+          "scrollY": 7000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 8000,
+          "scrollY": 8000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 9000,
+          "scrollY": 8866,
+          "cropTop": 134,
+          "height": 866
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 9000,
+          "scrollY": 8866,
+          "cropTop": 134,
+          "width": 1440,
+          "height": 866,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Reaves Dropper",
+          "y": 412
+        },
+        {
+          "text": "Your roster value",
+          "y": 1153
+        },
+        {
+          "text": "Scouting notebook",
+          "y": 1718
+        },
+        {
+          "text": "The completed-week book",
+          "y": 2303
+        },
+        {
+          "text": "From the edition",
+          "y": 3031
+        },
+        {
+          "text": "AI Decides",
+          "y": 4117
+        },
+        {
+          "text": "The club register",
+          "y": 5651
+        },
+        {
+          "text": "The league table",
+          "y": 7721
+        },
+        {
+          "text": "Off the court",
+          "y": 8581
+        },
+        {
+          "text": "Programme archive",
+          "y": 9209
+        }
+      ],
+      "footer": {
+        "text": "GOAT Hoopers · Varsity ClubOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerMy teamView rosterComplete source and fixture notesThe common approved fixture preserves dated identities, 228 unique roster players, local portraits, archived editorial and actual routes. Current scores, records, prices, form, news, moves and model output are synthetic. This page makes no API calls.Current fixture check: 12 Nov 2026, 12:00 UTC. Saved AI: 10 Nov 2026, 12:00 UTC. Member market computation: 12 Nov 2026, 12:00 UTC. Source benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b.Lineup Power unavailable: no producer snapshot connected in this mock. Recorded team-value history unavailable; no line is invented. Missing values stay unavailable; known zero stays 0.0. No value-history series or Power ranking has been invented.Complete fixture data (JSON) · Local font catalogue & licenses · Direction design and verification recordSleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08Original arena, selected white GOAT logo, approved local player portraits and actual Free Throw preview are local repository assets. Graduate is locally hosted under SIL Open Font License 1.1. This is an isolated QA programme, not a publication or production update.",
+        "y": 9581
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "c43637da87cb05769f2758e4192ba0f8a50efb589d5cbe3882eb95dfd314c94c",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "file": "qa/homepage-themes/evidence/07-member-phone.jpg",
+      "inventory": {
+        "width": 390,
+        "scrollWidth": 390,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 4,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "height": 17359,
+      "bytes": 887599,
+      "jpegQuality": 77,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 844,
+          "scrollY": 844,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 1688,
+          "scrollY": 1688,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 2532,
+          "scrollY": 2532,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 3376,
+          "scrollY": 3376,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 4220,
+          "scrollY": 4220,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5064,
+          "scrollY": 5064,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5908,
+          "scrollY": 5908,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 6752,
+          "scrollY": 6752,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 9284,
+          "scrollY": 9284,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10128,
+          "scrollY": 10128,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10972,
+          "scrollY": 10972,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 11816,
+          "scrollY": 11816,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 12660,
+          "scrollY": 12660,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 13504,
+          "scrollY": 13504,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 14348,
+          "scrollY": 14348,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 15192,
+          "scrollY": 15192,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 16036,
+          "scrollY": 16036,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 16880,
+          "scrollY": 16515,
+          "cropTop": 365,
+          "height": 479
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 16880,
+          "scrollY": 16515,
+          "cropTop": 365,
+          "width": 390,
+          "height": 479,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Reaves Dropper",
+          "y": 395
+        },
+        {
+          "text": "Your roster value",
+          "y": 1428
+        },
+        {
+          "text": "Scouting notebook",
+          "y": 2251
+        },
+        {
+          "text": "The completed-week book",
+          "y": 3237
+        },
+        {
+          "text": "From the edition",
+          "y": 4425
+        },
+        {
+          "text": "AI Decides",
+          "y": 7112
+        },
+        {
+          "text": "The club register",
+          "y": 9330
+        },
+        {
+          "text": "The league table",
+          "y": 13756
+        },
+        {
+          "text": "Off the court",
+          "y": 15207
+        },
+        {
+          "text": "Programme archive",
+          "y": 16401
+        }
+      ],
+      "footer": {
+        "text": "GOAT Hoopers · Varsity ClubOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerMy teamView rosterComplete source and fixture notesThe common approved fixture preserves dated identities, 228 unique roster players, local portraits, archived editorial and actual routes. Current scores, records, prices, form, news, moves and model output are synthetic. This page makes no API calls.Current fixture check: 12 Nov 2026, 12:00 UTC. Saved AI: 10 Nov 2026, 12:00 UTC. Member market computation: 12 Nov 2026, 12:00 UTC. Source benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b.Lineup Power unavailable: no producer snapshot connected in this mock. Recorded team-value history unavailable; no line is invented. Missing values stay unavailable; known zero stays 0.0. No value-history series or Power ranking has been invented.Complete fixture data (JSON) · Local font catalogue & licenses · Direction design and verification recordSleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08Original arena, selected white GOAT logo, approved local player portraits and actual Free Throw preview are local repository assets. Graduate is locally hosted under SIL Open Font License 1.1. This is an isolated QA programme, not a publication or production update.",
+        "y": 16928
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "c43637da87cb05769f2758e4192ba0f8a50efb589d5cbe3882eb95dfd314c94c",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "file": "qa/homepage-themes/evidence/07-public-desktop.jpg",
+      "inventory": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 0,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1440,
+      "height": 8728,
+      "bytes": 886536,
+      "jpegQuality": 70,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 1000,
+          "scrollY": 1000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 2000,
+          "scrollY": 2000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 3000,
+          "scrollY": 3000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 5000,
+          "scrollY": 5000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 6000,
+          "scrollY": 6000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 7000,
+          "scrollY": 7000,
+          "cropTop": 0,
+          "height": 1000
+        },
+        {
+          "documentY": 8000,
+          "scrollY": 7728,
+          "cropTop": 272,
+          "height": 728
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 4000,
+          "scrollY": 4000,
+          "cropTop": 0,
+          "width": 1440,
+          "height": 1000,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 8000,
+          "scrollY": 7728,
+          "cropTop": 272,
+          "width": 1440,
+          "height": 728,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Week 3 programme",
+          "y": 412
+        },
+        {
+          "text": "The league’s modeled market",
+          "y": 1153
+        },
+        {
+          "text": "Scouting notebook",
+          "y": 1519
+        },
+        {
+          "text": "From the edition",
+          "y": 1915
+        },
+        {
+          "text": "AI Decides",
+          "y": 3000
+        },
+        {
+          "text": "The club register",
+          "y": 4535
+        },
+        {
+          "text": "The league table",
+          "y": 6604
+        },
+        {
+          "text": "Off the court",
+          "y": 7443
+        },
+        {
+          "text": "Programme archive",
+          "y": 8071
+        }
+      ],
+      "footer": {
+        "text": "GOAT Hoopers · Varsity ClubOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerComplete source and fixture notesThe common approved fixture preserves dated identities, 228 unique roster players, local portraits, archived editorial and actual routes. Current scores, records, prices, form, news, moves and model output are synthetic. This page makes no API calls.Current fixture check: 12 Nov 2026, 12:00 UTC. Saved AI: 10 Nov 2026, 12:00 UTC. Member market computation: Member-only context. Source benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b.Lineup Power unavailable: no producer snapshot connected in this mock. Recorded team-value history unavailable; no line is invented. Missing values stay unavailable; known zero stays 0.0. No value-history series or Power ranking has been invented.Complete fixture data (JSON) · Local font catalogue & licenses · Direction design and verification recordSleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08Original arena, selected white GOAT logo, approved local player portraits and actual Free Throw preview are local repository assets. Graduate is locally hosted under SIL Open Font License 1.1. This is an isolated QA programme, not a publication or production update.",
+        "y": 8443
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "febee4ec1a1d87e239dec2e71209192a2634af0833eb9d4b922c6d1117013d76",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "file": "qa/homepage-themes/evidence/07-public-phone.jpg",
+      "inventory": {
+        "width": 390,
+        "scrollWidth": 390,
+        "teams": 10,
+        "faces": 10,
+        "pairs": 5,
+        "personal": 0,
+        "rosterRefs": 228
+      },
+      "errors": [],
+      "remote": [],
+      "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "height": 15590,
+      "bytes": 869111,
+      "jpegQuality": 81,
+      "tiles": [
+        {
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 844,
+          "scrollY": 844,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 1688,
+          "scrollY": 1688,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 2532,
+          "scrollY": 2532,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 3376,
+          "scrollY": 3376,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 4220,
+          "scrollY": 4220,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5064,
+          "scrollY": 5064,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 5908,
+          "scrollY": 5908,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 6752,
+          "scrollY": 6752,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 8440,
+          "scrollY": 8440,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 9284,
+          "scrollY": 9284,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10128,
+          "scrollY": 10128,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 10972,
+          "scrollY": 10972,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 11816,
+          "scrollY": 11816,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 12660,
+          "scrollY": 12660,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 13504,
+          "scrollY": 13504,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 14348,
+          "scrollY": 14348,
+          "cropTop": 0,
+          "height": 844
+        },
+        {
+          "documentY": 15192,
+          "scrollY": 14746,
+          "cropTop": 446,
+          "height": 398
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "top",
+          "documentY": 0,
+          "scrollY": 0,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "middle",
+          "documentY": 7596,
+          "scrollY": 7596,
+          "cropTop": 0,
+          "width": 390,
+          "height": 844,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "full viewport"
+        },
+        {
+          "name": "bottom",
+          "documentY": 15192,
+          "scrollY": 14746,
+          "cropTop": 446,
+          "width": 390,
+          "height": 398,
+          "differingPixels": 0,
+          "differingRatio": 0,
+          "meanChannelError": 0,
+          "maxChannelError": 0,
+          "rasterOnlyMediaPixels": 0,
+          "materialDifferences": 0,
+          "materialDifferenceRatio": 0,
+          "nonMediaMeanError": 0,
+          "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+          "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+        }
+      ],
+      "headings": [
+        {
+          "text": "Week 3 programme",
+          "y": 395
+        },
+        {
+          "text": "The league’s modeled market",
+          "y": 1454
+        },
+        {
+          "text": "Scouting notebook",
+          "y": 2052
+        },
+        {
+          "text": "From the edition",
+          "y": 2677
+        },
+        {
+          "text": "AI Decides",
+          "y": 5364
+        },
+        {
+          "text": "The club register",
+          "y": 7582
+        },
+        {
+          "text": "The league table",
+          "y": 12008
+        },
+        {
+          "text": "Off the court",
+          "y": 13438
+        },
+        {
+          "text": "Programme archive",
+          "y": 14633
+        }
+      ],
+      "footer": {
+        "text": "GOAT Hoopers · Varsity ClubOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerComplete source and fixture notesThe common approved fixture preserves dated identities, 228 unique roster players, local portraits, archived editorial and actual routes. Current scores, records, prices, form, news, moves and model output are synthetic. This page makes no API calls.Current fixture check: 12 Nov 2026, 12:00 UTC. Saved AI: 10 Nov 2026, 12:00 UTC. Member market computation: Member-only context. Source benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b.Lineup Power unavailable: no producer snapshot connected in this mock. Recorded team-value history unavailable; no line is invented. Missing values stay unavailable; known zero stays 0.0. No value-history series or Power ranking has been invented.Complete fixture data (JSON) · Local font catalogue & licenses · Direction design and verification recordSleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08Original arena, selected white GOAT logo, approved local player portraits and actual Free Throw preview are local repository assets. Graduate is locally hosted under SIL Open Font License 1.1. This is an isolated QA programme, not a publication or production update.",
+        "y": 15159
+      },
+      "teams": 10,
+      "rosterReferences": 228,
+      "maxTextureSize": null,
+      "inventorySha256": "febee4ec1a1d87e239dec2e71209192a2634af0833eb9d4b922c6d1117013d76",
+      "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+      "contentPreserved": true
+    }
+  ],
+  "failures": []
+}

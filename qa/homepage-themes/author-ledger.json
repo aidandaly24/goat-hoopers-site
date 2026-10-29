@@ -1,0 +1,578 @@
+{
+  "requestedAuthors": 20,
+  "startedAuthors": 20,
+  "submittedAuthors": 20,
+  "authors": [
+    {
+      "direction": "01",
+      "task": "/root/theme01",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Electric Night Court",
+      "htmlSha256": "7f4e560a3f50fa6c40cefc25c83c3ac9a757709e78029a711fcf0b8b0db40d62",
+      "sourceFiles": [
+        {
+          "path": "directions/01/index.html",
+          "sha256": "7f4e560a3f50fa6c40cefc25c83c3ac9a757709e78029a711fcf0b8b0db40d62"
+        }
+      ]
+    },
+    {
+      "direction": "02",
+      "task": "/root/theme02",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Raw Monochrome",
+      "htmlSha256": "e95c05048474d14043ccbbb8f608b648d31c9e93960c67f5bfe6be6829e2aadf",
+      "sourceFiles": [
+        {
+          "path": "directions/02/index.html",
+          "sha256": "e95c05048474d14043ccbbb8f608b648d31c9e93960c67f5bfe6be6829e2aadf"
+        }
+      ],
+      "qaRework": {
+        "folder": "rework/02",
+        "runtimeFiles": [
+          {
+            "path": "rework/02/index.html",
+            "sha256": "39bdb41603254aebeedf00aae42dbe522e996127e469d649c59786de8c68e76b"
+          }
+        ]
+      }
+    },
+    {
+      "direction": "03",
+      "task": "/root/theme03",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Broadcast Network",
+      "htmlSha256": "2e41c9101d01834c56746827596ee7a71d3df676b617c5f5adf8664c20f5ff45",
+      "sourceFiles": [
+        {
+          "path": "directions/03/index.html",
+          "sha256": "2e41c9101d01834c56746827596ee7a71d3df676b617c5f5adf8664c20f5ff45"
+        }
+      ],
+      "qaRework": {
+        "folder": "rework/03",
+        "runtimeFiles": [
+          {
+            "path": "rework/03/index.html",
+            "sha256": "13098dd6014959b46877a4aeaf1d5704a1489062297ed7f9667d09ecfdc42ad3"
+          }
+        ]
+      }
+    },
+    {
+      "direction": "04",
+      "task": "/root/theme04",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Retro Arcade",
+      "htmlSha256": "4ebcb3af003f5977d7c45c84e2ea13acf1ee00ab59689f31b0f9b4004358cc72",
+      "sourceFiles": [
+        {
+          "path": "directions/04/index.html",
+          "sha256": "4ebcb3af003f5977d7c45c84e2ea13acf1ee00ab59689f31b0f9b4004358cc72"
+        }
+      ]
+    },
+    {
+      "direction": "05",
+      "task": "/root/theme05",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Championship Chrome",
+      "htmlSha256": "2edc6770029a2b52dcd3030c34b01ab9fcd4883e3be4ea1830e281589ef633db",
+      "sourceFiles": [
+        {
+          "path": "directions/05/app.js",
+          "sha256": "f063de14a96dbd41bc51ae117e331cd5b8741927415a1f3de9ff628dfdb6b8b8"
+        },
+        {
+          "path": "directions/05/index.html",
+          "sha256": "2edc6770029a2b52dcd3030c34b01ab9fcd4883e3be4ea1830e281589ef633db"
+        },
+        {
+          "path": "directions/05/styles.css",
+          "sha256": "0c1edc207ff98d58371492b849a05cffdc65a8d6c4774df964c41fc5e36f0618"
+        }
+      ]
+    },
+    {
+      "direction": "06",
+      "task": "/root/theme06",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Asphalt Streetball",
+      "htmlSha256": "539ffbdbeeebdb1ba0d52dc72d67d5a30be0e5c6dd6f8580c72892fe832b09b1",
+      "sourceFiles": [
+        {
+          "path": "directions/06/index.html",
+          "sha256": "539ffbdbeeebdb1ba0d52dc72d67d5a30be0e5c6dd6f8580c72892fe832b09b1"
+        }
+      ]
+    },
+    {
+      "direction": "07",
+      "task": "/root/theme07",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Varsity Club",
+      "htmlSha256": "5fce1d64ff8e2ee84b66311b8b735284b1140978474eed19e283c5c384f1efb9",
+      "sourceFiles": [
+        {
+          "path": "directions/07/index.html",
+          "sha256": "5fce1d64ff8e2ee84b66311b8b735284b1140978474eed19e283c5c384f1efb9"
+        },
+        {
+          "path": "directions/07/varsity.css",
+          "sha256": "2cd277e97dff22562bf8e2c0c1a2000420895454711d98001d90cd8693185aae"
+        },
+        {
+          "path": "directions/07/varsity.js",
+          "sha256": "e355cf5790a3bfe68bbf961126d5f5b975778c26b5696cc9b9dcf8e816923e22"
+        }
+      ],
+      "qaRework": {
+        "folder": "rework/07",
+        "runtimeFiles": [
+          {
+            "path": "rework/07/index.html",
+            "sha256": "5fce1d64ff8e2ee84b66311b8b735284b1140978474eed19e283c5c384f1efb9"
+          },
+          {
+            "path": "rework/07/varsity.css",
+            "sha256": "79a5d14f8a2bc1fdf6d41ed9c8d0bb30145b3f9929bea8b4d2b09183e7d7924a"
+          },
+          {
+            "path": "rework/07/varsity.js",
+            "sha256": "e355cf5790a3bfe68bbf961126d5f5b975778c26b5696cc9b9dcf8e816923e22"
+          }
+        ]
+      }
+    },
+    {
+      "direction": "08",
+      "task": "/root/theme08",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Swiss Sport",
+      "htmlSha256": "127deb0f2a7a5a7df079488a0756f6bc53061d2202d9d182b69a4e4857ce7032",
+      "sourceFiles": [
+        {
+          "path": "directions/08/index.html",
+          "sha256": "127deb0f2a7a5a7df079488a0756f6bc53061d2202d9d182b69a4e4857ce7032"
+        },
+        {
+          "path": "directions/08/page.js",
+          "sha256": "edd5a4d8554c6ec31b0812afee473f23ed3807dc3972683defdfb05a020bc8f1"
+        },
+        {
+          "path": "directions/08/style.css",
+          "sha256": "7a621f0028c49cfb9077835bd95231d138e9214c564f97b198fa3ca8a22b064b"
+        }
+      ],
+      "qaRework": {
+        "folder": "rework/08",
+        "runtimeFiles": [
+          {
+            "path": "rework/08/index.html",
+            "sha256": "127deb0f2a7a5a7df079488a0756f6bc53061d2202d9d182b69a4e4857ce7032"
+          },
+          {
+            "path": "rework/08/page.js",
+            "sha256": "8234c7b77f7105d84b3e436acd016620a4add5ac09e74be64e876d4db206a832"
+          },
+          {
+            "path": "rework/08/style.css",
+            "sha256": "1722731a196d85dcba2c0b2858e8902cced7d9712aa4b4693ddf97d3e89da7cb"
+          }
+        ]
+      }
+    },
+    {
+      "direction": "09",
+      "task": "/root/theme09",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Playground League",
+      "htmlSha256": "9ba2d0c846ebd1bf9ecf834384d0f7c48bdba2830dea19053bc4b3c6989aac3e",
+      "sourceFiles": [
+        {
+          "path": "directions/09/index.html",
+          "sha256": "9ba2d0c846ebd1bf9ecf834384d0f7c48bdba2830dea19053bc4b3c6989aac3e"
+        },
+        {
+          "path": "directions/09/playground.css",
+          "sha256": "c6305133ce534895324172e703059cde546ed34ecd8f97e8048a5abb95ee8fed"
+        },
+        {
+          "path": "directions/09/playground.js",
+          "sha256": "4c5b5216118ed8e397aabf0ad0085f03027fe7ba59beac6a239954a4c8a9d168"
+        }
+      ],
+      "qaRework": {
+        "folder": "rework/09",
+        "runtimeFiles": [
+          {
+            "path": "rework/09/index.html",
+            "sha256": "9ba2d0c846ebd1bf9ecf834384d0f7c48bdba2830dea19053bc4b3c6989aac3e"
+          },
+          {
+            "path": "rework/09/playground.css",
+            "sha256": "bf2082705c44f4bee8c0c2c8000997c60962934326fc4a6e2a69bb8ba7b247be"
+          },
+          {
+            "path": "rework/09/playground.js",
+            "sha256": "4c5b5216118ed8e397aabf0ad0085f03027fe7ba59beac6a239954a4c8a9d168"
+          }
+        ]
+      }
+    },
+    {
+      "direction": "10",
+      "task": "/root/theme10",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Court Blueprint",
+      "htmlSha256": "8f11a6cc51dec8721c0125651f3e9b2dd035263c53af9fdf7b1d6f295c7c6885",
+      "sourceFiles": [
+        {
+          "path": "directions/10/court.css",
+          "sha256": "8bb60267d89284caf6359d46b082f6ee9c8597fcf6cb4d6536a28925e9c03d66"
+        },
+        {
+          "path": "directions/10/court.js",
+          "sha256": "de0591fa05831a17f8ea5f8b9f1064a3a78d2d634abc76a4e958d1b1e0e082a3"
+        },
+        {
+          "path": "directions/10/index.html",
+          "sha256": "8f11a6cc51dec8721c0125651f3e9b2dd035263c53af9fdf7b1d6f295c7c6885"
+        }
+      ]
+    },
+    {
+      "direction": "11",
+      "task": "/root/theme11",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Sports Terminal",
+      "htmlSha256": "c5ce8e462b916cb945bf18fa5cabe56a98bfd3f5aefbef8dccc191a275f52ad0",
+      "sourceFiles": [
+        {
+          "path": "directions/11/index.html",
+          "sha256": "c5ce8e462b916cb945bf18fa5cabe56a98bfd3f5aefbef8dccc191a275f52ad0"
+        },
+        {
+          "path": "directions/11/terminal.css",
+          "sha256": "eba5d7f513c4d3508d4b2ea41c1ffc287eb9b74e56f32b1331e209192743b9c2"
+        },
+        {
+          "path": "directions/11/terminal.js",
+          "sha256": "2de048af0a2f4ff62f13950e33ed42c2c97bbbb7c4bd87553640c12eac4249b9"
+        }
+      ]
+    },
+    {
+      "direction": "12",
+      "task": "/root/theme12",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "League Zine",
+      "interruption": "Selected-model capacity error; same author resumed existing partial files on one retry; no duplicate author.",
+      "htmlSha256": "816aecdf779719206b0b0866cf291668d0ae4616660df6422d2ac76dd3f5677c",
+      "sourceFiles": [
+        {
+          "path": "directions/12/index.html",
+          "sha256": "816aecdf779719206b0b0866cf291668d0ae4616660df6422d2ac76dd3f5677c"
+        },
+        {
+          "path": "directions/12/zine.css",
+          "sha256": "6c63da4b3db5f90e3505d22c9fe7aaee797de8de58ff2dcb39c51d9fcc4f1431"
+        },
+        {
+          "path": "directions/12/zine.js",
+          "sha256": "2533e85d34512964f4dc278ec4a58b8b8184c9214b614e622d11820f2cfbf4ad"
+        }
+      ]
+    },
+    {
+      "direction": "13",
+      "task": "/root/theme13",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Card Culture",
+      "htmlSha256": "339cdccb9f2b69342b03261fb18ed2342ac09a95c01f034f41808957f30763a5",
+      "sourceFiles": [
+        {
+          "path": "directions/13/index.html",
+          "sha256": "339cdccb9f2b69342b03261fb18ed2342ac09a95c01f034f41808957f30763a5"
+        },
+        {
+          "path": "directions/13/script.js",
+          "sha256": "16a360aaa96c14a2be9d48d6daf6ef5125dd2c8500463a69ce83ea068e87b2db"
+        },
+        {
+          "path": "directions/13/style.css",
+          "sha256": "ea6ced7b48ea8059d650c3994aeec8eabe156bfe24538574a0fa21dae0adab98"
+        }
+      ]
+    },
+    {
+      "direction": "14",
+      "task": "/root/theme14",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Hardwood Clubhouse",
+      "htmlSha256": "2f66aab3ba9e1fdf9566d68e5ff718e46a3047b2a6bcff17195c72eda1d05dbb",
+      "sourceFiles": [
+        {
+          "path": "directions/14/clubhouse.css",
+          "sha256": "bd82aff838fa213a25aede9668a8d2a9be39173cb60021bf79b78ed8389bb34b"
+        },
+        {
+          "path": "directions/14/clubhouse.js",
+          "sha256": "287f62ab0cb16743b8880281886114968fc277a7b4bb8df8dc98885706ad9682"
+        },
+        {
+          "path": "directions/14/index.html",
+          "sha256": "2f66aab3ba9e1fdf9566d68e5ff718e46a3047b2a6bcff17195c72eda1d05dbb"
+        }
+      ]
+    },
+    {
+      "direction": "15",
+      "task": "/root/theme15",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Geometric Motion",
+      "htmlSha256": "9a28ff74dce489f9560bd591ab8079a1e7fcb6d0125f1ea75b143793e69299c5",
+      "sourceFiles": [
+        {
+          "path": "directions/15/index.html",
+          "sha256": "9a28ff74dce489f9560bd591ab8079a1e7fcb6d0125f1ea75b143793e69299c5"
+        },
+        {
+          "path": "directions/15/page.js",
+          "sha256": "621d07f8a91adcd76421f620af50263c17cd3327e3edca9cc5e13812cbc4593e"
+        },
+        {
+          "path": "directions/15/style.css",
+          "sha256": "bbf1dd9034d851b50f8b48dc71226da22859a1a86e7bb83b1c69e87b13037c37"
+        }
+      ]
+    },
+    {
+      "direction": "16",
+      "task": "/root/theme16",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Tunnel Cinema",
+      "interruption": "Selected-model capacity error; same author asked to resume existing files on one retry.",
+      "htmlSha256": "af4ade2d37ca6c8e0927ff82de6fa8331e103789b2e44124beb861d4c6010276",
+      "sourceFiles": [
+        {
+          "path": "directions/16/index.html",
+          "sha256": "af4ade2d37ca6c8e0927ff82de6fa8331e103789b2e44124beb861d4c6010276"
+        },
+        {
+          "path": "directions/16/tunnel.css",
+          "sha256": "259319f55f78d317b06f31451166fc525b6d8c58033e7c5531f1acc22b62eb43"
+        },
+        {
+          "path": "directions/16/tunnel.js",
+          "sha256": "92155d86e4247f6a2a9cbadb329f21944a89c970bd9b10d86727ead89a22302f"
+        }
+      ]
+    },
+    {
+      "direction": "17",
+      "task": "/root/theme17",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "App Native",
+      "htmlSha256": "db3a2cd79d9b869c4465470a1de87185027abe8d80a22a0803f10ac7fc834f0a",
+      "sourceFiles": [
+        {
+          "path": "directions/17/index.html",
+          "sha256": "db3a2cd79d9b869c4465470a1de87185027abe8d80a22a0803f10ac7fc834f0a"
+        },
+        {
+          "path": "directions/17/workspace.css",
+          "sha256": "46c4ddb570e5d2338a5b1b5191194aae20e3ed496899a7aafe8f5acc4e8a258f"
+        },
+        {
+          "path": "directions/17/workspace.js",
+          "sha256": "2fc014c06e12198052bfc1c5c175fc7a4f163fda104f40d9afbd6fe3316463c0"
+        }
+      ],
+      "qaRework": {
+        "folder": "rework/17",
+        "runtimeFiles": [
+          {
+            "path": "rework/17/index.html",
+            "sha256": "db3a2cd79d9b869c4465470a1de87185027abe8d80a22a0803f10ac7fc834f0a"
+          },
+          {
+            "path": "rework/17/workspace.css",
+            "sha256": "cf8e0c86d1984fd6c9d572a593073b12c3f05287aff6a5a712d890bcd3b035b4"
+          },
+          {
+            "path": "rework/17/workspace.js",
+            "sha256": "9fa2f6fb0c5df620fe53e0ba5d4adfab4f90602129495d2c81315a1961c9352f"
+          }
+        ]
+      }
+    },
+    {
+      "direction": "18",
+      "task": "/root/theme18",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Sports Web 2000",
+      "htmlSha256": "585a2e00129ff0fd7111376776f9b91d87ad9dc99f6311b806460960b735961a",
+      "sourceFiles": [
+        {
+          "path": "directions/18/index.html",
+          "sha256": "585a2e00129ff0fd7111376776f9b91d87ad9dc99f6311b806460960b735961a"
+        },
+        {
+          "path": "directions/18/portal.css",
+          "sha256": "71edfde2c7bfea9e1acec7414c8b0cfb3a462ca8562d26753d4d197b981a6556"
+        },
+        {
+          "path": "directions/18/portal.js",
+          "sha256": "8a9ff84422efd59f9c93ab4e684c65b6fa64f8b6eeecf99e4b35763cd89065dc"
+        }
+      ]
+    },
+    {
+      "direction": "19",
+      "task": "/root/theme19",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Industrial Gym",
+      "interruption": "Selected-model capacity error; same author resumed original assignment on one retry; no partial files reset.",
+      "htmlSha256": "a033915c7d7f5d6d788d98bb8b08e4322cbcdcd6811210a7a1aff083307af493",
+      "sourceFiles": [
+        {
+          "path": "directions/19/app.js",
+          "sha256": "94cdf9e23970be8436610e85dc86e6b711b8849fe28131afa12f560fa0fcaa37"
+        },
+        {
+          "path": "directions/19/index.html",
+          "sha256": "a033915c7d7f5d6d788d98bb8b08e4322cbcdcd6811210a7a1aff083307af493"
+        },
+        {
+          "path": "directions/19/style.css",
+          "sha256": "92d5020c589e322fd2672c55a4c1216da318eb70c1888c531fd0b0bdf3a683bc"
+        }
+      ]
+    },
+    {
+      "direction": "20",
+      "task": "/root/theme20",
+      "forkTurns": "none",
+      "status": "submitted",
+      "theme": "Color Club",
+      "htmlSha256": "e7f7b2197e7f66de2a23204c088ea17b74da463eab4294bf48700e7243c98881",
+      "sourceFiles": [
+        {
+          "path": "directions/20/club.css",
+          "sha256": "7eb864b28ccdba73870400cfbaa7de9f48ef6129b1faa73709ff94987dbab385"
+        },
+        {
+          "path": "directions/20/club.js",
+          "sha256": "c773f198ffed88b6506a9a4cacb3afe74dcc91f6eb98bbad7d8cb39c8524be53"
+        },
+        {
+          "path": "directions/20/index.html",
+          "sha256": "e7f7b2197e7f66de2a23204c088ea17b74da463eab4294bf48700e7243c98881"
+        }
+      ],
+      "qaRework": {
+        "folder": "rework/20",
+        "runtimeFiles": [
+          {
+            "path": "rework/20/club.css",
+            "sha256": "0d340f82597ea2f1f65b5394dbbb5b6cfe74a98f1f6179215e96436c416e472a"
+          },
+          {
+            "path": "rework/20/club.js",
+            "sha256": "c773f198ffed88b6506a9a4cacb3afe74dcc91f6eb98bbad7d8cb39c8524be53"
+          },
+          {
+            "path": "rework/20/index.html",
+            "sha256": "e7f7b2197e7f66de2a23204c088ea17b74da463eab4294bf48700e7243c98881"
+          }
+        ]
+      }
+    }
+  ],
+  "firstRoundStatus": "Divergence; no shortlist selected",
+  "rejectedResearch": {
+    "pr": 272,
+    "head": "b63916322a737b6881b46003e411d718615f0503",
+    "reason": "User rejected visual similarity of palette/style"
+  },
+  "base": "64b9971f88ad1f73f5bd00ac0fdef9019909561b",
+  "commonFactHashes": {
+    "data.js": "98e1caa26d208cf5117ae007808913a252a9efab5668298609f982b83a7e9b86",
+    "inventory.json": "3f802e841bd575fbc0f058f2d788d3c4d4f147fe6d6b12b339aeeb20d387ddec",
+    "font-catalog.json": "94f15d25388b2b8faa3ddc6a8b8c312cd6c361601c57fffffaa692f2222390e1"
+  },
+  "independentCritics": [
+    {
+      "task": "/root/diversity_a",
+      "forkTurns": "none",
+      "authorOfThemes": false
+    },
+    {
+      "task": "/root/diversity_b",
+      "forkTurns": "none",
+      "authorOfThemes": false
+    },
+    {
+      "task": "/root/diversity_c",
+      "forkTurns": "none",
+      "authorOfThemes": false
+    }
+  ],
+  "pairwiseGate": "All190 first-pair judgments complete; 0N/0U in independent model critique; parent visual review and user taste still pending.",
+  "blindFirstRoundClosed": true,
+  "initialValidation": {
+    "fullCaptures": 80,
+    "rootCasesPassed": 196,
+    "rootCasesTotal": 200,
+    "text200NeedsRework": [
+      "17",
+      "20"
+    ],
+    "inventoryCases": 40,
+    "inventoryPass": 40,
+    "visualQARework": [
+      "02",
+      "07",
+      "08",
+      "09"
+    ],
+    "routeTruthRework": [
+      "03"
+    ]
+  },
+  "firstRoundFreeze": "71066c571810551758fd26fe88f2d0bbe51edf2b",
+  "latestValidation": {
+    "themes": 20,
+    "completeCurrentViews": 80,
+    "qaCorrections": 7,
+    "extraFullCaptures": 28,
+    "qaCasesPassed": 70,
+    "qaCasesTotal": 70,
+    "latestCasesPassed": 200,
+    "latestCasesTotal": 200,
+    "nativeFormat": "JPEG; each full image under900KB",
+    "parentVisualReview": "pending",
+    "userTasteSignal": "pending; no large refinement round"
+  }
+}

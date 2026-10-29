@@ -1,0 +1,173 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 5989,
+  "bytes": 881052,
+  "jpegQuality": 71,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 4989,
+      "cropTop": 11,
+      "height": 989
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 5000,
+      "scrollY": 4989,
+      "cropTop": 11,
+      "width": 1440,
+      "height": 989,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Reaves Dropper",
+      "y": 354
+    },
+    {
+      "text": "Your matchup",
+      "y": 452
+    },
+    {
+      "text": "League center",
+      "y": 332
+    },
+    {
+      "text": "Your roster value",
+      "y": 603
+    },
+    {
+      "text": "The market desk",
+      "y": 1205
+    },
+    {
+      "text": "After the final whistle",
+      "y": 1456
+    },
+    {
+      "text": "The weekly read",
+      "y": 898
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 1334
+    },
+    {
+      "text": "Your completed-week report",
+      "y": 1909
+    },
+    {
+      "text": "AI Decides / Saved matchup desk",
+      "y": 2569
+    },
+    {
+      "text": "Team & player finder",
+      "y": 3005
+    },
+    {
+      "text": "League standings",
+      "y": 4645
+    },
+    {
+      "text": "Around the league",
+      "y": 4645
+    },
+    {
+      "text": "Weekly edition archive",
+      "y": 5419
+    }
+  ],
+  "footer": {
+    "text": "HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerFixture warning, dates & complete sourcesOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Current directory checked 2026-11-12 12:00:00 UTC. The supplied fixture date may be later than the preview system clock. Scores retain known zero and unknown values. No current final, official award, live feed or value-history series is inferred.Member values use in-season modeled FAAB pricing, computed 2026-11-12 12:00:00 UTC. Form uses observed-game EMA; completed Week 2 totals use their printed source period. Editorial uses the Oct 5–11, 2026 draft and its dated sources.Editorial source checks:Sleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08NBA.com · Jokić · checked 2026-10-08 · 2025–26 NBA averagesNBA.com · Embiid · checked 2026-10-08 · 2025–26 NBA averagesNBA.com · draft profile · checked 2026-10-08 · 2025–26 college · BYUImages: supplied local GOAT logo, arena, game preview and approved player portraits. No generated player imagery. Verdana/Arial and Courier system font stacks require no downloaded font.Complete offline fixture and provenance (JSON) · Theme design & QA notesBenchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561bGOAT HOOPERS · Sports Web 2000 · Offline design preview · Member view · Member comparison / Public comparison",
+    "y": 5770
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "54893f742270e55502bc8ac50b663b7286175f2d0153c2319fd9143ad97bca9a",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

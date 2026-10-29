@@ -1,0 +1,99 @@
+{
+  "method": "Installed Chromium with Playwright, static HTTP fixture on 127.0.0.1:4206; no production Next route.",
+  "date": "2026-10-29",
+  "audit": {
+    "teams": 10,
+    "faces": 10,
+    "ai": 5,
+    "values": 24,
+    "uniquePlayers": 228,
+    "rosterRows": 228,
+    "standingRows": 10,
+    "firstChoice": "Returned choice: Ware the Hoes At?",
+    "firstProbabilities": [
+      "Reaves Dropper65%",
+      "Ware the Hoes At?35%"
+    ],
+    "currentScores": [
+      "0.0",
+      "Pending"
+    ],
+    "svgTargets": [
+      {
+        "width": 44.88280487060547,
+        "height": 44.8828125
+      },
+      {
+        "width": 44.8828125,
+        "height": 44.8828125
+      },
+      {
+        "width": 44.8828125,
+        "height": 44.8828125
+      },
+      {
+        "width": 44.8828125,
+        "height": 44.8828125
+      },
+      {
+        "width": 44.88280487060547,
+        "height": 44.8828125
+      },
+      {
+        "width": 44.8828125,
+        "height": 44.8828125
+      }
+    ],
+    "bodyFont": "16px"
+  },
+  "rosterPreserved": true,
+  "reducedMotionInformationPreserved": true,
+  "gameImage": {
+    "complete": true,
+    "naturalWidth": 1248
+  },
+  "unmatched": {
+    "savedHooks": 0,
+    "matchupRows": 5,
+    "unavailable": [
+      "Unavailable",
+      "Unavailable",
+      "Unavailable",
+      "Unavailable",
+      "Unavailable"
+    ]
+  },
+  "externalRequests": [],
+  "pageErrors": [],
+  "reflow": {
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "views": [
+      "member",
+      "public"
+    ],
+    "rootSizes": [
+      "16px",
+      "32px"
+    ],
+    "details": "All open (22 member / 21 public)",
+    "result": "All 12 combinations passed with document width equal to viewport and no offscreen elements."
+  },
+  "interactions": {
+    "navigationEnter": "opens",
+    "navigationEscape": "closes and restores summary focus",
+    "searchLillard": "one matching team, roster automatically opens",
+    "clearSearch": "all ten restored",
+    "directorySortName": "Huff n’ Puff first",
+    "standingsSortName": "Huff n’ Puff first"
+  },
+  "aiStates": {
+    "ready": "Five rows; first returned Ware the Hoes At? at 35%, opposing team 65%, independent confidence 20%.",
+    "stale": "Five saved rows, visible stale banner and row labels without opening details.",
+    "missing": "Zero saved-row hooks; five current matchup rows show Unavailable."
+  },
+  "rosterComparison": "All 228 player IDs, names, positions and NBA teams compared from DOM textContent; null NBA teams retain explicit unavailable labels."
+}

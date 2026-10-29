@@ -1,0 +1,171 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 8682,
+  "bytes": 857718,
+  "jpegQuality": 85,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 7682,
+      "cropTop": 318,
+      "height": 682
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 8000,
+      "scrollY": 7682,
+      "cropTop": 318,
+      "width": 1440,
+      "height": 682,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Week 03",
+      "y": 200
+    },
+    {
+      "text": "Current modeled total",
+      "y": 797
+    },
+    {
+      "text": "Know the basis.",
+      "y": 1305
+    },
+    {
+      "text": "Best, rough, and on the wire.",
+      "y": 1993
+    },
+    {
+      "text": "The next chapter",
+      "y": 2626
+    },
+    {
+      "text": "The saved slate.",
+      "y": 3366
+    },
+    {
+      "text": "Every team. Every roster.",
+      "y": 4489
+    },
+    {
+      "text": "Make your next move.",
+      "y": 7241
+    },
+    {
+      "text": "Keep the league’s pages.",
+      "y": 7983
+    }
+  ],
+  "footer": {
+    "text": "Ten friends. Fantasy basketball.2026 season · Championship Chrome / 05HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerMy teamOffline synthetic fixture · no current league result is asserted.Dates, provenance & unavailable data",
+    "y": 8446
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "850b64c9c8a227afeae945108b11042682ff18355da4c9d2c77a0abd9bb3e1ee",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

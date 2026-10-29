@@ -1,0 +1,171 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 8728,
+  "bytes": 886536,
+  "jpegQuality": 70,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 7728,
+      "cropTop": 272,
+      "height": 728
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 8000,
+      "scrollY": 7728,
+      "cropTop": 272,
+      "width": 1440,
+      "height": 728,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Week 3 programme",
+      "y": 412
+    },
+    {
+      "text": "The league’s modeled market",
+      "y": 1153
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 1519
+    },
+    {
+      "text": "From the edition",
+      "y": 1915
+    },
+    {
+      "text": "AI Decides",
+      "y": 3000
+    },
+    {
+      "text": "The club register",
+      "y": 4535
+    },
+    {
+      "text": "The league table",
+      "y": 6604
+    },
+    {
+      "text": "Off the court",
+      "y": 7443
+    },
+    {
+      "text": "Programme archive",
+      "y": 8071
+    }
+  ],
+  "footer": {
+    "text": "GOAT Hoopers · Varsity ClubOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerComplete source and fixture notesThe common approved fixture preserves dated identities, 228 unique roster players, local portraits, archived editorial and actual routes. Current scores, records, prices, form, news, moves and model output are synthetic. This page makes no API calls.Current fixture check: 12 Nov 2026, 12:00 UTC. Saved AI: 10 Nov 2026, 12:00 UTC. Member market computation: Member-only context. Source benchmark: 64b9971f88ad1f73f5bd00ac0fdef9019909561b.Lineup Power unavailable: no producer snapshot connected in this mock. Recorded team-value history unavailable; no line is invented. Missing values stay unavailable; known zero stays 0.0. No value-history series or Power ranking has been invented.Complete fixture data (JSON) · Local font catalogue & licenses · Direction design and verification recordSleeper · opening-week pairings · checked 2026-10-08Sleeper · NBA preseason state · checked 2026-10-08Sleeper · our rookie draft · checked 2026-10-08Sleeper · league moves · checked 2026-10-08Verified 2025 league archive · checked 2026-10-08Original arena, selected white GOAT logo, approved local player portraits and actual Free Throw preview are local repository assets. Graduate is locally hosted under SIL Open Font License 1.1. This is an isolated QA programme, not a publication or production update.",
+    "y": 8443
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "febee4ec1a1d87e239dec2e71209192a2634af0833eb9d4b922c6d1117013d76",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

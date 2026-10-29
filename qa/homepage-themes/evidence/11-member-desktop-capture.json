@@ -1,0 +1,199 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 8403,
+  "bytes": 888794,
+  "jpegQuality": 84,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 7403,
+      "cropTop": 597,
+      "height": 403
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 8000,
+      "scrollY": 7403,
+      "cropTop": 597,
+      "width": 1440,
+      "height": 403,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Reaves Dropper",
+      "y": 271
+    },
+    {
+      "text": "Your matchup",
+      "y": 394
+    },
+    {
+      "text": "Your roster value",
+      "y": 394
+    },
+    {
+      "text": "02 / Scouting notebook",
+      "y": 869
+    },
+    {
+      "text": "03 / Completed-week form",
+      "y": 1591
+    },
+    {
+      "text": "04 / Your team wire",
+      "y": 2382
+    },
+    {
+      "text": "05 / Dated edition",
+      "y": 2875
+    },
+    {
+      "text": "06 / AI Decides",
+      "y": 4408
+    },
+    {
+      "text": "07 / Standings",
+      "y": 869
+    },
+    {
+      "text": "08 / League status",
+      "y": 1588
+    },
+    {
+      "text": "09 / League faces",
+      "y": 2089
+    },
+    {
+      "text": "10 / Working links",
+      "y": 3861
+    },
+    {
+      "text": "11 / Transactions",
+      "y": 4459
+    },
+    {
+      "text": "12 / Full team directory",
+      "y": 6057
+    },
+    {
+      "text": "13 / Weekly archive",
+      "y": 7752
+    },
+    {
+      "text": "14 / Sources & limitations",
+      "y": 8039
+    }
+  ],
+  "footer": {
+    "text": "GOAT HOOPERS / SPORTS TERMINAL / 11Synthetic fixture. Real destinations. Local assets.NewsHistoryArchiveBack to top",
+    "y": 8274
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "8c1a1bd50b9fb1060cc456320759025edd8d01d8f8a65ea0518ed5f53a8e39a8",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

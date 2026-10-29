@@ -1,0 +1,215 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 12057,
+  "bytes": 876585,
+  "jpegQuality": 75,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 8000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 9000,
+      "scrollY": 9000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 10000,
+      "scrollY": 10000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 11000,
+      "scrollY": 11000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 12000,
+      "scrollY": 11057,
+      "cropTop": 943,
+      "height": 57
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 12000,
+      "scrollY": 11057,
+      "cropTop": 943,
+      "width": 1440,
+      "height": 57,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "WEEK",
+      "y": 234
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 433
+    },
+    {
+      "text": "Ware the Hoes At?",
+      "y": 433
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 250
+    },
+    {
+      "text": "ON THERADAR.",
+      "y": 820
+    },
+    {
+      "text": "THELEDGER.",
+      "y": 1496
+    },
+    {
+      "text": "LASTWEEK.",
+      "y": 2061
+    },
+    {
+      "text": "SAVEDDECISIONS.",
+      "y": 2864
+    },
+    {
+      "text": "FROMTHE FILE.",
+      "y": 4374
+    },
+    {
+      "text": "ROSTERANCHORS.",
+      "y": 6027
+    },
+    {
+      "text": "EVERYROSTER.",
+      "y": 6872
+    },
+    {
+      "text": "THESTANDINGS.",
+      "y": 8866
+    },
+    {
+      "text": "KEEPPLAYING.",
+      "y": 10515
+    },
+    {
+      "text": "ON THERECORD.",
+      "y": 11326
+    }
+  ],
+  "footer": {
+    "text": "GOATHOOPERS.OFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Fixture source, asset and missing-data notesBenchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b.Fixture checked Nov 12, 2026, 12:00 UTC. Approved team/player identities, roster references and dated editorial are preserved. All current records, scores, prices, form, news, moves and saved AI are synthetic examples.Approved local GOAT logo, arena still, free-throw preview and player portraits are used with CSS grayscale. Archivo Black and Space Mono are locally hosted under the SIL Open Font License 1.1. No external runtime request is required. Missing prices remain Unpriced, missing scores remain Pending and missing saved AI remains Unavailable. No recorded team-value chart or Power ranking is fabricated.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerIndependent visual study 02 / RAW MONOCHROME / Local fixture only.",
+    "y": 11771
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "8cd13be2fb8fb3aa993bfe99b17419eb4e660d67b361f5794094ca788bcac8eb",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}

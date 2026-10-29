@@ -1,0 +1,679 @@
+{
+  "reviewer": "C",
+  "method": "Independent qualitative pixel comparison; no taste score or formal approval",
+  "coverage": {
+    "assignment": "qa/homepage-themes/critiques/pair-assignment-3.json",
+    "round": "first versions only; originals remain unchanged",
+    "assigned_pair_count": 63,
+    "inspected_pair_count": 63,
+    "complete_page_views_seen": 80,
+    "directions_seen": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20"
+    ],
+    "classes": {
+      "D": 55,
+      "R": 8,
+      "N": 0,
+      "U": 0
+    },
+    "views": "For every01\u201320: complete member/public desktop/phone overview; individual native member desktop/phone top, middle and bottom; public desktop/phone top-middle-bottom checkpoint composites. Final20-theme desktop and phone contact sheets also seen.",
+    "native_dimensions": {
+      "member_desktop_crop": "1440\u00d71000",
+      "member_phone_crop": "390\u00d7844",
+      "public_desktop_checkpoint_panel": "720\u00d7500, half native; composite2160\u00d7500",
+      "public_phone_checkpoint_panel": "390\u00d7844, native; composite1170\u00d7844"
+    },
+    "limits": [
+      "Complete long pages were fit-to-view overviews, not text legibility evidence at every vertical position.",
+      "Native member three-point crops and public checkpoint panels sample top/middle/bottom; not every table row or intervening pixel was enlarged.",
+      "Public desktop checkpoint panels are half native scale.",
+      "Default captured member/public states only; no expanded menus, search results, full roster disclosures, text zoom, keyboard focus, hover or alternate AI states tested by this visual critic.",
+      "No rework captures inspected in this first-version report.",
+      "No author DESIGN/allocation narratives or other critics\u2019 reports read before or during judgments.",
+      "This covers only assigned63 pairs; root must reconcile the complete upper triangle."
+    ],
+    "inspected_files": [
+      "qa/homepage-themes/evidence/contact-desktop.jpg",
+      "qa/homepage-themes/evidence/contact-phone.jpg",
+      "qa/homepage-themes/evidence/01-member-desktop.jpg",
+      "qa/homepage-themes/evidence/01-member-phone.jpg",
+      "qa/homepage-themes/evidence/01-public-desktop.jpg",
+      "qa/homepage-themes/evidence/01-public-phone.jpg",
+      "qa/homepage-themes/evidence/01-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/01-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/01-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/01-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/01-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/01-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/01-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/01-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/02-member-desktop.jpg",
+      "qa/homepage-themes/evidence/02-member-phone.jpg",
+      "qa/homepage-themes/evidence/02-public-desktop.jpg",
+      "qa/homepage-themes/evidence/02-public-phone.jpg",
+      "qa/homepage-themes/evidence/02-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/02-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/02-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/02-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/02-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/02-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/02-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/02-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/03-member-desktop.jpg",
+      "qa/homepage-themes/evidence/03-member-phone.jpg",
+      "qa/homepage-themes/evidence/03-public-desktop.jpg",
+      "qa/homepage-themes/evidence/03-public-phone.jpg",
+      "qa/homepage-themes/evidence/03-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/03-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/03-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/03-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/03-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/03-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/03-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/03-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/04-member-desktop.jpg",
+      "qa/homepage-themes/evidence/04-member-phone.jpg",
+      "qa/homepage-themes/evidence/04-public-desktop.jpg",
+      "qa/homepage-themes/evidence/04-public-phone.jpg",
+      "qa/homepage-themes/evidence/04-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/04-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/04-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/04-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/04-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/04-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/04-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/04-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/05-member-desktop.jpg",
+      "qa/homepage-themes/evidence/05-member-phone.jpg",
+      "qa/homepage-themes/evidence/05-public-desktop.jpg",
+      "qa/homepage-themes/evidence/05-public-phone.jpg",
+      "qa/homepage-themes/evidence/05-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/05-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/05-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/05-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/05-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/05-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/05-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/05-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/06-member-desktop.jpg",
+      "qa/homepage-themes/evidence/06-member-phone.jpg",
+      "qa/homepage-themes/evidence/06-public-desktop.jpg",
+      "qa/homepage-themes/evidence/06-public-phone.jpg",
+      "qa/homepage-themes/evidence/06-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/06-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/06-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/06-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/06-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/06-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/06-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/06-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/07-member-desktop.jpg",
+      "qa/homepage-themes/evidence/07-member-phone.jpg",
+      "qa/homepage-themes/evidence/07-public-desktop.jpg",
+      "qa/homepage-themes/evidence/07-public-phone.jpg",
+      "qa/homepage-themes/evidence/07-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/07-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/07-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/07-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/07-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/07-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/07-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/07-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/08-member-desktop.jpg",
+      "qa/homepage-themes/evidence/08-member-phone.jpg",
+      "qa/homepage-themes/evidence/08-public-desktop.jpg",
+      "qa/homepage-themes/evidence/08-public-phone.jpg",
+      "qa/homepage-themes/evidence/08-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/08-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/08-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/08-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/08-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/08-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/08-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/08-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/09-member-desktop.jpg",
+      "qa/homepage-themes/evidence/09-member-phone.jpg",
+      "qa/homepage-themes/evidence/09-public-desktop.jpg",
+      "qa/homepage-themes/evidence/09-public-phone.jpg",
+      "qa/homepage-themes/evidence/09-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/09-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/09-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/09-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/09-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/09-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/09-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/09-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/10-member-desktop.jpg",
+      "qa/homepage-themes/evidence/10-member-phone.jpg",
+      "qa/homepage-themes/evidence/10-public-desktop.jpg",
+      "qa/homepage-themes/evidence/10-public-phone.jpg",
+      "qa/homepage-themes/evidence/10-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/10-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/10-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/10-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/10-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/10-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/10-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/10-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/11-member-desktop.jpg",
+      "qa/homepage-themes/evidence/11-member-phone.jpg",
+      "qa/homepage-themes/evidence/11-public-desktop.jpg",
+      "qa/homepage-themes/evidence/11-public-phone.jpg",
+      "qa/homepage-themes/evidence/11-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/11-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/11-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/11-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/11-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/11-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/11-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/11-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/12-member-desktop.jpg",
+      "qa/homepage-themes/evidence/12-member-phone.jpg",
+      "qa/homepage-themes/evidence/12-public-desktop.jpg",
+      "qa/homepage-themes/evidence/12-public-phone.jpg",
+      "qa/homepage-themes/evidence/12-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/12-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/12-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/12-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/12-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/12-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/12-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/12-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/13-member-desktop.jpg",
+      "qa/homepage-themes/evidence/13-member-phone.jpg",
+      "qa/homepage-themes/evidence/13-public-desktop.jpg",
+      "qa/homepage-themes/evidence/13-public-phone.jpg",
+      "qa/homepage-themes/evidence/13-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/13-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/13-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/13-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/13-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/13-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/13-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/13-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/14-member-desktop.jpg",
+      "qa/homepage-themes/evidence/14-member-phone.jpg",
+      "qa/homepage-themes/evidence/14-public-desktop.jpg",
+      "qa/homepage-themes/evidence/14-public-phone.jpg",
+      "qa/homepage-themes/evidence/14-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/14-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/14-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/14-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/14-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/14-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/14-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/14-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/15-member-desktop.jpg",
+      "qa/homepage-themes/evidence/15-member-phone.jpg",
+      "qa/homepage-themes/evidence/15-public-desktop.jpg",
+      "qa/homepage-themes/evidence/15-public-phone.jpg",
+      "qa/homepage-themes/evidence/15-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/15-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/15-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/15-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/15-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/15-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/15-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/15-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/16-member-desktop.jpg",
+      "qa/homepage-themes/evidence/16-member-phone.jpg",
+      "qa/homepage-themes/evidence/16-public-desktop.jpg",
+      "qa/homepage-themes/evidence/16-public-phone.jpg",
+      "qa/homepage-themes/evidence/16-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/16-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/16-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/16-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/16-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/16-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/16-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/16-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/17-member-desktop.jpg",
+      "qa/homepage-themes/evidence/17-member-phone.jpg",
+      "qa/homepage-themes/evidence/17-public-desktop.jpg",
+      "qa/homepage-themes/evidence/17-public-phone.jpg",
+      "qa/homepage-themes/evidence/17-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/17-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/17-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/17-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/17-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/17-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/17-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/17-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/18-member-desktop.jpg",
+      "qa/homepage-themes/evidence/18-member-phone.jpg",
+      "qa/homepage-themes/evidence/18-public-desktop.jpg",
+      "qa/homepage-themes/evidence/18-public-phone.jpg",
+      "qa/homepage-themes/evidence/18-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/18-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/18-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/18-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/18-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/18-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/18-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/18-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/19-member-desktop.jpg",
+      "qa/homepage-themes/evidence/19-member-phone.jpg",
+      "qa/homepage-themes/evidence/19-public-desktop.jpg",
+      "qa/homepage-themes/evidence/19-public-phone.jpg",
+      "qa/homepage-themes/evidence/19-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/19-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/19-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/19-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/19-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/19-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/19-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/19-public-phone-checkpoints.jpg",
+      "qa/homepage-themes/evidence/20-member-desktop.jpg",
+      "qa/homepage-themes/evidence/20-member-phone.jpg",
+      "qa/homepage-themes/evidence/20-public-desktop.jpg",
+      "qa/homepage-themes/evidence/20-public-phone.jpg",
+      "qa/homepage-themes/evidence/20-member-desktop-top.jpg",
+      "qa/homepage-themes/evidence/20-member-desktop-middle.jpg",
+      "qa/homepage-themes/evidence/20-member-desktop-bottom.jpg",
+      "qa/homepage-themes/evidence/20-public-desktop-checkpoints.jpg",
+      "qa/homepage-themes/evidence/20-member-phone-top.jpg",
+      "qa/homepage-themes/evidence/20-member-phone-middle.jpg",
+      "qa/homepage-themes/evidence/20-member-phone-bottom.jpg",
+      "qa/homepage-themes/evidence/20-public-phone-checkpoints.jpg"
+    ]
+  },
+  "pairs": [
+    {
+      "a": "01",
+      "b": "04",
+      "class": "R",
+      "reason": "Both are dark neon sports worlds. 01 uses condensed white headings, lime/lavender scores and a faint full court; 04 uses cyan/pink pixel headings, offset arcade frames, a game-led opening and a two-column team register. Those differences persist below the hero. Bounded separation: keep 04\u2019s arcade frames and pixel typography in lower sections; do not turn either body into the other\u2019s flat row system."
+    },
+    {
+      "a": "01",
+      "b": "07",
+      "class": "D",
+      "reason": "01 stays navy with sharp lime/lavender condensed rows; 07 alternates green, off-white and gold programme bands with slab lettering and boxed paired club cards."
+    },
+    {
+      "a": "01",
+      "b": "10",
+      "class": "D",
+      "reason": "01 is a condensed neon night-court page with purple panels; 10 is a blue monochrome drawing sheet, with monospaced type, continuous graph paper, lettered rail and diagram navigation."
+    },
+    {
+      "a": "01",
+      "b": "13",
+      "class": "D",
+      "reason": "01 uses dark court lines and small data portraits; 13 builds a light lavender/orange collector world around tilted portrait cards, rounded display type and a full lower-page card binder."
+    },
+    {
+      "a": "01",
+      "b": "16",
+      "class": "R",
+      "reason": "Both use tall condensed sports headings over a dark, ruled data page. 01 has a navy/lime/lavender court plan and repeated colored roster anchor bars; 16 uses a black/gold photo overlay, film-like angled opening edges and a narrow numbered body rail with gray portrait chips. Bounded separation: carry 16\u2019s cinematic framing into its dated-edition and archive treatment so its restrained body retains a stronger identity."
+    },
+    {
+      "a": "01",
+      "b": "19",
+      "class": "D",
+      "reason": "01 is nocturnal navy with luminous condensed scoring and purple panels; 19 is a light concrete-gray industrial register with red numbered dividers, boxed black indices and fluorescent total block."
+    },
+    {
+      "a": "02",
+      "b": "04",
+      "class": "D",
+      "reason": "02 uses huge wide black/white editorial slabs and grayscale portraits; 04 uses dark purple, pixel headings, cyan/pink rules and offset arcade outlines throughout."
+    },
+    {
+      "a": "02",
+      "b": "07",
+      "class": "D",
+      "reason": "02\u2019s alternating pure black/white numbered sheets and heavy sans differ from 07\u2019s green/gold club programme, slab headings and two-column boxed register."
+    },
+    {
+      "a": "02",
+      "b": "10",
+      "class": "D",
+      "reason": "02 is high-contrast black/white print with oversized wide headlines; 10 is an all-blue technical drawing with small mono labels, fine grid lines and lettered sections."
+    },
+    {
+      "a": "02",
+      "b": "13",
+      "class": "D",
+      "reason": "02 uses grayscale rule-bound editorial sections and wide heavy sans; 13 uses lavender/orange bands, playful rounded type, tilted cards and a portrait binder."
+    },
+    {
+      "a": "02",
+      "b": "16",
+      "class": "D",
+      "reason": "02 alternates white and black sections around broad editorial typography; 16 remains nearly black, uses narrow condensed headings, gold accents and an arena overlay with numbered side rail."
+    },
+    {
+      "a": "02",
+      "b": "19",
+      "class": "R",
+      "reason": "Both are square, print-like grayscale sports registers with numbered sections. 02\u2019s huge wide display type, alternating pure black/white sheets and large left indices differ from 19\u2019s constant concrete-gray field, narrow condensed headings, red rules and black index boxes. Bounded separation: preserve the alternating slab composition in 02 and the continuous industrial ledger in 19; a palette swap alone would collapse that distinction."
+    },
+    {
+      "a": "03",
+      "b": "05",
+      "class": "D",
+      "reason": "03 uses white broadcast columns, red section squares and blue score/slate bars; 05 uses a nearly black chrome atmosphere, futuristic numerals, cyan highlights and a standings sidebar beside the roster."
+    },
+    {
+      "a": "03",
+      "b": "08",
+      "class": "D",
+      "reason": "03\u2019s large condensed broadcast headings, vivid blue slate and red markers differ from 08\u2019s quiet white whitespace, restrained grotesk typography, thin black rules and tiny red index."
+    },
+    {
+      "a": "03",
+      "b": "11",
+      "class": "D",
+      "reason": "03 is a white red/blue network page with an arena panorama; 11 is a green-black mono terminal with a persistent left command rail and tall right data column."
+    },
+    {
+      "a": "03",
+      "b": "14",
+      "class": "D",
+      "reason": "03 is bright red/blue broadcast with condensed headings; 14 is a warm brown serif clubhouse with bronze rules, a cream editorial band and a split arena/matchup opening."
+    },
+    {
+      "a": "03",
+      "b": "17",
+      "class": "D",
+      "reason": "03 uses network masthead, condensed typography, square sections and an arena panorama; 17 uses a pale app shell, rounded white cards, left icon navigation and a blue personal workspace card."
+    },
+    {
+      "a": "03",
+      "b": "20",
+      "class": "D",
+      "reason": "03\u2019s sharp network bars and condensed display type differ from 20\u2019s pastel mint/lavender/coral fields, soft rounded silhouettes, arch portraits and quiet geometric sans."
+    },
+    {
+      "a": "04",
+      "b": "07",
+      "class": "D",
+      "reason": "04 maintains pixel cyan/pink arcade frames on purple; 07 uses green/gold/off-white programme bands, slab headings and club register cards."
+    },
+    {
+      "a": "04",
+      "b": "10",
+      "class": "D",
+      "reason": "04 uses pixel headings, offset pink/cyan borders and a game preview as the main image; 10 uses continuous blue graph paper, mono drawing labels and a line court as its index."
+    },
+    {
+      "a": "04",
+      "b": "13",
+      "class": "D",
+      "reason": "04 is dark framed arcade UI with pixel headings; 13 is a light collector binder with lavender/orange portrait cards and rounded display lettering."
+    },
+    {
+      "a": "04",
+      "b": "16",
+      "class": "D",
+      "reason": "04 uses saturated cyan/pink pixel frames and a purple game-led opening; 16 uses black/gold photographic cinema framing, condensed headlines and a subdued numbered data rail."
+    },
+    {
+      "a": "04",
+      "b": "19",
+      "class": "D",
+      "reason": "04 is dark neon and pixel framed; 19 is concrete-gray industrial print with red rules, black number boxes and narrow condensed headings."
+    },
+    {
+      "a": "05",
+      "b": "07",
+      "class": "D",
+      "reason": "05 uses dark cyan chrome, futuristic numerals and a right standings column beside the roster; 07 uses alternating gold/green/off-white bands, slab headings and paired club cards."
+    },
+    {
+      "a": "05",
+      "b": "10",
+      "class": "D",
+      "reason": "05\u2019s black chrome and photo-overlay scoreboard differ from 10\u2019s blue graph-paper drawing, monospaced type, lettered rail and schematic court index."
+    },
+    {
+      "a": "05",
+      "b": "13",
+      "class": "D",
+      "reason": "05 is restrained black/cyan chrome with small roster portraits; 13 is a lavender/orange collector display with prominent tilted player cards and a lower-page binder."
+    },
+    {
+      "a": "05",
+      "b": "16",
+      "class": "R",
+      "reason": "The opening in both is an arena photo darkened behind a scoreboard, followed by restrained near-black ruled data. 05 uses wide futuristic display numerals and cyan/chrome highlights, keeps top values as a separate large section and places standings beside rosters. 16 uses tall condensed type, gold film edges, a combined seat/value block and numbered left rail; standings come after rosters. Bounded rework recommendation: strengthen 16\u2019s cinema language in one editorial and one lower section; retain its distinct rail and avoid 05\u2019s chrome display treatment."
+    },
+    {
+      "a": "05",
+      "b": "19",
+      "class": "D",
+      "reason": "05\u2019s near-black cyan chrome and futuristic numeric display differ from 19\u2019s concrete-gray industrial field, red rules, condensed names and boxed black roster indices."
+    },
+    {
+      "a": "06",
+      "b": "08",
+      "class": "D",
+      "reason": "06 uses dark olive, burnt orange, handwritten asides and narrow type; 08 uses a bright white sparse grid, restrained grotesk, tiny red index and mostly unboxed data."
+    },
+    {
+      "a": "06",
+      "b": "11",
+      "class": "D",
+      "reason": "06 is warm streetball with an orange torn-edge score panel, handwriting and condensed type; 11 is cool green-black mono terminal with command navigation and a separate right ledger."
+    },
+    {
+      "a": "06",
+      "b": "14",
+      "class": "R",
+      "reason": "Both have a warm dark court/club atmosphere with muted orange/brown rules and an arena still. 06 uses condensed type plus handwritten asides, an orange torn-edge score block and mostly continuous dark lower sections. 14 uses serif type throughout, a photo-left matchup-right opening and a prominent cream editorial band. Bounded separation: keep 06\u2019s street-paper edge and handwriting and 14\u2019s serif/light editorial interruption; do not flatten both into the same dark brown row page."
+    },
+    {
+      "a": "06",
+      "b": "17",
+      "class": "D",
+      "reason": "06 is a dark olive/orange streetball document with handwriting and a large arena still; 17 is a pale rounded app workspace with icon navigation, blue matchup panel and modular white cards."
+    },
+    {
+      "a": "06",
+      "b": "20",
+      "class": "D",
+      "reason": "06\u2019s condensed dark olive/orange streetball and torn paper edge differ from 20\u2019s airy mint/lavender pastel fields, pill actions, soft corners and arch portraits."
+    },
+    {
+      "a": "07",
+      "b": "10",
+      "class": "D",
+      "reason": "07 is a green/gold printed club programme with slab headings and boxed register cards; 10 is an all-blue monospaced graph-paper drawing with lettered rail and schematic index."
+    },
+    {
+      "a": "07",
+      "b": "13",
+      "class": "D",
+      "reason": "07 uses green/gold programme bands and paired ledger cards; 13 uses lavender/orange collector bands, playful type and a ten-card portrait binder."
+    },
+    {
+      "a": "07",
+      "b": "16",
+      "class": "D",
+      "reason": "07\u2019s alternating light/gold/green club programme and slab type differ from 16\u2019s near-black photo cinema, gold accents, condensed type and numbered side rail."
+    },
+    {
+      "a": "07",
+      "b": "19",
+      "class": "D",
+      "reason": "07 alternates cream, green and gold with slab lettering and two-column club cards; 19 keeps a continuous gray industrial field with red numbered rules, condensed headings and full-width register rows."
+    },
+    {
+      "a": "08",
+      "b": "10",
+      "class": "D",
+      "reason": "08 is sparse white Swiss-style type and thin rules; 10 is dense blue graph paper with mono labels, fine grid lines and drawing section letters."
+    },
+    {
+      "a": "08",
+      "b": "13",
+      "class": "D",
+      "reason": "08 minimizes image scale and decoration on white; 13 uses lavender/orange bands, rounded display type and a prominent tilted portrait-card binder."
+    },
+    {
+      "a": "08",
+      "b": "16",
+      "class": "D",
+      "reason": "08\u2019s white sparse grotesk layout and quiet gray data differ from 16\u2019s black/gold cinematic photo overlay, condensed headings and numbered left rail."
+    },
+    {
+      "a": "08",
+      "b": "19",
+      "class": "D",
+      "reason": "08 uses generous white whitespace, light grotesk and minimal rules; 19 uses a concrete-gray field, heavy dark dividers, condensed headings, red indices and fluorescent blocks."
+    },
+    {
+      "a": "09",
+      "b": "11",
+      "class": "D",
+      "reason": "09 uses sky/peach/green cartoon fields, an illustrated court, round portrait discs and bubbly headings; 11 uses green-black mono commands and a dense two-column terminal."
+    },
+    {
+      "a": "09",
+      "b": "14",
+      "class": "D",
+      "reason": "09 is an illustrated pastel playground with round shapes and chunky display type; 14 is a brown serif clubhouse with thin bronze rules and a cream editorial spread."
+    },
+    {
+      "a": "09",
+      "b": "17",
+      "class": "D",
+      "reason": "09\u2019s illustrated court, organic color fields and thick round outlines differ from 17\u2019s pale blue app shell, modular white cards and compact icon/navigation system."
+    },
+    {
+      "a": "09",
+      "b": "20",
+      "class": "R",
+      "reason": "Both use friendly pastel fields, rounded controls and circular portrait treatments. 09 is a sky-blue cartoon playground with chunky display type, outlined court-map artwork, peach cards and a five-pick tile grid. 20 is a quieter white/mint/lavender page with slim sans type, low-contrast court lines, arch portraits and ruled AI rows. Bounded separation: retain 09\u2019s illustrated outline system and 20\u2019s quiet arch/row system; do not substitute the same rounded card grid into both."
+    },
+    {
+      "a": "10",
+      "b": "13",
+      "class": "D",
+      "reason": "10 is a blue graph-paper technical reference with mono type and schematic court; 13 is a lavender/orange collector page with playful headings and large portrait cards."
+    },
+    {
+      "a": "10",
+      "b": "16",
+      "class": "D",
+      "reason": "10 uses blue drawing grids, schematic art and lettered mono sections; 16 uses black/gold arena photography, condensed headlines and numeric cinema framing."
+    },
+    {
+      "a": "10",
+      "b": "19",
+      "class": "D",
+      "reason": "10\u2019s blue fine-grid mono drawing sheet differs from 19\u2019s gray concrete field, heavy red/black industrial dividers and condensed register headings."
+    },
+    {
+      "a": "11",
+      "b": "13",
+      "class": "D",
+      "reason": "11 keeps a green-black mono terminal with command rail and right ledger; 13 uses lavender/orange light sections, rounded display type and a portrait-card binder."
+    },
+    {
+      "a": "11",
+      "b": "16",
+      "class": "D",
+      "reason": "11 uses mono terminal typography, lime lines and app-like command/right-data columns; 16 uses condensed cinema titles, muted gold and an arena overlay above numbered editorial sections."
+    },
+    {
+      "a": "11",
+      "b": "19",
+      "class": "D",
+      "reason": "11 is green-black mono command UI with narrow side navigation; 19 is a light concrete-gray print register with tall condensed headings, red indices and heavy horizontal rules."
+    },
+    {
+      "a": "12",
+      "b": "14",
+      "class": "D",
+      "reason": "12 uses acid yellow/hot pink, condensed zine headlines, dashed rules and grayscale collage; 14 uses warm brown serif text, fine bronze rules and a cream editorial band."
+    },
+    {
+      "a": "12",
+      "b": "17",
+      "class": "D",
+      "reason": "12 is an acid yellow/pink zine with heavy condensed type and offset paper blocks; 17 is a pale rounded app workspace with icon sidebar, blue matchup and white modules."
+    },
+    {
+      "a": "12",
+      "b": "20",
+      "class": "D",
+      "reason": "12\u2019s acid yellow/pink zine, hard boxes and grayscale collage differ from 20\u2019s soft mint/lavender/coral, quiet sans and arch portraits."
+    },
+    {
+      "a": "13",
+      "b": "16",
+      "class": "D",
+      "reason": "13 builds around light lavender/orange portrait cards and playful rounded type; 16 uses near-black cinema photography, muted gold and condensed ruled data."
+    },
+    {
+      "a": "13",
+      "b": "19",
+      "class": "D",
+      "reason": "13 is a playful lavender collector binder with tilted cards; 19 is a gray industrial register with red dividers, black index boxes and condensed type."
+    },
+    {
+      "a": "14",
+      "b": "16",
+      "class": "D",
+      "reason": "14 is a warm serif clubhouse with a cream editorial spread and split image/score opening; 16 is nearly black cinema with tall condensed headings, gold angular frame and numbered left rail."
+    },
+    {
+      "a": "14",
+      "b": "19",
+      "class": "D",
+      "reason": "14 uses brown serif clubhouse text and a large cream editorial interruption; 19 uses a consistent gray industrial surface, red numbering, condensed headings and thick black register rules."
+    },
+    {
+      "a": "15",
+      "b": "17",
+      "class": "D",
+      "reason": "15 uses saturated blue/yellow/coral geometric fields, overlapping score cards and large bold type; 17 uses a pale blue app shell, compact rounded white cards and icon navigation."
+    },
+    {
+      "a": "15",
+      "b": "20",
+      "class": "R",
+      "reason": "Both use geometric sans type, rounded color fields and portraits against shaped backgrounds. 15 has saturated royal blue/yellow/coral, overlapping offset score shapes, bold wide headings and strong outline/shadow accents. 20 uses pastel mint/lavender/coral, quiet thin rules, pill controls and arch portraits; its score stays inside a soft white card. Bounded separation: keep 15\u2019s overlap and saturated rhythm and 20\u2019s quiet inset treatment through archives and team lists."
+    },
+    {
+      "a": "16",
+      "b": "19",
+      "class": "R",
+      "reason": "Both use tall condensed headings, restrained arena imagery and rule-separated sports data. 16 is black/gold with a full photo-overlay opening and left numbered rail; 19 is light concrete-gray with red vertical/horizontal dividers, boxed roster numbers and a separate anchor index after the register. Bounded separation: preserve those body structures and strengthen 16\u2019s film framing beyond the hero so a future gray/gold palette change cannot erase the distinction."
+    },
+    {
+      "a": "17",
+      "b": "19",
+      "class": "D",
+      "reason": "17 is a pale blue modular app with rounded white cards and left icon sidebar; 19 is gray industrial print with sharp dividers, condensed headings, red numbers and squared register rows."
+    },
+    {
+      "a": "18",
+      "b": "20",
+      "class": "D",
+      "reason": "18 maintains a compact early-web sports portal with navy title bars, orange keylines, beveled square controls, white table cells and dense side modules. 20 uses airy pastel fields, pills, arch portraits and soft rounded sections."
+    }
+  ]
+}

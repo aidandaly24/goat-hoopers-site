@@ -1,0 +1,187 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 10350,
+  "bytes": 887312,
+  "jpegQuality": 39,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 8000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 9000,
+      "scrollY": 9000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 10000,
+      "scrollY": 9350,
+      "cropTop": 650,
+      "height": 350
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 10000,
+      "scrollY": 9350,
+      "cropTop": 650,
+      "width": 1440,
+      "height": 350,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "WEEK 03",
+      "y": 184
+    },
+    {
+      "text": "Your featured matchup · Week 3",
+      "y": 415
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 941
+    },
+    {
+      "text": "Scouting notebook",
+      "y": 1406
+    },
+    {
+      "text": "From the edition",
+      "y": 2482
+    },
+    {
+      "text": "AI Decides",
+      "y": 3736
+    },
+    {
+      "text": "The league directory",
+      "y": 5187
+    },
+    {
+      "text": "League ledger",
+      "y": 8091
+    },
+    {
+      "text": "Off the clipboard",
+      "y": 8950
+    },
+    {
+      "text": "Back issues",
+      "y": 9678
+    }
+  ],
+  "footer": {
+    "text": "GOAT HoopersLeague ZineAn isolated homepage direction.Lemon / ink / hot pink.Member/public fixtures, local assets only.HomeNewsStocksHistoryArcadeAI DecidesTeamsTransactionsWeekly archiveTrade analyzerFixture warning, asset provenance & limitationsOFFLINE DESIGN FIXTURE. All current records, scores, prices, form, news and AI are synthetic. Dated approved identities/editorial are preserved. This is not live league data.Fixture benchmark 64b9971f88ad1f73f5bd00ac0fdef9019909561b. This preview reads the supplied local inventory; it does not call Sleeper, pricing, AI or other services. Current records, scores, prices, form, team news, moves, standings and AI are synthetic. Approved dated team/player identities and draft editorial are retained.Directory checked 2026-11-12T12:00:00Z. Modeled team value computed 12 Nov 2026, 12:00 UTC on an in-season basis. Dated editorial source receipts remain in the edition and archive disclosures.The arena, free-throw preview, selected unchanged black/white GOAT logos and player portraits use the local approved asset paths from inventory.json. Anton is loaded locally from the official Google Fonts catalog, under SIL OFL 1.1. Body text uses the system Arial/Helvetica stack. Images are recolored by CSS only; no replacement player imagery or quotes are generated.Lineup Power unavailable: no producer snapshot connected in this mock. Recorded team-value history unavailable; no line is invented. AI input and publication snapshots are unavailable in this fixture. No inferred chart, ranking, odds or official awards are introduced.This is static QA. Destination links retain application routes; that application and its authenticated flows are outside this local fixture server.",
+    "y": 10068
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": null,
+  "inventorySha256": "53462abae6b4caa3941d09a1c179cee5f2fc0a23ded126284f25f31ad2dd220e",
+  "captureOnlyStyle": "sticky elements keep in-flow size as relative; fixed elements become absolute at initial document offsets; animation and caret suppressed",
+  "contentPreserved": true
+}
