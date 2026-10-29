@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GOAT Hoopers — Follow the evidence</title>
+  <link rel="stylesheet" href="./story.css">
+</head>
+<body>
+  <a class="skip" href="#evidence">Skip to the evidence</a>
+  <header class="masthead">
+    <a class="brand" href="./index.html" aria-label="GOAT Hoopers Home">GOAT <span>Hoopers</span></a>
+    <a class="header-stock" href="/stocks#player-board">Stocks</a>
+    <button class="explore" aria-expanded="false" aria-controls="destinations">Explore</button>
+    <div id="provenance" class="header-fold" tabindex="-1" hidden></div>
+    <nav id="destinations" class="header-fold" aria-label="All destinations" hidden></nav>
+  </header>
+  <main class="journey">
+    <aside class="stage" aria-label="Chapter data stage">
+      <div class="stage-top"><span><span id="stage-index">01 / 06</span> <span id="stage-topic">This week</span></span><button class="concept" aria-expanded="false" aria-controls="provenance">Synthetic concept</button></div>
+      <div class="mobile-jump"><label for="chapter-jump">Jump to</label><select id="chapter-jump"></select></div>
+      <div id="stage-content"></div>
+      <nav class="chapter-nav" aria-label="Story chapters" id="chapter-nav"></nav>
+      <a class="stage-tool" href="/stocks#player-board">Open player stocks</a>
+    </aside>
+    <article id="evidence" class="evidence" aria-label="The evidence story"></article>
+  </main>
+  <footer><a href="#provenance" id="footer-provenance">Read fixture provenance</a><a href="/weekly">Weekly archive</a><a id="comparison" href="?view=public">Compare public edition</a><a href="#evidence">Back to the story</a></footer>
+  <script type="module" src="./story.js"></script>
+</body>
+</html>

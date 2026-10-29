@@ -1,0 +1,1501 @@
+{
+  "id": "20",
+  "phase": "wireframes",
+  "source": [
+    {
+      "path": "qa/homepage-structures/wireframes/20/STRUCTURE.md",
+      "sha256": "7109c503680732d0731701c11f1119c7bc77e312ff1c9a03cae6e9005ce113a0",
+      "bytes": 11838
+    },
+    {
+      "path": "qa/homepage-structures/wireframes/20/index.html",
+      "sha256": "8b22e15f39fdad56ea13e126a21f43df9d967df49b2b744140f0482188468f48",
+      "bytes": 1374
+    },
+    {
+      "path": "qa/homepage-structures/wireframes/20/matchbook.js",
+      "sha256": "dc71ddba55ca507177de78ec43c0ee7aae11d274381fa59e869e3c4f4cd466bd",
+      "bytes": 29309
+    },
+    {
+      "path": "qa/homepage-structures/wireframes/20/style.css",
+      "sha256": "7484e0b9cf49dc6f324fe71aeb724cb26806abb69d7546e18abdf80feabc2ace",
+      "bytes": 18651
+    }
+  ],
+  "records": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "home",
+        "label": "Branching entry"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-00-home.jpg",
+        "bytes": 110379,
+        "sha256": "0d2c1681de66a9b8f550edcd866295ea5ee6465e72a8bbe0f74d594dd5d093bb",
+        "width": 1440,
+        "height": 1114,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-00-home-viewport.jpg",
+        "bytes": 104526,
+        "sha256": "de0089d26b32ee8de1838f6c8fee79effc0241d734ff3dbd1a9f4f0c56bfbb90",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1114,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1114,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1114,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "What matters from here?"
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nMEMBER / BRANCHING MATCHBOOK\n\nYour Week 3 · 2026\n\nReaves Dropper has a week ahead.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nMy team\nFull roster\nStocks\n\nA BRANCHING MATCHBOOK\n\nWhat matters from here?\n\nA matchup is a starting point. Choose a question; the evidence opens along your path.\n\nI want to inspect my players.\n24 players, form, completed-week points and modeled value.\n01\nI want to compare the teams.\nFive current pairings and the actual saved model returns.\n02\nI want to know this league.\nTen identities, standings, opponents and complete rosters.\n03\nI want to read the league.\nDated editorial, player spotlights and the edition archive.\n04\nI want to explore or play.\nStocks, trades, transactions, history and the Arcade.\n05\nGOAT Hoopers / A league of ten\nStocks\nView public concept\nFixture provenance\nThis week opened. This week."
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "players",
+        "label": "Players and next choices"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-01-players.jpg",
+        "bytes": 138641,
+        "sha256": "ecec6abfa2e6c575a7eaae41ece2147206a2ce12d582ec115d36e841af62d314",
+        "width": 1440,
+        "height": 1506,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-01-players-viewport.jpg",
+        "bytes": 103352,
+        "sha256": "5d622070b5aec8069b43920324e1f2e220f83a3fd7a59475572e8fd16d60d5a4",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1506,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1506,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1506,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Your team, before the next decision."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nMy players\n\nYour Week 3 · 2026\n\nReaves Dropper has a week ahead.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nMy team\nFull roster\nStocks\nBack to This week\n\nFIRST BRANCH / PLAYERS\n\nYour team, before the next decision.\n\nReaves Dropper · aidandaly20 · 1–0 · 24 players · standing 1 of 10.\n\nMy team\nOpen team roster\n\n$1095.25 modeled FAAB subtotal. 24/24 players priced; 0 unpriced.\n\nin-season pricing basis · 2026-11-12 12:00:00 UTC. This is asset value, not a FAAB balance or form score.\n\nThree highest modeled values\nJoel Embiid\n$137.50\nC · Up 4.2% modeled price change\nAnthony Edwards\n$124.50\nSG · Up 4.2% modeled price change\nAlperen Şengün\n$108.25\nC · Up 4.2% modeled price change\nWhich players should I look at?\nForm evidence and the completed source week; availability remains unknown.\nA\nHow is the roster priced?\nAll 24 modeled values and the unavailable history boundary.\nB\nWhat changed around my team?\nTwo sample news links and one sample roster move.\nC\nAll 24 player references · position & NBA team\nGOAT Hoopers / A league of ten\nStocks\nView public concept\nFixture provenance\nMy players opened. This week, My players."
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "form",
+        "label": "Form and completed-week evidence"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-02-form.jpg",
+        "bytes": 187446,
+        "sha256": "fb91740afcec94d21af13784c6a11d505b97a9cbb5e01668ce74f7931d1aec93",
+        "width": 1440,
+        "height": 2470,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-02-form-viewport.jpg",
+        "bytes": 91962,
+        "sha256": "bd274d6937b3ee686dd5344497e32d1cb7f72a04d8ddee5193729537924e3a42",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2470,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2470,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2470,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Form has a period. So do points."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nMy players\n/\nForm & completed week\n\nYour Week 3 · 2026\n\nReaves Dropper has a week ahead.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nMy team\nFull roster\nStocks\nBack to My players\nMy players\n24 players · $1095.25 modeled FAAB · Nov 12 fixture\n\nPLAYERS / EVIDENCE\n\nForm has a period. So do points.\nOn form · in-season EMA fantasy points per game\n\nEMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable.\n\nDamian Lillard\n\nAvailability status unknown · 8 games\n\n38.0 FP/G\nTobias Harris\n\nAvailability status unknown · 8 games\n\n37.0 FP/G\nJoel Embiid\n\nAvailability status unknown · 8 games\n\n36.0 FP/G\n\nAvailability status unknown. Schedule adjustment unavailable. These form values are synthetic examples, not a lineup recommendation.\n\nCompleted Week 2: best in the available cohort\n\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive). Synthetic completed-week fixture, not current official Week 2 awards.\n\nDamian Lillard\n\nRecorded weekly fantasy points · 3 games\n\n45.0 FP\nTobias Harris\n\nRecorded weekly fantasy points · 3 games\n\n39.0 FP\nJoel Embiid\n\nRecorded weekly fantasy points · 3 games\n\n33.0 FP\nCompleted Week 2: rough in the same cohort\nDerrick White\n\nRecorded weekly fantasy points · 3 games\n\n21.0 FP\nMyles Turner\n\nRecorded weekly fantasy points · 3 games\n\n27.0 FP\nJoel Embiid\n\nRecorded weekly fantasy points · 3 games\n\n33.0 FP\n\n5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\n\nSource and cohort wording\n\nKeep following this thread\n\nNow inspect their modeled prices\nRead the team wire\nGOAT Hoopers / A league of ten\nStocks\nView public concept\nFixture provenance\nForm & completed week opened. This week, My players, Form & completed week."
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "prices",
+        "label": "All modeled values"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-03-prices.jpg",
+        "bytes": 210412,
+        "sha256": "b905744ca7def63b052591485f79489a2a5c887cc559976a57749577b0fe1427",
+        "width": 1440,
+        "height": 3616,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-03-prices-viewport.jpg",
+        "bytes": 85611,
+        "sha256": "51cd8f53ad6a0c9a90a424fdd83b2bc984e67ca1c388a1bf2e605c0bd52ccfb0",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3616,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3616,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 3616,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "What the roster is priced at."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nMy players\n/\nModeled prices\n\nYour Week 3 · 2026\n\nReaves Dropper has a week ahead.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nMy team\nFull roster\nStocks\nBack to My players\nMy players\n24 players · $1095.25 modeled FAAB · Nov 12 fixture\n\nPLAYERS / MODELED VALUE\n\nWhat the roster is priced at.\n\n$1095.25 modeled FAAB · valuation rank 2/10.\n\n24 priced / 24 roster players · 0 unpriced. in-season basis · 2026-11-12 12:00:00 UTC.\n\nDamian Lillard\nPG · modeled FAAB\n$74.00\nTobias Harris\nPF · modeled FAAB\n$70.75\nJoel Embiid\nC · modeled FAAB\n$137.50\nMyles Turner\nC · modeled FAAB\n$64.25\nDerrick White\nSG · modeled FAAB\n$61.00\nGrayson Allen\nSF · modeled FAAB\n$57.75\nAnthony Edwards\nSG · modeled FAAB\n$124.50\nPayton Pritchard\nPG · modeled FAAB\n$51.25\nDevin Vassell\nSF · modeled FAAB\n$48.00\nImmanuel Quickley\nPG · modeled FAAB\n$44.75\nSanti Aldama\nPF · modeled FAAB\n$41.50\nAlperen Şengün\nC · modeled FAAB\n$108.25\nAustin Reaves\nSG · modeled FAAB\n$35.00\nPeyton Watson\nSF · modeled FAAB\n$31.75\nMax Christie\nSG · modeled FAAB\n$28.50\nBrandon Miller\nSF · modeled FAAB\n$25.25\nDonovan Clingan\nC · modeled FAAB\n$22.00\nDaniss Jenkins\nPG · modeled FAAB\n$18.75\nNolan Traore\nPG · modeled FAAB\n$15.50\nDanny Wolf\nPF · modeled FAAB\n$12.25\nDerik Queen\nC · modeled FAAB\n$9.00\nYaxel Lendeborg\nPF · modeled FAAB\n$5.75\nLabaron Philon\nPG · modeled FAAB\n$4.00\nBruce Thornton\nPG · modeled FAAB\n$4.00\n\nRecorded team-value history unavailable; no line is invented.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nOpen Stocks player board\nTrade analyzer\nLeague history\n\nKeep following this thread\n\nReturn to player form\nCompare the league’s faces\nGOAT Hoopers / A league of ten\nStocks\nView public concept\nFixture provenance\nModeled prices opened. This week, My players, Modeled prices."
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "compare",
+        "label": "Five pairings and saved AI"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-04-compare.jpg",
+        "bytes": 248878,
+        "sha256": "33ce72b6469e387d45806269b76fd3153e479d5f2a918d10376f8f12f5de9f6f",
+        "width": 1440,
+        "height": 3014,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-04-compare-viewport.jpg",
+        "bytes": 105800,
+        "sha256": "2a62116f9fc1722a9c693f9d7f29fad2d836830f813a5ef071f86c544ee3df6b",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3014,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3014,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 3014,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Five matchups, five saved returns."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nCompare the matchups\n\nYour Week 3 · 2026\n\nReaves Dropper has a week ahead.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nMy team\nFull roster\nStocks\nBack to This week\n\nFIRST BRANCH / COMPARE\n\nFive matchups, five saved returns.\n\nWeek 3 · synthetic current fixture · Nov 12, 2026. Every pairing remains incomplete.\n\nReaves Dropper / Ware the Hoes At?\n\naidandaly20 · 1–0 · 0.0\nAedan23 · 1–0 · Pending\n\nWeek 3 · Incomplete · 0.0 is known; Pending is unknown.\n\nReturned choice: Ware the Hoes At?. Independent confidence 20%.\n\n35%\nWare the Hoes At?\n65%\nReaves Dropper\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nStephon Castle’s Back / The Fun Guys\n\nTommyDieselfuel · 1–0 · 105.5\nphilbiag · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: The Fun Guys. Independent confidence 20%.\n\n35%\nThe Fun Guys\n65%\nStephon Castle’s Back\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nJosh Diddy’s Roster / Huff n’ Puff\n\nvannweinkauf · 1–0 · 105.5\nGriffinHealy · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: Huff n’ Puff. Independent confidence 20%.\n\n35%\nHuff n’ Puff\n65%\nJosh Diddy’s Roster\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\npapichooter / NeuralNets\n\npapichooter · 1–0 · 105.5\nNeuralNets · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: NeuralNets. Independent confidence 20%.\n\n35%\nNeuralNets\n65%\npapichooter\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nLebron Theme Team / T Halibooty\n\nlordlx · 1–0 · 105.5\nTyreseHalibooty · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: T Halibooty. Independent confidence 20%.\n\n35%\nT Halibooty\n65%\nLebron Theme Team\n\nModel probability — not calibrated sports odds. Returned choice "
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "league",
+        "label": "Standings and ten-team directory"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-05-league.jpg",
+        "bytes": 363480,
+        "sha256": "532ddf7b431fea0c965db1c9b0d629bd5a5588d351182013ca5737004f1d7dcb",
+        "width": 1440,
+        "height": 6405,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-05-league-viewport.jpg",
+        "bytes": 95429,
+        "sha256": "f3a51f064add9eff19668f1a221855a3067433d558b63b1d600ad88da9505b09",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 6405,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 6405,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 6405,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Know who you’re up against."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nKnow the league\n\nYour Week 3 · 2026\n\nReaves Dropper has a week ahead.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nMy team\nFull roster\nStocks\nBack to This week\n\nFIRST BRANCH / LEAGUE\n\nKnow who you’re up against.\n\nTen teams, 228 unique player references. 2026 season · 6 playoff places, starting Week 20.\n\nCurrent records, opponents and modeled values are synthetic. Historical records keep their season and manager attribution.\n\nAll ten standings · rank, record & points for\nRank\tTeam\tW–L\tPF\n1\tReaves Dropper\t1–0\t320.50\n2\tWare the Hoes At?\t1–0\t315.00\n3\tStephon Castle’s Back\t1–0\t309.50\n4\tThe Fun Guys\t1–0\t304.00\n5\tJosh Diddy’s Roster\t1–0\t298.50\n6\tHuff n’ Puff\t1–0\t293.00\n7\tpapichooter\t1–0\t287.50\n8\tNeuralNets\t1–0\t282.00\n9\tLebron Theme Team\t1–0\t276.50\n10\tT Halibooty\t1–0\t271.00\n\nPF shown in points (source hundredths ÷ 100). Your team is Reaves Dropper.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nRead the directory by\nCurrent rank\nTeam name A–Z\nRoster size, largest first\n\n10 teams · all rosters available below\n\nReaves Dropper\n\naidandaly20 · 1–0 · 24 players\n\n1–0\n2026\n\nWeek 3 vs Ware the Hoes At? · Incomplete\n\nJoel Embiid\n\nC · $137.50 modeled FAAB\n\nRoster: all 24 players · position & NBA\n2025 · 16–5\nOpen full team profile\nWare the Hoes At?\n\nAedan23 · 1–0 · 27 players\n\n1–0\n2026\n\nWeek 3 vs Reaves Dropper · Incomplete\n\nDomantas Sabonis\n\nC · $140.75 modeled FAAB\n\nRoster: all 27 players · position & NBA\n2025 · 12–9\nOpen full team profile\nStephon Castle’s Back\n\nTommyDieselfuel · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs The Fun Guys · Incomplete\n\nShai Gilgeous-Alexander\n\nPG · $134.25 modeled FAAB\n\nRoster: all 22 players · position & NBA\n2025 · 4–17\nOpen full team profile\nThe Fun Guys\n\nphilbiag · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs Stephon Castle’s Back · Incomplete\n\nJalen Brunson\n\nPG · $137.50 modeled FAAB\n\nRoster: all 22 players · position & NBA\n2025 · 13–8\nOpen full team profile\nJosh Diddy’s Roster\n\nvannweinkauf · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs Huff n’ Puff · Incomplete\n\nStephen Curry\n\nPG · $140.75 modeled FAAB · Team: 2025 champion\n\nRoster: all 22 players "
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "read",
+        "label": "Dated editorial and archive"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-06-read.jpg",
+        "bytes": 263693,
+        "sha256": "cf26c804d5085ad32ead3f6965541c8099093deae5ba41ed6cff3f252a14d380",
+        "width": 1440,
+        "height": 3619,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-06-read-viewport.jpg",
+        "bytes": 108613,
+        "sha256": "b923c3ff8fe92a719cceacd5826d493a256bd78370c26f6182b99e7f74f918f6",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3619,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3619,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 3619,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "The league, in dated chapters."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nRead the league\n\nYour Week 3 · 2026\n\nReaves Dropper has a week ahead.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nMy team\nFull roster\nStocks\nBack to This week\n\nFIRST BRANCH / READ\n\nThe league, in dated chapters.\n\nTwo October draft editions. These are dated editorial samples, not a current Week 3 recap. Neither entry has a publication timestamp.\n\nOct 5–11, 2026 · draft · 2026-W41\n\nThe next chapter\nReaves Dropper gets the champ.\n\nReaves Dropper / Josh Diddy’s Roster · Upcoming in this dated Week 1 edition · scores unavailable\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nEditorial selection, dates & sources\nNikola Jokić\n\nC · Last season’s standard · Josh Diddy’s Roster\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG\n12.9 RPG\n10.7 APG\n\n2025–26 NBA averages · editorial opinion, not a current-week award.\n\nWhy this player & source\nJoel Embiid\n\nC · Last-season lookback · Reaves Dropper\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9 PPG\n7.7 RPG\n3.9 APG\n\n2025–26 NBA averages · editorial opinion, not a current-week award.\n\nWhy this player & source\nAJ Dybantsa\n\nPF · Next week · preseason · NeuralNets\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5 PPG\n6.8 RPG\n3.7 APG\n\n2025–26 college · BYU · editorial opinion, not a current-week award.\n\nWhy this player & source\nIn that edition’s wire\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · dated editorial\n\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · dated editorial\n\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · dated editorial\n\nOpen 2026-W41 archive\n\nSep 28–Oct 4, 2026 · draft · 2026-W40\n\nThe title everybody’s chasing\nThe first crown belongs to vannweinkauf.\n\nJosh Diddy’s Roster / papichooter · 2025 historical final · 326.0 / 251.5\n\nJosh Diddy’s Roster finished 17–4, then bea"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "tools",
+        "label": "Tools, transactions and game"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-07-tools.jpg",
+        "bytes": 171437,
+        "sha256": "d39b980187c32dfbe5b6dada2ea1771a2df51ba5c40372464a28f1744ca0180b",
+        "width": 1440,
+        "height": 2228,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-desktop-07-tools-viewport.jpg",
+        "bytes": 101019,
+        "sha256": "056cff303d31847cbcd2ecd13c0305bc2f3ad7edacc7de97494516a018b3508e",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2228,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2228,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2228,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Take this somewhere useful."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nExplore & play\n\nYour Week 3 · 2026\n\nReaves Dropper has a week ahead.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nMy team\nFull roster\nStocks\nBack to This week\n\nFIRST BRANCH / EXPLORE\n\nTake this somewhere useful.\nInspect the player market\n\nModeled FAAB values. Your roster example totals $1095.25.\n\nInspect the local price evidence\nCompare a trade\n\nThe existing analyzer is a direct destination. No fictional offer is prefilled.\n\nRead league transactions\n\nThree synthetic Week 3 roster moves are retained here.\n\nReaves Dropper made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nThe Fun Guys made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nLebron Theme Team made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nLook through league history\n\nRecorded team-value history unavailable; no line is invented.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nOpen the Arcade\n\nFree Throw is the existing game destination.\n\nPlay Free Throw\nOpen AI Decides\n\nFive saved synthetic returns; no generation occurs here.\n\nRead the five local saved returns\n\nKeep following this thread\n\nReturn to the dated league chapters\nStart again from the matchup\nGOAT Hoopers / A league of ten\nStocks\nView public concept\nFixture provenance\nExplore & play opened. This week, Explore & play."
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "home",
+        "label": "Branching entry"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-00-home.jpg",
+        "bytes": 71687,
+        "sha256": "e604c344c1f481d48c68198f9033827ca109b664036f9eceb874e166aeb428b4",
+        "width": 390,
+        "height": 1301,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-00-home-viewport.jpg",
+        "bytes": 47899,
+        "sha256": "1576c14d8e6eae0aae4a37ef0922466fa2e64507c671d9fc64bec3753753cd6b",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1301,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1301,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 1301,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "What matters from here?"
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nMEMBER / BRANCHING MATCHBOOK\n\nYour Week 3 · 2026\n\nThe matchup is still incomplete.\n\nReaves Dropper 0.0\nWare the Hoes At? Pending\nNov 12 synthetic fixture · Pending is unknown.\n\nManagers, records & saved AI\n\nA BRANCHING MATCHBOOK\n\nWhat matters from here?\n\nA matchup is a starting point. Choose a question; the evidence opens along your path.\n\nI want to inspect my players.\n24 players, form, completed-week points and modeled value.\n01\nI want to compare the teams.\nFive current pairings and the actual saved model returns.\n02\nI want to know this league.\nTen identities, standings, opponents and complete rosters.\n03\nI want to read the league.\nDated editorial, player spotlights and the edition archive.\n04\nI want to explore or play.\nStocks, trades, transactions, history and the Arcade.\n05\nGOAT Hoopers / A league of ten\nStocks\nView public concept\nFixture provenance\nThis week opened. This week."
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "players",
+        "label": "Players and next choices"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-01-players.jpg",
+        "bytes": 91084,
+        "sha256": "4ada995bda2189ecdb1aa46b7d4e645f199505a09d2cfdeb44a7621e45e83d17",
+        "width": 390,
+        "height": 1800,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-01-players-viewport.jpg",
+        "bytes": 43964,
+        "sha256": "36eaecaa43d39976ce3a62f9b5169c16dfaf37f6ef6985326e2a1b196bf0b600",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1800,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1800,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 1800,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Your team, before the next decision."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nMy players\n\nYour Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to This week\n\nFIRST BRANCH / PLAYERS\n\nYour team, before the next decision.\n\nReaves Dropper · aidandaly20 · 1–0 · 24 players · standing 1 of 10.\n\nMy team\nOpen team roster\n\n$1095.25 modeled FAAB subtotal. 24/24 players priced; 0 unpriced.\n\nin-season pricing basis · 2026-11-12 12:00:00 UTC. This is asset value, not a FAAB balance or form score.\n\nThree highest modeled values\nJoel Embiid\n$137.50\nC · Up 4.2% modeled price change\nAnthony Edwards\n$124.50\nSG · Up 4.2% modeled price change\nAlperen Şengün\n$108.25\nC · Up 4.2% modeled price change\nWhich players should I look at?\nForm evidence and the completed source week; availability remains unknown.\nA\nHow is the roster priced?\nAll 24 modeled values and the unavailable history boundary.\nB\nWhat changed around my team?\nTwo sample news links and one sample roster move.\nC\nAll 24 player references · position & NBA team\nGOAT Hoopers / A league of ten\nStocks\nView public concept\nFixture provenance\nMy players opened. This week, My players."
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "form",
+        "label": "Form and completed-week evidence"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-02-form.jpg",
+        "bytes": 137285,
+        "sha256": "6c9bb351f09a1a0d0a388063706801a8fb2ba4ca4aea0f81a0b47ebb41760520",
+        "width": 390,
+        "height": 2874,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-02-form-viewport.jpg",
+        "bytes": 41326,
+        "sha256": "e760ed62aa6ecb3a22d231eee2d00d0eef8da4ca626eb2432305bddd5d282799",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2874,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2874,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 2874,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Form has a period. So do points."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nMy players\n/\nForm & completed week\n\nYour Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to My players\nMy players\n24 players · $1095.25 modeled FAAB · Nov 12 fixture\n\nPLAYERS / EVIDENCE\n\nForm has a period. So do points.\nOn form · in-season EMA fantasy points per game\n\nEMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable.\n\nDamian Lillard\n\nAvailability status unknown · 8 games\n\n38.0 FP/G\nTobias Harris\n\nAvailability status unknown · 8 games\n\n37.0 FP/G\nJoel Embiid\n\nAvailability status unknown · 8 games\n\n36.0 FP/G\n\nAvailability status unknown. Schedule adjustment unavailable. These form values are synthetic examples, not a lineup recommendation.\n\nCompleted Week 2: best in the available cohort\n\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive). Synthetic completed-week fixture, not current official Week 2 awards.\n\nDamian Lillard\n\nRecorded weekly fantasy points · 3 games\n\n45.0 FP\nTobias Harris\n\nRecorded weekly fantasy points · 3 games\n\n39.0 FP\nJoel Embiid\n\nRecorded weekly fantasy points · 3 games\n\n33.0 FP\nCompleted Week 2: rough in the same cohort\nDerrick White\n\nRecorded weekly fantasy points · 3 games\n\n21.0 FP\nMyles Turner\n\nRecorded weekly fantasy points · 3 games\n\n27.0 FP\nJoel Embiid\n\nRecorded weekly fantasy points · 3 games\n\n33.0 FP\n\n5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\n\nSource and cohort wording\n\nKeep following this thread\n\nNow inspect their modeled prices\nRead the team wire\nGOAT Hoopers / A league of ten\nStocks\nView public concept\nFixture provenance\nForm & completed week opened. This week, My players, Form & completed week."
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "prices",
+        "label": "All modeled values"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-03-prices.jpg",
+        "bytes": 147525,
+        "sha256": "d6908ef47608b599a0c7373c97a1c83ae8a9b50e301e67554d3fe273a2cb1072",
+        "width": 390,
+        "height": 3733,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-03-prices-viewport.jpg",
+        "bytes": 38804,
+        "sha256": "b835bc2c19e5b43365f1f0a32db7269842527e571aec8b3a009d1ee08159d236",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3733,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3733,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 3733,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "What the roster is priced at."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nMy players\n/\nModeled prices\n\nYour Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to My players\nMy players\n24 players · $1095.25 modeled FAAB · Nov 12 fixture\n\nPLAYERS / MODELED VALUE\n\nWhat the roster is priced at.\n\n$1095.25 modeled FAAB · valuation rank 2/10.\n\n24 priced / 24 roster players · 0 unpriced. in-season basis · 2026-11-12 12:00:00 UTC.\n\nDamian Lillard\nPG · modeled FAAB\n$74.00\nTobias Harris\nPF · modeled FAAB\n$70.75\nJoel Embiid\nC · modeled FAAB\n$137.50\nMyles Turner\nC · modeled FAAB\n$64.25\nDerrick White\nSG · modeled FAAB\n$61.00\nGrayson Allen\nSF · modeled FAAB\n$57.75\nAnthony Edwards\nSG · modeled FAAB\n$124.50\nPayton Pritchard\nPG · modeled FAAB\n$51.25\nDevin Vassell\nSF · modeled FAAB\n$48.00\nImmanuel Quickley\nPG · modeled FAAB\n$44.75\nSanti Aldama\nPF · modeled FAAB\n$41.50\nAlperen Şengün\nC · modeled FAAB\n$108.25\nAustin Reaves\nSG · modeled FAAB\n$35.00\nPeyton Watson\nSF · modeled FAAB\n$31.75\nMax Christie\nSG · modeled FAAB\n$28.50\nBrandon Miller\nSF · modeled FAAB\n$25.25\nDonovan Clingan\nC · modeled FAAB\n$22.00\nDaniss Jenkins\nPG · modeled FAAB\n$18.75\nNolan Traore\nPG · modeled FAAB\n$15.50\nDanny Wolf\nPF · modeled FAAB\n$12.25\nDerik Queen\nC · modeled FAAB\n$9.00\nYaxel Lendeborg\nPF · modeled FAAB\n$5.75\nLabaron Philon\nPG · modeled FAAB\n$4.00\nBruce Thornton\nPG · modeled FAAB\n$4.00\n\nRecorded team-value history unavailable; no line is invented.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nOpen Stocks player board\nTrade analyzer\nLeague history\n\nKeep following this thread\n\nReturn to player form\nCompare the league’s faces\nGOAT Hoopers / A league of ten\nStocks\nView public concept\nFixture provenance\nModeled prices opened. This week, My players, Modeled prices."
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "compare",
+        "label": "Five pairings and saved AI"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-04-compare.jpg",
+        "bytes": 190755,
+        "sha256": "66eaa93fc0f79705de45df4d2d942d5b339bd106fa36d3ec97d9fa2e5c34380e",
+        "width": 390,
+        "height": 3348,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-04-compare-viewport.jpg",
+        "bytes": 47162,
+        "sha256": "a1def8e0508d1a05c7616c186e193724e67bb7240b9c81d54c3ae673cb2b6cb8",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3348,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3348,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 3348,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Five matchups, five saved returns."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nCompare the matchups\n\nYour Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to This week\n\nFIRST BRANCH / COMPARE\n\nFive matchups, five saved returns.\n\nWeek 3 · synthetic current fixture · Nov 12, 2026. Every pairing remains incomplete.\n\nReaves Dropper / Ware the Hoes At?\n\naidandaly20 · 1–0 · 0.0\nAedan23 · 1–0 · Pending\n\nWeek 3 · Incomplete · 0.0 is known; Pending is unknown.\n\nReturned choice: Ware the Hoes At?. Independent confidence 20%.\n\n35%\nWare the Hoes At?\n65%\nReaves Dropper\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nStephon Castle’s Back / The Fun Guys\n\nTommyDieselfuel · 1–0 · 105.5\nphilbiag · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: The Fun Guys. Independent confidence 20%.\n\n35%\nThe Fun Guys\n65%\nStephon Castle’s Back\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nJosh Diddy’s Roster / Huff n’ Puff\n\nvannweinkauf · 1–0 · 105.5\nGriffinHealy · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: Huff n’ Puff. Independent confidence 20%.\n\n35%\nHuff n’ Puff\n65%\nJosh Diddy’s Roster\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\npapichooter / NeuralNets\n\npapichooter · 1–0 · 105.5\nNeuralNets · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: NeuralNets. Independent confidence 20%.\n\n35%\nNeuralNets\n65%\npapichooter\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nLebron Theme Team / T Halibooty\n\nlordlx · 1–0 · 105.5\nTyreseHalibooty · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: T Halibooty. Independent confidence 20%.\n\n35%\nT Halibooty\n65%\nLebron Theme Team\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nOpen AI Decides\nCompare a trade\n\nKeep following this thread\n\nInspect the teams behind these pairs\nInspect my players\nGOAT Hoopers / A league of ten\nStocks\nView public concept\nFixture provenance\nCompare the matchups opened. This wee"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "league",
+        "label": "Standings and ten-team directory"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-05-league.jpg",
+        "bytes": 280895,
+        "sha256": "52ac8b1aae421f5c72b20e1e28409f405e2571b35c737edaaf235838169dbd1a",
+        "width": 390,
+        "height": 6523,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-05-league-viewport.jpg",
+        "bytes": 42746,
+        "sha256": "0f0d95ce56a54f06d1219caba60f6fe6d10a884ff0fad3cf42efd77c0b075daf",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 6523,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 6523,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 6523,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Know who you’re up against."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nKnow the league\n\nYour Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to This week\n\nFIRST BRANCH / LEAGUE\n\nKnow who you’re up against.\n\nTen teams, 228 unique player references. 2026 season · 6 playoff places, starting Week 20.\n\nCurrent records, opponents and modeled values are synthetic. Historical records keep their season and manager attribution.\n\nAll ten standings · rank, record & points for\nRank\tTeam\tW–L\tPF\n1\tReaves Dropper\t1–0\t320.50\n2\tWare the Hoes At?\t1–0\t315.00\n3\tStephon Castle’s Back\t1–0\t309.50\n4\tThe Fun Guys\t1–0\t304.00\n5\tJosh Diddy’s Roster\t1–0\t298.50\n6\tHuff n’ Puff\t1–0\t293.00\n7\tpapichooter\t1–0\t287.50\n8\tNeuralNets\t1–0\t282.00\n9\tLebron Theme Team\t1–0\t276.50\n10\tT Halibooty\t1–0\t271.00\n\nPF shown in points (source hundredths ÷ 100). Your team is Reaves Dropper.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nRead the directory by\nCurrent rank\nTeam name A–Z\nRoster size, largest first\n\n10 teams · all rosters available below\n\nReaves Dropper\n\naidandaly20 · 1–0 · 24 players\n\n1–0\n2026\n\nWeek 3 vs Ware the Hoes At? · Incomplete\n\nJoel Embiid\n\nC · $137.50 modeled FAAB\n\nRoster: all 24 players · position & NBA\n2025 · 16–5\nOpen full team profile\nWare the Hoes At?\n\nAedan23 · 1–0 · 27 players\n\n1–0\n2026\n\nWeek 3 vs Reaves Dropper · Incomplete\n\nDomantas Sabonis\n\nC · $140.75 modeled FAAB\n\nRoster: all 27 players · position & NBA\n2025 · 12–9\nOpen full team profile\nStephon Castle’s Back\n\nTommyDieselfuel · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs The Fun Guys · Incomplete\n\nShai Gilgeous-Alexander\n\nPG · $134.25 modeled FAAB\n\nRoster: all 22 players · position & NBA\n2025 · 4–17\nOpen full team profile\nThe Fun Guys\n\nphilbiag · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs Stephon Castle’s Back · Incomplete\n\nJalen Brunson\n\nPG · $137.50 modeled FAAB\n\nRoster: all 22 players · position & NBA\n2025 · 13–8\nOpen full team profile\nJosh Diddy’s Roster\n\nvannweinkauf · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs Huff n’ Puff · Incomplete\n\nStephen Curry\n\nPG · $140.75 modeled FAAB · Team: 2025 champion\n\nRoster: all 22 players · position & NBA\n2025 · 17–4\nOpen full team profile\nHuff n’ Puff\n\nGriffinHealy · 1–0 · 23 players\n\n1–0\n2026\n\nWeek 3 vs Josh Diddy’s Roster · Incomplete\n\nDonovan Mitchell\n\nSG · $131.00 modeled FAAB\n\nRoster: all 23 players · position & NBA\n2025 · 10–11\nOpen full team profile\npapichooter\n\npapichooter · 1–0 · 23 players\n\n1–0\n2026\n\n"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "read",
+        "label": "Dated editorial and archive"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-06-read.jpg",
+        "bytes": 203762,
+        "sha256": "f5dc6cc7a6984f0f430f3d58d4e2fe3d180d03c720da367cff8d2efe38f5c3b8",
+        "width": 390,
+        "height": 4077,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-06-read-viewport.jpg",
+        "bytes": 50186,
+        "sha256": "675fc8ac5ffaafeb77743076cf44612fdcc8978835880d6553c97ef254164e1c",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 4077,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 4077,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 4077,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "The league, in dated chapters."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nRead the league\n\nYour Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to This week\n\nFIRST BRANCH / READ\n\nThe league, in dated chapters.\n\nTwo October draft editions. These are dated editorial samples, not a current Week 3 recap. Neither entry has a publication timestamp.\n\nOct 5–11, 2026 · draft · 2026-W41\n\nThe next chapter\nReaves Dropper gets the champ.\n\nReaves Dropper / Josh Diddy’s Roster · Upcoming in this dated Week 1 edition · scores unavailable\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nEditorial selection, dates & sources\nNikola Jokić\n\nC · Last season’s standard · Josh Diddy’s Roster\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG\n12.9 RPG\n10.7 APG\n\n2025–26 NBA averages · editorial opinion, not a current-week award.\n\nWhy this player & source\nJoel Embiid\n\nC · Last-season lookback · Reaves Dropper\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9 PPG\n7.7 RPG\n3.9 APG\n\n2025–26 NBA averages · editorial opinion, not a current-week award.\n\nWhy this player & source\nAJ Dybantsa\n\nPF · Next week · preseason · NeuralNets\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5 PPG\n6.8 RPG\n3.7 APG\n\n2025–26 college · BYU · editorial opinion, not a current-week award.\n\nWhy this player & source\nIn that edition’s wire\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · dated editorial\n\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · dated editorial\n\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · dated editorial\n\nOpen 2026-W41 archive\n\nSep 28–Oct 4, 2026 · draft · 2026-W40\n\nThe title everybody’s chasing\nThe first crown belongs to vannweinkauf.\n\nJosh Diddy’s Roster / papichooter · 2025 historical final · 326.0 / 251.5\n\nJosh Diddy’s Roster finished 17–4, then beat papichooter 326.0–251.5 in the inaugural final. That is the bar for the next season.\n\nEditorial selection, dates & sources\nIn that edition’s wire\nA rebuild to follow\n\nRoster 8 changed hands after a 1–20 season: QBs Gremlins became NeuralNets.\n\nFranchise history · dated editorial\n\nOpen 2026-W40 archive\nAll weekly editions\nNews"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "tools",
+        "label": "Tools, transactions and game"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-07-tools.jpg",
+        "bytes": 121723,
+        "sha256": "67a77c62fed46964f0714b03202a6c0c36aa3f69f0ae5abc09ab517d9b3286ab",
+        "width": 390,
+        "height": 2504,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/member-phone-07-tools-viewport.jpg",
+        "bytes": 40726,
+        "sha256": "3b5a5bfe2fac0d97b4837e94e9d14a70ec8b9977d34ad98e6c9933e2fd8f977c",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2504,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2504,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 2504,
+        "bodyFont": "16px",
+        "headings": [
+          "Reaves Dropper has a week ahead.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Take this somewhere useful."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nMEMBER / BRANCHING MATCHBOOK\n\nThis week\n/\nExplore & play\n\nYour Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to This week\n\nFIRST BRANCH / EXPLORE\n\nTake this somewhere useful.\nInspect the player market\n\nModeled FAAB values. Your roster example totals $1095.25.\n\nInspect the local price evidence\nCompare a trade\n\nThe existing analyzer is a direct destination. No fictional offer is prefilled.\n\nRead league transactions\n\nThree synthetic Week 3 roster moves are retained here.\n\nReaves Dropper made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nThe Fun Guys made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nLebron Theme Team made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nLook through league history\n\nRecorded team-value history unavailable; no line is invented.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nOpen the Arcade\n\nFree Throw is the existing game destination.\n\nPlay Free Throw\nOpen AI Decides\n\nFive saved synthetic returns; no generation occurs here.\n\nRead the five local saved returns\n\nKeep following this thread\n\nReturn to the dated league chapters\nStart again from the matchup\nGOAT Hoopers / A league of ten\nStocks\nView public concept\nFixture provenance\nExplore & play opened. This week, Explore & play."
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "home",
+        "label": "Branching entry"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-00-home.jpg",
+        "bytes": 110044,
+        "sha256": "93f7957099c21c72e6b22b27130d187867c05063c27ecd347fbc24e69a903592",
+        "width": 1440,
+        "height": 1114,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-00-home-viewport.jpg",
+        "bytes": 103150,
+        "sha256": "0dac6edbfb8210cc3f1cd3f0930e2cae2b7863759bb6e085373449a7a6b3c3fd",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1114,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1114,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1114,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "What matters from here?"
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nPUBLIC / BRANCHING MATCHBOOK\n\nFeatured Week 3 · 2026\n\nTen teams. Five unfinished matchups.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nAll teams\nStocks\n\nA BRANCHING MATCHBOOK\n\nWhat matters from here?\n\nA matchup is a starting point. Choose a question; the evidence opens along your path.\n\nI want to inspect these players.\nStart with the featured roster; every team is reachable.\n01\nI want to compare the teams.\nFive current pairings and the actual saved model returns.\n02\nI want to know this league.\nTen identities, standings, opponents and complete rosters.\n03\nI want to read the league.\nDated editorial, player spotlights and the edition archive.\n04\nI want to explore or play.\nStocks, trades, transactions, history and the Arcade.\n05\nGOAT Hoopers / A league of ten\nStocks\nView member concept\nFixture provenance\nThis week opened. This week."
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "players",
+        "label": "Players and next choices"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-01-players.jpg",
+        "bytes": 99216,
+        "sha256": "4f91d3f78ccf765933f5210c16e40b0efaedd27308ce84c6ba3ba2befe7700b8",
+        "width": 1440,
+        "height": 1130,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-01-players-viewport.jpg",
+        "bytes": 92285,
+        "sha256": "1c17946143599512623f567c459603a1494a0b6a4b01928bd8d9f8199551c94c",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1130,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1130,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1130,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "A roster to begin with."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nThe players\n\nFeatured Week 3 · 2026\n\nTen teams. Five unfinished matchups.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nAll teams\nStocks\nBack to This week\n\nFIRST BRANCH / PLAYERS\n\nA roster to begin with.\n\nReaves Dropper · aidandaly20 · 1–0 · 24 players.\n\nOpen team roster\nWhich players should I look at?\nForm evidence and the completed source week; availability remains unknown.\nA\nHow is the roster priced?\nTen team faces with current modeled FAAB values.\nB\nLet me inspect another roster.\nThe full ten-team directory.\nC\nAll 24 player references · position & NBA team\nGOAT Hoopers / A league of ten\nStocks\nView member concept\nFixture provenance\nThe players opened. This week, The players."
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "form",
+        "label": "Form and completed-week evidence"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-02-form.jpg",
+        "bytes": 92124,
+        "sha256": "af1c06fbcc885f7584cb5c83cbde26b9c5cd51801a57bda73ff2de01a08531ca",
+        "width": 1440,
+        "height": 1057,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-02-form-viewport.jpg",
+        "bytes": 88243,
+        "sha256": "b0888524d12a863530423cb5a7925c80247500bec379aeec68184a143066cb4e",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1057,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1057,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1057,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Personal form belongs to the member view."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nThe players\n/\nForm & completed week\n\nFeatured Week 3 · 2026\n\nTen teams. Five unfinished matchups.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nAll teams\nStocks\nBack to The players\nThe players\nEarlier choice retained in this path\n\nPLAYERS / FORM\n\nPersonal form belongs to the member view.\n\nThe public concept carries no personal team edition. You can inspect all team rosters and dated editorial player samples.\n\nKeep following this thread\n\nInspect the league’s rosters\nRead the dated player spotlights\nGOAT Hoopers / A league of ten\nStocks\nView member concept\nFixture provenance\nForm & completed week opened. This week, The players, Form & completed week."
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "prices",
+        "label": "All modeled values"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-03-prices.jpg",
+        "bytes": 150924,
+        "sha256": "8a0fc0ededc2838e11d05a189e3d5e2b6a9e3273407dbe999e64cfc469924fe4",
+        "width": 1440,
+        "height": 2417,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-03-prices-viewport.jpg",
+        "bytes": 84528,
+        "sha256": "e117ab280554f51d315f4a255b1b4ccb476aeb9ff186b41fe2d2e8c9cff5d065",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2417,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2417,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2417,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "The league’s modeled faces."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nKnow the league\n/\nModeled prices\n\nFeatured Week 3 · 2026\n\nTen teams. Five unfinished matchups.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nAll teams\nStocks\nBack to Know the league\nKnow the league\nEarlier choice retained in this path\n\nPLAYERS / MODELED VALUE\n\nThe league’s modeled faces.\n\nCurrent modeled FAAB values in the synthetic fixture. Personal roster totals remain in the member concept.\n\nJoel Embiid\nReaves Dropper · C\n$137.50\nDomantas Sabonis\nWare the Hoes At? · C\n$140.75\nShai Gilgeous-Alexander\nStephon Castle’s Back · PG\n$134.25\nJalen Brunson\nThe Fun Guys · PG\n$137.50\nStephen Curry\nJosh Diddy’s Roster · PG\n$140.75\nDonovan Mitchell\nHuff n’ Puff · SG\n$131.00\nLuka Dončić\npapichooter · PG\n$131.00\nGiannis Antetokounmpo\nNeuralNets · PF\n$140.75\nLeBron James\nLebron Theme Team · PF\n$144.00\nAnthony Davis\nT Halibooty · C\n$144.00\n\nRecorded team-value history unavailable; no line is invented.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nOpen Stocks player board\nTrade analyzer\nLeague history\n\nKeep following this thread\n\nReturn to player form\nCompare the league’s faces\nGOAT Hoopers / A league of ten\nStocks\nView member concept\nFixture provenance\nModeled prices opened. This week, Know the league, Modeled prices."
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "compare",
+        "label": "Five pairings and saved AI"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-04-compare.jpg",
+        "bytes": 249001,
+        "sha256": "05af4bba0b3e659576db0a3f159dba43d6e121c81b175bff89cbd55c271e5c6e",
+        "width": 1440,
+        "height": 3014,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-04-compare-viewport.jpg",
+        "bytes": 106694,
+        "sha256": "d335b0cb9340debc6fcf74310a1cf19e083f8d260782118e2734b571f0e1ff0d",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3014,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3014,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 3014,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Five matchups, five saved returns."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nCompare the matchups\n\nFeatured Week 3 · 2026\n\nTen teams. Five unfinished matchups.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nAll teams\nStocks\nBack to This week\n\nFIRST BRANCH / COMPARE\n\nFive matchups, five saved returns.\n\nWeek 3 · synthetic current fixture · Nov 12, 2026. Every pairing remains incomplete.\n\nReaves Dropper / Ware the Hoes At?\n\naidandaly20 · 1–0 · 0.0\nAedan23 · 1–0 · Pending\n\nWeek 3 · Incomplete · 0.0 is known; Pending is unknown.\n\nReturned choice: Ware the Hoes At?. Independent confidence 20%.\n\n35%\nWare the Hoes At?\n65%\nReaves Dropper\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nStephon Castle’s Back / The Fun Guys\n\nTommyDieselfuel · 1–0 · 105.5\nphilbiag · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: The Fun Guys. Independent confidence 20%.\n\n35%\nThe Fun Guys\n65%\nStephon Castle’s Back\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nJosh Diddy’s Roster / Huff n’ Puff\n\nvannweinkauf · 1–0 · 105.5\nGriffinHealy · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: Huff n’ Puff. Independent confidence 20%.\n\n35%\nHuff n’ Puff\n65%\nJosh Diddy’s Roster\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\npapichooter / NeuralNets\n\npapichooter · 1–0 · 105.5\nNeuralNets · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: NeuralNets. Independent confidence 20%.\n\n35%\nNeuralNets\n65%\npapichooter\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nLebron Theme Team / T Halibooty\n\nlordlx · 1–0 · 105.5\nTyreseHalibooty · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: T Halibooty. Independent confidence 20%.\n\n35%\nT Halibooty\n65%\nLebron Theme Team\n\nModel probability — not calibrated sports odds. Returned choice is"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "league",
+        "label": "Standings and ten-team directory"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-05-league.jpg",
+        "bytes": 365809,
+        "sha256": "4bd5fcd6f96484fef3b89278cfadadbc222576bbee50d6ea088caedd5645d1a5",
+        "width": 1440,
+        "height": 6405,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-05-league-viewport.jpg",
+        "bytes": 94950,
+        "sha256": "72272d045676c399d3addd5546b6575448d1b0823f8a90676e29757c729e6619",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 6405,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 6405,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 6405,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Know who you’re up against."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nKnow the league\n\nFeatured Week 3 · 2026\n\nTen teams. Five unfinished matchups.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nAll teams\nStocks\nBack to This week\n\nFIRST BRANCH / LEAGUE\n\nKnow who you’re up against.\n\nTen teams, 228 unique player references. 2026 season · 6 playoff places, starting Week 20.\n\nCurrent records, opponents and modeled values are synthetic. Historical records keep their season and manager attribution.\n\nAll ten standings · rank, record & points for\nRank\tTeam\tW–L\tPF\n1\tReaves Dropper\t1–0\t320.50\n2\tWare the Hoes At?\t1–0\t315.00\n3\tStephon Castle’s Back\t1–0\t309.50\n4\tThe Fun Guys\t1–0\t304.00\n5\tJosh Diddy’s Roster\t1–0\t298.50\n6\tHuff n’ Puff\t1–0\t293.00\n7\tpapichooter\t1–0\t287.50\n8\tNeuralNets\t1–0\t282.00\n9\tLebron Theme Team\t1–0\t276.50\n10\tT Halibooty\t1–0\t271.00\n\nPF shown in points (source hundredths ÷ 100).\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nRead the directory by\nCurrent rank\nTeam name A–Z\nRoster size, largest first\n\n10 teams · all rosters available below\n\nReaves Dropper\n\naidandaly20 · 1–0 · 24 players\n\n1–0\n2026\n\nWeek 3 vs Ware the Hoes At? · Incomplete\n\nJoel Embiid\n\nC · $137.50 modeled FAAB\n\nRoster: all 24 players · position & NBA\n2025 · 16–5\nOpen full team profile\nWare the Hoes At?\n\nAedan23 · 1–0 · 27 players\n\n1–0\n2026\n\nWeek 3 vs Reaves Dropper · Incomplete\n\nDomantas Sabonis\n\nC · $140.75 modeled FAAB\n\nRoster: all 27 players · position & NBA\n2025 · 12–9\nOpen full team profile\nStephon Castle’s Back\n\nTommyDieselfuel · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs The Fun Guys · Incomplete\n\nShai Gilgeous-Alexander\n\nPG · $134.25 modeled FAAB\n\nRoster: all 22 players · position & NBA\n2025 · 4–17\nOpen full team profile\nThe Fun Guys\n\nphilbiag · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs Stephon Castle’s Back · Incomplete\n\nJalen Brunson\n\nPG · $137.50 modeled FAAB\n\nRoster: all 22 players · position & NBA\n2025 · 13–8\nOpen full team profile\nJosh Diddy’s Roster\n\nvannweinkauf · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs Huff n’ Puff · Incomplete\n\nStephen Curry\n\nPG · $140.75 modeled FAAB · Team: 2025 champion\n\nRoster: all 22 players · position & NBA\n2025 · 17–4\nOp"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "read",
+        "label": "Dated editorial and archive"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-06-read.jpg",
+        "bytes": 263358,
+        "sha256": "cfa7b6ba6b046912ca49f164fcb183429eb59d4eb7ebf30f82baa4c00694ca04",
+        "width": 1440,
+        "height": 3619,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-06-read-viewport.jpg",
+        "bytes": 108143,
+        "sha256": "fd5fea7c2f55237699e783ca75c1a029d7e0b62af32cdd60525c5112e517587d",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3619,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3619,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 3619,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "The league, in dated chapters."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nRead the league\n\nFeatured Week 3 · 2026\n\nTen teams. Five unfinished matchups.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nAll teams\nStocks\nBack to This week\n\nFIRST BRANCH / READ\n\nThe league, in dated chapters.\n\nTwo October draft editions. These are dated editorial samples, not a current Week 3 recap. Neither entry has a publication timestamp.\n\nOct 5–11, 2026 · draft · 2026-W41\n\nThe next chapter\nReaves Dropper gets the champ.\n\nReaves Dropper / Josh Diddy’s Roster · Upcoming in this dated Week 1 edition · scores unavailable\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nEditorial selection, dates & sources\nNikola Jokić\n\nC · Last season’s standard · Josh Diddy’s Roster\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG\n12.9 RPG\n10.7 APG\n\n2025–26 NBA averages · editorial opinion, not a current-week award.\n\nWhy this player & source\nJoel Embiid\n\nC · Last-season lookback · Reaves Dropper\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9 PPG\n7.7 RPG\n3.9 APG\n\n2025–26 NBA averages · editorial opinion, not a current-week award.\n\nWhy this player & source\nAJ Dybantsa\n\nPF · Next week · preseason · NeuralNets\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5 PPG\n6.8 RPG\n3.7 APG\n\n2025–26 college · BYU · editorial opinion, not a current-week award.\n\nWhy this player & source\nIn that edition’s wire\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · dated editorial\n\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · dated editorial\n\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · dated editorial\n\nOpen 2026-W41 archive\n\nSep 28–Oct 4, 2026 · draft · 2026-W40\n\nThe title everybody’s chasing\nThe first crown belongs to vannweinkauf.\n\nJosh Diddy’s Roster / papichooter · 2025 historical final · 326.0 / 251.5\n\nJosh Diddy’s Roster finished 17–4, then beat "
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "tools",
+        "label": "Tools, transactions and game"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-07-tools.jpg",
+        "bytes": 172085,
+        "sha256": "7a616984dc3a74fcdd7d872f241756b61a2ddbcbd217b303600e6c3b1e909ebc",
+        "width": 1440,
+        "height": 2228,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-desktop-07-tools-viewport.jpg",
+        "bytes": 102285,
+        "sha256": "d5b723fdbeb855ee3add90a3c567aa814200d591d4eef29d711c350ddb0bfa71",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2228,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2228,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2228,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Take this somewhere useful."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\n20 / Matchbook\nSynthetic concept\nOpen anywhere\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nExplore & play\n\nFeatured Week 3 · 2026\n\nTen teams. Five unfinished matchups.\nStart with what we know. Follow what matters.\nReaves Dropper\naidandaly20 · 1–0\n0.0\nWare the Hoes At?\nAedan23 · 1–0\nPending\n\nIncomplete. 0.0 is a known score. Pending is unknown, not zero. This is a synthetic snapshot dated Nov 12, 2026.\n\nReturned choice: Ware the Hoes At?. Confidence 20%.\nRead the saved evidence\n\nAll teams\nStocks\nBack to This week\n\nFIRST BRANCH / EXPLORE\n\nTake this somewhere useful.\nInspect the player market\n\nModeled FAAB values. The ten league faces carry synthetic modeled values.\n\nInspect the local price evidence\nCompare a trade\n\nThe existing analyzer is a direct destination. No fictional offer is prefilled.\n\nRead league transactions\n\nThree synthetic Week 3 roster moves are retained here.\n\nReaves Dropper made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nThe Fun Guys made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nLebron Theme Team made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nLook through league history\n\nRecorded team-value history unavailable; no line is invented.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nOpen the Arcade\n\nFree Throw is the existing game destination.\n\nPlay Free Throw\nOpen AI Decides\n\nFive saved synthetic returns; no generation occurs here.\n\nRead the five local saved returns\n\nKeep following this thread\n\nReturn to the dated league chapters\nStart again from the matchup\nGOAT Hoopers / A league of ten\nStocks\nView member concept\nFixture provenance\nExplore & play opened. This week, Explore & play."
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "home",
+        "label": "Branching entry"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-00-home.jpg",
+        "bytes": 71242,
+        "sha256": "7446c1395bc9ddacc750ed72e3e628b82af83d02af189e5193344d88eb5b0c39",
+        "width": 390,
+        "height": 1329,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-00-home-viewport.jpg",
+        "bytes": 45751,
+        "sha256": "56fbbe0d5ca37944303cab9b07558cd089c3cacb4532de57d7c71f1d623a1522",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1329,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1329,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 1329,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "What matters from here?"
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nPUBLIC / BRANCHING MATCHBOOK\n\nFeatured Week 3 · 2026\n\nThe matchup is still incomplete.\n\nReaves Dropper 0.0\nWare the Hoes At? Pending\nNov 12 synthetic fixture · Pending is unknown.\n\nManagers, records & saved AI\n\nA BRANCHING MATCHBOOK\n\nWhat matters from here?\n\nA matchup is a starting point. Choose a question; the evidence opens along your path.\n\nI want to inspect these players.\nStart with the featured roster; every team is reachable.\n01\nI want to compare the teams.\nFive current pairings and the actual saved model returns.\n02\nI want to know this league.\nTen identities, standings, opponents and complete rosters.\n03\nI want to read the league.\nDated editorial, player spotlights and the edition archive.\n04\nI want to explore or play.\nStocks, trades, transactions, history and the Arcade.\n05\nGOAT Hoopers / A league of ten\nStocks\nView member concept\nFixture provenance\nThis week opened. This week."
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "players",
+        "label": "Players and next choices"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-01-players.jpg",
+        "bytes": 54130,
+        "sha256": "353c2878566b004db9dd7437ff44e8cb1ff9b28d6049196ee75f38b3fd0ba13f",
+        "width": 390,
+        "height": 1208,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-01-players-viewport.jpg",
+        "bytes": 38902,
+        "sha256": "c96aa36d3f06a4cd2992511eec3992105e0e55783a936e8da7e626391697ec06",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1208,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1208,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 1208,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "A roster to begin with."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nThe players\n\nFeatured Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to This week\n\nFIRST BRANCH / PLAYERS\n\nA roster to begin with.\n\nReaves Dropper · aidandaly20 · 1–0 · 24 players.\n\nOpen team roster\nWhich players should I look at?\nForm evidence and the completed source week; availability remains unknown.\nA\nHow is the roster priced?\nTen team faces with current modeled FAAB values.\nB\nLet me inspect another roster.\nThe full ten-team directory.\nC\nAll 24 player references · position & NBA team\nGOAT Hoopers / A league of ten\nStocks\nView member concept\nFixture provenance\nThe players opened. This week, The players."
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "form",
+        "label": "Form and completed-week evidence"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-02-form.jpg",
+        "bytes": 48251,
+        "sha256": "0dde3a153652cdd0ab0d8b94c1727ee4731c0c7df1ca16e296f29b10381a5896",
+        "width": 390,
+        "height": 1008,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-02-form-viewport.jpg",
+        "bytes": 43004,
+        "sha256": "94c3ff7b4d6e512df96d2b9fccfd9ed0854070dfa9d588315c40490d2258a6bd",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1008,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1008,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 1008,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Personal form belongs to the member view."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nThe players\n/\nForm & completed week\n\nFeatured Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to The players\nThe players\nEarlier choice retained in this path\n\nPLAYERS / FORM\n\nPersonal form belongs to the member view.\n\nThe public concept carries no personal team edition. You can inspect all team rosters and dated editorial player samples.\n\nKeep following this thread\n\nInspect the league’s rosters\nRead the dated player spotlights\nGOAT Hoopers / A league of ten\nStocks\nView member concept\nFixture provenance\nForm & completed week opened. This week, The players, Form & completed week."
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "prices",
+        "label": "All modeled values"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-03-prices.jpg",
+        "bytes": 99583,
+        "sha256": "07ac5c93d81a5aac4f553163d6dae5f1b6fa5ba363ad92289a712192437bfe1f",
+        "width": 390,
+        "height": 2465,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-03-prices-viewport.jpg",
+        "bytes": 38622,
+        "sha256": "3a52ca527b5e7f84e9dd95903f41c9837dcb98e4f26568e14fc41a341514c782",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2465,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2465,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 2465,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "The league’s modeled faces."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nKnow the league\n/\nModeled prices\n\nFeatured Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to Know the league\nKnow the league\nEarlier choice retained in this path\n\nPLAYERS / MODELED VALUE\n\nThe league’s modeled faces.\n\nCurrent modeled FAAB values in the synthetic fixture. Personal roster totals remain in the member concept.\n\nJoel Embiid\nReaves Dropper · C\n$137.50\nDomantas Sabonis\nWare the Hoes At? · C\n$140.75\nShai Gilgeous-Alexander\nStephon Castle’s Back · PG\n$134.25\nJalen Brunson\nThe Fun Guys · PG\n$137.50\nStephen Curry\nJosh Diddy’s Roster · PG\n$140.75\nDonovan Mitchell\nHuff n’ Puff · SG\n$131.00\nLuka Dončić\npapichooter · PG\n$131.00\nGiannis Antetokounmpo\nNeuralNets · PF\n$140.75\nLeBron James\nLebron Theme Team · PF\n$144.00\nAnthony Davis\nT Halibooty · C\n$144.00\n\nRecorded team-value history unavailable; no line is invented.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nOpen Stocks player board\nTrade analyzer\nLeague history\n\nKeep following this thread\n\nReturn to player form\nCompare the league’s faces\nGOAT Hoopers / A league of ten\nStocks\nView member concept\nFixture provenance\nModeled prices opened. This week, Know the league, Modeled prices."
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "compare",
+        "label": "Five pairings and saved AI"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-04-compare.jpg",
+        "bytes": 191480,
+        "sha256": "4cb484d6b8aeefd550d50606c87641127b8c6ee2206fb24e3cd8b73f6a16c788",
+        "width": 390,
+        "height": 3348,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-04-compare-viewport.jpg",
+        "bytes": 47299,
+        "sha256": "ce19f07ae705f7d86fd56fb0b35feed99734b851a6309e5ca9c02ee75ed0260b",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3348,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3348,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 3348,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Five matchups, five saved returns."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nCompare the matchups\n\nFeatured Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to This week\n\nFIRST BRANCH / COMPARE\n\nFive matchups, five saved returns.\n\nWeek 3 · synthetic current fixture · Nov 12, 2026. Every pairing remains incomplete.\n\nReaves Dropper / Ware the Hoes At?\n\naidandaly20 · 1–0 · 0.0\nAedan23 · 1–0 · Pending\n\nWeek 3 · Incomplete · 0.0 is known; Pending is unknown.\n\nReturned choice: Ware the Hoes At?. Independent confidence 20%.\n\n35%\nWare the Hoes At?\n65%\nReaves Dropper\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nStephon Castle’s Back / The Fun Guys\n\nTommyDieselfuel · 1–0 · 105.5\nphilbiag · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: The Fun Guys. Independent confidence 20%.\n\n35%\nThe Fun Guys\n65%\nStephon Castle’s Back\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nJosh Diddy’s Roster / Huff n’ Puff\n\nvannweinkauf · 1–0 · 105.5\nGriffinHealy · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: Huff n’ Puff. Independent confidence 20%.\n\n35%\nHuff n’ Puff\n65%\nJosh Diddy’s Roster\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\npapichooter / NeuralNets\n\npapichooter · 1–0 · 105.5\nNeuralNets · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: NeuralNets. Independent confidence 20%.\n\n35%\nNeuralNets\n65%\npapichooter\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nLebron Theme Team / T Halibooty\n\nlordlx · 1–0 · 105.5\nTyreseHalibooty · 1–0 · Pending\n\nWeek 3 · Incomplete.\n\nReturned choice: T Halibooty. Independent confidence 20%.\n\n35%\nT Halibooty\n65%\nLebron Theme Team\n\nModel probability — not calibrated sports odds. Returned choice is preserved even when the other team has the larger probability.\n\nSaved model, inputs & evidence\nOpen AI Decides\nCompare a trade\n\nKeep following this thread\n\nInspect the teams behind these pairs\nInspect the featured roster\nGOAT Hoopers / A league of ten\nStocks\nView member concept\nFixture provenance\nCompare the matchups ope"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "league",
+        "label": "Standings and ten-team directory"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-05-league.jpg",
+        "bytes": 279291,
+        "sha256": "01bc2b3fecc52e89b88c2c220019a76d65c2b9e26f92d8918d0a1878b4f4d409",
+        "width": 390,
+        "height": 6523,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-05-league-viewport.jpg",
+        "bytes": 42887,
+        "sha256": "3580199deabe900f8215446fb4263901315dfd207a3c0b1df7fc3a4999449198",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 6523,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 6523,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 6523,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Know who you’re up against."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nKnow the league\n\nFeatured Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to This week\n\nFIRST BRANCH / LEAGUE\n\nKnow who you’re up against.\n\nTen teams, 228 unique player references. 2026 season · 6 playoff places, starting Week 20.\n\nCurrent records, opponents and modeled values are synthetic. Historical records keep their season and manager attribution.\n\nAll ten standings · rank, record & points for\nRank\tTeam\tW–L\tPF\n1\tReaves Dropper\t1–0\t320.50\n2\tWare the Hoes At?\t1–0\t315.00\n3\tStephon Castle’s Back\t1–0\t309.50\n4\tThe Fun Guys\t1–0\t304.00\n5\tJosh Diddy’s Roster\t1–0\t298.50\n6\tHuff n’ Puff\t1–0\t293.00\n7\tpapichooter\t1–0\t287.50\n8\tNeuralNets\t1–0\t282.00\n9\tLebron Theme Team\t1–0\t276.50\n10\tT Halibooty\t1–0\t271.00\n\nPF shown in points (source hundredths ÷ 100).\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nRead the directory by\nCurrent rank\nTeam name A–Z\nRoster size, largest first\n\n10 teams · all rosters available below\n\nReaves Dropper\n\naidandaly20 · 1–0 · 24 players\n\n1–0\n2026\n\nWeek 3 vs Ware the Hoes At? · Incomplete\n\nJoel Embiid\n\nC · $137.50 modeled FAAB\n\nRoster: all 24 players · position & NBA\n2025 · 16–5\nOpen full team profile\nWare the Hoes At?\n\nAedan23 · 1–0 · 27 players\n\n1–0\n2026\n\nWeek 3 vs Reaves Dropper · Incomplete\n\nDomantas Sabonis\n\nC · $140.75 modeled FAAB\n\nRoster: all 27 players · position & NBA\n2025 · 12–9\nOpen full team profile\nStephon Castle’s Back\n\nTommyDieselfuel · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs The Fun Guys · Incomplete\n\nShai Gilgeous-Alexander\n\nPG · $134.25 modeled FAAB\n\nRoster: all 22 players · position & NBA\n2025 · 4–17\nOpen full team profile\nThe Fun Guys\n\nphilbiag · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs Stephon Castle’s Back · Incomplete\n\nJalen Brunson\n\nPG · $137.50 modeled FAAB\n\nRoster: all 22 players · position & NBA\n2025 · 13–8\nOpen full team profile\nJosh Diddy’s Roster\n\nvannweinkauf · 1–0 · 22 players\n\n1–0\n2026\n\nWeek 3 vs Huff n’ Puff · Incomplete\n\nStephen Curry\n\nPG · $140.75 modeled FAAB · Team: 2025 champion\n\nRoster: all 22 players · position & NBA\n2025 · 17–4\nOpen full team profile\nHuff n’ Puff\n\nGriffinHealy · 1–0 · 23 players\n\n1–0\n2026\n\nWeek 3 vs Josh Diddy’s Roster · Incomplete\n\nDonovan Mitchell\n\nSG · $131.00 modeled FAAB\n\nRoster: all 23 players · position & NBA\n2025 · 10–11\nOpen full team profile\npapichooter\n\npapichooter · 1–0 · 23 players\n\n1–0\n2026\n\nWeek 3 vs NeuralNets · In"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "read",
+        "label": "Dated editorial and archive"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-06-read.jpg",
+        "bytes": 204097,
+        "sha256": "8a7a5fd12d98940576ee5d32f74e4332ecdbc3f46cf37549d653a63428db43cd",
+        "width": 390,
+        "height": 4077,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-06-read-viewport.jpg",
+        "bytes": 50351,
+        "sha256": "14bc6b9bbf3bf0e85c0a70eba2ee4504029b41dee7ffec83ea1be35d9a47859d",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 4077,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 4077,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 4077,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "The league, in dated chapters."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nRead the league\n\nFeatured Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to This week\n\nFIRST BRANCH / READ\n\nThe league, in dated chapters.\n\nTwo October draft editions. These are dated editorial samples, not a current Week 3 recap. Neither entry has a publication timestamp.\n\nOct 5–11, 2026 · draft · 2026-W41\n\nThe next chapter\nReaves Dropper gets the champ.\n\nReaves Dropper / Josh Diddy’s Roster · Upcoming in this dated Week 1 edition · scores unavailable\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nEditorial selection, dates & sources\nNikola Jokić\n\nC · Last season’s standard · Josh Diddy’s Roster\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG\n12.9 RPG\n10.7 APG\n\n2025–26 NBA averages · editorial opinion, not a current-week award.\n\nWhy this player & source\nJoel Embiid\n\nC · Last-season lookback · Reaves Dropper\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9 PPG\n7.7 RPG\n3.9 APG\n\n2025–26 NBA averages · editorial opinion, not a current-week award.\n\nWhy this player & source\nAJ Dybantsa\n\nPF · Next week · preseason · NeuralNets\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5 PPG\n6.8 RPG\n3.7 APG\n\n2025–26 college · BYU · editorial opinion, not a current-week award.\n\nWhy this player & source\nIn that edition’s wire\nLonzo hits the wire\n\nLebron Theme Team dropped Lonzo Ball.\n\nOct 7 · dated editorial\n\nTwo moves from NeuralNets\n\nMalik Monk and Nikola Jović were dropped from the roster.\n\nOct 6 · dated editorial\n\nRisacher released\n\nT Halibooty dropped Zaccharie Risacher.\n\nOct 6 · dated editorial\n\nOpen 2026-W41 archive\n\nSep 28–Oct 4, 2026 · draft · 2026-W40\n\nThe title everybody’s chasing\nThe first crown belongs to vannweinkauf.\n\nJosh Diddy’s Roster / papichooter · 2025 historical final · 326.0 / 251.5\n\nJosh Diddy’s Roster finished 17–4, then beat papichooter 326.0–251.5 in the inaugural final. That is the bar for the next season.\n\nEditorial selection, dates & sources\nIn that edition’s wire\nA rebuild to follow\n\nRoster 8 changed hands after a 1–20 season: QBs Gremlins became NeuralNets.\n\nFranchise history · dated editorial\n\nOpen 2026-W40 archive\nAll weekly editions\n"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "tools",
+        "label": "Tools, transactions and game"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-07-tools.jpg",
+        "bytes": 123437,
+        "sha256": "d29f05270968b0b37a395854b7e2f2653113e13ac5557fe7eb07bbf991d01399",
+        "width": 390,
+        "height": 2504,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/20/public-phone-07-tools-viewport.jpg",
+        "bytes": 41734,
+        "sha256": "b7b77e01d96603d2872d2283435870f1e4a45bac8d2d7629c1817536460589e8",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2504,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2504,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 2504,
+        "bodyFont": "16px",
+        "headings": [
+          "Ten teams. Five unfinished matchups.The matchup is still incomplete.Start with what we know. Follow what matters.",
+          "Take this somewhere useful."
+        ],
+        "panes": [],
+        "text": "Skip to matchbook\nGOAT\nHOOPERS\nSynthetic concept\nBranch index\n\nPUBLIC / BRANCHING MATCHBOOK\n\nThis week\n/\nExplore & play\n\nFeatured Week 3 · 2026\n\nThe matchup is still incomplete.\nManagers, records & saved AI\nBack to This week\n\nFIRST BRANCH / EXPLORE\n\nTake this somewhere useful.\nInspect the player market\n\nModeled FAAB values. The ten league faces carry synthetic modeled values.\n\nInspect the local price evidence\nCompare a trade\n\nThe existing analyzer is a direct destination. No fictional offer is prefilled.\n\nRead league transactions\n\nThree synthetic Week 3 roster moves are retained here.\n\nReaves Dropper made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nThe Fun Guys made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nLebron Theme Team made a sample roster move.\n\nWeek 3 · free_agent · 2026-11-12 12:00:00 UTC. Added/dropped player details are not supplied.\n\nLook through league history\n\nRecorded team-value history unavailable; no line is invented.\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nOpen the Arcade\n\nFree Throw is the existing game destination.\n\nPlay Free Throw\nOpen AI Decides\n\nFive saved synthetic returns; no generation occurs here.\n\nRead the five local saved returns\n\nKeep following this thread\n\nReturn to the dated league chapters\nStart again from the matchup\nGOAT Hoopers / A league of ten\nStocks\nView member concept\nFixture provenance\nExplore & play opened. This week, Explore & play."
+      },
+      "errors": []
+    }
+  ],
+  "method": "Actual browser state API; grayscale reduced-motion; all advertised states in public/member desktop1440 andphone390. Real viewport plus whole document. No position/CSS flattening. Scrollable interior content needs its own views and explicit pane checks; these images are structural evidence, not final complete-content acceptance."
+}

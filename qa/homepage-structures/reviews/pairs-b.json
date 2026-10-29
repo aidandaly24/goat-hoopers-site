@@ -1,0 +1,380 @@
+[
+  {
+    "idA": "01",
+    "idB": "03",
+    "verdict": "D",
+    "reason": "01 is a continuous vertical article with anchor jumps and local disclosures; 03 is a viewport-bound horizontal sequence with separately scrolling chapters. Phone keeps 01 in page flow but keeps 03 chapter selection and interior scrolling."
+  },
+  {
+    "idA": "01",
+    "idB": "06",
+    "verdict": "R",
+    "reason": "Both retain a long vertical reading stream. 01 keeps all topic sections in fixed article order; 06 filters dated entries by scope and source period around a time spine. Phone retains that filtering/date grammar rather than becoming the same anchor article."
+  },
+  {
+    "idA": "01",
+    "idB": "09",
+    "verdict": "D",
+    "reason": "01 keeps all sections in one anchor-addressed article; 09 preserves a map/index while replacing one selected stop reader. Phone keeps all 01 sections continuous, while 09 places only the selected stop document beneath its overview."
+  },
+  {
+    "idA": "01",
+    "idB": "12",
+    "verdict": "D",
+    "reason": "01 is a continuous article with inline disclosures; 12 is a persistent team/game selector with one replaced shelf. Phone preserves 01 article flow and 12 ring-plus-selected-document model."
+  },
+  {
+    "idA": "01",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "01 follows fixed article sections and anchors. 15 uses period columns and semantic lanes, inserting an agenda beside the clicked scheduled row. Phone changes 15 to date-scoped agenda/calendar controls; 01 remains one article."
+  },
+  {
+    "idA": "01",
+    "idB": "18",
+    "verdict": "N",
+    "reason": "Both are continuous anchor-addressed documents with local disclosures and all topic sections remaining in one long page. 18 adds a scroll-synced pinned summary (compact on phone), but the main read/reveal architecture remains the same article. Replace the all-chapter anchor body in 18 with a genuinely different primary workspace/reveal model before advancing."
+  },
+  {
+    "idA": "02",
+    "idB": "03",
+    "verdict": "D",
+    "reason": "02 keeps a six-zone selector beside one replaced field-notes document; 03 pages actual horizontal chapters with independent vertical interiors. Phone puts 02 reader after the court but keeps 03 bounded chapter paging."
+  },
+  {
+    "idA": "02",
+    "idB": "06",
+    "verdict": "D",
+    "reason": "02 selects one topic reader from persistent court zones. 06 retains/filter-matches multiple source-dated entries in a time stream. Phone keeps one chosen court document versus the scope/period-filtered log."
+  },
+  {
+    "idA": "02",
+    "idB": "09",
+    "verdict": "N",
+    "reason": "Both are persistent spatial selectors beside one interchangeable long reader; court zones versus route stops do not change the reveal model. Both phone layouts put the selected reader after the overview. Rework one to local expansion, concurrent comparisons, or another primary context model before advancing."
+  },
+  {
+    "idA": "02",
+    "idB": "12",
+    "verdict": "N",
+    "reason": "Court zones and orbital team/game nodes both drive a single generic shelf/field-notes reader while overview remains. Both phone layouts place that replaced reader below the diagram. Central game highlighting alone does not change the dominant reveal architecture; rework one beyond selector-plus-reader."
+  },
+  {
+    "idA": "02",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "02 offers six overview buttons feeding a separate long document. 15 places scheduled items in period-by-lane coordinates and attaches detail at the selected row; phone supplies a date-scoped agenda/calendar instead of a court followed by reader."
+  },
+  {
+    "idA": "02",
+    "idB": "18",
+    "verdict": "R",
+    "reason": "Both pair retained context with substantive reading. 02 replaces one topic document from court zones; 18 retains all six chapters in one flowing document and scrolling changes an independent context stage. Phone keeps court-before-one-reader in 02 versus persistent compact stage above continuous chapters in 18."
+  },
+  {
+    "idA": "03",
+    "idB": "04",
+    "verdict": "R",
+    "reason": "Both expose selected subject documents. 03 keeps a horizontally paged, viewport-bound publication with separate chapter interiors; 04 keeps source navigation plus an independent five-game score rail beside the program. Phone retains chapter paging in 03 versus program select and expandable persistent score context in 04."
+  },
+  {
+    "idA": "03",
+    "idB": "07",
+    "verdict": "R",
+    "reason": "Both use subject selection into substantive documents. 03 is an actual horizontal chapter strip with independent vertical scroll and inert inactive chapters; 07 replaces its room with conventional station navigation and a page-height reader. Phone keeps bounded chapter interiors in 03 versus normal-flow station pages in 07."
+  },
+  {
+    "idA": "03",
+    "idB": "10",
+    "verdict": "R",
+    "reason": "Both have one primary subject document. 03 navigates a lateral sequence of bounded chapters; 10 switches task documents and opens a second evidence inspector beside the existing document. Phone keeps 03 chapter paging but replaces 10 document with inspector and a working Back return."
+  },
+  {
+    "idA": "03",
+    "idB": "13",
+    "verdict": "R",
+    "reason": "Both have chapter-level publication navigation. 03 moves laterally between separately scrolling bounded chapters; 13 opens one spread in vertical flow while retaining all folded spines and allows an all-closed overview. Phone preserves these different paging versus in-place unfolding models."
+  },
+  {
+    "idA": "03",
+    "idB": "16",
+    "verdict": "R",
+    "reason": "Both use lateral navigation, but 03 pages full topic chapters with independent vertical interiors; 16 selects a franchise in a portrait strip and replaces its scoped profile tab below, with a separate league reader. Phone keeps chapter viewport paging in 03 versus one selected franchise portrait and profile tabs in 16."
+  },
+  {
+    "idA": "03",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "03 is a bounded horizontal sequence of separately scrolling chapters. 19 is a searchable alphabetic franchise index with a dossier inserted directly below the selected entity while neighboring entries remain. Phone keeps chapter paging in 03 versus inline entity dossier, roster tabs and Escape return in 19."
+  },
+  {
+    "idA": "04",
+    "idB": "06",
+    "verdict": "D",
+    "reason": "04 switches one program while retaining a separate live five-game score context. 06 filters a collection of dated entries in one log. Phone keeps 04 program selector and score disclosure, versus 06 scope/period filters and dated stream."
+  },
+  {
+    "idA": "04",
+    "idB": "09",
+    "verdict": "R",
+    "reason": "Both replace a primary reader from a persistent selector. 04 adds independent all-five-game score context that survives changing subjects and drives current matchup selection; 09 preserves only route/index context. Phone retains a compact expandable score rail in 04 versus full route preceding the selected stop in 09."
+  },
+  {
+    "idA": "04",
+    "idB": "12",
+    "verdict": "R",
+    "reason": "Both use persistent selection plus replaced main content. 04 keeps independent all-five-game score/provenance context and source navigation; 12 keeps team/game ring and one shelf. Phone retains 04 score rail disclosure and program select versus 12 diagram then shelf. This is a narrow related-family judgment, not permission to copy the generic readers."
+  },
+  {
+    "idA": "04",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "04 is three-part program navigation, reader and persistent score rail. 15 is a period/lane planner with row-attached agendas. Phone exposes program and scores in 04 versus period selection and agenda/calendar modes in 15."
+  },
+  {
+    "idA": "04",
+    "idB": "18",
+    "verdict": "R",
+    "reason": "Both retain context beside primary reading. 04 replaces one program while all five scores remain independently visible; 18 keeps all chapter evidence in one continuous document and changes the stage with scroll/record selection. Phone keeps program selection and expandable score rail in 04 versus a compact persistent stage and continuous article in 18."
+  },
+  {
+    "idA": "05",
+    "idB": "06",
+    "verdict": "R",
+    "reason": "Both contain long vertical reading. 05 is one fixed topic-ordered anchor document despite oversized typography; 06 materially filters time-stamped entries by scope and source period. Phone keeps anchor flow versus filtered chronology."
+  },
+  {
+    "idA": "05",
+    "idB": "09",
+    "verdict": "D",
+    "reason": "05 retains every topic in one long anchor-addressed document; 09 replaces one selected stop document beside an overview. Phone retains 05 continuous article versus 09 map followed by only one stop reader."
+  },
+  {
+    "idA": "05",
+    "idB": "12",
+    "verdict": "D",
+    "reason": "05 uses continuous anchor flow and inline disclosures; 12 uses a persistent relational selector with a replaced shelf. Phone keeps those article versus ring-plus-reader context models."
+  },
+  {
+    "idA": "05",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "05 is a fixed continuous article with anchor jumps. 15 uses date columns/semantic lanes and inserts detail adjacent to a scheduled row. Phone preserves article in 05 versus period-filtered agenda/calendar in 15."
+  },
+  {
+    "idA": "05",
+    "idB": "18",
+    "verdict": "N",
+    "reason": "05 and 18 both keep every topic in a single long document reached by anchor jumps and local disclosures. Oversized poster type in 05 and a scroll-synced summary in 18 do not change that main architecture; phone remains continuous reading in both. Rework 18 beyond a pinned summary over the same anchor article."
+  },
+  {
+    "idA": "06",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "06 filters multiple source-dated log entries while retaining time order; 07 replaces an entry scene with one station document and navigation. Phone retains a dated filterable stream versus one station page."
+  },
+  {
+    "idA": "06",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "06 is a collection filtered by date/scope. 10 is a task document with a distinct secondary evidence inspector and explicit return context. Phone retains log flow versus inspector replacing task document with Back."
+  },
+  {
+    "idA": "06",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "06 filters many dated entries around a chronology spine; 13 unfolds a single chapter among persistent vertical spines and can collapse all chapters. Phone preserves dated stream versus unfolding chapter inventory."
+  },
+  {
+    "idA": "06",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "06 filters a source-dated collection; 16 browses franchise identity in a horizontal selector and scoped profile tabs, with separate league reader. Phone keeps chronological filters in 06 versus selected franchise and tabbed detail in 16."
+  },
+  {
+    "idA": "06",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "06 filters multiple dated entries around a chronological spine. 19 filters an alphabetic entity index and inserts a dossier beneath one franchise, preserving neighboring identities. Phone retains dated stream versus identity list with inline tabbed dossier."
+  },
+  {
+    "idA": "07",
+    "idB": "09",
+    "verdict": "N",
+    "reason": "The room is only an entry selector before station-rail plus generic-reader pages; 09 uses route selector plus generic-reader pages. The new scene does not produce a different primary information reveal. Phone still chooses one subject and reads its long document. Rework 07 station content to stay spatially local or support a distinct concurrent working model."
+  },
+  {
+    "idA": "07",
+    "idB": "12",
+    "verdict": "N",
+    "reason": "Room/locker versus orbital imagery hides the same selector-to-one-subject-reader family. 07 swaps scene for station rail; 12 keeps ring beside shelf, but actual content becomes generic long subject documents in both and phone selects one document. Rework one primary interaction/context model before advancing."
+  },
+  {
+    "idA": "07",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "07 enters a room station then replaces it with a single subject reader. 15 retains temporal/semantic planner coordinates and attaches detail at scheduled rows; phone transforms to date-scoped agenda/calendar rather than station page."
+  },
+  {
+    "idA": "07",
+    "idB": "18",
+    "verdict": "R",
+    "reason": "Both expose subject reading with context. 07 replaces its entry room with one station document and navigation; 18 leaves all chapters in one continuous evidence document and synchronizes a separate stage to scroll or record choice. Phone keeps one replaced station page versus continuous chapters under a compact retained stage."
+  },
+  {
+    "idA": "08",
+    "idB": "09",
+    "verdict": "D",
+    "reason": "08 compares two selected teams in aligned metric/roster rows and changes both sides together; 09 chooses a stop and replaces one generic reader. Phone retains compact pair identity plus your/opponent side switching in 08 versus overview then one stop in 09."
+  },
+  {
+    "idA": "08",
+    "idB": "12",
+    "verdict": "D",
+    "reason": "08 is a paired comparison with aligned metric rows and paired rosters; 12 selects team/game nodes into a single shelf. Phone keeps 08 pair context and side switch rather than 12 ring then generic shelf."
+  },
+  {
+    "idA": "08",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "08 compares two teams along shared metric rows; 15 compares source periods and content lanes, inserting row-attached agendas. Phone preserves pair/side switching in 08 versus period and agenda/calendar switching in 15."
+  },
+  {
+    "idA": "08",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "08 aligns two teams across shared comparison rows and roster sides. 18 follows one narrative document with a scroll-synced record summary. Phone retains pair identity and your/opponent side switching in 08 versus compact stage above sequential chapters in 18."
+  },
+  {
+    "idA": "09",
+    "idB": "10",
+    "verdict": "R",
+    "reason": "Both use selection into subject documents. 09 retains route overview while replacing the reader; 10 opens an evidence inspector alongside the retained task document and supports Back return. Phone preserves route-before-reader in 09 versus a separate inspector view returning to its task in 10."
+  },
+  {
+    "idA": "09",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "09 uses persistent route selector plus one replaced reader. 13 expands a spread in place between retained chapter spines and supports all-closed overview. Phone retains those different context/reveal models."
+  },
+  {
+    "idA": "09",
+    "idB": "16",
+    "verdict": "N",
+    "reason": "Route nodes versus franchise portrait strip are different selector silhouettes, but secondary league material in 16 again resolves to a conventional navigation rail and interchangeable generic documents, like 09 selected-stop reader. Both phone models select context and read one long document. Rework one into local/concurrent reveal rather than another selector-plus-reader."
+  },
+  {
+    "idA": "09",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "09 replaces one selected stop reader beside a route. 19 inserts a tabbed dossier directly below its selected franchise within the searchable index, preserving neighboring entries. Phone keeps route-before-reader versus inline entity expansion and Escape return to origin."
+  },
+  {
+    "idA": "10",
+    "idB": "12",
+    "verdict": "R",
+    "reason": "Both select a working subject. 10 has a true second evidence inspector beside the retained task document; 12 feeds one shelf from the orbit. Phone replaces 10 task with inspector and explicit return, whereas 12 appends the chosen shelf after its diagram."
+  },
+  {
+    "idA": "10",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "10 is task document plus secondary inspector/back stack; 15 is time/lane planner with agendas attached at selected rows. Phone keeps task/inspector return in 10 versus date-scoped agenda/calendar in 15."
+  },
+  {
+    "idA": "10",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "10 switches task documents and opens a second inspector beside a retained task; 18 keeps all chapter evidence continuously in the page and changes a separate stage with scroll. Phone uses task/inspector replacement and Back in 10 versus compact retained summary above continuous chapters in 18."
+  },
+  {
+    "idA": "11",
+    "idB": "12",
+    "verdict": "D",
+    "reason": "11 searches mixed teams, players and tasks and expands answers directly beneath result rows, retaining result context. 12 uses spatial selector feeding one separate shelf. Phone preserves inline search results in 11 versus ring followed by selected shelf in 12."
+  },
+  {
+    "idA": "11",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "11 searches and opens answers under matching result rows; 15 navigates scheduled period/lane positions and attached agendas. Phone retains query/result expansion versus selected-period agenda/calendar."
+  },
+  {
+    "idA": "11",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "11 starts with mixed search and expands answers beneath matching result rows while query/result context persists. 18 starts with sequential chapter reading and changes a pinned summary as the continuous document scrolls. Phone preserves search-result expansion versus continuous narrative under a context stage."
+  },
+  {
+    "idA": "12",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "12 keeps a relational overview and replaces one separate shelf. 13 expands one chapter in flow between retained chapter spines with all-folded state. Phone keeps ring-before-reader versus chapter unfolding."
+  },
+  {
+    "idA": "12",
+    "idB": "16",
+    "verdict": "N",
+    "reason": "Orbit and portrait bench both select a franchise/game and send substantive detail to a generic shelf/profile reader; 16 league material also becomes rail-plus-reader. Phone retains one selector then one selected long document. Rework one primary reveal model, not only portrait/ring arrangement."
+  },
+  {
+    "idA": "12",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "12 uses a ring feeding a separate replaced shelf. 19 expands an entity-local dossier beneath its franchise row, retaining adjacent identities and allowing roster/form tabs within that dossier. Phone preserves ring-then-reader versus inline searchable index/dossier."
+  },
+  {
+    "idA": "13",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "13 unfolds one subject chapter between fixed inventory spines. 15 lays items in period columns/semantic lanes and inserts an agenda beside the clicked row. Phone keeps chapter inventory versus date-scoped agenda/calendar controls."
+  },
+  {
+    "idA": "13",
+    "idB": "18",
+    "verdict": "R",
+    "reason": "Both organize long-form subject chapters. 13 opens one spread between retained folded spines and supports all-closed inventory; 18 keeps all six chapters continuously visible and synchronizes a separate stage with scrolling. Phone retains vertical unfolding versus continuous chapters beneath compact persistent context."
+  },
+  {
+    "idA": "14",
+    "idB": "15",
+    "verdict": "D",
+    "reason": "14 retains four separately scrolling channels and cross-links move focus/position without replacing the other channels. 15 uses a normal-flow period/lane planner with attached agendas. Phone gives 14 one active bounded channel with retained place versus 15 date-scoped agenda/calendar."
+  },
+  {
+    "idA": "14",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "14 retains four independent reading panes and cross-links scroll/focus a target without replacing the other channels. 18 has one normal-flow continuous evidence document plus a synchronized context stage. Phone shows one active bounded channel with saved place in 14 versus whole-page chapter scrolling under the stage in 18."
+  },
+  {
+    "idA": "15",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "15 uses period columns and semantic lanes with agendas attached at scheduled rows; 16 is franchise selection plus profile tabs and a separate league reader. Phone retains date-scoped agenda/calendar versus selected franchise identity and tabs."
+  },
+  {
+    "idA": "15",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "15 lays scheduled records across source periods and semantic lanes, attaching an agenda at a selected row. 19 organizes alphabetic franchises with entity-local dossier tabs and search. Phone gives period-scoped agenda/calendar in 15 versus searchable identity list with inline dossier in 19."
+  },
+  {
+    "idA": "16",
+    "idB": "18",
+    "verdict": "R",
+    "reason": "Both pair retained context with subject detail. 16 selects franchise identity in a portrait strip, replaces profile tabs and can switch to a separate league reader; 18 retains all chapters continuously and changes a context stage by scroll or record selection. Phone keeps selected franchise/profile tabs versus continuous evidence under a compact summary."
+  },
+  {
+    "idA": "17",
+    "idB": "18",
+    "verdict": "D",
+    "reason": "17 uses a semantic ledger with comparable fields, sortable/filterable rows and entity-local expansions. 18 uses a continuous narrative and scroll-synced context summary. Phone keeps ledger field selection and inline rows in 17 versus chapter scrolling under compact stage in 18."
+  },
+  {
+    "idA": "18",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "18 keeps all topic chapters in continuous reading flow while scroll changes a separate stage. 19 searches alphabetic entity entries and inserts a dossier beneath the selected franchise while neighbors remain. Phone keeps continuous chapter/stage relationship versus identity-local expansion and close/return."
+  }
+]

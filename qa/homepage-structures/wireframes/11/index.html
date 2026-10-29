@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GOAT Hoopers — Command index / Study 11</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#query">Skip to search</a>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="GOAT Hoopers home">GOAT<span>Hoopers</span></a>
+    <nav aria-label="Primary"><a href="/" aria-current="page">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><button type="button" id="tools-trigger">All destinations</button></nav>
+    <a class="comparison" id="comparison" href="?view=public">View public edition</a>
+  </header>
+
+  <main id="main">
+    <div class="index-heading"><p id="edition-label">The league, at hand.</p><p>11 / Command index</p></div>
+    <h1>What’s your next move?</h1>
+    <form class="search" role="search" id="search-form">
+      <label for="query">Search this league</label>
+      <div class="query-line"><input id="query" type="search" autocomplete="off" spellcheck="false" placeholder="A player, a team, a task…" aria-describedby="query-help"><button id="clear-query" type="button" hidden>Clear</button><button type="submit" class="find">Find</button></div>
+      <p id="query-help">Local index. Try <button type="button" data-query="Reaves">Reaves</button>, <button type="button" data-query="Embiid">Embiid</button>, or <button type="button" data-query="this week">this week</button>.</p>
+    </form>
+    <div class="index-controls">
+      <div class="filters" role="group" aria-label="Result type"><button type="button" data-filter="all" aria-pressed="true">Everything</button><button type="button" data-filter="team" aria-pressed="false">Teams</button><button type="button" data-filter="player" aria-pressed="false">Players</button><button type="button" data-filter="task" aria-pressed="false">Tasks</button></div>
+      <label class="sort-label" for="result-sort">Order <select id="result-sort"><option value="relevance">Best match</option><option value="name">Name A–Z</option></select></label>
+    </div>
+    <div class="index-caption"><h2 id="result-heading">Start with what matters</h2><p id="result-count" role="status" aria-live="polite"></p></div>
+    <div id="results"></div>
+    <button id="more-results" type="button" hidden>Show more results</button>
+    <p class="index-end">Find a name. Open its context. Keep moving.</p>
+  </main>
+  <footer><p><strong>Offline structural study.</strong> All current records, scores, modeled prices, form, news, moves and AI examples are synthetic. Fixture checked Nov 12, 2026; that is not today’s date.</p><p>Dated October editorial is a draft/lookback, separate from the synthetic current Week 3. Local search performs no AI generation or network lookup. Public/member switches are fixture comparisons, not authentication.</p><p><a id="comparison-footer" href="?view=public">View public edition</a><a href="/weekly">Weekly archive</a><a href="/history">League history</a><a href="/trade-analyzer">Trade analyzer</a></p></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

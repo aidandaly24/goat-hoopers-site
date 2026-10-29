@@ -1,0 +1,128 @@
+[
+  {
+    "idA": "01",
+    "idB": "02",
+    "verdict": "D",
+    "reason": "Desktop: 01 keeps matchup, picks, member material, editorial, directory and archive in one continuous multi-column document; 02 keeps a broad six-position overview beside one replaced notes reader. Phone: 01 remains one long flowing document with anchor/disclosure navigation; 02 keeps its paired spatial overview above the selected reader and moves focus to that reader, with an explicit return to the overview."
+  },
+  {
+    "idA": "01",
+    "idB": "03",
+    "verdict": "D",
+    "reason": "Desktop: 01 is one document with in-place disclosures; 03 is a fixed-height horizontal chapter viewport with independent vertical chapter scroll, inert offscreen chapters and real Left/Right navigation. Phone: 01 is a long complete page; 03 retains one active scrollable chapter and a fixed Previous/picker/Next bar. The club scroll position survived leaving and returning on both sizes."
+  },
+  {
+    "idA": "01",
+    "idB": "04",
+    "verdict": "D",
+    "reason": "Desktop: 01 exposes successive sections in a continuous spread; 04 replaces a central program between a source selector and a persistent independently actionable five-game score rail. Phone: 01 keeps the full vertical document; 04 selects one program and preserves a separate score summary/disclosure that can replace the current program with a selected game."
+  },
+  {
+    "idA": "01",
+    "idB": "05",
+    "verdict": "N",
+    "reason": "Desktop: both begin with the current pair and continue through saved picks, member value/form, league identities/directory, dated reading, archive and tools in one anchor-addressed document; details expand in place. 01 uses columns/ledger rows where 05 uses staggered display text and inline name runs, but those local geometry and typography changes do not change the dominant architecture or navigation. Phone: both become the same long section sequence with a collapsed index and inline disclosures. Required: rework one into a different task/reveal model on both sizes, rather than another continuous anchored home document."
+  },
+  {
+    "idA": "01",
+    "idB": "06",
+    "verdict": "R",
+    "reason": "Shared family: both support continuous vertical reading and native in-place evidence disclosures. Desktop difference: 06 organizes paired annotation/evidence around a central dated spine and its audience/date controls actually remove events; 01 has fixed thematic sections and anchor jumps. Phone difference: 06 keeps dated event groups plus working topic/period filters; 01 keeps its fixed full thematic sequence. This is more than a change of section order."
+  },
+  {
+    "idA": "01",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "Desktop: 01 is an uninterrupted reading document with local disclosures; 07 starts at a six-destination overview, hides it on entry and replaces the working sheet through a station selector. Phone: 01 retains the whole long document; 07 retains paired objects in the entry overview, then changes to one selected station with Back/Close controls. The room art alone earns no distinction; the different reveal model does."
+  },
+  {
+    "idA": "02",
+    "idB": "03",
+    "verdict": "R",
+    "reason": "Shared family: topic selection determines the reader. Desktop difference: 02 keeps its large six-position data overview next to the reader, while 03 uses full-width side-by-side chapters with independent scroll and retained reading positions. Phone difference: 02 retains its large paired overview above the selected body reader; 03 replaces chapters inside a bounded viewport with a persistent bottom picker and Previous/Next controls. Pointer and keyboard changes were verified."
+  },
+  {
+    "idA": "02",
+    "idB": "04",
+    "verdict": "R",
+    "reason": "Shared family: a persistent selector replaces one primary reader. Desktop difference: 02 uses one broad spatial overview and one narrow notes column; 04 has a narrow source selector, a broad program and an independent five-game score context that remains available during team/editorial reading and can take over program. Phone difference: 02 keeps overview above notes; 04 uses a program picker plus separate score summary/disclosure. Selecting game 2 while reading editorial really changed the program."
+  },
+  {
+    "idA": "02",
+    "idB": "05",
+    "verdict": "D",
+    "reason": "Desktop: 02 has a persistent six-position overview and one replaced notes column; 05 is a single continuous document with anchor jumps, inline disclosures and a local searchable name section. Phone: 02 retains its spatial overview before the selected reader and an explicit return; 05 simply flows through all sections with an expandable text index. The distinction is the information reveal model, not the type treatment."
+  },
+  {
+    "idA": "02",
+    "idB": "06",
+    "verdict": "D",
+    "reason": "Desktop: 02 navigates six topic positions into a single adjacent reader; 06 reads multiple date-bound events around a spine and filters their membership by topic and source period. Phone: 02 retains the paired overview plus one notes stream; 06 keeps dated event groups and working filters, including a one-event completed-week state. Navigation changes an event set in 06, rather than selecting a topic drawer."
+  },
+  {
+    "idA": "02",
+    "idB": "07",
+    "verdict": "N",
+    "reason": "Desktop: both ultimately offer six topical selectors feeding one ordinary reader. 02 retains a court-shaped selector beside it; 07 adds a room-shaped entry screen, then hides that room and substitutes a narrow station rail beside the sheet. That extra cover and changed selector width do not provide a different working task or reveal model. Phone: 02 retains the overview above notes and 07 reduces it to six compact buttons, but both work as one selected vertical topic reader. Required: rework one so spatial navigation governs substantive working states, with specialized in-place reveals or another distinct interaction architecture on both sizes; changing the scene or rail decoration is insufficient."
+  },
+  {
+    "idA": "03",
+    "idB": "04",
+    "verdict": "R",
+    "reason": "Shared family: selecting a destination changes the primary topic. Desktop difference: 03 has adjacent full-width chapters, independently retained vertical scroll and a fixed bottom chapter bar; 04 uses one central document with source and independently actionable score rails. Phone difference: 03 retains a bounded active chapter and bottom navigation; 04 uses a program picker, body scrolling and a separate score disclosure. The persistent score context and the chapter reading model were both exercised."
+  },
+  {
+    "idA": "03",
+    "idB": "05",
+    "verdict": "D",
+    "reason": "Desktop: 03 replaces full-width horizontal chapters and retains their individual scroll positions; 05 keeps all thematic regions in one scrolling page and expands detail inline. Phone: 03 keeps chapter replacement and a fixed bottom picker; 05 remains a long complete document reached by text-index anchors. Large type in either study is irrelevant to this distinction."
+  },
+  {
+    "idA": "03",
+    "idB": "06",
+    "verdict": "D",
+    "reason": "Desktop: 03 is a bounded horizontal chapter reader with separate internal scroll and sequential chapter controls; 06 is a vertically ordered date log whose filter controls change the set of visible events. Phone: 03 shows one active chapter with a fixed bottom picker; 06 keeps a dated stream with topic/period controls above it. Verified period selection reduced 06 to completed Week 2, while 03 retained the club reading position across chapter changes."
+  },
+  {
+    "idA": "03",
+    "idB": "07",
+    "verdict": "R",
+    "reason": "Shared family: selected topics replace a main reading surface. Desktop difference: 03 exposes actual adjacent full-width chapters, supports reader Left/Right navigation and retains each chapter scroll; 07 uses a replaceable body sheet with a station rail and a separate optional overview/Back/Close cycle. Phone difference: 03 keeps a fixed bottom picker and bounded chapter scroll; 07 uses compact top station buttons and normal long body scrolling, returning to the room on Close. The room drawing itself is not evidence."
+  },
+  {
+    "idA": "04",
+    "idB": "05",
+    "verdict": "D",
+    "reason": "Desktop: 04 replaces one program while source choices and five-game scores remain separately available; 05 reads all thematic regions in one long anchor document. Phone: 04 preserves a program picker plus a separate score disclosure that can switch the program; 05 collapses to continuous text with an expandable index and in-place evidence. Both interaction models were exercised beyond the opening matchup."
+  },
+  {
+    "idA": "04",
+    "idB": "06",
+    "verdict": "D",
+    "reason": "Desktop: 04 has simultaneous source/program/scores and selection replaces the program; 06 has a chronological annotation/evidence spine and controls that filter multiple dated events. Phone: 04 retains separate program and score controls; 06 retains date groups and topic/period filtering. Selecting a score from editorial in 04 and reducing 06 to completed Week 2 produce fundamentally different context changes."
+  },
+  {
+    "idA": "04",
+    "idB": "07",
+    "verdict": "R",
+    "reason": "Shared family: a topic selector replaces the central reading sheet. Desktop difference: 04 preserves an independent five-game score context alongside every program; 07 has only station navigation beside its reader after hiding the room. Phone difference: 04 keeps a separate score summary/disclosure and program picker, while 07 has a six-button station strip and Back/Close cycle with no independently preserved score context. That persistent second information context is substantive; room illustration is not."
+  },
+  {
+    "idA": "05",
+    "idB": "06",
+    "verdict": "R",
+    "reason": "Shared family: both have long vertical reading and in-place evidence disclosures. Desktop difference: 05 has a fixed anchor sequence with staggered text/name runs; 06 uses dated paired events around a spine and actual topic/period filters. Phone difference: 05 retains all thematic regions in order, while 06 retains dated grouping and can reduce the stream to one completed-week event. The working facets make this related but meaningfully different, beyond typography or section reordering."
+  },
+  {
+    "idA": "05",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "Desktop: 05 is a continuous anchored document with local expansions; 07 uses a spatial entry followed by selected station replacement and a Back/Close cycle. Phone: 05 remains one long thematic flow, while 07 retains paired overview objects before entry and then shows only the selected station under compact station navigation. The replacement model, not the illustration or type scale, establishes the distinction."
+  },
+  {
+    "idA": "06",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "Desktop: 06 keeps a chronological set of events with topic/date filtering around a spine; 07 enters a station and replaces a single working sheet from a topic selector. Phone: 06 retains date groups and working facets, while 07 retains an entry overview followed by one station with Back/Close controls. Both have vertical content, but its membership and navigation relationships are different."
+  }
+]

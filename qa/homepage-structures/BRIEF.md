@@ -38,3 +38,7 @@ Read `../../reference-notes/craft.md` from your assigned folder as part of your 
 ### Known fixture conflict to avoid
 
 The preserved synthetic `home.edition.game.teamIds` is1/2 while that dated edition's historical headline/prose names1/5. Do not combine those as one asserted result. Current Week3 comes from directory/personal.currentMatchup; dated narrative should use the coherent `data.archive` entries (2026-W41 upcoming1/5 and2026-W40 historical final5/7) with their source/date/draft qualifiers. The common historical fixture is preserved unchanged for traceability; document this handling. It does not authorize new data or production corrections.
+
+### Parent inspection of first6, after5fe0639
+
+Desktop contact sheets show meaningful differences but are not acceptance. Repeated old-style header chrome and long synthetic disclaimers consume phone firstscreens, especially01/04. Keep an unmistakable compact **Synthetic concept** label, with complete provenance in an accessible disclosure. Essential stale/missing/unknown qualifiers remain visible in context. All destinations must remain reachable, but do not inherit one multi-link header into every architecture. Design navigation from your model (chapter control, channel index, map list, row/field controls, etc.). Compact status is not permission to hide truthfulness or information. Preserve all20 first structures before full polished iterations; independent geometry/live/full-state review gates advancement.

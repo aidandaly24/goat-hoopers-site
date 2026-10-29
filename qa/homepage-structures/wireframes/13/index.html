@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GOAT Hoopers — Folding atlas</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#atlas">Skip to the atlas</a>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers"></a>
+    <div class="imprint"><strong>A league in five chapters</strong><span>Folding atlas / structure study 13</span></div>
+    <nav class="routes" aria-label="Site"><a href="/">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/teams">Teams</a><button data-open="tools">All destinations</button></nav>
+  </header>
+  <div class="edition-line"><p><strong>Synthetic fixture</strong> · current scores, records, prices, news, form and AI. Dated editorial is labelled separately.</p><a id="compare" href="?view=public">Compare public edition</a></div>
+  <main id="atlas" tabindex="-1" aria-label="Folding atlas">
+    <div class="atlas-toolbar"><span id="edition-name"></span><p>Open a spine to unfold its pages.</p><button id="back-spread" disabled>Previous spread</button></div>
+    <nav class="fore-edge" aria-label="Neighbouring chapter spines"><span>Along this edge</span><div id="neighbour-spines"></div></nav>
+    <div id="chapters"></div>
+  </main>
+  <footer><p><strong>GOAT Hoopers / Offline structural study 13.</strong> Grayscale fixture. No live providers or model generation. Current fixture checked Nov 12, 2026; this is not today's league state.</p><a href="/weekly">Weekly archive</a><a href="/history">League history</a><a href="/transactions">Transactions</a></footer>
+  <p id="announcer" class="sr-only" role="status" aria-live="polite"></p>
+  <script type="module" src="./atlas.js"></script>
+</body>
+</html>

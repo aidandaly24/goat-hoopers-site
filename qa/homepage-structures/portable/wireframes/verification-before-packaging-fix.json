@@ -1,0 +1,203 @@
+{
+  "method": "Self-contained bundle via the existing permitted localhost development server, all advertised states; no dependent HTTP requests. Browser administrator blocks file://, so offline file opening is unverified. No browser-policy flags or external proxy used.",
+  "results": [
+    {
+      "id": "01",
+      "view": "member",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'01\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "01",
+      "view": "public",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'01\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "02",
+      "view": "member",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'02\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "02",
+      "view": "public",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'02\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "03",
+      "view": "member",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'03\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "03",
+      "view": "public",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'03\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "04",
+      "view": "member",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'04\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "04",
+      "view": "public",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'04\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "05",
+      "view": "member",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'05\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "05",
+      "view": "public",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'05\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "06",
+      "view": "member",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'06\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "06",
+      "view": "public",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'06\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "07",
+      "view": "member",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'07\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "07",
+      "view": "public",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'07\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "08",
+      "view": "member",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'08\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "08",
+      "view": "public",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'08\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "10",
+      "view": "member",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'10\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "10",
+      "view": "public",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'10\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "11",
+      "view": "member",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'11\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "11",
+      "view": "public",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'11\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "12",
+      "view": "member",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'12\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    },
+    {
+      "id": "12",
+      "view": "public",
+      "pass": false,
+      "error": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-study-ready=\\'12\\']') to be visible\u001b[22m\n",
+      "errors": [
+        "Invalid or unexpected token"
+      ]
+    }
+  ]
+}

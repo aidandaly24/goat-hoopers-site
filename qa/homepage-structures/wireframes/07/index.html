@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GOAT Hoopers · Clubhouse theatre · Study 07</title>
+  <link rel="stylesheet" href="./stage.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to clubhouse</a>
+  <header class="masthead">
+    <a class="wordmark" href="#room" data-go="room" aria-label="GOAT Hoopers home"><b>GOAT</b><span>HOOPERS<br>THE CLUBHOUSE</span></a>
+    <nav aria-label="Site destinations"><a href="#room" data-go="room">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a><details class="more"><summary>More</summary><div><a href="/ai-decides">AI Decides</a><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/trade-analyzer">Trade analyzer</a><a href="/weekly">Weekly archive</a></div></details></nav>
+    <a id="edition-toggle" class="edition-toggle"></a>
+  </header>
+  <div class="fixture-line"><strong>STRUCTURAL STUDY 07</strong><span>Synthetic fixture · Nov 12, 2026 · grayscale, offline</span></div>
+  <main id="main" tabindex="-1">
+    <section id="room" aria-labelledby="room-title">
+      <div class="room-intro"><div><p class="eyebrow">Ten teams. One room.</p><h1 id="room-title">Come on in.</h1></div><p>Choose a station to get to work.<br><span id="visitor-label"></span></p></div>
+      <div class="theatre" aria-label="Side-on clubhouse with six information stations">
+        <svg class="set" viewBox="0 0 1320 650" preserveAspectRatio="none" aria-hidden="true"><polygon class="sidewall" points="0,0 154,68 154,438 0,555"/><polygon class="backwall" points="154,68 1320,5 1320,438 154,438"/><polygon class="floor" points="154,438 1320,438 1320,650 0,650 0,555"/><path d="M154 68V438L0 555 M154 438H1320 M420 438L325 650 M760 438L820 650 M1090 438L1300 650"/><path class="ceiling" d="M0 0L154 68L1320 5"/><path d="M172 105L1287 47 M172 116L1287 58"/></svg>
+        <div class="room-sign">GOAT HOOPERS<br><span>CLUBHOUSE · 2026</span></div>
+        <button class="station score-station" data-go="week" id="origin-week"><span class="station-number">01 · SCORE WALL</span><strong>Week 3</strong><span id="room-matchup"></span><span class="enter">Enter score wall</span></button>
+        <button class="station locker-station" data-go="locker" id="origin-locker"><span class="station-number">02 · <span id="locker-name">YOUR LOCKER</span></span><strong id="room-locker"></strong><span id="room-locker-detail"></span><i aria-hidden="true"></i><span class="enter">Open locker</span></button>
+        <button class="station league-station" data-go="league" id="origin-league"><span class="station-number">03 · TEAM LOCKERS</span><strong>Meet the ten.</strong><span>10 managers<br>228 players</span><span class="enter">Explore the league</span></button>
+        <button class="station press-station" data-go="press" id="origin-press"><span class="station-number">05 · PRESS ROOM</span><strong>The next<br>chapter</strong><span>Oct 5–11<br>Dated draft edition</span><span class="enter">Read &amp; browse archive</span></button>
+        <button class="station scout-station" data-go="scout" id="origin-scout"><span class="station-number">04 · SCOUTING BENCH</span><strong id="room-scout">Who’s on form?</strong><span id="room-scout-detail">The notebook is open.</span><span class="enter">Take a seat</span></button>
+        <button class="station games-station" data-go="games" id="origin-games"><span class="station-number">06 · GAMES CORNER</span><strong>Got a minute?</strong><span>Free throw practice<br>Stocks &amp; trade tools</span><span class="enter">Step inside</span></button>
+        <div class="bench-shadow" aria-hidden="true"></div><div class="bench-front" aria-hidden="true"><span>THE BENCH</span></div>
+      </div>
+      <nav class="station-list" aria-label="Direct station list"><span>Go straight to</span><button data-go="week">01 Score wall</button><button data-go="locker" id="locker-direct">02 Your locker</button><button data-go="league">03 Team lockers</button><button data-go="scout">04 Scouting bench</button><button data-go="press">05 Press room</button><button data-go="games">06 Games corner</button></nav>
+    </section>
+    <section id="workspace" hidden aria-labelledby="workspace-title">
+      <div class="workspace-controls"><button id="back-button">Back to room</button><p id="breadcrumb"></p><button id="close-button">Close station</button></div>
+      <div class="entered-stage">
+        <nav class="station-rail" aria-label="Change clubhouse station"><span class="rail-caption">IN THE ROOM</span><button data-go="week">01<span>Score wall</span></button><button data-go="locker" id="rail-locker">02<span>Your locker</span></button><button data-go="league">03<span>Team lockers</span></button><button data-go="scout">04<span>Scouting bench</span></button><button data-go="press">05<span>Press room</span></button><button data-go="games">06<span>Games corner</span></button><button data-go="room" class="rail-exit">Room view</button></nav>
+        <div id="reader" class="reader"></div>
+      </div>
+    </section>
+  </main>
+  <footer><p>Offline design fixture. Current records, scores, prices, form, news, moves and AI are synthetic. Dated approved identities and editorial are preserved. No live provider or authentication.</p><a href="/transactions">League transactions</a><a href="/trade-analyzer">Trade analyzer</a><a href="/teams">All teams</a></footer>
+  <script type="module" src="./stage.js"></script>
+</body>
+</html>

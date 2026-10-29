@@ -1,0 +1,432 @@
+{
+  "testedAt": "2026-10-29",
+  "browser": "Chromium / Playwright, local Python HTTP fixture",
+  "states": [
+    {
+      "width": 1440,
+      "state": "default",
+      "scroll": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 1440,
+      "state": "week",
+      "scroll": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 1440,
+      "state": "roster",
+      "scroll": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 1440,
+      "state": "search",
+      "scroll": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 1440,
+      "state": "directory",
+      "scroll": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 1440,
+      "state": "predictions",
+      "scroll": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 1440,
+      "state": "edition",
+      "scroll": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 1440,
+      "state": "league",
+      "scroll": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 390,
+      "state": "default",
+      "scroll": 390,
+      "viewport": 390
+    },
+    {
+      "width": 390,
+      "state": "week",
+      "scroll": 390,
+      "viewport": 390
+    },
+    {
+      "width": 390,
+      "state": "roster",
+      "scroll": 390,
+      "viewport": 390
+    },
+    {
+      "width": 390,
+      "state": "search",
+      "scroll": 390,
+      "viewport": 390
+    },
+    {
+      "width": 390,
+      "state": "directory",
+      "scroll": 390,
+      "viewport": 390
+    },
+    {
+      "width": 390,
+      "state": "predictions",
+      "scroll": 390,
+      "viewport": 390
+    },
+    {
+      "width": 390,
+      "state": "edition",
+      "scroll": 390,
+      "viewport": 390
+    },
+    {
+      "width": 390,
+      "state": "league",
+      "scroll": 390,
+      "viewport": 390
+    },
+    {
+      "width": 320,
+      "state": "default",
+      "scroll": 320,
+      "viewport": 320
+    },
+    {
+      "width": 320,
+      "state": "week",
+      "scroll": 320,
+      "viewport": 320
+    },
+    {
+      "width": 320,
+      "state": "roster",
+      "scroll": 320,
+      "viewport": 320
+    },
+    {
+      "width": 320,
+      "state": "search",
+      "scroll": 320,
+      "viewport": 320
+    },
+    {
+      "width": 320,
+      "state": "directory",
+      "scroll": 320,
+      "viewport": 320
+    },
+    {
+      "width": 320,
+      "state": "predictions",
+      "scroll": 320,
+      "viewport": 320
+    },
+    {
+      "width": 320,
+      "state": "edition",
+      "scroll": 320,
+      "viewport": 320
+    },
+    {
+      "width": 320,
+      "state": "league",
+      "scroll": 320,
+      "viewport": 320
+    }
+  ],
+  "assertions": [
+    {
+      "mixedSearchFirstResults": [
+        "Reaves DropperTeam / local context",
+        "Austin ReavesPlayer / local context",
+        "Your roster, pricedTask / local answer"
+      ]
+    },
+    {
+      "teams": 10,
+      "roster": 228
+    },
+    {
+      "directorySearchAndSort": true
+    },
+    {
+      "picks": 5,
+      "firstChoice35Confidence20": true
+    },
+    {
+      "savedModelPromptTimestampInputEvidence": true
+    },
+    {
+      "knownZeroPendingIncomplete": true
+    },
+    {
+      "rosterValues": 24
+    },
+    {
+      "unrelatedAnswerPreservesRosterDisclosure": true
+    },
+    {
+      "escapeCloseFocusReturn": true
+    },
+    {
+      "text200": true,
+      "state": "default",
+      "width": 320,
+      "scroll": 320
+    },
+    {
+      "text200": true,
+      "state": "week",
+      "width": 320,
+      "scroll": 320
+    },
+    {
+      "text200": true,
+      "state": "roster",
+      "width": 320,
+      "scroll": 320
+    },
+    {
+      "text200": true,
+      "state": "search",
+      "width": 320,
+      "scroll": 320
+    },
+    {
+      "text200": true,
+      "state": "directory",
+      "width": 320,
+      "scroll": 320
+    },
+    {
+      "text200": true,
+      "state": "predictions",
+      "width": 320,
+      "scroll": 320
+    },
+    {
+      "text200": true,
+      "state": "edition",
+      "width": 320,
+      "scroll": 320
+    },
+    {
+      "text200": true,
+      "state": "league",
+      "width": 320,
+      "scroll": 320
+    },
+    {
+      "publicNoPersonalTasks": true
+    },
+    {
+      "coherentArchiveSourceAndThreeSpotlights": true
+    },
+    {
+      "ai": "stale",
+      "rows": 5
+    },
+    {
+      "ai": "missing",
+      "rows": 0
+    },
+    {
+      "liveReducedMotionSameContent": true
+    }
+  ],
+  "errors": [],
+  "status": "passed",
+  "finalReflow": [
+    {
+      "width": 1440,
+      "state": "default",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "scrollTop": 0
+    },
+    {
+      "width": 1440,
+      "state": "week",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "scrollTop": 659
+    },
+    {
+      "width": 1440,
+      "state": "roster",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "scrollTop": 770
+    },
+    {
+      "width": 1440,
+      "state": "search",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "scrollTop": 596
+    },
+    {
+      "width": 1440,
+      "state": "directory",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "scrollTop": 874
+    },
+    {
+      "width": 1440,
+      "state": "predictions",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "scrollTop": 979
+    },
+    {
+      "width": 1440,
+      "state": "edition",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "scrollTop": 1299
+    },
+    {
+      "width": 1440,
+      "state": "league",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "scrollTop": 1090
+    },
+    {
+      "width": 390,
+      "state": "default",
+      "scrollWidth": 390,
+      "viewport": 390,
+      "scrollTop": 0
+    },
+    {
+      "width": 390,
+      "state": "week",
+      "scrollWidth": 390,
+      "viewport": 390,
+      "scrollTop": 693
+    },
+    {
+      "width": 390,
+      "state": "roster",
+      "scrollWidth": 390,
+      "viewport": 390,
+      "scrollTop": 822
+    },
+    {
+      "width": 390,
+      "state": "search",
+      "scrollWidth": 390,
+      "viewport": 390,
+      "scrollTop": 608
+    },
+    {
+      "width": 390,
+      "state": "directory",
+      "scrollWidth": 390,
+      "viewport": 390,
+      "scrollTop": 951
+    },
+    {
+      "width": 390,
+      "state": "predictions",
+      "scrollWidth": 390,
+      "viewport": 390,
+      "scrollTop": 1080
+    },
+    {
+      "width": 390,
+      "state": "edition",
+      "scrollWidth": 390,
+      "viewport": 390,
+      "scrollTop": 1468
+    },
+    {
+      "width": 390,
+      "state": "league",
+      "scrollWidth": 390,
+      "viewport": 390,
+      "scrollTop": 1209
+    },
+    {
+      "width": 320,
+      "state": "default",
+      "scrollWidth": 320,
+      "viewport": 320,
+      "scrollTop": 0
+    },
+    {
+      "width": 320,
+      "state": "week",
+      "scrollWidth": 320,
+      "viewport": 320,
+      "scrollTop": 737
+    },
+    {
+      "width": 320,
+      "state": "roster",
+      "scrollWidth": 320,
+      "viewport": 320,
+      "scrollTop": 915
+    },
+    {
+      "width": 320,
+      "state": "search",
+      "scrollWidth": 320,
+      "viewport": 320,
+      "scrollTop": 652
+    },
+    {
+      "width": 320,
+      "state": "directory",
+      "scrollWidth": 320,
+      "viewport": 320,
+      "scrollTop": 1068
+    },
+    {
+      "width": 320,
+      "state": "predictions",
+      "scrollWidth": 320,
+      "viewport": 320,
+      "scrollTop": 1222
+    },
+    {
+      "width": 320,
+      "state": "edition",
+      "scrollWidth": 320,
+      "viewport": 320,
+      "scrollTop": 1709
+    },
+    {
+      "width": 320,
+      "state": "league",
+      "scrollWidth": 320,
+      "viewport": 320,
+      "scrollTop": 1401
+    }
+  ],
+  "finalText200AllStates": true,
+  "default320TargetsAtLeast44": true,
+  "finalPublicMemberAllStates": true,
+  "finalErrors": [],
+  "finalSourceHashes": {
+    "index.html": "df6d5173fc51e7ddc9eec63000fb98543eb1053e9194d4ffb83154a6d85c1105",
+    "style.css": "89800c2c7a46b372fca3393d2e97ab2c407633981c5b3a17a8ff9d5299c988f3",
+    "app.js": "19e50c146165950181de13665a20589b290ceb2d2229ff930557f25f63b64dd5",
+    "STRUCTURE.md": "41cbea6c5dd55241fd979b5edd44f05c74ebee3ceaf9022ef7380402f8b1ebdd"
+  }
+}

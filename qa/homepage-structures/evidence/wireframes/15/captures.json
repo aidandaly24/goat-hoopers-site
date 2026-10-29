@@ -1,0 +1,1365 @@
+{
+  "id": "15",
+  "phase": "wireframes",
+  "source": [
+    {
+      "path": "qa/homepage-structures/wireframes/15/STRUCTURE.md",
+      "sha256": "42b2b25d1e06a783d9cd85fd999a24a4f89a12f85540dc4b98d0327ec250b78e",
+      "bytes": 13652
+    },
+    {
+      "path": "qa/homepage-structures/wireframes/15/app.js",
+      "sha256": "8a528e4bcbf780750a8c57607f9e0481417a3120a1de4b16bc67f96878cbc1ff",
+      "bytes": 25006
+    },
+    {
+      "path": "qa/homepage-structures/wireframes/15/index.html",
+      "sha256": "731280cc42f6d423c3195512254231e0a558137abc971f2471c95e40fa2c4de2",
+      "bytes": 1320
+    },
+    {
+      "path": "qa/homepage-structures/wireframes/15/style.css",
+      "sha256": "2a94a7999e51be042d984cfb23c252fa471fe1427e6d155ba005b39e06624eea",
+      "bytes": 13867
+    }
+  ],
+  "records": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "default",
+        "label": "Week planner overview"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-00-default.jpg",
+        "bytes": 225513,
+        "sha256": "73e1f536bfbf2298d5f4210821e68a3413a7e177ae63d2c177a72261853a8da8",
+        "width": 1440,
+        "height": 1823,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-00-default-viewport.jpg",
+        "bytes": 134641,
+        "sha256": "1f8a99c3500e958bb238d80ef3d489981e6496ed03b76a90ea8a8a7d4c4e90a0",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1823,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1823,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1823,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nYour pairing is marked in the current week.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nNov 2–9, 2026 · Completed Week 2\nWeek 3 · as of Nov 12 · Current Week 3\nLane\n2026 source schedule\n\tThe title everybody’s chasing\nSep 28–Oct 4, 2026\nDated editorial · draft\n\tThe next chapter\nOct 5–11, 2026\nDated editorial · draft\n\tGap\nNo intervening edition supplied\n\tCompleted Week 2\nNov 2–9, 2026\nNov 9 end exclusive · source period\n\tCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\n\nEditorial / all-day\t\ndraft edition · all-day\nThe title everybody’s chasing\n\t\ndraft edition · all-day\nThe next chapter\n\t\t\nNo edition supplied\n\t\nNo edition supplied\n\nDated evidence\t\nNo source item supplied\n\t\nNo source item supplied\n\t\t\nCompleted Week 2\nBest & rough week\n5 verified participants · synthetic\n\t\nNov 12 source check\nTeam wire & league moves\nNews, moves and observation times\n\nMatchup 1\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nNo matchup slate supplied\n\t\nYour pairing · Incomplete · Week 3\nReaves Dropper / Ware the Hoes At?\n0.0 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 2\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nNo matchup slate supplied\n\t\nIncomplete · Week 3\nStephon Castle’s Back / The Fun Guys\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 3\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nNo matchup slate supplied\n\t\nIncomplete · Week 3\nJosh Diddy’s Roster / Huff n’ Puff\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 4\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nNo matchup slate supplied\n\t\nIncomplete · Week 3\npapichooter / NeuralNets\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 5\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nNo matchup slate supplied\n\t\nIncomplete · Week 3\nLebron Theme Team / T Halibooty\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\nEmpty lanes mean"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "matchup",
+        "label": "Current matchup attached agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-01-matchup.jpg",
+        "bytes": 274322,
+        "sha256": "3e1df8ca9768485f5e18d43d2bec7623a966b4e1ddd9d69b8bd74b287d65c56c",
+        "width": 1440,
+        "height": 2287,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-01-matchup-viewport.jpg",
+        "bytes": 129034,
+        "sha256": "0cfc39958c4c1d54d27f39730b52f173bce5b5c4625b95f8060b461daf183ecb",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2287,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2287,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2287,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Matchup 1 agenda"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nYour pairing is marked in the current week.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nNov 2–9, 2026 · Completed Week 2\nWeek 3 · as of Nov 12 · Current Week 3\nLane\n2026 source schedule\n\tThe title everybody’s chasing\nSep 28–Oct 4, 2026\nDated editorial · draft\n\tThe next chapter\nOct 5–11, 2026\nDated editorial · draft\n\tGap\nNo intervening edition supplied\n\tCompleted Week 2\nNov 2–9, 2026\nNov 9 end exclusive · source period\n\tCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\n\nEditorial / all-day\t\ndraft edition · all-day\nThe title everybody’s chasing\n\t\ndraft edition · all-day\nThe next chapter\n\t\t\nNo edition supplied\n\t\nNo edition supplied\n\nDated evidence\t\nNo source item supplied\n\t\nNo source item supplied\n\t\t\nCompleted Week 2\nBest & rough week\n5 verified participants · synthetic\n\t\nNov 12 source check\nTeam wire & league moves\nNews, moves and observation times\n\nMatchup 1\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nNo matchup slate supplied\n\t\nYour pairing · Incomplete · Week 3\nReaves Dropper / Ware the Hoes At?\n0.0 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\n\n\nCURRENT WEEK 3 · CHECKED NOV 12\n\nMatchup 1 agenda\nClose agenda\nReaves Dropper · your team\naidandaly20 · current record 1–0\n0.0\nWare the Hoes At?\nAedan23 · current record 1–0\nPending\n\nIncomplete matchup · Week 3\n\n0.0 is a known score. Pending means no score is supplied. These figures are synthetic.\n\nHome roster\nAway roster\nSaved AI return\n\nReturned choice: Ware the Hoes At?\n\nReaves Dropper\n65%\nWare the Hoes At?\n35%\n\nIndependent confidence: 20%\n\nModel probability — not calibrated sports odds. The returned choice is preserved even when its probability is lower.\n\nModel, timestamp & evidence\nOpen AI Decides\n\nMatchup 2\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nNo matchup slate supplied\n\t\nIncomplete · Week 3\nStephon Castle’s Back / The Fun Guys\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 3\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nNo matchup "
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "edition",
+        "label": "Dated October editorial agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-02-edition.jpg",
+        "bytes": 366807,
+        "sha256": "3ad3d7fb64accf52b1c0d1665d516e3d25f38488b573dfe2f01be2d2065541aa",
+        "width": 1440,
+        "height": 3341,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-02-edition-viewport.jpg",
+        "bytes": 128243,
+        "sha256": "43472d7410c7c25a6d8727ca7d0c410e3241a1c5034e6b29d82fd888d5a5ae0e",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3341,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3341,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 3341,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The next chapter",
+          "Reaves Dropper gets the champ."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nYour pairing is marked in the current week.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nNov 2–9, 2026 · Completed Week 2\nWeek 3 · as of Nov 12 · Current Week 3\nLane\n2026 source schedule\n\tThe title everybody’s chasing\nSep 28–Oct 4, 2026\nDated editorial · draft\n\tThe next chapter\nOct 5–11, 2026\nDated editorial · draft\n\tGap\nNo intervening edition supplied\n\tCompleted Week 2\nNov 2–9, 2026\nNov 9 end exclusive · source period\n\tCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\n\nEditorial / all-day\t\ndraft edition · all-day\nThe title everybody’s chasing\n\t\ndraft edition · all-day\nThe next chapter\n\t\t\nNo edition supplied\n\t\nNo edition supplied\n\n\n\nALL-DAY EDITORIAL LANE\n\nThe next chapter\nClose agenda\n\nOCT 5–11, 2026 · DRAFT · UNPUBLISHED SAMPLE\n\nReaves Dropper gets the champ.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nReaves Dropper / Josh Diddy’s Roster · Opening-week watch · Upcoming dated pairing · no score\n\nProposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\n\nPLAYER OF WEEK\n\nNikola Jokić\n\nC · Josh Diddy’s Roster\n\nLast season’s standard\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG / 12.9 RPG / 10.7 APG\n\n2025–26 NBA averages\n\nSelection & source\n\nUNDERPERFORMER\n\nJoel Embiid\n\nC · Reaves Dropper\n\nLast-season lookback\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9 PPG / 7.7 RPG / 3.9 APG\n\n2025–26 NBA averages\n\nSelection & source\n\nONE TO WATCH\n\nAJ Dybantsa\n\nPF · NeuralNets\n\nNext week · preseason\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5 PPG / 6.8 RPG / 3.7 APG\n\n2025–26 college · BYU\n\nSelection & source\nDated happenings\nLonzo hits the wire · Oct 7\nLebron Theme Team dropped Lonzo Ball.\nTwo moves from NeuralNets · Oct 6\nMalik Monk and Ni"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "archive",
+        "label": "Historical final archive agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-03-archive.jpg",
+        "bytes": 289061,
+        "sha256": "c2eda7ebe48227b9210504637fc94161f9ed5d04fd21d4b4e7ad196ec244de88",
+        "width": 1440,
+        "height": 2394,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-03-archive-viewport.jpg",
+        "bytes": 128569,
+        "sha256": "b1791b99f31e3a0727e5738961655e09ec2079d9c9075850bd1271e8e4af7cba",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2394,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2394,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2394,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The title everybody’s chasing",
+          "The first crown belongs to vannweinkauf."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nYour pairing is marked in the current week.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nNov 2–9, 2026 · Completed Week 2\nWeek 3 · as of Nov 12 · Current Week 3\nLane\n2026 source schedule\n\tThe title everybody’s chasing\nSep 28–Oct 4, 2026\nDated editorial · draft\n\tThe next chapter\nOct 5–11, 2026\nDated editorial · draft\n\tGap\nNo intervening edition supplied\n\tCompleted Week 2\nNov 2–9, 2026\nNov 9 end exclusive · source period\n\tCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\n\nEditorial / all-day\t\ndraft edition · all-day\nThe title everybody’s chasing\n\t\ndraft edition · all-day\nThe next chapter\n\t\t\nNo edition supplied\n\t\nNo edition supplied\n\n\n\nALL-DAY EDITORIAL LANE\n\nThe title everybody’s chasing\nClose agenda\n\nSEP 28–OCT 4, 2026 · DRAFT · UNPUBLISHED SAMPLE\n\nThe first crown belongs to vannweinkauf.\n\nJosh Diddy’s Roster finished 17–4, then beat papichooter 326.0–251.5 in the inaugural final. That is the bar for the next season.\n\nJosh Diddy’s Roster / papichooter · A look back · 2025 final · Historical final 326.0–251.5\n\nHistorical recap of the verified 2025 final. This sample archive entry demonstrates browsing older weekly editions; it was not published by Muse.\n\nDated happenings\nA rebuild to follow · Franchise history\nRoster 8 changed hands after a 1–20 season: QBs Gremlins became NeuralNets.\nEdition sources\nOpen dated archive route\nAll editions\n\nDated evidence\t\nNo source item supplied\n\t\nNo source item supplied\n\t\t\nCompleted Week 2\nBest & rough week\n5 verified participants · synthetic\n\t\nNov 12 source check\nTeam wire & league moves\nNews, moves and observation times\n\nMatchup 1\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nNo matchup slate supplied\n\t\nYour pairing · Incomplete · Week 3\nReaves Dropper / Ware the Hoes At?\n0.0 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 2\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nNo matchup slate supplied\n\t\nIncomplete · Week 3\nStephon Castle’s Back / The Fun Guys\n105.5 / Pending\n\nAI returned away 35% · home 65% / "
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "completed",
+        "label": "Completed Week 2 source agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-04-completed.jpg",
+        "bytes": 293253,
+        "sha256": "76fdae64211bb5a734bf9248c34fec2c29a8b91e78fa2ed81be67c577543b667",
+        "width": 1440,
+        "height": 2366,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-04-completed-viewport.jpg",
+        "bytes": 137489,
+        "sha256": "256d43034fee04ed8a95754512b0d4b901a074536da1d4482925f3a4e2e6c09e",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2366,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2366,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2366,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Completed Week 2 agenda"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nYour pairing is marked in the current week.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nNov 2–9, 2026 · Completed Week 2\nWeek 3 · as of Nov 12 · Current Week 3\nLane\n2026 source schedule\n\tThe title everybody’s chasing\nSep 28–Oct 4, 2026\nDated editorial · draft\n\tThe next chapter\nOct 5–11, 2026\nDated editorial · draft\n\tGap\nNo intervening edition supplied\n\tCompleted Week 2\nNov 2–9, 2026\nNov 9 end exclusive · source period\n\tCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\n\nEditorial / all-day\t\ndraft edition · all-day\nThe title everybody’s chasing\n\t\ndraft edition · all-day\nThe next chapter\n\t\t\nNo edition supplied\n\t\nNo edition supplied\n\nDated evidence\t\nNo source item supplied\n\t\nNo source item supplied\n\t\t\nCompleted Week 2\nBest & rough week\n5 verified participants · synthetic\n\t\nNov 12 source check\nTeam wire & league moves\nNews, moves and observation times\n\n\n\nNOV 2–9, 2026 · END EXCLUSIVE\n\nCompleted Week 2 agenda\nClose agenda\n\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\n\nSynthetic completed-week fixture, not an official current award. Actual recorded fantasy points for current roster players with verified participation in the completed source week.\n\n5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\n\nBest week\nDamian Lillard\nRecorded weekly fantasy points\n45 pts\n3 GP\nTobias Harris\nRecorded weekly fantasy points\n39 pts\n3 GP\nJoel Embiid\nRecorded weekly fantasy points\n33 pts\n3 GP\nRough week\nDerrick White\nRecorded weekly fantasy points\n21 pts\n3 GP\nMyles Turner\nRecorded weekly fantasy points\n27 pts\n3 GP\nJoel Embiid\nRecorded weekly fantasy points\n33 pts\n3 GP\n\nThe small cohorts may overlap. DNP and unknown participation do not imply poor performance.\n\n\nMatchup 1\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nNo matchup slate supplied\n\t\nYour pairing · Incomplete · Week 3\nReaves Dropper / Ware the Hoes At?\n0.0 / Pending\n\nAI returned away 35% · home 65% / away 35% · confiden"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "team",
+        "label": "Member team notebook"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-05-team.jpg",
+        "bytes": 130433,
+        "sha256": "806cdc79a924526545c4124a8b40fcd5e0b887ee1b22f9302ede03aa1613ffd6",
+        "width": 1440,
+        "height": 1230,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-05-team-viewport.jpg",
+        "bytes": 100962,
+        "sha256": "3e8ebc53ee3974d660da120ed73841c2641e31abac5e92bbf990edac4572cd6b",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1230,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1230,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1230,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Reaves Dropper"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nMEMBER NOTEBOOK · SOURCE CHECK NOV 12, 2026, 12:00 PM UTC\n\nReaves Dropper\n\naidandaly20 · current 1–0 · standing 1/10 · 24 roster players\n\nMy team\nFull roster\nOpen your Week 3 agenda\n\nCURRENT MODELED FAAB VALUE\n\n$1095.25\n\n24 priced / 0 unpriced · in-season basis\nComputed Nov 12, 2026, 12:00 PM UTC · modeled, not a transaction or FAAB balance\n\nJoel Embiid\n$137.50\nUp 4.2% modeled quote\nAnthony Edwards\n$124.50\nUp 4.2% modeled quote\nAlperen Şengün\n$108.25\nUp 4.2% modeled quote\nAll 24 roster values & coverage\nRecorded team-value history\n\nRecorded team-value history unavailable; no line is invented.\n\nScouting watch\n\nOn form · in-season EMA fantasy points per game\n\nDamian Lillard\nAvailability status unknown\n38 EMA pts/GP\n8 observed games\nTobias Harris\nAvailability status unknown\n37 EMA pts/GP\n8 observed games\nJoel Embiid\nAvailability status unknown\n36 EMA pts/GP\n8 observed games\n\nEMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable.\n\nRead completed Week 2 agenda\nRead dated team wire & moves\nStocks player board\nTrade analyzer\nOffline design fixture · 2026 dates are supplied examples, not today.\nMember comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "league",
+        "label": "Searchable league book"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-06-league.jpg",
+        "bytes": 229887,
+        "sha256": "36cef768498cbe9e4b1b88c8db1aa7188e01ea2a00ae93c1ebdcfc59cae33d3f",
+        "width": 1440,
+        "height": 2611,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-06-league-viewport.jpg",
+        "bytes": 96573,
+        "sha256": "e4999bab05e83433df2a336ce19d1d49e06173011e70fcf5074c3351a872c887",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2611,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2611,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2611,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The league book"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\nThe league book\n\nStandings, ten roster faces, and every supplied player reference.\n\nSynthetic current records / PF / modeled values\nFind team, manager or player\nSort teams\nStanding rank\nTeam name\nRoster size\n10 of 10 teams · 228 player references\n1\nReaves Dropper · you\n\naidandaly20 · 24 players\n\nWeek 3 vs Ware the Hoes At? · incomplete\n\nJoel Embiid\n$137.50 modeled FAAB\n1 W / 0 L\nPF 320.5\nRoster & 2025 record\n2\nWare the Hoes At?\n\nAedan23 · 27 players\n\nWeek 3 vs Reaves Dropper · incomplete\n\nDomantas Sabonis\n$140.75 modeled FAAB\n1 W / 0 L\nPF 315.0\nRoster & 2025 record\n3\nStephon Castle’s Back\n\nTommyDieselfuel · 22 players\n\nWeek 3 vs The Fun Guys · incomplete\n\nShai Gilgeous-Alexander\n$134.25 modeled FAAB\n1 W / 0 L\nPF 309.5\nRoster & 2025 record\n4\nThe Fun Guys\n\nphilbiag · 22 players\n\nWeek 3 vs Stephon Castle’s Back · incomplete\n\nJalen Brunson\n$137.50 modeled FAAB\n1 W / 0 L\nPF 304.0\nRoster & 2025 record\n5\nJosh Diddy’s Roster\n\nvannweinkauf · 22 players\n\nWeek 3 vs Huff n’ Puff · incomplete\n\nStephen Curry\n$140.75 modeled FAAB\n1 W / 0 L\nPF 298.5\nRoster & 2025 record\n6\nHuff n’ Puff\n\nGriffinHealy · 23 players\n\nWeek 3 vs Josh Diddy’s Roster · incomplete\n\nDonovan Mitchell\n$131.00 modeled FAAB\n1 W / 0 L\nPF 293.0\nRoster & 2025 record\n7\npapichooter\n\npapichooter · 23 players\n\nWeek 3 vs NeuralNets · incomplete\n\nLuka Dončić\n$131.00 modeled FAAB\n1 W / 0 L\nPF 287.5\nRoster & 2025 record\n8\nNeuralNets\n\nNeuralNets · 22 players\n\nWeek 3 vs papichooter · incomplete\n\nGiannis Antetokounmpo\n$140.75 modeled FAAB\n1 W / 0 L\nPF 282.0\nRoster & 2025 record · previous manager\n9\nLebron Theme Team\n\nlordlx · 21 players\n\nWeek 3 vs T Halibooty · incomplete\n\nLeBron James\n$144.00 modeled FAAB\n1 W / 0 L\nPF 276.5\nRoster & 2025 record\n10\nT Halibooty\n\nTyreseHalibooty · 22 players\n\nWeek 3 vs Lebron Theme Team · incomplete\n\nAnthony Davis\n$144.00 modeled FAAB\n1 W / 0 L\nPF 271.0\nRoster & 2025 record\nTeam directory\nOfficial history route\nHistory & Power availability\nOffline design fixture · 2026 dates are supplied examples, not today.\nMember comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "tools",
+        "label": "Tools and unavailable sources"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-07-tools.jpg",
+        "bytes": 125567,
+        "sha256": "fbc98325cf969a816dd57182253f9120fa037d60476c4c89e3b74038fc7855ca",
+        "width": 1440,
+        "height": 1471,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-desktop-07-tools-viewport.jpg",
+        "bytes": 82871,
+        "sha256": "069d91b9293d88998b195766d89cf04facab05c5bcc21e86d0555b5e976d0d9a",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1471,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1471,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1471,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Tools & source references",
+          "Stocks",
+          "Trade analyzer",
+          "Free Throw",
+          "Arcade",
+          "AI Decides",
+          "News",
+          "Transactions",
+          "History",
+          "Power",
+          "The next chapter",
+          "The title everybody’s chasing"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\nTools & source references\n\nThese are the existing app destinations. The local study does not reproduce their routes.\n\nStocks\n\nInspect current modeled FAAB values. Player board supports the existing destination.\n\nTrade analyzer\n\nCompare a trade with the existing analyzer.\n\nFree Throw\n\nOpen the existing playable game.\n\nArcade\n\nBrowse league games.\n\nAI Decides\n\nOpen the full AI workspace. Saved slate remains synthetic here.\n\nNews\n\nOpen the news destination.\n\nTransactions\n\nOpen the league move ledger.\n\nHistory\n\nRecorded team-value history unavailable; no line is invented.\n\nPower\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nThe next chapter\n\nOct 5–11, 2026 · draft · unpublished dated sample\n\nThe title everybody’s chasing\n\nSep 28–Oct 4, 2026 · draft · unpublished dated sample\n\nDated editorial uses the coherent archive records. The conflicting home.edition team IDs are preserved in the fixture and are not asserted here.\n\nOffline design fixture · 2026 dates are supplied examples, not today.\nMember comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "default",
+        "label": "Week planner overview"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-00-default.jpg",
+        "bytes": 111757,
+        "sha256": "e9abafe40978d1ee749fef70e53a08ffd6ccec0c2ef126958804faef9f66cbf1",
+        "width": 390,
+        "height": 2026,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-00-default-viewport.jpg",
+        "bytes": 47214,
+        "sha256": "b0a3a6da5600377f897e05a6cf47ec9fc8577ebbc5541c6f0789eec75637cca4",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2026,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2026,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 2026,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nYour pairing is marked in the current week.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nNov 2–9, 2026 · Completed Week 2\nWeek 3 · as of Nov 12 · Current Week 3\nAgenda\nCalendar\nCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\nMatchup 1\nReaves Dropper / Ware the Hoes At?\n0.0 / Pending · incomplete · Returned choice: Ware the Hoes At? 35% · confidence 20%\nMatchup 2\nStephon Castle’s Back / The Fun Guys\n105.5 / Pending · incomplete · Returned choice: The Fun Guys 35% · confidence 20%\nMatchup 3\nJosh Diddy’s Roster / Huff n’ Puff\n105.5 / Pending · incomplete · Returned choice: Huff n’ Puff 35% · confidence 20%\nMatchup 4\npapichooter / NeuralNets\n105.5 / Pending · incomplete · Returned choice: NeuralNets 35% · confidence 20%\nMatchup 5\nLebron Theme Team / T Halibooty\n105.5 / Pending · incomplete · Returned choice: T Halibooty 35% · confidence 20%\nSource check\nTeam wire & league moves\nNov 12, 2026, 12:00 PM UTC\nEmpty lanes mean no supplied item, rather than a cancelled game.\nCurrent source check: Nov 12, 2026, 12:00 PM UTC\n\nReference material travels with the planner.\n\nOpen my team notebook\nFind a team or player\nTools, History & Power status\nWeekly archive\nOffline design fixture · 2026 dates are supplied examples, not today.\nMember comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "matchup",
+        "label": "Current matchup attached agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-01-matchup.jpg",
+        "bytes": 108213,
+        "sha256": "23012519f0d4a8e00bb1ca9df64f1c7491a3a41f929bd1540554e58a3f1868db",
+        "width": 390,
+        "height": 2028,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-01-matchup-viewport.jpg",
+        "bytes": 45817,
+        "sha256": "c6b2fa816139d953077765011b6d92f7306fbb8d35266aa51d076b44e1472187",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2028,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2028,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 2028,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Matchup 1 agenda"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nYour pairing is marked in the current week.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nNov 2–9, 2026 · Completed Week 2\nWeek 3 · as of Nov 12 · Current Week 3\nAgenda\nCalendar\nCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\n\nCURRENT WEEK 3 · CHECKED NOV 12\n\nMatchup 1 agenda\nClose agenda\nReaves Dropper · your team\naidandaly20 · current record 1–0\n0.0\nWare the Hoes At?\nAedan23 · current record 1–0\nPending\n\nIncomplete matchup · Week 3\n\n0.0 is a known score. Pending means no score is supplied. These figures are synthetic.\n\nHome roster\nAway roster\nSaved AI return\n\nReturned choice: Ware the Hoes At?\n\nReaves Dropper\n65%\nWare the Hoes At?\n35%\n\nIndependent confidence: 20%\n\nModel probability — not calibrated sports odds. The returned choice is preserved even when its probability is lower.\n\nModel, timestamp & evidence\nOpen AI Decides\nEmpty lanes mean no supplied item, rather than a cancelled game.\nCurrent source check: Nov 12, 2026, 12:00 PM UTC\n\nReference material travels with the planner.\n\nOpen my team notebook\nFind a team or player\nTools, History & Power status\nWeekly archive\nOffline design fixture · 2026 dates are supplied examples, not today.\nMember comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "edition",
+        "label": "Dated October editorial agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-02-edition.jpg",
+        "bytes": 186022,
+        "sha256": "61266ca55fbb75bbf0701647f23f906f03a3d11d12e2d6edacaadaf56a7dc92c",
+        "width": 390,
+        "height": 3386,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-02-edition-viewport.jpg",
+        "bytes": 45461,
+        "sha256": "5419bd72787ddd95a0c15eb7321fdd22cb9260e27134886e640da60c671e669f",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3386,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3386,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 3386,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The next chapter",
+          "Reaves Dropper gets the champ."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nYour pairing is marked in the current week.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nNov 2–9, 2026 · Completed Week 2\nWeek 3 · as of Nov 12 · Current Week 3\nAgenda\nCalendar\nThe next chapter\nOct 5–11, 2026\nDated editorial · draft\n\nALL-DAY EDITORIAL LANE\n\nThe next chapter\nClose agenda\n\nOCT 5–11, 2026 · DRAFT · UNPUBLISHED SAMPLE\n\nReaves Dropper gets the champ.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nReaves Dropper / Josh Diddy’s Roster · Opening-week watch · Upcoming dated pairing · no score\n\nProposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\n\nPLAYER OF WEEK\n\nNikola Jokić\n\nC · Josh Diddy’s Roster\n\nLast season’s standard\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG / 12.9 RPG / 10.7 APG\n\n2025–26 NBA averages\n\nSelection & source\n\nUNDERPERFORMER\n\nJoel Embiid\n\nC · Reaves Dropper\n\nLast-season lookback\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9 PPG / 7.7 RPG / 3.9 APG\n\n2025–26 NBA averages\n\nSelection & source\n\nONE TO WATCH\n\nAJ Dybantsa\n\nPF · NeuralNets\n\nNext week · preseason\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5 PPG / 6.8 RPG / 3.7 APG\n\n2025–26 college · BYU\n\nSelection & source\nDated happenings\nLonzo hits the wire · Oct 7\nLebron Theme Team dropped Lonzo Ball.\nTwo moves from NeuralNets · Oct 6\nMalik Monk and Nikola Jović were dropped from the roster.\nRisacher released · Oct 6\nT Halibooty dropped Zaccharie Risacher.\nEdition sources\nOpen dated archive route\nAll editions\nEmpty lanes mean no supplied item, rather than a cancelled game.\nCurrent source check: Nov 12, 2026, 12:00 PM UTC\n\nReference material travels with the planner.\n\nOpen my team notebook\nFind a team or player\nTools, History & Power status\nWeekly archive\nOffline design fixture · 2026 date"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "archive",
+        "label": "Historical final archive agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-03-archive.jpg",
+        "bytes": 119330,
+        "sha256": "4bb605f128f1c4347fbbf92f5fb951f74f5abf069cfaf362acb211dd73981057",
+        "width": 390,
+        "height": 2064,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-03-archive-viewport.jpg",
+        "bytes": 47408,
+        "sha256": "68cc9be1cb6246e3e63f251dce10adfc0b3bc1a2bd767c04913454a2cdaf91bc",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2064,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2064,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 2064,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The title everybody’s chasing",
+          "The first crown belongs to vannweinkauf."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nYour pairing is marked in the current week.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nNov 2–9, 2026 · Completed Week 2\nWeek 3 · as of Nov 12 · Current Week 3\nAgenda\nCalendar\nThe title everybody’s chasing\nSep 28–Oct 4, 2026\nDated editorial · draft\n\nALL-DAY EDITORIAL LANE\n\nThe title everybody’s chasing\nClose agenda\n\nSEP 28–OCT 4, 2026 · DRAFT · UNPUBLISHED SAMPLE\n\nThe first crown belongs to vannweinkauf.\n\nJosh Diddy’s Roster finished 17–4, then beat papichooter 326.0–251.5 in the inaugural final. That is the bar for the next season.\n\nJosh Diddy’s Roster / papichooter · A look back · 2025 final · Historical final 326.0–251.5\n\nHistorical recap of the verified 2025 final. This sample archive entry demonstrates browsing older weekly editions; it was not published by Muse.\n\nDated happenings\nA rebuild to follow · Franchise history\nRoster 8 changed hands after a 1–20 season: QBs Gremlins became NeuralNets.\nEdition sources\nOpen dated archive route\nAll editions\nEmpty lanes mean no supplied item, rather than a cancelled game.\nCurrent source check: Nov 12, 2026, 12:00 PM UTC\n\nReference material travels with the planner.\n\nOpen my team notebook\nFind a team or player\nTools, History & Power status\nWeekly archive\nOffline design fixture · 2026 dates are supplied examples, not today.\nMember comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "completed",
+        "label": "Completed Week 2 source agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-04-completed.jpg",
+        "bytes": 126802,
+        "sha256": "b9aa9a3dde2a1932d94949d716fbb7c0389b1894e0e798c7a2ecc57c1c0e7e80",
+        "width": 390,
+        "height": 2276,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-04-completed-viewport.jpg",
+        "bytes": 46303,
+        "sha256": "4f127b2322212fb5593678ae9127d8b73e809459044fd3ff65cbdf49f16e9892",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2276,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2276,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 2276,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Completed Week 2 agenda"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nYour pairing is marked in the current week.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nNov 2–9, 2026 · Completed Week 2\nWeek 3 · as of Nov 12 · Current Week 3\nAgenda\nCalendar\nCompleted Week 2\nNov 2–9, 2026\nNov 9 end exclusive · source period\n\nNOV 2–9, 2026 · END EXCLUSIVE\n\nCompleted Week 2 agenda\nClose agenda\n\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\n\nSynthetic completed-week fixture, not an official current award. Actual recorded fantasy points for current roster players with verified participation in the completed source week.\n\n5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\n\nBest week\nDamian Lillard\nRecorded weekly fantasy points\n45 pts\n3 GP\nTobias Harris\nRecorded weekly fantasy points\n39 pts\n3 GP\nJoel Embiid\nRecorded weekly fantasy points\n33 pts\n3 GP\nRough week\nDerrick White\nRecorded weekly fantasy points\n21 pts\n3 GP\nMyles Turner\nRecorded weekly fantasy points\n27 pts\n3 GP\nJoel Embiid\nRecorded weekly fantasy points\n33 pts\n3 GP\n\nThe small cohorts may overlap. DNP and unknown participation do not imply poor performance.\n\nEmpty lanes mean no supplied item, rather than a cancelled game.\nCurrent source check: Nov 12, 2026, 12:00 PM UTC\n\nReference material travels with the planner.\n\nOpen my team notebook\nFind a team or player\nTools, History & Power status\nWeekly archive\nOffline design fixture · 2026 dates are supplied examples, not today.\nMember comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "team",
+        "label": "Member team notebook"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-05-team.jpg",
+        "bytes": 107150,
+        "sha256": "3ba05ff9661da0331b718195877c68a9068f3ca6e0bb99b2d2a05c73b3318735",
+        "width": 390,
+        "height": 1946,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-05-team-viewport.jpg",
+        "bytes": 45860,
+        "sha256": "2f95bad869b6d56b45792968f4b91e08ad1b2bca09852864efd6adca641b7c70",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1946,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1946,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 1946,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Reaves Dropper"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\n\nMEMBER NOTEBOOK · SOURCE CHECK NOV 12, 2026, 12:00 PM UTC\n\nReaves Dropper\n\naidandaly20 · current 1–0 · standing 1/10 · 24 roster players\n\nMy team\nFull roster\nOpen your Week 3 agenda\n\nCURRENT MODELED FAAB VALUE\n\n$1095.25\n\n24 priced / 0 unpriced · in-season basis\nComputed Nov 12, 2026, 12:00 PM UTC · modeled, not a transaction or FAAB balance\n\nJoel Embiid\n$137.50\nUp 4.2% modeled quote\nAnthony Edwards\n$124.50\nUp 4.2% modeled quote\nAlperen Şengün\n$108.25\nUp 4.2% modeled quote\nAll 24 roster values & coverage\nRecorded team-value history\n\nRecorded team-value history unavailable; no line is invented.\n\nScouting watch\n\nOn form · in-season EMA fantasy points per game\n\nDamian Lillard\nAvailability status unknown\n38 EMA pts/GP\n8 observed games\nTobias Harris\nAvailability status unknown\n37 EMA pts/GP\n8 observed games\nJoel Embiid\nAvailability status unknown\n36 EMA pts/GP\n8 observed games\n\nEMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable.\n\nRead completed Week 2 agenda\nRead dated team wire & moves\nStocks player board\nTrade analyzer\nOffline design fixture · 2026 dates are supplied examples, not today.\nMember comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "league",
+        "label": "Searchable league book"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-06-league.jpg",
+        "bytes": 187177,
+        "sha256": "4c8e2bfae60c31652ea7559e4a9234c843b8c01cc0be33c5ebcf9a3da72a0111",
+        "width": 390,
+        "height": 4309,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-06-league-viewport.jpg",
+        "bytes": 43432,
+        "sha256": "7843171373e52719b61a46d2a3a3b2e46c6809a46f22f2c05d86aeeb105da06e",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 4309,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 4309,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 4309,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The league book"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\nThe league book\n\nStandings, ten roster faces, and every supplied player reference.\n\nSynthetic current records / PF / modeled values\nFind team, manager or player\nSort teams\nStanding rank\nTeam name\nRoster size\n10 of 10 teams · 228 player references\n1\nReaves Dropper · you\n\naidandaly20 · 24 players\n\nWeek 3 vs Ware the Hoes At? · incomplete\n\nJoel Embiid\n$137.50 modeled FAAB\n1 W / 0 LPF 320.5\nRoster & 2025 record\n2\nWare the Hoes At?\n\nAedan23 · 27 players\n\nWeek 3 vs Reaves Dropper · incomplete\n\nDomantas Sabonis\n$140.75 modeled FAAB\n1 W / 0 LPF 315.0\nRoster & 2025 record\n3\nStephon Castle’s Back\n\nTommyDieselfuel · 22 players\n\nWeek 3 vs The Fun Guys · incomplete\n\nShai Gilgeous-Alexander\n$134.25 modeled FAAB\n1 W / 0 LPF 309.5\nRoster & 2025 record\n4\nThe Fun Guys\n\nphilbiag · 22 players\n\nWeek 3 vs Stephon Castle’s Back · incomplete\n\nJalen Brunson\n$137.50 modeled FAAB\n1 W / 0 LPF 304.0\nRoster & 2025 record\n5\nJosh Diddy’s Roster\n\nvannweinkauf · 22 players\n\nWeek 3 vs Huff n’ Puff · incomplete\n\nStephen Curry\n$140.75 modeled FAAB\n1 W / 0 LPF 298.5\nRoster & 2025 record\n6\nHuff n’ Puff\n\nGriffinHealy · 23 players\n\nWeek 3 vs Josh Diddy’s Roster · incomplete\n\nDonovan Mitchell\n$131.00 modeled FAAB\n1 W / 0 LPF 293.0\nRoster & 2025 record\n7\npapichooter\n\npapichooter · 23 players\n\nWeek 3 vs NeuralNets · incomplete\n\nLuka Dončić\n$131.00 modeled FAAB\n1 W / 0 LPF 287.5\nRoster & 2025 record\n8\nNeuralNets\n\nNeuralNets · 22 players\n\nWeek 3 vs papichooter · incomplete\n\nGiannis Antetokounmpo\n$140.75 modeled FAAB\n1 W / 0 LPF 282.0\nRoster & 2025 record · previous manager\n9\nLebron Theme Team\n\nlordlx · 21 players\n\nWeek 3 vs T Halibooty · incomplete\n\nLeBron James\n$144.00 modeled FAAB\n1 W / 0 LPF 276.5\nRoster & 2025 record\n10\nT Halibooty\n\nTyreseHalibooty · 22 players\n\nWeek 3 vs Lebron Theme Team · incomplete\n\nAnthony Davis\n$144.00 modeled FAAB\n1 W / 0 LPF 271.0\nRoster & 2025 record\nTeam directory\nOfficial history route\nHistory & Power availability\nOffline design fixture · 2026 dates are supplied examples, not today.\nMember comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "tools",
+        "label": "Tools and unavailable sources"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-07-tools.jpg",
+        "bytes": 102572,
+        "sha256": "f8c54e4434e681dda3805b68a6cf679a09b2c2505b1a147dd3c8c7231d2805ae",
+        "width": 390,
+        "height": 2121,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/member-phone-07-tools-viewport.jpg",
+        "bytes": 45305,
+        "sha256": "e912b1296226149abaf0eab140a14b4dcd10baa27ebc5b7d37153897acae9d06",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2121,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2121,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 2121,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Tools & source references",
+          "Stocks",
+          "Trade analyzer",
+          "Free Throw",
+          "Arcade",
+          "AI Decides",
+          "News",
+          "Transactions",
+          "History",
+          "Power",
+          "The next chapter",
+          "The title everybody’s chasing"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView public edition\nWeek planner\nLeague book\nMy team notebook\nTools & references\nTools & source references\n\nThese are the existing app destinations. The local study does not reproduce their routes.\n\nStocks\n\nInspect current modeled FAAB values. Player board supports the existing destination.\n\nTrade analyzer\n\nCompare a trade with the existing analyzer.\n\nFree Throw\n\nOpen the existing playable game.\n\nArcade\n\nBrowse league games.\n\nAI Decides\n\nOpen the full AI workspace. Saved slate remains synthetic here.\n\nNews\n\nOpen the news destination.\n\nTransactions\n\nOpen the league move ledger.\n\nHistory\n\nRecorded team-value history unavailable; no line is invented.\n\nPower\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nThe next chapter\n\nOct 5–11, 2026 · draft · unpublished dated sample\n\nThe title everybody’s chasing\n\nSep 28–Oct 4, 2026 · draft · unpublished dated sample\n\nDated editorial uses the coherent archive records. The conflicting home.edition team IDs are preserved in the fixture and are not asserted here.\n\nOffline design fixture · 2026 dates are supplied examples, not today.\nMember comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "default",
+        "label": "Week planner overview"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-00-default.jpg",
+        "bytes": 204347,
+        "sha256": "d7be20b20b6f7c0c7e6fe374121520fc5714600af790ba6bbad181299a33ef5f",
+        "width": 1440,
+        "height": 1694,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-00-default-viewport.jpg",
+        "bytes": 121661,
+        "sha256": "9d3f252b4b0149cc5dd12dab097ea529c8d440e92dfa325e1366081cbfe8c25b",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1694,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1694,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1694,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\n\nFive pairings. Ten teams.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nWeek 3 · as of Nov 12 · Current Week 3\nLane\n2026 source schedule\n\tThe title everybody’s chasing\nSep 28–Oct 4, 2026\nDated editorial · draft\n\tThe next chapter\nOct 5–11, 2026\nDated editorial · draft\n\tGap\nNo intervening edition supplied\n\tCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\n\nEditorial / all-day\t\ndraft edition · all-day\nThe title everybody’s chasing\n\t\ndraft edition · all-day\nThe next chapter\n\t\t\nNo edition supplied\n\nDated evidence\t\nNo source item supplied\n\t\nNo source item supplied\n\t\t\nNov 12 source check\nTeam wire & league moves\nNews, moves and observation times\n\nMatchup 1\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\nReaves Dropper / Ware the Hoes At?\n0.0 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 2\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\nStephon Castle’s Back / The Fun Guys\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 3\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\nJosh Diddy’s Roster / Huff n’ Puff\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 4\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\npapichooter / NeuralNets\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 5\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\nLebron Theme Team / T Halibooty\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\nEmpty lanes mean no supplied item, rather than a cancelled game.\nCurrent source check: Nov 12, 2026, 12:00 PM UTC\n\nReference material travels with the planner.\n\nFind a team or player\nTools, History & Power status\nWeekly archive\nOffline design fixture · 2026 dates are supplied examples, not today.\nPublic comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "matchup",
+        "label": "Current matchup attached agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-01-matchup.jpg",
+        "bytes": 254139,
+        "sha256": "cff2fdfd925718f55fb97959ad5a3c9e7cde12f9651181982f358150f5254948",
+        "width": 1440,
+        "height": 2158,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-01-matchup-viewport.jpg",
+        "bytes": 116445,
+        "sha256": "6fe638ed4da421b4f7c1e64018412f45404bf75b2eadf589683ea36a4099c755",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2158,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2158,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2158,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Matchup 1 agenda"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\n\nFive pairings. Ten teams.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nWeek 3 · as of Nov 12 · Current Week 3\nLane\n2026 source schedule\n\tThe title everybody’s chasing\nSep 28–Oct 4, 2026\nDated editorial · draft\n\tThe next chapter\nOct 5–11, 2026\nDated editorial · draft\n\tGap\nNo intervening edition supplied\n\tCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\n\nEditorial / all-day\t\ndraft edition · all-day\nThe title everybody’s chasing\n\t\ndraft edition · all-day\nThe next chapter\n\t\t\nNo edition supplied\n\nDated evidence\t\nNo source item supplied\n\t\nNo source item supplied\n\t\t\nNov 12 source check\nTeam wire & league moves\nNews, moves and observation times\n\nMatchup 1\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\nReaves Dropper / Ware the Hoes At?\n0.0 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\n\n\nCURRENT WEEK 3 · CHECKED NOV 12\n\nMatchup 1 agenda\nClose agenda\nReaves Dropper\naidandaly20 · current record 1–0\n0.0\nWare the Hoes At?\nAedan23 · current record 1–0\nPending\n\nIncomplete matchup · Week 3\n\n0.0 is a known score. Pending means no score is supplied. These figures are synthetic.\n\nHome roster\nAway roster\nSaved AI return\n\nReturned choice: Ware the Hoes At?\n\nReaves Dropper\n65%\nWare the Hoes At?\n35%\n\nIndependent confidence: 20%\n\nModel probability — not calibrated sports odds. The returned choice is preserved even when its probability is lower.\n\nModel, timestamp & evidence\nOpen AI Decides\n\nMatchup 2\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\nStephon Castle’s Back / The Fun Guys\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 3\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\nJosh Diddy’s Roster / Huff n’ Puff\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 4\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\npapichooter / NeuralNets\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "edition",
+        "label": "Dated October editorial agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-02-edition.jpg",
+        "bytes": 342501,
+        "sha256": "4352c1fccb3662ce4af9ed20b4eee0356e069a00c720864f4767b41db18b46c6",
+        "width": 1440,
+        "height": 3211,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-02-edition-viewport.jpg",
+        "bytes": 122927,
+        "sha256": "dd8ed66a6653fbbdfe7d5df3d5c0e653f68bd0d272459b708c605047093e1570",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3211,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3211,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 3211,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The next chapter",
+          "Reaves Dropper gets the champ."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\n\nFive pairings. Ten teams.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nWeek 3 · as of Nov 12 · Current Week 3\nLane\n2026 source schedule\n\tThe title everybody’s chasing\nSep 28–Oct 4, 2026\nDated editorial · draft\n\tThe next chapter\nOct 5–11, 2026\nDated editorial · draft\n\tGap\nNo intervening edition supplied\n\tCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\n\nEditorial / all-day\t\ndraft edition · all-day\nThe title everybody’s chasing\n\t\ndraft edition · all-day\nThe next chapter\n\t\t\nNo edition supplied\n\n\n\nALL-DAY EDITORIAL LANE\n\nThe next chapter\nClose agenda\n\nOCT 5–11, 2026 · DRAFT · UNPUBLISHED SAMPLE\n\nReaves Dropper gets the champ.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nReaves Dropper / Josh Diddy’s Roster · Opening-week watch · Upcoming dated pairing · no score\n\nProposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\n\nPLAYER OF WEEK\n\nNikola Jokić\n\nC · Josh Diddy’s Roster\n\nLast season’s standard\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG / 12.9 RPG / 10.7 APG\n\n2025–26 NBA averages\n\nSelection & source\n\nUNDERPERFORMER\n\nJoel Embiid\n\nC · Reaves Dropper\n\nLast-season lookback\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9 PPG / 7.7 RPG / 3.9 APG\n\n2025–26 NBA averages\n\nSelection & source\n\nONE TO WATCH\n\nAJ Dybantsa\n\nPF · NeuralNets\n\nNext week · preseason\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5 PPG / 6.8 RPG / 3.7 APG\n\n2025–26 college · BYU\n\nSelection & source\nDated happenings\nLonzo hits the wire · Oct 7\nLebron Theme Team dropped Lonzo Ball.\nTwo moves from NeuralNets · Oct 6\nMalik Monk and Nikola Jović were dropped from the roster.\nRisacher released · Oct 6\nT Halibooty dropped Zaccharie Risacher.\nEdition sources\nOpen dated archive route\nAll editio"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "archive",
+        "label": "Historical final archive agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-03-archive.jpg",
+        "bytes": 264643,
+        "sha256": "c389dae62bbd79f3bf83421eec5f97696a9198be3fc999073e367591e667afda",
+        "width": 1440,
+        "height": 2264,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-03-archive-viewport.jpg",
+        "bytes": 123560,
+        "sha256": "73c651c33e638fa435169be6e4bbd34bde9a0eebf396ba8d53b9edf1a0a73bad",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2264,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2264,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2264,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The title everybody’s chasing",
+          "The first crown belongs to vannweinkauf."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\n\nFive pairings. Ten teams.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nWeek 3 · as of Nov 12 · Current Week 3\nLane\n2026 source schedule\n\tThe title everybody’s chasing\nSep 28–Oct 4, 2026\nDated editorial · draft\n\tThe next chapter\nOct 5–11, 2026\nDated editorial · draft\n\tGap\nNo intervening edition supplied\n\tCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\n\nEditorial / all-day\t\ndraft edition · all-day\nThe title everybody’s chasing\n\t\ndraft edition · all-day\nThe next chapter\n\t\t\nNo edition supplied\n\n\n\nALL-DAY EDITORIAL LANE\n\nThe title everybody’s chasing\nClose agenda\n\nSEP 28–OCT 4, 2026 · DRAFT · UNPUBLISHED SAMPLE\n\nThe first crown belongs to vannweinkauf.\n\nJosh Diddy’s Roster finished 17–4, then beat papichooter 326.0–251.5 in the inaugural final. That is the bar for the next season.\n\nJosh Diddy’s Roster / papichooter · A look back · 2025 final · Historical final 326.0–251.5\n\nHistorical recap of the verified 2025 final. This sample archive entry demonstrates browsing older weekly editions; it was not published by Muse.\n\nDated happenings\nA rebuild to follow · Franchise history\nRoster 8 changed hands after a 1–20 season: QBs Gremlins became NeuralNets.\nEdition sources\nOpen dated archive route\nAll editions\n\nDated evidence\t\nNo source item supplied\n\t\nNo source item supplied\n\t\t\nNov 12 source check\nTeam wire & league moves\nNews, moves and observation times\n\nMatchup 1\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\nReaves Dropper / Ware the Hoes At?\n0.0 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 2\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\nStephon Castle’s Back / The Fun Guys\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 3\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nIncomplete · Week 3\nJosh Diddy’s Roster / Huff n’ Puff\n105.5 / Pending\n\nAI returned away 35% · home 65% / away 35% · confidence 20%\n\n\nMatchup 4\t\nNo matchup slate supplied\n\t\nNo matchup slate supplied\n\t\t\nInco"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "league",
+        "label": "Searchable league book"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-04-league.jpg",
+        "bytes": 228235,
+        "sha256": "35e8c4883412ef843c678b3fb8a40bab1ecd5354bfefe825cfcf0147cc7dee5b",
+        "width": 1440,
+        "height": 2611,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-04-league-viewport.jpg",
+        "bytes": 95051,
+        "sha256": "6ea7051e2ff37ee41b7cc6628e3b3f95e58480c7011eb15903daa6ca4c54e2f6",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2611,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2611,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2611,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The league book"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\nThe league book\n\nStandings, ten roster faces, and every supplied player reference.\n\nSynthetic current records / PF / modeled values\nFind team, manager or player\nSort teams\nStanding rank\nTeam name\nRoster size\n10 of 10 teams · 228 player references\n1\nReaves Dropper\n\naidandaly20 · 24 players\n\nWeek 3 vs Ware the Hoes At? · incomplete\n\nJoel Embiid\n$137.50 modeled FAAB\n1 W / 0 L\nPF 320.5\nRoster & 2025 record\n2\nWare the Hoes At?\n\nAedan23 · 27 players\n\nWeek 3 vs Reaves Dropper · incomplete\n\nDomantas Sabonis\n$140.75 modeled FAAB\n1 W / 0 L\nPF 315.0\nRoster & 2025 record\n3\nStephon Castle’s Back\n\nTommyDieselfuel · 22 players\n\nWeek 3 vs The Fun Guys · incomplete\n\nShai Gilgeous-Alexander\n$134.25 modeled FAAB\n1 W / 0 L\nPF 309.5\nRoster & 2025 record\n4\nThe Fun Guys\n\nphilbiag · 22 players\n\nWeek 3 vs Stephon Castle’s Back · incomplete\n\nJalen Brunson\n$137.50 modeled FAAB\n1 W / 0 L\nPF 304.0\nRoster & 2025 record\n5\nJosh Diddy’s Roster\n\nvannweinkauf · 22 players\n\nWeek 3 vs Huff n’ Puff · incomplete\n\nStephen Curry\n$140.75 modeled FAAB\n1 W / 0 L\nPF 298.5\nRoster & 2025 record\n6\nHuff n’ Puff\n\nGriffinHealy · 23 players\n\nWeek 3 vs Josh Diddy’s Roster · incomplete\n\nDonovan Mitchell\n$131.00 modeled FAAB\n1 W / 0 L\nPF 293.0\nRoster & 2025 record\n7\npapichooter\n\npapichooter · 23 players\n\nWeek 3 vs NeuralNets · incomplete\n\nLuka Dončić\n$131.00 modeled FAAB\n1 W / 0 L\nPF 287.5\nRoster & 2025 record\n8\nNeuralNets\n\nNeuralNets · 22 players\n\nWeek 3 vs papichooter · incomplete\n\nGiannis Antetokounmpo\n$140.75 modeled FAAB\n1 W / 0 L\nPF 282.0\nRoster & 2025 record · previous manager\n9\nLebron Theme Team\n\nlordlx · 21 players\n\nWeek 3 vs T Halibooty · incomplete\n\nLeBron James\n$144.00 modeled FAAB\n1 W / 0 L\nPF 276.5\nRoster & 2025 record\n10\nT Halibooty\n\nTyreseHalibooty · 22 players\n\nWeek 3 vs Lebron Theme Team · incomplete\n\nAnthony Davis\n$144.00 modeled FAAB\n1 W / 0 L\nPF 271.0\nRoster & 2025 record\nTeam directory\nOfficial history route\nHistory & Power availability\nOffline design fixture · 2026 dates are supplied examples, not today.\nPublic comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "tools",
+        "label": "Tools and unavailable sources"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-05-tools.jpg",
+        "bytes": 124400,
+        "sha256": "8647b5ef4416d0ef1a507528ab6f164a94dd49790cd7293b7c7b273eba751ebd",
+        "width": 1440,
+        "height": 1471,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-desktop-05-tools-viewport.jpg",
+        "bytes": 81654,
+        "sha256": "3b020db176c933adf9de98c71aeb2ff009756476252eb7326571ab3ae55c6a34",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1471,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1471,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1471,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Tools & source references",
+          "Stocks",
+          "Trade analyzer",
+          "Free Throw",
+          "Arcade",
+          "AI Decides",
+          "News",
+          "Transactions",
+          "History",
+          "Power",
+          "The next chapter",
+          "The title everybody’s chasing"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nNews\nStocks\nAI Decides\nArcade\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\nTools & source references\n\nThese are the existing app destinations. The local study does not reproduce their routes.\n\nStocks\n\nInspect current modeled FAAB values. Player board supports the existing destination.\n\nTrade analyzer\n\nCompare a trade with the existing analyzer.\n\nFree Throw\n\nOpen the existing playable game.\n\nArcade\n\nBrowse league games.\n\nAI Decides\n\nOpen the full AI workspace. Saved slate remains synthetic here.\n\nNews\n\nOpen the news destination.\n\nTransactions\n\nOpen the league move ledger.\n\nHistory\n\nRecorded team-value history unavailable; no line is invented.\n\nPower\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nThe next chapter\n\nOct 5–11, 2026 · draft · unpublished dated sample\n\nThe title everybody’s chasing\n\nSep 28–Oct 4, 2026 · draft · unpublished dated sample\n\nDated editorial uses the coherent archive records. The conflicting home.edition team IDs are preserved in the fixture and are not asserted here.\n\nOffline design fixture · 2026 dates are supplied examples, not today.\nPublic comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "default",
+        "label": "Week planner overview"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-00-default.jpg",
+        "bytes": 107042,
+        "sha256": "ae4494a41a3fd3effd3c1fd2da42feb61b26edb8ec5068e3ec09a2bd3c17c04d",
+        "width": 390,
+        "height": 1956,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-00-default-viewport.jpg",
+        "bytes": 45400,
+        "sha256": "7f635a207bdaefc3e38a5bdaac6a7700602e2b329da56bfdc23957aaf1e85318",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1956,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1956,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 1956,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\n\nFive pairings. Ten teams.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nWeek 3 · as of Nov 12 · Current Week 3\nAgenda\nCalendar\nCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\nMatchup 1\nReaves Dropper / Ware the Hoes At?\n0.0 / Pending · incomplete · Returned choice: Ware the Hoes At? 35% · confidence 20%\nMatchup 2\nStephon Castle’s Back / The Fun Guys\n105.5 / Pending · incomplete · Returned choice: The Fun Guys 35% · confidence 20%\nMatchup 3\nJosh Diddy’s Roster / Huff n’ Puff\n105.5 / Pending · incomplete · Returned choice: Huff n’ Puff 35% · confidence 20%\nMatchup 4\npapichooter / NeuralNets\n105.5 / Pending · incomplete · Returned choice: NeuralNets 35% · confidence 20%\nMatchup 5\nLebron Theme Team / T Halibooty\n105.5 / Pending · incomplete · Returned choice: T Halibooty 35% · confidence 20%\nSource check\nTeam wire & league moves\nNov 12, 2026, 12:00 PM UTC\nEmpty lanes mean no supplied item, rather than a cancelled game.\nCurrent source check: Nov 12, 2026, 12:00 PM UTC\n\nReference material travels with the planner.\n\nFind a team or player\nTools, History & Power status\nWeekly archive\nOffline design fixture · 2026 dates are supplied examples, not today.\nPublic comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "matchup",
+        "label": "Current matchup attached agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-01-matchup.jpg",
+        "bytes": 103605,
+        "sha256": "a3574b8ea1da6e29c8188f959deb2235d9cc446a617d1b104ff0d7b0b4bb9fcc",
+        "width": 390,
+        "height": 1958,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-01-matchup-viewport.jpg",
+        "bytes": 44211,
+        "sha256": "a35c83d4ed8232392956f605f09ab013be9c261ab22cd1e8a48653f32a161048",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1958,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1958,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 1958,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Matchup 1 agenda"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\n\nFive pairings. Ten teams.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nWeek 3 · as of Nov 12 · Current Week 3\nAgenda\nCalendar\nCurrent Week 3\nWeek 3 · as of Nov 12\nWeek start/end not supplied\n\nCURRENT WEEK 3 · CHECKED NOV 12\n\nMatchup 1 agenda\nClose agenda\nReaves Dropper\naidandaly20 · current record 1–0\n0.0\nWare the Hoes At?\nAedan23 · current record 1–0\nPending\n\nIncomplete matchup · Week 3\n\n0.0 is a known score. Pending means no score is supplied. These figures are synthetic.\n\nHome roster\nAway roster\nSaved AI return\n\nReturned choice: Ware the Hoes At?\n\nReaves Dropper\n65%\nWare the Hoes At?\n35%\n\nIndependent confidence: 20%\n\nModel probability — not calibrated sports odds. The returned choice is preserved even when its probability is lower.\n\nModel, timestamp & evidence\nOpen AI Decides\nEmpty lanes mean no supplied item, rather than a cancelled game.\nCurrent source check: Nov 12, 2026, 12:00 PM UTC\n\nReference material travels with the planner.\n\nFind a team or player\nTools, History & Power status\nWeekly archive\nOffline design fixture · 2026 dates are supplied examples, not today.\nPublic comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "edition",
+        "label": "Dated October editorial agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-02-edition.jpg",
+        "bytes": 182190,
+        "sha256": "b1d57e48b4d9cc6e678688537d642115c55697c5cd0e67214decfc8325e155e1",
+        "width": 390,
+        "height": 3315,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-02-edition-viewport.jpg",
+        "bytes": 43677,
+        "sha256": "708b5c450fb506e52360d2c9f9cdaec35086e6d8fd49f5052b5305f510086034",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3315,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3315,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 3315,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The next chapter",
+          "Reaves Dropper gets the champ."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\n\nFive pairings. Ten teams.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nWeek 3 · as of Nov 12 · Current Week 3\nAgenda\nCalendar\nThe next chapter\nOct 5–11, 2026\nDated editorial · draft\n\nALL-DAY EDITORIAL LANE\n\nThe next chapter\nClose agenda\n\nOCT 5–11, 2026 · DRAFT · UNPUBLISHED SAMPLE\n\nReaves Dropper gets the champ.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nReaves Dropper / Josh Diddy’s Roster · Opening-week watch · Upcoming dated pairing · no score\n\nProposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\n\nPLAYER OF WEEK\n\nNikola Jokić\n\nC · Josh Diddy’s Roster\n\nLast season’s standard\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\n27.7 PPG / 12.9 RPG / 10.7 APG\n\n2025–26 NBA averages\n\nSelection & source\n\nUNDERPERFORMER\n\nJoel Embiid\n\nC · Reaves Dropper\n\nLast-season lookback\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\n26.9 PPG / 7.7 RPG / 3.9 APG\n\n2025–26 NBA averages\n\nSelection & source\n\nONE TO WATCH\n\nAJ Dybantsa\n\nPF · NeuralNets\n\nNext week · preseason\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\n25.5 PPG / 6.8 RPG / 3.7 APG\n\n2025–26 college · BYU\n\nSelection & source\nDated happenings\nLonzo hits the wire · Oct 7\nLebron Theme Team dropped Lonzo Ball.\nTwo moves from NeuralNets · Oct 6\nMalik Monk and Nikola Jović were dropped from the roster.\nRisacher released · Oct 6\nT Halibooty dropped Zaccharie Risacher.\nEdition sources\nOpen dated archive route\nAll editions\nEmpty lanes mean no supplied item, rather than a cancelled game.\nCurrent source check: Nov 12, 2026, 12:00 PM UTC\n\nReference material travels with the planner.\n\nFind a team or player\nTools, History & Power status\nWeekly archive\nOffline design fixture · 2026 dates are supplied examples, not today.\nPublic comparison · benchmark 64b9971 · no live provid"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "archive",
+        "label": "Historical final archive agenda"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-03-archive.jpg",
+        "bytes": 114836,
+        "sha256": "df0e18d1b93c0ed9ec77e800ab21dab0ac2b1d0bcccc8bc77bb3f10b9114e978",
+        "width": 390,
+        "height": 1993,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-03-archive-viewport.jpg",
+        "bytes": 45618,
+        "sha256": "4ebabc41f94b1823740472d76d6fc4d38657b8e89f4494971e3b996bd172fbf4",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1993,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1993,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 1993,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The title everybody’s chasing",
+          "The first crown belongs to vannweinkauf."
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\n\nFive pairings. Ten teams.\nSource periods shown with explicit gaps; widths are not elapsed time.\n\nDate / week context\nSep 28–Oct 4, 2026 · The title everybody’s chasing\nOct 5–11, 2026 · The next chapter\nWeek 3 · as of Nov 12 · Current Week 3\nAgenda\nCalendar\nThe title everybody’s chasing\nSep 28–Oct 4, 2026\nDated editorial · draft\n\nALL-DAY EDITORIAL LANE\n\nThe title everybody’s chasing\nClose agenda\n\nSEP 28–OCT 4, 2026 · DRAFT · UNPUBLISHED SAMPLE\n\nThe first crown belongs to vannweinkauf.\n\nJosh Diddy’s Roster finished 17–4, then beat papichooter 326.0–251.5 in the inaugural final. That is the bar for the next season.\n\nJosh Diddy’s Roster / papichooter · A look back · 2025 final · Historical final 326.0–251.5\n\nHistorical recap of the verified 2025 final. This sample archive entry demonstrates browsing older weekly editions; it was not published by Muse.\n\nDated happenings\nA rebuild to follow · Franchise history\nRoster 8 changed hands after a 1–20 season: QBs Gremlins became NeuralNets.\nEdition sources\nOpen dated archive route\nAll editions\nEmpty lanes mean no supplied item, rather than a cancelled game.\nCurrent source check: Nov 12, 2026, 12:00 PM UTC\n\nReference material travels with the planner.\n\nFind a team or player\nTools, History & Power status\nWeekly archive\nOffline design fixture · 2026 dates are supplied examples, not today.\nPublic comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "league",
+        "label": "Searchable league book"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-04-league.jpg",
+        "bytes": 186031,
+        "sha256": "f3c840928b583b86bf84f7b2d19c28213299b5ecec0f89834e78c765ea266115",
+        "width": 390,
+        "height": 4290,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-04-league-viewport.jpg",
+        "bytes": 42385,
+        "sha256": "8d9a2a5cdc199952193586f4f173cc8050e50d44739341ad8dc4527ed3c85fb8",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 4290,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 4290,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 4290,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "The league book"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\nThe league book\n\nStandings, ten roster faces, and every supplied player reference.\n\nSynthetic current records / PF / modeled values\nFind team, manager or player\nSort teams\nStanding rank\nTeam name\nRoster size\n10 of 10 teams · 228 player references\n1\nReaves Dropper\n\naidandaly20 · 24 players\n\nWeek 3 vs Ware the Hoes At? · incomplete\n\nJoel Embiid\n$137.50 modeled FAAB\n1 W / 0 LPF 320.5\nRoster & 2025 record\n2\nWare the Hoes At?\n\nAedan23 · 27 players\n\nWeek 3 vs Reaves Dropper · incomplete\n\nDomantas Sabonis\n$140.75 modeled FAAB\n1 W / 0 LPF 315.0\nRoster & 2025 record\n3\nStephon Castle’s Back\n\nTommyDieselfuel · 22 players\n\nWeek 3 vs The Fun Guys · incomplete\n\nShai Gilgeous-Alexander\n$134.25 modeled FAAB\n1 W / 0 LPF 309.5\nRoster & 2025 record\n4\nThe Fun Guys\n\nphilbiag · 22 players\n\nWeek 3 vs Stephon Castle’s Back · incomplete\n\nJalen Brunson\n$137.50 modeled FAAB\n1 W / 0 LPF 304.0\nRoster & 2025 record\n5\nJosh Diddy’s Roster\n\nvannweinkauf · 22 players\n\nWeek 3 vs Huff n’ Puff · incomplete\n\nStephen Curry\n$140.75 modeled FAAB\n1 W / 0 LPF 298.5\nRoster & 2025 record\n6\nHuff n’ Puff\n\nGriffinHealy · 23 players\n\nWeek 3 vs Josh Diddy’s Roster · incomplete\n\nDonovan Mitchell\n$131.00 modeled FAAB\n1 W / 0 LPF 293.0\nRoster & 2025 record\n7\npapichooter\n\npapichooter · 23 players\n\nWeek 3 vs NeuralNets · incomplete\n\nLuka Dončić\n$131.00 modeled FAAB\n1 W / 0 LPF 287.5\nRoster & 2025 record\n8\nNeuralNets\n\nNeuralNets · 22 players\n\nWeek 3 vs papichooter · incomplete\n\nGiannis Antetokounmpo\n$140.75 modeled FAAB\n1 W / 0 LPF 282.0\nRoster & 2025 record · previous manager\n9\nLebron Theme Team\n\nlordlx · 21 players\n\nWeek 3 vs T Halibooty · incomplete\n\nLeBron James\n$144.00 modeled FAAB\n1 W / 0 LPF 276.5\nRoster & 2025 record\n10\nT Halibooty\n\nTyreseHalibooty · 22 players\n\nWeek 3 vs Lebron Theme Team · incomplete\n\nAnthony Davis\n$144.00 modeled FAAB\n1 W / 0 LPF 271.0\nRoster & 2025 record\nTeam directory\nOfficial history route\nHistory & Power availability\nOffline design fixture · 2026 dates are supplied examples, not today.\nPublic comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "tools",
+        "label": "Tools and unavailable sources"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-05-tools.jpg",
+        "bytes": 101704,
+        "sha256": "9e5bcf89f768120e3d2a0fba3dbe793038fa4d7e710269ab7dc6427dfee5492b",
+        "width": 390,
+        "height": 2102,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/15/public-phone-05-tools-viewport.jpg",
+        "bytes": 44558,
+        "sha256": "5afb70fc48a6b08b75f60be9f4ccea5aff452a98bf4f609de9d91cdd701ff3b1",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2102,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2102,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 2102,
+        "bodyFont": "16px",
+        "headings": [
+          "Your league, by week.",
+          "Tools & source references",
+          "Stocks",
+          "Trade analyzer",
+          "Free Throw",
+          "Arcade",
+          "AI Decides",
+          "News",
+          "Transactions",
+          "History",
+          "Power",
+          "The next chapter",
+          "The title everybody’s chasing"
+        ],
+        "panes": [],
+        "text": "Skip to planner\nStocks\nAll destinations\nSTRUCTURE STUDY 15\nSynthetic records, scores, prices, form, news and AI · local fixture\nYour league, by week.\n\nFollow the supplied weeks. Open a scheduled item to read its agenda.\n\nView member fixture\nWeek planner\nLeague book\nTools & references\nTools & source references\n\nThese are the existing app destinations. The local study does not reproduce their routes.\n\nStocks\n\nInspect current modeled FAAB values. Player board supports the existing destination.\n\nTrade analyzer\n\nCompare a trade with the existing analyzer.\n\nFree Throw\n\nOpen the existing playable game.\n\nArcade\n\nBrowse league games.\n\nAI Decides\n\nOpen the full AI workspace. Saved slate remains synthetic here.\n\nNews\n\nOpen the news destination.\n\nTransactions\n\nOpen the league move ledger.\n\nHistory\n\nRecorded team-value history unavailable; no line is invented.\n\nPower\n\nLineup Power unavailable: no producer snapshot connected in this mock.\n\nThe next chapter\n\nOct 5–11, 2026 · draft · unpublished dated sample\n\nThe title everybody’s chasing\n\nSep 28–Oct 4, 2026 · draft · unpublished dated sample\n\nDated editorial uses the coherent archive records. The conflicting home.edition team IDs are preserved in the fixture and are not asserted here.\n\nOffline design fixture · 2026 dates are supplied examples, not today.\nPublic comparison · benchmark 64b9971 · no live provider"
+      },
+      "errors": []
+    }
+  ],
+  "method": "Actual browser state API; grayscale reduced-motion; all advertised states in public/member desktop1440 andphone390. Real viewport plus whole document. No position/CSS flattening. Scrollable interior content needs its own views and explicit pane checks; these images are structural evidence, not final complete-content acceptance."
+}

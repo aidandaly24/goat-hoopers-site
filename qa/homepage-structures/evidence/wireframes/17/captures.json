@@ -1,0 +1,1433 @@
+{
+  "id": "17",
+  "phase": "wireframes",
+  "source": [
+    {
+      "path": "qa/homepage-structures/wireframes/17/STRUCTURE.md",
+      "sha256": "0336ddf8ed78bd87ec0a45b7cc75b562767a4b7b7d28527cfe07b084000e8810",
+      "bytes": 13973
+    },
+    {
+      "path": "qa/homepage-structures/wireframes/17/index.html",
+      "sha256": "bffb7b4c2832992c35c43515b5b29c94f9d91dc3cbe26b551918c5c43ddcea43",
+      "bytes": 3052
+    },
+    {
+      "path": "qa/homepage-structures/wireframes/17/ledger.css",
+      "sha256": "e73629b520e4f760093bb49df3bc7ff01ff8f7b9e0305d323213a6bfedeb4f22",
+      "bytes": 14598
+    },
+    {
+      "path": "qa/homepage-structures/wireframes/17/ledger.js",
+      "sha256": "c59414eaeefa44c3a92bcde680c8012191055b2dd642f9e5cf10d402114c04a1",
+      "bytes": 28443
+    }
+  ],
+  "records": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "default",
+        "label": "League ledger / all teams"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-00-default.jpg",
+        "bytes": 262610,
+        "sha256": "61402b1b7b3a1209aae2f1cb1add8f1f330e70da4eab4166500a95d65d7afe1e",
+        "width": 1440,
+        "height": 2089,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-00-default-viewport.jpg",
+        "bytes": 129629,
+        "sha256": "e18ea378e13845d3550762945b0820dd1e36f14304027ac1e64895408823730e",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2089,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2089,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2089,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nMy evidence5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\n10 of 10 teams · 228 player references\n2026 league sheet\n\nRead across each team. Open a roster or your brief below its row. Scores are own / opponent; 0.0 is known, Pending is unknown.\n\n#\tFranchise / manager\tW–L\tPF\tCurrent opponent / score\tLeague face / value\tInline reader\n\n1\n\t\nReaves Dropper\naidandaly20\nYour team\n\t\n1–0\n2026 · #1\n\t\n320.50\n\t\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n\t\nJoel Embiid\nC · $137.50\nModeled FAAB\n\t\n24 players\nRoster\nYour brief\n\n\n2\n\t\nWare the Hoes At?\nAedan23\n\t\n1–0\n2026 · #2\n\t\n315.00\n\t\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n\t\nDomantas Sabonis\nC · $140.75\nModeled FAAB\n\t\n27 players\nRoster\n\n\n3\n\t\nStephon Castle’s Back\nTommyDieselfuel\n\t\n1–0\n2026 · #3\n\t\n309.50\n\t\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nShai Gilgeous-Alexander\nPG · $134.25\nModeled FAAB\n\t\n22 players\nRoster\n\n\n4\n\t\nThe Fun Guys\nphilbiag\n\t\n1–0\n2026 · #4\n\t\n304.00\n\t\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nJalen Brunson\nPG · $137.50\nModeled FAAB\n\t\n22 players\nRoster\n\n\n5\n\t\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\n\t\n1–0\n2026 · #5\n\t\n298.50\n\t\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nStephen Curry\nPG · $140.75\nModeled FAAB\n\t\n22 players\nRoster\n\n\n6\n\t\nHuff n’ Puff\nGriffinHealy\n\t\n1–0\n2026 · #6\n\t\n293.00\n\t\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nDonovan Mitchell\nSG · $131.00\nModeled FAAB\n\t\n23 players\nRoster\n\n\n7\n\t\npapichooter\npapichooter\n\t\n1–0\n2026 · #7\n\t\n287.50\n\t\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nLuka Dončić\nPG · $131.00\nModeled FAAB\n\t\n23 players\nRoster\n\n\n8\n\t\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\n\t\n1–0\n2026 · #8\n\t\n282.00\n\t\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nGiannis Antetokounmpo\nPF · $140.75\nModeled FAAB\n\t\n22 players\nRoster\n\n\n9\n\t\nLebron Theme Team\nlordlx\n\t\n1–0\n2026 · #9\n\t\n276.50\n\t\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nLeBron James\nPF · $144.00\nModeled"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "league",
+        "label": "All ten team rows"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-01-league.jpg",
+        "bytes": 262610,
+        "sha256": "61402b1b7b3a1209aae2f1cb1add8f1f330e70da4eab4166500a95d65d7afe1e",
+        "width": 1440,
+        "height": 2089,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-01-league-viewport.jpg",
+        "bytes": 129629,
+        "sha256": "e18ea378e13845d3550762945b0820dd1e36f14304027ac1e64895408823730e",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2089,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2089,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2089,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nMy evidence5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\n10 of 10 teams · 228 player references\n2026 league sheet\n\nRead across each team. Open a roster or your brief below its row. Scores are own / opponent; 0.0 is known, Pending is unknown.\n\n#\tFranchise / manager\tW–L\tPF\tCurrent opponent / score\tLeague face / value\tInline reader\n\n1\n\t\nReaves Dropper\naidandaly20\nYour team\n\t\n1–0\n2026 · #1\n\t\n320.50\n\t\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n\t\nJoel Embiid\nC · $137.50\nModeled FAAB\n\t\n24 players\nRoster\nYour brief\n\n\n2\n\t\nWare the Hoes At?\nAedan23\n\t\n1–0\n2026 · #2\n\t\n315.00\n\t\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n\t\nDomantas Sabonis\nC · $140.75\nModeled FAAB\n\t\n27 players\nRoster\n\n\n3\n\t\nStephon Castle’s Back\nTommyDieselfuel\n\t\n1–0\n2026 · #3\n\t\n309.50\n\t\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nShai Gilgeous-Alexander\nPG · $134.25\nModeled FAAB\n\t\n22 players\nRoster\n\n\n4\n\t\nThe Fun Guys\nphilbiag\n\t\n1–0\n2026 · #4\n\t\n304.00\n\t\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nJalen Brunson\nPG · $137.50\nModeled FAAB\n\t\n22 players\nRoster\n\n\n5\n\t\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\n\t\n1–0\n2026 · #5\n\t\n298.50\n\t\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nStephen Curry\nPG · $140.75\nModeled FAAB\n\t\n22 players\nRoster\n\n\n6\n\t\nHuff n’ Puff\nGriffinHealy\n\t\n1–0\n2026 · #6\n\t\n293.00\n\t\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nDonovan Mitchell\nSG · $131.00\nModeled FAAB\n\t\n23 players\nRoster\n\n\n7\n\t\npapichooter\npapichooter\n\t\n1–0\n2026 · #7\n\t\n287.50\n\t\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nLuka Dončić\nPG · $131.00\nModeled FAAB\n\t\n23 players\nRoster\n\n\n8\n\t\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\n\t\n1–0\n2026 · #8\n\t\n282.00\n\t\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nGiannis Antetokounmpo\nPF · $140.75\nModeled FAAB\n\t\n22 players\nRoster\n\n\n9\n\t\nLebron Theme Team\nlordlx\n\t\n1–0\n2026 · #9\n\t\n276.50\n\t\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nLeBron James\nPF · $144.00\nModeled"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "roster",
+        "label": "Full roster subrow"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-02-roster.jpg",
+        "bytes": 394055,
+        "sha256": "13ec81c19065ae1f6d465193df9dd67cc1d99a073a0280ea51b35fe95a133a99",
+        "width": 1440,
+        "height": 3946,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-02-roster-viewport.jpg",
+        "bytes": 114518,
+        "sha256": "5de9dd6dfc44a75d2a1f313ce7a42641b8ee42526afb136ae5c4e3bf80f2400a",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3946,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3946,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 3946,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nMy evidence5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\n10 of 10 teams · 228 player references\n2026 league sheet\n\nRead across each team. Open a roster or your brief below its row. Scores are own / opponent; 0.0 is known, Pending is unknown.\n\n#\tFranchise / manager\tW–L\tPF\tCurrent opponent / score\tLeague face / value\tInline reader\n\n1\n\t\nReaves Dropper\naidandaly20\nYour team\n\t\n1–0\n2026 · #1\n\t\n320.50\n\t\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n\t\nJoel Embiid\nC · $137.50\nModeled FAAB\n\t\n24 players\nRoster\nYour brief\n\n\nReaves Dropper · roster\nClose row\n\n24 current player references. 2025: 16–5, finish 4.\n\nModeled FAAB values · in-season basis · computed 2026-11-12 12:00:00 UTC. 24 priced / 0 unpriced.\n\nPlayer / profile\tPosition\tNBA team\tModeled FAAB\n\nDamian Lillard\n\t\nPG\n\t\nPOR\n\t\n$74.00\n\n\nTobias Harris\n\t\nPF\n\t\nSAS\n\t\n$70.75\n\n\nJoel Embiid\n\t\nC\n\t\nPHI\n\t\n$137.50\n\n\nMyles Turner\n\t\nC\n\t\nMIL\n\t\n$64.25\n\n\nDerrick White\n\t\nSG\n\t\nBOS\n\t\n$61.00\n\n\nGrayson Allen\n\t\nSF\n\t\nCHA\n\t\n$57.75\n\n\nAnthony Edwards\n\t\nSG\n\t\nMIN\n\t\n$124.50\n\n\nPayton Pritchard\n\t\nPG\n\t\nBOS\n\t\n$51.25\n\n\nDevin Vassell\n\t\nSF\n\t\nSAS\n\t\n$48.00\n\n\nImmanuel Quickley\n\t\nPG\n\t\nTOR\n\t\n$44.75\n\n\nSanti Aldama\n\t\nPF\n\t\nDAL\n\t\n$41.50\n\n\nAlperen Şengün\n\t\nC\n\t\nHOU\n\t\n$108.25\n\n\nAustin Reaves\n\t\nSG\n\t\nLAL\n\t\n$35.00\n\n\nPeyton Watson\n\t\nSF\n\t\nCLE\n\t\n$31.75\n\n\nMax Christie\n\t\nSG\n\t\nDAL\n\t\n$28.50\n\n\nBrandon Miller\n\t\nSF\n\t\nCHA\n\t\n$25.25\n\n\nDonovan Clingan\n\t\nC\n\t\nPOR\n\t\n$22.00\n\n\nDaniss Jenkins\n\t\nPG\n\t\nDET\n\t\n$18.75\n\n\nNolan Traore\n\t\nPG\n\t\nBKN\n\t\n$15.50\n\n\nDanny Wolf\n\t\nPF\n\t\nBKN\n\t\n$12.25\n\n\nDerik Queen\n\t\nC\n\t\nNOP\n\t\n$9.00\n\n\nYaxel Lendeborg\n\t\nPF\n\t\nGSW\n\t\n$5.75\n\n\nLabaron Philon\n\t\nPG\n\t\nPHI\n\t\n$4.00\n\n\nBruce Thornton\n\t\nPG\n\t\nHOU\n\t\n$4.00\nOpen team roster\nCompare on Stocks\nMy team\n\n\n2\n\t\nWare the Hoes At?\nAedan23\n\t\n1–0\n2026 · #2\n\t\n315.00\n\t\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n\t\nDomantas Sabonis\nC · $140.75\nModeled FAAB\n\t\n27 players\nRoster\n\n\n3\n\t\nStephon Castle’s Back\nTommyDieselfuel\n\t\n1–0\n2026 · #3\n\t\n309.50\n\t\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nShai Gilgeous-Alexander\nPG · $134.25\nModeled FAAB\n\t\n22 players\nRoster\n\n\n4\n\t\nThe Fun Guys\nphilbiag\n\t\n1–0\n2026 · #4\n\t\n304."
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "matchups",
+        "label": "Five pairs and saved AI receipt"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-03-matchups.jpg",
+        "bytes": 245571,
+        "sha256": "fe6e5b85a7fb9ac1914f7724c0221126e6df71cda64c7791b59c89073d15806a",
+        "width": 1440,
+        "height": 2299,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-03-matchups-viewport.jpg",
+        "bytes": 112000,
+        "sha256": "9082e2918a6337b490d04af57b4a182beb26de90da51d6765ac9c597fb01ad4d",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2299,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2299,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2299,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Week 3 · incomplete matchups"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nMy evidence5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nSource order\nHome team: A–Z\nReset sheet\n5 of 5 current pairs · saved AI ready\nWeek 3 · incomplete matchups\n\nBoth teams and every saved pick share one row. AI choices are saved synthetic model output.\n\nTeams / managers / records\tScore\tReturned model choice\tModel probabilities\tInline reader\n\nReaves Dropper\naidandaly20\n1–0\nWare the Hoes At?\nAedan23\n1–0\nYour pairing\n\t\n0.0\nPending\nWeek 3\nIncomplete\n\t\nWare the Hoes At?\nSaved pick\nConfidence 20%\n\t\nWare the Hoes At?\n35%\nReaves Dropper\n65%\n\t\nSource\n\n\nSaved model receipt\nClose row\n\nModel probability — not calibrated sports odds. The saved returned choice is preserved even when the other probability is higher. Confidence is a separate field.\n\nResult state\nSaved ready fixture result\nReturned choice\nWare the Hoes At?\nProbabilities as returned\nWare the Hoes At?: 35% / Reaves Dropper: 65%\nIndependent confidence\n20%\nSaved at\n2026-11-10 12:00:00 UTC\nModel / prompt version\nfixture-model / fixture-prompt\nInput snapshot\nNot supplied (null); slate snapshot not supplied (null).\nMatchup evidence\nSynthetic input evidence; no real result.\nResult evidence / baseline\nNo result-level evidence supplied. Baseline not supplied (null).\nInput identity\nLeague 1387473752807190528 · season 2026 · Week 3 · team IDs 1 / 2 · matchup 0.\nOpen AI Decides\n\n\nStephon Castle’s Back\nTommyDieselfuel\n1–0\nThe Fun Guys\nphilbiag\n1–0\n\t\n105.5\nPending\nWeek 3\nIncomplete\n\t\nThe Fun Guys\nSaved pick\nConfidence 20%\n\t\nThe Fun Guys\n35%\nStephon Castle’s Back\n65%\n\t\nSource\n\n\nJosh Diddy’s Roster\nvannweinkauf\n1–0\nHuff n’ Puff\nGriffinHealy\n1–0\n\t\n105.5\nPending\nWeek 3\nIncomplete\n\t\nHuff n’ Puff\nSaved pick\nConfidence 20%\n\t\nHuff n’ Puff\n35%\nJosh Diddy’s Roster\n65%\n\t\nSource\n\n\npapichooter\npapichooter\n1–0\nNeuralNets\nNeuralNets\n1–0\n\t\n105.5\nPending\nWeek 3\nIncomplete\n\t\nNeuralNets\nSaved pick\nConfidence 20%\n\t\nNeuralNets\n35%\npapichooter\n65%\n\t\nSource\n\n\nLebron Theme Team\nlordlx\n1–0\nT Halibooty\nTyreseHalibooty\n1–0\n\t\n105.5\nPending\nWeek 3\nIncomplete\n\t\nT Halibooty\nSaved pick\nConfidence 20%\n\t\nT Halibooty\n35%\nLebron Theme Team\n65%\n\t\nSource\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, "
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "evidence",
+        "label": "Personal form and evidence"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-04-evidence.jpg",
+        "bytes": 266758,
+        "sha256": "b41317c3338d3d2b4990e05a357c117fbe62c47c2c6e8064a0199062acb07efa",
+        "width": 1440,
+        "height": 2491,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-04-evidence-viewport.jpg",
+        "bytes": 111390,
+        "sha256": "cbf421a7ed8954a1da1d47cf3f048d85311c3f82a80800b24002c24f369ca842",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2491,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2491,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2491,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Reaves Dropper · evidence register"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nMy evidence5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nSource order\nTitle: A–Z\nReset sheet\n5 of 5 evidence records · member fixture\nReaves Dropper · evidence register\n\nOpen a source record in place. Form, completed-week points and modeled prices keep their own basis and period.\n\nPeriod / basis\tRecord\tWhat is supplied\tInline reader\n\nCurrent fixture quote\n\t\nYour roster value\n\t\n$1095.25 modeled FAAB total · 24/24 priced\n\t\nRead\n\n\nIn-season form\n\t\nPlayers to watch\n\t\nOn form · in-season EMA fantasy points per game\n\t\nRead\n\n\nPlayers to watch\nClose row\n\nEMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable.\n\nPlayer\tEMA fantasy PPG\tGames played\tSource note\n\nDamian Lillard\n\t\n38\n\t\n8\n\t\nAvailability status unknown\n\n\nTobias Harris\n\t\n37\n\t\n8\n\t\nAvailability status unknown\n\n\nJoel Embiid\n\t\n36\n\t\n8\n\t\nAvailability status unknown\n\nAvailability status unknown is retained; it is not an injury designation. Observed-game sample is separate from the completed-week recap below.\n\n\n\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\n\t\nYour best & rough week\n\t\n5 eligible players with verified games; small lists may overlap.\n\t\nRead\n\n\nYour best & rough week\nClose row\n\nSynthetic completed-week fixture. Completed-week fixture only; these are synthetic recorded performers, not current official Week 2 awards.\n\nActual recorded fantasy points for current roster players with verified participation in the completed source week. 5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\n\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\n\nYour best\nPlayer\tWeekly fantasy points\tGames played\tSource note\n\nDamian Lillard\n\t\n45\n\t\n3\n\t\nRecorded weekly fantasy points\n\n\nTobias Harris\n\t\n39\n\t\n3\n\t\nRecorded weekly fantasy points\n\n\nJoel Embiid\n\t\n33\n\t\n3\n\t\nRecorded weekly fantasy points\nThe rough week\nPlayer\tWeekly fantasy points\tGames played\tSource note\n\nDerrick White\n\t\n21\n\t\n3\n\t\nRecorded weekly fantasy points\n\n\nMyles Turner\n\t\n27\n\t\n3\n\t\nRecorded weekly fantasy points\n\n\nJoel Embiid\n\t\n33\n\t\n3\n\t\nRecorded weekly fantasy points\n\n\nNov 12 fixture\n\t\nYour team wire\n\t\n2 news refe"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "editorial",
+        "label": "Dated edition and source subrows"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-05-editorial.jpg",
+        "bytes": 344334,
+        "sha256": "471c58280a733db51e54428971f267a6ac189064ae2c6aff5fe3c6fd2073b4c3",
+        "width": 1440,
+        "height": 2692,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-05-editorial-viewport.jpg",
+        "bytes": 128062,
+        "sha256": "e329e8052c63a360bb51766096cf35c40c0af248e8ebffc1756072649289602b",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2692,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2692,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2692,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Dated editorial register"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nMy evidence5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nNewest edition first\nTitle: A–Z\nReset sheet\n2 of 2 dated editions · draft status preserved\nDated editorial register\n\nThe October editions are samples, not current Week 3 results. Read their full narrative, exact stat period and source dates in the row.\n\nEdition / dates\tEditorial\tMatchup / status\tInline reader\n\n2026-W41\nOct 5–11, 2026\ndraft · unpublished\n\t\nThe next chapter\nReaves Dropper gets the champ.\n\t\nReaves Dropper / Josh Diddy’s Roster\nOpening-week watch · upcoming\n\t\nRead edition\n\n\nThe next chapter\nClose row\n\nDated draft · Oct 5–11, 2026. Not published; this is a sample editorial entry. October narrative is separate from the synthetic current Week 3 sheet.\n\nReaves Dropper gets the champ.\n\nOpening-week watch · Week 1 · upcoming.\n\nReaves Dropper / Josh Diddy’s Roster · scores not supplied for upcoming fixture.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nSelection: Proposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\n\nEdition bounds: 2026-10-05 00:00:00 UTC to 2026-10-12 00:00:00 UTC (end exclusive).\n\nLast season’s standard\nplayer-of-week\n\nNikola Jokić\n\nC · Josh Diddy’s Roster\n\n27.7\nPPG\n12.9\nRPG\n10.7\nAPG\n\n2025–26 NBA averages\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\nWhy this selection: Opening-edition sample opinion, using last season’s NBA averages. This is not a played 2026 fantasy-week award. Current roster ownership is verified; the pick is editorial, not a computed MVP ranking.\n\nNBA.com · Jokić · checked 2026-10-08\n\nLast-season lookback\nunderperformer\n\nJoel Embiid\n\nC · Reaves Dropper\n\n26.9\nPPG\n7.7\nRPG\n3.9\nAPG\n\n2025–26 NBA averages\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\nWhy this selection: A sample last-season criticism of rebounding output, not a verified worst-player ranking, injury judgment or current-week result. The opinion is subjective. The ownership link is the current roster, not a claim about who held h"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "moves",
+        "label": "Moves and route register"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-06-moves.jpg",
+        "bytes": 176216,
+        "sha256": "0f64590b8225cc18ce82fa9d4c3321294c7d7eee1f089292c242bc9ba564f710",
+        "width": 1440,
+        "height": 1473,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-06-moves-viewport.jpg",
+        "bytes": 124938,
+        "sha256": "e462220b191d8b478075d7bc130077c0cf2ab83cd10668b6524b51ffc5e90160",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1473,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1473,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1473,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Moves & destination register"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nMy evidence5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nSource order\nTitle: A–Z\nReset sheet\n9 of 9 move / destination records\nMoves & destination register\n\nEvery destination is a real existing route. No transaction details, history line or power ranking are invented.\n\nPeriod / basis\tRecord / destination\tContext\tAction\n\nWeek 3 · 2026-11-12 12:00:00 UTC\n\t\nReaves Dropper made a sample roster move.\n\t\nSynthetic free_agent; 0 add / 0 drop legs supplied.\n\t\nTransactions\n\n\nWeek 3 · 2026-11-12 12:00:00 UTC\n\t\nThe Fun Guys made a sample roster move.\n\t\nSynthetic free_agent; 0 add / 0 drop legs supplied.\n\t\nTransactions\n\n\nWeek 3 · 2026-11-12 12:00:00 UTC\n\t\nLebron Theme Team made a sample roster move.\n\t\nSynthetic free_agent; 0 add / 0 drop legs supplied.\n\t\nTransactions\n\n\nModeled FAAB\n\t\nPlayer market\n\t\nInspect player values and coverage at the player board.\n\t\nStocks\n\n\nDecision tool\n\t\nTrade analyzer\n\t\nCompare a trade with the existing analyzer.\n\t\nAnalyze\n\n\nArcade game\n\t\nFree Throw\n\t\nOpen the existing free-throw game, or browse the Arcade.\n\t\nPlay Free Throw\n\n\nUnavailable\n\t\nRecorded history\n\t\nRecorded team-value history unavailable; no line is invented.\n\t\nHistory\n\n\nUnavailable\n\t\nLineup Power\n\t\nLineup Power unavailable: no producer snapshot connected in this mock.\n\t\nNews / analysis\n\n\n10 franchises / 228 players\n\t\nLeague directory\n\t\nBrowse team profiles, current managers and complete roster references.\n\t\nTeams\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView public study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "search",
+        "label": "Local player search"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-07-search.jpg",
+        "bytes": 236752,
+        "sha256": "c8b15d85aaf9cc6a63d1b820a7f1941440e4fd2e9419c5c534bf2cded352a653",
+        "width": 1440,
+        "height": 2757,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-desktop-07-search-viewport.jpg",
+        "bytes": 113278,
+        "sha256": "5d04037ff34b518213dfce72393664931afcfaec8817e4dd0de9b4ccf20300d6",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2757,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2757,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2757,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nMy evidence5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\n1 of 10 teams · 228 player references\n2026 league sheet\n\nRead across each team. Open a roster or your brief below its row. Scores are own / opponent; 0.0 is known, Pending is unknown.\n\n#\tFranchise / manager\tW–L\tPF\tCurrent opponent / score\tLeague face / value\tInline reader\n\n1\n\t\nReaves Dropper\naidandaly20\nYour team\n\t\n1–0\n2026 · #1\n\t\n320.50\n\t\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n\t\nJoel Embiid\nC · $137.50\nModeled FAAB\n\t\n24 players\nRoster\nYour brief\n\n\nReaves Dropper · roster\nClose row\n\n24 current player references. 2025: 16–5, finish 4.\n\nModeled FAAB values · in-season basis · computed 2026-11-12 12:00:00 UTC. 24 priced / 0 unpriced.\n\nPlayer / profile\tPosition\tNBA team\tModeled FAAB\n\nDamian Lillard\n\t\nPG\n\t\nPOR\n\t\n$74.00\n\n\nTobias Harris\n\t\nPF\n\t\nSAS\n\t\n$70.75\n\n\nJoel Embiid\n\t\nC\n\t\nPHI\n\t\n$137.50\n\n\nMyles Turner\n\t\nC\n\t\nMIL\n\t\n$64.25\n\n\nDerrick White\n\t\nSG\n\t\nBOS\n\t\n$61.00\n\n\nGrayson Allen\n\t\nSF\n\t\nCHA\n\t\n$57.75\n\n\nAnthony Edwards\n\t\nSG\n\t\nMIN\n\t\n$124.50\n\n\nPayton Pritchard\n\t\nPG\n\t\nBOS\n\t\n$51.25\n\n\nDevin Vassell\n\t\nSF\n\t\nSAS\n\t\n$48.00\n\n\nImmanuel Quickley\n\t\nPG\n\t\nTOR\n\t\n$44.75\n\n\nSanti Aldama\n\t\nPF\n\t\nDAL\n\t\n$41.50\n\n\nAlperen Şengün\n\t\nC\n\t\nHOU\n\t\n$108.25\n\n\nAustin Reaves\n\t\nSG\n\t\nLAL\n\t\n$35.00\n\n\nPeyton Watson\n\t\nSF\n\t\nCLE\n\t\n$31.75\n\n\nMax Christie\n\t\nSG\n\t\nDAL\n\t\n$28.50\n\n\nBrandon Miller\n\t\nSF\n\t\nCHA\n\t\n$25.25\n\n\nDonovan Clingan\n\t\nC\n\t\nPOR\n\t\n$22.00\n\n\nDaniss Jenkins\n\t\nPG\n\t\nDET\n\t\n$18.75\n\n\nNolan Traore\n\t\nPG\n\t\nBKN\n\t\n$15.50\n\n\nDanny Wolf\n\t\nPF\n\t\nBKN\n\t\n$12.25\n\n\nDerik Queen\n\t\nC\n\t\nNOP\n\t\n$9.00\n\n\nYaxel Lendeborg\n\t\nPF\n\t\nGSW\n\t\n$5.75\n\n\nLabaron Philon\n\t\nPG\n\t\nPHI\n\t\n$4.00\n\n\nBruce Thornton\n\t\nPG\n\t\nHOU\n\t\n$4.00\nOpen team roster\nCompare on Stocks\nMy team\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView public study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "default",
+        "label": "League ledger / all teams"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-00-default.jpg",
+        "bytes": 158691,
+        "sha256": "e9fb22d047115567a62600d2b4963f51d0ad508f51031f85ad08b27efef9f6ce",
+        "width": 390,
+        "height": 4016,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-00-default-viewport.jpg",
+        "bytes": 42329,
+        "sha256": "d5f26f1cb80924588171b0176dcd27728cb548d13ebf7becb543d52451c4702e",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 4016,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 4016,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 4016,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nMy evidence (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\nFields\nWeek 3 opponent & score\nRecord & points for\nLeague faces & values\nAll fields\n10 of 10 teams · 228 player references\n2026 league sheet\nReaves Dropper\naidandaly20\nYour team\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n24 players\nRoster\nYour brief\nWare the Hoes At?\nAedan23\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n27 players\nRoster\nStephon Castle’s Back\nTommyDieselfuel\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nThe Fun Guys\nphilbiag\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nHuff n’ Puff\nGriffinHealy\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n23 players\nRoster\npapichooter\npapichooter\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n23 players\nRoster\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nLebron Theme Team\nlordlx\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n21 players\nRoster\nT Halibooty\nTyreseHalibooty\nLebron Theme Team\nlordlx · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView public study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "league",
+        "label": "All ten team rows"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-01-league.jpg",
+        "bytes": 158691,
+        "sha256": "e9fb22d047115567a62600d2b4963f51d0ad508f51031f85ad08b27efef9f6ce",
+        "width": 390,
+        "height": 4016,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-01-league-viewport.jpg",
+        "bytes": 42329,
+        "sha256": "d5f26f1cb80924588171b0176dcd27728cb548d13ebf7becb543d52451c4702e",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 4016,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 4016,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 4016,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nMy evidence (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\nFields\nWeek 3 opponent & score\nRecord & points for\nLeague faces & values\nAll fields\n10 of 10 teams · 228 player references\n2026 league sheet\nReaves Dropper\naidandaly20\nYour team\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n24 players\nRoster\nYour brief\nWare the Hoes At?\nAedan23\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n27 players\nRoster\nStephon Castle’s Back\nTommyDieselfuel\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nThe Fun Guys\nphilbiag\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nHuff n’ Puff\nGriffinHealy\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n23 players\nRoster\npapichooter\npapichooter\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n23 players\nRoster\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nLebron Theme Team\nlordlx\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n21 players\nRoster\nT Halibooty\nTyreseHalibooty\nLebron Theme Team\nlordlx · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView public study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "roster",
+        "label": "Full roster subrow"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-02-roster.jpg",
+        "bytes": 317619,
+        "sha256": "dff12441bf31701351fb94a19ffd1ccf88c79d2a20ffe46d68cf8e2e26d02d98",
+        "width": 390,
+        "height": 8349,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-02-roster-viewport.jpg",
+        "bytes": 42319,
+        "sha256": "cd8a3fb7dbb29a54d1ea199d2fc618900399b757a72ad83b179db0fdedbc90e7",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1800,
+          "method": "bounded CDP document clip; no CSS flattening"
+        },
+        {
+          "x": 0,
+          "y": 1800,
+          "height": 1800,
+          "method": "bounded CDP document clip; no CSS flattening"
+        },
+        {
+          "x": 0,
+          "y": 3600,
+          "height": 1800,
+          "method": "bounded CDP document clip; no CSS flattening"
+        },
+        {
+          "x": 0,
+          "y": 5400,
+          "height": 1800,
+          "method": "bounded CDP document clip; no CSS flattening"
+        },
+        {
+          "x": 0,
+          "y": 7200,
+          "height": 1149,
+          "method": "bounded CDP document clip; no CSS flattening"
+        }
+      ],
+      "documentHeight": 8349,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 8349,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nMy evidence (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\nFields\nWeek 3 opponent & score\nRecord & points for\nLeague faces & values\nAll fields\n10 of 10 teams · 228 player references\n2026 league sheet\nReaves Dropper\naidandaly20\nYour team\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n24 players\nRoster\nYour brief\nReaves Dropper · roster\nClose row\n\n24 current player references. 2025: 16–5, finish 4.\n\nModeled FAAB values · in-season basis · computed 2026-11-12 12:00:00 UTC. 24 priced / 0 unpriced.\n\nDamian Lillard\nPG\nPOR\n$74.00\nTobias Harris\nPF\nSAS\n$70.75\nJoel Embiid\nC\nPHI\n$137.50\nMyles Turner\nC\nMIL\n$64.25\nDerrick White\nSG\nBOS\n$61.00\nGrayson Allen\nSF\nCHA\n$57.75\nAnthony Edwards\nSG\nMIN\n$124.50\nPayton Pritchard\nPG\nBOS\n$51.25\nDevin Vassell\nSF\nSAS\n$48.00\nImmanuel Quickley\nPG\nTOR\n$44.75\nSanti Aldama\nPF\nDAL\n$41.50\nAlperen Şengün\nC\nHOU\n$108.25\nAustin Reaves\nSG\nLAL\n$35.00\nPeyton Watson\nSF\nCLE\n$31.75\nMax Christie\nSG\nDAL\n$28.50\nBrandon Miller\nSF\nCHA\n$25.25\nDonovan Clingan\nC\nPOR\n$22.00\nDaniss Jenkins\nPG\nDET\n$18.75\nNolan Traore\nPG\nBKN\n$15.50\nDanny Wolf\nPF\nBKN\n$12.25\nDerik Queen\nC\nNOP\n$9.00\nYaxel Lendeborg\nPF\nGSW\n$5.75\nLabaron Philon\nPG\nPHI\n$4.00\nBruce Thornton\nPG\nHOU\n$4.00\nOpen team roster\nCompare on Stocks\nMy team\nWare the Hoes At?\nAedan23\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n27 players\nRoster\nStephon Castle’s Back\nTommyDieselfuel\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nThe Fun Guys\nphilbiag\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nHuff n’ Puff\nGriffinHealy\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n23 players\nRoster\npapichooter\npapichooter\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n23 players\nRoster\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nLebron Theme Team\nlordlx\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n21 players\nRos"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "matchups",
+        "label": "Five pairs and saved AI receipt"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-03-matchups.jpg",
+        "bytes": 205838,
+        "sha256": "2a47abfa427ff26e92822a302a4f2dc49d7e0214731dafd16c40747f47245522",
+        "width": 390,
+        "height": 4522,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-03-matchups-viewport.jpg",
+        "bytes": 39432,
+        "sha256": "e2bac033a2245b719936577fa425eed64a60b6652082998fd2fcf9ac0ef4667a",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 4522,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 4522,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 4522,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Week 3 · incomplete matchups"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nMy evidence (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nSource order\nHome team: A–Z\nReset sheet\n5 of 5 current pairs · saved AI ready\nWeek 3 · incomplete matchups\nReaves Dropper\naidandaly20\n1–0\nWare the Hoes At?\nAedan23\n1–0\nYour pairing\n0.0\nPending\nWeek 3\nIncomplete\nWare the Hoes At?\nSaved pick\nConfidence 20%\nWare the Hoes At?35%\nReaves Dropper65%\nSource\nSaved model receipt\nClose row\n\nModel probability — not calibrated sports odds. The saved returned choice is preserved even when the other probability is higher. Confidence is a separate field.\n\nResult state\nSaved ready fixture result\nReturned choice\nWare the Hoes At?\nProbabilities as returned\nWare the Hoes At?: 35% / Reaves Dropper: 65%\nIndependent confidence\n20%\nSaved at\n2026-11-10 12:00:00 UTC\nModel / prompt version\nfixture-model / fixture-prompt\nInput snapshot\nNot supplied (null); slate snapshot not supplied (null).\nMatchup evidence\nSynthetic input evidence; no real result.\nResult evidence / baseline\nNo result-level evidence supplied. Baseline not supplied (null).\nInput identity\nLeague 1387473752807190528 · season 2026 · Week 3 · team IDs 1 / 2 · matchup 0.\nOpen AI Decides\nStephon Castle’s Back\nTommyDieselfuel\n1–0\nThe Fun Guys\nphilbiag\n1–0\n105.5\nPending\nWeek 3\nIncomplete\nThe Fun Guys\nSaved pick\nConfidence 20%\nThe Fun Guys35%\nStephon Castle’s Back65%\nSource\nJosh Diddy’s Roster\nvannweinkauf\n1–0\nHuff n’ Puff\nGriffinHealy\n1–0\n105.5\nPending\nWeek 3\nIncomplete\nHuff n’ Puff\nSaved pick\nConfidence 20%\nHuff n’ Puff35%\nJosh Diddy’s Roster65%\nSource\npapichooter\npapichooter\n1–0\nNeuralNets\nNeuralNets\n1–0\n105.5\nPending\nWeek 3\nIncomplete\nNeuralNets\nSaved pick\nConfidence 20%\nNeuralNets35%\npapichooter65%\nSource\nLebron Theme Team\nlordlx\n1–0\nT Halibooty\nTyreseHalibooty\n1–0\n105.5\nPending\nWeek 3\nIncomplete\nT Halibooty\nSaved pick\nConfidence 20%\nT Halibooty35%\nLebron Theme Team65%\nSource\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView public study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "evidence",
+        "label": "Personal form and evidence"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-04-evidence.jpg",
+        "bytes": 226778,
+        "sha256": "6d0d3245b88a893e4e35a3cc8bac6d808901a144642766a34b024612e843cffd",
+        "width": 390,
+        "height": 4617,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-04-evidence-viewport.jpg",
+        "bytes": 42003,
+        "sha256": "73f0364748406bba057f70042e171ba72b46a5046ab184df6b88d42fc03af837",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 4617,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 4617,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 4617,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Reaves Dropper · evidence register"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nMy evidence (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nSource order\nTitle: A–Z\nReset sheet\n5 of 5 evidence records · member fixture\nReaves Dropper · evidence register\nCurrent fixture quote\nYour roster value\n$1095.25 modeled FAAB total · 24/24 priced\nRead\nIn-season form\nPlayers to watch\nOn form · in-season EMA fantasy points per game\nRead\nPlayers to watch\nClose row\n\nEMA across the shown number of observed games; not a this-week score projection. Schedule adjustment is unavailable.\n\nDamian Lillard\n38\n8\nAvailability status unknown\nTobias Harris\n37\n8\nAvailability status unknown\nJoel Embiid\n36\n8\nAvailability status unknown\n\nAvailability status unknown is retained; it is not an injury designation. Observed-game sample is separate from the completed-week recap below.\n\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\nYour best & rough week\n5 eligible players with verified games; small lists may overlap.\nRead\nYour best & rough week\nClose row\n\nSynthetic completed-week fixture. Completed-week fixture only; these are synthetic recorded performers, not current official Week 2 awards.\n\nActual recorded fantasy points for current roster players with verified participation in the completed source week. 5 current roster players have verified games. DNP, no-game and unknown records are excluded. These small-cohort lists may overlap; no additional players are inferred.\n\n2026 · Week 2 · 2026-11-02 to 2026-11-09 (end exclusive)\n\nYour best\nDamian Lillard\n45\n3\nRecorded weekly fantasy points\nTobias Harris\n39\n3\nRecorded weekly fantasy points\nJoel Embiid\n33\n3\nRecorded weekly fantasy points\nThe rough week\nDerrick White\n21\n3\nRecorded weekly fantasy points\nMyles Turner\n27\n3\nRecorded weekly fantasy points\nJoel Embiid\n33\n3\nRecorded weekly fantasy points\nNov 12 fixture\nYour team wire\n2 news references · 1 recent move\nRead\nRecorded evidence\nHistory & Lineup Power\nBoth unavailable · no connected producer\nRead\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView public study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "editorial",
+        "label": "Dated edition and source subrows"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-05-editorial.jpg",
+        "bytes": 298724,
+        "sha256": "cbb39e72563f8cddd4a9f53ddb6bb4a65071b99a9f7d90bf06e69e8935eef71c",
+        "width": 390,
+        "height": 5185,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-05-editorial-viewport.jpg",
+        "bytes": 45166,
+        "sha256": "6673c9b7c8eb6a6795cf115d1a62f6232a19f4161ab336371f71669593c9ef5a",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 5185,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 5185,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 5185,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Dated editorial register"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nMy evidence (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nNewest edition first\nTitle: A–Z\nReset sheet\n2 of 2 dated editions · draft status preserved\nDated editorial register\n2026-W41\nOct 5–11, 2026\ndraft · unpublished\nThe next chapter\nReaves Dropper gets the champ.\nReaves Dropper / Josh Diddy’s Roster\nOpening-week watch · upcoming\nRead edition\nThe next chapter\nClose row\n\nDated draft · Oct 5–11, 2026. Not published; this is a sample editorial entry. October narrative is separate from the synthetic current Week 3 sheet.\n\nReaves Dropper gets the champ.\n\nOpening-week watch · Week 1 · upcoming.\n\nReaves Dropper / Josh Diddy’s Roster · scores not supplied for upcoming fixture.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nSelection: Proposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\n\nEdition bounds: 2026-10-05 00:00:00 UTC to 2026-10-12 00:00:00 UTC (end exclusive).\n\nLast season’s standard\nplayer-of-week\n\nNikola Jokić\n\nC · Josh Diddy’s Roster\n\n27.7\nPPG\n12.9\nRPG\n10.7\nAPG\n\n2025–26 NBA averages\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\nWhy this selection: Opening-edition sample opinion, using last season’s NBA averages. This is not a played 2026 fantasy-week award. Current roster ownership is verified; the pick is editorial, not a computed MVP ranking.\n\nNBA.com · Jokić · checked 2026-10-08\n\nLast-season lookback\nunderperformer\n\nJoel Embiid\n\nC · Reaves Dropper\n\n26.9\nPPG\n7.7\nRPG\n3.9\nAPG\n\n2025–26 NBA averages\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\nWhy this selection: A sample last-season criticism of rebounding output, not a verified worst-player ranking, injury judgment or current-week result. The opinion is subjective. The ownership link is the current roster, not a claim about who held him throughout 2025.\n\nNBA.com · Embiid · checked 2026-10-08\n\nNext week · preseason\none-to-watch\n\nAJ Dybantsa\n\nPF · NeuralNets\n\n25.5\nPPG\n6.8\nRPG\n3.7\nAPG\n\n2025–26 college · BYU\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\nWhy this selectio"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "moves",
+        "label": "Moves and route register"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-06-moves.jpg",
+        "bytes": 139159,
+        "sha256": "bd3898db8de0903f272d7977b817707e8fb55f6e81ea6a548fcb2ee41d9ce335",
+        "width": 390,
+        "height": 3062,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-06-moves-viewport.jpg",
+        "bytes": 44801,
+        "sha256": "59395f4763b19bc216ccad2ab1997757da57f8f81265ee73f95ae7d3eeed0ad5",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3062,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3062,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 3062,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Moves & destination register"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nMy evidence (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nSource order\nTitle: A–Z\nReset sheet\n9 of 9 move / destination records\nMoves & destination register\nWeek 3 · 2026-11-12 12:00:00 UTC\nReaves Dropper made a sample roster move.\nSynthetic free_agent; 0 add / 0 drop legs supplied.\nTransactions\nWeek 3 · 2026-11-12 12:00:00 UTC\nThe Fun Guys made a sample roster move.\nSynthetic free_agent; 0 add / 0 drop legs supplied.\nTransactions\nWeek 3 · 2026-11-12 12:00:00 UTC\nLebron Theme Team made a sample roster move.\nSynthetic free_agent; 0 add / 0 drop legs supplied.\nTransactions\nModeled FAAB\nPlayer market\nInspect player values and coverage at the player board.\nStocks\nDecision tool\nTrade analyzer\nCompare a trade with the existing analyzer.\nAnalyze\nArcade game\nFree Throw\nOpen the existing free-throw game, or browse the Arcade.\nPlay Free Throw\nUnavailable\nRecorded history\nRecorded team-value history unavailable; no line is invented.\nHistory\nUnavailable\nLineup Power\nLineup Power unavailable: no producer snapshot connected in this mock.\nNews / analysis\n10 franchises / 228 players\nLeague directory\nBrowse team profiles, current managers and complete roster references.\nTeams\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView public study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "search",
+        "label": "Local player search"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-07-search.jpg",
+        "bytes": 220051,
+        "sha256": "a68e26f26292c0f93091f0f8b26869cde6dba4396e30d9175e58c12c3a2a1e25",
+        "width": 390,
+        "height": 5572,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/member-phone-07-search-viewport.jpg",
+        "bytes": 41064,
+        "sha256": "e61df9165edf07bbc58622af0d63f7f39aeebec89e6a717cc2ec6933e17bce49",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 5572,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 5572,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 5572,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nMy evidence (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\nFields\nWeek 3 opponent & score\nRecord & points for\nLeague faces & values\nAll fields\n1 of 10 teams · 228 player references\n2026 league sheet\nReaves Dropper\naidandaly20\nYour team\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n24 players\nRoster\nYour brief\nReaves Dropper · roster\nClose row\n\n24 current player references. 2025: 16–5, finish 4.\n\nModeled FAAB values · in-season basis · computed 2026-11-12 12:00:00 UTC. 24 priced / 0 unpriced.\n\nDamian Lillard\nPG\nPOR\n$74.00\nTobias Harris\nPF\nSAS\n$70.75\nJoel Embiid\nC\nPHI\n$137.50\nMyles Turner\nC\nMIL\n$64.25\nDerrick White\nSG\nBOS\n$61.00\nGrayson Allen\nSF\nCHA\n$57.75\nAnthony Edwards\nSG\nMIN\n$124.50\nPayton Pritchard\nPG\nBOS\n$51.25\nDevin Vassell\nSF\nSAS\n$48.00\nImmanuel Quickley\nPG\nTOR\n$44.75\nSanti Aldama\nPF\nDAL\n$41.50\nAlperen Şengün\nC\nHOU\n$108.25\nAustin Reaves\nSG\nLAL\n$35.00\nPeyton Watson\nSF\nCLE\n$31.75\nMax Christie\nSG\nDAL\n$28.50\nBrandon Miller\nSF\nCHA\n$25.25\nDonovan Clingan\nC\nPOR\n$22.00\nDaniss Jenkins\nPG\nDET\n$18.75\nNolan Traore\nPG\nBKN\n$15.50\nDanny Wolf\nPF\nBKN\n$12.25\nDerik Queen\nC\nNOP\n$9.00\nYaxel Lendeborg\nPF\nGSW\n$5.75\nLabaron Philon\nPG\nPHI\n$4.00\nBruce Thornton\nPG\nHOU\n$4.00\nOpen team roster\nCompare on Stocks\nMy team\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView public study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "default",
+        "label": "League ledger / all teams"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-00-default.jpg",
+        "bytes": 260066,
+        "sha256": "7eab95f23f9e39dc71fce029139f64bcb1d0a6c4707bf48e177a3704f50f64c3",
+        "width": 1440,
+        "height": 2089,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-00-default-viewport.jpg",
+        "bytes": 126995,
+        "sha256": "b21ed2a9919c70074b0d610171e750156d64961f689d982192366501c924814f",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2089,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2089,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2089,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team / sign in\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\n10 of 10 teams · 228 player references\n2026 league sheet\n\nRead across each team. Open a roster or your brief below its row. Scores are own / opponent; 0.0 is known, Pending is unknown.\n\n#\tFranchise / manager\tW–L\tPF\tCurrent opponent / score\tLeague face / value\tInline reader\n\n1\n\t\nReaves Dropper\naidandaly20\n\t\n1–0\n2026 · #1\n\t\n320.50\n\t\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n\t\nJoel Embiid\nC · $137.50\nModeled FAAB\n\t\n24 players\nRoster\n\n\n2\n\t\nWare the Hoes At?\nAedan23\n\t\n1–0\n2026 · #2\n\t\n315.00\n\t\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n\t\nDomantas Sabonis\nC · $140.75\nModeled FAAB\n\t\n27 players\nRoster\n\n\n3\n\t\nStephon Castle’s Back\nTommyDieselfuel\n\t\n1–0\n2026 · #3\n\t\n309.50\n\t\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nShai Gilgeous-Alexander\nPG · $134.25\nModeled FAAB\n\t\n22 players\nRoster\n\n\n4\n\t\nThe Fun Guys\nphilbiag\n\t\n1–0\n2026 · #4\n\t\n304.00\n\t\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nJalen Brunson\nPG · $137.50\nModeled FAAB\n\t\n22 players\nRoster\n\n\n5\n\t\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\n\t\n1–0\n2026 · #5\n\t\n298.50\n\t\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nStephen Curry\nPG · $140.75\nModeled FAAB\n\t\n22 players\nRoster\n\n\n6\n\t\nHuff n’ Puff\nGriffinHealy\n\t\n1–0\n2026 · #6\n\t\n293.00\n\t\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nDonovan Mitchell\nSG · $131.00\nModeled FAAB\n\t\n23 players\nRoster\n\n\n7\n\t\npapichooter\npapichooter\n\t\n1–0\n2026 · #7\n\t\n287.50\n\t\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nLuka Dončić\nPG · $131.00\nModeled FAAB\n\t\n23 players\nRoster\n\n\n8\n\t\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\n\t\n1–0\n2026 · #8\n\t\n282.00\n\t\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nGiannis Antetokounmpo\nPF · $140.75\nModeled FAAB\n\t\n22 players\nRoster\n\n\n9\n\t\nLebron Theme Team\nlordlx\n\t\n1–0\n2026 · #9\n\t\n276.50\n\t\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nLeBron James\nPF · $144.00\nModeled FAAB\n\t\n21 players\nRoste"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "league",
+        "label": "All ten team rows"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-01-league.jpg",
+        "bytes": 260066,
+        "sha256": "7eab95f23f9e39dc71fce029139f64bcb1d0a6c4707bf48e177a3704f50f64c3",
+        "width": 1440,
+        "height": 2089,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-01-league-viewport.jpg",
+        "bytes": 126995,
+        "sha256": "b21ed2a9919c70074b0d610171e750156d64961f689d982192366501c924814f",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2089,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2089,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2089,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team / sign in\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\n10 of 10 teams · 228 player references\n2026 league sheet\n\nRead across each team. Open a roster or your brief below its row. Scores are own / opponent; 0.0 is known, Pending is unknown.\n\n#\tFranchise / manager\tW–L\tPF\tCurrent opponent / score\tLeague face / value\tInline reader\n\n1\n\t\nReaves Dropper\naidandaly20\n\t\n1–0\n2026 · #1\n\t\n320.50\n\t\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n\t\nJoel Embiid\nC · $137.50\nModeled FAAB\n\t\n24 players\nRoster\n\n\n2\n\t\nWare the Hoes At?\nAedan23\n\t\n1–0\n2026 · #2\n\t\n315.00\n\t\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n\t\nDomantas Sabonis\nC · $140.75\nModeled FAAB\n\t\n27 players\nRoster\n\n\n3\n\t\nStephon Castle’s Back\nTommyDieselfuel\n\t\n1–0\n2026 · #3\n\t\n309.50\n\t\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nShai Gilgeous-Alexander\nPG · $134.25\nModeled FAAB\n\t\n22 players\nRoster\n\n\n4\n\t\nThe Fun Guys\nphilbiag\n\t\n1–0\n2026 · #4\n\t\n304.00\n\t\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nJalen Brunson\nPG · $137.50\nModeled FAAB\n\t\n22 players\nRoster\n\n\n5\n\t\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\n\t\n1–0\n2026 · #5\n\t\n298.50\n\t\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nStephen Curry\nPG · $140.75\nModeled FAAB\n\t\n22 players\nRoster\n\n\n6\n\t\nHuff n’ Puff\nGriffinHealy\n\t\n1–0\n2026 · #6\n\t\n293.00\n\t\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nDonovan Mitchell\nSG · $131.00\nModeled FAAB\n\t\n23 players\nRoster\n\n\n7\n\t\npapichooter\npapichooter\n\t\n1–0\n2026 · #7\n\t\n287.50\n\t\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nLuka Dončić\nPG · $131.00\nModeled FAAB\n\t\n23 players\nRoster\n\n\n8\n\t\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\n\t\n1–0\n2026 · #8\n\t\n282.00\n\t\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nGiannis Antetokounmpo\nPF · $140.75\nModeled FAAB\n\t\n22 players\nRoster\n\n\n9\n\t\nLebron Theme Team\nlordlx\n\t\n1–0\n2026 · #9\n\t\n276.50\n\t\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nLeBron James\nPF · $144.00\nModeled FAAB\n\t\n21 players\nRoste"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "roster",
+        "label": "Full roster subrow"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-02-roster.jpg",
+        "bytes": 377365,
+        "sha256": "5a1509ed8c3404dad71c4fdbb971a511f5caa143145d5fa782fa9aacb6bcafaa",
+        "width": 1440,
+        "height": 3946,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-02-roster-viewport.jpg",
+        "bytes": 110085,
+        "sha256": "990b5bcae1966482765e553506bf37c067fb7da4c9da856d9bb4fa83fa2b389f",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3946,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3946,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 3946,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team / sign in\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\n10 of 10 teams · 228 player references\n2026 league sheet\n\nRead across each team. Open a roster or your brief below its row. Scores are own / opponent; 0.0 is known, Pending is unknown.\n\n#\tFranchise / manager\tW–L\tPF\tCurrent opponent / score\tLeague face / value\tInline reader\n\n1\n\t\nReaves Dropper\naidandaly20\n\t\n1–0\n2026 · #1\n\t\n320.50\n\t\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n\t\nJoel Embiid\nC · $137.50\nModeled FAAB\n\t\n24 players\nRoster\n\n\nReaves Dropper · roster\nClose row\n\n24 current player references. 2025: 16–5, finish 4.\n\nPrices are not supplied for this complete roster in this public sheet; no team total is inferred from the league face.\n\nPlayer / profile\tPosition\tNBA team\n\nDamian Lillard\n\t\nPG\n\t\nPOR\n\n\nTobias Harris\n\t\nPF\n\t\nSAS\n\n\nJoel Embiid\n\t\nC\n\t\nPHI\n\n\nMyles Turner\n\t\nC\n\t\nMIL\n\n\nDerrick White\n\t\nSG\n\t\nBOS\n\n\nGrayson Allen\n\t\nSF\n\t\nCHA\n\n\nAnthony Edwards\n\t\nSG\n\t\nMIN\n\n\nPayton Pritchard\n\t\nPG\n\t\nBOS\n\n\nDevin Vassell\n\t\nSF\n\t\nSAS\n\n\nImmanuel Quickley\n\t\nPG\n\t\nTOR\n\n\nSanti Aldama\n\t\nPF\n\t\nDAL\n\n\nAlperen Şengün\n\t\nC\n\t\nHOU\n\n\nAustin Reaves\n\t\nSG\n\t\nLAL\n\n\nPeyton Watson\n\t\nSF\n\t\nCLE\n\n\nMax Christie\n\t\nSG\n\t\nDAL\n\n\nBrandon Miller\n\t\nSF\n\t\nCHA\n\n\nDonovan Clingan\n\t\nC\n\t\nPOR\n\n\nDaniss Jenkins\n\t\nPG\n\t\nDET\n\n\nNolan Traore\n\t\nPG\n\t\nBKN\n\n\nDanny Wolf\n\t\nPF\n\t\nBKN\n\n\nDerik Queen\n\t\nC\n\t\nNOP\n\n\nYaxel Lendeborg\n\t\nPF\n\t\nGSW\n\n\nLabaron Philon\n\t\nPG\n\t\nPHI\n\n\nBruce Thornton\n\t\nPG\n\t\nHOU\nOpen team roster\nCompare on Stocks\n\n\n2\n\t\nWare the Hoes At?\nAedan23\n\t\n1–0\n2026 · #2\n\t\n315.00\n\t\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n\t\nDomantas Sabonis\nC · $140.75\nModeled FAAB\n\t\n27 players\nRoster\n\n\n3\n\t\nStephon Castle’s Back\nTommyDieselfuel\n\t\n1–0\n2026 · #3\n\t\n309.50\n\t\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n\t\nShai Gilgeous-Alexander\nPG · $134.25\nModeled FAAB\n\t\n22 players\nRoster\n\n\n4\n\t\nThe Fun Guys\nphilbiag\n\t\n1–0\n2026 · #4\n\t\n304.00\n\t\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n\t\nJalen Brunson\nPG · $137.50\nModeled FAAB\n\t\n22 players\nRoster\n\n\n5\n\t\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\n\t\n1–0\n2026 · #5\n\t\n298.50\n\t\nHuff n’ Puff"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "matchups",
+        "label": "Five pairs and saved AI receipt"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-03-matchups.jpg",
+        "bytes": 244623,
+        "sha256": "30f375b12f3b1c6608233ca8fe87c0db3698a73ac75327d315af2134fd24ace3",
+        "width": 1440,
+        "height": 2267,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-03-matchups-viewport.jpg",
+        "bytes": 112200,
+        "sha256": "b276f71658cdf2221788a007cadfa32744fb6f2c84cc2cd6c0db4dafcfc3f6df",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2267,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2267,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2267,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Week 3 · incomplete matchups"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team / sign in\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nSource order\nHome team: A–Z\nReset sheet\n5 of 5 current pairs · saved AI ready\nWeek 3 · incomplete matchups\n\nBoth teams and every saved pick share one row. AI choices are saved synthetic model output.\n\nTeams / managers / records\tScore\tReturned model choice\tModel probabilities\tInline reader\n\nReaves Dropper\naidandaly20\n1–0\nWare the Hoes At?\nAedan23\n1–0\n\t\n0.0\nPending\nWeek 3\nIncomplete\n\t\nWare the Hoes At?\nSaved pick\nConfidence 20%\n\t\nWare the Hoes At?\n35%\nReaves Dropper\n65%\n\t\nSource\n\n\nSaved model receipt\nClose row\n\nModel probability — not calibrated sports odds. The saved returned choice is preserved even when the other probability is higher. Confidence is a separate field.\n\nResult state\nSaved ready fixture result\nReturned choice\nWare the Hoes At?\nProbabilities as returned\nWare the Hoes At?: 35% / Reaves Dropper: 65%\nIndependent confidence\n20%\nSaved at\n2026-11-10 12:00:00 UTC\nModel / prompt version\nfixture-model / fixture-prompt\nInput snapshot\nNot supplied (null); slate snapshot not supplied (null).\nMatchup evidence\nSynthetic input evidence; no real result.\nResult evidence / baseline\nNo result-level evidence supplied. Baseline not supplied (null).\nInput identity\nLeague 1387473752807190528 · season 2026 · Week 3 · team IDs 1 / 2 · matchup 0.\nOpen AI Decides\n\n\nStephon Castle’s Back\nTommyDieselfuel\n1–0\nThe Fun Guys\nphilbiag\n1–0\n\t\n105.5\nPending\nWeek 3\nIncomplete\n\t\nThe Fun Guys\nSaved pick\nConfidence 20%\n\t\nThe Fun Guys\n35%\nStephon Castle’s Back\n65%\n\t\nSource\n\n\nJosh Diddy’s Roster\nvannweinkauf\n1–0\nHuff n’ Puff\nGriffinHealy\n1–0\n\t\n105.5\nPending\nWeek 3\nIncomplete\n\t\nHuff n’ Puff\nSaved pick\nConfidence 20%\n\t\nHuff n’ Puff\n35%\nJosh Diddy’s Roster\n65%\n\t\nSource\n\n\npapichooter\npapichooter\n1–0\nNeuralNets\nNeuralNets\n1–0\n\t\n105.5\nPending\nWeek 3\nIncomplete\n\t\nNeuralNets\nSaved pick\nConfidence 20%\n\t\nNeuralNets\n35%\npapichooter\n65%\n\t\nSource\n\n\nLebron Theme Team\nlordlx\n1–0\nT Halibooty\nTyreseHalibooty\n1–0\n\t\n105.5\nPending\nWeek 3\nIncomplete\n\t\nT Halibooty\nSaved pick\nConfidence 20%\n\t\nT Halibooty\n35%\nLebron Theme Team\n65%\n\t\nSource\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "editorial",
+        "label": "Dated edition and source subrows"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-04-editorial.jpg",
+        "bytes": 344011,
+        "sha256": "b87212e8f9ad5b0ec33d4e00aca6551ad8d56890b4ffc1131928583b31a77f3f",
+        "width": 1440,
+        "height": 2692,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-04-editorial-viewport.jpg",
+        "bytes": 127557,
+        "sha256": "1d17faccab761b485028509ec204fa1e9aa7f5dd9a1db29f7907ac2e8588ad77",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2692,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2692,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2692,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Dated editorial register"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team / sign in\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nNewest edition first\nTitle: A–Z\nReset sheet\n2 of 2 dated editions · draft status preserved\nDated editorial register\n\nThe October editions are samples, not current Week 3 results. Read their full narrative, exact stat period and source dates in the row.\n\nEdition / dates\tEditorial\tMatchup / status\tInline reader\n\n2026-W41\nOct 5–11, 2026\ndraft · unpublished\n\t\nThe next chapter\nReaves Dropper gets the champ.\n\t\nReaves Dropper / Josh Diddy’s Roster\nOpening-week watch · upcoming\n\t\nRead edition\n\n\nThe next chapter\nClose row\n\nDated draft · Oct 5–11, 2026. Not published; this is a sample editorial entry. October narrative is separate from the synthetic current Week 3 sheet.\n\nReaves Dropper gets the champ.\n\nOpening-week watch · Week 1 · upcoming.\n\nReaves Dropper / Josh Diddy’s Roster · scores not supplied for upcoming fixture.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nSelection: Proposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\n\nEdition bounds: 2026-10-05 00:00:00 UTC to 2026-10-12 00:00:00 UTC (end exclusive).\n\nLast season’s standard\nplayer-of-week\n\nNikola Jokić\n\nC · Josh Diddy’s Roster\n\n27.7\nPPG\n12.9\nRPG\n10.7\nAPG\n\n2025–26 NBA averages\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\nWhy this selection: Opening-edition sample opinion, using last season’s NBA averages. This is not a played 2026 fantasy-week award. Current roster ownership is verified; the pick is editorial, not a computed MVP ranking.\n\nNBA.com · Jokić · checked 2026-10-08\n\nLast-season lookback\nunderperformer\n\nJoel Embiid\n\nC · Reaves Dropper\n\n26.9\nPPG\n7.7\nRPG\n3.9\nAPG\n\n2025–26 NBA averages\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\nWhy this selection: A sample last-season criticism of rebounding output, not a verified worst-player ranking, injury judgment or current-week result. The opinion is subjective. The ownership link is the current roster, not a claim about who held him "
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "moves",
+        "label": "Moves and route register"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-05-moves.jpg",
+        "bytes": 175921,
+        "sha256": "3a5661125113bacae460a1937d6ace4cab7e91751e5e49790238026e1d03fd22",
+        "width": 1440,
+        "height": 1473,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-05-moves-viewport.jpg",
+        "bytes": 124505,
+        "sha256": "98b99c952e325e2b2cad33453f1685c08238ba6087c2feda1ea8002fd241a53f",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 1473,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 1473,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 1473,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Moves & destination register"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team / sign in\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nSource order\nTitle: A–Z\nReset sheet\n9 of 9 move / destination records\nMoves & destination register\n\nEvery destination is a real existing route. No transaction details, history line or power ranking are invented.\n\nPeriod / basis\tRecord / destination\tContext\tAction\n\nWeek 3 · 2026-11-12 12:00:00 UTC\n\t\nReaves Dropper made a sample roster move.\n\t\nSynthetic free_agent; 0 add / 0 drop legs supplied.\n\t\nTransactions\n\n\nWeek 3 · 2026-11-12 12:00:00 UTC\n\t\nThe Fun Guys made a sample roster move.\n\t\nSynthetic free_agent; 0 add / 0 drop legs supplied.\n\t\nTransactions\n\n\nWeek 3 · 2026-11-12 12:00:00 UTC\n\t\nLebron Theme Team made a sample roster move.\n\t\nSynthetic free_agent; 0 add / 0 drop legs supplied.\n\t\nTransactions\n\n\nModeled FAAB\n\t\nPlayer market\n\t\nInspect player values and coverage at the player board.\n\t\nStocks\n\n\nDecision tool\n\t\nTrade analyzer\n\t\nCompare a trade with the existing analyzer.\n\t\nAnalyze\n\n\nArcade game\n\t\nFree Throw\n\t\nOpen the existing free-throw game, or browse the Arcade.\n\t\nPlay Free Throw\n\n\nUnavailable\n\t\nRecorded history\n\t\nRecorded team-value history unavailable; no line is invented.\n\t\nHistory\n\n\nUnavailable\n\t\nLineup Power\n\t\nLineup Power unavailable: no producer snapshot connected in this mock.\n\t\nNews / analysis\n\n\n10 franchises / 228 players\n\t\nLeague directory\n\t\nBrowse team profiles, current managers and complete roster references.\n\t\nTeams\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView member study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "search",
+        "label": "Local player search"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-06-search.jpg",
+        "bytes": 219659,
+        "sha256": "9cfbb5f6245ae1e75fb6ccf32bfdb467b1a367238d0ee07c3019ede9fba20dcb",
+        "width": 1440,
+        "height": 2757,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-desktop-06-search-viewport.jpg",
+        "bytes": 108843,
+        "sha256": "5654e32f7020055c511dc4e7fb0f2bf49decfbf6379b1bfecbf211035908c11d",
+        "width": 1440,
+        "height": 1000,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 2757,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 2757,
+      "layout": {
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "height": 2757,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nHome\nNews\nHistory\nArcade\nAI Decides\nTeams\nTransactions\nTrade analyzer\nWeekly archive\nMy team / sign in\n\n17 / STRUCTURE STUDY\n\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nLeague sheet10\nMatchup sheet5\nDated editions2\nMoves & tools9\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\n1 of 10 teams · 228 player references\n2026 league sheet\n\nRead across each team. Open a roster or your brief below its row. Scores are own / opponent; 0.0 is known, Pending is unknown.\n\n#\tFranchise / manager\tW–L\tPF\tCurrent opponent / score\tLeague face / value\tInline reader\n\n1\n\t\nReaves Dropper\naidandaly20\n\t\n1–0\n2026 · #1\n\t\n320.50\n\t\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n\t\nJoel Embiid\nC · $137.50\nModeled FAAB\n\t\n24 players\nRoster\n\n\nReaves Dropper · roster\nClose row\n\n24 current player references. 2025: 16–5, finish 4.\n\nPrices are not supplied for this complete roster in this public sheet; no team total is inferred from the league face.\n\nPlayer / profile\tPosition\tNBA team\n\nDamian Lillard\n\t\nPG\n\t\nPOR\n\n\nTobias Harris\n\t\nPF\n\t\nSAS\n\n\nJoel Embiid\n\t\nC\n\t\nPHI\n\n\nMyles Turner\n\t\nC\n\t\nMIL\n\n\nDerrick White\n\t\nSG\n\t\nBOS\n\n\nGrayson Allen\n\t\nSF\n\t\nCHA\n\n\nAnthony Edwards\n\t\nSG\n\t\nMIN\n\n\nPayton Pritchard\n\t\nPG\n\t\nBOS\n\n\nDevin Vassell\n\t\nSF\n\t\nSAS\n\n\nImmanuel Quickley\n\t\nPG\n\t\nTOR\n\n\nSanti Aldama\n\t\nPF\n\t\nDAL\n\n\nAlperen Şengün\n\t\nC\n\t\nHOU\n\n\nAustin Reaves\n\t\nSG\n\t\nLAL\n\n\nPeyton Watson\n\t\nSF\n\t\nCLE\n\n\nMax Christie\n\t\nSG\n\t\nDAL\n\n\nBrandon Miller\n\t\nSF\n\t\nCHA\n\n\nDonovan Clingan\n\t\nC\n\t\nPOR\n\n\nDaniss Jenkins\n\t\nPG\n\t\nDET\n\n\nNolan Traore\n\t\nPG\n\t\nBKN\n\n\nDanny Wolf\n\t\nPF\n\t\nBKN\n\n\nDerik Queen\n\t\nC\n\t\nNOP\n\n\nYaxel Lendeborg\n\t\nPF\n\t\nGSW\n\n\nLabaron Philon\n\t\nPG\n\t\nPHI\n\n\nBruce Thornton\n\t\nPG\n\t\nHOU\nOpen team roster\nCompare on Stocks\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView member study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "default",
+        "label": "League ledger / all teams"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-00-default.jpg",
+        "bytes": 157436,
+        "sha256": "561de35b3258f293d4460e8876cd78c5ee963e2984723bbbc870c8771139e748",
+        "width": 390,
+        "height": 3984,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-00-default-viewport.jpg",
+        "bytes": 41692,
+        "sha256": "7ce02c970a9945f80a2a36bce027c96796c3f8c67f68e5b64768c2a26fbf4760",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3984,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3984,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 3984,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\nFields\nWeek 3 opponent & score\nRecord & points for\nLeague faces & values\nAll fields\n10 of 10 teams · 228 player references\n2026 league sheet\nReaves Dropper\naidandaly20\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n24 players\nRoster\nWare the Hoes At?\nAedan23\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n27 players\nRoster\nStephon Castle’s Back\nTommyDieselfuel\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nThe Fun Guys\nphilbiag\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nHuff n’ Puff\nGriffinHealy\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n23 players\nRoster\npapichooter\npapichooter\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n23 players\nRoster\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nLebron Theme Team\nlordlx\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n21 players\nRoster\nT Halibooty\nTyreseHalibooty\nLebron Theme Team\nlordlx · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView member study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "league",
+        "label": "All ten team rows"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-01-league.jpg",
+        "bytes": 157436,
+        "sha256": "561de35b3258f293d4460e8876cd78c5ee963e2984723bbbc870c8771139e748",
+        "width": 390,
+        "height": 3984,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-01-league-viewport.jpg",
+        "bytes": 41692,
+        "sha256": "7ce02c970a9945f80a2a36bce027c96796c3f8c67f68e5b64768c2a26fbf4760",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3984,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3984,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 3984,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\nFields\nWeek 3 opponent & score\nRecord & points for\nLeague faces & values\nAll fields\n10 of 10 teams · 228 player references\n2026 league sheet\nReaves Dropper\naidandaly20\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n24 players\nRoster\nWare the Hoes At?\nAedan23\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n27 players\nRoster\nStephon Castle’s Back\nTommyDieselfuel\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nThe Fun Guys\nphilbiag\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nHuff n’ Puff\nGriffinHealy\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n23 players\nRoster\npapichooter\npapichooter\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n23 players\nRoster\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nLebron Theme Team\nlordlx\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n21 players\nRoster\nT Halibooty\nTyreseHalibooty\nLebron Theme Team\nlordlx · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView member study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "roster",
+        "label": "Full roster subrow"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-02-roster.jpg",
+        "bytes": 273342,
+        "sha256": "e5eb89db0552a4c3da63d6e88087f56a9111019891181b515b463c3e683778c1",
+        "width": 390,
+        "height": 7083,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-02-roster-viewport.jpg",
+        "bytes": 41699,
+        "sha256": "40c1b347d1723b31cd5f187a3becfcedd4c95b2750f4d0905504e916436de80a",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 7083,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 7083,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 7083,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\nFields\nWeek 3 opponent & score\nRecord & points for\nLeague faces & values\nAll fields\n10 of 10 teams · 228 player references\n2026 league sheet\nReaves Dropper\naidandaly20\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n24 players\nRoster\nReaves Dropper · roster\nClose row\n\n24 current player references. 2025: 16–5, finish 4.\n\nPrices are not supplied for this complete roster in this public sheet; no team total is inferred from the league face.\n\nDamian Lillard\nPG\nPOR\nTobias Harris\nPF\nSAS\nJoel Embiid\nC\nPHI\nMyles Turner\nC\nMIL\nDerrick White\nSG\nBOS\nGrayson Allen\nSF\nCHA\nAnthony Edwards\nSG\nMIN\nPayton Pritchard\nPG\nBOS\nDevin Vassell\nSF\nSAS\nImmanuel Quickley\nPG\nTOR\nSanti Aldama\nPF\nDAL\nAlperen Şengün\nC\nHOU\nAustin Reaves\nSG\nLAL\nPeyton Watson\nSF\nCLE\nMax Christie\nSG\nDAL\nBrandon Miller\nSF\nCHA\nDonovan Clingan\nC\nPOR\nDaniss Jenkins\nPG\nDET\nNolan Traore\nPG\nBKN\nDanny Wolf\nPF\nBKN\nDerik Queen\nC\nNOP\nYaxel Lendeborg\nPF\nGSW\nLabaron Philon\nPG\nPHI\nBruce Thornton\nPG\nHOU\nOpen team roster\nCompare on Stocks\nWare the Hoes At?\nAedan23\nReaves Dropper\naidandaly20 · 1–0\nPending / 0.0\nWeek 3 · incomplete\n27 players\nRoster\nStephon Castle’s Back\nTommyDieselfuel\nThe Fun Guys\nphilbiag · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nThe Fun Guys\nphilbiag\nStephon Castle’s Back\nTommyDieselfuel · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nJosh Diddy’s Roster\nvannweinkauf\n2025 champion\nHuff n’ Puff\nGriffinHealy · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n22 players\nRoster\nHuff n’ Puff\nGriffinHealy\nJosh Diddy’s Roster\nvannweinkauf · 1–0\nPending / 105.5\nWeek 3 · incomplete\n23 players\nRoster\npapichooter\npapichooter\nNeuralNets\nNeuralNets · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n23 players\nRoster\nNeuralNets\nNeuralNets\n2025 record belongs to previous manager QBs Gremlins.\npapichooter\npapichooter · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\nLebron Theme Team\nlordlx\nT Halibooty\nTyreseHalibooty · 1–0\n105.5 / Pending\nWeek 3 · incomplete\n21 players\nRoster\nT Halibooty\nTyreseHalibooty\nLebron Theme Team\nlordlx · 1–0\nPending / 105.5\nWeek 3 · incomplete\n22 players\nRoster\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synt"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "matchups",
+        "label": "Five pairs and saved AI receipt"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-03-matchups.jpg",
+        "bytes": 204737,
+        "sha256": "5dd3eb3473b2ad9a46c7e111c16e5617eedc142668913c7a93f9c0ff0fa87857",
+        "width": 390,
+        "height": 4490,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-03-matchups-viewport.jpg",
+        "bytes": 40518,
+        "sha256": "420c5672bbf37dca9f889fef08e3252a21ad9e2335d3346f1ac36df9fa487185",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 4490,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 4490,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 4490,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Week 3 · incomplete matchups"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nSource order\nHome team: A–Z\nReset sheet\n5 of 5 current pairs · saved AI ready\nWeek 3 · incomplete matchups\nReaves Dropper\naidandaly20\n1–0\nWare the Hoes At?\nAedan23\n1–0\n0.0\nPending\nWeek 3\nIncomplete\nWare the Hoes At?\nSaved pick\nConfidence 20%\nWare the Hoes At?35%\nReaves Dropper65%\nSource\nSaved model receipt\nClose row\n\nModel probability — not calibrated sports odds. The saved returned choice is preserved even when the other probability is higher. Confidence is a separate field.\n\nResult state\nSaved ready fixture result\nReturned choice\nWare the Hoes At?\nProbabilities as returned\nWare the Hoes At?: 35% / Reaves Dropper: 65%\nIndependent confidence\n20%\nSaved at\n2026-11-10 12:00:00 UTC\nModel / prompt version\nfixture-model / fixture-prompt\nInput snapshot\nNot supplied (null); slate snapshot not supplied (null).\nMatchup evidence\nSynthetic input evidence; no real result.\nResult evidence / baseline\nNo result-level evidence supplied. Baseline not supplied (null).\nInput identity\nLeague 1387473752807190528 · season 2026 · Week 3 · team IDs 1 / 2 · matchup 0.\nOpen AI Decides\nStephon Castle’s Back\nTommyDieselfuel\n1–0\nThe Fun Guys\nphilbiag\n1–0\n105.5\nPending\nWeek 3\nIncomplete\nThe Fun Guys\nSaved pick\nConfidence 20%\nThe Fun Guys35%\nStephon Castle’s Back65%\nSource\nJosh Diddy’s Roster\nvannweinkauf\n1–0\nHuff n’ Puff\nGriffinHealy\n1–0\n105.5\nPending\nWeek 3\nIncomplete\nHuff n’ Puff\nSaved pick\nConfidence 20%\nHuff n’ Puff35%\nJosh Diddy’s Roster65%\nSource\npapichooter\npapichooter\n1–0\nNeuralNets\nNeuralNets\n1–0\n105.5\nPending\nWeek 3\nIncomplete\nNeuralNets\nSaved pick\nConfidence 20%\nNeuralNets35%\npapichooter65%\nSource\nLebron Theme Team\nlordlx\n1–0\nT Halibooty\nTyreseHalibooty\n1–0\n105.5\nPending\nWeek 3\nIncomplete\nT Halibooty\nSaved pick\nConfidence 20%\nT Halibooty35%\nLebron Theme Team65%\nSource\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView member study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "editorial",
+        "label": "Dated edition and source subrows"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-04-editorial.jpg",
+        "bytes": 298684,
+        "sha256": "82f6a02aa2e376fa33c829d5a9cc97609b5c457434b6af3df888a5270df3c3a7",
+        "width": 390,
+        "height": 5185,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-04-editorial-viewport.jpg",
+        "bytes": 45166,
+        "sha256": "6673c9b7c8eb6a6795cf115d1a62f6232a19f4161ab336371f71669593c9ef5a",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 5185,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 5185,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 5185,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Dated editorial register"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nNewest edition first\nTitle: A–Z\nReset sheet\n2 of 2 dated editions · draft status preserved\nDated editorial register\n2026-W41\nOct 5–11, 2026\ndraft · unpublished\nThe next chapter\nReaves Dropper gets the champ.\nReaves Dropper / Josh Diddy’s Roster\nOpening-week watch · upcoming\nRead edition\nThe next chapter\nClose row\n\nDated draft · Oct 5–11, 2026. Not published; this is a sample editorial entry. October narrative is separate from the synthetic current Week 3 sheet.\n\nReaves Dropper gets the champ.\n\nOpening-week watch · Week 1 · upcoming.\n\nReaves Dropper / Josh Diddy’s Roster · scores not supplied for upcoming fixture.\n\nA 16–5 season meets the defending champion. Sleeper lists Reaves Dropper against Josh Diddy’s Roster in the opener. New season, same target on the champ’s back.\n\nSelection: Proposed spotlight: the defending champion faces last season’s 16–5 Reaves Dropper. This is a real Week 1 pairing; the season has not started.\n\nEdition bounds: 2026-10-05 00:00:00 UTC to 2026-10-12 00:00:00 UTC (end exclusive).\n\nLast season’s standard\nplayer-of-week\n\nNikola Jokić\n\nC · Josh Diddy’s Roster\n\n27.7\nPPG\n12.9\nRPG\n10.7\nAPG\n\n2025–26 NBA averages\n\nSomebody unplug this man.\n\nThree columns. One headache. The champ gets to call it good management.\n\nWhy this selection: Opening-edition sample opinion, using last season’s NBA averages. This is not a played 2026 fantasy-week award. Current roster ownership is verified; the pick is editorial, not a computed MVP ranking.\n\nNBA.com · Jokić · checked 2026-10-08\n\nLast-season lookback\nunderperformer\n\nJoel Embiid\n\nC · Reaves Dropper\n\n26.9\nPPG\n7.7\nRPG\n3.9\nAPG\n\n2025–26 NBA averages\n\nWe wanted more on the glass.\n\nPoints: accepted. Rebounds: the group chat has questions.\n\nWhy this selection: A sample last-season criticism of rebounding output, not a verified worst-player ranking, injury judgment or current-week result. The opinion is subjective. The ownership link is the current roster, not a claim about who held him throughout 2025.\n\nNBA.com · Embiid · checked 2026-10-08\n\nNext week · preseason\none-to-watch\n\nAJ Dybantsa\n\nPF · NeuralNets\n\n25.5\nPPG\n6.8\nRPG\n3.7\nAPG\n\n2025–26 college · BYU\n\nNo. 1 pick. No free pass.\n\nNeuralNets took him first. We’re watching minutes, not the mixtape.\n\nWhy this selection: The league’s "
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "moves",
+        "label": "Moves and route register"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-05-moves.jpg",
+        "bytes": 140162,
+        "sha256": "4c82170f29bf0a6c1aa3b47f0db7df5cdf4e71bef291e0158750ab8b443fd184",
+        "width": 390,
+        "height": 3062,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-05-moves-viewport.jpg",
+        "bytes": 44801,
+        "sha256": "59395f4763b19bc216ccad2ab1997757da57f8f81265ee73f95ae7d3eeed0ad5",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 3062,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 3062,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 3062,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "Moves & destination register"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nSource order\nTitle: A–Z\nReset sheet\n9 of 9 move / destination records\nMoves & destination register\nWeek 3 · 2026-11-12 12:00:00 UTC\nReaves Dropper made a sample roster move.\nSynthetic free_agent; 0 add / 0 drop legs supplied.\nTransactions\nWeek 3 · 2026-11-12 12:00:00 UTC\nThe Fun Guys made a sample roster move.\nSynthetic free_agent; 0 add / 0 drop legs supplied.\nTransactions\nWeek 3 · 2026-11-12 12:00:00 UTC\nLebron Theme Team made a sample roster move.\nSynthetic free_agent; 0 add / 0 drop legs supplied.\nTransactions\nModeled FAAB\nPlayer market\nInspect player values and coverage at the player board.\nStocks\nDecision tool\nTrade analyzer\nCompare a trade with the existing analyzer.\nAnalyze\nArcade game\nFree Throw\nOpen the existing free-throw game, or browse the Arcade.\nPlay Free Throw\nUnavailable\nRecorded history\nRecorded team-value history unavailable; no line is invented.\nHistory\nUnavailable\nLineup Power\nLineup Power unavailable: no producer snapshot connected in this mock.\nNews / analysis\n10 franchises / 228 players\nLeague directory\nBrowse team profiles, current managers and complete roster references.\nTeams\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView member study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "search",
+        "label": "Local player search"
+      },
+      "full": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-06-search.jpg",
+        "bytes": 174708,
+        "sha256": "6b23531de70c404a9c7978caf421e5310910464e2abf983b705fb1df3e1e2d6c",
+        "width": 390,
+        "height": 4306,
+        "quality": 90
+      },
+      "initial": {
+        "path": "qa/homepage-structures/evidence/wireframes/17/public-phone-06-search-viewport.jpg",
+        "bytes": 40485,
+        "sha256": "c18f2361614112bc4d0f7b49c83edd0fe34db778962e7fa97cd40d26112d74c4",
+        "width": 390,
+        "height": 844,
+        "quality": 90
+      },
+      "offsets": [
+        {
+          "x": 0,
+          "y": 0,
+          "height": 4306,
+          "method": "bounded native fullPage"
+        }
+      ],
+      "documentHeight": 4306,
+      "layout": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "height": 4306,
+        "bodyFont": "16px",
+        "headings": [
+          "League ledger",
+          "2026 league sheet"
+        ],
+        "panes": [],
+        "text": "Skip to league sheet\nStocks\nSite links\nLeague ledger\n\n2026 season\nWeek 3\n\nSynthetic concept · Nov 12 fixture\nSheet\nLeague sheet (10)\nMatchup sheet (5)\nDated editions (2)\nMoves & tools (9)\nFind a team, manager or player\nOrder rows\nStanding: highest first\nName: A–Z\nPoints for: highest first\nRoster size: largest first\nReset sheet\nFields\nWeek 3 opponent & score\nRecord & points for\nLeague faces & values\nAll fields\n1 of 10 teams · 228 player references\n2026 league sheet\nReaves Dropper\naidandaly20\nWare the Hoes At?\nAedan23 · 1–0\n0.0 / Pending\nWeek 3 · incomplete\n24 players\nRoster\nReaves Dropper · roster\nClose row\n\n24 current player references. 2025: 16–5, finish 4.\n\nPrices are not supplied for this complete roster in this public sheet; no team total is inferred from the league face.\n\nDamian Lillard\nPG\nPOR\nTobias Harris\nPF\nSAS\nJoel Embiid\nC\nPHI\nMyles Turner\nC\nMIL\nDerrick White\nSG\nBOS\nGrayson Allen\nSF\nCHA\nAnthony Edwards\nSG\nMIN\nPayton Pritchard\nPG\nBOS\nDevin Vassell\nSF\nSAS\nImmanuel Quickley\nPG\nTOR\nSanti Aldama\nPF\nDAL\nAlperen Şengün\nC\nHOU\nAustin Reaves\nSG\nLAL\nPeyton Watson\nSF\nCLE\nMax Christie\nSG\nDAL\nBrandon Miller\nSF\nCHA\nDonovan Clingan\nC\nPOR\nDaniss Jenkins\nPG\nDET\nNolan Traore\nPG\nBKN\nDanny Wolf\nPF\nBKN\nDerik Queen\nC\nNOP\nYaxel Lendeborg\nPF\nGSW\nLabaron Philon\nPG\nPHI\nBruce Thornton\nPG\nHOU\nOpen team roster\nCompare on Stocks\n\nGOAT Hoopers · Local architectural study 17. All current metrics are synthetic, not live league data. Modeled prices use FAAB units, not transactions. Null scores remain Pending; known zero remains 0.0.\n\nView member study\nDated weekly archive\nArcade\nAI Decides"
+      },
+      "errors": []
+    }
+  ],
+  "method": "Actual browser state API; grayscale reduced-motion; all advertised states in public/member desktop1440 andphone390. Real viewport plus whole document. No position/CSS flattening. Scrollable interior content needs its own views and explicit pane checks; these images are structural evidence, not final complete-content acceptance."
+}

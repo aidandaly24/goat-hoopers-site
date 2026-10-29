@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GOAT Hoopers · Season route · Study 09</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#stop-reader">Skip to selected stop</a>
+  <header class="masthead">
+    <a href="./index.html" class="brand" aria-label="GOAT Hoopers home"><span class="goat">GOAT</span><span>HOOPERS<br><small>Season route / 2026</small></span></a>
+    <nav aria-label="Primary"><a href="./index.html" aria-current="page">Home</a><a href="/intel">News</a><a href="/stocks#player-board">Stocks</a><a href="/history">History</a><a href="/arcade">Arcade</a></nav>
+    <details class="utility"><summary>League tools</summary><nav aria-label="League tools"><a href="/ai-decides">AI Decides</a><a href="/teams">Teams</a><a href="/transactions">Transactions</a><a href="/trade-analyzer">Trade analyzer</a><a href="/weekly">Weekly archive</a><span id="account-link"></span></nav></details>
+  </header>
+  <div class="fixture"><b>OFFLINE STUDY 09</b><span>Synthetic current scores, records, prices, form, moves, news and AI. Nov 12 is the fixture receipt, not today.</span><a id="compare" href="?view=public">View public edition</a></div>
+  <main class="journey">
+    <section class="atlas" aria-labelledby="route-title">
+      <div class="atlas-heading"><div><p class="eyebrow">Choose a stop</p><h1 id="route-title">The season route.</h1></div><span class="map-key"><i></i> Selected stop<br><span class="dash"></span> No future evidence</span></div>
+      <p class="route-instruction">Start with a dated edition. Follow the line to Week 3, then take the branch you need.</p>
+      <div class="route-controls"><label for="stop-select">Stop index</label><select id="stop-select"></select><button id="read-stop">Read selected stop</button></div>
+      <nav class="route-map" aria-label="Season stops">
+        <svg class="route-lines desktop-lines" viewBox="0 0 700 700" preserveAspectRatio="none" aria-hidden="true"><path d="M70 532 C-8 440 38 245 70 259 C140 205 200 360 301 343"/><path d="M301 343 C350 280 244 120 301 84 M301 343 C385 345 430 190 518 196 M301 343 C394 340 435 475 511 455 M301 343 C375 450 275 570 322 616"/><path class="unknown-line" d="M322 616 C400 635 477 625 546 637"/></svg>
+        <svg class="route-lines phone-lines" viewBox="0 0 340 600" preserveAspectRatio="none" aria-hidden="true"><path d="M27 42 C0 100 245 72 197 132 C175 163 -18 177 27 228 C55 270 225 225 197 318 C184 373 -20 363 27 414 C68 460 235 420 197 504 C180 550 5 534 27 576"/><path class="unknown-line" d="M27 576 C80 602 168 570 197 576"/></svg>
+        <div id="route-stops"></div>
+        <span class="route-origin">Dated archive</span><span class="route-end">Beyond the fixture</span>
+      </nav>
+      <p class="map-caption">Solid route: supplied content. Dashed end: no next edition or outcome has been supplied.</p>
+    </section>
+    <section id="stop-reader" class="reader" aria-labelledby="reader-title" tabindex="-1"></section>
+  </main>
+  <footer><b>GOAT Hoopers · Study 09</b><p>Local structural prototype. Current metrics are synthetic; dated editorial keeps its source and publication status. No live provider, pricing, AI generation or account access.</p><a href="/weekly">All weekly editions</a><a href="/stocks#player-board">Player market</a><a href="/history">League history</a></footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

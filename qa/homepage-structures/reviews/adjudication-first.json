@@ -1,0 +1,102 @@
+[
+  {
+    "idA": "01",
+    "idB": "05",
+    "verdict": "N",
+    "reason": "Both are a continuous vertical document reached through a section index, beginning with the unfinished matchup and proceeding through saved picks, own roster/form, people/directory, dated editorial, archive and tools. Both reveal receipts and rosters in place through details disclosures. The larger type, column proportions, extra people region and longer rhythm in 05 do not create a different page/state architecture. Phone preserves the same long document and collapsed contents pattern.",
+    "desktopEvidence": "01/member-desktop-00-default.jpg; 01/member-desktop-01-model-notes.jpg; 01/member-desktop-02-roster.jpg; 05/member-desktop-00-default.jpg; 05/member-desktop-01-picks.jpg; 05/member-desktop-02-roster.jpg. Native 1440 viewport files inspected separately.",
+    "phoneEvidence": "Native 390 default viewport files for both; real saved-receipt and complete-roster disclosures exercised at 390. Both remain one ordinary document scroll.",
+    "liveEvidence": "Pointer anchor to model/picks followed by pointer saved receipt disclosure; keyboard Enter on complete 24-player roster disclosure, on desktop and phone. Both receipts and roster may remain expanded together.",
+    "requiredChange": "Rework one, proposed 05: replace the continuous section-index document with a working comparison of all five pairings in aligned rows, with score/model/source dimensions that can be investigated while row identity and other pairings remain present. Phone must keep the selected pairing and comparison context instead of reproducing the same anchored long document. Re-audit that rework against all other studies before advancing either pair member."
+  },
+  {
+    "idA": "02",
+    "idB": "07",
+    "verdict": "R",
+    "reason": "Both use a spatial overview to enter one content area, but their working geometry and retained context differ. 02 retains the six-zone court as a roughly 60% wide working index beside a narrow field-notes reader. 07 replaces its room overview with a small station navigation rail and a broad station document; its score station juxtaposes a matchup and five model calls. This is a related selector/reader family with a real overview-to-station transition, not an independent architecture established by room artwork.",
+    "desktopEvidence": "02/member-desktop-00-matchup-viewport.jpg and 01-roster/02-standings full states; 07/member-desktop-00-room-viewport.jpg plus 01-week/02-locker full states.",
+    "phoneEvidence": "02 retains the compact court above selected notes and scrolls to notes with Back to court; 07 removes the room and introduces a wrapped station nav above the station document. Both native 390 images and live selected views inspected.",
+    "liveEvidence": "Pointer roster zone and keyboard standings zone in 02; pointer score-wall entry and keyboard own-locker navigation in 07, at both viewports.",
+    "requiredChange": null
+  },
+  {
+    "idA": "09",
+    "idB": "12",
+    "verdict": "R",
+    "reason": "Both retain a broad diagram beside a replacement reader and are therefore close relatives. 09 navigates dated stops and current-week branches; dated readers expose continuation/return links along the route. 12 has two actual selection grains: a franchise node opens its roster shelf and updates the retained central game/connection, while a game edge selects the paired teams and a game reader. The orbit is a working team/game context, rather than only a new drawing around the same category selector.",
+    "desktopEvidence": "09/member-desktop-00-archive-40-viewport.jpg, 01-archive-41 full and 02-current full; 12/member-desktop-00-default-viewport.jpg and 01-team full; live team2/team8 and game2 states.",
+    "phoneEvidence": "09 unfolds into a vertical stop route followed by its dated/branch reader; 12 keeps the compact numbered orbit and central pairing before the shelf. Team and game selection still update both diagram context and reader at 390.",
+    "liveEvidence": "09 pointer current junction, keyboard team branch, then actual dated continuation to archive-41; 12 pointer franchise2 and franchise8, keyboard game2, at both widths.",
+    "requiredChange": null
+  },
+  {
+    "idA": "03",
+    "idB": "20",
+    "verdict": "D",
+    "reason": "03 is a fixed-height, horizontally positioned sequence of chapters with one independently scrolling chapter active at a time, a persistent bottom previous/next/index control, and retained reading offsets. 20 is a nested question/child path: players leads to form or prices, with parent breadcrumb and summary retained alongside the current branch and a stable matchup context. These create different relationships between sections, not different names for the same reader.",
+    "desktopEvidence": "03/member-desktop-00-default-viewport.jpg, 01-team/02-scout viewport states and default/team reading strips in panes.json; 20/member-desktop-00-home-viewport.jpg, 01-players and 02-form full states.",
+    "phoneEvidence": "03 keeps a bounded chapter scroller and bottom chapter select/arrows. 20 compacts the matchup into a disclosure and stacks the ancestor trail/current child in the document; it retains nested parent/child navigation rather than a chapter carousel.",
+    "liveEvidence": "Pointer Next and keyboard Next in 03; wheel week to600, team to420, return to week retains600 at both viewports. Inactive chapters are inert. In 20 pointer players then keyboard form child preserves This week/My players/Form path at both viewports.",
+    "requiredChange": null
+  },
+  {
+    "idA": "02",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "02 has a fixed set of six category zones and one side reader. 19 lands in a searchable alphabetic franchise field and inserts a dossier immediately after the selected entity row, pushing following rows down; selecting another team moves that single insertion to the new row. The dossier has entity-specific overview/roster/form tabs. The list is the working document, not a decorative selector feeding a generic side drawer.",
+    "desktopEvidence": "02 matchup/roster/standings states; 19/member-desktop-00-index full and 01-own-dossier viewport/full states, plus live second-team insertion.",
+    "phoneEvidence": "02 keeps the court over notes. 19 retains the alphabetic field and row-positioned dossier with a persistent bottom Teams/Find player/Notebook/My team bar; roster tabs stay inside that insertion.",
+    "liveEvidence": "02 pointer roster and keyboard standings; 19 pointer own franchise, keyboard Roster, then pointer team2; exactly one dossier remains and moves to team2, on desktop and phone.",
+    "requiredChange": null
+  },
+  {
+    "idA": "04",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "04 is a three-context workspace: source navigation, a replaced central program and a separate current-score rail that remains available while the program is roster or dated editorial. Score selection can replace the program independently. 13 is an in-flow chapter fold: opening a spine inserts its spread between neighboring folded chapter spines and replaces the previous open spread; closing can return to five closed spines. It has no independent persistent score workspace.",
+    "desktopEvidence": "04/member-desktop-00-matchup-viewport.jpg, 01-team and 03-edition full; 13/member-desktop-00-week-viewport.jpg, 01-club/02-league full and 06-closed full.",
+    "phoneEvidence": "04 transforms source navigation into a native select and scores into a separate toggleable strip; score choice still changes the program. 13 keeps full-width chapter spines and the opened spread in their place in the sequence, with neighboring chapter controls at the edge.",
+    "liveEvidence": "04 pointer team, keyboard editorial, keyboard game2 from score rail; phone native source selector and actual score toggle/game2. 13 pointer club spine and keyboard league spine at both widths.",
+    "requiredChange": null
+  },
+  {
+    "idA": "13",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "Both can expand content in document flow, but 13 expands one thematic chapter in a fixed five-chapter sequence, keeping neighboring spines. 19 filters/orders an entity index and inserts one team dossier at that team\u2019s alphabetic position; the team dossier itself has local tabs and can move to a different entity row. Section expansion and entity insertion are different working hierarchies.",
+    "desktopEvidence": "13 week/club/league/closed full states; 19 index/own-dossier/roster-search full states and live team2 insertion.",
+    "phoneEvidence": "13 keeps chapter spines surrounding the single thematic spread. 19 keeps letter filter/search/order, entity-row insertion and bottom entity/navigation controls. Neither becomes the other\u2019s generic stack.",
+    "liveEvidence": "13 pointer club and keyboard league; 19 pointer franchise1, keyboard Roster, pointer franchise2 at both widths.",
+    "requiredChange": null
+  },
+  {
+    "idA": "02",
+    "idB": "04",
+    "verdict": "R",
+    "reason": "Both select a category and replace a working reader, so they belong to the same broad family. Their persistent contexts differ materially: 02 dedicates most of the width to the six-zone court and a narrow notes column; 04 uses a small source rail, broad program, and an independent five-game score rail that survives non-matchup programs. Selecting a score in 04 changes both the selected game and the program.",
+    "desktopEvidence": "02 matchup/roster/standings viewport/full states; 04 matchup/team/edition viewport/full states plus live game2.",
+    "phoneEvidence": "02 keeps its two-dimensional court before notes, with a return-to-court action. 04 compresses source selection into a native select and scores into a separate expandable strip above the program. Actual controls preserve those two axes at 390.",
+    "liveEvidence": "02 pointer roster/keyboard standings; 04 pointer team/keyboard edition and score2, with phone native selector and score-strip toggle.",
+    "requiredChange": null
+  },
+  {
+    "idA": "04",
+    "idB": "10",
+    "verdict": "R",
+    "reason": "Both start from a narrow task/source rail and a broad replacement document, so this is a related workspace family. 04 always carries a separate five-game score context. 10 instead arranges the selected task as numbered steps and adds an on-demand evidence inspector beside that document; the inspector is local detail and can be closed back to the task. This is a substantive persistent-score versus task/detail relationship, beyond labels or section order.",
+    "desktopEvidence": "04 matchup/team/edition full states; 10/member-desktop-00-matchup-viewport.jpg, 01-pick-evidence viewport/full and 02-roster full. Live inspector verified alongside the unchanged matchup task.",
+    "phoneEvidence": "04 has native source select plus independent score toggle. 10 has a native task select and replaces the task with its evidence inspector, with Back to matchup document returning to the task. Neither is merely the same stacked cards.",
+    "liveEvidence": "04 independent source and score operations; 10 pointer Inspect model evidence, keyboard Back to matchup document, and keyboard/native roster task selection at desktop/phone.",
+    "requiredChange": null
+  },
+  {
+    "idA": "16",
+    "idB": "19",
+    "verdict": "R",
+    "reason": "Both are franchise-first browsers with local week/roster/form detail and a separate league reader, but the dominant entity traversal differs. 16 has one selected franchise on a horizontal bench, next/previous/direct-index controls, and one attached dossier beneath it; 19 keeps the alphabetic franchise list as the document and inserts a single dossier at the selected row. The shared dossier vocabulary makes them relatives, while traversal and context placement remain structurally distinct.",
+    "desktopEvidence": "16/member-desktop-00-bench-viewport.jpg, 01-neighbor and 02-roster full; 19 index and own-dossier full plus live moved insertion.",
+    "phoneEvidence": "16 becomes one selected franchise/face with next/previous/direct select above its attached dossier. 19 retains a filtered vertical index with the dossier between entity rows and a persistent bottom bar.",
+    "liveEvidence": "16 pointer Next franchise then keyboard Roster tab; 19 pointer own team then keyboard Roster and pointer team2, at both widths.",
+    "requiredChange": null
+  }
+]

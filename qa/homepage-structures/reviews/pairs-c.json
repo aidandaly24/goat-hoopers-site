@@ -1,0 +1,380 @@
+[
+  {
+    "idA": "01",
+    "idB": "04",
+    "verdict": "D",
+    "reason": "Desktop01 keeps matchup, picks, roster, editorial and directory in one continuous spread with inline disclosures;04 swaps a selected program between source and score rails. Phone01 remains an anchored flowing document, while04 uses a program select and a separate collapsible game strip above the replacement program."
+  },
+  {
+    "idA": "01",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "01 is a continuous information document: its roster opens in the existing flow and later editorial remains below.07 first offers a room selector, then replaces it with station navigation and one reader. Phone01 retains the document sequence;07 changes from a room overview to a station page with a compact navigation grid."
+  },
+  {
+    "idA": "01",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "01 leaves all major sections in the same vertically traversable document.10 chooses an audit task from a left rail and replaces the main document, with task-specific drill-ins and Back. Phone01 uses anchors/disclosures within the long spread;10 retains a task select and separate active task page."
+  },
+  {
+    "idA": "01",
+    "idB": "13",
+    "verdict": "R",
+    "reason": "Both use vertically ordered editorial sections with local roster disclosures.13 materially changes document occupancy: one full chapter unfolds among retained collapsed spines, and all five can be closed;01 keeps every major section readable in the continuous spread. Phone preserves this exclusive accordion versus continuous-flow difference."
+  },
+  {
+    "idA": "01",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "01 enters through the current week and keeps all sections in one spread.16 enters through a horizontally traversed franchise bench, selects one franchise dossier, and moves league-wide material into a separate reader. Phone01 remains continuous;16 contracts the bench to one selected face with previous/next and dossier tabs."
+  },
+  {
+    "idA": "01",
+    "idB": "19",
+    "verdict": "R",
+    "reason": "Both are vertical documents with inline expansion, but19 makes the franchise index the primary object: letter/search filters change the team set, a dossier inserts after its team, and league-wide editorial is a separate notebook.01 keeps mixed current/editorial sections in one continuous spread. Phone retains index/dossier versus all-section flow."
+  },
+  {
+    "idA": "02",
+    "idB": "04",
+    "verdict": "N",
+    "reason": "Court zones02 and source/score rails04 both select one conventional scrolling notes/program reader; the court geometry does not create a new evidence relationship. Phone both resolve to selected long-form content beneath navigation/context. Required: rework02 so matchup/roster facts expand at independently usable court positions instead of feeding one universal notes column."
+  },
+  {
+    "idA": "02",
+    "idB": "07",
+    "verdict": "N",
+    "reason": "02 court positions and07 room objects are six-category selectors for roster, matchup, editorial and league readers.02 keeps its map beside the reader;07 substitutes a rail, but the functional reveal remains one selected document. Phone both become station navigation plus a long reader. Required: keep07 working content inside persistent room stations rather than replacing the room with rail+reader."
+  },
+  {
+    "idA": "02",
+    "idB": "10",
+    "verdict": "N",
+    "reason": "02 distributes task selectors over a court and10 lists them in a rail; both replace one reader with familiar matchup/roster/editorial documents. Phone both produce a single selected reading column. Required: rework10 into a retained evidence workspace where roster and matchup selections stay adjacent across task steps, rather than swapping numbered reading pages."
+  },
+  {
+    "idA": "02",
+    "idB": "13",
+    "verdict": "N",
+    "reason": "02 spatial buttons and13 chapter spines ultimately select one generic matchup/roster/editorial reader.13 retains folded headings in flow, but neither allows substantive concurrent contexts. Phone again exposes one long active document behind category controls. Required: let13 keep multiple substantive spreads unfolded and linked in the document, rather than exclusive one-reader selection."
+  },
+  {
+    "idA": "02",
+    "idB": "16",
+    "verdict": "N",
+    "reason": "02 court categories and16 franchise portraits lead to the same selector→tabbed/detail reader pattern;16 then sends league-wide inventory to a conventional separate reader. Phone the court notes and single-face dossier both reduce to one active reading column. Required: make16 retain two franchise dossiers and their comparison context on the bench instead of one selected dossier plus universal league reader."
+  },
+  {
+    "idA": "02",
+    "idB": "19",
+    "verdict": "N",
+    "reason": "02 uses court zones to choose a reader;19 uses franchise names to choose a tabbed dossier and moves shared league facts to a generic notebook. The changed entry object does not escape selector+reader for the whole inventory. Phone both are selected long readers. Required: make19 an actual cross-franchise field comparison with facts attached to multiple rows, replacing the single dossier/notebook funnel."
+  },
+  {
+    "idA": "03",
+    "idB": "05",
+    "verdict": "D",
+    "reason": "03 bounds one horizontally navigated chapter in the viewport, with an interior reading pane and persistent previous/next chapter controls.05 is one vertically continuous anchor document whose roster disclosure increases its length. Phone03 keeps the bounded chapter and bottom select;05 keeps the uninterrupted document and inline text index."
+  },
+  {
+    "idA": "03",
+    "idB": "08",
+    "verdict": "D",
+    "reason": "03 presents one sequential chapter at a time.08 makes the matchup itself the layout: two team columns flank shared metric labels, with pairing and comparison-detail controls. Phone03 is a single selected chapter;08 retains both teams in the score header and switches which side of matched metrics/rosters is read."
+  },
+  {
+    "idA": "03",
+    "idB": "11",
+    "verdict": "R",
+    "reason": "Both reveal extended reading content after navigation, but03 selects one bounded sequential chapter whereas11 searches mixed team/player/task results and can keep several inline answers open simultaneously. Phone03 retains a bottom chapter select;11 retains the query and result list around multiple answers. The difference is query-driven composition and retained peers, beyond the position of navigation."
+  },
+  {
+    "idA": "03",
+    "idB": "14",
+    "verdict": "R",
+    "reason": "Both use bounded interior readers.03 selects one chapter in a horizontal sequence;14 exposes four independent readers concurrently on desktop and crosslinks exact passages between them. Phone both show one reading column, but14 preserves separate channel scroll positions and return context, verified through culture→league switching;03 uses sequential chapter navigation."
+  },
+  {
+    "idA": "03",
+    "idB": "17",
+    "verdict": "D",
+    "reason": "03 replaces a bounded chapter.17 begins with a semantic league sheet containing comparable columns across ten teams and opens a roster as a subrow under its team. Phone03 retains a chapter select;17 offers sheet/field selectors while preserving team rows and inline subrows. A sheet field changes what is compared across teams, not merely which document is selected."
+  },
+  {
+    "idA": "03",
+    "idB": "20",
+    "verdict": "N",
+    "reason": "03 chapter navigation and20 question branches both end in one active generic reading document.20 retains an origin score and breadcrumb/parent summary, but the prior substantive reader is replaced. Phone both become navigated single readers. Required: rework20 so successive branches retain their actual evidence as inspectable adjacent or cumulative nodes, not just a breadcrumb and replacement page."
+  },
+  {
+    "idA": "04",
+    "idB": "07",
+    "verdict": "N",
+    "reason": "04 source rail→program reader and07 station rail→reader share the same active-document architecture once07 room closes.04 extra score rail is real context but does not change the main reveal model. Phone both become compact category navigation above one long reader. Required: rework07 into persistent content-bearing stations, including on phone, rather than an illustrated pre-menu for the same reader."
+  },
+  {
+    "idA": "04",
+    "idB": "10",
+    "verdict": "N",
+    "reason": "Both desktop layouts are left task/source rail plus a replaced scrolling document;04 adds a selectable score rail while10 renames the reading sequence as audit steps. Phone both replace the left rail with a select and keep one active document. Required: make10 retain matchup and selected roster evidence together across task steps instead of replacing the document on each task choice."
+  },
+  {
+    "idA": "04",
+    "idB": "13",
+    "verdict": "N",
+    "reason": "04 source selection and13 exclusive chapter unfolding both choose a conventional active matchup/roster/editorial document.13 folded spines and04 score rail are retained selectors/context around that reader. Phone remains category controls plus one long document. Required: rework13 to allow several substantive spreads to remain open and related, instead of exclusive reader replacement."
+  },
+  {
+    "idA": "04",
+    "idB": "16",
+    "verdict": "N",
+    "reason": "04 has source selectors feeding a main reader;16 has franchise selectors feeding a dossier and separate chapter selectors feeding its league reader.16 portrait strip changes entry geometry but shared inventory still funnels through a generic active document. Phone both use compact selection above one reader. Required: keep multiple franchise contexts and league facts attached to the bench instead of moving them into one separate reader."
+  },
+  {
+    "idA": "04",
+    "idB": "19",
+    "verdict": "N",
+    "reason": "04 selected program and19 selected dossier/notebook share a conventional reader for the same matchup, value and editorial groups.19 alphabetic field makes navigation larger but shared material still leaves that field for a generic notebook. Phone both are controls plus selected long content. Required: make19 a retained multi-franchise comparison field with attached evidence, rather than index→single dossier/notebook."
+  },
+  {
+    "idA": "05",
+    "idB": "07",
+    "verdict": "D",
+    "reason": "05 is a continuous poster-like document; anchors and disclosures move within it while other sections remain in flow.07 replaces its room overview with an active station reader. Phone05 stays one long mixed-content document;07 changes between an overview and a separate navigation+station reading page."
+  },
+  {
+    "idA": "05",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "05 keeps the entire homepage inventory in one vertically continuous text field with local disclosures.10 has persistent task navigation and replaces the main reading page on task selection. Phone05 uses the same document/text index;10 uses a task select above a discrete task page."
+  },
+  {
+    "idA": "05",
+    "idB": "13",
+    "verdict": "R",
+    "reason": "Both organize large editorial sections in vertical document flow.05 leaves all major regions in sequence;13 folds whole chapters and opens only one substantive spread among retained spines. Phone preserves this whole-document versus exclusive chapter occupancy difference. Oversized headings and the book metaphor alone were not counted."
+  },
+  {
+    "idA": "05",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "05 entry is a huge current pairing followed by the rest of one continuous document.16 entry is a franchise selector with an attached tabbed dossier and a separate league reader. Phone05 remains the long document;16 reduces the bench to one traversable face and selected franchise tabs."
+  },
+  {
+    "idA": "05",
+    "idB": "19",
+    "verdict": "R",
+    "reason": "Both have large typographic vertical rows, but05 carries matchup, value, people and editorial in one uninterrupted document.19 filters an alphabetic franchise field and inserts a selected dossier beside its source team, with shared editorial in a separate notebook. Phone retains the franchise-index/dossier relationship versus05 all-section flow."
+  },
+  {
+    "idA": "06",
+    "idB": "08",
+    "verdict": "D",
+    "reason": "06 is a date-axis log: scope and source-period filters remove entries from a chronological stream.08 is a synchronized two-team comparison with common metric rows. Phone06 keeps the date-led stream and filters;08 keeps both score identities plus side/detail controls. Neither reveal model reduces to the other."
+  },
+  {
+    "idA": "06",
+    "idB": "11",
+    "verdict": "D",
+    "reason": "06 filters dated observations by scope and source period, preserving chronology as the content relation.11 searches mixed entities/tasks and opens several local answers among result peers. Phone06 remains a filtered time stream;11 remains a query/result surface with inline answers. Shared vertical reading does not erase these different organizing operations."
+  },
+  {
+    "idA": "06",
+    "idB": "14",
+    "verdict": "D",
+    "reason": "06 exposes a single chronological log with source-date filters.14 exposes four independently scrollable subject channels and crosslinks passages while retaining other channel positions. Phone06 filters the same time stream;14 switches retained channel readers and returns to previous passages. Different simultaneous context and different information relation."
+  },
+  {
+    "idA": "06",
+    "idB": "17",
+    "verdict": "D",
+    "reason": "06 uses dates and chronological entries, with personal/league/market and period filters.17 uses a semantic cross-team sheet with fixed comparison fields and expandable roster subrows. Phone06 retains date-led ordering;17 changes the visible field across team rows using a Fields select. These are distinct data architectures despite ruled rows."
+  },
+  {
+    "idA": "06",
+    "idB": "20",
+    "verdict": "D",
+    "reason": "06 keeps observations in a filterable chronological document.20 replaces a current-step reader through a question tree and records the traversed branch path. Phone06 preserves scope/date filtering and timeline entries;20 collapses origin facts and follows discrete branch readers with Back. Temporal filtering and decision-path replacement are different behaviors."
+  },
+  {
+    "idA": "07",
+    "idB": "10",
+    "verdict": "N",
+    "reason": "After entering a07 room station, both studies are left navigation rail plus one conventional active reader.07 station labels and10 task labels do not alter the evidence relationship. Phone both become compact navigation/select plus one long reader. Required: rework07 so station content remains in the actual room and can coexist, instead of replacing the scene with the same rail+reader."
+  },
+  {
+    "idA": "07",
+    "idB": "13",
+    "verdict": "N",
+    "reason": "07 room stations become a single reader with category rail;13 spines open a single generic spread with other headings folded. Both are category selectors around a lone roster/matchup/editorial reader. Phone again exposes one selected long document. Required: let13 preserve multiple actual unfolded spreads and cross-context reading rather than exclusive chapter selection."
+  },
+  {
+    "idA": "07",
+    "idB": "16",
+    "verdict": "N",
+    "reason": "07 object selector→station reader and16 portrait selector→dossier/league reader use different landmarks for the same selected-document architecture. The room/bench disappears or stops carrying shared inventory once a conventional reader is needed. Phone both become navigation plus one reader. Required: keep16 multiple franchise dossiers and league evidence attached to the bench rather than one selected dossier and separate generic reader."
+  },
+  {
+    "idA": "07",
+    "idB": "19",
+    "verdict": "N",
+    "reason": "07 room and19 franchise field change the navigation illustration, but both deliver conventional roster/matchup readers and a generic shared editorial reader. Phone both settle into a selected long reader with compact navigation. Required: make19 retain comparable facts and evidence across several franchise rows instead of the single dossier plus separate notebook funnel."
+  },
+  {
+    "idA": "08",
+    "idB": "10",
+    "verdict": "D",
+    "reason": "08 organizes matchup facts as two synchronized sides around shared metric labels;10 organizes them as steps in one task document beside a task rail. Phone08 retains both team identities and a side switch;10 retains a task select and one stacked audit reader. This is comparison geometry and state versus task-page replacement."
+  },
+  {
+    "idA": "08",
+    "idB": "13",
+    "verdict": "D",
+    "reason": "08 keeps paired teams and matched metric/roster sections as the central structure.13 opens one whole editorial chapter among collapsed spines. Phone08 retains both score sides and selects a side/detail view;13 keeps its exclusive vertical accordion. The two-team relationship is functional, not a styling distinction."
+  },
+  {
+    "idA": "08",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "08 is a persistent two-sided matchup comparison whose pairing selector updates both sides.16 selects one franchise from a portrait bench, reads its dossier tabs, then switches to a separate league reader. Phone08 keeps both teams in the score context and side controls;16 shows one franchise at a time with previous/next traversal."
+  },
+  {
+    "idA": "08",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "08 aligns two franchises across matched metric bands.19 is an alphabetic single-franchise field with one inserted tabbed dossier and a separate league notebook. Phone08 retains a dual-team score context and side switch;19 retains index/filter/dossier navigation. The entry object, simultaneous context and reveal relationship differ."
+  },
+  {
+    "idA": "09",
+    "idB": "11",
+    "verdict": "R",
+    "reason": "Both retain an index around extended reading.09 is a fixed route/map selector feeding one replacement reader;11 can search teams, players and tasks, then keep several answers open inside their result rows. Phone09 places the same route above its reader;11 preserves query and answer peers in flow. Search composition and multiple simultaneous answers are substantive."
+  },
+  {
+    "idA": "09",
+    "idB": "14",
+    "verdict": "D",
+    "reason": "09 uses a route map and selected-stop reader.14 keeps four independent subject readers simultaneously visible on desktop, with crosslinks and saved reading positions. Phone09 keeps the route above one selected stop;14 switches channels while preserving each scroll position and return passage. The latter is retained parallel context rather than one map-selected document."
+  },
+  {
+    "idA": "09",
+    "idB": "17",
+    "verdict": "D",
+    "reason": "09 selects an editorial/current stop from a route to replace one reader.17 shows comparable league rows and opens detail subrows under the corresponding team. Phone09 remains route then reader;17 remains field-selected league rows with inline roster expansion. Fixed route navigation and semantic sheet exploration are different architectures."
+  },
+  {
+    "idA": "09",
+    "idB": "20",
+    "verdict": "N",
+    "reason": "09 route stops and20 question branches both choose one conventional active reader while retaining an overview/origin and navigation history. Curved lines versus branching connectors do not make the evidence itself a graph. Phone both become navigated long readers. Required: rework20 so chosen branches retain substantive evidence as connected inspectable nodes instead of replacing one reading document."
+  },
+  {
+    "idA": "10",
+    "idB": "13",
+    "verdict": "N",
+    "reason": "10 task rail and13 exclusive chapter spines both choose one generic matchup/value/editorial reading document. Renaming task steps as spreads and keeping folded headings changes navigation treatment, not the single-reader architecture. Phone both are category controls plus long active content. Required: allow13 multiple substantive unfolded contexts with explicit relationships instead of exclusive selection."
+  },
+  {
+    "idA": "10",
+    "idB": "16",
+    "verdict": "N",
+    "reason": "10 uses task selectors to replace a reader;16 uses portraits for dossier selection and a second set of chapter selectors for its generic league reader. Phone both retain compact selection above one long active document. Required: make16 a multi-franchise evidence workspace on the bench, keeping compared dossiers and shared league facts in context instead of a separate universal reader."
+  },
+  {
+    "idA": "10",
+    "idB": "19",
+    "verdict": "N",
+    "reason": "10 task pages and19 dossier/notebook pages ultimately expose the same conventional reading architecture.19 franchise field is a larger selector and its notebook still replaces content by tab. Phone both settle to controls followed by one selected reader. Required: make19 retain cross-franchise comparison fields and attached evidence across rows, rather than one dossier plus a generic notebook."
+  },
+  {
+    "idA": "11",
+    "idB": "13",
+    "verdict": "R",
+    "reason": "Both reveal large inline reading regions.11 composes mixed team/player/task search results and permits several answers open together;13 has a fixed ordered set of five mutually exclusive full chapters. Phone retains this multiple-result versus single-spread occupancy difference, with query/type controls in11 and folded neighboring spines in13."
+  },
+  {
+    "idA": "11",
+    "idB": "16",
+    "verdict": "R",
+    "reason": "Both can enter through an entity and expose detail, but11 keeps the query/result peers and multiple inline answers;16 keeps one selected franchise dossier on the bench and moves shared inventory to a separate reader. Phone11 remains a composable answer list;16 becomes a single traversable face and tabbed dossier. The related reader family has a real context-retention difference."
+  },
+  {
+    "idA": "11",
+    "idB": "19",
+    "verdict": "R",
+    "reason": "Both are searchable index families with inline detail.11 mixes player/team/task results and retains several independently open answers, while19 filters franchises by initial/search and permits one tabbed dossier plus a separate shared notebook. Phone preserves the multi-answer result list versus single-franchise dossier relationship. The distinction is reveal granularity and simultaneous context, not typography."
+  },
+  {
+    "idA": "12",
+    "idB": "14",
+    "verdict": "D",
+    "reason": "12 retains an orbit of teams/game connections and replaces one detail shelf.14 retains four subject readers concurrently on desktop with passage crosslinks. Phone12 keeps the radial team/game map then shelf;14 switches full subject channels while retaining each reading position. Their simultaneous context and navigation targets differ."
+  },
+  {
+    "idA": "12",
+    "idB": "17",
+    "verdict": "D",
+    "reason": "12 uses team nodes and current-game edges to select a detail shelf.17 exposes all teams in a semantic sheet with cross-row fields and expandable subrows. Phone12 keeps the radial overview;17 substitutes sheet/field selects while keeping comparable team rows. Node selection and row/column exploration produce materially different information relationships."
+  },
+  {
+    "idA": "12",
+    "idB": "20",
+    "verdict": "N",
+    "reason": "12 orbit nodes/axes and20 branch questions both feed one generic detail reader while retaining overview/origin context. Most inventory is conventional roster, picks and editorial reading in the selected shelf/step. Phone both become a compact overview plus one reader. Required: make20 branches accumulate actual comparable evidence nodes rather than breadcrumb labels around a replacement document."
+  },
+  {
+    "idA": "13",
+    "idB": "16",
+    "verdict": "N",
+    "reason": "13 exclusive spines and16 dossier/league chapter controls select one conventional active reading region.16 portrait bench changes the landing image but shared inventory still flows through a generic reader. Phone both expose selected long-form content after category controls. Required: retain multiple franchise dossiers and shared evidence on16 bench instead of one dossier plus separate reader."
+  },
+  {
+    "idA": "13",
+    "idB": "19",
+    "verdict": "N",
+    "reason": "13 opens one full generic chapter and19 opens one franchise dossier or generic notebook page; fixed selectors frame the same active-document reveal. Phone both become a long selected reader surrounded by category/index controls. Required: turn19 index into retained multi-franchise comparison fields with attached evidence, rather than single dossier/notebook selection."
+  },
+  {
+    "idA": "14",
+    "idB": "16",
+    "verdict": "D",
+    "reason": "14 desktop keeps four independent reading channels present at once.16 keeps a franchise bench and one dossier, then replaces the bench with a separate league reader for shared inventory. Phone14 retains channel-specific scroll positions and crosslink returns;16 traverses one selected franchise and its tabs. Concurrent subject context differs from single-entity detail."
+  },
+  {
+    "idA": "14",
+    "idB": "19",
+    "verdict": "D",
+    "reason": "14 has four concurrent independent readers and cross-passage returns.19 filters a franchise index, inserts one dossier under a team, and changes to a separate shared notebook. Phone14 switches retained reading positions by subject;19 switches index/dossier/notebook states. The relationship among sections and persistence of context are different."
+  },
+  {
+    "idA": "15",
+    "idB": "17",
+    "verdict": "D",
+    "reason": "15 is a week-by-lane calendar with explicit source gaps; opening an event inserts its agenda at that lane while calendar context remains.17 is a cross-team league sheet with roster subrows. Phone15 transforms into a selected-period agenda with calendar option;17 becomes field-selected team records. Both use rows, but the rows encode different relations and interactions."
+  },
+  {
+    "idA": "15",
+    "idB": "20",
+    "verdict": "D",
+    "reason": "15 retains a temporal lane grid and attaches event agendas to their source interval.20 follows a question tree that replaces one current-step reader and remembers its branch path. Phone15 becomes a period-specific agenda;20 collapses origin facts and uses branch/back navigation. Temporal placement and branch replacement are distinct functional structures."
+  },
+  {
+    "idA": "16",
+    "idB": "19",
+    "verdict": "N",
+    "reason": "Both center on selecting a franchise, reading Overview/Roster/Form tabs, and leaving for a generic league reader/notebook to reach shared picks/editorial/tools.16 arranges selectors as a portrait strip;19 as alphabetic rows with one inserted dossier. Phone both show one dossier at a time. Required: make19 a retained cross-franchise comparison field, eliminating the single dossier/notebook funnel for core league facts."
+  },
+  {
+    "idA": "17",
+    "idB": "19",
+    "verdict": "R",
+    "reason": "Both are team-index families with inline detail.17 makes comparable fields across all teams the primary sheet and opens roster subrows;19 makes a franchise-name/portrait field primary and inserts one multi-tab dossier before switching shared material to a notebook. Phone17 has a Fields select changing the compared column;19 keeps alphabet/search plus dossier tabs. Related, with substantive comparison versus entity-reading behavior."
+  },
+  {
+    "idA": "18",
+    "idB": "20",
+    "verdict": "R",
+    "reason": "Both split desktop into retained contextual material and a reading column.18 is a genuinely continuous document: scrolling/anchors update the sticky chapter stage without replacing the right-hand evidence.20 replaces the current-step document through a branching path and Back. Phone18 keeps a sticky chapter summary/select over the same document;20 collapses origin facts and presents discrete path readers. Shared geometry, different document continuity."
+  }
+]

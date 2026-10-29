@@ -5,7 +5,7 @@
     272,
     273
   ],
-  "stage": "grayscale authoring; independent gate pending",
+  "stage": "20 first structures frozen; strict190-pair geometry gate and separate N reworks in progress; no full art",
   "authors": [
     {
       "id": "01",
@@ -48,40 +48,88 @@
       "id": "07",
       "task": "/root/arch07",
       "fork": "none",
-      "status": "running"
+      "status": "frozen first source"
     },
     {
       "id": "08",
       "task": "/root/arch08",
       "fork": "none",
-      "status": "running"
+      "status": "frozen first source"
     },
     {
       "id": "09",
       "task": "/root/arch09",
       "fork": "none",
-      "status": "running"
+      "status": "frozen first source"
     },
     {
       "id": "10",
       "task": "/root/arch10",
       "fork": "none",
-      "status": "running"
+      "status": "frozen first source"
     },
     {
       "id": "11",
       "task": "/root/arch11",
       "fork": "none",
-      "status": "running"
+      "status": "frozen first source"
     },
     {
       "id": "12",
       "task": "/root/arch12",
       "fork": "none",
-      "status": "running"
+      "status": "frozen first source"
+    },
+    {
+      "id": "13",
+      "task": "/root/arch13",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "14",
+      "task": "/root/arch14",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "15",
+      "task": "/root/arch15",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "16",
+      "task": "/root/arch16",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "17",
+      "task": "/root/arch17",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "18",
+      "task": "/root/arch18",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "19",
+      "task": "/root/arch19",
+      "fork": "none",
+      "status": "frozen first source"
+    },
+    {
+      "id": "20",
+      "task": "/root/arch20",
+      "fork": "none",
+      "status": "frozen first source"
     }
   ],
-  "independentReview": "not started",
+  "independentReview": "Three fresh critics completing190first-round pairs; early21-pair gate rejects01/05 and02/07. Separate grayscale revisions05/07 started; no full artwork.",
   "release": "none; production/Muse/benchmark unchanged",
   "rootChecks": {
     "01": "8/10; root390px200% overflow428px in both editions, correction pending after first-source preservation",
@@ -89,12 +137,121 @@
     "04": "10/10",
     "03": "0/10: initial source absolute hidden standings-header overflow reproduced after state change; table positioning probe fixes; captured first source preserved",
     "06": "10/10",
-    "05": "10/10"
+    "05": "10/10",
+    "07": "10/10",
+    "10": "10/10",
+    "08": "10/10",
+    "09": "10/10",
+    "11": "10/10",
+    "12": "10/10",
+    "13": "10/10",
+    "14": "8/10;390px200% root text470\u2013474pxoverflow in bothmodes, later QArequired",
+    "15": "10/10",
+    "16": "10/10",
+    "17": "10/10",
+    "18": "10/10",
+    "19": "10/10",
+    "20": "10/10"
   },
   "checkpoint": {
-    "frozenSources": 6,
-    "capturedStates": 166,
-    "authorsStarted": 12,
-    "structureGate": "pending; no full art implemented"
+    "frozenSources": 20,
+    "capturedStates": 584,
+    "authorsStarted": 20,
+    "structureGate": "pending; no full art implemented",
+    "publicReceipt": "https://github.com/aidandaly24/goat-hoopers-site/issues/190#issuecomment-6499240193",
+    "rootCases": {
+      "passed": 186,
+      "total": 200
+    },
+    "earlyGate": {
+      "pairs": 21,
+      "D": 12,
+      "R": 7,
+      "N": 2,
+      "rejectedPairs": [
+        "01/05",
+        "02/07"
+      ]
+    }
+  },
+  "structuralRevisions": [
+    {
+      "id": "01",
+      "owner": "/root/arch01",
+      "status": "QA active"
+    },
+    {
+      "id": "03",
+      "owner": "/root/arch03",
+      "status": "QA active"
+    },
+    {
+      "id": "04",
+      "owner": "/root/arch04",
+      "status": "QA active"
+    },
+    {
+      "id": "05",
+      "owner": "/root/arch05",
+      "status": "frozen/captured10of10checks"
+    },
+    {
+      "id": "07",
+      "owner": "/root/arch07",
+      "status": "frozen/captured10of10checks"
+    },
+    {
+      "id": "09",
+      "owner": "/root/arch09",
+      "status": "frozen/capturepending"
+    },
+    {
+      "id": "10",
+      "owner": "/root/arch10",
+      "status": "frozen/capturepending"
+    },
+    {
+      "id": "12",
+      "owner": "/root/arch12",
+      "status": "frozen/capturepending"
+    },
+    {
+      "id": "13",
+      "owner": "/root/arch13",
+      "status": "mobile craft QA active"
+    },
+    {
+      "id": "14",
+      "owner": "/root/arch14",
+      "status": "QA active"
+    },
+    {
+      "id": "16",
+      "owner": "/root/arch16",
+      "status": "frozen/capturepending"
+    },
+    {
+      "id": "18",
+      "owner": "/root/arch18",
+      "status": "frozen/capturepending"
+    },
+    {
+      "id": "19",
+      "owner": "/root/arch19",
+      "status": "content QA active"
+    },
+    {
+      "id": "20",
+      "owner": "/root/arch20",
+      "status": "directory-action QA active"
+    }
+  ],
+  "firstRoundGate": {
+    "assignedPairs": 190,
+    "D": 99,
+    "R": 57,
+    "N": 34,
+    "uninspected": 0,
+    "meaning": "Qualitative independent raw judgments, not statistical proof; abstraction disagreements preserved and blind ten-pair adjudication available. No accepted20 or shortlist claim."
   }
 }

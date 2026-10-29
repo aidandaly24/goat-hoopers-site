@@ -1,0 +1,14 @@
+{
+  "pass": true,
+  "studies": 20,
+  "reader": "evidence/wireframes/03/member-phone-01-team-pane-0.jpg",
+  "checks": [
+    "full reader selection03",
+    "four desktop/one phone channel strips14",
+    "empty public state clears stale image",
+    "phone390 controls",
+    "native/fit toggle"
+  ],
+  "errors": [],
+  "limits": "QA evidence gallery only, not final concept acceptance."
+}

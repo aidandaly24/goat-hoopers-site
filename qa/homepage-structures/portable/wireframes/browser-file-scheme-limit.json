@@ -1,0 +1,7 @@
+{
+  "action": "Open self-contained QA HTML through file:// in managed Chromium",
+  "outcome": "Denied by browser administrator; ERR_BLOCKED_BY_ADMINISTRATOR",
+  "scope": "First bundle test attempted11IDs in both editions in one prepared loop; all22 were blocked before rendering. No further file:// retries or browser-policy changes.",
+  "independentAllowedWork": "Use the existing ordinary localhost development server for own authored QA files; that checks inlined runtime without dependent HTTP assets. Does not verify direct offline file opening.",
+  "release": "No production change or external provider"
+}

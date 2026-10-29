@@ -1,0 +1,2415 @@
+{
+  "id": "03",
+  "phase": "wireframes",
+  "records": [
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "default",
+        "label": "This week: score reader & saved slate"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-week",
+        "class": "chapter",
+        "heading": "Reaves DroppermeetsWare the Hoes At?"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1617,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 802,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 13,
+          "taken": 802
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-desktop-00-default-pane-0.jpg",
+        "bytes": 198362,
+        "sha256": "7716bda499b7cb2b81d90618fe1979827e59eb920d9a0d54becdd0f3b2b71300",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 198362,
+        "width": 1440,
+        "height": 1617,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 1617
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "team",
+        "label": "My club: values and complete roster"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-team",
+        "class": "chapter",
+        "heading": "Reaves Dropper"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 2243,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 815,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 1630,
+          "actual": 1428,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 202,
+          "taken": 613
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-desktop-01-team-pane-0.jpg",
+        "bytes": 167231,
+        "sha256": "a1474750d695834e6f259c4976a17635ffcf94f224bdb61c2668b33358d4c003",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 167231,
+        "width": 1440,
+        "height": 2243,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 2243
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "scout",
+        "label": "Scoutbook: form, completed week & team wire"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-scout",
+        "class": "chapter",
+        "heading": "Who needsa closer look?"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 990,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 175,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 640,
+          "taken": 175
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-desktop-02-scout-pane-0.jpg",
+        "bytes": 166315,
+        "sha256": "4a2b627b8690b1ea7b950cad33faa100f38b0f7f817456733c18ab687fab83e0",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 166315,
+        "width": 1440,
+        "height": 990,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 990
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "league",
+        "label": "League index: searchable roster reader"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-league",
+        "class": "chapter",
+        "heading": "Ten franchises.Every name."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1800,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 815,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 1630,
+          "actual": 985,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 645,
+          "taken": 170
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-desktop-03-league-pane-0.jpg",
+        "bytes": 178908,
+        "sha256": "98565da677c002e07f79a2bc95ca23e39dd34e918b9b23db7f114256158d5e45",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 178908,
+        "width": 1440,
+        "height": 1800,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 1800
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "standings",
+        "label": "League index: standings"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-league",
+        "class": "chapter",
+        "heading": "Ten franchises.Every name."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1296,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 481,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 334,
+          "taken": 481
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-desktop-04-standings-pane-0.jpg",
+        "bytes": 91071,
+        "sha256": "2c4c973a130c964ea6868643ab33d259b3ad0fcaeff67810cff13ad401a8ad89",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 91071,
+        "width": 1440,
+        "height": 1296,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 1296
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "edition",
+        "label": "Dated October editorial spread"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-edition",
+        "class": "chapter",
+        "heading": "The next chapter"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1347,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 532,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 283,
+          "taken": 532
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-desktop-05-edition-pane-0.jpg",
+        "bytes": 176880,
+        "sha256": "f8fb866bc4daea50c43ca258e0b9b4620aeeba26b4f90d1b3488fcbb2eb920ac",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 176880,
+        "width": 1440,
+        "height": 1347,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 1347
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "archive",
+        "label": "Archive: historical final"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-archive",
+        "class": "chapter",
+        "heading": "Turn backa week."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 896,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 81,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 734,
+          "taken": 81
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-desktop-06-archive-pane-0.jpg",
+        "bytes": 109785,
+        "sha256": "9ea1029d48770eba88d5735e5b30c5f6819ecdd6c2fbc42d5453476b1b375408",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 109785,
+        "width": 1440,
+        "height": 896,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 896
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "desktop",
+      "state": {
+        "id": "tools",
+        "label": "Play & league tools"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-tools",
+        "class": "chapter",
+        "heading": "Where next?"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1103,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 288,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 527,
+          "taken": 288
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-desktop-07-tools-pane-0.jpg",
+        "bytes": 114377,
+        "sha256": "a0aff85a0ab546670ce6ba74dfb41071259b6c3f0bc8b6a7af56192f0f749b2d",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 114377,
+        "width": 1440,
+        "height": 1103,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 1103
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "default",
+        "label": "This week: score reader & saved slate"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-week",
+        "class": "chapter",
+        "heading": "Reaves DroppermeetsWare the Hoes At?"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 2397,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 1722,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 303,
+          "taken": 372
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-phone-00-default-pane-0.jpg",
+        "bytes": 137605,
+        "sha256": "1d64aedc44fbce83a9d02c9d1e434a95658a01bfff142ec19985e5cb298b8dce",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 137605,
+        "width": 390,
+        "height": 2397,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 2397
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "team",
+        "label": "My club: values and complete roster"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-team",
+        "class": "chapter",
+        "heading": "Reaves Dropper"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 3064,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 2025,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2700,
+          "actual": 2389,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 311,
+          "taken": 364
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-phone-01-team-pane-0.jpg",
+        "bytes": 138301,
+        "sha256": "dce3669275dbeba597714e10f6b3a83511c6b3c583105f9c8a005484bf0b1a92",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 138301,
+        "width": 390,
+        "height": 3064,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 3064
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "scout",
+        "label": "Scoutbook: form, completed week & team wire"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-scout",
+        "class": "chapter",
+        "heading": "Who needsa closer look?"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 3088,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 2025,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2700,
+          "actual": 2413,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 287,
+          "taken": 388
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-phone-02-scout-pane-0.jpg",
+        "bytes": 159325,
+        "sha256": "f69d784da3ce6f8c3a587e15ad55ef3efcb19dbf812981d10fd36c249ec8a5f2",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 159325,
+        "width": 390,
+        "height": 3088,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 3088
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "league",
+        "label": "League index: searchable roster reader"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-league",
+        "class": "chapter",
+        "heading": "Ten franchises.Every name."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 2993,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 2025,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2700,
+          "actual": 2318,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 382,
+          "taken": 293
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-phone-03-league-pane-0.jpg",
+        "bytes": 160335,
+        "sha256": "2ff2f9beaeb18608243ef8a38b23f1f31edf6f58eb0dd0e9879889868f83c537",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 160335,
+        "width": 390,
+        "height": 2993,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 2993
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "standings",
+        "label": "League index: standings"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-league",
+        "class": "chapter",
+        "heading": "Ten franchises.Every name."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 2218,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 1543,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 482,
+          "taken": 193
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-phone-04-standings-pane-0.jpg",
+        "bytes": 79513,
+        "sha256": "8bc5c972505f9dd1dfc2a0bcd4ce10701c1cb397834f78a427ce17f425f2a085",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 79513,
+        "width": 390,
+        "height": 2218,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 2218
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "edition",
+        "label": "Dated October editorial spread"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-edition",
+        "class": "chapter",
+        "heading": "The next chapter"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 2776,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 2025,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2700,
+          "actual": 2101,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 599,
+          "taken": 76
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-phone-05-edition-pane-0.jpg",
+        "bytes": 148446,
+        "sha256": "0deb64173257e9d541e837f658b8cb90c6d39f6132308f2390927538e51504ba",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 148446,
+        "width": 390,
+        "height": 2776,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 2776
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "archive",
+        "label": "Archive: historical final"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-archive",
+        "class": "chapter",
+        "heading": "Turn backa week."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1643,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 968,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 382,
+          "taken": 293
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-phone-06-archive-pane-0.jpg",
+        "bytes": 97426,
+        "sha256": "7c9d917db0b9d5d612428b3ac305da06e9315cf90832953eafbf313f73944f01",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 97426,
+        "width": 390,
+        "height": 1643,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 1643
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "member",
+      "device": "phone",
+      "state": {
+        "id": "tools",
+        "label": "Play & league tools"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-tools",
+        "class": "chapter",
+        "heading": "Where next?"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 2130,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 1455,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 570,
+          "taken": 105
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/member-phone-07-tools-pane-0.jpg",
+        "bytes": 99068,
+        "sha256": "fa1bf203ab5542c7783c0d6812850e0516df40579d9745da4d43097130d118ca",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 99068,
+        "width": 390,
+        "height": 2130,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 2130
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "default",
+        "label": "This week: score reader & saved slate"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-week",
+        "class": "chapter",
+        "heading": "Reaves DroppermeetsWare the Hoes At?"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1617,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 802,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 13,
+          "taken": 802
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-desktop-00-default-pane-0.jpg",
+        "bytes": 199074,
+        "sha256": "b6d23a438f3b7aae447f9a745d881ec4ca93fdddde81cc35782465a81303bb27",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 199074,
+        "width": 1440,
+        "height": 1617,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 1617
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "league",
+        "label": "League index: searchable roster reader"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-league",
+        "class": "chapter",
+        "heading": "Ten franchises.Every name."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1800,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 815,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 1630,
+          "actual": 985,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 645,
+          "taken": 170
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-desktop-01-league-pane-0.jpg",
+        "bytes": 178890,
+        "sha256": "f4e61357bb9c933b121107749e00be9b72d2e3dd7e18dadf2aa35d00a4053a9d",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 178890,
+        "width": 1440,
+        "height": 1800,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 1800
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "standings",
+        "label": "League index: standings"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-league",
+        "class": "chapter",
+        "heading": "Ten franchises.Every name."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1272,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 457,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 358,
+          "taken": 457
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-desktop-02-standings-pane-0.jpg",
+        "bytes": 89948,
+        "sha256": "73b8282527962f4680cc9651ac3ba3ba4f8a5aaaa5fcf0cfbf4c676e67a2a826",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 89948,
+        "width": 1440,
+        "height": 1272,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 1272
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "edition",
+        "label": "Dated October editorial spread"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-edition",
+        "class": "chapter",
+        "heading": "The next chapter"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1347,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 532,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 283,
+          "taken": 532
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-desktop-03-edition-pane-0.jpg",
+        "bytes": 176876,
+        "sha256": "6c372fb7bb893eeef82d4aae3c5a51deed086f51644e621e051b884adebae29f",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 176876,
+        "width": 1440,
+        "height": 1347,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 1347
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "archive",
+        "label": "Archive: historical final"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-archive",
+        "class": "chapter",
+        "heading": "Turn backa week."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 896,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 81,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 734,
+          "taken": 81
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-desktop-04-archive-pane-0.jpg",
+        "bytes": 109758,
+        "sha256": "0990a9802f8f084d87d473da96fc3e6ad0322781583e4bab8c329f136822cf43",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 109758,
+        "width": 1440,
+        "height": 896,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 896
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "desktop",
+      "state": {
+        "id": "tools",
+        "label": "Play & league tools"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-tools",
+        "class": "chapter",
+        "heading": "Where next?"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1103,
+        "clientHeight": 815
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 0,
+          "taken": 815
+        },
+        {
+          "requested": 815,
+          "actual": 288,
+          "documentClip": {
+            "x": 0,
+            "y": 124,
+            "width": 1440,
+            "height": 815
+          },
+          "cropTop": 527,
+          "taken": 288
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-desktop-05-tools-pane-0.jpg",
+        "bytes": 112850,
+        "sha256": "b30bab0688b021e52cf99017b30bd1dd6b5dc78bf7229aabf401f9c4d8ea48f9",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 112850,
+        "width": 1440,
+        "height": 1103,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 1103
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "default",
+        "label": "This week: score reader & saved slate"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-week",
+        "class": "chapter",
+        "heading": "Reaves DroppermeetsWare the Hoes At?"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 2397,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 1722,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 303,
+          "taken": 372
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-phone-00-default-pane-0.jpg",
+        "bytes": 138241,
+        "sha256": "d93eb862d3880b32cda691e89e434f07e1f45e689cad60a00155d20c00b033be",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 138241,
+        "width": 390,
+        "height": 2397,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 2397
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "league",
+        "label": "League index: searchable roster reader"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-league",
+        "class": "chapter",
+        "heading": "Ten franchises.Every name."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 2993,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 2025,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2700,
+          "actual": 2318,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 382,
+          "taken": 293
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-phone-01-league-pane-0.jpg",
+        "bytes": 159390,
+        "sha256": "077e3b8e838635489e8fb045bb902696907ed651d723ba1389e90befd643a5bc",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 159390,
+        "width": 390,
+        "height": 2993,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 2993
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "standings",
+        "label": "League index: standings"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-league",
+        "class": "chapter",
+        "heading": "Ten franchises.Every name."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 2194,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 1519,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 506,
+          "taken": 169
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-phone-02-standings-pane-0.jpg",
+        "bytes": 78876,
+        "sha256": "8299a5785db23326cd2632e07b7b07c71a00814fed880e78d34c5c06f614b654",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 78876,
+        "width": 390,
+        "height": 2194,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 2194
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "edition",
+        "label": "Dated October editorial spread"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-edition",
+        "class": "chapter",
+        "heading": "The next chapter"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 2776,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 2025,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2700,
+          "actual": 2101,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 599,
+          "taken": 76
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-phone-03-edition-pane-0.jpg",
+        "bytes": 148477,
+        "sha256": "1388aa74280dc30523573b0a8d2b41405700413fcee655f80f8e1eba186b8d5f",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 148477,
+        "width": 390,
+        "height": 2776,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 2776
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "archive",
+        "label": "Archive: historical final"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-archive",
+        "class": "chapter",
+        "heading": "Turn backa week."
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 1643,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 968,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 382,
+          "taken": 293
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-phone-04-archive-pane-0.jpg",
+        "bytes": 97401,
+        "sha256": "6efc8cb95da71434fb29b56acec2823012cbc928e8b0f05a580c32cd2aee5ba1",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 97401,
+        "width": 390,
+        "height": 1643,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 1643
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    },
+    {
+      "view": "public",
+      "device": "phone",
+      "state": {
+        "id": "tools",
+        "label": "Play & league tools"
+      },
+      "pane": {
+        "index": 0,
+        "tag": "SECTION",
+        "id": "chapter-tools",
+        "class": "chapter",
+        "heading": "Where next?"
+      },
+      "initial": {
+        "scrollTop": 0,
+        "scrollHeight": 2130,
+        "clientHeight": 675
+      },
+      "offsets": [
+        {
+          "requested": 0,
+          "actual": 0,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 675,
+          "actual": 675,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 1350,
+          "actual": 1350,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 0,
+          "taken": 675
+        },
+        {
+          "requested": 2025,
+          "actual": 1455,
+          "documentClip": {
+            "x": 0,
+            "y": 114,
+            "width": 390,
+            "height": 675
+          },
+          "cropTop": 570,
+          "taken": 105
+        }
+      ],
+      "image": {
+        "path": "qa/homepage-structures/evidence/wireframes/03/public-phone-05-tools-pane-0.jpg",
+        "bytes": 97562,
+        "sha256": "99781afc59511c6f2841cfc83db6eb91ad3c32528fd2658a49d5843f014bc2ee",
+        "format": "jpeg",
+        "mediaType": "image/jpeg",
+        "size": 97562,
+        "width": 390,
+        "height": 2130,
+        "space": "srgb",
+        "channels": 3,
+        "depth": "uchar",
+        "density": 72,
+        "chromaSubsampling": "4:2:0",
+        "isProgressive": true,
+        "isPalette": false,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 390,
+          "height": 2130
+        },
+        "quality": 91
+      },
+      "note": "Actual interior reading content stitched at documented element scroll offsets. Native viewport/context is separate; sticky children can repeat as they do during actual reading. This is a reading strip, not a one-frame whole-page screenshot."
+    }
+  ],
+  "method": "No authored layout changes; bounded visible-pane crops at exact scrollTop offsets with restoration; native overview images remain separate."
+}
