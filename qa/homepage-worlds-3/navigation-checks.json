@@ -1,0 +1,99 @@
+{
+  "scope": "Actual native keyboard Tab/Enter skip and details open/Space close/focus retention at390px; internal targets exist. Real external destinations match repo routes but were not executed as live/auth integration.",
+  "results": [
+    {
+      "id": "a",
+      "pass": true,
+      "firstTab": {
+        "text": "Skip to your home court",
+        "href": "#home-court",
+        "outline": "solid"
+      },
+      "skipActivation": {
+        "hash": "#home-court",
+        "focusTag": "BODY",
+        "focusId": ""
+      },
+      "nativeDisclosure": {
+        "opened": true,
+        "closed": true,
+        "focusRetained": true
+      },
+      "internalLinks": [
+        {
+          "href": "#home-court",
+          "targetExists": true
+        }
+      ],
+      "afterSkipNextTab": {
+        "insideMain": true,
+        "text": "Your team room",
+        "href": "https://goathoopers.com/teams/1"
+      }
+    },
+    {
+      "id": "b",
+      "pass": true,
+      "firstTab": {
+        "text": "Skip to the frontpage",
+        "href": "#frontpage",
+        "outline": "solid"
+      },
+      "skipActivation": {
+        "hash": "#frontpage",
+        "focusTag": "BODY",
+        "focusId": ""
+      },
+      "nativeDisclosure": {
+        "opened": true,
+        "closed": true,
+        "focusRetained": true
+      },
+      "internalLinks": [
+        {
+          "href": "#frontpage",
+          "targetExists": true
+        },
+        {
+          "href": "#wire",
+          "targetExists": true
+        }
+      ],
+      "afterSkipNextTab": {
+        "insideMain": true,
+        "text": "Reaves Dropper ↗",
+        "href": "https://goathoopers.com/teams/1"
+      }
+    },
+    {
+      "id": "c",
+      "pass": true,
+      "firstTab": {
+        "text": "Skip to the season story",
+        "href": "#story",
+        "outline": "solid"
+      },
+      "skipActivation": {
+        "hash": "#story",
+        "focusTag": "BODY",
+        "focusId": ""
+      },
+      "nativeDisclosure": {
+        "opened": true,
+        "closed": true,
+        "focusRetained": true
+      },
+      "internalLinks": [
+        {
+          "href": "#story",
+          "targetExists": true
+        }
+      ],
+      "afterSkipNextTab": {
+        "insideMain": true,
+        "text": "Reaves Dropper",
+        "href": "https://goathoopers.com/teams/1"
+      }
+    }
+  ]
+}

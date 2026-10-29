@@ -1,0 +1,71 @@
+{
+  "method": "Actual standalone local HTTP boot, same main text as source and decoded images/fonts with no dependentHTTPrequests. Direct file:// opening is administrator-blocked and unverified; no live/auth destination execution claimed.",
+  "results": [
+    {
+      "id": "a",
+      "stage": "designed",
+      "pass": true,
+      "errors": [],
+      "dependentRequests": 0,
+      "mainTextSha256": "3d26c99ae0e7e79456be9096320fc479bc20316b0ed596b8198bbafb6b5e4817",
+      "matchesSource": true,
+      "headingCount": 1,
+      "hasFontLicenseProvenance": true
+    },
+    {
+      "id": "a",
+      "stage": "structure",
+      "pass": true,
+      "errors": [],
+      "dependentRequests": 0,
+      "mainTextSha256": "3d26c99ae0e7e79456be9096320fc479bc20316b0ed596b8198bbafb6b5e4817",
+      "matchesSource": true,
+      "headingCount": 1,
+      "hasFontLicenseProvenance": true
+    },
+    {
+      "id": "b",
+      "stage": "designed",
+      "pass": true,
+      "errors": [],
+      "dependentRequests": 0,
+      "mainTextSha256": "4af34f3b9a6e29cd7f9dc2a41ad43ae183e1b3c735751355d2b7a91a41561160",
+      "matchesSource": true,
+      "headingCount": 1,
+      "hasFontLicenseProvenance": true
+    },
+    {
+      "id": "b",
+      "stage": "structure",
+      "pass": true,
+      "errors": [],
+      "dependentRequests": 0,
+      "mainTextSha256": "4af34f3b9a6e29cd7f9dc2a41ad43ae183e1b3c735751355d2b7a91a41561160",
+      "matchesSource": true,
+      "headingCount": 1,
+      "hasFontLicenseProvenance": true
+    },
+    {
+      "id": "c",
+      "stage": "designed",
+      "pass": true,
+      "errors": [],
+      "dependentRequests": 0,
+      "mainTextSha256": "7cb7067b66d12f6df07c3841211200b5594ff220e1146ce24e2017ac7f1ec44f",
+      "matchesSource": true,
+      "headingCount": 1,
+      "hasFontLicenseProvenance": true
+    },
+    {
+      "id": "c",
+      "stage": "structure",
+      "pass": true,
+      "errors": [],
+      "dependentRequests": 0,
+      "mainTextSha256": "7cb7067b66d12f6df07c3841211200b5594ff220e1146ce24e2017ac7f1ec44f",
+      "matchesSource": true,
+      "headingCount": 1,
+      "hasFontLicenseProvenance": true
+    }
+  ]
+}
