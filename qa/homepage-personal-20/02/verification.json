@@ -1,0 +1,125 @@
+{
+  "browser": "System Chromium via installed Playwright",
+  "personas": [
+    {
+      "persona": "reaves",
+      "heading": "Reaves Dropper",
+      "sizes": [
+        {
+          "viewport": 1440,
+          "content": 1440,
+          "height": 3336
+        },
+        {
+          "viewport": 1120,
+          "content": 1120,
+          "height": 3354
+        }
+      ],
+      "enlarged150": {
+        "viewport": 1120,
+        "content": 1120
+      },
+      "rosterPlayers": 24
+    },
+    {
+      "persona": "neural",
+      "heading": "NeuralNets",
+      "sizes": [
+        {
+          "viewport": 1440,
+          "content": 1440,
+          "height": 3545
+        },
+        {
+          "viewport": 1120,
+          "content": 1120,
+          "height": 3540
+        }
+      ],
+      "enlarged150": {
+        "viewport": 1120,
+        "content": 1120
+      },
+      "rosterPlayers": 22
+    },
+    {
+      "persona": "guest",
+      "heading": "The league, in view.",
+      "sizes": [
+        {
+          "viewport": 1440,
+          "content": 1440,
+          "height": 2239
+        },
+        {
+          "viewport": 1120,
+          "content": 1120,
+          "height": 2234
+        }
+      ],
+      "enlarged150": {
+        "viewport": 1120,
+        "content": 1120
+      },
+      "rosterPlayers": 0
+    }
+  ],
+  "errors": [],
+  "actions": {
+    "matchupOpened": true,
+    "matchupCloseReturnsFocus": true,
+    "playerInspection": true,
+    "playerPortrait": true,
+    "playerCloseReturnsFocus": true,
+    "reavesSourceDisclosure": true,
+    "neuralUnpricedRows": 6,
+    "neuralUnpricedStatus": "Showing 6 of 22 players · missing quotes are not zero",
+    "longNameSearch": "Showing 1 of 22 players",
+    "neuralSourceDisclosure": true,
+    "guestSourceDisclosure": true
+  },
+  "colors": [
+    {
+      "label": "body on page",
+      "foreground": "#202921",
+      "background": "#f4f3ef",
+      "ratio": 13.5
+    },
+    {
+      "label": "muted on page",
+      "foreground": "#59615a",
+      "background": "#f4f3ef",
+      "ratio": 5.76
+    },
+    {
+      "label": "primary label on fill",
+      "foreground": "#ffffff",
+      "background": "#a83317",
+      "ratio": 6.66
+    },
+    {
+      "label": "muted on quote surface",
+      "foreground": "#59615a",
+      "background": "#ecece6",
+      "ratio": 5.39
+    },
+    {
+      "label": "body on white",
+      "foreground": "#202921",
+      "background": "#ffffff",
+      "ratio": 14.99
+    }
+  ],
+  "structure": {
+    "stage": "structure",
+    "height": 3354,
+    "background": "rgb(243, 243, 243)",
+    "normalHeight": 3354
+  },
+  "finalSmoke": {
+    "all15DestinationsPresent": true,
+    "missingDestinations": [],
+    "personaSelectorNavigatedToGuest": true
+  }
+}

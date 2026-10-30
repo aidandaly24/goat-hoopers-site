@@ -1,0 +1,21 @@
+[
+  {
+    "reason": "Removed unsupported Reaves value rank because another league roster is partially priced; complete own-team pricing does not establish a comparable league rank. All author inputs remain synthetic.",
+    "initialSha256": "611229318520a833f89b70341cd5af80137de972501dd56efdb58e75f0bc2b66",
+    "preservedInitial": "qa/homepage-personal-20/evidence/fixture-initial.json",
+    "currentSha256": "81258c99519abff18ff28256659f7afd95141a589c05dabecdfa9a47eb5551ff",
+    "notifiedTasks": [
+      "/root/personal01",
+      "/root/personal02",
+      "/root/personal03",
+      "/root/personal04",
+      "/root/personal05",
+      "/root/personal06"
+    ]
+  },
+  {
+    "reason": "Removed optional example priority arrays to prevent them becoming a shared page sequence; made synthetic points-for totals coherent with the supplied win/loss and rank ordering. Matchup scores, personal roster/value/evidence and all identities remain unchanged. Shared fixture frozen before root captures.",
+    "beforeSha256": "a110e78d937d78fffa17d88e9099cfa8c3e690af11b7f5477ae9a0a876e83ac0",
+    "currentSha256": "7a1835933c4319c5e169c46c21197e350d39715101078358413295aad907e382"
+  }
+]

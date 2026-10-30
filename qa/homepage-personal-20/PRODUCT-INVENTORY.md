@@ -1,0 +1,9 @@
+# Source-backed capabilities, not a prescribed page layout
+
+This experiment reads the current homepage at `0d4564101af5a9267b152ccf08455e87a480ac33`. It does not change it. The real page resolves membership server-side; member data is request-private. Client demo persona selection here is only synthetic test state and must never be reused as real authorization.
+
+The existing member surface can show the viewer's team, current matchup and matched saved AI context, current modeled roster quote with coverage, recorded team-value history when present, player evidence/form, relevant news and roster moves. The public edition includes league pairings, stories, directory/rosters, standings and transactions, with Stocks, Arcade, archive and league tools reachable. No-edition and unavailable data do not remove core access. Account-unclaimed/unavailable states have explicit notices rather than guessed membership.
+
+The synthetic experiment supports a useful subset of those facts for two contrasting teams plus guest. It has no history series or Lineup Power producer, no editing, no notification subscriptions and no real login. Those cannot be faked as functioning features. The new scenario does not reuse an unpublished old editorial edition as present news. Authors may prioritize and compose content differently; this inventory is not a requirement to display every field or use a common sequence.
+
+Existing routes: Home `/`, News `/news`, Stocks `/stocks`, History `/history`, Arcade `/arcade`, Teams `/teams`, Transactions `/transactions`, Draft `/draft`, Intel `/intel`, The Table `/table`, AI Decides `/ai-decides`, Trade Analyzer `/trade-analyzer`, Weekly archive `/weekly`, private My Team `/team`, Sign in `/login`. Individual public team and player paths use `/teams/:id` and `/player/:id`. Retain discoverability with a deliberate header, local links or useful footer, not necessarily every route in one header row. Label exits to the current site.

@@ -1,0 +1,81 @@
+{
+  "browser": "Chromium via Playwright, /usr/bin/chromium; desktop emulation",
+  "pages": [
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "pageErrors": [],
+      "destinations": 15
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "height": 1000,
+      "scrollWidth": 1120,
+      "clientWidth": 1120,
+      "pageErrors": [],
+      "destinations": 15
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "pageErrors": [],
+      "destinations": 15
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "height": 1000,
+      "scrollWidth": 1120,
+      "clientWidth": 1120,
+      "pageErrors": [],
+      "destinations": 15
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "pageErrors": [],
+      "destinations": 15
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "height": 1000,
+      "scrollWidth": 1120,
+      "clientWidth": 1120,
+      "pageErrors": [],
+      "destinations": 15
+    }
+  ],
+  "interactions": [
+    "Keyboard Enter opens matchup; saved 56/44 estimate and separate 0.35 confidence visible; Escape closes and restores trigger focus.",
+    "Team → player → Back restores team content and player focus; Close returns to original team trigger.",
+    "Roster name search, quote inspection, zero-result message and clear restore the correct rows.",
+    "Demo selector navigates to NeuralNets; missing quote inspection says Unpriced and never zero.",
+    "Structure mode preserves the 24 roster rows and sets its neutral palette state."
+  ],
+  "enlargedText": {
+    "persona": "neural",
+    "viewport": 1120,
+    "scrollWidth": 1120,
+    "clientWidth": 1120,
+    "rootFont": "32px",
+    "note": "CSS root text size 200%; no browser zoom or physical device claim."
+  },
+  "interactionPageErrors": [],
+  "notTested": [
+    "Physical devices",
+    "Safari/Firefox",
+    "Live GOAT destination behavior",
+    "Real authentication or APIs"
+  ]
+}

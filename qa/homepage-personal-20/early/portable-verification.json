@@ -1,0 +1,110 @@
+{
+  "method": "Actual localHTTP self-contained HTML boots, all3personas, fonts/images decoded, main text equals observed source. No dependentHTTP requests. Not fileURL, live/auth or physicaldevice evidence.",
+  "checks": [
+    {
+      "id": "01",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "licenses": [
+        "Barlow Condensed",
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true
+    },
+    {
+      "id": "01",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "licenses": [
+        "Barlow Condensed",
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true
+    },
+    {
+      "id": "01",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "licenses": [
+        "Barlow Condensed",
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true
+    },
+    {
+      "id": "02",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "licenses": [
+        "IBM Plex Mono",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true
+    },
+    {
+      "id": "02",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "licenses": [
+        "IBM Plex Mono",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true
+    },
+    {
+      "id": "02",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "licenses": [
+        "IBM Plex Mono",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true
+    },
+    {
+      "id": "03",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "licenses": [
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true
+    },
+    {
+      "id": "03",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "licenses": [
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true
+    },
+    {
+      "id": "03",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "licenses": [
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true
+    }
+  ]
+}

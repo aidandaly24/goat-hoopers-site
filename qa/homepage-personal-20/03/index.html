@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Your notebook · GOAT Hoopers</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./script.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to your notebook</a>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="./" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers" width="188" height="56"></a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="./" aria-current="page">Home</a>
+        <a href="#valuation" data-member-nav>Your roster</a>
+        <a href="#league">The league</a>
+        <a href="#explore">Explore GOAT</a>
+      </nav>
+      <a class="account-link" href="https://goathoopers.com/login">Sign in <span aria-hidden="true"></span><small>Current GOAT site</small></a>
+    </div>
+  </header>
+  <div class="demo-bar">
+    <div class="demo-inner">
+      <button type="button" class="source-button" id="source-trigger"><span class="demo-dot" aria-hidden="true"></span>Synthetic demo <span class="underlined">About the data</span></button>
+      <label for="persona">Demo persona <select id="persona"><option value="reaves">Reaves Dropper</option><option value="neural">NeuralNets</option><option value="guest">Guest / signed out</option></select></label>
+    </div>
+  </div>
+  <main id="main" tabindex="-1" class="page"></main>
+  <footer id="explore" class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-intro"><img src="/public/courtside/GOAT-HOOPERS-horizontal-black.svg" width="160" height="48" alt="GOAT Hoopers"><p>Ten teams. One league.<br>A place to keep up.</p><p class="small sans">Links marked leave this prototype for the current GOAT site.</p></div>
+      <nav aria-label="League destinations"><h2>Follow the league</h2><a href="https://goathoopers.com/">Current home</a><a href="https://goathoopers.com/news">News</a><a href="https://goathoopers.com/teams">Teams</a><a href="https://goathoopers.com/table">The Table</a><a href="https://goathoopers.com/transactions">Transactions</a><a href="https://goathoopers.com/weekly">Weekly archive</a><a href="https://goathoopers.com/history">History</a></nav>
+      <nav aria-label="Tools and games"><h2>Make your next move</h2><a href="https://goathoopers.com/stocks">Stocks</a><a href="https://goathoopers.com/intel">Intel</a><a href="https://goathoopers.com/ai-decides">AI Decides</a><a href="https://goathoopers.com/trade-analyzer">Trade Analyzer</a><a href="https://goathoopers.com/draft">Draft</a><a href="https://goathoopers.com/arcade">Arcade</a></nav>
+      <nav aria-label="Account destinations"><h2>Your account</h2><a href="https://goathoopers.com/login">Sign in</a><a href="https://goathoopers.com/team">My Team</a><p class="small sans">Real account access happens on the current site. The demo selector changes synthetic views only.</p></nav>
+    </div>
+    <p class="footer-meta">Independent homepage study 03 <span>GOAT Hoopers · 2026</span></p>
+  </footer>
+  <dialog id="sources" aria-labelledby="sources-title"><div class="dialog-top"><p class="eyebrow">Prototype data notes</p><button type="button" id="source-close" aria-label="Close data notes">Close ×</button></div><h2 id="sources-title">A synthetic league notebook</h2><p>All current scores, standings, prices, changes and saved model outputs on this page were constructed for this design demo. They are not reported league events.</p><p>Team identities and player references come from the authorized project fixture. They are not a fresh roster verification. Current NBA team labels, injuries and availability are not supplied.</p><p>Completed Week 2 means the synthetic sample from October 19–25, 2026. Missing counted evidence does not mean a player scored zero or did not play. Modeled FAAB is a quote unit, not a cash balance.</p><p>The 2025 records and final retain project historical references. NeuralNets’ 2025 record belongs to the previous manager, under the name QBs Gremlins.</p><p class="small sans">Source: <a href="../fixture.json">Shared data-only fixture</a>. Snapshot: October 30, 2026 at 08:30 UTC. There is no live API, account session, pricing, AI generation or mutation connection.</p></dialog>
+</body>
+</html>
