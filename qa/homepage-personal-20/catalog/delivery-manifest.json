@@ -1,0 +1,146 @@
+{
+  "freshAuthors": 20,
+  "completeConcepts": 20,
+  "designedFullPageImages": 60,
+  "neutralFullPageImages": 20,
+  "catalogManifestSha256": "c85e2050841ebe634f5ec962f2533bf3618d0a67943963367f4d272b801ee930",
+  "allTwentyGalleries": [
+    {
+      "persona": "reaves",
+      "path": "qa/homepage-personal-20/catalog/GOAT-all-20-desktop-reaves.html",
+      "bytes": 8630355,
+      "sha256": "74ed17e73418b843e200ecddf38c627c7233480d3af524a3356359ad35c272d0"
+    },
+    {
+      "persona": "neural",
+      "path": "qa/homepage-personal-20/catalog/GOAT-all-20-desktop-neural.html",
+      "bytes": 8534087,
+      "sha256": "66e374b4a0336a5c0f316dabcac9f36be1fbe65c79b8d136110d5fc98da238e1"
+    },
+    {
+      "persona": "guest",
+      "path": "qa/homepage-personal-20/catalog/GOAT-all-20-desktop-guest.html",
+      "bytes": 7973734,
+      "sha256": "621511a1d2e7e2cf23ad50cebf086bdab5f02d8678a47c0a64d71fc833fb8196"
+    }
+  ],
+  "bundles": [
+    {
+      "concepts": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "files": [
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-01-04.html",
+          "bytes": 6911506,
+          "sha256": "24e9fb67cf79c51831f2e8b56b5fe1a7c171094cd5469dc1da6b70220fc350d5"
+        },
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-01-04.zip",
+          "bytes": 8297735,
+          "sha256": "2e2653c31e9e915a868b71b3f5e3d28890b0ebf47abaa26b665f194b956604f6"
+        }
+      ]
+    },
+    {
+      "concepts": [
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "files": [
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-05-08.html",
+          "bytes": 6577058,
+          "sha256": "c16545323adefd84b06bb90c7bd787979845ac01fdedc90d09e19d1c1130f9fa"
+        },
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-05-08.zip",
+          "bytes": 8149907,
+          "sha256": "a9118aeaab6cce76668e61c4ff1ddba53893ecb1d5a434a66eaac6c9c5c37605"
+        }
+      ]
+    },
+    {
+      "concepts": [
+        "09",
+        "10",
+        "11"
+      ],
+      "files": [
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-09-11.html",
+          "bytes": 5614359,
+          "sha256": "220265579e309a1f00d70bb34711a669db97fb80c790a9ae49f526448b8253ff"
+        },
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-09-11.zip",
+          "bytes": 6828990,
+          "sha256": "274c5174de00664ca43dc9778315cd65473297024331069573d782c9beaba945"
+        }
+      ]
+    },
+    {
+      "concepts": [
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "files": [
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-12-15.html",
+          "bytes": 6195089,
+          "sha256": "8d90c6c3d24c73e983d0367d519ba367a2d206ed6da4dfa8ce760a50ae9b4599"
+        },
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-12-15.zip",
+          "bytes": 9436388,
+          "sha256": "2e5562f15c0b0655f22ae7c934a58c62c1c3b6a76f5e539861d8343b1c4d1ac9"
+        }
+      ]
+    },
+    {
+      "concepts": [
+        "16",
+        "17",
+        "18"
+      ],
+      "files": [
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-16-18.html",
+          "bytes": 3892142,
+          "sha256": "3a67dd7f6f65c4653404be9fbeb57aad44f2d708243193969929fd4ed4b3749b"
+        },
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-16-18.zip",
+          "bytes": 5157704,
+          "sha256": "5bd84426f24efd2e71c0d225f1481a4c05872a75153fadbc1f18a0fbc8a3dba5"
+        }
+      ]
+    },
+    {
+      "concepts": [
+        "19",
+        "20"
+      ],
+      "files": [
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-19-20.html",
+          "bytes": 3100904,
+          "sha256": "f6c1f5f7d0c0e38427c4e52e96f703cc18241fc76a187d2b0ce3ed4d09cc5771"
+        },
+        {
+          "path": "qa/homepage-personal-20/catalog/GOAT-desktop-19-20.zip",
+          "bytes": 3959932,
+          "sha256": "cdbe2fdd72952ba91617eb37fd4ec4361954400d463bd2c4dbbfa0bdbc19b845"
+        }
+      ]
+    }
+  ],
+  "limits": "Each native image gallery and ZIP is below10MiB. Galleries embed complete full-height images; ZIPs also include unchanged compiled interactive websites and author notes. Desktop synthetic states, no live backend/auth, mobile or deployment."
+}

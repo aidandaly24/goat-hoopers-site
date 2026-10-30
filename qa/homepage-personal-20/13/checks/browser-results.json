@@ -1,0 +1,157 @@
+{
+  "engine": "Headless Chromium /usr/bin/chromium; Playwright preinstalled runtime",
+  "base": "http://127.0.0.1:4207/qa/homepage-personal-20/13/",
+  "layouts": [
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "text": 16,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "bodyHeight": 3737,
+      "columns": "112px 234px 804px",
+      "firstActionsBottom": 456.90625,
+      "pass": true
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "text": 16,
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "bodyHeight": 3742,
+      "columns": "87px 188px 741px",
+      "firstActionsBottom": 456.90625,
+      "pass": true
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "text": 24,
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "bodyHeight": 4591,
+      "columns": "87px 188px 741px",
+      "firstActionsBottom": 524.421875,
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "text": 16,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "bodyHeight": 3537,
+      "columns": "112px 234px 804px",
+      "firstActionsBottom": 456.90625,
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "text": 16,
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "bodyHeight": 3596,
+      "columns": "87px 188px 741px",
+      "firstActionsBottom": 456.90625,
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "text": 24,
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "bodyHeight": 4428,
+      "columns": "87px 188px 741px",
+      "firstActionsBottom": 524.421875,
+      "pass": true
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "text": 16,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "bodyHeight": 2912,
+      "columns": "112px 234px 804px",
+      "firstActionsBottom": 402.90625,
+      "pass": true
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "text": 16,
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "bodyHeight": 2933,
+      "columns": "87px 188px 741px",
+      "firstActionsBottom": 418.171875,
+      "pass": true
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "text": 24,
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "bodyHeight": 3596,
+      "columns": "87px 188px 741px",
+      "firstActionsBottom": 474.296875,
+      "pass": true
+    }
+  ],
+  "journeys": [
+    {
+      "persona": "reaves",
+      "task": "Inspect completed Week 2 player evidence, then close",
+      "pass": true
+    },
+    {
+      "persona": "reaves",
+      "task": "Inspect full quotes, search one player, restore all; NeuralNets unpriced filter; nested and parent close focus",
+      "pass": true
+    },
+    {
+      "persona": "reaves",
+      "task": "Inspect own matchup and use browser Back to return focus",
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "task": "Inspect completed Week 2 player evidence, then close",
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "task": "Inspect full quotes, search one player, restore all; NeuralNets unpriced filter; nested and parent close focus",
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "task": "Inspect own matchup and use browser Back to return focus",
+      "pass": true
+    },
+    {
+      "persona": "guest",
+      "task": "League navigation, all ten public teams, NeuralNets history qualification, Escape focus and real sign-in href",
+      "pass": true
+    },
+    {
+      "persona": "reaves",
+      "task": "Structure mode retains ledger geometry",
+      "pass": true
+    },
+    {
+      "persona": "reaves",
+      "task": "Reduced motion retains all source updates",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Desktop only; no physical device or Safari test",
+    "External GOAT destinations inspected as hrefs; no external auth/tool flow invoked"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "concept": "10",
+  "readySelector": "html[data-personal-study-ready=\"10\"]",
+  "baseUrl": "http://127.0.0.1:4207/qa/homepage-personal-20/10/",
+  "reaves": [
+    { "selector": "#primary-position", "action": "click", "expected": "[data-position-inspector=\"C\"] is visible; Centers heading focused; 341.00, 5 of 5 priced, 31.1% of known modeled subtotal. Escape returns focus to #primary-position." },
+    { "selector": "#lead-player", "action": "click", "expected": "[data-player-inspector=\"1511\"] is visible; Joel Embiid quote 137.50 modeled FAAB and completed Week 2 evidence 38.0 points remain distinct. Close restores #lead-player focus." },
+    { "selector": "#primary-matchup", "action": "click", "expected": "[data-matchup-inspector=\"m1\"] is visible; 184.5 / 171.0 current sample score; dated 56% / 44% saved estimate, separate confidence 0.35, not calibrated odds. Escape returns focus to #primary-matchup." }
+  ],
+  "neural": [
+    { "selector": "#primary-position", "action": "click", "expected": "[data-position-inspector=\"PF\"] is visible; Power forwards heading focused; 312.00 known subtotal, 3 of 6 priced; Rasheer Fleming, Dailyn Swain and AJ Dybantsa stay Unpriced. Escape returns focus to #primary-position." },
+    { "selector": "#lead-player", "action": "click", "expected": "[data-player-inspector=\"1380\"] is visible; Giannis Antetokounmpo quote 135.50 modeled FAAB and completed Week 2 evidence 45.0 points remain distinct. Close restores #lead-player focus." },
+    { "selector": "#primary-matchup", "action": "click", "expected": "[data-matchup-inspector=\"m4\"] is visible; NeuralNets Not returned versus papichooter 0.0 recorded; no leader or tie; saved estimate unavailable. Escape returns focus to #primary-matchup." }
+  ],
+  "guest": [
+    { "selector": "#primary-matchup", "action": "click", "expected": "[data-matchup-inspector=\"m1\"] is visible with public sample scores, no personal saved AI. Escape returns focus to #primary-matchup." },
+    { "selector": "#matchup-m4", "action": "click", "expected": "[data-matchup-inspector=\"m4\"] is visible; Not returned remains distinct from 0.0 recorded; no leader inferred. Escape returns focus to #matchup-m4." },
+    { "selector": "[data-team-disclosure=\"8\"] summary", "action": "click", "expected": "NeuralNets public context expands; 2025 says previous manager and Under the previous manager as QBs Gremlins. No personal ownership is claimed." }
+  ]
+}

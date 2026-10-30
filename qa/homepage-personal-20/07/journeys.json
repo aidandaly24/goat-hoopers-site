@@ -1,0 +1,28 @@
+{
+  "base": "http://127.0.0.1:4207/qa/homepage-personal-20/07/",
+  "ready": "html[data-personal-study-ready='07']",
+  "personas": {
+    "reaves": [
+      { "selector": "#first-action", "result": "?persona=reaves&view=player&player=1511; #page-title Joel Embiid; 38 supplied completed-Week-2 points", "return": "[data-return] or browser Back", "focusTarget": "#first-action" },
+      { "selector": "#second-action", "result": "?persona=reaves&view=team&team=1; 24 roster rows; 1,095.25 modeled FAAB and 24/24 priced", "return": "[data-return] or browser Back", "focusTarget": "#second-action" },
+      { "selector": "#third-action", "result": "?persona=reaves&view=matchup&matchup=m1; Reaves Dropper 184.5 / Ware the Hoes At? 171; dated 56%/44% synthetic saved estimate", "return": "[data-return] or browser Back", "focusTarget": "#third-action" }
+    ],
+    "neural": [
+      { "selector": "#first-action", "result": "?persona=neural&view=player&player=1380; #page-title Giannis Antetokounmpo; 45 supplied completed-Week-2 points", "return": "[data-return] or browser Back", "focusTarget": "#first-action" },
+      { "selector": "#second-action", "result": "?persona=neural&view=team&team=8; 22 roster rows; 16/22 priced; six Unpriced; previous-manager history qualified", "return": "[data-return] or browser Back", "focusTarget": "#second-action" },
+      { "selector": "#third-action", "result": "?persona=neural&view=matchup&matchup=m4; papichooter recorded 0 / NeuralNets Score unavailable; no saved estimate", "return": "[data-return] or browser Back", "focusTarget": "#third-action" }
+    ],
+    "guest": [
+      { "selector": "#first-action", "result": "?persona=guest&view=matchup&matchup=m1; public 184.5 / 171 pairing, no saved private estimate", "return": "[data-return] or browser Back", "focusTarget": "#first-action" },
+      { "selector": "#second-action", "result": "?persona=guest&view=team&team=1; Reaves Dropper public identity/current record/2025 summary; no private roster", "return": "[data-return] or browser Back", "focusTarget": "#second-action" },
+      { "selector": "#third-action", "result": "https://goathoopers.com/login in a new tab; visibly labelled existing-site exit", "return": "Close external tab", "focusTarget": "#third-action", "verification": "External navigation intercepted in browser test; live login/auth not exercised" }
+    ]
+  },
+  "other": {
+    "persona": "#persona native select",
+    "sources": "#site-sources .source-detail > summary",
+    "rosterSearch": "#player-search; #roster-search button[type=reset]",
+    "fullLeague": "#full-league",
+    "structure": "?persona=reaves&stage=structure; same stream geometry, hidden image visibility only"
+  }
+}

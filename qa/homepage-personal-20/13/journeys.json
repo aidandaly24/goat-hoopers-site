@@ -1,0 +1,73 @@
+{
+  "concept": "13",
+  "base": "http://127.0.0.1:4207/qa/homepage-personal-20/13/",
+  "ready": "html[data-personal-study-ready='13']",
+  "personas": {
+    "reaves": [
+      {
+        "task": "Review the completed week and inspect Damian Lillard",
+        "start": "#first-evidence-action",
+        "then": "[data-evidence-player='1444']",
+        "expect": "The leading table shows all five supplied player rows, most counted points first, explicitly completed Week 2, 19–25 October 2026. #evidence-title receives focus after the first action; #evidence-1444 opens with 42.5 counted points. Coverage 5/24 remains below the table. Its [data-close] returns focus to the player button."
+      },
+      {
+        "task": "Inspect complete roster quotes and find Joel Embiid",
+        "start": ".following [data-panel='quotes']",
+        "then": "#quote-search (fill Joel), #quote-rows [data-quote-player='1511']",
+        "expect": "#quotes opens with complete modeled quote 1,095.25 FAAB, 24/24 priced. Search shows 1 of 24. Joel detail is 137.50 FAAB. Nested close returns focus to Joel; #clear-search restores 24 of 24. #quotes > [data-close] returns to the original opening action."
+      },
+      {
+        "task": "Understand the current pairing and return using browser Back",
+        "start": ".opening-matchup [data-panel='opening-pair-detail']",
+        "expect": "#opening-pair-detail opens with Reaves Dropper 184.5 and Ware the Hoes At? 171, synthetic in-progress sample. Browser Back closes it and restores the opening trigger."
+      }
+    ],
+    "neural": [
+      {
+        "task": "Review available completed-week player evidence",
+        "start": "#first-evidence-action",
+        "then": "[data-evidence-player='1380']",
+        "expect": "The leading table shows Giannis Antetokounmpo 45, Kevin Durant 33.5 and Rudy Gobert 29.5 counted points, explicitly completed Week 2, 19–25 October 2026. #evidence-title receives focus; Giannis detail prints 45 counted points. Close returns to that player button. Coverage 3/22 is adjacent below the table; these are not complete-roster rankings."
+      },
+      {
+        "task": "Inspect quote coverage and the six unpriced players",
+        "start": ".following [data-panel='quotes']",
+        "then": "#unpriced-only, #clear-search; #quote-search (fill Giannis), #quote-rows [data-quote-player='1380']",
+        "expect": "1,622.00 FAAB is a partial subtotal for 16/22 priced, with no value rank. Unpriced only shows six named players; Show all players restores 22. Giannis search shows 1 of 22 and local detail 135.50 FAAB. Nested and parent closes restore the corresponding trigger."
+      },
+      {
+        "task": "Distinguish an unavailable score from a recorded zero",
+        "start": ".opening-matchup [data-panel='opening-pair-detail']",
+        "expect": "NeuralNets Score unavailable, papichooter 0; no leader, tie or inferred difference. Browser Back closes the detail and restores its opening trigger. No saved model estimate is fabricated."
+      }
+    ],
+    "guest": [
+      {
+        "task": "Browse public pairings and inspect the partly unavailable pairing",
+        "start": ".following a[href='#league']",
+        "then": "[data-matchup='m4'] (first)",
+        "expect": "#league-title receives focus, five pairing rows are visible. Local pairing detail explains papichooter’s recorded zero and NeuralNets’ missing score. Escape returns focus to the pairing button."
+      },
+      {
+        "task": "Inspect all teams and qualified NeuralNets history",
+        "start": "#full-standings > summary",
+        "then": "#full-standings [data-team='8']",
+        "expect": "Ten public standings rows. NeuralNets local receipt states current 0–2/tenth and previous 2025 1–20/tenth under the previous manager as QBs Gremlins. Escape closes it and restores the team button. No guest private quote or evidence projection."
+      },
+      {
+        "task": "Find real account entry",
+        "start": ".site-links > a[href='https://goathoopers.com/login']",
+        "expect": "Visible Sign in on GOAT destination explicitly leaves the prototype. It is a real external href, with no local authentication simulation. Browser checks verified the href without invoking remote auth."
+      }
+    ]
+  },
+  "additional": [
+    "The four source events are behind #source-update-log, after the useful player/league reading. Open its summary to see c3, c1, c4, c2 in actual timestamp order. They are supporting availability notes, never posts or transactions.",
+    "Demo selector changes ?persona= and html data-persona. Unknown query values default to Reaves.",
+    "?stage=structure preserves ledger geometry and all content; html data-stage=structure.",
+    "Footer retains all 14 non-home fixture routes as visibly identified current-site exits, plus local Home/top navigation.",
+    "About this data opens #sources and explains synthetic values, fixed sample check, completed period, historical qualifications and no live services.",
+    "Member quotes now open directly after the opening context, outside the source-update disclosure. Both opening and supporting-update actions reach the same local inspector and return to their originating trigger."
+  ],
+  "revision": "Priority correction: owned-player or public league reading leads; source updates are supporting disclosure."
+}

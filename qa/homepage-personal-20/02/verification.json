@@ -1,5 +1,5 @@
 {
-  "revision": "bright social league",
+  "revision": "connected manager roll call",
   "browser": "System Chromium via installed Playwright",
   "errors": [],
   "home": [
@@ -9,20 +9,24 @@
       "at1440": {
         "viewport": 1440,
         "content": 1440,
-        "height": 2809
+        "height": 2159
       },
+      "pairings": 5,
+      "managerIdentities": 10,
+      "ownedPortraits": 1,
       "fullRosterRows": 0,
       "standingsTables": 0,
       "loadedImages": true,
+      "filledPrimary": "Open your matchup",
       "at1120": {
         "viewport": 1120,
         "content": 1120,
-        "height": 2791
+        "height": 2148
       },
       "text150": {
         "viewport": 1120,
         "content": 1120,
-        "height": 4581
+        "height": 3317
       }
     },
     {
@@ -31,62 +35,73 @@
       "at1440": {
         "viewport": 1440,
         "content": 1440,
-        "height": 2809
+        "height": 2159
       },
+      "pairings": 5,
+      "managerIdentities": 10,
+      "ownedPortraits": 1,
       "fullRosterRows": 0,
       "standingsTables": 0,
       "loadedImages": true,
+      "filledPrimary": "Explore your players",
       "at1120": {
         "viewport": 1120,
         "content": 1120,
-        "height": 2791
+        "height": 2148
       },
       "text150": {
         "viewport": 1120,
         "content": 1120,
-        "height": 4498
+        "height": 3300
       }
     },
     {
       "persona": "guest",
-      "heading": "The league comes together.",
+      "heading": "Meet the league.",
       "at1440": {
         "viewport": 1440,
         "content": 1440,
-        "height": 2225
+        "height": 1953
       },
+      "pairings": 5,
+      "managerIdentities": 10,
+      "ownedPortraits": 0,
       "fullRosterRows": 0,
       "standingsTables": 0,
       "loadedImages": true,
+      "filledPrimary": "Sign in on GOAT\n↗\n— opens the current GOAT site in a new tab",
       "at1120": {
         "viewport": 1120,
         "content": 1120,
-        "height": 2285
+        "height": 1950
       },
       "text150": {
         "viewport": 1120,
         "content": 1120,
-        "height": 4052
+        "height": 3031
       }
     }
   ],
   "actions": {
-    "matchupLocalURL": "matchup",
-    "savedModel": true,
+    "savedModel56": true,
     "matchupBackFocus": true,
-    "namedPlayer": "Joel Embiid",
+    "opposingManager": true,
+    "managerBackFocus": true,
+    "integratedPlayer": "Joel Embiid",
     "playerReceipt": "Modeled player quote · FAAB\n137.50\nSynthetic modeled quote, checked 30 Oct 2026 at 08:10 UTC. Not a cash balance or a sale price.\nSynthetic completed Week 2 · 19–25 Oct 2026\n38 counted points\nVerified within this synthetic sample. Full game logs are not supplied; this is not a current-week score.",
-    "playerBackFocus": true,
-    "rosterRows": 24,
-    "rosterSearchRestored": "joel",
-    "rosterRowFocus": true,
-    "neuralMissingScore": "Not returned",
-    "neuralMainAction": "Open the matchup\n→",
-    "neuralNoModel": "No saved model result is supplied for this pairing in your demo view. No probability or winner is invented.",
+    "integratedPlayerBackFocus": true,
+    "neuralKnownZeroAndMissing": "0\nVS\nNot returned\n\nOpen pairing\nIncomplete · no leader inferred",
+    "neuralPrimaryRosterRows": 22,
     "unpricedRows": 6,
+    "searchRestored": "giannis",
+    "rosterPlayerFocus": true,
+    "neuralPrimaryBackFocus": true,
+    "neuralNoModel": "No saved model result is supplied for this pairing in your demo view. No probability or winner is invented.",
+    "guestPairingTitle": "League Week 3 matchup",
+    "guestPairBackFocus": true,
+    "previousManagerQualified": true,
     "leagueTeams": 10,
     "leaguePairings": 5,
-    "previousManagerQualified": true,
     "sourcesOpen": true,
     "sourceCloseFocus": true,
     "all15DestinationRoutes": true,
@@ -94,102 +109,46 @@
   },
   "detailWidths": [
     {
-      "view": "filtered roster",
-      "viewport": 1120,
-      "content": 1120,
-      "height": 1453
-    },
-    {
-      "view": "Neural matchup",
-      "viewport": 1120,
-      "content": 1120,
-      "height": 1767
-    },
-    {
       "view": "Giannis player",
       "viewport": 1120,
       "content": 1120,
-      "height": 1531
+      "height": 1464
     },
     {
       "view": "Giannis player 150%",
       "viewport": 1120,
       "content": 1120,
-      "height": 2515
+      "height": 2315
+    },
+    {
+      "view": "Neural matchup",
+      "viewport": 1120,
+      "content": 1120,
+      "height": 1652
+    },
+    {
+      "view": "Neural public team",
+      "viewport": 1120,
+      "content": 1120,
+      "height": 1394
     },
     {
       "view": "Guest league",
       "viewport": 1120,
       "content": 1120,
-      "height": 2528
-    },
-    {
-      "view": "Neural team profile",
-      "viewport": 1120,
-      "content": 1120,
-      "height": 1481
+      "height": 2431
     }
   ],
   "structure": {
     "normal": {
       "viewport": 1120,
       "content": 1120,
-      "height": 2791
+      "height": 2148
     },
     "neutral": {
       "viewport": 1120,
       "content": 1120,
-      "height": 2791
+      "height": 2148
     }
-  },
-  "colors": [
-    {
-      "label": "ink on sun",
-      "foreground": "#241d4b",
-      "background": "#e9fb70",
-      "ratio": 13.68
-    },
-    {
-      "label": "ink on lilac",
-      "foreground": "#241d4b",
-      "background": "#e0d5ff",
-      "ratio": 11.19
-    },
-    {
-      "label": "ink on sky",
-      "foreground": "#241d4b",
-      "background": "#beeafa",
-      "ratio": 12.08
-    },
-    {
-      "label": "muted on page",
-      "foreground": "#5d5870",
-      "background": "#fdfcf7",
-      "ratio": 6.6
-    },
-    {
-      "label": "muted on sky",
-      "foreground": "#5d5870",
-      "background": "#beeafa",
-      "ratio": 5.28
-    },
-    {
-      "label": "white on primary",
-      "foreground": "#ffffff",
-      "background": "#4434bd",
-      "ratio": 8.5
-    },
-    {
-      "label": "white on footer",
-      "foreground": "#ffffff",
-      "background": "#241d4b",
-      "ratio": 15.53
-    }
-  ],
-  "finalSmoke": {
-    "guestOneFilledPrimary": true,
-    "guestSignInPresent": true,
-    "noLastVisitClaim": true,
-    "accurateTeamNotesLabel": true
   }
 }

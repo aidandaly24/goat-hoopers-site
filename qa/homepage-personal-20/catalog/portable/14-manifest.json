@@ -1,0 +1,90 @@
+{
+  "id": "14",
+  "author": "/root/personal14",
+  "source": "qa/homepage-personal-20/14/index.html",
+  "standalone": {
+    "path": "qa/homepage-personal-20/catalog/portable/GOAT-personal-14.html",
+    "bytes": 1269708,
+    "sha256": "e61041bec58b55f1b540d3cb8054aeff9578b88624e0db607c5417cd2c934a51"
+  },
+  "fixtureSha256": "7a1835933c4319c5e169c46c21197e350d39715101078358413295aad907e382",
+  "sources": [
+    {
+      "path": "qa/homepage-personal-20/14/index.html",
+      "bytes": 752,
+      "sha256": "b940f00074347eb35a5a56d4ba8e1085fbaeeb3068419a664eec980e2da1be46"
+    },
+    {
+      "path": "qa/homepage-personal-20/14/main.js",
+      "bytes": 26794,
+      "sha256": "08d1b7e9521f15c8f59fcaba9433cdfbe8bf3e710df4a5abc8cb43a9481808f3"
+    },
+    {
+      "path": "qa/homepage-personal-20/14/style.css",
+      "bytes": 10578,
+      "sha256": "ead1a117983811e679bd3e1edf1caf82c074559c1541890909d1b0894b13ac45"
+    }
+  ],
+  "embeddedAssets": [
+    {
+      "path": "public/courtside/portraits/player-1511.png",
+      "bytes": 68824,
+      "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9"
+    },
+    {
+      "path": "public/courtside/portraits/player-2308.png",
+      "bytes": 59711,
+      "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb"
+    },
+    {
+      "path": "public/courtside/portraits/player-2133.png",
+      "bytes": 71681,
+      "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693"
+    },
+    {
+      "path": "public/courtside/portraits/player-1380.png",
+      "bytes": 60668,
+      "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45"
+    },
+    {
+      "path": "public/courtside/portraits/player-2179.png",
+      "bytes": 68817,
+      "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8"
+    },
+    {
+      "path": "public/courtside/portraits/player-4866.png",
+      "bytes": 53860,
+      "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506"
+    },
+    {
+      "path": "public/courtside/arena.jpg",
+      "bytes": 329398,
+      "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177"
+    },
+    {
+      "path": "public/arcade/free-throw-preview.jpg",
+      "bytes": 46441,
+      "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c"
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+      "bytes": 5117,
+      "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+      "bytes": 5117,
+      "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9"
+    },
+    {
+      "path": "qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk[wght].ttf",
+      "bytes": 136676,
+      "sha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72"
+    }
+  ],
+  "fontLicenses": [
+    "Space Grotesk"
+  ],
+  "retainedPortraitDirectory": false,
+  "method": "Own author source compiled without a shared presentation renderer. Data-only fixture retained, except unused global portrait directory when absent from authored scripts; roster portraits remain. Images/fonts and OFL notices embedded. Standalone navigation and rendered parity still require browser verification."
+}

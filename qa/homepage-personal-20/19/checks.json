@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "scope": "Current priority revision: targeted Neural checks only",
+  "currentPresentationHashes": {
+    "index.html": "c117e7c89f401c91150aabf6b17d3659dbb1621ac40cc79315d110b348f3b59d",
+    "styles.css": "8d13f92189a4911d474db819820205e3f840a23ca36787f09ad3bd6d07a56705",
+    "app.js": "3670c3306da44d28154caf526727ad29b1f12c6e64ecfcf4d1b4ce98d52cd915"
+  },
+  "targetedReport": "priority-checks.json",
+  "targetedSummary": {
+    "layoutChecks": 3,
+    "structureChecks": 1,
+    "changedTaskChecks": 2,
+    "pageErrors": 0
+  },
+  "originalBaseline": {
+    "report": "research/before-priority-review/checks.json",
+    "scope": "Original comprehensive three-persona matrix; preserved before editing and not rerun for this priority change"
+  }
+}

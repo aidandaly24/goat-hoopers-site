@@ -1,0 +1,86 @@
+{
+  "classification": "Root assertion mismatch, not a product defect",
+  "reason": "06 renders quote coverage as 24 of 24; initial root assertion required the equivalent slash spelling. Actual correct content was inspected before adjusting the assertion.",
+  "initialFailures": [
+    {
+      "id": "06",
+      "persona": "reaves",
+      "result": "fail",
+      "steps": [
+        {
+          "task": "Inspect actual current matchup and separate estimate context",
+          "trigger": "#act-matchup",
+          "expectedContent": [
+            "184.5",
+            "171",
+            "56",
+            "44",
+            "0.35"
+          ],
+          "returnFocus": "#act-matchup",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        }
+      ],
+      "error": "The input did not match the regular expression /24\\/24/i. Input:\n\n'Back to home\\n' +\n  '\\n' +\n  'GOAT court index \u00b7 Local inspection\\n' +\n  '\\n' +\n  'Reaves Dropper \u00b7 Club sheet\\n' +\n  '\\n' +\n  '24 roster references in the synthetic sample. Inspect a player to keep their current modeled quote separate from completed-week evidence.\\n' +\n  '\\n' +\n  'Modeled roster quote\\n' +\n  '1,095.25 FAAB\\n' +\n  'Quote coverage\\n' +\n  '24 of 24 players priced\\n' +\n  'Quote checked\\n' +\n  '30 October 2026 \u00b7 08:10 UTC\\n' +\n  'League value rank\\n' +\n  'Unavailable\\n' +\n  '\\n' +\n  'A complete, comparable modeled quote for every league roster is not supplied. No league value rank is asserted. Modeled FAAB is a pricing unit, not a cash balance.\\n' +\n  '\\n' +\n  'Find a roster player\\n' +\n  'Clear\\n' +\n  '24 players shown\\n' +\n  'Current modeled quotes \u00b7 Completed Week 2 evidence is a separate column\\n' +\n  'Player\\tModeled FAAB\\tCompleted Week 2\\tDetail\\n' +\n  'Damian Lillard\\n' +\n  'PG\\n' +\n  '\\t74.00\\t42.5 counted points\\tInspect\\n' +\n  'Tobias Harris\\n' +\n  'PF\\n' +\n  '\\t70.75\\t31 counted points\\tInspect\\n' +\n  'Joel Embiid\\n' +\n  'C\\n' +\n  '\\t137.50\\t38 counted points\\tInspect\\n' +\n  'Myles Turner\\n' +\n  'C\\n' +\n  '\\t64.25\\t24.5 counted points\\tInspect\\n' +\n  'Derrick White\\n' +\n  'SG\\n' +\n  '\\t61.00\\t22 counted points\\tInspect\\n' +\n  'Grayson Allen\\n' +\n  'SF\\n' +\n  '\\t57.75\\tNot included in sample\\tInspect\\n' +\n  'Anthony Edwards\\n' +\n  'SG\\n' +\n  '\\t124.50\\tNot included in sample\\tInspect\\n' +\n  'Payton Pritchard\\n' +\n  'PG\\n' +\n  '\\t51.25\\tNot included in sample\\tInspect\\n' +\n  'Devin Vassell\\n' +\n  'SF\\n' +\n  '\\t48.00\\tNot included in sample\\tInspect\\n' +\n  'Immanuel Quickley\\n' +\n  'PG\\n' +\n  '\\t44.75\\tNot included in sample\\tInspect\\n' +\n  'Santi Aldama\\n' +\n  'PF\\n' +\n  '\\t41.50\\tNot included in sample\\tInspect\\n' +\n  'Alperen \u015eeng\u00fcn\\n' +\n  'C\\n' +\n  '\\t108.25\\tNot included in sample\\tInspect\\n' +\n  'Austin Reaves\\n' +\n  'SG\\n' +\n  '\\t35.00\\tNot included in sample\\tInspect\\n' +\n  'Peyton Watson\\n' +\n  'SF\\n' +\n  '\\t31.75\\tNot included in sample\\tInspect\\n' +\n  'Max Christie\\n' +\n  'SG\\n' +\n  '\\t28.50\\tNot included in sample\\tInspect\\n' +\n  'Brandon Miller\\n' +\n  'SF\\n' +\n  '\\t25.25\\tNot included in sample\\tInspect\\n' +\n  'Donovan Clingan\\n' +\n  'C\\n' +\n  '\\t22.00\\tNot included in sample\\tInspect\\n' +\n  'Daniss Jenkins\\n' +\n  'PG\\n' +\n  '\\t18.75\\tNot included in sample\\tInspect\\n' +\n  'Nolan Traore\\n' +\n  'PG\\n' +\n  '\\t15.50\\tNot included in sample\\tInspect\\n' +\n  'Danny Wolf\\n' +\n  'PF\\n' +\n  '\\t12.25\\tNot included in sample\\tInspect\\n' +\n  'Derik Queen\\n' +\n  'C\\n' +\n  '\\t9.00\\tNot included in sample\\tInspect\\n' +\n  'Yaxel Lendeborg\\n' +\n  'PF\\n' +\n  '\\t5.75\\tNot included in sample\\tInspect\\n' +\n  'Labaron Philon\\n' +\n  'PG\\n' +\n  '\\t4.00\\tNot included in sample\\tInspect\\n' +\n  'Bruce Thornton\\n' +\n  'PG\\n' +\n  '\\t4.00\\tNot included in sample\\tInspect\\n' +\n  '\\n' +\n  'No recorded team-value history is included. No trend line is inferred.'\n",
+      "image": "qa/homepage-personal-20/06/review/root-journey-failure-reaves.jpg",
+      "errors": []
+    }
+  ],
+  "additional": {
+    "classification": "Root assertions, not reproduced product defects",
+    "reason": "10 correctly says no saved model estimate is supplied; root wrongly required the word unavailable. 11 guest uses a native in-page anchor; browser Back correctly restores y0, without a custom trigger-focus override. Actual browser diagnostic verified hash, target top and scroll restoration.",
+    "initialFailures": [
+      {
+        "id": "10",
+        "persona": "neural",
+        "result": "fail",
+        "steps": [
+          {
+            "task": "Inspect honest known-quote position allocation",
+            "trigger": "#primary-position",
+            "expectedContent": [
+              "Power forwards",
+              "312.00",
+              "3 of 6",
+              "Unpriced"
+            ],
+            "returnFocus": "#primary-position",
+            "activation": "keyboard Enter",
+            "result": "pass"
+          },
+          {
+            "task": "Read owned player quote independently from counted points",
+            "trigger": "#lead-player",
+            "expectedContent": [
+              "Giannis Antetokounmpo",
+              "135.50",
+              "Synthetic completed Week 2"
+            ],
+            "returnFocus": "#lead-player",
+            "activation": "pointer",
+            "result": "pass"
+          }
+        ],
+        "error": "The input did not match the regular expression /unavailable/i. Input:\n\n'WEEK 3 \u00b7 MATCHUP INSPECTION\\n' +\n  '\\n' +\n  'papichooter / NeuralNets\\n' +\n  'Close inspection\\n' +\n  'Current sample score\\n' +\n  '\\n' +\n  'papichooter\\n' +\n  '0.0\\n' +\n  '\\n' +\n  'NeuralNets\\n' +\n  'Not returned\\n' +\n  '\\n' +\n  'Partial score: papichooter has a recorded zero; NeuralNets has no returned score. No leader, margin or tie can be inferred.\\n' +\n  '\\n' +\n  'Season records: papichooter 2\u20130; NeuralNets 0\u20132.\\n' +\n  '\\n' +\n  'Saved model context\\n' +\n  '\\n' +\n  'No saved model estimate is supplied for this pairing in this view.\\n' +\n  '\\n' +\n  'Fixed sample as of 30 October, 08:30 UTC. There is no live refresh or model generation.\\n' +\n  '\\n' +\n  'Back to your home\\n' +\n  'papichooter on GOAT\\n' +\n  '(leaves prototype)\\n' +\n  ' \u00a0 NeuralNets on GOAT\\n' +\n  '(leaves prototype)'\n",
+        "image": "qa/homepage-personal-20/10/review/root-journey-failure-neural.jpg",
+        "errors": []
+      },
+      {
+        "id": "11",
+        "persona": "guest",
+        "result": "fail",
+        "steps": [],
+        "error": "page.waitForFunction: Timeout 30000ms exceeded.",
+        "image": "qa/homepage-personal-20/11/review/root-journey-failure-guest.jpg",
+        "errors": []
+      }
+    ]
+  },
+  "guestModelCorrection": "11 guest deliberately omits private saved-model context; root removed its incorrect requirement for a No saved message. Guest still shows explicit known zero, unavailable score and no inferred leader.",
+  "finalContractCorrections": [
+    "14 quote coverage uses of; its ready-member saved-estimate task is data-note=model, not a nonexistent matchup:m1 selector. Actual DOM/task inspected before updating.",
+    "16 actual manager identity is philbiag, not root transcription phlibiag. Added club really rendered with correct identity."
+  ],
+  "clubAdditionFocus": "16 deliberately focuses the newly added club inspector after Add, with a live announcement; root initially expected focus on the submit button. Source inspected and actual focus contract updated, no product defect."
+}

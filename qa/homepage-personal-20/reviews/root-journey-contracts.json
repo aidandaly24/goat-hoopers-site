@@ -1,0 +1,2158 @@
+{
+  "09": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "Ware the Hoes At",
+        "184.50",
+        "171.00"
+      ],
+      "tasks": [
+        {
+          "name": "Read owned player Damian's completed-week sample",
+          "selector": "#first-player",
+          "url": "#player-1444$",
+          "expect": [
+            "Damian Lillard",
+            "42.50",
+            "74.00",
+            "19\u201325 October 2026"
+          ]
+        },
+        {
+          "name": "Open complete roster with all quote coverage",
+          "selector": "#first-roster",
+          "url": "#roster-1$",
+          "expect": [
+            "24 players",
+            "1095.25",
+            "24/24"
+          ],
+          "rows": 24
+        },
+        {
+          "name": "Meet actual opposing manager and team",
+          "selector": "#first-opponent",
+          "url": "#team-2$",
+          "expect": [
+            "Ware the Hoes At",
+            "Aedan23",
+            "548.75"
+          ]
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "papichooter",
+        "Unavailable",
+        "0.00",
+        "1622.00",
+        "16 of 22"
+      ],
+      "tasks": [
+        {
+          "name": "Read owned Giannis sample without fabricating game logs",
+          "selector": "#first-player",
+          "url": "#player-1380$",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "45.00",
+            "135.50"
+          ]
+        },
+        {
+          "name": "Open partial quote roster with six unpriced players",
+          "selector": "#first-roster",
+          "url": "#roster-8$",
+          "expect": [
+            "22 players",
+            "1622.00",
+            "16/22",
+            "Unpriced"
+          ],
+          "rows": 22
+        },
+        {
+          "name": "Compare actual opponent's current and qualified prior season",
+          "selector": "#first-opponent",
+          "url": "#team-7$",
+          "expect": [
+            "papichooter",
+            "560.25",
+            "412.25",
+            "previous manager",
+            "QBs Gremlins"
+          ]
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "Meet the teams",
+        "Reaves Dropper",
+        "NeuralNets",
+        "Five games"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect public Reaves identity",
+          "selector": "#first-player",
+          "url": "#team-1$",
+          "expect": [
+            "Reaves Dropper",
+            "aidandaly20",
+            "615.50"
+          ]
+        },
+        {
+          "name": "Inspect public Neural identity and qualified history",
+          "selector": "#first-roster",
+          "url": "#team-8$",
+          "expect": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ]
+        },
+        {
+          "name": "Compare both public teams without claimed private membership",
+          "selector": "#first-opponent",
+          "url": "#compare-1-2$",
+          "expect": [
+            "Reaves Dropper",
+            "Ware the Hoes At",
+            "Aedan23"
+          ]
+        }
+      ]
+    }
+  },
+  "07": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "Ware the Hoes At",
+        "184.5",
+        "171"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect owned Joel and his supplied sample",
+          "selector": "#first-action",
+          "url": "view=player",
+          "expect": [
+            "Joel Embiid",
+            "38",
+            "137.5"
+          ]
+        },
+        {
+          "name": "Open the complete owned team roster",
+          "selector": "#second-action",
+          "url": "view=team",
+          "expect": [
+            "24",
+            "1,095.25",
+            "24/24"
+          ],
+          "rows": 24
+        },
+        {
+          "name": "Read current matchup and independently labelled saved estimate",
+          "selector": "#third-action",
+          "url": "view=matchup",
+          "expect": [
+            "Ware the Hoes At",
+            "56%",
+            "44%",
+            "confidence"
+          ]
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "papichooter",
+        "Score unavailable",
+        "1,622.00",
+        "16/22"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect owned Giannis and actual supplied sample",
+          "selector": "#first-action",
+          "url": "view=player",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "45",
+            "135.5"
+          ]
+        },
+        {
+          "name": "Open partial priced full roster with qualified history",
+          "selector": "#second-action",
+          "url": "view=team",
+          "expect": [
+            "22",
+            "16/22",
+            "Unpriced",
+            "previous manager"
+          ],
+          "rows": 22
+        },
+        {
+          "name": "Read known opponent zero separately from own unavailable score",
+          "selector": "#third-action",
+          "url": "view=matchup",
+          "expect": [
+            "papichooter",
+            "Score unavailable",
+            "No saved"
+          ]
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "GOAT Hoopers",
+        "Names you",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect an actual public pairing",
+          "selector": "#first-action",
+          "url": "view=matchup",
+          "expect": [
+            "Reaves Dropper",
+            "184.5",
+            "171"
+          ]
+        },
+        {
+          "name": "Discover public Reaves team without owned roster",
+          "selector": "#second-action",
+          "url": "view=team",
+          "expect": [
+            "Reaves Dropper",
+            "aidandaly20",
+            "2025"
+          ]
+        },
+        {
+          "name": "Find clearly labelled real account exit",
+          "selector": "#third-action",
+          "external": "https://goathoopers.com/login",
+          "expect": [
+            "Sign in on GOAT"
+          ]
+        }
+      ]
+    }
+  },
+  "04": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "Ware the Hoes At",
+        "Compare your squad"
+      ],
+      "tasks": [
+        {
+          "name": "Choose Derrick and swap two real owned players",
+          "selector": "#left-select",
+          "select": "1830",
+          "after": [
+            "#swap"
+          ],
+          "expect": [
+            "Derrick White",
+            "22",
+            "61.00",
+            "Damian Lillard",
+            "42.5"
+          ],
+          "values": {
+            "#left-select": "1444",
+            "#right-select": "1830"
+          },
+          "noReturn": true,
+          "returnFocus": "#swap"
+        },
+        {
+          "name": "Read the five-player completed-week sample",
+          "selector": "#read-samples",
+          "url": "view=samples",
+          "expect": [
+            "Damian Lillard",
+            "19\u201325",
+            "Joel Embiid"
+          ],
+          "rows": 5
+        },
+        {
+          "name": "Inspect actual matchup and separate saved model fields",
+          "selector": "#open-matchup",
+          "url": "view=matchup",
+          "expect": [
+            "184.5",
+            "171",
+            "56%",
+            "44%",
+            "0.35"
+          ]
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "papichooter",
+        "Score unavailable"
+      ],
+      "tasks": [
+        {
+          "name": "Choose Rudy and preserve real known sample and quotes",
+          "selector": "#left-select",
+          "select": "1350",
+          "expect": [
+            "Rudy Gobert",
+            "29.5",
+            "140.75",
+            "Kevin Durant",
+            "33.5"
+          ],
+          "noReturn": true
+        },
+        {
+          "name": "Read all three counted-player samples",
+          "selector": "#read-samples",
+          "url": "view=samples",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "Rudy Gobert"
+          ],
+          "rows": 3
+        },
+        {
+          "name": "Meet actual opponent with no invented player roster",
+          "selector": "#meet-opponent",
+          "url": "view=team",
+          "expect": [
+            "papichooter",
+            "560.25"
+          ]
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "Compare two league teams",
+        "Reaves Dropper",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Select public papichooter for team-level comparison",
+          "selector": "#left-select",
+          "select": "7",
+          "expect": [
+            "papichooter",
+            "Stephon Castle",
+            "560.25"
+          ],
+          "noReturn": true
+        },
+        {
+          "name": "Read public zero versus unavailable pairing",
+          "selector": "#pair-m4",
+          "url": "view=matchup",
+          "expect": [
+            "papichooter",
+            "NeuralNets",
+            "Score unavailable",
+            "No saved estimate"
+          ]
+        },
+        {
+          "name": "Find labelled real account entry",
+          "selector": "#guest-account",
+          "external": "https://goathoopers.com/login",
+          "expect": [
+            "Sign in"
+          ]
+        }
+      ]
+    }
+  },
+  "05": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "Ware the Hoes At"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect the actual owned player sample",
+          "selector": "#action-player",
+          "url": "view=player",
+          "expect": [
+            "Damian Lillard",
+            "42.5"
+          ]
+        },
+        {
+          "name": "Inspect actual current pairing and saved-estimate availability",
+          "selector": "#action-matchup",
+          "url": "view=matchup",
+          "expect": [
+            "184.5",
+            "171",
+            "56%",
+            "44%"
+          ]
+        },
+        {
+          "name": "Open full league standing with actual member context",
+          "selector": "#action-standings",
+          "url": "view=standings",
+          "expect": [
+            "NeuralNets",
+            "Reaves Dropper"
+          ],
+          "rows": 10
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "papichooter"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect the actual owned player sample",
+          "selector": "#action-player",
+          "url": "view=player",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "45"
+          ]
+        },
+        {
+          "name": "Inspect actual current pairing and saved-estimate availability",
+          "selector": "#action-matchup",
+          "url": "view=matchup",
+          "expect": [
+            "papichooter",
+            "Score unavailable",
+            "No saved"
+          ]
+        },
+        {
+          "name": "Open full league standing with actual member context",
+          "selector": "#action-standings",
+          "url": "view=standings",
+          "expect": [
+            "NeuralNets",
+            "Reaves Dropper"
+          ],
+          "rows": 10
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "The league, in good company",
+        "Reaves Dropper",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Meet public club Reaves without private membership",
+          "selector": "#action-team",
+          "url": "view=team",
+          "expect": [
+            "Reaves Dropper",
+            "aidandaly20"
+          ]
+        },
+        {
+          "name": "Browse all ten public standings",
+          "selector": "#action-standings",
+          "url": "view=standings",
+          "expect": [
+            "NeuralNets",
+            "Reaves Dropper"
+          ],
+          "rows": 10
+        },
+        {
+          "name": "Open public current game",
+          "selector": "#action-matchup",
+          "url": "view=matchup",
+          "expect": [
+            "Reaves Dropper",
+            "Ware the Hoes At",
+            "184.5",
+            "171"
+          ]
+        }
+      ]
+    }
+  },
+  "06": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "Ware the Hoes At"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect actual current matchup and separate estimate context",
+          "selector": "#act-matchup",
+          "url": "view=matchup",
+          "expect": [
+            "184.5",
+            "171",
+            "56",
+            "44",
+            "0.35"
+          ]
+        },
+        {
+          "name": "Open complete member club sheet and price coverage",
+          "selector": "#act-team",
+          "url": "view=team",
+          "expect": [
+            "24 players",
+            "24 of 24",
+            "1,095.25"
+          ],
+          "rows": 24
+        },
+        {
+          "name": "Read owned player sample and separate modeled quote",
+          "selector": "#act-player",
+          "url": "view=player",
+          "expect": [
+            "Joel Embiid",
+            "137.50",
+            "38"
+          ]
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "papichooter"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect actual current matchup and separate estimate context",
+          "selector": "#act-matchup",
+          "url": "view=matchup",
+          "expect": [
+            "papichooter",
+            "Score unavailable",
+            "No saved"
+          ]
+        },
+        {
+          "name": "Open complete member club sheet and price coverage",
+          "selector": "#act-team",
+          "url": "view=team",
+          "expect": [
+            "22 players",
+            "16",
+            "Unpriced",
+            "1,622.00"
+          ],
+          "rows": 22
+        },
+        {
+          "name": "Read owned player sample and separate modeled quote",
+          "selector": "#act-player",
+          "url": "view=player",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "135.50",
+            "45"
+          ]
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "Ten clubs",
+        "Reaves Dropper",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Open public current pairing",
+          "selector": "#act-matchup",
+          "url": "view=matchup",
+          "expect": [
+            "184.5",
+            "171",
+            "Reaves Dropper"
+          ]
+        },
+        {
+          "name": "Inspect a public club identity",
+          "selector": "#act-club",
+          "url": "view=club",
+          "expect": [
+            "Reaves Dropper",
+            "aidandaly20",
+            "2025"
+          ]
+        },
+        {
+          "name": "Browse the public ten-club directory",
+          "selector": "#act-directory",
+          "url": "view=directory",
+          "expect": [
+            "The ten clubs",
+            "NeuralNets",
+            "Reaves Dropper"
+          ]
+        }
+      ]
+    }
+  },
+  "08": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "The players behind your week"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect a named supplied observation",
+          "selector": "#primary-1",
+          "detail": "#local-inspector",
+          "expect": [
+            "Damian Lillard",
+            "42.5 points",
+            "Synthetic completed Week 2"
+          ],
+          "close": "#detail-close"
+        },
+        {
+          "name": "Find another owned player and distinguish absent evidence",
+          "before": [
+            {
+              "selector": "#primary-2"
+            },
+            {
+              "selector": "#player-search",
+              "fill": "Austin Reaves"
+            }
+          ],
+          "selector": "#search-player-2316",
+          "detail": "#local-inspector",
+          "expect": [
+            "Austin Reaves",
+            "No supplied observation",
+            "35 modeled FAAB"
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Inspect the actual opposing pairing",
+          "selector": "#primary-3",
+          "detail": "#local-inspector",
+          "expect": [
+            "Reaves Dropper versus Ware",
+            "184.5",
+            "Saved estimate"
+          ],
+          "close": "#detail-close"
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "The players behind your week"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect a named supplied observation",
+          "selector": "#primary-1",
+          "detail": "#local-inspector",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "45 points",
+            "Synthetic completed Week 2"
+          ],
+          "close": "#detail-close"
+        },
+        {
+          "name": "Find another owned player and distinguish absent evidence",
+          "before": [
+            {
+              "selector": "#primary-2"
+            },
+            {
+              "selector": "#player-search",
+              "fill": "LaMelo Ball"
+            }
+          ],
+          "selector": "#search-player-2179",
+          "detail": "#local-inspector",
+          "expect": [
+            "LaMelo Ball",
+            "No supplied observation",
+            "77.75 modeled FAAB"
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Inspect the actual opposing pairing",
+          "selector": "#primary-3",
+          "detail": "#local-inspector",
+          "expect": [
+            "papichooter versus NeuralNets",
+            "Score unavailable",
+            "No saved model estimate supplied"
+          ],
+          "close": "#detail-close"
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "Meet the league",
+        "How the league is scoring",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect public leading club context",
+          "selector": "#primary-1",
+          "detail": "#local-inspector",
+          "expect": [
+            "Reaves Dropper",
+            "Current 2026 record"
+          ],
+          "close": "#detail-close"
+        },
+        {
+          "name": "Read public pairing state",
+          "selector": "#primary-2",
+          "detail": "#local-inspector",
+          "expect": [
+            "Reaves Dropper versus Ware",
+            "184.5",
+            "171"
+          ],
+          "close": "#detail-close"
+        },
+        {
+          "name": "Read qualified historical identity",
+          "selector": "#primary-3",
+          "detail": "#local-inspector",
+          "expect": [
+            "NeuralNets",
+            "previous manager as QBs Gremlins"
+          ],
+          "return": "escape"
+        }
+      ]
+    }
+  },
+  "10": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "The shape of your roster",
+        "known modeled subtotal"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect honest known-quote position allocation",
+          "selector": "#primary-position",
+          "detail": "#inspection",
+          "expect": [
+            "Centers",
+            "341.00",
+            "31.1%",
+            "5 of 5"
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Read owned player quote independently from counted points",
+          "selector": "#lead-player",
+          "detail": "#inspection",
+          "expect": [
+            "Joel Embiid",
+            "137.50",
+            "Synthetic completed Week 2"
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Read actual game and model availability",
+          "selector": "#primary-matchup",
+          "detail": "#inspection",
+          "expect": [
+            "184.5",
+            "171.0",
+            "56%",
+            "44%",
+            "0.35"
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Reproduce scanner-flagged fragment as a working local player route",
+          "selector": "a[data-note][href=\"#player-1444\"]",
+          "detail": "#inspection",
+          "expect": [
+            "Damian Lillard",
+            "74.00"
+          ],
+          "return": "escape"
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "The shape of your roster",
+        "known modeled subtotal"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect honest known-quote position allocation",
+          "selector": "#primary-position",
+          "detail": "#inspection",
+          "expect": [
+            "Power forwards",
+            "312.00",
+            "3 of 6",
+            "Unpriced"
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Read owned player quote independently from counted points",
+          "selector": "#lead-player",
+          "detail": "#inspection",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "135.50",
+            "Synthetic completed Week 2"
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Read actual game and model availability",
+          "selector": "#primary-matchup",
+          "detail": "#inspection",
+          "expect": [
+            "papichooter",
+            "Not returned",
+            "no leader",
+            "No saved model estimate"
+          ],
+          "return": "escape"
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "Five games",
+        "NeuralNets",
+        "Reaves Dropper"
+      ],
+      "tasks": [
+        {
+          "name": "Read public current pairing without personal model",
+          "selector": "#primary-matchup",
+          "detail": "#inspection",
+          "expect": [
+            "Reaves Dropper",
+            "184.5",
+            "171.0"
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Distinguish public known zero from missing score",
+          "selector": "#matchup-m4",
+          "detail": "#inspection",
+          "expect": [
+            "papichooter",
+            "Not returned",
+            "no leader"
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Expand qualified public historical identity",
+          "selector": "[data-team-disclosure=\"8\"] summary",
+          "detail": "[data-team-disclosure=\"8\"]",
+          "expect": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "noReturn": true
+        }
+      ]
+    }
+  },
+  "11": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "Week 3",
+        "Five games"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect actual current game from the league circuit",
+          "selector": "#primary-matchup",
+          "detail": "#inspector",
+          "expect": [
+            "184.5",
+            "171",
+            "56%",
+            "44%",
+            "0.35"
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Read public club identity and previous-manager qualification",
+          "selector": ".club-name[data-id=\"8\"]",
+          "detail": "#inspector",
+          "expect": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "close": "#close-inspector"
+        },
+        {
+          "name": "Inspect counted owned player without attributing full team production",
+          "selector": "#evidence [data-id=\"1444\"]",
+          "detail": "#inspector",
+          "expect": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "close": "#close-inspector"
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "Week 3",
+        "Five games"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect actual current game from the league circuit",
+          "selector": "#primary-matchup",
+          "detail": "#inspector",
+          "expect": [
+            "papichooter",
+            "Unavailable",
+            "No saved"
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Read public club identity and previous-manager qualification",
+          "selector": ".club-name[data-id=\"8\"]",
+          "detail": "#inspector",
+          "expect": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "close": "#close-inspector"
+        },
+        {
+          "name": "Inspect counted owned player without attributing full team production",
+          "selector": "#evidence [data-id=\"1380\"]",
+          "detail": "#inspector",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "close": "#close-inspector"
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "GOAT",
+        "Reaves Dropper",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Navigate in-page to every public pairing",
+          "selector": ".guest-center .action",
+          "url": "#games$",
+          "expect": [
+            "Five games",
+            "Reaves Dropper",
+            "NeuralNets"
+          ],
+          "nativeAnchor": true
+        },
+        {
+          "name": "Read qualified public Neural club history",
+          "selector": ".club-name[data-id=\"8\"]",
+          "detail": "#inspector",
+          "expect": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "close": "#close-inspector"
+        },
+        {
+          "name": "Inspect current zero/missing public game",
+          "selector": ".game-row[data-matchup=\"m4\"] button",
+          "detail": "#inspector",
+          "expect": [
+            "papichooter",
+            "Unavailable",
+            "No leader"
+          ],
+          "return": "escape"
+        }
+      ]
+    }
+  },
+  "12": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "Your club"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect an actual owned photographic-wall player",
+          "selector": "#portrait-1511",
+          "expect": [
+            "Joel Embiid",
+            "137.50"
+          ],
+          "detail": "#inspection",
+          "close": "#close-inspection"
+        },
+        {
+          "name": "Read the full roster without losing any supplied player",
+          "selector": "#inspect-roster",
+          "expect": [
+            "24 of 24"
+          ],
+          "detail": "#inspection",
+          "allOwnedPlayers": true,
+          "close": "#close-inspection"
+        },
+        {
+          "name": "Inspect the actual matchup and model availability",
+          "selector": "#inspect-matchup",
+          "expect": [
+            "184.5",
+            "171",
+            "56%",
+            "44%",
+            "0.35"
+          ],
+          "detail": "#inspection",
+          "close": "#close-inspection"
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "Your club"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect an actual owned photographic-wall player",
+          "selector": "#portrait-1380",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "135.50"
+          ],
+          "detail": "#inspection",
+          "close": "#close-inspection"
+        },
+        {
+          "name": "Read the full roster without losing any supplied player",
+          "selector": "#inspect-roster",
+          "expect": [
+            "16 of 22"
+          ],
+          "detail": "#inspection",
+          "allOwnedPlayers": true,
+          "close": "#close-inspection"
+        },
+        {
+          "name": "Inspect the actual matchup and model availability",
+          "selector": "#inspect-matchup",
+          "expect": [
+            "papichooter",
+            "Score unavailable",
+            "No saved"
+          ],
+          "detail": "#inspection",
+          "close": "#close-inspection"
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "Reaves Dropper",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Read a public pairing",
+          "selector": "#pair-m1",
+          "expect": [
+            "184.5",
+            "171"
+          ],
+          "detail": "#inspection",
+          "close": "#close-inspection"
+        },
+        {
+          "name": "Understand a public missing-score game",
+          "selector": "#pair-m4",
+          "expect": [
+            "papichooter",
+            "Score unavailable"
+          ],
+          "detail": "#inspection",
+          "close": "#close-inspection"
+        },
+        {
+          "name": "Inspect a public team identity",
+          "selector": "#public-team-1",
+          "expect": [
+            "Reaves Dropper",
+            "aidandaly20"
+          ],
+          "detail": "#inspection",
+          "close": "#close-inspection"
+        }
+      ]
+    }
+  },
+  "14": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper"
+      ],
+      "tasks": [
+        {
+          "name": "Read the named owned player from the personal brief",
+          "selector": ".primary[data-note=\"player:1444\"]",
+          "expect": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "detail": "#reading-note[open]",
+          "return": "escape"
+        },
+        {
+          "name": "Read all owned quotes with explicit coverage",
+          "selector": "button[data-note=\"quotes\"]",
+          "expect": [
+            "24\\s*(?:of|/)\\s*24"
+          ],
+          "detail": "#reading-note[open]",
+          "allOwnedPlayers": true,
+          "close": "#close-note"
+        },
+        {
+          "name": "Read actual current game and saved-estimate availability",
+          "selector": "button[data-note=\"model\"]",
+          "expect": [
+            "56",
+            "44",
+            "confidence"
+          ],
+          "detail": "#reading-note[open]",
+          "close": "#close-note"
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Read the named owned player from the personal brief",
+          "selector": ".primary[data-note=\"player:1380\"]",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "detail": "#reading-note[open]",
+          "return": "escape"
+        },
+        {
+          "name": "Read all owned quotes with explicit coverage",
+          "selector": "button[data-note=\"quotes\"]",
+          "expect": [
+            "16\\s*(?:of|/)\\s*22"
+          ],
+          "detail": "#reading-note[open]",
+          "allOwnedPlayers": true,
+          "close": "#close-note"
+        },
+        {
+          "name": "Read actual current game and saved-estimate availability",
+          "selector": "[data-note=\"matchup:m4\"]",
+          "expect": [
+            "papichooter",
+            "Unavailable",
+            "no saved"
+          ],
+          "detail": "#reading-note[open]",
+          "close": "#close-note"
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "Reaves Dropper",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Read a public team note",
+          "selector": ".primary[data-note=\"team:1\"]",
+          "expect": [
+            "Reaves Dropper",
+            "aidandaly20"
+          ],
+          "detail": "#reading-note[open]",
+          "close": "#close-note"
+        },
+        {
+          "name": "Read the whole public order",
+          "selector": "button[data-note=\"standings\"]",
+          "expect": [
+            "NeuralNets",
+            "Reaves Dropper"
+          ],
+          "detail": "#reading-note[open]",
+          "close": "#close-note"
+        },
+        {
+          "name": "Read all five public games",
+          "selector": "button[data-note=\"slate\"]",
+          "expect": [
+            "papichooter",
+            "Unavailable",
+            "Reaves Dropper"
+          ],
+          "detail": "#reading-note[open]",
+          "close": "#close-note"
+        }
+      ]
+    }
+  },
+  "15": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "gym"
+      ],
+      "tasks": [
+        {
+          "name": "Read a counted owned player in the gym",
+          "selector": "[data-evidence-player=\"1444\"] button",
+          "expect": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "detail": "#inspector[open]",
+          "return": "escape"
+        },
+        {
+          "name": "Inspect a named roster quote with honest absent evidence",
+          "selector": "[data-quote-player=\"1511\"] button",
+          "expect": [
+            "Joel Embiid",
+            "137.50"
+          ],
+          "detail": "#inspector[open]",
+          "before": [
+            {
+              "selector": "#quote-summary"
+            }
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Read current game and independent model fields",
+          "selector": "#primary-matchup-action",
+          "expect": [
+            "56",
+            "44",
+            "0.35"
+          ],
+          "detail": "#inspector[open]",
+          "return": "escape"
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "gym"
+      ],
+      "tasks": [
+        {
+          "name": "Read a counted owned player in the gym",
+          "selector": "[data-evidence-player=\"1380\"] button",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "detail": "#inspector[open]",
+          "return": "escape"
+        },
+        {
+          "name": "Inspect a named roster quote with honest absent evidence",
+          "selector": "[data-quote-player=\"4808\"] button",
+          "expect": [
+            "Ryan Nembhard",
+            "Unpriced",
+            "Evidence not supplied"
+          ],
+          "detail": "#inspector[open]",
+          "before": [
+            {
+              "selector": "#quote-summary"
+            },
+            {
+              "selector": "#quote-filter",
+              "fill": "Ryan"
+            }
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Read current game and independent model fields",
+          "selector": "#primary-matchup-action",
+          "expect": [
+            "papichooter",
+            "Score not returned",
+            "No saved"
+          ],
+          "detail": "#inspector[open]",
+          "return": "escape"
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "GOAT",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Meet a current public club with qualified history",
+          "selector": ".directory-team button[data-team=\"8\"]",
+          "expect": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "detail": "#inspector[open]",
+          "return": "escape"
+        },
+        {
+          "name": "Inspect a public current game",
+          "selector": "#primary-matchup-action",
+          "expect": [
+            "184.5",
+            "171"
+          ],
+          "detail": "#inspector[open]",
+          "return": "escape"
+        },
+        {
+          "name": "Find genuine account entry",
+          "selector": "#account-link",
+          "external": "https://goathoopers.com/login",
+          "expect": [
+            "Sign in"
+          ]
+        }
+      ]
+    }
+  },
+  "17": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "Ware the Hoes At"
+      ],
+      "tasks": [
+        {
+          "name": "Read a named owned completed-week receipt",
+          "selector": "[data-inspect=\"player:1444\"]",
+          "expect": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "detail": "#inspection[open]",
+          "return": "escape"
+        },
+        {
+          "name": "Inspect all current roster quotes",
+          "selector": "[data-inspect=\"quotes\"]",
+          "expect": [
+            "24",
+            "1095.25|1,095.25"
+          ],
+          "detail": "#inspection[open]",
+          "allOwnedPlayers": true,
+          "return": "escape"
+        },
+        {
+          "name": "Inspect current game without mixing completed-week points",
+          "selector": "[data-inspect=\"matchup\"]",
+          "expect": [
+            "184.5",
+            "171",
+            "56",
+            "44"
+          ],
+          "detail": "#inspection[open]",
+          "return": "escape"
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "papichooter"
+      ],
+      "tasks": [
+        {
+          "name": "Scout the actual current opponent",
+          "selector": "[data-inspect=\"team:7\"]",
+          "expect": [
+            "papichooter",
+            "560.25"
+          ],
+          "detail": "#inspection[open]",
+          "return": "escape"
+        },
+        {
+          "name": "Read an owned Giannis receipt",
+          "selector": "[data-inspect=\"player:1380\"]",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "detail": "#inspection[open]",
+          "return": "escape"
+        },
+        {
+          "name": "Read known zero separately from unavailable score",
+          "selector": "[data-inspect=\"matchup\"]",
+          "expect": [
+            "papichooter",
+            "Unavailable"
+          ],
+          "detail": "#inspection[open]",
+          "return": "escape"
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "GOAT",
+        "NeuralNets",
+        "Reaves Dropper"
+      ],
+      "tasks": [
+        {
+          "name": "Discover public current leader",
+          "selector": "[data-inspect=\"team:1\"]",
+          "expect": [
+            "Reaves Dropper",
+            "615.5"
+          ],
+          "detail": "#inspection[open]",
+          "return": "escape"
+        },
+        {
+          "name": "Read previous-manager-qualified franchise memory",
+          "selector": "[data-inspect=\"team:8\"]",
+          "expect": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "detail": "#inspection[open]",
+          "return": "escape"
+        },
+        {
+          "name": "Find actual account entry",
+          "selector": "a[href=\"https://goathoopers.com/login\"]",
+          "external": "https://goathoopers.com/login",
+          "expect": [
+            "Sign in"
+          ]
+        }
+      ]
+    }
+  },
+  "13": {
+    "reaves": {
+      "home": [
+        "Your players, Week 2",
+        "Damian Lillard"
+      ],
+      "tasks": [
+        {
+          "name": "Read an actual owned completed-week observation",
+          "selector": "[data-evidence-player=\"1444\"]",
+          "expect": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "detail": "#evidence-1444",
+          "close": "#evidence-1444 [data-close]"
+        },
+        {
+          "name": "Inspect all roster quotes with coverage",
+          "selector": ".following [data-panel=\"quotes\"]",
+          "expect": [
+            "1,095.25"
+          ],
+          "detail": "#quotes",
+          "allOwnedPlayers": true,
+          "close": "#quotes > [data-close]"
+        },
+        {
+          "name": "Read actual current pairing",
+          "selector": ".opening-matchup [data-panel=\"opening-pair-detail\"]",
+          "expect": [
+            "184.5",
+            "171"
+          ],
+          "detail": "#opening-pair-detail",
+          "close": "#opening-pair-detail [data-close]"
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "Your players, Week 2",
+        "Rudy Gobert"
+      ],
+      "tasks": [
+        {
+          "name": "Read an actual owned completed-week observation",
+          "selector": "[data-evidence-player=\"1350\"]",
+          "expect": [
+            "Rudy Gobert",
+            "29.5"
+          ],
+          "detail": "#evidence-1350",
+          "close": "#evidence-1350 [data-close]"
+        },
+        {
+          "name": "Inspect all roster quotes with coverage",
+          "selector": ".following [data-panel=\"quotes\"]",
+          "expect": [
+            "1,622.00"
+          ],
+          "detail": "#quotes",
+          "allOwnedPlayers": true,
+          "close": "#quotes > [data-close]"
+        },
+        {
+          "name": "Read actual current pairing",
+          "selector": ".opening-matchup [data-panel=\"opening-pair-detail\"]",
+          "expect": [
+            "papichooter",
+            "unavailable",
+            "zero"
+          ],
+          "detail": "#opening-pair-detail",
+          "close": "#opening-pair-detail [data-close]"
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "Reaves Dropper",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Read public zero/missing pairing",
+          "selector": "[data-matchup=\"m4\"]",
+          "expect": [
+            "papichooter",
+            "unavailable",
+            "zero"
+          ],
+          "detail": "[id^=\"pair-m4-\"]",
+          "return": "escape"
+        },
+        {
+          "name": "Discover qualified public franchise history",
+          "selector": "#full-standings [data-team=\"8\"]",
+          "expect": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "detail": "[id^=\"team-8-\"]",
+          "before": [
+            {
+              "selector": "#full-standings > summary"
+            }
+          ],
+          "return": "escape"
+        },
+        {
+          "name": "Find real account entry",
+          "selector": ".site-links > a[href=\"https://goathoopers.com/login\"]",
+          "external": "https://goathoopers.com/login",
+          "expect": [
+            "Sign in"
+          ]
+        }
+      ]
+    }
+  },
+  "16": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "Joel"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect actual own club",
+          "selector": "[data-testid=\"inspect-own\"]",
+          "expect": [
+            "Reaves Dropper"
+          ],
+          "detail": "#inspector",
+          "return": "escape"
+        },
+        {
+          "name": "Inspect actual opposing club",
+          "selector": "[data-testid=\"inspect-team-2\"]",
+          "expect": [
+            "Ware the Hoes At"
+          ],
+          "detail": "#inspector",
+          "return": "escape"
+        },
+        {
+          "name": "Add a different real club for this visit",
+          "selector": "[data-testid=\"add-club\"]",
+          "expect": [
+            "The Fun Guys",
+            "philbiag"
+          ],
+          "detail": "[data-testid=\"club-4\"]",
+          "before": [
+            {
+              "selector": "[data-testid=\"team-choice\"]",
+              "select": "4"
+            }
+          ],
+          "noReturn": true,
+          "returnFocus": "[data-testid=\"inspect-team-4\"]"
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "Giannis"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect actual own club",
+          "selector": "[data-testid=\"inspect-own\"]",
+          "expect": [
+            "NeuralNets"
+          ],
+          "detail": "#inspector",
+          "return": "escape"
+        },
+        {
+          "name": "Inspect actual opposing club",
+          "selector": "[data-testid=\"inspect-team-7\"]",
+          "expect": [
+            "papichooter"
+          ],
+          "detail": "#inspector",
+          "return": "escape"
+        },
+        {
+          "name": "Add a different real club for this visit",
+          "selector": "[data-testid=\"add-club\"]",
+          "expect": [
+            "The Fun Guys",
+            "philbiag"
+          ],
+          "detail": "[data-testid=\"club-4\"]",
+          "before": [
+            {
+              "selector": "[data-testid=\"team-choice\"]",
+              "select": "4"
+            }
+          ],
+          "noReturn": true,
+          "returnFocus": "[data-testid=\"inspect-team-4\"]"
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "GOAT",
+        "Josh Diddy",
+        "papichooter"
+      ],
+      "tasks": [
+        {
+          "name": "Meet public finalist winner",
+          "selector": "[data-testid=\"inspect-team-5\"]",
+          "expect": [
+            "Josh Diddy",
+            "2025"
+          ],
+          "detail": "#inspector",
+          "return": "escape"
+        },
+        {
+          "name": "Meet public runner-up",
+          "selector": "[data-testid=\"inspect-team-7\"]",
+          "expect": [
+            "papichooter",
+            "2025"
+          ],
+          "detail": "#inspector",
+          "return": "escape"
+        },
+        {
+          "name": "Choose another club without a saved subscription",
+          "selector": "[data-testid=\"add-club\"]",
+          "expect": [
+            "The Fun Guys",
+            "philbiag"
+          ],
+          "detail": "[data-testid=\"club-4\"]",
+          "before": [
+            {
+              "selector": "[data-testid=\"team-choice\"]",
+              "select": "4"
+            }
+          ],
+          "noReturn": true,
+          "returnFocus": "[data-testid=\"inspect-team-4\"]"
+        }
+      ]
+    }
+  },
+  "18": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "A closer look"
+      ],
+      "tasks": [
+        {
+          "name": "Read default owned player",
+          "selector": "#primary-inspect",
+          "expect": [
+            "Joel Embiid",
+            "137.50"
+          ],
+          "detail": "main",
+          "url": "view=player"
+        },
+        {
+          "name": "Find and inspect another owned player",
+          "selector": "#result-2316",
+          "expect": [
+            "Austin Reaves",
+            "35.00"
+          ],
+          "detail": "main",
+          "before": [
+            {
+              "selector": "#finder-input",
+              "fill": "Austin Reaves"
+            },
+            {
+              "selector": "[data-testid=\"finder-submit\"]"
+            }
+          ],
+          "url": "view=player"
+        },
+        {
+          "name": "Read current actual pairing",
+          "selector": "#matchup-inspect",
+          "expect": [
+            "184.5",
+            "171"
+          ],
+          "detail": "main",
+          "url": "view=matchup"
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "A closer look"
+      ],
+      "tasks": [
+        {
+          "name": "Read default owned player",
+          "selector": "#primary-inspect",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "135.50"
+          ],
+          "detail": "main",
+          "url": "view=player"
+        },
+        {
+          "name": "Find and inspect another owned player",
+          "selector": "#result-4866",
+          "expect": [
+            "AJ Dybantsa",
+            "Unpriced"
+          ],
+          "detail": "main",
+          "before": [
+            {
+              "selector": "#finder-input",
+              "fill": "AJ Dybantsa"
+            },
+            {
+              "selector": "[data-testid=\"finder-submit\"]"
+            }
+          ],
+          "url": "view=player"
+        },
+        {
+          "name": "Read current actual pairing",
+          "selector": "#matchup-inspect",
+          "expect": [
+            "papichooter",
+            "Unknown|Unavailable",
+            "no saved"
+          ],
+          "detail": "main",
+          "url": "view=matchup"
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "GOAT",
+        "Reaves Dropper",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect public featured club",
+          "selector": "#primary-inspect",
+          "expect": [
+            "Reaves Dropper",
+            "615.5"
+          ],
+          "detail": "main",
+          "url": "view=club"
+        },
+        {
+          "name": "Read public missing-score game",
+          "selector": "#pair-m4",
+          "expect": [
+            "papichooter",
+            "Unknown|Unavailable"
+          ],
+          "detail": "main",
+          "url": "view=matchup"
+        },
+        {
+          "name": "Inspect qualified public franchise",
+          "selector": "#club-8",
+          "expect": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "detail": "main",
+          "url": "view=club"
+        }
+      ]
+    }
+  },
+  "20": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "Review",
+        "42.5"
+      ],
+      "tasks": [
+        {
+          "name": "Read supplied player evidence through open task index",
+          "selector": "#review-evidence",
+          "expect": [
+            "Damian Lillard",
+            "42.5",
+            "Joel Embiid"
+          ],
+          "detail": "main",
+          "url": "#inspect/evidence"
+        },
+        {
+          "name": "Inspect whole actual squad",
+          "selector": "#open-roster",
+          "expect": [
+            "24",
+            "1,095.25|1095.25"
+          ],
+          "detail": "main",
+          "allOwnedPlayers": true,
+          "url": "#inspect/roster"
+        },
+        {
+          "name": "Read actual pairing and saved model fields",
+          "selector": "#inspect-matchup",
+          "expect": [
+            "184.5",
+            "171",
+            "56",
+            "44"
+          ],
+          "detail": "main",
+          "url": "#inspect/matchup"
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "Giannis",
+        "16 of 22"
+      ],
+      "tasks": [
+        {
+          "name": "Open actual whole squad with partial quote coverage",
+          "selector": "#open-roster",
+          "expect": [
+            "22",
+            "Unpriced",
+            "1,622.00|1622.00"
+          ],
+          "detail": "main",
+          "allOwnedPlayers": true,
+          "url": "#inspect/roster"
+        },
+        {
+          "name": "Read actual owned-player results",
+          "selector": "#review-evidence",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "detail": "main",
+          "url": "#inspect/evidence"
+        },
+        {
+          "name": "Distinguish current zero from own missing score",
+          "selector": "#inspect-matchup",
+          "expect": [
+            "papichooter",
+            "Unavailable|Unknown",
+            "zero"
+          ],
+          "detail": "main",
+          "url": "#inspect/matchup"
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "GOAT",
+        "Reaves Dropper",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Read qualified public club",
+          "selector": "#team-8-club",
+          "expect": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "detail": "main",
+          "url": "#inspect/team/8"
+        },
+        {
+          "name": "Read public current leader",
+          "selector": "#team-1-club",
+          "expect": [
+            "Reaves Dropper",
+            "615.5"
+          ],
+          "detail": "main",
+          "url": "#inspect/team/1"
+        },
+        {
+          "name": "Find actual account entry",
+          "selector": "a[href=\"https://goathoopers.com/login\"]",
+          "external": "https://goathoopers.com/login",
+          "expect": [
+            "Sign in"
+          ]
+        }
+      ]
+    }
+  },
+  "19": {
+    "reaves": {
+      "home": [
+        "Reaves Dropper",
+        "Damian Lillard"
+      ],
+      "tasks": [
+        {
+          "name": "Read the useful owned-player primary sample",
+          "selector": "#task-primary",
+          "url": "view=player",
+          "expect": [
+            "Damian Lillard",
+            "42.5"
+          ]
+        },
+        {
+          "name": "Inspect actual opponent without invented roster",
+          "selector": "#inspect-opponent",
+          "url": "view=team",
+          "expect": [
+            "Ware the Hoes At",
+            "548.75"
+          ]
+        },
+        {
+          "name": "Read all roster quotes with coverage",
+          "selector": "#inspect-quotes",
+          "url": "view=quotes",
+          "expect": [
+            "1,095.25",
+            "24"
+          ],
+          "allOwnedPlayers": true
+        }
+      ]
+    },
+    "neural": {
+      "home": [
+        "NeuralNets",
+        "Giannis Antetokounmpo"
+      ],
+      "tasks": [
+        {
+          "name": "Read the useful owned-player primary sample",
+          "selector": "#task-primary",
+          "url": "view=player",
+          "expect": [
+            "Giannis Antetokounmpo",
+            "45"
+          ]
+        },
+        {
+          "name": "Inspect actual opponent without invented roster",
+          "selector": "#inspect-opponent",
+          "url": "view=team",
+          "expect": [
+            "papichooter",
+            "560.25"
+          ]
+        },
+        {
+          "name": "Read all roster quotes with coverage",
+          "selector": "#inspect-quotes",
+          "url": "view=quotes",
+          "expect": [
+            "1,622",
+            "Unpriced"
+          ],
+          "allOwnedPlayers": true
+        }
+      ]
+    },
+    "guest": {
+      "home": [
+        "Reaves Dropper",
+        "Ware the Hoes At",
+        "NeuralNets"
+      ],
+      "tasks": [
+        {
+          "name": "Inspect public leading-team context",
+          "selector": "#task-primary",
+          "url": "view=team",
+          "expect": [
+            "Reaves Dropper",
+            "615.5"
+          ]
+        },
+        {
+          "name": "Read qualified public franchise history",
+          "selector": "#league-team-8",
+          "url": "view=team",
+          "expect": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ]
+        },
+        {
+          "name": "Find actual account entry",
+          "selector": "a[href=\"https://goathoopers.com/login\"]",
+          "external": "https://goathoopers.com/login",
+          "expect": [
+            "Sign in"
+          ]
+        }
+      ]
+    }
+  }
+}

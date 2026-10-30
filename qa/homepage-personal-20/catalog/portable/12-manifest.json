@@ -1,0 +1,216 @@
+{
+  "id": "12",
+  "author": "/root/personal12",
+  "source": "qa/homepage-personal-20/12/index.html",
+  "standalone": {
+    "path": "qa/homepage-personal-20/catalog/portable/GOAT-personal-12.html",
+    "bytes": 3892893,
+    "sha256": "77008333fee0a2dffe7180e5a1cd1128f95d6dd6e1cc904cb137469bae41d5dd"
+  },
+  "fixtureSha256": "7a1835933c4319c5e169c46c21197e350d39715101078358413295aad907e382",
+  "sources": [
+    {
+      "path": "qa/homepage-personal-20/12/index.html",
+      "bytes": 424,
+      "sha256": "f91a5f53d0509d28d9f493e2b75ac7a8ae61829a179683db3c4764b9d3b5acc2"
+    },
+    {
+      "path": "qa/homepage-personal-20/12/app.js",
+      "bytes": 23326,
+      "sha256": "4484e60b309f48b59232590bc7ce45f2471639f55b7a0f500557c218eaae47b8"
+    },
+    {
+      "path": "qa/homepage-personal-20/12/style.css",
+      "bytes": 18733,
+      "sha256": "9adee181c169bedf80ca4618c1309bf3a110949b0b07a37cbb433070f9321c6c"
+    }
+  ],
+  "embeddedAssets": [
+    {
+      "path": "public/courtside/portraits/player-1511.png",
+      "bytes": 68824,
+      "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9"
+    },
+    {
+      "path": "public/courtside/portraits/player-2308.png",
+      "bytes": 59711,
+      "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb"
+    },
+    {
+      "path": "public/courtside/portraits/player-2133.png",
+      "bytes": 71681,
+      "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693"
+    },
+    {
+      "path": "public/courtside/portraits/player-1380.png",
+      "bytes": 60668,
+      "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45"
+    },
+    {
+      "path": "public/courtside/portraits/player-2179.png",
+      "bytes": 68817,
+      "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8"
+    },
+    {
+      "path": "public/courtside/portraits/player-4866.png",
+      "bytes": 53860,
+      "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506"
+    },
+    {
+      "path": "public/courtside/arena.jpg",
+      "bytes": 329398,
+      "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177"
+    },
+    {
+      "path": "public/arcade/free-throw-preview.jpg",
+      "bytes": 46441,
+      "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c"
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+      "bytes": 5117,
+      "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+      "bytes": 5117,
+      "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9"
+    },
+    {
+      "path": "public/courtside/portraits/player-1085.png",
+      "bytes": 62900,
+      "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb"
+    },
+    {
+      "path": "public/courtside/portraits/player-1272.png",
+      "bytes": 57909,
+      "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe"
+    },
+    {
+      "path": "public/courtside/portraits/player-1362.png",
+      "bytes": 28190,
+      "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411"
+    },
+    {
+      "path": "public/courtside/portraits/player-1648.png",
+      "bytes": 64090,
+      "sha256": "3fa9f9c7f662cb71418e35fc85c08c0e187482c98d95ca90c7de43635ebc084d"
+    },
+    {
+      "path": "public/courtside/portraits/player-1658.png",
+      "bytes": 75511,
+      "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2"
+    },
+    {
+      "path": "public/courtside/portraits/player-1739.png",
+      "bytes": 64753,
+      "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94"
+    },
+    {
+      "path": "public/courtside/portraits/player-1822.png",
+      "bytes": 66002,
+      "sha256": "b6f3da7bd93e9ac558f56eb860e404fec11447920d59c39f2c35fa04edc9711d"
+    },
+    {
+      "path": "public/courtside/portraits/player-1845.png",
+      "bytes": 63970,
+      "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676"
+    },
+    {
+      "path": "public/courtside/portraits/player-1846.png",
+      "bytes": 60917,
+      "sha256": "6baeacec21de5892eb12768cad1a93b3475783ef3d4eb0dc53f005530b2c9716"
+    },
+    {
+      "path": "public/courtside/portraits/player-1945.png",
+      "bytes": 62351,
+      "sha256": "c866017e1face1dc559134e0f343f1b9989184f8f62a2174476afe23a01f599d"
+    },
+    {
+      "path": "public/courtside/portraits/player-1957.png",
+      "bytes": 47200,
+      "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c"
+    },
+    {
+      "path": "public/courtside/portraits/player-1967.png",
+      "bytes": 65120,
+      "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64"
+    },
+    {
+      "path": "public/courtside/portraits/player-1970.png",
+      "bytes": 67211,
+      "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842"
+    },
+    {
+      "path": "public/courtside/portraits/player-2126.png",
+      "bytes": 75165,
+      "sha256": "20aaebc63ce4460b83bb6a38e01cbf0e859c4f9fd8e0c7c92a0333af886157d0"
+    },
+    {
+      "path": "public/courtside/portraits/player-2161.png",
+      "bytes": 65934,
+      "sha256": "a2967d2ff9a13a1adc65960194b612b74070d45bda985846dee4e591a76473df"
+    },
+    {
+      "path": "public/courtside/portraits/player-2259.png",
+      "bytes": 62805,
+      "sha256": "3905f86f048f184f372c5e94332e8300eeb661299b3b85fdbb817233ec6c475a"
+    },
+    {
+      "path": "public/courtside/portraits/player-2267.png",
+      "bytes": 68438,
+      "sha256": "af4bb796164757cb4df6419fed59f2701d4bc8c7a38ad55c4c6a3507c628c149"
+    },
+    {
+      "path": "public/courtside/portraits/player-2289.png",
+      "bytes": 67169,
+      "sha256": "000c78b13ae6d3f354a19c56459142984ad47363342de8acfb8f832c07cb40c4"
+    },
+    {
+      "path": "public/courtside/portraits/player-2304.png",
+      "bytes": 60394,
+      "sha256": "46585436aacaa893bde99fff2295719cf9cbd262916b64c82bb5c78ecb7a08e6"
+    },
+    {
+      "path": "public/courtside/portraits/player-2455.png",
+      "bytes": 58083,
+      "sha256": "5a02f37ba08084f3a0db125ca3ad6be4cb68d20a9991ec19222e66dbbd5b69cf"
+    },
+    {
+      "path": "public/courtside/portraits/player-2458.png",
+      "bytes": 54022,
+      "sha256": "145ca037a1f37e3f15f0288b7f384e1ca8edf1f8ac8d0b3cae4db1e03a9a14b2"
+    },
+    {
+      "path": "public/courtside/portraits/player-2574.png",
+      "bytes": 64532,
+      "sha256": "6b8248b69747e1ed9b586b8820c244f72fafd530792768e52613020bde36ce65"
+    },
+    {
+      "path": "public/courtside/portraits/player-2577.png",
+      "bytes": 63051,
+      "sha256": "74786e84d4282c6c3a38d1c8267408db0a8aba7b1a6d1150502da663d9079c5e"
+    },
+    {
+      "path": "public/courtside/portraits/player-4760.png",
+      "bytes": 59589,
+      "sha256": "d13273eeffc9bbe0201fc6db60f168f8877929b15271ac29cc582360609101af"
+    },
+    {
+      "path": "qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk[wght].ttf",
+      "bytes": 136676,
+      "sha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72"
+    },
+    {
+      "path": "qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+      "bytes": 90988,
+      "sha256": "dd9a89a019b4849f66ab75455fe7bdf931311042cbb0f0f97acc061539703180"
+    }
+  ],
+  "fontLicenses": [
+    "Archivo Black",
+    "Space Grotesk"
+  ],
+  "retainedPortraitDirectory": true,
+  "method": "Own author source compiled without a shared presentation renderer. Data-only fixture retained, except unused global portrait directory when absent from authored scripts; roster portraits remain. Images/fonts and OFL notices embedded. Standalone navigation and rendered parity still require browser verification."
+}

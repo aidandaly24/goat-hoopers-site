@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GOAT Hoopers — Your clubs, in view</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to your league home</a>
+  <header id="site-header"></header>
+  <main id="main" tabindex="-1"></main>
+  <footer id="explore"></footer>
+  <p id="status" class="sr-only" role="status" aria-live="polite"></p>
+  <dialog id="inspector" aria-labelledby="inspect-title">
+    <div class="dialog-top"><span>GOAT · Local inspection</span><button type="button" data-action="close" data-testid="close-inspector">Close</button></div>
+    <div id="inspect-content"></div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,2033 @@
+{
+  "id": "16",
+  "sources": [
+    {
+      "path": "qa/homepage-personal-20/16/app.js",
+      "sha256": "83b674e5a382996365fa0a60ff8e6da1d570104e99508c412a332edee21032c0",
+      "bytes": 25716
+    },
+    {
+      "path": "qa/homepage-personal-20/16/index.html",
+      "sha256": "e19de5d0146a23e5fd6d9171e6cd76e61b2ddf65f77f758305fa7f900b8548ce",
+      "bytes": 866
+    },
+    {
+      "path": "qa/homepage-personal-20/16/style.css",
+      "sha256": "0fba0c4f4ae6ee41b2feb2b6904b4d939aa205b6c9320f4088caf391dcda721d",
+      "bytes": 14435
+    }
+  ],
+  "observations": [
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "stage": "designed",
+      "errors": [],
+      "remoteRequests": [],
+      "observed": {
+        "persona": "reaves",
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 1672,
+        "mainCount": 1,
+        "h1Count": 1,
+        "footerCount": 1,
+        "mainText": "2026 · WEEK 3 · LEAGUE HOME\n\nYour clubs, in view.\n\nA familiar place for your own club, your opponent, and the people you choose to keep close.\n\nYOUR CLUB · AIDANDALY20\n\nReaves Dropper\n\n2026 season · 615.5 points for\n\n2–0\n#1 in league order\n\nWeek 3 against Ware the Hoes At?\n\nCurrent synthetic scores · not a final result\n\n184.5\n/\n171\n\nJoel Embiid · C\n38 counted-game points in the supplied Week 2 sample.\n5 of 24 roster players have evidence.\n\nInspect player\nInspect your club\nRoster quotes\nIn view this visit\n\nYour club and this week’s opponent stay close. Choose who else you want to check on.\n\nWare the Hoes At?\nAedan23 · current opponent\nStarting club\nStephon Castle’s Back\nTommyDieselfuel\nRemove\nAdd a club to this view\nChoose a manager and club\nphilbiag · The Fun Guys\nvannweinkauf · Josh Diddy’s Roster\nGriffinHealy · Huff n’ Puff\npapichooter · papichooter\nNeuralNets · NeuralNets\nlordlx · Lebron Theme Team\nTyreseHalibooty · T Halibooty\nAdd club\nClear choices\n\nOnly while this page is open. No follow, notification or account is saved.\n\nYOUR CURRENT OPPONENT\n\nAedan23\n\nWare the Hoes At?\nCurrent record\n1–1\nLeague order\n#4\nSeason points for\n548.75\n\nAedan23 is managing the club across from you this week. Its season points and previous finish give you a little more context.\n\nPREVIOUS SEASON\n\nIn 2025: 12–9, finished 5th.\n\nInspect club\nStarting club · stays in view\n\nNEXT TO YOU IN LEAGUE ORDER\n\nTommyDieselfuel\n\nStephon Castle’s Back\nImmediately below #1\nCurrent record\n2–0\nLeague order\n#2\nSeason points for\n576\n\nWEEK 3 · CURRENT DEMO SCORES\n\nStephon Castle’s Back vs The Fun Guys\n\n102.5 / 109\n\nInspect club\nRemove from view",
+        "footerText": "There’s more to the league.\n\nExplore the GOAT site. These links leave this prototype for existing pages; this demo does not establish their live behavior.\n\nAbout this synthetic demo\nLeague\nNews\nGOAT SITE\nTeams\nGOAT SITE\nTransactions\nGOAT SITE\nThe Table\nGOAT SITE\nIntel\nGOAT SITE\nTeam tools\nStocks\nGOAT SITE\nMy Team\nGOAT SITE\nAI Decides\nGOAT SITE\nTrade Analyzer\nGOAT SITE\nDraft\nGOAT SITE\nMore GOAT\nArcade\nGOAT SITE\nHistory\nGOAT SITE\nWeekly archive\nGOAT SITE\nHome\nGOAT SITE\nSign in\nGOAT SITE\nTake a shot.\nFree throw practice\nOpen the existing game\nGOAT SITE\nGOAT Hoopers · Synthetic 2026 home study\nNo live league, account, AI or backend connection.\nBack to top",
+        "firstFoldText": [
+          "2026 · WEEK 3 · LEAGUE HOME",
+          "Your clubs, in view.",
+          "A familiar place for your own club, your opponent, and the people you choose to keep close.",
+          "YOUR CLUB · AIDANDALY20",
+          "Reaves Dropper",
+          "2026 season · 615.5 points for",
+          "2–0\n#1 in league order",
+          "Current synthetic scores · not a final result",
+          "Joel Embiid · C\n38 counted-game points in the supplied Week 2 sample.\n5 of 24 roster players have evidence.",
+          "Inspect player",
+          "Inspect your club",
+          "Roster quotes",
+          "In view this visit",
+          "Your club and this week’s opponent stay close. Choose who else you want to check on.",
+          "Remove",
+          "Add club",
+          "Clear choices",
+          "Only while this page is open. No follow, notification or account is saved.",
+          "YOUR CURRENT OPPONENT",
+          "Aedan23",
+          "Ware the Hoes At?",
+          "Aedan23 is managing the club across from you this week. Its season points and previous finish give you a little more context.",
+          "NEXT TO YOU IN LEAGUE ORDER",
+          "TommyDieselfuel",
+          "Stephon Castle’s Back",
+          "WEEK 3 · CURRENT DEMO SCORES"
+        ],
+        "headings": [
+          {
+            "text": "Your clubs, in view.",
+            "top": 230,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "36px"
+          },
+          {
+            "text": "Reaves Dropper",
+            "top": 349,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "32px"
+          },
+          {
+            "text": "Week 3 against Ware the Hoes At?",
+            "top": 451,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "18px"
+          },
+          {
+            "text": "In view this visit",
+            "top": 326,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "23px"
+          },
+          {
+            "text": "Ware the Hoes At?",
+            "top": 867,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "29px"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "top": 866,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "29px"
+          },
+          {
+            "text": "There’s more to the league.",
+            "top": 1270,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "23px"
+          },
+          {
+            "text": "League",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "Team tools",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "More GOAT",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "Take a shot.",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          }
+        ],
+        "fonts": {
+          "ClubLora, Georgia, serif": 638,
+          "Arial, Helvetica, sans-serif": 1409,
+          "ClubArchivo, Arial, sans-serif": 19
+        },
+        "inkOverflow": [],
+        "innerReaders": [],
+        "controls": [
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Demo persona"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect player"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect your club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Roster quotes"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove"
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Add a club to this view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "name": "Add club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Clear choices"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove from view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "About this synthetic demo"
+          }
+        ],
+        "links": [
+          {
+            "name": "Skip to your league home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "GOAT Hoopers prototype home",
+            "href": "?persona=reaves",
+            "visible": true
+          },
+          {
+            "name": "Home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "In view",
+            "href": "#club-grid",
+            "visible": true
+          },
+          {
+            "name": "Choose clubs",
+            "href": "#visit-controls",
+            "visible": true
+          },
+          {
+            "name": "Explore GOAT",
+            "href": "#explore",
+            "visible": true
+          },
+          {
+            "name": "My Team GOAT site",
+            "href": "https://goathoopers.com/team",
+            "visible": true
+          },
+          {
+            "name": "Synthetic demo",
+            "href": "?persona=reaves&inspect=source",
+            "visible": true
+          },
+          {
+            "name": "Ware the Hoes At?",
+            "href": "#club-2",
+            "visible": true
+          },
+          {
+            "name": "Stephon Castle’s Back",
+            "href": "#club-3",
+            "visible": true
+          },
+          {
+            "name": "News\nGOAT SITE",
+            "href": "https://goathoopers.com/news",
+            "visible": true
+          },
+          {
+            "name": "Teams\nGOAT SITE",
+            "href": "https://goathoopers.com/teams",
+            "visible": true
+          },
+          {
+            "name": "Transactions\nGOAT SITE",
+            "href": "https://goathoopers.com/transactions",
+            "visible": true
+          },
+          {
+            "name": "The Table\nGOAT SITE",
+            "href": "https://goathoopers.com/table",
+            "visible": true
+          },
+          {
+            "name": "Intel\nGOAT SITE",
+            "href": "https://goathoopers.com/intel",
+            "visible": true
+          },
+          {
+            "name": "Stocks\nGOAT SITE",
+            "href": "https://goathoopers.com/stocks",
+            "visible": true
+          },
+          {
+            "name": "My Team\nGOAT SITE",
+            "href": "https://goathoopers.com/team",
+            "visible": true
+          },
+          {
+            "name": "AI Decides\nGOAT SITE",
+            "href": "https://goathoopers.com/ai-decides",
+            "visible": true
+          },
+          {
+            "name": "Trade Analyzer\nGOAT SITE",
+            "href": "https://goathoopers.com/trade-analyzer",
+            "visible": true
+          },
+          {
+            "name": "Draft\nGOAT SITE",
+            "href": "https://goathoopers.com/draft",
+            "visible": true
+          },
+          {
+            "name": "Arcade\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade",
+            "visible": true
+          },
+          {
+            "name": "History\nGOAT SITE",
+            "href": "https://goathoopers.com/history",
+            "visible": true
+          },
+          {
+            "name": "Weekly archive\nGOAT SITE",
+            "href": "https://goathoopers.com/weekly",
+            "visible": true
+          },
+          {
+            "name": "Home\nGOAT SITE",
+            "href": "https://goathoopers.com/",
+            "visible": true
+          },
+          {
+            "name": "Sign in\nGOAT SITE",
+            "href": "https://goathoopers.com/login",
+            "visible": true
+          },
+          {
+            "name": "Free throw practice\nOpen the existing game\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade/free-throw",
+            "visible": true
+          },
+          {
+            "name": "Back to top",
+            "href": "#main",
+            "visible": true
+          }
+        ],
+        "invalidHashes": []
+      }
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "stage": "designed",
+      "errors": [],
+      "remoteRequests": [],
+      "observed": {
+        "persona": "neural",
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 1672,
+        "mainCount": 1,
+        "h1Count": 1,
+        "footerCount": 1,
+        "mainText": "2026 · WEEK 3 · LEAGUE HOME\n\nYour clubs, in view.\n\nA familiar place for your own club, your opponent, and the people you choose to keep close.\n\nYOUR CLUB · NEURALNETS\n\nNeuralNets\n\n2026 season · 412.25 points for\n\n0–2\n#10 in league order\n\nWeek 3 against papichooter\n\nCurrent synthetic scores · not a final result\n\nNot returned\n/\n0\n\nGiannis Antetokounmpo · PF\n45 counted-game points in the supplied Week 2 sample.\n3 of 22 roster players have evidence.\n\nInspect player\nInspect your club\nRoster quotes\nIn view this visit\n\nYour club and this week’s opponent stay close. Choose who else you want to check on.\n\npapichooter\npapichooter · current opponent\nStarting club\nT Halibooty\nTyreseHalibooty\nRemove\nAdd a club to this view\nChoose a manager and club\naidandaly20 · Reaves Dropper\nAedan23 · Ware the Hoes At?\nTommyDieselfuel · Stephon Castle’s Back\nphilbiag · The Fun Guys\nvannweinkauf · Josh Diddy’s Roster\nGriffinHealy · Huff n’ Puff\nlordlx · Lebron Theme Team\nAdd club\nClear choices\n\nOnly while this page is open. No follow, notification or account is saved.\n\nYOUR CURRENT OPPONENT\n\npapichooter\n\npapichooter\nCurrent record\n2–0\nLeague order\n#3\nSeason points for\n560.25\n\npapichooter is managing the club across from you this week. Its season points and previous finish give you a little more context.\n\nPREVIOUS SEASON\n\nIn 2025: 16–5, finished 2nd.\n\nInspect club\nStarting club · stays in view\n\nNEXT TO YOU IN LEAGUE ORDER\n\nTyreseHalibooty\n\nT Halibooty\nImmediately above #10\nCurrent record\n0–2\nLeague order\n#9\nSeason points for\n437.75\n\nWEEK 3 · CURRENT DEMO SCORES\n\nT Halibooty vs Lebron Theme Team\n\n100 / 92.5\n\nInspect club\nRemove from view",
+        "footerText": "There’s more to the league.\n\nExplore the GOAT site. These links leave this prototype for existing pages; this demo does not establish their live behavior.\n\nAbout this synthetic demo\nLeague\nNews\nGOAT SITE\nTeams\nGOAT SITE\nTransactions\nGOAT SITE\nThe Table\nGOAT SITE\nIntel\nGOAT SITE\nTeam tools\nStocks\nGOAT SITE\nMy Team\nGOAT SITE\nAI Decides\nGOAT SITE\nTrade Analyzer\nGOAT SITE\nDraft\nGOAT SITE\nMore GOAT\nArcade\nGOAT SITE\nHistory\nGOAT SITE\nWeekly archive\nGOAT SITE\nHome\nGOAT SITE\nSign in\nGOAT SITE\nTake a shot.\nFree throw practice\nOpen the existing game\nGOAT SITE\nGOAT Hoopers · Synthetic 2026 home study\nNo live league, account, AI or backend connection.\nBack to top",
+        "firstFoldText": [
+          "2026 · WEEK 3 · LEAGUE HOME",
+          "Your clubs, in view.",
+          "A familiar place for your own club, your opponent, and the people you choose to keep close.",
+          "YOUR CLUB · NEURALNETS",
+          "NeuralNets",
+          "2026 season · 412.25 points for",
+          "0–2\n#10 in league order",
+          "Current synthetic scores · not a final result",
+          "Giannis Antetokounmpo · PF\n45 counted-game points in the supplied Week 2 sample.\n3 of 22 roster players have evidence.",
+          "Inspect player",
+          "Inspect your club",
+          "Roster quotes",
+          "In view this visit",
+          "Your club and this week’s opponent stay close. Choose who else you want to check on.",
+          "Remove",
+          "Add club",
+          "Clear choices",
+          "Only while this page is open. No follow, notification or account is saved.",
+          "YOUR CURRENT OPPONENT",
+          "papichooter",
+          "papichooter",
+          "papichooter is managing the club across from you this week. Its season points and previous finish give you a little more context.",
+          "NEXT TO YOU IN LEAGUE ORDER",
+          "TyreseHalibooty",
+          "T Halibooty",
+          "WEEK 3 · CURRENT DEMO SCORES"
+        ],
+        "headings": [
+          {
+            "text": "Your clubs, in view.",
+            "top": 230,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "36px"
+          },
+          {
+            "text": "NeuralNets",
+            "top": 349,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "32px"
+          },
+          {
+            "text": "Week 3 against papichooter",
+            "top": 451,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "18px"
+          },
+          {
+            "text": "In view this visit",
+            "top": 326,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "23px"
+          },
+          {
+            "text": "papichooter",
+            "top": 867,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "29px"
+          },
+          {
+            "text": "T Halibooty",
+            "top": 866,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "29px"
+          },
+          {
+            "text": "There’s more to the league.",
+            "top": 1270,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "23px"
+          },
+          {
+            "text": "League",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "Team tools",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "More GOAT",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "Take a shot.",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          }
+        ],
+        "fonts": {
+          "ClubLora, Georgia, serif": 647,
+          "Arial, Helvetica, sans-serif": 1393,
+          "ClubArchivo, Arial, sans-serif": 11
+        },
+        "inkOverflow": [],
+        "innerReaders": [],
+        "controls": [
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Demo persona"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect player"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect your club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Roster quotes"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove"
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Add a club to this view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "name": "Add club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Clear choices"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove from view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "About this synthetic demo"
+          }
+        ],
+        "links": [
+          {
+            "name": "Skip to your league home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "GOAT Hoopers prototype home",
+            "href": "?persona=neural",
+            "visible": true
+          },
+          {
+            "name": "Home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "In view",
+            "href": "#club-grid",
+            "visible": true
+          },
+          {
+            "name": "Choose clubs",
+            "href": "#visit-controls",
+            "visible": true
+          },
+          {
+            "name": "Explore GOAT",
+            "href": "#explore",
+            "visible": true
+          },
+          {
+            "name": "My Team GOAT site",
+            "href": "https://goathoopers.com/team",
+            "visible": true
+          },
+          {
+            "name": "Synthetic demo",
+            "href": "?persona=neural&inspect=source",
+            "visible": true
+          },
+          {
+            "name": "papichooter",
+            "href": "#club-7",
+            "visible": true
+          },
+          {
+            "name": "T Halibooty",
+            "href": "#club-10",
+            "visible": true
+          },
+          {
+            "name": "News\nGOAT SITE",
+            "href": "https://goathoopers.com/news",
+            "visible": true
+          },
+          {
+            "name": "Teams\nGOAT SITE",
+            "href": "https://goathoopers.com/teams",
+            "visible": true
+          },
+          {
+            "name": "Transactions\nGOAT SITE",
+            "href": "https://goathoopers.com/transactions",
+            "visible": true
+          },
+          {
+            "name": "The Table\nGOAT SITE",
+            "href": "https://goathoopers.com/table",
+            "visible": true
+          },
+          {
+            "name": "Intel\nGOAT SITE",
+            "href": "https://goathoopers.com/intel",
+            "visible": true
+          },
+          {
+            "name": "Stocks\nGOAT SITE",
+            "href": "https://goathoopers.com/stocks",
+            "visible": true
+          },
+          {
+            "name": "My Team\nGOAT SITE",
+            "href": "https://goathoopers.com/team",
+            "visible": true
+          },
+          {
+            "name": "AI Decides\nGOAT SITE",
+            "href": "https://goathoopers.com/ai-decides",
+            "visible": true
+          },
+          {
+            "name": "Trade Analyzer\nGOAT SITE",
+            "href": "https://goathoopers.com/trade-analyzer",
+            "visible": true
+          },
+          {
+            "name": "Draft\nGOAT SITE",
+            "href": "https://goathoopers.com/draft",
+            "visible": true
+          },
+          {
+            "name": "Arcade\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade",
+            "visible": true
+          },
+          {
+            "name": "History\nGOAT SITE",
+            "href": "https://goathoopers.com/history",
+            "visible": true
+          },
+          {
+            "name": "Weekly archive\nGOAT SITE",
+            "href": "https://goathoopers.com/weekly",
+            "visible": true
+          },
+          {
+            "name": "Home\nGOAT SITE",
+            "href": "https://goathoopers.com/",
+            "visible": true
+          },
+          {
+            "name": "Sign in\nGOAT SITE",
+            "href": "https://goathoopers.com/login",
+            "visible": true
+          },
+          {
+            "name": "Free throw practice\nOpen the existing game\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade/free-throw",
+            "visible": true
+          },
+          {
+            "name": "Back to top",
+            "href": "#main",
+            "visible": true
+          }
+        ],
+        "invalidHashes": []
+      }
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "stage": "designed",
+      "errors": [],
+      "remoteRequests": [],
+      "observed": {
+        "persona": "guest",
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 1653,
+        "mainCount": 1,
+        "h1Count": 1,
+        "footerCount": 1,
+        "mainText": "2026 · WEEK 3 · LEAGUE HOME\n\nYour clubs, in view.\n\nA public look at GOAT Hoopers. Pick a club, inspect the context, stay a little longer.\n\nPUBLIC LEAGUE HOME\n\nGet to know the company.\n\nTen clubs. Ten managers. Start with last season’s finalists, then keep any club close for this visit.\n\nClubs in the league\n10\nPlayoff places\n6\nPlayoffs start, week\n20\n\nThe 2025 final: Josh Diddy’s Roster 326 / papichooter 251.5. The club panels below show today’s synthetic scenario.\n\nSign in for your actual club GOAT site\nChoose another club\nIn view this visit\n\nLast season’s finalists are a starting point. Make this small view your own.\n\nJosh Diddy’s Roster\nvannweinkauf · 2025 winner\nStarting club\npapichooter\npapichooter\nRemove\nAdd a club to this view\nChoose a manager and club\naidandaly20 · Reaves Dropper\nAedan23 · Ware the Hoes At?\nTommyDieselfuel · Stephon Castle’s Back\nphilbiag · The Fun Guys\nGriffinHealy · Huff n’ Puff\nNeuralNets · NeuralNets\nlordlx · Lebron Theme Team\nTyreseHalibooty · T Halibooty\nAdd club\nClear choices\n\nOnly while this page is open. No follow, notification or account is saved.\n\n2025 FINALIST · WINNER\n\nvannweinkauf\n\nJosh Diddy’s Roster\nCurrent record\n1–1\nLeague order\n#5\nSeason points for\n536.5\n\nWEEK 3 · CURRENT DEMO SCORES\n\nJosh Diddy’s Roster vs Huff n’ Puff\n\n131 / 126.5\n\nInspect club\nStarting club · stays in view\n\n2025 FINALIST · RUNNER-UP\n\npapichooter\n\npapichooter\nCurrent record\n2–0\nLeague order\n#3\nSeason points for\n560.25\n\nWEEK 3 · CURRENT DEMO SCORES\n\npapichooter vs NeuralNets\n\n0 / Not returned\n\nOne score is missing. No leader is inferred.\n\nInspect club\nRemove from view",
+        "footerText": "There’s more to the league.\n\nExplore the GOAT site. These links leave this prototype for existing pages; this demo does not establish their live behavior.\n\nAbout this synthetic demo\nLeague\nNews\nGOAT SITE\nTeams\nGOAT SITE\nTransactions\nGOAT SITE\nThe Table\nGOAT SITE\nIntel\nGOAT SITE\nTeam tools\nStocks\nGOAT SITE\nMy Team\nGOAT SITE\nAI Decides\nGOAT SITE\nTrade Analyzer\nGOAT SITE\nDraft\nGOAT SITE\nMore GOAT\nArcade\nGOAT SITE\nHistory\nGOAT SITE\nWeekly archive\nGOAT SITE\nHome\nGOAT SITE\nSign in\nGOAT SITE\nTake a shot.\nFree throw practice\nOpen the existing game\nGOAT SITE\nGOAT Hoopers · Synthetic 2026 home study\nNo live league, account, AI or backend connection.\nBack to top",
+        "firstFoldText": [
+          "2026 · WEEK 3 · LEAGUE HOME",
+          "Your clubs, in view.",
+          "A public look at GOAT Hoopers. Pick a club, inspect the context, stay a little longer.",
+          "PUBLIC LEAGUE HOME",
+          "Get to know the company.",
+          "Ten clubs. Ten managers. Start with last season’s finalists, then keep any club close for this visit.",
+          "The 2025 final: Josh Diddy’s Roster 326 / papichooter 251.5. The club panels below show today’s synthetic scenario.",
+          "Choose another club",
+          "In view this visit",
+          "Last season’s finalists are a starting point. Make this small view your own.",
+          "Remove",
+          "Add club",
+          "Clear choices",
+          "Only while this page is open. No follow, notification or account is saved.",
+          "2025 FINALIST · WINNER",
+          "vannweinkauf",
+          "Josh Diddy’s Roster",
+          "WEEK 3 · CURRENT DEMO SCORES",
+          "2025 FINALIST · RUNNER-UP",
+          "papichooter",
+          "papichooter",
+          "WEEK 3 · CURRENT DEMO SCORES"
+        ],
+        "headings": [
+          {
+            "text": "Your clubs, in view.",
+            "top": 225,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "36px"
+          },
+          {
+            "text": "Get to know the company.",
+            "top": 336,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "32px"
+          },
+          {
+            "text": "In view this visit",
+            "top": 320,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "23px"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "top": 861,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "29px"
+          },
+          {
+            "text": "papichooter",
+            "top": 860,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "29px"
+          },
+          {
+            "text": "There’s more to the league.",
+            "top": 1252,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "23px"
+          },
+          {
+            "text": "League",
+            "top": 1356,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "Team tools",
+            "top": 1356,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "More GOAT",
+            "top": 1356,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "Take a shot.",
+            "top": 1356,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          }
+        ],
+        "fonts": {
+          "ClubLora, Georgia, serif": 509,
+          "Arial, Helvetica, sans-serif": 1483,
+          "ClubArchivo, Arial, sans-serif": 14
+        },
+        "inkOverflow": [],
+        "innerReaders": [],
+        "controls": [
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Demo persona"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Choose another club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove"
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Add a club to this view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "name": "Add club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Clear choices"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove from view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "About this synthetic demo"
+          }
+        ],
+        "links": [
+          {
+            "name": "Skip to your league home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "GOAT Hoopers prototype home",
+            "href": "?persona=guest",
+            "visible": true
+          },
+          {
+            "name": "Home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "In view",
+            "href": "#club-grid",
+            "visible": true
+          },
+          {
+            "name": "Choose clubs",
+            "href": "#visit-controls",
+            "visible": true
+          },
+          {
+            "name": "Explore GOAT",
+            "href": "#explore",
+            "visible": true
+          },
+          {
+            "name": "Sign in GOAT site",
+            "href": "https://goathoopers.com/login",
+            "visible": true
+          },
+          {
+            "name": "Synthetic demo",
+            "href": "?persona=guest&inspect=source",
+            "visible": true
+          },
+          {
+            "name": "Sign in for your actual club GOAT site",
+            "href": "https://goathoopers.com/login",
+            "visible": true
+          },
+          {
+            "name": "Josh Diddy’s Roster",
+            "href": "#club-5",
+            "visible": true
+          },
+          {
+            "name": "papichooter",
+            "href": "#club-7",
+            "visible": true
+          },
+          {
+            "name": "News\nGOAT SITE",
+            "href": "https://goathoopers.com/news",
+            "visible": true
+          },
+          {
+            "name": "Teams\nGOAT SITE",
+            "href": "https://goathoopers.com/teams",
+            "visible": true
+          },
+          {
+            "name": "Transactions\nGOAT SITE",
+            "href": "https://goathoopers.com/transactions",
+            "visible": true
+          },
+          {
+            "name": "The Table\nGOAT SITE",
+            "href": "https://goathoopers.com/table",
+            "visible": true
+          },
+          {
+            "name": "Intel\nGOAT SITE",
+            "href": "https://goathoopers.com/intel",
+            "visible": true
+          },
+          {
+            "name": "Stocks\nGOAT SITE",
+            "href": "https://goathoopers.com/stocks",
+            "visible": true
+          },
+          {
+            "name": "My Team\nGOAT SITE",
+            "href": "https://goathoopers.com/team",
+            "visible": true
+          },
+          {
+            "name": "AI Decides\nGOAT SITE",
+            "href": "https://goathoopers.com/ai-decides",
+            "visible": true
+          },
+          {
+            "name": "Trade Analyzer\nGOAT SITE",
+            "href": "https://goathoopers.com/trade-analyzer",
+            "visible": true
+          },
+          {
+            "name": "Draft\nGOAT SITE",
+            "href": "https://goathoopers.com/draft",
+            "visible": true
+          },
+          {
+            "name": "Arcade\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade",
+            "visible": true
+          },
+          {
+            "name": "History\nGOAT SITE",
+            "href": "https://goathoopers.com/history",
+            "visible": true
+          },
+          {
+            "name": "Weekly archive\nGOAT SITE",
+            "href": "https://goathoopers.com/weekly",
+            "visible": true
+          },
+          {
+            "name": "Home\nGOAT SITE",
+            "href": "https://goathoopers.com/",
+            "visible": true
+          },
+          {
+            "name": "Sign in\nGOAT SITE",
+            "href": "https://goathoopers.com/login",
+            "visible": true
+          },
+          {
+            "name": "Free throw practice\nOpen the existing game\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade/free-throw",
+            "visible": true
+          },
+          {
+            "name": "Back to top",
+            "href": "#main",
+            "visible": true
+          }
+        ],
+        "invalidHashes": []
+      }
+    },
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "stage": "structure",
+      "errors": [],
+      "remoteRequests": [],
+      "observed": {
+        "persona": "reaves",
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 1672,
+        "mainCount": 1,
+        "h1Count": 1,
+        "footerCount": 1,
+        "mainText": "2026 · WEEK 3 · LEAGUE HOME\n\nYour clubs, in view.\n\nA familiar place for your own club, your opponent, and the people you choose to keep close.\n\nYOUR CLUB · AIDANDALY20\n\nReaves Dropper\n\n2026 season · 615.5 points for\n\n2–0\n#1 in league order\n\nWeek 3 against Ware the Hoes At?\n\nCurrent synthetic scores · not a final result\n\n184.5\n/\n171\n\nJoel Embiid · C\n38 counted-game points in the supplied Week 2 sample.\n5 of 24 roster players have evidence.\n\nInspect player\nInspect your club\nRoster quotes\nIn view this visit\n\nYour club and this week’s opponent stay close. Choose who else you want to check on.\n\nWare the Hoes At?\nAedan23 · current opponent\nStarting club\nStephon Castle’s Back\nTommyDieselfuel\nRemove\nAdd a club to this view\nChoose a manager and club\nphilbiag · The Fun Guys\nvannweinkauf · Josh Diddy’s Roster\nGriffinHealy · Huff n’ Puff\npapichooter · papichooter\nNeuralNets · NeuralNets\nlordlx · Lebron Theme Team\nTyreseHalibooty · T Halibooty\nAdd club\nClear choices\n\nOnly while this page is open. No follow, notification or account is saved.\n\nYOUR CURRENT OPPONENT\n\nAedan23\n\nWare the Hoes At?\nCurrent record\n1–1\nLeague order\n#4\nSeason points for\n548.75\n\nAedan23 is managing the club across from you this week. Its season points and previous finish give you a little more context.\n\nPREVIOUS SEASON\n\nIn 2025: 12–9, finished 5th.\n\nInspect club\nStarting club · stays in view\n\nNEXT TO YOU IN LEAGUE ORDER\n\nTommyDieselfuel\n\nStephon Castle’s Back\nImmediately below #1\nCurrent record\n2–0\nLeague order\n#2\nSeason points for\n576\n\nWEEK 3 · CURRENT DEMO SCORES\n\nStephon Castle’s Back vs The Fun Guys\n\n102.5 / 109\n\nInspect club\nRemove from view",
+        "footerText": "There’s more to the league.\n\nExplore the GOAT site. These links leave this prototype for existing pages; this demo does not establish their live behavior.\n\nAbout this synthetic demo\nLeague\nNews\nGOAT SITE\nTeams\nGOAT SITE\nTransactions\nGOAT SITE\nThe Table\nGOAT SITE\nIntel\nGOAT SITE\nTeam tools\nStocks\nGOAT SITE\nMy Team\nGOAT SITE\nAI Decides\nGOAT SITE\nTrade Analyzer\nGOAT SITE\nDraft\nGOAT SITE\nMore GOAT\nArcade\nGOAT SITE\nHistory\nGOAT SITE\nWeekly archive\nGOAT SITE\nHome\nGOAT SITE\nSign in\nGOAT SITE\nTake a shot.\nFree throw practice\nOpen the existing game\nGOAT SITE\nGOAT Hoopers · Synthetic 2026 home study\nNo live league, account, AI or backend connection.\nBack to top",
+        "firstFoldText": [
+          "2026 · WEEK 3 · LEAGUE HOME",
+          "Your clubs, in view.",
+          "A familiar place for your own club, your opponent, and the people you choose to keep close.",
+          "YOUR CLUB · AIDANDALY20",
+          "Reaves Dropper",
+          "2026 season · 615.5 points for",
+          "2–0\n#1 in league order",
+          "Current synthetic scores · not a final result",
+          "Joel Embiid · C\n38 counted-game points in the supplied Week 2 sample.\n5 of 24 roster players have evidence.",
+          "Inspect player",
+          "Inspect your club",
+          "Roster quotes",
+          "In view this visit",
+          "Your club and this week’s opponent stay close. Choose who else you want to check on.",
+          "Remove",
+          "Add club",
+          "Clear choices",
+          "Only while this page is open. No follow, notification or account is saved.",
+          "YOUR CURRENT OPPONENT",
+          "Aedan23",
+          "Ware the Hoes At?",
+          "Aedan23 is managing the club across from you this week. Its season points and previous finish give you a little more context.",
+          "NEXT TO YOU IN LEAGUE ORDER",
+          "TommyDieselfuel",
+          "Stephon Castle’s Back",
+          "WEEK 3 · CURRENT DEMO SCORES"
+        ],
+        "headings": [
+          {
+            "text": "Your clubs, in view.",
+            "top": 230,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "36px"
+          },
+          {
+            "text": "Reaves Dropper",
+            "top": 349,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "32px"
+          },
+          {
+            "text": "Week 3 against Ware the Hoes At?",
+            "top": 451,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "18px"
+          },
+          {
+            "text": "In view this visit",
+            "top": 326,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "23px"
+          },
+          {
+            "text": "Ware the Hoes At?",
+            "top": 867,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "29px"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "top": 866,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "29px"
+          },
+          {
+            "text": "There’s more to the league.",
+            "top": 1270,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "23px"
+          },
+          {
+            "text": "League",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "Team tools",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "More GOAT",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "Take a shot.",
+            "top": 1374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          }
+        ],
+        "fonts": {
+          "ClubLora, Georgia, serif": 638,
+          "Arial, Helvetica, sans-serif": 1409,
+          "ClubArchivo, Arial, sans-serif": 19
+        },
+        "inkOverflow": [],
+        "innerReaders": [],
+        "controls": [
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Demo persona"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect player"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect your club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Roster quotes"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove"
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Add a club to this view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "name": "Add club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Clear choices"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove from view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "About this synthetic demo"
+          }
+        ],
+        "links": [
+          {
+            "name": "Skip to your league home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "GOAT Hoopers prototype home",
+            "href": "?persona=reaves&stage=structure",
+            "visible": true
+          },
+          {
+            "name": "Home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "In view",
+            "href": "#club-grid",
+            "visible": true
+          },
+          {
+            "name": "Choose clubs",
+            "href": "#visit-controls",
+            "visible": true
+          },
+          {
+            "name": "Explore GOAT",
+            "href": "#explore",
+            "visible": true
+          },
+          {
+            "name": "My Team GOAT site",
+            "href": "https://goathoopers.com/team",
+            "visible": true
+          },
+          {
+            "name": "Synthetic demo",
+            "href": "?persona=reaves&inspect=source",
+            "visible": true
+          },
+          {
+            "name": "Ware the Hoes At?",
+            "href": "#club-2",
+            "visible": true
+          },
+          {
+            "name": "Stephon Castle’s Back",
+            "href": "#club-3",
+            "visible": true
+          },
+          {
+            "name": "News\nGOAT SITE",
+            "href": "https://goathoopers.com/news",
+            "visible": true
+          },
+          {
+            "name": "Teams\nGOAT SITE",
+            "href": "https://goathoopers.com/teams",
+            "visible": true
+          },
+          {
+            "name": "Transactions\nGOAT SITE",
+            "href": "https://goathoopers.com/transactions",
+            "visible": true
+          },
+          {
+            "name": "The Table\nGOAT SITE",
+            "href": "https://goathoopers.com/table",
+            "visible": true
+          },
+          {
+            "name": "Intel\nGOAT SITE",
+            "href": "https://goathoopers.com/intel",
+            "visible": true
+          },
+          {
+            "name": "Stocks\nGOAT SITE",
+            "href": "https://goathoopers.com/stocks",
+            "visible": true
+          },
+          {
+            "name": "My Team\nGOAT SITE",
+            "href": "https://goathoopers.com/team",
+            "visible": true
+          },
+          {
+            "name": "AI Decides\nGOAT SITE",
+            "href": "https://goathoopers.com/ai-decides",
+            "visible": true
+          },
+          {
+            "name": "Trade Analyzer\nGOAT SITE",
+            "href": "https://goathoopers.com/trade-analyzer",
+            "visible": true
+          },
+          {
+            "name": "Draft\nGOAT SITE",
+            "href": "https://goathoopers.com/draft",
+            "visible": true
+          },
+          {
+            "name": "Arcade\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade",
+            "visible": true
+          },
+          {
+            "name": "History\nGOAT SITE",
+            "href": "https://goathoopers.com/history",
+            "visible": true
+          },
+          {
+            "name": "Weekly archive\nGOAT SITE",
+            "href": "https://goathoopers.com/weekly",
+            "visible": true
+          },
+          {
+            "name": "Home\nGOAT SITE",
+            "href": "https://goathoopers.com/",
+            "visible": true
+          },
+          {
+            "name": "Sign in\nGOAT SITE",
+            "href": "https://goathoopers.com/login",
+            "visible": true
+          },
+          {
+            "name": "Free throw practice\nOpen the existing game\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade/free-throw",
+            "visible": true
+          },
+          {
+            "name": "Back to top",
+            "href": "#main",
+            "visible": true
+          }
+        ],
+        "invalidHashes": []
+      }
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "stage": "designed",
+      "errors": [],
+      "remoteRequests": [],
+      "observed": {
+        "persona": "reaves",
+        "width": 1120,
+        "documentWidth": 1120,
+        "height": 1691,
+        "mainCount": 1,
+        "h1Count": 1,
+        "footerCount": 1,
+        "mainText": "2026 · WEEK 3 · LEAGUE HOME\n\nYour clubs, in view.\n\nA familiar place for your own club, your opponent, and the people you choose to keep close.\n\nYOUR CLUB · AIDANDALY20\n\nReaves Dropper\n\n2026 season · 615.5 points for\n\n2–0\n#1 in league order\n\nWeek 3 against Ware the Hoes At?\n\nCurrent synthetic scores · not a final result\n\n184.5\n/\n171\n\nJoel Embiid · C\n38 counted-game points in the supplied Week 2 sample.\n5 of 24 roster players have evidence.\n\nInspect player\nInspect your club\nRoster quotes\nIn view this visit\n\nYour club and this week’s opponent stay close. Choose who else you want to check on.\n\nWare the Hoes At?\nAedan23 · current opponent\nStarting club\nStephon Castle’s Back\nTommyDieselfuel\nRemove\nAdd a club to this view\nChoose a manager and club\nphilbiag · The Fun Guys\nvannweinkauf · Josh Diddy’s Roster\nGriffinHealy · Huff n’ Puff\npapichooter · papichooter\nNeuralNets · NeuralNets\nlordlx · Lebron Theme Team\nTyreseHalibooty · T Halibooty\nAdd club\nClear choices\n\nOnly while this page is open. No follow, notification or account is saved.\n\nYOUR CURRENT OPPONENT\n\nAedan23\n\nWare the Hoes At?\nCurrent record\n1–1\nLeague order\n#4\nSeason points for\n548.75\n\nAedan23 is managing the club across from you this week. Its season points and previous finish give you a little more context.\n\nPREVIOUS SEASON\n\nIn 2025: 12–9, finished 5th.\n\nInspect club\nStarting club · stays in view\n\nNEXT TO YOU IN LEAGUE ORDER\n\nTommyDieselfuel\n\nStephon Castle’s Back\nImmediately below #1\nCurrent record\n2–0\nLeague order\n#2\nSeason points for\n576\n\nWEEK 3 · CURRENT DEMO SCORES\n\nStephon Castle’s Back vs The Fun Guys\n\n102.5 / 109\n\nInspect club\nRemove from view",
+        "footerText": "There’s more to the league.\n\nExplore the GOAT site. These links leave this prototype for existing pages; this demo does not establish their live behavior.\n\nAbout this synthetic demo\nLeague\nNews\nGOAT SITE\nTeams\nGOAT SITE\nTransactions\nGOAT SITE\nThe Table\nGOAT SITE\nIntel\nGOAT SITE\nTeam tools\nStocks\nGOAT SITE\nMy Team\nGOAT SITE\nAI Decides\nGOAT SITE\nTrade Analyzer\nGOAT SITE\nDraft\nGOAT SITE\nMore GOAT\nArcade\nGOAT SITE\nHistory\nGOAT SITE\nWeekly archive\nGOAT SITE\nHome\nGOAT SITE\nSign in\nGOAT SITE\nTake a shot.\nFree throw practice\nOpen the existing game\nGOAT SITE\nGOAT Hoopers · Synthetic 2026 home study\nNo live league, account, AI or backend connection.\nBack to top",
+        "firstFoldText": [
+          "2026 · WEEK 3 · LEAGUE HOME",
+          "Your clubs, in view.",
+          "A familiar place for your own club, your opponent, and the people you choose to keep close.",
+          "YOUR CLUB · AIDANDALY20",
+          "Reaves Dropper",
+          "2026 season · 615.5 points for",
+          "2–0\n#1 in league order",
+          "Current synthetic scores · not a final result",
+          "Joel Embiid · C\n38 counted-game points in the supplied Week 2 sample.\n5 of 24 roster players have evidence.",
+          "Inspect player",
+          "Inspect your club",
+          "Roster quotes",
+          "In view this visit",
+          "Your club and this week’s opponent stay close. Choose who else you want to check on.",
+          "Remove",
+          "Add club",
+          "Clear choices",
+          "Only while this page is open. No follow, notification or account is saved.",
+          "YOUR CURRENT OPPONENT",
+          "Aedan23",
+          "Ware the Hoes At?",
+          "Aedan23 is managing the club across from you this week. Its season points and previous finish give you a little more context.",
+          "NEXT TO YOU IN LEAGUE ORDER",
+          "TommyDieselfuel",
+          "Stephon Castle’s Back"
+        ],
+        "headings": [
+          {
+            "text": "Your clubs, in view.",
+            "top": 230,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "36px"
+          },
+          {
+            "text": "Reaves Dropper",
+            "top": 345,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "29px"
+          },
+          {
+            "text": "Week 3 against Ware the Hoes At?",
+            "top": 444,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "18px"
+          },
+          {
+            "text": "In view this visit",
+            "top": 326,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "23px"
+          },
+          {
+            "text": "Ware the Hoes At?",
+            "top": 865,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "26px"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "top": 864,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "26px"
+          },
+          {
+            "text": "There’s more to the league.",
+            "top": 1290,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "23px"
+          },
+          {
+            "text": "League",
+            "top": 1394,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "Team tools",
+            "top": 1394,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "More GOAT",
+            "top": 1394,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          },
+          {
+            "text": "Take a shot.",
+            "top": 1394,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "15px"
+          }
+        ],
+        "fonts": {
+          "ClubLora, Georgia, serif": 638,
+          "Arial, Helvetica, sans-serif": 1409,
+          "ClubArchivo, Arial, sans-serif": 19
+        },
+        "inkOverflow": [],
+        "innerReaders": [],
+        "controls": [
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Demo persona"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect player"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect your club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Roster quotes"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove"
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Add a club to this view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "name": "Add club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Clear choices"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove from view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "About this synthetic demo"
+          }
+        ],
+        "links": [
+          {
+            "name": "Skip to your league home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "GOAT Hoopers prototype home",
+            "href": "?persona=reaves",
+            "visible": true
+          },
+          {
+            "name": "Home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "In view",
+            "href": "#club-grid",
+            "visible": true
+          },
+          {
+            "name": "Choose clubs",
+            "href": "#visit-controls",
+            "visible": true
+          },
+          {
+            "name": "Explore GOAT",
+            "href": "#explore",
+            "visible": true
+          },
+          {
+            "name": "My Team GOAT site",
+            "href": "https://goathoopers.com/team",
+            "visible": true
+          },
+          {
+            "name": "Synthetic demo",
+            "href": "?persona=reaves&inspect=source",
+            "visible": true
+          },
+          {
+            "name": "Ware the Hoes At?",
+            "href": "#club-2",
+            "visible": true
+          },
+          {
+            "name": "Stephon Castle’s Back",
+            "href": "#club-3",
+            "visible": true
+          },
+          {
+            "name": "News\nGOAT SITE",
+            "href": "https://goathoopers.com/news",
+            "visible": true
+          },
+          {
+            "name": "Teams\nGOAT SITE",
+            "href": "https://goathoopers.com/teams",
+            "visible": true
+          },
+          {
+            "name": "Transactions\nGOAT SITE",
+            "href": "https://goathoopers.com/transactions",
+            "visible": true
+          },
+          {
+            "name": "The Table\nGOAT SITE",
+            "href": "https://goathoopers.com/table",
+            "visible": true
+          },
+          {
+            "name": "Intel\nGOAT SITE",
+            "href": "https://goathoopers.com/intel",
+            "visible": true
+          },
+          {
+            "name": "Stocks\nGOAT SITE",
+            "href": "https://goathoopers.com/stocks",
+            "visible": true
+          },
+          {
+            "name": "My Team\nGOAT SITE",
+            "href": "https://goathoopers.com/team",
+            "visible": true
+          },
+          {
+            "name": "AI Decides\nGOAT SITE",
+            "href": "https://goathoopers.com/ai-decides",
+            "visible": true
+          },
+          {
+            "name": "Trade Analyzer\nGOAT SITE",
+            "href": "https://goathoopers.com/trade-analyzer",
+            "visible": true
+          },
+          {
+            "name": "Draft\nGOAT SITE",
+            "href": "https://goathoopers.com/draft",
+            "visible": true
+          },
+          {
+            "name": "Arcade\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade",
+            "visible": true
+          },
+          {
+            "name": "History\nGOAT SITE",
+            "href": "https://goathoopers.com/history",
+            "visible": true
+          },
+          {
+            "name": "Weekly archive\nGOAT SITE",
+            "href": "https://goathoopers.com/weekly",
+            "visible": true
+          },
+          {
+            "name": "Home\nGOAT SITE",
+            "href": "https://goathoopers.com/",
+            "visible": true
+          },
+          {
+            "name": "Sign in\nGOAT SITE",
+            "href": "https://goathoopers.com/login",
+            "visible": true
+          },
+          {
+            "name": "Free throw practice\nOpen the existing game\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade/free-throw",
+            "visible": true
+          },
+          {
+            "name": "Back to top",
+            "href": "#main",
+            "visible": true
+          }
+        ],
+        "invalidHashes": []
+      }
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "stage": "designed",
+      "textScale": 2,
+      "errors": [],
+      "remoteRequests": [],
+      "observed": {
+        "persona": "neural",
+        "width": 1120,
+        "documentWidth": 1120,
+        "height": 3490,
+        "mainCount": 1,
+        "h1Count": 1,
+        "footerCount": 1,
+        "mainText": "2026 · WEEK 3 · LEAGUE HOME\n\nYour clubs, in view.\n\nA familiar place for your own club, your opponent, and the people you choose to keep close.\n\nYOUR CLUB · NEURALNETS\n\nNeuralNets\n\n2026 season · 412.25 points for\n\n0–2\n#10 in league order\n\nWeek 3 against papichooter\n\nCurrent synthetic scores · not a final result\n\nNot returned\n/\n0\n\nGiannis Antetokounmpo · PF\n45 counted-game points in the supplied Week 2 sample.\n3 of 22 roster players have evidence.\n\nInspect player\nInspect your club\nRoster quotes\nIn view this visit\n\nYour club and this week’s opponent stay close. Choose who else you want to check on.\n\npapichooter\npapichooter · current opponent\nStarting club\nT Halibooty\nTyreseHalibooty\nRemove\nAdd a club to this view\nChoose a manager and club\naidandaly20 · Reaves Dropper\nAedan23 · Ware the Hoes At?\nTommyDieselfuel · Stephon Castle’s Back\nphilbiag · The Fun Guys\nvannweinkauf · Josh Diddy’s Roster\nGriffinHealy · Huff n’ Puff\nlordlx · Lebron Theme Team\nAdd club\nClear choices\n\nOnly while this page is open. No follow, notification or account is saved.\n\nYOUR CURRENT OPPONENT\n\npapichooter\n\npapichooter\nCurrent record\n2–0\nLeague order\n#3\nSeason points for\n560.25\n\npapichooter is managing the club across from you this week. Its season points and previous finish give you a little more context.\n\nPREVIOUS SEASON\n\nIn 2025: 16–5, finished 2nd.\n\nInspect club\nStarting club · stays in view\n\nNEXT TO YOU IN LEAGUE ORDER\n\nTyreseHalibooty\n\nT Halibooty\nImmediately above #10\nCurrent record\n0–2\nLeague order\n#9\nSeason points for\n437.75\n\nWEEK 3 · CURRENT DEMO SCORES\n\nT Halibooty vs Lebron Theme Team\n\n100 / 92.5\n\nInspect club\nRemove from view",
+        "footerText": "There’s more to the league.\n\nExplore the GOAT site. These links leave this prototype for existing pages; this demo does not establish their live behavior.\n\nAbout this synthetic demo\nLeague\nNews\nGOAT SITE\nTeams\nGOAT SITE\nTransactions\nGOAT SITE\nThe Table\nGOAT SITE\nIntel\nGOAT SITE\nTeam tools\nStocks\nGOAT SITE\nMy Team\nGOAT SITE\nAI Decides\nGOAT SITE\nTrade Analyzer\nGOAT SITE\nDraft\nGOAT SITE\nMore GOAT\nArcade\nGOAT SITE\nHistory\nGOAT SITE\nWeekly archive\nGOAT SITE\nHome\nGOAT SITE\nSign in\nGOAT SITE\nTake a shot.\nFree throw practice\nOpen the existing game\nGOAT SITE\nGOAT Hoopers · Synthetic 2026 home study\nNo live league, account, AI or backend connection.\nBack to top",
+        "firstFoldText": [
+          "2026 · WEEK 3 · LEAGUE HOME",
+          "Your clubs, in view.",
+          "A familiar place for your own club, your opponent, and the people you choose to keep close.",
+          "YOUR CLUB · NEURALNETS",
+          "NeuralNets",
+          "2026 season · 412.25 points for",
+          "0–2\n#10 in league order",
+          "Current synthetic scores · not a final result",
+          "In view this visit",
+          "Your club and this week’s opponent stay close. Choose who else you want to check on."
+        ],
+        "headings": [
+          {
+            "text": "Your clubs, in view.",
+            "top": 374,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "72px"
+          },
+          {
+            "text": "NeuralNets",
+            "top": 706,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "58px"
+          },
+          {
+            "text": "Week 3 against papichooter",
+            "top": 901,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "36px"
+          },
+          {
+            "text": "In view this visit",
+            "top": 671,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "46px"
+          },
+          {
+            "text": "papichooter",
+            "top": 1813,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "52px"
+          },
+          {
+            "text": "T Halibooty",
+            "top": 1812,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "52px"
+          },
+          {
+            "text": "There’s more to the league.",
+            "top": 2700,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "46px"
+          },
+          {
+            "text": "League",
+            "top": 2917,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "30px"
+          },
+          {
+            "text": "Team tools",
+            "top": 2917,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "30px"
+          },
+          {
+            "text": "More GOAT",
+            "top": 2917,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "30px"
+          },
+          {
+            "text": "Take a shot.",
+            "top": 2917,
+            "font": "Arial, Helvetica, sans-serif",
+            "size": "30px"
+          }
+        ],
+        "fonts": {
+          "ClubLora, Georgia, serif": 647,
+          "Arial, Helvetica, sans-serif": 1393,
+          "ClubArchivo, Arial, sans-serif": 11
+        },
+        "inkOverflow": [],
+        "innerReaders": [],
+        "controls": [
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Demo persona"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect player"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect your club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Roster quotes"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove"
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "name": "Add a club to this view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "name": "Add club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Clear choices"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Inspect club"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "Remove from view"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "name": "About this synthetic demo"
+          }
+        ],
+        "links": [
+          {
+            "name": "Skip to your league home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "GOAT Hoopers prototype home",
+            "href": "?persona=neural",
+            "visible": true
+          },
+          {
+            "name": "Home",
+            "href": "#main",
+            "visible": true
+          },
+          {
+            "name": "In view",
+            "href": "#club-grid",
+            "visible": true
+          },
+          {
+            "name": "Choose clubs",
+            "href": "#visit-controls",
+            "visible": true
+          },
+          {
+            "name": "Explore GOAT",
+            "href": "#explore",
+            "visible": true
+          },
+          {
+            "name": "My Team GOAT site",
+            "href": "https://goathoopers.com/team",
+            "visible": true
+          },
+          {
+            "name": "Synthetic demo",
+            "href": "?persona=neural&inspect=source",
+            "visible": true
+          },
+          {
+            "name": "papichooter",
+            "href": "#club-7",
+            "visible": true
+          },
+          {
+            "name": "T Halibooty",
+            "href": "#club-10",
+            "visible": true
+          },
+          {
+            "name": "News\nGOAT SITE",
+            "href": "https://goathoopers.com/news",
+            "visible": true
+          },
+          {
+            "name": "Teams\nGOAT SITE",
+            "href": "https://goathoopers.com/teams",
+            "visible": true
+          },
+          {
+            "name": "Transactions\nGOAT SITE",
+            "href": "https://goathoopers.com/transactions",
+            "visible": true
+          },
+          {
+            "name": "The Table\nGOAT SITE",
+            "href": "https://goathoopers.com/table",
+            "visible": true
+          },
+          {
+            "name": "Intel\nGOAT SITE",
+            "href": "https://goathoopers.com/intel",
+            "visible": true
+          },
+          {
+            "name": "Stocks\nGOAT SITE",
+            "href": "https://goathoopers.com/stocks",
+            "visible": true
+          },
+          {
+            "name": "My Team\nGOAT SITE",
+            "href": "https://goathoopers.com/team",
+            "visible": true
+          },
+          {
+            "name": "AI Decides\nGOAT SITE",
+            "href": "https://goathoopers.com/ai-decides",
+            "visible": true
+          },
+          {
+            "name": "Trade Analyzer\nGOAT SITE",
+            "href": "https://goathoopers.com/trade-analyzer",
+            "visible": true
+          },
+          {
+            "name": "Draft\nGOAT SITE",
+            "href": "https://goathoopers.com/draft",
+            "visible": true
+          },
+          {
+            "name": "Arcade\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade",
+            "visible": true
+          },
+          {
+            "name": "History\nGOAT SITE",
+            "href": "https://goathoopers.com/history",
+            "visible": true
+          },
+          {
+            "name": "Weekly archive\nGOAT SITE",
+            "href": "https://goathoopers.com/weekly",
+            "visible": true
+          },
+          {
+            "name": "Home\nGOAT SITE",
+            "href": "https://goathoopers.com/",
+            "visible": true
+          },
+          {
+            "name": "Sign in\nGOAT SITE",
+            "href": "https://goathoopers.com/login",
+            "visible": true
+          },
+          {
+            "name": "Free throw practice\nOpen the existing game\nGOAT SITE",
+            "href": "https://goathoopers.com/arcade/free-throw",
+            "visible": true
+          },
+          {
+            "name": "Back to top",
+            "href": "#main",
+            "visible": true
+          }
+        ],
+        "invalidHashes": []
+      }
+    }
+  ],
+  "captures": [
+    {
+      "persona": "reaves",
+      "stage": "designed",
+      "full": {
+        "path": "qa/homepage-personal-20/16/review/reaves-designed-desktop-full.jpg",
+        "bytes": 196920,
+        "sha256": "51eb54e08dda277af5fcac65960804a23ae5f0df5df4d611feced4578f9546cf",
+        "width": 1440,
+        "height": 1672,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1672
+          }
+        ],
+        "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+      }
+    },
+    {
+      "persona": "reaves",
+      "stage": "first-fold",
+      "image": {
+        "path": "qa/homepage-personal-20/16/review/reaves-desktop-first-fold.jpg",
+        "bytes": 120382,
+        "sha256": "3d5379819d46c19018e2de9296e15438dd714ff8950db27ca8446da3d3a98551",
+        "width": 1440,
+        "height": 1000,
+        "quality": 91
+      }
+    },
+    {
+      "persona": "neural",
+      "stage": "designed",
+      "full": {
+        "path": "qa/homepage-personal-20/16/review/neural-designed-desktop-full.jpg",
+        "bytes": 191993,
+        "sha256": "34eb6e9adbc14ba02ed9d956eb273b024d08b74409a620905992a75665edaf77",
+        "width": 1440,
+        "height": 1672,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1672
+          }
+        ],
+        "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+      }
+    },
+    {
+      "persona": "neural",
+      "stage": "first-fold",
+      "image": {
+        "path": "qa/homepage-personal-20/16/review/neural-desktop-first-fold.jpg",
+        "bytes": 115580,
+        "sha256": "391b25b8e83f3fad8b9b9ccacff28da768996440f238f97fa8337871e37390f3",
+        "width": 1440,
+        "height": 1000,
+        "quality": 91
+      }
+    },
+    {
+      "persona": "guest",
+      "stage": "designed",
+      "full": {
+        "path": "qa/homepage-personal-20/16/review/guest-designed-desktop-full.jpg",
+        "bytes": 187521,
+        "sha256": "87694d3a65b95ad97c7698dadac72bf7b032d3a8d08b29164ca4cf2c4572e507",
+        "width": 1440,
+        "height": 1653,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1653
+          }
+        ],
+        "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+      }
+    },
+    {
+      "persona": "guest",
+      "stage": "first-fold",
+      "image": {
+        "path": "qa/homepage-personal-20/16/review/guest-desktop-first-fold.jpg",
+        "bytes": 117864,
+        "sha256": "c9a77d575b6cbca35b09cedd484b870ab1d52e92f97eae82be31ac9f43d0162c",
+        "width": 1440,
+        "height": 1000,
+        "quality": 91
+      }
+    },
+    {
+      "persona": "reaves",
+      "stage": "structure",
+      "full": {
+        "path": "qa/homepage-personal-20/16/review/reaves-structure-desktop-full.jpg",
+        "bytes": 178552,
+        "sha256": "d8538d68394dd65e48689b471dab9c40cb71de785bdd52a44148896a317ee1c8",
+        "width": 1440,
+        "height": 1672,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1672
+          }
+        ],
+        "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+      }
+    }
+  ],
+  "method": "Local source observation at 1440/1120; two member personas plus guest, one neutral whole-page view, explicit computed-text-size doubling for Neural at1120. Technical observations do not certify useful personalization, full website completeness, diverse typography or task completion. Those require separate product/pixel/journey review.",
+  "limits": "Headless Linux Chromium; no mobile, live authentication, backend, assistive technology, physical device or full WCAG certification."
+}

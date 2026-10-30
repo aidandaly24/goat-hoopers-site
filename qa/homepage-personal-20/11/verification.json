@@ -1,0 +1,257 @@
+{
+  "date": "2026-10-30T04:41:27.936Z",
+  "method": "Installed Playwright driving system Chromium; local static server; synthetic fixture only",
+  "matrix": [
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "text": 100,
+      "ready": "11",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "teams": 10,
+      "games": 5,
+      "evidence": 5,
+      "mainHeight": 3200,
+      "controlFont": "18px",
+      "overflowElements": []
+    },
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "text": 200,
+      "ready": "11",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "teams": 10,
+      "games": 5,
+      "evidence": 5,
+      "mainHeight": 7194,
+      "controlFont": "36px",
+      "overflowElements": []
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "text": 100,
+      "ready": "11",
+      "scrollWidth": 1120,
+      "viewport": 1120,
+      "teams": 10,
+      "games": 5,
+      "evidence": 5,
+      "mainHeight": 3222,
+      "controlFont": "18px",
+      "overflowElements": []
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "text": 200,
+      "ready": "11",
+      "scrollWidth": 1120,
+      "viewport": 1120,
+      "teams": 10,
+      "games": 5,
+      "evidence": 5,
+      "mainHeight": 7285,
+      "controlFont": "36px",
+      "overflowElements": []
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "text": 100,
+      "ready": "11",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "teams": 10,
+      "games": 5,
+      "evidence": 3,
+      "mainHeight": 3327,
+      "controlFont": "18px",
+      "overflowElements": []
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "text": 200,
+      "ready": "11",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "teams": 10,
+      "games": 5,
+      "evidence": 3,
+      "mainHeight": 6967,
+      "controlFont": "36px",
+      "overflowElements": []
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "text": 100,
+      "ready": "11",
+      "scrollWidth": 1120,
+      "viewport": 1120,
+      "teams": 10,
+      "games": 5,
+      "evidence": 3,
+      "mainHeight": 3341,
+      "controlFont": "18px",
+      "overflowElements": []
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "text": 200,
+      "ready": "11",
+      "scrollWidth": 1120,
+      "viewport": 1120,
+      "teams": 10,
+      "games": 5,
+      "evidence": 3,
+      "mainHeight": 7125,
+      "controlFont": "36px",
+      "overflowElements": []
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "text": 100,
+      "ready": "11",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "teams": 10,
+      "games": 5,
+      "evidence": 0,
+      "mainHeight": 2113,
+      "controlFont": "18px",
+      "overflowElements": []
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "text": 200,
+      "ready": "11",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "teams": 10,
+      "games": 5,
+      "evidence": 0,
+      "mainHeight": 4501,
+      "controlFont": "36px",
+      "overflowElements": []
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "text": 100,
+      "ready": "11",
+      "scrollWidth": 1120,
+      "viewport": 1120,
+      "teams": 10,
+      "games": 5,
+      "evidence": 0,
+      "mainHeight": 2142,
+      "controlFont": "18px",
+      "overflowElements": []
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "text": 200,
+      "ready": "11",
+      "scrollWidth": 1120,
+      "viewport": 1120,
+      "teams": 10,
+      "games": 5,
+      "evidence": 0,
+      "mainHeight": 4629,
+      "controlFont": "36px",
+      "overflowElements": []
+    }
+  ],
+  "journeys": [
+    {
+      "persona": "reaves",
+      "journey": "1. Primary matchup → supplied scores/model or unknown status → Escape",
+      "result": "pass; dialog closed; primary trigger focus restored"
+    },
+    {
+      "persona": "reaves",
+      "journey": "2. Circuit NeuralNets → qualified 2025 context → browser Back → Forward → Close",
+      "result": "pass; correct dialog state and restored team trigger"
+    },
+    {
+      "persona": "reaves",
+      "journey": "3. Visible player evidence → points/period/quote inspection → Close",
+      "result": "pass; exact supplied period and points; restored player trigger"
+    },
+    {
+      "persona": "neural",
+      "journey": "1. Primary matchup → supplied scores/model or unknown status → Escape",
+      "result": "pass; dialog closed; primary trigger focus restored"
+    },
+    {
+      "persona": "neural",
+      "journey": "2. Circuit NeuralNets → qualified 2025 context → browser Back → Forward → Close",
+      "result": "pass; correct dialog state and restored team trigger"
+    },
+    {
+      "persona": "neural",
+      "journey": "3. Visible player evidence → points/period/quote inspection → Close",
+      "result": "pass; exact supplied period and points; restored player trigger"
+    },
+    {
+      "persona": "guest",
+      "journey": "1. Public center → Check the league games",
+      "result": "pass; normal #games navigation; all five games visible"
+    },
+    {
+      "persona": "guest",
+      "journey": "2. Public circuit team → context → browser Back",
+      "result": "pass; no member claim; restored team trigger"
+    },
+    {
+      "persona": "guest",
+      "journey": "3. papichooter–NeuralNets game → unknown/zero explanation → Escape",
+      "result": "pass; no private model; restored game trigger"
+    }
+  ],
+  "structure": [
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "result": "pass; identical main/circuit heights and complete main text"
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "result": "pass; identical main/circuit heights and complete main text"
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "result": "pass; identical main/circuit heights and complete main text"
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "result": "pass; identical main/circuit heights and complete main text"
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "result": "pass; identical main/circuit heights and complete main text"
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "result": "pass; identical main/circuit heights and complete main text"
+    }
+  ],
+  "errors": [],
+  "requests": [],
+  "personaSelector": "pass; native Guest → NeuralNets changed URL, document dataset and member content",
+  "verified": "pass"
+}

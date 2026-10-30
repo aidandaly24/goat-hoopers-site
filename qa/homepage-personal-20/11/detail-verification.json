@@ -1,0 +1,208 @@
+{
+  "contrast": {
+    "method": "Chromium computed text colors, opacity composited onto computed ancestor backgrounds; WCAG relative luminance",
+    "rows": [
+      {
+        "selector": ".club-node:not(.is-you) .club-name",
+        "foreground": [
+          32,
+          30,
+          27
+        ],
+        "background": [
+          243,
+          103,
+          67
+        ],
+        "ratio": 5.41
+      },
+      {
+        "selector": ".club-node:not(.is-you) .club-meta",
+        "foreground": [
+          32,
+          30,
+          27
+        ],
+        "background": [
+          243,
+          103,
+          67
+        ],
+        "ratio": 5.41
+      },
+      {
+        "selector": ".club-node.is-you .club-name",
+        "foreground": [
+          32,
+          30,
+          27
+        ],
+        "background": [
+          255,
+          250,
+          240
+        ],
+        "ratio": 15.98
+      },
+      {
+        "selector": ".game-center .team-name",
+        "foreground": [
+          255,
+          250,
+          240
+        ],
+        "background": [
+          32,
+          30,
+          27
+        ],
+        "ratio": 15.98
+      },
+      {
+        "selector": ".game-caption",
+        "foreground": [
+          227,
+          213,
+          194
+        ],
+        "background": [
+          32,
+          30,
+          27
+        ],
+        "ratio": 11.53
+      },
+      {
+        "selector": ".period-note",
+        "foreground": [
+          91,
+          85,
+          77
+        ],
+        "background": [
+          255,
+          250,
+          240
+        ],
+        "ratio": 7.08
+      },
+      {
+        "selector": ".roster-note p",
+        "foreground": [
+          32,
+          30,
+          27
+        ],
+        "background": [
+          245,
+          220,
+          196
+        ],
+        "ratio": 12.6
+      },
+      {
+        "selector": ".quote-leaders button",
+        "foreground": [
+          32,
+          30,
+          27
+        ],
+        "background": [
+          245,
+          220,
+          196
+        ],
+        "ratio": 12.6
+      },
+      {
+        "selector": ".sample-updates time",
+        "foreground": [
+          91,
+          85,
+          77
+        ],
+        "background": [
+          255,
+          250,
+          240
+        ],
+        "ratio": 7.08
+      },
+      {
+        "selector": ".game-row button",
+        "foreground": [
+          32,
+          30,
+          27
+        ],
+        "background": [
+          241,
+          237,
+          223
+        ],
+        "ratio": 14.19
+      },
+      {
+        "selector": ".route-group a .exit",
+        "foreground": [
+          228,
+          224,
+          214
+        ],
+        "background": [
+          32,
+          30,
+          27
+        ],
+        "ratio": 12.59
+      },
+      {
+        "selector": ".footer-note",
+        "foreground": [
+          91,
+          85,
+          77
+        ],
+        "background": [
+          255,
+          250,
+          240
+        ],
+        "ratio": 7.08
+      }
+    ],
+    "focus": [
+      {
+        "surface": "orange circuit",
+        "fg": [
+          0,
+          54,
+          107
+        ],
+        "bg": [
+          243,
+          103,
+          67
+        ],
+        "ratio": 3.93
+      },
+      {
+        "surface": "ink game / route panel",
+        "fg": [
+          255,
+          223,
+          79
+        ],
+        "bg": [
+          32,
+          30,
+          27
+        ],
+        "ratio": 12.61
+      }
+    ]
+  },
+  "keyboardContainment": "7 consecutive Tab presses stayed in native dialog",
+  "deepLink": "guest team inspector direct URL → Close removes hash and focuses home title",
+  "enlarged": "1120px at 200% root text reflows game before team list; dialog has no horizontal overflow"
+}

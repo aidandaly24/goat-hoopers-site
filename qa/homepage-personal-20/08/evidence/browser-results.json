@@ -1,0 +1,1649 @@
+{
+  "study": "08",
+  "method": "Chromium via existing Playwright; local fixture only",
+  "url": "http://127.0.0.1:4207/qa/homepage-personal-20/08/",
+  "cases": [
+    {
+      "persona": "reaves",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "textScale": 1,
+      "name": "reaves-1440",
+      "errors": [],
+      "failedRequests": [],
+      "geometry": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 3670,
+        "rootFont": "16px",
+        "images": [
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/arena.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/portraits/player-1511.png",
+            "loaded": true
+          },
+          {
+            "src": "/public/arcade/free-throw-preview.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          }
+        ],
+        "bars": [
+          {
+            "value": "42.5",
+            "ratio": 0.8499924789410349
+          },
+          {
+            "value": "38",
+            "ratio": 0.7599842057761733
+          },
+          {
+            "value": "31",
+            "ratio": 0.619998495788207
+          },
+          {
+            "value": "24.5",
+            "ratio": 0.48999699157641396
+          },
+          {
+            "value": "22",
+            "ratio": 0.43998194945848373
+          }
+        ],
+        "chartBottom": 845.4375
+      },
+      "firstThree": [
+        {
+          "selector": "#primary-1",
+          "heading": "Damian Lillard",
+          "returnedFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "Austin Reaves",
+          "returnedFocus": "#search-player-2316",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "Reaves Dropper versus Ware the Hoes At?",
+          "returnedFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "exits": [
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Free-throw practice in Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/teams",
+          "label": "Teams \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/table",
+          "label": "The Table \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/transactions",
+          "label": "Transactions \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/draft",
+          "label": "Draft \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/intel",
+          "label": "Intel \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/ai-decides",
+          "label": "AI Decides \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/news",
+          "label": "News \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/trade-analyzer",
+          "label": "Trade Analyzer \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "persona": "reaves",
+      "viewport": {
+        "width": 1120,
+        "height": 900
+      },
+      "textScale": 1,
+      "name": "reaves-1120",
+      "errors": [],
+      "failedRequests": [],
+      "geometry": {
+        "width": 1120,
+        "scrollWidth": 1120,
+        "height": 3694,
+        "rootFont": "16px",
+        "images": [
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/arena.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/portraits/player-1511.png",
+            "loaded": true
+          },
+          {
+            "src": "/public/arcade/free-throw-preview.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          }
+        ],
+        "bars": [
+          {
+            "value": "42.5",
+            "ratio": 0.8499802897408101
+          },
+          {
+            "value": "38",
+            "ratio": 0.7599783187148911
+          },
+          {
+            "value": "31",
+            "ratio": 0.6199862028185671
+          },
+          {
+            "value": "24.5",
+            "ratio": 0.4899970434611215
+          },
+          {
+            "value": "22",
+            "ratio": 0.4399822607667291
+          }
+        ],
+        "chartBottom": 839.921875
+      },
+      "firstThree": [
+        {
+          "selector": "#primary-1",
+          "heading": "Damian Lillard",
+          "returnedFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "Austin Reaves",
+          "returnedFocus": "#search-player-2316",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "Reaves Dropper versus Ware the Hoes At?",
+          "returnedFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "exits": [
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Free-throw practice in Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/teams",
+          "label": "Teams \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/table",
+          "label": "The Table \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/transactions",
+          "label": "Transactions \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/draft",
+          "label": "Draft \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/intel",
+          "label": "Intel \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/ai-decides",
+          "label": "AI Decides \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/news",
+          "label": "News \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/trade-analyzer",
+          "label": "Trade Analyzer \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "persona": "reaves",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "textScale": 2,
+      "name": "reaves-1440-text-200",
+      "errors": [],
+      "failedRequests": [],
+      "geometry": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 8711,
+        "rootFont": "32px",
+        "images": [
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/arena.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/portraits/player-1511.png",
+            "loaded": true
+          },
+          {
+            "src": "/public/arcade/free-throw-preview.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          }
+        ],
+        "bars": [
+          {
+            "value": "42.5",
+            "ratio": 0.8499983634994926
+          },
+          {
+            "value": "38",
+            "ratio": 0.7599908355971591
+          },
+          {
+            "value": "31",
+            "ratio": 0.6199718521912742
+          },
+          {
+            "value": "24.5",
+            "ratio": 0.4899682518901581
+          },
+          {
+            "value": "22",
+            "ratio": 0.4399895263967532
+          }
+        ],
+        "chartBottom": 2176.0625
+      },
+      "firstThree": [
+        {
+          "selector": "#primary-1",
+          "heading": "Damian Lillard",
+          "returnedFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "Austin Reaves",
+          "returnedFocus": "#search-player-2316",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "Reaves Dropper versus Ware the Hoes At?",
+          "returnedFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "exits": [
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Free-throw practice in Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/teams",
+          "label": "Teams \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/table",
+          "label": "The Table \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/transactions",
+          "label": "Transactions \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/draft",
+          "label": "Draft \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/intel",
+          "label": "Intel \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/ai-decides",
+          "label": "AI Decides \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/news",
+          "label": "News \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/trade-analyzer",
+          "label": "Trade Analyzer \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "persona": "neural",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "textScale": 1,
+      "name": "neural-1440",
+      "errors": [],
+      "failedRequests": [],
+      "geometry": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 3519,
+        "rootFont": "16px",
+        "images": [
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/arena.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/portraits/player-1380.png",
+            "loaded": true
+          },
+          {
+            "src": "/public/arcade/free-throw-preview.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          }
+        ],
+        "bars": [
+          {
+            "value": "45",
+            "ratio": 0.8999887184115524
+          },
+          {
+            "value": "33.5",
+            "ratio": 0.6699947352587244
+          },
+          {
+            "value": "29.5",
+            "ratio": 0.5899894705174489
+          }
+        ],
+        "chartBottom": 695.1875
+      },
+      "firstThree": [
+        {
+          "selector": "#primary-1",
+          "heading": "Giannis Antetokounmpo",
+          "returnedFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "LaMelo Ball",
+          "returnedFocus": "#search-player-2179",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "papichooter versus NeuralNets",
+          "returnedFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "exits": [
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Free-throw practice in Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/teams",
+          "label": "Teams \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/table",
+          "label": "The Table \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/transactions",
+          "label": "Transactions \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/draft",
+          "label": "Draft \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/intel",
+          "label": "Intel \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/ai-decides",
+          "label": "AI Decides \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/news",
+          "label": "News \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/trade-analyzer",
+          "label": "Trade Analyzer \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "persona": "neural",
+      "viewport": {
+        "width": 1120,
+        "height": 900
+      },
+      "textScale": 1,
+      "name": "neural-1120",
+      "errors": [],
+      "failedRequests": [],
+      "geometry": {
+        "width": 1120,
+        "scrollWidth": 1120,
+        "height": 3506,
+        "rootFont": "16px",
+        "images": [
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/arena.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/portraits/player-1380.png",
+            "loaded": true
+          },
+          {
+            "src": "/public/arcade/free-throw-preview.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          }
+        ],
+        "bars": [
+          {
+            "value": "45",
+            "ratio": 0.8999950724352025
+          },
+          {
+            "value": "33.5",
+            "ratio": 0.6699763476889721
+          },
+          {
+            "value": "29.5",
+            "ratio": 0.5899773332019316
+          }
+        ],
+        "chartBottom": 695.46875
+      },
+      "firstThree": [
+        {
+          "selector": "#primary-1",
+          "heading": "Giannis Antetokounmpo",
+          "returnedFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "LaMelo Ball",
+          "returnedFocus": "#search-player-2179",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "papichooter versus NeuralNets",
+          "returnedFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "exits": [
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Free-throw practice in Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/teams",
+          "label": "Teams \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/table",
+          "label": "The Table \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/transactions",
+          "label": "Transactions \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/draft",
+          "label": "Draft \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/intel",
+          "label": "Intel \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/ai-decides",
+          "label": "AI Decides \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/news",
+          "label": "News \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/trade-analyzer",
+          "label": "Trade Analyzer \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "persona": "neural",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "textScale": 2,
+      "name": "neural-1440-text-200",
+      "errors": [],
+      "failedRequests": [],
+      "geometry": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 8393,
+        "rootFont": "32px",
+        "images": [
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/arena.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/portraits/player-1380.png",
+            "loaded": true
+          },
+          {
+            "src": "/public/arcade/free-throw-preview.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          }
+        ],
+        "bars": [
+          {
+            "value": "45",
+            "ratio": 0.8999770889928976
+          },
+          {
+            "value": "33.5",
+            "ratio": 0.6699833076948254
+          },
+          {
+            "value": "29.5",
+            "ratio": 0.5899911628972605
+          }
+        ],
+        "chartBottom": 1856.265625
+      },
+      "firstThree": [
+        {
+          "selector": "#primary-1",
+          "heading": "Giannis Antetokounmpo",
+          "returnedFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "LaMelo Ball",
+          "returnedFocus": "#search-player-2179",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "papichooter versus NeuralNets",
+          "returnedFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "exits": [
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Free-throw practice in Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/teams",
+          "label": "Teams \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/table",
+          "label": "The Table \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/transactions",
+          "label": "Transactions \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/draft",
+          "label": "Draft \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/intel",
+          "label": "Intel \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/ai-decides",
+          "label": "AI Decides \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/news",
+          "label": "News \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/trade-analyzer",
+          "label": "Trade Analyzer \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "persona": "guest",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "textScale": 1,
+      "name": "guest-1440",
+      "errors": [],
+      "failedRequests": [],
+      "geometry": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 4187,
+        "rootFont": "16px",
+        "images": [
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/arena.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/arcade/free-throw-preview.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          }
+        ],
+        "bars": [
+          {
+            "value": "615.5",
+            "ratio": 0.8792682009626955
+          },
+          {
+            "value": "576",
+            "ratio": 0.8228414560770156
+          },
+          {
+            "value": "560.25",
+            "ratio": 0.8003534897713598
+          },
+          {
+            "value": "548.75",
+            "ratio": 0.7839199759326113
+          },
+          {
+            "value": "536.5",
+            "ratio": 0.7664147111913358
+          },
+          {
+            "value": "525.25",
+            "ratio": 0.7503384476534296
+          },
+          {
+            "value": "516.75",
+            "ratio": 0.7382107400722022
+          },
+          {
+            "value": "457.5",
+            "ratio": 0.653561221419976
+          },
+          {
+            "value": "437.75",
+            "ratio": 0.6253384476534296
+          },
+          {
+            "value": "412.25",
+            "ratio": 0.5889177196149218
+          }
+        ],
+        "chartBottom": 1125.75
+      },
+      "firstThree": [
+        {
+          "selector": "#primary-1",
+          "heading": "Reaves Dropper",
+          "returnedFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "Reaves Dropper versus Ware the Hoes At?",
+          "returnedFocus": "#primary-2",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "NeuralNets",
+          "returnedFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "exits": [
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Free-throw practice in Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/teams",
+          "label": "Teams \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/table",
+          "label": "The Table \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/transactions",
+          "label": "Transactions \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/draft",
+          "label": "Draft \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/intel",
+          "label": "Intel \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/ai-decides",
+          "label": "AI Decides \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/news",
+          "label": "News \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/trade-analyzer",
+          "label": "Trade Analyzer \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "persona": "guest",
+      "viewport": {
+        "width": 1120,
+        "height": 900
+      },
+      "textScale": 1,
+      "name": "guest-1120",
+      "errors": [],
+      "failedRequests": [],
+      "geometry": {
+        "width": 1120,
+        "scrollWidth": 1120,
+        "height": 4176,
+        "rootFont": "16px",
+        "images": [
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/arena.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/arcade/free-throw-preview.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          }
+        ],
+        "bars": [
+          {
+            "value": "615.5",
+            "ratio": 0.8792746624618114
+          },
+          {
+            "value": "576",
+            "ratio": 0.8228540455306987
+          },
+          {
+            "value": "560.25",
+            "ratio": 0.8003350744062284
+          },
+          {
+            "value": "548.75",
+            "ratio": 0.7839262836306298
+          },
+          {
+            "value": "536.5",
+            "ratio": 0.7664087907755986
+          },
+          {
+            "value": "525.25",
+            "ratio": 0.7503449295358234
+          },
+          {
+            "value": "516.75",
+            "ratio": 0.7381984823100424
+          },
+          {
+            "value": "457.5",
+            "ratio": 0.6535675569133734
+          },
+          {
+            "value": "437.75",
+            "ratio": 0.6253326106238297
+          },
+          {
+            "value": "412.25",
+            "ratio": 0.5889179067704741
+          }
+        ],
+        "chartBottom": 1135.5625
+      },
+      "firstThree": [
+        {
+          "selector": "#primary-1",
+          "heading": "Reaves Dropper",
+          "returnedFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "Reaves Dropper versus Ware the Hoes At?",
+          "returnedFocus": "#primary-2",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "NeuralNets",
+          "returnedFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "exits": [
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Free-throw practice in Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/teams",
+          "label": "Teams \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/table",
+          "label": "The Table \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/transactions",
+          "label": "Transactions \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/draft",
+          "label": "Draft \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/intel",
+          "label": "Intel \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/ai-decides",
+          "label": "AI Decides \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/news",
+          "label": "News \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/trade-analyzer",
+          "label": "Trade Analyzer \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "persona": "guest",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "textScale": 2,
+      "name": "guest-1440-text-200",
+      "errors": [],
+      "failedRequests": [],
+      "geometry": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 9245,
+        "rootFont": "32px",
+        "images": [
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/arena.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/arcade/free-throw-preview.jpg",
+            "loaded": true
+          },
+          {
+            "src": "/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+            "loaded": true
+          }
+        ],
+        "bars": [
+          {
+            "value": "615.5",
+            "ratio": 0.8792589925702877
+          },
+          {
+            "value": "576",
+            "ratio": 0.822832455078061
+          },
+          {
+            "value": "560.25",
+            "ratio": 0.8003469381075509
+          },
+          {
+            "value": "548.75",
+            "ratio": 0.7839164730141066
+          },
+          {
+            "value": "536.5",
+            "ratio": 0.7664059175858344
+          },
+          {
+            "value": "525.25",
+            "ratio": 0.7503354826039996
+          },
+          {
+            "value": "516.75",
+            "ratio": 0.7381926488397211
+          },
+          {
+            "value": "457.5",
+            "ratio": 0.6535528426013812
+          },
+          {
+            "value": "437.75",
+            "ratio": 0.625339573855268
+          },
+          {
+            "value": "412.25",
+            "ratio": 0.5889110725624325
+          }
+        ],
+        "chartBottom": 2877.953125
+      },
+      "firstThree": [
+        {
+          "selector": "#primary-1",
+          "heading": "Reaves Dropper",
+          "returnedFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "Reaves Dropper versus Ware the Hoes At?",
+          "returnedFocus": "#primary-2",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "NeuralNets",
+          "returnedFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "exits": [
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Free-throw practice in Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/teams",
+          "label": "Teams \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/table",
+          "label": "The Table \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/transactions",
+          "label": "Transactions \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/draft",
+          "label": "Draft \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/intel",
+          "label": "Intel \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/ai-decides",
+          "label": "AI Decides \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/news",
+          "label": "News \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/stocks",
+          "label": "Stocks \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/trade-analyzer",
+          "label": "Trade Analyzer \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/history",
+          "label": "History \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/weekly",
+          "label": "Weekly archive \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/arcade",
+          "label": "Arcade \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/team",
+          "label": "My Team \u2014 current GOAT site"
+        },
+        {
+          "href": "https://goathoopers.com/login",
+          "label": "Sign in \u2014 current GOAT site"
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "extra": [
+    {
+      "check": "Closing a record after its group is collapsed restores visible group control",
+      "passed": true
+    },
+    {
+      "check": "Structure stage preserves chart geometry",
+      "normal": {
+        "x": 96,
+        "y": 469.8125,
+        "width": 1248,
+        "height": 375.625
+      },
+      "structure": {
+        "x": 96,
+        "y": 469.8125,
+        "width": 1248,
+        "height": 375.625
+      },
+      "passed": true
+    },
+    {
+      "check": "Direct local-record URL and Close restoration",
+      "passed": true
+    },
+    {
+      "check": "Demo persona selection preserves structure stage",
+      "passed": true
+    },
+    {
+      "check": "Measured rendered solid reading/data/action/input pairs meet planned text and input-boundary contrast",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "No physical-device or screen-reader pass",
+    "200% text means the root font size is doubled; it is not browser zoom",
+    "Current-site exits verified by href and visible labelling; not followed"
+  ],
+  "contrast": [
+    {
+      "selector": "body",
+      "foreground": "rgb(255, 241, 220)",
+      "background": "rgb(33, 23, 19)",
+      "border": "rgb(255, 241, 220)",
+      "textRatio": 15.77
+    },
+    {
+      "selector": ".chart-foot",
+      "foreground": "rgb(200, 185, 167)",
+      "background": "rgb(33, 23, 19)",
+      "border": "rgb(200, 185, 167)",
+      "textRatio": 9.15
+    },
+    {
+      "selector": ".bar-value",
+      "foreground": "rgb(40, 24, 13)",
+      "background": "rgb(221, 161, 108)",
+      "border": "rgb(40, 24, 13)",
+      "textRatio": 7.65
+    },
+    {
+      "selector": ".primary",
+      "foreground": "rgb(22, 45, 51)",
+      "background": "rgb(185, 229, 237)",
+      "border": "rgb(185, 229, 237)",
+      "textRatio": 10.63
+    },
+    {
+      "selector": "#player-search",
+      "foreground": "rgb(255, 241, 220)",
+      "background": "rgb(44, 32, 27)",
+      "border": "rgb(143, 117, 97)",
+      "textRatio": 14.19,
+      "boundaryRatio": 3.67
+    }
+  ],
+  "passed": true,
+  "sourceManifest": "source-manifest.json",
+  "verifiedSourceSha256": {
+    "index.html": "1b07ba60ad38d6e72e4b1c149abff23f194ebaedbecdee717ecf22d6f4f73cf5",
+    "style.css": "2ba76766033f5466256c34d7f6901d298833925155197837404fda0dc67b7e10",
+    "app.js": "0444584baf806e6038e59aa14b6a4a4f2d607842ddc5e82e44d32b60d7dae487",
+    "verify.cjs": "502dc12c3357e9a98196511438619c6272aeed46847264de41953dd9859507e7"
+  }
+}

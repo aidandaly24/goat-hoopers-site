@@ -1,0 +1,14 @@
+{
+  "completeConcepts": 20,
+  "freshAuthors": 20,
+  "captureObservationCases": 120,
+  "completeDesignedAndNeutralImages": 80,
+  "problems": [],
+  "fragmentCandidates": {
+    "10": "#player-1444 is an intentional working local inspection route; root reproduced it.",
+    "20": "#home and #inspect/... are application routes, not DOM anchors; root reproduced local inspection, browser Back and Home returns in all three states."
+  },
+  "sourceJourneys": "source-task-review.json plus revised-journeys.json (01\u201303)",
+  "standaloneJourneys": "catalog-task-review.json plus catalog-journeys.json (01\u201303)",
+  "limits": "Desktop headless Chromium and synthetic fixtures. No production application build needed because all changes are isolated static QA artifacts. No mobile/live-auth/backend/device/AT certification."
+}

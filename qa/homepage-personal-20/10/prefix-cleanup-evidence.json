@@ -1,0 +1,193 @@
+{
+  "scope": "Decorative section-prefix cleanup only. Three persona loads at 1440x1000; no unchanged journey-suite rerun.",
+  "removedPrefixes": [
+    "01",
+    "02"
+  ],
+  "geometryUnchanged": true,
+  "syntaxCheck": {
+    "command": "node --check qa/homepage-personal-20/10/app.js",
+    "passed": true
+  },
+  "before": [
+    {
+      "persona": "reaves",
+      "labels": [
+        {
+          "text": "Roster composition",
+          "x": 153.109375,
+          "y": 343.3125,
+          "width": 149.359375,
+          "height": 14
+        },
+        {
+          "text": "Around the league",
+          "x": 124.109375,
+          "y": 1564.6875,
+          "width": 152.375,
+          "height": 16
+        }
+      ],
+      "overview": {
+        "x": 100,
+        "y": 313.3125,
+        "width": 922,
+        "height": 1177.375,
+        "top": 313.3125,
+        "right": 1022,
+        "bottom": 1490.6875,
+        "left": 100
+      }
+    },
+    {
+      "persona": "neural",
+      "labels": [
+        {
+          "text": "Roster composition",
+          "x": 153.109375,
+          "y": 343.3125,
+          "width": 149.359375,
+          "height": 14
+        },
+        {
+          "text": "Around the league",
+          "x": 124.109375,
+          "y": 1631.34375,
+          "width": 152.375,
+          "height": 16
+        }
+      ],
+      "overview": {
+        "x": 100,
+        "y": 313.3125,
+        "width": 922,
+        "height": 1244.03125,
+        "top": 313.3125,
+        "right": 1022,
+        "bottom": 1557.34375,
+        "left": 100
+      }
+    },
+    {
+      "persona": "guest",
+      "labels": [
+        {
+          "text": "League scoreboard",
+          "x": 153.109375,
+          "y": 343.3125,
+          "width": 145.359375,
+          "height": 14
+        },
+        {
+          "text": "Around the league",
+          "x": 124.109375,
+          "y": 1077.953125,
+          "width": 152.375,
+          "height": 16
+        }
+      ],
+      "overview": {
+        "x": 100,
+        "y": 313.3125,
+        "width": 922,
+        "height": 690.640625,
+        "top": 313.3125,
+        "right": 1022,
+        "bottom": 1003.953125,
+        "left": 100
+      }
+    }
+  ],
+  "after": [
+    {
+      "persona": "reaves",
+      "labels": [
+        {
+          "text": "Roster composition",
+          "x": 153.109375,
+          "y": 343.3125,
+          "width": 149.359375,
+          "height": 14
+        },
+        {
+          "text": "Around the league",
+          "x": 124.109375,
+          "y": 1564.6875,
+          "width": 152.375,
+          "height": 16
+        }
+      ],
+      "overview": {
+        "x": 100,
+        "y": 313.3125,
+        "width": 922,
+        "height": 1177.375,
+        "top": 313.3125,
+        "right": 1022,
+        "bottom": 1490.6875,
+        "left": 100
+      },
+      "decorativePrefixCount": 0
+    },
+    {
+      "persona": "neural",
+      "labels": [
+        {
+          "text": "Roster composition",
+          "x": 153.109375,
+          "y": 343.3125,
+          "width": 149.359375,
+          "height": 14
+        },
+        {
+          "text": "Around the league",
+          "x": 124.109375,
+          "y": 1631.34375,
+          "width": 152.375,
+          "height": 16
+        }
+      ],
+      "overview": {
+        "x": 100,
+        "y": 313.3125,
+        "width": 922,
+        "height": 1244.03125,
+        "top": 313.3125,
+        "right": 1022,
+        "bottom": 1557.34375,
+        "left": 100
+      },
+      "decorativePrefixCount": 0
+    },
+    {
+      "persona": "guest",
+      "labels": [
+        {
+          "text": "League scoreboard",
+          "x": 153.109375,
+          "y": 343.3125,
+          "width": 145.359375,
+          "height": 14
+        },
+        {
+          "text": "Around the league",
+          "x": 124.109375,
+          "y": 1077.953125,
+          "width": 152.375,
+          "height": 16
+        }
+      ],
+      "overview": {
+        "x": 100,
+        "y": 313.3125,
+        "width": 922,
+        "height": 690.640625,
+        "top": 313.3125,
+        "right": 1022,
+        "bottom": 1003.953125,
+        "left": 100
+      },
+      "decorativePrefixCount": 0
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "base": "/qa/homepage-personal-20/09/index.html",
+  "ready": "document.documentElement.dataset.personalStudyReady === '09'",
+  "detailHeading": "#detail-title",
+  "close": "[data-back]",
+  "returnBehavior": "Click the first [data-back] button, or use browser Back. Restore focus to the exact source selector and its saved scroll position. Browser Forward restores the detail view.",
+  "personas": {
+    "reaves": [
+      {"selector":"#first-player","label":"Read Damian's Week 2 evidence","hash":"#player-1444","expected":"Damian Lillard, 42.50 counted points, synthetic completed Week 2 and current 74.00 modeled FAAB quote","returnFocus":"#first-player"},
+      {"selector":"#first-roster","label":"Open my 24-player roster","hash":"#roster-1","expected":"24 tbody rows; 24/24 priced; 1095.25 modeled FAAB total; no value rank or history line","returnFocus":"#first-roster"},
+      {"selector":"#first-opponent","label":"Get to know Aedan23's side","hash":"#team-2","expected":"Ware the Hoes At? / Aedan23, 1–1, rank 4, 548.75 points for, next to Reaves' season facts","returnFocus":"#first-opponent"}
+    ],
+    "neural": [
+      {"selector":"#first-player","label":"Read Giannis's Week 2 evidence","hash":"#player-1380","expected":"Giannis Antetokounmpo, 45.00 counted points, synthetic completed Week 2 and current 135.50 modeled FAAB quote","returnFocus":"#first-player"},
+      {"selector":"#first-roster","label":"Open my 22-player roster","hash":"#roster-8","expected":"22 tbody rows, 16/22 priced, 1622.00 modeled FAAB subtotal and six Unpriced rows","returnFocus":"#first-roster"},
+      {"selector":"#first-opponent","label":"Compare papichooter's season","hash":"#team-7","expected":"papichooter 2–0 / rank 3 / 560.25 points for beside NeuralNets 0–2 / rank 10 / 412.25 points for; NeuralNets 2025 line names previous manager","returnFocus":"#first-opponent"}
+    ],
+    "guest": [
+      {"selector":"#first-player","label":"Inspect Reaves Dropper","hash":"#team-1","expected":"Public Reaves identity, aidandaly20, 2–0 and supplied rank 1; no member player evidence or own-team claim","returnFocus":"#first-player"},
+      {"selector":"#first-roster","label":"Inspect NeuralNets","hash":"#team-8","expected":"Public NeuralNets identity, 0–2 and supplied rank 10; 2025 history explicitly says previous manager as QBs Gremlins","returnFocus":"#first-roster"},
+      {"selector":"#first-opponent","label":"Compare Reaves with Ware","hash":"#compare-1-2","expected":"Two public team readings with managers, current records, supplied ranks, points for and qualified 2025 references","returnFocus":"#first-opponent"}
+    ]
+  },
+  "supporting": [
+    {"persona":"neural","selector":"#gaps","hash":"#roster-8-unpriced","expected":"The six Unpriced roster references are sorted first; subtotal retains 16/22 coverage"},
+    {"persona":"reaves","selector":"#own-match","hash":"#match-m1","expected":"184.50 / 171.00 current synthetic scores; saved choice Reaves, all 56%/44% probabilities, independent 35% confidence, 26 Oct 08:00 UTC"},
+    {"persona":"neural","selector":"#own-match","hash":"#match-m4","expected":"Papichooter 0.00 / NeuralNets Unavailable; no leader or saved AI inferred"},
+    {"persona":"all","selector":".synthetic","hash":"#sources","expected":"Scroll to readable source explanation and synthetic-data limitations"}
+  ]
+}

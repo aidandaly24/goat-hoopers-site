@@ -1,0 +1,2129 @@
+{
+  "method": "Root browser reproduction of first useful tasks for each persona. First action uses keyboard Enter, other actions use pointer. Fixture-backed content, local return and exact trigger focus are asserted. Contracts reflect independent product inspection of author-reported task selectors; they do not certify visual diversity or complete accessibility.",
+  "scope": "Authored source files",
+  "limits": "Desktop headless Chromium, synthetic fixtures, no external destination/backend/account/device/AT verification.",
+  "results": [
+    {
+      "id": "04",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Select public papichooter for team-level comparison",
+          "trigger": "#left-select",
+          "expectedContent": [
+            "papichooter",
+            "Stephon Castle",
+            "560.25"
+          ],
+          "returnFocus": "#left-select",
+          "activation": "native select",
+          "result": "pass"
+        },
+        {
+          "task": "Read public zero versus unavailable pairing",
+          "trigger": "#pair-m4",
+          "expectedContent": [
+            "papichooter",
+            "NeuralNets",
+            "Score unavailable",
+            "No saved estimate"
+          ],
+          "returnFocus": "#pair-m4",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Find labelled real account entry",
+          "trigger": "#guest-account",
+          "href": "https://goathoopers.com/login",
+          "result": "pass",
+          "limit": "Verified labelled exit contract without contacting the external service."
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Choose Rudy and preserve real known sample and quotes",
+          "trigger": "#left-select",
+          "expectedContent": [
+            "Rudy Gobert",
+            "29.5",
+            "140.75",
+            "Kevin Durant",
+            "33.5"
+          ],
+          "returnFocus": "#left-select",
+          "activation": "native select",
+          "result": "pass"
+        },
+        {
+          "task": "Read all three counted-player samples",
+          "trigger": "#read-samples",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "Rudy Gobert"
+          ],
+          "returnFocus": "#read-samples",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Meet actual opponent with no invented player roster",
+          "trigger": "#meet-opponent",
+          "expectedContent": [
+            "papichooter",
+            "560.25"
+          ],
+          "returnFocus": "#meet-opponent",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Choose Derrick and swap two real owned players",
+          "trigger": "#left-select",
+          "expectedContent": [
+            "Derrick White",
+            "22",
+            "61.00",
+            "Damian Lillard",
+            "42.5"
+          ],
+          "returnFocus": "#swap",
+          "activation": "native select",
+          "result": "pass"
+        },
+        {
+          "task": "Read the five-player completed-week sample",
+          "trigger": "#read-samples",
+          "expectedContent": [
+            "Damian Lillard",
+            "19–25",
+            "Joel Embiid"
+          ],
+          "returnFocus": "#read-samples",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect actual matchup and separate saved model fields",
+          "trigger": "#open-matchup",
+          "expectedContent": [
+            "184.5",
+            "171",
+            "56%",
+            "44%",
+            "0.35"
+          ],
+          "returnFocus": "#open-matchup",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Meet public club Reaves without private membership",
+          "trigger": "#action-team",
+          "expectedContent": [
+            "Reaves Dropper",
+            "aidandaly20"
+          ],
+          "returnFocus": "#action-team",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Browse all ten public standings",
+          "trigger": "#action-standings",
+          "expectedContent": [
+            "NeuralNets",
+            "Reaves Dropper"
+          ],
+          "returnFocus": "#action-standings",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Open public current game",
+          "trigger": "#action-matchup",
+          "expectedContent": [
+            "Reaves Dropper",
+            "Ware the Hoes At",
+            "184.5",
+            "171"
+          ],
+          "returnFocus": "#action-matchup",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect the actual owned player sample",
+          "trigger": "#action-player",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "returnFocus": "#action-player",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect actual current pairing and saved-estimate availability",
+          "trigger": "#action-matchup",
+          "expectedContent": [
+            "papichooter",
+            "Score unavailable",
+            "No saved"
+          ],
+          "returnFocus": "#action-matchup",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Open full league standing with actual member context",
+          "trigger": "#action-standings",
+          "expectedContent": [
+            "NeuralNets",
+            "Reaves Dropper"
+          ],
+          "returnFocus": "#action-standings",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect the actual owned player sample",
+          "trigger": "#action-player",
+          "expectedContent": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "returnFocus": "#action-player",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect actual current pairing and saved-estimate availability",
+          "trigger": "#action-matchup",
+          "expectedContent": [
+            "184.5",
+            "171",
+            "56%",
+            "44%"
+          ],
+          "returnFocus": "#action-matchup",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Open full league standing with actual member context",
+          "trigger": "#action-standings",
+          "expectedContent": [
+            "NeuralNets",
+            "Reaves Dropper"
+          ],
+          "returnFocus": "#action-standings",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Open public current pairing",
+          "trigger": "#act-matchup",
+          "expectedContent": [
+            "184.5",
+            "171",
+            "Reaves Dropper"
+          ],
+          "returnFocus": "#act-matchup",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect a public club identity",
+          "trigger": "#act-club",
+          "expectedContent": [
+            "Reaves Dropper",
+            "aidandaly20",
+            "2025"
+          ],
+          "returnFocus": "#act-club",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Browse the public ten-club directory",
+          "trigger": "#act-directory",
+          "expectedContent": [
+            "The ten clubs",
+            "NeuralNets",
+            "Reaves Dropper"
+          ],
+          "returnFocus": "#act-directory",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect actual current matchup and separate estimate context",
+          "trigger": "#act-matchup",
+          "expectedContent": [
+            "papichooter",
+            "Score unavailable",
+            "No saved"
+          ],
+          "returnFocus": "#act-matchup",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Open complete member club sheet and price coverage",
+          "trigger": "#act-team",
+          "expectedContent": [
+            "22 players",
+            "16",
+            "Unpriced",
+            "1,622.00"
+          ],
+          "returnFocus": "#act-team",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read owned player sample and separate modeled quote",
+          "trigger": "#act-player",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "135.50",
+            "45"
+          ],
+          "returnFocus": "#act-player",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect actual current matchup and separate estimate context",
+          "trigger": "#act-matchup",
+          "expectedContent": [
+            "184.5",
+            "171",
+            "56",
+            "44",
+            "0.35"
+          ],
+          "returnFocus": "#act-matchup",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Open complete member club sheet and price coverage",
+          "trigger": "#act-team",
+          "expectedContent": [
+            "24 players",
+            "24 of 24",
+            "1,095.25"
+          ],
+          "returnFocus": "#act-team",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read owned player sample and separate modeled quote",
+          "trigger": "#act-player",
+          "expectedContent": [
+            "Joel Embiid",
+            "137.50",
+            "38"
+          ],
+          "returnFocus": "#act-player",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect an actual public pairing",
+          "trigger": "#first-action",
+          "expectedContent": [
+            "Reaves Dropper",
+            "184.5",
+            "171"
+          ],
+          "returnFocus": "#first-action",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Discover public Reaves team without owned roster",
+          "trigger": "#second-action",
+          "expectedContent": [
+            "Reaves Dropper",
+            "aidandaly20",
+            "2025"
+          ],
+          "returnFocus": "#second-action",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Find clearly labelled real account exit",
+          "trigger": "#third-action",
+          "href": "https://goathoopers.com/login",
+          "result": "pass",
+          "limit": "Verified labelled exit contract without contacting the external service."
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect owned Giannis and actual supplied sample",
+          "trigger": "#first-action",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "45",
+            "135.5"
+          ],
+          "returnFocus": "#first-action",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Open partial priced full roster with qualified history",
+          "trigger": "#second-action",
+          "expectedContent": [
+            "22",
+            "16/22",
+            "Unpriced",
+            "previous manager"
+          ],
+          "returnFocus": "#second-action",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read known opponent zero separately from own unavailable score",
+          "trigger": "#third-action",
+          "expectedContent": [
+            "papichooter",
+            "Score unavailable",
+            "No saved"
+          ],
+          "returnFocus": "#third-action",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect owned Joel and his supplied sample",
+          "trigger": "#first-action",
+          "expectedContent": [
+            "Joel Embiid",
+            "38",
+            "137.5"
+          ],
+          "returnFocus": "#first-action",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Open the complete owned team roster",
+          "trigger": "#second-action",
+          "expectedContent": [
+            "24",
+            "1,095.25",
+            "24/24"
+          ],
+          "returnFocus": "#second-action",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read current matchup and independently labelled saved estimate",
+          "trigger": "#third-action",
+          "expectedContent": [
+            "Ware the Hoes At",
+            "56%",
+            "44%",
+            "confidence"
+          ],
+          "returnFocus": "#third-action",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect public leading club context",
+          "trigger": "#primary-1",
+          "expectedContent": [
+            "Reaves Dropper",
+            "Current 2026 record"
+          ],
+          "returnFocus": "#primary-1",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read public pairing state",
+          "trigger": "#primary-2",
+          "expectedContent": [
+            "Reaves Dropper versus Ware",
+            "184.5",
+            "171"
+          ],
+          "returnFocus": "#primary-2",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read qualified historical identity",
+          "trigger": "#primary-3",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager as QBs Gremlins"
+          ],
+          "returnFocus": "#primary-3",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect a named supplied observation",
+          "trigger": "#primary-1",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "45 points",
+            "Synthetic completed Week 2"
+          ],
+          "returnFocus": "#primary-1",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Find another owned player and distinguish absent evidence",
+          "trigger": "#search-player-2179",
+          "expectedContent": [
+            "LaMelo Ball",
+            "No supplied observation",
+            "77.75 modeled FAAB"
+          ],
+          "returnFocus": "#search-player-2179",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect the actual opposing pairing",
+          "trigger": "#primary-3",
+          "expectedContent": [
+            "papichooter versus NeuralNets",
+            "Score unavailable",
+            "No saved model estimate supplied"
+          ],
+          "returnFocus": "#primary-3",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect a named supplied observation",
+          "trigger": "#primary-1",
+          "expectedContent": [
+            "Damian Lillard",
+            "42.5 points",
+            "Synthetic completed Week 2"
+          ],
+          "returnFocus": "#primary-1",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Find another owned player and distinguish absent evidence",
+          "trigger": "#search-player-2316",
+          "expectedContent": [
+            "Austin Reaves",
+            "No supplied observation",
+            "35 modeled FAAB"
+          ],
+          "returnFocus": "#search-player-2316",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect the actual opposing pairing",
+          "trigger": "#primary-3",
+          "expectedContent": [
+            "Reaves Dropper versus Ware",
+            "184.5",
+            "Saved estimate"
+          ],
+          "returnFocus": "#primary-3",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect public Reaves identity",
+          "trigger": "#first-player",
+          "expectedContent": [
+            "Reaves Dropper",
+            "aidandaly20",
+            "615.50"
+          ],
+          "returnFocus": "#first-player",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect public Neural identity and qualified history",
+          "trigger": "#first-roster",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": "#first-roster",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Compare both public teams without claimed private membership",
+          "trigger": "#first-opponent",
+          "expectedContent": [
+            "Reaves Dropper",
+            "Ware the Hoes At",
+            "Aedan23"
+          ],
+          "returnFocus": "#first-opponent",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read owned Giannis sample without fabricating game logs",
+          "trigger": "#first-player",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "45.00",
+            "135.50"
+          ],
+          "returnFocus": "#first-player",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Open partial quote roster with six unpriced players",
+          "trigger": "#first-roster",
+          "expectedContent": [
+            "22 players",
+            "1622.00",
+            "16/22",
+            "Unpriced"
+          ],
+          "returnFocus": "#first-roster",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Compare actual opponent's current and qualified prior season",
+          "trigger": "#first-opponent",
+          "expectedContent": [
+            "papichooter",
+            "560.25",
+            "412.25",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": "#first-opponent",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read owned player Damian's completed-week sample",
+          "trigger": "#first-player",
+          "expectedContent": [
+            "Damian Lillard",
+            "42.50",
+            "74.00",
+            "19–25 October 2026"
+          ],
+          "returnFocus": "#first-player",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Open complete roster with all quote coverage",
+          "trigger": "#first-roster",
+          "expectedContent": [
+            "24 players",
+            "1095.25",
+            "24/24"
+          ],
+          "returnFocus": "#first-roster",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Meet actual opposing manager and team",
+          "trigger": "#first-opponent",
+          "expectedContent": [
+            "Ware the Hoes At",
+            "Aedan23",
+            "548.75"
+          ],
+          "returnFocus": "#first-opponent",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read public current pairing without personal model",
+          "trigger": "#primary-matchup",
+          "expectedContent": [
+            "Reaves Dropper",
+            "184.5",
+            "171.0"
+          ],
+          "returnFocus": "#primary-matchup",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Distinguish public known zero from missing score",
+          "trigger": "#matchup-m4",
+          "expectedContent": [
+            "papichooter",
+            "Not returned",
+            "no leader"
+          ],
+          "returnFocus": "#matchup-m4",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Expand qualified public historical identity",
+          "trigger": "[data-team-disclosure=\"8\"] summary",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": "[data-team-disclosure=\"8\"] summary",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect honest known-quote position allocation",
+          "trigger": "#primary-position",
+          "expectedContent": [
+            "Power forwards",
+            "312.00",
+            "3 of 6",
+            "Unpriced"
+          ],
+          "returnFocus": "#primary-position",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read owned player quote independently from counted points",
+          "trigger": "#lead-player",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "135.50",
+            "Synthetic completed Week 2"
+          ],
+          "returnFocus": "#lead-player",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read actual game and model availability",
+          "trigger": "#primary-matchup",
+          "expectedContent": [
+            "papichooter",
+            "Not returned",
+            "no leader",
+            "No saved model estimate"
+          ],
+          "returnFocus": "#primary-matchup",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect honest known-quote position allocation",
+          "trigger": "#primary-position",
+          "expectedContent": [
+            "Centers",
+            "341.00",
+            "31.1%",
+            "5 of 5"
+          ],
+          "returnFocus": "#primary-position",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read owned player quote independently from counted points",
+          "trigger": "#lead-player",
+          "expectedContent": [
+            "Joel Embiid",
+            "137.50",
+            "Synthetic completed Week 2"
+          ],
+          "returnFocus": "#lead-player",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read actual game and model availability",
+          "trigger": "#primary-matchup",
+          "expectedContent": [
+            "184.5",
+            "171.0",
+            "56%",
+            "44%",
+            "0.35"
+          ],
+          "returnFocus": "#primary-matchup",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Reproduce scanner-flagged fragment as a working local player route",
+          "trigger": "a[data-note][href=\"#player-1444\"]",
+          "expectedContent": [
+            "Damian Lillard",
+            "74.00"
+          ],
+          "returnFocus": "a[data-note][href=\"#player-1444\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Navigate in-page to every public pairing",
+          "trigger": ".guest-center .action",
+          "expectedContent": [
+            "Five games",
+            "Reaves Dropper",
+            "NeuralNets"
+          ],
+          "returnFocus": "Native in-page anchor: browser Back restores original scroll; no custom focus override asserted",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read qualified public Neural club history",
+          "trigger": ".club-name[data-id=\"8\"]",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": ".club-name[data-id=\"8\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect current zero/missing public game",
+          "trigger": ".game-row[data-matchup=\"m4\"] button",
+          "expectedContent": [
+            "papichooter",
+            "Unavailable",
+            "No leader"
+          ],
+          "returnFocus": ".game-row[data-matchup=\"m4\"] button",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect actual current game from the league circuit",
+          "trigger": "#primary-matchup",
+          "expectedContent": [
+            "papichooter",
+            "Unavailable",
+            "No saved"
+          ],
+          "returnFocus": "#primary-matchup",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read public club identity and previous-manager qualification",
+          "trigger": ".club-name[data-id=\"8\"]",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": ".club-name[data-id=\"8\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect counted owned player without attributing full team production",
+          "trigger": "#evidence [data-id=\"1380\"]",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "returnFocus": "#evidence [data-id=\"1380\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect actual current game from the league circuit",
+          "trigger": "#primary-matchup",
+          "expectedContent": [
+            "184.5",
+            "171",
+            "56%",
+            "44%",
+            "0.35"
+          ],
+          "returnFocus": "#primary-matchup",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read public club identity and previous-manager qualification",
+          "trigger": ".club-name[data-id=\"8\"]",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": ".club-name[data-id=\"8\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect counted owned player without attributing full team production",
+          "trigger": "#evidence [data-id=\"1444\"]",
+          "expectedContent": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "returnFocus": "#evidence [data-id=\"1444\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read a public pairing",
+          "trigger": "#pair-m1",
+          "expectedContent": [
+            "184.5",
+            "171"
+          ],
+          "returnFocus": "#pair-m1",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Understand a public missing-score game",
+          "trigger": "#pair-m4",
+          "expectedContent": [
+            "papichooter",
+            "Score unavailable"
+          ],
+          "returnFocus": "#pair-m4",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect a public team identity",
+          "trigger": "#public-team-1",
+          "expectedContent": [
+            "Reaves Dropper",
+            "aidandaly20"
+          ],
+          "returnFocus": "#public-team-1",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect an actual owned photographic-wall player",
+          "trigger": "#portrait-1380",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "135.50"
+          ],
+          "returnFocus": "#portrait-1380",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read the full roster without losing any supplied player",
+          "trigger": "#inspect-roster",
+          "expectedContent": [
+            "16 of 22"
+          ],
+          "returnFocus": "#inspect-roster",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect the actual matchup and model availability",
+          "trigger": "#inspect-matchup",
+          "expectedContent": [
+            "papichooter",
+            "Score unavailable",
+            "No saved"
+          ],
+          "returnFocus": "#inspect-matchup",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect an actual owned photographic-wall player",
+          "trigger": "#portrait-1511",
+          "expectedContent": [
+            "Joel Embiid",
+            "137.50"
+          ],
+          "returnFocus": "#portrait-1511",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read the full roster without losing any supplied player",
+          "trigger": "#inspect-roster",
+          "expectedContent": [
+            "24 of 24"
+          ],
+          "returnFocus": "#inspect-roster",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect the actual matchup and model availability",
+          "trigger": "#inspect-matchup",
+          "expectedContent": [
+            "184.5",
+            "171",
+            "56%",
+            "44%",
+            "0.35"
+          ],
+          "returnFocus": "#inspect-matchup",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read public zero/missing pairing",
+          "trigger": "[data-matchup=\"m4\"]",
+          "expectedContent": [
+            "papichooter",
+            "unavailable",
+            "zero"
+          ],
+          "returnFocus": "[data-matchup=\"m4\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Discover qualified public franchise history",
+          "trigger": "#full-standings [data-team=\"8\"]",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": "#full-standings [data-team=\"8\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Find real account entry",
+          "trigger": ".site-links > a[href=\"https://goathoopers.com/login\"]",
+          "href": "https://goathoopers.com/login",
+          "result": "pass",
+          "limit": "Verified labelled exit contract without contacting the external service."
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read an actual owned completed-week observation",
+          "trigger": "[data-evidence-player=\"1350\"]",
+          "expectedContent": [
+            "Rudy Gobert",
+            "29.5"
+          ],
+          "returnFocus": "[data-evidence-player=\"1350\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect all roster quotes with coverage",
+          "trigger": ".following [data-panel=\"quotes\"]",
+          "expectedContent": [
+            "1,622.00"
+          ],
+          "returnFocus": ".following [data-panel=\"quotes\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read actual current pairing",
+          "trigger": ".opening-matchup [data-panel=\"opening-pair-detail\"]",
+          "expectedContent": [
+            "papichooter",
+            "unavailable",
+            "zero"
+          ],
+          "returnFocus": ".opening-matchup [data-panel=\"opening-pair-detail\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read an actual owned completed-week observation",
+          "trigger": "[data-evidence-player=\"1444\"]",
+          "expectedContent": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "returnFocus": "[data-evidence-player=\"1444\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect all roster quotes with coverage",
+          "trigger": ".following [data-panel=\"quotes\"]",
+          "expectedContent": [
+            "1,095.25"
+          ],
+          "returnFocus": ".following [data-panel=\"quotes\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read actual current pairing",
+          "trigger": ".opening-matchup [data-panel=\"opening-pair-detail\"]",
+          "expectedContent": [
+            "184.5",
+            "171"
+          ],
+          "returnFocus": ".opening-matchup [data-panel=\"opening-pair-detail\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read a public team note",
+          "trigger": ".primary[data-note=\"team:1\"]",
+          "expectedContent": [
+            "Reaves Dropper",
+            "aidandaly20"
+          ],
+          "returnFocus": ".primary[data-note=\"team:1\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read the whole public order",
+          "trigger": "button[data-note=\"standings\"]",
+          "expectedContent": [
+            "NeuralNets",
+            "Reaves Dropper"
+          ],
+          "returnFocus": "button[data-note=\"standings\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read all five public games",
+          "trigger": "button[data-note=\"slate\"]",
+          "expectedContent": [
+            "papichooter",
+            "Unavailable",
+            "Reaves Dropper"
+          ],
+          "returnFocus": "button[data-note=\"slate\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read the named owned player from the personal brief",
+          "trigger": ".primary[data-note=\"player:1380\"]",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "returnFocus": ".primary[data-note=\"player:1380\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read all owned quotes with explicit coverage",
+          "trigger": "button[data-note=\"quotes\"]",
+          "expectedContent": [
+            "16\\s*(?:of|/)\\s*22"
+          ],
+          "returnFocus": "button[data-note=\"quotes\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read actual current game and saved-estimate availability",
+          "trigger": "[data-note=\"matchup:m4\"]",
+          "expectedContent": [
+            "papichooter",
+            "Unavailable",
+            "no saved"
+          ],
+          "returnFocus": "[data-note=\"matchup:m4\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read the named owned player from the personal brief",
+          "trigger": ".primary[data-note=\"player:1444\"]",
+          "expectedContent": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "returnFocus": ".primary[data-note=\"player:1444\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read all owned quotes with explicit coverage",
+          "trigger": "button[data-note=\"quotes\"]",
+          "expectedContent": [
+            "24\\s*(?:of|/)\\s*24"
+          ],
+          "returnFocus": "button[data-note=\"quotes\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read actual current game and saved-estimate availability",
+          "trigger": "button[data-note=\"model\"]",
+          "expectedContent": [
+            "56",
+            "44",
+            "confidence"
+          ],
+          "returnFocus": "button[data-note=\"model\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Meet a current public club with qualified history",
+          "trigger": ".directory-team button[data-team=\"8\"]",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": ".directory-team button[data-team=\"8\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect a public current game",
+          "trigger": "#primary-matchup-action",
+          "expectedContent": [
+            "184.5",
+            "171"
+          ],
+          "returnFocus": "#primary-matchup-action",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Find genuine account entry",
+          "trigger": "#account-link",
+          "href": "https://goathoopers.com/login",
+          "result": "pass",
+          "limit": "Verified labelled exit contract without contacting the external service."
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read a counted owned player in the gym",
+          "trigger": "[data-evidence-player=\"1380\"] button",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "returnFocus": "[data-evidence-player=\"1380\"] button",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect a named roster quote with honest absent evidence",
+          "trigger": "[data-quote-player=\"4808\"] button",
+          "expectedContent": [
+            "Ryan Nembhard",
+            "Unpriced",
+            "Evidence not supplied"
+          ],
+          "returnFocus": "[data-quote-player=\"4808\"] button",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read current game and independent model fields",
+          "trigger": "#primary-matchup-action",
+          "expectedContent": [
+            "papichooter",
+            "Score not returned",
+            "No saved"
+          ],
+          "returnFocus": "#primary-matchup-action",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read a counted owned player in the gym",
+          "trigger": "[data-evidence-player=\"1444\"] button",
+          "expectedContent": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "returnFocus": "[data-evidence-player=\"1444\"] button",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect a named roster quote with honest absent evidence",
+          "trigger": "[data-quote-player=\"1511\"] button",
+          "expectedContent": [
+            "Joel Embiid",
+            "137.50"
+          ],
+          "returnFocus": "[data-quote-player=\"1511\"] button",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read current game and independent model fields",
+          "trigger": "#primary-matchup-action",
+          "expectedContent": [
+            "56",
+            "44",
+            "0.35"
+          ],
+          "returnFocus": "#primary-matchup-action",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Meet public finalist winner",
+          "trigger": "[data-testid=\"inspect-team-5\"]",
+          "expectedContent": [
+            "Josh Diddy",
+            "2025"
+          ],
+          "returnFocus": "[data-testid=\"inspect-team-5\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Meet public runner-up",
+          "trigger": "[data-testid=\"inspect-team-7\"]",
+          "expectedContent": [
+            "papichooter",
+            "2025"
+          ],
+          "returnFocus": "[data-testid=\"inspect-team-7\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Choose another club without a saved subscription",
+          "trigger": "[data-testid=\"add-club\"]",
+          "expectedContent": [
+            "The Fun Guys",
+            "philbiag"
+          ],
+          "returnFocus": "[data-testid=\"inspect-team-4\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect actual own club",
+          "trigger": "[data-testid=\"inspect-own\"]",
+          "expectedContent": [
+            "NeuralNets"
+          ],
+          "returnFocus": "[data-testid=\"inspect-own\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect actual opposing club",
+          "trigger": "[data-testid=\"inspect-team-7\"]",
+          "expectedContent": [
+            "papichooter"
+          ],
+          "returnFocus": "[data-testid=\"inspect-team-7\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Add a different real club for this visit",
+          "trigger": "[data-testid=\"add-club\"]",
+          "expectedContent": [
+            "The Fun Guys",
+            "philbiag"
+          ],
+          "returnFocus": "[data-testid=\"inspect-team-4\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect actual own club",
+          "trigger": "[data-testid=\"inspect-own\"]",
+          "expectedContent": [
+            "Reaves Dropper"
+          ],
+          "returnFocus": "[data-testid=\"inspect-own\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect actual opposing club",
+          "trigger": "[data-testid=\"inspect-team-2\"]",
+          "expectedContent": [
+            "Ware the Hoes At"
+          ],
+          "returnFocus": "[data-testid=\"inspect-team-2\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Add a different real club for this visit",
+          "trigger": "[data-testid=\"add-club\"]",
+          "expectedContent": [
+            "The Fun Guys",
+            "philbiag"
+          ],
+          "returnFocus": "[data-testid=\"inspect-team-4\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Discover public current leader",
+          "trigger": "[data-inspect=\"team:1\"]",
+          "expectedContent": [
+            "Reaves Dropper",
+            "615.5"
+          ],
+          "returnFocus": "[data-inspect=\"team:1\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read previous-manager-qualified franchise memory",
+          "trigger": "[data-inspect=\"team:8\"]",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": "[data-inspect=\"team:8\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Find actual account entry",
+          "trigger": "a[href=\"https://goathoopers.com/login\"]",
+          "href": "https://goathoopers.com/login",
+          "result": "pass",
+          "limit": "Verified labelled exit contract without contacting the external service."
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Scout the actual current opponent",
+          "trigger": "[data-inspect=\"team:7\"]",
+          "expectedContent": [
+            "papichooter",
+            "560.25"
+          ],
+          "returnFocus": "[data-inspect=\"team:7\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read an owned Giannis receipt",
+          "trigger": "[data-inspect=\"player:1380\"]",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "returnFocus": "[data-inspect=\"player:1380\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read known zero separately from unavailable score",
+          "trigger": "[data-inspect=\"matchup\"]",
+          "expectedContent": [
+            "papichooter",
+            "Unavailable"
+          ],
+          "returnFocus": "[data-inspect=\"matchup\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read a named owned completed-week receipt",
+          "trigger": "[data-inspect=\"player:1444\"]",
+          "expectedContent": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "returnFocus": "[data-inspect=\"player:1444\"]",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect all current roster quotes",
+          "trigger": "[data-inspect=\"quotes\"]",
+          "expectedContent": [
+            "24",
+            "1095.25|1,095.25"
+          ],
+          "returnFocus": "[data-inspect=\"quotes\"]",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect current game without mixing completed-week points",
+          "trigger": "[data-inspect=\"matchup\"]",
+          "expectedContent": [
+            "184.5",
+            "171",
+            "56",
+            "44"
+          ],
+          "returnFocus": "[data-inspect=\"matchup\"]",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect public featured club",
+          "trigger": "#primary-inspect",
+          "expectedContent": [
+            "Reaves Dropper",
+            "615.5"
+          ],
+          "returnFocus": "#primary-inspect",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read public missing-score game",
+          "trigger": "#pair-m4",
+          "expectedContent": [
+            "papichooter",
+            "Unknown|Unavailable"
+          ],
+          "returnFocus": "#pair-m4",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect qualified public franchise",
+          "trigger": "#club-8",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": "#club-8",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read default owned player",
+          "trigger": "#primary-inspect",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "135.50"
+          ],
+          "returnFocus": "#primary-inspect",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Find and inspect another owned player",
+          "trigger": "#result-4866",
+          "expectedContent": [
+            "AJ Dybantsa",
+            "Unpriced"
+          ],
+          "returnFocus": "#result-4866",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read current actual pairing",
+          "trigger": "#matchup-inspect",
+          "expectedContent": [
+            "papichooter",
+            "Unknown|Unavailable",
+            "no saved"
+          ],
+          "returnFocus": "#matchup-inspect",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read default owned player",
+          "trigger": "#primary-inspect",
+          "expectedContent": [
+            "Joel Embiid",
+            "137.50"
+          ],
+          "returnFocus": "#primary-inspect",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Find and inspect another owned player",
+          "trigger": "#result-2316",
+          "expectedContent": [
+            "Austin Reaves",
+            "35.00"
+          ],
+          "returnFocus": "#result-2316",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read current actual pairing",
+          "trigger": "#matchup-inspect",
+          "expectedContent": [
+            "184.5",
+            "171"
+          ],
+          "returnFocus": "#matchup-inspect",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Inspect public leading-team context",
+          "trigger": "#task-primary",
+          "expectedContent": [
+            "Reaves Dropper",
+            "615.5"
+          ],
+          "returnFocus": "#task-primary",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read qualified public franchise history",
+          "trigger": "#league-team-8",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": "#league-team-8",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Find actual account entry",
+          "trigger": "a[href=\"https://goathoopers.com/login\"]",
+          "href": "https://goathoopers.com/login",
+          "result": "pass",
+          "limit": "Verified labelled exit contract without contacting the external service."
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read the useful owned-player primary sample",
+          "trigger": "#task-primary",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "returnFocus": "#task-primary",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect actual opponent without invented roster",
+          "trigger": "#inspect-opponent",
+          "expectedContent": [
+            "papichooter",
+            "560.25"
+          ],
+          "returnFocus": "#inspect-opponent",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read all roster quotes with coverage",
+          "trigger": "#inspect-quotes",
+          "expectedContent": [
+            "1,622",
+            "Unpriced"
+          ],
+          "returnFocus": "#inspect-quotes",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read the useful owned-player primary sample",
+          "trigger": "#task-primary",
+          "expectedContent": [
+            "Damian Lillard",
+            "42.5"
+          ],
+          "returnFocus": "#task-primary",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect actual opponent without invented roster",
+          "trigger": "#inspect-opponent",
+          "expectedContent": [
+            "Ware the Hoes At",
+            "548.75"
+          ],
+          "returnFocus": "#inspect-opponent",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read all roster quotes with coverage",
+          "trigger": "#inspect-quotes",
+          "expectedContent": [
+            "1,095.25",
+            "24"
+          ],
+          "returnFocus": "#inspect-quotes",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "persona": "guest",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read qualified public club",
+          "trigger": "#team-8-club",
+          "expectedContent": [
+            "NeuralNets",
+            "previous manager",
+            "QBs Gremlins"
+          ],
+          "returnFocus": "#team-8-club",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read public current leader",
+          "trigger": "#team-1-club",
+          "expectedContent": [
+            "Reaves Dropper",
+            "615.5"
+          ],
+          "returnFocus": "#team-1-club",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Find actual account entry",
+          "trigger": "a[href=\"https://goathoopers.com/login\"]",
+          "href": "https://goathoopers.com/login",
+          "result": "pass",
+          "limit": "Verified labelled exit contract without contacting the external service."
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "persona": "neural",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Open actual whole squad with partial quote coverage",
+          "trigger": "#open-roster",
+          "expectedContent": [
+            "22",
+            "Unpriced",
+            "1,622.00|1622.00"
+          ],
+          "returnFocus": "#open-roster",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Read actual owned-player results",
+          "trigger": "#review-evidence",
+          "expectedContent": [
+            "Giannis Antetokounmpo",
+            "45"
+          ],
+          "returnFocus": "#review-evidence",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Distinguish current zero from own missing score",
+          "trigger": "#inspect-matchup",
+          "expectedContent": [
+            "papichooter",
+            "Unavailable|Unknown",
+            "zero"
+          ],
+          "returnFocus": "#inspect-matchup",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "persona": "reaves",
+      "result": "pass",
+      "steps": [
+        {
+          "task": "Read supplied player evidence through open task index",
+          "trigger": "#review-evidence",
+          "expectedContent": [
+            "Damian Lillard",
+            "42.5",
+            "Joel Embiid"
+          ],
+          "returnFocus": "#review-evidence",
+          "activation": "keyboard Enter",
+          "result": "pass"
+        },
+        {
+          "task": "Inspect whole actual squad",
+          "trigger": "#open-roster",
+          "expectedContent": [
+            "24",
+            "1,095.25|1095.25"
+          ],
+          "returnFocus": "#open-roster",
+          "activation": "pointer",
+          "result": "pass"
+        },
+        {
+          "task": "Read actual pairing and saved model fields",
+          "trigger": "#inspect-matchup",
+          "expectedContent": [
+            "184.5",
+            "171",
+            "56",
+            "44"
+          ],
+          "returnFocus": "#inspect-matchup",
+          "activation": "pointer",
+          "result": "pass"
+        }
+      ]
+    }
+  ]
+}

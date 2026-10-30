@@ -1,0 +1,161 @@
+{
+  "results": [
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "overflow": false,
+      "fixtures": 5,
+      "footerDestinations": 15,
+      "height": 3420
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "overflow": false,
+      "fixtures": 5,
+      "footerDestinations": 15,
+      "height": 3513
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "overflow": false,
+      "fixtures": 5,
+      "footerDestinations": 15,
+      "height": 2752
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "overflow": false,
+      "fixtures": 5,
+      "footerDestinations": 15,
+      "height": 3402
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "overflow": false,
+      "fixtures": 5,
+      "footerDestinations": 15,
+      "height": 3496
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "overflow": false,
+      "fixtures": 5,
+      "footerDestinations": 15,
+      "height": 2740
+    },
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "textScale": 2,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "textScale": 2,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "textScale": 2,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "textScale": 2,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "textScale": 2,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "textScale": 2,
+      "overflow": false,
+      "clipped": []
+    }
+  ],
+  "platformFonts": {
+    "heading": [
+      {
+        "familyName": "URW Bookman",
+        "postScriptName": "URWBookman-Demi",
+        "isCustomFont": false,
+        "glyphCount": 14
+      }
+    ],
+    "reading": [
+      {
+        "familyName": "Open Sans",
+        "postScriptName": "OpenSans",
+        "isCustomFont": false,
+        "glyphCount": 131
+      },
+      {
+        "familyName": "Open Sans",
+        "postScriptName": "OpenSans-Bold",
+        "isCustomFont": false,
+        "glyphCount": 23
+      }
+    ],
+    "control": [
+      {
+        "familyName": "Space Grotesk Light",
+        "postScriptName": "SpaceGrotesk-Light",
+        "isCustomFont": true,
+        "glyphCount": 15
+      }
+    ],
+    "data": [
+      {
+        "familyName": "Noto Sans",
+        "postScriptName": "NotoSans-Bold",
+        "isCustomFont": false,
+        "glyphCount": 5
+      }
+    ]
+  },
+  "structureGeometry": [
+    {
+      "persona": "reaves",
+      "sameGeometry": true
+    },
+    {
+      "persona": "neural",
+      "sameGeometry": true
+    },
+    {
+      "persona": "guest",
+      "sameGeometry": true
+    }
+  ],
+  "reducedMotionContent": true,
+  "interactionChecks": [
+    "receipt open/Back/Forward/focus",
+    "receipt Escape/focus",
+    "quote search",
+    "persona selector",
+    "opponent record inspection",
+    "six unpriced filter",
+    "matchup known-zero explanation",
+    "structure state"
+  ],
+  "pageErrors": [],
+  "externalRequests": []
+}

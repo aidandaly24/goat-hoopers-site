@@ -1,109 +1,83 @@
-# 17 — Week in context
+# 17 — Season companion
 
-Discovery only. This plan answers: **How can this week's useful team work carry the season and the league's actual memory with it?** The homepage will attach a little history to the people and games it explains. It will not ask a returning member to enter an archive before getting to work.
+Build revision after the architecture screening. Same author's original season-memory question; the original game-plus-season-column geometry is retired. No peer source or prior prototype was inspected.
 
-## Three architectures considered
+## Two new alternatives
 
-These are independent sketches, made from the current product and this fixture. No peer implementations, plans, old studies or rejected prototypes were inspected.
+1. **Season companion — selected.** A reference-website hierarchy: an always-visible left index, a small horizontal current-game ribbon, and one broad task-led reading lane. The page's main objects are an open task workspace, a franchise record entry, and the five league fixtures. The current game is useful orientation rather than the hero. History lives in the franchise entry and contextual team inspections. Each section has a different density and purpose. This is neither a multi-column stream nor a narrative brief.
+2. **League search home.** Make a prominent search box the homepage's main control, with useful preloaded results across current games, player receipts and prior-season records. It offers a genuinely different discovery route, but weakens the immediate current task and encourages visitors to search for facts already known to matter. Search will be a small local inspection aid, not the page's governing architecture.
 
-1. **Week in context — selected.** A conventional website masthead opens into a broad current-game area, with a narrower season-context column alongside it. Current changes lead directly to open evidence and quote-coverage sections. All five league pairings follow as substantial horizontal fixture rows. Previous-season facts appear beside the relevant team, with deeper team history available locally. The page uses continuous sections rather than a grid of dashboard cards.
-2. **The league as a directory.** All ten franchises form the main ordered directory; the viewer and opponent have expanded entries containing their game, roster work and past record. This gives the league's people strong presence, but makes a returning member find their task inside a directory and encourages the same roster/standings table solution the brief is trying to escape. Guest browsing would be good; member urgency would be weak.
-3. **Three adjacent time horizons.** A wide desktop workspace holds This Week, This Season and Before This Season simultaneously, with tasks in the first column and linked historical receipts in the third. This makes the discovery question explicit, but grants history equal visual weight even when only one qualified prior-season record exists. At 1120px it also sacrifices reading measure or pushes important tasks into a narrow column. It would drift toward an archive poster.
+The selected version replaces the original paired game/season columns. It also rejects a score hero followed by three cards and standings, a full-roster spine, an archive poster, a chronological source ledger, a points landscape and a neutral evidence dashboard. Its index, warm plum identity, rounded serif headings and broad task workspaces should make the homepage recognizably authored without relying on a metaphor.
 
-The chosen architecture keeps historical context near its present consequence. It rejects both a giant champion/history feature and the obvious scoreboard → full roster table → full standings table default. The complete roster remains available as a useful inspection, not the homepage's main body.
+## Spatial and navigation hierarchy
 
-## What the real product established
+A shallow plum masthead holds the exact white GOAT logo, Home as current location, direct Stocks and Arcade exits, the explicitly labelled Demo persona select and compact Synthetic demo label. A persistent left site index takes about 190px on a 1440px desktop. It contains this page's four named anchors—Your work, Team record, League games, Sources—and a separate More on GOAT native disclosure. This index is navigation; it contains no personal/league content column. At 1120px it narrows to about 160px and the main lane remains about 840px. There is no opposing season sidebar.
 
-The actual root page is request-private and server-resolves membership. It composes `CourtsideHome` from existing domain projections; signed-out visitors retain public league access. Its useful capabilities include a matched current pairing, saved model context, limited player evidence, quote coverage, current standings, public team inspection and qualified previous-season records. There is no need to invent a new metric, transaction feed or authorization model for this study.
+The main lane begins with a normal-size team title and a short **game ribbon**: both names, current scores/state and an Inspect matchup action. It occupies roughly 90px, never a promotional stage. The member's useful primary task begins within the first viewport. All task, team-record and league-fixture content is in normal document flow. The header/index never covers focused content.
 
-The demo cannot supply a team-value series or Lineup Power. A missing score, missing evidence and missing price are three different states. A completed-week player's points are neither this week's live contribution nor a modeled FAAB quote. Those distinctions affect placement and labels throughout this concept.
+The main page has four different structural objects:
 
-## Complete page architecture
+1. **Your work:** a broad, open, coloured section with an editorial task title, dated source change, explicit primary inspection and useful facts already visible. Reaves and Neural have different first tasks and content. No equal-size card grid.
+2. **Team record:** a full-width encyclopedia-like franchise entry with a definition list for the current season and a compact, clearly dated prior-season paragraph. This gives the team memory an ordinary place in a working website. It is not a history timeline or a plot.
+3. **League games:** a compact ruled fixture list with all five pairings, ten identities, current records/ranks and scores/unavailable states. It supplies public league access without a separate standings table or player wall.
+4. **Sources and onward tools:** a readable explanation of current synthetic versus retained historical facts, a small date-qualified 2025 final reference, and useful existing-site destinations.
 
-### Identity and navigation
+## Reaves
 
-- Exact approved horizontal GOAT logo, a compact league/season identity, and a current Home link with `aria-current="page"`.
-- Primary navigation: Home; This week's league (local anchor); Stocks; Arcade. The last two clearly say `GOAT site` beside their labels. They remain direct destinations.
-- A native `More on GOAT` disclosure contains News, Teams, Transactions, Draft, Intel, The Table, AI Decides, Trade Analyzer, History and Weekly archive. Its introductory text visibly identifies those links as leaving the prototype. It is a normal-flow disclosure, not a modal megamenu.
-- Member identity has a local `Inspect your team` action. The guest has `Sign in on GOAT site`. Real `/team` and `/login` exits remain separately available.
-- A small, explicitly labelled `Demo persona` select provides Reaves, NeuralNets and Guest. It controls only `?persona=...`; Reaves is the default. The rendered state will set `document.documentElement.dataset.persona`. It makes no membership claim.
-- One compact visible `Synthetic demo` label and `About these sources` disclosure show the fixed sample timestamp, 30 October 2026, 08:30 UTC. There is no running freshness clock.
+`?persona=reaves` is the default and sets `document.documentElement.dataset.persona="reaves"`.
 
-### Reaves: inspect the new evidence, with the game still in view
+The game ribbon shows Reaves Dropper versus Ware the Hoes At?, 184.5–171 synthetic points, in progress. The primary task is **Review five completed-week receipts**. All five player names and points are visible: Damian Lillard 42.5, Joel Embiid 38, Tobias Harris 31, Myles Turner 24.5, Derrick White 22. The title and explanation state 5/24 coverage and the completed Week 2 period, 19–25 October. Small approved portraits are used only where available. Missing evidence is never poor performance and the partial sample is never a complete team recap.
 
-1. **Your Week 3.** The first useful block names Reaves Dropper and Ware the Hoes At?, shows 184.5–171 current synthetic points and marks the game as in progress. Both names inspect locally. Two dated change entries sit immediately below: five players now have completed-week evidence; all 24 quotes are available. These link to the corresponding visible sections.
-2. **Season context beside the game.** Current rank 1 of 10, 2–0, and 615.5 points for are labelled 2026 demo standings. A short adjacent note reads `2025: fourth; 16–5`. The opponent's 2026 record and 2025 fifth-place finish provide useful context without suggesting a head-to-head history that is absent. A saved-estimate line belongs with the matchup: Reaves 56%, Ware 44%; generated 26 October; synthetic saved model estimate, not calibrated odds. Confidence 0.35 appears only in the provenance expansion and remains distinct from the percentages.
-3. **The evidence you can inspect.** All five available completed-Week-2 players are visible as compact readable rows, not oversized portrait cards: Damian Lillard 42.5 points, Joel Embiid 38, Tobias Harris 31, Myles Turner 24.5, Derrick White 22. The heading states `5 of 24 roster players` and the exact 19–25 October period. Each row has an explicit inspect control. No absent player becomes a poor performer, and these five rows never become a complete team recap.
-4. **Current modeled quote.** A contrasting but open section shows 1,095.25 modeled FAAB, 24/24 priced, calculation time, and three priced roster anchors: Embiid, Anthony Edwards, Alperen Şengün. A local disclosure exposes every roster quote. The prose states that modeled FAAB is not a cash balance; no value rank is supplied. `No recorded value series in this demo` is a short line, not an empty chart panel.
-5. **Around Week 3.** All five fixture rows are visible in normal flow. Each side shows its team name, current record and standing; the middle shows its known points or explicit unavailable state. The viewer's pairing is textually marked. Team inspection supplies deeper season/history context.
-6. **Continue from here.** A modest tools band explains Stocks for individual quotes, Trade Analyzer for the real comparison tool, and Arcade for the existing game. Each exit is visibly labelled. It provides useful onward work without claiming a local trade submission or playable recreation.
+A second open work area is **Check your complete quote**, with 1,095.25 modeled FAAB, 24/24 priced, its fixed calculation time and three named quote anchors. Full quote inspection opens locally. A compact saved-estimate disclosure remains next to the game facts: Reaves 56%, Ware 44%, generated 26 October; synthetic saved model estimate, not calibrated odds. Confidence 0.35 is kept separate. No generation button is invented.
 
-### NeuralNets: establish what is known before comparing
+The Team record entry states current rank 1 of 10, 2–0, 615.5 points for, then `2025 franchise record: 16–5; fourth`. It does not invent a shared current manager or head-to-head history. The five fixtures remain visible below the member work.
 
-The same identity system hosts a materially different task order.
+## NeuralNets
 
-1. **Your Week 3 score is unavailable.** NeuralNets versus papichooter leads. Neural's points say `Unavailable`; papichooter's supplied score says `0 points`. There is no lead, deficit, win label or 0–0 scoreline. The recorded-zero explanation is visible without opening anything. `Inspect matchup data` is the primary local action.
-2. **Review six missing quotes.** This is the first task section after the game, ahead of player evidence. All six unpriced names are visible: Rasheer Fleming, Ryan Nembhard, Dailyn Swain, AJ Dybantsa, Keaton Wagler and Darryn Peterson. The known 1,622.00 FAAB is subordinate and explicitly a **16/22 modeled subtotal**. It is not compared with Reaves' complete quote, ranked, or used to draw a value trend. Known quotes remain inspectable through the complete local roster disclosure.
-3. **Your current season, in context.** Rank 10 of 10, 0–2 and 412.25 points for are current synthetic facts. Whenever the previous record is shown, the qualification travels with it: `2025: tenth, 1–20 — under the previous manager as QBs Gremlins.` This is not described as the current manager's performance. Papichooter's 2025 runner-up finish is concise opponent context.
-4. **Three pieces of completed-week evidence.** Giannis Antetokounmpo 45, Kevin Durant 33.5 and Rudy Gobert 29.5 are all visible with the same explicit period and `3 of 22` limit. An unavailable saved estimate is one honest matchup note; it does not become a blank model card or a disabled Generate button.
-5. **Around Week 3 and onward tools** remain substantial and visible as on Reaves, with Neural's fixture and relevant context marked. History does not displace current gaps.
+`?persona=neural` sets the corresponding dataset. Its game ribbon says NeuralNets score Unavailable versus papichooter's recorded 0 points. No leader, deficit or 0–0 is inferred.
 
-### Guest: a useful public league homepage
+The primary task is **Know this week’s opponent**: papichooter’s current 2–0 record, rank 3 and season points for, together with the qualified 2025 runner-up context. Local opponent inspection gives those separate current/past records together. The member then reads three owned-player receipts. Partial pricing is supporting context rather than a repair task: the known 1,622.00 FAAB is subordinate and labelled a 16/22 modeled subtotal. It is never ranked or compared with a complete team quote. All six unpriced names remain available in useful local quote inspection, with an optional unpriced filter.
 
-The guest begins with `Week 3 in GOAT Hoopers` and all five current synthetic pairings, with their ten team identities, standings and current records. The score-gap explanation appears on the papichooter–NeuralNets fixture. A side column explains the supplied league structure: ten teams, six playoff places, playoffs beginning Week 20. It makes no prediction.
+The second work area shows the three supplied completed-week receipts: Giannis Antetokounmpo 45, Kevin Durant 33.5, Rudy Gobert 29.5; 3/22 coverage and the same completed-week period. The missing saved AI is a simple unavailable sentence near the matchup, not a blank card.
 
-Below the public fixtures, `Get to know these teams` explains local public profile inspection and offers compact factual league memory. The retained 2025 final, Josh Diddy’s Roster 326 versus papichooter 251.5, is a short dated reference attached to those teams, not a champion showcase. Neural's ownership qualification is already present wherever its prior result appears. Public team details contain current and previous records, not a borrowed private member desk. No personal change feed, saved member estimate, private quote total or claimed team appears in this state.
+The Team record entry states rank 10 of 10, 0–2 and 412.25 current synthetic points for. Every appearance of the prior record carries `2025: 1–20, tenth — under the previous manager as QBs Gremlins`. It is never attributed to the current manager. The opponent's 2025 runner-up qualification is useful in local inspection. No unavailable value series or Lineup Power chart is manufactured.
 
-The useful onward band offers public News, Teams, Stocks, History and Arcade entry with honest destination descriptions, plus real sign-in on the existing site. It does not replace league content with a login landing page.
+## Guest
 
-### Semantic footer
+`?persona=guest` sets the guest dataset. The same website index and masthead carry a public **Week 3 league companion** page. Its first main content is all five fixtures, not a login hero. Known and missing scores remain honest. A compact league explanation states ten teams, six playoff places and playoffs beginning Week 20, with no predictions.
 
-The footer identifies GOAT Hoopers, the 2026 synthetic design study, and the fact that current numerical data is constructed. It contains grouped links under the visible heading `Continue on the GOAT site — leaves this prototype`:
+A normal-flow **Know the franchises** section lists all ten current team identities and their explicitly dated 2025 finish; Neural's previous-manager qualification appears beside its previous result. Public team inspection gives current and previous records. No member quote total, personal changes, saved member estimate or borrowed private desk appears. Useful public tool descriptions and a real `Sign in on GOAT site` link follow. The guest is a substantial public homepage, not an empty account prompt.
 
-- League: Home, Teams, Transactions, The Table, Draft.
-- Research and decisions: News, Stocks, Intel, AI Decides, Trade Analyzer.
-- More of the league: History, Weekly archive, Arcade.
-- Account: My Team and Sign in.
+## Typography and identity
 
-Thus all 15 fixture destinations remain discoverable without dominating the header. A local Back to top link and an accessible source explanation finish the page. No unsupported legal pages, newsletter signup or notification service are invented.
+- **Headings:** installed `URW Bookman`, with `Bookman Old Style` and serif fallbacks, 28–38px, weight 600–700, normal mixed case. A rounded, generous non-condensed voice gives the reference site its character. No giant slogan.
+- **Reading:** installed `Open Sans`, then Arial/sans-serif, 16px/400, line-height 1.55 and about 62ch for explanations. Long names and ownership qualifications wrap naturally.
+- **Controls:** licensed existing local Space Grotesk, 14–15px/600, minimum 44px targets, explicit labels and visible focus. Its firmer geometry distinguishes action from prose without using condensed type.
+- **Data:** installed Noto Sans with tabular numerals, 16px/500 for useful rows and about 26px/600 for current scores. Numbers align while retaining a proportional sans voice; no monospace default. Points, quotes, coverage and missing states each carry their units/labels.
+- A warm ivory main field, plum masthead/index, pale mauve work region and restrained yellow-green action emphasis support GOAT's exact logo and real names. There is no neutral dashboard-card scaffold. The existing portrait bytes appear only at useful recognition scale, not as a wall. No court illustration, jersey/ticket metaphor or 3D scene is required.
 
-## Typography, identity and desktop behavior
+At 1440 and 1120px the index and broad reading lane remain usable. Long team names wrap and section heights grow. At enlarged text the lane can reflow, without shrinking typography or hiding primary work. No fixed-height internal reader, carousel, primary-content tabs or phone capture work. Motion is unnecessary; reduced-motion users retain identical facts and tasks.
 
-- **Reading:** installed system `Noto Sans`, with Verdana and generic sans-serif fallbacks; 16px, weight 400, line-height 1.55, prose measure about 55–62 characters. Longer explanations use mixed case. Names remain at least 16px and wrap intrinsically. This readable, neutral face carries factual qualifications without making them look like ornamental footnotes. The workspace font inventory confirmed Noto Sans; the initially considered Trebuchet was not installed, so the plan does not rely on it.
-- **Controls:** existing licensed local Space Grotesk, 14–15px, weight 600, normal mixed case and 44px minimum target height. It gives GOAT's working actions a consistent character distinct from reading text. The long labels `Giannis Antetokounmpo` and `Inspect completed-week evidence` must wrap or grow controls; they are not truncated to maintain a grid.
-- **Data:** Noto Sans with tabular numerals, 16px/500 for rows and 40–48px/600 for the current score only. This is a proportional sans face with aligned digits, not a monospace terminal treatment. Units and availability words stay alongside the values. Ranks, records and scores receive different explicit labels; no naked large number is asked to explain itself.
-- **Short headings:** existing local Barlow Condensed Regular, around 28–36px with tight but readable line-height. It provides a modest sporting rhythm for `Your Week 3` and section titles. It never carries paragraphs, controls, long rosters or a huge motivational statement. No tracking-heavy uppercase metadata system.
-- **Identity:** preserve the exact approved logo. Use a deep evergreen identity band, warm neutral reading field and restrained citrus emphasis for actionable source gaps; status always has text. Small approved player portraits help recognize evidence rows. No decorative arena hero is needed: the league's names, exact logo, fixtures and purposeful type provide GOAT identity throughout the site. No jersey, ticket or poster metaphor.
-- **Geometry:** maximum reading frame about 1260px. At 1440px, the first member section is approximately two-thirds current work and one-third season context; lower evidence and quote sections have deliberately different widths. At 1120px, side context moves below the current-game material before any type is reduced. Fixture rows can become two stacked team lines with the score still labelled. There are no fixed-height readers, clipped names, internal page scroll regions or viewport-height panels.
-- The meaningful content is already in the document. Only secondary details disclose. Text enlargement grows the page; no CSS scaling. Keyboard focus is visible, landmarks and heading order are semantic, source disclosures use native controls, and motion is unnecessary. Reduced-motion users receive the complete same tasks. Desktop 1440 and 1120 are the build targets; no phone design/capture work is proposed.
+## Working local actions
 
-## Local action contract
+- Change links focus the corresponding visible section.
+- Team, player, quote and matchup inspection use local, named detail surfaces from supplied data only. Team records retain dates/ownership qualifications. Player receipts contain only the supplied period, points, participation status, position and separately labelled current quote; no fabricated box score or games played.
+- The quote view contains all supplied players and Unpriced states, a useful name filter, count and explicit units. It does not submit edits.
+- Inspections have a labelled Close, Escape support, correct focus containment/restoration and fragment Back/Forward behavior. They hold secondary depth; the homepage's substantive facts stay visible in normal flow.
+- The demo selector preserves stage state and never creates a production membership claim. `?stage=structure` neutralizes decoration while retaining full content/geometry. `dataset.personalStudyReady="17"` is set only after fonts/content settle.
+- No API, live auth, AI generation, trades, lineup saves, notification, storage, database or market calls. All existing-site links visibly state they leave this prototype.
 
-1. A change entry navigates to its existing evidence or quote-coverage section and focuses the destination heading. The target remains visible in document flow.
-2. A team name opens an adjacent, in-flow local profile section containing its identity, current season, current pairing and explicitly qualified previous season. Own-team inspection additionally exposes the supplied roster names and relevant quote coverage. Other teams never receive an invented roster. `Close team details` returns focus to the exact opener. Fragment state allows Back/Forward to restore or close the inspection without changing the persona query.
-3. A player Inspect button expands a readable receipt beneath that evidence row: identity, position, supplied points, exact completed-week period, participation status and coverage limit. Its current quote, if present, is separately labelled with its own time/basis. No box-score components, injury assertions, games-played values or unsupported weekly totals are generated. Close restores focus; Back restores the prior fragment state.
-4. `Inspect all roster quotes` is a native disclosure containing every supplied player and quote/unpriced state, with visible count, units and source explanation. It has an explicit close route back to its summary. Neural can jump directly to the six unpriced rows. This is secondary depth; the meaningful pricing limit and missing names were already visible.
-5. `Inspect matchup data` exposes the fixed sample's two score values and their states, plus the saved estimate only where supplied. Model choice, confidence and probabilities remain distinct. It performs no refresh or generation.
+## Footer and route completeness
 
-All inspection is local and data-only. Links to `https://goathoopers.com` are explicit exits. Login, lineup editing, notifications, trade submission, market computation, API fetches, auth, databases and storage are outside this prototype's behavior. Any future implementation will preserve `?stage=structure` content/geometry while neutralizing decoration, and set `dataset.personalStudyReady="17"` only after fonts and content settle.
+A full-width semantic footer repeats GOAT identity and the synthetic/current-data notice. Under `Continue on GOAT — leaves prototype`, discoverable groups contain all fixture routes: Home, News, Stocks, History, Arcade; Teams, Transactions, Draft, Intel, The Table; AI Decides, Trade Analyzer, Weekly archive; My Team and Sign in. The exact current-site destinations are used. A local Back to top anchor and source explanation remain available. No invented legal/newsletter service.
 
-## Sources actually read and their effect
+## Verified primary and product reads
 
-### Assigned primary references
+Both assigned references were read successfully during original discovery; these reads stand.
 
-- [Hallmark — Redesign](https://github.com/Nutlope/hallmark/blob/main/skills/hallmark/references/redesign.md), read in full from the [official raw file](https://raw.githubusercontent.com/Nutlope/hallmark/main/skills/hallmark/references/redesign.md), 76 raw lines, including **What a redesign keeps**, **Depth**, **Before**, **The plan**, **Build**, and **After**. The useful principle was preserving facts, destinations and brand while recomposing. It changed this plan into a route-complete website and made source/period limits part of the structure. Its distinction between an app screen and a hero also supports a useful first fold. No scaffold, linter, scripts or theme deal was run; this is an isolated new QA authoring task, not a Hallmark production redesign.
-- [pbakaus — Adapt](https://www.ui-skills.com/skills/pbakaus/adapt), read the complete displayed skill body, **Assess Adaptation Challenge** through **Verify Adaptations**, and the inline **Responsive Design** reference through its final Avoid guidance. Applied **Desktop Adaptation** by keeping more useful material simultaneously visible; applied content-driven breakpoints and input-method guidance by retaining native controls and reflowing the side column at 1120px. The narrow-desktop strategy changes layout before font size and never makes hover the only inspection route. Phone/print/email strategies were read but are outside this desktop-only assignment. No package was installed.
+- [Hallmark Redesign](https://github.com/Nutlope/hallmark/blob/main/skills/hallmark/references/redesign.md), full official raw file (76 lines), including What a redesign keeps, Depth, Before, The plan, Build and After. Applied preservation of facts, routes and exact brand while recomposing. This revision makes a task-led reference website rather than a hero and carries coverage/period limits with the affected facts. No referenced scripts or scaffolds were run.
+- [pbakaus Adapt](https://www.ui-skills.com/skills/pbakaus/adapt), complete displayed skill body and inline responsive reference. Applied desktop's upfront information, persistent navigation and content-driven reflow. This changed the architecture to one broad work lane with a navigation index rather than compressed parallel panels. Native controls and visible focus are retained; no hover-only work. Phone strategies are outside the desktop assignment.
 
-Both assigned references opened successfully. No index is claimed as a source read. They supplied principles, not a common art direction, font scheme or section template.
+Read the assigned brief, AUTHOR-BRIEF, PRODUCT-INVENTORY, complete data-only fixture JSON, matching JavaScript export, font catalog and actual production homepage/personalization files: `src/app/page.tsx`, `CourtsideHome.tsx`, `domain/personalized-home.ts`, `data/home-viewer.ts`, `ui/siteDestinations.ts`. Read AGENTS and the relevant ARCHITECTURE data, caching, evidence, recorded-history, homepage and account contracts; DESIGN's ownership/truthful content/control/accessibility guidance. Those contracts stand; their production visual system does not bind this isolated QA composition.
 
-### Product and local source inspection
-
-Read `briefs/17.md`, `AUTHOR-BRIEF.md`, `PRODUCT-INVENTORY.md`, the full data-only fixture JSON, its JavaScript export, and the local licensed-font catalog. Read the actual `src/app/page.tsx`, all of `src/surfaces/season-hub/CourtsideHome.tsx`, `src/domain/personalized-home.ts`, `src/data/home-viewer.ts` and `src/ui/siteDestinations.ts`.
-
-Read root `AGENTS.md`; the architecture introduction, weekly evidence, recorded-only value-history and roster replay sections, courtside/weekly archive and personalized home sections, shared shell/identity directory, data-flow contracts, caching and account ownership sections in `ARCHITECTURE.md`; and the relevant ownership, truthful content, controls, sources, accessibility and personalized-state guidance in `DESIGN.md`. Production visual prescriptions are deliberately not adopted by this QA plan. Production and shared files remain unchanged.
-
-Evidence at this stage is **source inspection and a written architecture**, not a rendered-page, device, live-data or interaction test. No browser behavior has been claimed. Build and targeted keyboard/layout verification await the coordinator's followup.
-
-## Discovery handoff
-
-Only `qa/homepage-personal-20/17/PLAN.md` is authored. No presentation code, dependencies, production changes, publication, commits or remote actions. No blockers. Stop here for the complete-website review and explicit build followup.
+Fixture JSON/JS equality, priced subtotals and available-evidence counts were checked. No previous prototype, peer implementation or peer plan was read. Only this author's directory will change; no shared helpers/fixtures, dependencies, production, git, publication or remote writes.

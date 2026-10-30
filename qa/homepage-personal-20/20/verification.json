@@ -1,0 +1,197 @@
+{
+  "viewports": [
+    {
+      "width": 1440,
+      "persona": "reaves",
+      "normal": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 2496,
+        "persona": "reaves",
+        "branchCount": 4,
+        "heading": "Reaves Dropper",
+        "contextBottom": 343.703125
+      },
+      "enlarged": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 6214,
+        "rootFont": "32px",
+        "branchLayout": "block"
+      }
+    },
+    {
+      "width": 1440,
+      "persona": "neural",
+      "normal": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 2424,
+        "persona": "neural",
+        "branchCount": 4,
+        "heading": "NeuralNets",
+        "contextBottom": 343.703125
+      },
+      "enlarged": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 6144,
+        "rootFont": "32px",
+        "branchLayout": "block"
+      }
+    },
+    {
+      "width": 1440,
+      "persona": "guest",
+      "normal": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 2096,
+        "persona": "guest",
+        "branchCount": 3,
+        "heading": "Come for the game.Know the league.",
+        "contextBottom": 404.75
+      },
+      "enlarged": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "height": 5922,
+        "rootFont": "32px",
+        "branchLayout": "block"
+      }
+    },
+    {
+      "width": 1120,
+      "persona": "reaves",
+      "normal": {
+        "width": 1120,
+        "scrollWidth": 1120,
+        "height": 2485,
+        "persona": "reaves",
+        "branchCount": 4,
+        "heading": "Reaves Dropper",
+        "contextBottom": 332.515625
+      },
+      "enlarged": {
+        "width": 1120,
+        "scrollWidth": 1120,
+        "height": 6474,
+        "rootFont": "32px",
+        "branchLayout": "block"
+      }
+    },
+    {
+      "width": 1120,
+      "persona": "neural",
+      "normal": {
+        "width": 1120,
+        "scrollWidth": 1120,
+        "height": 2413,
+        "persona": "neural",
+        "branchCount": 4,
+        "heading": "NeuralNets",
+        "contextBottom": 332.515625
+      },
+      "enlarged": {
+        "width": 1120,
+        "scrollWidth": 1120,
+        "height": 6464,
+        "rootFont": "32px",
+        "branchLayout": "block"
+      }
+    },
+    {
+      "width": 1120,
+      "persona": "guest",
+      "normal": {
+        "width": 1120,
+        "scrollWidth": 1120,
+        "height": 2074,
+        "persona": "guest",
+        "branchCount": 3,
+        "heading": "Come for the game.Know the league.",
+        "contextBottom": 382.375
+      },
+      "enlarged": {
+        "width": 1120,
+        "scrollWidth": 1120,
+        "height": 6126,
+        "rootFont": "32px",
+        "branchLayout": "block"
+      }
+    }
+  ],
+  "journeys": [
+    {
+      "name": "Reaves evidence → Damian → browser Back → explicit home",
+      "selectors": [
+        "#review-evidence",
+        "#detail-player-1444",
+        "#back-home"
+      ],
+      "result": "passed; both return focus targets restored"
+    },
+    {
+      "name": "Neural full squad → unpriced AJ → browser Back → explicit home",
+      "selectors": [
+        "#open-roster",
+        "#roster-player-4866",
+        "#back-home"
+      ],
+      "result": "passed; Unpriced preserved and focus restored"
+    },
+    {
+      "name": "Neural matchup → papichooter → browser Back → home",
+      "selectors": [
+        "#inspect-matchup",
+        "#match-team-7-detail",
+        "#back-home"
+      ],
+      "result": "passed; score unavailable and recorded zero remain distinct; focus restored"
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "guestInspection": "passed; public club detail, history qualifier and no private roster",
+  "sources": "passed; visible demo label opens source explanation",
+  "structure": "passed; same content and homepage geometry",
+  "contrastPairs": [
+    {
+      "name": "body / canvas",
+      "foreground": "rgb(23, 27, 24)",
+      "background": "rgb(255, 254, 250)",
+      "ratio": 17.25
+    },
+    {
+      "name": "scope / canvas",
+      "foreground": "rgb(85, 93, 86)",
+      "background": "rgb(255, 254, 250)",
+      "ratio": 6.74
+    },
+    {
+      "name": "primary action",
+      "foreground": "rgb(255, 254, 250)",
+      "background": "rgb(166, 51, 22)",
+      "ratio": 6.7
+    },
+    {
+      "name": "rail text",
+      "foreground": "rgb(23, 27, 24)",
+      "background": "rgb(232, 237, 102)",
+      "ratio": 13.87
+    }
+  ],
+  "keyboard": {
+    "skip": {
+      "class": "skip",
+      "top": 16
+    },
+    "enterEvidenceAndBack": "passed",
+    "focus": {
+      "id": "review-evidence",
+      "outline": "3px",
+      "style": "solid"
+    }
+  },
+  "personaControl": "passed; native radio navigates to guest and preserves structure query"
+}

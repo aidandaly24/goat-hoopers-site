@@ -1,0 +1,31 @@
+import {createRequire} from 'node:module';
+import {writeFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import assert from 'node:assert/strict';
+const {chromium}=createRequire(import.meta.url)('playwright');
+const dir=fileURLToPath(new URL('.',import.meta.url));
+const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
+const p=await b.newPage({viewport:{width:1440,height:1000}});
+const base='http://127.0.0.1:4207/qa/homepage-personal-20/11/';
+await p.goto(base+'?persona=reaves');await p.waitForSelector('html[data-personal-study-ready="11"]');
+const contrast=await p.evaluate(()=>{
+ const rgb=s=>(s.match(/[\d.]+/g)||[]).map(Number);
+ const mix=(a,b,alpha)=>a.slice(0,3).map((c,i)=>c*alpha+b[i]*(1-alpha));
+ const lum=a=>a.slice(0,3).map(n=>n/255).map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4).reduce((v,n,i)=>v+n*[.2126,.7152,.0722][i],0);
+ const ratio=(a,b)=>((Math.max(lum(a),lum(b))+.05)/(Math.min(lum(a),lum(b))+.05));
+ const bgFor=el=>{let bg=[255,255,255];const stack=[];for(let x=el;x;x=x.parentElement)stack.push(x);for(const x of stack.reverse()){const c=rgb(getComputedStyle(x).backgroundColor);bg=mix(c,bg,c[3]??1);}return bg;};
+ const selectors=['.club-node:not(.is-you) .club-name','.club-node:not(.is-you) .club-meta','.club-node.is-you .club-name','.game-center .team-name','.game-caption','.period-note','.roster-note p','.quote-leaders button','.sample-updates time','.game-row button','.route-group a .exit','.footer-note'];
+ const rows=selectors.map(selector=>{const el=document.querySelector(selector),s=getComputedStyle(el),bg=bgFor(el),fg=mix(rgb(s.color),bg,Number(s.opacity));return{selector,foreground:fg.map(Math.round),background:bg.map(Math.round),ratio:Number(ratio(fg,bg).toFixed(2))};});
+ const focus=[{surface:'orange circuit',fg:[0,54,107],bg:bgFor(document.querySelector('.club-node:not(.is-you) .club-name'))},{surface:'ink game / route panel',fg:[255,223,79],bg:bgFor(document.querySelector('.game-center'))}].map(x=>({...x,ratio:Number(ratio(x.fg,x.bg).toFixed(2))}));
+ return {method:'Chromium computed text colors, opacity composited onto computed ancestor backgrounds; WCAG relative luminance',rows,focus};
+});
+assert.ok(contrast.rows.every(x=>x.ratio>=4.5));assert.ok(contrast.focus.every(x=>x.ratio>=3));
+await p.locator('#primary-matchup').click();await p.waitForFunction(()=>document.querySelector('#inspector').open);
+for(let i=0;i<7;i++){await p.keyboard.press('Tab');assert.equal(await p.evaluate(()=>document.querySelector('#inspector').contains(document.activeElement)),true);}
+await p.keyboard.press('Escape');await p.waitForFunction(()=>!document.querySelector('#inspector').open);
+await p.goto(base+'?persona=guest#inspect=team:8');await p.waitForSelector('html[data-personal-study-ready="11"]');assert.equal(await p.locator('#inspector').evaluate(e=>e.open),true);await p.locator('#close-inspector').click();await p.waitForFunction(()=>!document.querySelector('#inspector').open);assert.equal(new URL(p.url()).hash,'');assert.equal(await p.locator('#home-title').evaluate(e=>e===document.activeElement),true);
+await p.setViewportSize({width:1120,height:1000});await p.goto(base+'?persona=reaves');await p.waitForSelector('html[data-personal-study-ready="11"]');await p.evaluate(()=>document.documentElement.style.fontSize='200%');await p.screenshot({path:dir+'check-enlarged-fold.png'});
+assert.equal(await p.locator('.circuit').evaluate(e=>getComputedStyle(e).display),'flex');
+await p.locator('#primary-matchup').click();await p.waitForFunction(()=>document.querySelector('#inspector').open);assert.equal(await p.locator('#inspector').evaluate(e=>e.scrollWidth<=e.clientWidth+1),true);await p.keyboard.press('Escape');
+await writeFile(dir+'detail-verification.json',JSON.stringify({contrast,keyboardContainment:'7 consecutive Tab presses stayed in native dialog',deepLink:'guest team inspector direct URL → Close removes hash and focuses home title',enlarged:'1120px at 200% root text reflows game before team list; dialog has no horizontal overflow'},null,2)+'\n');
+console.log(JSON.stringify(contrast,null,2));await b.close();

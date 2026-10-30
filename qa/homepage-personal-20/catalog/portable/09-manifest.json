@@ -1,0 +1,102 @@
+{
+  "id": "09",
+  "author": "/root/personal09",
+  "source": "qa/homepage-personal-20/09/index.html",
+  "standalone": {
+    "path": "qa/homepage-personal-20/catalog/portable/GOAT-personal-09.html",
+    "bytes": 1789255,
+    "sha256": "8e1ddd3c1584546e8df5980c4f61b8e32abd3ab9b558066fc59d4b3e0d719d8d"
+  },
+  "fixtureSha256": "7a1835933c4319c5e169c46c21197e350d39715101078358413295aad907e382",
+  "sources": [
+    {
+      "path": "qa/homepage-personal-20/09/index.html",
+      "bytes": 808,
+      "sha256": "b7a3c5ab35f359310c78d41184eaf2ad18410cf60ece9483691cc82187e139a6"
+    },
+    {
+      "path": "qa/homepage-personal-20/09/app.js",
+      "bytes": 22370,
+      "sha256": "cc4251d6ad8013d3ab9621d6262cf301f010b00830b58d85f54c93ed875b8545"
+    },
+    {
+      "path": "qa/homepage-personal-20/09/style.css",
+      "bytes": 14425,
+      "sha256": "c6fd2b2e3014c1192174cc6002aa88f7aab8698576594e2757542d7663812f2a"
+    }
+  ],
+  "embeddedAssets": [
+    {
+      "path": "public/courtside/portraits/player-1511.png",
+      "bytes": 68824,
+      "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9"
+    },
+    {
+      "path": "public/courtside/portraits/player-2133.png",
+      "bytes": 71681,
+      "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693"
+    },
+    {
+      "path": "public/courtside/portraits/player-2308.png",
+      "bytes": 59711,
+      "sha256": "3c2febd6cfc18170f79d1716db5b4519c7f16eeab16462f051c36bf66d12c5cb"
+    },
+    {
+      "path": "public/courtside/portraits/player-1380.png",
+      "bytes": 60668,
+      "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45"
+    },
+    {
+      "path": "public/courtside/portraits/player-2179.png",
+      "bytes": 68817,
+      "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8"
+    },
+    {
+      "path": "public/courtside/portraits/player-4866.png",
+      "bytes": 53860,
+      "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506"
+    },
+    {
+      "path": "public/courtside/arena.jpg",
+      "bytes": 329398,
+      "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177"
+    },
+    {
+      "path": "public/arcade/free-throw-preview.jpg",
+      "bytes": 46441,
+      "sha256": "6901f837f71a6ba4e9ee4bed165d07852ceff65c525d911a952e51746652879c"
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+      "bytes": 5117,
+      "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+      "bytes": 5117,
+      "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9"
+    },
+    {
+      "path": "qa/homepage-structures/assets/fonts/lora/Lora[wght].ttf",
+      "bytes": 212196,
+      "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7"
+    },
+    {
+      "path": "qa/homepage-structures/assets/fonts/oswald/Oswald[wght].ttf",
+      "bytes": 172088,
+      "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817"
+    },
+    {
+      "path": "qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+      "bytes": 135580,
+      "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46"
+    }
+  ],
+  "fontLicenses": [
+    "IBM Plex Mono",
+    "Lora",
+    "Oswald"
+  ],
+  "retainedPortraitDirectory": false,
+  "method": "Own author source compiled without a shared presentation renderer. Data-only fixture retained, except unused global portrait directory when absent from authored scripts; roster portraits remain. Images/fonts and OFL notices embedded. Standalone navigation and rendered parity still require browser verification."
+}

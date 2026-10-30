@@ -1,0 +1,185 @@
+{
+  "study": "08",
+  "scope": "Targeted removal of decorative section prefixes and redundant guest lower standings",
+  "method": "Existing local Chromium / Playwright",
+  "cases": [
+    {
+      "name": "guest-cleanup-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "textScale": 1,
+      "errors": [],
+      "render": {
+        "viewport": 1440,
+        "width": 1440,
+        "rootFont": "16px",
+        "labels": [
+          "THE PUBLIC SEASON LANDSCAPE",
+          "THE PEOPLE IN THE LEAGUE",
+          "STILL YOUR LEAGUE HOME"
+        ],
+        "chartRows": 10,
+        "directory": 10,
+        "lowerStandings": 0,
+        "pairings": 5,
+        "format": "LEAGUE FORMAT\nA 10-team season.\n\n6 playoff places. The playoff period begins in Week 20; the current demo is Week 3.\n\nSeason points for and current records describe different things. Neither the landscape nor these pairings predicts a finish.\n\nFranchise references stay dated 2025, separate from this synthetic 2026 season.\n\nRead the managers and franchise history",
+        "images": true,
+        "localAnchorTargets": true
+      },
+      "primaryActions": [
+        {
+          "selector": "#primary-1",
+          "heading": "Reaves Dropper",
+          "returnFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "Reaves Dropper versus Ware the Hoes At?",
+          "returnFocus": "#primary-2",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "NeuralNets",
+          "returnFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "guest-cleanup-1120",
+      "viewport": {
+        "width": 1120,
+        "height": 900
+      },
+      "textScale": 1,
+      "errors": [],
+      "render": {
+        "viewport": 1120,
+        "width": 1120,
+        "rootFont": "16px",
+        "labels": [
+          "THE PUBLIC SEASON LANDSCAPE",
+          "THE PEOPLE IN THE LEAGUE",
+          "STILL YOUR LEAGUE HOME"
+        ],
+        "chartRows": 10,
+        "directory": 10,
+        "lowerStandings": 0,
+        "pairings": 5,
+        "format": "LEAGUE FORMAT\nA 10-team season.\n\n6 playoff places. The playoff period begins in Week 20; the current demo is Week 3.\n\nSeason points for and current records describe different things. Neither the landscape nor these pairings predicts a finish.\n\nFranchise references stay dated 2025, separate from this synthetic 2026 season.\n\nRead the managers and franchise history",
+        "images": true,
+        "localAnchorTargets": true
+      },
+      "primaryActions": [
+        {
+          "selector": "#primary-1",
+          "heading": "Reaves Dropper",
+          "returnFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "Reaves Dropper versus Ware the Hoes At?",
+          "returnFocus": "#primary-2",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "NeuralNets",
+          "returnFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "guest-cleanup-1440-text-200",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "textScale": 2,
+      "errors": [],
+      "render": {
+        "viewport": 1440,
+        "width": 1440,
+        "rootFont": "32px",
+        "labels": [
+          "THE PUBLIC SEASON LANDSCAPE",
+          "THE PEOPLE IN THE LEAGUE",
+          "STILL YOUR LEAGUE HOME"
+        ],
+        "chartRows": 10,
+        "directory": 10,
+        "lowerStandings": 0,
+        "pairings": 5,
+        "format": "LEAGUE FORMAT\nA 10-team season.\n\n6 playoff places. The playoff period begins in Week 20; the current demo is Week 3.\n\nSeason points for and current records describe different things. Neither the landscape nor these pairings predicts a finish.\n\nFranchise references stay dated 2025, separate from this synthetic 2026 season.\n\nRead the managers and franchise history",
+        "images": true,
+        "localAnchorTargets": true
+      },
+      "leagueCapture": "Viewport capture at league section; avoids Chromium tall-element fixed-position screenshot artifact",
+      "primaryActions": [
+        {
+          "selector": "#primary-1",
+          "heading": "Reaves Dropper",
+          "returnFocus": "#primary-1",
+          "passed": true
+        },
+        {
+          "selector": "#primary-2",
+          "heading": "Reaves Dropper versus Ware the Hoes At?",
+          "returnFocus": "#primary-2",
+          "passed": true
+        },
+        {
+          "selector": "#primary-3",
+          "heading": "NeuralNets",
+          "returnFocus": "#primary-3",
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "memberStandingSmoke": [
+    {
+      "persona": "reaves",
+      "standings": 10,
+      "pairings": 5,
+      "labelsUnnumbered": true,
+      "openingChartGeometryUnchanged": true,
+      "geometry": {
+        "x": 96,
+        "y": 469.8125,
+        "width": 1248,
+        "height": 375.625
+      },
+      "passed": true
+    },
+    {
+      "persona": "neural",
+      "standings": 10,
+      "pairings": 5,
+      "labelsUnnumbered": true,
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "No unchanged member interaction matrix rerun",
+    "200% root text is not browser zoom",
+    "No production/device/screen-reader verification"
+  ],
+  "passed": true,
+  "sourceSha256": {
+    "index.html": "1b07ba60ad38d6e72e4b1c149abff23f194ebaedbecdee717ecf22d6f4f73cf5",
+    "app.js": "77bfb20437951cf8f03caadd0e554133ece09da51c200bf7a0b876791ac6e64c",
+    "style.css": "92d12c5bb9b5ffd821aa43851e7dd4bf863adf928249b01524a8e4a2364f0a78",
+    "verify-cleanup.cjs": "c8632d5cb743733b4a450e245b0f31d8ae67f28a1369e216da20006aee15af60"
+  },
+  "sourceManifest": "source-manifest.json"
+}

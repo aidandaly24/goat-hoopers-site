@@ -1,0 +1,324 @@
+{
+  "url": "http://127.0.0.1:4207/qa/homepage-personal-20/12/",
+  "method": "Chromium via installed Playwright; local synthetic fixture only",
+  "checks": [
+    {
+      "name": "viewport",
+      "pass": true,
+      "persona": "reaves",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 3074,
+      "ready": "12",
+      "imagesLoaded": true,
+      "opponentBottom": 843.578125,
+      "matchupActionBottom": 802.59375,
+      "rosterActionBottom": 548.203125,
+      "captionRects": [
+        {
+          "left": 105.59375,
+          "right": 440,
+          "scrollHeight": 96,
+          "height": 96
+        },
+        {
+          "left": 446.390625,
+          "right": 750.40625,
+          "scrollHeight": 96,
+          "height": 96
+        },
+        {
+          "left": 756.796875,
+          "right": 1030.390625,
+          "scrollHeight": 96,
+          "height": 96
+        }
+      ]
+    },
+    {
+      "name": "viewport",
+      "pass": true,
+      "persona": "neural",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 3049,
+      "ready": "12",
+      "imagesLoaded": true,
+      "opponentBottom": 843.578125,
+      "matchupActionBottom": 802.59375,
+      "rosterActionBottom": 548.203125,
+      "captionRects": [
+        {
+          "left": 105.59375,
+          "right": 440,
+          "scrollHeight": 96,
+          "height": 96
+        },
+        {
+          "left": 446.390625,
+          "right": 750.40625,
+          "scrollHeight": 96,
+          "height": 96
+        },
+        {
+          "left": 756.796875,
+          "right": 1030.390625,
+          "scrollHeight": 96,
+          "height": 96
+        }
+      ]
+    },
+    {
+      "name": "viewport",
+      "pass": true,
+      "persona": "guest",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 2653,
+      "ready": "12",
+      "imagesLoaded": true
+    },
+    {
+      "name": "viewport",
+      "pass": true,
+      "persona": "reaves",
+      "width": 1120,
+      "scrollWidth": 1120,
+      "height": 3074,
+      "ready": "12",
+      "imagesLoaded": true,
+      "opponentBottom": 821.5,
+      "matchupActionBottom": 780.515625,
+      "rosterActionBottom": 528.125,
+      "captionRects": [
+        {
+          "left": 51.1875,
+          "right": 322.09375,
+          "scrollHeight": 93,
+          "height": 93
+        },
+        {
+          "left": 328.484375,
+          "right": 574.765625,
+          "scrollHeight": 93,
+          "height": 93
+        },
+        {
+          "left": 581.15625,
+          "right": 802.8125,
+          "scrollHeight": 93,
+          "height": 93
+        }
+      ]
+    },
+    {
+      "name": "viewport",
+      "pass": true,
+      "persona": "neural",
+      "width": 1120,
+      "scrollWidth": 1120,
+      "height": 3029,
+      "ready": "12",
+      "imagesLoaded": true,
+      "opponentBottom": 821.5,
+      "matchupActionBottom": 780.515625,
+      "rosterActionBottom": 528.125,
+      "captionRects": [
+        {
+          "left": 51.1875,
+          "right": 322.09375,
+          "scrollHeight": 93,
+          "height": 93
+        },
+        {
+          "left": 328.484375,
+          "right": 574.765625,
+          "scrollHeight": 93,
+          "height": 93
+        },
+        {
+          "left": 581.15625,
+          "right": 802.8125,
+          "scrollHeight": 93,
+          "height": 93
+        }
+      ]
+    },
+    {
+      "name": "viewport",
+      "pass": true,
+      "persona": "guest",
+      "width": 1120,
+      "scrollWidth": 1120,
+      "height": 2588,
+      "ready": "12",
+      "imagesLoaded": true
+    },
+    {
+      "name": "neural-truth",
+      "pass": true,
+      "unpriced": 6,
+      "roster": 22,
+      "priced": 16,
+      "homeScore": 0,
+      "awayScore": "unavailable",
+      "savedModel": "unavailable"
+    },
+    {
+      "name": "guest-public-home",
+      "pass": true,
+      "pairings": 5,
+      "memberPlayers": 0,
+      "privateRoster": 0,
+      "publicTeamInspection": true
+    },
+    {
+      "name": "direct-detail-close",
+      "pass": true,
+      "heading": "Giannis Antetokounmpo",
+      "fallbackFocus": "page-title"
+    },
+    {
+      "name": "navigation",
+      "pass": true,
+      "destinations": [
+        "/teams",
+        "/stocks",
+        "/arcade",
+        "/news",
+        "/history",
+        "/transactions",
+        "/draft",
+        "/intel",
+        "/table",
+        "/ai-decides",
+        "/trade-analyzer",
+        "/weekly",
+        "/team",
+        "/teams/2",
+        "/login"
+      ],
+      "moreEscape": true
+    },
+    {
+      "name": "200-percent-text",
+      "pass": true,
+      "persona": "reaves",
+      "fontSize": "32px",
+      "scrollWidth": 1120,
+      "width": 1120,
+      "portraits": [
+        {
+          "height": 402,
+          "scrollHeight": 402
+        },
+        {
+          "height": 372,
+          "scrollHeight": 372
+        },
+        {
+          "height": 383.65625,
+          "scrollHeight": 384
+        }
+      ]
+    },
+    {
+      "name": "200-percent-text",
+      "pass": true,
+      "persona": "neural",
+      "fontSize": "32px",
+      "scrollWidth": 1120,
+      "width": 1120,
+      "portraits": [
+        {
+          "height": 426.15625,
+          "scrollHeight": 426
+        },
+        {
+          "height": 372,
+          "scrollHeight": 372
+        },
+        {
+          "height": 358,
+          "scrollHeight": 358
+        }
+      ]
+    },
+    {
+      "name": "200-percent-text",
+      "pass": true,
+      "persona": "guest",
+      "fontSize": "32px",
+      "scrollWidth": 1120,
+      "width": 1120,
+      "portraits": []
+    },
+    {
+      "name": "reduced-motion",
+      "pass": true,
+      "inspection": true,
+      "primaryDataPresent": true
+    },
+    {
+      "name": "structure-state",
+      "pass": true,
+      "contentPreserved": true,
+      "portraitGeometryPreserved": true
+    },
+    {
+      "name": "persona-control",
+      "pass": true,
+      "unknownFallback": "reaves",
+      "nativeSelect": "guest"
+    }
+  ],
+  "firstThree": [
+    {
+      "task": "player",
+      "selector": "#portrait-1511",
+      "result": "Joel Embiid · 137.50 modeled FAAB · 38 completed-week points; Back closes and restores portrait trigger",
+      "pass": true
+    },
+    {
+      "task": "roster",
+      "selector": "#inspect-roster",
+      "result": "24 rows; Find filters to Damian Lillard; nested player and Back return to roster; Close restores roster trigger",
+      "pass": true
+    },
+    {
+      "task": "matchup",
+      "selector": "#inspect-matchup",
+      "result": "184.5 / 171; saved 56% / 44%, independent confidence 0.35; Close restores matchup trigger",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:4207/qa/homepage-personal-20/12/?persona=reaves",
+    "http://127.0.0.1:4207/qa/homepage-personal-20/12/style.css",
+    "http://127.0.0.1:4207/qa/homepage-personal-20/12/app.js",
+    "http://127.0.0.1:4207/qa/homepage-personal-20/fixture.js",
+    "http://127.0.0.1:4207/qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk[wght].ttf",
+    "http://127.0.0.1:4207/qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+    "http://127.0.0.1:4207/public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+    "http://127.0.0.1:4207/public/courtside/portraits/player-1511.png",
+    "http://127.0.0.1:4207/public/courtside/portraits/player-2133.png",
+    "http://127.0.0.1:4207/public/courtside/portraits/player-2308.png",
+    "http://127.0.0.1:4207/public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+    "http://127.0.0.1:4207/qa/homepage-personal-20/12/?persona=neural",
+    "http://127.0.0.1:4207/public/courtside/portraits/player-1380.png",
+    "http://127.0.0.1:4207/public/courtside/portraits/player-2179.png",
+    "http://127.0.0.1:4207/public/courtside/portraits/player-4866.png",
+    "http://127.0.0.1:4207/qa/homepage-personal-20/12/?persona=guest",
+    "http://127.0.0.1:4207/public/courtside/arena.jpg",
+    "http://127.0.0.1:4207/public/arcade/free-throw-preview.jpg",
+    "http://127.0.0.1:4207/qa/homepage-personal-20/12/?persona=reaves&stage=structure",
+    "http://127.0.0.1:4207/qa/homepage-personal-20/12/?persona=unknown"
+  ],
+  "summary": {
+    "pass": true,
+    "checks": 16,
+    "firstThree": 3,
+    "consoleOrResourceErrors": 0
+  }
+}

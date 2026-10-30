@@ -1,0 +1,129 @@
+{
+  "base": "http://127.0.0.1:4207/qa/homepage-personal-20/04/",
+  "method": "Headless Chromium via installed Playwright, executable /usr/bin/chromium",
+  "timestamp": "2026-10-30T04:29:48.796Z",
+  "results": [
+    {
+      "name": "reaves: visible default subjects and readable body",
+      "pass": true
+    },
+    {
+      "name": "reaves: change selector, swap, browser Back",
+      "pass": true
+    },
+    {
+      "name": "reaves: local subject inspection and focus/scroll return",
+      "pass": true
+    },
+    {
+      "name": "reaves: completed-week sample action",
+      "pass": true
+    },
+    {
+      "name": "reaves: actual opponent/matchup action",
+      "pass": true
+    },
+    {
+      "name": "reaves: 1440px full-page intrinsic layout and source/exit access",
+      "pass": true
+    },
+    {
+      "name": "reaves: 1120px full-page intrinsic layout and source/exit access",
+      "pass": true
+    },
+    {
+      "name": "reaves: 1120px with 200% root text",
+      "pass": true
+    },
+    {
+      "name": "neural: visible default subjects and readable body",
+      "pass": true
+    },
+    {
+      "name": "neural: change selector, swap, browser Back",
+      "pass": true
+    },
+    {
+      "name": "neural: local subject inspection and focus/scroll return",
+      "pass": true
+    },
+    {
+      "name": "neural: completed-week sample action",
+      "pass": true
+    },
+    {
+      "name": "neural: actual opponent/matchup action",
+      "pass": true
+    },
+    {
+      "name": "neural: 1440px full-page intrinsic layout and source/exit access",
+      "pass": true
+    },
+    {
+      "name": "neural: 1120px full-page intrinsic layout and source/exit access",
+      "pass": true
+    },
+    {
+      "name": "neural: 1120px with 200% root text",
+      "pass": true
+    },
+    {
+      "name": "guest: visible default subjects and readable body",
+      "pass": true
+    },
+    {
+      "name": "guest: change selector, swap, browser Back",
+      "pass": true
+    },
+    {
+      "name": "guest: local subject inspection and focus/scroll return",
+      "pass": true
+    },
+    {
+      "name": "guest: all five pairings are normal-flow content",
+      "pass": true
+    },
+    {
+      "name": "guest: actual account exit is explicit, without simulating login",
+      "pass": true
+    },
+    {
+      "name": "guest: 1440px full-page intrinsic layout and source/exit access",
+      "pass": true
+    },
+    {
+      "name": "guest: 1120px full-page intrinsic layout and source/exit access",
+      "pass": true
+    },
+    {
+      "name": "guest: 1120px with 200% root text",
+      "pass": true
+    },
+    {
+      "name": "neural: unpriced player never becomes zero or a complete quote",
+      "pass": true
+    },
+    {
+      "name": "neural: previous-manager qualification stays with historical record",
+      "pass": true
+    },
+    {
+      "name": "direct local player URL works without prior navigation",
+      "pass": true
+    },
+    {
+      "name": "structure/reduced-motion preserve contents and controls",
+      "pass": true
+    },
+    {
+      "name": "keyboard skip reaches main; native selection retains control focus",
+      "pass": true
+    },
+    {
+      "name": "no script errors or external data requests",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

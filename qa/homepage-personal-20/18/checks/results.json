@@ -1,0 +1,191 @@
+{
+  "method": "Chromium /usr/bin/chromium via installed Playwright; localhost only",
+  "layouts": [
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "textScale": "100%",
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "height": 2328,
+      "brokenImages": 0,
+      "workbench": 447,
+      "h1": "Reaves Dropper"
+    },
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "textScale": "200% CSS root font enlargement",
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "height": 4153
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "textScale": "100%",
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "height": 2332,
+      "brokenImages": 0,
+      "workbench": 469,
+      "h1": "NeuralNets"
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "textScale": "200% CSS root font enlargement",
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "height": 4052
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "textScale": "100%",
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "height": 2255,
+      "brokenImages": 0,
+      "workbench": 439,
+      "h1": "Your way into GOAT."
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "textScale": "200% CSS root font enlargement",
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "height": 3857
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "textScale": "100%",
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "height": 2338,
+      "brokenImages": 0,
+      "workbench": 441,
+      "h1": "Reaves Dropper"
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "textScale": "200% CSS root font enlargement",
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "height": 4611
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "textScale": "100%",
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "height": 2343,
+      "brokenImages": 0,
+      "workbench": 464,
+      "h1": "NeuralNets"
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "textScale": "200% CSS root font enlargement",
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "height": 4415
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "textScale": "100%",
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "height": 2262,
+      "brokenImages": 0,
+      "workbench": 434,
+      "h1": "Your way into GOAT."
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "textScale": "200% CSS root font enlargement",
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "height": 4356
+    }
+  ],
+  "journeys": [
+    "Reaves: search Lillard → player facts → explicit Back/restored result focus/query/scroll; empty/no-match/reset and accent-insensitive Sengun search; default player → browser Back/restored focus; matchup saved estimate; 24 quotes/zero unpriced → Back.",
+    "Neural: score unknown/opponent recorded zero; AJ Dybantsa search → unavailable evidence/unpriced quote → Back; m4 inspection preserves null/zero/no model; 22 quotes → six unpriced → name filter → Back.",
+    "Guest: populated public club home; search Neural → public qualified historical facts → Back; m4 public inspection/no private estimate → Back; default club inspection → Back; labelled demo persona change.",
+    "Direct routes: valid player and direct Back; guest private-player route fails closed with recovery; enlarged Neural quote inspector has no page overflow.",
+    "Structure mode preserves workbench geometry; reduced-motion retains content; keyboard skip link/focus; source disclosure opens; all supplied production destinations discovered."
+  ],
+  "errors": [],
+  "blockedRequests": [],
+  "contrast": [
+    {
+      "role": "body",
+      "fg": "#202235",
+      "bg": "#fffdf7",
+      "ratio": 15.39
+    },
+    {
+      "role": "muted",
+      "fg": "#555866",
+      "bg": "#fffdf7",
+      "ratio": 6.94
+    },
+    {
+      "role": "blue body",
+      "fg": "#e2e5ff",
+      "bg": "#2c36b7",
+      "ratio": 7.28
+    },
+    {
+      "role": "workbench data",
+      "fg": "#ffffff",
+      "bg": "#2c36b7",
+      "ratio": 9.06
+    },
+    {
+      "role": "button",
+      "fg": "#262337",
+      "bg": "#ffb28a",
+      "ratio": 8.7
+    },
+    {
+      "role": "game muted",
+      "fg": "#555866",
+      "bg": "#e9ebff",
+      "ratio": 5.98
+    },
+    {
+      "role": "league muted",
+      "fg": "#555866",
+      "bg": "#f0ecf8",
+      "ratio": 6.07
+    },
+    {
+      "role": "focus outer",
+      "fg": "#a93217",
+      "bg": "#fffdf7",
+      "ratio": 6.54
+    },
+    {
+      "role": "focus game",
+      "fg": "#a93217",
+      "bg": "#e9ebff",
+      "ratio": 5.64
+    },
+    {
+      "role": "focus workbench",
+      "fg": "#ffcf79",
+      "bg": "#2c36b7",
+      "ratio": 6.23
+    }
+  ],
+  "status": "passed"
+}

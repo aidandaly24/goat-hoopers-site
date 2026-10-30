@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GOAT Hoopers · The open gym</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip-link" href="#home-title">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-black.svg" alt="GOAT Hoopers" width="180" height="48"></a>
+    <nav aria-label="Main navigation">
+      <a href="./" aria-current="page">Home</a>
+      <a href="#your-players" data-section-link>Players</a>
+      <a href="#games" data-section-link>Matchups</a>
+      <a href="#league" data-section-link>League</a>
+    </nav>
+    <a class="account-link" id="account-link" href="https://goathoopers.com/team">My Team <span>GOAT site · leaves demo</span></a>
+  </header>
+  <div class="utility-line">
+    <p><span class="demo-label">Synthetic demo</span> <a href="#source-notes" data-section-link>About these numbers</a></p>
+    <label for="persona-select">Demo persona <select id="persona-select"><option value="reaves">Reaves Dropper</option><option value="neural">NeuralNets</option><option value="guest">Guest</option></select></label>
+  </div>
+  <main id="home" class="gym-room" aria-busy="true">
+    <svg class="roof-line" viewBox="0 0 1320 110" preserveAspectRatio="none" aria-hidden="true"><path d="M12 106V49L660 6l648 43v57M12 49h1296M84 49v36m144-36v25m144-25v14m144-14v6m144-6v6m144-6v14m144-14v25m144-25v36"/><path d="M24 94h175m922 0h175"/></svg>
+    <div class="wall-and-bench">
+      <section class="club-wall" id="wall"></section>
+      <section class="team-bench" id="bench"></section>
+    </div>
+    <section class="court-space" id="games" tabindex="-1" aria-labelledby="games-title"></section>
+    <div class="room-threshold" aria-hidden="true"><span></span><span></span><span></span></div>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <dialog id="inspector" aria-labelledby="inspector-title"><div class="dialog-top"><span>GOAT · Local inspection</span><button class="close-button" id="close-inspector" type="button">Close</button></div><div id="inspector-content"></div></dialog>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+{
+  "scope": "Neural opening priority, changed action/Back/focus and reflow only",
+  "engine": "Chromium via existing Playwright",
+  "layouts": [
+    {
+      "mode": "normal",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 3595,
+      "intro": "Your side · NeuralNets\n\nNeuralNets\n0–2\n10 of 10 in the 2026 sample\n\n412.25 season points for\n\nGiannis Antetokounmpo has 45 counted-game points in synthetic completed Week 2.\n\nInspect Giannis’ Week 2 sample",
+      "bodyFont": "16px",
+      "primaryHref": "/qa/homepage-personal-20/19/index.html?persona=neural&view=player&id=1380",
+      "primaryText": "Inspect Giannis’ Week 2 sample",
+      "primaryBottom": 539,
+      "overflow": [],
+      "rectangles": [
+        [
+          "stanza our-intro",
+          100,
+          237,
+          819,
+          327
+        ],
+        [
+          "stanza our-evidence",
+          100,
+          596,
+          713,
+          355
+        ],
+        [
+          "stanza our-score",
+          205,
+          983,
+          503,
+          350
+        ],
+        [
+          "stanza our-quotes",
+          100,
+          1365,
+          713,
+          561
+        ],
+        [
+          "stanza their-intro",
+          1048,
+          269,
+          292,
+          237
+        ],
+        [
+          "stanza their-score",
+          943,
+          618,
+          397,
+          267
+        ],
+        [
+          "stanza their-history",
+          837,
+          1057,
+          503,
+          203
+        ],
+        [
+          "stanza their-limits",
+          943,
+          1365,
+          397,
+          561
+        ]
+      ]
+    },
+    {
+      "mode": "normal",
+      "width": 1120,
+      "scrollWidth": 1120,
+      "height": 3618,
+      "intro": "Your side · NeuralNets\n\nNeuralNets\n0–2\n10 of 10 in the 2026 sample\n\n412.25 season points for\n\nGiannis Antetokounmpo has 45 counted-game points in synthetic completed Week 2.\n\nInspect Giannis’ Week 2 sample",
+      "bodyFont": "16px",
+      "primaryHref": "/qa/homepage-personal-20/19/index.html?persona=neural&view=player&id=1380",
+      "primaryText": "Inspect Giannis’ Week 2 sample",
+      "primaryBottom": 539,
+      "overflow": [],
+      "rectangles": [
+        [
+          "stanza our-intro",
+          30,
+          237,
+          700,
+          327
+        ],
+        [
+          "stanza our-evidence",
+          30,
+          596,
+          610,
+          355
+        ],
+        [
+          "stanza our-score",
+          30,
+          983,
+          431,
+          373
+        ],
+        [
+          "stanza our-quotes",
+          30,
+          1388,
+          610,
+          549
+        ],
+        [
+          "stanza their-intro",
+          749,
+          269,
+          341,
+          237
+        ],
+        [
+          "stanza their-score",
+          749,
+          618,
+          341,
+          263
+        ],
+        [
+          "stanza their-history",
+          569,
+          1068,
+          521,
+          203
+        ],
+        [
+          "stanza their-limits",
+          749,
+          1388,
+          341,
+          549
+        ]
+      ]
+    },
+    {
+      "mode": "200% root text",
+      "width": 1120,
+      "scrollWidth": 1120,
+      "height": 7123,
+      "intro": "Your side · NeuralNets\n\nNeuralNets\n0–2\n10 of 10 in the 2026 sample\n\n412.25 season points for\n\nGiannis Antetokounmpo has 45 counted-game points in synthetic completed Week 2.\n\nInspect Giannis’ Week 2 sample",
+      "bodyFont": "32px",
+      "primaryHref": "/qa/homepage-personal-20/19/index.html?persona=neural&view=player&id=1380",
+      "primaryText": "Inspect Giannis’ Week 2 sample",
+      "primaryBottom": 962,
+      "overflow": [],
+      "rectangles": [
+        [
+          "stanza our-intro",
+          30,
+          464,
+          700,
+          725
+        ],
+        [
+          "stanza our-evidence",
+          30,
+          1221,
+          610,
+          734
+        ],
+        [
+          "stanza our-score",
+          30,
+          1988,
+          431,
+          1059
+        ],
+        [
+          "stanza our-quotes",
+          30,
+          3079,
+          610,
+          1202
+        ],
+        [
+          "stanza their-intro",
+          749,
+          496,
+          341,
+          693
+        ],
+        [
+          "stanza their-score",
+          749,
+          1243,
+          341,
+          680
+        ],
+        [
+          "stanza their-history",
+          569,
+          2307,
+          521,
+          420
+        ],
+        [
+          "stanza their-limits",
+          749,
+          3079,
+          341,
+          1202
+        ]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "result": "PASS",
+      "selectors": [
+        "#task-primary",
+        "#view-heading",
+        "[data-testid=\"player-evidence-points\"]",
+        "#back-to-story"
+      ],
+      "evidence": "Keyboard activation opens Giannis 45 pts in synthetic completed Week 2; local Back and browser Back both restore primary-action focus."
+    },
+    {
+      "result": "PASS",
+      "selectors": [
+        "#inspect-unpriced",
+        "[data-testid=\"quote-count\"]",
+        "#back-to-story"
+      ],
+      "evidence": "Lower supporting quote action still opens six unpriced players; Back restores that supporting link and reading position."
+    }
+  ],
+  "errors": [],
+  "structure": {
+    "persona": "neural",
+    "width": 1440,
+    "geometryIdentical": true
+  },
+  "status": "PASS"
+}

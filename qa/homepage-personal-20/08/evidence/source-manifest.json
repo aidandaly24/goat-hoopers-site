@@ -1,0 +1,62 @@
+{
+  "study": "08",
+  "state": "frozen after targeted cleanup checks",
+  "verification": {
+    "currentReport": "evidence/cleanup-results.json",
+    "currentScope": "Three guest rendering/action cases and member standings preservation smoke",
+    "baselineReport": "evidence/browser-results.json",
+    "unchangedMemberMatrixRerun": false
+  },
+  "files": [
+    {
+      "path": "qa/homepage-personal-20/08/index.html",
+      "sha256": "1b07ba60ad38d6e72e4b1c149abff23f194ebaedbecdee717ecf22d6f4f73cf5",
+      "bytes": 841
+    },
+    {
+      "path": "qa/homepage-personal-20/08/style.css",
+      "sha256": "92d12c5bb9b5ffd821aa43851e7dd4bf863adf928249b01524a8e4a2364f0a78",
+      "bytes": 18614
+    },
+    {
+      "path": "qa/homepage-personal-20/08/app.js",
+      "sha256": "77bfb20437951cf8f03caadd0e554133ece09da51c200bf7a0b876791ac6e64c",
+      "bytes": 30142
+    },
+    {
+      "path": "qa/homepage-personal-20/08/verify.cjs",
+      "sha256": "502dc12c3357e9a98196511438619c6272aeed46847264de41953dd9859507e7",
+      "bytes": 15790
+    },
+    {
+      "path": "qa/homepage-personal-20/08/verify-cleanup.cjs",
+      "sha256": "c8632d5cb743733b4a450e245b0f31d8ae67f28a1369e216da20006aee15af60",
+      "bytes": 6857
+    },
+    {
+      "path": "qa/homepage-personal-20/08/journeys.json",
+      "sha256": "8f0e2a693168bacd721537bde1bc4ee8b65c82ed2d5fe0d1fd5cf2585e73aa1a",
+      "bytes": 8166
+    },
+    {
+      "path": "qa/homepage-personal-20/08/PLAN.md",
+      "sha256": "cf2f77fca867fee443cecce968a6ab87a6d2aea3fbf44825c840808679643857",
+      "bytes": 19023
+    },
+    {
+      "path": "qa/homepage-personal-20/08/NOTES.md",
+      "sha256": "24c5be5e815646d93779fdb9f8c8177c90bbc6191b2cd60ca43047c41078f2fb",
+      "bytes": 8695
+    },
+    {
+      "path": "qa/homepage-personal-20/08/../fixture.json",
+      "sha256": "7a1835933c4319c5e169c46c21197e350d39715101078358413295aad907e382",
+      "bytes": 31171
+    },
+    {
+      "path": "qa/homepage-personal-20/08/../fixture.js",
+      "sha256": "880a8ecc5f978628589146742891802c4fdef48d9695d9085f66a81019344e42",
+      "bytes": 20315
+    }
+  ]
+}

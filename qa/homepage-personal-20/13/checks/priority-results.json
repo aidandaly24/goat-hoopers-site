@@ -1,0 +1,155 @@
+{
+  "revision": "priority correction",
+  "engine": "Headless Chromium /usr/bin/chromium; preinstalled Playwright",
+  "base": "http://127.0.0.1:4207/qa/homepage-personal-20/13/",
+  "layouts": [
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "text": 16,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "openingBottom": 456.90625,
+      "sourceLogOpen": false,
+      "sourceTop": 2194,
+      "firstReadingTop": 667.40625,
+      "firstReadingBottom": 724.40625,
+      "pass": true
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "text": 16,
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "openingBottom": 456.90625,
+      "sourceLogOpen": false,
+      "sourceTop": 2194,
+      "firstReadingTop": 667.40625,
+      "firstReadingBottom": 724.40625,
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "text": 16,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "openingBottom": 456.90625,
+      "sourceLogOpen": false,
+      "sourceTop": 1839.609375,
+      "firstReadingTop": 667.40625,
+      "firstReadingBottom": 724.40625,
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "text": 16,
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "openingBottom": 456.90625,
+      "sourceLogOpen": false,
+      "sourceTop": 1839.609375,
+      "firstReadingTop": 667.40625,
+      "firstReadingBottom": 724.40625,
+      "pass": true
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "text": 16,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "openingBottom": 402.90625,
+      "sourceLogOpen": false,
+      "sourceTop": 1528.953125,
+      "firstReadingTop": 532.90625,
+      "firstReadingBottom": 580.90625,
+      "pass": true
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "text": 16,
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "openingBottom": 418.171875,
+      "sourceLogOpen": false,
+      "sourceTop": 1544.21875,
+      "firstReadingTop": 548.171875,
+      "firstReadingBottom": 596.171875,
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "text": 24,
+      "viewport": 1120,
+      "scrollWidth": 1120,
+      "openingBottom": 524.421875,
+      "sourceLogOpen": false,
+      "sourceTop": 2004.515625,
+      "firstReadingTop": 757.921875,
+      "firstReadingBottom": 814.921875,
+      "pass": true
+    }
+  ],
+  "journeys": [
+    {
+      "persona": "reaves",
+      "task": "Leading owned-player reading, period, inspect and close focus",
+      "pass": true
+    },
+    {
+      "persona": "reaves",
+      "task": "Relocated quote inspector, search/reset and nested/parent focus",
+      "pass": true
+    },
+    {
+      "persona": "reaves",
+      "task": "Opening opponent context and browser Back focus",
+      "pass": true
+    },
+    {
+      "persona": "reaves",
+      "task": "Supporting source disclosure and cross-document quote return",
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "task": "Leading owned-player reading, period, inspect and close focus",
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "task": "Relocated quote inspector, search/reset and nested/parent focus",
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "task": "Opening opponent context and browser Back focus",
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "task": "Supporting source disclosure and cross-document quote return",
+      "pass": true
+    },
+    {
+      "persona": "guest",
+      "task": "Leading public league reading, zero/null pair, ten-team directory/history and real sign-in href",
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "task": "Changed priority and supporting disclosure remain in structure mode",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Focused changed-content checks, not a rerun of the original exhaustive matrix",
+    "Desktop Chromium only; no remote auth/tool requests"
+  ]
+}

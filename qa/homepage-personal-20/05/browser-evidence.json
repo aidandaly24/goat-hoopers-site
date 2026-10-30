@@ -1,0 +1,318 @@
+{
+  "checkedAt": "2026-10-30T04:32:15.428Z",
+  "method": "Installed Playwright, headless Chromium, local static server. Reduced motion. Real link activation and browser Back. Enlarged text sets root font-size to 200%, not physical-device or browser-zoom evidence.",
+  "base": "http://127.0.0.1:4207/qa/homepage-personal-20/05/",
+  "results": [
+    {
+      "persona": "reaves",
+      "width": 1440,
+      "actions": [
+        {
+          "selector": "#action-player",
+          "destination": "player",
+          "expected": "42.5 points",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1440
+        },
+        {
+          "selector": "#action-matchup",
+          "destination": "matchup",
+          "expected": "56%",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1440
+        },
+        {
+          "selector": "#action-standings",
+          "destination": "standings",
+          "expected": "All ten, in the mix.",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1440
+        }
+      ],
+      "errors": [],
+      "externalRequests": [],
+      "homeGeometry": {
+        "viewport": 1440,
+        "width": 1440,
+        "height": 3063,
+        "oversized": []
+      },
+      "footerRoutes": 15,
+      "enlargedGeometry": {
+        "viewport": 1440,
+        "width": 1440,
+        "height": 9977,
+        "oversized": []
+      },
+      "pass": true
+    },
+    {
+      "persona": "reaves",
+      "width": 1120,
+      "actions": [
+        {
+          "selector": "#action-player",
+          "destination": "player",
+          "expected": "42.5 points",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1120
+        },
+        {
+          "selector": "#action-matchup",
+          "destination": "matchup",
+          "expected": "56%",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1120
+        },
+        {
+          "selector": "#action-standings",
+          "destination": "standings",
+          "expected": "All ten, in the mix.",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1120
+        }
+      ],
+      "errors": [],
+      "externalRequests": [],
+      "homeGeometry": {
+        "viewport": 1120,
+        "width": 1120,
+        "height": 3110,
+        "oversized": []
+      },
+      "footerRoutes": 15,
+      "enlargedGeometry": {
+        "viewport": 1120,
+        "width": 1120,
+        "height": 10182,
+        "oversized": []
+      },
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "width": 1440,
+      "actions": [
+        {
+          "selector": "#action-player",
+          "destination": "player",
+          "expected": "45 points",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1440
+        },
+        {
+          "selector": "#action-matchup",
+          "destination": "matchup",
+          "expected": "NeuralNets has no returned score",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1440
+        },
+        {
+          "selector": "#action-standings",
+          "destination": "standings",
+          "expected": "All ten, in the mix.",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1440
+        }
+      ],
+      "errors": [],
+      "externalRequests": [],
+      "homeGeometry": {
+        "viewport": 1440,
+        "width": 1440,
+        "height": 2924,
+        "oversized": []
+      },
+      "footerRoutes": 15,
+      "enlargedGeometry": {
+        "viewport": 1440,
+        "width": 1440,
+        "height": 9705,
+        "oversized": []
+      },
+      "pass": true
+    },
+    {
+      "persona": "neural",
+      "width": 1120,
+      "actions": [
+        {
+          "selector": "#action-player",
+          "destination": "player",
+          "expected": "45 points",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1120
+        },
+        {
+          "selector": "#action-matchup",
+          "destination": "matchup",
+          "expected": "NeuralNets has no returned score",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1120
+        },
+        {
+          "selector": "#action-standings",
+          "destination": "standings",
+          "expected": "All ten, in the mix.",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1120
+        }
+      ],
+      "errors": [],
+      "externalRequests": [],
+      "homeGeometry": {
+        "viewport": 1120,
+        "width": 1120,
+        "height": 2952,
+        "oversized": []
+      },
+      "footerRoutes": 15,
+      "enlargedGeometry": {
+        "viewport": 1120,
+        "width": 1120,
+        "height": 9764,
+        "oversized": []
+      },
+      "pass": true
+    },
+    {
+      "persona": "guest",
+      "width": 1440,
+      "actions": [
+        {
+          "selector": "#action-team",
+          "destination": "team",
+          "expected": "Reaves Dropper",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1440
+        },
+        {
+          "selector": "#action-standings",
+          "destination": "standings",
+          "expected": "All ten, in the mix.",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1440
+        },
+        {
+          "selector": "#action-matchup",
+          "destination": "matchup",
+          "expected": "Reaves Dropper vs Ware the Hoes At?",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1440
+        }
+      ],
+      "errors": [],
+      "externalRequests": [],
+      "homeGeometry": {
+        "viewport": 1440,
+        "width": 1440,
+        "height": 3059,
+        "oversized": []
+      },
+      "footerRoutes": 15,
+      "enlargedGeometry": {
+        "viewport": 1440,
+        "width": 1440,
+        "height": 9807,
+        "oversized": []
+      },
+      "pass": true
+    },
+    {
+      "persona": "guest",
+      "width": 1120,
+      "actions": [
+        {
+          "selector": "#action-team",
+          "destination": "team",
+          "expected": "Reaves Dropper",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1120
+        },
+        {
+          "selector": "#action-standings",
+          "destination": "standings",
+          "expected": "All ten, in the mix.",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1120
+        },
+        {
+          "selector": "#action-matchup",
+          "destination": "matchup",
+          "expected": "Reaves Dropper vs Ware the Hoes At?",
+          "activation": "Keyboard Enter",
+          "back": "Home restored with source-link focus",
+          "destinationWidth": 1120
+        }
+      ],
+      "errors": [],
+      "externalRequests": [],
+      "homeGeometry": {
+        "viewport": 1120,
+        "width": 1120,
+        "height": 3166,
+        "oversized": []
+      },
+      "footerRoutes": 15,
+      "enlargedGeometry": {
+        "viewport": 1120,
+        "width": 1120,
+        "height": 9992,
+        "oversized": []
+      },
+      "pass": true
+    }
+  ],
+  "supplemental": [
+    {
+      "check": "Neural local roster → AJ Dybantsa",
+      "pass": true,
+      "roster": 22,
+      "unpriced": 6,
+      "quote": "Unpriced",
+      "points": "Evidence unavailable",
+      "history": "Previous manager named"
+    },
+    {
+      "check": "Reaves value coverage and rank explanation",
+      "pass": true,
+      "quoted": "24/24",
+      "modeledFaab": "1,095.25",
+      "rank": "Unavailable, never inferred"
+    },
+    {
+      "check": "Native persona select changes query/content/dataset",
+      "pass": true
+    },
+    {
+      "check": "Structure stage preserves geometry and neutralizes media",
+      "pass": true,
+      "height": 3110,
+      "width": 1120
+    }
+  ],
+  "sourceHashes": {
+    "index.html": "0e4e260109a91a149860f79a63c9e8858a227a13bcc63d0941e5daeeee240108",
+    "style.css": "f95f8fcd66f460daa99fe13c95c50489bcd484d87560abfe0cf8784eaae06276",
+    "app.js": "e6ad8f6b0a7ee2e17f635d6ff3b7ed0f88817333c232bdd2d8ff465f399e188c"
+  },
+  "fixtureSha256": "880a8ecc5f978628589146742891802c4fdef48d9695d9085f66a81019344e42",
+  "pass": true
+}

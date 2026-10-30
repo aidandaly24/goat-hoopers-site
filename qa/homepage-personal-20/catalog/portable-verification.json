@@ -1,0 +1,858 @@
+{
+  "method": "Actual standalone HTTP browser boots, complete source main-text parity, decoded fonts/images, embedded OFL notices and zero dependent HTTP requests for all three personas. Source hashes checked against compilation. This verifies delivery integrity, not useful journeys or visual diversity; those are separate reviews.",
+  "limits": "Headless Linux Chromium. No file-URL, mobile, live-account/backend, assistive-technology or physical-device certification.",
+  "checks": [
+    {
+      "id": "01",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "IBM Plex Mono",
+        "Oswald"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "01",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "IBM Plex Mono",
+        "Oswald"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "01",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "IBM Plex Mono",
+        "Oswald"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "02",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Righteous",
+        "Space Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "02",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Righteous",
+        "Space Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "02",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Righteous",
+        "Space Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "03",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Lora",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "03",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Lora",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "03",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Lora",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "04",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "04",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "04",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "05",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "Lora"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "05",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "Lora"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "05",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "Lora"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "06",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Barlow Condensed",
+        "IBM Plex Mono",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "06",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Barlow Condensed",
+        "IBM Plex Mono",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "06",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Barlow Condensed",
+        "IBM Plex Mono",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "07",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "07",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "07",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "08",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk",
+        "Space Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "08",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk",
+        "Space Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "08",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk",
+        "Space Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "09",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "IBM Plex Mono",
+        "Lora",
+        "Oswald"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "09",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "IBM Plex Mono",
+        "Lora",
+        "Oswald"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "09",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "IBM Plex Mono",
+        "Lora",
+        "Oswald"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "10",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "Space Mono",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "10",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "Space Mono",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "10",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "Space Mono",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "11",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "DM Sans",
+        "Graduate",
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "11",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "DM Sans",
+        "Graduate",
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "11",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Barlow Condensed",
+        "DM Sans",
+        "Graduate",
+        "IBM Plex Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "12",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "12",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "12",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "13",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Lora"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "13",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Lora"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "13",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Lora"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "14",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "14",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "14",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "15",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "15",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "15",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "16",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Lora"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "16",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Lora"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "16",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Lora"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "17",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "17",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "17",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "18",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Righteous",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "18",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Righteous",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "18",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Righteous",
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "19",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk",
+        "Space Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "19",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk",
+        "Space Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "19",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Archivo Black",
+        "Space Grotesk",
+        "Space Mono"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "20",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "20",
+      "persona": "neural",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    },
+    {
+      "id": "20",
+      "persona": "reaves",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "brokenImages": 0,
+      "fontLicenses": [
+        "Space Grotesk"
+      ],
+      "mainTextMatchesSource": true,
+      "documentWidth": 1440
+    }
+  ]
+}

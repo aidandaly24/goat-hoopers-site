@@ -1,0 +1,193 @@
+{
+  "browser": "Chromium /usr/bin/chromium",
+  "checks": [
+    {
+      "check": "reaves: 1440px home",
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440,
+      "pass": true
+    },
+    {
+      "check": "reaves: #act-matchup → Reaves Dropper vs Ware the Hoes At? → Back",
+      "headingFocus": true,
+      "originFocus": true,
+      "pass": true
+    },
+    {
+      "check": "reaves: #act-team → Reaves Dropper · Club sheet → Back",
+      "headingFocus": true,
+      "originFocus": true,
+      "pass": true
+    },
+    {
+      "check": "reaves: #act-player → Joel Embiid → Back",
+      "headingFocus": true,
+      "originFocus": true,
+      "pass": true
+    },
+    {
+      "check": "neural: 1440px home",
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440,
+      "pass": true
+    },
+    {
+      "check": "neural: #act-matchup → papichooter vs NeuralNets → Back",
+      "headingFocus": true,
+      "originFocus": true,
+      "pass": true
+    },
+    {
+      "check": "neural: #act-team → NeuralNets · Club sheet → Back",
+      "headingFocus": true,
+      "originFocus": true,
+      "pass": true
+    },
+    {
+      "check": "neural: #act-player → Giannis Antetokounmpo → Back",
+      "headingFocus": true,
+      "originFocus": true,
+      "pass": true
+    },
+    {
+      "check": "guest: 1440px home",
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440,
+      "pass": true
+    },
+    {
+      "check": "guest: #act-matchup → Reaves Dropper vs Ware the Hoes At? → Back",
+      "headingFocus": true,
+      "originFocus": true,
+      "pass": true
+    },
+    {
+      "check": "guest: #act-club → Reaves Dropper → Back",
+      "headingFocus": true,
+      "originFocus": true,
+      "pass": true
+    },
+    {
+      "check": "guest: #act-directory → The ten clubs. → Back",
+      "headingFocus": true,
+      "originFocus": true,
+      "pass": true
+    },
+    {
+      "check": "reaves: 1120px home",
+      "viewport": 1120,
+      "document": 1120,
+      "body": 1120,
+      "pass": true
+    },
+    {
+      "check": "reaves: 1120px + 200% root text",
+      "viewport": 1120,
+      "document": 1120,
+      "body": 1120,
+      "pass": true
+    },
+    {
+      "check": "neural: 1120px home",
+      "viewport": 1120,
+      "document": 1120,
+      "body": 1120,
+      "pass": true
+    },
+    {
+      "check": "neural: 1120px + 200% root text",
+      "viewport": 1120,
+      "document": 1120,
+      "body": 1120,
+      "pass": true
+    },
+    {
+      "check": "guest: 1120px home",
+      "viewport": 1120,
+      "document": 1120,
+      "body": 1120,
+      "pass": true
+    },
+    {
+      "check": "guest: 1120px + 200% root text",
+      "viewport": 1120,
+      "document": 1120,
+      "body": 1120,
+      "pass": true
+    },
+    {
+      "check": "Structure mode preserves content and hides imagery without removing boxes",
+      "pass": true
+    },
+    {
+      "check": "Reduced motion: all three actions present; player inspection works",
+      "pass": true
+    },
+    {
+      "check": "All 14 non-home fixture destinations in visibly labelled exit footer",
+      "pass": true
+    },
+    {
+      "check": "Seven rendered text foreground/background samples meet 4.5:1",
+      "samples": [
+        {
+          "selector": ".clubs .own .club-name",
+          "foreground": "rgb(255, 246, 229)",
+          "background": "rgb(23, 61, 53)",
+          "ratio": 11.15
+        },
+        {
+          "selector": ".score-caption",
+          "foreground": "rgb(23, 61, 53)",
+          "background": "rgb(255, 246, 229)",
+          "ratio": 11.15
+        },
+        {
+          "selector": ".sample-foot",
+          "foreground": "rgb(23, 61, 53)",
+          "background": "rgb(241, 215, 170)",
+          "ratio": 8.57
+        },
+        {
+          "selector": ".game-status",
+          "foreground": "rgb(60, 81, 68)",
+          "background": "rgb(241, 215, 170)",
+          "ratio": 6.13
+        },
+        {
+          "selector": ".action.primary",
+          "foreground": "rgb(255, 246, 229)",
+          "background": "rgb(169, 57, 40)",
+          "ratio": 5.92
+        },
+        {
+          "selector": ".explore .exit-note",
+          "foreground": "rgb(255, 246, 229)",
+          "background": "rgb(23, 61, 53)",
+          "ratio": 11.15
+        },
+        {
+          "selector": ".footer-bottom p",
+          "foreground": "rgb(23, 61, 53)",
+          "background": "rgb(255, 246, 229)",
+          "ratio": 11.15
+        }
+      ],
+      "pass": true
+    },
+    {
+      "check": "Nested team → player → Back restores roster link; browser Forward restores detail",
+      "pass": true
+    },
+    {
+      "check": "Guest direct player URL does not inherit member sample",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "badRequests": [],
+  "passed": true
+}

@@ -1,117 +1,123 @@
-# Concept 04 — Clubhouse
+# Concept 04 — Compare your squad
 
-Revised discovery plan. This replaces the earlier Team review plan; it is the same independent author, not an additional author. No presentation code has been written. Build is paused pending the early-three gate and a root build followup.
+Accepted architecture checkpoint, same author. This replaced both previous 04 plans. Root subsequently authorized implementation of this comparison-first concept. The plan below preserves the design decision; current implementation, actual verification and the source freeze are recorded in NOTES.md. No dependencies, shared files or production changes are involved.
 
-## Chosen website architecture
+## Alternatives and decision
 
-I privately developed three complete approaches: a competition-led league map, a player-led clubhouse, and a narrative weekly magazine. The clubhouse is the strongest fit: it makes the member's actual squad and opponent tangible, gives players useful local destinations, and has a natural public edition. The league map would let comparison mechanics dominate; the magazine would need more sourced stories than this fixture supplies. Neither is being built or presented as another concept.
+I developed these two alternatives before selecting the architecture below:
 
-The homepage answers **Who am I facing, which of my players can I inspect, and where does my team sit in this league?** It is an entry into a usable website. Home presents enough matchup, player and competition content to be useful by itself; a full roster and ten-team standings have their own local destinations. There is no roster/standings table spine on home, missing-quote repair queue, or dashboard of every available data family.
+1. **Position atlas.** A whole-width, spatial index of the member's supplied PG/SG/SF/PF/C players, with each position leading to its roster and player pages. Reaves and NeuralNets would have genuinely different densities and entries; guest would browse teams instead. I rejected this because position alone is a weak return-home priority, and a full atlas risks making membership inventory the entire experience. It would also suggest lineup geometry without the necessary lineup contract.
+2. **Opponent dossier.** A single broad document about this week's opponent, with both teams' current league facts, matchup and links into the member's players. Guest would browse five public opponent pairings. I rejected this because the fixture supplies no full roster for either member's opponent. A compelling visual dossier would have more identity than useful scouting and would return to a matchup-led structure.
 
-## The actual visual world
+**Selected: a comparison-first manager site.** The primary homepage object is one functional, two-subject comparison with large labels and a shared field axis. A compact team/opponent context band sits above it. There is no clubhouse hero, editorial column, three simultaneous streams, rail, roster table or matchup → three-player-cards → competition sequence. Home does not try to show every available family of data.
 
-The website is a vivid, dark basketball clubhouse with human faces and large readable names. The opening canvas is deep midnight navy (`#071D36`), the player section is saturated court blue (`#1236B2`), and warm yellow (`#FFD94A`) belongs to primary actions and the competition section's broad background. Near-white (`#F8FBFF`) is the main dark-surface text. Dark navy text sits on yellow. Small coral (`#FF9C83`) labels distinguish period/context where useful; color alone never conveys score or availability. These are planned role values to verify during build, not measured contrast claims.
+The member's valuable job is **compare two actual roster players, inspect the underlying sample, then go to the team or matchup when needed**. This does not produce a lineup recommendation or fake trade. The difference between a quote and a completed-week point sample remains explicit. Guest compares two public teams and can browse the week's pairings or enter the real site.
 
-This world changes the page's structure:
+## Page architecture and navigation
 
-- A 76–88px masthead has the exact white GOAT logo, four clear destinations and an account exit. A small separate utility line carries **Synthetic demo**, the demo-persona select and source explanation. It is not a ticker.
-- At 1440px, approximately 64px outside gutters leave a 1312px working width. The opening is about 390–430px tall. Its left 54% combines the team name, record/standing, two approved player cutouts and **Explore squad**; its right 46% is a typographic matchup with readable team names, actual sample score states and **Open matchup**. Facts/actions sit on opaque surfaces, never across a face. The entire opening is useful content, not a slogan.
-- Cutouts are approximately 230–270px high, naturally bottom-aligned with room for names. Joel Embiid and Anthony Edwards identify Reaves' supplied squad; Giannis Antetokounmpo and LaMelo Ball identify NeuralNets'. These are selected available portraits, not claims that they are captains, starters, best performers or the highest-valued pair. No faux badge, jersey or honor accompanies them. Alperen Şengün / AJ Dybantsa supply further portrait-linked squad entries below.
-- The blue player section uses one substantial portrait-led object beside a short, spacious group of named player links. It is asymmetric rather than a grid of equal cards. Name, useful supplied fact, period and action are visible together.
-- The yellow competition section is an open two-column composition: the team's place and nearby competitors on one side, two other Week 3 pairings on the other. **Explore all 10 teams** opens a local competition page; home does not become a ranking table.
-- The final dark section is a real next-destination area: an existing free-throw image with an explicitly labelled GOAT exit, plus useful Stocks/Intel/history links. A semantic footer completes the website.
+At 1440px, use a centred approximately 1280px working width with 64–80px outer gutters. Every major section spans that frame. There are no persistent side columns. At 1120px, the working width is approximately 1032px with 44px gutters. The main comparison preserves its two subjects while names wrap; enlarged text can stack subjects with their repeated field labels instead of shrinking them.
 
-At 1120px the working gutters become about 40px. The opening remains two columns while names wrap and height grows; the player section can change to one lead portrait plus text links beneath. Enlarged text may stack those regions. Heights are not locked, text is not squeezed down, and there are no internal scroll readers.
+The header is an approximately 80px light masthead with the exact black GOAT logo. Member destinations are **Home**, **Players**, **Matchup**, **League**; guest destinations are **Home**, **Teams**, **Week 3**, **Arcade on GOAT**. Current location is explicit. A separate, approximately 40px utility line contains **Synthetic demo**, the labelled native demo-persona select, and **About this sample**. The select changes only `?persona=reaves|neural|guest`, defaults to Reaves, and updates `document.documentElement.dataset.persona`. It is not membership or authentication.
 
-The guest opening is deliberately different: the approved arena image occupies roughly 42% beside the Week 3 introduction and first public pairing. Its natural framing is retained; it is not a full-screen background. Other pairings begin immediately below in document flow. Guests see league people and competition without inheriting private stories or a claimed squad.
+Member home reading order:
 
-## Typography, proportion and density
+1. **Team context band**, approximately 95–125px: team name/manager, current record and supplied standing, then opponent and current score state in a short adjacent sentence. The member is oriented immediately, without allocating a hero to the pairing. **Open matchup** is available here.
+2. **Compare your squad**, approximately 420–470px with natural growth: two labelled native player selectors and a shared comparison object. Default subjects and useful sample facts are already visible. Controls do not conceal the rest of home.
+3. **Choose another comparison**, approximately 160–220px: a short set of named starting pairs derived from the supplied players, plus **Browse all players**. These are explicit local destinations, not new recommendations, awards or claims about starters.
+4. **This week for your team**, approximately 210–280px: the fixture's two actual synthetic changes, each connected to a useful player/sample/roster destination. A short matchup continuation provides opponent context. No news is invented to extend this section.
+5. **Continue on GOAT**, a concise navigation area for Stocks, Trade Analyzer and the existing playable Arcade, clearly labelled as exits. Then the complete semantic footer.
 
-The old Georgia/Tahoma/mono approach is replaced. Body, controls and ordinary data work together at a substantial reading size; display and score roles provide a separate voice.
+The whole home remains substantive in document flow. The comparison is one central working object, not a widget floating above a checklist of data modules. Full rosters and full league standings belong to deliberate local destinations. Home contains no competition section after a group of player cards.
 
-| Role | Face and actual treatment | Purpose |
+## The comparison object and its visual world
+
+The page uses warm copper (`#DF7048`) as its broad main canvas, deep blue ink (`#102F45`) for text and strong controls, and a warm chalk (`#FFF2D8`) comparison surface. A muted blue (`#CEE4EB`) identifies the right subject's field. The left subject retains copper/light-ink associations. These colors belong to the two comparison positions, never permanent player/team truth. A dark blue footer closes the site; it is not a sports-clubhouse hero. Exact contrast will be checked in build.
+
+One broad comparison object holds two subjects, with a narrow centre gutter naming the shared fields. At desktop width, approximately 44% / 12% / 44% gives each side room for long names and readable values. The top of each subject has a native player select with a proper label, the full name below it, position, and an approximately 105–130px-high approved portrait where present. A subject without a portrait gets its readable name/position and a quiet initial mark; no face is invented. Both sides receive equal space whether or not a portrait exists.
+
+Below the identities, three shared fields establish a genuine comparison: **Completed Week 2 sample points**, **Current modeled FAAB quote**, and **Position**. Field names are visible at the centre and repeated programmatically for each value. Relevant sample period and quote basis/time sit beneath those fields, not in a warning banner. A neutral **Difference: left minus right** may appear only when both values are supplied and compare the same quantity/period. It is never labelled a winner, projected gain, stronger lineup or recommendation. Where either value is absent, the difference is unavailable, with a short explanation next to it. Unknown never becomes zero.
+
+The module is a semantic comparison, not a miniature spreadsheet: three large, well-spaced fields, two named identities, readable source text and direct player links. It has no rank grid, tiny column headings, progress gauges or rows for the full roster. The rest of the site has the same large reading scale.
+
+Imagery is confined to subject identity and a small existing Arcade preview. There is no full-bleed court, collage, wallpaper portrait or invented illustration. This deliberately lets an interaction rather than a scene organize the page. The exact logo remains unchanged; only existing approved portraits are used. The guest's team comparison uses prominent team names, managers and records rather than falsely using a player as a team avatar.
+
+## Typography and density
+
+| Role | Planned treatment | Why |
 | --- | --- | --- |
-| Team identity and section titles | Existing licensed Archivo Black; member name 42–48px/1.08, sections 30–34px/1.15; mixed case | A broad, physical basketball voice. Long names wrap; it does not become an all-caps wall. |
-| Body and player facts | Existing licensed Space Grotesk, 18px/1.5, 400–500; 48–58-character measure | Open reading at the scale this image-led page needs. Concise paragraphs remain ordinary readable text. |
-| Navigation and controls | Space Grotesk, 16–17px/1.3, 600; 44–48px minimum control height | Clear destinations and comfortable controls beside the imagery. |
-| Primary current score | Existing licensed Oswald, 58–68px/1.1; tabular figures | A score reads as a score. Missing score is a readable phrase, never an equally large zero or decorative dash. |
-| Other numerical facts | Space Grotesk, 18–20px with tabular figures; adjacent units and period | Records, modeled quotes and points remain readable without a terminal-like mono family. |
-| Coverage/source support | Space Grotesk, 15–16px/1.45; sentence case and readable contrast | Quiet support means lower prominence, not tiny text. Source expansion stays near the fact. |
+| Page task/title | Existing licensed Archivo Black, 34–40px/1.12, mixed case | The main task is unmistakable without a poster-sized statement. |
+| Subject names | Space Grotesk, 27–32px/1.15, 600–700 | Names are central content. Giannis Antetokounmpo and Stephon Castle’s Back wrap naturally. |
+| Reading/body | Space Grotesk, 18px/1.5, 400–500; roughly 52–60 characters per explanatory paragraph | Substantial reading size throughout, without the previous serif/system stack. |
+| Navigation/select/button labels | Space Grotesk, 16–17px/1.35, 600; controls at least 44–48px high | Clear controls that belong to the comparison workflow. No condensed or display text in form controls. |
+| Main comparison values | Space Grotesk, 28–34px/1.15, 600, tabular figures | Common baselines make values comparable. Numbers do not need a mono family or oversized broadcast score. |
+| Other facts and sources | 17–18px ordinary facts; 15–16px source/coverage at 1.45 | Supporting limits remain readable. They do not become the user's primary job. |
 
-No DM Sans, serif reading layer or system-font table scaffold. Existing local font files and OFL notices are reused. No new downloads/dependencies. Density is medium: three to five meaningful facts and two or three useful actions in the opening, followed by substantive player and competition sections. No giant empty headlines, decorative metric strips or five consecutive same-sized cards.
+Only Archivo Black and Space Grotesk are needed. No serif, system-font body, monospaced data layer, DM Sans or third score face. Retain existing local font files/OFL notices. The main comparison uses approximately 24–32px internal spacing, larger 40–56px section separations and real text growth. This is a medium-density tool website with broad open composition, rather than an admin directory or a stack of sports cards.
 
-## Reaves Dropper homepage
+## Reaves Dropper
 
-The opening names Reaves Dropper / aidandaly20, synthetic 2026 Week 3, 2–0 and supplied standing 1. Its players provide the visual identity. Opposite them, Ware the Hoes At? has its current 1–1 record and sample matchup scores **184.5 / 171**. A 13.5-point sample difference can be stated as current context, never a final victory. The primary action is **Open matchup**.
+The context band names Reaves Dropper / aidandaly20, synthetic Week 3, 2–0 and supplied standing 1. The adjacent current pairing names Ware the Hoes At?, record 1–1, and actual synthetic scores **184.5 / 171**. It can show the current 13.5-point sample difference, never a final victory.
 
-The player section is **Inside your squad**. Joel Embiid's portrait carries **38 points — synthetic completed Week 2** and modeled FAAB 137.50. Damian Lillard's 42.5 and Derrick White's 22 are readable linked comparisons; Tobias Harris and Myles Turner remain available through **Compare five player samples**. This is explicitly a supplied sample, not a best-player award, lineup recommendation or full team scoring total. Each player has a substantive local destination.
+The default comparison is **Joel Embiid vs Damian Lillard**. This is useful because both have known completed-Week-2 sample points: 38 and 42.5, with modeled quotes 137.50 and 74 FAAB. Those are two different quantities, not a combined score or pricing justification. Joel has a supplied portrait; Damian retains an equally readable identity without one. **Inspect Joel** / **Inspect Damian** open local player pages, and **Read the five-player sample** opens all five supplied Week 2 rows with their period and 5-of-24 scope.
 
-A short roster note says five player breakdowns are newly available in this synthetic scenario and links to their comparison. The quote note is subordinate: modeled roster FAAB value 1,095.25, covering 24/24 supplied players at the calculation time. No league value rank or history chart is inferred. The full roster is on **Explore squad**, not printed down home.
-
-The competition section places Reaves with the next supplied team, Stephon Castle’s Back, using current ranks/records without invented movement or odds. Two other actual supplied pairings appear alongside, with names, sample scores and local inspection. The saved estimate is available in the opening's concise **Saved preview** disclosure and on the matchup page: 56% / 44%, returned choice Reaves, saved October 26, confidence 0.35 separately labelled. Experimental/model wording remains beside the preview label; it does not consume an entire home section.
+Other visible starting pairs include Anthony Edwards / Alperen Şengün for current quote inspection, clearly showing their unavailable Week 2 sample where relevant. A roster note links to the complete 24-player destination and quietly states current quote coverage 24/24 and modeled roster FAAB value 1,095.25. No league value rank or history chart is inferred. The dated fixture changes link to sample and roster views; they do not become fabricated editorial stories.
 
 First three manager actions:
 
-1. **Open matchup** → local matchup page with both identities/records, current scores/difference and the supplied saved estimate/provenance.
-2. **Compare five player samples** → local completed-Week-2 comparison with actual points, coverage and period, then named player destinations.
-3. **Explore squad** → local 24-player roster with modeled quotes and player links; Stocks/Trade Analyzer exits are separate and explicit.
+1. **Compare two players** using the selectors; inspect their actual sample/quote difference without receiving an invented recommendation.
+2. **Read the five-player sample** or inspect a named player, then return to the same comparison and scroll position.
+3. **Open matchup** for both team records/current score and the matched saved estimate. The saved 56% / 44%, returned choice, October 26 timestamp and separate confidence 0.35 appear with model/provenance labels on that destination, not as homepage decoration.
 
-## NeuralNets homepage
+## NeuralNets
 
-The opening uses its own Giannis/LaMelo imagery, 0–2 record and supplied standing 10. It leads with **NeuralNets vs papichooter** and the opponent's 2–0 record. Papichooter's supplied score remains **0**. NeuralNets reads **Score unavailable**, with one adjacent sentence explaining that no leader can be determined. The useful subject is competition and squad, not an instruction to repair data.
+The context band names NeuralNets / manager NeuralNets, 0–2 and supplied standing 10. Its opponent is papichooter, 2–0. Papichooter's supplied score remains **0**; NeuralNets reads **Score unavailable**, and no leader is inferred. The page's main task remains working with its own players.
 
-Its lead player is Giannis Antetokounmpo with **45 points — synthetic completed Week 2**, alongside Kevin Durant's 33.5 and Rudy Gobert's 29.5. **Inspect Giannis** and **Compare three player samples** lead to substantive local views. LaMelo Ball is a separate squad entry with modeled quote 77.75 and honestly unavailable completed-week evidence. AJ Dybantsa remains an inspectable roster identity although both supplied quantities are unavailable. Neither gets a fabricated form judgment.
+Its default comparison is **Giannis Antetokounmpo vs Kevin Durant**, with supplied sample points 45 / 33.5 and modeled quotes 135.50 / 130.25 FAAB. The meaningful comparison uses known sample evidence; six missing quotes do not become the opening story or an error queue. **Read the three-player sample** brings in Rudy Gobert's supplied 29.5. Other starting pairs include LaMelo Ball / Rudy Gobert for quote inspection; LaMelo's missing completed-week sample is acknowledged beside that field. No form judgment is fabricated.
 
-The next section is **Know your opponent**: papichooter's current record, rank and points-for beside NeuralNets' current league context and **Meet papichooter**. No opponent roster is invented. Competition places NeuralNets beside supplied ninth-place T Halibooty, then shows other Week 3 pairings. There is no implied comeback, improved trajectory or predicted finish.
-
-The value sentence stays beside **Explore your 22-player squad**: **Modeled subtotal 1,622.00 FAAB · 16 of 22 quoted**. Coverage support mentions six unpriced players; they are not an opening error list or fake repair task. No value rank, complete comparative total or history is shown. The absent saved estimate is one sentence on the matchup destination, with no empty meter or generation button. Historical context keeps **Under the previous manager as QBs Gremlins** beside the 2025 record.
+The roster continuation links to all 22 supplied players, with **Modeled subtotal 1,622.00 FAAB · 16 of 22 quoted** as support. The six missing values remain Unpriced on their actual player pages. No rank, complete team total, value comparison with Reaves or history series appears. The matchup destination says there is no saved estimate, without an empty meter or fake generation button. A local papichooter profile supplies current record/rank/points-for; no opponent roster is invented. Any 2025 NeuralNets detail keeps the previous-manager/QBs Gremlins qualification beside it.
 
 First three manager actions:
 
-1. **Meet papichooter** → local public opponent profile with current record/rank/points-for and qualified historical facts; roster availability is explicit.
-2. **Inspect Giannis** → local player page with known Week 2 sample, modeled quote, supplied identity and sources.
-3. **Explore squad** → local 22-player roster in ordinary membership order, preserving priced/unpriced states and named player destinations.
+1. **Compare Giannis and Kevin**, or select another actual roster pair, using known comparable fields.
+2. **Read the three-player sample** or inspect Rudy/Giannis/Kevin's actual local detail.
+3. **Meet papichooter / Open matchup** to understand the current opponent and score state, then return without losing the selected comparison.
 
-## Guest homepage
+## Guest
 
-The public edition is a league clubhouse, not a sample private account. Its opening pairs the approved arena with GOAT Hoopers, synthetic 2026 Week 3, ten teams and a visible first public matchup. **Sign in on GOAT — leaves prototype** explains where actual membership is resolved. The persona select remains visibly a demo control.
+Guest has the same comparison-first website but a different task and data boundary: **Compare two league teams**. There is no selected private team or player ownership claim. The opening public context states GOAT Hoopers, synthetic Week 3 and ten teams, with **Sign in on GOAT — leaves prototype** for actual account entry.
 
-All five public matchups appear in document flow in an open two-column pairing layout, with substantial names and 24–32px scores. The unavailable score remains readable text; no result is transferred between matchups. **Open pairing** reaches local detail. Only m1 has a supplied saved estimate.
+Default subjects are Reaves Dropper and Stephon Castle’s Back. Team selectors contain all ten fixture identities. Shared fields are supplied current **Record**, **Standing** and **Points for**: 2–0 / 2–0, 1 / 2, and 615.5 / 576 respectively. These fields remain separate, with no new combined rating. Team detail is local and keeps current versus previous-season context distinct. It does not pretend every roster is supplied.
 
-**Meet the league** follows with three supplied current contenders — Reaves Dropper, Stephon Castle’s Back and papichooter — their records and local profiles. This is public competition, not an invented editorial feature or championship celebration. **Explore all 10 teams** reaches the complete local directory/competition page. The lower page offers Arcade, Stocks and history before the full footer. There is no private change stream, roster value or owned-player claim.
+**This week's pairings** follows in ordinary flow, listing all five actual pairs with current scores or missing-state text and **Open pairing** links. This is public competition context, not a table of owned players. Guest then has **Meet a team**, the actual account exit, useful GOAT destinations and the full footer. Only m1 has a supplied saved model estimate; it never propagates to other pairings.
 
-First actions: **Open a Week 3 pairing**, **Meet a team**, **Sign in on GOAT**. The first two work locally; the third clearly exits to the actual account destination.
+Guest's first three actions are **Compare public teams**, **Open a Week 3 pairing**, and **Sign in on GOAT**. The first two are local; the third visibly leaves the prototype.
 
-## Navigation and local depth
+## Local destinations, history and focus
 
-Member navigation: **Home**, **Matchup**, **Squad**, **League**. Guest: **Home**, **Week 3**, **Teams**, **Arcade on GOAT**. Home has its current-page state. A signed-in-looking control never represents authentication. The native utility select uses `?persona=reaves|neural|guest`, default Reaves, and sets `document.documentElement.dataset.persona`.
+Own-directory views use explicit URLs such as `view=player&id=1511`, `view=samples`, `view=players`, `view=matchup`, `view=league` and `view=team&id=7`. Member comparisons retain validated `left` / `right` player IDs and guest comparisons retain public team IDs. The selected persona is preserved. Invalid subject IDs fall back to that persona's actual supplied defaults, never another team's private state.
 
-Local destinations are readable views in the own-directory HTML application, with explicit URL state such as `view=matchup`, `view=squad`, `view=player&id=1511`, `view=samples` and `view=league`. Back/Forward restores view and departure position. **Back to clubhouse** always works. Header/footer remain available and current location is named. These destinations add depth to already substantive home content; home does not become closed panels.
+Native selects update the local comparison only. The object retains its geometry where possible, and an unobtrusive polite announcement names the changed subjects. No network/storage/mutation occurs. A visible Swap control exchanges sides without implying either is better. Browser Back/Forward restores subjects, current view and departure position. A focusable destination heading receives focus for a user-activated local view; **Back to comparison** restores the originating link/control and position. Native links provide real destinations, direct URLs work, and no modal readers or nested scroll containers are required.
 
-Player detail presents only supplied name/position, approved portrait, quote or Unpriced, points or Unavailable, period/participation and sources. It invents no game logs, injury status or trend. Matchup detail uses known identity/record/score and only its matched estimate. League detail has all ten supplied ranks/teams. Local full rosters exist only for the two supplied teams; other teams explicitly have no roster here and offer a separate GOAT profile exit. Secondary squad/competition pages can use a compact list/table where useful; that is not home's organizing spine.
+Player detail shows only supplied identity/position, optional portrait, quote or Unpriced, points or Unavailable, period/participation and sources. The sample page prints all five/three known rows with scope, not a full team score. The roster and league destinations may use lists or compact tables as secondary depth. Public rosters exist locally only for the two supplied teams; other team profiles explicitly lack a roster here and have a separate GOAT exit. Nothing simulates lineup changes, trade submission, login, refresh, subscriptions or notifications.
 
-The semantic footer groups every fixture destination:
+## Whole-website footer
 
-- **League life:** News, Transactions, Teams, The Table, Weekly archive, History.
-- **Manager tools:** Stocks, Intel, AI Decides, Trade Analyzer, Draft.
-- **Play and account:** Arcade, My Team, Sign in.
-- **This prototype:** local Home, source explanation, Back to top.
+The footer is a complete, readable sitemap with **Local views** (Home, Players/Teams, Matchup/Week 3, League, source explanation, Back to top) and three production groups:
 
-Production links visibly say **on GOAT / leaves prototype** and use existing corresponding paths. Local inspection and production profile exits are separate. No submit/save/lineup/login/notification behavior is simulated.
+- **League life on GOAT:** News, Teams, Transactions, The Table, History, Weekly archive.
+- **Manager tools on GOAT:** Stocks, Intel, AI Decides, Trade Analyzer, Draft.
+- **Play and account on GOAT:** Arcade, My Team, Sign in.
 
-## References and evidence
+All fixture destinations remain discoverable. Each production link visibly says it leaves the prototype and uses the current GOAT origin/path. Local inspection and production profile links are distinct. Exact approved logo variants remain unchanged.
 
-Assigned sources were read during initial discovery, not installed. They inform interaction/access; neither supplies this art direction. No peer source, pilot source, old prototype or rejected catalog was inspected during either pass.
+## Source applications and constraints
 
-- [Emil Kowalski, Design Engineering](https://github.com/emilkowalski/skills/blob/main/skills/emil-design-eng/SKILL.md): assigned page opened and full raw SKILL.md read (597 rendered lines). This revision selectively applies the frequency/purpose animation framework and control feedback: repeated navigation/player tasks respond immediately and controls remain predictable. Pointer feedback, if animated, is brief/property-specific. Keyboard/reduced-motion users get the complete static site. The portrait composition is static, with no entrance sequence hiding work. Decorative springs, 3D and dragging are not applied.
-- [Addy Osmani, Accessibility](https://www.ui-skills.com/skills/addyosmani/accessibility): displayed skill body read in full, Evidence-led audit workflow through Common issues by impact (lines 21–409); linked subordinate patterns were not read. Effects are native links/buttons/select, skip navigation, visible focus, descriptive destinations, semantic headings/footer and text for missing states. Portraits do not replace names/facts. Targets, contrast, wrapping and enlarged-text growth constrain the vivid design. Local keyboard/history behavior must be exercised; source/automated checks alone are not conformance.
+The assigned [Emil Kowalski Design Engineering reference](https://github.com/emilkowalski/skills/blob/main/skills/emil-design-eng/SKILL.md) was opened and the complete raw SKILL.md read in original discovery (597 rendered lines). Its selectively useful principles here are immediate repeated-task response, stable controls and purposeful feedback: selector updates are immediate, no reveal animation delays comparison, and any pointer feedback is brief/property-specific. Keyboard and reduced-motion users receive the same static content. Decorative 3D, dragging and springs are not used.
 
-Local basis remains assigned/common brief and inventory; full fixture with corrected null value ranks; all five requested home contracts; AGENTS; relevant ARCHITECTURE data/personalization/access/surface contracts; relevant DESIGN truth/ownership/access guidance and project navigation/accessibility reference; licensed font catalog. During revision I also visually inspected the approved arena and Joel Embiid portrait. No new asset was generated, downloaded or changed.
+The assigned [Addy Osmani Accessibility reference](https://www.ui-skills.com/skills/addyosmani/accessibility) was read through its full displayed skill body, Evidence-led audit workflow through Common issues (lines 21–409); linked subordinate patterns were not read. This architecture applies native labelled selects/links/buttons, descriptive field/value relationships, skip navigation, visible focus, readable unknown states and deliberate view/Back focus behavior. Source/automated evidence will not be described as screen-reader conformance. No reference was installed or executed, and neither supplies this visual world.
 
-## Truth, scope and future verification
+Local sources already inspected remain the assigned/common briefs, product inventory, complete shared fixture with null value ranks, five required home contracts, AGENTS, relevant ARCHITECTURE data/access/personalization contracts, relevant DESIGN truth/access/ownership guidance, project navigation/accessibility reference and licensed font catalog. The approved arena/Embiid portrait were visually inspected in earlier discovery; arena imagery is no longer part of this selected architecture. No peer/pilot/old prototype/rejected catalog source has been inspected.
 
-Coverage supports the claim it qualifies. Reaves' current quote is complete but has no league value rank; NeuralNets remains partial. Missing score is not zero. Sample player points are not full team totals or a new ranking. Current quantities/changes/model outputs remain explicitly synthetic. Historical fields retain season/previous-manager qualification. No history series or Lineup Power producer exists, so neither is drawn. No fake injury/news/availability/story fills a visual gap.
+Only 04/PLAN.md changes for this checkpoint. Future build requires root followup. It would use only own presentation files, the shared data-only fixture, approved assets/fonts, no dependencies or live calls. Synthetic labels/source explanation remain accessible. Missing values stay missing; partial totals stay partial; no value rank, history series, Lineup Power, current news, injury or recommendation is invented. Historical period and previous-manager qualifications persist.
 
-Only `qa/homepage-personal-20/04/PLAN.md` changes now. A future authorized build uses own HTML/CSS/JS, the shared data-only import and approved assets/fonts. No dependencies or network/backend/storage/mutation calls. Readiness waits for fonts/content; `?stage=structure` preserves content/geometry while neutralizing color/imagery.
-
-Future bounded checks: three persona homes and their first three paths; direct local URLs/Back/Forward; explicit GOAT exits; null/zero/partial quote behavior; 1440/1120 with long names; enlarged text/reduced motion; keyboard focus/structure mode. Root owns final captures. Discovery claims no build, browser acceptance, device or screen-reader test.
+Future bounded checks: both member and guest comparison defaults/changes/Swap; direct URLs and Back/Forward/focus restoration; first three actions per persona; sample/quote separation and null/zero/partial states; 1440/1120 long-name layout; enlarged text; reduced motion; complete footer/GOAT exits; structure mode with identical content/geometry. Root owns final captures. Discovery claims no implementation or browser/device/accessibility acceptance.
